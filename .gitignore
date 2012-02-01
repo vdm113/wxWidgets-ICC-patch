@@ -2511,9 +2511,13 @@
 # /src/msw/
 /src/msw/Makefile.in
 
+# /src/png/arm/
+
 # /src/png/projects/owatcom/
 
 # /src/png/projects/vstudio/pnglibconf/
+
+# /src/png/projects/vstudio/pngstest/
 
 # /src/png/projects/vstudio/pngvalid/
 
