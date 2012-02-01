@@ -2576,4 +2576,6 @@
 /build/msw/*.*sdf
 /build/msw/*.suo
 /build/msw/ipch
+/samples/combo/*.*sdf
+/samples/combo/*.suo
 ## vdm
