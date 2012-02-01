@@ -2575,4 +2575,5 @@
 /build/msw/*.filters
 /build/msw/*.*sdf
 /build/msw/*.suo
+/build/msw/ipch
 ## vdm
