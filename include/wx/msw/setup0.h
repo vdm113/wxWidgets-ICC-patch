@@ -4,7 +4,7 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     01/02/97
-// RCS-ID:      $Id$
+// RCS-ID:      $Id: setup0.h 69463 2011-10-18 21:57:02Z VZ $
 // Copyright:   (c) Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@
 // in the version after it completely.
 //
 // Recommended setting: 0 (please update your code)
-#define WXWIN_COMPATIBILITY_2_8 1
+#define WXWIN_COMPATIBILITY_2_8 0
 
 // MSW-only: Set to 0 for accurate dialog units, else 1 for old behaviour when
 // default system font is used for wxWindow::GetCharWidth/Height() instead of
@@ -325,7 +325,7 @@
 //
 // Recommended setting: 1 unless compatibility with the official wxWidgets
 // build and/or the existing code is a concern.
-#define wxUSE_STD_CONTAINERS 0
+#define wxUSE_STD_CONTAINERS 1
 
 // Use standard C++ streams if 1 instead of wx streams in some places. If
 // disabled, wx streams are used everywhere and wxWidgets doesn't depend on the
@@ -559,7 +559,7 @@
 // Default is 1.
 //
 // Recommended setting: 1 if you need IPv6 support
-#define wxUSE_IPV6          0
+#define wxUSE_IPV6          1
 
 // Set to 1 to enable virtual file systems (required by wxHTML)
 #define wxUSE_FILESYSTEM    1
@@ -731,7 +731,7 @@
 #ifdef __WXMSW__
 #define wxUSE_WEBVIEW_IE 1
 #else
-#define wxUSE_WEBVIEW_IE 0
+#define wxUSE_WEBVIEW_IE 1
 #endif
 
 // Use the WebKit wxWebView backend
@@ -1141,7 +1141,7 @@
 #ifdef __WXMSW__
 #define wxUSE_AUTOID_MANAGEMENT 1
 #else
-#define wxUSE_AUTOID_MANAGEMENT 0
+#define wxUSE_AUTOID_MANAGEMENT 1
 #endif
 
 // ----------------------------------------------------------------------------
@@ -1402,7 +1402,7 @@
 // ----------------------------------------------------------------------------
 
 // Set to 1 for PostScript device context.
-#define wxUSE_POSTSCRIPT  0
+#define wxUSE_POSTSCRIPT  1
 
 // Set to 1 to use font metric files in GetTextExtent
 #define wxUSE_AFM_FOR_POSTSCRIPT 1
