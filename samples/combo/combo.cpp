@@ -648,7 +648,7 @@ MyFrame::MyFrame(const wxString& title)
                               wxSize(-1, 125),
                               wxTE_MULTILINE);
     wxLogTextCtrl* logger = new wxLogTextCtrl(m_logWin);
-    m_logOld = logger->SetActiveTarget(logger);
+    //m_logOld = logger->SetActiveTarget(logger);
     logger->DisableTimestamp();
 
 
@@ -658,13 +658,22 @@ MyFrame::MyFrame(const wxString& title)
 
     colSizer = new wxBoxSizer( wxVERTICAL );
 
+    static const int cnt=10000;
 
     wxComboCtrl* cc;
     wxGenericComboCtrl* gcc;
     wxOwnerDrawnComboBox* odc;
 
+    wxStopWatch sw;
+
     // Create common strings array
-    m_arrItems.Add( wxT("Solid") );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for(int i1=0; i1<cnt; ++i1) {
+        m_arrItems.Add( wxT("Solid") );
+    }
+    /*m_arrItems.Add( wxT("Solid") );
     m_arrItems.Add( wxT("Transparent") );
     m_arrItems.Add( wxT("Dot") );
     m_arrItems.Add( wxT("Long Dash") );
@@ -675,8 +684,9 @@ MyFrame::MyFrame(const wxString& title)
     m_arrItems.Add( wxT("Forward Diagonal Hatch") );
     m_arrItems.Add( wxT("Cross Hatch") );
     m_arrItems.Add( wxT("Horizontal Hatch") );
-    m_arrItems.Add( wxT("Vertical Hatch") );
+    m_arrItems.Add( wxT("Vertical Hatch") );*/
 
+    wxLogMessage("wxArrayString diff #1 [ms] == %ld\n",sw.Time());
 
     //
     // Create pen selector ODComboBox with owner-drawn items
@@ -778,6 +788,9 @@ MyFrame::MyFrame(const wxString& title)
     cc->SetPopupControl(iface);
 
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i=0; i<100; i++ )
         iface->AddSelection( wxString::Format(wxT("Item %02i"),i));
 
@@ -805,16 +818,41 @@ MyFrame::MyFrame(const wxString& title)
 
     wxTreeItemId groupId;
 
+    sw.Start();
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i=0; i<4; i++ )
     {
         groupId = tcPopup->AppendItem(rootId,
             wxString::Format(wxT("Branch %02i"),i));
 
         int n;
-        for ( n=0; n<25; n++ )
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        for ( n=0; n<cnt; n++ )
             tcPopup->AppendItem(groupId,
                 wxString::Format(wxT("Subitem %02i"),(i*25)+n));
     }
+
+    wxLogMessage("wxString::Format diff #2 [ms] == %ld\n",sw.Time());
+
+    sw.Start();
+    {
+        wxArrayString test_case;
+        char tmp[1024];
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        for(int n=0; n<cnt; ++n) {
+            printf(tmp,"%d",n);
+            test_case.Add(tmp);
+        }
+    }
+    wxLogMessage("wxArrayString::Add(printf(\"%%d\")) #3 [ms] == %ld\n",sw.Time());
 
     gcc->SetValue(wxT("Subitem 05"));
 
