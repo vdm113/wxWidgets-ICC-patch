@@ -648,7 +648,7 @@ MyFrame::MyFrame(const wxString& title)
                               wxSize(-1, 125),
                               wxTE_MULTILINE);
     wxLogTextCtrl* logger = new wxLogTextCtrl(m_logWin);
-    //m_logOld = logger->SetActiveTarget(logger);
+    m_logOld = logger->SetActiveTarget(logger);
     logger->DisableTimestamp();
 
 
