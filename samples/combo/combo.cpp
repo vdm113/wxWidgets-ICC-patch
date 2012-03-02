@@ -686,7 +686,7 @@ MyFrame::MyFrame(const wxString& title)
     m_arrItems.Add( wxT("Horizontal Hatch") );
     m_arrItems.Add( wxT("Vertical Hatch") );*/
 
-    wxLogMessage("wxArrayString diff #1 [ms] == %ld\n",sw.Time());
+    wxLogMessage(wxT("wxArrayString diff #1 [ms] == %ld\n"),sw.Time());
 
     //
     // Create pen selector ODComboBox with owner-drawn items
@@ -837,7 +837,7 @@ MyFrame::MyFrame(const wxString& title)
                 wxString::Format(wxT("Subitem %02i"),(i*25)+n));
     }
 
-    wxLogMessage("wxString::Format diff #2 [ms] == %ld\n",sw.Time());
+    wxLogMessage(wxT("wxString::Format diff #2 [ms] == %ld\n"),sw.Time());
 
     sw.Start();
     {
@@ -852,7 +852,7 @@ MyFrame::MyFrame(const wxString& title)
             test_case.Add(tmp);
         }
     }
-    wxLogMessage("wxArrayString::Add(printf(\"%%d\")) #3 [ms] == %ld\n",sw.Time());
+    wxLogMessage(wxT("wxArrayString::Add(printf(\"%%d\")) #3 [ms] == %ld\n"),sw.Time());
 
     gcc->SetValue(wxT("Subitem 05"));
 
