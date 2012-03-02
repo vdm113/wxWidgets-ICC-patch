@@ -17,6 +17,63 @@
 // headers
 // ----------------------------------------------------------------------------
 
+#if 1
+
+#include <memory>
+#include <xmmintrin.h>
+
+void* _cdecl operator new(std::size_t size) throw(std::bad_alloc)
+{
+    void* ptr=_aligned_malloc(size,16);
+    if(!ptr)
+        throw(std::bad_alloc());
+    return ptr;
+}
+
+void* _cdecl operator new(std::size_t size, const std::nothrow_t&) throw()
+{
+    return _aligned_malloc(size,16);
+}
+
+void* _cdecl operator new[](std::size_t size) throw(std::bad_alloc)
+{
+    void* ptr=_aligned_malloc(size,16);
+    if(!ptr)
+        throw(std::bad_alloc());
+    return ptr;
+}
+
+void* _cdecl operator new[](std::size_t size, const std::nothrow_t&) throw()
+{
+    return _aligned_malloc(size,16);
+}
+
+void _cdecl operator delete(void* ptr) throw()
+{
+    if(ptr)
+        _aligned_free(ptr);
+}
+
+void _cdecl operator delete(void* ptr, const std::nothrow_t&) throw()
+{
+    if(ptr)
+        _aligned_free(ptr);
+}
+
+void _cdecl operator delete[](void* ptr) throw()
+{
+    if(ptr)
+        _aligned_free(ptr);
+}
+
+void _cdecl operator delete[](void* ptr, const std::nothrow_t&) throw()
+{
+    if(ptr)
+        _aligned_free(ptr);
+}
+
+#endif
+
 // For compilers that support precompilation, includes "wx/wx.h".
 #include "wx/wxprec.h"
 
