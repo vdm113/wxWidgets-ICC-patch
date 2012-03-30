@@ -94,9 +94,9 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|X64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -104,11 +104,11 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
-    <UseIntelMKL>Parallel</UseIntelMKL>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
+    <UseIntelMKL>Parallel</UseIntelMKL>
     <UseILP64Interfaces>false</UseILP64Interfaces>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'" Label="Configuration">
@@ -117,9 +117,9 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -127,12 +127,12 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -140,9 +140,9 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|X64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -150,12 +150,12 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -163,9 +163,9 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|X64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -173,12 +173,12 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -186,9 +186,9 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Release|X64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -196,12 +196,12 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -209,9 +209,9 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Debug|X64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -219,12 +219,12 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -232,9 +232,9 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|X64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -242,11 +242,11 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
-    <UseIntelMKL>Parallel</UseIntelMKL>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
+    <UseIntelMKL>Parallel</UseIntelMKL>
     <UseILP64Interfaces>false</UseILP64Interfaces>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -255,9 +255,9 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|X64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -265,12 +265,12 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -484,7 +484,7 @@
       <ObjectFileName>.\vc_mswu\html\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxmsw29u_html.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -494,7 +494,6 @@
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
       <BrowseInformation>true</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
@@ -588,7 +587,7 @@
       <ObjectFileName>.\vc_mswudll\html\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmsw294u_html_vc_custom.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -598,9 +597,11 @@
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
       <BrowseInformation>true</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -694,7 +695,7 @@
       <ObjectFileName>.\vc_mswunivud\html\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxmswuniv29ud_html.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -705,7 +706,6 @@
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
       <BrowseInformation>true</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
@@ -779,7 +779,7 @@
       <ObjectFileName>.\vc_mswunivu\html\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxmswuniv29u_html.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -789,7 +789,6 @@
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
       <BrowseInformation>true</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
@@ -883,7 +882,7 @@
       <ObjectFileName>.\vc_mswunivudll\html\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmswuniv294u_html_vc_custom.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -893,7 +892,6 @@
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
       <BrowseInformation>true</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
@@ -989,7 +987,7 @@
       <ObjectFileName>.\vc_mswud\html\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxmsw29ud_html.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -1000,7 +998,6 @@
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
       <BrowseInformation>true</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
@@ -1094,7 +1091,7 @@
       <ObjectFileName>.\vc_mswunivuddll\html\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmswuniv294ud_html_vc_custom.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -1105,7 +1102,6 @@
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
       <BrowseInformation>true</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
@@ -1221,7 +1217,7 @@
       <ObjectFileName>.\vc_mswuddll\html\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmsw294ud_html_vc_custom.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -1232,9 +1228,11 @@
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
       <BrowseInformation>true</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1268,6 +1266,8 @@
       <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ShowProgress>LinkVerbose</ShowProgress>
+      <LinkStatus>true</LinkStatus>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
