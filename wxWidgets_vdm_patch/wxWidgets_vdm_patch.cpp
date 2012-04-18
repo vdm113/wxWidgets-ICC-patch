@@ -167,11 +167,11 @@ again:
         if(reformat) {
             vector<string>::reverse_iterator i1=scrollback.rbegin();
             if(i1!=scrollback.rend()) {
+                ++i1;
                 if(!(*i1).compare(inline_pragma))
                     reformat=false;
             }
-            if(scrollback.size()>=4) {
-                ++i1;
+            if(scrollback.size()>=3) {
                 int i3=0;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
