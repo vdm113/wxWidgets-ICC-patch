@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtextbuffer.cpp
 // Purpose:     Buffer for wxRichTextCtrl
@@ -147,6 +154,9 @@ private:
 bool wxRichTextFloatCollector::DeleteFloat(wxRichTextObject* obj)
 {
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_left.GetCount(); i++)
     {
         if (m_left[i]->anchor == obj)
@@ -155,6 +165,9 @@ bool wxRichTextFloatCollector::DeleteFloat(wxRichTextObject* obj)
             return true;
         }
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_right.GetCount(); i++)
     {
         if (m_right[i]->anchor == obj)
@@ -170,6 +183,9 @@ bool wxRichTextFloatCollector::DeleteFloat(wxRichTextObject* obj)
 bool wxRichTextFloatCollector::HasFloat(wxRichTextObject* obj)
 {
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_left.GetCount(); i++)
     {
         if (m_left[i]->anchor == obj)
@@ -177,6 +193,9 @@ bool wxRichTextFloatCollector::HasFloat(wxRichTextObject* obj)
             return true;
         }
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_right.GetCount(); i++)
     {
         if (m_right[i]->anchor == obj)
@@ -191,8 +210,14 @@ bool wxRichTextFloatCollector::HasFloat(wxRichTextObject* obj)
 bool wxRichTextFloatCollector::GetFloatingObjects(wxRichTextObjectList& objects) const
 {
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_left.GetCount(); i++)
         objects.Append(m_left[i]->anchor);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_right.GetCount(); i++)
         objects.Append(m_right[i]->anchor);
     return true;
@@ -213,6 +238,9 @@ int wxRichTextFloatCollector::SearchAdjacentRect(const wxRichTextFloatRectMapArr
 
     wxASSERT(end >= 0);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (true)
     {
         if (start > end)
@@ -247,6 +275,9 @@ int wxRichTextFloatCollector::GetWidthFromFloatRect(const wxRichTextFloatRectMap
 
     if (array[index]->startY < startY && array[index]->endY > startY)
         ret = ret < array[index]->width ? array[index]->width : ret;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (index < len && array[index]->startY <= endY)
     {
         ret = ret < array[index]->width ? array[index]->width : ret;
@@ -265,6 +296,9 @@ wxRichTextFloatCollector::wxRichTextFloatCollector(const wxRect& rect) : m_left(
 void wxRichTextFloatCollector::FreeFloatRectMapArray(wxRichTextFloatRectMapArray& array)
 {
     int len = array.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < len; i++)
         delete array[i];
 }
@@ -282,6 +316,9 @@ int wxRichTextFloatCollector::GetFitPosition(const wxRichTextFloatRectMapArray& 
 
     int i = SearchAdjacentRect(array, start);
     int last = start;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (i < (int) array.GetCount())
     {
         if (array[i]->startY - last >= height)
@@ -340,6 +377,9 @@ void wxRichTextFloatCollector::CollectFloat(wxRichTextParagraph* para, wxRichTex
 void wxRichTextFloatCollector::CollectFloat(wxRichTextParagraph* para)
 {
     wxRichTextObjectList::compatibility_iterator node = para->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* floating = node->GetData();
@@ -408,6 +448,9 @@ void wxRichTextFloatCollector::DrawFloat(const wxRichTextFloatRectMapArray& arra
     j = SearchAdjacentRect(array, end);
     if (j < 0 || j >= (int) array.GetCount())
         j = array.GetCount() - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (i <= j)
     {
         wxRichTextObject* obj = array[i]->anchor;
@@ -553,6 +596,9 @@ void wxRichTextObject::Copy(const wxRichTextObject& obj)
 wxRichTextParagraphLayoutBox* wxRichTextObject::GetContainer() const
 {
     const wxRichTextObject* p = this;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (p)
     {
         if (p->IsTopLevel())
@@ -1023,6 +1069,9 @@ void wxRichTextObject::Dump(wxTextOutputStream& stream)
 wxRichTextBuffer* wxRichTextObject::GetBuffer() const
 {
     const wxRichTextObject* obj = this;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (obj && !obj->IsKindOf(CLASSINFO(wxRichTextBuffer)))
         obj = obj->GetParent();
     return wxDynamicCast(obj, wxRichTextBuffer);
@@ -1034,6 +1083,9 @@ wxPoint wxRichTextObject::GetAbsolutePosition() const
     wxPoint pt = GetPosition();
 
     wxRichTextObject* p = GetParent();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (p)
     {
         pt = pt + p->GetPosition();
@@ -1193,6 +1245,9 @@ bool wxRichTextCompositeObject::RemoveChild(wxRichTextObject* child, bool delete
 bool wxRichTextCompositeObject::DeleteChildren()
 {
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObjectList::compatibility_iterator oldNode = node;
@@ -1221,6 +1276,9 @@ void wxRichTextCompositeObject::Copy(const wxRichTextCompositeObject& obj)
     DeleteChildren();
 
     wxRichTextObjectList::compatibility_iterator node = obj.m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -1240,6 +1298,9 @@ int wxRichTextCompositeObject::HitTest(wxDC& dc, wxRichTextDrawingContext& conte
         return wxRICHTEXT_HITTEST_NONE;
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -1268,6 +1329,9 @@ int wxRichTextCompositeObject::HitTest(wxDC& dc, wxRichTextDrawingContext& conte
 bool wxRichTextCompositeObject::FindPosition(wxDC& dc, wxRichTextDrawingContext& context, long index, wxPoint& pt, int* height, bool forceLineStart)
 {
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -1298,6 +1362,9 @@ void wxRichTextCompositeObject::CalculateRange(long start, long& end)
     }
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -1340,6 +1407,9 @@ bool wxRichTextCompositeObject::DeleteRange(const wxRichTextRange& range)
 {
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* obj = (wxRichTextObject*) node->GetData();
@@ -1381,6 +1451,9 @@ wxString wxRichTextCompositeObject::GetTextForRange(const wxRichTextRange& range
 {
     wxString text;
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -1403,6 +1476,9 @@ wxString wxRichTextCompositeObject::GetTextForRange(const wxRichTextRange& range
 wxRichTextObject* wxRichTextCompositeObject::GetChildAtPosition(long pos) const
 {
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -1417,6 +1493,9 @@ wxRichTextObject* wxRichTextCompositeObject::GetChildAtPosition(long pos) const
 bool wxRichTextCompositeObject::Defragment(const wxRichTextRange& range)
 {
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -1451,6 +1530,9 @@ bool wxRichTextCompositeObject::Defragment(const wxRichTextRange& range)
     if (GetChildCount() > 1)
     {
         node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             wxRichTextObjectList::compatibility_iterator next = node->GetNext();
@@ -1476,6 +1558,9 @@ bool wxRichTextCompositeObject::Defragment(const wxRichTextRange& range)
 void wxRichTextCompositeObject::Dump(wxTextOutputStream& stream)
 {
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -1501,6 +1586,9 @@ bool wxRichTextCompositeObject::GetRangeSize(const wxRichTextRange& range, wxSiz
         p = NULL;
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -1563,6 +1651,9 @@ bool wxRichTextCompositeObject::GetRangeSize(const wxRichTextRange& range, wxSiz
                             lastSize = 0;
 
                         size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for (i = 0; i < childExtents.GetCount(); i++)
                         {
                             partialExtents->Add(childExtents[i] + lastSize);
@@ -1587,6 +1678,9 @@ void wxRichTextCompositeObject::Invalidate(const wxRichTextRange& invalidRange)
     wxRichTextObject::Invalidate(invalidRange);
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -1615,6 +1709,9 @@ void wxRichTextCompositeObject::Move(const wxPoint& pt)
     wxPoint offset = pt - oldPos;
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -1693,6 +1790,9 @@ bool wxRichTextParagraphLayoutBox::UpdateFloatingObjects(const wxRect& available
     m_floatCollector = new wxRichTextFloatCollector(availableRect);
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
     // Only gather floats up to the point we'll start formatting paragraphs.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (untilObj && node && node->GetData() != untilObj)
     {
         wxRichTextParagraph* child = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -1799,6 +1899,9 @@ bool wxRichTextParagraphLayoutBox::Draw(wxDC& dc, wxRichTextDrawingContext& cont
 
     DrawFloats(dc, context, range, selection, rect, descent, style);
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -1938,6 +2041,9 @@ bool wxRichTextParagraphLayoutBox::Layout(wxDC& dc, wxRichTextDrawingContext& co
 
     // First get the size of the paragraphs we won't be laying out
     wxRichTextObjectList::compatibility_iterator n = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (n && n != node)
     {
         wxRichTextParagraph* child = wxDynamicCast(n->GetData(), wxRichTextParagraph);
@@ -1950,6 +2056,9 @@ bool wxRichTextParagraphLayoutBox::Layout(wxDC& dc, wxRichTextDrawingContext& co
         n = n->GetNext();
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         // Assume this box only contains paragraphs
@@ -1993,6 +2102,9 @@ bool wxRichTextParagraphLayoutBox::Layout(wxDC& dc, wxRichTextDrawingContext& co
 
                 int inc = availableSpace.y - child->GetPosition().y;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (node)
                 {
                     wxRichTextParagraph* child = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -2103,6 +2215,9 @@ bool wxRichTextParagraphLayoutBox::Layout(wxDC& dc, wxRichTextDrawingContext& co
         if (yOffset != 0)
         {
             wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (node)
             {
                 wxRichTextParagraph* child = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -2129,6 +2244,9 @@ bool wxRichTextParagraphLayoutBox::GetRangeSize(const wxRichTextRange& range, wx
 
     // First find the first paragraph whose starting position is within the range.
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         // child is a paragraph
@@ -2146,6 +2264,9 @@ bool wxRichTextParagraphLayoutBox::GetRangeSize(const wxRichTextRange& range, wx
 
     // Next find the last paragraph containing part of the range
     node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         // child is a paragraph
@@ -2165,6 +2286,9 @@ bool wxRichTextParagraphLayoutBox::GetRangeSize(const wxRichTextRange& range, wx
         return false;
 
     // Now we can add up the sizes
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (node = startPara; node ; node = node->GetNext())
     {
         // child is a paragraph
@@ -2203,6 +2327,9 @@ wxRichTextParagraph* wxRichTextParagraphLayoutBox::GetParagraphAtPosition(long p
 
     // First find the first paragraph whose starting position is within the range.
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         // child is a paragraph
@@ -2232,6 +2359,9 @@ wxRichTextLine* wxRichTextParagraphLayoutBox::GetLineAtPosition(long pos, bool c
 
     // First find the first paragraph whose starting position is within the range.
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* obj = (wxRichTextObject*) node->GetData();
@@ -2244,6 +2374,9 @@ wxRichTextLine* wxRichTextParagraphLayoutBox::GetLineAtPosition(long pos, bool c
             if (child)
             {
                 wxRichTextLineList::compatibility_iterator node2 = child->GetLines().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (node2)
                 {
                     wxRichTextLine* line = node2->GetData();
@@ -2276,6 +2409,9 @@ wxRichTextLine* wxRichTextParagraphLayoutBox::GetLineAtPosition(long pos, bool c
 wxRichTextLine* wxRichTextParagraphLayoutBox::GetLineAtYPosition(int y) const
 {
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextParagraph* child = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -2284,6 +2420,9 @@ wxRichTextLine* wxRichTextParagraphLayoutBox::GetLineAtYPosition(int y) const
         if (child)
         {
             wxRichTextLineList::compatibility_iterator node2 = child->GetLines().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (node2)
             {
                 wxRichTextLine* line = node2->GetData();
@@ -2314,6 +2453,9 @@ int wxRichTextParagraphLayoutBox::GetLineCount() const
     int count = 0;
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextParagraph* child = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -2419,6 +2561,9 @@ wxRichTextRange wxRichTextParagraphLayoutBox::AddParagraphs(const wxString& text
     firstPara = para;
     lastPara = para;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (i < len)
     {
         wxChar ch = text[i];
@@ -2521,6 +2666,9 @@ bool wxRichTextParagraphLayoutBox::InsertFragment(long position, wxRichTextParag
             wxASSERT (firstPara != NULL);
 
             wxRichTextObjectList::compatibility_iterator objectNode = firstPara->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (objectNode)
             {
                 wxRichTextObject* newObj = objectNode->GetData()->Clone();
@@ -2580,6 +2728,9 @@ bool wxRichTextParagraphLayoutBox::InsertFragment(long position, wxRichTextParag
             if (objectNode && firstPara->GetChildren().GetCount() == 1 && objectNode->GetData()->IsEmpty())
                 emptyParagraphAttributes = objectNode->GetData()->GetAttributes();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (objectNode)
             {
                 wxRichTextObject* newObj = objectNode->GetData()->Clone();
@@ -2602,6 +2753,9 @@ bool wxRichTextParagraphLayoutBox::InsertFragment(long position, wxRichTextParag
             bool needExtraPara = (!i || !fragment.GetPartialParagraph());
 
             // If there was only one paragraph, we need to insert a new one.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (i)
             {
                 wxRichTextParagraph* para = wxDynamicCast(i->GetData(), wxRichTextParagraph);
@@ -2657,6 +2811,9 @@ bool wxRichTextParagraphLayoutBox::InsertFragment(long position, wxRichTextParag
     {
         // Append
         wxRichTextObjectList::compatibility_iterator i = fragment.GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (i)
         {
             wxRichTextParagraph* para = wxDynamicCast(i->GetData(), wxRichTextParagraph);
@@ -2676,6 +2833,9 @@ bool wxRichTextParagraphLayoutBox::InsertFragment(long position, wxRichTextParag
 bool wxRichTextParagraphLayoutBox::CopyFragment(const wxRichTextRange& range, wxRichTextParagraphLayoutBox& fragment)
 {
     wxRichTextObjectList::compatibility_iterator i = GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (i)
     {
         wxRichTextParagraph* para = wxDynamicCast(i->GetData(), wxRichTextParagraph);
@@ -2762,6 +2922,9 @@ long wxRichTextParagraphLayoutBox::GetVisibleLineNumber(long pos, bool caretPosi
     int lineCount = 0;
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextParagraph* child = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -2772,6 +2935,9 @@ long wxRichTextParagraphLayoutBox::GetVisibleLineNumber(long pos, bool caretPosi
             if (child->GetRange().Contains(pos))
             {
                 wxRichTextLineList::compatibility_iterator node2 = child->GetLines().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (node2)
                 {
                     wxRichTextLine* line = node2->GetData();
@@ -2813,6 +2979,9 @@ wxRichTextLine* wxRichTextParagraphLayoutBox::GetLineForVisibleLineNumber(long l
     int lineCount = 0;
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextParagraph* child = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -2823,6 +2992,9 @@ wxRichTextLine* wxRichTextParagraphLayoutBox::GetLineForVisibleLineNumber(long l
             if (lineNumber < (int) (child->GetLines().GetCount() + lineCount))
             {
                 wxRichTextLineList::compatibility_iterator node2 = child->GetLines().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (node2)
                 {
                     wxRichTextLine* line = node2->GetData();
@@ -2852,6 +3024,9 @@ bool wxRichTextParagraphLayoutBox::DeleteRange(const wxRichTextRange& range)
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
 
     wxRichTextParagraph* firstPara = NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextParagraph* obj = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -2917,6 +3092,9 @@ bool wxRichTextParagraphLayoutBox::DeleteRange(const wxRichTextRange& range)
                         // Move the objects to the previous para
                         wxRichTextObjectList::compatibility_iterator node1 = nextParagraph->GetChildren().GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         while (node1)
                         {
                             wxRichTextObject* obj1 = node1->GetData();
@@ -2960,6 +3138,9 @@ wxString wxRichTextParagraphLayoutBox::GetTextForRange(const wxRichTextRange& ra
     int lineCount = 0;
     wxString text;
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -3038,6 +3219,9 @@ bool wxRichTextParagraphLayoutBox::PositionToXY(long pos, long* x, long* y) cons
     {
         int count = 0;
         wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             wxRichTextObject* child = node->GetData();
@@ -3065,6 +3249,9 @@ wxRichTextObject* wxRichTextParagraphLayoutBox::GetLeafObjectAtPosition(long pos
     {
         wxRichTextObjectList::compatibility_iterator node = para->GetChildren().GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             wxRichTextObject* child = node->GetData();
@@ -3135,6 +3322,9 @@ bool wxRichTextParagraphLayoutBox::SetStyle(const wxRichTextRange& range, const 
     }
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextParagraph* para = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -3242,6 +3432,9 @@ bool wxRichTextParagraphLayoutBox::SetStyle(const wxRichTextRange& range, const 
 
                     wxRichTextObjectList::compatibility_iterator node2 = firstNode;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     while (node2)
                     {
                         wxRichTextObject* child = node2->GetData();
@@ -3397,6 +3590,9 @@ bool wxRichTextParagraphLayoutBox::GetStyleForRange(const wxRichTextRange& range
     wxRichTextAttr absentAttrPara, absentAttrChar;
 
     wxRichTextObjectList::compatibility_iterator node = GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextParagraph* para = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -3420,6 +3616,9 @@ bool wxRichTextParagraphLayoutBox::GetStyleForRange(const wxRichTextRange& range
 
                 wxRichTextObjectList::compatibility_iterator childNode = para->GetChildren().GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (childNode)
                 {
                     wxRichTextObject* child = childNode->GetData();
@@ -3459,6 +3658,9 @@ bool wxRichTextParagraphLayoutBox::HasCharacterAttributes(const wxRichTextRange&
     int matchingCount = 0;
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextParagraph* para = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -3474,6 +3676,9 @@ bool wxRichTextParagraphLayoutBox::HasCharacterAttributes(const wxRichTextRange&
             {
                 wxRichTextObjectList::compatibility_iterator node2 = para->GetChildren().GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (node2)
                 {
                     wxRichTextObject* child = node2->GetData();
@@ -3512,6 +3717,9 @@ bool wxRichTextParagraphLayoutBox::HasParagraphAttributes(const wxRichTextRange&
     int matchingCount = 0;
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextParagraph* para = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -3573,6 +3781,9 @@ bool wxRichTextParagraphLayoutBox::SetProperties(const wxRichTextRange& range, c
     }
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextParagraph* para = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -3669,6 +3880,9 @@ bool wxRichTextParagraphLayoutBox::SetProperties(const wxRichTextRange& range, c
 
                     wxRichTextObjectList::compatibility_iterator node2 = firstNode;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     while (node2)
                     {
                         wxRichTextObject* child = node2->GetData();
@@ -3763,6 +3977,9 @@ void wxRichTextParagraphLayoutBox::InvalidateHierarchy(const wxRichTextRange& in
         // Now go up the hierarchy
         wxRichTextObject* thisObj = this;
         wxRichTextObject* p = GetParent();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (p)
         {
             wxRichTextParagraphLayoutBox* l = wxDynamicCast(p, wxRichTextParagraphLayoutBox);
@@ -3827,6 +4044,9 @@ bool wxRichTextParagraphLayoutBox::ApplyStyleSheet(wxRichTextStyleSheet* styleSh
     }
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextParagraph* para = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -3943,6 +4163,9 @@ bool wxRichTextParagraphLayoutBox::SetListStyle(const wxRichTextRange& range, wx
     }
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextParagraph* para = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -4080,6 +4303,9 @@ bool wxRichTextParagraphLayoutBox::DoNumberList(const wxRichTextRange& range, co
     int i;
 
     // Reset all numbering
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < maxLevels; i++)
     {
         if (startFrom != -1)
@@ -4109,6 +4335,9 @@ bool wxRichTextParagraphLayoutBox::DoNumberList(const wxRichTextRange& range, co
     }
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextParagraph* para = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -4179,6 +4408,9 @@ bool wxRichTextParagraphLayoutBox::DoNumberList(const wxRichTextRange& range, co
                     // A deeper level: start renumbering all levels after current level
                     else if (thisLevel > currentLevel)
                     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for (i = currentLevel+1; i <= thisLevel; i++)
                         {
                             levels[i] = 0;
@@ -4209,6 +4441,9 @@ bool wxRichTextParagraphLayoutBox::DoNumberList(const wxRichTextRange& range, co
                     if (listStyle.GetBulletStyle() & wxTEXT_ATTR_BULLET_STYLE_OUTLINE)
                     {
                         wxString text;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for (i = 0; i <= currentLevel; i++)
                         {
                             if (!text.IsEmpty())
@@ -4447,6 +4682,9 @@ bool wxRichTextParagraph::Draw(wxDC& dc, wxRichTextDrawingContext& context, cons
     // Draw the range for each line, one object at a time.
 
     wxRichTextLineList::compatibility_iterator node = m_cachedLines.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextLine* line = node->GetData();
@@ -4466,6 +4704,9 @@ bool wxRichTextParagraph::Draw(wxDC& dc, wxRichTextDrawingContext& context, cons
             wxRichTextObjectList::compatibility_iterator node2 = m_children.GetFirst();
 
             int i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (node2)
             {
                 wxRichTextObject* child = node2->GetData();
@@ -4606,6 +4847,9 @@ bool wxRichTextParagraph::Layout(wxDC& dc, wxRichTextDrawingContext& context, co
     GetRangeSize(GetRange(), paraSize, paraDescent, dc, context, wxRICHTEXT_UNFORMATTED|wxRICHTEXT_CACHE_SIZE, rect.GetPosition(), & partialExtents);
 #else
     node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -4626,6 +4870,9 @@ bool wxRichTextParagraph::Layout(wxDC& dc, wxRichTextDrawingContext& context, co
     wxRect availableRect;
 
     node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -4720,6 +4967,9 @@ bool wxRichTextParagraph::Layout(wxDC& dc, wxRichTextDrawingContext& context, co
         // If it does, then we'll use the new restricted width to find the object height again.
         // If this causes another restriction in the available width, we'll try again, until
         // either we lose patience or the available width settles down.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do
         {
             loopIterations ++;
@@ -4790,6 +5040,9 @@ bool wxRichTextParagraph::Layout(wxDC& dc, wxRichTextDrawingContext& context, co
             else
                 doLoop = false;
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (doLoop);
 
         if (child->IsTopLevel())
@@ -4978,6 +5231,9 @@ bool wxRichTextParagraph::Layout(wxDC& dc, wxRichTextDrawingContext& context, co
     {
         int minWidth = 0;
         node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             wxRichTextObject* child = node->GetData();
@@ -5003,6 +5259,9 @@ bool wxRichTextParagraph::Layout(wxDC& dc, wxRichTextDrawingContext& context, co
 #if wxRICHTEXT_USE_OPTIMIZED_LINE_DRAWING
     // Use the text extents to calculate the size of each fragment in each line
     wxRichTextLineList::compatibility_iterator lineNode = m_cachedLines.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (lineNode)
     {
         wxRichTextLine* line = lineNode->GetData();
@@ -5011,6 +5270,9 @@ bool wxRichTextParagraph::Layout(wxDC& dc, wxRichTextDrawingContext& context, co
         // Loop through objects until we get to the one within range
         wxRichTextObjectList::compatibility_iterator node2 = m_children.GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node2)
         {
             wxRichTextObject* child = node2->GetData();
@@ -5076,6 +5338,9 @@ bool wxRichTextParagraph::InsertText(long pos, const wxString& text)
     wxRichTextObjectList::compatibility_iterator nodeToUse = wxRichTextObjectList::compatibility_iterator();
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -5109,6 +5374,9 @@ bool wxRichTextParagraph::InsertText(long pos, const wxString& text)
             // We'll set the paragraph range itself at a higher level.
 
             wxRichTextObjectList::compatibility_iterator node = nodeToUse->GetNext();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (node)
             {
                 wxRichTextObject* child = node->GetData();
@@ -5174,6 +5442,9 @@ bool wxRichTextParagraph::GetRangeSize(const wxRichTextRange& range, wxSize& siz
         int maxLineHeight = 0;
 
         wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             wxRichTextObject* child = node->GetData();
@@ -5299,6 +5570,9 @@ bool wxRichTextParagraph::GetRangeSize(const wxRichTextRange& range, wxSize& siz
                                 lastSize = 0;
 
                             size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                             for (i = 0; i < childExtents.GetCount(); i++)
                             {
                                 partialExtents->Add(childExtents[i] + lastSize);
@@ -5328,6 +5602,9 @@ bool wxRichTextParagraph::GetRangeSize(const wxRichTextRange& range, wxSize& siz
         // within a line is the actual size)
 
         wxRichTextLineList::compatibility_iterator node = m_cachedLines.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             wxRichTextLine* line = node->GetData();
@@ -5340,6 +5617,9 @@ bool wxRichTextParagraph::GetRangeSize(const wxRichTextRange& range, wxSize& siz
                 int maxLineWidth = 0;
 
                 wxRichTextObjectList::compatibility_iterator node2 = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (node2)
                 {
                     wxRichTextObject* child = node2->GetData();
@@ -5435,6 +5715,9 @@ bool wxRichTextParagraph::FindPosition(wxDC& dc, wxRichTextDrawingContext& conte
         return false;
 
     wxRichTextLineList::compatibility_iterator node = m_cachedLines.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextLine* line = node->GetData();
@@ -5505,6 +5788,9 @@ int wxRichTextParagraph::HitTest(wxDC& dc, wxRichTextDrawingContext& context, co
     }
 
     wxRichTextObjectList::compatibility_iterator objNode = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (objNode)
     {
         wxRichTextObject* child = objNode->GetData();
@@ -5527,6 +5813,9 @@ int wxRichTextParagraph::HitTest(wxDC& dc, wxRichTextDrawingContext& context, co
     wxPoint paraPos = GetPosition();
 
     wxRichTextLineList::compatibility_iterator node = m_cachedLines.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextLine* line = node->GetData();
@@ -5563,6 +5852,9 @@ int wxRichTextParagraph::HitTest(wxDC& dc, wxRichTextDrawingContext& context, co
 
                 int lastX = linePos.x;
                 size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < partialExtents.GetCount(); i++)
                 {
                     int nextX = partialExtents[i] + linePos.x;
@@ -5590,6 +5882,9 @@ int wxRichTextParagraph::HitTest(wxDC& dc, wxRichTextDrawingContext& context, co
 #else
                 long i;
                 int lastX = linePos.x;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = lineRange.GetStart(); i <= lineRange.GetEnd(); i++)
                 {
                     wxSize childSize;
@@ -5638,6 +5933,9 @@ int wxRichTextParagraph::HitTest(wxDC& dc, wxRichTextDrawingContext& context, co
 wxRichTextObject* wxRichTextParagraph::SplitAt(long pos, wxRichTextObject** previousObject)
 {
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -5694,6 +5992,9 @@ wxRichTextObject* wxRichTextParagraph::SplitAt(long pos, wxRichTextObject** prev
 void wxRichTextParagraph::MoveToList(wxRichTextObject* obj, wxList& list)
 {
     wxRichTextObjectList::compatibility_iterator node = m_children.Find(obj);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* child = node->GetData();
@@ -5710,6 +6011,9 @@ void wxRichTextParagraph::MoveToList(wxRichTextObject* obj, wxList& list)
 /// Add content back from list
 void wxRichTextParagraph::MoveFromList(wxList& list)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxList::compatibility_iterator node = list.GetFirst(); node; node = node->GetNext())
     {
         AppendChild((wxRichTextObject*) node->GetData());
@@ -5731,6 +6035,9 @@ void wxRichTextParagraph::CalculateRange(long start, long& end)
 wxRichTextObject* wxRichTextParagraph::FindObjectAtPosition(long position)
 {
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* obj = node->GetData();
@@ -5753,6 +6060,9 @@ bool wxRichTextParagraph::GetContiguousPlainText(wxString& text, const wxRichTex
     if (fromStart)
     {
         wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             wxRichTextObject* obj = node->GetData();
@@ -5775,6 +6085,9 @@ bool wxRichTextParagraph::GetContiguousPlainText(wxString& text, const wxRichTex
     else
     {
         wxRichTextObjectList::compatibility_iterator node = m_children.GetLast();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             wxRichTextObject* obj = node->GetData();
@@ -5819,6 +6132,9 @@ bool wxRichTextParagraph::FindWrapPosition(const wxRichTextRange& range, wxDC& d
             widthBefore = 0;
 
         size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = (size_t) range.GetStart(); i <= (size_t) range.GetEnd(); i++)
         {
             int widthFromStartOfThisRange = (*partialExtents)[i - GetRange().GetStart()] - widthBefore;
@@ -5836,6 +6152,9 @@ bool wxRichTextParagraph::FindWrapPosition(const wxRichTextRange& range, wxDC& d
         // Binary chop for speed
         long minPos = range.GetStart();
         long maxPos = range.GetEnd();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (true)
         {
             if (minPos == maxPos)
@@ -5998,6 +6317,9 @@ bool wxRichTextParagraph::ClearUnusedLines(int lineCount)
     int cachedLineCount = m_cachedLines.GetCount();
     if ((int) cachedLineCount > lineCount)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < (int) (cachedLineCount - lineCount); i ++)
         {
             wxRichTextLineList::compatibility_iterator node = m_cachedLines.GetLast();
@@ -6058,6 +6380,9 @@ wxRichTextAttr wxRichTextParagraph::GetCombinedAttributes(bool includingBoxAttr)
 void wxRichTextParagraph::InitDefaultTabs()
 {
     // create a default tab list at 10 mm each.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < 20; ++i)
     {
         sm_defaultTabs.Add(i*100);
@@ -6073,6 +6398,9 @@ void wxRichTextParagraph::ClearDefaultTabs()
 void wxRichTextParagraph::LayoutFloat(wxDC& dc, wxRichTextDrawingContext& context, const wxRect& rect, int style, wxRichTextFloatCollector* floatCollector)
 {
     wxRichTextObjectList::compatibility_iterator node = GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* anchored = node->GetData();
@@ -6121,6 +6449,9 @@ void wxRichTextParagraph::LayoutFloat(wxDC& dc, wxRichTextDrawingContext& contex
 long wxRichTextParagraph::GetFirstLineBreakPosition(long pos)
 {
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextObject* obj = node->GetData();
@@ -6402,6 +6733,9 @@ bool wxRichTextPlainText::DrawTabbedString(wxDC& dc, const wxRichTextAttr& attr,
             tabArray = attr.GetTabs();
         tabCount = tabArray.GetCount();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < tabCount; ++i)
         {
             int pos = tabArray[i];
@@ -6440,6 +6774,9 @@ bool wxRichTextPlainText::DrawTabbedString(wxDC& dc, const wxRichTextAttr& attr,
     }
 
     wxCoord x_orig = GetParent()->GetPosition().x;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (hasTabs)
     {
         // the string has a tab
@@ -6449,6 +6786,9 @@ bool wxRichTextPlainText::DrawTabbedString(wxDC& dc, const wxRichTextAttr& attr,
         dc.GetTextExtent(stringChunk, & w, & h);
         tabPos = x + w;
         bool not_found = true;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < tabCount && not_found; ++i)
         {
             nextTabPos = tabArray.Item(i) + x_orig;
@@ -6595,6 +6935,9 @@ bool wxRichTextPlainText::GetRangeSize(const wxRichTextRange& range, wxSize& siz
 
         int tabCount = tabArray.GetCount();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < tabCount; ++i)
         {
             int pos = tabArray[i];
@@ -6604,6 +6947,9 @@ bool wxRichTextPlainText::GetRangeSize(const wxRichTextRange& range, wxSize& siz
 
         int nextTabPos = -1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (stringChunk.Find(wxT('\t')) >= 0)
         {
             int absoluteWidth = 0;
@@ -6625,6 +6971,9 @@ bool wxRichTextPlainText::GetRangeSize(const wxRichTextRange& range, wxSize& siz
                 wxArrayInt p;
                 dc.GetPartialTextExtents(stringFragment, p);
                 size_t j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (j = 0; j < p.GetCount(); j++)
                     partialExtents->Add(oldWidth + p[j]);
 
@@ -6642,6 +6991,9 @@ bool wxRichTextPlainText::GetRangeSize(const wxRichTextRange& range, wxSize& siz
             }
 
             bool notFound = true;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int i = 0; i < tabCount && notFound; ++i)
             {
                 nextTabPos = tabArray.Item(i);
@@ -6681,6 +7033,9 @@ bool wxRichTextPlainText::GetRangeSize(const wxRichTextRange& range, wxSize& siz
             wxArrayInt p;
             dc.GetPartialTextExtents(stringChunk, p);
             size_t j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j = 0; j < p.GetCount(); j++)
                 partialExtents->Add(oldWidth + p[j]);
         }
@@ -6816,6 +7171,9 @@ long wxRichTextPlainText::GetFirstLineBreakPosition(long pos)
     int i;
     int len = m_text.length();
     int startPos = pos - m_range.GetStart();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = startPos; i < len; i++)
     {
         wxChar ch = m_text[i];
@@ -7426,6 +7784,9 @@ bool wxRichTextBuffer::EndStyle()
 /// End all styles
 bool wxRichTextBuffer::EndAllStyles()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (m_attributeStack.GetCount() != 0)
         EndStyle();
     return true;
@@ -7434,6 +7795,9 @@ bool wxRichTextBuffer::EndAllStyles()
 /// Clear the style stack
 void wxRichTextBuffer::ClearStyleStack()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxList::compatibility_iterator node = m_attributeStack.GetFirst(); node; node = node->GetNext())
         delete (wxRichTextAttr*) node->GetData();
     m_attributeStack.Clear();
@@ -7700,6 +8064,9 @@ wxRichTextFileHandler *wxRichTextBuffer::FindHandlerFilenameOrType(const wxStrin
 wxRichTextFileHandler* wxRichTextBuffer::FindHandler(const wxString& name)
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextFileHandler *handler = (wxRichTextFileHandler*)node->GetData();
@@ -7714,6 +8081,9 @@ wxRichTextFileHandler* wxRichTextBuffer::FindHandler(const wxString& name)
 wxRichTextFileHandler* wxRichTextBuffer::FindHandler(const wxString& extension, wxRichTextFileType type)
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextFileHandler *handler = (wxRichTextFileHandler*)node->GetData();
@@ -7729,6 +8099,9 @@ wxRichTextFileHandler* wxRichTextBuffer::FindHandler(const wxString& extension, 
 wxRichTextFileHandler* wxRichTextBuffer::FindHandler(wxRichTextFileType type)
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextFileHandler *handler = (wxRichTextFileHandler *)node->GetData();
@@ -7747,6 +8120,9 @@ void wxRichTextBuffer::InitStandardHandlers()
 void wxRichTextBuffer::CleanUpHandlers()
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextFileHandler* handler = (wxRichTextFileHandler*)node->GetData();
@@ -7767,6 +8143,9 @@ wxString wxRichTextBuffer::GetExtWildcard(bool combine, bool save, wxArrayInt* t
 
     wxList::compatibility_iterator node = GetHandlers().GetFirst();
     int count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextFileHandler* handler = (wxRichTextFileHandler*) node->GetData();
@@ -7950,6 +8329,9 @@ bool wxRichTextBuffer::PasteFromClipboard(long position)
                 wxString text2;
                 text2.Alloc(text.Length()+1);
                 size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < text.Length(); i++)
                 {
                     wxChar ch = text[i];
@@ -8067,6 +8449,9 @@ void wxRichTextBuffer::ClearEventHandlers()
 bool wxRichTextBuffer::SendEvent(wxEvent& event, bool sendToAll)
 {
     bool success = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxList::compatibility_iterator node = m_eventHandlers.GetFirst(); node; node = node->GetNext())
     {
         wxEvtHandler* handler = (wxEvtHandler*) node->GetData();
@@ -8715,6 +9100,9 @@ bool wxRichTextCell::EditProperties(wxWindow* parent, wxRichTextBuffer* buffer)
         const wxRichTextSelection& sel = buffer->GetRichTextCtrl()->GetSelection();
         size_t i;
         int selectedCellCount = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < sel.GetCount(); i++)
         {
             const wxRichTextRange& range = sel[i];
@@ -8881,6 +9269,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
     int i, j, k;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         absoluteColWidths[i] = 0;
@@ -8913,8 +9304,14 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
     // 0.1: add spanning cells to an array
     wxRichTextRectArray rectArray;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (j = 0; j < m_rowCount; j++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextBox* cell = GetCell(j, i);
@@ -8930,8 +9327,14 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
         }
     }
     // 0.2: find which cells are subsumed by a spanning cell
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (j = 0; j < m_rowCount; j++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextBox* cell = GetCell(j, i);
@@ -8954,6 +9357,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
                 else
                 {
                     bool shown = true;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (k = 0; k < (int) rectArray.GetCount(); k++)
                     {
                         if (rectArray[k].Contains(wxPoint(i, j)))
@@ -8978,6 +9384,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // (1) Do an initial layout for all cells to get minimum and maximum size, and get
     // the absolute or percentage width of each column.
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (j = 0; j < m_rowCount; j++)
     {
         // First get the overall margins so we can calculate percentage widths based on
@@ -8986,6 +9395,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
         int overallRowContentMargin = 0;
         int visibleCellCount = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextBox* cell = GetCell(j, i);
@@ -9006,6 +9418,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
         wxSize rowTableSize(rowContentWidth, 0);
         wxTextAttrDimensionConverter converter(dc, scale, rowTableSize);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextBox* cell = GetCell(j, i);
@@ -9079,6 +9494,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
     // (2) Allocate initial column widths from minimum widths, absolute values and proportions
     // TODO: simply merge this into (1).
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         if (absoluteColWidths[i] > 0)
@@ -9103,6 +9521,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // the algorithm favours earlier rows and adjusts unspecified column widths
     // the first time only. After that, we can't know whether the column has been
     // specified explicitly or not. (We could make a note if necessary.)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (j = 0; j < m_rowCount; j++)
     {
         // First get the overall margins so we can calculate percentage widths based on
@@ -9111,6 +9532,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
         int overallRowContentMargin = 0;
         int visibleCellCount = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextBox* cell = GetCell(j, i);
@@ -9131,6 +9555,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
         wxSize rowTableSize(rowContentWidth, 0);
         wxTextAttrDimensionConverter converter(dc, scale, rowTableSize);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextBox* cell = GetCell(j, i);
@@ -9179,6 +9606,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
                             // TODO: take into account min widths of columns within the span
                             int spanningWidthLeft = spanningWidth;
                             int stretchColCount = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                             for (k = i; k < (i+spans); k++)
                             {
                                 if (colWidths[k] > 0) // absolute or proportional width has been specified
@@ -9197,6 +9627,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
                             if (spanningWidthLeft > 0)
                             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                                 for (k = i; k < (i+spans); k++)
                                 {
                                     if (colWidths[k] <= 0) // absolute or proportional width has not been specified
@@ -9220,6 +9653,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     int tableWidthMinusPadding = internalTableWidth - (m_colCount-1)*paddingX;
     int widthLeft = tableWidthMinusPadding;
     int stretchColCount = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         // TODO: we need to take into account min widths.
@@ -9253,6 +9689,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     {
         colShare = tableWidthMinusPadding / m_colCount;
         colShareRemainder = tableWidthMinusPadding - (colShare * m_colCount);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             colWidths[i] = 0;
@@ -9265,6 +9704,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // table width and need to stretch out the table.
     if (widthLeft < 0 || stretchToFitTableWidth)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             if (colWidths[i] <= 0) // absolute or proportional width has not been specified
@@ -9302,6 +9744,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
     int maxRight = 0;
     int y = availableSpace.y;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (j = 0; j < m_rowCount; j++)
     {
         int x = availableSpace.x; // TODO: take into account centering etc.
@@ -9312,6 +9757,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
         actualWidths.Add(0, m_colCount);
 
         wxTextAttrDimensionConverter converter(dc, scale);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextCell* cell = GetCell(j, i);
@@ -9340,6 +9788,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
                         // Calculate the size of this spanning cell from its constituent columns
                         int xx = x;
                         int spans = wxMin(colSpan, m_colCount - i);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for (k = i; k < spans; k++)
                         {
                             if (k != i)
@@ -9369,6 +9820,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
         maxCellHeight = wxMax(maxCellHeight, maxSpecifiedCellHeight);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextCell* cell = GetCell(j, i);
@@ -9482,8 +9936,14 @@ void wxRichTextTable::CalculateRange(long start, long& end)
     }
 
     int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_rowCount; i++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0; j < m_colCount; j++)
         {
             wxRichTextCell* child = GetCell(i, j);
@@ -9542,9 +10002,15 @@ void wxRichTextTable::Copy(const wxRichTextTable& obj)
     m_cells.Add(wxRichTextObjectPtrArray(), m_rowCount);
 
     int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_rowCount; i++)
     {
         wxRichTextObjectPtrArray& colArray = m_cells[i];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0; j < m_colCount; j++)
         {
             wxRichTextCell* cell = wxDynamicCast(obj.GetCell(i, j)->Clone(), wxRichTextCell);
@@ -9571,9 +10037,15 @@ bool wxRichTextTable::CreateTable(int rows, int cols)
     m_cells.Add(wxRichTextObjectPtrArray(), rows);
 
     int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < rows; i++)
     {
         wxRichTextObjectPtrArray& colArray = m_cells[i];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0; j < cols; j++)
         {
             wxRichTextCell* cell = new wxRichTextCell;
@@ -9669,8 +10141,14 @@ wxRichTextSelection wxRichTextTable::GetSelection(long start, long end) const
     }
 
     int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = topRow; i <= bottomRow; i++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = leftCol; j <= rightCol; j++)
         {
             wxRichTextCell* cell = GetCell(i, j);
@@ -9696,6 +10174,9 @@ bool wxRichTextTable::SetCellStyle(const wxRichTextSelection& selection, const w
         buffer->BeginBatchUndo(_("Set Cell Style"));
 
     wxRichTextObjectList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextCell* cell = wxDynamicCast(node->GetData(), wxRichTextCell);
@@ -9718,9 +10199,15 @@ bool wxRichTextTable::DeleteRows(int startRow, int noRows)
         return false;
 
     int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = startRow; i < (startRow+noRows); i++)
     {
         wxRichTextObjectPtrArray& colArray = m_cells[startRow];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0; j < (int) colArray.GetCount(); j++)
         {
             wxRichTextObject* cell = colArray[j];
@@ -9746,9 +10233,15 @@ bool wxRichTextTable::DeleteColumns(int startCol, int noCols)
     bool deleteRows = (noCols == m_colCount);
 
     int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_rowCount; i++)
     {
         wxRichTextObjectPtrArray& colArray = m_cells[deleteRows ? 0 : i];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = startCol; j < (startCol+noCols); j++)
         {
             wxRichTextObject* cell = colArray[j];
@@ -9773,6 +10266,9 @@ bool wxRichTextTable::AddRows(int startRow, int noRows, const wxRichTextAttr& at
         return false;
 
     int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < noRows; i++)
     {
         int idx;
@@ -9788,6 +10284,9 @@ bool wxRichTextTable::AddRows(int startRow, int noRows, const wxRichTextAttr& at
         }
 
         wxRichTextObjectPtrArray& colArray = m_cells[idx];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0; j < m_colCount; j++)
         {
             wxRichTextCell* cell = new wxRichTextCell;
@@ -9809,9 +10308,15 @@ bool wxRichTextTable::AddColumns(int startCol, int noCols, const wxRichTextAttr&
         return false;
 
     int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_rowCount; i++)
     {
         wxRichTextObjectPtrArray& colArray = m_cells[i];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0; j < noCols; j++)
         {
             wxRichTextCell* cell = new wxRichTextCell;
@@ -9928,6 +10433,9 @@ void wxRichTextCommand::AddAction(wxRichTextAction* action)
 
 bool wxRichTextCommand::Do()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxList::compatibility_iterator node = m_actions.GetFirst(); node; node = node->GetNext())
     {
         wxRichTextAction* action = (wxRichTextAction*) node->GetData();
@@ -9939,6 +10447,9 @@ bool wxRichTextCommand::Do()
 
 bool wxRichTextCommand::Undo()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxList::compatibility_iterator node = m_actions.GetLast(); node; node = node->GetPrevious())
     {
         wxRichTextAction* action = (wxRichTextAction*) node->GetData();
@@ -10015,10 +10526,16 @@ void wxRichTextAction::CalculateRefreshOptimizations(wxArrayInt& optimizationLin
 
         wxRichTextParagraph* para = container->GetParagraphAtPosition(GetRange().GetStart());
         wxRichTextObjectList::compatibility_iterator node = container->GetChildren().Find(para);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
             wxRichTextLineList::compatibility_iterator node2 = child->GetLines().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (node2)
             {
                 wxRichTextLine* line = node2->GetData();
@@ -10393,10 +10910,16 @@ void wxRichTextAction::UpdateAppearance(long caretPosition, bool sendUpdateEvent
                 }
 
                 wxRichTextObjectList::compatibility_iterator node = container->GetChildren().Find(para);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (node)
                 {
                     wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
                     wxRichTextLineList::compatibility_iterator node2 = child->GetLines().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     while (node2)
                     {
                         wxRichTextLine* line = node2->GetData();
@@ -10429,6 +10952,9 @@ void wxRichTextAction::UpdateAppearance(long caretPosition, bool sendUpdateEvent
                         else
                         {
                             // search for this line being at the same position as before
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                             for (i = 0; i < optimizationLineCharPositions->GetCount(); i++)
                             {
                                 if (((*optimizationLineCharPositions)[i] + positionOffset == range.GetStart()) &&
@@ -10489,6 +11015,9 @@ void wxRichTextAction::ApplyParagraphs(const wxRichTextParagraphLayoutBox& fragm
         return;
 
     wxRichTextObjectList::compatibility_iterator node = fragment.GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextParagraph* para = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -10887,6 +11416,9 @@ bool wxRichTextTabsEq(const wxArrayInt& tabs1, const wxArrayInt& tabs2)
         return false;
 
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < tabs1.GetCount(); i++)
     {
         if (tabs1[i] != tabs2[i])
@@ -10960,6 +11492,9 @@ wxString wxRichTextDecimalToRoman(long n)
     int i = 0;
     wxString roman;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (n > 0 && i < 13)
     {
         if (n >= decimalNumbers[i])
@@ -11029,6 +11564,9 @@ bool wxRichTextPlainTextHandler::DoLoadFile(wxRichTextBuffer *buffer, wxInputStr
     wxString str;
     int lastCh = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!stream.Eof())
     {
         int ch = stream.GetC();
@@ -11214,6 +11752,9 @@ void wxRichTextImageBlock::Copy(const wxRichTextImageBlock& block)
 
     m_data = new unsigned char[m_dataSize];
     unsigned int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_dataSize; i++)
         m_data[i] = block.m_data[i];
 }
@@ -11263,6 +11804,9 @@ bool wxRichTextImageBlock::WriteHex(wxOutputStream& stream)
     int left = m_dataSize;
     int n, i, j;
     j = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (left > 0)
     {
         if (left*2 > bufSize)
@@ -11275,6 +11819,9 @@ bool wxRichTextImageBlock::WriteHex(wxOutputStream& stream)
         }
 
         char* b = buf;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < (n/2); i++)
         {
             wxDecToHex(m_data[j], b, b+1);
@@ -11302,6 +11849,9 @@ bool wxRichTextImageBlock::ReadHex(wxInputStream& stream, int length, wxBitmapTy
 
     m_data = new unsigned char[dataSize];
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < dataSize; i ++)
     {
         str[0] = (char)stream.GetC();
@@ -12710,6 +13260,9 @@ bool wxRichTextProperties::operator==(const wxRichTextProperties& props) const
         return false;
 
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_properties.GetCount(); i++)
     {
         const wxVariant& var1 = m_properties[i];
@@ -12728,6 +13281,9 @@ wxArrayString wxRichTextProperties::GetPropertyNames() const
 {
     wxArrayString arr;
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_properties.GetCount(); i++)
     {
         arr.Add(m_properties[i].GetName());
@@ -12738,6 +13294,9 @@ wxArrayString wxRichTextProperties::GetPropertyNames() const
 int wxRichTextProperties::Find(const wxString& name) const
 {
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_properties.GetCount(); i++)
     {
         if (m_properties[i].GetName() == name)
@@ -12849,6 +13408,9 @@ void wxRichTextProperties::SetProperty(const wxString& name, bool value)
 void wxRichTextProperties::RemoveProperties(const wxRichTextProperties& properties)
 {
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < properties.GetCount(); i++)
     {
         wxString name = properties.GetProperties()[i].GetName();
@@ -12860,6 +13422,9 @@ void wxRichTextProperties::RemoveProperties(const wxRichTextProperties& properti
 void wxRichTextProperties::MergeProperties(const wxRichTextProperties& properties)
 {
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < properties.GetCount(); i++)
     {
         SetProperty(properties.GetProperties()[i]);
@@ -12873,6 +13438,9 @@ wxRichTextObject* wxRichTextObjectAddress::GetObject(wxRichTextParagraphLayoutBo
 
     wxRichTextCompositeObject* p = topLevelContainer;
     size_t i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (p && i < m_address.GetCount())
     {
         int pos = m_address[i];
@@ -12898,6 +13466,9 @@ bool wxRichTextObjectAddress::Create(wxRichTextParagraphLayoutBox* topLevelConta
         return true;
 
     wxRichTextObject* o = obj;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (o)
     {
         wxRichTextCompositeObject* p = wxDynamicCast(o->GetParent(), wxRichTextCompositeObject);
@@ -12926,6 +13497,9 @@ bool wxRichTextSelection::operator==(const wxRichTextSelection& sel) const
     if (m_ranges.GetCount() != sel.m_ranges.GetCount())
         return false;
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_ranges.GetCount(); i++)
         if (!(m_ranges[i] == sel.m_ranges[i]))
             return false;
@@ -12944,6 +13518,9 @@ wxRichTextRangeArray wxRichTextSelection::GetSelectionForObject(wxRichTextObject
             return m_ranges;
 
         container = obj->GetContainer();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (container)
         {
             if (container->GetParent())
@@ -12990,6 +13567,9 @@ bool wxRichTextSelection::WithinSelection(long pos, wxRichTextObject* obj) const
 bool wxRichTextSelection::WithinSelection(long pos, const wxRichTextRangeArray& ranges)
 {
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < ranges.GetCount(); i++)
     {
         const wxRichTextRange& range = ranges[i];
@@ -13003,6 +13583,9 @@ bool wxRichTextSelection::WithinSelection(long pos, const wxRichTextRangeArray& 
 bool wxRichTextSelection::WithinSelection(const wxRichTextRange& range, const wxRichTextRangeArray& ranges)
 {
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < ranges.GetCount(); i++)
     {
         const wxRichTextRange& eachRange = ranges[i];
@@ -13018,6 +13601,9 @@ IMPLEMENT_CLASS(wxRichTextDrawingContext, wxObject)
 bool wxRichTextDrawingContext::HasVirtualAttributes(wxRichTextObject* obj) const
 {
     wxList::compatibility_iterator node = m_buffer->GetDrawingHandlers().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextDrawingHandler *handler = (wxRichTextDrawingHandler*)node->GetData();
@@ -13034,6 +13620,9 @@ wxRichTextAttr wxRichTextDrawingContext::GetVirtualAttributes(wxRichTextObject* 
     wxRichTextAttr attr;
     // We apply all handlers, so we can may combine several different attributes
     wxList::compatibility_iterator node = m_buffer->GetDrawingHandlers().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextDrawingHandler *handler = (wxRichTextDrawingHandler*)node->GetData();
@@ -13090,6 +13679,9 @@ bool wxRichTextBuffer::RemoveDrawingHandler(const wxString& name)
 wxRichTextDrawingHandler* wxRichTextBuffer::FindDrawingHandler(const wxString& name)
 {
     wxList::compatibility_iterator node = sm_drawingHandlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextDrawingHandler *handler = (wxRichTextDrawingHandler*)node->GetData();
@@ -13103,6 +13695,9 @@ wxRichTextDrawingHandler* wxRichTextBuffer::FindDrawingHandler(const wxString& n
 void wxRichTextBuffer::CleanUpDrawingHandlers()
 {
     wxList::compatibility_iterator node = sm_drawingHandlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextDrawingHandler* handler = (wxRichTextDrawingHandler*)node->GetData();

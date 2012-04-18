@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/app.cpp
 // Purpose:
@@ -205,6 +212,9 @@ static gint wxapp_idle_callback( gpointer WXUNUSED(data) )
 
     // Send idle event to all who request them as long as
     // no events have popped up in the event queue.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (wxTheApp->ProcessIdle() && (gtk_events_pending() == 0))
         ;
 
@@ -244,6 +254,9 @@ int wxPoll(wxPollFd *ufds, unsigned int nfds, int timeout)
     wxFD_ZERO(&exceptfds);
 
     unsigned int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < nfds; i++ )
     {
         wxASSERT_MSG( ufds[i].fd < FD_SETSIZE, wxT("fd out of range") );
@@ -265,6 +278,9 @@ int wxPoll(wxPollFd *ufds, unsigned int nfds, int timeout)
     int res = select(fdMax, &readfds, &writefds, &exceptfds, &tv_timeout);
 
     // translate the results back
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < nfds; i++ )
     {
         ufds[i].revents = 0;
@@ -451,10 +467,19 @@ bool wxApp::OnInitGui()
 
     m_colorCube = (unsigned char*)malloc(32 * 32 * 32);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int r = 0; r < 32; r++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int g = 0; g < 32; g++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int b = 0; b < 32; b++)
             {
                 int rr = (r << 3) | (r >> 2);
@@ -468,6 +493,9 @@ bool wxApp::OnInitGui()
                 {
                     int max = 3 * 65536;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (int i = 0; i < cmap->size; i++)
                     {
                         int rdiff = ((rr << 8) - colors[i].red);
@@ -538,6 +566,9 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
     // gtk_init() wants UTF-8, not wchar_t, so convert
     int i;
     char **argvGTK = new char *[argc + 1];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < argc; i++ )
     {
         argvGTK[i] = wxStrdupA(wxConvUTF8.cWX2MB(argv[i]));
@@ -557,8 +588,14 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
     if ( argcGTK != argc )
     {
         // we have to drop the parameters which were consumed by GTK+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < argcGTK; i++ )
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( strcmp(wxConvUTF8.cWX2MB(argv[i]), argvGTK[i]) != 0 )
             {
                 memmove(argv + i, argv + i + 1, argc - i);
@@ -570,6 +607,9 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
     //else: gtk_init() didn't modify our parameters
 
     // free our copy
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < argcGTK; i++ )
     {
         free(argvGTK[i]);

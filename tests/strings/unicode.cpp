@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/strings/unicode.cpp
 // Purpose:     Unicode unit test
@@ -317,6 +324,9 @@ void UnicodeTestCase::ConversionUTF7()
         StringConversionData("a+", NULL),
     };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(utf7data); n++ )
     {
         const StringConversionData& d = utf7data[n];
@@ -347,6 +357,9 @@ void UnicodeTestCase::ConversionUTF8()
     };
 
     wxCSConv conv(wxT("utf-8"));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(utf8data); n++ )
     {
         const StringConversionData& d = utf8data[n];
@@ -371,6 +384,9 @@ void UnicodeTestCase::ConversionUTF16()
     };
 
     wxCSConv conv(wxFONTENCODING_UTF16BE);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(utf16data); n++ )
     {
         const StringConversionData& d = utf16data[n];
@@ -398,6 +414,9 @@ void UnicodeTestCase::ConversionUTF32()
     };
 
     wxCSConv conv(wxFONTENCODING_UTF32BE);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(utf32data); n++ )
     {
         const StringConversionData& d = utf32data[n];
@@ -434,6 +453,9 @@ void UnicodeTestCase::Iteration()
     // verify the string was decoded correctly:
     {
         size_t idx = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxString::const_iterator i = text.begin(); i != text.end(); ++i, ++idx )
         {
             CPPUNIT_ASSERT( *i == textUTF16[idx] );
@@ -442,6 +464,9 @@ void UnicodeTestCase::Iteration()
 
     // overwrite the string with something that is shorter in UTF-8:
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxString::iterator i = text.begin(); i != text.end(); ++i )
             *i = 'x';
     }
@@ -452,6 +477,9 @@ void UnicodeTestCase::Iteration()
         wxString::const_iterator end2 = text.end();
 
         size_t idx = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxString::iterator i = text.begin(); i != text.end(); ++i, ++idx )
         {
             *i = textUTF16[idx];
@@ -467,6 +495,9 @@ void UnicodeTestCase::Iteration()
     // and verify it again:
     {
         size_t idx = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxString::const_iterator i = text.begin(); i != text.end(); ++i, ++idx )
         {
             CPPUNIT_ASSERT( *i == textUTF16[idx] );

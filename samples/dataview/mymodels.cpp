@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        mymodels.cpp
 // Purpose:     wxDataViewCtrl wxWidgets sample
@@ -303,6 +310,9 @@ unsigned int MyMusicTreeModel::GetChildren( const wxDataViewItem &parent,
     }
 
     unsigned int count = node->GetChildren().GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int pos = 0; pos < count; pos++)
     {
         MyMusicTreeModelNode *child = node->GetChildren().Item( pos );
@@ -339,6 +349,9 @@ MyListModel::MyListModel() :
 
     m_textColValues.reserve(NUMBER_REAL_ITEMS);
     m_textColValues.push_back("first row with long label to test ellipsization");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = 1; i < NUMBER_REAL_ITEMS; i++)
     {
         m_textColValues.push_back(wxString::Format("real row %d", i));
@@ -371,6 +384,9 @@ void MyListModel::DeleteItems( const wxDataViewItemArray &items )
 {
     unsigned i;
     wxArrayInt rows;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < items.GetCount(); i++)
     {
         unsigned int row = GetRow( items[i] );
@@ -390,6 +406,9 @@ void MyListModel::DeleteItems( const wxDataViewItemArray &items )
     // row will be deleted first. Otherwise the
     // remaining indeces would all be wrong.
     rows.Sort( my_sort_reverse );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < rows.GetCount(); i++)
         m_textColValues.RemoveAt( rows[i] );
 

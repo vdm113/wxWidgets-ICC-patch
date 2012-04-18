@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/evtloopunix.cpp
 // Purpose:     wxEventLoop implementation
@@ -143,6 +150,9 @@ void PipeIOHandler::OnReadWaiting()
     wxCriticalSectionLocker lock(m_pipeLock);
 
     char buf[4];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         const int size = read(GetReadFd(), buf, WXSIZEOF(buf));

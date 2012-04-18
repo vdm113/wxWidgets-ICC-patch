@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/fmapbase.cpp
 // Purpose:     wxFontMapperBase class implementation
@@ -635,8 +642,14 @@ wxFontMapperBase::NonInteractiveCharsetToEncoding(const wxString& charset)
             }
         }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t i = 0; i < WXSIZEOF(gs_encodingNames); ++i )
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( const wxChar* const* encName = gs_encodingNames[i]; *encName; ++encName )
             {
                 if ( cs.CmpNoCase(*encName) == 0 )
@@ -785,6 +798,9 @@ wxString wxFontMapperBase::GetEncodingDescription(wxFontEncoding encoding)
 
     const size_t count = WXSIZEOF(gs_encodingDescs);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < count; i++ )
     {
         if ( gs_encodings[i] == encoding )
@@ -809,6 +825,9 @@ wxString wxFontMapperBase::GetEncodingName(wxFontEncoding encoding)
 
     const size_t count = WXSIZEOF(gs_encodingNames);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < count; i++ )
     {
         if ( gs_encodings[i] == encoding )
@@ -828,6 +847,9 @@ const wxChar** wxFontMapperBase::GetAllEncodingNames(wxFontEncoding encoding)
 {
     static const wxChar* const dummy[] = { NULL };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < WXSIZEOF(gs_encodingNames); i++ )
     {
         if ( gs_encodings[i] == encoding )
@@ -844,8 +866,14 @@ wxFontEncoding wxFontMapperBase::GetEncodingFromName(const wxString& name)
 {
     const size_t count = WXSIZEOF(gs_encodingNames);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < count; i++ )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( const wxChar* const* encName = gs_encodingNames[i]; *encName; ++encName )
         {
             if ( name.CmpNoCase(*encName) == 0 )

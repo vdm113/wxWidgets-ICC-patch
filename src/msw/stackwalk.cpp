@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/stackwalk.cpp
 // Purpose:     wxStackWalker implementation for Win32
@@ -276,6 +283,9 @@ void wxStackWalker::WalkFrom(const CONTEXT *pCtx, size_t skip, size_t maxDepth)
 #endif // _M_IX86
 
     // iterate over all stack frames
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t nLevel = 0; nLevel < maxDepth; nLevel++ )
     {
         // get the next stack frame

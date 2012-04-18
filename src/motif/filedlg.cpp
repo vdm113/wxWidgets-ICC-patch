@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/filedlg.cpp
 // Purpose:     wxFileDialog
@@ -311,6 +318,9 @@ int wxFileDialog::ShowModal()
     XtAddGrab(XtParent(fileSel), True, False);
     XtAppContext context = (XtAppContext) wxTheApp->GetAppContext();
     XEvent event;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!m_fileSelectorReturned)
     {
         XtAppNextEvent(context, &event);

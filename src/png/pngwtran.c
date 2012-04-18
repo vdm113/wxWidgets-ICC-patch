@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 
 /* pngwtran.c - transforms the data in a row for PNG writers
  *
@@ -119,6 +126,9 @@ png_do_pack(png_row_infop row_info, png_bytep row, png_uint_32 bit_depth)
             mask = 0x80;
             v = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                if (*sp != 0)
@@ -156,6 +166,9 @@ png_do_pack(png_row_infop row_info, png_bytep row, png_uint_32 bit_depth)
             shift = 6;
             v = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                png_byte value;
@@ -195,6 +208,9 @@ png_do_pack(png_row_infop row_info, png_bytep row, png_uint_32 bit_depth)
             shift = 4;
             v = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                png_byte value;
@@ -299,6 +315,9 @@ png_do_shift(png_row_infop row_info, png_bytep row,
          else
             mask = 0xff;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (i = 0; i < row_bytes; i++, bp++)
          {
             png_uint_16 v;
@@ -307,6 +326,9 @@ png_do_shift(png_row_infop row_info, png_bytep row,
             v = *bp;
             *bp = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j = shift_start[0]; j > -shift_dec[0]; j -= shift_dec[0])
             {
                if (j > 0)
@@ -324,6 +346,9 @@ png_do_shift(png_row_infop row_info, png_bytep row,
          png_uint_32 i;
          png_uint_32 istop = channels * row_info->width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (i = 0; i < istop; i++, bp++)
          {
 
@@ -334,6 +359,9 @@ png_do_shift(png_row_infop row_info, png_bytep row,
             v = *bp;
             *bp = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j = shift_start[c]; j > -shift_dec[c]; j -= shift_dec[c])
             {
                if (j > 0)
@@ -351,6 +379,9 @@ png_do_shift(png_row_infop row_info, png_bytep row,
          png_uint_32 i;
          png_uint_32 istop = channels * row_info->width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (bp = row, i = 0; i < istop; i++)
          {
             int c = (int)(i%channels);
@@ -360,6 +391,9 @@ png_do_shift(png_row_infop row_info, png_bytep row,
             v = (png_uint_16)(((png_uint_16)(*bp) << 8) + *(bp + 1));
             value = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j = shift_start[c]; j > -shift_dec[c]; j -= shift_dec[c])
             {
                if (j > 0)
@@ -392,6 +426,9 @@ png_do_write_swap_alpha(png_row_infop row_info, png_bytep row)
             png_uint_32 i;
             png_uint_32 row_width = row_info->width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0, sp = dp = row; i < row_width; i++)
             {
                png_byte save = *(sp++);
@@ -410,6 +447,9 @@ png_do_write_swap_alpha(png_row_infop row_info, png_bytep row)
             png_uint_32 i;
             png_uint_32 row_width = row_info->width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0, sp = dp = row; i < row_width; i++)
             {
                png_byte save[2];
@@ -437,6 +477,9 @@ png_do_write_swap_alpha(png_row_infop row_info, png_bytep row)
             png_uint_32 i;
             png_uint_32 row_width = row_info->width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0, sp = dp = row; i < row_width; i++)
             {
                png_byte save = *(sp++);
@@ -453,6 +496,9 @@ png_do_write_swap_alpha(png_row_infop row_info, png_bytep row)
             png_uint_32 i;
             png_uint_32 row_width = row_info->width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0, sp = dp = row; i < row_width; i++)
             {
                png_byte save[2];
@@ -486,6 +532,9 @@ png_do_write_invert_alpha(png_row_infop row_info, png_bytep row)
             png_uint_32 i;
             png_uint_32 row_width = row_info->width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0, sp = dp = row; i < row_width; i++)
             {
                /* Does nothing
@@ -506,6 +555,9 @@ png_do_write_invert_alpha(png_row_infop row_info, png_bytep row)
             png_uint_32 i;
             png_uint_32 row_width = row_info->width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0, sp = dp = row; i < row_width; i++)
             {
                /* Does nothing
@@ -533,6 +585,9 @@ png_do_write_invert_alpha(png_row_infop row_info, png_bytep row)
             png_uint_32 i;
             png_uint_32 row_width = row_info->width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0, sp = dp = row; i < row_width; i++)
             {
                *(dp++) = *(sp++);
@@ -548,6 +603,9 @@ png_do_write_invert_alpha(png_row_infop row_info, png_bytep row)
             png_uint_32 i;
             png_uint_32 row_width = row_info->width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0, sp = dp = row; i < row_width; i++)
             {
                /* Does nothing
@@ -591,6 +649,9 @@ png_do_write_intrapixel(png_row_infop row_info, png_bytep row)
          else
             return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (i = 0, rp = row; i < row_width; i++, rp += bytes_per_pixel)
          {
             *(rp)     = (png_byte)((*rp       - *(rp + 1)) & 0xff);
@@ -613,6 +674,9 @@ png_do_write_intrapixel(png_row_infop row_info, png_bytep row)
          else
             return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (i = 0, rp = row; i < row_width; i++, rp += bytes_per_pixel)
          {
             png_uint_32 s0   = (*(rp    ) << 8) | *(rp + 1);

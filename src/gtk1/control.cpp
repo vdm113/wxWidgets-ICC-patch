@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/control.cpp
 // Purpose:     wxControl implementation for wxGTK
@@ -130,6 +137,9 @@ wxString wxControl::GTKRemoveMnemonics(const wxString& label)
     const size_t len = label.length();
     wxString labelGTK;
     labelGTK.reserve(len);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < len; i++ )
     {
         wxChar ch = label[i];

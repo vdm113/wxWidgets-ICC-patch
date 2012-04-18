@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/xrc/xh_statbar.cpp
 // Purpose:     XRC resource for wxStatusBar
@@ -61,6 +68,9 @@ wxObject *wxStatusBarXmlHandler::DoCreateResource()
     {
         int *width = new int[fields];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < fields; ++i)
         {
             width[i] = wxAtoi(widths.BeforeFirst(wxT(',')));
@@ -76,6 +86,9 @@ wxObject *wxStatusBarXmlHandler::DoCreateResource()
     if (!styles.empty())
     {
         int *style = new int[fields];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < fields; ++i)
         {
             style[i] = wxSB_NORMAL;

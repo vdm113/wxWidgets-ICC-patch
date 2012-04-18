@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /* $Id$ */
 
 /*
@@ -255,6 +262,9 @@ TIFFClientOpen(
 	 * option permits applications that only want to look at the tags,
 	 * for example, to get the unadulterated TIFF tag information.
 	 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (cp = mode; *cp; cp++)
 		switch (*cp) {
 		case 'b':

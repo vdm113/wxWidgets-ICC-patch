@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /* $Id$ */
 
 /*
@@ -86,6 +93,9 @@ main(int argc, char* argv[])
 
         oerror = TIFFSetErrorHandler(NULL);
         owarning = TIFFSetWarningHandler(NULL);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ((c = getopt(argc, argv, "d:o:p:eflmsvw?")) != -1)
             switch (c) {
             case 'd':
@@ -384,6 +394,9 @@ raster_special(int key, int x, int y)
                 break;
                 case GLUT_KEY_END:              /* last image in current file */
                         TIFFRGBAImageEnd(&img);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         while (!TIFFLastDirectory(tif))
                                 TIFFReadDirectory(tif);
                         initImage();
@@ -420,6 +433,9 @@ usage(void)
 
         setbuf(stderr, buf);
                 fprintf(stderr, "%s\n\n", TIFFGetVersion());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; stuff[i] != NULL; i++)
                 fprintf(stderr, "%s\n", stuff[i]);
         exit(-1);

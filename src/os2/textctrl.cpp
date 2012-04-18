@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/textctrl.cpp
 // Purpose:     wxTextCtrl
@@ -330,6 +337,9 @@ wxString wxTextCtrl::GetValue() const
     wxCharBuffer                    buf(sStr.char_str());
     char*                           zStr = buf.data();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ; *zStr; zStr++ )
     {
         //

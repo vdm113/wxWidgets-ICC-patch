@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/dataobj.cpp
 // Purpose:     implementation of wx[I]DataObject class
@@ -224,6 +231,9 @@ bool wxFileDataObject::GetDataHere( void* pBuf ) const
 {
     wxString                        sFilenames;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
     {
         sFilenames += m_filenames[i];
@@ -238,6 +248,9 @@ size_t wxFileDataObject::GetDataSize() const
 {
     size_t                          nRes = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
     {
         nRes += m_filenames[i].length();

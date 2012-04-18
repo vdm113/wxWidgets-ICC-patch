@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        archive.h
 // Purpose:     interface of wxArchive* classes
@@ -373,6 +380,9 @@ public:
         wxString list;
         const wxArchiveClassFactory *factory = wxArchiveClassFactory::GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (factory) {
             list << factory->GetProtocol() << wxT("\n");
             factory = factory->GetNext();
@@ -410,6 +420,9 @@ public:
         wxString list;
         const wxChar *const *p;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (p = factory->GetProtocols(wxSTREAM_FILEEXT); *p; p++)
             list << *p << wxT("\n");
         @endcode

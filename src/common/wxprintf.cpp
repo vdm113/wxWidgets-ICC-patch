@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/wxprintf.cpp
 // Purpose:     wxWidgets wxPrintf() implementation
@@ -70,6 +77,9 @@ static int wxCopyStrWithPercents(
         return 0;
 
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < maxIn-1 && written < maxOut; source++, i++)
     {
         dest[written++] = *source;
@@ -120,6 +130,9 @@ static int wxDoVsnprintf(CharType *buf, size_t lenMax,
     wxVaCopy(ap, argptr);
 
     // now load arguments from stack
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i=0; i < parser.nargs && ok; i++)
     {
         // !pspec[i] means that the user forgot a positional parameter (e.g. %$1s %$3s);
@@ -140,6 +153,9 @@ static int wxDoVsnprintf(CharType *buf, size_t lenMax,
 
     // finally, process each conversion specifier with its own argument
     const CharType *toparse = format;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i=0; i < parser.nargs; i++)
     {
         wxPrintfConvSpec<CharType>& spec = parser.specs[i];

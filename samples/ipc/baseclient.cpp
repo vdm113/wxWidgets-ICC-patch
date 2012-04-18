@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        samples/ipc/baseclient.cpp
 // Purpose:     IPC sample: console client
@@ -244,6 +251,9 @@ void MyClient::Notify()
 
 void MyClient::StartNextTestIfNecessary()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !m_tests.empty() )
     {
         MyClientTestFunc testfunc = m_tests.front();

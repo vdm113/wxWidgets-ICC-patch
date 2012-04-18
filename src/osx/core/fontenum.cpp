@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/core/fontenum.cpp
 // Purpose:     wxFontEnumerator class for MacOS
@@ -59,6 +66,9 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
 
     wxUint32 macEncoding = wxMacGetSystemEncFromFontEnc(encoding) ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (status == noErr)
     {
         // Get the next font in the iteration.
@@ -91,6 +101,9 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
     ATSFontFamilyIteratorRelease(&theFontFamilyIterator);
 #endif
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0 ; i < fontFamilies.Count() ; ++i )
     {
         if ( OnFacename( fontFamilies[i] ) == false )

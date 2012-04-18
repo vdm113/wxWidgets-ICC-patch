@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/app.cpp
 // Purpose:     wxApp
@@ -175,6 +182,9 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
     // XtOpenDisplay() wants char*, not wchar_t*, so convert
     int i;
     char **argvX11 = new char *[argc + 1];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < argc; i++ )
     {
         argvX11[i] = strdup(wxConvLibc.cWX2MB(argv_[i]));
@@ -199,8 +209,14 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
     if ( argcX11 != argc )
     {
         // we have to drop the parameters which were consumed by X11+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < argcX11; i++ )
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( strcmp(wxConvLibc.cWX2MB(argv_[i]), argvX11[i]) != 0 )
             {
                 memmove(argv_ + i, argv_ + i + 1, (argc - i)*sizeof(*argv_));
@@ -216,6 +232,9 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
     //else: XtOpenDisplay() didn't modify our parameters
 
     // free our copy
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < argcX11; i++ )
     {
         free(argvX11[i]);
@@ -273,6 +292,9 @@ void wxApp::CleanUp()
 
     delete m_mainLoop;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( wxPerDisplayDataMap::iterator it  = m_perDisplayData->begin(),
                                        end = m_perDisplayData->end();
          it != end; ++it )

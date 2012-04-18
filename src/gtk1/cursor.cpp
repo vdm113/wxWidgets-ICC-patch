@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/cursor.cpp
 // Purpose:
@@ -174,12 +181,18 @@ wxCursor::wxCursor( const wxImage & image )
     unsigned char * maskBits = new unsigned char [imagebitcount];
 
     int i, j, i8; unsigned char c, cMask;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i=0; i<imagebitcount; i++)
     {
         bits[i] = 0;
         i8 = i * 8;
 
         cMask = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j=0; j<8; j++)
         {
             // possible overflow if we do the summation first ?
@@ -199,12 +212,18 @@ wxCursor::wxCursor( const wxImage & image )
             g = image.GetMaskGreen(),
             b = image.GetMaskBlue();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i=0; i<imagebitcount; i++)
         {
             maskBits[i] = 0x0;
             i8 = i * 8;
 
             cMask = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j=0; j<8; j++)
             {
                 if (rgbBits[(i8+j)*3] != r || rgbBits[(i8+j)*3+1] != g || rgbBits[(i8+j)*3+2] != b)
@@ -217,6 +236,9 @@ wxCursor::wxCursor( const wxImage & image )
     }
     else // no mask
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i=0; i<imagebitcount; i++)
             maskBits[i] = 0xFF;
 
@@ -236,6 +258,9 @@ wxCursor::wxCursor( const wxImage & image )
     unsigned long nMost = 0;
     long colNextMostFreq = 0;
     unsigned long nNext = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxImageHistogram::iterator entry = histogram.begin();
           entry != histogram.end();
           ++entry )

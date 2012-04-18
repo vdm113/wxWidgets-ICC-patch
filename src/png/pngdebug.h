@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 
 /* pngdebug.h - Debugging macros for libpng, also used in pngtest.c
  *
@@ -83,6 +90,7 @@
 #        ifdef __STDC__
 #          ifndef png_debug
 #            define png_debug(l,m) \
+MY_MACRO_PRAGMA_IVDEP \
        do { \
        int num_tabs=l; \
        fprintf(PNG_DEBUG_FILE,"%s"m PNG_STRING_NEWLINE,(num_tabs==1 ? "\t" : \
@@ -91,6 +99,7 @@
 #          endif
 #          ifndef png_debug1
 #            define png_debug1(l,m,p1) \
+MY_MACRO_PRAGMA_IVDEP \
        do { \
        int num_tabs=l; \
        fprintf(PNG_DEBUG_FILE,"%s"m PNG_STRING_NEWLINE,(num_tabs==1 ? "\t" : \
@@ -99,6 +108,7 @@
 #          endif
 #          ifndef png_debug2
 #            define png_debug2(l,m,p1,p2) \
+MY_MACRO_PRAGMA_IVDEP \
        do { \
        int num_tabs=l; \
        fprintf(PNG_DEBUG_FILE,"%s"m PNG_STRING_NEWLINE,(num_tabs==1 ? "\t" : \
@@ -108,6 +118,7 @@
 #        else /* __STDC __ */
 #          ifndef png_debug
 #            define png_debug(l,m) \
+MY_MACRO_PRAGMA_IVDEP \
        do { \
        int num_tabs=l; \
        char format[256]; \
@@ -119,6 +130,7 @@
 #          endif
 #          ifndef png_debug1
 #            define png_debug1(l,m,p1) \
+MY_MACRO_PRAGMA_IVDEP \
        do { \
        int num_tabs=l; \
        char format[256]; \
@@ -130,6 +142,7 @@
 #          endif
 #          ifndef png_debug2
 #            define png_debug2(l,m,p1,p2) \
+MY_MACRO_PRAGMA_IVDEP \
        do { \
        int num_tabs=l; \
        char format[256]; \

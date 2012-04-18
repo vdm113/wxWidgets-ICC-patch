@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        xml/xml.h
 // Purpose:     interface of wxXmlNode, wxXmlAttribute, wxXmlDocument
@@ -456,6 +463,9 @@ public:
 
     // examine prologue
     wxXmlNode *prolog = doc.GetDocumentNode()->GetChildren();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (prolog) {
 
         if (prolog->GetType() == wxXML_PI_NODE && prolog->GetName() == "target") {
@@ -469,6 +479,9 @@ public:
     }
 
     wxXmlNode *child = doc.GetRoot()->GetChildren();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (child) {
 
         if (child->GetName() == "tag1") {

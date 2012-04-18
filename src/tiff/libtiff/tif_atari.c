@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /* "$Header: /cvs/maptools/cvsroot/libtiff/libtiff/tif_atari.c,v 1.2 2005/12/21 12:23:13 joris Exp $" */
 
 /*
@@ -90,6 +97,9 @@ _tiffSeekProc(thandle_t fd, off_t off, int whence)
 	if (new_off < 0)            /* error? */
 		new_off = Fseek(0, (int) fd, SEEK_END); /* go to eof */
 	_TIFFmemset(buf, 0, sizeof(buf));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (expected_off > new_off) {
 		off = expected_off - new_off;
 		if (off > sizeof(buf))

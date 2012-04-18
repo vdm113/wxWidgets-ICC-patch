@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/gridsel.cpp
 // Purpose:     wxGridSelection
@@ -60,6 +67,9 @@ bool wxGridSelection::IsInSelection( int row, int col )
     if ( m_selectionMode == wxGrid::wxGridSelectCells )
     {
         count = m_cellSelection.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < count; n++ )
         {
             wxGridCellCoords& coords = m_cellSelection[n];
@@ -71,6 +81,9 @@ bool wxGridSelection::IsInSelection( int row, int col )
     // Now check whether the given cell is
     // contained in one of the selected blocks.
     count = m_blockSelectionTopLeft.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         wxGridCellCoords& coords1 = m_blockSelectionTopLeft[n];
@@ -87,6 +100,9 @@ bool wxGridSelection::IsInSelection( int row, int col )
     if ( m_selectionMode != wxGrid::wxGridSelectColumns )
     {
         count = m_rowSelection.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < count; n++ )
         {
             if ( row == m_rowSelection[n] )
@@ -100,6 +116,9 @@ bool wxGridSelection::IsInSelection( int row, int col )
     if ( m_selectionMode != wxGrid::wxGridSelectRows )
     {
         count = m_colSelection.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < count; n++ )
         {
             if ( col == m_colSelection[n] )
@@ -131,6 +150,9 @@ void wxGridSelection::SetSelectionMode( wxGrid::wxGridSelectionModes selmode )
         // if changing from cell selection to something else,
         // promote selected cells/blocks to whole rows/columns.
         size_t n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( ( n = m_cellSelection.GetCount() ) > 0 )
         {
             n--;
@@ -145,6 +167,9 @@ void wxGridSelection::SetSelectionMode( wxGrid::wxGridSelectionModes selmode )
         }
 
         // Note that m_blockSelectionTopLeft's size may be changing!
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (n = 0; n < m_blockSelectionTopLeft.GetCount(); n++)
         {
             wxGridCellCoords& coords = m_blockSelectionTopLeft[n];
@@ -191,6 +216,9 @@ void wxGridSelection::SelectRow(int row, const wxKeyboardState& kbd)
     if ( m_selectionMode == wxGrid::wxGridSelectCells )
     {
         count = m_cellSelection.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < count; n++ )
         {
             wxGridCellCoords& coords = m_cellSelection[n];
@@ -208,6 +236,9 @@ void wxGridSelection::SelectRow(int row, const wxKeyboardState& kbd)
     count = m_blockSelectionTopLeft.GetCount();
     bool done = false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
         wxGridCellCoords& coords1 = m_blockSelectionTopLeft[n];
@@ -246,6 +277,9 @@ void wxGridSelection::SelectRow(int row, const wxKeyboardState& kbd)
     if ( !done )
     {
         count = m_rowSelection.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < count; n++ )
         {
             if ( row == m_rowSelection[n] )
@@ -286,6 +320,9 @@ void wxGridSelection::SelectCol(int col, const wxKeyboardState& kbd)
     if ( m_selectionMode == wxGrid::wxGridSelectCells )
     {
         count = m_cellSelection.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < count; n++ )
         {
             wxGridCellCoords& coords = m_cellSelection[n];
@@ -302,6 +339,9 @@ void wxGridSelection::SelectCol(int col, const wxKeyboardState& kbd)
     // Simplify list of selected blocks (if possible)
     count = m_blockSelectionTopLeft.GetCount();
     bool done = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
         wxGridCellCoords& coords1 = m_blockSelectionTopLeft[n];
@@ -340,6 +380,9 @@ void wxGridSelection::SelectCol(int col, const wxKeyboardState& kbd)
     if ( !done )
     {
         count = m_colSelection.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < count; n++ )
         {
             if ( col == m_colSelection[n] )
@@ -433,6 +476,9 @@ void wxGridSelection::SelectBlock( int topRow, int leftCol,
         // find out which rows are already selected:
         wxArrayInt alreadyselected;
         alreadyselected.Add(0,bottomRow-topRow+1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( n = 0; n < m_rowSelection.GetCount(); n++)
         {
             int row = m_rowSelection[n];
@@ -443,6 +489,9 @@ void wxGridSelection::SelectBlock( int topRow, int leftCol,
         }
 
         // add the newly selected rows:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int row = topRow; row <= bottomRow; row++ )
         {
             if ( alreadyselected[ row - topRow ] == 0 )
@@ -456,6 +505,9 @@ void wxGridSelection::SelectBlock( int topRow, int leftCol,
         // find out which columns are already selected:
         wxArrayInt alreadyselected;
         alreadyselected.Add(0,rightCol-leftCol+1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( n = 0; n < m_colSelection.GetCount(); n++)
         {
             int col = m_colSelection[n];
@@ -466,6 +518,9 @@ void wxGridSelection::SelectBlock( int topRow, int leftCol,
         }
 
         // add the newly selected columns:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int col = leftCol; col <= rightCol; col++ )
         {
             if ( alreadyselected[ col - leftCol ] == 0 )
@@ -480,6 +535,9 @@ void wxGridSelection::SelectBlock( int topRow, int leftCol,
         if ( m_selectionMode == wxGrid::wxGridSelectCells )
         {
             count = m_cellSelection.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( n = 0; n < count; n++ )
             {
                 wxGridCellCoords& coords = m_cellSelection[n];
@@ -497,6 +555,9 @@ void wxGridSelection::SelectBlock( int topRow, int leftCol,
         // if a block contained in the selection is found, remove it.
 
         count = m_blockSelectionTopLeft.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < count; n++ )
         {
             wxGridCellCoords& coords1 = m_blockSelectionTopLeft[n];
@@ -524,6 +585,9 @@ void wxGridSelection::SelectBlock( int topRow, int leftCol,
         // If a row containing the selection is already selected, return,
         // if a row contained in newly selected block is found, remove it.
         count = m_rowSelection.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < count; n++ )
         {
             switch ( BlockContain( m_rowSelection[n], 0,
@@ -546,6 +610,9 @@ void wxGridSelection::SelectBlock( int topRow, int leftCol,
 
         // Same for columns.
         count = m_colSelection.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < count; n++ )
         {
             switch ( BlockContain( 0, m_colSelection[n],
@@ -665,6 +732,9 @@ wxGridSelection::ToggleCellSelection(int row, int col,
     if ( m_selectionMode == wxGrid::wxGridSelectCells )
     {
         count = m_cellSelection.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < count; n++ )
         {
             const wxGridCellCoords& sel = m_cellSelection[n];
@@ -713,6 +783,9 @@ wxGridSelection::ToggleCellSelection(int row, int col,
     //          which are expanded to whole columns automatically!
 
     count = m_blockSelectionTopLeft.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
         wxGridCellCoords& coords1 = m_blockSelectionTopLeft[n];
@@ -754,6 +827,9 @@ wxGridSelection::ToggleCellSelection(int row, int col,
     if ( m_selectionMode != wxGrid::wxGridSelectColumns )
     {
         count = m_rowSelection.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < count; n++ )
         {
             if ( m_rowSelection[n] == row )
@@ -781,6 +857,9 @@ wxGridSelection::ToggleCellSelection(int row, int col,
     if ( m_selectionMode != wxGrid::wxGridSelectRows )
     {
         count = m_colSelection.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < count; n++ )
         {
             if ( m_colSelection[n] == col )
@@ -831,6 +910,9 @@ wxGridSelection::ToggleCellSelection(int row, int col,
                 rowSelectionWasChanged )
         {
             int numCols = m_grid->GetNumberCols();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int colFrom = 0, colTo = 0; colTo <= numCols; ++colTo )
             {
                 if ( m_colSelection.Index(colTo) >= 0 || colTo == numCols )
@@ -864,6 +946,9 @@ wxGridSelection::ToggleCellSelection(int row, int col,
                 colSelectionWasChanged )
         {
             int numRows = m_grid->GetNumberRows();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int rowFrom = 0, rowTo = 0; rowTo <= numRows; ++rowTo )
             {
                 if ( m_rowSelection.Index(rowTo) >= 0 || rowTo == numRows )
@@ -904,6 +989,9 @@ void wxGridSelection::ClearSelection()
     // deselect all individual cells and update the screen
     if ( m_selectionMode == wxGrid::wxGridSelectCells )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( ( n = m_cellSelection.GetCount() ) > 0)
         {
             n--;
@@ -922,6 +1010,9 @@ void wxGridSelection::ClearSelection()
     }
 
     // deselect all blocks and update the screen
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( ( n = m_blockSelectionTopLeft.GetCount() ) > 0)
     {
         n--;
@@ -943,6 +1034,9 @@ void wxGridSelection::ClearSelection()
     // deselect all rows and update the screen
     if ( m_selectionMode != wxGrid::wxGridSelectColumns )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( ( n = m_rowSelection.GetCount() ) > 0)
         {
             n--;
@@ -964,6 +1058,9 @@ void wxGridSelection::ClearSelection()
     // deselect all columns and update the screen
     if ( m_selectionMode != wxGrid::wxGridSelectRows )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( ( n = m_colSelection.GetCount() ) > 0)
         {
             n--;
@@ -1002,6 +1099,9 @@ void wxGridSelection::UpdateRows( size_t pos, int numRows )
 {
     size_t count = m_cellSelection.GetCount();
     size_t n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
         wxGridCellCoords& coords = m_cellSelection[n];
@@ -1033,6 +1133,9 @@ void wxGridSelection::UpdateRows( size_t pos, int numRows )
     }
 
     count = m_blockSelectionTopLeft.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
         wxGridCellCoords& coords1 = m_blockSelectionTopLeft[n];
@@ -1078,6 +1181,9 @@ void wxGridSelection::UpdateRows( size_t pos, int numRows )
     }
 
     count = m_rowSelection.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
     int  rowOrCol_ = m_rowSelection[n];
@@ -1114,6 +1220,9 @@ void wxGridSelection::UpdateCols( size_t pos, int numCols )
     size_t count = m_cellSelection.GetCount();
     size_t n;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
         wxGridCellCoords& coords = m_cellSelection[n];
@@ -1145,6 +1254,9 @@ void wxGridSelection::UpdateCols( size_t pos, int numCols )
     }
 
     count = m_blockSelectionTopLeft.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
         wxGridCellCoords& coords1 = m_blockSelectionTopLeft[n];
@@ -1190,6 +1302,9 @@ void wxGridSelection::UpdateCols( size_t pos, int numCols )
     }
 
     count = m_colSelection.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
         int   rowOrCol = m_colSelection[n];

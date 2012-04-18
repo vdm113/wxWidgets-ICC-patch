@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/epolldispatcher.cpp
 // Purpose:     implements dispatcher for epoll_wait() call
@@ -175,6 +182,9 @@ wxEpollDispatcher::DoPoll(epoll_event *events, int numEvents, int timeout) const
         timeEnd = wxGetLocalTimeMillis();
 
     int rc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         rc = epoll_wait(m_epollDescriptor, events, numEvents, timeout);
@@ -217,6 +227,9 @@ int wxEpollDispatcher::Dispatch(int timeout)
     }
 
     int numEvents = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( epoll_event *p = events; p < events + rc; p++ )
     {
         wxFDIOHandler * const handler = (wxFDIOHandler *)(p->data.ptr);

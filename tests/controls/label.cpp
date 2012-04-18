@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/controls/label.cpp
 // Purpose:     wxControl and wxStaticText label tests
@@ -107,6 +114,9 @@ void LabelTestCase::GetLabel()
 
     // test calls to SetLabel() and then to GetLabel()
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int s = 0; s < WXSIZEOF(testLabelArray); s++ )
     {
         SET_LABEL(testLabelArray[s]);
@@ -178,6 +188,9 @@ void LabelTestCase::GetLabelText()
 
     // test calls to SetLabelText() and then to GetLabelText()
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int s = 0; s < WXSIZEOF(testLabelArray); s++ )
     {
         SET_LABEL_TEXT(testLabelArray[s]);

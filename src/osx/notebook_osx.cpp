@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/notebook_osx.cpp
 // Purpose:     implementation of wxNotebook
@@ -336,6 +343,9 @@ void wxNotebook::OnSize(wxSizeEvent& event)
     unsigned int nCount = m_pages.Count();
     wxRect rect = GetPageRect() ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int nPage = 0; nPage < nCount; nPage++ )
     {
         wxNotebookPage *pPage = m_pages[nPage];

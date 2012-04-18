@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        client.cpp
 // Purpose:     Client for wxSocket demo
@@ -489,6 +496,9 @@ void MyFrame::OnTest3(wxCommandEvent& WXUNUSED(event))
   wxCharBuffer buf1(len * 1024),
                buf2(len * 1024);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (size_t i = 0; i < len * 1024; i ++)
     buf1.data()[i] = (char)(i % 256);
 

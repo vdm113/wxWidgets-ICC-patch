@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/combobox_native.cpp
 // Purpose:     wxComboBox class
@@ -100,6 +107,9 @@ bool wxComboBox::Create(wxWindow *parent, wxWindowID id,
     m_mainWidget = (Widget) buttonWidget;
 
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < n; ++i)
         Append( choices[i] );
 
@@ -198,6 +208,9 @@ int wxComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
     const unsigned int numItems = items.GetCount();
 
     AllocClientData(numItems);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i = 0; i < numItems; ++i, ++pos )
     {
         wxXmString str( items[i].c_str() );
@@ -232,6 +245,9 @@ void wxComboBox::Clear()
     XmListDeleteAllItems (GetXmList(this));
 #else
     size_t n = m_stringArray.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(n > 0)
     {
         XmComboBoxDeletePos((Widget) m_mainWidget, n--);

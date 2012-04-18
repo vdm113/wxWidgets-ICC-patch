@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        server.cpp
 // Purpose:     Server for wxSocket demo
@@ -286,6 +293,9 @@ void MyFrame::OnUDPTest(wxCommandEvent& WXUNUSED(event))
                  wxString::From8BitData(buf, n),
                  addr.IPAddress(), addr.Service());
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < n; i++ )
     {
         char& c = buf[i];

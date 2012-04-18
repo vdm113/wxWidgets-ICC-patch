@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/xrc/xh_bmpcbox.cpp
 // Purpose:     XRC resource for wxBitmapComboBox
@@ -77,6 +84,9 @@ wxObject *wxBitmapComboBoxXmlHandler::DoCreateResource()
 
         wxXmlNode *n = children_node;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (n)
         {
             if ((n->GetType() == wxXML_ELEMENT_NODE) &&

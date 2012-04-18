@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/popupcmn.cpp
 // Purpose:     implementation of wxPopupTransientWindow
@@ -620,6 +627,9 @@ void wxPopupFocusHandler::OnKillFocus(wxFocusEvent& event)
     // when we lose focus we always disappear - unless it goes to the popup (in
     // which case we don't really lose it)
     wxWindow *win = event.GetWindow();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( win )
     {
         if ( win == m_popup )

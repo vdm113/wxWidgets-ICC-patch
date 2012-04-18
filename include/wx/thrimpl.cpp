@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/thrimpl.cpp
 // Purpose:     common part of wxThread Implementations
@@ -212,6 +219,9 @@ wxCondError wxConditionInternal::Broadcast()
 {
     wxCriticalSectionLocker lock(m_csWaiters);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( m_numWaiters > 0 )
     {
         if ( m_semaphore.Post() != wxSEMA_NO_ERROR )

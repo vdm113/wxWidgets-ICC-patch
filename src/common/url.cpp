@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/url.cpp
 // Purpose:     URL parser
@@ -247,6 +254,9 @@ bool wxURL::FetchProtocol()
 {
     wxProtoInfo *info = ms_protocols;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (info)
     {
         if (m_scheme == info->m_protoname)

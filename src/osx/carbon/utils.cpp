@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/utils.cpp
 // Purpose:     Various utilities
@@ -785,6 +792,9 @@ void wxMacDataItemBrowserControl::GetItems(const wxMacDataItem* container,
     int itemCount = GetHandleSize(handle)/sizeof(DataBrowserItemID);
     HLock( handle );
     wxMacDataItemPtr* itemsArray = (wxMacDataItemPtr*) *handle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < itemCount; ++i)
     {
         items.Add(itemsArray[i]);
@@ -821,6 +831,9 @@ void wxMacDataItemBrowserControl::UpdateItems(const wxMacDataItem *container,
 {
     unsigned int noItems = itemArray.GetCount();
     DataBrowserItemID *items = new DataBrowserItemID[noItems];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i = 0; i < noItems; ++i )
         items[i] = (DataBrowserItemID) itemArray[i];
 
@@ -901,6 +914,9 @@ void wxMacDataItemBrowserControl::AddItems(wxMacDataItem *container, wxArrayMacD
 {
     unsigned int noItems = itemArray.GetCount();
     DataBrowserItemID *items = new DataBrowserItemID[noItems];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i = 0; i < noItems; ++i )
         items[i] = (DataBrowserItemID) itemArray[i];
 
@@ -920,6 +936,9 @@ void wxMacDataItemBrowserControl::RemoveItems(wxMacDataItem *container, wxArrayM
 {
     unsigned int noItems = itemArray.GetCount();
     DataBrowserItemID *items = new DataBrowserItemID[noItems];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i = 0; i < noItems; ++i )
         items[i] = (DataBrowserItemID) itemArray[i];
 
@@ -950,6 +969,9 @@ void wxMacDataItemBrowserControl::SetSelectedItems(wxArrayMacDataItemPtr &itemAr
 {
     unsigned int noItems = itemArray.GetCount();
     DataBrowserItemID *items = new DataBrowserItemID[noItems];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i = 0; i < noItems; ++i )
         items[i] = (DataBrowserItemID) itemArray[i];
 
@@ -994,6 +1016,9 @@ void wxMacDataItemBrowserControl::MacInsert( unsigned int n, wxMacDataItem* item
 
         // increase the order of the lines to be shifted
         unsigned int lines = MacGetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned int i = n; i < lines; ++i)
         {
             wxMacDataItem* iter = (wxMacDataItem*) GetItemFromLine(i);

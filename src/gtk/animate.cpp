@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/animate.cpp
 // Purpose:     wxAnimation and wxAnimationCtrl
@@ -130,6 +137,9 @@ bool wxAnimation::Load(wxInputStream &stream, wxAnimationType type)
 
     guchar buf[2048];
     bool data_written = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (stream.IsOk())
     {
         // read a chunk of data

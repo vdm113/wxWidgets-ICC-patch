@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file LexTCL.cxx
  ** Lexer for TCL language.
@@ -84,6 +91,9 @@ static void ColouriseTCLDoc(unsigned int startPos, int length, int , WordList *k
 
 	int previousLevel = currentLevel;
     StyleContext sc(startPos, length, SCE_TCL_DEFAULT, styler);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; ; sc.Forward()) {
 next:
         if (sc.ch=='\r' && sc.chNext == '\n') // only ignore \r on PC process on the mac 
@@ -146,6 +156,9 @@ next:
                 sc.GetCurrent(w, sizeof(w));
                 if (w[strlen(w)-1]=='\r')
                     w[strlen(w)-1]=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while(*s == ':') // ignore leading : like in ::set a 10
                     ++s;
                 bool quote = sc.state == SCE_TCL_IN_QUOTE;

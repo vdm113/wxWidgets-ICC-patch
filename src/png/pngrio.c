@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 
 /* pngrio.c - functions for data input
  *
@@ -98,6 +105,9 @@ png_default_read_data(png_structp png_ptr, png_bytep data, png_size_t length)
       check = 0;
       remaining = length;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       do
       {
          read = MIN(NEAR_BUF_SIZE, remaining);
@@ -113,6 +123,9 @@ png_default_read_data(png_structp png_ptr, png_bytep data, png_size_t length)
          data += read;
          remaining -= read;
       }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       while (remaining != 0);
    }
 

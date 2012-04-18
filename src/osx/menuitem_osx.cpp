@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/menuitem_osx.cpp
 // Purpose:     wxMenuItem implementation
@@ -142,6 +149,9 @@ void wxMenuItem::Check(bool bDoCheck)
 
                 // also uncheck all the other items in this radio group
                 wxMenuItemList::compatibility_iterator node = items.Item(start);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int n = start; n <= end && node; n++ )
                 {
                     if ( n != pos )

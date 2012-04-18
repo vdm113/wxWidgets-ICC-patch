@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // File:      src/osx/carbon/region.cpp
 // Purpose:   Region class
@@ -104,6 +111,9 @@ wxRegion::wxRegion(size_t n, const wxPoint *points, wxPolygonFillMode fillStyle)
     size_t idx;     
      
     // Find the max size needed to draw the polygon 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (idx=0; idx<n; idx++) 
     { 
         wxPoint pt = points[idx]; 
@@ -378,6 +388,9 @@ void wxRegionIterator::SetRects(long numRects, wxRect *rects)
         int i;
 
         m_rects = new wxRect[numRects];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < numRects; i++)
             m_rects[i] = rects[i];
     }

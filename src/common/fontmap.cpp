@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/fontmap.cpp
 // Purpose:     wxFontMapper class
@@ -206,6 +213,9 @@ wxFontMapper::CharsetToEncoding(const wxString& charset, bool interactive)
 
         wxString *encodingNamesTranslated = new wxString[count];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t i = 0; i < count; i++ )
         {
             encodingNamesTranslated[i] = GetEncodingDescription(GetEncoding(i));
@@ -388,6 +398,9 @@ bool wxFontMapper::GetAltForEncoding(wxFontEncoding encoding,
     wxFontEncoding equivEncoding = wxFONTENCODING_SYSTEM;
     if ( count )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t i = 0; i < count && !foundEquivEncoding; i++ )
         {
             // don't test for encoding itself, we already know we don't have it

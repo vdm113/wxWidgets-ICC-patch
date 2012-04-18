@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/slider.cpp
 // Purpose:     wxSlider
@@ -50,6 +57,9 @@ wxWidgetImplType* wxWidgetImpl::CreateSlider( wxWindowMac* wxpeer,
 
     // keep the number of tickmarks from becoming unwieldly, therefore below it is ok to cast
     // it to a UInt16
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (tickMarks > 20)
         tickMarks /= 5;
 

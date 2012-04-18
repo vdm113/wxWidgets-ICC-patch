@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /*
  * BEWARE OF KLUDGE:  This subroutine is a hack for decoding illegal JPEG-in-
  *                    TIFF encapsulations produced by Microsoft's Wang Imaging
@@ -26,6 +33,9 @@ jpeg_reset_huff_decode (register j_decompress_ptr cinfo,register float *refbw)
 
   /* Re-initialize DC predictions */
   do entropy->saved.last_dc_val[ci] = -refbw[ci << 1];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (++ci < cinfo->comps_in_scan);
   /* Discard encoded input bits, up to the next Byte boundary */
   entropy->bitstate.bits_left &= ~7;

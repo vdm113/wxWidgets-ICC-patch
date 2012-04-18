@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /*
  * jmemmac.c
  *
@@ -234,6 +241,9 @@ jpeg_open_backing_store (j_common_ptr cinfo, backing_store_ptr info,
   /* TO DO: Try putting the temp files somewhere else. */
 
   /* Keep generating file names till we find one that's not in use */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (;;) {
     next_file_num++;		/* advance counter */
 

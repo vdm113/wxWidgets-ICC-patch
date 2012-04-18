@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/sound_sdl.cpp
 // Purpose:     wxSound backend using SDL
@@ -292,6 +299,9 @@ bool wxSoundBackendSDL::Play(wxSoundData *data, unsigned flags,
     if (!(flags & wxSOUND_ASYNC))
     {
         wxLogTrace(wxT("sound"), wxT("waiting for sample to finish"));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (m_playing && m_data == data)
         {
 #if wxUSE_THREADS

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtextfontpage.cpp
 // Purpose:     Font page for wxRichTextFormattingDialog
@@ -302,6 +309,9 @@ void wxRichTextFontPage::CreateControls()
 
     wxString nStr;
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 8; i < 40; i++)
     {
         nStr.Printf(wxT("%d"), i);
@@ -758,6 +768,9 @@ void wxRichTextFontPage::OnFaceTextCtrlUpdated( wxCommandEvent& WXUNUSED(event) 
             // Try to find a partial match
             const wxArrayString& arr = m_faceListBox->GetFaceNames();
             size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < arr.GetCount(); i++)
             {
                 if (arr[i].Mid(0, facename.Length()).Lower() == facename.Lower())

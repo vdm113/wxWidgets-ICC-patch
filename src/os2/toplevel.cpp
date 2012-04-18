@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/toplevel.cpp
 // Purpose:     implements wxTopLevelWindow for OS/2
@@ -187,6 +194,9 @@ void wxTopLevelWindowOS2::OnActivate(
         //
         wxWindow*                   pWin = m_pWinLastFocused;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (pWin)
         {
             if (pWin->IsTopLevel())

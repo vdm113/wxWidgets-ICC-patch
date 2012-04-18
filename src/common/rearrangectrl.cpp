@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/rearrangectrl.cpp
 // Purpose:     implementation of classes in wx/rearrangectrl.h
@@ -62,6 +69,9 @@ bool wxRearrangeList::Create(wxWindow *parent,
     wxArrayString itemsInOrder;
     itemsInOrder.reserve(count);
     size_t n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
         int idx = order[n];
@@ -76,6 +86,9 @@ bool wxRearrangeList::Create(wxWindow *parent,
         return false;
 
     // and now check all the items which should be initially checked
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
         if ( order[n] >= 0 )

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/erase/erase.cpp
 // Purpose:     Erase wxWidgets sample
@@ -425,11 +432,17 @@ void MyCanvas::OnEraseBackground( wxEraseEvent& event )
     dc.Clear();
 
     const wxSize size = GetClientSize();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int x = 0; x < size.x; x += 15 )
     {
         dc.DrawLine(x, 0, x, size.y);
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int y = 0; y < size.y; y += 15 )
     {
         dc.DrawLine(0, y, size.x, y);

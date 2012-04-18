@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /* $Id$ */
 
 /*
@@ -50,6 +57,9 @@ lfind(const void *key, const void *base, size_t *nmemb, size_t size,
 	char *element, *end;
 
 	end = (char *)base + *nmemb * size;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (element = (char *)base; element < end; element += size)
 		if (!compar(element, key))		/* key found */
 			return element;

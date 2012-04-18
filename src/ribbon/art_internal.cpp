@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/ribbon/art_internal.cpp
 // Purpose:     Helper functions & classes used by ribbon art providers
@@ -80,6 +87,9 @@ void wxRibbonDrawParallelGradientLines(wxDC& dc,
     gd = end_colour.Green() - start_colour.Green();
     bd = end_colour.Blue() - start_colour.Blue();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int step = 0; step < numsteps; ++step)
     {
         int r,g,b;
@@ -93,6 +103,9 @@ void wxRibbonDrawParallelGradientLines(wxDC& dc,
                         (unsigned char)b));
         dc.SetPen(p);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(int n = 0; n < nlines; ++n)
         {
             dc.DrawLine(offset_x + line_origins[n].x, offset_y + line_origins[n].y,

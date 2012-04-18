@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/dcprint.cpp
 // Purpose:     wxPrinterDC class
@@ -443,8 +450,14 @@ bool wxPrinterDCImpl::DoBlit(wxCoord xdest, wxCoord ydest,
         MemoryHDC dcMask(dcSrc);
         SelectInHDC selectMask(dcMask, (HBITMAP)mask->GetMaskBitmap());
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int x = 0; x < width; x++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int y = 0; y < height; y++)
             {
                 COLORREF cref = ::GetPixel(dcMask, x, y);
@@ -472,9 +485,15 @@ bool wxPrinterDCImpl::DoBlit(wxCoord xdest, wxCoord ydest,
             // printer colours and so we need copy the bitmap pixel by pixel.
             HDC dcSrc = GetHdcOf(*msw_impl);
             RECT rect;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int y = 0; y < height; y++)
             {
                 // optimization: draw identical adjacent pixels together.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int x = 0; x < width; x++)
                 {
                     COLORREF col = ::GetPixel(dcSrc, x, y);
@@ -482,6 +501,9 @@ bool wxPrinterDCImpl::DoBlit(wxCoord xdest, wxCoord ydest,
 
                     rect.left = xdest + x;
                     rect.top = ydest + y;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     while( (x + 1 < width) &&
                                 (::GetPixel(dcSrc, x + 1, y) == col ) )
                     {

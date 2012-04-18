@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        playerdg.cpp
 // Purpose:     Forty Thieves patience game
@@ -51,6 +58,9 @@ PlayerSelectionDialog::PlayerSelectionDialog(
 
     wxArrayString players;
     m_scoreFile->GetPlayerList(players);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = 0; i < players.Count(); i++)
     {
         list->Append(players[i]);

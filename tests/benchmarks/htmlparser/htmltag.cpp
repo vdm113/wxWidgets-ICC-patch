@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/htmltag.cpp
 // Purpose:     wx28HtmlTag class (represents single tag)
@@ -67,6 +74,9 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
     m_CachePos = 0;
 
     int pos = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (pos < lng)
     {
         if (src[pos] == wxT('<'))   // tag found:
@@ -78,6 +88,9 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
             m_Cache[tg].Key = stpos;
 
             int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( i = 0;
                   pos < lng && i < (int)WXSIZEOF(tagBuffer) - 1 &&
                   src[pos] != wxT('>') && !wxIsspace(src[pos]);
@@ -90,12 +103,18 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
             m_Cache[tg].Name = new wxChar[i+1];
             memcpy(m_Cache[tg].Name, tagBuffer, (i+1)*sizeof(wxChar));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (pos < lng && src[pos] != wxT('>')) pos++;
 
             if (src[stpos+1] == wxT('/')) // ending tag:
             {
                 m_Cache[tg].End1 = m_Cache[tg].End2 = -2;
                 // find matching begin tag:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = tg; i >= 0; i--)
                     if ((m_Cache[i].End1 == -1) && (wxStrcmp(m_Cache[i].Name, tagBuffer+1) == 0))
                     {
@@ -117,9 +136,15 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 
                     // find next matching tag
                     int tag_len = wxStrlen(tagBuffer);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     while (pos < lng)
                     {
                         // find the ending tag
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         while (pos + 1 < lng &&
                                (src[pos] != '<' || src[pos+1] != '/'))
                             ++pos;
@@ -128,6 +153,9 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 
                         // see if it matches
                         int match_pos = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         while (pos < lng && match_pos < tag_len && src[pos] != '>' && src[pos] != '<') {
                             // cast to wxChar needed to suppress warning in
                             // Unicode build
@@ -172,6 +200,9 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
     }
 
     // ok, we're done, now we'll free .Name members of cache - we don't need it anymore:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < m_CacheSize; i++)
     {
         delete[] m_Cache[i].Name;
@@ -185,6 +216,9 @@ void wx28HtmlTagsCache::QueryTag(int at, int* end1, int* end2)
     if (m_Cache[m_CachePos].Key != at)
     {
         int delta = (at < m_Cache[m_CachePos].Key) ? -1 : 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do
         {
             if ( m_CachePos < 0 || m_CachePos == m_CacheSize )
@@ -199,6 +233,9 @@ void wx28HtmlTagsCache::QueryTag(int at, int* end1, int* end2)
 
             m_CachePos += delta;
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (m_Cache[m_CachePos].Key != at);
     }
     *end1 = m_Cache[m_CachePos].End1;
@@ -245,6 +282,9 @@ wx28HtmlTag::wx28HtmlTag(wx28HtmlTag *parent,
     i = pos+1;
 
     // find tag's name and convert it to uppercase:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((i < end_pos) &&
            ((c = source[i++]) != wxT(' ') && c != wxT('\r') &&
              c != wxT('\n') && c != wxT('\t') &&
@@ -275,6 +315,9 @@ wx28HtmlTag::wx28HtmlTag(wx28HtmlTag *parent,
 
         quote = 0;
         state = ST_BEFORE_NAME;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (i < end_pos)
         {
             c = source[i++];
@@ -370,6 +413,9 @@ wx28HtmlTag::~wx28HtmlTag()
 {
     wx28HtmlTag *t1, *t2;
     t1 = m_FirstChild;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (t1)
     {
         t2 = t1->GetNextSibling();
@@ -467,6 +513,9 @@ wxString wx28HtmlTag::GetAllParams() const
     //     never used by wxHTML
     wxString s;
     size_t cnt = m_ParamNames.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < cnt; i++)
     {
         s << m_ParamNames[i];
@@ -486,6 +535,9 @@ wx28HtmlTag *wx28HtmlTag::GetFirstSibling() const
     else
     {
         wx28HtmlTag *cur = (wx28HtmlTag*)this;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (cur->m_Prev)
             cur = cur->m_Prev;
         return cur;
@@ -499,6 +551,9 @@ wx28HtmlTag *wx28HtmlTag::GetLastSibling() const
     else
     {
         wx28HtmlTag *cur = (wx28HtmlTag*)this;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (cur->m_Next)
             cur = cur->m_Next;
         return cur;
@@ -511,6 +566,9 @@ wx28HtmlTag *wx28HtmlTag::GetNextTag() const
     if (m_Next) return m_Next;
     wx28HtmlTag *cur = m_Parent;
     if (!cur) return NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (cur->m_Parent && !cur->m_Next)
         cur = cur->m_Parent;
     return cur->m_Next;

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        forty.cpp
 // Purpose:     Forty Thieves patience game
@@ -324,6 +331,9 @@ bool FortyAboutDialog::AddControls(wxWindow* parent)
         if (file.Exists())
         {
             file.Open();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( htmlText = file.GetFirstLine();
                   !file.Eof();
                   htmlText << file.GetNextLine() << wxT("\n") ) ;

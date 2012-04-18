@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/notebook.cpp
 // Purpose:     implementation of wxNotebook
@@ -457,6 +464,9 @@ bool wxNotebook::DeleteAllPages()
     int                             nPageCount = GetPageCount();
     int                             nPage;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (nPage = 0; nPage < nPageCount; nPage++)
         delete m_pages[nPage];
     m_pages.Clear();
@@ -676,6 +686,9 @@ void wxNotebook::OnSelChange (
         ULONG ulOS2Sel = (ULONG)rEvent.GetOldSelection();
         bool  bFound = false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (nSel = 0; nSel < nPageCount; nSel++)
         {
             if (ulOS2Sel == (ULONG)m_alPageId[nSel])
@@ -694,6 +707,9 @@ void wxNotebook::OnSelChange (
 
         bFound = false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (nSel = 0; nSel < nPageCount; nSel++)
         {
             if (ulOS2Sel == (ULONG)m_alPageId[nSel])

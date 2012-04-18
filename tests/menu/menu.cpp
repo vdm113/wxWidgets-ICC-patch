@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/menu/menu.cpp
 // Purpose:     wxMenu unit test
@@ -43,6 +50,9 @@ enum
 void PopulateMenu(wxMenu* menu, const wxString& name,  size_t& itemcount)
 {
     // Start at item 1 to make it human-readable ;)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int n=1; n<6; ++n, ++itemcount)
     {
         wxString label = name; label << n;
@@ -55,6 +65,9 @@ void RecursivelyCountMenuItems(const wxMenu* menu, size_t& count)
     CPPUNIT_ASSERT( menu );
 
     count += menu->GetMenuItemCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t n=0; n < menu->GetMenuItemCount(); ++n)
     {
         wxMenuItem* item = menu->FindItemByPosition(n);
@@ -196,6 +209,9 @@ void MenuTestCase::FindInMenubar()
     CPPUNIT_ASSERT( bar->FindMenuItem(menutitle, "&Foo") != wxNOT_FOUND );
 
     // Find by position:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t n=0; n < bar->GetMenuCount(); ++n)
     {
         CPPUNIT_ASSERT( bar->GetMenu(n) );
@@ -235,6 +251,9 @@ void MenuTestCase::FindInMenu()
 
     // Find by position:
     size_t n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n=0; n < menuHelp->GetMenuItemCount(); ++n)
     {
         CPPUNIT_ASSERT( menuHelp->FindItemByPosition(n) );
@@ -244,6 +263,9 @@ void MenuTestCase::FindInMenu()
     CPPUNIT_ASSERT( menuHelp->FindItem(MenuTestCase_Bar) );
     CPPUNIT_ASSERT( menuHelp->FindItem(MenuTestCase_Foo) == NULL );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n=0; n < menuHelp->GetMenuItemCount(); ++n)
     {
         size_t locatedAt;
@@ -255,6 +277,9 @@ void MenuTestCase::FindInMenu()
     }
 
     // Find submenu item:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n=0; n < menuHelp->GetMenuItemCount(); ++n)
     {
         wxMenuItem* item = menuHelp->FindItemByPosition(n);
@@ -287,6 +312,9 @@ void MenuTestCase::Count()
     CPPUNIT_ASSERT_EQUAL( bar->GetMenuCount(), 2 );
 
     size_t count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t n=0; n < bar->GetMenuCount(); ++n)
     {
         RecursivelyCountMenuItems(bar->GetMenu(n), count);

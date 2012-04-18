@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/hashes/hashes.cpp
 // Purpose:     wxHashTable, wxHashMap, wxHashSet unit test
@@ -123,6 +130,9 @@ void HashesTestCase::wxHashTableTest()
         wxObject o;
         int i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < COUNT; ++i )
             hash.Put(i, &o + i);
 
@@ -130,6 +140,9 @@ void HashesTestCase::wxHashTableTest()
         wxHashTable::compatibility_iterator it = hash.Next();
         i = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (it)
         {
             ++i;
@@ -138,27 +151,51 @@ void HashesTestCase::wxHashTableTest()
 
         CPPUNIT_ASSERT( i == COUNT );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 99; i >= 0; --i )
             CPPUNIT_ASSERT( hash.Get(i) == &o + i );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < COUNT; ++i )
             hash.Put(i, &o + i + 20);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 99; i >= 0; --i )
             CPPUNIT_ASSERT( hash.Get(i) == &o + i);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < COUNT/2; ++i )
             CPPUNIT_ASSERT( hash.Delete(i) == &o + i);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = COUNT/2; i < COUNT; ++i )
             CPPUNIT_ASSERT( hash.Get(i) == &o + i);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < COUNT/2; ++i )
             CPPUNIT_ASSERT( hash.Get(i) == &o + i + 20);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < COUNT/2; ++i )
             CPPUNIT_ASSERT( hash.Delete(i) == &o + i + 20);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < COUNT/2; ++i )
             CPPUNIT_ASSERT( hash.Get(i) == NULL);
 
@@ -244,6 +281,9 @@ void HashesTestCase::wxUntypedHashTableDeleteContents()
         };
 
         size_t n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < WXSIZEOF(hashTestData); n++ )
         {
             hash.Put(hashTestData[n], n, new FooObject(n));
@@ -282,6 +322,9 @@ void HashesTestCase::wxTypedHashTableTest()
         };
 
         size_t n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < WXSIZEOF(hashTestData); n++ )
         {
             hash.Put(hashTestData[n], n, new Foo(n));
@@ -290,6 +333,9 @@ void HashesTestCase::wxTypedHashTableTest()
         CPPUNIT_ASSERT( hash.GetCount() == WXSIZEOF(hashTestData) );
         CPPUNIT_ASSERT( Foo::count == WXSIZEOF(hashTestData) );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < WXSIZEOF(hashTestData); n++ )
         {
             Foo *foo = hash.Get(hashTestData[n], n);
@@ -391,6 +437,9 @@ void HashMapTest()
     const size_t count = 10000;
 
     // init with some data
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( i = 0; i < count; ++i )
     {
         MakeKeyValuePair(i, count, buf, value);
@@ -400,6 +449,9 @@ void HashMapTest()
     // test that insertion worked
     CPPUNIT_ASSERT( sh.size() == count );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( i = 0; i < count; ++i )
     {
         MakeKeyValuePair(i, count, buf, value);
@@ -408,6 +460,9 @@ void HashMapTest()
 
     // check that iterators work
     Itor it;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( i = 0, it = sh.begin(); it != sh.end(); ++it, ++i )
     {
         CPPUNIT_ASSERT( i != count );
@@ -420,6 +475,9 @@ void HashMapTest()
     HashMapT h1( sh ), h2( 0 );
     h2 = sh;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( i = 0, it = sh.begin(); it != sh.end(); ++it, ++i )
     {
         CPPUNIT_ASSERT( h1[it->first] == it->second );
@@ -427,6 +485,9 @@ void HashMapTest()
     }
 
     // other tests
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( i = 0; i < count; ++i )
     {
         MakeKeyValuePair(i, count, buf, value);

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/tipdlg.cpp
 // Purpose:     implementation of wxTipDialog
@@ -163,6 +170,9 @@ wxString wxFileTipProvider::GetTip()
     // textfile so that can't go into an eternal loop in the [oddball]
     // case of a comment-only tips file, or the developer has vetoed
     // them all via PreprecessTip().
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i=0; i < count; i++ )
     {
         // The current tip may be at the last line of the textfile, (or

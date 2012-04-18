@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/gdiimage.cpp
 // Purpose:     wxGDIImage implementation
@@ -279,6 +286,9 @@ wxGDIImageHandler* wxGDIImage::FindHandler(
 {
     wxGDIImageHandlerList::compatibility_iterator   pNode = ms_handlers.GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( pNode )
     {
         wxGDIImageHandler*          pHandler = pNode->GetData();
@@ -296,6 +306,9 @@ wxGDIImageHandler* wxGDIImage::FindHandler(
 )
 {
     wxGDIImageHandlerList::compatibility_iterator   pNode = ms_handlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( pNode )
     {
         wxGDIImageHandler*          pHandler = pNode->GetData();
@@ -316,6 +329,9 @@ wxGDIImageHandler* wxGDIImage::FindHandler(
 {
     wxGDIImageHandlerList::compatibility_iterator   pNode = ms_handlers.GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( pNode )
     {
         wxGDIImageHandler*          pHandler = pNode->GetData();
@@ -331,6 +347,9 @@ void wxGDIImage::CleanUpHandlers()
 {
     wxGDIImageHandlerList::compatibility_iterator   pNode = ms_handlers.GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( pNode )
     {
         wxGDIImageHandler*                              pHandler = pNode->GetData();

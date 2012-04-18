@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtextimagedlg.cpp
 // Purpose:
@@ -165,6 +172,9 @@ void wxRichTextObjectPropertiesDialog::OnRichtextParaUpClick( wxCommandEvent& WX
     if (!iter)
         return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (iter)
     {
         if (iter->GetData() == m_parent)
@@ -199,6 +209,9 @@ void wxRichTextObjectPropertiesDialog::OnRichtextDownClick( wxCommandEvent& WXUN
     if (!iter)
         return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (iter)
     {
         if (iter->GetData() == m_parent)

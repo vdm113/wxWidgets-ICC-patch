@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/sockunix.cpp
 // Purpose:     wxSocketImpl implementation for Unix systems
@@ -123,6 +130,9 @@ int wxSocketImplUnix::CheckForInput()
 {
     char c;
     int rc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
         rc = recv(m_fd, &c, 1, MSG_PEEK);

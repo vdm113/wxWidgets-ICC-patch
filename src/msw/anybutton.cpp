@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/anybutton.cpp
 // Purpose:     wxAnyButton
@@ -220,6 +227,9 @@ public:
           m_hwndBtn(GetHwndOf(btn))
     {
         // initialize all bitmaps except for the disabled one to normal state
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < wxAnyButton::State_Max; n++ )
         {
             m_iml.Add(n == wxAnyButton::State_Disabled ? bitmap.ConvertToDisabled()

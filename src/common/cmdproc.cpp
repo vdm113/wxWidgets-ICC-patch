@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/cmdproc.cpp
 // Purpose:     wxCommand and wxCommandProcessor classes
@@ -119,6 +126,9 @@ void wxCommandProcessor::Store(wxCommand *command)
     else
     {
         wxList::compatibility_iterator node = m_currentCommand->GetNext();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             wxList::compatibility_iterator next = node->GetNext();
@@ -316,6 +326,9 @@ wxString wxCommandProcessor::GetRedoMenuLabel() const
 void wxCommandProcessor::ClearCommands()
 {
     wxList::compatibility_iterator node = m_commands.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxCommand *command = (wxCommand *)node->GetData();

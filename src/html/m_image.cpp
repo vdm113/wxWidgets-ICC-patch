@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/m_image.cpp
 // Purpose:     wxHtml module for displaying images
@@ -82,6 +89,9 @@ wxHtmlImageMapAreaCell::wxHtmlImageMapAreaCell( wxHtmlImageMapAreaCell::celltype
     wxString x = incoords, y;
 
     type = t;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((i = x.Find( ',' )) != wxNOT_FOUND)
     {
         coords.Add( (int)(pixel_scale * (double)wxAtoi( x.Left( i ).c_str())) );
@@ -151,12 +161,18 @@ wxHtmlLinkInfo *wxHtmlImageMapAreaCell::GetLink( int x, int y ) const
                         }
                     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     while (pointer < end)
                     {
                         yval = coords[pointer];
                         pointer += 2;
                         if (yval >= wherey)
                         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                             while ((pointer < end) && (coords[pointer] >= wherey))
                             {
                                 pointer += 2;
@@ -179,6 +195,9 @@ wxHtmlLinkInfo *wxHtmlImageMapAreaCell::GetLink( int x, int y ) const
                         }
                         else
                         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                             while ((pointer < end) && (coords[pointer] < wherey))
                             {
                                 pointer += 2;
@@ -487,6 +506,9 @@ void wxHtmlImageCell::AdvanceAnimation(wxTimer *timer)
     if ( m_physX == wxDefaultCoord )
     {
         m_physX = m_physY = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxHtmlCell *cell = this; cell; cell = cell->GetParent())
         {
             m_physX += cell->GetPosX();
@@ -611,6 +633,9 @@ wxHtmlLinkInfo *wxHtmlImageCell::GetLink( int x, int y ) const
     {
         wxHtmlContainerCell *p, *op;
         op = p = GetParent();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (p)
         {
             op = p;

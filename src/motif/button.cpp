@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/button.cpp
 // Purpose:     wxButton
@@ -131,6 +138,9 @@ wxWindow *wxButton::SetDefault()
     // resource for all wxButton in this parent (but not sub panels)
 
     wxWindow *parent = GetParent();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxWindowList::compatibility_iterator node = parent->GetChildren().GetFirst ();
          node; node = node->GetNext ())
     {

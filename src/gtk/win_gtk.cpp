@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/win_gtk.cpp
 // Purpose:     native GTK+ widget for wxWindow
@@ -77,6 +84,9 @@ static void size_allocate(GtkWidget* widget, GtkAllocation* alloc)
     widget->allocation = *alloc;
 
     // adjust child positions
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (const GList* list = pizza->m_fixed.children; list; list = list->next)
     {
         const GtkFixedChild* child = static_cast<GtkFixedChild*>(list->data);
@@ -269,6 +279,9 @@ GtkWidget* wxPizza::New(long windowStyle)
 void wxPizza::move(GtkWidget* widget, int x, int y)
 {
     GtkFixed* fixed = &m_fixed;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (const GList* list = fixed->children; list; list = list->next)
     {
         const GtkFixedChild* child = static_cast<GtkFixedChild*>(list->data);

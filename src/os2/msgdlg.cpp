@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/msgdlg.cpp
 // Purpose:     wxMessageDialog
@@ -47,6 +54,9 @@ int wxMessageDialog::ShowModal()
         // will never be shown - just try putting 2 calls to wxMessageBox() in
         // OnInit() to see it
         //
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (wxTheApp->Pending())
             wxTheApp->Dispatch();
     }

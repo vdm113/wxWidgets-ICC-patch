@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file LexCPP.cxx
  ** Lexer for C++, C, Java, and JavaScript.
@@ -41,6 +48,9 @@ static bool IsSpaceEquiv(int state) {
 // fixes this, and is highly recommended for readability anyway.
 static bool FollowsPostfixOperator(StyleContext &sc, Accessor &styler) {
 	int pos = (int) sc.currentPos;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (--pos > 0) {
 		char ch = styler[pos];
 		if (ch == '+' || ch == '-') {
@@ -104,6 +114,9 @@ static void ColouriseCppDoc(unsigned int startPos, int length, int initStyle, Wo
 	// look back to set chPrevNonWhite properly for better regex colouring
 	if (startPos > 0) {
 		int back = startPos;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (--back && IsSpaceEquiv(styler.StyleAt(back)))
 			;
 		if (styler.StyleAt(back) == SCE_C_OPERATOR) {
@@ -113,6 +126,9 @@ static void ColouriseCppDoc(unsigned int startPos, int length, int initStyle, Wo
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.atLineStart) {
@@ -267,6 +283,9 @@ static void ColouriseCppDoc(unsigned int startPos, int length, int initStyle, Wo
 					sc.SetState(SCE_C_DEFAULT);
 				} else if (sc.ch == '/') {
 					sc.Forward();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					while ((sc.ch < 0x80) && islower(sc.ch))
 						sc.Forward();    // gobble regex flags
 					sc.SetState(SCE_C_DEFAULT);
@@ -343,6 +362,9 @@ static void ColouriseCppDoc(unsigned int startPos, int length, int initStyle, Wo
 				// Preprocessor commands are alone on their line
 				sc.SetState(SCE_C_PREPROCESSOR);
 				// Skip whitespace between # and preprocessor word
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				do {
 					sc.Forward();
 				} while ((sc.ch == ' ' || sc.ch == '\t') && sc.More());
@@ -406,6 +428,9 @@ static void FoldCppDoc(unsigned int startPos, int length, int initStyle,
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
 	int style = initStyle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -434,6 +459,9 @@ static void FoldCppDoc(unsigned int startPos, int length, int initStyle,
 		if (foldPreprocessor && (style == SCE_C_PREPROCESSOR)) {
 			if (ch == '#') {
 				unsigned int j = i + 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while ((j < endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
 					j++;
 				}

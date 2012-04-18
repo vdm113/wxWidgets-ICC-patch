@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/fswatcher/fswatchertest.cpp
 // Purpose:     wxFileSystemWatcher unit test
@@ -162,6 +169,9 @@ public:
         static int ALFA_CNT = 'z' - 'a';
 
         wxString s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0 ; i < length; ++i)
         {
             char c = 'a' + (rand() % ALFA_CNT);

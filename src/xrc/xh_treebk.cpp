@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/xrc/xh_treebk.cpp
 // Purpose:     XRC resource handler for wxTreebook
@@ -78,11 +85,17 @@ wxObject *wxTreebookXmlHandler::DoCreateResource()
 
         wxXmlNode *node = GetParamNode("object");
         int pageIndex = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (unsigned int i = 0; i < m_tbk->GetPageCount(); i++)
         {
             if ( m_tbk->GetPage(i) )
             {
                 wxXmlNode *child = node->GetChildren();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (child)
                 {
                     if (child->GetName() == "expanded" && child->GetNodeContent() == "1")

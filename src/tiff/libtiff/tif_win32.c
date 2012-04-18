@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /* $Id$ */
 
 /*
@@ -331,6 +338,9 @@ _TIFFmemcmp(const tdata_t p1, const tdata_t p2, tsize_t c)
 	register const BYTE *pb2 = (const BYTE *) p2;
 	register DWORD dwTmp = c;
 	register int iTmp;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (iTmp = 0; dwTmp-- && !iTmp; iTmp = (int)*pb1++ - (int)*pb2++)
 		;
 	return (iTmp);

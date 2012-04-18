@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/infobar.cpp
 // Purpose:     generic wxInfoBar implementation
@@ -333,6 +340,9 @@ void wxInfoBarGeneric::RemoveButton(wxWindowID btnid)
     // button with this id (ids of all buttons should be unique anyhow but if
     // they are repeated removing the last added one probably makes more sense)
     const wxSizerItemList& items = sizer->GetChildren();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxSizerItemList::compatibility_iterator node = items.GetLast();
           node != items.GetFirst();
           node = node->GetPrevious() )

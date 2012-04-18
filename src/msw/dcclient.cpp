@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/dcclient.cpp
 // Purpose:     wxClientDC class
@@ -292,6 +299,9 @@ wxPaintDCInfo *wxPaintDCImpl::FindInCache(size_t *index) const
 {
     wxPaintDCInfo *info = NULL;
     size_t nCache = ms_cache.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < nCache; n++ )
     {
         wxPaintDCInfo *info1 = &ms_cache[n];
@@ -311,6 +321,9 @@ wxPaintDCInfo *wxPaintDCImpl::FindInCache(size_t *index) const
 WXHDC wxPaintDCImpl::FindDCInCache(wxWindow* win)
 {
     size_t nCache = ms_cache.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < nCache; n++ )
     {
         wxPaintDCInfo *info = &ms_cache[n];

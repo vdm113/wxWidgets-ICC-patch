@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        test.cpp
 // Purpose:     Test program for wxWidgets
@@ -510,6 +517,9 @@ bool TestApp::OnCmdLineParsed(wxCmdLineParser& parser)
 {
     if (parser.GetParamCount())
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = 0; i < parser.GetParamCount(); i++)
             m_registries.push_back(parser.GetParam(i));
     }
@@ -594,6 +604,9 @@ int TestApp::OnRun()
     }
     else // run only the selected tests
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = 0; i < m_registries.size(); i++)
         {
             const wxString reg = m_registries[i];
@@ -672,6 +685,9 @@ void TestApp::List(Test *test, const string& parent /*=""*/) const
         // drop the 1st component from the display and indent
         if (parent != "") {
             string::size_type j = i = name.find('.', 1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ((j = name.find('.', j + 1)) != string::npos)
                 cout << "  ";
             cout << "  " << name.substr(i + 1) << "\n";
@@ -682,11 +698,17 @@ void TestApp::List(Test *test, const string& parent /*=""*/) const
 
         const Tests& tests = suite->getTests();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (Iter it = tests.begin(); it != tests.end(); ++it)
             List(*it, name);
     }
     else if (m_longlist) {
         string::size_type i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ((i = parent.find('.', i + 1)) != string::npos)
             cout << "  ";
         cout << "  " << test->getName() << "\n";

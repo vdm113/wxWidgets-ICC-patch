@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/webview_ie.cpp
 // Purpose:     wxMSW wxWebViewIE class implementation for web view component
@@ -95,6 +102,9 @@ bool wxWebViewIE::Create(wxWindow* parent,
 
 wxWebViewIE::~wxWebViewIE()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(unsigned int i = 0; i < m_factories.size(); i++)
     {
         m_factories[i]->Release();
@@ -407,6 +417,9 @@ bool wxWebViewIE::CanGoForward() const
 void wxWebViewIE::LoadHistoryItem(wxSharedPtr<wxWebViewHistoryItem> item)
 {
     int pos = -1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(unsigned int i = 0; i < m_historyList.size(); i++)
     {
         //We compare the actual pointers to find the correct item
@@ -425,6 +438,9 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewIE::GetBackwardHistory()
     wxVector<wxSharedPtr<wxWebViewHistoryItem> > backhist;
     //As we don't have std::copy or an iterator constructor in the wxwidgets
     //native vector we construct it by hand
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(int i = 0; i < m_historyPosition; i++)
     {
         backhist.push_back(m_historyList[i]);
@@ -437,6 +453,9 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewIE::GetForwardHistory()
     wxVector<wxSharedPtr<wxWebViewHistoryItem> > forwardhist;
     //As we don't have std::copy or an iterator constructor in the wxwidgets
     //native vector we construct it by hand
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(int i = m_historyPosition + 1; i < static_cast<int>(m_historyList.size()); i++)
     {
         forwardhist.push_back(m_historyList[i]);
