@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        net.cpp
 // Purpose:     wxWidgets sample demonstrating network-related functions
@@ -324,6 +331,9 @@ void MyFrame::OnEnumISPs(wxCommandEvent& WXUNUSED(event))
     else
     {
         wxString msg = wxT("Known ISPs:\n");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < nCount; n++ )
         {
             msg << names[n] << '\n';

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/fs_mem.cpp
 // Purpose:     in-memory file system
@@ -150,6 +157,9 @@ wxString wxMemoryFSHandlerBase::FindNext()
 {
     // m_findArgument is used to indicate that search is in progress, we reset
     // it to empty string after iterating over all elements
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !m_findArgument.empty() )
     {
         // test for the match before (possibly) clearing m_findArgument below

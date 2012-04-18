@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file LineMarker.cxx
  ** Defines the look of a line marker in the margin .
@@ -273,6 +280,9 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 
 	} else if (markType == SC_MARK_DOTDOTDOT) {
 		int right = centreX - 6;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int b=0; b<3; b++) {
 			PRectangle rcBlob(right, rc.bottom - 4, right + 2, rc.bottom-2);
 			surface->FillRectangle(rcBlob, fore.allocated);
@@ -281,6 +291,9 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 	} else if (markType == SC_MARK_ARROWS) {
 		surface->PenColour(fore.allocated);
 		int right = centreX - 2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int b=0; b<3; b++) {
 			surface->MoveTo(right - 4, centreY - 4);
 			surface->LineTo(right, centreY);

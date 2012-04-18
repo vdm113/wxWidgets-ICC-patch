@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/textctrl_osx.cpp
 // Purpose:     wxTextCtrl
@@ -713,6 +720,9 @@ int wxTextWidgetImpl::GetNumberOfLines() const
     wxString content = GetStringValue() ;
     ItemCount lines = 1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < content.length() ; i++)
     {
 #if wxOSX_USE_COCOA
@@ -733,6 +743,9 @@ wxString wxTextWidgetImpl::GetLineText(long lineNo) const
 
     // Find line first
     int count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < content.length() ; i++)
     {
         if (count == lineNo)
@@ -740,6 +753,9 @@ wxString wxTextWidgetImpl::GetLineText(long lineNo) const
             // Add chars in line then
             wxString tmp;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (size_t j = i; j < content.length(); j++)
             {
                 if (content[j] == '\n')
@@ -765,12 +781,18 @@ int wxTextWidgetImpl::GetLineLength(long lineNo) const
 
     // Find line first
     int count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < content.length() ; i++)
     {
         if (count == lineNo)
         {
             // Count chars in line then
             count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (size_t j = i; j < content.length(); j++)
             {
                 if (content[j] == '\n')

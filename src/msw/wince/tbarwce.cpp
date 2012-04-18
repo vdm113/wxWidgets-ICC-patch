@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/wince/tbarwce.cpp
 // Purpose:     wxToolBar for Windows CE
@@ -284,6 +291,9 @@ bool wxToolMenuBar::DoDeleteTool(size_t pos, wxToolBarToolBase *tool)
     // different from pos if we use several separators to cover the space used
     // by a control
     wxToolBarToolsList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarToolBase *tool2 = node->GetData();
@@ -322,6 +332,9 @@ bool wxToolMenuBar::DoDeleteTool(size_t pos, wxToolBarToolBase *tool)
 
     // do delete all buttons
     m_nButtons -= nButtonsToDelete;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( nButtonsToDelete-- > 0 )
     {
         if ( !::SendMessage(GetHwnd(), TB_DELETEBUTTON, pos, 0) )
@@ -336,6 +349,9 @@ bool wxToolMenuBar::DoDeleteTool(size_t pos, wxToolBarToolBase *tool)
 
     // and finally reposition all the controls after this button (the toolbar
     // takes care of all normal items)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( /* node -> first after deleted */ ; node; node = node->GetNext() )
     {
         wxToolBarToolBase *tool2 = node->GetData();
@@ -362,6 +378,9 @@ bool wxToolMenuBar::Realize()
 
 #if 0
     // delete all old buttons, if any
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t pos = 0; pos < m_nButtons; pos++ )
     {
         if ( !::SendMessage(GetHwnd(), TB_DELETEBUTTON, 0, 0) )
@@ -373,6 +392,9 @@ bool wxToolMenuBar::Realize()
 
     bool lastWasRadio = false;
     wxToolBarToolsList::Node* node;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolMenuBarTool *tool = (wxToolMenuBarTool*) node->GetData();

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/x11/toplevel.cpp
 // Purpose:     implements wxTopLevelWindow for X11
@@ -536,6 +543,9 @@ void wxTopLevelWindowX11::DoSetSize(int x, int y, int width, int height, int siz
 
     // search for the parent that is child of ROOT, because the WM may
     // reparent twice and notify only the next parent (like FVWM)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (next_parent != root) {
         Window *theChildren;
 #if wxUSE_NANOX
@@ -594,6 +604,9 @@ void wxTopLevelWindowX11::DoGetPosition(int *x, int *y) const
 
     // search for the parent that is child of ROOT, because the WM may
     // reparent twice and notify only the next parent (like FVWM)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (next_parent != root) {
         Window *theChildren;
 #if wxUSE_NANOX

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/timer.cpp
 // Purpose:     wxTimer implementation
@@ -57,6 +64,9 @@ UINT_PTR GetNewTimerId(wxMSWTimerImpl *t)
 {
     static UINT_PTR lastTimerId = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (lastTimerId == 0 ||
             TimerMap().find(lastTimerId) != TimerMap().end())
     {

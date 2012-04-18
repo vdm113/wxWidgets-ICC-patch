@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 // Copyright 1998-2001 by Neil Hodgson <neilh@scintilla.org>
 // The License.txt file describes the conditions under which this software may be distributed.
@@ -91,6 +98,9 @@ static void ColouriseErlangDoc(unsigned int startPos, int length, int initStyle,
 
 	styler.StartAt(startPos);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 		int style = SCE_ERLANG_DEFAULT;
 		if (STATE_NULL != parse_state) {
@@ -155,6 +165,9 @@ static void ColouriseErlangDoc(unsigned int startPos, int length, int initStyle,
 						if (parse_state == COMMENT_DOC_MACRO 
 							&& erlangDocMacro.InList(cur)) {
 								sc.ChangeState(SCE_ERLANG_COMMENT_DOC_MACRO);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 								while (sc.ch != '}' && !sc.atLineEnd)
 									sc.Forward();
 						} else if (erlangDoc.InList(cur)) {
@@ -533,6 +546,9 @@ static void FoldErlangDoc(
 	char chNext = styler.SafeGetCharAt(startPos);
 	bool atEOL;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/xtixml.cpp
 // Purpose:     streaming runtime metadata information
@@ -119,6 +126,9 @@ void wxObjectXmlWriter::DoBeginWriteObject(const wxObject *WXUNUSED(object),
     pnode->AddProperty(wxT("id"), wxString::Format( wxT("%d"), objectID ) );
 
     wxStringToAnyHashMap::const_iterator it, en;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( it = metadata.begin(), en = metadata.end(); it != en; ++it )
     {
         pnode->AddProperty( it->first, wxAnyGetAsString(it->second) );
@@ -281,6 +291,9 @@ int wxObjectXmlReader::ReadComponent(wxXmlNode *node, wxObjectReaderCallback *ca
 
     wxStringToAnyHashMap metadata;
     wxXmlProperty *xp = node->GetAttributes();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( xp )
     {
         if ( xp->GetName() != wxString(wxT("class")) && 
@@ -309,6 +322,9 @@ int wxObjectXmlReader::ReadComponent(wxXmlNode *node, wxObjectReaderCallback *ca
     PropertyNodes propertyNodes;
     PropertyNames propertyNames;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( children )
     {
         wxString name;
@@ -318,6 +334,9 @@ int wxObjectXmlReader::ReadComponent(wxXmlNode *node, wxObjectReaderCallback *ca
         children = children->GetNext();
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i <classInfo->GetCreateParamCount(); ++i )
     {
         const wxChar* paramName = classInfo->GetCreateParamName(i);
@@ -360,6 +379,9 @@ int wxObjectXmlReader::ReadComponent(wxXmlNode *node, wxObjectReaderCallback *ca
                 createClassInfos[i] = NULL;
             }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( size_t j = 0; j < propertyNames.size(); ++j )
             {
                 if ( propertyNames[j] == paramName )
@@ -397,6 +419,9 @@ int wxObjectXmlReader::ReadComponent(wxXmlNode *node, wxObjectReaderCallback *ca
 
     // now stream in the rest of the properties, in the sequence their 
     // properties were written in the xml
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t j = 0; j < propertyNames.size(); ++j )
     {
         if ( !propertyNames[j].empty() )
@@ -412,6 +437,9 @@ int wxObjectXmlReader::ReadComponent(wxXmlNode *node, wxObjectReaderCallback *ca
                     const wxCollectionTypeInfo* collType = 
                         wx_dynamic_cast( const wxCollectionTypeInfo*, pi->GetTypeInfo() );
                     const wxTypeInfo * elementType = collType->GetElementType();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     while( prop )
                     {
                         if ( prop->GetName() != wxT("element") )
@@ -537,6 +565,9 @@ wxAny wxObjectXmlReader::ReadValue(wxXmlNode *node,
 int wxObjectXmlReader::ReadObject( const wxString &name, wxObjectReaderCallback *callbacks)
 {
     wxXmlNode *iter = m_parent->GetChildren();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( iter )
     {
         wxString entryName;

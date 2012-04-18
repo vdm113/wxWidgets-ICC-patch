@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file LexBasic.cxx
  ** Lexer for BlitzBasic and PureBasic.
@@ -94,6 +101,9 @@ static void ColouriseBasicDoc(unsigned int startPos, int length, int initStyle,
 	StyleContext sc(startPos, length, initStyle, styler);
 
 	// Can't use sc.More() here else we miss the last character
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; ; sc.Forward()) {
 		if (sc.state == SCE_B_IDENTIFIER) {
 			if (!IsIdentifier(sc.ch)) {
@@ -110,6 +120,9 @@ static void ColouriseBasicDoc(unsigned int startPos, int length, int initStyle,
 						SCE_B_KEYWORD4,
 					};
 					sc.GetCurrentLowered(s, sizeof(s));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					for (int i = 0; i < 4; i++) {
 						if (keywordlists[i]->InList(s)) {
 							sc.ChangeState(kstates[i]);
@@ -259,6 +272,9 @@ static void FoldBasicDoc(unsigned int startPos, int length,
         bool foldCompact = styler.GetPropertyInt("fold.compact", 1) != 0;
 	// Scan for tokens at the start of the line (they may include
 	// whitespace, for tokens like "End Function"
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = startPos; i < endPos; i++) {
 		int c = styler.SafeGetCharAt(i);
 		if (!done && !go) {

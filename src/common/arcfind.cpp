@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/arcfind.cpp
 // Purpose:     Streams for archive formats
@@ -25,6 +32,9 @@
 const wxArchiveClassFactory *
 wxArchiveClassFactory::Find(const wxString& protocol, wxStreamProtocolType type)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (const wxArchiveClassFactory *f = GetFirst(); f; f = f->GetNext())
         if (f->CanHandle(protocol, type))
             return f;

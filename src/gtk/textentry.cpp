@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/textentry.cpp
 // Purpose:     wxTextEntry implementation for wxGTK
@@ -255,6 +262,9 @@ bool wxTextEntry::DoAutoCompleteStrings(const wxArrayString& choices)
     GtkListStore * const store = gtk_list_store_new(1, G_TYPE_STRING);
     GtkTreeIter iter;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxArrayString::const_iterator i = choices.begin();
           i != choices.end();
           ++i )

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/apptraits.cpp
 // Purpose:     implementation of wxGUIAppTraits for Unix systems
@@ -65,6 +72,9 @@ int wxGUIAppTraits::WaitForChild(wxExecuteData& execData)
 
     // endProcData.pid will be set to 0 from wxHandleProcessTermination() when
     // the process terminates
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( endProcData.pid != 0 )
     {
         // don't consume 100% of the CPU while we're sitting in this

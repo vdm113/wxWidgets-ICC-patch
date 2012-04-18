@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/bitmap.cpp
 // Purpose:
@@ -36,7 +43,13 @@ static void PixmapToPixbuf(GdkPixmap* pixmap, GdkPixbuf* pixbuf, int w, int h)
         guchar* p = gdk_pixbuf_get_pixels(pixbuf);
         const int inc = 3 + int(gdk_pixbuf_get_has_alpha(pixbuf) != 0);
         const int rowpad = gdk_pixbuf_get_rowstride(pixbuf) - w * inc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = h; y; y--, p += rowpad)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x = w; x; x--, p += inc)
             {
                 // pixels are either (0,0,0) or (0xff,0xff,0xff)
@@ -55,8 +68,14 @@ static void MaskToAlpha(GdkPixmap* mask, GdkPixbuf* pixbuf, int w, int h)
     const guchar* mask_data = gdk_pixbuf_get_pixels(mask_pixbuf);
     const int rowpad = gdk_pixbuf_get_rowstride(pixbuf) - w * 4;
     const int mask_rowpad = gdk_pixbuf_get_rowstride(mask_pixbuf) - w * 3;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int y = h; y; y--, p += rowpad, mask_data += mask_rowpad)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int x = w; x; x--, p += 4, mask_data += 3)
         {
             *p = 255;
@@ -159,8 +178,14 @@ bool wxMask::InitFromColour(const wxBitmap& bitmap, const wxColour& colour)
         const wxByte* in = gdk_pixbuf_get_pixels(pixbuf);
         const int inc = 3 + int(gdk_pixbuf_get_has_alpha(pixbuf) != 0);
         const int rowpadding = gdk_pixbuf_get_rowstride(pixbuf) - inc * w;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = 0; y < h; y++, in += rowpadding)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x = 0; x < w; x++, in += inc, bit_index++)
                 if (in[0] == r_mask && in[1] == g_mask && in[2] == b_mask)
                     out[bit_index >> 3] ^= 1 << (bit_index & 7);
@@ -182,8 +207,14 @@ bool wxMask::InitFromColour(const wxBitmap& bitmap, const wxColour& colour)
             c.CalcPixel(colormap);
             mask_pixel = c.GetPixel();
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = 0; y < h; y++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x = 0; x < w; x++, bit_index++)
                 if (gdk_image_get_pixel(image, x, y) == mask_pixel)
                     out[bit_index >> 3] ^= 1 << (bit_index & 7);
@@ -367,8 +398,14 @@ bool wxBitmap::CreateFromImageAsPixmap(const wxImage& image, int depth)
         memset(out, 0xff, out_size);
         const wxByte* in = image.GetData();
         unsigned bit_index = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = 0; y < h; y++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x = 0; x < w; x++, in += 3, bit_index++)
                 if (in[0] == 255 && in[1] == 255 && in[2] == 255)
                     out[bit_index >> 3] ^= 1 << (bit_index & 7);
@@ -405,8 +442,14 @@ bool wxBitmap::CreateFromImageAsPixmap(const wxImage& image, int depth)
         unsigned bit_index = 0;
         if (alpha != NULL)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int y = 0; y < h; y++)
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int x = 0; x < w; x++, bit_index++)
                     if (*alpha++ < wxIMAGE_ALPHA_THRESHOLD)
                         out[bit_index >> 3] ^= 1 << (bit_index & 7);
@@ -419,8 +462,14 @@ bool wxBitmap::CreateFromImageAsPixmap(const wxImage& image, int depth)
             const wxByte g_mask = image.GetMaskGreen();
             const wxByte b_mask = image.GetMaskBlue();
             const wxByte* in = image.GetData();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int y = 0; y < h; y++)
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int x = 0; x < w; x++, in += 3, bit_index++)
                     if (in[0] == r_mask && in[1] == g_mask && in[2] == b_mask)
                         out[bit_index >> 3] ^= 1 << (bit_index & 7);
@@ -450,8 +499,14 @@ bool wxBitmap::CreateFromImageAsPixbuf(const wxImage& image)
 
     int rowpad = gdk_pixbuf_get_rowstride(pixbuf) - 4 * width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int y = 0; y < height; y++, out += rowpad)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int x = 0; x < width; x++, out += 4, in += 3)
         {
             out[0] = in[0];
@@ -491,8 +546,14 @@ wxImage wxBitmap::ConvertToImage() const
         const int inc = 3 + int(alpha != NULL);
         const int rowpad = gdk_pixbuf_get_rowstride(pixbuf) - inc * w;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = 0; y < h; y++, in += rowpad)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x = 0; x < w; x++, in += inc, out += 3)
             {
                 out[0] = in[0];
@@ -541,8 +602,14 @@ wxImage wxBitmap::ConvertToImage() const
         image.SetMaskColour(MASK_RED, MASK_GREEN, MASK_BLUE);
         GdkImage* image_mask = gdk_drawable_get_image(GetMask()->GetBitmap(), 0, 0, w, h);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = 0; y < h; y++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x = 0; x < w; x++, data += 3)
             {
                 if (gdk_image_get_pixel(image_mask, x, y) == 0)

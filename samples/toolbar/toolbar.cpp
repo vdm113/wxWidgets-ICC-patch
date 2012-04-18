@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        toolbar.cpp
 // Purpose:     wxToolBar sample
@@ -415,6 +422,9 @@ void MyFrame::PopulateToolbar(wxToolBarBase* toolBar)
         w *= 2;
         h *= 2;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = Tool_new; n < WXSIZEOF(toolBarBitmaps); n++ )
         {
             toolBarBitmaps[n] =

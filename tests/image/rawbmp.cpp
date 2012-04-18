@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/image/rawbmp.cpp
 // Purpose:     Test for using raw bitmap access classes with wxImage
@@ -64,10 +71,16 @@ void ImageRawTestCase::RGBImage()
 
     wxImagePixelData data(image);
     wxImagePixelData::Iterator p(data);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int y = 0; y < HEIGHT; y++ )
     {
         const wxImagePixelData::Iterator rowStart = p;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int x = 0; x < WIDTH; x++ )
         {
             p.Red() =

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/main.cpp
 // Purpose:     WinMain/DllMain
@@ -314,6 +321,9 @@ struct wxMSWCommandLineArguments
 
         // +1 here for the terminating NULL
         argv = new wxChar *[argc + 1];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < argc; i++ )
         {
             argv[i] = wxStrdup(args[i].wx_str());
@@ -328,6 +338,9 @@ struct wxMSWCommandLineArguments
         if ( !argc )
             return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < argc; i++ )
         {
             free(argv[i]);

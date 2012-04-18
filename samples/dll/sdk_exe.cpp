@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/dll/my_exe.cpp
 // Purpose:     Sample showing how to use wx DLL from a Win32 application
@@ -160,6 +167,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int nCmdShow)
     ShowWindow(g_hwndMain, nCmdShow);
 
     MSG msg;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( GetMessage(&msg, NULL, 0, 0) )
     {
         TranslateMessage(&msg);

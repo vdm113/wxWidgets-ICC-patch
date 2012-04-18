@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/windowid.cpp
 // Purpose:     wxWindowID class - a class for managing window ids
@@ -214,6 +221,9 @@ wxWindowID wxIdManager::ReserveId(int count)
     {
         wxWindowID winid = gs_nextAutoId;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while(count--)
         {
             ReserveIdRefCount(gs_nextAutoId++);
@@ -225,6 +235,9 @@ wxWindowID wxIdManager::ReserveId(int count)
     {
         int found = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(wxWindowID winid = wxID_AUTO_LOWEST; winid <= wxID_AUTO_HIGHEST; winid++)
         {
             if(GetIdRefCount(winid) == 0)
@@ -244,6 +257,9 @@ wxWindowID wxIdManager::ReserveId(int count)
                     if(winid >= gs_nextAutoId)
                         gs_nextAutoId = winid + 1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     while(count--)
                         ReserveIdRefCount(winid--);
 
@@ -291,6 +307,9 @@ void wxIdManager::UnreserveId(wxWindowID winid, int count)
     wxASSERT_MSG(count > 0, wxT("can't unreserve less than 1 id"));
 
 #if wxUSE_AUTOID_MANAGEMENT
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (count--)
         UnreserveIdRefCount(winid++);
 #else

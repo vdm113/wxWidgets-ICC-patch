@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/events/clone.cpp
 // Purpose:     Test wxEvent::Clone() implementation by all event classes
@@ -53,6 +60,9 @@ void EventCloneTestCase::CheckAll()
     //       the executable currently running, which are not necessarily all
     //       wxWidgets event classes.
     const wxClassInfo *ci = wxClassInfo::GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (; ci; ci = ci->GetNext())
     {
         wxString cn = wxString(ci->GetClassName());

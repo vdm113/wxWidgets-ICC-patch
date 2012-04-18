@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // SciTE - Scintilla based Text Editor
 // LexBullant.cxx - lexer for Bullant
 
@@ -21,6 +28,9 @@ using namespace Scintilla;
 
 static int classifyWordBullant(unsigned int start, unsigned int end, WordList &keywords, Accessor &styler) {
 	char s[100];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = 0; i < end - start + 1 && i < 30; i++) {
 		s[i] = static_cast<char>(tolower(styler[start + i]));
 		s[i + 1] = '\0';
@@ -73,6 +83,9 @@ static void ColouriseBullantDoc(unsigned int startPos, int length, int initStyle
 	int visibleChars = 0;
 	styler.StartSegment(startPos);
 	int endFoundThisLine = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

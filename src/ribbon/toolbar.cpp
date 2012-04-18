@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/ribbon/toolbar.cpp
 // Purpose:     Ribbon-style tool bar
@@ -119,10 +126,16 @@ wxRibbonToolBar::~wxRibbonToolBar()
 {
     size_t count = m_groups.GetCount();
     size_t i, t;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(i = 0; i < count; ++i)
     {
         wxRibbonToolBarToolGroup* group = m_groups.Item(i);
         size_t tool_count = group->tools.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(t = 0; t < tool_count; ++t)
         {
             wxRibbonToolBarToolBase* tool = group->tools.Item(t);
@@ -265,6 +278,9 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::InsertTool(
     // Find the position where insert tool
     size_t group_count = m_groups.GetCount();
     size_t g;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(g = 0; g < group_count; ++g)
     {
         wxRibbonToolBarToolGroup* group = m_groups.Item(g);
@@ -284,6 +300,9 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::InsertSeparator(size_t pos)
 {
     size_t group_count = m_groups.GetCount();
     size_t g;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(g = 0; g < group_count; ++g)
     {
         if(pos==0) // Prepend group
@@ -297,6 +316,9 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::InsertSeparator(size_t pos)
         {
             wxRibbonToolBarToolGroup* new_group = InsertGroup(g+1);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(size_t t = pos; t < tool_count; t++)
                 new_group->tools.Add(group->tools[t]);
             group->tools.RemoveAt(pos, tool_count-pos);
@@ -325,10 +347,16 @@ void wxRibbonToolBar::ClearTools()
 {
     size_t count = m_groups.GetCount();
     size_t i, t;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(i = 0; i < count; ++i)
     {
         wxRibbonToolBarToolGroup* group = m_groups.Item(i);
         size_t tool_count = group->tools.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(t = 0; t < tool_count; ++t)
         {
             wxRibbonToolBarToolBase* tool = group->tools.Item(t);
@@ -343,10 +371,16 @@ bool wxRibbonToolBar::DeleteTool(int tool_id)
 {
     size_t group_count = m_groups.GetCount();
     size_t g, t;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(g = 0; g < group_count; ++g)
     {
         wxRibbonToolBarToolGroup* group = m_groups.Item(g);
         size_t tool_count = group->tools.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(t = 0; t < tool_count; ++t)
         {
             wxRibbonToolBarToolBase* tool = group->tools.Item(t);
@@ -365,6 +399,9 @@ bool wxRibbonToolBar::DeleteToolByPos(size_t pos)
 {
     size_t group_count = m_groups.GetCount();
     size_t g, t;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(g = 0; g < group_count; ++g)
     {
         wxRibbonToolBarToolGroup* group = m_groups.Item(g);
@@ -383,6 +420,9 @@ bool wxRibbonToolBar::DeleteToolByPos(size_t pos)
             if(g < group_count - 1)
             {
                 wxRibbonToolBarToolGroup* next_group = m_groups.Item(g+1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for(t = 0; t < next_group->tools.GetCount(); ++t)
                     group->tools.Add(next_group->tools[t]);
                 m_groups.RemoveAt(g+1);
@@ -398,10 +438,16 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::FindById(int tool_id)const
 {
     size_t group_count = m_groups.GetCount();
     size_t g, t;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(g = 0; g < group_count; ++g)
     {
         wxRibbonToolBarToolGroup* group = m_groups.Item(g);
         size_t tool_count = group->tools.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(t = 0; t < tool_count; ++t)
         {
             wxRibbonToolBarToolBase* tool = group->tools.Item(t);
@@ -418,6 +464,9 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::GetToolByPos(size_t pos)const
 {
     size_t group_count = m_groups.GetCount();
     size_t g;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(g = 0; g < group_count; ++g)
     {
         wxRibbonToolBarToolGroup* group = m_groups.Item(g);
@@ -437,6 +486,9 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::GetToolByPos(size_t pos)const
 size_t wxRibbonToolBar::GetToolCount() const
 {
     size_t count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(size_t g = 0; g < m_groups.GetCount(); ++g)
     {
         wxRibbonToolBarToolGroup* group = m_groups.Item(g);
@@ -488,10 +540,16 @@ int wxRibbonToolBar::GetToolPos(int tool_id)const
     size_t group_count = m_groups.GetCount();
     size_t g, t;
     int pos = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(g = 0; g < group_count; ++g)
     {
         wxRibbonToolBarToolGroup* group = m_groups.Item(g);
         size_t tool_count = group->tools.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(t = 0; t < tool_count; ++t)
         {
             wxRibbonToolBarToolBase* tool = group->tools.Item(t);
@@ -621,6 +679,9 @@ wxSize wxRibbonToolBar::DoGetNextSmallerSize(wxOrientation direction,
     wxSize result(relative_to);
     int area = 0;
     int nrows;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(nrows = m_nrows_min; nrows <= m_nrows_max; ++nrows)
     {
         wxSize size(m_sizes[nrows - m_nrows_min]);
@@ -667,6 +728,9 @@ wxSize wxRibbonToolBar::DoGetNextLargerSize(wxOrientation direction,
     wxSize result(relative_to);
     int area = INT_MAX;
     int nrows;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(nrows = m_nrows_min; nrows <= m_nrows_max; ++nrows)
     {
         wxSize size(m_sizes[nrows - m_nrows_min]);
@@ -720,6 +784,9 @@ void wxRibbonToolBar::SetRows(int nMin, int nMax)
 
     delete[] m_sizes;
     m_sizes = new wxSize[m_nrows_max - m_nrows_min + 1];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(int i = m_nrows_min; i <= m_nrows_max; ++i)
         m_sizes[i - m_nrows_min] = wxSize(0, 0);
 
@@ -735,12 +802,18 @@ bool wxRibbonToolBar::Realize()
     wxMemoryDC temp_dc;
     size_t group_count = m_groups.GetCount();
     size_t g, t;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(g = 0; g < group_count; ++g)
     {
         wxRibbonToolBarToolBase* prev = NULL;
         wxRibbonToolBarToolGroup* group = m_groups.Item(g);
         size_t tool_count = group->tools.GetCount();
         int tallest = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(t = 0; t < tool_count; ++t)
         {
             wxRibbonToolBarToolBase* tool = group->tools.Item(t);
@@ -769,6 +842,9 @@ bool wxRibbonToolBar::Realize()
         else
         {
             group->size = wxSize(prev->position.x + prev->size.x, tallest);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(t = 0; t < tool_count; ++t)
                 group->tools.Item(t)->size.SetHeight(tallest);
         }
@@ -796,14 +872,26 @@ bool wxRibbonToolBar::Realize()
     if (sizingFlexibly)
         major_axis = wxHORIZONTAL;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(nrows = m_nrows_min; nrows <= m_nrows_max; ++nrows)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(r = 0; r < nrows; ++r)
             row_sizes[r] = wxSize(0, 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(g = 0; g < group_count; ++g)
         {
             wxRibbonToolBarToolGroup* group = m_groups.Item(g);
             int shortest_row = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(r = 1; r < nrows; ++r)
             {
                 if(row_sizes[r].GetWidth() < row_sizes[shortest_row].GetWidth())
@@ -814,6 +902,9 @@ bool wxRibbonToolBar::Realize()
                 row_sizes[shortest_row].y = group->size.y;
         }
         wxSize size(0, 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(r = 0; r < nrows; ++r)
         {
             if(row_sizes[r].GetWidth() != 0)
@@ -882,6 +973,9 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
     if(m_nrows_max != m_nrows_min)
     {
         int area = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(int i = 0; i <= m_nrows_max - m_nrows_min; ++i)
         {
             if(m_sizes[i].x <= size.x && m_sizes[i].y <= size.y &&
@@ -899,14 +993,23 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
     int sep = m_art->GetMetric(wxRIBBON_ART_TOOL_GROUP_SEPARATION_SIZE);
 
     int r;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(r = 0; r < row_count; ++r)
         row_sizes[r] = wxSize(0, 0);
     size_t g;
     size_t group_count = m_groups.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(g = 0; g < group_count; ++g)
     {
         wxRibbonToolBarToolGroup* group = m_groups.Item(g);
         int shortest_row = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(r = 1; r < row_count; ++r)
         {
             if(row_sizes[r].GetWidth() < row_sizes[shortest_row].GetWidth())
@@ -920,17 +1023,26 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
 
     // Calculate row positions
     int total_height = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(r = 0; r < row_count; ++r)
         total_height += row_sizes[r].GetHeight();
     int rowsep = (size.GetHeight() - total_height) / (row_count + 1);
     int* rowypos = new int[row_count];
     rowypos[0] = rowsep;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(r = 1; r < row_count; ++r)
     {
         rowypos[r] = rowypos[r - 1] + row_sizes[r - 1].GetHeight() + rowsep;
     }
 
     // Set group y positions
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(g = 0; g < group_count; ++g)
     {
         wxRibbonToolBarToolGroup* group = m_groups.Item(g);
@@ -961,6 +1073,9 @@ wxSize wxRibbonToolBar::GetBestSizeForParentSize(const wxSize& parentSize) const
     if(m_nrows_max != m_nrows_min)
     {
         int area = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(int i = 0; i <= m_nrows_max - m_nrows_min; ++i)
         {
             if(m_sizes[i].x <= size.x && m_sizes[i].y <= size.y &&
@@ -994,6 +1109,9 @@ void wxRibbonToolBar::OnPaint(wxPaintEvent& WXUNUSED(evt))
 
     size_t group_count = m_groups.GetCount();
     size_t g, t;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(g = 0; g < group_count; ++g)
     {
         wxRibbonToolBarToolGroup* group = m_groups.Item(g);
@@ -1002,6 +1120,9 @@ void wxRibbonToolBar::OnPaint(wxPaintEvent& WXUNUSED(evt))
         {
             m_art->DrawToolGroupBackground(dc, this,
                 wxRect(group->position, group->size));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(t = 0; t < tool_count; ++t)
             {
                 wxRibbonToolBarToolBase* tool = group->tools.Item(t);
@@ -1024,6 +1145,9 @@ void wxRibbonToolBar::OnMouseMove(wxMouseEvent& evt)
 
     size_t group_count = m_groups.GetCount();
     size_t g, t;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(g = 0; g < group_count; ++g)
     {
         wxRibbonToolBarToolGroup* group = m_groups.Item(g);
@@ -1032,6 +1156,9 @@ void wxRibbonToolBar::OnMouseMove(wxMouseEvent& evt)
         {
             size_t tool_count = group->tools.GetCount();
             pos -= group->position;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(t = 0; t < tool_count; ++t)
             {
                 wxRibbonToolBarToolBase* tool = group->tools.Item(t);
@@ -1180,10 +1307,16 @@ void wxRibbonToolBar::UpdateWindowUI(long flags)
 
     size_t group_count = m_groups.GetCount();
     size_t g, t;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(g = 0; g < group_count; ++g)
     {
         wxRibbonToolBarToolGroup* group = m_groups.Item(g);
         size_t tool_count = group->tools.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(t = 0; t < tool_count; ++t)
         {
             wxRibbonToolBarToolBase* tool = group->tools.Item(t);
@@ -1211,10 +1344,16 @@ bool wxRibbonToolBarEvent::PopupMenu(wxMenu* menu)
         // Find the group which contains the tool
         size_t group_count = m_bar->m_groups.GetCount();
         size_t g, t;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(g = 0; g < group_count; ++g)
         {
             wxRibbonToolBarToolGroup* group = m_bar->m_groups.Item(g);
             size_t tool_count = group->tools.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(t = 0; t < tool_count; ++t)
             {
                 wxRibbonToolBarToolBase* tool = group->tools.Item(t);

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/interactive/output.cpp
 // Purpose:     Miscellaneous tests NOT requiring user input, just user checks
@@ -104,6 +111,9 @@ void InteractiveOutputTestCase::TestDllListLoaded()
     wxPuts("Loaded modules:");
     wxDynamicLibraryDetailsArray dlls = wxDynamicLibrary::ListLoaded();
     const size_t count = dlls.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; ++n )
     {
         const wxDynamicLibraryDetails& details = dlls[n];
@@ -145,6 +155,9 @@ void InteractiveOutputTestCase::TestMimeEnum()
     wxArrayString exts;
     wxString desc;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         wxFileType *filetype =
@@ -162,6 +175,9 @@ void InteractiveOutputTestCase::TestMimeEnum()
         filetype->GetIcon(NULL);
 
         wxString extsAll;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t e = 0; e < exts.GetCount(); e++ )
         {
             if ( e > 0 )
@@ -190,6 +206,9 @@ void InteractiveOutputTestCase::TestMimeFilename()
         wxT("picture.jpeg"),
     };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(filenames); n++ )
     {
         const wxString fname = filenames[n];
@@ -357,6 +376,9 @@ protected:
         puts("");
 
         wxString type, val;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; frame.GetParam(n, &type, &name, &val); n++ )
         {
             printf("\t%s %s = %s\n", (const char*)type.mb_str(),
@@ -461,6 +483,9 @@ void InteractiveOutputTestCase::TestFSVolume()
 
     wxPrintf(wxT("%u mounted volumes found:\n"), count);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         wxFSVolume vol(volumes[n]);

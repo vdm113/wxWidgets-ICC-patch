@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/app.cpp
 // Purpose:     wxApp
@@ -159,6 +166,9 @@ short wxApp::MacHandleAEODoc(const WXEVENTREF event, WXEVENTREF WXUNUSED(reply))
     FSRef theRef ;
 
     wxArrayString fileNames;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 1; i <= itemsInList; i++)
     {
         AEGetNthPtr(
@@ -227,6 +237,9 @@ short wxApp::MacHandleAEPDoc(const WXEVENTREF event , WXEVENTREF WXUNUSED(reply)
     wxString fName ;
     FSRef theRef ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 1; i <= itemsInList; i++)
     {
         AEGetNthPtr(
@@ -281,6 +294,9 @@ void wxApp::MacOpenFiles(const wxArrayString & fileNames )
 {
     size_t i;
     const size_t fileCount = fileNames.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < fileCount; i++)
     {
         MacOpenFile(fileNames[i]);
@@ -357,6 +373,9 @@ void wxApp::MacReopenApp()
     {
         wxTopLevelWindow* firstIconized = NULL ;
         wxTopLevelWindow* firstHidden = NULL ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             wxTopLevelWindow* win = (wxTopLevelWindow*) node->GetData();
@@ -432,6 +451,9 @@ int wxMacCommandToId( UInt32 macCommandId )
 
         default :
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( size_t i = 0 ; i < WXSIZEOF(gCommandIds) ; ++i )
                 {
                     if ( gCommandIds[i].macId == macCommandId )
@@ -462,6 +484,9 @@ UInt32 wxIdToMacCommand( int wxId )
         macId = kHICommandAbout ;
     else
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t i = 0 ; i < WXSIZEOF(gCommandIds) ; ++i )
         {
             if ( gCommandIds[i].wxId == wxId )
@@ -809,6 +834,9 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
      since most user code accepting options is probably using the
      double-dash GNU-style syntax.
      */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(int i=1; i < argc; ++i)
     {
         static const wxChar *ARG_NS = wxT("-NS");
@@ -1555,6 +1583,9 @@ bool wxApp::MacSendCharEvent( wxWindow* focus , long keymessage , long modifiers
     if ( !handled && (keyval == WXK_TAB) )
     {
         wxWindow* iter = focus->GetParent() ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( iter && !handled )
         {
             if ( iter->HasFlag( wxTAB_TRAVERSAL ) )

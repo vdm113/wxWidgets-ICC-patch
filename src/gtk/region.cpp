@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/region.cpp
 // Purpose:
@@ -94,6 +101,9 @@ wxRegion::wxRegion( size_t n, const wxPoint *points,
                     wxPolygonFillMode fillStyle )
 {
     GdkPoint *gdkpoints = new GdkPoint[n];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0 ; i < n ; i++ )
     {
         gdkpoints[i].x = points[i].x;
@@ -376,6 +386,9 @@ void wxRegionIterator::CreateRects( const wxRegion& region )
     if (m_numRects)
     {
         m_rects = new wxRect[m_numRects];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < m_numRects; ++i)
         {
             GdkRectangle &gr = gdkrects[i];

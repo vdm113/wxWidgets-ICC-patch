@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/uiactionx11.cpp
 // Purpose:     wxUIActionSimulator implementation
@@ -60,6 +67,9 @@ void SendButtonEvent(int button, bool isDown)
                   &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
     event.xbutton.subwindow = event.xbutton.window;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (event.xbutton.subwindow)
     {
         event.xbutton.window = event.xbutton.subwindow;

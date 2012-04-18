@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/nonownedwnd_osx.cpp
 // Purpose:     implementation of wxNonOwnedWindow
@@ -69,6 +76,9 @@ wxNonOwnedWindowImpl* wxNonOwnedWindowImpl::FindFromWXWindow (WXWindow window)
 void wxNonOwnedWindowImpl::RemoveAssociations( wxNonOwnedWindowImpl* impl)
 {
     MacWindowMap::iterator it;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( it = wxWinMacWindowList.begin(); it != wxWinMacWindowList.end(); ++it )
     {
         if ( it->second == impl )

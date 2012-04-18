@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/stdpaths.cpp
 // Purpose:     wxStandardPaths implementation for Unix & OpenVMS systems
@@ -251,6 +258,9 @@ wxString wxStandardPaths::GetDocumentsDir() const
             if (textFile.Open(dirsFile))
             {
                 size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < textFile.GetLineCount(); i++)
                 {
                     wxString line(textFile[i]);

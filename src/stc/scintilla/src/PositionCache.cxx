@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file PositionCache.cxx
  ** Classes for caching layout information.
@@ -131,6 +138,9 @@ void LineLayout::SetLineStart(int line, int start) {
 	if ((line >= lenLineStarts) && (line != 0)) {
 		int newMaxLines = line + 20;
 		int *newLineStarts = new int[newMaxLines];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int i = 0; i < newMaxLines; i++) {
 			if (i < lenLineStarts)
 				newLineStarts[i] = lineStarts[i];
@@ -183,6 +193,9 @@ void LineLayout::RestoreBracesHighlight(Range rangeLine, Position braces[]) {
 }
 
 int LineLayout::FindBefore(int x, int lower, int upper) const {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 		int middle = (upper + lower + 1) / 2; 	// Round high
 		int posMiddle = positions[middle];
@@ -220,6 +233,9 @@ void LineLayoutCache::Allocate(int length_) {
 	if (size > 0) {
 		cache = new LineLayout * [size];
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = 0; i < size; i++)
 		cache[i] = 0;
 }
@@ -239,6 +255,9 @@ void LineLayoutCache::AllocateForLevel(int linesOnScreen, int linesInDoc) {
 		Allocate(lengthForLevel);
 	} else {
 		if (lengthForLevel < length) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (int i = lengthForLevel; i < length; i++) {
 				delete cache[i];
 				cache[i] = 0;
@@ -252,6 +271,9 @@ void LineLayoutCache::AllocateForLevel(int linesOnScreen, int linesInDoc) {
 
 void LineLayoutCache::Deallocate() {
 	PLATFORM_ASSERT(useCount == 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = 0; i < length; i++)
 		delete cache[i];
 	delete []cache;
@@ -262,6 +284,9 @@ void LineLayoutCache::Deallocate() {
 
 void LineLayoutCache::Invalidate(LineLayout::validLevel validity_) {
 	if (cache && !allInvalidated) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int i = 0; i < length; i++) {
 			if (cache[i]) {
 				cache[i]->Invalidate(validity_);
@@ -348,6 +373,9 @@ void BreakFinder::Insert(int val) {
 	if (saeLen >= saeSize) {
 		saeSize *= 2;
 		int *selAndEdgeNew = new int[saeSize];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (unsigned int j = 0; j<saeLen; j++) {
 			selAndEdgeNew[j] = selAndEdge[j];
 		}
@@ -356,10 +384,16 @@ void BreakFinder::Insert(int val) {
 	}
 
 	if (val >= nextBreak) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (unsigned int j = 0; j<saeLen; j++) {
 			if (val == selAndEdge[j]) {
 				return;
 			} if (val < selAndEdge[j]) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (unsigned int k = saeLen; k>j; k--) {
 					selAndEdge[k] = selAndEdge[k-1];
 				}
@@ -376,6 +410,9 @@ void BreakFinder::Insert(int val) {
 extern bool BadUTF(const char *s, int len, int &trailBytes);
 
 static int NextBadU(const char *s, int p, int len, int &trailBytes) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (p < len) {
 		p++;
 		if (BadUTF(s + p, len - p, trailBytes))
@@ -398,6 +435,9 @@ BreakFinder::BreakFinder(LineLayout *ll_, int lineStart_, int lineEnd_, int posL
 	subBreak(-1) {
 	saeSize = 8;
 	selAndEdge = new int[saeSize];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int j=0; j < saeSize; j++) {
 		selAndEdge[j] = 0;
 	}
@@ -406,6 +446,9 @@ BreakFinder::BreakFinder(LineLayout *ll_, int lineStart_, int lineEnd_, int posL
 	// First find the first visible character
 	nextBreak = ll->FindBefore(xStart, lineStart, lineEnd);
 	// Now back to a style break
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((nextBreak > lineStart) && (ll->styles[nextBreak] == ll->styles[nextBreak - 1])) {
 		nextBreak--;
 	}
@@ -414,6 +457,9 @@ BreakFinder::BreakFinder(LineLayout *ll_, int lineStart_, int lineEnd_, int posL
 		SelectionPosition posStart(posLineStart);
 		SelectionPosition posEnd(posLineStart + lineEnd);
 		SelectionSegment segmentLine(posStart, posEnd);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (size_t r=0; r<ll->psel->Count(); r++) {
 			SelectionSegment portion = ll->psel->Range(r).Intersect(segmentLine);
 			if (!(portion.start == portion.end)) {
@@ -430,6 +476,9 @@ BreakFinder::BreakFinder(LineLayout *ll_, int lineStart_, int lineEnd_, int posL
 
 	if (utf8) {
 		int trailBytes=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int pos = -1;;) {
 			pos = NextBadU(ll->chars, pos, lineEnd, trailBytes);
 			if (pos < 0)
@@ -456,6 +505,9 @@ static bool IsTrailByte(int ch) {
 int BreakFinder::Next() {
 	if (subBreak == -1) {
 		int prev = nextBreak;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (nextBreak < lineEnd) {
 			if ((ll->styles[nextBreak] != ll->styles[nextBreak + 1]) ||
 					(nextBreak == saeNext) ||
@@ -487,6 +539,9 @@ int BreakFinder::Next() {
 		int lastOKBreak = -1;
 		int lastUTF8Break = -1;
 		int j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (j = subBreak + 1; j <= nextBreak; j++) {
 			if (IsSpaceOrTab(ll->chars[j - 1]) && !IsSpaceOrTab(ll->chars[j])) {
 				lastGoodBreak = j;
@@ -532,6 +587,9 @@ void PositionCacheEntry::Set(unsigned int styleNumber_, const char *s_,
 	clock = clock_;
 	if (s_ && positions_) {
 		positions = new short[len + (len + 1) / 2];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (unsigned int i=0;i<len;i++) {
 			positions[i] = static_cast<short>(positions_[i]);
 		}
@@ -555,6 +613,9 @@ bool PositionCacheEntry::Retrieve(unsigned int styleNumber_, const char *s_,
 	unsigned int len_, int *positions_) const {
 	if ((styleNumber == styleNumber_) && (len == len_) &&
 		(memcmp(reinterpret_cast<char *>(positions + len), s_, len)== 0)) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (unsigned int i=0;i<len;i++) {
 			positions_[i] = positions[i];
 		}
@@ -566,6 +627,9 @@ bool PositionCacheEntry::Retrieve(unsigned int styleNumber_, const char *s_,
 
 int PositionCacheEntry::Hash(unsigned int styleNumber, const char *s, unsigned int len) {
 	unsigned int ret = s[0] << 7;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i=0; i<len; i++) {
 		ret *= 1000003;
 		ret ^= s[i];
@@ -601,6 +665,9 @@ PositionCache::~PositionCache() {
 
 void PositionCache::Clear() {
 	if (!allClear) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (size_t i=0;i<size;i++) {
 			pces[i].Clear();
 		}
@@ -645,6 +712,9 @@ void PositionCache::MeasureWidths(Surface *surface, ViewStyle &vstyle, unsigned 
 		if (clock > 60000) {
 			// Since there are only 16 bits for the clock, wrap it round and
 			// reset all cache entries so none get stuck with a high clock.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (size_t i=0;i<size;i++) {
 				pces[i].ResetClock();
 			}

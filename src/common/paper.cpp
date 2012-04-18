@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/paper.cpp
 // Purpose:     Paper size classes
@@ -254,6 +261,9 @@ wxPrintPaperType *wxPrintPaperDatabase::FindPaperType(wxPaperSize id)
 {
     typedef wxStringToPrintPaperTypeHashMap::iterator iterator;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (iterator it = m_map->begin(), en = m_map->end(); it != en; ++it)
     {
         wxPrintPaperType* paperType = it->second;
@@ -268,6 +278,9 @@ wxPrintPaperType *wxPrintPaperDatabase::FindPaperTypeByPlatformId(int id)
 {
     typedef wxStringToPrintPaperTypeHashMap::iterator iterator;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (iterator it = m_map->begin(), en = m_map->end(); it != en; ++it)
     {
         wxPrintPaperType* paperType = it->second;
@@ -284,6 +297,9 @@ wxPrintPaperType *wxPrintPaperDatabase::FindPaperType(const wxSize& sz)
     // are likely to be taken into account first. This fixes problems with,
     // for example, Letter reverting to A4 in the page setup dialog because
     // it was wrongly translated to Note.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < GetCount(); i++ )
     {
         wxPrintPaperType* const paperType = Item(i);

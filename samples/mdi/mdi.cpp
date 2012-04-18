@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        mdi.cpp
 // Purpose:     MDI sample
@@ -272,6 +279,9 @@ void MyFrame::OnFullScreen(wxCommandEvent& event)
 
 void MyFrame::OnCloseAll(wxCommandEvent& WXUNUSED(event))
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxWindowList::const_iterator i = GetChildren().begin();
           i != GetChildren().end();
           ++i )

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/uris/uris.cpp
 // Purpose:     wxURI unit test
@@ -403,6 +410,9 @@ void URITestCase::URLCompat()
                                        "http://www.163.com",
                                        "http://www.sina.com.cn" };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < WXSIZEOF(pszProblemUrls); ++i )
     {
         wxURL urlProblem(pszProblemUrls[i]);
@@ -415,6 +425,9 @@ void URITestCase::URLCompat()
         wxASSERT(fOut.IsOpened());
 
         char buf[1001];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( ;; )
         {
             is->Read(buf, 1000);

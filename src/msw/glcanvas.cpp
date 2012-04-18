@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/glcanvas.cpp
 // Purpose:     wxGLCanvas, for using OpenGL with wxWidgets under MS Windows
@@ -397,6 +404,9 @@ static int ChoosePixelFormatARB(HDC hdc, const int *attribList)
         #define ADD_ATTR_VALUE(attr) ADD_ATTR(attr, attribList[src++])
 
         int src = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( attribList[src] )
         {
             switch ( attribList[src++] )
@@ -532,6 +542,9 @@ AdjustPFDForAttributes(PIXELFORMATDESCRIPTOR& pfd, const int *attribList)
     pfd.iPixelType = PFD_TYPE_COLORINDEX;
 
     bool requestFSAA = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int arg = 0; attribList[arg]; )
     {
         switch ( attribList[arg++] )
@@ -776,6 +789,9 @@ wxPalette wxGLCanvas::CreateDefaultPalette()
     int greenMask = (1 << pfd.cGreenBits) - 1;
     int blueMask = (1 << pfd.cBlueBits) - 1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i=0; i<paletteSize; ++i)
     {
         pPal->palPalEntry[i].peRed =

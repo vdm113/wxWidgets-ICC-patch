@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /*
  *  mactrans.c  -- Hack filter used to generate MPW files 
  *    with special characters from pure ASCII, denoted "%nn" 
@@ -27,6 +34,9 @@ void from_ascii(void)
 {
     char c;
     int d;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((c=getchar())!=EOF)
     {
     	if (c!='%' || (c=getchar())=='%') putchar(c);
@@ -44,6 +54,9 @@ void to_ascii(void)
 {
     char c;
     int d;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((c=getchar())!=EOF)
     {
     	if (isascii(c)) putchar (c);

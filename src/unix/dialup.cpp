@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // -*- c++ -*- ////////////////////////////////////////////////////////////////
 // Name:        src/unix/dialup.cpp
 // Purpose:     Network related wxWidgets classes and functions
@@ -606,6 +613,9 @@ wxDialUpManagerImpl::CheckProcNet()
 
             char output[256];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (fgets(output, 256, f) != NULL)
             {
                 // Test for the known network interface names
@@ -653,6 +663,9 @@ wxDialUpManagerImpl::CheckIfconfig()
             wxT("/etc"),          // AIX 5
         };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < WXSIZEOF(ifconfigLocations); n++ )
         {
             wxString path(ifconfigLocations[n]);

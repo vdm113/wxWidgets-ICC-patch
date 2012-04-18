@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/geometry/region.cpp
 // Purpose:     wxRegion unit test
@@ -37,6 +44,9 @@ namespace
 unsigned GetRectsCount(const wxRegion& rgn)
 {
     unsigned count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxRegionIterator iter(rgn); iter.HaveRects(); ++iter )
         count++;
     return count;

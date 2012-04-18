@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/containr.cpp
 // Purpose:     implementation of wxControlContainer
@@ -60,6 +67,9 @@ void wxControlContainerBase::SetCanFocus(bool acceptsFocus)
 bool wxControlContainerBase::HasAnyFocusableChildren() const
 {
     const wxWindowList& children = m_winParent->GetChildren();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxWindowList::const_iterator i = children.begin(),
                                      end = children.end();
           i != end;
@@ -90,6 +100,9 @@ bool wxControlContainerBase::DoSetFocus()
     // focus had been already set to some other child
 
     wxWindow *win = wxWindow::FindFocus();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( win )
     {
         if ( win == m_winParent )
@@ -146,6 +159,9 @@ void wxControlContainer::SetLastFocus(wxWindow *win)
         {
             // find the last _immediate_ child which got focus
             wxWindow *winParent = win;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( winParent != m_winParent )
             {
                 win = winParent;
@@ -208,6 +224,9 @@ wxRadioButton* wxGetPreviousButtonInGroup(wxRadioButton *btn)
     // Iterate over all previous siblings until we find the next radio button
     wxWindowList::compatibility_iterator nodeBefore = nodeThis->GetPrevious();
     wxRadioButton *prevBtn = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (nodeBefore)
     {
         prevBtn = wxDynamicCast(nodeBefore->GetData(), wxRadioButton);
@@ -238,6 +257,9 @@ wxRadioButton* wxGetNextButtonInGroup(wxRadioButton *btn)
     // Iterate over all previous siblings until we find the next radio button
     wxWindowList::compatibility_iterator nodeNext = nodeThis->GetNext();
     wxRadioButton *nextBtn = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (nodeNext)
     {
         nextBtn = wxDynamicCast(nodeNext->GetData(), wxRadioButton);
@@ -258,6 +280,9 @@ wxRadioButton* wxGetNextButtonInGroup(wxRadioButton *btn)
 
 wxRadioButton* wxGetFirstButtonInGroup(wxRadioButton *btn)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (true)
     {
         wxRadioButton* prevBtn = wxGetPreviousButtonInGroup(btn);
@@ -270,6 +295,9 @@ wxRadioButton* wxGetFirstButtonInGroup(wxRadioButton *btn)
 
 wxRadioButton* wxGetLastButtonInGroup(wxRadioButton *btn)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (true)
     {
         wxRadioButton* nextBtn = wxGetNextButtonInGroup(btn);
@@ -292,11 +320,17 @@ wxRadioButton* wxGetSelectedButtonInGroup(wxRadioButton *btn)
     wxRadioButton *selBtn;
 
     // First check all previous buttons
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (selBtn = wxGetPreviousButtonInGroup(btn); selBtn; selBtn = wxGetPreviousButtonInGroup(selBtn))
         if (selBtn->GetValue())
             return selBtn;
 
     // Now all following buttons
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (selBtn = wxGetNextButtonInGroup(btn); selBtn; selBtn = wxGetNextButtonInGroup(selBtn))
         if (selBtn->GetValue())
             return selBtn;
@@ -337,6 +371,9 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
     {
         // check if we have a unique notebook-like child
         wxWindow *bookctrl = NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxWindowList::const_iterator i = children.begin(),
                                          end = children.end();
               i != end;
@@ -449,6 +486,9 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
     }
 
     // we want to cycle over all elements passing by NULL
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         // don't go into infinite loop
@@ -473,6 +513,9 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
                 // the next/previous item after this panel in the parent
                 // panel).
                 wxWindow *focusedParent = m_winParent;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while ( parent )
                 {
                     // We don't want to tab into a different dialog or frame or
@@ -657,6 +700,9 @@ bool wxSetFocusToChild(wxWindow *win, wxWindow **childLastFocused)
             // We want to focus on the deepest widget visible
             wxWindow *deepestVisibleWindow = NULL;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( *childLastFocused )
             {
                 if ( (*childLastFocused)->IsShown() )
@@ -693,6 +739,9 @@ bool wxSetFocusToChild(wxWindow *win, wxWindow **childLastFocused)
 
     // set the focus to the first child who wants it
     wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( node )
     {
         wxWindow *child = node->GetData();

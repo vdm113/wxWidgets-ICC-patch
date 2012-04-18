@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/file/dir.cpp
 // Purpose:     wxDir unit test
@@ -103,6 +110,9 @@ wxArrayString DirTestCase::DirEnumHelper(wxDir& dir,
 
     wxString filename;
     bool cont = dir.GetFirst(&filename, filespec, flags);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( cont )
     {
         ret.push_back(filename);
@@ -210,6 +220,9 @@ void DirTestCase::DirExists()
         homedrive = "c:";
 #endif // __WINDOWS__
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(testData); n++ )
     {
         wxString dirname = testData[n].dirname;

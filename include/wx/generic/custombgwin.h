@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/generic/custombgwin.h
 // Purpose:     Generic implementation of wxCustomBackgroundWindow.
@@ -28,8 +35,14 @@ protected:
         const wxSize clientSize = win->GetClientSize();
         const wxSize bitmapSize = m_bitmapBg.GetSize();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int x = 0; x < clientSize.x; x += bitmapSize.x )
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int y = 0; y < clientSize.y; y += bitmapSize.y )
             {
                 dc.DrawBitmap(m_bitmapBg, x, y);

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/fontdlgg.cpp
 // Purpose:     Generic font dialog
@@ -336,6 +343,9 @@ void wxGenericFontDialog::CreateWidgets()
 #if !USE_SPINCTRL_FOR_POINT_SIZE
     wxString *pointSizes = new wxString[40];
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < 40; i++)
     {
         wxChar buf[5];

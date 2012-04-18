@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        hashmap.h
 // Purpose:     interface of wxHashMap
@@ -42,6 +49,9 @@
 
         // iterate over all the elements in the class
         MyHash2::iterator it;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( it = h2.begin(); it != h2.end(); ++it )
         {
             wxString key = it->first, value = it->second;

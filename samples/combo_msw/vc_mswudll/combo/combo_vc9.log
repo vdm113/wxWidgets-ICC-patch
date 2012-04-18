@@ -1,0 +1,9 @@
+﻿cl : Command line warning D9002: ignoring unknown option '/Qlong_double'
+cl : Command line warning D9002: ignoring unknown option '/Qopt-class-analysis'
+cl : Command line warning D9002: ignoring unknown option '/Qopt-mem-bandwidth2'
+cl : Command line warning D9002: ignoring unknown option '/Qopt-streaming-stores:auto'
+cl : Command line warning D9002: ignoring unknown option '/Qvec-report1'
+  combo.cpp
+  Generating code
+  Finished generating code
+  combo_vc9.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-msw2\samples\combo\vc_mswudll\combo.exe

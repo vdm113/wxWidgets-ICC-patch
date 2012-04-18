@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        hashset.h
 // Purpose:     interface of wxHashSet
@@ -44,6 +51,9 @@
 
         // iterate over all the elements in the class
         MySet3::iterator it;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( it = h3.begin(); it != h3.end(); ++it )
         {
             wxString key = *it;

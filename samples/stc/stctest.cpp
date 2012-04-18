@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 //////////////////////////////////////////////////////////////////////////////
 // File:        contrib/samples/stc/stctest.cpp
 // Purpose:     STC test application
@@ -518,6 +525,9 @@ void AppFrame::CreateMenu ()
     // hilight submenu
     wxMenu *menuHilight = new wxMenu;
     int Nr;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (Nr = 0; Nr < g_LanguagePrefsSize; Nr++) {
         menuHilight->Append (myID_HILIGHTFIRST + Nr,
                              g_LanguagePrefs [Nr].name);

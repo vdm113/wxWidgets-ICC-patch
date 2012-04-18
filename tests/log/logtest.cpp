@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/log/logtest.cpp
 // Purpose:     wxLog unit test
@@ -58,6 +65,9 @@ public:
 
     void Clear()
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned n = 0; n < WXSIZEOF(m_logs); n++ )
         {
             m_logs[n].clear();

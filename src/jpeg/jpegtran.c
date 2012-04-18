@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /*
  * jpegtran.c
  *
@@ -138,6 +145,9 @@ parse_switches (j_compress_ptr cinfo, int argc, char **argv,
 
   /* Scan command line options, adjust parameters */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (argn = 1; argn < argc; argn++) {
     arg = argv[argn];
     if (*arg != '-') {

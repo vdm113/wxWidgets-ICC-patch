@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        joytest.cpp
 // Purpose:     Joystick sample
@@ -165,6 +172,9 @@ void MyCanvas::OnJoystickEvent(wxJoystickEvent& event)
         buf.Printf(wxT("Joystick (%d, %d)  "), xpos, ypos);
 
 /*
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(int i = 0; i < nButtons; ++i)
     {
         buf += wxString(wxT("[")) +

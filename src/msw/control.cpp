@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/control.cpp
 // Purpose:     wxControl class
@@ -436,6 +443,9 @@ void wxControlWithItems::MSWAllocStorage(const wxArrayStringsAdapter& items,
 {
     const unsigned numItems = items.GetCount();
     unsigned long totalTextLength = numItems; // for trailing '\0' characters
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned i = 0; i < numItems; ++i )
     {
         totalTextLength += items[i].length();

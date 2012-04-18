@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /* example.c -- usage example of the zlib compression library
  * Copyright (C) 1995-2004 Jean-loup Gailly.
  * For conditions of distribution and use, see copyright notice in zlib.h
@@ -184,12 +191,18 @@ void test_deflate(compr, comprLen)
     c_stream.next_in  = (Bytef*)hello;
     c_stream.next_out = compr;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (c_stream.total_in != len && c_stream.total_out < comprLen) {
         c_stream.avail_in = c_stream.avail_out = 1; /* force small buffers */
         err = deflate(&c_stream, Z_NO_FLUSH);
         CHECK_ERR(err, "deflate");
     }
     /* Finish the stream, still forcing small buffers: */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (;;) {
         c_stream.avail_out = 1;
         err = deflate(&c_stream, Z_FINISH);
@@ -224,6 +237,9 @@ void test_inflate(compr, comprLen, uncompr, uncomprLen)
     err = inflateInit(&d_stream);
     CHECK_ERR(err, "inflateInit");
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (d_stream.total_out < uncomprLen && d_stream.total_in < comprLen) {
         d_stream.avail_in = d_stream.avail_out = 1; /* force small buffers */
         err = inflate(&d_stream, Z_NO_FLUSH);
@@ -319,6 +335,9 @@ void test_large_inflate(compr, comprLen, uncompr, uncomprLen)
     err = inflateInit(&d_stream);
     CHECK_ERR(err, "inflateInit");
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (;;) {
         d_stream.next_out = uncompr;            /* discard the output */
         d_stream.avail_out = (uInt)uncomprLen;
@@ -482,6 +501,9 @@ void test_dict_inflate(compr, comprLen, uncompr, uncomprLen)
     d_stream.next_out = uncompr;
     d_stream.avail_out = (uInt)uncomprLen;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (;;) {
         err = inflate(&d_stream, Z_NO_FLUSH);
         if (err == Z_STREAM_END) break;

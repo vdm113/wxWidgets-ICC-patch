@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /****************************************************************************
  * Name:        src/msw/winestub.cpp
  * Purpose:     wxWINE module mapping main() to WinMain()
@@ -31,11 +38,17 @@ int main( int argc, char *argv [] )
   if (!(hInstance = MAIN_WinelibInit( &argc, argv ))) return 0;
 
   /* Alloc szCmdParam */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 1; i < argc; i++) len += strlen(argv[i]) + 1;
   lpszCmdParam = (LPSTR) xmalloc(len + 1);
   /* Concatenate arguments */
   if (argc > 1) strcpy(lpszCmdParam, argv[1]);
   else lpszCmdParam[0] = '\0';
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 2; i < argc; i++) strcat(strcat(lpszCmdParam, " "), argv[i]);
 
   return WinMain (hInstance,    /* hInstance */

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/bmpmotif.cpp
 // Purpose:     wxBitmap
@@ -117,6 +124,9 @@ void wxBitmapCache::CreateImageIfNeeded( WXWidget w )
 WXPixmap wxBitmapCache::GetPixmapFromCache(WXWidget w)
 {
     Widget widget = (Widget)w;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( XmIsGadget( widget ) )
         widget = XtParent( widget );
 

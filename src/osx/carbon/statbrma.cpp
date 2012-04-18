@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/statbarma.cpp
 // Purpose:     native implementation of wxStatusBar (optional)
@@ -166,6 +173,9 @@ void wxStatusBarMac::OnPaint(wxPaintEvent& WXUNUSED(event))
     // compute char height only once for all panes:
     int textHeight = dc.GetCharHeight();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < m_panes.GetCount(); i ++ )
         DrawField(dc, i, textHeight);
 }

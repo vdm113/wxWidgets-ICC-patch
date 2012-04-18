@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        samples/treelist/treelist.cpp
 // Purpose:     Sample showing wxTreeListCtrl.
@@ -373,6 +380,9 @@ void MyFrame::InitImageList()
         wxART_FOLDER_OPEN
     };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < WXSIZEOF(icons); n++ )
     {
         m_imageList->Add
@@ -521,6 +531,9 @@ void MyFrame::OnDumpSelection(wxCommandEvent& WXUNUSED(event))
 
             default:
                 wxLogMessage("%u items selected:", numSelected);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( unsigned n = 0; n < numSelected; n++ )
                 {
                     wxLogMessage("\t%s", DumpItem(selections[n]));

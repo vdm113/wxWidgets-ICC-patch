@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        auidemo.cpp
 // Purpose:     wxaui: wx advanced user interface - sample/test program
@@ -430,7 +437,13 @@ private:
     {
         wxImage image;
         image.Create(25,14);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int x = 0; x < 25; ++x)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int y = 0; y < 14; ++y)
             {
                 wxColour pixcol = c;
@@ -993,6 +1006,9 @@ MyFrame::MyFrame(wxWindow* parent,
 
     int i, count;
     wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, count = all_panes.GetCount(); i < count; ++i)
         if (!all_panes.Item(i).IsToolbar())
             all_panes.Item(i).Hide();
@@ -1070,6 +1086,9 @@ void MyFrame::OnToolbarResizing(wxCommandEvent& WXUNUSED(evt))
 {
     wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
     const size_t count = all_panes.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < count; ++i)
     {
         wxAuiToolBar* toolbar = wxDynamicCast(all_panes[i].window, wxAuiToolBar);
@@ -1182,6 +1201,9 @@ void MyFrame::OnNotebookFlag(wxCommandEvent& event)
 
     size_t i, count;
     wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, count = all_panes.GetCount(); i < count; ++i)
     {
         wxAuiPaneInfo& pane = all_panes.Item(i);
@@ -1229,6 +1251,9 @@ void MyFrame::OnUpdateUI(wxUpdateUIEvent& event)
         {
             wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
             const size_t count = all_panes.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (size_t i = 0; i < count; ++i)
             {
                 wxAuiToolBar* toolbar = wxDynamicCast(all_panes[i].window, wxAuiToolBar);
@@ -1514,6 +1539,9 @@ void MyFrame::OnTabAlignment(wxCommandEvent &evt)
 {
     size_t i, count;
     wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, count = all_panes.GetCount(); i < count; ++i)
     {
         wxAuiPaneInfo& pane = all_panes.Item(i);
@@ -1594,6 +1622,9 @@ wxTreeCtrl* MyFrame::CreateTreeCtrl()
 
 
     int i, count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, count = items.Count(); i < count; ++i)
     {
         wxTreeItemId id = items.Item(i);

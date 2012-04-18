@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file LexFlagShip.cxx
  ** Lexer for FlagShip 
@@ -66,6 +73,9 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.state == SCE_FS_OPERATOR) {
@@ -140,6 +150,9 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 			} else if (sc.ch == '#') {
 				int n = 1;
 				int chSeek = ' ';
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while ((n < 100) && (chSeek == ' ' || chSeek == '\t')) {
 					chSeek = sc.GetRelative(n);
 					n++;
@@ -188,6 +201,9 @@ static void FoldFlagShipDoc(unsigned int startPos, int length, int,
 	int spaceFlags = 0;
 	int indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, IsFlagShipComment);
 	char chNext = styler[startPos];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

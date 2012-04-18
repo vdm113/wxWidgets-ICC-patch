@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file CharacterSet.h
  ** Encapsulates a set of characters. Used to test if a character is within a set.
@@ -22,6 +29,9 @@ public:
 		size = size_;
 		valueAfter = valueAfter_;
 		bset = new bool[size];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int i=0; i < size; i++) {
 			bset[i] = false;
 		}
@@ -44,6 +54,9 @@ public:
 		bset[val] = true;
 	}
 	void AddString(const char *CharacterSet) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (const char *cp=CharacterSet; *cp; cp++) {
 			int val = static_cast<unsigned char>(*cp);
 			PLATFORM_ASSERT(val >= 0);

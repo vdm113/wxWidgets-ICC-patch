@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /*****************************************************************
  * outline.c
  *
@@ -35,11 +42,17 @@ start(void *data, const char *el, const char **attr)
 {
   int i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < Depth; i++)
     printf("  ");
 
   printf("%s", el);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; attr[i]; i += 2) {
     printf(" %s='%s'", attr[i], attr[i + 1]);
   }
@@ -65,6 +78,9 @@ main(int argc, char *argv[])
 
   XML_SetElementHandler(p, start, end);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (;;) {
     int done;
     int len;

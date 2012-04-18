@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /* $Id$ */
 
 /*
@@ -60,12 +67,18 @@ NeXTDecode(TIFF* tif, tidata_t buf, tsize_t occ, tsample_t s)
 	 * white (we assume a PhotometricInterpretation
 	 * of ``min-is-black'').
 	 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (op = buf, cc = occ; cc-- > 0;)
 		*op++ = 0xff;
 
 	bp = (unsigned char *)tif->tif_rawcp;
 	cc = tif->tif_rawcc;
 	scanline = tif->tif_scanlinesize;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (row = buf; (long)occ > 0; occ -= scanline, row += scanline) {
 		n = *bp++, cc--;
 		switch (n) {
@@ -106,9 +119,15 @@ NeXTDecode(TIFF* tif, tidata_t buf, tsize_t occ, tsample_t s)
 			 * until we've filled the scanline.
 			 */
 			op = row;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (;;) {
 				grey = (n>>6) & 0x3;
 				n &= 0x3f;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (n-- > 0)
 					SETPIXEL(op, grey);
 				if (npixels >= (int) imagewidth)

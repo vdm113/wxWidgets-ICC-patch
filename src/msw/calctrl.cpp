@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/calctrl.cpp
 // Purpose:     wxCalendarCtrl implementation
@@ -479,6 +486,9 @@ bool wxCalendarCtrl::MSWOnNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result)
                 // work correctly.
                 currentDate.SetDay(1);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int i = 0; i < ds->cDayState; i++ )
                 {
                     // set holiday/marks only for the "current" month

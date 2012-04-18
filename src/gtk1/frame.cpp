@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/frame.cpp
 // Purpose:
@@ -526,6 +533,9 @@ void wxFrame::OnInternalIdle()
 
         // There may be controls in the status bar that
         // need to be updated
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxWindowList::compatibility_iterator node = m_frameStatusBar->GetChildren().GetFirst();
           node;
           node = node->GetNext() )

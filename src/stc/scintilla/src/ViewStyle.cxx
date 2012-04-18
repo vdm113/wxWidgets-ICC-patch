@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file ViewStyle.cxx
  ** Store information on how the document is to be viewed.
@@ -41,6 +48,9 @@ FontNames::~FontNames() {
 }
 
 void FontNames::Clear() {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i=0;i<max;i++) {
 		delete []names[i];
 	}
@@ -50,6 +60,9 @@ void FontNames::Clear() {
 const char *FontNames::Save(const char *name) {
 	if (!name)
 		return 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i=0;i<max;i++) {
 		if (strcmp(names[i], name) == 0) {
 			return names[i];
@@ -59,6 +72,9 @@ const char *FontNames::Save(const char *name) {
 		// Grow array
 		int sizeNew = size * 2;
 		char **namesNew = new char *[sizeNew];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int j=0;j<max;j++) {
 			namesNew[j] = names[j];
 		}
@@ -78,14 +94,23 @@ ViewStyle::ViewStyle() {
 
 ViewStyle::ViewStyle(const ViewStyle &source) {
 	Init(source.stylesSize);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int sty=0;sty<source.stylesSize;sty++) {
 		styles[sty] = source.styles[sty];
 		// Can't just copy fontname as its lifetime is relative to its owning ViewStyle
 		styles[sty].fontName = fontNames.Save(source.styles[sty].fontName);
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int mrk=0;mrk<=MARKER_MAX;mrk++) {
 		markers[mrk] = source.markers[mrk];
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int ind=0;ind<=INDIC_MAX;ind++) {
 		indicators[ind] = source.indicators[ind];
 	}
@@ -131,6 +156,9 @@ ViewStyle::ViewStyle(const ViewStyle &source) {
 	someStylesProtected = false;
 	leftMarginWidth = source.leftMarginWidth;
 	rightMarginWidth = source.rightMarginWidth;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i=0;i < margins; i++) {
 		ms[i] = source.ms[i];
 	}
@@ -235,6 +263,9 @@ void ViewStyle::Init(size_t stylesSize_) {
 	fixedColumnWidth = leftMarginWidth;
 	symbolMargin = false;
 	maskInLine = 0xffffffff;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int margin=0; margin < margins; margin++) {
 		fixedColumnWidth += ms[margin].width;
 		symbolMargin = symbolMargin || (ms[margin].style != SC_MARGIN_NUMBER);
@@ -257,13 +288,22 @@ void ViewStyle::Init(size_t stylesSize_) {
 
 void ViewStyle::RefreshColourPalette(Palette &pal, bool want) {
 	unsigned int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i=0;i<stylesSize;i++) {
 		pal.WantFind(styles[i].fore, want);
 		pal.WantFind(styles[i].back, want);
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i=0;i<(sizeof(indicators)/sizeof(indicators[0]));i++) {
 		pal.WantFind(indicators[i].fore, want);
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i=0;i<(sizeof(markers)/sizeof(markers[0]));i++) {
 		markers[i].RefreshColourPalette(pal, want);
 	}
@@ -295,6 +335,9 @@ void ViewStyle::Refresh(Surface &surface) {
 	maxAscent = styles[STYLE_DEFAULT].ascent;
 	maxDescent = styles[STYLE_DEFAULT].descent;
 	someStylesProtected = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i=0; i<stylesSize; i++) {
 		if (i != STYLE_DEFAULT) {
 			styles[i].Realise(surface, zoomLevel, &styles[STYLE_DEFAULT], extraFontFlag);
@@ -317,6 +360,9 @@ void ViewStyle::Refresh(Surface &surface) {
 	fixedColumnWidth = leftMarginWidth;
 	symbolMargin = false;
 	maskInLine = 0xffffffff;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int margin=0; margin < margins; margin++) {
 		fixedColumnWidth += ms[margin].width;
 		symbolMargin = symbolMargin || (ms[margin].style != SC_MARGIN_NUMBER);
@@ -328,11 +374,17 @@ void ViewStyle::Refresh(Surface &surface) {
 void ViewStyle::AllocStyles(size_t sizeNew) {
 	Style *stylesNew = new Style[sizeNew];
 	size_t i=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; i<stylesSize; i++) {
 		stylesNew[i] = styles[i];
 		stylesNew[i].fontName = styles[i].fontName;
 	}
 	if (stylesSize > STYLE_DEFAULT) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (; i<sizeNew; i++) {
 			if (i != STYLE_DEFAULT) {
 				stylesNew[i].ClearTo(styles[STYLE_DEFAULT]);
@@ -347,6 +399,9 @@ void ViewStyle::AllocStyles(size_t sizeNew) {
 void ViewStyle::EnsureStyle(size_t index) {
 	if (index >= stylesSize) {
 		size_t sizeNew = stylesSize * 2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (sizeNew <= index)
 			sizeNew *= 2;
 		AllocStyles(sizeNew);
@@ -363,6 +418,9 @@ void ViewStyle::ResetDefaultStyle() {
 
 void ViewStyle::ClearStyles() {
 	// Reset all styles to be like the default style
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i=0; i<stylesSize; i++) {
 		if (i != STYLE_DEFAULT) {
 			styles[i].ClearTo(styles[STYLE_DEFAULT]);

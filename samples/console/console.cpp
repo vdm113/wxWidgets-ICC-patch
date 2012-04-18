@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/console/console.cpp
 // Purpose:     A sample console (as opposed to GUI) program using wxWidgets
@@ -71,6 +78,9 @@ int main(int argc, char **argv)
             {
                 wxPrintf("Dummy switch was given...\n");
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (1)
                 {
                     wxChar input[128];

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        cube.cpp
 // Purpose:     wxGLCanvas demo program
@@ -56,6 +63,9 @@ static void CheckGLError()
 {
     GLenum errLast = GL_NO_ERROR;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         GLenum err = glGetError();
@@ -158,6 +168,9 @@ TestGLContext::TestGLContext(wxGLCanvas *canvas)
     // each texture could take many megabytes)
     glGenTextures(WXSIZEOF(m_textures), m_textures);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned i = 0; i < WXSIZEOF(m_textures); i++ )
     {
         glBindTexture(GL_TEXTURE_2D, m_textures[i]);

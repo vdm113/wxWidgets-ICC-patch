@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        thread.cpp
 // Purpose:     wxWidgets thread sample
@@ -506,6 +513,9 @@ void MyFrame::UpdateThreadStatus()
     // update the counts of running/total threads
     size_t nRunning = 0,
            nCount = wxGetApp().m_threads.Count();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < nCount; n++ )
     {
         if ( wxGetApp().m_threads[n]->IsRunning() )
@@ -551,6 +561,9 @@ void MyFrame::OnStartThreads(wxCommandEvent& WXUNUSED(event) )
     wxArrayThread threads;
 
     // first create them all...
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
         wxThread *thr = CreateThread();
@@ -575,6 +588,9 @@ void MyFrame::OnStartThreads(wxCommandEvent& WXUNUSED(event) )
 #endif // wxUSE_STATUSBAR
 
     // ...and then start them
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
         threads[n]->Run();
@@ -620,6 +636,9 @@ void MyFrame::OnResumeThread(wxCommandEvent& WXUNUSED(event) )
 
     // resume first suspended thread
     size_t n = 0, count = wxGetApp().m_threads.Count();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( n < count && !wxGetApp().m_threads[n]->IsPaused() )
         n++;
 
@@ -643,6 +662,9 @@ void MyFrame::OnPauseThread(wxCommandEvent& WXUNUSED(event) )
 
     // pause last running thread
     int n = wxGetApp().m_threads.Count() - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( n >= 0 && !wxGetApp().m_threads[n]->IsRunning() )
         n--;
 
@@ -916,6 +938,9 @@ wxThread::ExitCode MyThread::Entry()
 {
     wxLogMessage("Thread started (priority = %u).", GetPriority());
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( m_count = 0; m_count < 10; m_count++ )
     {
         // check if the application is shutting down: in this case all threads
@@ -977,6 +1002,9 @@ wxThread::ExitCode MyWorkerThread::Entry()
     event.SetInt(-1);
     wxQueueEvent( m_frame, event.Clone() );
 #else
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( m_count = 0; !m_frame->Cancelled() && (m_count < 100); m_count++ )
     {
         // check if we were asked to exit
@@ -1021,6 +1049,9 @@ wxThread::ExitCode MyGUIThread::Entry()
     wxLogBuffer logBuf;
     wxLog::SetThreadActiveTarget(&logBuf);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i=0; i<GUITHREAD_NUM_UPDATES && !TestDestroy(); i++)
     {
         // inform the GUI toolkit that we're going to use GUI functions

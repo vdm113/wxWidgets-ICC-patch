@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/treebase.cpp
 // Purpose:     Base wxTreeCtrl classes
@@ -233,6 +240,9 @@ wxGetBestTreeSize(const wxTreeCtrlBase* treeCtrl, wxTreeItemId id, wxSize& size)
     }
 
     wxTreeItemIdValue cookie;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxTreeItemId item = treeCtrl->GetFirstChild(id, cookie);
           item.IsOk();
           item = treeCtrl->GetNextChild(id, cookie) )
@@ -251,6 +261,9 @@ wxSize wxTreeCtrlBase::DoGetBestSize() const
 
     if (GetQuickBestSize())
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxTreeItemId item = GetRootItem();
               item.IsOk();
               item = GetLastChild(item) )
@@ -310,6 +323,9 @@ void wxTreeCtrlBase::ExpandAllChildren(const wxTreeItemId& item)
 
     // then (recursively) expand all the children
     wxTreeItemIdValue cookie;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxTreeItemId idCurr = GetFirstChild(item, cookie);
           idCurr.IsOk();
           idCurr = GetNextChild(item, cookie) )
@@ -332,6 +348,9 @@ void wxTreeCtrlBase::CollapseAllChildren(const wxTreeItemId& item)
     Freeze();
     // first (recursively) collapse all the children
     wxTreeItemIdValue cookie;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxTreeItemId idCurr = GetFirstChild(item, cookie);
           idCurr.IsOk();
           idCurr = GetNextChild(item, cookie) )

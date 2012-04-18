@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/printing.cpp
 // Purpose:     Printing demo for wxWidgets
@@ -105,7 +112,13 @@ bool MyApp::OnInit(void)
     wxImage image( wxT("test.jpg") );
     image.SetAlpha();
     int i,j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < image.GetWidth(); i++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
        for (j = 0; j < image.GetHeight(); j++)
           image.SetAlpha( i, j, 50 );
     m_bitmap = image;
@@ -701,6 +714,9 @@ void MyPrintout::DrawPageTwo()
 
         dc->SetFont(fnt);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < 7; i++)
         {
             wxString word = words[i];

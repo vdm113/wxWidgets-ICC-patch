@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /* ///////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/win_gtk.c
 // Purpose:     Native GTK+ widget for wxWidgets, based on GtkLayout and
@@ -304,6 +311,9 @@ gtk_pizza_move (GtkPizza     *pizza,
     g_return_if_fail (widget != NULL);
 
     children = pizza->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (children)
     {
         child = children->data;
@@ -338,6 +348,9 @@ gtk_pizza_resize (GtkPizza    *pizza,
     g_return_if_fail (widget != NULL);
 
     children = pizza->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (children)
     {
         child = children->data;
@@ -376,6 +389,9 @@ gtk_pizza_set_size (GtkPizza   *pizza,
     g_return_if_fail (widget != NULL);
 
     children = pizza->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (children)
     {
         child = children->data;
@@ -415,6 +431,9 @@ gtk_pizza_child_resized  (GtkPizza   *pizza,
     g_return_val_if_fail (widget != NULL, FALSE);
 
     children = pizza->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (children)
     {
         child = children->data;
@@ -444,6 +463,9 @@ gtk_pizza_map (GtkWidget *widget)
     pizza = GTK_PIZZA (widget);
 
     children = pizza->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (children)
     {
         child = children->data;
@@ -562,6 +584,9 @@ gtk_pizza_realize (GtkWidget *widget)
 
     /* cannot be done before realisation */
     children = pizza->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (children)
     {
         child = children->data;
@@ -605,6 +630,9 @@ gtk_pizza_size_request (GtkWidget      *widget,
     pizza = GTK_PIZZA (widget);
 
     children = pizza->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (children)
     {
         child = children->data;
@@ -660,6 +688,9 @@ gtk_pizza_size_allocate (GtkWidget     *widget,
     }
 
     children = pizza->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (children)
     {
         child = children->data;
@@ -696,6 +727,9 @@ gtk_pizza_draw (GtkWidget    *widget,
                                 area->x, area->y, area->width, area->height);
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (children)
     {
         child = children->data;
@@ -729,6 +763,9 @@ gtk_pizza_expose (GtkWidget      *widget,
         return FALSE;
 
     children = pizza->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (children)
     {
         child = children->data;
@@ -785,6 +822,9 @@ gtk_pizza_remove (GtkContainer *container,
     pizza = GTK_PIZZA (container);
 
     children = pizza->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (children)
     {
         child = children->data;
@@ -829,6 +869,9 @@ gtk_pizza_forall (GtkContainer *container,
     pizza = GTK_PIZZA (container);
 
     children = pizza->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (children)
     {
         child = children->data;
@@ -883,6 +926,9 @@ gtk_pizza_adjust_allocations (GtkPizza *pizza,
     data.dy = dy;
 
     tmp_list = pizza->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (tmp_list)
     {
         GtkPizzaChild *child = tmp_list->data;
@@ -939,6 +985,9 @@ gtk_pizza_position_children (GtkPizza *pizza)
     GList *tmp_list;
 
     tmp_list = pizza->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (tmp_list)
     {
         GtkPizzaChild *child = tmp_list->data;
@@ -1076,6 +1125,9 @@ gtk_pizza_scroll (GtkPizza *pizza, gint dx, gint dy)
     gdk_flush();
 
     win = GDK_WINDOW_XWINDOW (pizza->bin_window);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (XCheckIfEvent(GDK_WINDOW_XDISPLAY (pizza->bin_window),
                          &xevent,
                          gtk_pizza_expose_predicate,

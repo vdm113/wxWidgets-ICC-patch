@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/dlunix.cpp
 // Purpose:     Unix-specific part of wxDynamicLibrary and related classes
@@ -400,6 +407,9 @@ wxDynamicLibraryDetailsArray wxDynamicLibrary::ListLoaded()
 
         char path[1024];
         char buf[1024];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( fgets(buf, WXSIZEOF(buf), file.fp()) )
         {
             // format is: "start-end perm offset maj:min inode path", see proc(5)

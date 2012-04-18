@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file ScintillaBase.cxx
  ** An enhanced subclass of Editor with calltips, autocomplete and context menu.
@@ -54,6 +61,9 @@ ScintillaBase::ScintillaBase() {
 	lexLanguage = SCLEX_CONTAINER;
 	performingStyle = false;
 	lexCurrent = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int wl = 0;wl < numWordLists;wl++)
 		keyWordLists[wl] = new WordList;
 	keyWordLists[numWordLists] = 0;
@@ -62,6 +72,9 @@ ScintillaBase::ScintillaBase() {
 
 ScintillaBase::~ScintillaBase() {
 #ifdef SCI_LEXER
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int wl = 0;wl < numWordLists;wl++)
 		delete keyWordLists[wl];
 #endif
@@ -307,6 +320,9 @@ void ScintillaBase::AutoCompleteMoveToCurrentWord() {
 	char wordCurrent[1000];
 	int i;
 	int startWord = ac.posStart - ac.startLen;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = startWord; i < sel.MainCaret() && i - startWord < 1000; i++)
 		wordCurrent[i - startWord] = pdoc->CharAt(i);
 	wordCurrent[Platform::Minimum(i - startWord, 999)] = '\0';

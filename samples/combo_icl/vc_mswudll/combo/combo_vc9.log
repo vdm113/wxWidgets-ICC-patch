@@ -1,0 +1,12 @@
+﻿icl : warning #10346: optimization reporting is disabled given current set of compilation options
+  combo.cpp
+  Microsoft (R) Windows (R) Resource Compiler Version 6.1.7600.16385
+  
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  
+c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets\samples\combo_icl\combo.cpp(241): warning : BLOCK WAS VECTORIZED.
+c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets\samples\combo_icl\combo.cpp(575): warning : BLOCK WAS VECTORIZED.
+c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets\samples\combo_icl\combo.cpp(597): warning : BLOCK WAS VECTORIZED.
+  xilink: executing 'link'
+  combo_vc9.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets\samples\combo_icl\vc_mswudll\combo.exe

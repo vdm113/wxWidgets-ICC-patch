@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/choicdgg.cpp
 // Purpose:     Choice dialogs
@@ -69,6 +76,9 @@ int ConvertWXArrayToC(const wxArrayString& aChoices, wxString **choices)
     int n = aChoices.GetCount();
     *choices = new wxString[n];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < n; i++ )
     {
         (*choices)[i] = aChoices[i];
@@ -485,6 +495,9 @@ bool wxSingleChoiceDialog::Create( wxWindow *parent,
 
     if (clientData)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < n; i++)
             m_listbox->SetClientData(i, clientData[i]);
     }
@@ -596,6 +609,9 @@ void wxMultiChoiceDialog::SetSelections(const wxArrayInt& selections)
         // first clear all currently selected items
         size_t n,
             count = checkListBox->GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < count; ++n )
         {
             if (checkListBox->IsChecked(n))
@@ -604,6 +620,9 @@ void wxMultiChoiceDialog::SetSelections(const wxArrayInt& selections)
 
         // now select the ones which should be selected
         count = selections.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < count; n++ )
         {
             checkListBox->Check(selections[n]);
@@ -616,6 +635,9 @@ void wxMultiChoiceDialog::SetSelections(const wxArrayInt& selections)
     // first clear all currently selected items
     size_t n,
            count = m_listbox->GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; ++n )
     {
         m_listbox->Deselect(n);
@@ -623,6 +645,9 @@ void wxMultiChoiceDialog::SetSelections(const wxArrayInt& selections)
 
     // now select the ones which should be selected
     count = selections.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
         m_listbox->Select(selections[n]);
@@ -638,6 +663,9 @@ bool wxMultiChoiceDialog::TransferDataFromWindow()
     if (checkListBox)
     {
         size_t count = checkListBox->GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < count; n++ )
         {
             if ( checkListBox->IsChecked(n) )
@@ -648,6 +676,9 @@ bool wxMultiChoiceDialog::TransferDataFromWindow()
 #endif
 
     size_t count = m_listbox->GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         if ( m_listbox->IsSelected(n) )

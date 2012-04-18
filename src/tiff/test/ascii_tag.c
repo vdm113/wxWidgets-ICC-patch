@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /* $Id$ */
 
 /*
@@ -105,6 +112,9 @@ main(int argc, char **argv)
 		goto failure;
 	}
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < NTAGS; i++) {
 		if (!TIFFSetField(tif, ascii_tags[i].tag,
 				  ascii_tags[i].value)) {
@@ -139,6 +149,9 @@ main(int argc, char **argv)
 		return 1;
 	}
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < NTAGS; i++) {
 		if (!TIFFGetField(tif, ascii_tags[i].tag, &value)
 		    || strcmp(value, ascii_tags[i].value)) {

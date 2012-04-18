@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/radiobut.cpp
 // Purpose:     wxRadioButton
@@ -210,6 +217,9 @@ void wxRadioButton::SetValue( bool bValue )
             //
             // ...turn off all radio buttons before this one
             //
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( wxWindowList::compatibility_iterator nodeBefore = nodeThis->GetPrevious();
                   nodeBefore;
                   nodeBefore = nodeBefore->GetPrevious() )
@@ -240,6 +250,9 @@ void wxRadioButton::SetValue( bool bValue )
         //
         // ... and all after this one
         //
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxWindowList::compatibility_iterator nodeAfter = nodeThis->GetNext();
              nodeAfter;
              nodeAfter = nodeAfter->GetNext())

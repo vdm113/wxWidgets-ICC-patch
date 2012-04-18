@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        graphics.cpp
 // Purpose:     Some benchmarks for measuring graphics operations performance
@@ -107,6 +114,9 @@ private:
         wxStopWatch sw;
         int x = 0,
             y = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < opts.numLines; n++ )
         {
             int x1 = rand() % opts.width,
@@ -137,6 +147,9 @@ private:
         wxPrintf("Benchmarking %s DC: ", msg);
 
         wxStopWatch sw;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < opts.numLines; n++ )
         {
             int x = rand() % opts.width,
@@ -161,6 +174,9 @@ private:
         wxPrintf("Benchmarking %s DC: ", msg);
 
         wxStopWatch sw;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < opts.numLines; n++ )
         {
             int x = rand() % opts.width,

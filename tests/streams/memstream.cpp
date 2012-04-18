@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/streams/memstream.cpp
 // Purpose:     Test wxMemoryInputStream/wxMemoryOutputStream
@@ -81,6 +88,9 @@ private:
 memStream::memStream()
 {
     // Init the data buffer.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < DATABUFFER_SIZE; i++)
         m_DataBuffer[i] = (i % 0xFF);
 }

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ////////////////////////////////////////////////////////////////////////////
 // Name:        stc.cpp
 // Purpose:     A wxWidgets implementation of Scintilla.  This class is the
@@ -3783,6 +3790,9 @@ int wxStyledTextCtrl::GetCurrentLine() {
 void wxStyledTextCtrl::StyleSetSpec(int styleNum, const wxString& spec) {
 
     wxStringTokenizer tkz(spec, wxT(","));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (tkz.HasMoreTokens()) {
         wxString token = tkz.GetNextToken();
 

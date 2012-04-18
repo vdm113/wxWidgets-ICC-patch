@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/module.cpp
 // Purpose:     Modules initialization/destruction
@@ -50,6 +57,9 @@ void wxModule::UnregisterModule(wxModule* module)
 // and register them.
 void wxModule::RegisterModules()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxClassInfo::const_iterator it  = wxClassInfo::begin_classinfo(),
                                      end = wxClassInfo::end_classinfo();
          it != end; ++it)
@@ -86,12 +96,18 @@ bool wxModule::DoInitializeModule(wxModule *module,
     const wxArrayClassInfo& dependencies = module->m_dependencies;
 
     // satisfy module dependencies by loading them before the current module
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i = 0; i < dependencies.size(); ++i )
     {
         wxClassInfo * cinfo = dependencies[i];
 
         // Check if the module is already initialized
         wxModuleList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( node = initializedModules.GetFirst(); node; node = node->GetNext() )
         {
             if ( node->GetData()->GetClassInfo() == cinfo )
@@ -105,6 +121,9 @@ bool wxModule::DoInitializeModule(wxModule *module,
         }
 
         // find the module in the registered modules list
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( node = m_modules.GetFirst(); node; node = node->GetNext() )
         {
             wxModule *moduleDep = node->GetData();
@@ -150,6 +169,9 @@ bool wxModule::InitializeModules()
 {
     wxModuleList initializedModules;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxModuleList::compatibility_iterator node = m_modules.GetFirst();
           node;
           node = node->GetNext() )
@@ -182,6 +204,9 @@ void wxModule::DoCleanUpModules(const wxModuleList& modules)
 {
     // cleanup user-defined modules in the reverse order compared to their
     // initialization -- this ensures that dependencies are respected
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxModuleList::compatibility_iterator node = modules.GetLast();
           node;
           node = node->GetPrevious() )
@@ -205,6 +230,9 @@ void wxModule::DoCleanUpModules(const wxModuleList& modules)
 bool wxModule::ResolveNamedDependencies()
 {
     // first resolve required dependencies
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < m_namedDependencies.size(); ++i )
     {
         wxClassInfo *info = wxClassInfo::FindClass(m_namedDependencies[i]);

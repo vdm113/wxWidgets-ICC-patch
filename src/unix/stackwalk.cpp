@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/stackwalk.cpp
 // Purpose:     wxStackWalker implementation for Unix/glibc
@@ -190,6 +197,9 @@ void wxStackWalker::ProcessFrames(size_t skip)
     int towalk = InitFrames(frames, m_depth - skip, &ms_addresses[skip], &ms_symbols[skip]);
 
     // now do user-defined operations on each frame
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int n = 0; n < towalk - (int)skip; n++ )
         OnStackFrame(frames[n]);
 }
@@ -224,6 +234,9 @@ int wxStackWalker::InitFrames(wxStackFrame *arr, size_t n, void **addresses, cha
     // (e.g. use always chars, even in Unicode build: popen() always takes chars)
     int len = snprintf(g_buf, BUFSIZE, "addr2line -C -f -e \"%s\"", (const char*) exepath.mb_str());
     len = (len <= 0) ? strlen(g_buf) : len;     // in case snprintf() is broken
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i=0; i<n; i++)
     {
         snprintf(&g_buf[len], BUFSIZE - len, " %p", addresses[i]);
@@ -241,6 +254,9 @@ int wxStackWalker::InitFrames(wxStackFrame *arr, size_t n, void **addresses, cha
     wxString name, filename;
     unsigned long line = 0,
                   curr = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for  ( size_t i = 0; i < n; i++ )
     {
         // 1st line has function name

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/interactive/input.cpp
 // Purpose:     Miscellaneous tests requiring user input
@@ -88,6 +95,9 @@ void InteractiveInputTestCase::TestDiskInfo()
 #ifdef TEST_INFO_FUNCTIONS
     wxPuts(wxT("*** Testing wxGetDiskSpace() ***"));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         wxChar pathname[128];
@@ -133,6 +143,9 @@ void InteractiveInputTestCase::TestRegExInteractive()
 #ifdef TEST_REGEX 
     wxPuts(wxT("*** Testing RE interactively ***"));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         wxChar pattern[128];
@@ -153,6 +166,9 @@ void InteractiveInputTestCase::TestRegExInteractive()
         }
 
         wxChar text[128];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ;; )
         {
             wxPrintf(wxT("Enter text to match: "));
@@ -171,6 +187,9 @@ void InteractiveInputTestCase::TestRegExInteractive()
                 wxPrintf(wxT("Pattern matches at '%s'\n"), re.GetMatch(text).c_str());
 
                 size_t start, len;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( size_t n = 1; ; n++ )
                 {
                     if ( !re.GetMatch(&start, &len, n) )
@@ -241,6 +260,9 @@ void InteractiveInputTestCase::TestFtpInteractive()
     }
     
     wxChar buf[128];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         wxPrintf(wxT("Enter FTP command (press ENTER or type 'quit' to escape): "));
@@ -272,6 +294,9 @@ void InteractiveInputTestCase::TestFtpInteractive()
                 wxPrintf(wxT("--- %s of '%s' under '%s':\n"),
                        start.c_str(), wildcard.c_str(), ftp.Pwd().c_str());
                 size_t count = files.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( size_t n = 0; n < count; n++ )
                 {
                     wxPrintf(wxT("\t%s\n"), files[n].c_str());
@@ -310,6 +335,9 @@ void InteractiveInputTestCase::TestDateTimeInteractive()
 
     wxChar buf[128];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         wxPrintf(wxT("Enter a date (press ENTER or type 'quit' to escape): "));

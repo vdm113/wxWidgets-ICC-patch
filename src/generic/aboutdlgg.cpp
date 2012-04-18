@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/aboutdlgg.cpp
 // Purpose:     implements wxGenericAboutBox() function
@@ -49,6 +56,9 @@ static wxString AllAsString(const wxArrayString& a)
     wxString s;
     const size_t count = a.size();
     s.reserve(20*count);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         s << a[n] << (n == count - 1 ? wxT("\n") : wxT(", "));

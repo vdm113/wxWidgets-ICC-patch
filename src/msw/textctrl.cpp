@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/textctrl.cpp
 // Purpose:     wxTextCtrl
@@ -787,6 +794,9 @@ wxString wxTextCtrl::GetRange(long from, long to) const
                     // RichEdit 2.0 uses just CR ('\r') for the
                     // newlines which is neither Unix nor Windows
                     // style - convert it to something reasonable
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( ; *p; p++ )
                     {
                         if ( *p == wxT('\r') )
@@ -869,6 +879,9 @@ wxRichEditStreamIn(DWORD_PTR dwCookie, BYTE *buf, LONG cb, LONG *pcb)
 
     wchar_t *wbuf = (wchar_t *)buf;
     const wchar_t *wpc = *ppws;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( cb && *wpc )
     {
         *wbuf++ = *wpc++;
@@ -898,6 +911,9 @@ wxRichEditStreamOut(DWORD_PTR dwCookie, BYTE *buf, LONG cb, LONG *pcb)
 
     const wchar_t *wbuf = (const wchar_t *)buf;
     wchar_t *wpc = data->wpc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( cb )
     {
         wchar_t wch = *wbuf++;
@@ -2596,6 +2612,9 @@ bool wxTextCtrl::MSWSetParaFormat(const wxTextAttr& style, long start, long end)
 
         pf.cTabCount = (SHORT)wxMin(tabs.GetCount(), MAX_TAB_STOPS);
         size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < (size_t) pf.cTabCount; i++)
         {
             // Convert from 1/10 mm to TWIPS
@@ -2825,6 +2844,9 @@ bool wxTextCtrl::GetStyle(long position, wxTextAttr& style)
 
     wxArrayInt tabStops;
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < (size_t) pf.cTabCount; i++)
     {
         tabStops.Add( (int) ((double) (pf.rgxTabs[i] & 0xFFFF) * twips2mm * 10.0) );
@@ -2853,6 +2875,9 @@ bool wxRichEditModule::OnInit()
 
 void wxRichEditModule::OnExit()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < WXSIZEOF(ms_hRichEdit); i++ )
     {
         if ( ms_hRichEdit[i] && ms_hRichEdit[i] != INVALID_HINSTANCE )

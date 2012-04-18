@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file LexScriptol.cxx
  ** Lexer for Scriptol.
@@ -25,6 +32,9 @@ static void ClassifyWordSol(unsigned int start, unsigned int end, WordList &keyw
 {
     char s[100];
     bool wordIsNumber = isdigit(styler[start]) != 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = 0; i < end - start + 1 && i < 30; i++)
      {
            s[i] = styler[start + i];
@@ -142,6 +152,9 @@ static void ColouriseSolDoc(unsigned int startPos, int length, int initStyle,
 	styler.StartSegment(startPos);
 	bool atStartLine = true;
 	int spaceFlags = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = startPos; i < lengthDoc; i++)
         {
 
@@ -368,6 +381,9 @@ static void FoldSolDoc(unsigned int startPos, int length, int initStyle,
         if ((state == SCE_SCRIPTOL_TRIPLE))
              indentCurrent |= SC_FOLDLEVELWHITEFLAG;
 	char chNext = styler[startPos];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = startPos; i < lengthDoc; i++)
          {
 		char ch = chNext;

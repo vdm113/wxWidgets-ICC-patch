@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/thread/atomic.cpp
 // Purpose:     wxAtomic??? unit test
@@ -101,6 +108,9 @@ void AtomicTestCase::TestNoThread()
     wxAtomicInt int1 = 0,
                 int2 = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxInt32 i = 0; i < ITERATIONS_NUM; ++i )
     {
         wxAtomicInc(int1);
@@ -129,6 +139,9 @@ void AtomicTestCase::TestWithThreads(int count, ETestType testType)
     wxArrayThread  threads;
 
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < count; ++i )
     {
         ETestType actualThreadType;
@@ -152,12 +165,18 @@ void AtomicTestCase::TestWithThreads(int count, ETestType testType)
             threads.Add(thread);
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < count; ++i )
     {
         threads[i]->Run();
     }
 
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < count; ++i )
     {
         // each thread should return 0, else it detected some problem
@@ -173,6 +192,9 @@ void *AtomicTestCase::MyThread::Entry()
 {
     wxInt32 negativeValuesSeen = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxInt32 i = 0; i < ITERATIONS_NUM; ++i )
     {
         switch ( m_testType )

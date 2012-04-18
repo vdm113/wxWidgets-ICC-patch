@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/dirdlg.cpp
 // Purpose:     wxDirDialog
@@ -205,6 +212,9 @@ void wxDirDialog::SetPath(const wxString& path)
     // SHBrowseForFolder doesn't like '/'s nor the trailing backslashes
     m_path.Replace(wxT("/"), wxT("\\"));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !m_path.empty() && (*(m_path.end() - 1) == wxT('\\')) )
     {
         m_path.erase(m_path.length() - 1);

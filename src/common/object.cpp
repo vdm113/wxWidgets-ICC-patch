@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/object.cpp
 // Purpose:     wxObject implementation
@@ -173,6 +180,9 @@ wxClassInfo::~wxClassInfo()
     else
     {
         wxClassInfo *info = sm_first;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (info)
         {
             if ( info->m_next == this )
@@ -195,6 +205,9 @@ wxClassInfo *wxClassInfo::FindClass(const wxString& className)
     }
     else
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxClassInfo *info = sm_first; info ; info = info->m_next )
         {
             if ( className == info->GetClassName() )
@@ -300,6 +313,9 @@ wxObject *wxCreateDynamicObject(const wxString& name)
     }
     else // no sm_classTable yet
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxClassInfo *info = wxClassInfo::sm_first;
               info;
               info = info->m_next )

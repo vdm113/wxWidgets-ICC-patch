@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/glx11.cpp
 // Purpose:     code common to all X11-based wxGLCanvas implementations
@@ -201,6 +208,9 @@ wxGLCanvasX11::ConvertWXAttrsToGL(const int *wxattrs, int *glattrs, size_t n)
     else // have non-default attributes
     {
         size_t p = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int arg = 0; wxattrs[arg] != 0; )
         {
             // check if we have any space left, knowing that we may insert 2

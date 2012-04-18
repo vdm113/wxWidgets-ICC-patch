@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /* Copyright (c) 1998, 1999 Thai Open Source Software Center Ltd
    See the file COPYING for copying permission.
 */
@@ -150,6 +157,9 @@ processStream(const XML_Char *filename, XML_Parser parser)
       return 0;
     }
   }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (;;) {
     int nread;
     char *buf = XML_GetBuffer(parser, READ_SIZE);

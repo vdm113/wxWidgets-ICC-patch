@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 #ifndef WX_TESTPREC_INCLUDED
 #define WX_TESTPREC_INCLUDED 1
 
@@ -99,6 +106,7 @@ public:
 {\
     wxStopWatch sw; \
     wxEventLoopBase* loop = wxEventLoopBase::GetActive(); \
+MY_MACRO_PRAGMA_IVDEP \
     while(eventcounter.GetCount() < count) \
     { \
         if(sw.Time() < 100) \

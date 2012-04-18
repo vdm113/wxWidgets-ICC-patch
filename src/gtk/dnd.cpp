@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/dnd.cpp
 // Purpose:     wxDropTarget class
@@ -198,6 +205,9 @@ static gboolean target_drag_motion( GtkWidget *WXUNUSED(widget),
 #if 0
     wxPrintf( "motion\n" );
     GList *tmp_list;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (tmp_list = context->targets; tmp_list; tmp_list = tmp_list->next)
     {
         wxString atom = wxString::FromAscii( gdk_atom_name (GDK_POINTER_TO_ATOM (tmp_list->data)) );
@@ -506,6 +516,9 @@ GdkAtom wxDropTarget::GTKGetMatchingPair(bool quiet)
         return (GdkAtom) 0;
 
     GList *child = m_dragContext->targets;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (child)
     {
         GdkAtom formatAtom = (GdkAtom)(child->data);
@@ -821,6 +834,9 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
     wxDataFormat *array = new wxDataFormat[ m_data->GetFormatCount() ];
     m_data->GetAllFormats( array );
     size_t count = m_data->GetFormatCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < count; i++)
     {
         GdkAtom atom = array[i];
@@ -857,6 +873,9 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
 
     PrepareIcon( allowed_actions, context );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (m_waiting)
         gtk_main_iteration();
 

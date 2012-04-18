@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/clipcmn.cpp
 // Purpose:     common (to all ports) wxClipboard functions
@@ -44,6 +51,9 @@ wxDEFINE_EVENT( wxEVT_CLIPBOARD_CHANGED, wxClipboardEvent );
 bool wxClipboardEvent::SupportsFormat( const wxDataFormat &format ) const
 {
 #ifdef __WXGTK20__
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxVector<wxDataFormat>::size_type n = 0; n < m_formats.size(); n++)
     {
         if (m_formats[n] == format)

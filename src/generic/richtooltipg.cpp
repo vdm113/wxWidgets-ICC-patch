@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/richtooltipg.cpp
 // Purpose:     Implementation of wxRichToolTip.
@@ -520,6 +527,9 @@ private:
 
             // Iterate over all rectangle rectPoints for the first 3 corners.
             unsigned n = pointStart;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( unsigned corner = 0; corner < 3; corner++ )
             {
                 const wxPoint2DDouble& pt1 = rectPoints[n];

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtextliststylepage.cpp
 // Purpose:
@@ -553,6 +560,9 @@ iaculis malesuada. Donec bibendum ipsum ut ante porta fringilla.\n");
     long listStart = m_previewCtrl->GetInsertionPoint() + 1;
 
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 10; i++)
     {
         wxRichTextAttr levelAttr = * def->GetLevelAttributes(i);

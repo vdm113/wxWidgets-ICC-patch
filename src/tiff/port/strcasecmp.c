@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /* $Id$ */
 
 /*
@@ -43,6 +50,9 @@ strcasecmp(const char *s1, const char *s2)
 	const unsigned char *us1 = (const unsigned char *)s1,
 			*us2 = (const unsigned char *)s2;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (tolower(*us1) == tolower(*us2++))
 		if (*us1++ == '\0')
 			return (0);

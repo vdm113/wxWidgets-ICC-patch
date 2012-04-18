@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/xrc/xh_split.cpp
 // Purpose:     XRC resource for wxSplitterWindow
@@ -65,6 +72,9 @@ wxObject *wxSplitterWindowXmlHandler::DoCreateResource()
 
     wxWindow *win1 = NULL, *win2 = NULL;
     wxXmlNode *n = m_node->GetChildren();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (n)
     {
         if ((n->GetType() == wxXML_ELEMENT_NODE) &&
