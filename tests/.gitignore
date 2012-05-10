@@ -1,0 +1,15 @@
+/*.sln
+/*.dsw
+/vc*_msw
+/vc*_mswd
+/vc*_mswu
+/vc*_mswud
+/vc*_mswdll
+/vc*_mswddll
+/vc*_mswudll
+/vc*_mswuddll
+/test_test.dsw
+/test.opt
+/test.sln
+/test.suo
+/test_test.vcproj
