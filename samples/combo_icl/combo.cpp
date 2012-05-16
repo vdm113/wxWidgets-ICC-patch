@@ -658,6 +658,7 @@ MyFrame::MyFrame(const wxString& title)
 
     colSizer = new wxBoxSizer( wxVERTICAL );
 
+    static const int cnt=32768;
 
     wxComboCtrl* cc;
     wxGenericComboCtrl* gcc;
