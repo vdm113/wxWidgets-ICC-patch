@@ -38,7 +38,7 @@ bool check_return_value(int rc)
     return true;
 }
 
-void reformat(const string& file)
+unsigned reformat(const string& file)
 {
     static const char* line1="#if defined(__INTEL_COMPILER)";
     static const char* line1_disabled="#if defined(__INTEL_COMPILER) && 0";
@@ -50,12 +50,14 @@ void reformat(const string& file)
 
     static const char* inline_pragma="MY_MACRO_PRAGMA_IVDEP \\";
 
+    unsigned cnt=0;
+
     vector<string> scrollback;
 
     FILE* in=fopen(file.c_str(),"r");
     if(!in) {
         check_return_value(errno);
-        return;
+        return cnt;
     }
     string tmp_file=file;
     tmp_file.append("-tmp");
@@ -63,7 +65,7 @@ void reformat(const string& file)
     if(!out) {
         check_return_value(errno);
         fclose(in);
-        return;
+        return cnt;
     }
 
     bool last_char_was_backslash=false;
@@ -209,6 +211,7 @@ again:
                 } else {
                     fprintf(out,"%s\n%s\n%s\n",line1, line2, line3);
                 }
+                ++cnt;
             }
         }
         fprintf(out,"%s\n",buf);
@@ -228,18 +231,22 @@ again:
 
     remove(file.c_str());
     rename(tmp_file.c_str(),file.c_str());
+
+    return cnt;
 }
 
 static list<string> ext;
 
-void directory_recurse(const string& base, const string& directory, const string& path)
+unsigned directory_recurse(const string& base, const string& directory, const string& path)
 {
+    unsigned cnt=0;
+
     string current=directory;
 
     _finddata_t rc;
     intptr_t handle=_findfirst(current.c_str(),&rc);
     if(!check_return_value(errno))
-        return;
+        return cnt;
 
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -265,7 +272,7 @@ void directory_recurse(const string& base, const string& directory, const string
                 if(n.rfind("*")==n.length()-1)
                     n.erase(n.length()-1,1);
                 n+=name;
-                reformat(n);
+                cnt+=reformat(n);
             }
         }
 
@@ -274,7 +281,7 @@ void directory_recurse(const string& base, const string& directory, const string
             dir_name.erase(dir_name.length()-1,1);
             dir_name+=name;
             dir_name.append("\\*");
-            directory_recurse(base,dir_name,name);
+            cnt+=directory_recurse(base,dir_name,name);
         }
 
 next_entry:
@@ -289,6 +296,8 @@ next_entry:
     }
 
     _findclose(handle);
+
+    return cnt;
 }
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -308,6 +317,10 @@ int _tmain(int argc, _TCHAR* argv[])
     }
     string d=dir;
     d.append("\\..\\*");
-    directory_recurse(".",d,d);
+    unsigned cnt=directory_recurse(".",d,d);
+
+    printf("%u occurences patched. Press any key to exit.\n",cnt);
+
+    getchar();
 }
 
