@@ -228,6 +228,9 @@ WXDLLEXPORT bool wxConvertVariantToOle(const wxVariant& variant, VARIANTARG& ole
             return false;
 
         long i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < lCount; i++)
         {
             if (isArrString)
