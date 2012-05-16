@@ -203,7 +203,11 @@ again:
                     if(!ln.compare(cmp)) {
                         ++i3;
                     } else {
-                        break;
+                        if(2==i2 && !ln.compare(line1_disabled)) {
+                            ++i3;
+                        } else {
+                            break;
+                        }
                     }
                 }
                 if(3==i3) {
