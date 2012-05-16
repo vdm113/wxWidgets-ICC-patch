@@ -97,6 +97,8 @@
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -120,6 +122,8 @@
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|X64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -143,6 +147,8 @@
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Debug|X64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -166,6 +172,8 @@
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|X64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -189,6 +197,8 @@
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Release|X64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -212,6 +222,8 @@
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|X64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -235,6 +247,8 @@
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|X64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -258,6 +272,8 @@
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|X64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -349,6 +365,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>.\..\..\lib\vc_lib\</OutDir>
     <IntDir>.\vc_mswud\wxscintilla\</IntDir>
+    <ParallelDebugEnvironment>Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|X64'">
     <OutDir>.\..\..\lib\vc_lib\</OutDir>
@@ -358,6 +375,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'">
     <OutDir>.\..\..\lib\vc_dll\</OutDir>
     <IntDir>.\vc_mswunivudll\wxscintilla\</IntDir>
+    <ParallelDebugEnvironment>Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|X64'">
     <OutDir>.\..\..\lib\vc_dll\</OutDir>
@@ -367,6 +385,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">
     <OutDir>.\..\..\lib\vc_dll\</OutDir>
     <IntDir>.\vc_mswuddll\wxscintilla\</IntDir>
+    <ParallelDebugEnvironment>Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|X64'">
     <OutDir>.\..\..\lib\vc_dll\</OutDir>
@@ -376,6 +395,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Release|Win32'">
     <OutDir>.\..\..\lib\vc_lib\</OutDir>
     <IntDir>.\vc_mswunivu\wxscintilla\</IntDir>
+    <ParallelDebugEnvironment>Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Release|X64'">
     <OutDir>.\..\..\lib\vc_lib\</OutDir>
@@ -385,6 +405,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>.\..\..\lib\vc_lib\</OutDir>
     <IntDir>.\vc_mswu\wxscintilla\</IntDir>
+    <ParallelDebugEnvironment>Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|X64'">
     <OutDir>.\..\..\lib\vc_lib\</OutDir>
@@ -394,6 +415,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'">
     <OutDir>.\..\..\lib\vc_lib\</OutDir>
     <IntDir>.\vc_mswunivud\wxscintilla\</IntDir>
+    <ParallelDebugEnvironment>Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Debug|X64'">
     <OutDir>.\..\..\lib\vc_lib\</OutDir>
@@ -403,6 +425,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">
     <OutDir>.\..\..\lib\vc_dll\</OutDir>
     <IntDir>.\vc_mswudll\wxscintilla\</IntDir>
+    <ParallelDebugEnvironment>Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|X64'">
     <OutDir>.\..\..\lib\vc_dll\</OutDir>
@@ -412,6 +435,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">
     <OutDir>.\..\..\lib\vc_dll\</OutDir>
     <IntDir>.\vc_mswunivuddll\wxscintilla\</IntDir>
+    <ParallelDebugEnvironment>Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'">
     <OutDir>.\..\..\lib\vc_dll\</OutDir>
@@ -432,8 +456,8 @@
       <PrecompiledHeaderOutputFile>.\vc_mswud\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswud\wxscintilla\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxscintillad.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions> /EHsc /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -441,9 +465,13 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <BrowseInformation>true</BrowseInformation>
+      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -480,9 +508,12 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>true</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -510,17 +541,21 @@
       <PrecompiledHeaderOutputFile>.\vc_mswunivudll\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivudll\wxscintilla\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxscintilla.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions> /EHsc /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <BrowseInformation>true</BrowseInformation>
+      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -557,9 +592,12 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>true</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -587,8 +625,8 @@
       <PrecompiledHeaderOutputFile>.\vc_mswuddll\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswuddll\wxscintilla\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxscintillad.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions> /EHsc /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -596,9 +634,13 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <BrowseInformation>true</BrowseInformation>
+      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -635,7 +677,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>true</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
@@ -668,17 +710,21 @@
       <PrecompiledHeaderOutputFile>.\vc_mswunivu\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivu\wxscintilla\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxscintilla.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions> /EHsc /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <BrowseInformation>true</BrowseInformation>
+      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -715,9 +761,12 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>true</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -745,17 +794,21 @@
       <PrecompiledHeaderOutputFile>.\vc_mswu\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswu\wxscintilla\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxscintilla.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions> /EHsc /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <BrowseInformation>true</BrowseInformation>
+      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -792,9 +845,12 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>true</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -822,8 +878,8 @@
       <PrecompiledHeaderOutputFile>.\vc_mswunivud\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivud\wxscintilla\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxscintillad.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions> /EHsc /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -831,9 +887,13 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <BrowseInformation>true</BrowseInformation>
+      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -870,9 +930,12 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>true</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -900,17 +963,21 @@
       <PrecompiledHeaderOutputFile>.\vc_mswudll\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswudll\wxscintilla\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxscintilla.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions> /EHsc /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <BrowseInformation>true</BrowseInformation>
+      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -947,7 +1014,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>true</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
@@ -980,8 +1047,8 @@
       <PrecompiledHeaderOutputFile>.\vc_mswunivuddll\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivuddll\wxscintilla\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxscintillad.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions> /EHsc /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -989,9 +1056,13 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <BrowseInformation>true</BrowseInformation>
+      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1028,9 +1099,12 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>true</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
