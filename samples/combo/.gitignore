@@ -1,4 +1,3 @@
-/*.sln
 /*.dsw
 /vc_msw
 /vc_mswd
@@ -16,3 +15,6 @@
 /vc_mswunivddll
 /vc_mswunivudll
 /vc_mswunivuddll
+*.*sdf
+*.suo
+ipch
