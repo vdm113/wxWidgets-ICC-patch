@@ -146,7 +146,7 @@ again:
             reformat=true;
         }
 
-        if(scrollback.size()>=3) {
+        if(scrollback.size()>3) {
             vector<string>::iterator i1=scrollback.end();
             bool okay=true;
             if(
@@ -171,7 +171,7 @@ again:
                 if(!(*i1).compare(inline_pragma))
                     reformat=false;
             }
-            if(scrollback.size()>=3) {
+            if(scrollback.size()>3) {
                 int i3=0;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
