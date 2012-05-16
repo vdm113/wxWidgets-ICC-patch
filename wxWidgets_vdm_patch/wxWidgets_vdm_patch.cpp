@@ -156,8 +156,8 @@ again:
         }
 
         if(scrollback.size()>3) {
-            vector<string>::const_iterator i1=scrollback.cend();
             bool okay=true;
+            vector<string>::const_iterator i1=scrollback.end();
             if(
                 (
                     (*(i1-1)).compare(line3)==0 &&
