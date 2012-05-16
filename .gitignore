@@ -405,7 +405,6 @@
 /samples/collpane/vc_mswunivuddll
 
 # /samples/combo/
-/samples/combo/*.sln
 /samples/combo/*.dsw
 /samples/combo/vc_msw
 /samples/combo/vc_mswd
@@ -2580,6 +2579,4 @@
 /build/msw/*.*sdf
 /build/msw/*.suo
 /build/msw/ipch
-/samples/combo/*.*sdf
-/samples/combo/*.suo
 ## vdm
