@@ -1187,6 +1187,9 @@ wxString wxStripMenuCodes(const wxString& in, int flags)
     size_t len = in.length();
     out.reserve(len);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator it = in.begin(); it != in.end(); ++it )
     {
         wxChar ch = *it;
