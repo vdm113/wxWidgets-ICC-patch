@@ -58,6 +58,7 @@ unsigned reformat(const string& file)
     static const char* inline_pragma="MY_MACRO_PRAGMA_IVDEP \\";
 
     unsigned cnt=0;
+    bool changed=false;
 
     vector<string> scrollback;
 
@@ -108,6 +109,7 @@ again:
         ++ln;
         if(1==ln && strcmp(buf,line_prologue_token)!=0) {
             fprintf(out,"%s\n%s\n\n",line_prologue_token,line_prologue);
+            changed=true;
         }
 
         scrollback.push_back(buf);
@@ -239,8 +241,12 @@ again:
     fclose(in);
     fclose(out);
 
-    remove(file.c_str());
-    rename(tmp_file.c_str(),file.c_str());
+    if(changed || cnt) {
+        remove(file.c_str());
+        rename(tmp_file.c_str(),file.c_str());
+    } else {
+        remove(tmp_file.c_str());
+    }
 
     return cnt;
 }
