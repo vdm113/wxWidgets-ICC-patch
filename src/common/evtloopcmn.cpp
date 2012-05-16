@@ -147,6 +147,9 @@ int wxEventLoopManual::Run()
 
                 // generate and process idle events for as long as we don't
                 // have anything else to do
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while ( !m_shouldExit && !Pending() && ProcessIdle() )
                     ;
 
@@ -171,6 +174,9 @@ int wxEventLoopManual::Run()
             // handlers endlessly generate new events but they shouldn't do
             // this in a well-behaved program and we shouldn't just discard the
             // events we already have, they might be important.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( ;; )
             {
                 bool hasMoreEvents = false;
