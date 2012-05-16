@@ -816,14 +816,14 @@ MyFrame::MyFrame(const wxString& title)
     for (int i=0; i<4; i++ )
     {
         groupId = tcPopup->AppendItem(rootId,
-            wxString::Format(wxT("Branch %02i"),i));
+            wxString::Format(wxT("Branch %09i"),i));
 
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
         for (int n=0; n<cnt; n++ )
             tcPopup->AppendItem(groupId,
-                wxString::Format(wxT("Subitem %02i"),(i*25)+n));
+                wxString::Format(wxT("Subitem %09i"),(i*25)+n));
     }
 
     wxLogMessage(wxT("wxString::Format diff #2 [ms] == %ld"),sw.Time());
