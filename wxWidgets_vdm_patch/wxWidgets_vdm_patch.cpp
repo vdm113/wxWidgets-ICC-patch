@@ -155,7 +155,7 @@ again:
             reformat=true;
         }
 
-        if(scrollback.size()>3) {
+        if(reformat && scrollback.size()>3) {
             vector<string>::const_iterator i1=scrollback.end();
             if(
                 (
