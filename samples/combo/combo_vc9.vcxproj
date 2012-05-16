@@ -836,8 +836,8 @@
       <StringPooling>true</StringPooling>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <FloatingPointModel>Fast2</FloatingPointModel>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;__WXMSW__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -937,8 +937,8 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <FloatingPointModel>Fast2</FloatingPointModel>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>__WXMSW__;NDEBUG;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
