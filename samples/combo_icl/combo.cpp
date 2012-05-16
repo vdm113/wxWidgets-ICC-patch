@@ -778,8 +778,10 @@ MyFrame::MyFrame(const wxString& title)
     ListViewComboPopup* iface = new ListViewComboPopup();
     cc->SetPopupControl(iface);
 
-    int i;
-    for ( i=0; i<100; i++ )
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (int i=0; i<cnt; ++i )
         iface->AddSelection( wxString::Format(wxT("Item %02i"),i));
 
     rowSizer->Add( cc, 1, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
@@ -806,13 +808,20 @@ MyFrame::MyFrame(const wxString& title)
 
     wxTreeItemId groupId;
 
-    for ( i=0; i<4; i++ )
+    sw.Start();
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (int i=0; i<4; i++ )
     {
         groupId = tcPopup->AppendItem(rootId,
             wxString::Format(wxT("Branch %02i"),i));
 
-        int n;
-        for ( n=0; n<25; n++ )
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        for (int n=0; n<cnt; n++ )
             tcPopup->AppendItem(groupId,
                 wxString::Format(wxT("Subitem %02i"),(i*25)+n));
     }
