@@ -147,21 +147,17 @@ again:
         }
 
         if(scrollback.size()>3) {
-            vector<string>::iterator i1=scrollback.end();
+            vector<string>::const_iterator i1=scrollback.cend();
             bool okay=true;
             if(
                 (
                     (*(i1-1)).compare(line3)==0 &&
                     (*(i1-2)).compare(line2)==0 &&
-                    ( (*(i1-3)).compare(line1)==0 || (*(i1-3)).compare(line1_disabled)==0 || (*i1).compare(line_prologue_token)==0)
+                    ( (*(i1-3)).compare(line1)==0 || (*(i1-3)).compare(line1_disabled)==0 )
                 )
             ) {
-                fclose(in);
-                fclose(out);
-                remove(tmp_file.c_str());
-                return;
+                reformat=false;
             }
-            --i1;
         }
 
         if(reformat) {
