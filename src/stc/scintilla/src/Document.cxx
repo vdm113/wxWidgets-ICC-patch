@@ -483,6 +483,9 @@ int Document::MovePositionOutsideChar(int pos, int moveDir, bool checkLineEnd) {
 #if defined(__INTEL_COMPILER) && 0
 #   pragma ivdep
 #endif
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (posCheck < pos) {
 				char mbstr[maxBytesInDBCSCharacter+1];
 				int i;
