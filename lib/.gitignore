@@ -3,8 +3,6 @@
 /evc_armv4_lib
 /evc_emulator_lib
 /gcc_lib
-/vc*_lib
-/vc*_dll
 /wat_lib
 /Linux
 /linux-gnu

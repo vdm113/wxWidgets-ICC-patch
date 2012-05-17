@@ -169,8 +169,6 @@
 /lib/evc_armv4_lib
 /lib/evc_emulator_lib
 /lib/gcc_lib
-/lib/vc*_lib
-/lib/vc*_dll
 /lib/wat_lib
 /lib/Linux
 /lib/linux-gnu
