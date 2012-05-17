@@ -27,7 +27,5 @@
 /vc8arm_winceud
 /vc9arm_winceu
 /vc9arm_winceud
-vc_mswuddll
-vc_mswudll
 ipch
 ipo_*.obj
