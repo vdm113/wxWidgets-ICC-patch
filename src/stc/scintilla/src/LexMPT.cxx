@@ -1,11 +1,12 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#elif defined(__INTEL_COMPILER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
 #endif
 
 // Scintilla source code edit control
+
 /** @file LexMPT.cxx
  ** Lexer for MPT specific files. Based on LexOthers.cxx
  ** LOT = the text log file created by the MPT application while running a test program

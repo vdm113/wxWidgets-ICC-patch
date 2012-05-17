@@ -1,11 +1,12 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#elif defined(__INTEL_COMPILER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
+
 // Name:        wx/os2/mdi.h
 // Purpose:     MDI (Multiple Document Interface) classes.
 //              This doesn't have to be implemented just like Windows,

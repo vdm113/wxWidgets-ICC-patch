@@ -1,11 +1,12 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#elif defined(__INTEL_COMPILER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
 #endif
 
 #define xtifficon_width 32
+
 #define xtifficon_height 32
 static char xtifficon_bits[] = {
    0xff, 0x00, 0x00, 0xc0, 0xfe, 0x01, 0x7e, 0xc0, 0xfc, 0x03, 0x7e, 0x60,
