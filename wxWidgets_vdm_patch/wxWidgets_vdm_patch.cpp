@@ -53,7 +53,7 @@ unsigned reformat(const string& file)
     static const char* line3="#endif";
 
     static const char* line_prologue_token="/* token_VDM_prologue */";
-    static const char* line_prologue="#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)\n#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)\n#elif !defined(MY_MACRO_PRAGMA_IVDEP)\n#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */\n#endif";
+    static const char* line_prologue="#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)\n#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)\n#elif defined(__INTEL_COMPILER) && !defined(MY_MACRO_PRAGMA_IVDEP)\n#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */\n#endif";
 
     static const char* inline_pragma="MY_MACRO_PRAGMA_IVDEP \\";
 
@@ -107,6 +107,34 @@ again:
         }
 
         ++ln;
+
+#if 0   // set to 1 for replace old token+prologue (for future re-write of prologue)
+        if(1==ln && strcmp(buf,line_prologue_token)==0) {
+            // for future compatibility: erase old token, to let it replaced by new one
+
+            changed=true;
+
+            // seek for an empty line as ending of the prologue
+            char buf2[length+16]="x";
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+            do {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+                while('\r'!=buf2[0] && '\n'!=buf2[0]) {
+                    fgets(buf2,length,in);
+                }
+                fgets(buf2,length,in); // skip an empty line
+                buf2[length]='\0';
+                if('\r'!=buf2[0] || '\n'!=buf2[0]) {
+                    strcpy(buf,buf2);
+                }
+            } while(strcmp(buf2,line_prologue_token)==0); // might be broken, i.e. twice or more prologue occurence
+        }
+#endif
+
         if(1==ln && strcmp(buf,line_prologue_token)!=0) {
             fprintf(out,"%s\n%s\n\n",line_prologue_token,line_prologue);
             changed=true;
@@ -223,7 +251,8 @@ again:
                 } else {
                     fprintf(out,"%s\n%s\n%s\n",line1, line2, line3);
                 }
-                ++cnt;
+                if(!changed)
+                    ++cnt;
             }
         }
         fprintf(out,"%s\n",buf);
@@ -241,7 +270,11 @@ again:
     fclose(in);
     fclose(out);
 
-    if(changed || cnt) {
+    if(changed)
+        ++cnt;
+
+    if(cnt) {
+        printf("Patched file: %s\n",file.c_str());
         remove(file.c_str());
         rename(tmp_file.c_str(),file.c_str());
     } else {
