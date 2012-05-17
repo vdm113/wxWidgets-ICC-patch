@@ -48,3 +48,9 @@
 /tiff*.lib
 /zlib*.lib
 /.DS_Store
+*.bsc
+*.dll
+*.exp
+*.lib
+*.map
+*.pdb
