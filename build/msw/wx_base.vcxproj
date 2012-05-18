@@ -481,7 +481,7 @@
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
@@ -523,7 +523,7 @@
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -572,7 +572,7 @@
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <Midl>
@@ -634,7 +634,7 @@
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <Optimization>MaxSpeedHighLevel</Optimization>
@@ -706,7 +706,7 @@
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
@@ -748,7 +748,7 @@
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -796,7 +796,7 @@
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <Midl>
@@ -858,7 +858,7 @@
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <Optimization>MaxSpeedHighLevel</Optimization>
@@ -928,7 +928,7 @@
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <Midl>
@@ -990,7 +990,7 @@
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -1060,7 +1060,7 @@
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
@@ -1102,7 +1102,7 @@
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -1151,7 +1151,7 @@
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
@@ -1193,7 +1193,7 @@
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -1242,7 +1242,7 @@
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <Midl>
@@ -1304,7 +1304,7 @@
       <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
