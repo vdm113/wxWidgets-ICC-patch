@@ -725,7 +725,7 @@ MyFrame::MyFrame(const wxString& title)
 
     colSizer = new wxBoxSizer( wxVERTICAL );
 
-    static const int cnt=10000;
+    static const int cnt=32768;
 
     wxComboCtrl* cc;
     wxGenericComboCtrl* gcc;
@@ -753,7 +753,7 @@ MyFrame::MyFrame(const wxString& title)
     m_arrItems.Add( wxT("Horizontal Hatch") );
     m_arrItems.Add( wxT("Vertical Hatch") );*/
 
-    wxLogMessage(wxT("wxArrayString diff #1 [ms] == %ld\n"),sw.Time());
+    wxLogMessage(wxT("wxArrayString diff #1 [ms] == %ld"),sw.Time());
 
     //
     // Create pen selector ODComboBox with owner-drawn items
@@ -854,11 +854,10 @@ MyFrame::MyFrame(const wxString& title)
     ListViewComboPopup* iface = new ListViewComboPopup();
     cc->SetPopupControl(iface);
 
-    int i;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for ( i=0; i<100; i++ )
+    for (int i=0; i<cnt; ++i )
         iface->AddSelection( wxString::Format(wxT("Item %02i"),i));
 
     rowSizer->Add( cc, 1, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
@@ -890,21 +889,20 @@ MyFrame::MyFrame(const wxString& title)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for ( i=0; i<4; i++ )
+    for (int i=0; i<4; i++ )
     {
         groupId = tcPopup->AppendItem(rootId,
-            wxString::Format(wxT("Branch %02i"),i));
+            wxString::Format(wxT("Branch %09i"),i));
 
-        int n;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( n=0; n<cnt; n++ )
+        for (int n=0; n<cnt; n++ )
             tcPopup->AppendItem(groupId,
-                wxString::Format(wxT("Subitem %02i"),(i*25)+n));
+                wxString::Format(wxT("Subitem %09i"),(i*25)+n));
     }
 
-    wxLogMessage(wxT("wxString::Format diff #2 [ms] == %ld\n"),sw.Time());
+    wxLogMessage(wxT("wxString::Format diff #2 [ms] == %ld"),sw.Time());
 
     sw.Start();
     {
@@ -919,7 +917,9 @@ MyFrame::MyFrame(const wxString& title)
             test_case.Add(tmp);
         }
     }
-    wxLogMessage(wxT("wxArrayString::Add(printf(\"%%d\")) #3 [ms] == %ld\n"),sw.Time());
+    wxLogMessage(wxT("wxArrayString::Add(printf(\"%%d\")) #3 [ms] == %ld"),sw.Time());
+
+    wxLogMessage(wxT("\n"));
 
     gcc->SetValue(wxT("Subitem 05"));
 
