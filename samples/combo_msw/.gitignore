@@ -18,6 +18,7 @@
 *.*sdf
 *.suo
 ipch
-/*.vcproj.*.user
-/*.vcxproj.*.user
+/*.vcproj.user
+/*.vcxproj.user
 /vc_*
+*.dll
