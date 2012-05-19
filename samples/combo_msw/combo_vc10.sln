@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "combo", "combo_vc9.vcxproj", "{5DD6C71A-B608-5975-8A3B-2935B71E8D2E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "combo", "combo_vc10.vcxproj", "{5DD6C71A-B608-5975-8A3B-2935B71E8D2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
