@@ -20,3 +20,4 @@
 ipch
 /*.vcproj.*.user
 /*.vcxproj.*.user
+/vc_*
