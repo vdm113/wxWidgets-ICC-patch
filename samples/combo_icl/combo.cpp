@@ -9,7 +9,7 @@
 // Name:        combo.cpp
 // Purpose:     wxComboCtrl sample
 // Author:      Jaakko Salli
-// Modified by:
+// Modified by: Marian 'VooDooMan' Meravy
 // Created:     Apr-30-2006
 // RCS-ID:      $Id$
 // Copyright:   (c) Jaakko Salli
