@@ -76,12 +76,17 @@
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <InterproceduralOptimization>true</InterproceduralOptimization>
+    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
+    <UseIntelMKL>Parallel</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|X64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
     <ProfileGuidedOptimization>Disabled</ProfileGuidedOptimization>
     <CodeCoverageOperations>Disabled</CodeCoverageOperations>
     <InterproceduralOptimization>true</InterproceduralOptimization>
@@ -96,12 +101,17 @@
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <InterproceduralOptimization>true</InterproceduralOptimization>
+    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
+    <UseIntelMKL>Parallel</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
     <ProfileGuidedOptimization>Disabled</ProfileGuidedOptimization>
     <CodeCoverageOperations>Disabled</CodeCoverageOperations>
     <InterproceduralOptimization>true</InterproceduralOptimization>
@@ -116,6 +126,11 @@
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <InterproceduralOptimization>true</InterproceduralOptimization>
+    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
+    <UseIntelMKL>Parallel</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|X64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -136,6 +151,11 @@
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <InterproceduralOptimization>true</InterproceduralOptimization>
+    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
+    <UseIntelMKL>Parallel</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|X64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -156,12 +176,17 @@
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <InterproceduralOptimization>true</InterproceduralOptimization>
+    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
+    <UseIntelMKL>Parallel</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Release|X64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
     <ProfileGuidedOptimization>Disabled</ProfileGuidedOptimization>
     <CodeCoverageOperations>Disabled</CodeCoverageOperations>
     <InterproceduralOptimization>true</InterproceduralOptimization>
@@ -176,12 +201,17 @@
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <InterproceduralOptimization>true</InterproceduralOptimization>
+    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
+    <UseIntelMKL>Parallel</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Debug|X64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
     <ProfileGuidedOptimization>Disabled</ProfileGuidedOptimization>
     <CodeCoverageOperations>Disabled</CodeCoverageOperations>
     <InterproceduralOptimization>true</InterproceduralOptimization>
@@ -196,12 +226,17 @@
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <InterproceduralOptimization>true</InterproceduralOptimization>
+    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
+    <UseIntelMKL>Parallel</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|X64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
     <ProfileGuidedOptimization>Disabled</ProfileGuidedOptimization>
     <CodeCoverageOperations>Disabled</CodeCoverageOperations>
     <InterproceduralOptimization>true</InterproceduralOptimization>
@@ -216,12 +251,17 @@
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <InterproceduralOptimization>true</InterproceduralOptimization>
+    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
+    <UseIntelMKL>Parallel</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|X64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 12.0</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
@@ -289,7 +329,7 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|X64'">vc_mswud\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\combo\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|X64'">vc_mswud\combo\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|X64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|X64'">true</GenerateManifest>
@@ -305,7 +345,7 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Universal Debug|X64'">vc_mswunivud\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'">vc_mswunivud\combo\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Universal Debug|X64'">vc_mswunivud\combo\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Universal Debug|X64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Universal Debug|X64'">true</GenerateManifest>
@@ -321,7 +361,7 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|X64'">vc_mswuddll\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\combo\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|X64'">vc_mswuddll\combo\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Debug|X64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Debug|X64'">true</GenerateManifest>
@@ -337,7 +377,7 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'">vc_mswunivuddll\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">vc_mswunivuddll\combo\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'">vc_mswunivuddll\combo\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'">true</GenerateManifest>
@@ -357,6 +397,14 @@
     <ParallelDebugEnvironment Condition="'$(Configuration)|$(Platform)'=='Release|X64'">Disabled</ParallelDebugEnvironment>
     <ParallelDebugEnvironment Condition="'$(Configuration)|$(Platform)'=='Universal Debug|X64'">Disabled</ParallelDebugEnvironment>
     <ParallelDebugEnvironment Condition="'$(Configuration)|$(Platform)'=='Universal Release|X64'">Disabled</ParallelDebugEnvironment>
+    <ParallelDebugEnvironment Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</ParallelDebugEnvironment>
+    <ParallelDebugEnvironment Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">Disabled</ParallelDebugEnvironment>
+    <ParallelDebugEnvironment Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">Disabled</ParallelDebugEnvironment>
+    <ParallelDebugEnvironment Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">Disabled</ParallelDebugEnvironment>
+    <ParallelDebugEnvironment Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'">Disabled</ParallelDebugEnvironment>
+    <ParallelDebugEnvironment Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</ParallelDebugEnvironment>
+    <ParallelDebugEnvironment Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'">Disabled</ParallelDebugEnvironment>
+    <ParallelDebugEnvironment Condition="'$(Configuration)|$(Platform)'=='Universal Release|Win32'">Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
@@ -364,20 +412,31 @@
       <AdditionalIncludeDirectories>.\..\..\lib\vc_lib\mswud;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>Disabled</Optimization>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qvec-report1</AdditionalOptions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>.\..\..\lib\vc_lib\mswud;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>vc_mswud\combo\</ObjectFileName>
       <ProgramDataBaseFileName>vc_mswud\combo.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
+      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
+      <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
+      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
+      <StringPooling>true</StringPooling>
+      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;__WXMSW__;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -394,6 +453,11 @@
       <ProgramDatabaseFile>vc_mswud\combo.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <LargeAddressAware>true</LargeAddressAware>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
       <OutputFile>vc_mswud\combo_vc9.bsc</OutputFile>
@@ -432,8 +496,8 @@
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <FloatingPointModel>Fast2</FloatingPointModel>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;__WXMSW__;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -454,6 +518,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
+      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
       <OutputFile>vc_mswud\combo_vc9.bsc</OutputFile>
@@ -466,8 +531,8 @@
       <AdditionalIncludeDirectories>.\..\..\lib\vc_lib\mswu;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MaxSpeed</Optimization>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qvec-report1</AdditionalOptions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>.\..\..\lib\vc_lib\mswu;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;__WXMSW__;NDEBUG;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -478,6 +543,19 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
+      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
+      <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
+      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
+      <StringPooling>true</StringPooling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>__WXMSW__;NDEBUG;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -496,6 +574,9 @@
       <TargetMachine>MachineX86</TargetMachine>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LargeAddressAware>true</LargeAddressAware>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
       <OutputFile>vc_mswu\combo_vc9.bsc</OutputFile>
@@ -533,8 +614,8 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <FloatingPointModel>Fast2</FloatingPointModel>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>__WXMSW__;NDEBUG;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -555,6 +636,7 @@
       <LargeAddressAware>true</LargeAddressAware>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
+      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
       <OutputFile>vc_mswu\combo_vc9.bsc</OutputFile>
@@ -567,20 +649,31 @@
       <AdditionalIncludeDirectories>.\..\..\lib\vc_lib\mswunivud;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>Disabled</Optimization>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qvec-report1</AdditionalOptions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>.\..\..\lib\vc_lib\mswunivud;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXUNIVERSAL__;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>vc_mswunivud\combo\</ObjectFileName>
       <ProgramDataBaseFileName>vc_mswunivud\combo.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
+      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
+      <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
+      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
+      <StringPooling>true</StringPooling>
+      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;__WXMSW__;__WXUNIVERSAL__;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -597,6 +690,11 @@
       <ProgramDatabaseFile>vc_mswunivud\combo.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <LargeAddressAware>true</LargeAddressAware>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
       <OutputFile>vc_mswunivud\combo_vc9.bsc</OutputFile>
@@ -634,8 +732,8 @@
       <StringPooling>true</StringPooling>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <FloatingPointModel>Fast2</FloatingPointModel>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;__WXMSW__;__WXUNIVERSAL__;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -656,6 +754,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
+      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
       <OutputFile>vc_mswunivud\combo_vc9.bsc</OutputFile>
@@ -668,8 +767,8 @@
       <AdditionalIncludeDirectories>.\..\..\lib\vc_lib\mswunivu;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MaxSpeed</Optimization>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qvec-report1</AdditionalOptions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>.\..\..\lib\vc_lib\mswunivu;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;__WXMSW__;__WXUNIVERSAL__;NDEBUG;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -680,6 +779,19 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
+      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
+      <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
+      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
+      <StringPooling>true</StringPooling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>__WXMSW__;__WXUNIVERSAL__;NDEBUG;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -698,6 +810,9 @@
       <TargetMachine>MachineX86</TargetMachine>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LargeAddressAware>true</LargeAddressAware>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
       <OutputFile>vc_mswunivu\combo_vc9.bsc</OutputFile>
@@ -735,8 +850,8 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <FloatingPointModel>Fast2</FloatingPointModel>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>__WXMSW__;__WXUNIVERSAL__;NDEBUG;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -757,6 +872,7 @@
       <LargeAddressAware>true</LargeAddressAware>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
+      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
       <OutputFile>vc_mswunivu\combo_vc9.bsc</OutputFile>
@@ -769,20 +885,31 @@
       <AdditionalIncludeDirectories>.\..\..\lib\vc_dll\mswud;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>Disabled</Optimization>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qvec-report1</AdditionalOptions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>.\..\..\lib\vc_dll\mswud;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>vc_mswuddll\combo\</ObjectFileName>
       <ProgramDataBaseFileName>vc_mswuddll\combo.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
+      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
+      <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
+      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
+      <StringPooling>true</StringPooling>
+      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;__WXMSW__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -799,6 +926,11 @@
       <ProgramDatabaseFile>vc_mswuddll\combo.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <LargeAddressAware>true</LargeAddressAware>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
       <OutputFile>vc_mswuddll\combo_vc9.bsc</OutputFile>
@@ -858,6 +990,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
+      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
       <OutputFile>vc_mswuddll\combo_vc9.bsc</OutputFile>
@@ -870,8 +1003,8 @@
       <AdditionalIncludeDirectories>.\..\..\lib\vc_dll\mswu;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MaxSpeed</Optimization>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qvec-report1</AdditionalOptions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>.\..\..\lib\vc_dll\mswu;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;__WXMSW__;NDEBUG;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -882,6 +1015,19 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
+      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
+      <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
+      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
+      <StringPooling>true</StringPooling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>__WXMSW__;NDEBUG;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -900,6 +1046,9 @@
       <TargetMachine>MachineX86</TargetMachine>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LargeAddressAware>true</LargeAddressAware>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
       <OutputFile>vc_mswudll\combo_vc9.bsc</OutputFile>
@@ -959,6 +1108,7 @@
       <LargeAddressAware>true</LargeAddressAware>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
+      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
       <OutputFile>vc_mswudll\combo_vc9.bsc</OutputFile>
@@ -971,20 +1121,31 @@
       <AdditionalIncludeDirectories>.\..\..\lib\vc_dll\mswunivud;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>Disabled</Optimization>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qvec-report1</AdditionalOptions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>.\..\..\lib\vc_dll\mswunivud;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXUNIVERSAL__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>vc_mswunivuddll\combo\</ObjectFileName>
       <ProgramDataBaseFileName>vc_mswunivuddll\combo.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
+      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
+      <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
+      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
+      <StringPooling>true</StringPooling>
+      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;__WXMSW__;__WXUNIVERSAL__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1001,6 +1162,11 @@
       <ProgramDatabaseFile>vc_mswunivuddll\combo.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <LargeAddressAware>true</LargeAddressAware>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
       <OutputFile>vc_mswunivuddll\combo_vc9.bsc</OutputFile>
@@ -1038,8 +1204,8 @@
       <StringPooling>true</StringPooling>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <FloatingPointModel>Fast2</FloatingPointModel>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;__WXMSW__;__WXUNIVERSAL__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1060,6 +1226,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
+      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
       <OutputFile>vc_mswunivuddll\combo_vc9.bsc</OutputFile>
@@ -1072,8 +1239,8 @@
       <AdditionalIncludeDirectories>.\..\..\lib\vc_dll\mswunivu;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MaxSpeed</Optimization>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qvec-report1</AdditionalOptions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>.\..\..\lib\vc_dll\mswunivu;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;__WXMSW__;__WXUNIVERSAL__;NDEBUG;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -1084,6 +1251,19 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
+      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
+      <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
+      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
+      <StringPooling>true</StringPooling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>__WXMSW__;__WXUNIVERSAL__;NDEBUG;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1102,6 +1282,9 @@
       <TargetMachine>MachineX86</TargetMachine>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LargeAddressAware>true</LargeAddressAware>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
       <OutputFile>vc_mswunivudll\combo_vc9.bsc</OutputFile>
@@ -1139,8 +1322,8 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>SSSE3</UseProcessorExtensions>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <FloatingPointModel>Fast2</FloatingPointModel>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>__WXMSW__;__WXUNIVERSAL__;NDEBUG;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1161,6 +1344,7 @@
       <LargeAddressAware>true</LargeAddressAware>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
+      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
       <OutputFile>vc_mswunivudll\combo_vc9.bsc</OutputFile>
