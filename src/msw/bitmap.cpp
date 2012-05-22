@@ -343,6 +343,9 @@ bool wxBitmap::CopyFromIconOrCursor(const wxGDIImage& icon,
                     {
                         unsigned char* const pixels = dib.GetData();
                         int idx;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for ( idx = 0; idx < w*h*4; idx += 4 )
                         {
                             if (pixels[idx+3] != 0)
@@ -360,6 +363,9 @@ bool wxBitmap::CopyFromIconOrCursor(const wxGDIImage& icon,
                             // data for our pixels as this is what the bitmaps
                             // created in other ways do and this is necessary
                             // for e.g. AlphaBlend() to work with this bitmap.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                             for ( idx = 0; idx < w*h*4; idx += 4 )
                             {
                                 const unsigned char a = pixels[idx+3];
