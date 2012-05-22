@@ -2640,6 +2640,9 @@ extern "C" {
 static gboolean queue_resize(void*)
 {
     gdk_threads_enter();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (GSList* p = gs_queueResizeList; p; p = p->next)
     {
         if (p->data)
