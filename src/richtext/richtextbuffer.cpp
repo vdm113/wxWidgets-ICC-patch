@@ -13518,6 +13518,9 @@ wxRichTextFieldType *wxRichTextBuffer::FindFieldType(const wxString& name)
 void wxRichTextBuffer::CleanUpFieldTypes()
 {
     wxRichTextFieldTypeHashMap::iterator it;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( it = sm_fieldTypes.begin(); it != sm_fieldTypes.end(); ++it )
     {
         wxRichTextFieldType* fieldType = it->second;
