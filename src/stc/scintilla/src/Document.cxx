@@ -434,7 +434,7 @@ int Document::MovePositionOutsideChar(int pos, int moveDir, bool checkLineEnd) {
 			// Anchor DBCS calculations at start of line because start of line can
 			// not be a DBCS trail byte.
 			int posCheck = LineStart(LineFromPosition(pos));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) && 0
 #   pragma ivdep
 #endif
 			while (posCheck < pos) {
