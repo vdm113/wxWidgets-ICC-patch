@@ -472,6 +472,9 @@ wxSize wxGridBagSizer::CalcMin()
             item->GetEndPos(endrow, endcol);
 
             // fill heights and widths up to this item if needed
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( (int)m_rowHeights.GetCount() <= endrow )
                 m_rowHeights.Add(m_emptyCellSize.GetHeight());
             while ( (int)m_colWidths.GetCount() <= endcol )
