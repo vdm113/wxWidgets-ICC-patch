@@ -160,6 +160,9 @@ static void ColouriseTADSHTMLString(StyleContext &sc, int &lineState) {
         else
                 lineState |= T3_HTML_SQUOTE;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (sc.More()) {
                 if (IsEOL(sc.ch, sc.chNext)) {
                         return;
@@ -201,6 +204,9 @@ static void ColouriseTADS3HTMLTagStart(StyleContext &sc) {
         if (sc.ch == '/') {
                 sc.Forward();
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (IsAnHTMLChar(sc.ch)) {
                 sc.Forward();
         }
@@ -235,6 +241,9 @@ static void ColouriseTADS3HTMLTag(StyleContext &sc, int &lineState) {
                         break;
         }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (sc.More()) {
                 if (IsEOL(sc.ch, sc.chNext)) {
                         return;
@@ -278,6 +287,9 @@ static void ColouriseTADS3Keyword(StyleContext &sc,
         WordList &userwords3 = *keywordlists[3];
         int initState = sc.state;
         sc.SetState(SCE_T3_IDENTIFIER);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (sc.More() && (IsAWordChar(sc.ch))) {
                 sc.Forward();
         }
@@ -285,6 +297,9 @@ static void ColouriseTADS3Keyword(StyleContext &sc,
         if ( strcmp(s, "is") == 0 || strcmp(s, "not") == 0) {
                 // have to find if "in" is next
                 int n = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (n + sc.currentPos < endPos && IsASpaceOrTab(sc.GetRelative(n)))
                         n++;
                 if (sc.GetRelative(n) == 'i' && sc.GetRelative(n+1) == 'n') {
@@ -328,6 +343,9 @@ static void ColouriseTADS3MsgParam(StyleContext &sc, int &lineState) {
                         }
                         break;
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (sc.More() && sc.ch != '}' && sc.ch != chQuote) {
                 if (IsEOL(sc.ch, sc.chNext)) {
                         return;
@@ -366,6 +384,9 @@ static void ColouriseTADS3LibDirective(StyleContext &sc, int &lineState) {
                         }
                         break;
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (sc.More() && IsADirectiveChar(sc.ch)) {
                 if (IsEOL(sc.ch, sc.chNext)) {
                         return;
@@ -415,6 +436,9 @@ static void ColouriseTADS3String(StyleContext &sc, int &lineState) {
                         endState = SCE_T3_X_DEFAULT;
                         break;
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (sc.More()) {
                 if (IsEOL(sc.ch, sc.chNext)) {
                         return;
@@ -448,6 +472,9 @@ static void ColouriseTADS3String(StyleContext &sc, int &lineState) {
 
 static void ColouriseTADS3Comment(StyleContext &sc, int endState) {
         sc.SetState(SCE_T3_BLOCK_COMMENT);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (sc.More()) {
                 if (IsEOL(sc.ch, sc.chNext)) {
                         return;
@@ -463,6 +490,9 @@ static void ColouriseTADS3Comment(StyleContext &sc, int endState) {
 
 static void ColouriseToEndOfLine(StyleContext &sc, int initState, int endState) {
         sc.SetState(initState);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (sc.More()) {
                 if (sc.ch == '\\') {
                         sc.Forward();
@@ -491,6 +521,9 @@ static void ColouriseTADS3Number(StyleContext &sc) {
                 inHexNumber = true;
                 sc.Forward();
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (sc.More()) {
                 if (inHexNumber) {
                         if (!IsAHexDigit(sc.ch)) {
@@ -526,6 +559,9 @@ static void ColouriseTADS3Doc(unsigned int startPos, int length, int initStyle,
         }
         StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (sc.More()) {
 
                 if (IsEOL(sc.ch, sc.chNext)) {
@@ -710,6 +746,9 @@ static inline bool IsSpaceEquivalent(const int ch, const int style) {
 
 static char peekAhead(unsigned int startPos, unsigned int endPos,
                                           Accessor &styler) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (unsigned int i = startPos; i < endPos; i++) {
                 int style = styler.StyleAt(i);
                 char ch = styler[i];
@@ -748,6 +787,9 @@ static void FoldTADS3Doc(unsigned int startPos, int length, int initStyle,
         char ch = chNext;
         int stylePrev = style;
         bool redo = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (unsigned int i = startPos; i < endPos; i++) {
                 if (redo) {
                         redo = false;

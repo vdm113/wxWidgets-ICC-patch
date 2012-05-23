@@ -84,6 +84,9 @@ bool wxWindow::LoadNativeDialog (
     // Enumerate the children
     //
     hEnum = ::WinBeginEnumWindows(GetHwndOf(pParent));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((hWndNext = ::WinGetNextWindow(hEnum)) != NULLHANDLE)
         pChild = CreateWindowFromHWND( this
                                       ,(WXHWND)hWndNext
@@ -139,6 +142,9 @@ wxWindow* wxWindow::GetWindowChild1 (
 
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxWindow*                   pChild = node->GetData();
