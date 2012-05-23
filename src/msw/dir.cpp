@@ -220,6 +220,9 @@ bool wxDirData::Read(wxString *filename)
     const wxChar *name;
     FIND_ATTR attr;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         if ( first )

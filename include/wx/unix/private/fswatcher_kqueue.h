@@ -39,6 +39,9 @@ public:
 
             wxString filename;
             bool ret = dir.GetFirst(&filename);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (ret)
             {
                 files.push_back(filename);

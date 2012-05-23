@@ -324,6 +324,9 @@ void MyFrame::OnEnumISPs(wxCommandEvent& WXUNUSED(event))
     else
     {
         wxString msg = wxT("Known ISPs:\n");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < nCount; n++ )
         {
             msg << names[n] << '\n';

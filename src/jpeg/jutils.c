@@ -128,12 +128,18 @@ jcopy_sample_rows (JSAMPARRAY input_array, int source_row,
   input_array += source_row;
   output_array += dest_row;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (row = num_rows; row > 0; row--) {
     inptr = *input_array++;
     outptr = *output_array++;
 #ifdef FMEMCOPY
     FMEMCOPY(outptr, inptr, count);
 #else
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (count = num_cols; count > 0; count--)
       *outptr++ = *inptr++;	/* needn't bother with GETJSAMPLE() here */
 #endif
@@ -154,6 +160,9 @@ jcopy_block_row (JBLOCKROW input_row, JBLOCKROW output_row,
 
   inptr = (JCOEFPTR) input_row;
   outptr = (JCOEFPTR) output_row;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (count = (long) num_blocks * DCTSIZE2; count > 0; count--) {
     *outptr++ = *inptr++;
   }
@@ -172,6 +181,9 @@ jzero_far (void FAR * target, size_t bytestozero)
   register char FAR * ptr = (char FAR *) target;
   register size_t count;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (count = bytestozero; count > 0; count--) {
     *ptr++ = 0;
   }

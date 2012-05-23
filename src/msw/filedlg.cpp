@@ -234,6 +234,9 @@ void wxFileDialog::GetPaths(wxArrayString& paths) const
         dir += wxT('\\');
 
     size_t count = m_fileNames.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         if (wxFileName(m_fileNames[n]).IsAbsolute())
@@ -548,6 +551,9 @@ int wxFileDialog::ShowModal()
     wxString  dir;
     size_t    i, len = m_dir.length();
     dir.reserve(len);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < len; i++ )
     {
         wxChar ch = m_dir[i];
@@ -560,6 +566,9 @@ int wxFileDialog::ShowModal()
                 // fall through
 
             case wxT('\\'):
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while ( i < len - 1 )
                 {
                     wxChar chNext = m_dir[i + 1];
@@ -594,6 +603,9 @@ int wxFileDialog::ShowModal()
 
     wxString filterBuffer;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < items ; i++)
     {
         filterBuffer += wildDescriptions[i];
@@ -603,6 +615,9 @@ int wxFileDialog::ShowModal()
     }
 
     // Replace | with \0
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < filterBuffer.length(); i++ ) {
         if ( filterBuffer.GetChar(i) == wxT('|') ) {
             filterBuffer[i] = wxT('\0');
@@ -629,6 +644,9 @@ int wxFileDialog::ShowModal()
         const wxChar* extension = filterBuffer.t_str();
         int maxFilter = (int)(of.nFilterIndex*2L) - 1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( int i = 0; i < maxFilter; i++ )           // get extension
             extension = extension + wxStrlen( extension ) + 1;
 
@@ -676,6 +694,9 @@ int wxFileDialog::ShowModal()
         m_fileNames.Add(m_fileName);
         i += m_fileName.length() + 1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (fileNameBuffer[i] != wxT('\0'))
         {
             m_fileNames.Add(&fileNameBuffer[i]);
@@ -687,6 +708,9 @@ int wxFileDialog::ShowModal()
         m_fileName = toke.GetNextToken();
         m_fileNames.Add(m_fileName);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (toke.HasMoreTokens())
             m_fileNames.Add(toke.GetNextToken());
 #endif // OFN_EXPLORER
@@ -711,6 +735,9 @@ int wxFileDialog::ShowModal()
             const wxChar* extension = filterBuffer.t_str();
             int   maxFilter = (int)(of.nFilterIndex*2L) - 1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for( int i = 0; i < maxFilter; i++ )           // get extension
                 extension = extension + wxStrlen( extension ) + 1;
 

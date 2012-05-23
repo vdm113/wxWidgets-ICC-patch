@@ -76,6 +76,9 @@ static void ColouriseDoc(unsigned int startPos, int length, int initStyle,
 	bool numFloat = false; // Float literals have '+' and '-' signs
 	bool numHex = false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.atLineStart) {
@@ -319,6 +322,9 @@ static void FoldDoc(unsigned int startPos, int length, int initStyle, Accessor &
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
 	int style = initStyle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

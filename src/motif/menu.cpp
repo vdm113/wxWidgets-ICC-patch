@@ -187,6 +187,9 @@ wxMenuBar::wxMenuBar(size_t n, wxMenu *menus[], const wxArrayString& titles, lon
     Init();
 
     m_titles = titles;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < n; i++ )
         m_menus.Append(menus[i]);
 }
@@ -195,6 +198,9 @@ wxMenuBar::wxMenuBar(size_t n, wxMenu *menus[], const wxString titles[], long WX
 {
     Init();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < n; i++ )
     {
         m_menus.Append(menus[i]);
@@ -296,6 +302,9 @@ int wxMenuBar::FindMenuItem(const wxString& menuString, const wxString& itemStri
     const wxString stripped = wxStripMenuCodes(menuString);
 
     size_t menuCount = GetMenuCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < menuCount; i++)
     {
         if ( wxStripMenuCodes(m_titles[i]) == stripped )
@@ -310,6 +319,9 @@ wxMenuItem *wxMenuBar::FindItem(int id, wxMenu ** itemMenu) const
         *itemMenu = NULL;
 
     size_t menuCount = GetMenuCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < menuCount; i++)
     {
         wxMenuItem *item = m_menus.Item(i)->GetData()->FindItem(id, itemMenu);
@@ -342,6 +354,9 @@ bool wxMenuBar::CreateMenuBar(wxFrame* parent)
     m_mainWidget = (WXWidget) menuBarW;
 
     size_t menuCount = GetMenuCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < menuCount; i++)
     {
         wxMenu *menu = GetMenu(i);
@@ -388,6 +403,9 @@ bool wxMenuBar::DestroyMenuBar()
     XtUnrealizeWidget ((Widget) m_mainWidget);
 
     size_t menuCount = GetMenuCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < menuCount; i++)
     {
         wxMenu *menu = GetMenu(i);
@@ -413,6 +431,9 @@ void wxMenu::DestroyWidgetAndDetach()
         if ( menuParent )
         {
             wxMenuItemList::compatibility_iterator node = menuParent->GetMenuItems().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( node )
             {
                 if ( node->GetData()->GetSubMenu() == this )
@@ -502,6 +523,9 @@ WXWidget wxMenu::CreateMenu (wxMenuBar * menuBar,
     m_topLevelMenu = topMenu;
 
     size_t i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
           node;
           node = node->GetNext(), ++i )
@@ -521,6 +545,9 @@ WXWidget wxMenu::CreateMenu (wxMenuBar * menuBar,
 // do a CreateMenu again.
 void wxMenu::DestroyMenu (bool full)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
           node;
           node = node->GetNext() )
@@ -556,6 +583,9 @@ WXWidget wxMenu::FindMenuItem (int id, wxMenuItem ** it) const
         return m_buttonWidget;
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
           node;
           node = node->GetNext() )
@@ -593,6 +623,9 @@ void wxMenu::SetBackgroundColour(const wxColour& col)
     if (m_buttonWidget)
         wxDoChangeBackgroundColour(m_buttonWidget, (wxColour&) col, true);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
           node;
           node = node->GetNext() )
@@ -618,6 +651,9 @@ void wxMenu::SetForegroundColour(const wxColour& col)
     if (m_buttonWidget)
         wxDoChangeForegroundColour(m_buttonWidget, (wxColour&) col);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
           node;
           node = node->GetNext() )
@@ -652,6 +688,9 @@ void wxMenu::ChangeFont(bool keepOriginalSize)
                        NULL);
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
           node;
           node = node->GetNext() )
@@ -687,6 +726,9 @@ bool wxMenuBar::SetBackgroundColour(const wxColour& col)
         wxDoChangeBackgroundColour(m_mainWidget, (wxColour&) col);
 
     size_t menuCount = GetMenuCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < menuCount; i++)
         m_menus.Item(i)->GetData()->SetBackgroundColour((wxColour&) col);
 
@@ -703,6 +745,9 @@ bool wxMenuBar::SetForegroundColour(const wxColour& col)
         wxDoChangeForegroundColour(m_mainWidget, (wxColour&) col);
 
     size_t menuCount = GetMenuCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < menuCount; i++)
         m_menus.Item(i)->GetData()->SetForegroundColour((wxColour&) col);
 
@@ -720,6 +765,9 @@ bool wxMenuBar::SetFont(const wxFont& font)
     ChangeFont();
 
     size_t menuCount = GetMenuCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < menuCount; i++)
         m_menus.Item(i)->GetData()->SetFont(font);
 

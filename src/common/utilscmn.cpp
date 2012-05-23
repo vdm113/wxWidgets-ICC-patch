@@ -509,6 +509,9 @@ wxString wxGetCurrentDir()
     wxString dir;
     size_t len = 1024;
     bool ok;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
         ok = getcwd(dir.GetWriteBuf(len + 1), len) != NULL;
@@ -599,6 +602,9 @@ bool wxGetEnvMap(wxEnvVariableHashMap *map)
     {
         wxString name,
                  value;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( *env )
         {
             const wxString var(*env);
@@ -633,6 +639,9 @@ static bool ReadAll(wxInputStream *is, wxArrayString& output)
 
     wxTextInputStream tis(*is);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         wxString line = tis.ReadLine();
@@ -839,6 +848,9 @@ void wxQsort(void* pbase, size_t total_elems,
 
       PUSH (NULL, NULL);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       while (STACK_NOT_EMPTY)
         {
           char *left_ptr;
@@ -866,11 +878,20 @@ void wxQsort(void* pbase, size_t total_elems,
           /* Here's the famous ``collapse the walls'' section of quicksort.
              Gotta like those tight inner loops!  They are the main reason
              that this algorithm runs much faster than others. */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
           do
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
               while ((*cmp) ((void *) left_ptr, (void *) mid, user_data) < 0)
                 left_ptr += size;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
               while ((*cmp) ((void *) mid, (void *) right_ptr, user_data) < 0)
                 right_ptr -= size;
 
@@ -891,6 +912,9 @@ void wxQsort(void* pbase, size_t total_elems,
                   break;
                 }
             }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
           while (left_ptr <= right_ptr);
 
           /* Set up pointers for next iteration.  First determine whether
@@ -943,6 +967,9 @@ void wxQsort(void* pbase, size_t total_elems,
        array's beginning.  This is the smallest array element,
        and the operation speeds up insertion sort's inner loop. */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (run_ptr = tmp_ptr + size; run_ptr <= thresh; run_ptr += size)
       if ((*cmp) ((void *) run_ptr, (void *) tmp_ptr, user_data) < 0)
         tmp_ptr = run_ptr;
@@ -953,9 +980,15 @@ void wxQsort(void* pbase, size_t total_elems,
     /* Insertion sort, running from left-hand-side up to right-hand-side.  */
 
     run_ptr = base_ptr + size;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((run_ptr += size) <= end_ptr)
       {
         tmp_ptr = run_ptr - size;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ((*cmp) ((void *) run_ptr, (void *) tmp_ptr, user_data) < 0)
           tmp_ptr -= size;
 
@@ -965,11 +998,17 @@ void wxQsort(void* pbase, size_t total_elems,
             char *trav;
 
             trav = run_ptr + size;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (--trav >= run_ptr)
               {
                 char c = *trav;
                 char *hi, *lo;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (hi = lo = trav; (lo -= size) >= tmp_ptr; hi = lo)
                   *hi = *lo;
                 *hi = c;
@@ -1298,6 +1337,9 @@ wxWindow* wxFindWindowAtPoint(wxWindow* win, const wxPoint& pt)
 #endif
 
     wxWindowList::compatibility_iterator node = win->GetChildren().GetLast();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxWindow* child = node->GetData();
@@ -1327,6 +1369,9 @@ wxWindow* wxGenericFindWindowAtPoint(const wxPoint& pt)
     // on top are likely to have been appended most
     // recently.
     wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetLast();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxWindow* win = node->GetData();
@@ -1576,6 +1621,9 @@ wxFont wxGetFontFromUser(wxWindow *parent, const wxFont& fontInit, const wxStrin
 void wxEnableTopLevelWindows(bool enable)
 {
     wxWindowList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( node = wxTopLevelWindows.GetFirst(); node; node = node->GetNext() )
         node->GetData()->Enable(enable);
 }
@@ -1606,6 +1654,9 @@ void wxWindowDisabler::DoDisable(wxWindow *winToSkip)
     m_winDisabled = NULL;
 
     wxWindowList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( node = wxTopLevelWindows.GetFirst(); node; node = node->GetNext() )
     {
         wxWindow *winTop = node->GetData();
@@ -1635,6 +1686,9 @@ wxWindowDisabler::~wxWindowDisabler()
         return;
 
     wxWindowList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( node = wxTopLevelWindows.GetFirst(); node; node = node->GetNext() )
     {
         wxWindow *winTop = node->GetData();

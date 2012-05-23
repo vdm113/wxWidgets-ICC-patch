@@ -285,6 +285,9 @@ private:
                 if ( format == wxBMP_8BPP_PALETTE )
                 {
                     unsigned char *cmap = new unsigned char [256];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( int i = 0; i < 256; i++ )
                         cmap[i] = (unsigned char)i;
                     image.SetPalette(wxPalette(256, cmap, cmap, cmap));
@@ -478,9 +481,15 @@ public:
                 return;
             }
             wxAlphaPixelData::Iterator p(data);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int y = 0; y < SIZE; ++y )
             {
                 wxAlphaPixelData::Iterator rowStart = p;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int x = 0; x < SIZE; ++x )
                 {
                     p.Alpha() = 0;
@@ -502,6 +511,9 @@ public:
 
         wxAlphaPixelData::Iterator p(data);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int y = 0; y < REAL_SIZE; ++y )
         {
             wxAlphaPixelData::Iterator rowStart = p;
@@ -510,6 +522,9 @@ public:
                 g = (REAL_SIZE/3 <= y) && (y < 2*(REAL_SIZE/3)) ? 255 : 0,
                 b = 2*(REAL_SIZE/3) <= y ? 255 : 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int x = 0; x < REAL_SIZE; ++x )
             {
                 // note that RGB must be premultiplied by alpha
@@ -538,6 +553,9 @@ public:
         }
 
         wxNativePixelData::Iterator p(data);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int y = 0; y < SIZE; ++y )
         {
             wxNativePixelData::Iterator rowStart = p;
@@ -546,6 +564,9 @@ public:
                 g = (SIZE/3 <= y) && (y < 2*(SIZE/3)) ? 255 : 0,
                 b = 2*(SIZE/3) <= y ? 255 : 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int x = 0; x < SIZE; ++x )
             {
                 p.Red() = r;
@@ -833,6 +854,9 @@ public:
         unsigned char* alpha = m_image.GetAlpha();
         unsigned char* data = m_image.GetData();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int y = 0; y < HEIGHT; y++ )
         {
             unsigned char r = 0,
@@ -845,6 +869,9 @@ public:
             else
                 b = 0xff;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int x = 0; x < WIDTH; x++ )
             {
                 *alpha++ = x;

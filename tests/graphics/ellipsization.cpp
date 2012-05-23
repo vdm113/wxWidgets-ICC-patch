@@ -89,14 +89,26 @@ void EllipsizationTestCase::NormalCase()
 
     int widthsToTest[] = { 50, 100, 150 };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int s = 0; s < WXSIZEOF(stringsToTest); s++ )
     {
         const wxString str = wxString::FromUTF8(stringsToTest[s]);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned int  f = 0; f < WXSIZEOF(flagsToTest); f++ )
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( unsigned int m = 0; m < WXSIZEOF(modesToTest); m++ )
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( unsigned int w = 0; w < WXSIZEOF(widthsToTest); w++ )
                 {
                     wxString ret = wxControl::Ellipsize

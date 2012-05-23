@@ -58,6 +58,9 @@ public:
 
     void Clear()
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned n = 0; n < WXSIZEOF(m_logs); n++ )
         {
             m_logs[n].clear();

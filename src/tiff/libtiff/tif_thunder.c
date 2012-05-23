@@ -75,6 +75,9 @@ ThunderDecode(TIFF* tif, tidata_t op, tsize_t maxpixels)
 	cc = tif->tif_rawcc;
 	lastpixel = 0;
 	npixels = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (cc > 0 && npixels < maxpixels) {
 		int n, delta;
 
@@ -92,6 +95,9 @@ ThunderDecode(TIFF* tif, tidata_t op, tsize_t maxpixels)
 				lastpixel |= lastpixel << 4;
 			npixels += n;
 			if (npixels < maxpixels) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (; n > 0; n -= 2)
 					*op++ = (tidataval_t) lastpixel;
 			}
@@ -136,6 +142,9 @@ ThunderDecodeRow(TIFF* tif, tidata_t buf, tsize_t occ, tsample_t s)
 	tidata_t row = buf;
 	
 	(void) s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((long)occ > 0) {
 		if (!ThunderDecode(tif, row, tif->tif_dir.td_imagewidth))
 			return (0);

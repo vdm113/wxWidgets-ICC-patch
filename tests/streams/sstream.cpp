@@ -78,6 +78,9 @@ strStream::strStream()
 {
     static const size_t LEN = 256;
     m_str.reserve(LEN);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < LEN; n++ )
     {
         m_str += wxChar(wxT('A') + n % (wxT('Z') - wxT('A') + 1));

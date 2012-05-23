@@ -32,6 +32,9 @@ using namespace Scintilla;
 // The maximum number of '=' characters allowed is 254.
 static int LongDelimCheck(StyleContext &sc) {
 	int sep = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (sc.GetRelative(sep) == '=' && sep < 0xFF)
 		sep++;
 	if (sc.GetRelative(sep) == sc.ch)
@@ -86,6 +89,9 @@ static void ColouriseLuaDoc(
 		// shbang line: # is a comment only if first char of the script
 		sc.SetState(SCE_LUA_COMMENTLINE);
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 		if (sc.atLineEnd) {
 			// Update the line state, so it can be seen by next line
@@ -281,6 +287,9 @@ static void FoldLuaDoc(unsigned int startPos, int length, int /* initStyle */, W
 	int styleNext = styler.StyleAt(startPos);
 	char s[10];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -289,6 +298,9 @@ static void FoldLuaDoc(unsigned int startPos, int length, int /* initStyle */, W
 		bool atEOL = (ch == '\r' && chNext != '\n') || (ch == '\n');
 		if (style == SCE_LUA_WORD) {
 			if (ch == 'i' || ch == 'd' || ch == 'f' || ch == 'e' || ch == 'r' || ch == 'u') {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (unsigned int j = 0; j < 8; j++) {
 					if (!iswordchar(styler[i + j])) {
 						break;

@@ -78,6 +78,9 @@ static void ColorizeHaskellDoc(unsigned int startPos, int length, int initStyle,
 
    StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (; sc.More(); sc.Forward()) {
 
       // Check for state end
@@ -231,9 +234,15 @@ void EXT_LEXER_DECL Lex(unsigned int lexer, unsigned int startPos, int length, i
    WindowAccessor wa(window, ps);
 
    int nWL = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (; words[nWL]; nWL++) ;
    WordList** wl = new WordList* [nWL + 1];
    int i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (; i<nWL; i++)
    {
       wl[i] = new WordList();
@@ -243,6 +252,9 @@ void EXT_LEXER_DECL Lex(unsigned int lexer, unsigned int startPos, int length, i
 
    ColorizeHaskellDoc(startPos, length, initStyle, wl, wa);
    wa.Flush();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i=nWL-1;i>=0;i--)
       delete wl[i];
    delete [] wl;

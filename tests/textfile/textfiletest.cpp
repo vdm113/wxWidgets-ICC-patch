@@ -214,6 +214,9 @@ void TextFileTestCase::ReadBig()
 
     {
         wxFFile f(GetTestFileName(), "w");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < NUM_LINES; n++ )
         {
             fprintf(f.fp(), "Line %lu\n", (unsigned long)n + 1);

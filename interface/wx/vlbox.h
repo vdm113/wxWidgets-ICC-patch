@@ -98,6 +98,9 @@ public:
         @code
         unsigned long cookie;
         int item = hlbox->GetFirstSelected(cookie);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( item != wxNOT_FOUND )
         {
             // ... process item ...

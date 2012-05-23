@@ -801,6 +801,9 @@ attlist2(PROLOG_STATE *state,
         KW_NMTOKENS,
       };
       int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < (int)(sizeof(types)/sizeof(types[0])); i++)
         if (XmlNameMatchesAscii(enc, ptr, end, types[i])) {
           state->handler = attlist8;

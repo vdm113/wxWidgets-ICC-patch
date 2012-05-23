@@ -316,6 +316,9 @@ wxStringImpl& wxStringImpl::append(size_t n, wxStringCharType ch)
     }
     GetStringData()->nDataLength = len + n;
     m_pchData[len + n] = '\0';
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < n; ++i )
         m_pchData[len + i] = ch;
     return *this;
@@ -488,6 +491,9 @@ size_t wxStringImpl::find(const wxStringImpl& str, size_t nStart) const
     if ( !p )
         return npos;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( p - c_str() + nLenOther <= nLen &&
             wxStringMemcmp(p, other, nLenOther) )
     {
@@ -540,6 +546,9 @@ size_t wxStringImpl::rfind(const wxStringImpl& str, size_t nStart) const
             top = nStart;
 
         const wxStringCharType *cursor = c_str() + top;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do
         {
             if ( wxStringMemcmp(cursor, str.c_str(), str.length()) == 0 )
@@ -570,6 +579,9 @@ size_t wxStringImpl::rfind(wxStringCharType ch, size_t nStart) const
     }
 
     const wxStringCharType *actual;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( actual = c_str() + ( nStart == npos ? length() : nStart + 1 );
           actual > c_str(); --actual )
     {

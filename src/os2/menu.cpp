@@ -160,6 +160,9 @@ int wxMenu::FindAccel(
     size_t                          n;
     size_t                          nCount = m_vAccels.GetCount();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0; n < nCount; n++)
         if (m_vAccels[n]->m_command == nId)
             return n;
@@ -175,6 +178,9 @@ void wxMenu::UpdateAccel(
         wxMenu*                     pSubmenu = pItem->GetSubMenu();
         wxMenuItemList::compatibility_iterator node = pSubmenu->GetMenuItems().GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             UpdateAccel(node->GetData());
@@ -473,6 +479,9 @@ wxMenuItem* wxMenu::DoRemove(
     size_t                          nPos;
     wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (nPos = 0; node; nPos++)
     {
         if (node->GetData() == pItem)
@@ -536,6 +545,9 @@ size_t wxMenu::CopyAccels(
 {
     size_t                          nCount = GetAccelCount();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t n = 0; n < nCount; n++)
     {
         *pAccels++ = *m_vAccels[n];
@@ -638,6 +650,9 @@ wxMenuItem* wxMenu::FindItem(
 
     wxMenuItem*                     pItem = NULL;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxMenuItemList::compatibility_iterator node = m_items.GetFirst();
           node && !pItem;
           node = node->GetNext() )
@@ -700,6 +715,9 @@ wxMenuBar::wxMenuBar(
     Init();
 
     m_titles.Alloc(nCount);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < nCount; i++ )
     {
         m_menus.Append(vMenus[i]);
@@ -772,6 +790,9 @@ WXHMENU wxMenuBar::Create()
     {
         size_t nCount = GetMenuCount(), i;
         wxMenuList::iterator it;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0, it = m_menus.begin(); i < nCount; i++, it++)
         {
             APIRET   rc;
@@ -1056,6 +1077,9 @@ void wxMenuBar::RebuildAccelTable()
     size_t                          i;
     size_t                          nCount = GetMenuCount();
     wxMenuList::iterator it;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, it = m_menus.begin(); i < nCount; i++, it++)
     {
         nAccelCount += (*it)->GetAccelCount();
@@ -1066,6 +1090,9 @@ void wxMenuBar::RebuildAccelTable()
         wxAcceleratorEntry*         pAccelEntries = new wxAcceleratorEntry[nAccelCount];
 
         nAccelCount = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0, it = m_menus.begin(); i < nCount; i++, it++)
         {
             nAccelCount += (*it)->CopyAccels(&pAccelEntries[nAccelCount]);
@@ -1122,6 +1149,9 @@ int wxMenuBar::FindMenuItem(
     wxString                        sMenuLabel = wxStripMenuCodes(rMenuString);
     size_t                          nCount = GetMenuCount(), i;
     wxMenuList::const_iterator it;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, it = m_menus.begin(); i < nCount; i++, it++)
     {
         wxString                    sTitle = wxStripMenuCodes(m_titles[i]);
@@ -1143,6 +1173,9 @@ wxMenuItem* wxMenuBar::FindItem(
     wxMenuItem*                     pItem = NULL;
     size_t                          nCount = GetMenuCount(), i;
     wxMenuList::const_iterator it;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, it = m_menus.begin(); !pItem && (i < nCount); i++, it++)
     {
         pItem = (*it)->FindItem( nId
@@ -1164,6 +1197,9 @@ wxMenuItem* wxMenuBar::FindItem(
     wxMenuItem*                     pItem = NULL;
     size_t                          nCount = GetMenuCount(), i;
     wxMenuList::const_iterator it;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, it = m_menus.begin(); !pItem && (i < nCount); i++, it++)
     {
         pItem = (*it)->FindItem( nId

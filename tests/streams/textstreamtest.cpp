@@ -152,6 +152,9 @@ static void DoTestRoundTrip(const T *values, size_t numValues)
         wxFileOutputStream fileOut(wxT("test.txt"));
         wxTextOutputStream textOut(fileOut);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < numValues; n++ )
         {
             textOut << values[n] << endl;
@@ -163,6 +166,9 @@ static void DoTestRoundTrip(const T *values, size_t numValues)
         wxTextInputStream textIn(fileIn);
 
         T value;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < numValues; n++ )
         {
             textIn >> value;
@@ -278,6 +284,9 @@ void TextStreamTestCase::TestInput(const wxMBConv& conv,
     wxTextInputStream textIn(byteIn, wxT("\n"), conv);
 
     wxString temp;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( wxChar c = textIn.GetChar() )
     {
         temp.Append(c);

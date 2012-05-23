@@ -60,6 +60,9 @@ void WriteImage(TIFF *tif)
 	char buffer[WIDTH];
 	
 	memset(buffer,0,sizeof(buffer));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i=0;i<HEIGHT;i++)
 		if (!TIFFWriteScanline(tif, buffer, i, 0))
 			TIFFErrorExt(tif->tif_clientdata, "WriteImage","failure in WriteScanline\n");

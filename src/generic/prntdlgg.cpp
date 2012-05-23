@@ -535,6 +535,9 @@ void wxGenericPrintSetupDialog::Init(wxPrintData* data)
     if (res >= 0 && errors.GetCount() == 0)
     {
         size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < output.GetCount(); i++)
         {
             wxStringTokenizer tok( output[i], wxT(" ") );
@@ -580,6 +583,9 @@ void wxGenericPrintSetupDialog::Init(wxPrintData* data)
                 tmp = tok2.GetNextToken();  // "printer"
                 tmp = tok2.GetNextToken();  // "hp_deskjet930c"
                 tmp = wxEmptyString;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (tok2.HasMoreTokens())
                 {
                     tmp += tok2.GetNextToken();
@@ -692,6 +698,9 @@ wxGenericPrintSetupDialog::~wxGenericPrintSetupDialog()
 void wxGenericPrintSetupDialog::OnPrinter(wxListEvent& event)
 {
     // Delete check mark
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (long item = 0; item < m_printerListCtrl->GetItemCount(); item++)
         m_printerListCtrl->SetItemImage( item, -1 );
 
@@ -792,6 +801,9 @@ wxComboBox *wxGenericPrintSetupDialog::CreatePaperTypeChoice()
     wxString *choices = new wxString [n];
     size_t sel = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < n; i++)
     {
         wxPrintPaperType *paper = wxThePrintPaperDatabase->Item(i);
@@ -850,6 +862,9 @@ wxGenericPageSetupDialog::wxGenericPageSetupDialog( wxWindow *parent,
     size_t      n = wxThePrintPaperDatabase->GetCount();
     wxString   *choices = new wxString [n];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < n; i++)
     {
         wxPrintPaperType *paper = wxThePrintPaperDatabase->Item(i);
@@ -1049,6 +1064,9 @@ wxComboBox *wxGenericPageSetupDialog::CreatePaperTypeChoice(int *x, int *y)
     size_t      n = wxThePrintPaperDatabase->GetCount();
     wxString   *choices = new wxString [n];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < n; i++)
     {
         wxPrintPaperType *paper = wxThePrintPaperDatabase->Item(i);

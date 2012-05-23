@@ -509,6 +509,9 @@ void ODComboboxWidgetsPage::CreateCombo()
     if ( m_combobox )
     {
         unsigned int count = m_combobox->GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned int n = 0; n < count; n++ )
         {
             items.Add(m_combobox->GetString(n));
@@ -525,6 +528,9 @@ void ODComboboxWidgetsPage::CreateCombo()
                        flags);
 
     unsigned int count = items.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int n = 0; n < count; n++ )
     {
         m_combobox->Append(items[n]);
@@ -633,6 +639,9 @@ void ODComboboxWidgetsPage::OnButtonAdd(wxCommandEvent& WXUNUSED(event))
 void ODComboboxWidgetsPage::OnButtonAddMany(wxCommandEvent& WXUNUSED(event))
 {
     // "many" means 1000 here
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int n = 0; n < 1000; n++ )
     {
         m_combobox->Append(wxString::Format(wxT("item #%u"), n));

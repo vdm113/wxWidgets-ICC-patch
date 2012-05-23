@@ -60,6 +60,9 @@
 // return true if the iid is in the array
 WXDLLEXPORT bool IsIidFromList(REFIID riid, const IID *aIids[], size_t nCount)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for ( size_t i = 0; i < nCount; i++ ) {
     if ( riid == *aIids[i] )
       return true;
@@ -461,6 +464,9 @@ wxConvertOleToVariant(const VARIANTARG& oleVariant, wxVariant& variant)
 
         // Compute the total number of elements in all array dimensions
         int cElements = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int cDims = 0; cDims < oleVariant.parray->cDims; cDims++ )
             cElements *= oleVariant.parray->rgsabound[cDims].cElements;
 
@@ -476,6 +482,9 @@ wxConvertOleToVariant(const VARIANTARG& oleVariant, wxVariant& variant)
                 {
                     variant.ClearList();
                     VARIANTARG *variant_data=(VARIANTARG*)pvdata;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( int i = 0; i < cElements; i++ )
                     {
                         VARIANTARG& oleElement = variant_data[i];
@@ -496,6 +505,9 @@ wxConvertOleToVariant(const VARIANTARG& oleVariant, wxVariant& variant)
                 {
                     wxArrayString strings;
                     BSTR *string_val=(BSTR*)pvdata;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( int i = 0; i < cElements; ++i )
                     {
                         wxString str=wxConvertStringFromOle(*string_val);
@@ -720,6 +732,9 @@ static wxString GetIidName(REFIID riid)
   #undef ADD_KNOWN_IID
 
   // try to find the interface in the table
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for ( size_t ui = 0; ui < WXSIZEOF(aKnownIids); ui++ ) {
     if ( riid == *aKnownIids[ui].pIid ) {
       return aKnownIids[ui].szName;

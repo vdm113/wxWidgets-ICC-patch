@@ -123,6 +123,9 @@ jpeg_fdct_ifast (DCTELEM * data)
   /* Pass 1: process rows. */
 
   dataptr = data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {
     tmp0 = dataptr[0] + dataptr[7];
     tmp7 = dataptr[0] - dataptr[7];
@@ -173,6 +176,9 @@ jpeg_fdct_ifast (DCTELEM * data)
   /* Pass 2: process columns. */
 
   dataptr = data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {
     tmp0 = dataptr[DCTSIZE*0] + dataptr[DCTSIZE*7];
     tmp7 = dataptr[DCTSIZE*0] - dataptr[DCTSIZE*7];

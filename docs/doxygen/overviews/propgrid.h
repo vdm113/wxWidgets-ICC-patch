@@ -509,6 +509,9 @@ properties (not categories nor private child properties that are normally
 
     wxPropertyGridIterator it;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( it = pg->GetIterator();
           !it.AtEnd();
           it++ )
@@ -525,6 +528,9 @@ As expected there is also a const iterator:
 
     wxPropertyGridConstIterator it;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( it = pg->GetIterator();
           !it.AtEnd();
           it++ )
@@ -546,6 +552,9 @@ This example reverse-iterates through all visible items:
 
     wxPropertyGridIterator it;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( it = pg->GetIterator(wxPG_ITERATE_VISIBLE, wxBOTTOM);
           !it.AtEnd();
           it-- )
@@ -566,6 +575,9 @@ iterator is limited to forward iteration.
 
     wxPGVIterator it;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( it = manager->GetVIterator(wxPG_ITERATE_ALL);
           !it.AtEnd();
           it.Next() )

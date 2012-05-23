@@ -63,6 +63,9 @@ wxString
 ExtractUntil(char ch, wxString::const_iterator& it, wxString::const_iterator end)
 {
     wxString str;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ; it != end; ++it )
     {
         if ( *it == ch )
@@ -97,6 +100,9 @@ wxMarkupParser::ParseAttrs(wxString attrs, TagAndAttrs& tagAndAttrs)
 
     wxMarkupSpanAttributes& spanAttrs = tagAndAttrs.attrs;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !attrs.empty() )
     {
         wxString rest;
@@ -236,6 +242,9 @@ bool wxMarkupParser::OutputTag(const TagAndAttrs& tagAndAttrs, bool start)
                     &wxMarkupParserOutput::OnTeletypeEnd },
         };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned n = 0; n < WXSIZEOF(tagHandlers); n++ )
         {
             const TagHandler& h = tagHandlers[n];
@@ -267,6 +276,9 @@ bool wxMarkupParser::Parse(const wxString& text)
     wxString current;
 
     const wxString::const_iterator end = text.end();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator it = text.begin(); it != end; ++it )
     {
         switch ( (*it).GetValue() )
@@ -367,6 +379,9 @@ bool wxMarkupParser::Parse(const wxString& text)
                     const size_t pos = it - text.begin() + 1;
 
                     unsigned n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( n = 0; n < WXSIZEOF(xmlEntities); n++ )
                     {
                         const XMLEntity& xmlEnt = xmlEntities[n];
@@ -414,9 +429,15 @@ wxString wxMarkupParser::Quote(const wxString& text)
     wxString quoted;
     quoted.reserve(text.length());
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator it = text.begin(); it != text.end(); ++it )
     {
         unsigned n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < WXSIZEOF(xmlEntities); n++ )
         {
             const XMLEntity& xmlEnt = xmlEntities[n];

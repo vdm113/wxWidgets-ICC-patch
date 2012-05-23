@@ -95,6 +95,9 @@ void BumpTreeRecordIds (
 , PMYRECORD                         pRecord
 )
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(pRecord)
     {
         pRecord = (PMYRECORD)PVOIDFROMMR(::WinSendMsg( hWnd
@@ -122,6 +125,9 @@ PMYRECORD FindOS2TreeRecordByID (
                       ,(MPARAM)(USHORT)sizeof(CNRINFO)
                      ))
         return NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < vCnrInfo.cRecords; i++)
     {
         if (i == 0)
@@ -316,6 +322,9 @@ bool wxTreeTraversal::Traverse (
     wxTreeItemId                    vChild = m_pTree->GetFirstChild( rRoot
                                                                     ,lCookie
                                                                    );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (vChild.IsOk())
     {
         //
@@ -430,6 +439,9 @@ wxTreeCtrl::~wxTreeCtrl ()
     //
     if (m_bHasAnyAttr)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxNode* pNode = m_vAttrs.Next(); pNode; pNode = m_vAttrs.Next())
         {
             delete (wxTreeItemAttr *)pNode->Data();
@@ -1283,6 +1295,9 @@ wxTreeItemId wxTreeCtrl::GetFirstVisibleItem () const
 
     if (IsVisible(wxTreeItemId((long)pRecord->m_ulItemId)))
         return wxTreeItemId((long)pRecord->m_ulItemId);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(pRecord)
     {
         pRecord = (PMYRECORD)PVOIDFROMMR(::WinSendMsg( GetHWND()
@@ -1310,6 +1325,9 @@ wxTreeItemId wxTreeCtrl::GetNextVisible (
 
     if (!pRecord)
         return wxTreeItemId(-1L);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(pRecord)
     {
         pRecord = (PMYRECORD)PVOIDFROMMR(::WinSendMsg( GetHWND()
@@ -1337,6 +1355,9 @@ wxTreeItemId wxTreeCtrl::GetPrevVisible (
 
     if (!pRecord)
         return wxTreeItemId(-1L);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(pRecord)
     {
         pRecord = (PMYRECORD)PVOIDFROMMR(::WinSendMsg( GetHWND()
@@ -1599,6 +1620,9 @@ void wxTreeCtrl::DeleteChildren (
                                                            ,lCookie
                                                           );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (vChild.IsOk())
     {
         aChildren.Add((long)(WXHTREEITEM)vChild);
@@ -1609,6 +1633,9 @@ void wxTreeCtrl::DeleteChildren (
 
     size_t                          nCount = aChildren.Count();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t n = 0; n < nCount; n++)
     {
         Delete(aChildren[n]);
@@ -1731,6 +1758,9 @@ void wxTreeCtrl::UnselectAll ()
         wxArrayTreeItemIds          aSelections;
         size_t                      nCount = GetSelections(aSelections);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t n = 0; n < nCount; n++)
         {
             SetItemCheck( aSelections[n]

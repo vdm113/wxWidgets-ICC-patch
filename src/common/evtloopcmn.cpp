@@ -133,6 +133,9 @@ int wxEventLoopManual::Run()
     // wxModalEventLoop depends on this (so we can't just use ON_BLOCK_EXIT or
     // something similar here)
 #if wxUSE_EXCEPTIONS
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         try
@@ -140,6 +143,9 @@ int wxEventLoopManual::Run()
 #endif // wxUSE_EXCEPTIONS
 
             // this is the event loop itself
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( ;; )
             {
                 // give them the possibility to do whatever they want

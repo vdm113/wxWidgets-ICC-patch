@@ -91,16 +91,25 @@ static bool DoRegionUnion(wxRegionBase& region,
     // rectangles to add to the region.
     int width = image.GetWidth();
     int height = image.GetHeight();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int y=0; y < height; y++)
     {
         wxRect rect;
         rect.y = y;
         rect.height = 1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int x=0; x < width; x++)
         {
             // search for a continuous range of non-transparent pixels
             int x0 = x;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( x < width)
             {
                 unsigned char R = image.GetRed(x,y);

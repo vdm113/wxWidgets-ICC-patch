@@ -149,6 +149,7 @@ public:                                                             \
       {                                                             \
           const const_reverse_iterator b = rbegin(),                \
                                        e = rend();                  \
+MY_MACRO_PRAGMA_IVDEP \
           for ( const_reverse_iterator i = b; i != e; ++i )         \
               if ( *i == item )                                     \
                   return (int)(e - i - 1);                          \
@@ -157,6 +158,7 @@ public:                                                             \
       {                                                             \
           const const_iterator b = begin(),                         \
                                e = end();                           \
+MY_MACRO_PRAGMA_IVDEP \
           for ( const_iterator i = b; i != e; ++i )                 \
               if ( *i == item )                                     \
                   return (int)(i - b);                              \
@@ -1029,6 +1031,7 @@ WX_DEFINE_USER_EXPORTED_ARRAY_PTR(void *, wxArrayPtrVoid, class WXDLLIMPEXP_BASE
     {                                                                         \
         size_t wxAAcnt = (other).size();                                      \
         (array).reserve(wxAAcnt);                                             \
+MY_MACRO_PRAGMA_IVDEP \
         for ( size_t wxAAn = 0; wxAAn < wxAAcnt; wxAAn++ )                    \
         {                                                                     \
             (array).Insert((other)[wxAAn], wxAAn);                            \
@@ -1040,6 +1043,7 @@ WX_DEFINE_USER_EXPORTED_ARRAY_PTR(void *, wxArrayPtrVoid, class WXDLLIMPEXP_BASE
     {                                                                         \
         size_t wxAAcnt = (other).size();                                      \
         (array).reserve(wxAAcnt);                                             \
+MY_MACRO_PRAGMA_IVDEP \
         for ( size_t wxAAn = 0; wxAAn < wxAAcnt; wxAAn++ )                    \
         {                                                                     \
             (array).push_back((other)[wxAAn]);                                \
@@ -1055,6 +1059,7 @@ WX_DEFINE_USER_EXPORTED_ARRAY_PTR(void *, wxArrayPtrVoid, class WXDLLIMPEXP_BASE
 #define WX_CLEAR_ARRAY(array)                                                 \
     {                                                                         \
         size_t wxAAcnt = (array).size();                                      \
+MY_MACRO_PRAGMA_IVDEP \
         for ( size_t wxAAn = 0; wxAAn < wxAAcnt; wxAAn++ )                    \
         {                                                                     \
             delete (array)[wxAAn];                                            \

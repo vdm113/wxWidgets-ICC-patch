@@ -187,6 +187,9 @@ bool wxPathList::Add(const wxString& path)
 
 void wxPathList::Add(const wxArrayString &arr)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t j=0; j < arr.GetCount(); j++)
         Add(arr[j]);
 }
@@ -254,6 +257,9 @@ wxString wxPathList::FindValidPath (const wxString& file) const
     else
         strend = fn.GetFullPath();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i=0; i<GetCount(); i++)
     {
         wxString strstart = Item(i);
@@ -343,6 +349,9 @@ static void wxDoStripExtension(T *buffer)
 {
     int len = wxStrlen(buffer);
     int i = len-1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (i > 0)
     {
         if (buffer[i] == wxT('.'))
@@ -377,6 +386,9 @@ static CharType *wxDoRealPath (CharType *path)
       p = &path[0];
     else
       p = &path[2];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (; *p; p++)
       {
         if (*p == SEP)
@@ -384,6 +396,9 @@ static CharType *wxDoRealPath (CharType *path)
             if (p[1] == wxT('.') && p[2] == wxT('.') && (p[3] == SEP || p[3] == wxT('\0')))
               {
                 CharType *q;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (q = p - 1; q >= path && *q != SEP; q--)
                 {
                     // Empty
@@ -512,10 +527,16 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
     CharType *nm_tmp = nm;
 
     /* Skip leading whitespace and cr */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (wxStrchr(trimchars, *nm) != NULL)
         nm++;
     /* And strip off trailing whitespace and cr */
     s = nm + (q = wxStrlen(nm)) - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (q-- && wxStrchr(trimchars, *s) != NULL)
         *s = wxT('\0');
 
@@ -529,6 +550,9 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
 
     /* Expand inline environment variables */
 #ifdef __VISAGECPP__
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (*d)
     {
       *d++ = *s;
@@ -545,6 +569,9 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
       }
       else
 #else
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((*d++ = *s) != 0) {
 #  ifndef __WINDOWS__
         if (*s == wxT('\\')) {
@@ -567,6 +594,9 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
             register CharType  *start = d;
             register int     braces = (*s == wxT('{') || *s == wxT('('));
             register CharType  *value;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ((*d++ = *s) != 0)
                 if (braces ? (*s == wxT('}') || *s == wxT(')')) : !(wxIsalnum(*s) || *s == wxT('_')) )
                     break;
@@ -575,6 +605,9 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
             *--d = 0;
             value = wxGetenv(braces ? start + 1 : start);
             if (value) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ((d = start - 1); (*d++ = *value++) != 0;)
                 {
                     // Empty
@@ -606,6 +639,9 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
         } else
         {                /* ~user/filename */
             register CharType  *nnm;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (s = nm; *s && *s != SEP; s++)
             {
                 // Empty
@@ -632,6 +668,9 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
     d = buf;
     if (s && *s) { /* MATTHEW: s could be NULL if user '~' didn't exist */
         /* Copy home dir */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (wxT('\0') != (*d++ = *s++))
           /* loop */;
         // Handle root home
@@ -639,6 +678,9 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
           *(d - 1) = SEP;
     }
     s = nm;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((*d++ = *s++) != 0)
     {
         // Empty
@@ -749,6 +791,9 @@ wxPathOnly (wxChar *path)
         int i = l - 1;
 
         // Search backward for a backward or forward slash
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (i > -1)
         {
             // Unix like or Windows
@@ -795,6 +840,9 @@ wxString wxPathOnly (const wxString& path)
         int i = l - 1;
 
         // Search backward for a backward or forward slash
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (i > -1)
         {
             // Unix like or Windows
@@ -917,6 +965,9 @@ template<typename T>
 static void wxDoDos2UnixFilename(T *s)
 {
   if (s)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (*s)
       {
         if (*s == wxT('\\'))
@@ -943,6 +994,9 @@ wxDoUnix2DosFilename(T *WXUNUSED(s) )
 // Yes, I really mean this to happen under DOS only! JACS
 #if defined(__WINDOWS__) || defined(__OS2__)
   if (s)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (*s)
       {
         if (*s == wxT('/'))
@@ -972,9 +1026,15 @@ wxConcatFiles (const wxString& file1, const wxString& file2, const wxString& fil
     ssize_t ofs;
     unsigned char buf[1024];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( int i=0; i<2; i++)
     {
         wxFile *in = i==0 ? &in1 : &in2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do{
             if ( (ofs = in->Read(buf,WXSIZEOF(buf))) == wxInvalidOffset ) return false;
             if ( ofs > 0 )
@@ -1017,6 +1077,9 @@ wxDoCopyFile(wxFile& fileIn,
 
     // copy contents of file1 to file2
     char buf[4096];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         ssize_t count = fileIn.Read(buf, WXSIZEOF(buf));
@@ -1459,6 +1522,9 @@ wxChar *wxDoGetCwd(wxChar *buf, int sz)
 #ifdef __DJGPP__
         // VS: DJGPP is a strange mix of DOS and UNIX API and returns paths
         //     with / deliminers. We don't like that.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxChar *ch = buf; *ch; ch++)
         {
             if (*ch == wxT('/'))
@@ -1605,6 +1671,9 @@ bool wxFindFileInPath(wxString *pStr, const wxString& szPath, const wxString& sz
 
     wxStringTokenizer tkn(szPath, wxPATH_SEP);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( tkn.HasMoreTokens() )
     {
         wxString strFile = tkn.GetNextToken();
@@ -1661,6 +1730,9 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
 
     wxString description, filter;
     int pos = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( pos != wxNOT_FOUND )
     {
         pos = str.Find(wxT('|'));
@@ -1700,6 +1772,9 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
 
 #if defined(__WXMOTIF__)
     // split it so there is one wildcard per entry
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( size_t i = 0 ; i < descriptions.GetCount() ; i++ )
     {
         pos = filters[i].Find(wxT(';'));
@@ -1719,6 +1794,9 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
             //     C/C++ Files(*.cpp)|*.cpp
             //     C/C++ Files(*.c)|*.c
             //     C/C++ Files(*.h)|*.h
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( size_t k=i;k<i+2;k++ )
             {
                 pos = descriptions[k].Find(filters[k]);
@@ -1746,6 +1824,9 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
 #endif
 
     // autocompletion
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( size_t j = 0 ; j < descriptions.GetCount() ; j++ )
     {
         if ( descriptions[j].empty() && !filters[j].empty() )
@@ -1920,6 +2001,9 @@ wxFileKind wxGetFileKind(FILE *fp)
 
 bool wxIsWild( const wxString& pattern )
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator p = pattern.begin(); p != pattern.end(); ++p )
     {
         switch ( (*p).GetValue() )
@@ -1968,6 +2052,9 @@ bool wxMatchWild( const wxString& pat, const wxString& text, bool dot_special )
         return false;
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (;;)
     {
         if (*m == wxT('*'))

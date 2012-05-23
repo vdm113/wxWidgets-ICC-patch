@@ -162,6 +162,9 @@ Callback::OnDataAvailable(DWORD grfBSCF,
 	  XML_Char wcharset[CHARSET_MAX];
 	  XML_Char *p1 = wcharset;
 	  const char *p2 = charset;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	  while ((*p1++ = (unsigned char)*p2++) != 0)
 	    ;
 	  XML_SetEncoding(parser_, wcharset);
@@ -176,6 +179,9 @@ Callback::OnDataAvailable(DWORD grfBSCF,
   if (!parser_)
     return E_ABORT;
   if (pstgmed->tymed == TYMED_ISTREAM) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (totalRead_ < dwSize) {
 #define READ_MAX (64*1024)
       DWORD nToRead = dwSize - totalRead_;
@@ -268,6 +274,9 @@ openStream(XML_Parser parser,
   hr = CreateURLMoniker(0, uri, &m);
 #else
   LPWSTR uriw = new wchar_t[strlen(uri) + 1];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (int i = 0;; i++) {
     uriw[i] = uri[i];
     if (uriw[i] == 0)
@@ -378,6 +387,9 @@ processURL(XML_Parser parser, IMoniker *baseMoniker,
     return 0;
   }
   MSG msg;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (!qi.stop && GetMessage (&msg, NULL, 0, 0)) {
     TranslateMessage (&msg);
     DispatchMessage (&msg);

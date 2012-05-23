@@ -254,6 +254,9 @@ wxString wxFileSelector(const wxString& title,
         wxArrayString descriptions, filters;
         // don't care about errors, handled already by wxFileDialog
         (void)wxParseCommonDialogsFilter(filter2, descriptions, filters);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t n=0; n<filters.GetCount(); n++)
         {
             if (filters[n].Contains(defaultExtension))
