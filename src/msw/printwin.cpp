@@ -197,6 +197,9 @@ bool wxWindowsPrinter::Print(wxWindow *parent, wxPrintout *printout, bool prompt
     }
 
     int copyCount;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( copyCount = 1;
           copyCount <= m_printDialogData.GetNoCopies();
           copyCount++ )
@@ -215,6 +218,9 @@ bool wxWindowsPrinter::Print(wxWindow *parent, wxPrintout *printout, bool prompt
 
         int pn;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( pn = minPageNum;
               pn <= maxPageNum && printout->HasPage(pn);
               pn++ )
@@ -448,6 +454,9 @@ BOOL CALLBACK wxAbortProc(HDC WXUNUSED(hdc), int WXUNUSED(error))
 
     /* Process messages intended for the abort dialog box */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!wxPrinterBase::sm_abortIt && ::PeekMessage(&msg, 0, 0, 0, TRUE))
         if (!IsDialogMessage((HWND) wxPrinterBase::sm_abortWindow->GetHWND(), &msg)) {
             TranslateMessage(&msg);

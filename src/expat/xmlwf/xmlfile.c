@@ -150,6 +150,9 @@ processStream(const XML_Char *filename, XML_Parser parser)
       return 0;
     }
   }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (;;) {
     int nread;
     char *buf = XML_GetBuffer(parser, READ_SIZE);

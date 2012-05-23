@@ -57,6 +57,9 @@ wxColour wxColourData::GetCustomColour(int i) const
 
 wxColourData& wxColourData::operator=(const wxColourData& data)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < NUM_CUSTOM; i++)
         m_custColours[i] = data.m_custColours[i];
 
@@ -77,6 +80,9 @@ wxString wxColourData::ToString() const
 {
     wxString str(m_chooseFull ? '1' : '0');
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < NUM_CUSTOM; i++ )
     {
         str += wxCOL_DATA_SEP;
@@ -95,6 +101,9 @@ bool wxColourData::FromString(const wxString& str)
     wxString token = tokenizer.GetNextToken();
     m_chooseFull = token == '1';
     bool success = m_chooseFull || token == '0';
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; success && i < NUM_CUSTOM; i++)
     {
         token = tokenizer.GetNextToken();
