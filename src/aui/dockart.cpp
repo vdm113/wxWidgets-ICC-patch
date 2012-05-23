@@ -103,6 +103,9 @@ static void DrawGradientRectangle(wxDC& dc,
     else
         high = rect.GetWidth()-1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i <= high; ++i)
     {
         int r,g,b;
@@ -135,6 +138,9 @@ wxString wxAuiChopText(wxDC& dc, const wxString& text, int max_size)
 
     size_t i, len = text.Length();
     size_t last_good_length = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < len; ++i)
     {
         wxString s = text.Left(i);
@@ -477,6 +483,9 @@ void wxAuiDefaultDockArt::DrawBorder(wxDC& dc, wxWindow *WXUNUSED(window), const
 
     if (pane.IsToolbar())
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < border_width; ++i)
         {
             dc.SetPen(*wxWHITE_PEN);
@@ -492,6 +501,9 @@ void wxAuiDefaultDockArt::DrawBorder(wxDC& dc, wxWindow *WXUNUSED(window), const
     }
     else
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < border_width; ++i)
         {
             dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
@@ -616,6 +628,9 @@ void wxAuiDefaultDockArt::DrawGripper(wxDC& dc, wxWindow *WXUNUSED(window),
     if (!pane.HasGripperTop())
     {
         int y = 5;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (1)
         {
             dc.SetPen(m_gripperPen1);
@@ -636,6 +651,9 @@ void wxAuiDefaultDockArt::DrawGripper(wxDC& dc, wxWindow *WXUNUSED(window),
     else
     {
         int x = 5;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (1)
         {
             dc.SetPen(m_gripperPen1);

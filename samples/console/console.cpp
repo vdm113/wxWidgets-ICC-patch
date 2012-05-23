@@ -71,6 +71,9 @@ int main(int argc, char **argv)
             {
                 wxPrintf("Dummy switch was given...\n");
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (1)
                 {
                     wxChar input[128];
