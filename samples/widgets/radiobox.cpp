@@ -362,6 +362,9 @@ void RadioWidgetsPage::CreateRadio()
     wxString *items = new wxString[count];
 
     wxString labelBtn = m_textLabelBtns->GetValue();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         items[n] = wxString::Format(wxT("%s %lu"),

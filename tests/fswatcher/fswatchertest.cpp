@@ -162,6 +162,9 @@ public:
         static int ALFA_CNT = 'z' - 'a';
 
         wxString s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0 ; i < length; ++i)
         {
             char c = 'a' + (rand() % ALFA_CNT);
