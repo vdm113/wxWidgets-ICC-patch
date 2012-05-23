@@ -97,6 +97,9 @@ select_file_name (char * fname)
   FILE * tfile;
 
   /* Keep generating file names till we find one that's not in use */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (;;) {
     next_file_num++;		/* advance counter */
     sprintf(fname, TEMP_FILE_NAME, TEMP_DIRECTORY, next_file_num);

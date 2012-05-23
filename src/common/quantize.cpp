@@ -345,8 +345,14 @@ prescan_quantize (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
   JDIMENSION col;
   JDIMENSION width = cinfo->output_width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (row = 0; row < num_rows; row++) {
     ptr = input_buf[row];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (col = width; col > 0; col--) {
 
       {
@@ -396,6 +402,9 @@ find_biggest_color_pop (boxptr boxlist, int numboxes)
   register long maxc = 0;
   boxptr which = NULL;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0, boxp = boxlist; i < numboxes; i++, boxp++) {
     if (boxp->colorcount > maxc && boxp->volume > 0) {
       which = boxp;
@@ -416,6 +425,9 @@ find_biggest_volume (boxptr boxlist, int numboxes)
   register INT32 maxv = 0;
   boxptr which = NULL;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0, boxp = boxlist; i < numboxes; i++, boxp++) {
     if (boxp->volume > maxv) {
       which = boxp;
@@ -444,9 +456,18 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
   c2min = boxp->c2min;  c2max = boxp->c2max;
 
   if (c0max > c0min)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c0 = c0min; c0 <= c0max; c0++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (c1 = c1min; c1 <= c1max; c1++) {
     histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c2 = c2min; c2 <= c2max; c2++)
       if (*histp++ != 0) {
         boxp->c0min = c0min = c0;
@@ -455,9 +476,18 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
       }
  have_c0min:
   if (c0max > c0min)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c0 = c0max; c0 >= c0min; c0--)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (c1 = c1min; c1 <= c1max; c1++) {
     histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c2 = c2min; c2 <= c2max; c2++)
       if (*histp++ != 0) {
         boxp->c0max = c0max = c0;
@@ -466,9 +496,18 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
       }
  have_c0max:
   if (c1max > c1min)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c1 = c1min; c1 <= c1max; c1++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (c0 = c0min; c0 <= c0max; c0++) {
     histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c2 = c2min; c2 <= c2max; c2++)
       if (*histp++ != 0) {
         boxp->c1min = c1min = c1;
@@ -477,9 +516,18 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
       }
  have_c1min:
   if (c1max > c1min)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c1 = c1max; c1 >= c1min; c1--)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (c0 = c0min; c0 <= c0max; c0++) {
     histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c2 = c2min; c2 <= c2max; c2++)
       if (*histp++ != 0) {
         boxp->c1max = c1max = c1;
@@ -488,9 +536,18 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
       }
  have_c1max:
   if (c2max > c2min)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c2 = c2min; c2 <= c2max; c2++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (c0 = c0min; c0 <= c0max; c0++) {
     histp = & histogram[c0][c1min][c2];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c1 = c1min; c1 <= c1max; c1++, histp += HIST_C2_ELEMS)
       if (*histp != 0) {
         boxp->c2min = c2min = c2;
@@ -499,9 +556,18 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
       }
  have_c2min:
   if (c2max > c2min)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c2 = c2max; c2 >= c2min; c2--)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (c0 = c0min; c0 <= c0max; c0++) {
     histp = & histogram[c0][c1min][c2];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c1 = c1min; c1 <= c1max; c1++, histp += HIST_C2_ELEMS)
       if (*histp != 0) {
         boxp->c2max = c2max = c2;
@@ -525,9 +591,18 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 
   /* Now scan remaining volume of box and compute population */
   ccount = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (c0 = c0min; c0 <= c0max; c0++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c1 = c1min; c1 <= c1max; c1++) {
       histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (c2 = c2min; c2 <= c2max; c2++, histp++)
     if (*histp != 0) {
       ccount++;
@@ -546,6 +621,9 @@ median_cut (j_decompress_ptr cinfo, boxptr boxlist, int numboxes,
   int c0,c1,c2,cmax;
   register boxptr b1,b2;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (numboxes < desired_colors) {
     /* Select box to split.
      * Current algorithm: by population for first half, then by volume.
@@ -649,9 +727,18 @@ compute_color (j_decompress_ptr cinfo, boxptr boxp, int icolor)
   c1min = boxp->c1min;  c1max = boxp->c1max;
   c2min = boxp->c2min;  c2max = boxp->c2max;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (c0 = c0min; c0 <= c0max; c0++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c1 = c1min; c1 <= c1max; c1++) {
       histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (c2 = c2min; c2 <= c2max; c2++) {
     if ((count = *histp++) != 0) {
       total += count;
@@ -691,6 +778,9 @@ select_colors (j_decompress_ptr cinfo, int desired_colors)
   /* Perform median-cut to produce final box list */
   numboxes = median_cut(cinfo, boxlist, numboxes, desired_colors);
   /* Compute the representative color for each box, fill colormap */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < numboxes; i++)
     compute_color(cinfo, & boxlist[i], i);
   cinfo->actual_number_of_colors = numboxes;
@@ -817,6 +907,9 @@ find_nearby_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
    */
   minmaxdist = 0x7FFFFFFFL;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < numcolors; i++) {
     /* We compute the squared-c0-distance term, then add in the other two. */
     x = GETJSAMPLE(cinfo->colormap[0][i]);
@@ -896,6 +989,9 @@ find_nearby_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
    * within minmaxdist of some part of the box need be considered.
    */
   ncolors = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < numcolors; i++) {
     if (mindist[i] <= minmaxdist)
       colorlist[ncolors++] = (JSAMPLE) i;
@@ -928,6 +1024,9 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 
   /* Initialize best-distance for each cell of the update box */
   bptr = bestdist;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = BOX_C0_ELEMS*BOX_C1_ELEMS*BOX_C2_ELEMS-1; i >= 0; i--)
     *bptr++ = 0x7FFFFFFFL;
 
@@ -941,6 +1040,9 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #define STEP_C1  ((1 << C1_SHIFT) * C1_SCALE)
 #define STEP_C2  ((1 << C2_SHIFT) * C2_SCALE)
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < numcolors; i++) {
     icolor = GETJSAMPLE(colorlist[i]);
     /* Compute (square of) distance from minc0/c1/c2 to this color */
@@ -958,12 +1060,21 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
     bptr = bestdist;
     cptr = bestcolor;
     xx0 = inc0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ic0 = BOX_C0_ELEMS-1; ic0 >= 0; ic0--) {
       dist1 = dist0;
       xx1 = inc1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (ic1 = BOX_C1_ELEMS-1; ic1 >= 0; ic1--) {
     dist2 = dist1;
     xx2 = inc2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ic2 = BOX_C2_ELEMS-1; ic2 >= 0; ic2--) {
       if (dist2 < *bptr) {
         *bptr = dist2;
@@ -1029,9 +1140,18 @@ fill_inverse_cmap (j_decompress_ptr cinfo, int c0, int c1, int c2)
   c1 <<= BOX_C1_LOG;
   c2 <<= BOX_C2_LOG;
   cptr = bestcolor;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ic0 = 0; ic0 < BOX_C0_ELEMS; ic0++) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ic1 = 0; ic1 < BOX_C1_ELEMS; ic1++) {
       cachep = & histogram[c0+ic0][c1+ic1][c2];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (ic2 = 0; ic2 < BOX_C2_ELEMS; ic2++) {
     *cachep++ = (histcell) (GETJSAMPLE(*cptr++) + 1);
       }
@@ -1058,9 +1178,15 @@ pass2_no_dither (j_decompress_ptr cinfo,
   JDIMENSION col;
   JDIMENSION width = cinfo->output_width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (row = 0; row < num_rows; row++) {
     inptr = input_buf[row];
     outptr = output_buf[row];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (col = width; col > 0; col--) {
       /* get pixel value and index into the cache */
       c0 = GETJSAMPLE(*inptr++) >> C0_SHIFT;
@@ -1104,6 +1230,9 @@ pass2_fs_dither (j_decompress_ptr cinfo,
   JSAMPROW colormap2 = cinfo->colormap[2];
 
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (row = 0; row < num_rows; row++) {
     inptr = input_buf[row];
     outptr = output_buf[row];
@@ -1128,6 +1257,9 @@ pass2_fs_dither (j_decompress_ptr cinfo,
     belowerr0 = belowerr1 = belowerr2 = 0;
     bpreverr0 = bpreverr1 = bpreverr2 = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (col = width; col > 0; col--) {
       /* curN holds the error propagated from the previous pixel on the
        * current line.  Add the error propagated from the previous line
@@ -1252,14 +1384,23 @@ init_error_limit (j_decompress_ptr cinfo)
 #define STEPSIZE ((MAXJSAMPLE+1)/16)
   /* Map errors 1:1 up to +- MAXJSAMPLE/16 */
   out = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (in = 0; in < STEPSIZE; in++, out++) {
     table[in] = out; table[-in] = -out;
   }
   /* Map errors 1:2 up to +- 3*MAXJSAMPLE/16 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (; in < STEPSIZE*3; in++, out += (in&1) ? 0 : 1) {
     table[in] = out; table[-in] = -out;
   }
   /* Clamp the rest to final out value (which is (MAXJSAMPLE+1)/8) */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (; in <= MAXJSAMPLE; in++) {
     table[in] = out; table[-in] = -out;
   }
@@ -1328,6 +1469,9 @@ start_pass_2_quant (j_decompress_ptr cinfo, bool is_pre_scan)
   }
   /* Zero the histogram or inverse color map, if necessary */
   if (cquantize->needs_zeroed) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < HIST_C0_ELEMS; i++) {
       memset((void  *) histogram[i], 0,
         HIST_C1_ELEMS*HIST_C2_ELEMS * sizeof(histcell));
@@ -1371,6 +1515,9 @@ jinit_2pass_quantizer (j_decompress_ptr cinfo)
 
   /* Allocate the histogram/inverse colormap storage */
   cquantize->histogram = (hist3d) malloc(HIST_C0_ELEMS * sizeof(hist2d));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < HIST_C0_ELEMS; i++) {
     cquantize->histogram[i] = (hist2d) malloc(HIST_C1_ELEMS*HIST_C2_ELEMS * sizeof(histcell));
   }
@@ -1428,10 +1575,16 @@ prepare_range_limit_table (j_decompress_ptr cinfo)
   /* First segment of "simple" table: limit[x] = 0 for x < 0 */
   memset(table - (MAXJSAMPLE+1), 0, (MAXJSAMPLE+1) * sizeof(JSAMPLE));
   /* Main part of "simple" table: limit[x] = x */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i <= MAXJSAMPLE; i++)
     table[i] = (JSAMPLE) i;
   table += CENTERJSAMPLE;   /* Point to where post-IDCT table starts */
   /* End of simple table, rest of first half of post-IDCT table */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = CENTERJSAMPLE; i < 2*(MAXJSAMPLE+1); i++)
     table[i] = MAXJSAMPLE;
   /* Second half of post-IDCT table */
@@ -1472,12 +1625,18 @@ void wxQuantize::DoQuantize(unsigned w, unsigned h, unsigned char **in_rows, uns
     cquantize->pub.finish_pass(&dec);
 
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < dec.desired_number_of_colors; i++) {
         palette[3 * i + 0] = dec.colormap[0][i];
         palette[3 * i + 1] = dec.colormap[1][i];
         palette[3 * i + 2] = dec.colormap[2][i];
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int ii = 0; ii < HIST_C0_ELEMS; ii++) free(cquantize->histogram[ii]);
     free(cquantize->histogram);
     free(dec.colormap[0]);
@@ -1525,6 +1684,9 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
     int w = src.GetWidth();
     unsigned char **rows = new unsigned char *[h];
     unsigned char *imgdt = src.GetData();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < h; i++)
         rows[i] = imgdt + 3/*RGB*/ * w * i;
 
@@ -1533,6 +1695,9 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
     // This is the image as represented by palette indexes.
     unsigned char *data8bit = new unsigned char[w * h];
     unsigned char **outrows = new unsigned char *[h];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < h; i++)
         outrows[i] = data8bit + w * i;
 
@@ -1550,6 +1715,9 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
             dest.Create(w, h);
 
         imgdt = dest.GetData();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < w * h; i++)
         {
             unsigned char c = data8bit[i];
@@ -1566,6 +1734,9 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
         {
             // We need to shift the palette entries up
             // to make room for the Windows system colours.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < w * h; i++)
                 data8bit[i] = (unsigned char)(data8bit[i] + paletteShift);
         }
@@ -1592,6 +1763,9 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
             ::GetSystemPaletteEntries(hDC, 0, windowsSystemColourCount, entries);
             ::ReleaseDC(NULL, hDC);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < windowsSystemColourCount; i++)
             {
                 r[i] = entries[i].peRed;
@@ -1602,6 +1776,9 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
         }
 #endif
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < desiredNoColours; i++)
         {
             r[i+paletteShift] = palette[i*3 + 0];
@@ -1610,6 +1787,9 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
         }
 
         // Blank out any remaining palette entries
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = desiredNoColours+paletteShift; i < 256; i++)
         {
             r[i] = 0;

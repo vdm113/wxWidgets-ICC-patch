@@ -172,6 +172,9 @@ CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( FileNameTestCase, "FileNameTestCase" );
 
 void FileNameTestCase::TestConstruction()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(filenames); n++ )
     {
         const TestFileNameInfo& fni = filenames[n];
@@ -186,10 +189,16 @@ void FileNameTestCase::TestConstruction()
         {
             // copy the backslashes at beginning unchanged
             const char *p = fni.fullname;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( *p == '\\' )
                 fullnameOrig += *p++;
 
             // replace consecutive slashes with single ones in the rest
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( char chPrev = '\0'; *p; p++ )
             {
                 if ( *p == '\\' && chPrev == '\\' )
@@ -264,6 +273,9 @@ void FileNameTestCase::TestComparison()
 
 void FileNameTestCase::TestSplit()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(filenames); n++ )
     {
         const TestFileNameInfo& fni = filenames[n];
@@ -377,6 +389,9 @@ void FileNameTestCase::TestNormalize()
     // set the env var ABCDEF
     wxSetEnv("ABCDEF", "abcdef");
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < WXSIZEOF(tests); i++ )
     {
         const FileNameTest& fnt = tests[i];
@@ -455,6 +470,9 @@ void FileNameTestCase::TestReplace()
         { "C:\\A\\Path\\lib\\someFile", "C:\\A\\Path", "$(%s)", "$(TEST_VAR)\\lib\\someFile", wxPATH_WIN }
     };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < WXSIZEOF(tests); i++ )
     {
         const FileNameTest& fnt = tests[i];
@@ -519,6 +537,9 @@ void FileNameTestCase::TestGetHumanReadable()
                             // so that regardless of the system's locale
                             // the decimal point used by GetHumanReadableSize()
                             // is always '.'
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < WXSIZEOF(testData); n++ )
     {
         const TestData& td = testData[n];
@@ -615,6 +636,9 @@ void FileNameTestCase::TestCreateTempFileName()
 #endif // __UNIX__
     };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(testData); n++ )
     {
         wxString prefix = testData[n].prefix;

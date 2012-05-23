@@ -112,6 +112,9 @@ void* wxJoystickThread::Entry()
     struct timeval time_out = {0, 0};
 
     wxFD_ZERO(&read_fds);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (true)
     {
         if (TestDestroy())
@@ -319,6 +322,9 @@ int wxJoystick::GetNumberJoysticks()
     wxString dev_name;
     int fd, j;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (j=0; j<4; j++) {
         dev_name.Printf(wxT("/dev/js%d"), j);
         fd = open(dev_name.fn_str(), O_RDONLY);
@@ -328,6 +334,9 @@ int wxJoystick::GetNumberJoysticks()
     }
 
     if (j == 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j=0; j<4; j++) {
             dev_name.Printf(wxT("/dev/input/js%d"), j);
             fd = open(dev_name.fn_str(), O_RDONLY);

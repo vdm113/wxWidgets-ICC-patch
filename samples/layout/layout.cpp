@@ -257,6 +257,9 @@ MyProportionsFrame::MyProportionsFrame(wxFrame *parent)
 
     // create the controls
     wxPanel *panel = new wxPanel(this, wxID_ANY);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < WXSIZEOF(m_spins); n++ )
     {
         m_spins[n] = new wxSpinCtrl(panel);
@@ -266,6 +269,9 @@ MyProportionsFrame::MyProportionsFrame(wxFrame *parent)
     // lay them out
     m_sizer = new wxStaticBoxSizer(wxHORIZONTAL, panel,
                 wxT("Try changing elements proportions and resizing the window"));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < WXSIZEOF(m_spins); n++ )
         m_sizer->Add(m_spins[n], wxSizerFlags().Border());
 
@@ -285,6 +291,9 @@ MyProportionsFrame::MyProportionsFrame(wxFrame *parent)
 
 void MyProportionsFrame::UpdateProportions()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(m_spins); n++ )
     {
         m_sizer->GetItem(n)->SetProportion(m_spins[n]->GetValue());
@@ -309,8 +318,14 @@ void MyProportionsFrame::OnProportionChanged(wxSpinEvent& WXUNUSED(event))
 
 void MyFlexSizerFrame::InitFlexSizer(wxFlexGridSizer *sizer, wxWindow* parent)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < 3; i++ )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int j = 0; j < 3; j++ )
         {
             wxWindow * const cell = new wxGenericStaticText
@@ -699,11 +714,17 @@ MyWrapSizerFrame::MyWrapSizerFrame(const wxString &title, int x, int y )
 #if 0
     wxSizer *row = new wxWrapSizer;
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 4; i++)
        row->Add( new wxButton( this, -1, "Hello" ), 0, wxALL, 10 );
     root->Add( row, 0, wxGROW );
 
     row = new wxWrapSizer;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 4; i++)
        row->Add( new wxButton( this, -1, "Hello" ) );
     root->Add( row, 0, wxGROW );
@@ -713,6 +734,9 @@ MyWrapSizerFrame::MyWrapSizerFrame(const wxString &title, int x, int y )
     wxSizer *ps_mid = new wxStaticBoxSizer( wxVERTICAL, this, "Wrapping check-boxes" );
     wxSizer *ps_mid_wrap = new wxWrapSizer(wxHORIZONTAL);
     ps_mid->Add( ps_mid_wrap, 100, wxEXPAND );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( int ix=0; ix<6; ix++ )
             ps_mid_wrap->Add( new wxCheckBox(this,wxID_ANY,wxString::Format("Option %d",ix+1)), 0, wxALIGN_CENTRE|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
     root->Add( ps_mid, 0, wxEXPAND | wxALL, 5 );

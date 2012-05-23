@@ -116,6 +116,9 @@ bool wxRadioBox::Create(wxWindow *parent, wxWindowID id, const wxString& title,
     m_radioButtonLabels.reserve(n);
 
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < n; i++)
     {
         wxString str(GetLabelText(choices[i]));
@@ -195,6 +198,9 @@ void wxRadioBox::SetSelection(int n)
 
     XmToggleButtonSetState ((Widget) m_radioButtons[n], True, False);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = 0; i < m_noItems; i++)
         if (i != (unsigned int)n)
             XmToggleButtonSetState ((Widget) m_radioButtons[i], False, False);
@@ -256,6 +262,9 @@ bool wxRadioBox::Enable(bool enable)
     if ( !wxControl::Enable(enable) )
         return false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = 0; i < m_noItems; i++)
         XtSetSensitive ((Widget) m_radioButtons[i], (Boolean) enable);
 
@@ -331,6 +340,9 @@ void wxRadioBox::ChangeFont(bool keepOriginalSize)
 {
     wxWindow::ChangeFont(keepOriginalSize);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = 0; i < m_noItems; i++)
     {
         WXWidget radioButton = m_radioButtons[i];
@@ -348,6 +360,9 @@ void wxRadioBox::ChangeBackgroundColour()
     wxColour colour = *wxBLACK;
     WXPixel selectPixel = colour.AllocColour(XtDisplay((Widget)m_mainWidget));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = 0; i < m_noItems; i++)
     {
         WXWidget radioButton = m_radioButtons[i];
@@ -364,6 +379,9 @@ void wxRadioBox::ChangeForegroundColour()
 {
     wxWindow::ChangeForegroundColour();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = 0; i < m_noItems; i++)
     {
         WXWidget radioButton = m_radioButtons[i];
@@ -382,6 +400,9 @@ void wxRadioBoxCallback (Widget w, XtPointer clientData,
   int sel = -1;
   unsigned int i;
   const wxWidgetArray& buttons = item->GetRadioButtons();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < item->GetCount(); i++)
     if (((Widget)buttons[i]) == w)
       sel = (int)i;
