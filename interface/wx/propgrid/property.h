@@ -438,8 +438,8 @@ wxPG_PROP_BEING_DELETED             = 0x00200000
     @subsection wxBoolProperty
 
     Represents a boolean value. wxChoice is used as editor control, by the
-    default. wxPG_BOOL_USE_CHECKBOX attribute can be set to true in order to
-    use check box instead.
+    default. wxPG_BOOL_USE_CHECKBOX attribute can be set to true in order to use
+    check box instead.
 
     @subsection wxLongStringProperty
 
@@ -845,7 +845,7 @@ public:
 
     /**
         Converts integer to a value, and if successful, calls SetValue() on it.
-        Default behaviour is to do nothing.
+        Default behavior is to do nothing.
 
         @param value
             Int to get the value from.
