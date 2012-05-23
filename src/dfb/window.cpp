@@ -174,6 +174,9 @@ void wxWindowDFB::InvalidateDfbSurface()
     // surfaces of the children are subsurfaces of this window's surface,
     // so they must be invalidated as well:
     wxWindowList& children = GetChildren();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxWindowList::iterator i = children.begin(); i != children.end(); ++i )
     {
         (*i)->InvalidateDfbSurface();
@@ -713,6 +716,9 @@ void wxWindowDFB::PaintWindow(const wxRect& rect)
     // paint the children:
     wxPoint origin = GetClientAreaOrigin();
     wxWindowList& children = GetChildren();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxWindowList::iterator i = children.begin();
           i != children.end(); ++i )
     {
@@ -745,6 +751,9 @@ void wxWindowDFB::PaintOverlays(const wxRect& rect)
     if ( !m_overlays )
         return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxDfbOverlaysList::const_iterator i = m_overlays->begin();
           i != m_overlays->end(); ++i )
     {

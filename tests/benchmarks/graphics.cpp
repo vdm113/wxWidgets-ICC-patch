@@ -107,6 +107,9 @@ private:
         wxStopWatch sw;
         int x = 0,
             y = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < opts.numLines; n++ )
         {
             int x1 = rand() % opts.width,
@@ -137,6 +140,9 @@ private:
         wxPrintf("Benchmarking %s DC: ", msg);
 
         wxStopWatch sw;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < opts.numLines; n++ )
         {
             int x = rand() % opts.width,
@@ -161,6 +167,9 @@ private:
         wxPrintf("Benchmarking %s DC: ", msg);
 
         wxStopWatch sw;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < opts.numLines; n++ )
         {
             int x = rand() % opts.width,

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="dll">
+      <UniqueIdentifier>{1af98e8f-0664-4ace-973d-9f32c9a425cb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="minimal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\lib\vc_dll\wxbase29ud.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxbase29ud_net.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxbase29ud_xml.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxexpatd.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxjpegd.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxmsw29ud_adv.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxmsw29ud_aui.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxmsw29ud_core.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxmsw29ud_gl.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxmsw29ud_html.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxmsw29ud_media.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxmsw29ud_propgrid.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxmsw29ud_qa.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxmsw29ud_ribbon.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxmsw29ud_richtext.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxmsw29ud_stc.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxmsw29ud_xrc.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxpngd.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxregexud.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxscintillad.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxtiffd.lib">
+      <Filter>dll</Filter>
+    </Library>
+    <Library Include="..\..\lib\vc_dll\wxzlibd.lib">
+      <Filter>dll</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\lib\vc_dll\wxbase294ud_net_vc_custom.dll">
+      <Filter>dll</Filter>
+    </None>
+    <None Include="..\..\lib\vc_dll\wxbase294ud_vc_custom.dll">
+      <Filter>dll</Filter>
+    </None>
+    <None Include="..\..\lib\vc_dll\wxbase294ud_xml_vc_custom.dll">
+      <Filter>dll</Filter>
+    </None>
+    <None Include="..\..\lib\vc_dll\wxmsw294ud_adv_vc_custom.dll">
+      <Filter>dll</Filter>
+    </None>
+    <None Include="..\..\lib\vc_dll\wxmsw294ud_aui_vc_custom.dll">
+      <Filter>dll</Filter>
+    </None>
+    <None Include="..\..\lib\vc_dll\wxmsw294ud_core_vc_custom.dll">
+      <Filter>dll</Filter>
+    </None>
+    <None Include="..\..\lib\vc_dll\wxmsw294ud_gl_vc_custom.dll">
+      <Filter>dll</Filter>
+    </None>
+    <None Include="..\..\lib\vc_dll\wxmsw294ud_html_vc_custom.dll">
+      <Filter>dll</Filter>
+    </None>
+    <None Include="..\..\lib\vc_dll\wxmsw294ud_media_vc_custom.dll">
+      <Filter>dll</Filter>
+    </None>
+    <None Include="..\..\lib\vc_dll\wxmsw294ud_propgrid_vc_custom.dll">
+      <Filter>dll</Filter>
+    </None>
+    <None Include="..\..\lib\vc_dll\wxmsw294ud_qa_vc_custom.dll">
+      <Filter>dll</Filter>
+    </None>
+    <None Include="..\..\lib\vc_dll\wxmsw294ud_ribbon_vc_custom.dll">
+      <Filter>dll</Filter>
+    </None>
+    <None Include="..\..\lib\vc_dll\wxmsw294ud_richtext_vc_custom.dll">
+      <Filter>dll</Filter>
+    </None>
+    <None Include="..\..\lib\vc_dll\wxmsw294ud_stc_vc_custom.dll">
+      <Filter>dll</Filter>
+    </None>
+    <None Include="..\..\lib\vc_dll\wxmsw294ud_xrc_vc_custom.dll">
+      <Filter>dll</Filter>
+    </None>
+  </ItemGroup>
+</Project>

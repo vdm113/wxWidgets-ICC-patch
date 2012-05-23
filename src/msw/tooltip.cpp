@@ -437,6 +437,9 @@ void wxToolTip::DoAddHWND(WXHWND hWnd)
         // find the width of the widest line
         int maxWidth = 0;
         wxStringTokenizer tokenizer(m_text, wxT("\n"));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( tokenizer.HasMoreTokens() )
         {
             const wxString token = tokenizer.GetNextToken();
@@ -511,6 +514,9 @@ void wxToolTip::SetWindow(wxWindow *win)
     {
         const wxArrayLong& subcontrols = control->GetSubcontrols();
         size_t count = subcontrols.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < count; n++ )
         {
             int id = subcontrols[n];
@@ -574,6 +580,9 @@ void wxToolTip::DoForAllWindows(void (wxToolTip::*func)(WXHWND))
 
     if ( m_others )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxToolTipOtherWindows::const_iterator it = m_others->begin();
               it != m_others->end();
               ++it )
