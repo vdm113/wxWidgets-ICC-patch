@@ -330,6 +330,9 @@ wxString wxTextCtrl::GetValue() const
     wxCharBuffer                    buf(sStr.char_str());
     char*                           zStr = buf.data();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ; *zStr; zStr++ )
     {
         //

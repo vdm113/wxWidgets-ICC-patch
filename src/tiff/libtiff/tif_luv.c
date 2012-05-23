@@ -206,16 +206,28 @@ LogL16Decode(TIFF* tif, tidata_t op, tsize_t occ, tsample_t s)
 	bp = (unsigned char*) tif->tif_rawcp;
 	cc = tif->tif_rawcc;
 					/* get each byte string */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (shft = 2*8; (shft -= 8) >= 0; ) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < npixels && cc > 0; )
 			if (*bp >= 128) {		/* run */
 				rc = *bp++ + (2-128);
 				b = (int16)(*bp++ << shft);
 				cc -= 2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (rc-- && i < npixels)
 					tp[i++] |= b;
 			} else {			/* non-run */
 				rc = *bp++;		/* nul is noop */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (--cc && rc-- && i < npixels)
 					tp[i++] |= (int16)*bp++ << shft;
 			}
@@ -259,6 +271,9 @@ LogLuvDecode24(TIFF* tif, tidata_t op, tsize_t occ, tsample_t s)
 					/* copy to array of uint32 */
 	bp = (unsigned char*) tif->tif_rawcp;
 	cc = tif->tif_rawcc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < npixels && cc > 0; i++) {
 		tp[i] = bp[0] << 16 | bp[1] << 8 | bp[2];
 		bp += 3;
@@ -306,16 +321,28 @@ LogLuvDecode32(TIFF* tif, tidata_t op, tsize_t occ, tsample_t s)
 	bp = (unsigned char*) tif->tif_rawcp;
 	cc = tif->tif_rawcc;
 					/* get each byte string */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (shft = 4*8; (shft -= 8) >= 0; ) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < npixels && cc > 0; )
 			if (*bp >= 128) {		/* run */
 				rc = *bp++ + (2-128);
 				b = (uint32)*bp++ << shft;
 				cc -= 2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (rc-- && i < npixels)
 					tp[i++] |= b;
 			} else {			/* non-run */
 				rc = *bp++;		/* nul is noop */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (--cc && rc-- && i < npixels)
 					tp[i++] |= (uint32)*bp++ << shft;
 			}
@@ -345,6 +372,9 @@ LogLuvDecodeStrip(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 	tsize_t rowlen = TIFFScanlineSize(tif);
 
 	assert(cc%rowlen == 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (cc && (*tif->tif_decoderow)(tif, bp, rowlen, s))
 		bp += rowlen, cc -= rowlen;
 	return (cc == 0);
@@ -361,6 +391,9 @@ LogLuvDecodeTile(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 	tsize_t rowlen = TIFFTileRowSize(tif);
 
 	assert(cc%rowlen == 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (cc && (*tif->tif_decoderow)(tif, bp, rowlen, s))
 		bp += rowlen, cc -= rowlen;
 	return (cc == 0);
@@ -393,7 +426,13 @@ LogL16Encode(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 					/* compress each byte string */
 	op = tif->tif_rawcp;
 	occ = tif->tif_rawdatasize - tif->tif_rawcc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (shft = 2*8; (shft -= 8) >= 0; )
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < npixels; i += rc) {
 			if (occ < 4) {
 				tif->tif_rawcp = op;
@@ -404,9 +443,15 @@ LogL16Encode(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 				occ = tif->tif_rawdatasize - tif->tif_rawcc;
 			}
 			mask = 0xff << shft;		/* find next run */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (beg = i; beg < npixels; beg += rc) {
 				b = (int16) (tp[beg] & mask);
 				rc = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (rc < 127+2 && beg+rc < npixels &&
 						(tp[beg+rc] & mask) == b)
 					rc++;
@@ -416,6 +461,9 @@ LogL16Encode(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 			if (beg-i > 1 && beg-i < MINRUN) {
 				b = (int16) (tp[i] & mask);/*check short run */
 				j = i+1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while ((tp[j++] & mask) == b)
                                     if (j == beg) {
                                         *op++ = (tidataval_t)(128-2+j-i);
@@ -425,6 +473,9 @@ LogL16Encode(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
                                         break;
                                     }
 			}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (i < beg) {		/* write out non-run */
 				if ((j = beg-i) > 127) j = 127;
 				if (occ < j+3) {
@@ -436,6 +487,9 @@ LogL16Encode(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
                                     occ = tif->tif_rawdatasize - tif->tif_rawcc;
 				}
 				*op++ = (tidataval_t) j; occ--;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (j--) {
 					*op++ = (tidataval_t) (tp[i++] >> shft & 0xff);
 					occ--;
@@ -479,6 +533,9 @@ LogLuvEncode24(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 					/* write out encoded pixels */
 	op = tif->tif_rawcp;
 	occ = tif->tif_rawdatasize - tif->tif_rawcc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = npixels; i--; ) {
 		if (occ < 3) {
 			tif->tif_rawcp = op;
@@ -527,7 +584,13 @@ LogLuvEncode32(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 					/* compress each byte string */
 	op = tif->tif_rawcp;
 	occ = tif->tif_rawdatasize - tif->tif_rawcc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (shft = 4*8; (shft -= 8) >= 0; )
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < npixels; i += rc) {
 			if (occ < 4) {
 				tif->tif_rawcp = op;
@@ -538,9 +601,15 @@ LogLuvEncode32(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 				occ = tif->tif_rawdatasize - tif->tif_rawcc;
 			}
 			mask = 0xff << shft;		/* find next run */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (beg = i; beg < npixels; beg += rc) {
 				b = tp[beg] & mask;
 				rc = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (rc < 127+2 && beg+rc < npixels &&
 						(tp[beg+rc] & mask) == b)
 					rc++;
@@ -550,6 +619,9 @@ LogLuvEncode32(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 			if (beg-i > 1 && beg-i < MINRUN) {
 				b = tp[i] & mask;	/* check short run */
 				j = i+1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while ((tp[j++] & mask) == b)
 					if (j == beg) {
 						*op++ = (tidataval_t)(128-2+j-i);
@@ -559,6 +631,9 @@ LogLuvEncode32(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 						break;
 					}
 			}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (i < beg) {		/* write out non-run */
 				if ((j = beg-i) > 127) j = 127;
 				if (occ < j+3) {
@@ -570,6 +645,9 @@ LogLuvEncode32(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 					occ = tif->tif_rawdatasize - tif->tif_rawcc;
 				}
 				*op++ = (tidataval_t) j; occ--;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (j--) {
 					*op++ = (tidataval_t)(tp[i++] >> shft & 0xff);
 					occ--;
@@ -598,6 +676,9 @@ LogLuvEncodeStrip(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 	tsize_t rowlen = TIFFScanlineSize(tif);
 
 	assert(cc%rowlen == 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (cc && (*tif->tif_encoderow)(tif, bp, rowlen, s) == 0)
 		bp += rowlen, cc -= rowlen;
 	return (cc == 0);
@@ -613,6 +694,9 @@ LogLuvEncodeTile(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 	tsize_t rowlen = TIFFTileRowSize(tif);
 
 	assert(cc%rowlen == 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (cc && (*tif->tif_encoderow)(tif, bp, rowlen, s) == 0)
 		bp += rowlen, cc -= rowlen;
 	return (cc == 0);
@@ -681,6 +765,9 @@ L16toY(LogLuvState* sp, tidata_t op, int n)
 	int16* l16 = (int16*) sp->tbuf;
 	float* yp = (float*) op;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0)
 		*yp++ = (float)LogL16toY(*l16++);
 }
@@ -691,6 +778,9 @@ L16toGry(LogLuvState* sp, tidata_t op, int n)
 	int16* l16 = (int16*) sp->tbuf;
 	uint8* gp = (uint8*) op;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0) {
 		double Y = LogL16toY(*l16++);
 		*gp++ = (uint8) ((Y <= 0.) ? 0 : (Y >= 1.) ? 255 : (int)(256.*sqrt(Y)));
@@ -703,6 +793,9 @@ L16fromY(LogLuvState* sp, tidata_t op, int n)
 	int16* l16 = (int16*) sp->tbuf;
 	float* yp = (float*) op;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0)
 		*l16++ = (int16) (LogL16fromY(*yp++, sp->encode_meth));
 }
@@ -764,13 +857,22 @@ oog_encode(double u, double v)		/* encode out-of-gamut chroma */
 	if (!initialized) {		/* set up perimeter table */
 		double	eps[NANGLES], ua, va, ang, epsa;
 		int	ui, vi, ustep;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = NANGLES; i--; )
 			eps[i] = 2.;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (vi = UV_NVS; vi--; ) {
 			va = UV_VSTART + (vi+.5)*UV_SQSIZ;
 			ustep = uv_row[vi].nus-1;
 			if (vi == UV_NVS-1 || vi == 0 || ustep <= 0)
 				ustep = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (ui = uv_row[vi].nus-1; ui >= 0; ui -= ustep) {
 				ua = uv_row[vi].ustart + (ui+.5)*UV_SQSIZ;
 				ang = uv2ang(ua, va);
@@ -782,12 +884,21 @@ oog_encode(double u, double v)		/* encode out-of-gamut chroma */
 				}
 			}
 		}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = NANGLES; i--; )	/* fill any holes */
 			if (eps[i] > 1.5) {
 				int	i1, i2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (i1 = 1; i1 < NANGLES/2; i1++)
 					if (eps[(i+i1)%NANGLES] < 1.5)
 						break;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (i2 = 1; i2 < NANGLES/2; i2++)
 					if (eps[(i+NANGLES-i2)%NANGLES] < 1.5)
 						break;
@@ -842,6 +953,9 @@ uv_decode(double *up, double *vp, int c)	/* decode (u',v') index */
 		return (-1);
 	lower = 0;				/* binary search */
 	upper = UV_NVS;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (upper - lower > 1) {
 		vi = (lower + upper) >> 1;
 		ui = c - uv_row[vi].ncum;
@@ -921,6 +1035,9 @@ Luv24toXYZ(LogLuvState* sp, tidata_t op, int n)
 	uint32* luv = (uint32*) sp->tbuf;
 	float* xyz = (float*) op;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0) {
 		LogLuv24toXYZ(*luv, xyz);
 		xyz += 3;
@@ -934,6 +1051,9 @@ Luv24toLuv48(LogLuvState* sp, tidata_t op, int n)
 	uint32* luv = (uint32*) sp->tbuf;
 	int16* luv3 = (int16*) op;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0) {
 		double u, v;
 
@@ -954,6 +1074,9 @@ Luv24toRGB(LogLuvState* sp, tidata_t op, int n)
 	uint32* luv = (uint32*) sp->tbuf;
 	uint8* rgb = (uint8*) op;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0) {
 		float xyz[3];
 
@@ -969,6 +1092,9 @@ Luv24fromXYZ(LogLuvState* sp, tidata_t op, int n)
 	uint32* luv = (uint32*) sp->tbuf;
 	float* xyz = (float*) op;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0) {
 		*luv++ = LogLuv24fromXYZ(xyz, sp->encode_meth);
 		xyz += 3;
@@ -981,6 +1107,9 @@ Luv24fromLuv48(LogLuvState* sp, tidata_t op, int n)
 	uint32* luv = (uint32*) sp->tbuf;
 	int16* luv3 = (int16*) op;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0) {
 		int Le, Ce;
 
@@ -1062,6 +1191,9 @@ Luv32toXYZ(LogLuvState* sp, tidata_t op, int n)
 	uint32* luv = (uint32*) sp->tbuf;
 	float* xyz = (float*) op;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0) {
 		LogLuv32toXYZ(*luv++, xyz);
 		xyz += 3;
@@ -1074,6 +1206,9 @@ Luv32toLuv48(LogLuvState* sp, tidata_t op, int n)
 	uint32* luv = (uint32*) sp->tbuf;
 	int16* luv3 = (int16*) op;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0) {
 		double u, v;
 
@@ -1092,6 +1227,9 @@ Luv32toRGB(LogLuvState* sp, tidata_t op, int n)
 	uint32* luv = (uint32*) sp->tbuf;
 	uint8* rgb = (uint8*) op;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0) {
 		float xyz[3];
 
@@ -1107,6 +1245,9 @@ Luv32fromXYZ(LogLuvState* sp, tidata_t op, int n)
 	uint32* luv = (uint32*) sp->tbuf;
 	float* xyz = (float*) op;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0) {
 		*luv++ = LogLuv32fromXYZ(xyz, sp->encode_meth);
 		xyz += 3;
@@ -1120,6 +1261,9 @@ Luv32fromLuv48(LogLuvState* sp, tidata_t op, int n)
 	int16* luv3 = (int16*) op;
 
 	if (sp->encode_meth == SGILOGENCODE_NODITHER) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (n-- > 0) {
 			*luv++ = (uint32)luv3[0] << 16 |
 				(luv3[1]*(uint32)(UVSCALE+.5) >> 7 & 0xff00) |
@@ -1128,6 +1272,9 @@ Luv32fromLuv48(LogLuvState* sp, tidata_t op, int n)
 		}
 		return;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0) {
 		*luv++ = (uint32)luv3[0] << 16 |
 	(itrunc(luv3[1]*(UVSCALE/(1<<15)), sp->encode_meth) << 8 & 0xff00) |

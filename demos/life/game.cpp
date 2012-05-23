@@ -119,6 +119,9 @@ Life::Life()
     m_boxes       = new LifeCellBox *[HASHSIZE];
     m_head        = NULL;
     m_available   = NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < HASHSIZE; i++)
         m_boxes[i] = NULL;
 
@@ -145,11 +148,17 @@ void Life::Clear()
     LifeCellBox *c, *nc;
 
     // clear the hash table pointers
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < HASHSIZE; i++)
         m_boxes[i] = NULL;
 
     // free used boxes
     c = m_head;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (c)
     {
         nc = c->m_next;
@@ -160,6 +169,9 @@ void Life::Clear()
 
     // free available boxes
     c = m_available;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (c)
     {
         nc = c->m_next;
@@ -215,6 +227,9 @@ void Life::SetPattern(const LifePattern& pattern)
          y = 0;
 
     Clear();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t n = 0; n < data.GetCount(); n++)
     {
         line = data[n];
@@ -229,6 +244,9 @@ void Life::SetPattern(const LifePattern& pattern)
         else
         {
             // pattern data
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (size_t k = 0; k < line.Len(); k++)
                 SetCell(x + k, y, line.GetChar(k) == wxT('*'));
 
@@ -255,6 +273,9 @@ LifeCellBox* Life::CreateBox(wxInt32 x, wxInt32 y, wxUint32 hv)
 
     // if there are no available boxes, alloc a few more
     if (!m_available)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 1; i <= ALLOCBOXES; i++)
         {
             c = new LifeCellBox();
@@ -313,6 +334,9 @@ LifeCellBox* Life::LinkBox(wxInt32 x, wxInt32 y, bool create)
     hv = HASH(x, y);
 
     // search in the hash table
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c = m_boxes[hv]; c; c = c->m_hnext)
         if ((c->m_x == x) && (c->m_y == y)) return c;
 
@@ -366,6 +390,9 @@ LifeCell Life::FindCenter()
     n = 0;
 
     LifeCellBox *c;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c = m_head; c; c = c->m_next)
         if (!c->m_dead)
         {
@@ -392,6 +419,9 @@ LifeCell Life::FindNorth()
     bool first = true;
 
     LifeCellBox *c;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c = m_head; c; c = c->m_next)
         if (!c->m_dead && ((first) || (c->m_y < y)))
         {
@@ -412,6 +442,9 @@ LifeCell Life::FindSouth()
     bool first = true;
 
     LifeCellBox *c;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c = m_head; c; c = c->m_next)
         if (!c->m_dead && ((first) || (c->m_y > y)))
         {
@@ -432,6 +465,9 @@ LifeCell Life::FindWest()
     bool first = true;
 
     LifeCellBox *c;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c = m_head; c; c = c->m_next)
         if (!c->m_dead && ((first) || (c->m_x < x)))
         {
@@ -452,6 +488,9 @@ LifeCell Life::FindEast()
     bool first = true;
 
     LifeCellBox *c;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c = m_head; c; c = c->m_next)
         if (!c->m_dead && ((first) || (c->m_x > x)))
         {
@@ -481,6 +520,9 @@ void Life::DoLine(wxInt32 x, wxInt32 y, wxUint32 live, wxUint32 old)
 
     if (!diff) return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxInt32 k = 8; k; k--, x++)
     {
         if (diff & 0x01)
@@ -517,7 +559,13 @@ bool Life::FindMore(LifeCell *cells[], size_t *ncells)
 
     if (m_changed)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ; m_y <= m_y1; m_y += 8, m_x = m_x0)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( ; m_x <= m_x1; m_x += 8)
             {
                 if ((c = LinkBox(m_x, m_y, false)) == NULL)
@@ -542,7 +590,13 @@ bool Life::FindMore(LifeCell *cells[], size_t *ncells)
     }
     else
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ; m_y <= m_y1; m_y += 8, m_x = m_x0)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( ; m_x <= m_x1; m_x += 8)
             {
                 if ((c = LinkBox(m_x, m_y, false)) == NULL)
@@ -597,6 +651,9 @@ bool Life::NextTic()
     //
     c = m_head;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (c)
     {
         if (! (c->m_live1 || c->m_live2))
@@ -796,6 +853,9 @@ bool Life::NextTic()
 
         // inner cells
         int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 1; i <= 3; i++)
         {
             t1 = ((c->m_live1) >> (i * 8)) & 0x000000ff;
@@ -806,6 +866,9 @@ bool Life::NextTic()
                 c->m_on[i + 1] += g_tab1[t1];
             }
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i <= 2; i++)
         {
             t1 = ((c->m_live2) >> (i * 8)) & 0x000000ff;
@@ -829,6 +892,9 @@ bool Life::NextTic()
     //
     c = m_head;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (c)
     {
         t1 = 0;
@@ -886,6 +952,9 @@ bool Life::NextTic()
         m_numcells += (t2_ & 0xFF) + (t2_ >> 16 & 0xFF);
 #else
         // Original, slower code
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < 32; i++)
         {
             if (t1 & (1 << i)) m_numcells++;
@@ -940,12 +1009,18 @@ bool LifeModule::OnInit()
 
     if (!g_tab) return false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxUint32 i = 0; i < 0xfffff; i++)
     {
         wxUint32 val  = i >> 4;
         wxUint32 old  = i & 0x0000f;
         wxUint32 live = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int j = 0; j < 4; j++)
         {
             live >>= 1;

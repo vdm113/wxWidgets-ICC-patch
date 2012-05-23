@@ -373,6 +373,9 @@ public:
         wxString list;
         const wxArchiveClassFactory *factory = wxArchiveClassFactory::GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (factory) {
             list << factory->GetProtocol() << wxT("\n");
             factory = factory->GetNext();
@@ -410,6 +413,9 @@ public:
         wxString list;
         const wxChar *const *p;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (p = factory->GetProtocols(wxSTREAM_FILEEXT); *p; p++)
             list << *p << wxT("\n");
         @endcode
