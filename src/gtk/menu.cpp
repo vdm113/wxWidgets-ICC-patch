@@ -108,6 +108,9 @@ void wxMenuBar::Init(size_t n, wxMenu *menus[], const wxString titles[], long st
 
     g_object_ref_sink(m_widget);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < n; ++i )
         Append(menus[i], titles[i]);
 }
@@ -146,6 +149,9 @@ DetachFromFrame(wxMenu* menu, wxFrame* frame)
     }
 
     wxMenuItemList::compatibility_iterator node = menu->GetMenuItems().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxMenuItem *menuitem = node->GetData();
@@ -167,6 +173,9 @@ AttachToFrame(wxMenu* menu, wxFrame* frame)
     }
 
     wxMenuItemList::compatibility_iterator node = menu->GetMenuItems().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxMenuItem *menuitem = node->GetData();
@@ -201,6 +210,9 @@ void wxMenuBar::SetLayoutDirection(wxLayoutDirection dir)
 
     // also set the layout of all menus we already have (new ones will inherit
     // the current layout)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxMenuList::compatibility_iterator node = m_menus.GetFirst();
           node;
           node = node->GetNext() )
@@ -220,6 +232,9 @@ void wxMenuBar::Attach(wxFrame *frame)
     wxMenuBarBase::Attach(frame);
 
     wxMenuList::compatibility_iterator node = m_menus.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxMenu *menu = node->GetData();
@@ -233,6 +248,9 @@ void wxMenuBar::Attach(wxFrame *frame)
 void wxMenuBar::Detach()
 {
     wxMenuList::compatibility_iterator node = m_menus.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxMenu *menu = node->GetData();
@@ -354,6 +372,9 @@ static int FindMenuItemRecursive( const wxMenu *menu, const wxString &menuString
     }
 
     wxMenuItemList::compatibility_iterator node = menu->GetMenuItems().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxMenuItem *item = node->GetData();
@@ -369,6 +390,9 @@ static int FindMenuItemRecursive( const wxMenu *menu, const wxString &menuString
 int wxMenuBar::FindMenuItem( const wxString &menuString, const wxString &itemString ) const
 {
     wxMenuList::compatibility_iterator node = m_menus.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxMenu *menu = node->GetData();
@@ -387,6 +411,9 @@ static wxMenuItem* FindMenuItemByIdRecursive(const wxMenu* menu, int id)
     wxMenuItem* result = menu->FindChildItem(id);
 
     wxMenuItemList::compatibility_iterator node = menu->GetMenuItems().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( node && result == NULL )
     {
         wxMenuItem *item = node->GetData();
@@ -404,6 +431,9 @@ wxMenuItem* wxMenuBar::FindItem( int id, wxMenu **menuForItem ) const
 {
     wxMenuItem* result = 0;
     wxMenuList::compatibility_iterator node = m_menus.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node && result == 0)
     {
         wxMenu *menu = node->GetData();

@@ -119,6 +119,9 @@ void FontTestCase::GetSet()
 {
     unsigned numFonts;
     const wxFont *pf = GetTestFonts(numFonts);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < numFonts; n++ )
     {
         wxFont test(*pf++);
@@ -217,6 +220,9 @@ void FontTestCase::NativeFontInfo()
 {
     unsigned numFonts;
     const wxFont *pf = GetTestFonts(numFonts);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < numFonts; n++ )
     {
         wxFont test(*pf++);
@@ -251,6 +257,9 @@ void FontTestCase::NativeFontInfoUserDesc()
 {
     unsigned numFonts;
     const wxFont *pf = GetTestFonts(numFonts);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < numFonts; n++ )
     {
         wxFont test(*pf++);

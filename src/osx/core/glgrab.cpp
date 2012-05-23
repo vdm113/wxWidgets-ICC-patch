@@ -67,6 +67,9 @@ static void swizzleBitmap(void * data, int rowBytes, int height)
     buffer = malloc(rowBytes);
 
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( top < bottom )
     {
         topP = (void *)((top * rowBytes) + (intptr_t)base);
