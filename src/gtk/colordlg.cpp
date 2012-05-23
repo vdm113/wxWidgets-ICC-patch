@@ -158,7 +158,7 @@ void wxColourDialog::ColourDataToDialog()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (unsigned i = 0; i < WXSIZEOF(colors); i++)
+    for (unsigned i = 0; i < 16; i++)
     {
         wxColour c = m_data.GetCustomColour(i);
         if (c.IsOk())
@@ -227,7 +227,7 @@ void wxColourDialog::DialogToColourData()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (int i = 0; i < n_colors && i < wxColourData::NUM_CUSTOM; i++)
+        for (int i = 0; i < wxMin(n_colors, 16); i++)
         {
             m_data.SetCustomColour(i, wxColour(colors[i]));
         }
