@@ -52,6 +52,9 @@ static bool IsContinuationLine(unsigned int szLine, Accessor &styler)
 {
 	int nsPos = styler.LineStart(szLine);
 	int nePos = styler.LineStart(szLine + 1) - 2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (nsPos < nePos)
 	{
 		int stylech = styler.StyleAt(nsPos);
@@ -79,6 +82,9 @@ static int GetStyleFirstWord(unsigned int szLine, Accessor &styler)
 	int nePos = styler.LineStart(szLine+1) - 1;
 	char ch = styler.SafeGetCharAt(nsPos);
 	
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (ch > 0 && isspacechar(ch) && nsPos < nePos)
 	{
 		nsPos++; // skip to next char
@@ -124,6 +130,9 @@ static void ColourisePowerProDoc(unsigned int startPos, int length, int initStyl
 	StyleContext sc(startPos, length, initStyle, styler);
 	char s_save[100]; //for last line highlighting
 	
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 			
 		// **********************************************
@@ -360,6 +369,9 @@ static void FoldPowerProDoc(unsigned int startPos, int length, int, WordList *[]
 	int stylePrev = 0;
 	
 	// find the first previous line without continuation character at the end
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((lineCurrent > 0 && IsContinuationLine(lineCurrent,styler)) ||
 	       (lineCurrent > 1 && IsContinuationLine(lineCurrent-1,styler))) {
 		lineCurrent--;
@@ -395,6 +407,9 @@ static void FoldPowerProDoc(unsigned int startPos, int length, int, WordList *[]
 	char chPrevPrev = '\0';
 	char chPrevPrevPrev = '\0';
 	
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = startPos; i < endPos; i++) {
 
 		char ch = chNext;
@@ -558,6 +573,9 @@ static void FoldPowerProDoc(unsigned int startPos, int length, int, WordList *[]
 				FirstWordEnd = false;
 				DoFoundLast = false;
 				//blank out keyword
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (unsigned int i = 0; i < KEYWORD_MAX; i++) {
 					szKeyword[i] = '\0';
 				}

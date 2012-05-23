@@ -346,6 +346,9 @@ int ZEXPORT deflateSetDictionary (strm, dictionary, dictLength)
      */
     s->ins_h = s->window[0];
     UPDATE_HASH(s, s->ins_h, s->window[1]);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0; n <= length - MIN_MATCH; n++) {
         INSERT_STRING(s, n, hash_head);
     }
@@ -653,6 +656,9 @@ int ZEXPORT deflate (strm, flush)
         if (s->gzhead->extra != NULL) {
             uInt beg = s->pending;  /* start of bytes to update crc */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (s->gzindex < (s->gzhead->extra_len & 0xffff)) {
                 if (s->pending == s->pending_buf_size) {
                     if (s->gzhead->hcrc && s->pending > beg)
@@ -682,6 +688,9 @@ int ZEXPORT deflate (strm, flush)
             uInt beg = s->pending;  /* start of bytes to update crc */
             int val;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do {
                 if (s->pending == s->pending_buf_size) {
                     if (s->gzhead->hcrc && s->pending > beg)
@@ -713,6 +722,9 @@ int ZEXPORT deflate (strm, flush)
             uInt beg = s->pending;  /* start of bytes to update crc */
             int val;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do {
                 if (s->pending == s->pending_buf_size) {
                     if (s->gzhead->hcrc && s->pending > beg)
@@ -1071,6 +1083,9 @@ local uInt longest_match(s, cur_match)
 
     Assert((ulg)s->strstart <= s->window_size-MIN_LOOKAHEAD, "need lookahead");
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do {
         Assert(cur_match < s->strstart, "no future");
         match = s->window + cur_match;
@@ -1101,6 +1116,9 @@ local uInt longest_match(s, cur_match)
          */
         Assert(scan[2] == match[2], "scan[2]?");
         scan++, match++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do {
         } while (*(ushf*)(scan+=2) == *(ushf*)(match+=2) &&
                  *(ushf*)(scan+=2) == *(ushf*)(match+=2) &&
@@ -1135,6 +1153,9 @@ local uInt longest_match(s, cur_match)
         /* We check for insufficient lookahead only every 8th comparison;
          * the 256th check will be made at strstart+258.
          */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do {
         } while (*++scan == *++match && *++scan == *++match &&
                  *++scan == *++match && *++scan == *++match &&
@@ -1208,6 +1229,9 @@ local uInt longest_match_fast(s, cur_match)
     /* We check for insufficient lookahead only every 8th comparison;
      * the 256th check will be made at strstart+258.
      */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do {
     } while (*++scan == *++match && *++scan == *++match &&
              *++scan == *++match && *++scan == *++match &&
@@ -1239,6 +1263,9 @@ local void check_match(s, start, match, length)
                 s->window + start, length) != EQUAL) {
         fprintf(stderr, " start %u, match %u, length %d\n",
                 start, match, length);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do {
             fprintf(stderr, "%c%c", s->window[match++], s->window[start++]);
         } while (--length != 0);
@@ -1246,6 +1273,9 @@ local void check_match(s, start, match, length)
     }
     if (z_verbose > 1) {
         fprintf(stderr,"\\[%d,%d]", start-match, length);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do { putc(s->window[start++], stderr); } while (--length != 0);
     }
 }
@@ -1271,6 +1301,9 @@ local void fill_window(s)
     unsigned more;    /* Amount of free space at the end of the window. */
     uInt wsize = s->w_size;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do {
         more = (unsigned)(s->window_size -(ulg)s->lookahead -(ulg)s->strstart);
 
@@ -1306,6 +1339,9 @@ local void fill_window(s)
             /* %%% avoid this when Z_RLE */
             n = s->hash_size;
             p = &s->head[n];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do {
                 m = *--p;
                 *p = (Pos)(m >= wsize ? m-wsize : NIL);
@@ -1314,6 +1350,9 @@ local void fill_window(s)
             n = wsize;
 #ifndef FASTEST
             p = &s->prev[n];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do {
                 m = *--p;
                 *p = (Pos)(m >= wsize ? m-wsize : NIL);
@@ -1402,6 +1441,9 @@ local block_state deflate_stored(s, flush)
     }
 
     /* Copy as much as possible from input to output: */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (;;) {
         /* Fill the window as much as possible: */
         if (s->lookahead <= 1) {
@@ -1452,6 +1494,9 @@ local block_state deflate_fast(s, flush)
     IPos hash_head = NIL; /* head of the hash chain */
     int bflush;           /* set if current block must be flushed */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (;;) {
         /* Make sure that we always have enough lookahead, except
          * at the end of the input file. We need MAX_MATCH bytes
@@ -1510,6 +1555,9 @@ local block_state deflate_fast(s, flush)
             if (s->match_length <= s->max_insert_length &&
                 s->lookahead >= MIN_MATCH) {
                 s->match_length--; /* string at strstart already in table */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 do {
                     s->strstart++;
                     INSERT_STRING(s, s->strstart, hash_head);
@@ -1559,6 +1607,9 @@ local block_state deflate_slow(s, flush)
     int bflush;              /* set if current block must be flushed */
 
     /* Process the input block. */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (;;) {
         /* Make sure that we always have enough lookahead, except
          * at the end of the input file. We need MAX_MATCH bytes
@@ -1630,6 +1681,9 @@ local block_state deflate_slow(s, flush)
              */
             s->lookahead -= s->prev_length-1;
             s->prev_length -= 2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do {
                 if (++s->strstart <= max_insert) {
                     INSERT_STRING(s, s->strstart, hash_head);
@@ -1690,6 +1744,9 @@ local block_state deflate_rle(s, flush)
     uInt prev;          /* byte at distance one to match */
     Bytef *scan;        /* scan for end of run */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (;;) {
         /* Make sure that we always have enough lookahead, except
          * at the end of the input file. We need MAX_MATCH bytes
@@ -1709,6 +1766,9 @@ local block_state deflate_rle(s, flush)
             max = s->lookahead < MAX_MATCH ? s->lookahead : MAX_MATCH;
             scan = s->window + s->strstart - 1;
             prev = *scan++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do {
                 if (*scan++ != prev)
                     break;

@@ -73,6 +73,9 @@ wxSpinButton::wxSpinButton(wxWindow *parent,
 
 void wxSpinButton::Init()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(m_arrowsState); n++ )
     {
         m_arrowsState[n] = 0;

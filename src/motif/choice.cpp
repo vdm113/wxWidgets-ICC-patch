@@ -89,6 +89,9 @@ bool wxChoice::Create(wxWindow *parent, wxWindowID id,
     if (n > 0)
     {
         int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < n; i++)
             Append (choices[i]);
     }
@@ -190,6 +193,9 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter& items,
 
     const unsigned int numItems = items.GetCount();
     AllocClientData(numItems);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( unsigned int i = 0; i < numItems; ++i, ++pos )
     {
         Widget w = XtVaCreateManagedWidget (GetLabelText(items[i]),
@@ -254,6 +260,9 @@ void wxChoice::DoClear()
     m_stringArray.Clear();
 
     unsigned int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_stringArray.GetCount(); i++)
     {
         XtRemoveCallback((Widget) m_widgetArray[i],
@@ -284,6 +293,9 @@ int wxChoice::GetSelection() const
 
     if (!s.empty())
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i=0; i<m_stringArray.GetCount(); i++)
             if (m_stringArray[i] == s)
                 return i;
@@ -367,6 +379,9 @@ void wxChoice::DoSetSize(int x, int y, int width, int height, int sizeFlags)
     if (width > -1)
     {
         unsigned int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < m_stringArray.GetCount(); i++)
             XtVaSetValues ((Widget) m_widgetArray[i],
                            XmNwidth, actualWidth,
@@ -378,6 +393,9 @@ void wxChoice::DoSetSize(int x, int y, int width, int height, int sizeFlags)
     {
 #if 0
         unsigned int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < m_stringArray.GetCount(); i++)
             XtVaSetValues ((Widget) m_widgetArray[i],
                            XmNheight, actualHeight,
@@ -444,6 +462,9 @@ void wxChoice::ChangeFont(bool keepOriginalSize)
                        fontTag, m_font.GetFontTypeC(dpy),
                        NULL);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( unsigned int i = 0; i < m_stringArray.GetCount(); ++i )
             XtVaSetValues( (Widget)m_widgetArray[i],
                            fontTag, m_font.GetFontTypeC(dpy),
@@ -463,6 +484,9 @@ void wxChoice::ChangeBackgroundColour()
     wxDoChangeBackgroundColour(m_buttonWidget, m_backgroundColour);
     wxDoChangeBackgroundColour(m_menuWidget, m_backgroundColour);
     unsigned int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_stringArray.GetCount(); i++)
         wxDoChangeBackgroundColour(m_widgetArray[i], m_backgroundColour);
 }
@@ -473,6 +497,9 @@ void wxChoice::ChangeForegroundColour()
     wxDoChangeForegroundColour(m_buttonWidget, m_foregroundColour);
     wxDoChangeForegroundColour(m_menuWidget, m_foregroundColour);
     unsigned int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_stringArray.GetCount(); i++)
         wxDoChangeForegroundColour(m_widgetArray[i], m_foregroundColour);
 }
@@ -494,6 +521,9 @@ wxSize wxChoice::GetItemsSize() const
     // get my
     GetTextExtent( "|", &x, &my );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i=0; i<m_stringArray.GetCount(); i++)
     {
         GetTextExtent( m_stringArray[i], &x, &y );
