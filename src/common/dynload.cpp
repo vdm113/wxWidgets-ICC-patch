@@ -130,6 +130,9 @@ bool wxPluginLibrary::UnrefLib()
 
 void wxPluginLibrary::UpdateClasses()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (const wxClassInfo *info = m_after; info != m_before; info = info->GetNext())
     {
         if( info->GetClassName() )
@@ -147,6 +150,9 @@ void wxPluginLibrary::RestoreClasses()
     if (!ms_classes)
         return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(const wxClassInfo *info = m_after; info != m_before; info = info->GetNext())
     {
         ms_classes->erase(ms_classes->find(info->GetClassName()));
@@ -166,6 +172,9 @@ void wxPluginLibrary::RegisterModules()
     wxASSERT_MSG( m_linkcount == 1,
                   wxT("RegisterModules should only be called for the first load") );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( const wxClassInfo *info = m_after; info != m_before; info = info->GetNext())
     {
         if( info->IsKindOf(CLASSINFO(wxModule)) )
@@ -181,6 +190,9 @@ void wxPluginLibrary::RegisterModules()
 
     // FIXME: Likewise this is (well was) very similar to InitializeModules()
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxModuleList::iterator it = m_wxmodules.begin();
           it != m_wxmodules.end();
           ++it)
@@ -197,6 +209,9 @@ void wxPluginLibrary::RegisterModules()
             // shortly).
 
             wxModuleList::iterator oldNode = m_wxmodules.end();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do {
                 ++it;
                 if( oldNode != m_wxmodules.end() )
@@ -215,9 +230,15 @@ void wxPluginLibrary::UnregisterModules()
 {
     wxModuleList::iterator it;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( it = m_wxmodules.begin(); it != m_wxmodules.end(); ++it )
         (*it)->Exit();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( it = m_wxmodules.begin(); it != m_wxmodules.end(); ++it )
         wxModule::UnregisterModule( *it );
 
@@ -342,6 +363,9 @@ void wxPluginManager::Unload()
 {
     wxCHECK_RET( m_entry, wxT("unloading an invalid wxPluginManager?") );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxDLManifest::iterator i = ms_manifest->begin();
           i != ms_manifest->end();
           ++i )

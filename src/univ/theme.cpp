@@ -60,6 +60,9 @@ wxThemeInfo::wxThemeInfo(Constructor c,
 {
     // find the theme in the list by name
     wxThemeInfo *info = ms_allThemes;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( info )
     {
         if ( name.CmpNoCase(info->name) == 0 )

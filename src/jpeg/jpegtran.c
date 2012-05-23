@@ -138,6 +138,9 @@ parse_switches (j_compress_ptr cinfo, int argc, char **argv,
 
   /* Scan command line options, adjust parameters */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (argn = 1; argn < argc; argn++) {
     arg = argv[argn];
     if (*arg != '-') {

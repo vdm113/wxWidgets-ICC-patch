@@ -63,6 +63,9 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((c = getopt(argc, argv, "c:p:r:")) != -1)
 		switch (c) {
 		case 'c':		/* compression scheme */
@@ -161,6 +164,9 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
                 defcompression = COMPRESSION_JPEG;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while( cp )
                 {
                     if (isdigit((int)cp[1]))
@@ -200,12 +206,18 @@ cpContig(IMAGE* in, TIFF* out)
 		r = (short *)_TIFFmalloc(3 * in->xsize * sizeof (short));
 		g = r + in->xsize;
 		b = g + in->xsize;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (y = in->ysize-1; y >= 0; y--) {
 			uint8* pp = (uint8*) buf;
 
 			getrow(in, r, y, 0);
 			getrow(in, g, y, 1);
 			getrow(in, b, y, 2);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (x = 0; x < in->xsize; x++) {
 				pp[0] = r[x];
 				pp[1] = g[x];
@@ -222,6 +234,9 @@ cpContig(IMAGE* in, TIFF* out)
 		g = r + in->xsize;
 		b = g + in->xsize;
 		a = b + in->xsize;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (y = in->ysize-1; y >= 0; y--) {
 			uint8* pp = (uint8*) buf;
 
@@ -229,6 +244,9 @@ cpContig(IMAGE* in, TIFF* out)
 			getrow(in, g, y, 1);
 			getrow(in, b, y, 2);
 			getrow(in, a, y, 3);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (x = 0; x < in->xsize; x++) {
 				pp[0] = r[x];
 				pp[1] = g[x];
@@ -243,8 +261,14 @@ cpContig(IMAGE* in, TIFF* out)
 		uint8* pp = (uint8*) buf;
 
 		r = (short *)_TIFFmalloc(in->xsize * sizeof (short));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (y = in->ysize-1; y >= 0; y--) {
 			getrow(in, r, y, 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (x = in->xsize-1; x >= 0; x--)
 				pp[x] = r[x];
 			if (TIFFWriteScanline(out, buf, in->ysize-y-1, 0) < 0)
@@ -270,9 +294,18 @@ cpSeparate(IMAGE* in, TIFF* out)
 	uint8* pp = (uint8*) buf;
 	int x, y, z;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (z = 0; z < in->zsize; z++) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (y = in->ysize-1; y >= 0; y--) {
 			getrow(in, r, y, z);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (x = 0; x < in->xsize; x++)
 				pp[x] = r[x];
 			if (TIFFWriteScanline(out, buf, in->ysize-y-1, z) < 0)
@@ -322,6 +355,9 @@ usage(void)
 	int i;
 
 	setbuf(stderr, buf);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);

@@ -197,6 +197,9 @@
 
     // first enum all entries
     bool bCont = config->GetFirstEntry(str, dummy);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( bCont ) {
         aNames.Add(str);
 
@@ -207,6 +210,9 @@
 
     // now all groups...
     bCont = GetConfig()->GetFirstGroup(str, dummy);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( bCont ) {
         aNames.Add(str);
 

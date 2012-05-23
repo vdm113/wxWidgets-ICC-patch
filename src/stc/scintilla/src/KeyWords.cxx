@@ -33,6 +33,9 @@ static char **ArrayFromWordList(char *wordlist, int *len, bool onlyLineEnds = fa
 	// For rapid determination of whether a character is a separator, build
 	// a look up table.
 	bool wordSeparator[256];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i=0;i<256; i++) {
 		wordSeparator[i] = false;
 	}
@@ -42,6 +45,9 @@ static char **ArrayFromWordList(char *wordlist, int *len, bool onlyLineEnds = fa
 		wordSeparator[' '] = true;
 		wordSeparator['\t'] = true;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int j = 0; wordlist[j]; j++) {
 		int curr = static_cast<unsigned char>(wordlist[j]);
 		if (!wordSeparator[curr] && wordSeparator[prev])
@@ -53,6 +59,9 @@ static char **ArrayFromWordList(char *wordlist, int *len, bool onlyLineEnds = fa
 		words = 0;
 		prev = '\0';
 		size_t slen = strlen(wordlist);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (size_t k = 0; k < slen; k++) {
 			if (!wordSeparator[static_cast<unsigned char>(wordlist[k])]) {
 				if (!prev) {
@@ -106,8 +115,14 @@ bool WordList::InList(const char *s) {
 	if (!sorted) {
 		sorted = true;
 		SortWordList(words, len);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (unsigned int k = 0; k < (sizeof(starts) / sizeof(starts[0])); k++)
 			starts[k] = -1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int l = len - 1; l >= 0; l--) {
 			unsigned char indexChar = words[l][0];
 			starts[indexChar] = l;
@@ -116,10 +131,16 @@ bool WordList::InList(const char *s) {
 	unsigned char firstChar = s[0];
 	int j = starts[firstChar];
 	if (j >= 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while ((unsigned char)words[j][0] == firstChar) {
 			if (s[1] == words[j][1]) {
 				const char *a = words[j] + 1;
 				const char *b = s + 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (*a && *a == *b) {
 					a++;
 					b++;
@@ -132,9 +153,15 @@ bool WordList::InList(const char *s) {
 	}
 	j = starts['^'];
 	if (j >= 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (words[j][0] == '^') {
 			const char *a = words[j] + 1;
 			const char *b = s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (*a && *a == *b) {
 				a++;
 				b++;
@@ -158,8 +185,14 @@ bool WordList::InListAbbreviated(const char *s, const char marker) {
 	if (!sorted) {
 		sorted = true;
 		SortWordList(words, len);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (unsigned int k = 0; k < (sizeof(starts) / sizeof(starts[0])); k++)
 			starts[k] = -1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int l = len - 1; l >= 0; l--) {
 			unsigned char indexChar = words[l][0];
 			starts[indexChar] = l;
@@ -168,6 +201,9 @@ bool WordList::InListAbbreviated(const char *s, const char marker) {
 	unsigned char firstChar = s[0];
 	int j = starts[firstChar];
 	if (j >= 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (words[j][0] == firstChar) {
 			bool isSubword = false;
 			int start = 1;
@@ -178,6 +214,9 @@ bool WordList::InListAbbreviated(const char *s, const char marker) {
 			if (s[1] == words[j][start]) {
 				const char *a = words[j] + start;
 				const char *b = s + 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (*a && *a == *b) {
 					a++;
 					if (*a == marker) {
@@ -194,9 +233,15 @@ bool WordList::InListAbbreviated(const char *s, const char marker) {
 	}
 	j = starts['^'];
 	if (j >= 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (words[j][0] == '^') {
 			const char *a = words[j] + 1;
 			const char *b = s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (*a && *a == *b) {
 				a++;
 				b++;
@@ -238,6 +283,9 @@ int LexerModule::GetNumWordLists() const {
 	} else {
 		int numWordLists = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (wordListDescriptions[numWordLists]) {
 			++numWordLists;
 		}
@@ -263,6 +311,9 @@ int LexerModule::GetStyleBitsNeeded() const {
 
 const LexerModule *LexerModule::Find(int language) {
 	const LexerModule *lm = base;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (lm) {
 		if (lm->language == language) {
 			return lm;
@@ -275,6 +326,9 @@ const LexerModule *LexerModule::Find(int language) {
 const LexerModule *LexerModule::Find(const char *languageName) {
 	if (languageName) {
 		const LexerModule *lm = base;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (lm) {
 			if (lm->languageName && 0 == strcmp(lm->languageName, languageName)) {
 				return lm;
