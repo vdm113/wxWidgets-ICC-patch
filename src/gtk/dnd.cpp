@@ -513,7 +513,7 @@ GdkAtom wxDropTarget::GTKGetMatchingPair(bool quiet)
     if (!m_dragContext)
         return (GdkAtom) 0;
 
-    const GList* child = gdk_drag_context_list_targets(m_dragContext);
+    GList *child = m_dragContext->targets;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
