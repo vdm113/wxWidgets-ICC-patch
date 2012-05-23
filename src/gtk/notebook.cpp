@@ -309,6 +309,9 @@ wxSize wxNotebook::CalcSizeFromPage(const wxSize& sizePage) const
     // Compute the max size of the tab labels.
     wxSize sizeTabMax;
     const size_t pageCount = GetPageCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < pageCount; n++ )
     {
         GtkRequisition req;
@@ -340,6 +343,9 @@ void wxNotebook::SetPadding( const wxSize &padding )
 
     m_padding = padding.GetWidth();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = GetPageCount(); i--;)
     {
         wxGtkNotebookPage* pageData = GetNotebookPage(i);
@@ -360,6 +366,9 @@ void wxNotebook::SetTabSize(const wxSize& WXUNUSED(sz))
 
 bool wxNotebook::DeleteAllPages()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = GetPageCount(); i--;)
         DeletePage(i);
 
@@ -503,6 +512,9 @@ int wxNotebook::HitTest(const wxPoint& pt, long *flags) const
         i = g_list_position( notebook->children, notebook->first_tab );
 #endif
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ; i < count; i++ )
     {
         wxGtkNotebookPage* pageData = GetNotebookPage(i);
@@ -581,6 +593,9 @@ bool wxNotebook::DoPhase( int WXUNUSED(nPhase) )
 void wxNotebook::DoApplyWidgetStyle(GtkRcStyle *style)
 {
     gtk_widget_modify_style(m_widget, style);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = GetPageCount(); i--;)
         gtk_widget_modify_style(GetNotebookPage(i)->m_label, style);
 }

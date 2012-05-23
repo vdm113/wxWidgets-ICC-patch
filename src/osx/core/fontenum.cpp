@@ -59,6 +59,9 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
 
     wxUint32 macEncoding = wxMacGetSystemEncFromFontEnc(encoding) ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (status == noErr)
     {
         // Get the next font in the iteration.
@@ -91,6 +94,9 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
     ATSFontFamilyIteratorRelease(&theFontFamilyIterator);
 #endif
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0 ; i < fontFamilies.Count() ; ++i )
     {
         if ( OnFacename( fontFamilies[i] ) == false )

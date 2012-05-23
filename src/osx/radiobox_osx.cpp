@@ -63,6 +63,9 @@ wxRadioBox::~wxRadioBox()
     current = m_radioButtonCycle->NextInCycle();
     if (current != NULL)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (current != m_radioButtonCycle)
         {
             next = current->NextInCycle();
@@ -114,6 +117,9 @@ bool wxRadioBox::Create( wxWindow *parent,
 
     SetPeer(wxWidgetImpl::CreateGroupBox( this, parent, id, label, pos, size, style, GetExtraStyle() ));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < n; i++)
     {
         wxRadioButton *radBtn = new wxRadioButton(
@@ -151,6 +157,9 @@ bool wxRadioBox::Enable(bool enable)
         return false;
 
     current = m_radioButtonCycle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = 0; i < m_noItems; i++)
     {
         current->Enable( enable );
@@ -169,6 +178,9 @@ bool wxRadioBox::Enable(unsigned int item, bool enable)
 
     unsigned int i = 0;
     wxRadioButton *current = m_radioButtonCycle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (i != item)
     {
         i++;
@@ -185,6 +197,9 @@ bool wxRadioBox::IsItemEnabled(unsigned int item) const
 
     unsigned int i = 0;
     wxRadioButton *current = m_radioButtonCycle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (i != item)
     {
         i++;
@@ -212,6 +227,9 @@ wxString wxRadioBox::GetString(unsigned int item) const
 
     unsigned int i = 0;
     current = m_radioButtonCycle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (i != item)
     {
         i++;
@@ -230,6 +248,9 @@ int wxRadioBox::GetSelection() const
 
     i = 0;
     current = m_radioButtonCycle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!current->GetValue())
     {
         i++;
@@ -255,6 +276,9 @@ void wxRadioBox::SetString(unsigned int item,const wxString& label)
 
     unsigned int i = 0;
     wxRadioButton *current = m_radioButtonCycle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (i != item)
     {
         i++;
@@ -277,6 +301,9 @@ void wxRadioBox::SetSelection(int item)
 
     i = 0;
     current = m_radioButtonCycle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (i != item)
     {
         i++;
@@ -293,6 +320,9 @@ bool wxRadioBox::Show(bool show)
     wxRadioButton *current;
 
     current = m_radioButtonCycle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i=0; i<m_noItems; i++)
     {
         current->Show( show );
@@ -313,6 +343,9 @@ bool wxRadioBox::Show(unsigned int item, bool show)
 
     unsigned int i = 0;
     wxRadioButton *current = m_radioButtonCycle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (i != item)
     {
         i++;
@@ -329,6 +362,9 @@ bool wxRadioBox::IsItemShown(unsigned int item) const
 
     unsigned int i = 0;
     wxRadioButton *current = m_radioButtonCycle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (i != item)
     {
         i++;
@@ -354,6 +390,9 @@ void wxRadioBox::SetFocus()
     wxRadioButton *current;
 
     current = m_radioButtonCycle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!current->GetValue())
     {
         current = current->NextInCycle();
@@ -413,6 +452,9 @@ void wxRadioBox::DoSetSize(int x, int y, int width, int height, int sizeFlags)
     if ( m_radioButtonCycle )
         bestSizeRadio = m_radioButtonCycle->GetBestSize();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = 0 ; i < m_noItems; i++)
     {
         GetTextExtent(GetString(i), &eachWidth[i], &eachHeight[i] );
@@ -464,6 +506,9 @@ void wxRadioBox::DoSetSize(int x, int y, int width, int height, int sizeFlags)
     y_offset = y_start;
 
     current = m_radioButtonCycle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0 ; i < (int)m_noItems; i++)
     {
         // not to do for the zero button!
@@ -512,6 +557,9 @@ wxSize wxRadioBox::DoGetBestSize() const
     if ( m_radioButtonCycle )
         bestSizeRadio = m_radioButtonCycle->GetBestSize();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = 0 ; i < m_noItems; i++)
     {
         GetTextExtent(GetString(i), &eachWidth, &eachHeight, NULL, NULL, &font );

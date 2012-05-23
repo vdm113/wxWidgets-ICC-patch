@@ -215,6 +215,9 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
 
     m_bAlignLeft = in_prec = prec_dot = false;
     m_pArgPos = m_pArgEnd = format;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
 #define CHECK_PREC \
@@ -341,6 +344,9 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
                 {
                     int len = 0;
                     CHECK_PREC
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     while ( (*m_pArgEnd >= CharType('0')) &&
                             (*m_pArgEnd <= CharType('9')) )
                     {
@@ -365,6 +371,9 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
                                     // numbers are preceding it
 
                     // remove from m_szFlags all digits previously added
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     do {
                         flagofs--;
                     } while (m_szFlags[flagofs] >= '1' &&
@@ -499,6 +508,9 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
             return false;
         }
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!done);
 
     return true;        // parsing was successful
@@ -681,12 +693,18 @@ int wxPrintfConvSpec<CharType>::Process(CharType *buf, size_t lenMax, wxPrintfAr
                 size_t i;
 
                 if (!m_bAlignLeft)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (i = 1; i < (size_t)m_nMinWidth; i++)
                         APPEND_CH(wxT(' '));
 
                 APPEND_CH(val);
 
                 if (m_bAlignLeft)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (i = 1; i < (size_t)m_nMinWidth; i++)
                         APPEND_CH(wxT(' '));
             }
@@ -717,6 +735,9 @@ int wxPrintfConvSpec<CharType>::Process(CharType *buf, size_t lenMax, wxPrintfAr
 
                 if (!m_bAlignLeft)
                 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (i = len; i < m_nMinWidth; i++)
                         APPEND_CH(wxT(' '));
                 }
@@ -727,6 +748,9 @@ int wxPrintfConvSpec<CharType>::Process(CharType *buf, size_t lenMax, wxPrintfAr
 
                 if (m_bAlignLeft)
                 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (i = len; i < m_nMinWidth; i++)
                         APPEND_CH(wxT(' '));
                 }
@@ -805,6 +829,9 @@ struct wxPrintfConvSpecParser
         memset(pspec, 0, sizeof(pspec));
 
         // parse the format string
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( const CharType *toparse = fmt; *toparse != wxT('\0'); toparse++ )
         {
             // skip everything except format specifications
@@ -837,6 +864,9 @@ struct wxPrintfConvSpecParser
                 if ( strchr(++f, '*') )
                     numAsterisks++;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( unsigned n = 0; n < numAsterisks; n++ )
                 {
                     if ( nargs++ == wxMAX_SVNPRINTF_ARGUMENTS )

@@ -40,6 +40,9 @@ static void ColourisePowerShellDoc(unsigned int startPos, int length, int initSt
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.state == SCE_POWERSHELL_COMMENT) {
@@ -123,6 +126,9 @@ static void FoldPowerShellDoc(unsigned int startPos, int length, int,
 	int levelNext = levelCurrent;
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

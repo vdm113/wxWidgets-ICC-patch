@@ -270,8 +270,14 @@ void wxCursor::InitFromImage( const wxImage & image )
         // modify image so wxBitmap can be used to convert to pixmap
         image_copy.SetMask(false);
         wxByte* data = image_copy.GetData();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int j = 0; j < h; j++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int i = 0; i < w; i++, data += 3)
             {
                 // if average value of the pixel is > mid grey, convert it to
@@ -292,6 +298,9 @@ void wxCursor::InitFromImage( const wxImage & image )
         unsigned long nMost = 0;
         long colNextMostFreq = 0;
         unsigned long nNext = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxImageHistogram::iterator entry = histogram.begin();
               entry != histogram.end();
               ++entry )
@@ -393,6 +402,9 @@ const wxCursor wxBusyCursor::GetBusyCursor()
 static void UpdateCursors(GdkDisplay** display)
 {
     wxWindowList::const_iterator i = wxTopLevelWindows.begin();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t n = wxTopLevelWindows.size(); n--; ++i)
     {
         wxWindow* win = *i;

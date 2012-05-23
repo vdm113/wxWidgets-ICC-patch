@@ -86,6 +86,9 @@ jpeg_idct_float (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   inptr = coef_block;
   quantptr = (FLOAT_MULT_TYPE *) compptr->dct_table;
   wsptr = workspace;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ctr = DCTSIZE; ctr > 0; ctr--) {
     /* Due to quantization, we will usually find that many of the input
      * coefficients are zero, especially the AC terms.  We can exploit this
@@ -177,6 +180,9 @@ jpeg_idct_float (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   /* Note that we must descale the results by a factor of 8 == 2**3. */
 
   wsptr = workspace;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ctr = 0; ctr < DCTSIZE; ctr++) {
     outptr = output_buf[ctr] + output_col;
     /* Rows of zeroes can be exploited in the same way as we did with columns.

@@ -202,6 +202,9 @@ wxSize wxListCtrlBase::DoGetBestClientSize() const
 
     // Total width of all headers determines the best control width.
     int totalWidth = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int col = 0; col < columns; col++ )
     {
         totalWidth += GetColumnWidth(col);

@@ -67,6 +67,9 @@ _XTIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 	
 			num = xd->xd_num_multi;
 			fprintf(fd,"(");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i=0;i<num;i++) fprintf(fd, " %lg", *value++);
 			fprintf(fd,")\n");
 		} else
