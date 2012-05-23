@@ -51,6 +51,9 @@ static gint gtk_popup_button_press (GtkWidget *widget, GdkEvent *gdk_event, wxPo
    */
     if (child != widget)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (child)
         {
             if (child == widget)

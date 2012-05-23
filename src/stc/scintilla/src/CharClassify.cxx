@@ -21,6 +21,9 @@ CharClassify::CharClassify() {
 
 void CharClassify::SetDefaultCharClasses(bool includeWordClass) {
 	// Initialize all char classes to default values
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int ch = 0; ch < 256; ch++) {
 		if (ch == '\r' || ch == '\n')
 			charClass[ch] = ccNewLine;
@@ -36,6 +39,9 @@ void CharClassify::SetDefaultCharClasses(bool includeWordClass) {
 void CharClassify::SetCharClasses(const unsigned char *chars, cc newCharClass) {
 	// Apply the newCharClass to the specifed chars
 	if (chars) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (*chars) {
 			charClass[*chars] = static_cast<unsigned char>(newCharClass);
 			chars++;
@@ -44,6 +50,9 @@ void CharClassify::SetCharClasses(const unsigned char *chars, cc newCharClass) {
 }
 
 int CompareCaseInsensitive(const char *a, const char *b) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (*a && *b) {
 		if (*a != *b) {
 			char upperA = MakeUpperCase(*a);
@@ -59,6 +68,9 @@ int CompareCaseInsensitive(const char *a, const char *b) {
 }
 
 int CompareNCaseInsensitive(const char *a, const char *b, size_t len) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (*a && *b && len) {
 		if (*a != *b) {
 			char upperA = MakeUpperCase(*a);

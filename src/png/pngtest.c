@@ -206,6 +206,9 @@ count_zero_samples(png_structp png_ptr, png_row_infop row_info, png_bytep data)
        int pos = 0;
        png_uint_32 n, nstop;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
        for (n = 0, nstop=row_info->width; n<nstop; n++)
        {
           if (row_info->bit_depth == 1)
@@ -263,8 +266,14 @@ count_zero_samples(png_structp png_ptr, png_row_infop row_info, png_bytep data)
        int color_channels = row_info->channels;
        if (row_info->color_type > 3)color_channels--;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
        for (n = 0, nstop=row_info->width; n<nstop; n++)
        {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
           for (channel = 0; channel < color_channels; channel++)
           {
              if (row_info->bit_depth == 8)
@@ -399,6 +408,9 @@ pngtest_read_data(png_structp png_ptr, png_bytep data, png_size_t length)
       check = 0;
       remaining = length;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       do
       {
          read = MIN(NEAR_BUF_SIZE, remaining);
@@ -411,6 +423,9 @@ pngtest_read_data(png_structp png_ptr, png_bytep data, png_size_t length)
          data += read;
          remaining -= read;
       }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       while (remaining != 0);
    }
 
@@ -486,6 +501,9 @@ pngtest_write_data(png_structp png_ptr, png_bytep data, png_size_t length)
       check = 0;
       remaining = length;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       do
       {
          written = MIN(NEAR_BUF_SIZE, remaining);
@@ -498,6 +516,9 @@ pngtest_write_data(png_structp png_ptr, png_bytep data, png_size_t length)
          data += written;
          remaining -= written;
       }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       while (remaining != 0);
    }
 
@@ -650,6 +671,9 @@ png_debug_free(png_structp png_ptr, png_voidp ptr)
    {
       memory_infop FAR *ppinfo = &pinformation;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (;;)
       {
          memory_infop pinfo = *ppinfo;
@@ -944,6 +968,9 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
    {
       int i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i<256; i++)
          filters_used[i] = 0;
 
@@ -1230,6 +1257,9 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
           * generated locations in write_info_ptr are wrong because we
           * haven't written anything yet.
           */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (i = 0; i < num_unknowns; i++)
            png_set_unknown_chunk_location(write_ptr, write_info_ptr, i,
              unknowns[i].location);
@@ -1307,9 +1337,15 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
    t_misc += (t_stop - t_start);
    t_start = t_stop;
 #endif
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (pass = 0; pass < num_pass; pass++)
    {
       pngtest_debug1("Writing row data for pass %d", pass);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (y = 0; y < height; y++)
       {
 #ifndef SINGLE_ROWBUF_ALLOC
@@ -1403,6 +1439,9 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
           * generated locations in write_end_info_ptr are wrong because we
           * haven't written the end_info yet.
           */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (i = 0; i < num_unknowns; i++)
            png_set_unknown_chunk_location(write_ptr, write_end_info_ptr, i,
              unknowns[i].location);
@@ -1457,6 +1496,9 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
       return (1);
    }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (;;)
    {
       png_size_t num_in, num_out;
@@ -1637,6 +1679,9 @@ main(int argc, char *argv[])
 #if defined(PNG_USER_MEM_SUPPORTED) && PNG_DEBUG
       int allocation_now = current_allocation;
 #endif
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i=2; i<argc; ++i)
       {
          int kerror;
@@ -1654,6 +1699,9 @@ main(int argc, char *argv[])
             fprintf(STDERR, " PASS\n");
 #endif
 #ifdef PNG_READ_USER_TRANSFORM_SUPPORTED
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (k = 0; k<256; k++)
                if (filters_used[k])
                   fprintf(STDERR, " Filter %d was used %lu times\n",
@@ -1684,6 +1732,9 @@ main(int argc, char *argv[])
             fprintf(STDERR, "MEMORY ERROR: %d bytes still allocated\n",
                current_allocation);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (pinfo != NULL)
             {
                fprintf(STDERR, " %lu bytes at %x\n",
@@ -1709,6 +1760,9 @@ main(int argc, char *argv[])
    else
    {
       int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i<3; ++i)
       {
          int kerror;
@@ -1740,6 +1794,9 @@ main(int argc, char *argv[])
                 fprintf(STDERR, " PASS\n");
 #endif
 #ifdef PNG_READ_USER_TRANSFORM_SUPPORTED
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (k = 0; k<256; k++)
                    if (filters_used[k])
                       fprintf(STDERR, " Filter %d was used %lu times\n",
@@ -1772,6 +1829,9 @@ main(int argc, char *argv[])
              fprintf(STDERR, "MEMORY ERROR: %d bytes still allocated\n",
                 current_allocation);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
              while (pinfo != NULL)
              {
                 fprintf(STDERR, " %lu bytes at %x\n",
