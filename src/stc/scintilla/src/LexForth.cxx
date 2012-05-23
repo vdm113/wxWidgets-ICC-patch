@@ -57,6 +57,9 @@ static void ColouriseForthDoc(unsigned int startPos, int length, int initStyle, 
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward())
 	{
 		// Determine if the current state should terminate.
@@ -123,11 +126,17 @@ static void ColouriseForthDoc(unsigned int startPos, int length, int initStyle, 
 			} else if (	(sc.ch == '$' && (isascii(sc.chNext) && isxdigit(sc.chNext))) ) {
 				// number starting with $ is a hex number
 				sc.SetState(SCE_FORTH_NUMBER);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while(sc.More() && isascii(sc.chNext) && isxdigit(sc.chNext))
 					sc.Forward();
 			} else if ( (sc.ch == '%' && (isascii(sc.chNext) && (sc.chNext == '0' || sc.chNext == '1'))) ) {
 				// number starting with % is binary
 				sc.SetState(SCE_FORTH_NUMBER);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while(sc.More() && isascii(sc.chNext) && (sc.chNext == '0' || sc.chNext == '1'))
 					sc.Forward();
 			} else if (	isascii(sc.ch) && 
@@ -142,6 +151,9 @@ static void ColouriseForthDoc(unsigned int startPos, int length, int initStyle, 
 				// highlight word definitions e.g.  : GCD ( n n -- n ) ..... ;
 				//                                  ^ ^^^
 				sc.SetState(SCE_FORTH_DEFWORD);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while(sc.More() && isascii(sc.chNext) && isspace(sc.chNext))
 					sc.Forward();
 			} else if (sc.ch == ';' &&

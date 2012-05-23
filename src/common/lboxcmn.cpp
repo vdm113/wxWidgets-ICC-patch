@@ -148,6 +148,9 @@ void wxListBoxBase::DeselectAll(int itemToLeaveSelected)
         GetSelections(selections);
 
         size_t count = selections.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < count; n++ )
         {
             int item = selections[n];
@@ -238,6 +241,9 @@ bool wxListBoxBase::CalcAndSendEvent()
     if ( countSel == countSelOld )
     {
         bool changed = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t idx = 0; idx < countSel; idx++ )
         {
             if (selections[idx] != m_oldSelections[idx])
@@ -262,6 +268,9 @@ bool wxListBoxBase::CalcAndSendEvent()
     {
         // Now test if any new item is selected
         bool any_new_selected = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t idx = 0; idx < countSel; idx++ )
         {
             item = selections[idx];
@@ -276,6 +285,9 @@ bool wxListBoxBase::CalcAndSendEvent()
         {
             // No new items selected, now test if any new item is deselected
             bool any_new_deselected = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( size_t idx = 0; idx < countSelOld; idx++ )
             {
                 item = m_oldSelections[idx];

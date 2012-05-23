@@ -143,6 +143,9 @@ void PipeIOHandler::OnReadWaiting()
     wxCriticalSectionLocker lock(m_pipeLock);
 
     char buf[4];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         const int size = read(GetReadFd(), buf, WXSIZEOF(buf));

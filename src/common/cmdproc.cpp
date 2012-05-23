@@ -119,6 +119,9 @@ void wxCommandProcessor::Store(wxCommand *command)
     else
     {
         wxList::compatibility_iterator node = m_currentCommand->GetNext();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             wxList::compatibility_iterator next = node->GetNext();
@@ -316,6 +319,9 @@ wxString wxCommandProcessor::GetRedoMenuLabel() const
 void wxCommandProcessor::ClearCommands()
 {
     wxList::compatibility_iterator node = m_commands.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxCommand *command = (wxCommand *)node->GetData();

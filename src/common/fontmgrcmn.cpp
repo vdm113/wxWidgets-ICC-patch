@@ -71,6 +71,9 @@ wxFontInstance *wxFontFaceBase::GetFontInstance(float ptSize, bool aa)
 {
     wxASSERT_MSG( m_refCnt > 0, wxT("font library not loaded!") );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxFontInstanceList::const_iterator i = m_instances->begin();
           i != m_instances->end(); ++i )
     {
@@ -89,12 +92,18 @@ wxFontInstance *wxFontFaceBase::GetFontInstance(float ptSize, bool aa)
 
 wxFontBundleBase::wxFontBundleBase()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < FaceType_Max; i++)
         m_faces[i] = NULL;
 }
 
 wxFontBundleBase::~wxFontBundleBase()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < FaceType_Max; i++)
         delete m_faces[i];
 }
@@ -135,6 +144,9 @@ wxFontBundleBase::GetFaceForFont(const wxFontMgrFontRefData& font) const
     {
         // if we can't get the exact font requested, substitute it with
         // some other variant:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < FaceType_Max; i++)
         {
             if ( HasFace((FaceType)i) )

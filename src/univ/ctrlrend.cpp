@@ -169,8 +169,14 @@ void wxControlRenderer::DrawBitmap(wxDC &dc,
     if ( stretch & wxTILE )
     {
         // tile the bitmap
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ; x < rect.width; x += width )
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( y = 0; y < rect.height; y += height )
             {
                 // no need to use mask here as we cover the entire window area
@@ -258,6 +264,9 @@ void wxControlRenderer::DrawScrollbar(const wxScrollBar *scrollbar,
                                                    : wxHORIZONTAL;
 
     // the shaft
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int nBar = 0; nBar < 2; nBar++ )
     {
         wxScrollBar::Element elem =
@@ -283,6 +292,9 @@ void wxControlRenderer::DrawScrollbar(const wxScrollBar *scrollbar,
     }
 
     // arrows
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int nArrow = 0; nArrow < 2; nArrow++ )
     {
         wxScrollBar::Element elem =
@@ -392,6 +404,9 @@ void wxControlRenderer::DoDrawItems(const wxListBox *lbox,
     int itemCurrent = wxWindow::FindFocus() == (wxWindow *)lbox // cast needed
                         ? lbox->GetCurrentItem()
                         : -1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = itemFirst; n < itemLast; n++ )
     {
         int flags = 0;
@@ -526,6 +541,9 @@ void wxControlRenderer::DrawProgressBar(const wxGauge *gauge)
             dx = 1;
         }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < steps; n++ )
         {
             wxRect rectSegment = rect;

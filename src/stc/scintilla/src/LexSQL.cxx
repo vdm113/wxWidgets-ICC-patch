@@ -67,6 +67,9 @@ static void ColouriseSQLDoc(unsigned int startPos, int length, int initStyle, Wo
 
 	bool sqlBackticksIdentifier = styler.GetPropertyInt("lexer.sql.backticks.identifier", 0) != 0;
 	int styleBeforeDCKeyword = SCE_SQL_DEFAULT;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 		// Determine if the current state should terminate.
 		switch (sc.state) {
@@ -247,6 +250,9 @@ static void FoldSQLDoc(unsigned int startPos, int length, int initStyle,
 	int styleNext = styler.StyleAt(startPos);
 	int style = initStyle;
 	bool endFound = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -286,6 +292,9 @@ static void FoldSQLDoc(unsigned int startPos, int length, int initStyle,
 			const int MAX_KW_LEN = 6;	// Maximum length of folding keywords
 			char s[MAX_KW_LEN + 2];
 			unsigned int j = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (; j < MAX_KW_LEN + 1; j++) {
 				if (!iswordchar(styler[i + j])) {
 					break;

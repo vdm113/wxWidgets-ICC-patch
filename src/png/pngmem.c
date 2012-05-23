@@ -270,6 +270,9 @@ png_malloc_default,(png_structp png_ptr, png_alloc_size_t size),PNG_ALLOCATED)
                hptr = hptr + 16L;  /* "hptr += 16L" fails on Turbo C++ 3.0 */
             }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < num_blocks; i++)
             {
                png_ptr->offset_table_ptr[i] = (png_bytep)hptr;
@@ -347,6 +350,9 @@ png_free_default(png_structp png_ptr, png_voidp ptr)
    {
       int i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < png_ptr->offset_table_count; i++)
       {
          if (ptr == png_ptr->offset_table_ptr[i])

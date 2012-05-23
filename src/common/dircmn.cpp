@@ -115,6 +115,9 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
     if ( flags & wxDIR_DIRS )
     {
         wxString dirname;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( bool cont = GetFirst(&dirname, wxEmptyString, wxDIR_DIRS | (flags & wxDIR_HIDDEN) );
               cont;
               cont = cont && GetNext(&dirname) )
@@ -141,6 +144,9 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
                         // this shouldn't be treated as an error -- instead
                         // let the user code decide what to do
                         bool ok;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         do
                         {
                             wxLogNull noLog;
@@ -171,6 +177,9 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
                                     break;
                             }
                         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         while ( !ok );
 
                         if ( ok )
@@ -194,6 +203,9 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
 
         wxString filename;
         bool cont = GetFirst(&filename, filespec, flags);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( cont )
         {
             wxDirTraverseResult res = sink.OnFile(prefix + filename);

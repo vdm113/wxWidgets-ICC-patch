@@ -49,6 +49,9 @@ static wxString AllAsString(const wxArrayString& a)
     wxString s;
     const size_t count = a.size();
     s.reserve(20*count);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         s << a[n] << (n == count - 1 ? wxT("\n") : wxT(", "));

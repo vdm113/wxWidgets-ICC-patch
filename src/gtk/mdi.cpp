@@ -49,6 +49,9 @@ switch_page(GtkNotebook* widget, GtkNotebookPage*, guint page_num, wxMDIParentFr
     GtkWidget* page = gtk_notebook_get_nth_page(widget, page_num);
 
     wxWindowList::compatibility_iterator node = client_window->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( node )
     {
         wxMDIChildFrame *child_frame = wxDynamicCast( node->GetData(), wxMDIChildFrame );
@@ -134,6 +137,9 @@ void wxMDIParentFrame::OnInternalIdle()
     bool visible_child_menu = false;
 
     wxWindowList::compatibility_iterator node = m_clientWindow->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxMDIChildFrame *child_frame = wxDynamicCast( node->GetData(), wxMDIChildFrame );
@@ -222,6 +228,9 @@ wxMDIChildFrame *wxMDIParentFrame::GetActiveChild() const
     if (!page) return NULL;
 
     wxWindowList::compatibility_iterator node = m_clientWindow->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         if ( wxPendingDelete.Member(node->GetData()) )

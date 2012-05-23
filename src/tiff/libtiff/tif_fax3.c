@@ -234,6 +234,9 @@ Fax3Decode1D(TIFF* tif, tidata_t buf, tsize_t occ, tsample_t s)
 	(void) s;
 	CACHE_STATE(tif, sp);
 	thisrun = sp->curruns;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((long)occ > 0) {
 		a0 = 0;
 		RunLength = 0;
@@ -274,6 +277,9 @@ Fax3Decode2D(TIFF* tif, tidata_t buf, tsize_t occ, tsample_t s)
 
 	(void) s;
 	CACHE_STATE(tif, sp);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((long)occ > 0) {
 		a0 = 0;
 		RunLength = 0;
@@ -373,6 +379,9 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 	if ((erun-runs)&1)
 	    *erun++ = 0;
 	x = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; runs < erun; runs += 2) {
 	    run = runs[0];
 	    if (x+run > lastx || run > lastx )
@@ -390,11 +399,17 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 			    /*
 			     * Align to longword boundary and fill.
 			     */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			    for (; n && !isAligned(cp, long); n--)
 				    *cp++ = 0x00;
 			    lp = (long*) cp;
 			    nw = (int32)(n / sizeof (long));
 			    n -= nw * sizeof (long);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			    do {
 				    *lp++ = 0L;
 			    } while (--nw);
@@ -425,11 +440,17 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 			    /*
 			     * Align to longword boundary and fill.
 			     */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			    for (; n && !isAligned(cp, long); n--)
 				*cp++ = 0xff;
 			    lp = (long*) cp;
 			    nw = (int32)(n / sizeof (long));
 			    n -= nw * sizeof (long);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			    do {
 				*lp++ = -1L;
 			    } while (--nw);
@@ -552,6 +573,7 @@ Fax3SetupState(TIFF* tif)
 static const int _msbmask[9] =
     { 0x00, 0x01, 0x03, 0x07, 0x0f, 0x1f, 0x3f, 0x7f, 0xff };
 #define	_PutBits(tif, bits, length) {				\
+MY_MACRO_PRAGMA_IVDEP \
 	while (length > bit) {					\
 		data |= bits >> (length - bit);			\
 		length -= bit;					\
@@ -591,6 +613,7 @@ Fax3PutBits(TIFF* tif, unsigned int bits, unsigned int length)
 #define	DEBUG_PRINT(what,len) {						\
     int t;								\
     printf("%08X/%-2d: %s%5d\t", data, bit, DEBUG_COLOR(what), len);	\
+MY_MACRO_PRAGMA_IVDEP \
     for (t = length-1; t >= 0; t--)					\
 	putchar(code & (1<<t) ? '1' : '0');				\
     putchar('\n');							\
@@ -611,6 +634,9 @@ putspan(TIFF* tif, int32 span, const tableentry* tab)
 	int data = sp->data;
 	unsigned int code, length;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (span >= 2624) {
 		const tableentry* te = &tab[63 + (2560>>6)];
 		code = te->code, length = te->length;
@@ -800,6 +826,9 @@ find0span(unsigned char* bp, int32 bs, int32 be)
 		/*
 		 * Align to longword boundary and check longwords.
 		 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (!isAligned(bp, long)) {
 			if (*bp != 0x00)
 				return (span + zeroruns[*bp]);
@@ -807,6 +836,9 @@ find0span(unsigned char* bp, int32 bs, int32 be)
 			bp++;
 		}
 		lp = (long*) bp;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while ((bits >= (int32)(8 * sizeof(long))) && (0 == *lp)) {
 			span += 8*sizeof (long), bits -= 8*sizeof (long);
 			lp++;
@@ -816,6 +848,9 @@ find0span(unsigned char* bp, int32 bs, int32 be)
 	/*
 	 * Scan full bytes for all 0's.
 	 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (bits >= 8) {
 		if (*bp != 0x00)	/* end of run */
 			return (span + zeroruns[*bp]);
@@ -859,6 +894,9 @@ find1span(unsigned char* bp, int32 bs, int32 be)
 		/*
 		 * Align to longword boundary and check longwords.
 		 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (!isAligned(bp, long)) {
 			if (*bp != 0xff)
 				return (span + oneruns[*bp]);
@@ -866,6 +904,9 @@ find1span(unsigned char* bp, int32 bs, int32 be)
 			bp++;
 		}
 		lp = (long*) bp;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while ((bits >= (int32)(8 * sizeof(long))) && (~0 == *lp)) {
 			span += 8*sizeof (long), bits -= 8*sizeof (long);
 			lp++;
@@ -875,6 +916,9 @@ find1span(unsigned char* bp, int32 bs, int32 be)
 	/*
 	 * Scan full bytes for all 1's.
 	 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (bits >= 8) {
 		if (*bp != 0xff)	/* end of run */
 			return (span + oneruns[*bp]);
@@ -918,6 +962,9 @@ Fax3Encode1DRow(TIFF* tif, unsigned char* bp, uint32 bits)
 	int32 span;
         uint32 bs = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (;;) {
 		span = find0span(bp, bs, bits);		/* white span */
 		putspan(tif, span, TIFFFaxWhiteCodes);
@@ -967,6 +1014,9 @@ Fax3Encode2DRow(TIFF* tif, unsigned char* bp, unsigned char* rp, uint32 bits)
 	uint32 b1 = (PIXEL(rp, 0) != 0 ? 0 : finddiff(rp, 0, bits, 0));
 	uint32 a2, b2;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (;;) {
 		b2 = finddiff2(rp, b1, bits, PIXEL(rp,b1));
 		if (b2 >= a1) {
@@ -1009,6 +1059,9 @@ Fax3Encode(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 	Fax3CodecState* sp = EncoderState(tif);
 
 	(void) s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((long)cc > 0) {
 		if ((sp->b.mode & FAXMODE_NOEOL) == 0)
 			Fax3PutEOL(tif);
@@ -1059,6 +1112,9 @@ Fax3Close(TIFF* tif)
 
 		if (is2DEncoding(sp))
 			code = (code<<1) | (sp->tag == G3_1D), length++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < 6; i++)
 			Fax3PutBits(tif, code, length);
 		Fax3FlushBits(tif, sp);
@@ -1382,6 +1438,9 @@ Fax4Decode(TIFF* tif, tidata_t buf, tsize_t occ, tsample_t s)
 
 	(void) s;
 	CACHE_STATE(tif, sp);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((long)occ > 0) {
 		a0 = 0;
 		RunLength = 0;
@@ -1429,6 +1488,9 @@ Fax4Encode(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 	Fax3CodecState *sp = EncoderState(tif);
 
 	(void) s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((long)cc > 0) {
 		if (!Fax3Encode2DRow(tif, bp, sp->refline, sp->b.rowpixels))
 			return (0);
@@ -1492,6 +1554,9 @@ Fax3DecodeRLE(TIFF* tif, tidata_t buf, tsize_t occ, tsample_t s)
 	(void) s;
 	CACHE_STATE(tif, sp);
 	thisrun = sp->curruns;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((long)occ > 0) {
 		a0 = 0;
 		RunLength = 0;

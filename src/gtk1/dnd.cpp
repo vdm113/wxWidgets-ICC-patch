@@ -498,6 +498,9 @@ GdkAtom wxDropTarget::GetMatchingPair(bool quiet)
         return (GdkAtom) 0;
 
     GList *child = m_dragContext->targets;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (child)
     {
         GdkAtom formatAtom = GPOINTER_TO_INT(child->data);
@@ -865,6 +868,9 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
     wxDataFormat *array = new wxDataFormat[ m_data->GetFormatCount() ];
     m_data->GetAllFormats( array );
     size_t count = m_data->GetFormatCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < count; i++)
     {
         GdkAtom atom = array[i];
@@ -892,6 +898,9 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
 
         PrepareIcon( action, context );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (m_waiting)
             gtk_main_iteration();
 

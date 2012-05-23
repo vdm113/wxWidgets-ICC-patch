@@ -18,12 +18,21 @@ using namespace Scintilla;
 
 static const char *NextField(const char *s) {
 	// In case there are leading spaces in the string
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (*s && *s == ' ') {
 		s++;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (*s && *s != ' ') {
 		s++;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (*s && *s == ' ') {
 		s++;
 	}
@@ -33,6 +42,9 @@ static const char *NextField(const char *s) {
 // Data lines in XPM can be terminated either with NUL or "
 static size_t MeasureLength(const char *s) {
 	size_t i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (s[i] && (s[i] != '\"'))
 		i++;
 	return i;
@@ -41,6 +53,9 @@ static size_t MeasureLength(const char *s) {
 ColourAllocated XPM::ColourFromCode(int ch) {
 	return colourCodeTable[ch]->allocated;
 #ifdef SLOW
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i=0; i<nColours; i++) {
 		if (codes[i] == ch) {
 			return colours[i].allocated;
@@ -118,11 +133,17 @@ void XPM::Init(const char * const *linesForm) {
 	int strings = 1+height+nColours;
 	lines = new char *[strings];
 	size_t allocation = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i=0; i<strings; i++) {
 		allocation += MeasureLength(linesForm[i]) + 1;
 	}
 	data = new char[allocation];
 	char *nextBit = data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int j=0; j<strings; j++) {
 		lines[j] = nextBit;
 		size_t len = MeasureLength(linesForm[j]);
@@ -131,10 +152,16 @@ void XPM::Init(const char * const *linesForm) {
 		*nextBit++ = '\0';
 	}
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int code=0; code<256; code++) {
 		colourCodeTable[code] = 0;
 	}
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int c=0; c<nColours; c++) {
 		const char *colourDef = linesForm[c+1];
 		codes[c] = colourDef[0];
@@ -164,6 +191,9 @@ void XPM::RefreshColourPalette(Palette &pal, bool want) {
 	if (!data || !codes || !colours || !lines) {
 		return;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i=0; i<nColours; i++) {
 		pal.WantFind(colours[i], want);
 	}
@@ -173,6 +203,9 @@ void XPM::CopyDesiredColours() {
 	if (!data || !codes || !colours || !lines) {
 		return;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i=0; i<nColours; i++) {
 		colours[i].Copy();
 	}
@@ -185,9 +218,15 @@ void XPM::Draw(Surface *surface, PRectangle &rc) {
 	// Centre the pixmap
 	int startY = rc.top + (rc.Height() - height) / 2;
 	int startX = rc.left + (rc.Width() - width) / 2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int y=0;y<height;y++) {
 		int prevCode = 0;
 		int xStartRun = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int x=0; x<width; x++) {
 			int code = lines[y+nColours+1][x];
 			if (code != prevCode) {
@@ -206,6 +245,9 @@ const char **XPM::LinesFormFromTextForm(const char *textForm) {
 	int countQuotes = 0;
 	int strings=1;
 	int j=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; countQuotes < (2*strings) && textForm[j] != '\0'; j++) {
 		if (textForm[j] == '\"') {
 			if (countQuotes == 0) {
@@ -250,6 +292,9 @@ XPMSet::~XPMSet() {
 }
 
 void XPMSet::Clear() {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = 0; i < len; i++) {
 		delete set[i];
 	}
@@ -267,6 +312,9 @@ void XPMSet::Add(int id, const char *textForm) {
 	width = -1;
 
 	// Replace if this id already present
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = 0; i < len; i++) {
 		if (set[i]->GetId() == id) {
 			set[i]->Init(textForm);
@@ -283,6 +331,9 @@ void XPMSet::Add(int id, const char *textForm) {
 		if (len == maximum) {
 			maximum += 64;
 			XPM **setNew = new XPM *[maximum];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (int i = 0; i < len; i++) {
 				setNew[i] = set[i];
 			}
@@ -295,6 +346,9 @@ void XPMSet::Add(int id, const char *textForm) {
 }
 
 XPM *XPMSet::Get(int id) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = 0; i < len; i++) {
 		if (set[i]->GetId() == id) {
 			return set[i];
@@ -305,6 +359,9 @@ XPM *XPMSet::Get(int id) {
 
 int XPMSet::GetHeight() {
 	if (height < 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int i = 0; i < len; i++) {
 			if (height < set[i]->GetHeight()) {
 				height = set[i]->GetHeight();
@@ -316,6 +373,9 @@ int XPMSet::GetHeight() {
 
 int XPMSet::GetWidth() {
 	if (width < 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int i = 0; i < len; i++) {
 			if (width < set[i]->GetWidth()) {
 				width = set[i]->GetWidth();

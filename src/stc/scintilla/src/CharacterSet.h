@@ -22,6 +22,9 @@ public:
 		size = size_;
 		valueAfter = valueAfter_;
 		bset = new bool[size];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int i=0; i < size; i++) {
 			bset[i] = false;
 		}
@@ -44,6 +47,9 @@ public:
 		bset[val] = true;
 	}
 	void AddString(const char *CharacterSet) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (const char *cp=CharacterSet; *cp; cp++) {
 			int val = static_cast<unsigned char>(*cp);
 			PLATFORM_ASSERT(val >= 0);

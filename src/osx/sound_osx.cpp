@@ -113,6 +113,9 @@ wxSound::~wxSound()
     // delete it after it plays. Otherwise, async sounds created on the stack
     // may never get the chance to play.
     bool isPlaying = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxVector<wxSoundData*>::reverse_iterator s = s_soundsPlaying.rbegin();
          s != s_soundsPlaying.rend(); ++s )
     {
@@ -153,6 +156,9 @@ bool wxSound::IsPlaying()
 
 void wxSound::Stop()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxVector<wxSoundData*>::reverse_iterator s = s_soundsPlaying.rbegin();
          s != s_soundsPlaying.rend(); ++s )
     {
@@ -163,6 +169,9 @@ void wxSound::Stop()
 // Notification when a sound has stopped
 void wxSound::SoundStopped(const wxSoundData* data)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxVector<wxSoundData*>::iterator s = s_soundsPlaying.begin();
          s != s_soundsPlaying.end(); ++s )
     {

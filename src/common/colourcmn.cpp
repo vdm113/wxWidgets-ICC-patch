@@ -113,6 +113,9 @@ bool wxColourBase::FromString(const wxString& str)
             wxCharBuffer alphaBuf(len);
             char * const alphaPtr = alphaBuf.data();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( unsigned n = 0; n < len; n++ )
                 alphaPtr[n] = '\0';
 

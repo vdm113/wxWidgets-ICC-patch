@@ -85,6 +85,9 @@ public:
     bool GetSmallerSize(
         wxRibbonButtonBarButtonState* size, int n = 1)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(; n > 0; --n)
         {
             switch(*size)
@@ -137,6 +140,9 @@ public:
         overall_size = wxSize(0, 0);
         size_t btn_count = buttons.Count();
         size_t btn_i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(btn_i = 0; btn_i < btn_count; ++btn_i)
         {
             wxRibbonButtonBarButtonInstance& instance = buttons.Item(btn_i);
@@ -163,6 +169,9 @@ public:
         }
         size_t btn_count = buttons.Count();
         size_t btn_i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(btn_i = 0; btn_i < btn_count; ++btn_i)
         {
             wxRibbonButtonBarButtonInstance& instance = buttons.Item(btn_i);
@@ -197,6 +206,9 @@ wxRibbonButtonBar::~wxRibbonButtonBar()
 {
     size_t count = m_buttons.GetCount();
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(i = 0; i < count; ++i)
     {
         wxRibbonButtonBarButtonBase* button = m_buttons.Item(i);
@@ -205,6 +217,9 @@ wxRibbonButtonBar::~wxRibbonButtonBar()
     m_buttons.Clear();
 
     count = m_layouts.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(i = 0; i < count; ++i)
     {
         wxRibbonButtonBarLayout* layout = m_layouts.Item(i);
@@ -463,6 +478,9 @@ void wxRibbonButtonBar::ClearButtons()
     m_layouts_valid = false;
     size_t count = m_buttons.GetCount();
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(i = 0; i < count; ++i)
     {
         wxRibbonButtonBarButtonBase* button = m_buttons.Item(i);
@@ -476,6 +494,9 @@ bool wxRibbonButtonBar::DeleteButton(int button_id)
 {
     size_t count = m_buttons.GetCount();
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(i = 0; i < count; ++i)
     {
         wxRibbonButtonBarButtonBase* button = m_buttons.Item(i);
@@ -495,6 +516,9 @@ void wxRibbonButtonBar::EnableButton(int button_id, bool enable)
 {
     size_t count = m_buttons.GetCount();
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(i = 0; i < count; ++i)
     {
         wxRibbonButtonBarButtonBase* button = m_buttons.Item(i);
@@ -525,6 +549,9 @@ void wxRibbonButtonBar::ToggleButton(int button_id, bool checked)
 {
     size_t count = m_buttons.GetCount();
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(i = 0; i < count; ++i)
     {
         wxRibbonButtonBarButtonBase* button = m_buttons.Item(i);
@@ -563,6 +590,9 @@ void wxRibbonButtonBar::SetArtProvider(wxRibbonArtProvider* art)
     wxClientDC temp_dc(this);
     size_t btn_count = m_buttons.Count();
     size_t btn_i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(btn_i = 0; btn_i < btn_count; ++btn_i)
     {
         wxRibbonButtonBarButtonBase* base = m_buttons.Item(btn_i);
@@ -586,6 +616,9 @@ wxSize wxRibbonButtonBar::DoGetNextSmallerSize(wxOrientation direction,
 {
     size_t nlayouts = m_layouts.GetCount();
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(i = 0; i < nlayouts; ++i)
     {
         wxRibbonButtonBarLayout* layout = m_layouts.Item(i);
@@ -627,6 +660,9 @@ wxSize wxRibbonButtonBar::DoGetNextLargerSize(wxOrientation direction,
 {
     size_t nlayouts = m_layouts.GetCount();
     size_t i = nlayouts;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(i > 0)
     {
         --i;
@@ -674,6 +710,9 @@ void wxRibbonButtonBar::UpdateWindowUI(long flags)
 
     size_t btn_count = m_buttons.size();
     bool rerealize = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t btn_i = 0; btn_i < btn_count; ++btn_i )
     {
         wxRibbonButtonBarButtonBase& btn = *m_buttons.Item(btn_i);
@@ -714,6 +753,9 @@ void wxRibbonButtonBar::OnPaint(wxPaintEvent& WXUNUSED(evt))
 
     size_t btn_count = layout->buttons.Count();
     size_t btn_i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(btn_i = 0; btn_i < btn_count; ++btn_i)
     {
         wxRibbonButtonBarButtonInstance& button = layout->buttons.Item(btn_i);
@@ -739,6 +781,9 @@ void wxRibbonButtonBar::OnSize(wxSizeEvent& evt)
     size_t layout_count = m_layouts.GetCount();
     size_t layout_i;
     m_current_layout = layout_count - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(layout_i = 0; layout_i < layout_count; ++layout_i)
     {
         wxSize layout_size = m_layouts.Item(layout_i)->overall_size;
@@ -801,6 +846,9 @@ void wxRibbonButtonBar::MakeLayouts()
         }
         size_t count = m_layouts.GetCount();
         size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(i = 0; i < count; ++i)
         {
             wxRibbonButtonBarLayout* layout = m_layouts.Item(i);
@@ -815,6 +863,9 @@ void wxRibbonButtonBar::MakeLayouts()
         wxRibbonButtonBarLayout* layout = new wxRibbonButtonBarLayout;
         wxPoint cursor(0, 0);
         layout->overall_size.SetHeight(0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(btn_i = 0; btn_i < btn_count; ++btn_i)
         {
             wxRibbonButtonBarButtonBase* button = m_buttons.Item(btn_i);
@@ -834,6 +885,9 @@ void wxRibbonButtonBar::MakeLayouts()
     {
         // Collapse the rightmost buttons and stack them vertically
         size_t iLast = btn_count - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while(TryCollapseLayout(m_layouts.Last(), iLast, &iLast) && iLast > 0)
         {
             --iLast;
@@ -851,6 +905,9 @@ bool wxRibbonButtonBar::TryCollapseLayout(wxRibbonButtonBarLayout* original,
     int available_width = 0;
     int available_height = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(btn_i = first_btn + 1; btn_i > 0; /* decrement is inside loop */)
     {
         --btn_i;
@@ -906,6 +963,9 @@ bool wxRibbonButtonBar::TryCollapseLayout(wxRibbonButtonBarLayout* original,
         preserve_height = true;
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(; btn_i <= first_btn; ++btn_i)
     {
         wxRibbonButtonBarButtonInstance& instance = layout->buttons.Item(btn_i);
@@ -916,6 +976,9 @@ bool wxRibbonButtonBar::TryCollapseLayout(wxRibbonButtonBarLayout* original,
 
     int x_adjust = available_width - used_width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(; btn_i < btn_count; ++btn_i)
     {
         wxRibbonButtonBarButtonInstance& instance = layout->buttons.Item(btn_i);
@@ -951,6 +1014,9 @@ void wxRibbonButtonBar::OnMouseMove(wxMouseEvent& evt)
     wxRibbonButtonBarLayout* layout = m_layouts.Item(m_current_layout);
     size_t btn_count = layout->buttons.Count();
     size_t btn_i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(btn_i = 0; btn_i < btn_count; ++btn_i)
     {
         wxRibbonButtonBarButtonInstance& instance = layout->buttons.Item(btn_i);
@@ -1040,6 +1106,9 @@ void wxRibbonButtonBar::OnMouseDown(wxMouseEvent& evt)
     wxRibbonButtonBarLayout* layout = m_layouts.Item(m_current_layout);
     size_t btn_count = layout->buttons.Count();
     size_t btn_i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(btn_i = 0; btn_i < btn_count; ++btn_i)
     {
         wxRibbonButtonBarButtonInstance& instance = layout->buttons.Item(btn_i);
@@ -1079,6 +1148,9 @@ void wxRibbonButtonBar::OnMouseUp(wxMouseEvent& evt)
             int id = m_active_button->base->id;
             cursor -= btn_rect.GetTopLeft();
             wxEventType event_type;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do
             {
                 if(size.normal_region.Contains(cursor))

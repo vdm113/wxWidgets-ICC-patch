@@ -128,6 +128,9 @@ public:
 //            m_region.Union(0, 0, 1, m_maxWidth);
             if (m_amount)
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int y=0; y<m_maxHeight; y++)
                 {
                     // Reverse the order of the bottom 4 bits
@@ -158,6 +161,9 @@ public:
 
         wxRegionIterator upd(GetUpdateRegion()); // get the update rect list
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (upd)
         {
             wxRect rect(upd.GetRect());
@@ -232,6 +238,9 @@ gtk_pseudo_window_realized_callback( GtkWidget *m_widget, void *WXUNUSED(win) )
         wxSize disp = wxGetDisplaySize();
         int amount = 128;
         wxRegion region;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y=0; y<disp.y; y++)
                 {
                     // Reverse the order of the bottom 4 bits
@@ -340,10 +349,19 @@ static void CopyDocksAndPanes(wxAuiDockInfoArray& dest_docks,
     dest_docks = src_docks;
     dest_panes = src_panes;
     int i, j, k, dock_count, pc1, pc2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, dock_count = dest_docks.GetCount(); i < dock_count; ++i)
     {
         wxAuiDockInfo& dock = dest_docks.Item(i);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0, pc1 = dock.panes.GetCount(); j < pc1; ++j)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (k = 0, pc2 = src_panes.GetCount(); k < pc2; ++k)
                 if (dock.panes.Item(j) == &src_panes.Item(k))
                     dock.panes.Item(j) = &dest_panes.Item(k);
@@ -356,6 +374,9 @@ static int GetMaxLayer(const wxAuiDockInfoArray& docks,
                        int dock_direction)
 {
     int i, dock_count, max_layer = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, dock_count = docks.GetCount(); i < dock_count; ++i)
     {
         wxAuiDockInfo& dock = docks.Item(i);
@@ -372,6 +393,9 @@ static int GetMaxLayer(const wxAuiDockInfoArray& docks,
 static int GetMaxRow(const wxAuiPaneInfoArray& panes, int direction, int layer)
 {
     int i, pane_count, max_row = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, pane_count = panes.GetCount(); i < pane_count; ++i)
     {
         wxAuiPaneInfo& pane = panes.Item(i);
@@ -392,6 +416,9 @@ static void DoInsertDockLayer(wxAuiPaneInfoArray& panes,
                               int dock_layer)
 {
     int i, pane_count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, pane_count = panes.GetCount(); i < pane_count; ++i)
     {
         wxAuiPaneInfo& pane = panes.Item(i);
@@ -410,6 +437,9 @@ static void DoInsertDockRow(wxAuiPaneInfoArray& panes,
                             int dock_row)
 {
     int i, pane_count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, pane_count = panes.GetCount(); i < pane_count; ++i)
     {
         wxAuiPaneInfo& pane = panes.Item(i);
@@ -430,6 +460,9 @@ static void DoInsertPane(wxAuiPaneInfoArray& panes,
                          int dock_pos)
 {
     int i, pane_count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, pane_count = panes.GetCount(); i < pane_count; ++i)
     {
         wxAuiPaneInfo& pane = panes.Item(i);
@@ -459,6 +492,9 @@ static void FindDocks(wxAuiDockInfoArray& docks,
     int layer, row, i, max_row = 0, max_layer = 0;
 
     // discover the maximum dock layer and the max row
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < dock_count; ++i)
     {
         max_row = wxMax(max_row, docks.Item(i).dock_row);
@@ -481,8 +517,17 @@ static void FindDocks(wxAuiDockInfoArray& docks,
 
     arr.Clear();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (layer = begin_layer; layer <= end_layer; ++layer)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (row = begin_row; row <= end_row; ++row)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < dock_count; ++i)
             {
                 wxAuiDockInfo& d = docks.Item(i);
@@ -499,6 +544,9 @@ static void FindDocks(wxAuiDockInfoArray& docks,
 static wxAuiPaneInfo* FindPaneInDock(const wxAuiDockInfo& dock, wxWindow* window)
 {
     int i, count = dock.panes.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < count; ++i)
     {
         wxAuiPaneInfo* p = dock.panes.Item(i);
@@ -515,6 +563,9 @@ static void RemovePaneFromDocks(wxAuiDockInfoArray& docks,
                                 wxAuiDockInfo* ex_cept  = NULL  )
 {
     int i, dock_count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, dock_count = docks.GetCount(); i < dock_count; ++i)
     {
         wxAuiDockInfo& d = docks.Item(i);
@@ -535,12 +586,18 @@ static void RemovePaneFromDocks(wxAuiDockInfoArray& docks,
 static void RenumberDockRows(wxAuiDockInfoPtrArray& docks)
 {
     int i, dock_count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, dock_count = docks.GetCount(); i < dock_count; ++i)
     {
         wxAuiDockInfo& dock = *docks.Item(i);
         dock.dock_row = i;
 
         int j, pane_count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0, pane_count = dock.panes.GetCount(); j < pane_count; ++j)
             dock.panes.Item(j)->dock_row = i;
     }
@@ -555,6 +612,9 @@ void wxAuiManager::SetActivePane(wxWindow* active_pane)
 {
     int i, pane_count;
     wxAuiPaneInfo* active_paneinfo = NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, pane_count = m_panes.GetCount(); i < pane_count; ++i)
     {
         wxAuiPaneInfo& pane = m_panes.Item(i);
@@ -643,6 +703,9 @@ wxAuiManager::~wxAuiManager()
     // invalid pointers, resulting in a crash.  So it will be disabled while
     // waiting for a better solution.
 #if 0
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < m_panes.size(); i++ )
     {
         wxAuiPaneInfo& pinfo = m_panes[i];
@@ -680,6 +743,9 @@ bool wxAuiManager::CanDockPanel(const wxAuiPaneInfo & WXUNUSED(p))
 wxAuiPaneInfo& wxAuiManager::GetPane(wxWindow* window)
 {
     int i, pane_count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, pane_count = m_panes.GetCount(); i < pane_count; ++i)
     {
         wxAuiPaneInfo& p = m_panes.Item(i);
@@ -694,6 +760,9 @@ wxAuiPaneInfo& wxAuiManager::GetPane(wxWindow* window)
 wxAuiPaneInfo& wxAuiManager::GetPane(const wxString& name)
 {
     int i, pane_count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, pane_count = m_panes.GetCount(); i < pane_count; ++i)
     {
         wxAuiPaneInfo& p = m_panes.Item(i);
@@ -717,6 +786,9 @@ wxAuiDockUIPart* wxAuiManager::HitTest(int x, int y)
     wxAuiDockUIPart* result = NULL;
 
     int i, part_count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, part_count = m_uiParts.GetCount(); i < part_count; ++i)
     {
         wxAuiDockUIPart* item = &m_uiParts.Item(i);
@@ -820,6 +892,9 @@ void wxAuiManager::UpdateHintWindowConfig()
     bool can_do_transparent = false;
 
     wxWindow* w = m_frame;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (w)
     {
         if (wxDynamicCast(w, wxFrame))
@@ -1239,6 +1314,9 @@ bool wxAuiManager::DetachPane(wxWindow* window)
     wxASSERT_MSG(window, wxT("NULL window ptrs are not allowed"));
 
     int i, count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, count = m_panes.GetCount(); i < count; ++i)
     {
         wxAuiPaneInfo& p = m_panes.Item(i);
@@ -1272,6 +1350,9 @@ bool wxAuiManager::DetachPane(wxWindow* window)
             // the DetachPane() call.  This prevets obscure crashes which would
             // happen at window repaint if the caller forgets to call Update()
             int pi, part_count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (pi = 0, part_count = (int)m_uiParts.GetCount(); pi < part_count; ++pi)
             {
                 wxAuiDockUIPart& part = m_uiParts.Item(pi);
@@ -1340,6 +1421,9 @@ void wxAuiManager::MaximizePane(wxAuiPaneInfo& paneInfo)
     int i, pane_count;
 
     // un-maximize and hide all other panes
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, pane_count = m_panes.GetCount(); i < pane_count; ++i)
     {
         wxAuiPaneInfo& p = m_panes.Item(i);
@@ -1374,6 +1458,9 @@ void wxAuiManager::RestorePane(wxAuiPaneInfo& paneInfo)
     int i, pane_count;
 
     // restore all the panes
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, pane_count = m_panes.GetCount(); i < pane_count; ++i)
     {
         wxAuiPaneInfo& p = m_panes.Item(i);
@@ -1400,6 +1487,9 @@ void wxAuiManager::RestoreMaximizedPane()
     int i, pane_count;
 
     // restore all the panes
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, pane_count = m_panes.GetCount(); i < pane_count; ++i)
     {
         wxAuiPaneInfo& p = m_panes.Item(i);
@@ -1419,6 +1509,9 @@ static wxString EscapeDelimiters(const wxString& s)
     wxString result;
     result.Alloc(s.length());
     const wxChar* ch = s.c_str();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (*ch)
     {
         if (*ch == wxT(';') || *ch == wxT('|'))
@@ -1467,6 +1560,9 @@ void wxAuiManager::LoadPaneInfo(wxString pane_part, wxAuiPaneInfo &pane)
     pane_part.Replace(wxT("\\|"), wxT("\a"));
     pane_part.Replace(wxT("\\;"), wxT("\b"));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(1)
     {
         wxString val_part = pane_part.BeforeFirst(wxT(';'));
@@ -1548,6 +1644,9 @@ wxString wxAuiManager::SavePerspective()
     result = wxT("layout2|");
 
     int pane_i, pane_count = m_panes.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (pane_i = 0; pane_i < pane_count; ++pane_i)
     {
         wxAuiPaneInfo& pane = m_panes.Item(pane_i);
@@ -1555,6 +1654,9 @@ wxString wxAuiManager::SavePerspective()
     }
 
     int dock_i, dock_count = m_docks.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (dock_i = 0; dock_i < dock_count; ++dock_i)
     {
         wxAuiDockInfo& dock = m_docks.Item(dock_i);
@@ -1587,6 +1689,9 @@ bool wxAuiManager::LoadPerspective(const wxString& layout, bool update)
 
     // Mark all panes currently managed as hidden. Also, dock all panes that are dockable.
     int pane_i, pane_count = m_panes.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (pane_i = 0; pane_i < pane_count; ++pane_i)
     {
         wxAuiPaneInfo& p = m_panes.Item(pane_i);
@@ -1604,6 +1709,9 @@ bool wxAuiManager::LoadPerspective(const wxString& layout, bool update)
     input.Replace(wxT("\\;"), wxT("\b"));
 
     m_hasMaximized = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (1)
     {
         wxAuiPaneInfo pane;
@@ -1681,6 +1789,9 @@ void wxAuiManager::GetPanePositionsAndSizes(wxAuiDockInfo& dock,
     int pane_i, pane_count = dock.panes.GetCount();
 
     // find the pane marked as our action pane
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (pane_i = 0; pane_i < pane_count; ++pane_i)
     {
         wxAuiPaneInfo& pane = *(dock.panes.Item(pane_i));
@@ -1695,6 +1806,9 @@ void wxAuiManager::GetPanePositionsAndSizes(wxAuiDockInfo& dock,
     // set up each panes default position, and
     // determine the size (width or height, depending
     // on the dock's orientation) of each pane
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (pane_i = 0; pane_i < pane_count; ++pane_i)
     {
         wxAuiPaneInfo& pane = *(dock.panes.Item(pane_i));
@@ -1729,6 +1843,9 @@ void wxAuiManager::GetPanePositionsAndSizes(wxAuiDockInfo& dock,
         return;
 
     offset = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (pane_i = action_pane-1; pane_i >= 0; --pane_i)
     {
         int amount = positions[pane_i+1] - (positions[pane_i] + sizes[pane_i]);
@@ -1744,6 +1861,9 @@ void wxAuiManager::GetPanePositionsAndSizes(wxAuiDockInfo& dock,
     // if the dock mode is fixed, make sure none of the panes
     // overlap; we will bump panes that overlap
     offset = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (pane_i = action_pane; pane_i < pane_count; ++pane_i)
     {
         int amount = positions[pane_i] - offset;
@@ -1822,6 +1942,9 @@ void wxAuiManager::LayoutAddPane(wxSizer* cont,
 
         // add pane buttons to the caption
         int i, button_count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0, button_count = pane.buttons.GetCount();
              i < button_count; ++i)
         {
@@ -1970,6 +2093,9 @@ void wxAuiManager::LayoutAddDock(wxSizer* cont,
         GetPanePositionsAndSizes(dock, pane_positions, pane_sizes);
 
         int offset = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (pane_i = 0; pane_i < pane_count; ++pane_i)
         {
             wxAuiPaneInfo& pane = *(dock.panes.Item(pane_i));
@@ -2018,6 +2144,9 @@ void wxAuiManager::LayoutAddDock(wxSizer* cont,
     }
     else
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (pane_i = 0; pane_i < pane_count; ++pane_i)
         {
             wxAuiPaneInfo& pane = *(dock.panes.Item(pane_i));
@@ -2097,6 +2226,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
 
 
     // empty all docks out
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, dock_count = docks.GetCount(); i < dock_count; ++i)
     {
         wxAuiDockInfo& dock = docks.Item(i);
@@ -2116,6 +2248,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
     // iterate through all known panes, filing each
     // of them into the appropriate dock. If the
     // pane does not exist in the dock, add it
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, pane_count = panes.GetCount(); i < pane_count; ++i)
     {
         wxAuiPaneInfo& p = panes.Item(i);
@@ -2162,6 +2297,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
     }
 
     // remove any empty docks
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = docks.GetCount()-1; i >= 0; --i)
     {
         if (docks.Item(i).panes.GetCount() == 0)
@@ -2169,6 +2307,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
     }
 
     // configure the docks further
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, dock_count = docks.GetCount(); i < dock_count; ++i)
     {
         wxAuiDockInfo& dock = docks.Item(i);
@@ -2183,6 +2324,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
         {
             int size = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j = 0; j < dock_pane_count; ++j)
             {
                 wxAuiPaneInfo& pane = *dock.panes.Item(j);
@@ -2200,6 +2344,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
 
             // add space for the border (two times), but only
             // if at least one pane inside the dock has a pane border
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j = 0; j < dock_pane_count; ++j)
             {
                 if (dock.panes.Item(j)->HasBorder())
@@ -2213,6 +2360,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
             // but only if at least one pane inside the dock has a caption
             if (dock.IsHorizontal())
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (j = 0; j < dock_pane_count; ++j)
                 {
                     if (dock.panes.Item(j)->HasCaption())
@@ -2247,6 +2397,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
         bool plus_border = false;
         bool plus_caption = false;
         int dock_min_size = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0; j < dock_pane_count; ++j)
         {
             wxAuiPaneInfo& pane = *dock.panes.Item(j);
@@ -2288,6 +2441,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
         bool action_pane_marked = false;
         dock.fixed = true;
         dock.toolbar = true;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0; j < dock_pane_count; ++j)
         {
             wxAuiPaneInfo& pane = *dock.panes.Item(j);
@@ -2307,6 +2463,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
         // e.g. remove gaps like 1, 2, 30, 500
         if (!dock.fixed)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j = 0; j < dock_pane_count; ++j)
             {
                 wxAuiPaneInfo& pane = *dock.panes.Item(j);
@@ -2324,6 +2483,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
             GetPanePositionsAndSizes(dock, pane_positions, pane_sizes);
 
             int offset = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j = 0; j < dock_pane_count; ++j)
             {
                 wxAuiPaneInfo& pane = *(dock.panes.Item(j));
@@ -2342,6 +2504,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
 
     // discover the maximum dock layer
     int max_layer = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < dock_count; ++i)
         max_layer = wxMax(max_layer, docks.Item(i).dock_layer);
 
@@ -2356,6 +2521,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
     int layer = 0;
     int row, row_count;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (layer = 0; layer <= max_layer; ++layer)
     {
         wxAuiDockInfoPtrArray arr;
@@ -2378,6 +2546,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
         FindDocks(docks, wxAUI_DOCK_TOP, layer, -1, arr);
         if (!arr.IsEmpty())
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (row = 0, row_count = arr.GetCount(); row < row_count; ++row)
                 LayoutAddDock(cont, *arr.Item(row), uiparts, spacer_only);
         }
@@ -2392,6 +2563,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
         FindDocks(docks, wxAUI_DOCK_LEFT, layer, -1, arr);
         if (!arr.IsEmpty())
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (row = 0, row_count = arr.GetCount(); row < row_count; ++row)
                 LayoutAddDock(middle, *arr.Item(row), uiparts, spacer_only);
         }
@@ -2404,6 +2578,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
             FindDocks(docks, wxAUI_DOCK_CENTER, -1, -1, arr);
             if (!arr.IsEmpty())
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (row = 0,row_count = arr.GetCount(); row<row_count; ++row)
                    LayoutAddDock(middle, *arr.Item(row), uiparts, spacer_only);
             }
@@ -2430,6 +2607,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
         FindDocks(docks, wxAUI_DOCK_RIGHT, layer, -1, arr);
         if (!arr.IsEmpty())
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (row = arr.GetCount()-1; row >= 0; --row)
                 LayoutAddDock(middle, *arr.Item(row), uiparts, spacer_only);
         }
@@ -2445,6 +2625,9 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
         FindDocks(docks, wxAUI_DOCK_BOTTOM, layer, -1, arr);
         if (!arr.IsEmpty())
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (row = arr.GetCount()-1; row >= 0; --row)
                 LayoutAddDock(cont, *arr.Item(row), uiparts, spacer_only);
         }
@@ -2508,6 +2691,9 @@ void wxAuiManager::Update()
 
     // destroy floating panes which have been
     // redocked or are becoming non-floating
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < pane_count; ++i)
     {
         wxAuiPaneInfo& p = m_panes.Item(i);
@@ -2561,6 +2747,9 @@ void wxAuiManager::Update()
 
     // hide or show panes as necessary,
     // and float panes as necessary
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < pane_count; ++i)
     {
         wxAuiPaneInfo& p = m_panes.Item(i);
@@ -2636,6 +2825,9 @@ void wxAuiManager::Update()
     // keep track of the old window rectangles so we can
     // refresh those windows whose rect has changed
     wxAuiRectArray old_pane_rects;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < pane_count; ++i)
     {
         wxRect r;
@@ -2661,6 +2853,9 @@ void wxAuiManager::Update()
     // the new pane rectangles against the old rectangles that
     // we saved a few lines above here.  If the rectangles have
     // changed, the corresponding panes must also be updated
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < pane_count; ++i)
     {
         wxAuiPaneInfo& p = m_panes.Item(i);
@@ -2710,6 +2905,9 @@ void wxAuiManager::DoFrameLayout()
     m_frame->Layout();
 
     int i, part_count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, part_count = m_uiParts.GetCount(); i < part_count; ++i)
     {
         wxAuiDockUIPart& part = m_uiParts.Item(i);
@@ -2760,6 +2958,9 @@ void wxAuiManager::DoFrameLayout()
 wxAuiDockUIPart* wxAuiManager::GetPanePart(wxWindow* wnd)
 {
     int i, part_count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, part_count = m_uiParts.GetCount(); i < part_count; ++i)
     {
         wxAuiDockUIPart& part = m_uiParts.Item(i);
@@ -2767,6 +2968,9 @@ wxAuiDockUIPart* wxAuiManager::GetPanePart(wxWindow* wnd)
             part.pane && part.pane->window == wnd)
                 return &part;
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, part_count = m_uiParts.GetCount(); i < part_count; ++i)
     {
         wxAuiDockUIPart& part = m_uiParts.Item(i);
@@ -2802,6 +3006,9 @@ int wxAuiManager::GetDockPixelOffset(wxAuiPaneInfo& test)
     sizer->SetDimension(0, 0, client_size.x, client_size.y);
     sizer->Layout();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, part_count = uiparts.GetCount(); i < part_count; ++i)
     {
         wxAuiDockUIPart& part = uiparts.Item(i);
@@ -2813,6 +3020,9 @@ int wxAuiManager::GetDockPixelOffset(wxAuiPaneInfo& test)
 
     delete sizer;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, dock_count = docks.GetCount(); i < dock_count; ++i)
     {
         wxAuiDockInfo& dock = docks.Item(i);
@@ -3359,6 +3569,9 @@ void wxAuiManager::ShowHint(const wxRect& rect)
 
         // clip all floating windows, so we don't draw over them
         int i, pane_count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0, pane_count = m_panes.GetCount(); i < pane_count; ++i)
         {
             wxAuiPaneInfo& pane = m_panes.Item(i);
@@ -3504,6 +3717,9 @@ wxRect wxAuiManager::CalculateHintRect(wxWindow* pane_window,
 
     // remove any pane already there which bears the same window;
     // this happens when you are moving a pane around in a dock
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, pane_count = panes.GetCount(); i < pane_count; ++i)
     {
         if (panes.Item(i).window == pane_window)
@@ -3527,6 +3743,9 @@ wxRect wxAuiManager::CalculateHintRect(wxWindow* pane_window,
     sizer->SetDimension(0, 0, client_size.x, client_size.y);
     sizer->Layout();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, part_count = uiparts.GetCount();
          i < part_count; ++i)
     {
@@ -3849,6 +4068,9 @@ void wxAuiManager::OnRender(wxAuiManagerEvent& evt)
     dc->Clear() ;
 #endif
     int i, part_count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, part_count = m_uiParts.GetCount();
          i < part_count; ++i)
     {
@@ -4186,6 +4408,9 @@ bool wxAuiManager::DoEndResizeAction(wxMouseEvent& event)
         wxSize client_size = m_frame->GetClientSize();
 
         size_t dock_i, dock_count = m_docks.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (dock_i = 0; dock_i < dock_count; ++dock_i)
         {
             wxAuiDockInfo& dock = m_docks.Item(dock_i);
@@ -4302,6 +4527,9 @@ bool wxAuiManager::DoEndResizeAction(wxMouseEvent& event)
         // the fixed panes
         int i, dock_pane_count = dock.panes.GetCount();
         int pane_position = -1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < dock_pane_count; ++i)
         {
             wxAuiPaneInfo& p = *dock.panes.Item(i);
@@ -4340,6 +4568,9 @@ bool wxAuiManager::DoEndResizeAction(wxMouseEvent& event)
         // resized; the pane should usually be the first non-fixed pane
         // to the right of the action pane
         int borrow_pane = -1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = pane_position+1; i < dock_pane_count; ++i)
         {
             wxAuiPaneInfo& p = *dock.panes.Item(i);
@@ -4505,6 +4736,9 @@ void wxAuiManager::OnLeftUp(wxMouseEvent& event)
             GetPanePositionsAndSizes(dock, pane_positions, pane_sizes);
 
             int i, dock_pane_count = dock.panes.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < dock_pane_count; ++i)
                 dock.panes.Item(i)->dock_pos = pane_positions[i];
         }

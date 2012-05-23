@@ -286,6 +286,9 @@ void MyFrame::OnUDPTest(wxCommandEvent& WXUNUSED(event))
                  wxString::From8BitData(buf, n),
                  addr.IPAddress(), addr.Service());
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < n; i++ )
     {
         char& c = buf[i];

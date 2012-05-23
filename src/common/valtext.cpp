@@ -41,6 +41,9 @@
 
 static bool wxIsNumeric(const wxString& val)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator i = val.begin(); i != val.end(); ++i )
     {
         // Allow for "," (French) as well as "." -- in future we should
@@ -221,6 +224,9 @@ namespace
 
 bool CheckString(bool (*func)(const wxUniChar&), const wxString& str)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator i = str.begin(); i != str.end(); ++i )
     {
         if ( !func(*i) )
@@ -260,6 +266,9 @@ wxString wxTextValidator::IsValid(const wxString& val) const
 
 bool wxTextValidator::ContainsOnlyIncludedCharacters(const wxString& val) const
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator i = val.begin(); i != val.end(); ++i )
         if (m_includes.Index((wxString) *i) == wxNOT_FOUND)
             // one character of 'val' is NOT present in m_includes...
@@ -271,6 +280,9 @@ bool wxTextValidator::ContainsOnlyIncludedCharacters(const wxString& val) const
 
 bool wxTextValidator::ContainsExcludedCharacters(const wxString& val) const
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator i = val.begin(); i != val.end(); ++i )
         if (m_excludes.Index((wxString) *i) != wxNOT_FOUND)
             // one character of 'val' is present in m_excludes...
@@ -284,6 +296,9 @@ void wxTextValidator::SetCharIncludes(const wxString& chars)
 {
     wxArrayString arr;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator i = chars.begin(); i != chars.end(); ++i )
         arr.Add(*i);
 
@@ -294,6 +309,9 @@ void wxTextValidator::SetCharExcludes(const wxString& chars)
 {
     wxArrayString arr;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator i = chars.begin(); i != chars.end(); ++i )
         arr.Add(*i);
 

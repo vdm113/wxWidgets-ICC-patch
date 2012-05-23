@@ -86,10 +86,16 @@ Document::Document() {
 }
 
 Document::~Document() {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = 0; i < lenWatchers; i++) {
 		watchers[i].watcher->NotifyDeleted(this, watchers[i].userData);
 	}
 	delete []watchers;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int j=0; j<ldSize; j++) {
 		delete perLineData[j];
 		perLineData[j] = 0;
@@ -101,6 +107,9 @@ Document::~Document() {
 }
 
 void Document::Init() {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int j=0; j<ldSize; j++) {
 		if (perLineData[j])
 			perLineData[j]->Init();
@@ -108,6 +117,9 @@ void Document::Init() {
 }
 
 void Document::InsertLine(int line) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int j=0; j<ldSize; j++) {
 		if (perLineData[j])
 			perLineData[j]->InsertLine(line);
@@ -115,6 +127,9 @@ void Document::InsertLine(int line) {
 }
 
 void Document::RemoveLine(int line) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int j=0; j<ldSize; j++) {
 		if (perLineData[j])
 			perLineData[j]->RemoveLine(line);
@@ -158,6 +173,9 @@ int Document::AddMark(int line, int markerNum) {
 
 void Document::AddMarkSet(int line, int valueSet) {
 	unsigned int m = valueSet;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = 0; m; i++, m >>= 1)
 		if (m & 1)
 			static_cast<LineMarkers*>(perLineData[ldMarkers])->
@@ -180,6 +198,9 @@ void Document::DeleteMarkFromHandle(int markerHandle) {
 }
 
 void Document::DeleteAllMarks(int markerNum) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int line = 0; line < LinesTotal(); line++) {
 		static_cast<LineMarkers*>(perLineData[ldMarkers])->DeleteMark(line, markerNum, true);
 	}
@@ -226,6 +247,9 @@ int Document::VCHomePosition(int position) const {
 	int startPosition = LineStart(line);
 	int endLine = LineEnd(line);
 	int startText = startPosition;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (startText < endLine && (cb.CharAt(startText) == ' ' || cb.CharAt(startText) == '\t' ) )
 		startText++;
 	if (position == startText)
@@ -266,6 +290,9 @@ int Document::GetLastChild(int lineParent, int level) {
 		level = GetLevel(lineParent) & SC_FOLDLEVELNUMBERMASK;
 	int maxLine = LinesTotal();
 	int lineMaxSubord = lineParent;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (lineMaxSubord < maxLine - 1) {
 		EnsureStyledTo(LineStart(lineMaxSubord + 2));
 		if (!IsSubordinate(level, GetLevel(lineMaxSubord + 1)))
@@ -286,6 +313,9 @@ int Document::GetLastChild(int lineParent, int level) {
 int Document::GetFoldParent(int line) {
 	int level = GetLevel(line) & SC_FOLDLEVELNUMBERMASK;
 	int lineLook = line - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((lineLook > 0) && (
 	            (!(GetLevel(lineLook) & SC_FOLDLEVELHEADERFLAG)) ||
 	            ((GetLevel(lineLook) & SC_FOLDLEVELNUMBERMASK) >= level))
@@ -336,6 +366,9 @@ int Document::LenChar(int pos) {
 	} else if (dbcsCodePage) {
 		char mbstr[maxBytesInDBCSCharacter+1];
 		int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i=0; i<Platform::DBCSCharMaxLength(); i++) {
 			mbstr[i] = cb.CharAt(pos+i);
 		}
@@ -366,6 +399,9 @@ static int BytesFromLead(int leadByte) {
 
 bool Document::InGoodUTF8(int pos, int &start, int &end) {
 	int lead = pos;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((lead>0) && (pos-lead < 4) && IsTrailByte(static_cast<unsigned char>(cb.CharAt(lead-1))))
 		lead--;
 	start = 0;
@@ -384,6 +420,9 @@ bool Document::InGoodUTF8(int pos, int &start, int &end) {
 			return false;
 		// Check that there are enough trails for this lead
 		int trail = pos + 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while ((trail-lead<trailBytes) && (trail < Length())) {
 			if (!IsTrailByte(static_cast<unsigned char>(cb.CharAt(trail)))) {
 				return false;
@@ -440,6 +479,9 @@ int Document::MovePositionOutsideChar(int pos, int moveDir, bool checkLineEnd) {
 			while (posCheck < pos) {
 				char mbstr[maxBytesInDBCSCharacter+1];
 				int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for(i=0;i<Platform::DBCSCharMaxLength();i++) {
 					mbstr[i] = cb.CharAt(posCheck+i);
 				}
@@ -562,6 +604,9 @@ int Document::Undo() {
 			bool multiLine = false;
 			int steps = cb.StartUndo();
 			//Platform::DebugPrintf("Steps=%d\n", steps);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (int step = 0; step < steps; step++) {
 				const int prevLinesTotal = LinesTotal();
 				const Action &action = cb.GetUndoStep();
@@ -623,6 +668,9 @@ int Document::Redo() {
 			bool startSavePoint = cb.IsSavePoint();
 			bool multiLine = false;
 			int steps = cb.StartRedo();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (int step = 0; step < steps; step++) {
 				const int prevLinesTotal = LinesTotal();
 				const Action &action = cb.GetRedoStep();
@@ -723,12 +771,18 @@ static int NextTab(int pos, int tabSize) {
 static void CreateIndentation(char *linebuf, int length, int indent, int tabSize, bool insertSpaces) {
 	length--;	// ensure space for \0
 	if (!insertSpaces) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while ((indent >= tabSize) && (length > 0)) {
 			*linebuf++ = '\t';
 			indent -= tabSize;
 			length--;
 		}
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((indent > 0) && (length > 0)) {
 		*linebuf++ = ' ';
 		indent--;
@@ -742,6 +796,9 @@ int Document::GetLineIndentation(int line) {
 	if ((line >= 0) && (line < LinesTotal())) {
 		int lineStart = LineStart(line);
 		int length = Length();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int i = lineStart;i < length;i++) {
 			char ch = cb.CharAt(i);
 			if (ch == ' ')
@@ -775,6 +832,9 @@ int Document::GetLineIndentPosition(int line) const {
 		return 0;
 	int pos = LineStart(line);
 	int length = Length();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((pos < length) && isindentchar(cb.CharAt(pos))) {
 		pos++;
 	}
@@ -785,6 +845,9 @@ int Document::GetColumn(int pos) {
 	int column = 0;
 	int line = LineFromPosition(pos);
 	if ((line >= 0) && (line < LinesTotal())) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int i = LineStart(line);i < pos;) {
 			char ch = cb.CharAt(i);
 			if (ch == '\t') {
@@ -809,6 +872,9 @@ int Document::FindColumn(int line, int column) {
 	int position = LineStart(line);
 	if ((line >= 0) && (line < LinesTotal())) {
 		int columnCurrent = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while ((columnCurrent < column) && (position < Length())) {
 			char ch = cb.CharAt(position);
 			if (ch == '\t') {
@@ -829,6 +895,9 @@ int Document::FindColumn(int line, int column) {
 
 void Document::Indent(bool forwards, int lineBottom, int lineTop) {
 	// Dedent - suck white space off the front of the line to dedent by equivalent of a tab
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int line = lineBottom; line >= lineTop; line--) {
 		int indentOfLine = GetLineIndentation(line);
 		if (forwards) {
@@ -848,6 +917,9 @@ char *Document::TransformLineEnds(int *pLenOut, const char *s, size_t len, int e
 	char *dest = new char[2 * len + 1];
 	const char *sptr = s;
 	char *dptr = dest;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (size_t i = 0; (i < len) && (*sptr != '\0'); i++) {
 		if (*sptr == '\n' || *sptr == '\r') {
 			if (eolMode == SC_EOL_CR) {
@@ -875,6 +947,9 @@ char *Document::TransformLineEnds(int *pLenOut, const char *s, size_t len, int e
 void Document::ConvertLineEnds(int eolModeSet) {
 	UndoGroup ug(this);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int pos = 0; pos < Length(); pos++) {
 		if (cb.CharAt(pos) == '\r') {
 			if (cb.CharAt(pos + 1) == '\n') {
@@ -913,6 +988,9 @@ void Document::ConvertLineEnds(int eolModeSet) {
 bool Document::IsWhiteLine(int line) const {
 	int currentChar = LineStart(line);
 	int endLine = LineEnd(line);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (currentChar < endLine) {
 		if (cb.CharAt(currentChar) != ' ' && cb.CharAt(currentChar) != '\t') {
 			return false;
@@ -925,9 +1003,15 @@ bool Document::IsWhiteLine(int line) const {
 int Document::ParaUp(int pos) {
 	int line = LineFromPosition(pos);
 	line--;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (line >= 0 && IsWhiteLine(line)) { // skip empty lines
 		line--;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (line >= 0 && !IsWhiteLine(line)) { // skip non-empty lines
 		line--;
 	}
@@ -937,9 +1021,15 @@ int Document::ParaUp(int pos) {
 
 int Document::ParaDown(int pos) {
 	int line = LineFromPosition(pos);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (line < LinesTotal() && !IsWhiteLine(line)) { // skip non-empty lines
 		line++;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (line < LinesTotal() && IsWhiteLine(line)) { // skip empty lines
 		line++;
 	}
@@ -964,11 +1054,17 @@ int Document::ExtendWordSelect(int pos, int delta, bool onlyWordCharacters) {
 	if (delta < 0) {
 		if (!onlyWordCharacters)
 			ccStart = WordCharClass(cb.CharAt(pos-1));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (pos > 0 && (WordCharClass(cb.CharAt(pos - 1)) == ccStart))
 			pos--;
 	} else {
 		if (!onlyWordCharacters && pos < Length())
 			ccStart = WordCharClass(cb.CharAt(pos));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (pos < (Length()) && (WordCharClass(cb.CharAt(pos)) == ccStart))
 			pos++;
 	}
@@ -984,18 +1080,30 @@ int Document::ExtendWordSelect(int pos, int delta, bool onlyWordCharacters) {
  */
 int Document::NextWordStart(int pos, int delta) {
 	if (delta < 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (pos > 0 && (WordCharClass(cb.CharAt(pos - 1)) == CharClassify::ccSpace))
 			pos--;
 		if (pos > 0) {
 			CharClassify::cc ccStart = WordCharClass(cb.CharAt(pos-1));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (pos > 0 && (WordCharClass(cb.CharAt(pos - 1)) == ccStart)) {
 				pos--;
 			}
 		}
 	} else {
 		CharClassify::cc ccStart = WordCharClass(cb.CharAt(pos));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (pos < (Length()) && (WordCharClass(cb.CharAt(pos)) == ccStart))
 			pos++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (pos < (Length()) && (WordCharClass(cb.CharAt(pos)) == CharClassify::ccSpace))
 			pos++;
 	}
@@ -1014,20 +1122,32 @@ int Document::NextWordEnd(int pos, int delta) {
 		if (pos > 0) {
 			CharClassify::cc ccStart = WordCharClass(cb.CharAt(pos-1));
 			if (ccStart != CharClassify::ccSpace) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (pos > 0 && WordCharClass(cb.CharAt(pos - 1)) == ccStart) {
 					pos--;
 				}
 			}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (pos > 0 && WordCharClass(cb.CharAt(pos - 1)) == CharClassify::ccSpace) {
 				pos--;
 			}
 		}
 	} else {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (pos < Length() && WordCharClass(cb.CharAt(pos)) == CharClassify::ccSpace) {
 			pos++;
 		}
 		if (pos < Length()) {
 			CharClassify::cc ccStart = WordCharClass(cb.CharAt(pos));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (pos < Length() && WordCharClass(cb.CharAt(pos)) == ccStart) {
 				pos++;
 			}
@@ -1111,12 +1231,18 @@ long Document::FindText(int minPos, int maxPos, const char *s,
 		if (!caseSensitive)
 			firstChar = static_cast<char>(MakeUpperCase(firstChar));
 		int pos = forward ? startPos : (startPos - 1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (forward ? (pos < endSearch) : (pos >= endSearch)) {
 			char ch = CharAt(pos);
 			if (caseSensitive) {
 				if (ch == firstChar) {
 					bool found = true;
 					if (pos + lengthFind > Platform::Maximum(startPos, endPos)) found = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					for (int posMatch = 1; posMatch < lengthFind && found; posMatch++) {
 						ch = CharAt(pos + posMatch);
 						if (ch != s[posMatch])
@@ -1133,6 +1259,9 @@ long Document::FindText(int minPos, int maxPos, const char *s,
 				if (MakeUpperCase(ch) == firstChar) {
 					bool found = true;
 					if (pos + lengthFind > Platform::Maximum(startPos, endPos)) found = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					for (int posMatch = 1; posMatch < lengthFind && found; posMatch++) {
 						ch = CharAt(pos + posMatch);
 						if (MakeUpperCase(ch) != MakeUpperCase(s[posMatch]))
@@ -1166,6 +1295,9 @@ int Document::LinesTotal() const {
 }
 
 void Document::ChangeCase(Range r, bool makeUpperCase) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int pos = r.start; pos < r.end;) {
 		int len = LenChar(pos);
 		if (len == 1) {
@@ -1228,6 +1360,9 @@ bool Document::SetStyles(int length, const char *styles) {
 		bool didChange = false;
 		int startMod = 0;
 		int endMod = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int iPos = 0; iPos < length; iPos++, endStyled++) {
 			PLATFORM_ASSERT(endStyled < Length());
 			if (cb.SetStyleAt(endStyled, styles[iPos], stylingMask)) {
@@ -1252,6 +1387,9 @@ void Document::EnsureStyledTo(int pos) {
 	if ((enteredStyling == 0) && (pos > GetEndStyled())) {
 		IncrementStyleClock();
 		// Ask the watchers to style, and stop as soon as one responds.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int i = 0; pos > GetEndStyled() && i < lenWatchers; i++) {
 			watchers[i].watcher->NotifyStyleNeeded(this, watchers[i].userData, pos);
 		}
@@ -1301,6 +1439,9 @@ int Document::MarginLength(int line) const {
 
 void Document::MarginClearAll() {
 	int maxEditorLine = LinesTotal();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int l=0;l<maxEditorLine;l++)
 		MarginSetText(l, 0);
 	// Free remaining data
@@ -1344,6 +1485,9 @@ int Document::AnnotationLines(int line) const {
 
 void Document::AnnotationClearAll() {
 	int maxEditorLine = LinesTotal();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int l=0;l<maxEditorLine;l++)
 		AnnotationSetText(l, 0);
 	// Free remaining data
@@ -1363,12 +1507,18 @@ void Document::DecorationFillRange(int position, int value, int fillLength) {
 }
 
 bool Document::AddWatcher(DocWatcher *watcher, void *userData) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = 0; i < lenWatchers; i++) {
 		if ((watchers[i].watcher == watcher) &&
 		        (watchers[i].userData == userData))
 			return false;
 	}
 	WatcherWithUserData *pwNew = new WatcherWithUserData[lenWatchers + 1];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int j = 0; j < lenWatchers; j++)
 		pwNew[j] = watchers[j];
 	pwNew[lenWatchers].watcher = watcher;
@@ -1380,6 +1530,9 @@ bool Document::AddWatcher(DocWatcher *watcher, void *userData) {
 }
 
 bool Document::RemoveWatcher(DocWatcher *watcher, void *userData) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = 0; i < lenWatchers; i++) {
 		if ((watchers[i].watcher == watcher) &&
 		        (watchers[i].userData == userData)) {
@@ -1389,6 +1542,9 @@ bool Document::RemoveWatcher(DocWatcher *watcher, void *userData) {
 				lenWatchers = 0;
 			} else {
 				WatcherWithUserData *pwNew = new WatcherWithUserData[lenWatchers];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (int j = 0; j < lenWatchers - 1; j++) {
 					pwNew[j] = (j < i) ? watchers[j] : watchers[j + 1];
 				}
@@ -1403,12 +1559,18 @@ bool Document::RemoveWatcher(DocWatcher *watcher, void *userData) {
 }
 
 void Document::NotifyModifyAttempt() {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = 0; i < lenWatchers; i++) {
 		watchers[i].watcher->NotifyModifyAttempt(this, watchers[i].userData);
 	}
 }
 
 void Document::NotifySavePoint(bool atSavePoint) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = 0; i < lenWatchers; i++) {
 		watchers[i].watcher->NotifySavePoint(this, watchers[i].userData, atSavePoint);
 	}
@@ -1420,6 +1582,9 @@ void Document::NotifyModified(DocModification mh) {
 	} else if (mh.modificationType & SC_MOD_DELETETEXT) {
 		decorations.DeleteRange(mh.position, mh.length);
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = 0; i < lenWatchers; i++) {
 		watchers[i].watcher->NotifyModified(this, mh, watchers[i].userData);
 	}
@@ -1434,6 +1599,9 @@ int Document::WordPartLeft(int pos) {
 		--pos;
 		char startChar = cb.CharAt(pos);
 		if (IsWordPartSeparator(startChar)) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (pos > 0 && IsWordPartSeparator(cb.CharAt(pos))) {
 				--pos;
 			}
@@ -1442,31 +1610,49 @@ int Document::WordPartLeft(int pos) {
 			startChar = cb.CharAt(pos);
 			--pos;
 			if (IsLowerCase(startChar)) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (pos > 0 && IsLowerCase(cb.CharAt(pos)))
 					--pos;
 				if (!IsUpperCase(cb.CharAt(pos)) && !IsLowerCase(cb.CharAt(pos)))
 					++pos;
 			} else if (IsUpperCase(startChar)) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (pos > 0 && IsUpperCase(cb.CharAt(pos)))
 					--pos;
 				if (!IsUpperCase(cb.CharAt(pos)))
 					++pos;
 			} else if (IsADigit(startChar)) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (pos > 0 && IsADigit(cb.CharAt(pos)))
 					--pos;
 				if (!IsADigit(cb.CharAt(pos)))
 					++pos;
 			} else if (IsPunctuation(startChar)) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (pos > 0 && IsPunctuation(cb.CharAt(pos)))
 					--pos;
 				if (!IsPunctuation(cb.CharAt(pos)))
 					++pos;
 			} else if (isspacechar(startChar)) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (pos > 0 && isspacechar(cb.CharAt(pos)))
 					--pos;
 				if (!isspacechar(cb.CharAt(pos)))
 					++pos;
 			} else if (!isascii(startChar)) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (pos > 0 && !isascii(cb.CharAt(pos)))
 					--pos;
 				if (isascii(cb.CharAt(pos)))
@@ -1483,34 +1669,58 @@ int Document::WordPartRight(int pos) {
 	char startChar = cb.CharAt(pos);
 	int length = Length();
 	if (IsWordPartSeparator(startChar)) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (pos < length && IsWordPartSeparator(cb.CharAt(pos)))
 			++pos;
 		startChar = cb.CharAt(pos);
 	}
 	if (!isascii(startChar)) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (pos < length && !isascii(cb.CharAt(pos)))
 			++pos;
 	} else if (IsLowerCase(startChar)) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (pos < length && IsLowerCase(cb.CharAt(pos)))
 			++pos;
 	} else if (IsUpperCase(startChar)) {
 		if (IsLowerCase(cb.CharAt(pos + 1))) {
 			++pos;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (pos < length && IsLowerCase(cb.CharAt(pos)))
 				++pos;
 		} else {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (pos < length && IsUpperCase(cb.CharAt(pos)))
 				++pos;
 		}
 		if (IsLowerCase(cb.CharAt(pos)) && IsUpperCase(cb.CharAt(pos - 1)))
 			--pos;
 	} else if (IsADigit(startChar)) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (pos < length && IsADigit(cb.CharAt(pos)))
 			++pos;
 	} else if (IsPunctuation(startChar)) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (pos < length && IsPunctuation(cb.CharAt(pos)))
 			++pos;
 	} else if (isspacechar(startChar)) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (pos < length && isspacechar(cb.CharAt(pos)))
 			++pos;
 	} else {
@@ -1526,10 +1736,16 @@ bool IsLineEndChar(char c) {
 int Document::ExtendStyleRange(int pos, int delta, bool singleLine) {
 	int sStart = cb.StyleAt(pos);
 	if (delta < 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (pos > 0 && (cb.StyleAt(pos) == sStart) && (!singleLine || !IsLineEndChar(cb.CharAt(pos))) )
 			pos--;
 		pos++;
 	} else {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (pos < (Length()) && (cb.StyleAt(pos) == sStart) && (!singleLine || !IsLineEndChar(cb.CharAt(pos))) )
 			pos++;
 	}
@@ -1571,6 +1787,9 @@ int Document::BraceMatch(int position, int /*maxReStyle*/) {
 		direction = 1;
 	int depth = 1;
 	position = position + direction;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((position >= 0) && (position < Length())) {
 		position = MovePositionOutsideChar(position, direction);
 		char chAtPos = CharAt(position);
@@ -1664,6 +1883,9 @@ long BuiltinRegex::FindText(Document *doc, int minPos, int maxPos, const char *s
 	int lenRet = 0;
 	char searchEnd = s[*length - 1];
 	int lineRangeBreak = lineRangeEnd + increment;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int line = lineRangeStart; line != lineRangeBreak; line += increment) {
 		int startOfLine = doc->LineStart(line);
 		int endOfLine = doc->LineEnd(line);
@@ -1699,6 +1921,9 @@ long BuiltinRegex::FindText(Document *doc, int minPos, int maxPos, const char *s
 			if (increment == -1) {
 				// Check for the last match on this line.
 				int repetitions = 1000;	// Break out of infinite loop
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (success && (search.eopat[0] <= endOfLine) && (repetitions--)) {
 					success = search.Execute(di, pos+1, endOfLine);
 					if (success) {
@@ -1725,6 +1950,9 @@ const char *BuiltinRegex::SubstituteByPosition(Document* doc, const char *text, 
 	if (!search.GrabMatches(di))
 		return 0;
 	unsigned int lenResult = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = 0; i < *length; i++) {
 		if (text[i] == '\\') {
 			if (text[i + 1] >= '1' && text[i + 1] <= '9') {
@@ -1750,6 +1978,9 @@ const char *BuiltinRegex::SubstituteByPosition(Document* doc, const char *text, 
 	}
 	substituted = new char[lenResult + 1];
 	char *o = substituted;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int j = 0; j < *length; j++) {
 		if (text[j] == '\\') {
 			if (text[j + 1] >= '1' && text[j + 1] <= '9') {

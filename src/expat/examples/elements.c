@@ -12,6 +12,9 @@ startElement(void *userData, const char *name, const char **atts)
 {
   int i;
   int *depthPtr = userData;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < *depthPtr; i++)
     putchar('\t');
   puts(name);
@@ -34,6 +37,9 @@ main(int argc, char *argv[])
   int depth = 0;
   XML_SetUserData(parser, &depth);
   XML_SetElementHandler(parser, startElement, endElement);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   do {
     size_t len = fread(buf, 1, sizeof(buf), stdin);
     done = len < sizeof(buf);

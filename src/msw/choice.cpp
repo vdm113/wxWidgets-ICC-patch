@@ -219,6 +219,9 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter& items,
 
     int n = wxNOT_FOUND;
     const unsigned numItems = items.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned i = 0; i < numItems; ++i )
     {
         n = MSWInsertOrAppendItem(pos, items[i], msg);
@@ -303,6 +306,9 @@ int wxChoice::FindString(const wxString& s, bool bCase) const
     // For some reason, Watcom in WIN386 mode crashes in the CB_FINDSTRINGEXACT message.
     // wxChoice::Do it the long way instead.
     unsigned int count = GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i = 0; i < count; i++ )
     {
         // as CB_FINDSTRINGEXACT is case insensitive, be case insensitive too
@@ -317,6 +323,9 @@ int wxChoice::FindString(const wxString& s, bool bCase) const
    if ( s.empty() )
    {
        unsigned int count = GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
        for ( unsigned int i = 0; i < count; i++ )
        {
          if (GetString(i).empty())
@@ -591,6 +600,9 @@ wxSize wxChoice::DoGetBestSize() const
     int wChoice = 0;
     int hChoice;
     const unsigned int nItems = GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i = 0; i < nItems; i++ )
     {
         int wLine;

@@ -34,6 +34,9 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
     bool found = false;
     const wxFontBundleList& list = wxFontsManager::Get()->GetBundles();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxFontBundleList::const_iterator f = list.begin(); f != list.end(); ++f )
     {
         if ( fixedWidthOnly && !(*f)->IsFixed() )

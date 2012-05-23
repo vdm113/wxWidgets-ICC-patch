@@ -100,6 +100,9 @@ bool wxComboBox::Create(wxWindow *parent, wxWindowID id,
     m_mainWidget = (Widget) buttonWidget;
 
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < n; ++i)
         Append( choices[i] );
 
@@ -198,6 +201,9 @@ int wxComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
     const unsigned int numItems = items.GetCount();
 
     AllocClientData(numItems);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i = 0; i < numItems; ++i, ++pos )
     {
         wxXmString str( items[i].c_str() );
@@ -232,6 +238,9 @@ void wxComboBox::Clear()
     XmListDeleteAllItems (GetXmList(this));
 #else
     size_t n = m_stringArray.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(n > 0)
     {
         XmComboBoxDeletePos((Widget) m_mainWidget, n--);

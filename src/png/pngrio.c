@@ -98,6 +98,9 @@ png_default_read_data(png_structp png_ptr, png_bytep data, png_size_t length)
       check = 0;
       remaining = length;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       do
       {
          read = MIN(NEAR_BUF_SIZE, remaining);
@@ -113,6 +116,9 @@ png_default_read_data(png_structp png_ptr, png_bytep data, png_size_t length)
          data += read;
          remaining -= read;
       }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       while (remaining != 0);
    }
 

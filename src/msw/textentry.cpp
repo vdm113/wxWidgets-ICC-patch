@@ -183,6 +183,9 @@ public:
         if ( !RestartIfNeeded() )
             return S_FALSE;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( celt-- )
         {
             // Stop iterating if we need to update completions anyhow.
@@ -219,6 +222,9 @@ public:
         if ( !RestartIfNeeded() )
             return S_FALSE;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( celt-- )
         {
             if ( m_restart )
@@ -288,6 +294,9 @@ private:
     bool RestartIfNeeded()
     {
         bool rc = true;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ;; )
         {
             wxString prefix;

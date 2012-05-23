@@ -58,6 +58,9 @@ initial_setup (j_decompress_ptr cinfo)
   /* Compute maximum sampling factors; check factor validity */
   cinfo->max_h_samp_factor = 1;
   cinfo->max_v_samp_factor = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
     if (compptr->h_samp_factor<=0 || compptr->h_samp_factor>MAX_SAMP_FACTOR ||
@@ -76,6 +79,9 @@ initial_setup (j_decompress_ptr cinfo)
   cinfo->min_DCT_scaled_size = DCTSIZE;
 
   /* Compute dimensions of components */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
     compptr->DCT_scaled_size = DCTSIZE;
@@ -167,6 +173,9 @@ per_scan_setup (j_decompress_ptr cinfo)
 
     cinfo->blocks_in_MCU = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
       compptr = cinfo->cur_comp_info[ci];
       /* Sampling factors give # of blocks of component in each MCU */
@@ -185,6 +194,9 @@ per_scan_setup (j_decompress_ptr cinfo)
       mcublks = compptr->MCU_blocks;
       if (cinfo->blocks_in_MCU + mcublks > D_MAX_BLOCKS_IN_MCU)
 	ERREXIT(cinfo, JERR_BAD_MCU_SIZE);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       while (mcublks-- > 0) {
 	cinfo->MCU_membership[cinfo->blocks_in_MCU++] = ci;
       }
@@ -222,6 +234,9 @@ latch_quant_tables (j_decompress_ptr cinfo)
   jpeg_component_info *compptr;
   JQUANT_TBL * qtbl;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
     compptr = cinfo->cur_comp_info[ci];
     /* No work if we already saved Q-table for this component */
