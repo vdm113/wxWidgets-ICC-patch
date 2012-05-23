@@ -109,6 +109,9 @@ public:
         This can be used for programming event loops, e.g.
 
         @code
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (evtloop->Pending())
             evtloop->Dispatch();
         @endcode

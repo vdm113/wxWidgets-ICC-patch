@@ -157,6 +157,9 @@ void wxMacControl::SetupTabs( const wxNotebook& notebook)
     wxNotebookPage *page;
     ControlTabInfoRecV1 info;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t ii = 0; ii < countPages; ii++)
     {
         page = (wxNotebookPage*) notebook.GetPage(ii);

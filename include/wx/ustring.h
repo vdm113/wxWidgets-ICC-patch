@@ -214,6 +214,9 @@ public:
             wxU32CharBuffer buffer(n);
             wxChar32 *p = buffer.data();
             size_type i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < n; i++)
             {
                *p = ch;
@@ -307,6 +310,9 @@ public:
         wxCharBuffer buffer(n);
         char *p = buffer.data();
         size_type i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < n; i++)
         {
            *p = ch;
@@ -328,6 +334,9 @@ public:
         wxU16CharBuffer buffer(n);
         wxChar16 *p = buffer.data();
         size_type i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < n; i++)
         {
            *p = ch;
@@ -389,6 +398,9 @@ public:
             wxU32CharBuffer buffer(n);
             wxChar32 *p = buffer.data();
             size_type i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < n; i++)
             {
                *p = c;
