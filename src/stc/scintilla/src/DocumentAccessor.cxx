@@ -57,6 +57,9 @@ void DocumentAccessor::Fill(int position) {
 }
 
 bool DocumentAccessor::Match(int pos, const char *s) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i=0; *s; i++) {
 		if (*s != SafeGetCharAt(pos+i))
 			return false;
@@ -124,6 +127,9 @@ void DocumentAccessor::ColourTo(unsigned int pos, int chAttr) {
 			if (chAttr != chWhile)
 				chFlags = 0;
 			chAttr |= chFlags;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (unsigned int i = startSeg; i <= pos; i++) {
 				PLATFORM_ASSERT((startPosStyling + validLen) < Length());
 				styleBuf[validLen++] = static_cast<char>(chAttr);
@@ -161,6 +167,9 @@ int DocumentAccessor::IndentAmount(int line, int *flags, PFNIsCommentLeader pfnI
 	int indent = 0;
 	bool inPrevPrefix = line > 0;
 	int posPrev = inPrevPrefix ? LineStart(line-1) : 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((ch == ' ' || ch == '\t') && (pos < end)) {
 		if (inPrevPrefix) {
 			char chPrev = (*this)[posPrev++];

@@ -131,6 +131,9 @@ void AutoComplete::Select(const char *word) {
 	char item[maxItemLen];
 	int start = 0; // lower bound of the api array block to search
 	int end = lb->Length() - 1; // upper bound of the api array block to search
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((start <= end) && (location == -1)) { // Binary searching loop
 		int pivot = (start + end) / 2;
 		lb->GetValue(pivot, item, maxItemLen);
@@ -141,6 +144,9 @@ void AutoComplete::Select(const char *word) {
 			cond = strncmp(word, item, lenWord);
 		if (!cond) {
 			// Find first match
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (pivot > start) {
 				lb->GetValue(pivot-1, item, maxItemLen);
 				if (ignoreCase)
@@ -154,6 +160,9 @@ void AutoComplete::Select(const char *word) {
 			location = pivot;
 			if (ignoreCase) {
 				// Check for exact-case match
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (; pivot <= end; pivot++) {
 					lb->GetValue(pivot, item, maxItemLen);
 					if (!strncmp(word, item, lenWord)) {

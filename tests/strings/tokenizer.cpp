@@ -133,6 +133,9 @@ static std::string Nth(size_t n)
 
 void TokenizerTestCase::GetCount()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(gs_testData); n++ )
     {
         const TokenizerTestData& ttd = gs_testData[n];
@@ -141,6 +144,9 @@ void TokenizerTestCase::GetCount()
         CPPUNIT_ASSERT_EQUAL_MESSAGE( Nth(n), ttd.count, tkz.CountTokens() );
 
         size_t count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( tkz.HasMoreTokens() )
         {
             tkz.GetNextToken();
@@ -164,6 +170,9 @@ DoTestGetPosition(const wxChar *s, const wxChar *delims, int pos, ...)
     va_list ap;
     va_start(ap, pos);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         if ( !pos )
@@ -201,6 +210,9 @@ DoTestGetString(const wxChar *s, const wxChar *delims, int pos, ...)
     va_list ap;
     va_start(ap, pos);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         if ( !pos )
@@ -245,6 +257,9 @@ void TokenizerTestCase::LastDelimiter()
 
 void TokenizerTestCase::StrtokCompat()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(gs_testData); n++ )
     {
         const TokenizerTestData& ttd = gs_testData[n];
@@ -261,6 +276,9 @@ void TokenizerTestCase::StrtokCompat()
         wxChar *s = wxStrtok(buf.data(), ttd.delims, &last);
 
         wxStringTokenizer tkz(ttd.str, ttd.delims, ttd.mode);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( tkz.HasMoreTokens() )
         {
             CPPUNIT_ASSERT_EQUAL( wxString(s), tkz.GetNextToken() );

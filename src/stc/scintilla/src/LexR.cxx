@@ -62,6 +62,9 @@ static void ColouriseRDoc(unsigned int startPos, int length, int initStyle, Word
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.atLineStart && (sc.state == SCE_R_STRING)) {
@@ -157,6 +160,9 @@ static void FoldRDoc(unsigned int startPos, int length, int, WordList *[],
 	int levelNext = levelCurrent;
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

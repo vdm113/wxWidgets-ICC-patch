@@ -120,6 +120,9 @@ size_t wxGetAvailableDrives(wxArrayString &paths, wxArrayString &names, wxArrayI
     //       but unfortunately wxFSVolumeBase is not implemented everywhere
     const wxArrayString as = wxFSVolumeBase::GetVolumes();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < as.GetCount(); i++)
     {
         wxString path = as[i];
@@ -160,6 +163,9 @@ size_t wxGetAvailableDrives(wxArrayString &paths, wxArrayString &names, wxArrayI
     if ( rc == 0)
     {
         size_t i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (i < 26)
         {
             if (ulDriveMap & ( 1 << i ))
@@ -203,6 +209,9 @@ size_t wxGetAvailableDrives(wxArrayString &paths, wxArrayString &names, wxArrayI
     }
 #else // !__WIN32__, !__OS2__
     /* If we can switch to the drive, it exists. */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( char drive = 'A'; drive <= 'Z'; drive++ )
     {
         const wxString
@@ -223,6 +232,9 @@ size_t wxGetAvailableDrives(wxArrayString &paths, wxArrayString &names, wxArrayI
     ItemCount volumeIndex = 1;
     OSErr err = noErr ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( noErr == err )
     {
         HFSUniStr255 volumeName ;
@@ -579,6 +591,9 @@ void wxGenericDirCtrl::ShowHidden( bool show )
         wxArrayString paths;
         GetPaths(paths);
         ReCreateTree();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned n = 0; n < paths.size(); n++ )
         {
             ExpandPath(paths[n]);
@@ -618,6 +633,9 @@ void wxGenericDirCtrl::SetupSections()
     AddSection( home, _("Desktop"), 1);
 #endif
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0; n < count; n++)
         AddSection(paths[n], names[n], icons[n]);
 }
@@ -784,6 +802,9 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
         if (m_showHidden) style |= wxDIR_HIDDEN;
         if (d.GetFirst(& eachFilename, wxEmptyString, style))
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do
             {
                 if ((eachFilename != wxT(".")) && (eachFilename != wxT("..")))
@@ -791,6 +812,9 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
                     dirs.Add(eachFilename);
                 }
             }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (d.GetNext(&eachFilename));
         }
     }
@@ -809,11 +833,17 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
             wxStringTokenizer strTok;
             wxString curFilter;
             strTok.SetString(m_currentFilterStr,wxT(";"));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while(strTok.HasMoreTokens())
             {
                 curFilter = strTok.GetNextToken();
                 if (d.GetFirst(& eachFilename, curFilter, style))
                 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     do
                     {
                         if ((eachFilename != wxT(".")) && (eachFilename != wxT("..")))
@@ -821,6 +851,9 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
                             filenames.Add(eachFilename);
                         }
                     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     while (d.GetNext(& eachFilename));
                 }
             }
@@ -834,6 +867,9 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
 
     // Add the sorted dirs
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < dirs.GetCount(); i++)
     {
         eachFilename = dirs[i];
@@ -859,6 +895,9 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
     // Add the sorted filenames
     if (!HasFlag(wxDIRCTRL_DIR_ONLY))
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < filenames.GetCount(); i++)
         {
             eachFilename = filenames[i];
@@ -892,6 +931,9 @@ void wxGenericDirCtrl::CollapseTree()
 {
     wxTreeItemIdValue cookie;
     wxTreeItemId child = m_treeCtrl->GetFirstChild(m_rootId, cookie);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (child.IsOk())
     {
         CollapseDir(child);
@@ -920,6 +962,9 @@ wxTreeItemId wxGenericDirCtrl::FindChild(wxTreeItemId parentId, const wxString& 
 
     wxTreeItemIdValue cookie;
     wxTreeItemId childId = m_treeCtrl->GetFirstChild(parentId, cookie);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (childId.IsOk())
     {
         wxDirItemData* data = (wxDirItemData*) m_treeCtrl->GetItemData(childId);
@@ -962,6 +1007,9 @@ bool wxGenericDirCtrl::ExpandPath(const wxString& path)
     bool done = false;
     wxTreeItemId treeid = FindChild(m_rootId, path, done);
     wxTreeItemId lastId = treeid; // The last non-zero treeid
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (treeid.IsOk() && !done)
     {
         ExpandDir(treeid);
@@ -984,6 +1032,9 @@ bool wxGenericDirCtrl::ExpandPath(const wxString& path)
         wxTreeItemIdValue cookie;
         wxTreeItemId childId = m_treeCtrl->GetFirstChild(lastId, cookie);
         bool selectedChild = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (childId.IsOk())
         {
             data = (wxDirItemData*) m_treeCtrl->GetItemData(childId);
@@ -1019,6 +1070,9 @@ bool wxGenericDirCtrl::CollapsePath(const wxString& path)
     wxTreeItemId treeid     = FindChild(m_rootId, path, done);
     wxTreeItemId lastId = treeid; // The last non-zero treeid
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( treeid.IsOk() && !done )
     {
         CollapseDir(treeid);
@@ -1073,6 +1127,9 @@ void wxGenericDirCtrl::GetPaths(wxArrayString& paths) const
 
     wxArrayTreeItemIds items;
     m_treeCtrl->GetSelections(items);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < items.size(); n++ )
     {
         wxTreeItemId treeid = items[n];
@@ -1102,6 +1159,9 @@ void wxGenericDirCtrl::GetFilePaths(wxArrayString& paths) const
 
     wxArrayTreeItemIds items;
     m_treeCtrl->GetSelections(items);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < items.size(); n++ )
     {
         wxTreeItemId treeid = items[n];
@@ -1123,6 +1183,9 @@ void wxGenericDirCtrl::SelectPath(const wxString& path, bool select)
     bool done = false;
     wxTreeItemId treeid = FindChild(m_rootId, path, done);
     wxTreeItemId lastId = treeid; // The last non-zero treeid
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( treeid.IsOk() && !done )
     {
         treeid = FindChild(treeid, path, done);
@@ -1143,6 +1206,9 @@ void wxGenericDirCtrl::SelectPaths(const wxArrayString& paths)
     if ( HasFlag(wxDIRCTRL_MULTIPLE) )
     {
         UnselectAll();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned n = 0; n < paths.size(); n++ )
         {
             SelectPath(paths[n]);
@@ -1185,6 +1251,9 @@ void wxGenericDirCtrl::FindChildFiles(wxTreeItemId treeid, int dirFlags, wxArray
     {
         if (d.GetFirst(& eachFilename, m_currentFilterStr, dirFlags))
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do
             {
                 if ((eachFilename != wxT(".")) && (eachFilename != wxT("..")))
@@ -1192,6 +1261,9 @@ void wxGenericDirCtrl::FindChildFiles(wxTreeItemId treeid, int dirFlags, wxArray
                     filenames.Add(eachFilename);
                 }
             }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (d.GetNext(& eachFilename)) ;
         }
     }
@@ -1353,6 +1425,9 @@ void wxDirFilterListCtrl::OnSelFilter(wxCommandEvent& WXUNUSED(event))
         m_dirCtrl->ReCreateTree();
 
         // Expand and select the previously selected paths
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (unsigned int i = 0; i < paths.GetCount(); i++)
         {
             m_dirCtrl->ExpandPath(paths.Item(i));
@@ -1378,6 +1453,9 @@ void wxDirFilterListCtrl::FillFilterList(const wxString& filter, int defaultFilt
 
     if (n > 0 && defaultFilter < (int) n)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = 0; i < n; i++)
             Append(descriptions[i]);
         SetSelection(defaultFilter);
@@ -1592,8 +1670,14 @@ static wxBitmap CreateAntialiasedBitmap(const wxImage& img)
     p1 = img.GetData(), p2 = img.GetData() + 3 * size*2, ps = smallimg.GetData();
     smallimg.SetMaskColour(mr, mr, mr);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (y = 0; y < size; y++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (x = 0; x < size; x++)
         {
             sr = sg = sb = smask = 0;
@@ -1647,27 +1731,51 @@ static wxImage CutEmptyBorders(const wxImage& img)
 #define MK_DTTMP(x,y)      dttmp = dt + ((x + y * w) * 3)
 #define NOEMPTY_PIX(empt)  if (dttmp[0] != mr || dttmp[1] != mg || dttmp[2] != mb) {empt = false; break;}
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (empt = true, top = 0; empt && top < h; top++)
     {
         MK_DTTMP(0, top);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < w; i++, dttmp+=3)
             NOEMPTY_PIX(empt)
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (empt = true, bottom = h-1; empt && bottom > top; bottom--)
     {
         MK_DTTMP(0, bottom);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < w; i++, dttmp+=3)
             NOEMPTY_PIX(empt)
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (empt = true, left = 0; empt && left < w; left++)
     {
         MK_DTTMP(left, 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < h; i++, dttmp+=3*w)
             NOEMPTY_PIX(empt)
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (empt = true, right = w-1; empt && right > left; right--)
     {
         MK_DTTMP(right, 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < h; i++, dttmp+=3*w)
             NOEMPTY_PIX(empt)
     }
