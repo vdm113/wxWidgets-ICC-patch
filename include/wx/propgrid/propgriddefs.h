@@ -321,6 +321,9 @@ WX_DECLARE_HASH_MAP_WITH_DECL(wxInt32,
 template<typename CONTAINER, typename T>
 int wxPGFindInVector( CONTAINER vector, const T& item )
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i=0; i<vector.size(); i++ )
     {
         if ( vector[i] == item )
@@ -665,6 +668,7 @@ template<> inline wxVariant WXVARIANT( const wxColour& value )
 // TOKENIZER1 can be done with wxStringTokenizer
 #define WX_PG_TOKENIZER1_BEGIN(WXSTRING,DELIMITER) \
     wxStringTokenizer tkz(WXSTRING,DELIMITER,wxTOKEN_RET_EMPTY); \
+MY_MACRO_PRAGMA_IVDEP \
     while ( tkz.HasMoreTokens() ) \
     { \
         wxString token = tkz.GetNextToken(); \
@@ -701,6 +705,7 @@ protected:
 
 #define WX_PG_TOKENIZER2_BEGIN(WXSTRING,DELIMITER) \
     wxPGStringTokenizer tkz(WXSTRING,DELIMITER); \
+MY_MACRO_PRAGMA_IVDEP \
     while ( tkz.HasMoreTokens() ) \
     { \
         wxString token = tkz.GetNextToken();

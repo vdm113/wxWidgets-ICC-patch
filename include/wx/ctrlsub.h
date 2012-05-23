@@ -53,6 +53,9 @@ public:
     {
         unsigned int count = GetCount();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned int i = 0; i < count ; ++i )
         {
             if (GetString(i).IsSameAs( s , bCase ))

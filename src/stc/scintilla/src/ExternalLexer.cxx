@@ -37,12 +37,21 @@ LexerManager *LexerManager::theInstance = NULL;
 
 char **WordListsToStrings(WordList *val[]) {
 	int dim = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (val[dim])
 		dim++;
 	char **wls = new char * [dim + 1];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = 0;i < dim;i++) {
 		std::string words;
 		words = "";
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int n = 0; n < val[i]->len; n++) {
 			words += val[i]->words[n];
 			if (n != val[i]->len - 1)
@@ -57,6 +66,9 @@ char **WordListsToStrings(WordList *val[]) {
 
 void DeleteWLStrings(char *strs[]) {
 	int dim = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (strs[dim]) {
 		delete strs[dim];
 		dim++;
@@ -141,6 +153,9 @@ LexerLibrary::LexerLibrary(const char* ModuleName) {
 
 			int nl = GetLexerCount();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (int i = 0; i < nl; i++) {
 				GetLexerName(i, lexname, 100);
 				lex = new ExternalLexerModule(SCLEX_AUTOMATIC, NULL, lexname, NULL);
@@ -176,6 +191,9 @@ void LexerLibrary::Release() {
 	LexerMinder *lm;
 	LexerMinder *lmNext;
 	lm = first;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (NULL != lm) {
 		lmNext = lm->next;
 		delete lm->self;
@@ -241,6 +259,9 @@ void LexerManager::Clear()
 	if (NULL != first) {
 		LexerLibrary *cur = first;
 		LexerLibrary *next;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (cur) {
 			next = cur->next;
 			delete cur;

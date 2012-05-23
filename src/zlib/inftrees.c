@@ -104,13 +104,22 @@ unsigned short FAR *work;
      */
 
     /* accumulate lengths for codes (assumes lens[] all in 0..MAXBITS) */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (len = 0; len <= MAXBITS; len++)
         count[len] = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (sym = 0; sym < codes; sym++)
         count[lens[sym]]++;
 
     /* bound code lengths, force root to be within code lengths */
     root = *bits;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (max = MAXBITS; max >= 1; max--)
         if (count[max] != 0) break;
     if (root > max) root = max;
@@ -123,12 +132,18 @@ unsigned short FAR *work;
         *bits = 1;
         return 0;     /* no symbols, but wait for decoding to report error */
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (min = 1; min <= MAXBITS; min++)
         if (count[min] != 0) break;
     if (root < min) root = min;
 
     /* check for an over-subscribed or incomplete set of lengths */
     left = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (len = 1; len <= MAXBITS; len++) {
         left <<= 1;
         left -= count[len];
@@ -139,10 +154,16 @@ unsigned short FAR *work;
 
     /* generate offsets into symbol table for each length for sorting */
     offs[1] = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (len = 1; len < MAXBITS; len++)
         offs[len + 1] = offs[len] + count[len];
 
     /* sort symbols by length, by symbol order within each length */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (sym = 0; sym < codes; sym++)
         if (lens[sym] != 0) work[offs[lens[sym]]++] = (unsigned short)sym;
 
@@ -213,6 +234,9 @@ unsigned short FAR *work;
         return 1;
 
     /* process all codes and make table entries */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (;;) {
         /* create table entry */
         this.bits = (unsigned char)(len - drop);
@@ -233,6 +257,9 @@ unsigned short FAR *work;
         incr = 1U << (len - drop);
         fill = 1U << curr;
         min = fill;                 /* save offset to next table */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do {
             fill -= incr;
             next[(huff >> drop) + fill] = this;
@@ -240,6 +267,9 @@ unsigned short FAR *work;
 
         /* backwards increment the len-bit code huff */
         incr = 1U << (len - 1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (huff & incr)
             incr >>= 1;
         if (incr != 0) {
@@ -268,6 +298,9 @@ unsigned short FAR *work;
             /* determine length of next table */
             curr = len - drop;
             left = (int)(1 << curr);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (curr + drop < max) {
                 left -= count[curr + drop];
                 if (left <= 0) break;
@@ -298,6 +331,9 @@ unsigned short FAR *work;
     this.op = (unsigned char)64;                /* invalid code marker */
     this.bits = (unsigned char)(len - drop);
     this.val = (unsigned short)0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (huff != 0) {
         /* when done with sub-table, drop back to root table */
         if (drop != 0 && (huff & mask) != low) {
@@ -312,6 +348,9 @@ unsigned short FAR *work;
 
         /* backwards increment the len-bit code huff */
         incr = 1U << (len - 1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (huff & incr)
             incr >>= 1;
         if (incr != 0) {

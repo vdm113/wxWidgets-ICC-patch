@@ -181,6 +181,9 @@ format_message (j_common_ptr cinfo, char * buffer)
   /* Check for string parameter, as indicated by %s in the message text */
   isstring = FALSE;
   msgptr = msgtext;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while ((ch = *msgptr++) != '\0') {
     if (ch == '%') {
       if (*msgptr == 's') isstring = TRUE;

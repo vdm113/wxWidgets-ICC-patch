@@ -108,6 +108,9 @@ bool wxCheckForInterrupt( wxWindow* pWnd )
         HAB  hab = 0;
         HWND hwndFilter = NULLHANDLE;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while(::WinPeekMsg(hab, &vMsg, hwndFilter, 0, 0, PM_REMOVE))
         {
             ::WinDispatchMsg(hab, &vMsg);
@@ -297,6 +300,9 @@ wxString WXDLLEXPORT wxGetWindowClass( WXHWND hWnd )
     {
         int nLen = 256; // some starting value
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         int                     nCount = ::WinQueryClassName((HWND)hWnd, nLen, (PSZ)(wxChar*)wxStringBuffer(vStr, nLen));
@@ -763,8 +769,14 @@ wxBitmap wxDisableBitmap(
     //
     // Get the mask value
     //
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < rBmp.GetHeight(); i++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0; j < rBmp.GetWidth(); j++)
         {
             // Byte 1
@@ -819,6 +831,9 @@ wxBitmap wxDisableBitmap(
             }
             pucDataMask += 3;
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0; j < nPadding; j++)
         {
             pucData++;

@@ -114,6 +114,9 @@ wxAcceleratorTable::wxAcceleratorTable(
     m_refData = new wxAcceleratorRefData;
     pArr = (PACCELTABLE) new BYTE[nAccelLength];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < n; i++)
     {
         USHORT                      uVirt = AF_CHAR;
@@ -214,6 +217,9 @@ wxString wxPMTextToLabel( const wxString& rsTitle )
     if (rsTitle.empty())
         return(sTitle);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (zPc = rsTitle.c_str(); *zPc != wxT('\0'); zPc++)
     {
         if (*zPc == wxT('&'))
