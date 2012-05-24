@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /* application_x_executable.png - 560 bytes */
 static const unsigned char application_x_executable_16x16_png[] = {
   0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
