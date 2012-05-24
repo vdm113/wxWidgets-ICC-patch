@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 { REG_OKAY,	"REG_OKAY",	"no errors detected" },
 { REG_NOMATCH,	"REG_NOMATCH",	"failed to match" },
 { REG_BADPAT,	"REG_BADPAT",	"invalid regexp (reg version 0.8)" },

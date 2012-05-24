@@ -1,8 +1,15 @@
-/////////////////////////////////////////////////////////////////////////////
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Name:        wx/msw/setup.h
+
 // Purpose:     Configuration for the library
 // Author:      Julian Smart
-// Modified by:
+// Modified by: Marian 'VooDooMan' Meravy
 // Created:     01/02/97
 // RCS-ID:      $Id: setup0.h 69463 2011-10-18 21:57:02Z VZ $
 // Copyright:   (c) Julian Smart
@@ -1482,7 +1489,7 @@
 #define wxUSE_THEME_GTK     0
 #define wxUSE_THEME_METAL   0
 #define wxUSE_THEME_MONO    0
-#define wxUSE_THEME_WIN32   0
+#define wxUSE_THEME_WIN32   1   /* VDM: changed explicitely to 1 from 0 */
 
 
 /* --- end common options --- */
@@ -1610,7 +1617,7 @@
 // Default is 0.
 //
 // Recommended setting: 0, nobody uses .INI files any more
-#define wxUSE_INICONF 0
+#define wxUSE_INICONF 1     /* VDM: changed explicitely to 1 from 0 */
 
 // ----------------------------------------------------------------------------
 // Generic versions of native controls
