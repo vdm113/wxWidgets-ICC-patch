@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file Style.h
  ** Defines the font and colour style for a class of text.
