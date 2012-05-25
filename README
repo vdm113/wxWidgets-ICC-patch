@@ -1,6 +1,6 @@
 This is cutting-edge performance preprocessed code of wxWidgets for Intel CPU's fork of wxWidgets, to be compiled with ICL 12.1.
 
-The main preprocessing/modification SW is under directory “wxWidgets_vdm_patch” for MSVC 2010 with ICL 12.1.
+The main preprocessing/modification SW is under directory "wxWidgets_vdm_patch" for MSVC 2010 with ICL 12.1.
 
 The original sources were patched by (see above) SW for ICL 12.1. There was one assertion failure in the compiler compiling this code, so if you encounter this behaviour add to preprocessor directive for ICL " && 0" and (above mentioned), the SW will abide by it.
 
