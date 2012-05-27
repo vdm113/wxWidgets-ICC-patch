@@ -2226,6 +2226,9 @@ void GridFrame::OnGridRender( wxCommandEvent& event )
     // sum col widths
     wxSize sizeRender( 0, 0 );
     wxGridSizesInfo sizeinfo = grid->GetColSizes();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = topLeft.GetCol(); i <= bottomRight.GetCol(); i++ )
     {
         sizeRender.x += sizeinfo.GetSize( i );
@@ -2233,6 +2236,9 @@ void GridFrame::OnGridRender( wxCommandEvent& event )
 
     // sum row heights
     sizeinfo = grid->GetRowSizes();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = topLeft.GetRow(); i <= bottomRight.GetRow(); i++ )
     {
         sizeRender.y += sizeinfo.GetSize( i );
