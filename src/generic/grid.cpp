@@ -1891,6 +1891,9 @@ void wxGrid::Render( wxDC& dc,
     // and get grid column offset used where startcol > 0
     gridWidth = 0;
     wxGridSizesInfo sizeinfo = GetColSizes();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( col = 0; col <= colRight; col++ )
     {
         if ( col < colLeft )
@@ -1899,6 +1902,9 @@ void wxGrid::Render( wxDC& dc,
         }
         else
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( row = rowTop; row <= rowBottom; row++ )
             {
                 renderCells.Add( wxGridCellCoords( row, col ));
@@ -1913,6 +1919,9 @@ void wxGrid::Render( wxDC& dc,
     // and row Y offset where startrow > 0
     gridHeight = 0;
     sizeinfo = GetRowSizes();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( row = 0; row <= rowBottom; row++ )
     {
         if ( row < rowTop )
@@ -5795,8 +5804,14 @@ wxGrid::DrawRangeGridLines(wxDC& dc,
 
     // subtract multi cell span area from clipping region for lines
     wxRect rect;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int row = topLeft.GetRow(); row <= bottomRight.GetRow(); row++ )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int col = topLeft.GetCol(); col <= bottomRight.GetCol(); col++ )
         {
             int cell_rows, cell_cols;
@@ -5926,6 +5941,9 @@ wxGrid::DoDrawGridLines(wxDC& dc,
                         int bottomRow, int rightCol)
 {
     // horizontal grid lines
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = topRow; i < bottomRow; i++ )
     {
         int bot = GetRowBottom(i) - 1;
@@ -5941,6 +5959,9 @@ wxGrid::DoDrawGridLines(wxDC& dc,
     }
 
     // vertical grid lines
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int colPos = leftCol; colPos < rightCol; colPos++ )
     {
         int i = GetColAt( colPos );
