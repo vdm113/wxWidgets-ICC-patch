@@ -164,6 +164,9 @@ void wxPluginLibrary::UpdateClasses()
     if ( !m_ourFirst )
         return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( const wxClassInfo *info = m_ourFirst; ; info = info->GetNext() )
     {
         if( info->GetClassName() )
@@ -187,6 +190,9 @@ void wxPluginLibrary::RestoreClasses()
     if ( !m_ourFirst )
         return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( const wxClassInfo *info = m_ourFirst; ; info = info->GetNext() )
     {
         ms_classes->erase(ms_classes->find(info->GetClassName()));
@@ -211,6 +217,9 @@ void wxPluginLibrary::RegisterModules()
 
     if ( m_ourFirst )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( const wxClassInfo *info = m_ourFirst; ; info = info->GetNext() )
         {
             if( info->IsKindOf(wxCLASSINFO(wxModule)) )
