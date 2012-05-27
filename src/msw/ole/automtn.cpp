@@ -187,6 +187,9 @@ bool wxAutomationObject::Invoke(const wxString& member, int action,
 
     // Convert the wxVariants to VARIANTARGs
     wxVector<wxOleVariantArg> oleArgs(noArgs);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < noArgs; i++)
     {
         // Again, reverse args
