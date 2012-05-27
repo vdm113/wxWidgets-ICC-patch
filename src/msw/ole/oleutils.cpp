@@ -421,6 +421,9 @@ WXDLLEXPORT bool wxConvertVariantToOle(const wxVariant& variant, VARIANTARG& ole
         if (!sah.Create(VT_VARIANT, variant.GetCount()))
             return false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = 0; i < variant.GetCount(); i++)
         {
             if (!sah.SetElement(i, variant[i]))
@@ -438,6 +441,9 @@ WXDLLEXPORT bool wxConvertVariantToOle(const wxVariant& variant, VARIANTARG& ole
         if (!sah.Create(VT_BSTR, strings.GetCount()))
             return false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = 0; i < strings.GetCount(); i++)
         {
             if (!sah.SetElement(i, strings[i]))
