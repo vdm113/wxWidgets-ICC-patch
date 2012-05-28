@@ -28,4 +28,4 @@
 /vc9arm_winceu
 /vc9arm_winceud
 ipch
-ipo_*.obj
+*.obj
