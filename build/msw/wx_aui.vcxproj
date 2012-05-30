@@ -82,11 +82,11 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|X64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -96,7 +96,7 @@
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
@@ -111,7 +111,7 @@
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -121,7 +121,7 @@
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
@@ -136,7 +136,7 @@
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -146,7 +146,7 @@
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
@@ -156,7 +156,7 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
@@ -171,7 +171,7 @@
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
@@ -186,7 +186,7 @@
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -196,7 +196,7 @@
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
@@ -211,7 +211,7 @@
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -221,7 +221,7 @@
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
@@ -231,7 +231,7 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
@@ -246,7 +246,7 @@
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
@@ -261,7 +261,7 @@
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -271,7 +271,7 @@
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Static</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
@@ -286,7 +286,7 @@
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -468,7 +468,7 @@
       <ObjectFileName>.\vc_mswunivu\aui\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxmswuniv29u_aui.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -512,7 +512,7 @@
       <ObjectFileName>.\vc_mswunivu\aui\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxmswuniv29u_aui.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -558,7 +558,7 @@
       <ObjectFileName>.\vc_mswunivuddll\aui\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmswuniv294ud_aui_vc_custom.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -622,7 +622,7 @@
       <ObjectFileName>.\vc_mswunivuddll\aui\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmswuniv294ud_aui_vc_custom.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -691,7 +691,7 @@
       <ObjectFileName>.\vc_mswudll\aui\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmsw294u_aui_vc_custom.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -755,7 +755,7 @@
       <ObjectFileName>.\vc_mswudll\aui\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmsw294u_aui_vc_custom.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -823,7 +823,7 @@
       <ObjectFileName>.\vc_mswunivudll\aui\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmswuniv294u_aui_vc_custom.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -887,7 +887,7 @@
       <ObjectFileName>.\vc_mswunivudll\aui\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmswuniv294u_aui_vc_custom.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -955,7 +955,7 @@
       <ObjectFileName>.\vc_mswunivud\aui\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxmswuniv29ud_aui.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -999,7 +999,7 @@
       <ObjectFileName>.\vc_mswunivud\aui\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxmswuniv29ud_aui.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -1046,7 +1046,7 @@
       <ObjectFileName>.\vc_mswuddll\aui\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmsw294ud_aui_vc_custom.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -1110,7 +1110,7 @@
       <ObjectFileName>.\vc_mswuddll\aui\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmsw294ud_aui_vc_custom.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -1181,7 +1181,7 @@
       <ObjectFileName>.\vc_mswud\aui\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxmsw29ud_aui.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -1225,7 +1225,7 @@
       <ObjectFileName>.\vc_mswud\aui\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxmsw29ud_aui.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -1272,7 +1272,7 @@
       <ObjectFileName>.\vc_mswu\aui\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxmsw29u_aui.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
@@ -1316,7 +1316,7 @@
       <ObjectFileName>.\vc_mswu\aui\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxmsw29u_aui.pdb</ProgramDataBaseFileName>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
