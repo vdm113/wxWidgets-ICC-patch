@@ -465,13 +465,15 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -512,10 +514,8 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <Parallelization>true</Parallelization>
+      <Parallelization>false</Parallelization>
       <AssemblerOutput>All</AssemblerOutput>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Full</ModeOfStaticAnalysis>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ResourceCompile>
@@ -535,7 +535,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <StringPooling>true</StringPooling>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_dll\mswunivu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -552,13 +552,15 @@
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -576,7 +578,7 @@
     <ClCompile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <StringPooling>true</StringPooling>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_dll\mswunivu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -599,10 +601,8 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <Parallelization>true</Parallelization>
+      <Parallelization>false</Parallelization>
       <AssemblerOutput>All</AssemblerOutput>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Full</ModeOfStaticAnalysis>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ResourceCompile>
@@ -640,15 +640,15 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Light</ModeOfStaticAnalysis>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -689,10 +689,8 @@
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <Parallelization>true</Parallelization>
+      <Parallelization>false</Parallelization>
       <AssemblerOutput>All</AssemblerOutput>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Light</ModeOfStaticAnalysis>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ResourceCompile>
@@ -712,7 +710,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <StringPooling>true</StringPooling>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_lib\mswunivu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -729,13 +727,15 @@
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -753,7 +753,7 @@
     <ClCompile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <StringPooling>true</StringPooling>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_lib\mswunivu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -776,10 +776,8 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <Parallelization>true</Parallelization>
+      <Parallelization>false</Parallelization>
       <AssemblerOutput>All</AssemblerOutput>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Full</ModeOfStaticAnalysis>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ResourceCompile>
@@ -799,7 +797,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <StringPooling>true</StringPooling>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_lib\mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -816,13 +814,15 @@
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -840,7 +840,7 @@
     <ClCompile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <StringPooling>true</StringPooling>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_lib\mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -863,10 +863,8 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <Parallelization>true</Parallelization>
+      <Parallelization>false</Parallelization>
       <AssemblerOutput>All</AssemblerOutput>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Full</ModeOfStaticAnalysis>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ResourceCompile>
@@ -904,13 +902,15 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -951,10 +951,8 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <Parallelization>true</Parallelization>
+      <Parallelization>false</Parallelization>
       <AssemblerOutput>All</AssemblerOutput>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Full</ModeOfStaticAnalysis>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ResourceCompile>
@@ -974,7 +972,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <StringPooling>true</StringPooling>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_dll\mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -991,13 +989,15 @@
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1038,10 +1038,8 @@
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <Parallelization>true</Parallelization>
+      <Parallelization>false</Parallelization>
       <AssemblerOutput>All</AssemblerOutput>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Full</ModeOfStaticAnalysis>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ResourceCompile>
@@ -1079,13 +1077,15 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1126,10 +1126,8 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <Parallelization>true</Parallelization>
+      <Parallelization>false</Parallelization>
       <AssemblerOutput>All</AssemblerOutput>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Full</ModeOfStaticAnalysis>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ResourceCompile>
