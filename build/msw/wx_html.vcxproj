@@ -455,7 +455,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <StringPooling>true</StringPooling>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level4</WarningLevel>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -475,13 +475,15 @@
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -499,7 +501,7 @@
     <ClCompile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <StringPooling>true</StringPooling>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level4</WarningLevel>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -525,10 +527,8 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <Parallelization>true</Parallelization>
+      <Parallelization>false</Parallelization>
       <AssemblerOutput>All</AssemblerOutput>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Full</ModeOfStaticAnalysis>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -547,7 +547,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <StringPooling>true</StringPooling>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level4</WarningLevel>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -567,13 +567,15 @@
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -603,8 +605,8 @@
       <OptimizeReferences>false</OptimizeReferences>
       <EnableCOMDATFolding>false</EnableCOMDATFolding>
       <WPOAssemblyOutput>Asm_and_MachineCode_and_Source</WPOAssemblyOutput>
-      <SetChecksum>true</SetChecksum>
-      <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
       <MapExports>true</MapExports>
       <LargeAddressAware>true</LargeAddressAware>
@@ -640,10 +642,8 @@
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <Parallelization>true</Parallelization>
+      <Parallelization>false</Parallelization>
       <AssemblerOutput>All</AssemblerOutput>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Full</ModeOfStaticAnalysis>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -673,8 +673,8 @@
       <MapExports>true</MapExports>
       <LargeAddressAware>true</LargeAddressAware>
       <WPOAssemblyOutput>Asm_and_MachineCode_and_Source</WPOAssemblyOutput>
-      <SetChecksum>true</SetChecksum>
-      <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
       <OptimizeReferences>false</OptimizeReferences>
       <EnableCOMDATFolding>false</EnableCOMDATFolding>
     </Link>
@@ -705,13 +705,15 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -755,10 +757,8 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <Parallelization>true</Parallelization>
+      <Parallelization>false</Parallelization>
       <AssemblerOutput>All</AssemblerOutput>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Full</ModeOfStaticAnalysis>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -777,7 +777,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <StringPooling>true</StringPooling>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level4</WarningLevel>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -797,13 +797,15 @@
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -821,7 +823,7 @@
     <ClCompile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <StringPooling>true</StringPooling>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level4</WarningLevel>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -847,10 +849,8 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <Parallelization>true</Parallelization>
+      <Parallelization>false</Parallelization>
       <AssemblerOutput>All</AssemblerOutput>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Full</ModeOfStaticAnalysis>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -869,7 +869,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <StringPooling>true</StringPooling>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level4</WarningLevel>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -889,13 +889,15 @@
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -936,7 +938,7 @@
     <ClCompile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <StringPooling>true</StringPooling>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level4</WarningLevel>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -962,10 +964,8 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <Parallelization>true</Parallelization>
+      <Parallelization>false</Parallelization>
       <AssemblerOutput>All</AssemblerOutput>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Full</ModeOfStaticAnalysis>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1027,13 +1027,15 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1077,10 +1079,8 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <Parallelization>true</Parallelization>
+      <Parallelization>false</Parallelization>
       <AssemblerOutput>All</AssemblerOutput>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Full</ModeOfStaticAnalysis>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1120,13 +1120,15 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1193,10 +1195,8 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <Parallelization>true</Parallelization>
+      <Parallelization>false</Parallelization>
       <AssemblerOutput>All</AssemblerOutput>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Full</ModeOfStaticAnalysis>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1258,15 +1258,15 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Light</ModeOfStaticAnalysis>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1296,8 +1296,8 @@
       <OptimizeReferences>false</OptimizeReferences>
       <EnableCOMDATFolding>false</EnableCOMDATFolding>
       <WPOAssemblyOutput>Asm_and_MachineCode_and_Source</WPOAssemblyOutput>
-      <SetChecksum>true</SetChecksum>
-      <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
       <MapExports>true</MapExports>
       <LargeAddressAware>true</LargeAddressAware>
@@ -1333,10 +1333,8 @@
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <Parallelization>true</Parallelization>
+      <Parallelization>false</Parallelization>
       <AssemblerOutput>All</AssemblerOutput>
-      <LevelOfStaticAnalysis>Medium</LevelOfStaticAnalysis>
-      <ModeOfStaticAnalysis>Light</ModeOfStaticAnalysis>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1366,8 +1364,8 @@
       <MapExports>true</MapExports>
       <LargeAddressAware>true</LargeAddressAware>
       <WPOAssemblyOutput>Asm_and_MachineCode_and_Source</WPOAssemblyOutput>
-      <SetChecksum>true</SetChecksum>
-      <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
       <OptimizeReferences>false</OptimizeReferences>
       <EnableCOMDATFolding>false</EnableCOMDATFolding>
       <ShowProgress>LinkVerbose</ShowProgress>
