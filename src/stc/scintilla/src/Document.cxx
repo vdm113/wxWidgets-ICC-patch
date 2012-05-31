@@ -480,7 +480,7 @@ int Document::MovePositionOutsideChar(int pos, int moveDir, bool checkLineEnd) {
 			// Anchor DBCS calculations at start of line because start of line can
 			// not be a DBCS trail byte.
 			int posCheck = LineStart(LineFromPosition(pos));
-// if you are using ICC 12.1 (not 13.0) and getting an assertion failure in compiler, change following line to: #if defined(__INTEL_COMPILER) && 0
+// if you are using ICC 12.1 (not 13.0) and getting an assertion failure in compiler, change following line to: "#if defined(__INTEL_COMPILER) && 0", for 13.0 remove extra " && 0"
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
