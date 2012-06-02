@@ -483,7 +483,7 @@
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -551,7 +551,7 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -621,7 +621,7 @@
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -666,7 +666,7 @@
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -713,7 +713,7 @@
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -781,7 +781,7 @@
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -851,7 +851,7 @@
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -919,7 +919,7 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -991,7 +991,7 @@
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1036,7 +1036,7 @@
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1083,7 +1083,7 @@
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1128,7 +1128,7 @@
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1176,7 +1176,7 @@
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1244,7 +1244,7 @@
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1313,7 +1313,7 @@
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1358,7 +1358,7 @@
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
