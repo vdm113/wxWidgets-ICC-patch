@@ -313,7 +313,7 @@ void wxRibbonMSWArtProvider::CloneTo(wxRibbonMSWArtProvider* copy) const
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for(i = 0; i < 2; ++i)
+    for(int i = 0; i < 2; ++i)
     {
         copy->m_panel_extension_bitmap[i] = m_panel_extension_bitmap[i];
     }
