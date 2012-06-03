@@ -301,4 +301,3 @@ SOURCE=.\xrcdemo.h
 # End Group
 # End Target
 # End Project
-
