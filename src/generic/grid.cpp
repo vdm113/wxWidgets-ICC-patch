@@ -2033,6 +2033,9 @@ void wxGrid::GetRenderSizes( const wxGridCellCoords& topLeft,
     int col, row;
 
     wxGridSizesInfo sizeinfo = GetColSizes();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( col = 0; col <= bottomRight.GetCol(); col++ )
     {
         if ( col < topLeft.GetCol() )
@@ -2041,6 +2044,9 @@ void wxGrid::GetRenderSizes( const wxGridCellCoords& topLeft,
         }
         else
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( row = topLeft.GetRow(); row <= bottomRight.GetRow(); row++ )
             {
                 renderCells.Add( wxGridCellCoords( row, col ));
@@ -2052,6 +2058,9 @@ void wxGrid::GetRenderSizes( const wxGridCellCoords& topLeft,
     }
 
     sizeinfo = GetRowSizes();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( row = 0; row <= bottomRight.GetRow(); row++ )
     {
         if ( row < topLeft.GetRow() )
