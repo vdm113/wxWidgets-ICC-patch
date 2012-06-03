@@ -122,6 +122,9 @@ void wxSashWindow::OnMouseEvent(wxMouseEvent& event)
             // the area to draw on.
             wxWindow* parent = this;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (parent && !wxDynamicCast(parent, wxDialog) &&
                              !wxDynamicCast(parent, wxFrame))
               parent = parent->GetParent();
