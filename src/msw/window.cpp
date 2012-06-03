@@ -5911,14 +5911,10 @@ int wxWindowMSW::HandleMenuChar(int WXUNUSED_IN_WINCE(chAccel),
                 wxMenuItem *item = (wxMenuItem*)mii.dwItemData;
 
                 const wxString label(item->GetItemLabel());
-<<<<<<< HEAD
                 const wxChar *p = wxStrchr(label.t_str(), wxT('&'));
-=======
-                const wxChar *p = wxStrchr(label.wx_str(), wxT('&'));
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> patched loops
                 while ( p++ )
                 {
                     if ( *p == wxT('&') )
