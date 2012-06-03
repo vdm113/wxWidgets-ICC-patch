@@ -1015,6 +1015,9 @@ void wxRichTextObject::Dump(wxTextOutputStream& stream)
 wxRichTextBuffer* wxRichTextObject::GetBuffer() const
 {
     const wxRichTextObject* obj = this;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (obj && !wxDynamicCast(obj, wxRichTextBuffer))
         obj = obj->GetParent();
     return wxDynamicCast(obj, wxRichTextBuffer);
