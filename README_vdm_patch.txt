@@ -8,7 +8,7 @@ I can do a very limited support... I support only ICC 12.1 and ICC 13.0 (which i
 
 This fork of wxWidgets is as of official SVN revision:
 
-r71616
+r71704
 
 Also, it uses my own pre-configured "setup.h" configuration. I have changed only these parameters (compared to default 'setup0.h'):
 wxUSE_THEME_WIN32 set to 1
