@@ -1055,6 +1055,9 @@ wxBitmap wxBitmap::GetSubBitmap(const wxRect &rect) const
             unsigned char *source = sourcedata + rect.x * 4 + rect.y * sourcelinesize ;
             unsigned char *dest = destdata ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int yy = 0; yy < destheight; ++yy, source += sourcelinesize , dest += destlinesize)
             {
                 memcpy( dest , source , destlinesize ) ;
@@ -1082,6 +1085,9 @@ wxBitmap wxBitmap::GetSubBitmap(const wxRect &rect) const
             source += rect.x * kMaskBytesPerPixel + rect.y * sourcelinesize ;
             unsigned char *dest = destdata ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int yy = 0; yy < destheight; ++yy, source += sourcelinesize , dest += destlinesize)
             {
                 memcpy( dest , source , destlinesize ) ;
@@ -1630,12 +1636,18 @@ bool wxMask::Create(const wxBitmap& bitmap, const wxColour& colour)
         unsigned char * srcdatabase = (unsigned char*) bitmap.GetRawAccess() ;
         size_t sourceBytesRow = bitmap.GetBitmapData()->GetBytesPerRow();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int y = 0 ; y < m_height ; ++y , srcdatabase+= sourceBytesRow, destdatabase += m_bytesPerRow)
         {
             unsigned char *srcdata = srcdatabase ;
             unsigned char *destdata = destdatabase ;
             unsigned char r, g, b;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int x = 0 ; x < m_width ; ++x )
             {
                 srcdata++ ;
