@@ -169,7 +169,6 @@
 /lib/evc_emulator_lib
 /lib/gcc_lib
 /lib/vc*_lib
-/lib/vc*_dll
 /lib/wat_lib
 /lib/Linux
 /lib/linux-gnu
@@ -2584,7 +2583,6 @@ Release
 *.*sdf
 *.suo
 *.user
-vc_*
 vc8arm_winceu
 vc8arm_winceud
 vc9arm_winceu
@@ -2594,9 +2592,6 @@ vc_mswd
 vc_mswddll
 vc_mswdll
 vc_mswhdll
-vc_mswu
-vc_mswud
-vc*_mswud
 vc_mswuddll
 vc_mswudll
 vc_mswuhdll
@@ -2613,4 +2608,11 @@ vc_mswunivudll
 *.vcxproj.user
 wx_vc8arm.sln
 wx_vc8arm_*.vcproj
+/lib/ms*/*.map
+/lib/ms*/*.lib
+/lib/ms*/*.dll
+/lib/ms*/*.exp
+*.cod
+*.pdb
+rcdefs.h
 ## VDM
