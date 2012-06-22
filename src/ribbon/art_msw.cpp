@@ -487,12 +487,18 @@ wxRibbonArtProvider* wxRibbonMSWArtProvider::Clone() const
 void wxRibbonMSWArtProvider::CloneTo(wxRibbonMSWArtProvider* copy) const
 {
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(i = 0; i < 4; ++i)
     {
         copy->m_gallery_up_bitmap[i] = m_gallery_up_bitmap[i];
         copy->m_gallery_down_bitmap[i] = m_gallery_down_bitmap[i];
         copy->m_gallery_extension_bitmap[i] = m_gallery_extension_bitmap[i];
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(i = 0; i < 2; ++i)
     {
         copy->m_panel_extension_bitmap[i] = m_panel_extension_bitmap[i];
