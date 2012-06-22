@@ -5,3 +5,12 @@
 *.dsw           eol=crlf
 *.dsp           eol=crlf
 *.txt           eol=crlf
+
+*.sh            eol=lf
+*.c             eol=lf
+*.cxx           eol=lf
+*.cpp           eol=lf
+*.h             eol=lf
+*.hpp           eol=lf
+*.mm            eol=lf
+*.txt           eol=lf
