@@ -1,4 +1,3 @@
-
 # /
 /.gdb_history
 /config.cache
@@ -2574,13 +2573,44 @@
 /utils/wxrc/*.sln
 /utils/wxrc/*.dsw
 
-## vdm
-*.user
-*.filters
-*.*sdf
-*.suo
+## VDM
+Debug
+*.dll
+*.dsw
 ipch
+My Inspector XE Results*
+*.obj
+Release
 *.*sdf
 *.suo
-bench_*.txt
-## vdm
+*.user
+vc_*
+vc8arm_winceu
+vc8arm_winceud
+vc9arm_winceu
+vc9arm_winceud
+vc_msw
+vc_mswd
+vc_mswddll
+vc_mswdll
+vc_mswhdll
+vc_mswu
+vc_mswud
+vc*_mswud
+vc_mswuddll
+vc_mswudll
+vc_mswuhdll
+vc_mswuniv
+vc_mswunivd
+vc_mswunivddll
+vc_mswunivdll
+vc_mswunivu
+vc_mswunivud
+vc_mswunivuddll
+vc_mswunivudll
+*.vcproj.user
+*.vcproj.*.user
+*.vcxproj.user
+wx_vc8arm.sln
+wx_vc8arm_*.vcproj
+## VDM
