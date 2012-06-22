@@ -8,7 +8,7 @@ I can do a very limited support... I support only ICC 12.1 and ICC 13.0 (which i
 
 This fork of wxWidgets is as of official SVN revision:
 
-r71779
+r71830
 
 Also, it uses my own pre-configured "setup.h" configuration. I have changed only these parameters (compared to default 'setup0.h'):
 wxUSE_THEME_WIN32 set to 1
@@ -17,6 +17,6 @@ wxUSE_INICONF set to 1
 I have recently changed all profiles and architectures (unsupported x86, and supported x64) to use "/Qip" ICL switch rather than "/Qipo". So Intra-procedural Optimization will be performed over each *.obj, rather at then multi-.obj manner. Performance impact of resulting code for my benchmarks is negligible, and compilation will not take 2 days (on my 8 GiB RAM machine) while compiler is requesting like 12 GiB of (virtual) RAM [Windows(R) was swapping excessively].
 
 Best regards,
-VooDooMan
+Marian 'VooDooMan' Meravy
 vdm 113 (<-remove the space character) [at sign] gmail (dot character) com
 .
