@@ -289,6 +289,9 @@ void wxDataObject::AddToPasteboard( void * pb, int itemID )
             // if wxDF_UNICODETEXT is already on the 'todo' list, skip this iteration
             // otherwise force it
             size_t j = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j = 0; j < GetFormatCount(); j++)
             {
                 if ( array[j].GetType() == wxDF_UNICODETEXT )
