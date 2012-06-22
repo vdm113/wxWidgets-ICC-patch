@@ -2575,11 +2575,12 @@
 /utils/wxrc/*.dsw
 
 ## vdm
-/build/msw/*.user
-/build/msw/*.filters
-/build/msw/*.*sdf
-/build/msw/*.suo
-/build/msw/ipch
-/samples/combo/*.*sdf
-/samples/combo/*.suo
+*.user
+*.filters
+*.*sdf
+*.suo
+ipch
+*.*sdf
+*.suo
+bench_*.txt
 ## vdm
