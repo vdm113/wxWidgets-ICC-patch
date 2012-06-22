@@ -2608,10 +2608,10 @@ vc_mswunivudll
 *.vcxproj.user
 wx_vc8arm.sln
 wx_vc8arm_*.vcproj
-/lib/ms*/*.map
-/lib/ms*/*.lib
-/lib/ms*/*.dll
-/lib/ms*/*.exp
+/lib/vc_*/*.map
+/lib/vc_*/*.lib
+/lib/vc_*/*.dll
+/lib/vc_*/*.exp
 *.cod
 *.pdb
 rcdefs.h
