@@ -126,6 +126,9 @@ wxRegion::wxRegion( size_t n, const wxPoint *points,
     int min_y = points[0].y;
     int max_y = min_y;
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 1; i < n; i++)
     {
         const int x = points[i].x;
@@ -153,6 +156,9 @@ wxRegion::wxRegion( size_t n, const wxPoint *points,
         cairo_set_fill_rule(cr, CAIRO_FILL_RULE_EVEN_ODD);
     // make path
     cairo_move_to(cr, points[0].x, points[0].y);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 1; i < n; i++)
         cairo_line_to(cr, points[i].x, points[i].y);
     cairo_close_path(cr);
@@ -486,6 +492,9 @@ void wxRegionIterator::CreateRects( const wxRegion& region )
     if (m_numRects)
     {
         m_rects = new wxRect[m_numRects];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < m_numRects; i++)
         {
             GdkRectangle gr;
