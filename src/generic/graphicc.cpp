@@ -2206,6 +2206,9 @@ void wxCairoContext::GetPartialTextExtents(const wxString& text, wxArrayDouble& 
         pango_layout_set_text(layout, data, data.length());
         PangoLayoutIter* iter = pango_layout_get_iter(layout);
         PangoRectangle rect;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do {
             pango_layout_iter_get_cluster_extents(iter, NULL, &rect);
             w += rect.width;
@@ -2216,6 +2219,9 @@ void wxCairoContext::GetPartialTextExtents(const wxString& text, wxArrayDouble& 
     }
     size_t i = widths.GetCount();
     const size_t len = text.length();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (i++ < len)
         widths.Add(PANGO_PIXELS(w));
 #else
