@@ -383,6 +383,9 @@ void wxRibbonBar::DeletePage(size_t n)
 void wxRibbonBar::ClearPages()
 {
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(i=0; i<m_pages.GetCount(); i++)
     {
         wxRibbonPage *page = m_pages.Item(i).page;
