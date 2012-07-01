@@ -644,6 +644,9 @@ void wxDataObject::AddSupportedTypes( void* cfarray)
     wxDataFormat *array = new wxDataFormat[ GetFormatCount() ];
     GetAllFormats( array );
     
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < GetFormatCount(); i++)
     {
         wxDataFormat dataFormat = array[ i ];
