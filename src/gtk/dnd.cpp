@@ -514,6 +514,9 @@ GdkAtom wxDropTarget::GTKGetMatchingPair(bool quiet)
         return (GdkAtom) 0;
 
     const GList* child = gdk_drag_context_list_targets(m_dragContext);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (child)
     {
         GdkAtom formatAtom = (GdkAtom)(child->data);
