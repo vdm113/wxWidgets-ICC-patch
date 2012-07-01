@@ -8172,6 +8172,7 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|X64'">..\..\lib\vc_dll\mswunivu\wx\setup.h;%(Outputs)</Outputs>
     </CustomBuild>
     <ClInclude Include="..\..\include\wx\msw\accel.h" />
+    <ClInclude Include="..\..\include\wx\msw\init.h" />
     <ClInclude Include="..\..\include\wx\msw\ole\access.h" />
     <ClInclude Include="..\..\include\wx\msw\ole\activex.h" />
     <ClInclude Include="..\..\include\wx\msw\anybutton.h" />
