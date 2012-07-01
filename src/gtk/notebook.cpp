@@ -594,6 +594,9 @@ bool wxNotebook::DoPhase( int WXUNUSED(nPhase) )
 void wxNotebook::DoApplyWidgetStyle(GtkRcStyle *style)
 {
     GTKApplyStyle(m_widget, style);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = GetPageCount(); i--;)
         GTKApplyStyle(GetNotebookPage(i)->m_label, style);
 }
