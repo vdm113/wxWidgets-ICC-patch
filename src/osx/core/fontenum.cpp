@@ -48,7 +48,7 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
      wxArrayString fontFamilies ;
 
     wxUint32 macEncoding = wxMacGetSystemEncFromFontEnc(encoding) ;
-
+    
 #if wxOSX_USE_CORE_TEXT
     {
         CFArrayRef cfFontFamilies = nil;
