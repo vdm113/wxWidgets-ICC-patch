@@ -593,7 +593,7 @@ bool wxNotebook::DoPhase( int WXUNUSED(nPhase) )
 
 void wxNotebook::DoApplyWidgetStyle(GtkRcStyle *style)
 {
-    gtk_widget_modify_style(m_widget, style);
+    GTKApplyStyle(m_widget, style);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
