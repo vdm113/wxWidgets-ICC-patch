@@ -1005,6 +1005,9 @@ bool wxGStreamerMediaBackend::CheckForErrors()
     if ( m_errors.empty() )
         return false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < m_errors.size(); n++ )
     {
         const Error& err = m_errors[n];
