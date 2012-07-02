@@ -738,7 +738,7 @@
 #ifdef __WXMSW__
 #define wxUSE_WEBVIEW_IE 1
 #else
-#define wxUSE_WEBVIEW_IE 1
+#define wxUSE_WEBVIEW_IE 0
 #endif
 
 // Use the WebKit wxWebView backend
