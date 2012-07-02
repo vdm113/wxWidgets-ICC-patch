@@ -1,0 +1,1421 @@
+------ Build started: Project: wxexpat (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:30:37.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\wxexpat\wxexpat.unsuccessfulbuild" because "AlwaysCreate" was specified.
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+icl : warning #10369: option '/Qstd=c++0x' is not valid for C compilations
+  xmlparse.c
+  xmlrole.c
+  xmltok.c
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1299,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\wxexpat.lib) does not match the Library's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxexpatd.lib). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1301,5): warning MSB8012: TargetName(wxexpat) does not match the Library's OutputFile property value (wxexpatd). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+Lib:
+  xilib: executing 'lib'
+  wx_wxexpat.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\wxexpat.lib
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\wxexpat\wxexpat.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\wxexpat\wxexpat.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:05.34
+------ Build started: Project: wxregex (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:30:43.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\wxregex\wxregex.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+  genrcdefs.h
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+          1 file(s) copied.
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+icl : warning #10369: option '/Qstd=c++0x' is not valid for C compilations
+  regcomp.c
+  regerror.c
+  regexec.c
+  regfree.c
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1299,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\wxregex.lib) does not match the Library's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxregexud.lib). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1301,5): warning MSB8012: TargetName(wxregex) does not match the Library's OutputFile property value (wxregexud). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+Lib:
+  xilib: executing 'lib'
+  wx_wxregex.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\wxregex.lib
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\wxregex\wxregex.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\wxregex\wxregex.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:02.85
+------ Build started: Project: wxzlib (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:30:45.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\wxzlib\wxzlib.unsuccessfulbuild" because "AlwaysCreate" was specified.
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+icl : warning #10369: option '/Qstd=c++0x' is not valid for C compilations
+  adler32.c
+  deflate.c
+  inffast.c
+  trees.c
+  compress.c
+  crc32.c
+  inflate.c
+  uncompr.c
+  zutil.c
+  gzio.c
+  inftrees.c
+  infback.c
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1299,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\wxzlib.lib) does not match the Library's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxzlibd.lib). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1301,5): warning MSB8012: TargetName(wxzlib) does not match the Library's OutputFile property value (wxzlibd). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+Lib:
+  xilib: executing 'lib'
+  wx_wxzlib.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\wxzlib.lib
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\wxzlib\wxzlib.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\wxzlib\wxzlib.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:01.42
+------ Build started: Project: base (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:30:47.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\base\base.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  dummy.cpp
+  any.cpp
+  filesys.cpp
+  regex.cpp
+  wxcrt.cpp
+  wxprintf.cpp
+  sstream.cpp
+  appbase.cpp
+  xlocale.cpp
+  stdpbase.cpp
+  xti.cpp
+  filtall.cpp
+  xtistrm.cpp
+  zipstrm.cpp
+  filtfind.cpp
+  fmapbase.cpp
+  stdstream.cpp
+  stopwatch.cpp
+  arcall.cpp
+  fs_arc.cpp
+  strconv.cpp
+  zstream.cpp
+  stream.cpp
+  basemsw.cpp
+  fs_filter.cpp
+  arcfind.cpp
+  string.cpp
+  crashrpt.cpp
+  archive.cpp
+  dde.cpp
+  fs_mem.cpp
+  arrstr.cpp
+  fswatchercmn.cpp
+  stringimpl.cpp
+  debughlp.cpp
+  stringops.cpp
+  strvararg.cpp
+  base64.cpp
+  clntdata.cpp
+  cmdline.cpp
+  dir.cpp
+  sysopt.cpp
+  tarstrm.cpp
+  hash.cpp
+  dlmsw.cpp
+  hashmap.cpp
+  init.cpp
+  fswatcher.cpp
+  textbuf.cpp
+  config.cpp
+  intl.cpp
+  textfile.cpp
+  convauto.cpp
+  time.cpp
+  datetime.cpp
+  ipcbase.cpp
+  main.cpp
+  timercmn.cpp
+  languageinfo.cpp
+  timerimpl.cpp
+  mimetype.cpp
+  tokenzr.cpp
+  list.cpp
+  datetimefmt.cpp
+  log.cpp
+  translation.cpp
+  datstrm.cpp
+  dircmn.cpp
+  mslu.cpp
+  power.cpp
+  longlong.cpp
+  regconf.cpp
+  dynarray.cpp
+  memory.cpp
+  dynlib.cpp
+  mimecmn.cpp
+  txtstrm.cpp
+  registry.cpp
+  dynload.cpp
+  unichar.cpp
+  uri.cpp
+  module.cpp
+  encconv.cpp
+  ustring.cpp
+  event.cpp
+  msgout.cpp
+  snglinst.cpp
+  stackwalk.cpp
+  mstream.cpp
+  evtloopcmn.cpp
+  ffile.cpp
+  numformatter.cpp
+  stdpaths.cpp
+  file.cpp
+  object.cpp
+  utilscmn.cpp
+  platinfo.cpp
+  fileback.cpp
+  powercmn.cpp
+  fileconf.cpp
+  process.cpp
+  thread.cpp
+  volume.cpp
+  variant.cpp
+  fswatcherg.cpp
+  timer.cpp
+  utils.cpp
+  filefn.cpp
+  utilsexc.cpp
+  wfstream.cpp
+  filename.cpp
+icl : warning #10369: option '/Qstd=c++0x' is not valid for C compilations
+  extended.c
+  evtloopconsole.cpp
+  Warning #672: the command line options do not match those used when precompiled header file "vc_mswuddll\wxprec_basedll.pchi" was created
+  
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\base.dll) does not match the Linker's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxbase294ud_vc_custom.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(base) does not match the Linker's OutputFile property value (wxbase294ud_vc_custom). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Link:
+     Creating library ..\..\lib\vc_dll\wxbase29ud.lib and object ..\..\lib\vc_dll\wxbase29ud.exp
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  wx_base.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\base.dll
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\base\base.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\base\base.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:01:51.27
+------ Build started: Project: wxjpeg (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:32:38.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\wxjpeg\wxjpeg.unsuccessfulbuild" because "AlwaysCreate" was specified.
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+icl : warning #10369: option '/Qstd=c++0x' is not valid for C compilations
+  jcapimin.c
+  jcparam.c
+  jddctmgr.c
+  jerror.c
+  jfdctflt.c
+  jdhuff.c
+  jcapistd.c
+  jcphuff.c
+  jfdctfst.c
+  jccoefct.c
+  jfdctint.c
+  jdinput.c
+  jcprepct.c
+  jidctflt.c
+  jccolor.c
+  jdmainct.c
+  jidctfst.c
+  jcsample.c
+  jcdctmgr.c
+  jdmarker.c
+  jidctint.c
+  jctrans.c
+  jchuff.c
+  jidctred.c
+  jdapimin.c
+  jdmaster.c
+  jcinit.c
+  jmemmgr.c
+  jdapistd.c
+  jdmerge.c
+  jcmainct.c
+  jdatadst.c
+  jdphuff.c
+  jcmarker.c
+  jmemnobs.c
+  jdatasrc.c
+  jdpostct.c
+  jquant1.c
+  jdsample.c
+  jdcoefct.c
+  jcmaster.c
+  jdtrans.c
+  jdcolor.c
+  jquant2.c
+  jcomapi.c
+  jutils.c
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1299,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\wxjpeg.lib) does not match the Library's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxjpegd.lib). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1301,5): warning MSB8012: TargetName(wxjpeg) does not match the Library's OutputFile property value (wxjpegd). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+Lib:
+  xilib: executing 'lib'
+  wx_wxjpeg.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\wxjpeg.lib
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\wxjpeg\wxjpeg.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\wxjpeg\wxjpeg.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:04.04
+------ Build started: Project: wxpng (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:32:42.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\wxpng\wxpng.unsuccessfulbuild" because "AlwaysCreate" was specified.
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+icl : warning #10369: option '/Qstd=c++0x' is not valid for C compilations
+  png.c
+  pngmem.c
+  pngrio.c
+  pngset.c
+  pngrtran.c
+  pngpread.c
+  pngtrans.c
+  pngerror.c
+  pngget.c
+  pngrutil.c
+  pngwio.c
+  pngread.c
+  pngwrite.c
+  pngwtran.c
+  pngwutil.c
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1299,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\wxpng.lib) does not match the Library's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxpngd.lib). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1301,5): warning MSB8012: TargetName(wxpng) does not match the Library's OutputFile property value (wxpngd). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+Lib:
+  xilib: executing 'lib'
+  wx_wxpng.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\wxpng.lib
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\wxpng\wxpng.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\wxpng\wxpng.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:09.51
+------ Build started: Project: wxtiff (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:32:52.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\wxtiff\wxtiff.unsuccessfulbuild" because "AlwaysCreate" was specified.
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+icl : warning #10369: option '/Qstd=c++0x' is not valid for C compilations
+  tif_aux.c
+  tif_dumpmode.c
+  tif_lzw.c
+  tif_strip.c
+  tif_error.c
+  tif_swab.c
+  tif_next.c
+  tif_close.c
+  tif_extension.c
+  tif_thunder.c
+  tif_codec.c
+  tif_ojpeg.c
+  tif_fax3.c
+  tif_color.c
+  tif_tile.c
+  tif_open.c
+  tif_compress.c
+  tif_version.c
+  tif_packbits.c
+  tif_warning.c
+  tif_dir.c
+  tif_pixarlog.c
+  tif_win32.c
+  tif_fax3sm.c
+  tif_dirinfo.c
+  tif_flush.c
+  tif_predict.c
+  tif_getimage.c
+..\..\src\tiff\libtiff\tif_dirinfo.c(756): warning #167: argument of type "size_t={unsigned __int64} *" is incompatible with parameter of type "unsigned int *"
+    						 &tif->tif_nfields,
+    						 ^
+  
+  tif_dirread.c
+  tif_print.c
+  tif_read.c
+  tif_jpeg.c
+  tif_dirwrite.c
+  tif_write.c
+  tif_luv.c
+  tif_zip.c
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1299,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\wxtiff.lib) does not match the Library's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxtiffd.lib). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1301,5): warning MSB8012: TargetName(wxtiff) does not match the Library's OutputFile property value (wxtiffd). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+Lib:
+  xilib: executing 'lib'
+  wx_wxtiff.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\wxtiff.lib
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\wxtiff\wxtiff.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\wxtiff\wxtiff.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:03.46
+------ Build started: Project: core (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:32:56.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\core\core.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  dummy.cpp
+  accelcmn.cpp
+  imagiff.cpp
+  progdlg.cpp
+  button.cpp
+  imagjpeg.cpp
+  accesscmn.cpp
+  caret.cpp
+  affinematrix2d.cpp
+  radiobox.cpp
+  anidecod.cpp
+  imagpcx.cpp
+  checkbox.cpp
+  radiobut.cpp
+  appcmn.cpp
+  region.cpp
+  checklst.cpp
+  imagpng.cpp
+  artprov.cpp
+  renderer.cpp
+  choice.cpp
+  imagpnm.cpp
+  artstd.cpp
+  richmsgdlg.cpp
+  imagtga.cpp
+  clipbrd.cpp
+  imagtiff.cpp
+  scrolbar.cpp
+  arttango.cpp
+  imagxpm.cpp
+  colordlg.cpp
+  settings.cpp
+  colour.cpp
+  layout.cpp
+  slider.cpp
+  combo.cpp
+  lboxcmn.cpp
+  bmpbase.cpp
+  spinbutt.cpp
+  listctrlcmn.cpp
+  combobox.cpp
+  bmpbtncmn.cpp
+  spinctrl.cpp
+  control.cpp
+  bookctrl.cpp
+  markupparser.cpp
+  btncmn.cpp
+  statbmp.cpp
+  matrix.cpp
+  cairo.cpp
+  statbox.cpp
+  cursor.cpp
+  checkboxcmn.cpp
+  menucmn.cpp
+  data.cpp
+  checklstcmn.cpp
+  dataobj.cpp
+  choiccmn.cpp
+  statline.cpp
+  mousemanager.cpp
+  msgout.cpp
+  clipcmn.cpp
+  stattext.cpp
+  nbkbase.cpp
+  clrpickercmn.cpp
+  statusbar.cpp
+  dc.cpp
+  overlaycmn.cpp
+  cmdproc.cpp
+  textctrl.cpp
+  ownerdrwcmn.cpp
+  panelcmn.cpp
+  cmndata.cpp
+  dcclient.cpp
+  paper.cpp
+  dcmemory.cpp
+  persist.cpp
+  colourcmn.cpp
+  textentry.cpp
+  dcprint.cpp
+  pickerbase.cpp
+  colourdata.cpp
+  tglbtn.cpp
+  combocmn.cpp
+  dcscreen.cpp
+  popupcmn.cpp
+  toolbar.cpp
+  dialog.cpp
+  prntbase.cpp
+  dialup.cpp
+  containr.cpp
+  tooltip.cpp
+  cshelp.cpp
+  toplevel.cpp
+  dib.cpp
+  quantize.cpp
+  ctrlcmn.cpp
+  dirdlg.cpp
+  treectrl.cpp
+  radiobtncmn.cpp
+  radiocmn.cpp
+  ctrlsub.cpp
+  dcbase.cpp
+  rearrangectrl.cpp
+  display.cpp
+  rendcmn.cpp
+  dragimag.cpp
+  dcbufcmn.cpp
+  uiaction.cpp
+  rgncmn.cpp
+  dcgraph.cpp
+  utilsgui.cpp
+  scrolbarcmn.cpp
+  dcsvg.cpp
+  uuid.cpp
+  settcmn.cpp
+  dropsrc.cpp
+  uxtheme.cpp
+  sizer.cpp
+  droptgt.cpp
+  volume.cpp
+  dirctrlcmn.cpp
+  window.cpp
+  slidercmn.cpp
+  enhmeta.cpp
+  spinbtncmn.cpp
+  dlgcmn.cpp
+  evtloop.cpp
+  spinctrlcmn.cpp
+  fdrepdlg.cpp
+  dndcmn.cpp
+  dobjcmn.cpp
+  srchcmn.cpp
+  filedlg.cpp
+  docmdi.cpp
+  statbar.cpp
+  busyinfo.cpp
+  statbmpcmn.cpp
+  buttonbar.cpp
+  font.cpp
+  docview.cpp
+  choicbkg.cpp
+  statboxcmn.cpp
+  statlinecmn.cpp
+  fontdlg.cpp
+  choicdgg.cpp
+  stattextcmn.cpp
+  stockitem.cpp
+  fontenum.cpp
+  clrpickerg.cpp
+  fontutil.cpp
+  tbarbase.cpp
+  frame.cpp
+  dpycmn.cpp
+  collpaneg.cpp
+  dseldlg.cpp
+  textcmn.cpp
+  gauge.cpp
+  effects.cpp
+  combog.cpp
+  gdiimage.cpp
+  event.cpp
+  dcpsg.cpp
+  textentrycmn.cpp
+  dirctrlg.cpp
+  fddlgcmn.cpp
+  gdiobj.cpp
+  toplvcmn.cpp
+  gdiplus.cpp
+  filectrlcmn.cpp
+  treebase.cpp
+  uiactioncmn.cpp
+  dragimgg.cpp
+  filehistorycmn.cpp
+  utilscmn.cpp
+  graphics.cpp
+  filepickercmn.cpp
+  filectrlg.cpp
+  valgen.cpp
+  fldlgcmn.cpp
+  headerctrl.cpp
+  validate.cpp
+  fontcmn.cpp
+  valnum.cpp
+  helpchm.cpp
+  valtext.cpp
+  fontdata.cpp
+  fontenumcmn.cpp
+  helpwin.cpp
+  fontmap.cpp
+  wincmn.cpp
+  icon.cpp
+  filepickerg.cpp
+  imaglist.cpp
+  fontpickercmn.cpp
+  fontpickerg.cpp
+  iniconf.cpp
+  windowid.cpp
+  fontutilcmn.cpp
+  listbox.cpp
+  framecmn.cpp
+  wrapsizer.cpp
+  graphicc.cpp
+  fs_mem.cpp
+  xpmdecod.cpp
+  headerctrlg.cpp
+  listctrl.cpp
+  gaugecmn.cpp
+  accel.cpp
+  infobar.cpp
+  access.cpp
+  gbsizer.cpp
+  activex.cpp
+  gdicmn.cpp
+  listbkg.cpp
+  geometry.cpp
+  anybutton.cpp
+  main.cpp
+  gifdecod.cpp
+  mdi.cpp
+  logg.cpp
+  app.cpp
+  graphcmn.cpp
+  menu.cpp
+  headercolcmn.cpp
+  headerctrlcmn.cpp
+  artmsw.cpp
+  automtn.cpp
+  menuitem.cpp
+  markuptext.cpp
+  msgdlgg.cpp
+  helpbase.cpp
+  metafile.cpp
+  bitmap.cpp
+  iconbndl.cpp
+  minifram.cpp
+  imagall.cpp
+  msgdlg.cpp
+  numdlgg.cpp
+  bmpbuttn.cpp
+  brush.cpp
+  imagbmp.cpp
+  printps.cpp
+  vscroll.cpp
+  mslu.cpp
+  prntdlgg.cpp
+  nativdlg.cpp
+  image.cpp
+  nativewin.cpp
+  progdlgg.cpp
+  nonownedwnd.cpp
+  imagfill.cpp
+  imaggif.cpp
+  notebook.cpp
+  renderg.cpp
+  oleutils.cpp
+  richmsgdlgg.cpp
+  scrlwing.cpp
+  ownerdrw.cpp
+  selstore.cpp
+  palette.cpp
+  spinctlg.cpp
+  panel.cpp
+  pen.cpp
+  popupwin.cpp
+  splitter.cpp
+  printdlg.cpp
+  srchctlg.cpp
+  printwin.cpp
+  statbmpg.cpp
+  stattextg.cpp
+  statusbr.cpp
+  textdlgg.cpp
+  tipwin.cpp
+  toolbkg.cpp
+  treebkg.cpp
+  treectlg.cpp
+  vlbox.cpp
+  textmeasurecmn.cpp
+  safearray.cpp
+  textmeasure.cpp
+  utilswin.cpp
+  Warning #672: the command line options do not match those used when precompiled header file "vc_mswuddll\wxprec_coredll.pchi" was created
+  
+  Warning #672: the command line options do not match those used when precompiled header file "vc_mswuddll\wxprec_coredll.pchi" was created
+  
+  Warning #672: the command line options do not match those used when precompiled header file "vc_mswuddll\wxprec_coredll.pchi" was created
+  
+  Warning #672: the command line options do not match those used when precompiled header file "vc_mswuddll\wxprec_coredll.pchi" was created
+  
+  xmlreshandler.cpp
+  Warning #672: the command line options do not match those used when precompiled header file "vc_mswuddll\wxprec_coredll.pchi" was created
+  
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\core.dll) does not match the Linker's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxmsw294ud_core_vc_custom.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(core) does not match the Linker's OutputFile property value (wxmsw294ud_core_vc_custom). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Link:
+     Creating library ..\..\lib\vc_dll\wxmsw29ud_core.lib and object ..\..\lib\vc_dll\wxmsw29ud_core.exp
+  wx_core.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\core.dll
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\core\core.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\core\core.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:03:13.73
+------ Build started: Project: adv (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:36:10.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\adv\adv.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  dummy.cpp
+  animatecmn.cpp
+  commandlinkbutton.cpp
+  animateg.cpp
+  helpext.cpp
+  datecontrols.cpp
+  bmpcboxcmn.cpp
+  bannerwindow.cpp
+  hyperlinkg.cpp
+  datectrl.cpp
+  calctrlcmn.cpp
+  datavcmn.cpp
+  datetimectrl.cpp
+  laywin.cpp
+  bmpcboxg.cpp
+  hyperlink.cpp
+  notifmsgg.cpp
+  calctrlg.cpp
+  joystick.cpp
+  notifmsg.cpp
+  odcombo.cpp
+  commandlinkbuttong.cpp
+  datavgen.cpp
+  propdlg.cpp
+  richtooltip.cpp
+  sound.cpp
+  richtooltipg.cpp
+  gridcmn.cpp
+  taskbar.cpp
+  sashwin.cpp
+  timectrl.cpp
+  hyperlnkcmn.cpp
+  aboutdlgg.cpp
+  splash.cpp
+  odcombocmn.cpp
+  timectrlg.cpp
+  datectlg.cpp
+  tipdlg.cpp
+  richtooltipcmn.cpp
+  wizard.cpp
+  taskbarcmn.cpp
+  treelist.cpp
+  aboutdlg.cpp
+  editlbox.cpp
+  bmpcbox.cpp
+  grid.cpp
+  calctrl.cpp
+  gridctrl.cpp
+  grideditors.cpp
+  gridsel.cpp
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\adv.dll) does not match the Linker's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxmsw294ud_adv_vc_custom.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(adv) does not match the Linker's OutputFile property value (wxmsw294ud_adv_vc_custom). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Link:
+     Creating library ..\..\lib\vc_dll\wxmsw29ud_adv.lib and object ..\..\lib\vc_dll\wxmsw29ud_adv.exp
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  wx_adv.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\adv.dll
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\adv\adv.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\adv\adv.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:52.18
+------ Build started: Project: html (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:37:02.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\html\html.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  dummy.cpp
+  helpbest.cpp
+  helpwnd.cpp
+  htmprint.cpp
+  m_links.cpp
+  m_list.cpp
+  htmllbox.cpp
+  m_dflist.cpp
+  m_pre.cpp
+  helpctrl.cpp
+  m_fonts.cpp
+  htmlcell.cpp
+  m_span.cpp
+  m_hline.cpp
+  m_style.cpp
+  htmlfilt.cpp
+  helpdata.cpp
+  m_tables.cpp
+  m_image.cpp
+  htmlpars.cpp
+  styleparams.cpp
+  helpdlg.cpp
+  m_layout.cpp
+  winpars.cpp
+  htmltag.cpp
+  helpfrm.cpp
+  htmlwin.cpp
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\html.dll) does not match the Linker's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxmsw294ud_html_vc_custom.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(html) does not match the Linker's OutputFile property value (wxmsw294ud_html_vc_custom). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Link:
+     Creating library ..\..\lib\vc_dll\wxmsw29ud_html.lib and object ..\..\lib\vc_dll\wxmsw29ud_html.exp
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  wx_html.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\html.dll
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\html\html.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\html\html.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:38.66
+------ Build started: Project: wxscintilla (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:37:41.
+InitializeBuildStatus:
+  Creating "vc_mswuddll\wxscintilla\wxscintilla.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  Accessor.cxx
+  LexCOBOL.cxx
+  LexSpecman.cxx
+  LexMagik.cxx
+  AutoComplete.cxx
+  LexMarkdown.cxx
+  LexSpice.cxx
+  LexCPP.cxx
+  LexMatlab.cxx
+  LexMetapost.cxx
+  CallTip.cxx
+  LexModula.cxx
+  LexTACL.cxx
+  Catalogue.cxx
+  LexTADS3.cxx
+  LexMySQL.cxx
+  LexNimrod.cxx
+  CellBuffer.cxx
+  LexNsis.cxx
+  LexTAL.cxx
+  LexTCL.cxx
+  LexOScript.cxx
+  CharClassify.cxx
+  CharacterSet.cxx
+  ContractionState.cxx
+  LexTCMD.cxx
+  LexOpal.cxx
+  LexTeX.cxx
+  Decoration.cxx
+  LexOthers.cxx
+  Document.cxx
+  LexTxt2tags.cxx
+  LexVB.cxx
+  LexPB.cxx
+  LexPLM.cxx
+  LexVHDL.cxx
+  LexPOV.cxx
+  LexVerilog.cxx
+  LexPS.cxx
+  LexVisualProlog.cxx
+  LexPascal.cxx
+  LexPerl.cxx
+  Editor.cxx
+  LexCSS.cxx
+  LexCaml.cxx
+  LexYAML.cxx
+  LexCmake.cxx
+  LexerBase.cxx
+  LexCoffeeScript.cxx
+  LexerModule.cxx
+  LexConf.cxx
+  LexCrontab.cxx
+  LexCsound.cxx
+  LexerNoExceptions.cxx
+  LexerSimple.cxx
+  LexD.cxx
+  LexPowerPro.cxx
+  LexPowerShell.cxx
+  LexProgress.cxx
+  LineMarker.cxx
+  LexPython.cxx
+  LexR.cxx
+  LexRebol.cxx
+  PerLine.cxx
+  LexRuby.cxx
+  PositionCache.cxx
+  LexSML.cxx
+  ExternalLexer.cxx
+  LexECL.cxx
+  LexSQL.cxx
+  PropSetSimple.cxx
+  Indicator.cxx
+  LexEScript.cxx
+  KeyMap.cxx
+  LexA68k.cxx
+  LexEiffel.cxx
+  LexAPDL.cxx
+  LexErlang.cxx
+  LexASY.cxx
+  LexFlagship.cxx
+  LexAU3.cxx
+  LexForth.cxx
+  LexAVE.cxx
+  LexFortran.cxx
+  LexAVS.cxx
+  RESearch.cxx
+  LexGAP.cxx
+  LexAbaqus.cxx
+  LexScriptol.cxx
+  RunStyles.cxx
+  LexGui4Cli.cxx
+  LexAda.cxx
+  LexSmalltalk.cxx
+  LexHTML.cxx
+  ScintillaBase.cxx
+  LexSorcus.cxx
+  ViewStyle.cxx
+  LexHaskell.cxx
+  LexAsm.cxx
+  LexInno.cxx
+  Selection.cxx
+  WordList.cxx
+  LexKix.cxx
+  LexLisp.cxx
+  XPM.cxx
+  LexLout.cxx
+  LexLua.cxx
+  Style.cxx
+  StyleContext.cxx
+  LexMMIXAL.cxx
+  UniConversion.cxx
+  LexMPT.cxx
+  LexAsn1.cxx
+  LexBaan.cxx
+  LexMSSQL.cxx
+  LexBash.cxx
+  LexBasic.cxx
+  LexBullant.cxx
+  LexCLW.cxx
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1299,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\..\..\lib\vc_dll\wxscintilla.lib) does not match the Library's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxscintillad.lib). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1301,5): warning MSB8012: TargetName(wxscintilla) does not match the Library's OutputFile property value (wxscintillad). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+Lib:
+  xilib: executing 'lib'
+  wx_wxscintilla.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\..\..\lib\vc_dll\wxscintilla.lib
+FinalizeBuildStatus:
+  Deleting file "vc_mswuddll\wxscintilla\wxscintilla.unsuccessfulbuild".
+  Touching "vc_mswuddll\wxscintilla\wxscintilla.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:22.15
+------ Build started: Project: xml (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:38:03.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\xml\xml.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  dummy.cpp
+  xtixml.cpp
+  xml.cpp
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\xml.dll) does not match the Linker's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxbase294ud_xml_vc_custom.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(xml) does not match the Linker's OutputFile property value (wxbase294ud_xml_vc_custom). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Link:
+     Creating library ..\..\lib\vc_dll\wxbase29ud_xml.lib and object ..\..\lib\vc_dll\wxbase29ud_xml.exp
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  wx_xml.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\xml.dll
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\xml\xml.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\xml\xml.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:11.46
+------ Build started: Project: aui (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:38:14.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\aui\aui.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  dummy.cpp
+  tabart.cpp
+  Warning #672: the command line options do not match those used when precompiled header file "vc_mswuddll\wxprec_auidll.pchi" was created
+  
+  xh_auinotbk.cpp
+  Warning #672: the command line options do not match those used when precompiled header file "vc_mswuddll\wxprec_auidll.pchi" was created
+  
+  auibar.cpp
+  auibook.cpp
+  dockart.cpp
+  floatpane.cpp
+  framemanager.cpp
+  tabmdi.cpp
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\aui.dll) does not match the Linker's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxmsw294ud_aui_vc_custom.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(aui) does not match the Linker's OutputFile property value (wxmsw294ud_aui_vc_custom). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Link:
+     Creating library ..\..\lib\vc_dll\wxmsw29ud_aui.lib and object ..\..\lib\vc_dll\wxmsw29ud_aui.exp
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  wx_aui.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\aui.dll
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\aui\aui.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\aui\aui.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:29.17
+------ Build started: Project: gl (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:38:44.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\gl\gl.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  dummy.cpp
+  glcmn.cpp
+  glcanvas.cpp
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\gl.dll) does not match the Linker's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxmsw294ud_gl_vc_custom.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(gl) does not match the Linker's OutputFile property value (wxmsw294ud_gl_vc_custom). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Link:
+     Creating library ..\..\lib\vc_dll\wxmsw29ud_gl.lib and object ..\..\lib\vc_dll\wxmsw29ud_gl.exp
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  wx_gl.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\gl.dll
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\gl\gl.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\gl\gl.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:12.09
+------ Build started: Project: media (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:38:56.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\media\media.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  dummy.cpp
+  mediactrlcmn.cpp
+  mediactrl_am.cpp
+  mediactrl_qt.cpp
+  mediactrl_wmp10.cpp
+..\..\src\msw\mediactrl_qt.cpp(110): warning #1899: multicharacter character literal (potential portability problem)
+    const OSType URLDataHandlerSubType     = 'url ';
+                                             ^
+  
+..\..\src\msw\mediactrl_qt.cpp(111): warning #1899: multicharacter character literal (potential portability problem)
+    const OSType VisualMediaCharacteristic = 'eyes';
+                                             ^
+  
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\media.dll) does not match the Linker's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxmsw294ud_media_vc_custom.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(media) does not match the Linker's OutputFile property value (wxmsw294ud_media_vc_custom). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Link:
+     Creating library ..\..\lib\vc_dll\wxmsw29ud_media.lib and object ..\..\lib\vc_dll\wxmsw29ud_media.exp
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  wx_media.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\media.dll
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\media\media.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\media\media.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:12.27
+------ Build started: Project: net (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:39:08.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\net\net.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  dummy.cpp
+  fs_inet.cpp
+  protocol.cpp
+  url.cpp
+  sckipc.cpp
+  ftp.cpp
+  sckstrm.cpp
+  sckaddr.cpp
+  sockmsw.cpp
+  socket.cpp
+  sckfile.cpp
+  http.cpp
+  urlmsw.cpp
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\net.dll) does not match the Linker's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxbase294ud_net_vc_custom.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(net) does not match the Linker's OutputFile property value (wxbase294ud_net_vc_custom). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Link:
+     Creating library ..\..\lib\vc_dll\wxbase29ud_net.lib and object ..\..\lib\vc_dll\wxbase29ud_net.exp
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  wx_net.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\net.dll
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\net\net.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\net\net.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:15.38
+------ Build started: Project: propgrid (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:39:24.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\propgrid\propgrid.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  dummy.cpp
+  advprops.cpp
+  manager.cpp
+  propgrid.cpp
+  propgridpagestate.cpp
+  props.cpp
+  property.cpp
+  propgridiface.cpp
+  editors.cpp
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\propgrid.dll) does not match the Linker's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxmsw294ud_propgrid_vc_custom.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(propgrid) does not match the Linker's OutputFile property value (wxmsw294ud_propgrid_vc_custom). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Link:
+     Creating library ..\..\lib\vc_dll\wxmsw29ud_propgrid.lib and object ..\..\lib\vc_dll\wxmsw29ud_propgrid.exp
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  wx_propgrid.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\propgrid.dll
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\propgrid\propgrid.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\propgrid\propgrid.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:29.75
+------ Build started: Project: qa (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:39:54.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\qa\qa.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  dummy.cpp
+  debugrpt.cpp
+  dbgrptg.cpp
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\qa.dll) does not match the Linker's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxmsw294ud_qa_vc_custom.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(qa) does not match the Linker's OutputFile property value (wxmsw294ud_qa_vc_custom). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Link:
+     Creating library ..\..\lib\vc_dll\wxmsw29ud_qa.lib and object ..\..\lib\vc_dll\wxmsw29ud_qa.exp
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  wx_qa.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\qa.dll
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\qa\qa.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\qa\qa.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:15.13
+------ Build started: Project: ribbon (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:40:09.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\ribbon\ribbon.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  dummy.cpp
+  art_aui.cpp
+  buttonbar.cpp
+  art_msw.cpp
+  gallery.cpp
+  page.cpp
+  control.cpp
+  art_internal.cpp
+  panel.cpp
+  bar.cpp
+  toolbar.cpp
+  xh_ribbon.cpp
+  Warning #672: the command line options do not match those used when precompiled header file "vc_mswuddll\wxprec_ribbondll.pchi" was created
+  
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\ribbon.dll) does not match the Linker's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxmsw294ud_ribbon_vc_custom.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(ribbon) does not match the Linker's OutputFile property value (wxmsw294ud_ribbon_vc_custom). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Link:
+     Creating library ..\..\lib\vc_dll\wxmsw29ud_ribbon.lib and object ..\..\lib\vc_dll\wxmsw29ud_ribbon.exp
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  wx_ribbon.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\ribbon.dll
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\ribbon\ribbon.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\ribbon\ribbon.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:21.41
+------ Build started: Project: richtext (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:40:31.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\richtext\richtext.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  dummy.cpp
+  richtextbuffer.cpp
+  richtextformatdlg.cpp
+  richtextimagedlg.cpp
+  richtextstyledlg.cpp
+  richtextprint.cpp
+  richtextstyles.cpp
+  richtextsymboldlg.cpp
+  richtexthtml.cpp
+  richtextxml.cpp
+  richtextctrl.cpp
+  xh_richtext.cpp
+  Warning #672: the command line options do not match those used when precompiled header file "vc_mswuddll\wxprec_richtextdll.pchi" was created
+  
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\richtext.dll) does not match the Linker's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxmsw294ud_richtext_vc_custom.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(richtext) does not match the Linker's OutputFile property value (wxmsw294ud_richtext_vc_custom). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Link:
+     Creating library ..\..\lib\vc_dll\wxmsw29ud_richtext.lib and object ..\..\lib\vc_dll\wxmsw29ud_richtext.exp
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  wx_richtext.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\richtext.dll
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\richtext\richtext.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\richtext\richtext.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:49.85
+------ Build started: Project: stc (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:41:21.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\stc\stc.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  dummy.cpp
+  PlatWX.cpp
+  ScintillaWX.cpp
+  stc.cpp
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\stc.dll) does not match the Linker's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxmsw294ud_stc_vc_custom.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(stc) does not match the Linker's OutputFile property value (wxmsw294ud_stc_vc_custom). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Link:
+     Creating library ..\..\lib\vc_dll\wxmsw29ud_stc.lib and object ..\..\lib\vc_dll\wxmsw29ud_stc.exp
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  wx_stc.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\stc.dll
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\stc\stc.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\stc\stc.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:18.05
+------ Build started: Project: xrc (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:41:39.
+InitializeBuildStatus:
+  Creating ".\vc_mswuddll\xrc\xrc.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  dummy.cpp
+  xh_animatctrl.cpp
+  xh_datectrl.cpp
+  xh_statbar.cpp
+  xh_listc.cpp
+  xh_stbmp.cpp
+  xh_dirpicker.cpp
+  xh_bannerwindow.cpp
+  xh_mdi.cpp
+  xh_stbox.cpp
+  xh_bmp.cpp
+  xh_dlg.cpp
+  xh_menu.cpp
+  xh_stlin.cpp
+  xh_editlbox.cpp
+  xh_bmpbt.cpp
+  xh_notbk.cpp
+  xh_sttxt.cpp
+  xh_filectrl.cpp
+  xh_odcombo.cpp
+  xh_text.cpp
+  xh_bmpcbox.cpp
+  xh_tglbtn.cpp
+  xh_filepicker.cpp
+  xh_panel.cpp
+  xh_bttn.cpp
+  xh_timectrl.cpp
+  xh_propdlg.cpp
+  xh_fontpicker.cpp
+  xh_cald.cpp
+  xh_toolb.cpp
+  xh_chckb.cpp
+  xh_frame.cpp
+  xh_radbt.cpp
+  xh_toolbk.cpp
+  xh_chckl.cpp
+  xh_gauge.cpp
+  xh_radbx.cpp
+  xh_tree.cpp
+  xh_choic.cpp
+  xh_gdctl.cpp
+  xh_scrol.cpp
+  xh_treebk.cpp
+  xh_choicbk.cpp
+  xh_grid.cpp
+  xh_scwin.cpp
+  xh_html.cpp
+  xh_clrpicker.cpp
+  xh_unkwn.cpp
+  xh_sizer.cpp
+  xh_htmllbox.cpp
+  xh_cmdlinkbn.cpp
+  xh_wizrd.cpp
+  xh_hyperlink.cpp
+  xmladv.cpp
+  xh_slidr.cpp
+  xh_collpane.cpp
+  xmlres.cpp
+  xh_spin.cpp
+  xh_combo.cpp
+  xh_listb.cpp
+  xh_listbk.cpp
+  xh_split.cpp
+  xh_comboctrl.cpp
+  xh_srchctrl.cpp
+  xmlrsall.cpp
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\xrc.dll) does not match the Linker's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxmsw294ud_xrc_vc_custom.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(xrc) does not match the Linker's OutputFile property value (wxmsw294ud_xrc_vc_custom). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Link:
+     Creating library ..\..\lib\vc_dll\wxmsw29ud_xrc.lib and object ..\..\lib\vc_dll\wxmsw29ud_xrc.exp
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  wx_xrc.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\.\..\..\lib\vc_dll\xrc.dll
+FinalizeBuildStatus:
+  Deleting file ".\vc_mswuddll\xrc\xrc.unsuccessfulbuild".
+  Touching ".\vc_mswuddll\xrc\xrc.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:42.38
+------ Build started: Project: webview (Intel C++ 13.0), Configuration: DLL Debug X64 ------
+Build started 2012-11-19 22:42:22.
+InitializeBuildStatus:
+  Creating "vc_mswuddll\webview\webview.unsuccessfulbuild" because "AlwaysCreate" was specified.
+CustomBuild:
+  Creating ..\..\lib\vc_dll\mswud\wx\setup.h
+  Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h
+MessageBuildingWithCompiler:
+  Building with Intel(R) C++ Compiler XE 13.0
+ClCompile:
+  ***** ClCompile (x64 - Intel C++)
+  dummy.cpp
+  webview.cpp
+  webviewarchivehandler.cpp
+  webview_ie.cpp
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\..\..\lib\vc_dll\webview.dll) does not match the Linker's OutputFile property value (c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\lib\vc_dll\wxmsw295ud_webview_vc_custom.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(webview) does not match the Linker's OutputFile property value (wxmsw295ud_webview_vc_custom). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+Link:
+     Creating library ..\..\lib\vc_dll\wxmsw29ud_webview.lib and object ..\..\lib\vc_dll\wxmsw29ud_webview.exp
+  wx_webview.vcxproj -> c:\Users\vdmw\Documents\vdm\msys\1.0\home\root\wxWidgets-git4\wxWidgets-new998\build\msw\..\..\lib\vc_dll\webview.dll
+FinalizeBuildStatus:
+  Deleting file "vc_mswuddll\webview\webview.unsuccessfulbuild".
+  Touching "vc_mswuddll\webview\webview.lastbuildstate".
+
+Build succeeded.
+
+Time Elapsed 00:00:17.88
+========== Build: 23 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
