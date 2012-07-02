@@ -1,0 +1,3 @@
+..\..\src\msw\mediactrl_qt.cpp(103): warning #1899: multicharacter character literal 
+..\..\src\msw\mediactrl_qt.cpp(104): warning #1899: multicharacter character literal 
+..\..\src\tiff\libtiff\tif_dirinfo.c(749): warning #167: argument of type "size_t={unsigned __int64} *" is incompatible with parameter of type "unsigned int *"
