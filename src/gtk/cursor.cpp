@@ -268,67 +268,8 @@ void wxCursor::InitFromImage( const wxImage & image )
     GdkPixbuf* pixbuf = gdk_pixbuf_new_from_data(image.GetData(), GDK_COLORSPACE_RGB, false, 8, w, h, w * 3, NULL, NULL);
     if (alpha || hasMask)
     {
-        unsigned long keyMaskColor = 0;
-        GdkPixmap *maskRaw;
-        if (bHasMask)
-        {
-            keyMaskColor = wxImageHistogram::MakeKey(
-                image.GetMaskRed(), image.GetMaskGreen(), image.GetMaskBlue());
-            // get mask before image is modified
-            wxBitmap bitmap(image, 1);
-            maskRaw = bitmap.GetMask()->GetBitmap();
-            g_object_ref(maskRaw);
-        }
-        else
-        {
-            const int size = ((w + 7) / 8) * h;
-            char* bits = new char[size];
-            memset(bits, 0xff, size);
-            maskRaw = gdk_bitmap_create_from_data(
-                gtk_widget_get_window(wxGetRootWindow()), bits, w, h);
-            delete[] bits;
-        }
-
-        // assign the raw pointer to wxGtkObject to ensure it is unref'd later
-        wxGtkObject<GdkPixmap> mask(maskRaw);
-
-        // modify image so wxBitmap can be used to convert to pixmap
-        image_copy.SetMask(false);
-        wxByte* data = image_copy.GetData();
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (int j = 0; j < h; j++)
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (int i = 0; i < w; i++, data += 3)
-            {
-                // if average value of the pixel is > mid grey, convert it to
-                // background (0), otherwise to foreground (255, using wxBitmap
-                // convention)
-                data[0] =
-                data[1] =
-                data[2] = int(data[0]) + data[1] + data[2] >= 3 * 128 ? 0 : 255;
-            }
-        }
-        wxBitmap bitmap(image_copy, 1);
-
-        // find the most frequent color(s)
-        wxImageHistogram histogram;
-        image.ComputeHistogram(histogram);
-
-        long colMostFreq = 0;
-        unsigned long nMost = 0;
-        long colNextMostFreq = 0;
-        unsigned long nNext = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for ( wxImageHistogram::iterator entry = histogram.begin();
-              entry != histogram.end();
-              ++entry )
+        guchar r = 0, g = 0, b = 0;
+        if (hasMask)
         {
             r = image.GetMaskRed();
             g = image.GetMaskGreen();

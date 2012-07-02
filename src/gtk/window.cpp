@@ -3863,23 +3863,10 @@ void wxWindowGTK::GTKSendPaintEvents(const GdkRegion* region)
                 wxWindow *parent = wxGetTopLevelParent((wxWindow *)this);
                 if (!parent)
                     parent = (wxWindow*)this;
-
-                if (gtk_widget_get_mapped(parent->m_widget))
-                {
-                    wxRegionIterator upd( m_nativeUpdateRegion );
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                    while (upd)
-                    {
-                        GdkRectangle rect;
-                        rect.x = upd.GetX();
-                        rect.y = upd.GetY();
-                        rect.width = upd.GetWidth();
-                        rect.height = upd.GetHeight();
-
-                        gtk_paint_flat_box(gtk_widget_get_style(parent->m_widget),
-                                    GTKGetDrawingWindow(),
+                GdkRectangle rect;
+                m_nativeUpdateRegion.GetBox(rect.x, rect.y, rect.width, rect.height);
+                gtk_paint_flat_box(gtk_widget_get_style(parent->m_widget),
+                                    gdkWindow,
                                     gtk_widget_get_state(m_wxwindow),
                                     GTK_SHADOW_NONE,
                                     &rect,
