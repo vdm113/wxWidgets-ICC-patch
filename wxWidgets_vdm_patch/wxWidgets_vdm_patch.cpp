@@ -78,7 +78,7 @@ unsigned reformat(const string& file)
     }
     string tmp_file=file;
     tmp_file.append("-tmp");
-    FILE* out=fopen(tmp_file.c_str(),"w+");
+    FILE* out=fopen(tmp_file.c_str(),"w+b");
     if(!out) {
         check_return_value(errno);
         fclose(in);
