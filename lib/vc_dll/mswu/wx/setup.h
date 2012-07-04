@@ -52,7 +52,7 @@
 // in the version after it completely.
 //
 // Recommended setting: 0 (please update your code)
-#define WXWIN_COMPATIBILITY_2_8 0
+#define WXWIN_COMPATIBILITY_2_8 0 /* VDM: changed explicitly to 1 from 0 */
 
 // MSW-only: Set to 0 for accurate dialog units, else 1 for old behaviour when
 // default system font is used for wxWindow::GetCharWidth/Height() instead of
@@ -332,7 +332,7 @@
 //
 // Recommended setting: 1 unless compatibility with the official wxWidgets
 // build and/or the existing code is a concern.
-#define wxUSE_STD_CONTAINERS 1
+#define wxUSE_STD_CONTAINERS 1 /* VDM: changed explicitly to 0 from 1 */
 
 // Use standard C++ streams if 1 instead of wx streams in some places. If
 // disabled, wx streams are used everywhere and wxWidgets doesn't depend on the
@@ -566,7 +566,7 @@
 // Default is 1.
 //
 // Recommended setting: 1 if you need IPv6 support
-#define wxUSE_IPV6          1
+#define wxUSE_IPV6          1 /* VDM: changed explicitly to 0 from 1 */
 
 // Set to 1 to enable virtual file systems (required by wxHTML)
 #define wxUSE_FILESYSTEM    1
@@ -1148,7 +1148,7 @@
 #ifdef __WXMSW__
 #define wxUSE_AUTOID_MANAGEMENT 1
 #else
-#define wxUSE_AUTOID_MANAGEMENT 1
+#define wxUSE_AUTOID_MANAGEMENT 0
 #endif
 
 // ----------------------------------------------------------------------------
@@ -1409,7 +1409,7 @@
 // ----------------------------------------------------------------------------
 
 // Set to 1 for PostScript device context.
-#define wxUSE_POSTSCRIPT  1
+#define wxUSE_POSTSCRIPT  1 /* VDM: changed explicitly to 0 from 1 */
 
 // Set to 1 to use font metric files in GetTextExtent
 #define wxUSE_AFM_FOR_POSTSCRIPT 1
@@ -1489,7 +1489,7 @@
 #define wxUSE_THEME_GTK     0
 #define wxUSE_THEME_METAL   0
 #define wxUSE_THEME_MONO    0
-#define wxUSE_THEME_WIN32   1   /* VDM: changed explicitely to 1 from 0 */
+#define wxUSE_THEME_WIN32   0
 
 
 /* --- end common options --- */
@@ -1617,7 +1617,7 @@
 // Default is 0.
 //
 // Recommended setting: 0, nobody uses .INI files any more
-#define wxUSE_INICONF 1     /* VDM: changed explicitely to 1 from 0 */
+#define wxUSE_INICONF 1 /* VDM: changed explicitely to 1 from 0 */
 
 // ----------------------------------------------------------------------------
 // Generic versions of native controls
