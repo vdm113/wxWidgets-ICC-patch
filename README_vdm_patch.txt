@@ -12,6 +12,13 @@ r71967
 
 Also, it uses my own pre-configured "setup.h" configuration. I have changed only these parameters (compared to default 'setup0.h'):
 #define WXWIN_COMPATIBILITY_2_8 0 /* VDM: changed explicitly to 1 from 0 */
+
+#define wxUSE_COMPILER_TLS 1 /* VDM: see below */
+#ifdef _MSC_VER
+#   undef wxUSE_COMPILER_TLS
+#   define wxUSE_COMPILER_TLS 0 /* VDM: see comment above in setup.h */
+#endif
+
 #define wxUSE_STD_CONTAINERS 1 /* VDM: changed explicitly to 0 from 1 */
 #define wxUSE_IPV6          1 /* VDM: changed explicitly to 0 from 1 */
 #define wxUSE_POSTSCRIPT  1 /* VDM: changed explicitly to 0 from 1 */
