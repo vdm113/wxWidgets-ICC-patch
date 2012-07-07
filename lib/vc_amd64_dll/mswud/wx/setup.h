@@ -284,7 +284,11 @@
 // this to 0.
 //
 // Default is 1, but set to 0 if the scenario above is applicable.
-#define wxUSE_COMPILER_TLS 1
+#define wxUSE_COMPILER_TLS 1 /* VDM: see below */
+#ifdef _MSC_VER
+#   undef wxUSE_COMPILER_TLS
+#   define wxUSE_COMPILER_TLS 0 /* VDM: see comment above in setup.h */
+#endif
 
 // ----------------------------------------------------------------------------
 // Interoperability with the standard library.
