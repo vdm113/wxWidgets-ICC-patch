@@ -4,7 +4,9 @@
 *.sln           text eol=crlf
 *.dsw           text eol=crlf
 *.dsp           text eol=crlf
-*.txt           text eol=crlf
+*.rc            text eol=crlf
+*.icproj        text eol=crlf
+*.cmd           text eol=crlf
 
 *.sh            text eol=lf
 *.c             text eol=lf
@@ -13,5 +15,6 @@
 *.h             text eol=lf
 *.hpp           text eol=lf
 *.hxx           text eol=lf
+
 *.mm            text eol=auto
 *.txt           text eol=auto
