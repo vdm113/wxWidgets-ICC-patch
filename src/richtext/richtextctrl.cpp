@@ -3930,7 +3930,7 @@ bool wxRichTextCtrl::LayoutContent(bool onlyVisibleRect)
         GetBuffer().Layout(dc, context, availableSpace, availableSpace, flags);
         GetBuffer().Invalidate(wxRICHTEXT_NONE);
 
-        if (!IsFrozen())
+        if (!IsFrozen() && !onlyVisibleRect)
             SetupScrollbars();
     }
 
