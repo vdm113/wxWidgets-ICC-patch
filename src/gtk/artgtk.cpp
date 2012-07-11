@@ -359,6 +359,9 @@ wxGTK2ArtProvider::CreateIconBundle(const wxArtID& id,
         return bundle;
 
     gint *last = sizes;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( *last )
         last++;
 
