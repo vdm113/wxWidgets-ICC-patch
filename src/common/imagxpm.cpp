@@ -122,6 +122,9 @@ MakeValidCIdent(wxString* str)
 {
     const wxChar chUnderscore = wxT('_');
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::iterator it = str->begin(); it != str->end(); ++it )
     {
         const wxChar ch = *it;
