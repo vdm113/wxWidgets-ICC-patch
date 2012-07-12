@@ -463,7 +463,7 @@
       <PreprocessorDefinitions>NOPCH;WIN32;_LIB;_DEBUG;__WXMSW__;WXBUILDING;wxUSE_GUI=0;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswud\base\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>vc_mswud\wxprec_baselib.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <ObjectFileName>.\vc_mswud\base\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxbase29ud.pdb</ProgramDataBaseFileName>
@@ -696,7 +696,7 @@
       <PreprocessorDefinitions>NOPCH;WIN32;_LIB;__WXMSW__;NDEBUG;WXBUILDING;wxUSE_GUI=0;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswu\base\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>vc_mswu\wxprec_baselib.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <ObjectFileName>.\vc_mswu\base\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxbase29u.pdb</ProgramDataBaseFileName>
@@ -788,7 +788,7 @@
       <PreprocessorDefinitions>NOPCH;WIN32;_USRDLL;DLL_EXPORTS;__WXMSW__;NDEBUG;WXBUILDING;wxUSE_GUI=0;WXMAKINGDLL_BASE;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswudll\base\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>vc_mswudll\wxprec_basedll.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <ObjectFileName>.\vc_mswudll\base\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxbase294u_vc_custom.pdb</ProgramDataBaseFileName>
@@ -925,7 +925,7 @@
       <PreprocessorDefinitions>NOPCH;WIN32;_USRDLL;DLL_EXPORTS;__WXMSW__;__WXUNIVERSAL__;NDEBUG;WXBUILDING;wxUSE_GUI=0;WXMAKINGDLL_BASE;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswunivudll\base\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>vc_mswunivudll\wxprec_basedll.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <ObjectFileName>.\vc_mswunivudll\base\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxbase294u_vc_custom.pdb</ProgramDataBaseFileName>
@@ -1062,7 +1062,7 @@
       <PreprocessorDefinitions>NOPCH;WIN32;_LIB;__WXMSW__;__WXUNIVERSAL__;NDEBUG;WXBUILDING;wxUSE_GUI=0;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswunivu\base\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>vc_mswunivu\wxprec_baselib.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <ObjectFileName>.\vc_mswunivu\base\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxbase29u.pdb</ProgramDataBaseFileName>
@@ -1154,7 +1154,7 @@
       <PreprocessorDefinitions>NOPCH;WIN32;_LIB;_DEBUG;__WXMSW__;__WXUNIVERSAL__;WXBUILDING;wxUSE_GUI=0;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswunivud\base\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>vc_mswunivud\wxprec_baselib.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <ObjectFileName>.\vc_mswunivud\base\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxbase29ud.pdb</ProgramDataBaseFileName>
@@ -1247,7 +1247,7 @@
       <PreprocessorDefinitions>NOPCH;WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;__WXMSW__;__WXUNIVERSAL__;WXBUILDING;wxUSE_GUI=0;WXMAKINGDLL_BASE;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswunivuddll\base\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>vc_mswunivuddll\wxprec_basedll.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <ObjectFileName>.\vc_mswunivuddll\base\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxbase294ud_vc_custom.pdb</ProgramDataBaseFileName>
@@ -1375,11 +1375,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>NOPCH;</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|X64'">
     <ClCompile>
       <PreprocessorDefinitions>NOPCH;</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
