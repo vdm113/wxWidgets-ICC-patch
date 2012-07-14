@@ -452,6 +452,9 @@ bool wxRibbonBar::SetActivePage(wxRibbonPage* page)
 int wxRibbonBar::GetPageNumber(wxRibbonPage* page) const
 {
     size_t numpages = m_pages.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(size_t i = 0; i < numpages; ++i)
     {
         if(m_pages.Item(i).page == page)
