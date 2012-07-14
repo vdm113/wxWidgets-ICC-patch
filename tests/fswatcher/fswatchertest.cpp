@@ -744,13 +744,22 @@ void FileSystemWatcherTestCase::TestTrees()
 
             // Create a branch of 5 numbered subdirs, each containing 3
             // numbered files
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( unsigned d = 0; d < subdirs; ++d )
             {
                 dir.AppendDir(wxString::Format("subdir%u", d+1));
                 CPPUNIT_ASSERT(dir.Mkdir());
 
                 const wxString prefix = dir.GetPathWithSep();
+<<<<<<< HEAD
                 const wxString ext[] = { ".txt", ".log", "" };
+=======
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+>>>>>>> patched loops for ICC
                 for ( unsigned f = 0; f < files; ++f )
                 {
                     // Just create the files.
