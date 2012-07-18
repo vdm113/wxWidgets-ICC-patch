@@ -4371,6 +4371,9 @@ wxRichTextRange wxRichTextCtrl::FindRangeForList(long pos, bool& isNumberedList)
         if (initialNode)
         {
             wxRichTextObjectList::compatibility_iterator startNode = initialNode->GetPrevious();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (startNode)
             {
                 wxRichTextParagraph* p = wxDynamicCast(startNode->GetData(), wxRichTextParagraph);
@@ -4387,6 +4390,9 @@ wxRichTextRange wxRichTextCtrl::FindRangeForList(long pos, bool& isNumberedList)
 
             // Search forward
             wxRichTextObjectList::compatibility_iterator endNode = initialNode->GetNext();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (endNode)
             {
                 wxRichTextParagraph* p = wxDynamicCast(endNode->GetData(), wxRichTextParagraph);

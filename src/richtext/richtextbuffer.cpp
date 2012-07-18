@@ -4310,6 +4310,9 @@ bool wxRichTextParagraphLayoutBox::FindNextParagraphNumber(wxRichTextParagraph* 
 {
     // TODO: add GetNextChild/GetPreviousChild to composite
     // Search for a paragraph that isn't a continuation paragraph (no bullet)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (previousParagraph && previousParagraph->GetAttributes().HasBulletStyle() && previousParagraph->GetAttributes().GetBulletStyle() & wxTEXT_ATTR_BULLET_STYLE_CONTINUATION)
     {
         wxRichTextObjectList::compatibility_iterator node = ((wxRichTextCompositeObject*) previousParagraph->GetParent())->GetChildren().Find(previousParagraph);
