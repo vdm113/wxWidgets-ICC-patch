@@ -6041,6 +6041,7 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'"> /EHsc /opt:ref /opt:icf   /EHsc /opt:ref /opt:icf </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|X64'"> /EHsc /opt:ref /opt:icf   /EHsc /opt:ref /opt:icf </AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="..\..\src\msw\utilswin.cpp" />
     <ClCompile Include="..\..\src\msw\uxtheme.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> /EHsc   /EHsc </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|X64'"> /EHsc   /EHsc </AdditionalOptions>
