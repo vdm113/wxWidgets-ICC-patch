@@ -979,6 +979,9 @@ gtk_window_key_press_callback( GtkWidget *WXUNUSED(widget),
         // Next check for accelerators.
 #if wxUSE_ACCEL
         wxWindowGTK *ancestor = win;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (ancestor)
         {
             int command = ancestor->GetAcceleratorTable()->GetCommand( event );
@@ -2292,6 +2295,9 @@ void wxWindowGTK::GTKCreateScrolledWindowWith(GtkWidget* view)
     gtk_container_add( GTK_CONTAINER(m_widget), view );
 
     // connect various scroll-related events
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int dir = 0; dir < ScrollDir_Max; dir++ )
     {
         // these handlers block mouse events to any window during scrolling
