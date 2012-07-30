@@ -437,9 +437,6 @@ bool wxMediaPlayerApp::OnCmdLineParsed(wxCmdLineParser& parser)
     if ( !wxApp::OnCmdLineParsed(parser) )
         return false;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (size_t paramNr=0; paramNr < parser.GetParamCount(); ++paramNr)
         m_params.push_back(parser.GetParam(paramNr));
 
@@ -471,9 +468,6 @@ bool wxMediaPlayerApp::OnInit()
 #if wxUSE_CMDLINE_PARSER
     if ( !m_params.empty() )
     {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < m_params.size(); n++ )
             frame->AddToPlayList(m_params[n]);
 
@@ -746,9 +740,6 @@ wxMediaPlayerFrame::wxMediaPlayerFrame(const wxString& title)
         //
         wxConfig conf;
         wxString key, outstring;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for(int i = 0; ; ++i)
         {
             key.clear();
