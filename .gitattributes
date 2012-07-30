@@ -16,5 +16,5 @@
 *.hpp           text eol=lf
 *.hxx           text eol=lf
 
-*.mm            text eol=auto
+*.mm            text eol=lf
 *.txt           text eol=auto
