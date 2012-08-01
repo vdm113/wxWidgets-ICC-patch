@@ -380,6 +380,9 @@ bool wxToolMenuBar::Realize()
 
     bool lastWasRadio = false;
     wxToolBarToolsList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolMenuBarTool *tool = (wxToolMenuBarTool*) node->GetData();
