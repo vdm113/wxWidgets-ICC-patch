@@ -192,6 +192,9 @@ wxToolBarToolBase *wxButtonToolBar::FindToolForPosition(wxCoord x, wxCoord y) co
             return NULL;
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
           node;
           node = node->GetNext() )
@@ -383,6 +386,9 @@ void wxButtonToolBar::DoLayout()
     wxCoord *pCur = IsVertical() ? &y : &x;
 
     // calculate the positions of all elements
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
           node;
           node = node->GetNext() )
@@ -510,6 +516,9 @@ void wxButtonToolBar::OnPaint(wxPaintEvent& WXUNUSED(event))
     dc.SetFont(GetFont());
     dc.SetBackgroundMode(wxTRANSPARENT);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
           node;
           node = node->GetNext() )

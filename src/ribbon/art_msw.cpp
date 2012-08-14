@@ -1424,6 +1424,9 @@ void wxRibbonMSWArtProvider::ReallyDrawTabSeparator(wxWindow* wnd, const wxRect&
     double g3 = m_tab_separator_gradient_colour.Green();
     double b3 = m_tab_separator_gradient_colour.Blue();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(int i = 0; i < rect.height - 1; ++i)
     {
         double p = ((double)i)/h;
@@ -1809,6 +1812,9 @@ void wxRibbonMSWArtProvider::DrawPanelBackground(
             {
                 // Room for some characters and ...
                 // Display as many characters as possible and append ...
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for(size_t len = label.Len() - 1; len >= 3; --len)
                 {
                     new_label = label.Mid(0, len) + wxT("...");
@@ -2303,6 +2309,9 @@ void wxRibbonMSWArtProvider::DrawPartialPageBackground(
             parent = panel->GetExpandedDummy()->GetParent();
         }
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(; parent; parent = parent->GetParent())
     {
         if(panel == NULL)
@@ -2496,6 +2505,9 @@ void wxRibbonMSWArtProvider::DrawButtonBarButtonForeground(
             else
             {
                 size_t breaki = label.Len();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 do
                 {
                     --breaki;
@@ -2805,6 +2817,9 @@ int wxRibbonMSWArtProvider::GetTabCtrlHeight(
     if(m_flags & wxRIBBON_BAR_SHOW_PAGE_ICONS)
     {
         size_t numpages = pages.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(size_t i = 0; i < numpages; ++i)
         {
             const wxRibbonPageTabInfo& info = pages.Item(i);
@@ -3075,6 +3090,9 @@ bool wxRibbonMSWArtProvider::GetButtonBarButtonSize(
                 last_line_extra_width += 8;
             }
             size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(i = 0; i < label.Len(); ++i)
             {
                 if(wxRibbonCanLabelBreakAtPosition(label, i))

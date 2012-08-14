@@ -34,6 +34,9 @@ void from_ascii(void)
 {
     char c;
     int d;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((c=getchar())!=EOF)
     {
     	if (c!='%' || (c=getchar())=='%') putchar(c);
@@ -51,6 +54,9 @@ void to_ascii(void)
 {
     char c;
     int d;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((c=getchar())!=EOF)
     {
     	if (isascii(c)) putchar (c);

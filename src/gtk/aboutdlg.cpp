@@ -60,6 +60,9 @@ public:
         m_count = a.size();
         m_strings = new const gchar *[m_count + 1];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < m_count; n++ )
         {
 #if wxUSE_UNICODE
@@ -86,6 +89,9 @@ public:
     ~GtkArray()
     {
 #if !wxUSE_UNICODE
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < m_count; n++ )
             free(const_cast<gchar *>(m_strings[n]));
 #endif

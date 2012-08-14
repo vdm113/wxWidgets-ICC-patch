@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file LexAccessor.h
  ** Interfaces between Scintilla and lexers.
@@ -77,6 +84,9 @@ public:
 	}
 
 	bool Match(int pos, const char *s) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int i=0; *s; i++) {
 			if (*s != SafeGetCharAt(pos+i))
 				return false;
@@ -147,6 +157,9 @@ public:
 				if (chAttr != chWhile)
 					chFlags = 0;
 				chAttr = static_cast<char>(chAttr | chFlags);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (unsigned int i = startSeg; i <= pos; i++) {
 					assert((startPosStyling + validLen) < Length());
 					styleBuf[validLen++] = static_cast<char>(chAttr);

@@ -660,6 +660,9 @@ void MyApp::CreateStyles()
 
     wxRichTextListStyleDefinition* bulletList = new wxRichTextListStyleDefinition(wxT("Bullet List 1"));
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 10; i++)
     {
         wxString bulletText;
@@ -680,6 +683,9 @@ void MyApp::CreateStyles()
     m_styleSheet->AddListStyle(bulletList);
 
     wxRichTextListStyleDefinition* numberedList = new wxRichTextListStyleDefinition(wxT("Numbered List 1"));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 10; i++)
     {
         long numberStyle;
@@ -702,6 +708,9 @@ void MyApp::CreateStyles()
     m_styleSheet->AddListStyle(numberedList);
 
     wxRichTextListStyleDefinition* outlineList = new wxRichTextListStyleDefinition(wxT("Outline List 1"));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 10; i++)
     {
         long numberStyle;
@@ -1190,8 +1199,14 @@ void MyFrame::WriteInitialText()
 
         wxRichTextTable* table = r.WriteTable(3, 2, attr, cellAttr);
         int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0; j < table->GetRowCount(); j++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < table->GetColumnCount(); i++)
             {
                 wxString msg = wxString::Format(wxT("This is cell %d, %d"), (j+1), (i+1));
@@ -1762,6 +1777,9 @@ void MyFrame::OnSwitchStyleSheets(wxCommandEvent& WXUNUSED(event))
         gs_AlternateStyleSheet = new wxRichTextStyleSheet(*sheet);
 
         // Make some modifications
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < (int) gs_AlternateStyleSheet->GetParagraphStyleCount(); i++)
         {
             wxRichTextParagraphStyleDefinition* def = gs_AlternateStyleSheet->GetParagraphStyle(i);
@@ -2012,12 +2030,18 @@ void MyRichTextCtrl::PrepareContent(wxRichTextParagraphLayoutBox& container)
     {
         // Lock all content that's about to be added to the control
         wxRichTextObjectList::compatibility_iterator node = container.GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             wxRichTextParagraph* para = wxDynamicCast(node->GetData(), wxRichTextParagraph);
             if (para)
             {
                 wxRichTextObjectList::compatibility_iterator childNode = para->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (childNode)
                 {
                     wxRichTextObject* obj = childNode->GetData();
@@ -2034,6 +2058,9 @@ void MyRichTextCtrl::PrepareContent(wxRichTextParagraphLayoutBox& container)
 bool MyRichTextCtrl::CanDeleteRange(wxRichTextParagraphLayoutBox& container, const wxRichTextRange& range) const
 {
     long i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = range.GetStart(); i < range.GetEnd(); i++)
     {
         wxRichTextObject* obj = container.GetLeafObjectAtPosition(i);

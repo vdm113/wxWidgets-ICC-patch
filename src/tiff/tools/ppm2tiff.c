@@ -95,6 +95,9 @@ main(int argc, char* argv[])
 	    fprintf(stderr, "%s: Too few arguments\n", argv[0]);
 	    usage();
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((c = getopt(argc, argv, "c:r:R:")) != -1)
 		switch (c) {
 		case 'c':		/* compression scheme */
@@ -159,6 +162,9 @@ main(int argc, char* argv[])
 	}
 
 	/* Parse header */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while(1) {
 		if (feof(in))
 			BadPPM(infile);
@@ -169,6 +175,9 @@ main(int argc, char* argv[])
 
 		/* Check for comment line */
 		if (c == '#') {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			do {
 			    c = fgetc(in);
 			} while(!strchr("\r\n", c) || feof(in));
@@ -242,6 +251,9 @@ main(int argc, char* argv[])
 		TIFFSetField(out, TIFFTAG_YRESOLUTION, resolution);
 		TIFFSetField(out, TIFFTAG_RESOLUTIONUNIT, RESUNIT_INCH);
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (row = 0; row < h; row++) {
 		if (fread(buf, linebytes, 1, in) != 1) {
 			fprintf(stderr, "%s: scanline %lu: Read error.\n",
@@ -262,6 +274,9 @@ processG3Options(char* cp)
 {
 	g3opts = 0;
         if( (cp = strchr(cp, ':')) ) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 do {
                         cp++;
                         if (strneq(cp, "1d", 2))
@@ -287,6 +302,9 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
                 compression = COMPRESSION_JPEG;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (cp)
                 {
                     if (isdigit((int)cp[1]))
@@ -349,6 +367,9 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);
