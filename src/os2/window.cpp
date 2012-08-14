@@ -222,6 +222,9 @@ wxWindow* wxWindowOS2::FindItem(
 
     wxWindowList::compatibility_iterator  current = GetChildren().GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (current)
     {
         wxWindow*                   pChildWin = current->GetData();
@@ -245,6 +248,9 @@ wxWindow* wxWindowOS2::FindItemByHWND(
 {
     wxWindowList::compatibility_iterator current = GetChildren().GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (current)
     {
         wxWindow*                   pParent = current->GetData();
@@ -341,6 +347,9 @@ wxWindowOS2::~wxWindowOS2()
 {
     SendDestroyEvent();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxWindow* pWin = GetParent(); pWin; pWin = pWin->GetParent())
     {
         wxTopLevelWindow*           pFrame = wxDynamicCast(pWin, wxTopLevelWindow);
@@ -1702,6 +1711,9 @@ void wxWindowOS2::DoGetTextExtent( const wxString& rString,
             vPtMax.x = avPoint[0].x;
             vPtMin.y = avPoint[0].y;
             vPtMax.y = avPoint[0].y;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 1; i < 4; i++)
             {
                 if(vPtMin.x > avPoint[i].x) vPtMin.x = avPoint[i].x;
@@ -1771,6 +1783,9 @@ bool wxWindowOS2::IsMouseInWindow() const
     //
     HWND hWnd = ::WinWindowFromPoint(HWND_DESKTOP, &vPt, TRUE);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (hWnd && (hWnd != GetHwnd()))
         hWnd = ::WinQueryWindow(hWnd, QW_PARENT);
 
@@ -1816,6 +1831,9 @@ bool wxWindowOS2::DoPopupMenu( wxMenu* pMenu, int nX, int nY )
                    ,PU_HCONSTRAIN | PU_VCONSTRAIN | PU_MOUSEBUTTON1 | PU_KEYBOARD
                   );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(bIsWaiting)
     {
         QMSG                            vMsg;
@@ -3458,6 +3476,9 @@ void wxWindowOS2::OnSysColourChanged(
 {
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         //
@@ -3541,6 +3562,9 @@ bool wxWindowOS2::HandlePaint()
             ::WinQueryWindowRect(GetHwnd(), &vRect);
             height = vRect.yTop;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(size_t i = 0; i < vRgnData.crc; i++)
             {
                 int                 rectHeight;
@@ -4983,6 +5007,9 @@ wxWindow* wxFindWindowAtPoint(const wxPoint& rPt)
     //
     // Try to find a window with a wxWindow associated with it
     //
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!pWin && (hWnd != 0))
     {
         hWnd = ::WinQueryWindow(hWnd, QW_PARENT);
@@ -5044,6 +5071,9 @@ wxWindowOS2* FindWindowForMouseEvent( wxWindow* pWin,
             //
             // Find a child window mouse might be under
             //
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (current)
             {
                 wxWindow*                   pChild = current->GetData();
@@ -5059,6 +5089,9 @@ wxWindowOS2* FindWindowForMouseEvent( wxWindow* pWin,
                         POINTL                  vPoint3;
                         wxWindowList::compatibility_iterator current2 =pChild->GetChildren().GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         while (current2)
                         {
                             wxWindow*           pGrandChild = current2->GetData();
