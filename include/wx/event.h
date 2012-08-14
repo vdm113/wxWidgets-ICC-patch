@@ -2531,6 +2531,9 @@ public:
           m_files(NULL)
     {
         m_files = new wxString[m_noFiles];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < m_noFiles; n++ )
         {
             m_files[n] = other.m_files[n];

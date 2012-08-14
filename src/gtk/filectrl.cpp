@@ -56,6 +56,9 @@ wxString wxGtkFileChooser::GetPath() const
 void wxGtkFileChooser::GetFilenames( wxArrayString& files ) const
 {
     GetPaths( files );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < files.GetCount(); ++n )
     {
         const wxFileName file( files[n] );
@@ -70,6 +73,9 @@ void wxGtkFileChooser::GetPaths( wxArrayString& paths ) const
     {
         GSList *gpathsi = gtk_file_chooser_get_filenames( m_widget );
         GSList *gpaths = gpathsi;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( gpathsi )
         {
             wxString file(wxString::FromUTF8(static_cast<gchar *>(gpathsi->data)));
@@ -131,6 +137,9 @@ void wxGtkFileChooser::SetWildcard( const wxString& wildCard )
         m_ignoreNextFilterEvent = true;
         wxON_BLOCK_EXIT_SET(m_ignoreNextFilterEvent, false);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( ifilters )
         {
             gtk_file_chooser_remove_filter( chooser, GTK_FILE_FILTER( ifilters->data ) );
@@ -141,6 +150,9 @@ void wxGtkFileChooser::SetWildcard( const wxString& wildCard )
         if (!wildCard.empty())
         {
             // add parsed to GtkChooser
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( size_t n = 0; n < wildFilters.GetCount(); ++n )
             {
                 GtkFileFilter* filter = gtk_file_filter_new();
@@ -150,6 +162,9 @@ void wxGtkFileChooser::SetWildcard( const wxString& wildCard )
                 wxStringTokenizer exttok( wildFilters[n], wxT( ";" ) );
 
                 int n1 = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while ( exttok.HasMoreTokens() )
                 {
                     wxString token = exttok.GetNextToken();

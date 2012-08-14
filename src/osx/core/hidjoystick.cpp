@@ -280,6 +280,9 @@ int wxJoystick::GetNumberButtons() const
 {
     int nCount = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(int nIndex = 0; nIndex < 40; ++nIndex)
     {
         if(m_hid->HasElement(nIndex))
@@ -292,6 +295,9 @@ int wxJoystick::GetNumberAxes() const
 {
     int nCount = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(int nIndex = 40; nIndex < 50; ++nIndex)
     {
         if(m_hid->HasElement(nIndex))
@@ -579,6 +585,9 @@ void wxHIDJoystick::BuildCookies(CFArrayRef Array)
 
     //paranoid debugging stuff
 #if 0
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(int i = 0; i < 50; ++i)
         wxPrintf(wxT("\nVAL #%i:[%i]"), i, m_pCookies[i]);
 #endif
@@ -588,6 +597,9 @@ void wxHIDJoystick::MakeCookies(CFArrayRef Array)
 {
     int i, nUsage, nPage;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < CFArrayGetCount(Array); ++i)
     {
         const void* ref = CFDictionaryGetValue(
@@ -753,6 +765,9 @@ void* wxJoystickThread::Entry()
 
     double dTime;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(true)
     {
         if (TestDestroy())
@@ -817,6 +832,9 @@ void* wxJoystickThread::Entry()
     ret = (*m_hid->GetQueue())->getNextEvent(m_hid->GetQueue(),
                     &hidevent, bogustime, 0);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (ret != kIOReturnUnderrun)
     {
         if (pThis->TestDestroy())
@@ -833,6 +851,9 @@ void* wxJoystickThread::Entry()
         //Find the cookie that changed
         int nIndex = 0;
         IOHIDElementCookie* pCookies = m_hid->GetCookies();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while(nIndex < 50)
         {
             if(hidevent.elementCookie == pCookies[nIndex])

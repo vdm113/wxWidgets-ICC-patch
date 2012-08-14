@@ -765,6 +765,9 @@ wxCairoPenData::wxCairoPenData( wxGraphicsRenderer* renderer, const wxPen &pen )
             if ((wxdashes != NULL) && (m_count > 0))
             {
                 m_userLengths = new double[m_count] ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int i = 0 ; i < m_count ; ++i )
                 {
                     m_userLengths[i] = wxdashes[i] * dashUnit ;
@@ -841,6 +844,9 @@ void wxCairoBrushData::AddGradientStops(const wxGraphicsGradientStops& stops)
 {
     // loop over all the stops, they include the beginning and ending ones
     const unsigned numStops = stops.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < numStops; n++ )
     {
         const wxGraphicsGradientStop stop = stops.Item(n);
@@ -1352,10 +1358,16 @@ wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitm
         wxCHECK_RET( pixData, wxT("Failed to gain raw access to bitmap data."));
 
         wxAlphaPixelData::Iterator p(pixData);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y=0; y<m_height; y++)
         {
             wxAlphaPixelData::Iterator rowStart = p;
             wxUint32* const rowStartDst = data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x=0; x<m_width; x++)
             {
                 // Each pixel in CAIRO_FORMAT_ARGB32 is a 32-bit quantity,
@@ -1386,10 +1398,16 @@ wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitm
         wxCHECK_RET( pixData, wxT("Failed to gain raw access to bitmap data."));
 
         wxNativePixelData::Iterator p(pixData);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y=0; y<m_height; y++)
         {
             wxNativePixelData::Iterator rowStart = p;
             wxUint32* const rowStartDst = data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x=0; x<m_width; x++)
             {
                 // Each pixel in CAIRO_FORMAT_RGB24 is a 32-bit quantity, with
@@ -1419,10 +1437,16 @@ wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitm
         wxCHECK_RET( pixData, wxT("Failed to gain raw access to mask data."));
 
         wxNativePixelData::Iterator p(pixData);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y=0; y<m_height; y++)
         {
             wxNativePixelData::Iterator rowStart = p;
             wxUint32* const rowStartDst = data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x=0; x<m_width; x++)
             {
                 if (p.Red()+p.Green()+p.Blue() == 0)
@@ -1482,10 +1506,16 @@ wxCairoBitmapData::wxCairoBitmapData(wxGraphicsRenderer* renderer,
     {
         const unsigned char* alpha = image.GetAlpha();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int y = 0; y < m_height; y++ )
         {
             wxUint32* const rowStartDst = dst;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int x = 0; x < m_width; x++ )
             {
                 const unsigned char a = *alpha++;
@@ -1502,10 +1532,16 @@ wxCairoBitmapData::wxCairoBitmapData(wxGraphicsRenderer* renderer,
     }
     else // RGB
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int y = 0; y < m_height; y++ )
         {
             wxUint32* const rowStartDst = dst;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int x = 0; x < m_width; x++ )
             {
                 *dst++ = src[0] << 16 |
@@ -1570,9 +1606,15 @@ wxImage wxCairoBitmapData::ConvertToImage() const
     {
         // We need to also copy alpha and undo the pre-multiplication as Cairo
         // stores pre-multiplied values in this format while wxImage does not.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int y = 0; y < m_height; y++ )
         {
             const wxUint32* const rowStart = src;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int x = 0; x < m_width; x++ )
             {
                 const wxUint32 argb = *src++;
@@ -1591,9 +1633,15 @@ wxImage wxCairoBitmapData::ConvertToImage() const
     else // RGB
     {
         // Things are pretty simple in this case, just copy RGB bytes.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int y = 0; y < m_height; y++ )
         {
             const wxUint32* const rowStart = src;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int x = 0; x < m_width; x++ )
             {
                 const wxUint32 argb = *src++;
@@ -1918,6 +1966,9 @@ void wxCairoContext::Clip( const wxRegion& region )
     // Create a path with all the rectangles in the region
     wxGraphicsPath path = GetRenderer()->CreatePath();
     wxRegionIterator ri(region);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (ri)
     {
         path.AddRectangle(ri.GetX(), ri.GetY(), ri.GetW(), ri.GetH());
