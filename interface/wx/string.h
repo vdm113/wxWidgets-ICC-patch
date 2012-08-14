@@ -1175,6 +1175,9 @@ public:
 
                 result.Alloc(len);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( size_t n = 0; n < len; n++ )
                 {
                     if ( strchr("aeuio", tolower(original[n])) == NULL )

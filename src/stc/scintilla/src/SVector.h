@@ -41,9 +41,15 @@ class SVector {
 		int *newv = new int[newSize];
 		size = newSize;
         unsigned int i=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (; i<len; i++) {
 			newv[i] = v[i];
 		}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (; i<size; i++) {
 			newv[i] = 0;
 		}
@@ -67,6 +73,9 @@ public:
 		size = 0;
 		if (other.Length() > 0) {
 			SizeTo(other.Length());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (int i=0; i<other.Length(); i++)
 				v[i] = other.v[i];
 			len = other.Length();
@@ -81,6 +90,9 @@ public:
 			size = 0;
 			if (other.Length() > 0) {
 				SizeTo(other.Length());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (int i=0; i<other.Length(); i++)
 					v[i] = other.v[i];
 				len = other.Length();

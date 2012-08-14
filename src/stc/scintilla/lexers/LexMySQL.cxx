@@ -105,6 +105,9 @@ static void ColouriseMySQLDoc(unsigned int startPos, int length, int initStyle, 
 {
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward())
   {
 		// Determine if the current state should terminate.
@@ -302,6 +305,9 @@ static bool IsStreamCommentStyle(int style)
  */
 bool MatchIgnoreCase(Accessor &styler, int currentPos, const char *s)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (int n = 0; *s; n++)
   {
     if (*s != tolower(styler.SafeGetCharAt(currentPos + n)))
@@ -336,6 +342,9 @@ static void FoldMySQLDoc(unsigned int startPos, int length, int initStyle, WordL
 	bool elseIfPending = false;
 
   char nextChar = styler.SafeGetCharAt(startPos);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (unsigned int i = startPos; length > 0; i++, length--)
   {
 		int stylePrev = style;
