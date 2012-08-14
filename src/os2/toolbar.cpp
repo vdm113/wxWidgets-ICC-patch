@@ -450,6 +450,9 @@ bool wxToolBar::Realize()
     //
     wxToolBarToolsList::compatibility_iterator     node = m_tools.GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node )
     {
         wxToolBarTool*              pTool = (wxToolBarTool *)node->GetData();
@@ -501,6 +504,9 @@ bool wxToolBar::Realize()
     int                             nSeparatorSize = m_toolSeparation;
 
     node = m_tools.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxToolBarTool*              pTool = (wxToolBarTool *)node->GetData();
@@ -607,6 +613,9 @@ void wxToolBar::OnPaint (
 
     wxPMDCImpl *impl = (wxPMDCImpl*) vDc.GetImpl();
     ::WinFillRect(impl->GetHPS(), &impl->m_vRclPaint, GetBackgroundColour().GetPixel());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
           node;
           node = node->GetNext() )
@@ -956,6 +965,9 @@ wxToolBarToolBase* wxToolBar::FindToolForPosition(
            );
     vY = vTBarHeight - vY;
     wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxToolBarTool*              pTool = (wxToolBarTool *)node->GetData();

@@ -99,6 +99,9 @@ png_write_info_before_PLTE(png_structp png_ptr, png_infop info_ptr)
 
       png_debug(5, "writing extra chunks");
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (up = info_ptr->unknown_chunks;
            up < info_ptr->unknown_chunks + info_ptr->unknown_chunks_num;
            up++)
@@ -155,6 +158,9 @@ png_write_info(png_structp png_ptr, png_infop info_ptr)
           info_ptr->color_type == PNG_COLOR_TYPE_PALETTE)
       {
          int j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (j = 0; j<(int)info_ptr->num_trans; j++)
             info_ptr->trans_alpha[j] =
                (png_byte)(255 - info_ptr->trans_alpha[j]);
@@ -209,12 +215,18 @@ png_write_info(png_structp png_ptr, png_infop info_ptr)
 
 #ifdef PNG_WRITE_sPLT_SUPPORTED
    if (info_ptr->valid & PNG_INFO_sPLT)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < (int)info_ptr->splt_palettes_num; i++)
          png_write_sPLT(png_ptr, info_ptr->splt_palettes + i);
 #endif /* sPLT */
 
 #ifdef PNG_WRITE_TEXT_SUPPORTED
    /* Check to see if we need to write text chunks */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0; i < info_ptr->num_text; i++)
    {
       png_debug2(2, "Writing header text chunk %d, type %d", i,
@@ -276,6 +288,9 @@ png_write_info(png_structp png_ptr, png_infop info_ptr)
 
       png_debug(5, "writing extra chunks");
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (up = info_ptr->unknown_chunks;
            up < info_ptr->unknown_chunks + info_ptr->unknown_chunks_num;
            up++)
@@ -327,6 +342,9 @@ png_write_end(png_structp png_ptr, png_infop info_ptr)
 #endif
 #ifdef PNG_WRITE_TEXT_SUPPORTED
       /* Loop through comment chunks */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < info_ptr->num_text; i++)
       {
          png_debug2(2, "Writing trailer text chunk %d, type %d", i,
@@ -385,6 +403,9 @@ png_write_end(png_structp png_ptr, png_infop info_ptr)
 
       png_debug(5, "writing extra chunks");
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (up = info_ptr->unknown_chunks;
            up < info_ptr->unknown_chunks + info_ptr->unknown_chunks_num;
            up++)
@@ -572,6 +593,9 @@ png_write_rows(png_structp png_ptr, png_bytepp row,
       return;
 
    /* Loop through the rows */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0, rp = row; i < num_rows; i++, rp++)
    {
       png_write_row(png_ptr, *rp);
@@ -602,9 +626,15 @@ png_write_image(png_structp png_ptr, png_bytepp image)
    num_pass = 1;
 #endif
    /* Loop through passes */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (pass = 0; pass < num_pass; pass++)
    {
       /* Loop through image */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0, rp = image; i < png_ptr->height; i++, rp++)
       {
          png_write_row(png_ptr, *rp);
@@ -840,6 +870,9 @@ png_write_flush(png_structp png_ptr)
    if (png_ptr->row_number >= png_ptr->num_rows)
       return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    do
    {
       int ret;
@@ -1206,6 +1239,9 @@ png_init_filter_heuristics(png_structp png_ptr, int heuristic_method,
              (png_uint_32)(png_sizeof(png_byte) * num_weights));
 
          /* To make sure that the weighting starts out fairly */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (i = 0; i < num_weights; i++)
          {
             png_ptr->prev_filters[i] = 255;
@@ -1217,6 +1253,9 @@ png_init_filter_heuristics(png_structp png_ptr, int heuristic_method,
          png_ptr->inv_filter_weights = (png_uint_16p)png_malloc(png_ptr,
              (png_uint_32)(png_sizeof(png_uint_16) * num_weights));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (i = 0; i < num_weights; i++)
          {
             png_ptr->inv_filter_weights[i] =
@@ -1239,6 +1278,9 @@ png_init_filter_heuristics(png_structp png_ptr, int heuristic_method,
              (png_uint_32)(png_sizeof(png_uint_16) * PNG_FILTER_VALUE_LAST));
       }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < PNG_FILTER_VALUE_LAST; i++)
       {
          png_ptr->inv_filter_costs[i] =
@@ -1282,6 +1324,9 @@ png_set_filter_heuristics(png_structp png_ptr, int heuristic_method,
    if (heuristic_method == PNG_FILTER_HEURISTIC_WEIGHTED)
    {
       int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < num_weights; i++)
       {
          if (filter_weights[i] <= 0.0)
@@ -1307,6 +1352,9 @@ png_set_filter_heuristics(png_structp png_ptr, int heuristic_method,
        * compression settings.  The filter types are in order of increasing
        * relative cost, so it would be possible to do this with an algorithm.
        */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < PNG_FILTER_VALUE_LAST; i++) if (filter_costs[i] >= 1.0)
       {
          png_ptr->inv_filter_costs[i] =
@@ -1337,6 +1385,9 @@ png_set_filter_heuristics_fixed(png_structp png_ptr, int heuristic_method,
    if (heuristic_method == PNG_FILTER_HEURISTIC_WEIGHTED)
    {
       int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < num_weights; i++)
       {
          if (filter_weights[i] <= 0)
@@ -1362,6 +1413,9 @@ png_set_filter_heuristics_fixed(png_structp png_ptr, int heuristic_method,
        * compression settings.  The filter types are in order of increasing
        * relative cost, so it would be possible to do this with an algorithm.
        */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < PNG_FILTER_VALUE_LAST; i++)
          if (filter_costs[i] >= PNG_FP_1)
       {

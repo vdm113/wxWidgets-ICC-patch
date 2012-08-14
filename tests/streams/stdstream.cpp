@@ -120,6 +120,9 @@ CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( StdStreamTestCase,
 
 StdStreamTestCase::StdStreamTestCase()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < TEST_SIZE; ++i)
         m_testData[i] = (i & 0xFF);
 }
@@ -175,6 +178,9 @@ void StdStreamTestCase::InputBuffer_pubseekpos()
     wxMemoryInputStream stream(testData, 10);
     wxStdInputStreamBuffer buffer(stream);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 9; i >= 0; --i)
     {
         if (i % 2 == 0)
@@ -224,6 +230,9 @@ void StdStreamTestCase::InputBuffer_snextc()
 
     data[0] = buffer.sgetc();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 1; i < TEST_SIZE; ++i)
         data[i] = buffer.snextc();
 
@@ -243,6 +252,9 @@ void StdStreamTestCase::InputBuffer_sbumpc()
 
     char data[TEST_SIZE];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < TEST_SIZE; ++i)
         data[i] = buffer.sbumpc();
 
@@ -260,6 +272,9 @@ void StdStreamTestCase::InputBuffer_sgetc()
 
     char data[TEST_SIZE];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < TEST_SIZE; ++i) {
         data[i] = buffer.sgetc();
         buffer.sbumpc();
@@ -380,6 +395,9 @@ void StdStreamTestCase::OutputBuffer_pubseekpos()
     wxMemoryOutputStream stream(testData, 10);
     wxStdOutputStreamBuffer buffer(stream);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 9; i >= 0; --i)
     {
         if (i % 2 == 0)
@@ -417,6 +435,9 @@ void StdStreamTestCase::OutputBuffer_sputc()
     wxMemoryOutputStream stream;
     wxStdOutputStreamBuffer buffer(stream);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < TEST_SIZE; ++i)
         buffer.sputc(m_testData[i]);
 

@@ -336,6 +336,9 @@ bool MyApp::OnInit()
                             NULL,
                             m_startupProgressStyle
                          );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i <= PROGRESS_COUNT; i++ )
         {
             if ( !dlg.Update(i) )
@@ -603,6 +606,9 @@ MyFrame::MyFrame(const wxString& title)
 
 #if wxUSE_COLOURDLG
     m_clrData.SetChooseFull(true);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < wxColourData::NUM_CUSTOM; i++)
     {
         unsigned char n = i*16;
@@ -735,6 +741,9 @@ void MyFrame::ChooseColourGeneric(wxCommandEvent& WXUNUSED(event))
     //FIXME:TODO:This has no effect...
     m_clrData.SetChooseFull(true);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < 16; i++)
     {
         wxColour colour(
@@ -1089,6 +1098,9 @@ void MyFrame::MultiChoice(wxCommandEvent& WXUNUSED(event) )
         else
         {
             msg.Printf(wxT("You selected %u items:\n"), (unsigned)count);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int n = 0; n < count; n++ )
             {
                 msg += wxString::Format(wxT("\t%u: %u (%s)\n"),
@@ -1208,6 +1220,9 @@ private:
         // do this but here we just go ahead and reset all columns labels and
         // their order without confirmation
         const unsigned count = m_order.size();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned n = 0; n < count; n++ )
         {
             m_order[n] = n;
@@ -1293,6 +1308,9 @@ void MyFrame::Rearrange(wxCommandEvent& WXUNUSED(event))
         s_order.reserve(WXSIZEOF(items));
         s_labels.reserve(WXSIZEOF(items));
         s_labelsOrig.reserve(WXSIZEOF(items));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned n = 0; n < WXSIZEOF(items); n++ )
         {
             const ItemInfo& item = items[n];
@@ -1307,6 +1325,9 @@ void MyFrame::Rearrange(wxCommandEvent& WXUNUSED(event))
         return;
 
     wxString columns;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < s_order.size(); n++ )
     {
         columns += wxString::Format("\n    %u: ", n);
@@ -1460,6 +1481,9 @@ void MyFrame::FilesOpen(wxCommandEvent& WXUNUSED(event) )
 
         wxString msg, s;
         size_t count = paths.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < count; n++ )
         {
             s.Printf(wxT("File %d: %s (%s)\n"),
@@ -1543,6 +1567,9 @@ void MyFrame::FilesOpenGeneric(wxCommandEvent& WXUNUSED(event) )
 
         wxString msg, s;
         size_t count = paths.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < count; n++ )
         {
             s.Printf(wxT("File %d: %s (%s)\n"),
@@ -2133,6 +2160,9 @@ void MyFrame::ShowProgress( wxCommandEvent& WXUNUSED(event) )
                             );
 
     bool cont = true;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i <= max; i++ )
     {
         wxString msg;
@@ -2328,6 +2358,9 @@ void MyFrame::ShowBusyInfo(wxCommandEvent& WXUNUSED(event))
 
     wxBusyInfo info(wxT("Working, please wait..."), this);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < 18; i++ )
     {
         wxMilliSleep(100);
@@ -2977,6 +3010,9 @@ bool TestMessageBoxDialog::Create()
     sizerBtns->Add(new wxStaticText(this, wxID_ANY, "Button(s)"));
     sizerBtns->Add(new wxStaticText(this, wxID_ANY, "Custom label"));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int n = 0; n < Btn_Max; n++ )
     {
         m_buttons[n] = new wxCheckBox(this, wxID_ANY, ms_btnInfo[n].name);
@@ -3051,6 +3087,9 @@ bool TestMessageBoxDialog::Create()
 
 void TestMessageBoxDialog::OnUpdateLabelUI(wxUpdateUIEvent& event)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int n = 0; n < Btn_Max; n++ )
     {
         if ( event.GetEventObject() == m_labels[n] )
@@ -3072,6 +3111,9 @@ long TestMessageBoxDialog::GetStyle()
 {
     long style = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int n = 0; n < Btn_Max; n++ )
     {
         if ( m_buttons[n]->IsChecked() )

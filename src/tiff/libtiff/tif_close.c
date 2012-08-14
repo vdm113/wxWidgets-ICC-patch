@@ -64,6 +64,9 @@ TIFFCleanup(TIFF* tif)
 	    _TIFFfree(tif->tif_dirlist);
 	    
 	/* Clean up client info links */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while( tif->tif_clientinfo )
 	{
 	    TIFFClientInfoLink *link = tif->tif_clientinfo;
@@ -83,6 +86,9 @@ TIFFCleanup(TIFF* tif)
 	{
 	    size_t  i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	    for (i = 0; i < tif->tif_nfields; i++) 
 	    {
 		TIFFFieldInfo *fld = tif->tif_fieldinfo[i];

@@ -87,6 +87,9 @@ enum wxStringTokenizerMode
 
     @code
     wxStringTokenizer tokenizer("first:second:third:fourth", ":");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( tokenizer.HasMoreTokens() )
     {
         wxString token = tokenizer.GetNextToken();

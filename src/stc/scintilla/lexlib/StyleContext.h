@@ -104,6 +104,9 @@ public:
 		}
 	}
 	void Forward(int nb) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int i = 0; i < nb; i++) {
 			Forward();
 		}
@@ -141,6 +144,9 @@ public:
 		if (chNext != static_cast<unsigned char>(*s))
 			return false;
 		s++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int n=2; *s; n++) {
 			if (*s != styler.SafeGetCharAt(currentPos+n))
 				return false;
@@ -155,6 +161,9 @@ public:
 		if (MakeLowerCase(chNext) != static_cast<unsigned char>(*s))
 			return false;
 		s++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int n=2; *s; n++) {
 			if (static_cast<unsigned char>(*s) !=
 				MakeLowerCase(static_cast<unsigned char>(styler.SafeGetCharAt(currentPos+n))))

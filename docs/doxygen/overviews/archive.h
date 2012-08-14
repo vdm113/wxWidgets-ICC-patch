@@ -90,6 +90,9 @@ auto_ptr<wxZipEntry> entry;
 wxFFileInputStream in(wxT("test.zip"));
 wxZipInputStream zip(in);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 while (entry.reset(zip.GetNextEntry()), entry.get() != NULL)
 {
     // access meta-data
@@ -131,6 +134,9 @@ auto_ptr<wxZipEntry> entry;
 outzip.CopyArchiveMetaData(inzip);
 
 // call CopyEntry for each entry except those matching the pattern
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 while (entry.reset(inzip.GetNextEntry()), entry.get() != NULL)
     if (!entry->GetName().Matches(wxT("*.txt")))
         if (!outzip.CopyEntry(entry.release(), inzip))
@@ -178,10 +184,16 @@ wxFFileInputStream in(wxT("test.zip"));
 wxZipInputStream zip(in);
 
 // call GetNextEntry() until the required internal name is found
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 do
 {
     entry.reset(zip.GetNextEntry());
 }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 while (entry.get() != NULL && entry->GetInternalName() != name);
 
 if (entry.get() != NULL)
@@ -206,6 +218,9 @@ wxFFileInputStream in(wxT("test.zip"));
 wxZipInputStream zip(in);
 
 // load the zip catalog
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 while ((entry = zip.GetNextEntry()) != NULL)
 {
     wxZipEntry*& current = cat[entry->GetInternalName()];
@@ -313,6 +328,9 @@ if (in->IsOk())
         auto_ptr<wxArchiveEntry> entry;
 
         // list the contents of the archive
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ((entry.reset(arc->GetNextEntry())), entry.get() != NULL)
             std::wcout << entry->GetName().c_str() << "\n";
     }
@@ -398,6 +416,9 @@ auto_ptr<wxArchiveEntry> entry;
 
 outarc->CopyArchiveMetaData(*arc);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 while (entry.reset(arc->GetNextEntry()), entry.get() != NULL)
 {
     if (entry->GetName() == from)
@@ -435,6 +456,9 @@ MyNotifier notifier;
 
 outarc->CopyArchiveMetaData(*arc);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 while (entry.reset(arc->GetNextEntry()), entry.get() != NULL)
 {
     entry->SetNotifier(notifier);
