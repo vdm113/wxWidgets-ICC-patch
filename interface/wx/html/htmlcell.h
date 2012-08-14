@@ -216,6 +216,9 @@ public:
 
         Usage:
         @code
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (container->AdjustPagebreak(&p, kp, ph)) {}
         @endcode
 

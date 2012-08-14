@@ -400,6 +400,9 @@ egg_tray_icon_send_message (EggTrayIcon *icon,
 
   /* Now to send the actual message */
   gdk_error_trap_push ();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (len > 0)
     {
       XClientMessageEvent ev;

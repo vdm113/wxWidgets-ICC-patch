@@ -385,6 +385,9 @@ void wxColourDatabase::Initialize()
 
     size_t n;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < WXSIZEOF(wxColourTable); n++ )
     {
         const wxColourDesc& cc = wxColourTable[n];
@@ -393,6 +396,9 @@ void wxColourDatabase::Initialize()
 
 #ifdef __WXPM__
     m_palTable = new long[n];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < WXSIZEOF(wxColourTable); n++ )
     {
         const wxColourDesc& cc = wxColourTable[n];
@@ -469,6 +475,9 @@ wxString wxColourDatabase::FindName(const wxColour& colour) const
 
     typedef wxStringToColourHashMap::iterator iterator;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( iterator it = m_map->begin(), en = m_map->end(); it != en; ++it )
     {
         if ( *(it->second) == colour )
@@ -531,6 +540,9 @@ wxStockGDI::~wxStockGDI()
 
 void wxStockGDI::DeleteAll()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned i = 0; i < ITEMCOUNT; i++)
     {
         wxDELETE(ms_stockObject[i]);
@@ -766,6 +778,9 @@ wxGDIObjListBase::wxGDIObjListBase()
 
 wxGDIObjListBase::~wxGDIObjListBase()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxList::compatibility_iterator node = list.GetFirst(); node; node = node->GetNext())
     {
         delete static_cast<wxObject*>(node->GetData());
@@ -774,6 +789,9 @@ wxGDIObjListBase::~wxGDIObjListBase()
 
 wxPen *wxPenList::FindOrCreatePen (const wxColour& colour, int width, wxPenStyle style)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxList::compatibility_iterator node = list.GetFirst();
           node;
           node = node->GetNext() )
@@ -798,6 +816,9 @@ wxPen *wxPenList::FindOrCreatePen (const wxColour& colour, int width, wxPenStyle
 
 wxBrush *wxBrushList::FindOrCreateBrush (const wxColour& colour, wxBrushStyle style)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxList::compatibility_iterator node = list.GetFirst();
           node;
           node = node->GetNext() )
@@ -828,6 +849,9 @@ wxFont *wxFontList::FindOrCreateFont(int pointSize,
 {
     wxFont *font;
     wxList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (node = list.GetFirst(); node; node = node->GetNext())
     {
         font = (wxFont *)node->GetData();
@@ -930,6 +954,9 @@ wxSize wxGetDisplayPPI()
 wxResourceCache::~wxResourceCache ()
 {
     wxList::compatibility_iterator node = GetFirst ();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node) {
         wxObject *item = (wxObject *)node->GetData();
         delete item;

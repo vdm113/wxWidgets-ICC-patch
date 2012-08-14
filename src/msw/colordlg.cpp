@@ -132,6 +132,9 @@ int wxColourDialog::ShowModal()
 
     // and transfer data from m_colourData to it
     COLORREF custColours[16];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < WXSIZEOF(custColours); i++ )
     {
         if ( m_colourData.GetCustomColour(i).IsOk() )
@@ -169,6 +172,9 @@ int wxColourDialog::ShowModal()
 
 
     // transfer the values chosen by user back into m_colourData
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < WXSIZEOF(custColours); i++ )
     {
       wxRGBToColour(m_colourData.m_custColours[i], custColours[i]);
