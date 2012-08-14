@@ -125,6 +125,9 @@ public:
     @code
     wxBusyCursor wait;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < 100000; i++)
         DoACalculation();
     @endcode

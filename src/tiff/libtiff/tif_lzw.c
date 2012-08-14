@@ -245,6 +245,7 @@ LZWSetupDecode(TIFF* tif)
 		/*
 		 * Pre-load the table.
 		 */
+<<<<<<< HEAD
 		code = 255;
 		do {
 			sp->dec_codetab[code].value = code;
@@ -257,6 +258,18 @@ LZWSetupDecode(TIFF* tif)
                  */
                  _TIFFmemset(&sp->dec_codetab[CODE_CLEAR], 0,
 			     (CODE_FIRST - CODE_CLEAR) * sizeof (code_t));
+=======
+                code = 255;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+                do {
+                    sp->dec_codetab[code].value = code;
+                    sp->dec_codetab[code].firstchar = code;
+                    sp->dec_codetab[code].length = 1;
+                    sp->dec_codetab[code].next = NULL;
+                } while (code--);
+>>>>>>> sync with upstream
 	}
 	return (1);
 }
@@ -400,11 +413,17 @@ LZWDecode(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 			 * values in the output buffer, and return.
 			 */
 			sp->dec_restart += occ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			do {
 				codep = codep->next;
 			} while (--residue > occ && codep);
 			if (codep) {
 				tp = op + occ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				do {
 					*--tp = codep->value;
 					codep = codep->next;
@@ -417,6 +436,9 @@ LZWDecode(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 		 */
 		op += residue, occ -= residue;
 		tp = op;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
 			int t;
 			--tp;
@@ -436,6 +458,9 @@ LZWDecode(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 	free_entp = sp->dec_free_entp;
 	maxcodep = sp->dec_maxcodep;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (occ > 0) {
 		NextCode(tif, sp, bp, code, GetNextCode);
 		if (code == CODE_EOI)
@@ -512,12 +537,18 @@ LZWDecode(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 				 * logic for the next decoding call.
 				 */
 				sp->dec_codep = codep;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				do {
 					codep = codep->next;
 				} while (codep && codep->length > occ);
 				if (codep) {
 					sp->dec_restart = (long)occ;
 					tp = op + occ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					do  {
 						*--tp = codep->value;
 						codep = codep->next;
@@ -529,6 +560,9 @@ LZWDecode(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 			}
 			len = codep->length;
 			tp = op + len;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			do {
 				int t;
 				--tp;
@@ -624,10 +658,16 @@ LZWDecodeCompat(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 			 * values in the output buffer, and return.
 			 */
 			sp->dec_restart += occ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			do {
 				codep = codep->next;
 			} while (--residue > occ);
 			tp = op + occ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			do {
 				*--tp = codep->value;
 				codep = codep->next;
@@ -639,6 +679,9 @@ LZWDecodeCompat(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 		 */
 		op += residue, occ -= residue;
 		tp = op;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
 			*--tp = codep->value;
 			codep = codep->next;
@@ -655,6 +698,9 @@ LZWDecodeCompat(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 	free_entp = sp->dec_free_entp;
 	maxcodep = sp->dec_maxcodep;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (occ > 0) {
 		NextCode(tif, sp, bp, code, GetNextCodeCompat);
 		if (code == CODE_EOI)
@@ -729,11 +775,17 @@ LZWDecodeCompat(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 				 * logic for the next decoding call.
 				 */
 				sp->dec_codep = codep;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				do {
 					codep = codep->next;
 				} while (codep->length > occ);
 				sp->dec_restart = occ;
 				tp = op + occ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				do  {
 					*--tp = codep->value;
 					codep = codep->next;
@@ -743,6 +795,9 @@ LZWDecodeCompat(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 			assert(occ >= codep->length);
 			op += codep->length, occ -= codep->length;
 			tp = op;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			do {
 				*--tp = codep->value;
 			} while( (codep = codep->next) != NULL );
@@ -908,6 +963,9 @@ LZWEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 		PutNextCode(op, CODE_CLEAR);
 		ent = *bp++; cc--; incount++;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (cc > 0) {
 		c = *bp++; cc--; incount++;
 		fcode = ((long)c << BITS_MAX) + ent;
@@ -931,6 +989,9 @@ LZWEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 			disp = HSIZE - h;
 			if (h == 0)
 				disp = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			do {
 				/*
 				 * Avoid pointer arithmetic 'cuz of
@@ -1064,7 +1125,14 @@ cl_hash(LZWCodecState* sp)
 	register hash_t *hp = &sp->enc_hashtab[HSIZE-1];
 	register long i = HSIZE-8;
 
+<<<<<<< HEAD
 	do {
+=======
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+ 	do {
+>>>>>>> sync with upstream
 		i -= 8;
 		hp[-7].hash = -1;
 		hp[-6].hash = -1;
@@ -1076,7 +1144,14 @@ cl_hash(LZWCodecState* sp)
 		hp[ 0].hash = -1;
 		hp -= 8;
 	} while (i >= 0);
+<<<<<<< HEAD
 	for (i += 8; i > 0; i--, hp--)
+=======
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    	for (i += 8; i > 0; i--, hp--)
+>>>>>>> sync with upstream
 		hp->hash = -1;
 }
 

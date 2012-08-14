@@ -77,6 +77,9 @@ main(int argc, char* argv[])
 	}
 	in = TIFFOpen(argv[1], "r");
 	if (in != NULL) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
 			size_t path_len;
 			char *path;
@@ -244,10 +247,17 @@ cpStrips(TIFF* in, TIFF* out)
 		tstrip_t s, ns = TIFFNumberOfStrips(in);
 		uint64 *bytecounts;
 
+<<<<<<< HEAD
 		if (!TIFFGetField(in, TIFFTAG_STRIPBYTECOUNTS, &bytecounts)) {
 			fprintf(stderr, "tiffsplit: strip byte counts are missing\n");
 			return (0);
 		}
+=======
+		TIFFGetField(in, TIFFTAG_STRIPBYTECOUNTS, &bytecounts);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+>>>>>>> sync with upstream
 		for (s = 0; s < ns; s++) {
 			if (bytecounts[s] > (uint64)bufsize) {
 				buf = (unsigned char *)_TIFFrealloc(buf, (tmsize_t)bytecounts[s]);
@@ -277,10 +287,17 @@ cpTiles(TIFF* in, TIFF* out)
 		ttile_t t, nt = TIFFNumberOfTiles(in);
 		uint64 *bytecounts;
 
+<<<<<<< HEAD
 		if (!TIFFGetField(in, TIFFTAG_TILEBYTECOUNTS, &bytecounts)) {
 			fprintf(stderr, "tiffsplit: tile byte counts are missing\n");
 			return (0);
 		}
+=======
+		TIFFGetField(in, TIFFTAG_TILEBYTECOUNTS, &bytecounts);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+>>>>>>> sync with upstream
 		for (t = 0; t < nt; t++) {
 			if (bytecounts[t] > (uint64) bufsize) {
 				buf = (unsigned char *)_TIFFrealloc(buf, (tmsize_t)bytecounts[t]);

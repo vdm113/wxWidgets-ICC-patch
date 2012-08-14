@@ -652,6 +652,9 @@ alloc_downsampled_buffers(TIFF* tif, jpeg_component_info* comp_info,
 	JSAMPARRAY buf;
 	int samples_per_clump = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (ci = 0, compptr = comp_info; ci < num_components;
 	     ci++, compptr++) {
 		samples_per_clump += compptr->h_samp_factor *
@@ -1122,6 +1125,9 @@ JPEGPreDecode(TIFF* tif, uint16 s)
 			return (0);
 		}
 		/* Rest should have sampling factors 1,1 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (ci = 1; ci < sp->cinfo.d.num_components; ci++) {
 			if (sp->cinfo.d.comp_info[ci].h_samp_factor != 1 ||
 			    sp->cinfo.d.comp_info[ci].v_samp_factor != 1) {
@@ -1228,6 +1234,7 @@ JPEGDecode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 			    * sp->cinfo.d.num_components );
 		}
 
+<<<<<<< HEAD
 		do {
 			if( line_work_buf != NULL )
 			{
@@ -1281,6 +1288,70 @@ JPEGDecode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 				if (TIFFjpeg_read_scanlines(sp, &bufptr, 1) != 1)
 					return (0);
 			}
+=======
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        do {
+            if( line_work_buf != NULL )
+            {
+                /* 
+                ** In the MK1 case, we aways read into a 16bit buffer, and then
+                ** pack down to 12bit or 8bit.  In 6B case we only read into 16
+                ** bit buffer for 12bit data, which we need to repack. 
+                */
+                if (TIFFjpeg_read_scanlines(sp, &line_work_buf, 1) != 1)
+                    return (0);
+
+                if( sp->cinfo.d.data_precision == 12 )
+                {
+                    int value_pairs = (sp->cinfo.d.output_width 
+                                       * sp->cinfo.d.num_components) / 2;
+                    int iPair;
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+                    for( iPair = 0; iPair < value_pairs; iPair++ )
+                    {
+                        unsigned char *out_ptr = 
+                            ((unsigned char *) buf) + iPair * 3;
+                        JSAMPLE *in_ptr = line_work_buf + iPair * 2;
+
+                        out_ptr[0] = (in_ptr[0] & 0xff0) >> 4;
+                        out_ptr[1] = ((in_ptr[0] & 0xf) << 4)
+                            | ((in_ptr[1] & 0xf00) >> 8);
+                        out_ptr[2] = ((in_ptr[1] & 0xff) >> 0);
+                    }
+                }
+                else if( sp->cinfo.d.data_precision == 8 )
+                {
+                    int value_count = (sp->cinfo.d.output_width 
+                                       * sp->cinfo.d.num_components);
+                    int iValue;
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+                    for( iValue = 0; iValue < value_count; iValue++ )
+                    {
+                        ((unsigned char *) buf)[iValue] = 
+                            line_work_buf[iValue] & 0xff;
+                    }
+                }
+            }
+            else
+            {
+                /*
+                ** In the libjpeg6b 8bit case.  We read directly into the 
+                ** TIFF buffer.
+                */
+                JSAMPROW bufptr = (JSAMPROW)buf;
+  
+                if (TIFFjpeg_read_scanlines(sp, &bufptr, 1) != 1)
+                    return (0);
+            }
+>>>>>>> sync with upstream
 
 			++tif->tif_row;
 			buf += sp->bytesperline;
@@ -1341,6 +1412,7 @@ JPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 			return 0;
                 }
 #endif
+<<<<<<< HEAD
 
 		do {
 			jpeg_component_info *compptr;
@@ -1376,6 +1448,46 @@ JPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 					JDIMENSION nclump;
 #if defined(JPEG_LIB_MK1_OR_12BIT)
 					JSAMPLE *outptr = (JSAMPLE*)tmpbuf + clumpoffset;
+=======
+ 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        do {
+            jpeg_component_info *compptr;
+            int ci, clumpoffset;
+
+            /* Reload downsampled-data buffer if needed */
+            if (sp->scancount >= DCTSIZE) {
+                int n = sp->cinfo.d.max_v_samp_factor * DCTSIZE;
+                if (TIFFjpeg_read_raw_data(sp, sp->ds_buffer, n)
+                    != n)
+                    return (0);
+                sp->scancount = 0;
+            }
+            /*
+             * Fastest way to unseparate data is to make one pass
+             * over the scanline for each row of each component.
+             */
+            clumpoffset = 0;	/* first sample in clump */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+            for (ci = 0, compptr = sp->cinfo.d.comp_info;
+                 ci < sp->cinfo.d.num_components;
+                 ci++, compptr++) {
+                int hsamp = compptr->h_samp_factor;
+                int vsamp = compptr->v_samp_factor;
+                int ypos;
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+                for (ypos = 0; ypos < vsamp; ypos++) {
+                    JSAMPLE *inptr = sp->ds_buffer[ci][sp->scancount*vsamp + ypos];
+#ifdef JPEG_LIB_MK1
+                    JSAMPLE *outptr = (JSAMPLE*)tmpbuf + clumpoffset;
+>>>>>>> sync with upstream
 #else
 					JSAMPLE *outptr = (JSAMPLE*)buf + clumpoffset;
 					if (cc < (tmsize_t) (clumpoffset + samples_per_clump*(clumps_per_line-1) + hsamp)) {
@@ -1385,6 +1497,7 @@ JPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 					}
 #endif
 
+<<<<<<< HEAD
 					if (hsamp == 1) {
 						/* fast path for at least Cb and Cr */
 						for (nclump = clumps_per_line; nclump-- > 0; ) {
@@ -1432,6 +1545,70 @@ JPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 					}
 				}
 			}
+=======
+                    if (hsamp == 1) {
+                        /* fast path for at least Cb and Cr */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+                        for (nclump = clumps_per_line; nclump-- > 0; ) {
+                            outptr[0] = *inptr++;
+                            outptr += samples_per_clump;
+                        }
+                    } else {
+                        int xpos;
+
+                        /* general case */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+                        for (nclump = clumps_per_line; nclump-- > 0; ) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+                            for (xpos = 0; xpos < hsamp; xpos++)
+                                outptr[xpos] = *inptr++;
+                            outptr += samples_per_clump;
+                        }
+                    }
+                    clumpoffset += hsamp;
+                }
+            }
+
+#ifdef JPEG_LIB_MK1
+            {
+                if (sp->cinfo.d.data_precision == 8)
+                {
+                    int i=0;
+                    int len = sp->cinfo.d.output_width * sp->cinfo.d.num_components;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+                    for (i=0; i<len; i++)
+                    {
+                        ((unsigned char*)buf)[i] = tmpbuf[i] & 0xff;
+                    }
+                }
+                else
+                {         // 12-bit
+                    int value_pairs = (sp->cinfo.d.output_width
+                                       * sp->cinfo.d.num_components) / 2;
+                    int iPair;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+                    for( iPair = 0; iPair < value_pairs; iPair++ )
+                    {
+                        unsigned char *out_ptr = ((unsigned char *) buf) + iPair * 3;
+                        JSAMPLE *in_ptr = tmpbuf + iPair * 2;
+                        out_ptr[0] = (in_ptr[0] & 0xff0) >> 4;
+                        out_ptr[1] = ((in_ptr[0] & 0xf) << 4)
+                            | ((in_ptr[1] & 0xf00) >> 8);
+                        out_ptr[2] = ((in_ptr[1] & 0xff) >> 0);
+                    }
+                }
+            }
+>>>>>>> sync with upstream
 #endif
 
 			sp->scancount ++;
@@ -1805,6 +1982,7 @@ JPEGEncode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
         if( !isTiled(tif) && tif->tif_row+nrows > tif->tif_dir.td_imagelength )
             nrows = tif->tif_dir.td_imagelength - tif->tif_row;
 
+<<<<<<< HEAD
         if( sp->cinfo.c.data_precision == 12 )
         {
             line16_count = (sp->bytesperline * 2) / 3;
@@ -1812,6 +1990,11 @@ JPEGEncode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 	    // FIXME: undiagnosed malloc failure
         }
             
+=======
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+>>>>>>> sync with upstream
 	while (nrows-- > 0) {
 
             if( sp->cinfo.c.data_precision == 12 )
@@ -1884,12 +2067,22 @@ JPEGEncodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 	/* Cb,Cr both have sampling factors 1, so this is correct */
 	clumps_per_line = sp->cinfo.c.comp_info[1].downsampled_width;
 
+<<<<<<< HEAD
 	while (nrows > 0) {
+=======
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	while (nrows-- > 0) {
+>>>>>>> sync with upstream
 		/*
 		 * Fastest way to separate the data is to make one pass
 		 * over the scanline for each row of each component.
 		 */
 		clumpoffset = 0;		/* first sample in clump */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (ci = 0, compptr = sp->cinfo.c.comp_info;
 		     ci < sp->cinfo.c.num_components;
 		     ci++, compptr++) {
@@ -1897,24 +2090,39 @@ JPEGEncodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 		    int vsamp = compptr->v_samp_factor;
 		    int padding = (int) (compptr->width_in_blocks * DCTSIZE -
 					 clumps_per_line * hsamp);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		    for (ypos = 0; ypos < vsamp; ypos++) {
 			inptr = ((JSAMPLE*) buf) + clumpoffset;
 			outptr = sp->ds_buffer[ci][sp->scancount*vsamp + ypos];
 			if (hsamp == 1) {
 			    /* fast path for at least Cb and Cr */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			    for (nclump = clumps_per_line; nclump-- > 0; ) {
 				*outptr++ = inptr[0];
 				inptr += samples_per_clump;
 			    }
 			} else {
 			    /* general case */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			    for (nclump = clumps_per_line; nclump-- > 0; ) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (xpos = 0; xpos < hsamp; xpos++)
 				    *outptr++ = inptr[xpos];
 				inptr += samples_per_clump;
 			    }
 			}
 			/* pad each scanline as needed */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (xpos = 0; xpos < padding; xpos++) {
 			    *outptr = outptr[-1];
 			    outptr++;
@@ -1952,12 +2160,18 @@ JPEGPostEncode(TIFF* tif)
 		int ci, ypos, n;
 		jpeg_component_info* compptr;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (ci = 0, compptr = sp->cinfo.c.comp_info;
 		     ci < sp->cinfo.c.num_components;
 		     ci++, compptr++) {
 			int vsamp = compptr->v_samp_factor;
 			tmsize_t row_width = compptr->width_in_blocks * DCTSIZE
 				* sizeof(JSAMPLE);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (ypos = sp->scancount * vsamp;
 			     ypos < DCTSIZE * vsamp; ypos++) {
 				_TIFFmemcpy((void*)sp->ds_buffer[ci][ypos],
