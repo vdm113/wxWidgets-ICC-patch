@@ -127,6 +127,9 @@ bool wxOSXAudioToolboxSoundData::Play(unsigned flags)
 
     if ( sync )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while( m_soundID )
         {
             CFRunLoopRun();

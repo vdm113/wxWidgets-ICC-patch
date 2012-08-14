@@ -102,6 +102,9 @@ protected:
     {
         if ( m_mirror )
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int i = 0; i < n; i++ )
             {
                 Swap(points[i].x, points[i].y);
