@@ -709,6 +709,9 @@ int wxAuiGenericTabArt::ShowDropDown(wxWindow* wnd,
     wxMenu menuPopup;
 
     size_t i, count = pages.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < count; ++i)
     {
         const wxAuiNotebookPage& page = pages.Item(i);
@@ -765,6 +768,9 @@ int wxAuiGenericTabArt::GetBestTabCtrlSize(wxWindow* wnd,
 
     int max_y = 0;
     size_t i, page_count = pages.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < page_count; ++i)
     {
         wxAuiNotebookPage& page = pages.Item(i);
@@ -1195,6 +1201,9 @@ int wxAuiSimpleTabArt::ShowDropDown(wxWindow* wnd,
     wxMenu menuPopup;
 
     size_t i, count = pages.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < count; ++i)
     {
         const wxAuiNotebookPage& page = pages.Item(i);

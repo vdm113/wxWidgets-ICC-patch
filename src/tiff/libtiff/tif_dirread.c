@@ -99,6 +99,9 @@ TIFFReadDirectory(TIFF* tif)
 	 * with looped directory pointers. We will maintain a list of already
 	 * seen directories and check every IFD offset against this list.
 	 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (n = 0; n < tif->tif_dirnumber; n++) {
 		if (tif->tif_dirlist[n] == tif->tif_diroff)
 			return (0);
@@ -224,6 +227,9 @@ TIFFReadDirectory(TIFF* tif)
 	 * It sure would have been nice if Aldus had really thought
 	 * this stuff through carefully.
 	 */ 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (dp = dir, n = dircount; n > 0; n--, dp++) {
 		if (tif->tif_flags & TIFF_SWAB) {
 			TIFFSwabArrayOfShort(&dp->tdir_tag, 2);
@@ -239,6 +245,9 @@ TIFFReadDirectory(TIFF* tif)
 	 * First real pass over the directory.
 	 */
 	fix = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (dp = dir, n = dircount; n > 0; n--, dp++) {
 
 		if (fix >= tif->tif_nfields || dp->tdir_tag == IGNORE)
@@ -258,6 +267,9 @@ TIFFReadDirectory(TIFF* tif)
 			}
 			fix = 0;			/* O(n^2) */
 		}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (fix < tif->tif_nfields &&
 		       tif->tif_fieldinfo[fix]->field_tag < dp->tdir_tag)
 			fix++;
@@ -278,6 +290,9 @@ TIFFReadDirectory(TIFF* tif)
 						(TIFFDataType) dp->tdir_type),
 				       1 );
                     fix = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     while (fix < tif->tif_nfields &&
                            tif->tif_fieldinfo[fix]->field_tag < dp->tdir_tag)
 			fix++;
@@ -294,6 +309,9 @@ TIFFReadDirectory(TIFF* tif)
 		 * Check data type.
 		 */
 		fip = tif->tif_fieldinfo[fix];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (dp->tdir_type != (unsigned short) fip->field_type
                        && fix < tif->tif_nfields) {
 			if (fip->field_type == TIFF_ANY)	/* wildcard */
@@ -406,6 +424,9 @@ TIFFReadDirectory(TIFF* tif)
 	/*
 	 * Second pass: extract other information.
 	 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (dp = dir, n = dircount; n > 0; n--, dp++) {
 		if (dp->tdir_tag == IGNORE)
 			continue;
@@ -634,6 +655,9 @@ TIFFReadDirectory(TIFF* tif)
 		tstrip_t strip;
 
 		td->td_stripbytecountsorted = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (strip = 1; strip < td->td_nstrips; strip++) {
 			if (td->td_stripoffset[strip - 1] >
 			    td->td_stripoffset[strip]) {
@@ -773,6 +797,9 @@ TIFFReadCustomDirectory(TIFF* tif, toff_t diroff,
 	TIFFFreeDirectory(tif);
 
 	fix = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (dp = dir, i = dircount; i > 0; i--, dp++) {
 		if (tif->tif_flags & TIFF_SWAB) {
 			TIFFSwabArrayOfShort(&dp->tdir_tag, 2);
@@ -782,6 +809,9 @@ TIFFReadCustomDirectory(TIFF* tif, toff_t diroff,
 		if (fix >= tif->tif_nfields || dp->tdir_tag == IGNORE)
 			continue;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (fix < tif->tif_nfields &&
 		       tif->tif_fieldinfo[fix]->field_tag < dp->tdir_tag)
 			fix++;
@@ -801,6 +831,9 @@ TIFFReadCustomDirectory(TIFF* tif, toff_t diroff,
 					   1);
 
 			fix = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (fix < tif->tif_nfields &&
 			       tif->tif_fieldinfo[fix]->field_tag < dp->tdir_tag)
 				fix++;
@@ -817,6 +850,9 @@ TIFFReadCustomDirectory(TIFF* tif, toff_t diroff,
 		 * Check data type.
 		 */
 		fip = tif->tif_fieldinfo[fix];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (dp->tdir_type != (unsigned short) fip->field_type
                        && fix < tif->tif_nfields) {
 			if (fip->field_type == TIFF_ANY)	/* wildcard */
@@ -893,6 +929,9 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 		uint16 n;
 
 		/* calculate amount of space used by indirect values */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (dp = dir, n = dircount; n > 0; n--, dp++)
 		{
 			uint32 cc = TIFFDataWidth((TIFFDataType) dp->tdir_type);
@@ -909,6 +948,9 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 		space = filesize - space;
 		if (td->td_planarconfig == PLANARCONFIG_SEPARATE)
 			space /= td->td_samplesperpixel;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < td->td_nstrips; i++)
 			td->td_stripbytecount[i] = space;
 		/*
@@ -926,6 +968,9 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 	} else {
 		uint32 rowbytes = TIFFScanlineSize(tif);
 		uint32 rowsperstrip = td->td_imagelength/td->td_stripsperimage;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < td->td_nstrips; i++)
 			td->td_stripbytecount[i] = rowbytes*rowsperstrip;
 	}
@@ -1214,6 +1259,9 @@ TIFFFetchRationalArray(TIFF* tif, TIFFDirEntry* dir, float* v)
 	if (l) {
 		if (TIFFFetchData(tif, dir, (char *)l)) {
 			uint32 i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = 0; i < dir->tdir_count; i++) {
 				ok = cvtRational(tif, dir,
 				    l[2*i+0], l[2*i+1], &v[i]);
@@ -1280,10 +1328,16 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 			return (0);
 		if (dir->tdir_type == TIFF_BYTE) {
 			uint8* vp = (uint8*) v;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
 		} else {
 			int8* vp = (int8*) v;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
 		}
@@ -1294,10 +1348,16 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 			return (0);
 		if (dir->tdir_type == TIFF_SHORT) {
 			uint16* vp = (uint16*) v;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
 		} else {
 			int16* vp = (int16*) v;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
 		}
@@ -1308,10 +1368,16 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 			return (0);
 		if (dir->tdir_type == TIFF_LONG) {
 			uint32* vp = (uint32*) v;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
 		} else {
 			int32* vp = (int32*) v;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
 		}
@@ -1321,6 +1387,9 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 		if (!TIFFFetchRationalArray(tif, dir, (float*) v))
 			return (0);
 		{ float* vp = (float*) v;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		  for (i = dir->tdir_count-1; i >= 0; i--)
 			v[i] = vp[i];
 		}
@@ -1329,6 +1398,9 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 		if (!TIFFFetchFloatArray(tif, dir, (float*) v))
 			return (0);
 		{ float* vp = (float*) v;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		  for (i = dir->tdir_count-1; i >= 0; i--)
 			v[i] = vp[i];
 		}
@@ -1515,6 +1587,9 @@ TIFFFetchPerSampleShorts(TIFF* tif, TIFFDirEntry* dir, uint16* pl)
             if( samples < check_count )
                 check_count = samples;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 1; i < check_count; i++)
                 if (v[i] != v[0]) {
 					TIFFErrorExt(tif->tif_clientdata, tif->tif_name,
@@ -1556,6 +1631,9 @@ TIFFFetchPerSampleLongs(TIFF* tif, TIFFDirEntry* dir, uint32* pl)
 
             if( samples < check_count )
                 check_count = samples;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 1; i < check_count; i++)
                 if (v[i] != v[0]) {
 					TIFFErrorExt(tif->tif_clientdata, tif->tif_name,
@@ -1596,6 +1674,9 @@ TIFFFetchPerSampleAnys(TIFF* tif, TIFFDirEntry* dir, double* pl)
             if( samples < check_count )
                 check_count = samples;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 1; i < check_count; i++)
                 if (v[i] != v[0]) {
                     TIFFErrorExt(tif->tif_clientdata, tif->tif_name,
@@ -1647,6 +1728,9 @@ TIFFFetchStripThing(TIFF* tif, TIFFDirEntry* dir, long nstrips, uint32** lpp)
 		if( (status = TIFFFetchShortArray(tif, dir, dp)) != 0 ) {
                     int i;
                     
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for( i = 0; i < nstrips && i < (int) dir->tdir_count; i++ )
                     {
                         lp[i] = dp[i];
@@ -1666,6 +1750,9 @@ TIFFFetchStripThing(TIFF* tif, TIFFDirEntry* dir, long nstrips, uint32** lpp)
             if( status != 0 ) {
                 int i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for( i = 0; i < nstrips && i < (int) dir->tdir_count; i++ )
                 {
                     lp[i] = dp[i];
@@ -1701,6 +1788,9 @@ TIFFFetchRefBlackWhite(TIFF* tif, TIFFDirEntry* dir)
 		    _TIFFCheckMalloc(tif, dir->tdir_count, sizeof (float), mesg);
 		if( (ok = (fp != NULL)) != 0 ) {
 			uint32 i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = 0; i < dir->tdir_count; i++)
 				fp[i] = (float)((uint32*) cp)[i];
 			ok = TIFFSetField(tif, dir->tdir_tag, fp);
@@ -1772,6 +1862,9 @@ ChopUpSingleUncompressedStrip(TIFF* tif)
 	 * Fill the strip information arrays with new bytecounts and offsets
 	 * that reflect the broken-up format.
 	 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (strip = 0; strip < nstrips; strip++) {
 		if (stripbytes > (tsize_t) bytecount)
 			stripbytes = bytecount;

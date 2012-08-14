@@ -480,6 +480,9 @@ void wxFileName::SetPath( const wxString& pathOrig, wxPathFormat format )
 
     wxStringTokenizer tn( path, GetPathSeparators(format) );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( tn.HasMoreTokens() )
     {
         wxString token = tn.GetNextToken();
@@ -614,6 +617,9 @@ void RemoveTrailingSeparatorsFromPath(wxString& strPath)
     // so remove all trailing backslashes from the path - but don't do this for
     // the paths "d:\" (which are different from "d:"), for just "\" or for
     // windows unique volume names ("\\?\Volume{GUID}\")
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( wxEndsWithPathSeparator( strPath ) )
     {
         size_t len = strPath.length();
@@ -906,6 +912,9 @@ static wxString wxCreateTempImpl(
 #if defined(__WXWINCE__)
     path = dir + wxT("\\") + name;
     int i = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (wxFileName::FileExists(path))
     {
         path = dir + wxT("\\") + name ;
@@ -1002,6 +1011,9 @@ static wxString wxCreateTempImpl(
     wxString pathTry;
 
     static const size_t numTries = 1000;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < numTries; n++ )
     {
         // 3 hex digits is enough for numTries == 1000 < 4096
@@ -1282,6 +1294,9 @@ bool wxFileName::Mkdir( const wxString& dir, int perm, int flags )
 
         wxArrayString dirs = filename.GetDirs();
         size_t count = dirs.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t i = 0; i < count; i++ )
         {
             if ( i > 0 || filename.IsAbsolute() )
@@ -1361,6 +1376,9 @@ bool wxFileName::Rmdir(const wxString& dir, int flags)
 
         // first delete all subdirectories
         bool cont = d.GetFirst(&filename, "", wxDIR_DIRS | wxDIR_HIDDEN);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( cont )
         {
             wxFileName::Rmdir(path + filename, flags);
@@ -1372,6 +1390,9 @@ bool wxFileName::Rmdir(const wxString& dir, int flags)
         {
             // delete all files too
             cont = d.GetFirst(&filename, "", wxDIR_FILES | wxDIR_HIDDEN);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( cont )
             {
                 ::wxRemoveFile(path + filename);
@@ -1475,6 +1496,9 @@ bool wxFileName::Normalize(int flags,
     // now deal with ".", ".." and the rest
     m_dirs.Empty();
     size_t count = dirs.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         wxString dir = dirs[n];
@@ -1542,6 +1566,9 @@ bool wxFileName::Normalize(int flags,
 
         // directory entries must be made lower case as well
         count = m_dirs.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t i = 0; i < count; i++ )
         {
             m_dirs[i].MakeLower();
@@ -1736,6 +1763,9 @@ bool wxFileName::MakeRelativeTo(const wxString& pathBase, wxPathFormat format)
     m_volume.clear();
 
     // remove common directories starting at the top
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !m_dirs.IsEmpty() && !fnBase.m_dirs.IsEmpty() &&
                 m_dirs[0u].IsSameAs(fnBase.m_dirs[0u], withCase) )
     {
@@ -1745,6 +1775,9 @@ bool wxFileName::MakeRelativeTo(const wxString& pathBase, wxPathFormat format)
 
     // add as many ".." as needed
     size_t count = fnBase.m_dirs.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < count; i++ )
     {
         m_dirs.Insert(wxT(".."), 0u);
@@ -1935,6 +1968,9 @@ wxFileName::IsMSWUniqueVolumeNamePath(const wxString& path, wxPathFormat format)
     }
 
     const size_t len = dir.length();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < len; n++ )
     {
         if ( dir[n] == GetVolumeSeparator() || IsPathSeparator(dir[n]) )
@@ -2048,6 +2084,9 @@ wxString wxFileName::GetPath( int flags, wxPathFormat format ) const
     }
 
     const size_t dirCount = m_dirs.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < dirCount; i++ )
     {
         switch (format)
@@ -2212,6 +2251,9 @@ wxString wxFileName::GetLongPath() const
     wxString tmpPath;
 
     size_t count = dirs.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < count; i++ )
     {
         const wxString& dir = dirs[i];
@@ -2239,6 +2281,9 @@ wxString wxFileName::GetLongPath() const
         {
             // Error: most likely reason is that path doesn't exist, so
             // append any unprocessed parts and return
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( i += 1; i < count; i++ )
                 tmpPath += wxFILE_SEP_PATH + dirs[i];
 
@@ -2835,6 +2880,9 @@ void MacEnsureDefaultExtensionsLoaded()
     if ( !gMacDefaultExtensionsInited )
     {
         // we could load the pc exchange prefs here too
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t i = 0 ; i < WXSIZEOF( gDefaults ) ; ++i )
         {
             gMacDefaultExtensions.Add( gDefaults[i] ) ;
@@ -2899,6 +2947,9 @@ bool wxFileName::MacFindDefaultTypeAndCreator( const wxString& ext , wxUint32 *t
 {
   MacEnsureDefaultExtensionsLoaded() ;
   wxString extl = ext.Lower() ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for( int i = gMacDefaultExtensions.Count() - 1 ; i >= 0 ; --i )
   {
     if ( gMacDefaultExtensions.Item(i).m_ext == extl )
