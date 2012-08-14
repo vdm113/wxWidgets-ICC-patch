@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file LexA68k.cxx
  ** Lexer for Assembler, just for the MASM syntax
@@ -137,6 +144,9 @@ static void ColouriseA68kDoc (unsigned int startPos, int length, int initStyle, 
     *
     ************************************************************/
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ; sc.More(); sc.Forward())
     {
         char Buffer[100];

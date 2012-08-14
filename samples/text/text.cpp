@@ -347,6 +347,9 @@ private:
 
         text->Clear();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < 100; i++ )
         {
             text->AppendText(wxString::Format(wxT("Line %i\n"), i));
@@ -1641,9 +1644,15 @@ RichTextFrame::RichTextFrame(wxWindow* parent, const wxString& title):
 
     wxString value;
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 10; i++)
     {
         int j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0; j < 10; j++)
         {
             value << wxT("Hello, welcome to a very simple rich text editor. You can set some character and paragraph styles from the Edit menu. ");
@@ -1760,6 +1769,9 @@ void RichTextFrame::OnChangeTextColour(wxCommandEvent& WXUNUSED(event))
     wxColourData data;
     data.SetColour(* wxBLACK);
     data.SetChooseFull(true);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < 16; i++)
     {
         wxColour colour((unsigned char)(i*16), (unsigned char)(i*16), (unsigned char)(i*16));
@@ -1789,6 +1801,9 @@ void RichTextFrame::OnChangeBackgroundColour(wxCommandEvent& WXUNUSED(event))
     wxColourData data;
     data.SetColour(* wxWHITE);
     data.SetChooseFull(true);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < 16; i++)
     {
         wxColour colour((unsigned char)(i*16), (unsigned char)(i*16), (unsigned char)(i*16));
@@ -1874,6 +1889,9 @@ void RichTextFrame::OnTabStops(wxCommandEvent& WXUNUSED(event))
     wxArrayInt tabs;
 
     wxStringTokenizer tokens(tabsStr, wxT(" "));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (tokens.HasMoreTokens())
     {
         wxString token = tokens.GetNextToken();

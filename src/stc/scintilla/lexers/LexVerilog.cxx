@@ -57,6 +57,9 @@ static void ColouriseVerilogDoc(unsigned int startPos, int length, int initStyle
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.atLineStart && (sc.state == SCE_V_STRING)) {
@@ -142,6 +145,9 @@ static void ColouriseVerilogDoc(unsigned int startPos, int length, int initStyle
 			} else if (sc.ch == '`') {
 				sc.SetState(SCE_V_PREPROCESSOR);
 				// Skip whitespace between ` and preprocessor word
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				do {
 					sc.Forward();
 				} while ((sc.ch == ' ' || sc.ch == '\t') && sc.More());
@@ -163,6 +169,9 @@ static bool IsStreamCommentStyle(int style) {
 static bool IsCommentLine(int line, Accessor &styler) {
 	int pos = styler.LineStart(line);
 	int eolPos = styler.LineStart(line + 1) - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = pos; i < eolPos; i++) {
 		char ch = styler[i];
 		char chNext = styler.SafeGetCharAt(i + 1);
@@ -206,6 +215,9 @@ static void FoldNoBoxVerilogDoc(unsigned int startPos, int length, int initStyle
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
 	int style = initStyle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -243,6 +255,9 @@ static void FoldNoBoxVerilogDoc(unsigned int startPos, int length, int initStyle
 		if (foldPreprocessor && (style == SCE_V_PREPROCESSOR)) {
 			if (ch == '`') {
 				unsigned int j = i + 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while ((j < endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
 					j++;
 				}

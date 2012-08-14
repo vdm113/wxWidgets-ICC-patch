@@ -235,6 +235,9 @@ void FormatConverterTestCase::testLonger()
     size_t i, j;
 
     // test all possible pairs of the above patterns
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < WXSIZEOF(formats); i++) {
         if (formats[i].input) {
             wxString input(formats[i].input);
@@ -243,6 +246,9 @@ void FormatConverterTestCase::testLonger()
             wxString expectedWcharUnix(formats[i].expectedWcharUnix);
             wxString expectedWcharWindows(formats[i].expectedWcharWindows);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j = 0; j < WXSIZEOF(formats); j++)
                 if (formats[j].input)
                     check(input + formats[j].input,
@@ -274,7 +280,13 @@ void FormatConverterTestCase::doTest(const char *input,
     wxString fmt(wxT("%"));
 
     // try the test for a variety of combinations of flag, width and precision
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (const wxChar **prec = precs; *prec; prec++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (const wxChar **width = flag_width; *width; width++)
             check(fmt + *width + *prec + input,
                   fmt + *width + *prec + expectedScanf,
