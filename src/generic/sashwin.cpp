@@ -387,6 +387,9 @@ wxSashEdgePosition wxSashWindow::SashHitTest(int x, int y, int WXUNUSED(toleranc
     GetClientSize(& cx, & cy);
 
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 4; i++)
     {
         wxSashEdge& edge = m_sashes[i];
@@ -474,6 +477,9 @@ void wxSashWindow::DrawBorders(wxDC& dc)
 void wxSashWindow::DrawSashes(wxDC& dc)
 {
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 4; i++)
         if (m_sashes[i].m_show)
             DrawSash((wxSashEdgePosition) i, dc);

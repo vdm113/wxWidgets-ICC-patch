@@ -258,6 +258,9 @@ void wxGridCellEnumRenderer::SetParameters(const wxString& params)
     m_choices.Empty();
 
     wxStringTokenizer tk(params, wxT(','));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( tk.HasMoreTokens() )
     {
         m_choices.Add(tk.GetNextToken());
@@ -315,6 +318,9 @@ wxGridCellAutoWrapStringRenderer::GetTextLines(wxGrid& grid,
     wxStringTokenizer tk(data , wxT(" \n\t\r"));
     wxString thisline = wxEmptyString;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( tk.HasMoreTokens() )
     {
         wxString tok = tk.GetNextToken();
@@ -371,6 +377,9 @@ wxGridCellAutoWrapStringRenderer::GetBestSize(wxGrid& grid,
     // M is a nice large character 'y' gives descender!.
     dc.GetTextExtent(wxT("My"), &x, &y);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
         width+=10;
@@ -433,6 +442,9 @@ wxSize wxGridCellStringRenderer::DoGetBestSize(const wxGridCellAttr& attr,
     wxCoord x = 0, y = 0, max_x = 0;
     dc.SetFont(attr.GetFont());
     wxStringTokenizer tk(text, wxT('\n'));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( tk.HasMoreTokens() )
     {
         dc.GetTextExtent(tk.GetNextToken(), &x, &y);
@@ -479,9 +491,15 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
         if ((best_width > rectCell.width) && (col < cols) && grid.GetTable())
         {
             int i, c_cols, c_rows;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = col+cell_cols; i < cols; i++)
             {
                 bool is_empty = true;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int j=row; j < row + cell_rows; j++)
                 {
                     // check w/ anchor cell for multicell block
@@ -523,6 +541,9 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
             int col_end = col + cell_cols + overflowCols;
             if (col_end >= grid.GetNumberCols())
                 col_end = grid.GetNumberCols() - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int i = col + cell_cols; i <= col_end; i++)
             {
                 clip.width = grid.GetColSize(i) - 1;

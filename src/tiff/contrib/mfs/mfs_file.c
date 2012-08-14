@@ -138,6 +138,9 @@ int mfs_open (void *buffer, int size, char *mode)
 
     /* Find a free fd */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < MAX_BUFFS; i++)
     {
         if (fds[i] == -1)
@@ -575,6 +578,9 @@ static void mem_init ()
 {
     int i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < MAX_BUFFS; i++)
     {
         fds[i] = -1;

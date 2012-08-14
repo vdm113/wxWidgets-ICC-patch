@@ -127,6 +127,9 @@ main()
 		goto failure;
 	}
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < NSINGLETAGS; i++) {
 		if (!TIFFSetField(tif, short_single_tags[i].tag,
 				  short_single_tags[i].value)) {
@@ -182,6 +185,9 @@ main()
 	if (CheckShortField(tif, TIFFTAG_PLANARCONFIG, planarconfig) < 0)
 		goto failure;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < NSINGLETAGS; i++) {
 		if (CheckShortField(tif, short_single_tags[i].tag,
 				    short_single_tags[i].value) < 0)
