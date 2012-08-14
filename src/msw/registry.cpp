@@ -183,6 +183,9 @@ wxRegKey::StdKey wxRegKey::ExtractKeyName(wxString& strKey)
   wxString strRoot = strKey.BeforeFirst(REG_SEPARATOR);
 
   size_t ui;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for ( ui = 0; ui < nStdKeys; ui++ ) {
     if ( strRoot.CmpNoCase(aStdKeys[ui].szName) == 0 ||
          strRoot.CmpNoCase(aStdKeys[ui].szShortName) == 0 ) {
@@ -206,6 +209,9 @@ wxRegKey::StdKey wxRegKey::ExtractKeyName(wxString& strKey)
 
 wxRegKey::StdKey wxRegKey::GetStdKeyFromHkey(WXHKEY hkey)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for ( size_t ui = 0; ui < nStdKeys; ui++ ) {
     if ( aStdKeys[ui].hkey == (HKEY)hkey )
       return (StdKey)ui;
@@ -674,6 +680,9 @@ bool wxRegKey::Copy(wxRegKey& keyDst)
     wxString strKey;
     long lIndex;
     bool bCont = GetFirstKey(strKey, lIndex);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( ok && bCont ) {
         wxRegKey key(*this, strKey);
         wxString keyName;
@@ -691,6 +700,9 @@ bool wxRegKey::Copy(wxRegKey& keyDst)
     // copy all values
     wxString strVal;
     bCont = GetFirstValue(strVal, lIndex);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( ok && bCont ) {
         ok = CopyValue(strVal, keyDst);
 
@@ -744,6 +756,9 @@ bool wxRegKey::DeleteSelf()
   wxString strKey;
   long lIndex;
   bool bCont = GetFirstKey(strKey, lIndex);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while ( bCont ) {
     astrSubkeys.Add(strKey);
 
@@ -751,6 +766,9 @@ bool wxRegKey::DeleteSelf()
   }
 
   size_t nKeyCount = astrSubkeys.Count();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for ( size_t nKey = 0; nKey < nKeyCount; nKey++ ) {
     wxRegKey key(*this, astrSubkeys[nKey]);
     if ( !key.DeleteSelf() )
@@ -1277,6 +1295,9 @@ FormatAsHex(const void *data,
     // write all the rest as comma-separated bytes
     value.reserve(3*size + 10);
     const char * const p = static_cast<const char *>(data);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < size; n++ )
     {
         // TODO: line wrapping: although not required by regedit, this makes
@@ -1316,6 +1337,9 @@ wxString wxRegKey::FormatValue(const wxString& name) const
 
                 // there can be no NULs here
                 bool useHex = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( wxString::const_iterator p = value.begin();
                       p != value.end() && !useHex; ++p )
                 {
@@ -1445,6 +1469,9 @@ bool wxRegKey::DoExport(wxOutputStream& ostr) const
     wxString name;
     wxRegKey& self = const_cast<wxRegKey&>(*this);
     bool cont = self.GetFirstValue(name, dummy);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( cont )
     {
         if ( !DoExportValue(ostr, name) )
@@ -1459,6 +1486,9 @@ bool wxRegKey::DoExport(wxOutputStream& ostr) const
 
     // recurse to subkeys
     cont = self.GetFirstKey(name, dummy);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( cont )
     {
         wxRegKey subkey(*this, name);

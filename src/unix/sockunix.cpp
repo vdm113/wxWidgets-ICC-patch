@@ -130,6 +130,9 @@ int wxSocketImplUnix::CheckForInput()
 {
     char c;
     int rc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
         rc = recv(m_fd, &c, 1, MSG_PEEK);

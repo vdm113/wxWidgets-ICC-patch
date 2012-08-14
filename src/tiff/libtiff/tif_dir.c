@@ -90,6 +90,9 @@ setExtraSamples(TIFFDirectory* td, va_list ap, uint32* v)
 	va = va_arg(ap, uint16*);
 	if (*v > 0 && va == NULL)		/* typically missing param */
 		return (0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < *v; i++)
 		if (va[i] > EXTRASAMPLE_UNASSALPHA)
 			return (0);
@@ -107,7 +110,13 @@ checkInkNamesString(TIFF* tif, uint32 slen, const char* s)
 	if (slen > 0) {
 		const char* ep = s+slen;
 		const char* cp = s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (; i > 0; i--) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (; *cp != '\0'; cp++)
 				if (cp >= ep)
 					goto bad;
@@ -366,6 +375,9 @@ _TIFFVSetField(TIFF* tif, ttag_t tag, va_list ap)
 		break;
 	case TIFFTAG_TRANSFERFUNCTION:
 		v = (td->td_samplesperpixel - td->td_extrasamples) > 1 ? 3 : 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < v; i++)
 			_TIFFsetShortArray(&td->td_transferfunction[i],
 			    va_arg(ap, uint16*), 1L<<td->td_bitspersample);
@@ -407,6 +419,9 @@ _TIFFVSetField(TIFF* tif, ttag_t tag, va_list ap)
              * Find the existing entry for this custom value.
              */
             tv = NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(iCustom = 0; iCustom < td->td_customValueCount; iCustom++) {
                 if(td->td_customValues[iCustom].info == fip) {
                     tv = td->td_customValues + iCustom;
@@ -505,6 +520,9 @@ _TIFFVSetField(TIFF* tif, ttag_t tag, va_list ap)
 		    int i;
 		    char *val = (char *)tv->value;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		    for (i = 0; i < tv->count; i++, val += tv_size) {
 			    switch (fip->field_type) {
 				case TIFF_BYTE:
@@ -834,6 +852,9 @@ _TIFFVGetField(TIFF* tif, ttag_t tag, va_list ap)
 	     * Do we have a custom value?
 	     */
             ret_val = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < td->td_customValueCount; i++) {
 		TIFFTagValue *tv = td->td_customValues + i;
 
@@ -863,6 +884,9 @@ _TIFFVGetField(TIFF* tif, ttag_t tag, va_list ap)
 			    int j;
 			    char *val = (char *)tv->value;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			    for (j = 0; j < tv->count;
 				 j++, val += _TIFFDataSize(tv->info->field_type)) {
 				switch (fip->field_type) {
@@ -986,6 +1010,9 @@ TIFFFreeDirectory(TIFF* tif)
 	TIFFClrFieldBit(tif, FIELD_YCBCRPOSITIONING);
 
 	/* Cleanup custom tag values */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for( i = 0; i < td->td_customValueCount; i++ ) {
 		if (td->td_customValues[i].value)
 			_TIFFfree(td->td_customValues[i].value);
@@ -1158,6 +1185,9 @@ TIFFNumberOfDirectories(TIFF* tif)
     toff_t nextdir = tif->tif_header.tiff_diroff;
     tdir_t n = 0;
     
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (nextdir != 0 && TIFFAdvanceDirectory(tif, &nextdir, NULL))
         n++;
     return (n);
@@ -1174,6 +1204,9 @@ TIFFSetDirectory(TIFF* tif, tdir_t dirn)
 	tdir_t n;
 
 	nextdir = tif->tif_header.tiff_diroff;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (n = dirn; n > 0 && nextdir != 0; n--)
 		if (!TIFFAdvanceDirectory(tif, &nextdir, NULL))
 			return (0);
@@ -1252,6 +1285,9 @@ TIFFUnlinkDirectory(TIFF* tif, tdir_t dirn)
 	 */
 	nextdir = tif->tif_header.tiff_diroff;
 	off = sizeof (uint16) + sizeof (uint16);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (n = dirn-1; n > 0; n--) {
 		if (nextdir == 0) {
 			TIFFErrorExt(tif->tif_clientdata, module, "Directory %d does not exist", dirn);
@@ -1325,6 +1361,9 @@ TIFFReassignTagToIgnore (enum TIFFIgnoreSense task, int TIFFtagID)
       case TIS_STORE:
         if ( tagcount < (FIELD_LAST - 1) )
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( j = 0 ; j < tagcount ; ++j )
             {					/* Do not add duplicate tag */
                 if ( TIFFignoretags [j] == TIFFtagID )
@@ -1336,6 +1375,9 @@ TIFFReassignTagToIgnore (enum TIFFIgnoreSense task, int TIFFtagID)
         break ;
         
       case TIS_EXTRACT:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0 ; i < tagcount ; ++i )
         {
             if ( TIFFignoretags [i] == TIFFtagID )
