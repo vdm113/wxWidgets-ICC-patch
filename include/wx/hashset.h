@@ -198,6 +198,7 @@ public:                                                                      \
 #define WX_CLEAR_HASH_SET(type, hashset)                                     \
     {                                                                        \
         type::iterator it, en;                                               \
+MY_MACRO_PRAGMA_IVDEP \
         for( it = (hashset).begin(), en = (hashset).end(); it != en; ++it )  \
             delete *it;                                                      \
         (hashset).clear();                                                   \

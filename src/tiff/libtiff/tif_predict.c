@@ -237,6 +237,9 @@ horAcc8(TIFF* tif, tidata_t cp0, tsize_t cc)
 			unsigned int cr = cp[0];
 			unsigned int cg = cp[1];
 			unsigned int cb = cp[2];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			do {
 				cc -= 3, cp += 3;
 				cp[0] = (char) (cr += cp[0]);
@@ -248,6 +251,9 @@ horAcc8(TIFF* tif, tidata_t cp0, tsize_t cc)
 			unsigned int cg = cp[1];
 			unsigned int cb = cp[2];
 			unsigned int ca = cp[3];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			do {
 				cc -= 4, cp += 4;
 				cp[0] = (char) (cr += cp[0]);
@@ -256,6 +262,9 @@ horAcc8(TIFF* tif, tidata_t cp0, tsize_t cc)
 				cp[3] = (char) (ca += cp[3]);
 			} while ((int32) cc > 0);
 		} else  {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			do {
 				REPEAT4(stride, cp[stride] =
 					(char) (cp[stride] + *cp); cp++)
@@ -275,6 +284,9 @@ swabHorAcc16(TIFF* tif, tidata_t cp0, tsize_t cc)
 	if (wc > stride) {
 		TIFFSwabArrayOfShort(wp, wc);
 		wc -= stride;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
 			REPEAT4(stride, wp[stride] += wp[0]; wp++)
 			wc -= stride;
@@ -291,6 +303,9 @@ horAcc16(TIFF* tif, tidata_t cp0, tsize_t cc)
 
 	if (wc > stride) {
 		wc -= stride;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
 			REPEAT4(stride, wp[stride] += wp[0]; wp++)
 			wc -= stride;
@@ -314,6 +329,9 @@ fpAcc(TIFF* tif, tidata_t cp0, tsize_t cc)
 	if (!tmp)
 		return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (count > stride) {
 		REPEAT4(stride, cp[stride] += cp[0]; cp++)
 		count -= stride;
@@ -321,8 +339,14 @@ fpAcc(TIFF* tif, tidata_t cp0, tsize_t cc)
 
 	_TIFFmemcpy(tmp, cp0, cc);
 	cp = (uint8 *) cp0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (count = 0; count < wc; count++) {
 		uint32 byte;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (byte = 0; byte < bps; byte++) {
 #ifdef WORDS_BIGENDIAN
 			cp[bps * count + byte] = tmp[byte * wc + count];
@@ -373,6 +397,9 @@ PredictorDecodeTile(TIFF* tif, tidata_t op0, tsize_t occ0, tsample_t s)
 		tsize_t rowsize = sp->rowsize;
 		assert(rowsize > 0);
 		assert(sp->pfunc != NULL);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while ((long)occ0 > 0) {
 			(*sp->pfunc)(tif, op0, (tsize_t) rowsize);
 			occ0 -= rowsize;
@@ -400,6 +427,9 @@ horDiff8(TIFF* tif, tidata_t cp0, tsize_t cc)
 			int r2 = cp[0];
 			int g2 = cp[1];
 			int b2 = cp[2];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			do {
 				r1 = cp[3]; cp[3] = r1-r2; r2 = r1;
 				g1 = cp[4]; cp[4] = g1-g2; g2 = g1;
@@ -412,6 +442,9 @@ horDiff8(TIFF* tif, tidata_t cp0, tsize_t cc)
 			int g2 = cp[1];
 			int b2 = cp[2];
 			int a2 = cp[3];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			do {
 				r1 = cp[4]; cp[4] = r1-r2; r2 = r1;
 				g1 = cp[5]; cp[5] = g1-g2; g2 = g1;
@@ -421,6 +454,9 @@ horDiff8(TIFF* tif, tidata_t cp0, tsize_t cc)
 			} while ((int32)(cc -= 4) > 0);
 		} else {
 			cp += cc - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			do {
 				REPEAT4(stride, cp[stride] -= cp[0]; cp--)
 			} while ((int32)(cc -= stride) > 0);
@@ -439,6 +475,9 @@ horDiff16(TIFF* tif, tidata_t cp0, tsize_t cc)
 	if (wc > stride) {
 		wc -= stride;
 		wp += wc - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
 			REPEAT4(stride, wp[stride] -= wp[0]; wp--)
 			wc -= stride;
@@ -463,8 +502,14 @@ fpDiff(TIFF* tif, tidata_t cp0, tsize_t cc)
 		return;
 
 	_TIFFmemcpy(tmp, cp0, cc);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (count = 0; count < wc; count++) {
 		uint32 byte;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (byte = 0; byte < bps; byte++) {
 #ifdef WORDS_BIGENDIAN
 			cp[byte * wc + count] =	tmp[bps * count + byte];
@@ -478,6 +523,9 @@ fpDiff(TIFF* tif, tidata_t cp0, tsize_t cc)
 
 	cp = (uint8 *) cp0;
 	cp += cc - stride - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (count = cc; count > stride; count -= stride)
 		REPEAT4(stride, cp[stride] -= cp[0]; cp--)
 }
@@ -509,6 +557,9 @@ PredictorEncodeTile(TIFF* tif, tidata_t bp0, tsize_t cc0, tsample_t s)
 
 	rowsize = sp->rowsize;
 	assert(rowsize > 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((long)cc > 0) {
 		(*sp->pfunc)(tif, bp, (tsize_t) rowsize);
 		cc -= rowsize;
