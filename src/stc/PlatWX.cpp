@@ -427,8 +427,14 @@ wxBitmap BitmapFromRGBAImage(int width, int height, const unsigned char *pixelsI
     wxAlphaPixelData pixData(bmp);
 
     wxAlphaPixelData::Iterator p(pixData);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (y=0; y<height; y++) {
         p.MoveTo(pixData, 0, y);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (x=0; x<width; x++) {
             unsigned char red   = *pixelsImage++;
             unsigned char green = *pixelsImage++;
@@ -530,6 +536,9 @@ void SurfaceImpl::MeasureWidths(Font &font, const char *s, int len, XYPOSITION *
     // so figure it out and fix it!
     size_t i = 0;
     size_t ui = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((int)i < len) {
         unsigned char uch = (unsigned char)s[i];
         positions[i++] = tpos[ui];
@@ -1261,6 +1270,9 @@ void ListBoxImpl::SetList(const char* list, char separator, char typesep) {
     GETLB(wid)->Freeze();
     Clear();
     wxStringTokenizer tkzr(stc2wx(list), (wxChar)separator);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( tkzr.HasMoreTokens() ) {
         wxString token = tkzr.GetNextToken();
         long type = -1;

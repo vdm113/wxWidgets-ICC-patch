@@ -131,6 +131,9 @@ void wxObjectWriter::FindConnectEntry(const wxEvtHandler * evSource,
 
     if ( dynamicEvents )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxList::const_iterator node = dynamicEvents->begin(); node != dynamicEvents->end(); ++node )
         {
             wxDynamicEventTableEntry *entry = (wxDynamicEventTableEntry*)(*node);
@@ -144,6 +147,9 @@ void wxObjectWriter::FindConnectEntry(const wxEvtHandler * evSource,
                 sink = entry->m_fn->GetEvtHandler();
                 const wxClassInfo* sinkClassInfo = sink->GetClassInfo();
                 const wxHandlerInfo* sinkHandler = sinkClassInfo->GetFirstHandler();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while ( sinkHandler )
                 {
                     if ( sinkHandler->GetEventFunction() == entry->m_fn->GetEvtMethod() )
@@ -164,6 +170,9 @@ void wxObjectWriter::WriteAllProperties( const wxObject * obj, const wxClassInfo
 {
     wxPropertyInfoMap map;
     ci->GetProperties( map );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < ci->GetCreateParamCount(); ++i )
     {
         wxString name = ci->GetCreateParamName(i);
@@ -180,6 +189,9 @@ void wxObjectWriter::WriteAllProperties( const wxObject * obj, const wxClassInfo
         map.erase( name );
     }
     { // Extra block for broken compilers
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( wxPropertyInfoMap::iterator iter = map.begin(); iter != map.end(); ++iter )
         {
             const wxPropertyInfo* prop = iter->second;
@@ -190,6 +202,9 @@ void wxObjectWriter::WriteAllProperties( const wxObject * obj, const wxClassInfo
         }
     }
     { // Extra block for broken compilers
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( wxPropertyInfoMap::iterator iter = map.begin(); iter != map.end(); ++iter )
         {
             const wxPropertyInfo* prop = iter->second;
@@ -244,6 +259,9 @@ void wxObjectWriter::WriteOneProperty( const wxObject *obj, const wxClassInfo* c
         if ( !data.empty() )
         {
             DoBeginWriteProperty( pi );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( wxAnyList::const_iterator iter = data.begin(); iter != data.end(); ++iter )
             {
                 DoBeginWriteElement();
@@ -521,6 +539,9 @@ void wxObjectRuntimeReaderCallback::CreateObject(int objectID,
 {
     wxObject *o;
     o = m_data->GetObject(objectID);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < paramCount; ++i )
     {
         if ( objectIdValues[i] != wxInvalidObjectID )
@@ -549,6 +570,9 @@ void wxObjectRuntimeReaderCallback::ConstructObject(int objectID,
                                         wxStringToAnyHashMap &WXUNUSED(metadata))
 {
     wxObject *o;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < paramCount; ++i )
     {
         if ( objectIdValues[i] != wxInvalidObjectID )
@@ -634,6 +658,9 @@ void wxObjectRuntimeReaderCallback::SetConnect(int eventSourceObjectID,
         }
         else
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( wxEventType iter = delegateTypeInfo->GetEventType(); 
                   iter <= delegateTypeInfo->GetLastEventType(); ++iter )
             {

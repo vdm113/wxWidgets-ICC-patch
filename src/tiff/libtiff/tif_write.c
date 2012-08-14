@@ -658,6 +658,9 @@ TIFFAppendToStrip(TIFF* tif, tstrip_t strip, tidata_t data, tsize_t cc)
 				}
 			} else {
 				tstrip_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (i = 0; i < td->td_nstrips; i++) {
 					if (td->td_stripoffset[i] > 
 						td->td_stripoffset[strip]
