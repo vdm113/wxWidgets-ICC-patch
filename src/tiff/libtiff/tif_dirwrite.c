@@ -141,6 +141,9 @@ _TIFFWriteDirectory(TIFF* tif, int done)
 	 * in-place in each field.
 	 */
 	nfields = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (b = 0; b <= FIELD_LAST; b++)
 		if (TIFFFieldSet(tif, b) && b != FIELD_CUSTOM)
 			nfields += (b < FIELD_SUBFILETYPE ? 2 : 1);
@@ -180,6 +183,9 @@ _TIFFWriteDirectory(TIFF* tif, int done)
 		nfields--;
 		dirsize -= sizeof (TIFFDirEntry);
 	}								/*XXX*/
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (fi = 0, nfi = tif->tif_nfields; nfi > 0; nfi--, fi++) {
 		const TIFFFieldInfo* fip = tif->tif_fieldinfo[fi];
 
@@ -192,6 +198,9 @@ _TIFFWriteDirectory(TIFF* tif, int done)
                 {
                     int ci, is_set = FALSE;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for( ci = 0; ci < td->td_customValueCount; ci++ )
                         is_set |= (td->td_customValues[ci].info == fip);
 
@@ -373,6 +382,9 @@ _TIFFWriteDirectory(TIFF* tif, int done)
 		 * we do this byte-swapping; i.e. they only
 		 * byte-swap indirect data.
 		 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (dir = (TIFFDirEntry*) data; dircount; dir++, dircount--) {
 			TIFFSwabArrayOfShort(&dir->tdir_tag, 2);
 			TIFFSwabArrayOfLong(&dir->tdir_count, 2);
@@ -702,6 +714,9 @@ TIFFWritePerSampleShorts(TIFF* tif, ttag_t tag, TIFFDirEntry* dir)
 		}
 	}
 	TIFFGetField(tif, tag, &v);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < samples; i++)
 		w[i] = v;
 	
@@ -737,6 +752,9 @@ TIFFWritePerSampleAnys(TIFF* tif,
 		}
 	}
 	TIFFGetField(tif, tag, &v);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < samples; i++)
 		w[i] = v;
 	status = TIFFWriteAnyArray(tif, type, tag, dir, samples, w);
@@ -779,6 +797,9 @@ TIFFWriteShortTable(TIFF* tif,
 	/* XXX -- yech, fool TIFFWriteData */
 	dir->tdir_count = (uint32) (1L<<tif->tif_dir.td_bitspersample);
 	off = tif->tif_dataoff;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < n; i++)
 		if (!TIFFWriteData(tif, dir, (char *)table[i]))
 			return (0);
@@ -854,6 +875,9 @@ TIFFWriteRationalArray(TIFF* tif, TIFFDirEntry* dir, float* v)
 		    "No space to write RATIONAL array");
 		return (0);
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < dir->tdir_count; i++) {
 		float fv = v[i];
 		int sign = 1;
@@ -871,6 +895,9 @@ TIFFWriteRationalArray(TIFF* tif, TIFFDirEntry* dir, float* v)
 		}
 		den = 1L;
 		if (fv > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (fv < 1L<<(31-3) && den < 1L<<(31-3))
 				fv *= 1<<3, den *= 1L<<3;
 		}
@@ -934,6 +961,9 @@ TIFFWriteAnyArray(TIFF* tif,
 	case TIFF_BYTE:
 		{ 
 			uint8* bp = (uint8*) w;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = 0; i < (int) n; i++)
 				bp[i] = (uint8) v[i];
 			if (!TIFFWriteByteArray(tif, dir, (char*) bp))
@@ -943,6 +973,9 @@ TIFFWriteAnyArray(TIFF* tif,
 	case TIFF_SBYTE:
 		{ 
 			int8* bp = (int8*) w;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = 0; i < (int) n; i++)
 				bp[i] = (int8) v[i];
 			if (!TIFFWriteByteArray(tif, dir, (char*) bp))
@@ -952,6 +985,9 @@ TIFFWriteAnyArray(TIFF* tif,
 	case TIFF_SHORT:
 		{
 			uint16* bp = (uint16*) w;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = 0; i < (int) n; i++)
 				bp[i] = (uint16) v[i];
 			if (!TIFFWriteShortArray(tif, dir, (uint16*)bp))
@@ -961,6 +997,9 @@ TIFFWriteAnyArray(TIFF* tif,
 	case TIFF_SSHORT:
 		{ 
 			int16* bp = (int16*) w;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = 0; i < (int) n; i++)
 				bp[i] = (int16) v[i];
 			if (!TIFFWriteShortArray(tif, dir, (uint16*)bp))
@@ -970,6 +1009,9 @@ TIFFWriteAnyArray(TIFF* tif,
 	case TIFF_LONG:
 		{
 			uint32* bp = (uint32*) w;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = 0; i < (int) n; i++)
 				bp[i] = (uint32) v[i];
 			if (!TIFFWriteLongArray(tif, dir, bp))
@@ -979,6 +1021,9 @@ TIFFWriteAnyArray(TIFF* tif,
 	case TIFF_SLONG:
 		{
 			int32* bp = (int32*) w;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = 0; i < (int) n; i++)
 				bp[i] = (int32) v[i];
 			if (!TIFFWriteLongArray(tif, dir, (uint32*) bp))
@@ -988,6 +1033,9 @@ TIFFWriteAnyArray(TIFF* tif,
 	case TIFF_FLOAT:
 		{ 
 			float* bp = (float*) w;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = 0; i < (int) n; i++)
 				bp[i] = (float) v[i];
 			if (!TIFFWriteFloatArray(tif, dir, bp))
@@ -1126,6 +1174,9 @@ TIFFRewriteDirectory( TIFF *tif )
         toff_t  nextdir, off;
 
 	nextdir = tif->tif_header.tiff_diroff;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 		uint16 dircount;
 
@@ -1219,6 +1270,9 @@ TIFFLinkDirectory(TIFF* tif)
 	 * Not the first directory, search to the last and append.
 	 */
 	nextdir = tif->tif_header.tiff_diroff;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 		uint16 dircount;
 
