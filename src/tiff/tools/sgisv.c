@@ -66,6 +66,9 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((c = getopt(argc, argv, "c:p:r:")) != -1)
 		switch (c) {
 		case 'b':		/* save as b&w */
@@ -152,6 +155,9 @@ usage(void)
 	int i;
 
 	setbuf(stderr, buf);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);
@@ -166,6 +172,9 @@ svRGBSeparate(TIFF* tif, u_long* ss, int xsize, int ysize)
 	u_char *bbuf = gbuf + stripsize;
 	register int y;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (y = 0; y <= ysize; y += rowsperstrip) {
 		u_char *rp, *gp, *bp;
 		register int x;
@@ -175,7 +184,13 @@ svRGBSeparate(TIFF* tif, u_long* ss, int xsize, int ysize)
 		if (n > ysize-y+1)
 			n = ysize-y+1;
 		rp = rbuf; gp = gbuf; bp = bbuf;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (x = 0; x <= xsize; x++) {
 				u_long v = ss[x];
 				rp[x] = v;
@@ -205,6 +220,9 @@ svRGBContig(TIFF* tif, u_long* ss, int xsize, int ysize)
 	tsize_t stripsize = TIFFStripSize(tif);
 	u_char *strip = (u_char *)_TIFFmalloc(stripsize);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (y = 0; y <= ysize; y += rowsperstrip) {
 		register u_char *pp = strip;
 		register uint32 n;
@@ -212,7 +230,13 @@ svRGBContig(TIFF* tif, u_long* ss, int xsize, int ysize)
 		n = rowsperstrip;
 		if (n > ysize-y+1)
 			n = ysize-y+1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (x = 0; x <= xsize; x++) {
 				u_long v = ss[x];
 				pp[0] = v;
@@ -243,7 +267,13 @@ svGrey(TIFF* tif, u_long* ss, int xsize, int ysize)
 	register int x, y;
 	u_char *buf = (u_char *)_TIFFmalloc(TIFFScanlineSize(tif));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (y = 0; y <= ysize; y++) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (x = 0; x <= xsize; x++) {
 			u_char *cp = (u_char *)&ss[x];
 			buf[x] = (RED*cp[3] + GREEN*cp[2] + BLUE*cp[1]) >> 8;

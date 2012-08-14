@@ -613,6 +613,9 @@ wxDialUpManagerImpl::CheckProcNet()
 
             char output[256];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (fgets(output, 256, f) != NULL)
             {
                 // Test for the known network interface names
@@ -660,6 +663,9 @@ wxDialUpManagerImpl::CheckIfconfig()
             wxT("/etc"),          // AIX 5
         };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < WXSIZEOF(ifconfigLocations); n++ )
         {
             wxString path(ifconfigLocations[n]);

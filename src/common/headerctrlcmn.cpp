@@ -179,6 +179,9 @@ void wxHeaderCtrlBase::SetColumnsOrder(const wxArrayInt& order)
 
     // check the array validity
     wxArrayInt seen(count, 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < count; n++ )
     {
         const unsigned idx = order[n];
@@ -197,6 +200,9 @@ void wxHeaderCtrlBase::ResetColumnsOrder()
 {
     const unsigned count = GetColumnCount();
     wxArrayInt order(count);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < count; n++ )
         order[n] = n;
 
@@ -226,6 +232,9 @@ unsigned int wxHeaderCtrlBase::GetColumnPos(unsigned int idx) const
     wxCHECK_MSG( idx < count, wxNO_COLUMN, "invalid index" );
 
     const wxArrayInt order = GetColumnsOrder();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < count; n++ )
     {
         if ( (unsigned)order[n] == idx )
@@ -246,6 +255,9 @@ void wxHeaderCtrlBase::MoveColumnInOrderArray(wxArrayInt& order,
 
     wxArrayInt orderNew;
     orderNew.reserve(count);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; ; n++ )
     {
         // NB: order of checks is important for this to work when the new
@@ -277,6 +289,9 @@ wxHeaderCtrlBase::DoResizeColumnIndices(wxArrayInt& colIndices, unsigned int cou
     if ( count > countOld )
     {
         // all new columns have default positions equal to their indices
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned n = countOld; n < count; n++ )
             colIndices.push_back(n);
     }
@@ -286,6 +301,9 @@ wxHeaderCtrlBase::DoResizeColumnIndices(wxArrayInt& colIndices, unsigned int cou
         // order of the remaining ones
         wxArrayInt colIndicesNew;
         colIndicesNew.reserve(count);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned n = 0; n < countOld; n++ )
         {
             const unsigned idx = colIndices[n];
@@ -309,6 +327,9 @@ wxHeaderCtrlBase::DoResizeColumnIndices(wxArrayInt& colIndices, unsigned int cou
 void wxHeaderCtrlBase::AddColumnsItems(wxMenu& menu, int idColumnsBase)
 {
     const unsigned count = GetColumnCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < count; n++ )
     {
         const wxHeaderColumn& col = GetColumn(n);
@@ -367,11 +388,17 @@ bool wxHeaderCtrlBase::ShowCustomizeDialog()
     // rearranged according to the display order in the dialog
     wxArrayString titles;
     titles.reserve(count);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < count; n++ )
         titles.push_back(GetColumn(n).GetTitle());
 
     // this loop is however over positions and not indices
     unsigned pos;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( pos = 0; pos < count; pos++ )
     {
         int& idx = order[pos];
@@ -388,6 +415,9 @@ bool wxHeaderCtrlBase::ShowCustomizeDialog()
     {
         // and apply the changes
         order = dlg.GetOrder();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( pos = 0; pos < count; pos++ )
         {
             int& idx = order[pos];

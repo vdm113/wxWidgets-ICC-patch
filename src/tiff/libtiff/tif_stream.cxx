@@ -147,6 +147,9 @@ _tiffosSeekProc(thandle_t fd, toff_t off, int whence)
 			// extend the stream to the expected size
 			os->seekp(0, ios::end);
 			num_fill = origin + off - (toff_t)os->tellp();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for( toff_t i = 0; i < num_fill; i++ )
 				os->put('\0');
 

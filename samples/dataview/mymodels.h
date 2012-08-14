@@ -56,6 +56,9 @@ public:
     {
         // free all our children nodes
         size_t count = m_children.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = 0; i < count; i++)
         {
             MyMusicTreeModelNode *child = m_children[i];
