@@ -106,6 +106,9 @@ bool wxDataViewModelNotifier::ItemsAdded( const wxDataViewItem &parent, const wx
 {
     size_t count = items.GetCount();
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < count; i++)
         if (!ItemAdded( parent, items[i] )) return false;
 
@@ -116,6 +119,9 @@ bool wxDataViewModelNotifier::ItemsDeleted( const wxDataViewItem &parent, const 
 {
     size_t count = items.GetCount();
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < count; i++)
         if (!ItemDeleted( parent, items[i] )) return false;
 
@@ -126,6 +132,9 @@ bool wxDataViewModelNotifier::ItemsChanged( const wxDataViewItemArray &items )
 {
     size_t count = items.GetCount();
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < count; i++)
         if (!ItemChanged( items[i] )) return false;
 
@@ -146,6 +155,9 @@ bool wxDataViewModel::ItemAdded( const wxDataViewItem &parent, const wxDataViewI
     bool ret = true;
 
     wxDataViewModelNotifiers::iterator iter;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
         wxDataViewModelNotifier* notifier = *iter;
@@ -161,6 +173,9 @@ bool wxDataViewModel::ItemDeleted( const wxDataViewItem &parent, const wxDataVie
     bool ret = true;
 
     wxDataViewModelNotifiers::iterator iter;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
         wxDataViewModelNotifier* notifier = *iter;
@@ -176,6 +191,9 @@ bool wxDataViewModel::ItemChanged( const wxDataViewItem &item )
     bool ret = true;
 
     wxDataViewModelNotifiers::iterator iter;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
         wxDataViewModelNotifier* notifier = *iter;
@@ -191,6 +209,9 @@ bool wxDataViewModel::ItemsAdded( const wxDataViewItem &parent, const wxDataView
     bool ret = true;
 
     wxDataViewModelNotifiers::iterator iter;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
         wxDataViewModelNotifier* notifier = *iter;
@@ -206,6 +227,9 @@ bool wxDataViewModel::ItemsDeleted( const wxDataViewItem &parent, const wxDataVi
     bool ret = true;
 
     wxDataViewModelNotifiers::iterator iter;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
         wxDataViewModelNotifier* notifier = *iter;
@@ -221,6 +245,9 @@ bool wxDataViewModel::ItemsChanged( const wxDataViewItemArray &items )
     bool ret = true;
 
     wxDataViewModelNotifiers::iterator iter;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
         wxDataViewModelNotifier* notifier = *iter;
@@ -236,6 +263,9 @@ bool wxDataViewModel::ValueChanged( const wxDataViewItem &item, unsigned int col
     bool ret = true;
 
     wxDataViewModelNotifiers::iterator iter;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
         wxDataViewModelNotifier* notifier = *iter;
@@ -251,6 +281,9 @@ bool wxDataViewModel::Cleared()
     bool ret = true;
 
     wxDataViewModelNotifiers::iterator iter;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
         wxDataViewModelNotifier* notifier = *iter;
@@ -266,6 +299,9 @@ bool wxDataViewModel::BeforeReset()
     bool ret = true;
 
     wxDataViewModelNotifiers::iterator iter;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
         wxDataViewModelNotifier* notifier = *iter;
@@ -281,6 +317,9 @@ bool wxDataViewModel::AfterReset()
     bool ret = true;
 
     wxDataViewModelNotifiers::iterator iter;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
         wxDataViewModelNotifier* notifier = *iter;
@@ -294,6 +333,9 @@ bool wxDataViewModel::AfterReset()
 void wxDataViewModel::Resort()
 {
     wxDataViewModelNotifiers::iterator iter;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
         wxDataViewModelNotifier* notifier = *iter;
@@ -385,6 +427,9 @@ wxDataViewIndexListModel::wxDataViewIndexListModel( unsigned int initial_size )
 
     // build initial index
     unsigned int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 1; i < initial_size+1; i++)
             m_hash.Add( wxDataViewItem(wxUIntToPtr(i)) );
     m_nextFreeID = initial_size + 1;
@@ -401,6 +446,9 @@ void wxDataViewIndexListModel::Reset( unsigned int new_size )
 
     // build initial index
     unsigned int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 1; i < new_size+1; i++)
             m_hash.Add( wxDataViewItem(wxUIntToPtr(i)) );
 
@@ -459,6 +507,9 @@ void wxDataViewIndexListModel::RowsDeleted( const wxArrayInt &rows )
 
     wxDataViewItemArray array;
     unsigned int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < rows.GetCount(); i++)
     {
             wxDataViewItem item( m_hash[rows[i]] );
@@ -467,6 +518,9 @@ void wxDataViewIndexListModel::RowsDeleted( const wxArrayInt &rows )
 
     wxArrayInt sorted = rows;
     sorted.Sort( my_sort );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < sorted.GetCount(); i++)
            m_hash.RemoveAt( sorted[i] );
 
@@ -565,6 +619,9 @@ void wxDataViewVirtualListModel::RowsDeleted( const wxArrayInt &rows )
 
     wxDataViewItemArray array;
     unsigned int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < sorted.GetCount(); i++)
     {
         wxDataViewItem item( wxUIntToPtr(sorted[i]+1) );
@@ -1066,6 +1123,9 @@ void wxDataViewCtrlBase::ExpandAncestors( const wxDataViewItem & item )
 
     // at first we get all the parents of the selected item
     wxDataViewItem parent = m_model->GetParent(item);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (parent.IsOk())
     {
         parentChain.push_back(parent);
@@ -1073,6 +1133,9 @@ void wxDataViewCtrlBase::ExpandAncestors( const wxDataViewItem & item )
     }
 
     // then we expand the parents, starting at the root
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!parentChain.empty())
     {
          Expand(parentChain.back());
@@ -1547,6 +1610,9 @@ wxSize wxDataViewChoiceRenderer::GetSize() const
 {
     wxSize sz;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxArrayString::const_iterator i = m_choices.begin(); i != m_choices.end(); ++i )
         sz.IncTo(GetTextExtent(*i));
 
@@ -1685,6 +1751,9 @@ wxDataViewListStore::wxDataViewListStore()
 wxDataViewListStore::~wxDataViewListStore()
 {
     wxVector<wxDataViewListStoreLine*>::iterator it;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (it = m_data.begin(); it != m_data.end(); ++it)
     {
         wxDataViewListStoreLine* line = *it;
@@ -1762,6 +1831,9 @@ void wxDataViewListStore::DeleteItem( unsigned int row )
 void wxDataViewListStore::DeleteAllItems()
 {
     wxVector<wxDataViewListStoreLine*>::iterator it;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (it = m_data.begin(); it != m_data.end(); ++it)
     {
         wxDataViewListStoreLine* line = *it;
@@ -2270,6 +2342,9 @@ unsigned int wxDataViewTreeStore::GetChildren( const wxDataViewItem &item, wxDat
     if (!node) return 0;
 
     wxDataViewTreeStoreNodeList::iterator iter;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (iter = node->GetChildren().begin(); iter != node->GetChildren().end(); iter++)
     {
         wxDataViewTreeStoreNode* child = *iter;
@@ -2475,6 +2550,9 @@ void wxDataViewTreeCtrl::DeleteChildren( const wxDataViewItem& item )
 
     wxDataViewItemArray array;
     wxDataViewTreeStoreNodeList::iterator iter;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (iter = node->GetChildren().begin(); iter != node->GetChildren().end(); iter++)
     {
         wxDataViewTreeStoreNode* child = *iter;

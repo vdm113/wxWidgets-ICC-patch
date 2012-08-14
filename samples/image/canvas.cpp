@@ -341,6 +341,9 @@ MyCanvas::MyCanvas( wxWindow *parent, wxWindowID id,
     }
 
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i=0; i < m_ani_images; i++)
     {
         image.Destroy();
@@ -649,6 +652,9 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
     }
 
     dc.DrawText( wxT("ANI handler"), 230, 2390 );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i=0; i < m_ani_images; i++ )
     {
         if (my_horse_ani[i].IsOk())
@@ -689,7 +695,13 @@ void MyCanvas::CreateAntiAliasedBitmap()
 
     /* This is quite slow, but safe. Use wxImage::GetData() for speed instead. */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int y = 1; y < 149; y++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int x = 1; x < 149; x++)
         {
             int red = original.GetRed( x*2, y*2 ) +

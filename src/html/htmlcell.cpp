@@ -292,6 +292,9 @@ wxHtmlCell *wxHtmlCell::FindCellByPos(wxCoord x, wxCoord y,
 wxPoint wxHtmlCell::GetAbsPos(wxHtmlCell *rootCell) const
 {
     wxPoint p(m_PosX, m_PosY);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxHtmlCell *parent = m_Parent; parent && parent != rootCell;
          parent = parent->m_Parent)
     {
@@ -304,6 +307,9 @@ wxPoint wxHtmlCell::GetAbsPos(wxHtmlCell *rootCell) const
 wxHtmlCell *wxHtmlCell::GetRootCell() const
 {
     wxHtmlCell *c = wxConstCast(this, wxHtmlCell);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( c->m_Parent )
         c = c->m_Parent;
     return c;
@@ -312,6 +318,9 @@ wxHtmlCell *wxHtmlCell::GetRootCell() const
 unsigned wxHtmlCell::GetDepth() const
 {
     unsigned d = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxHtmlCell *p = m_Parent; p; p = p->m_Parent)
         d++;
     return d;
@@ -325,19 +334,31 @@ bool wxHtmlCell::IsBefore(wxHtmlCell *cell) const
     unsigned d2 = cell->GetDepth();
 
     if ( d1 > d2 )
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (; d1 != d2; d1-- )
             c1 = c1->m_Parent;
     else if ( d1 < d2 )
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (; d1 != d2; d2-- )
             c2 = c2->m_Parent;
 
     if ( cell == this )
         return true;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( c1 && c2 )
     {
         if ( c1->m_Parent == c2->m_Parent )
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( c1 )
             {
                 if ( c1 == c2 )
@@ -424,6 +445,9 @@ void wxHtmlWordCell::Split(const wxDC& dc,
     // implementation using PartialExtents to support fractional widths
     wxArrayInt widths ;
     dc.GetPartialTextExtents(m_Word,widths) ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( i < len && pt1.x >= widths[i] )
         i++ ;
     if ( i < len )
@@ -434,6 +458,9 @@ void wxHtmlWordCell::Split(const wxDC& dc,
     }
 #else // !__WXMAC__
     wxCoord charW, charH;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( pt1.x > 0 && i < len )
     {
         dc.GetTextExtent(m_Word[i], &charW, &charH);
@@ -450,6 +477,9 @@ void wxHtmlWordCell::Split(const wxDC& dc,
     // (include character under caret only if in first half of width)
     unsigned j = i;
 #ifdef __WXMAC__
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( j < len && pt2.x >= widths[j] )
         j++ ;
     if ( j < len )
@@ -461,6 +491,9 @@ void wxHtmlWordCell::Split(const wxDC& dc,
 #else // !__WXMAC__
     pos2 = pos1;
     pt2.x -= pos2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( pt2.x > 0 && j < len )
     {
         dc.GetTextExtent(m_Word[j], &charW, &charH);
@@ -595,6 +628,9 @@ void wxHtmlWordCell::Draw(wxDC& dc, int x, int y,
          drawSelectionAfterCell )
     {
         wxHtmlCell *nextCell = m_Next;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( nextCell && nextCell->IsFormattingCell() )
             nextCell = nextCell->GetNext();
         if ( nextCell )
@@ -674,6 +710,9 @@ wxString wxHtmlWordWithTabsCell::GetPartAsText(int begin, int end) const
     wxString::const_iterator i = m_wordOrig.begin();
 
     // find the beginning of text to copy:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ; pos < begin; ++i )
     {
         if ( *i == '\t' )
@@ -691,6 +730,9 @@ wxString wxHtmlWordWithTabsCell::GetPartAsText(int begin, int end) const
     }
 
     // copy the content until we reach 'end':
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ; pos < end; ++i )
     {
         const wxChar c = *i;
@@ -733,6 +775,9 @@ wxHtmlContainerCell::wxHtmlContainerCell(wxHtmlContainerCell *parent) : wxHtmlCe
 wxHtmlContainerCell::~wxHtmlContainerCell()
 {
     wxHtmlCell *cell = m_Cells;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( cell )
     {
         wxHtmlCell *cellNext = cell->GetNext();
@@ -791,6 +836,9 @@ wxHtmlContainerCell::AdjustPagebreak(int *pagebreak,
     bool rt = false;
     int pbrk = *pagebreak - m_PosY;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (c)
     {
         if (c->AdjustPagebreak(&pbrk, known_pagebreaks, pageHeight))
@@ -818,6 +866,9 @@ void wxHtmlContainerCell::Layout(int w)
     if (w < 1)
     {
        m_Width = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
        for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
             cell->Layout(0);
             // this does two things: it recursively calls this code on all
@@ -856,6 +907,9 @@ void wxHtmlContainerCell::Layout(int w)
     {
         int l = (m_IndentLeft < 0) ? (-m_IndentLeft * m_Width / 100) : m_IndentLeft;
         int r = (m_IndentRight < 0) ? (-m_IndentRight * m_Width / 100) : m_IndentRight;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
             cell->Layout(m_Width - (l + r));
     }
@@ -873,6 +927,9 @@ void wxHtmlContainerCell::Layout(int w)
     // my own layout:
     wxHtmlCell *cell = m_Cells,
                *line = m_Cells;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (cell != NULL)
     {
         switch (m_AlignVer)
@@ -910,6 +967,9 @@ void wxHtmlContainerCell::Layout(int w)
         if (cell)
         {
             nextCell = cell;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do
             {
                 nextWordWidth += nextCell->GetWidth();
@@ -943,6 +1003,9 @@ void wxHtmlContainerCell::Layout(int w)
 
             if (m_AlignHor != wxHTML_ALIGN_JUSTIFY || cell == NULL)
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (line != cell)
                 {
                     line->SetPos(line->GetPosX() + xdelta,
@@ -972,6 +1035,9 @@ void wxHtmlContainerCell::Layout(int w)
                     const wxHtmlCell *c;
                     if ( line != cell )
                     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for ( c = line; c != cell; c = c->GetNext() )
                         {
                             if ( c->IsLinebreakAllowed() )
@@ -985,6 +1051,9 @@ void wxHtmlContainerCell::Layout(int w)
                     if ( total )
                     {
                         // first visible cell on line is not moved:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         while (line !=cell && !line->IsLinebreakAllowed())
                         {
                             line->SetPos(line->GetPosX() + s_indent,
@@ -1000,6 +1069,9 @@ void wxHtmlContainerCell::Layout(int w)
                             line = line->GetNext();
                         }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for ( int n = 0; line != cell; line = line->GetNext() )
                         {
                             if ( line->IsLinebreakAllowed() )
@@ -1024,6 +1096,9 @@ void wxHtmlContainerCell::Layout(int w)
                 if ( step <= 0 ) // no extra space to distribute
                 {
                     // just set the indent properly
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     while (line != cell)
                     {
                         line->SetPos(line->GetPosX() + s_indent,
@@ -1050,6 +1125,9 @@ void wxHtmlContainerCell::Layout(int w)
             int diff = m_MinHeight - m_Height;
             if (m_MinHeightAlign == wxHTML_ALIGN_CENTER) diff /= 2;
             cell = m_Cells;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (cell)
             {
                 cell->SetPos(cell->GetPosX(), cell->GetPosY() + diff);
@@ -1181,6 +1259,9 @@ void wxHtmlContainerCell::Draw(wxDC& dc, int x, int y, int view_y1, int view_y2,
     if (m_Cells)
     {
         // draw container's contents:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
         {
 
@@ -1212,6 +1293,9 @@ void wxHtmlContainerCell::DrawInvisible(wxDC& dc, int x, int y,
 {
     if (m_Cells)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
         {
             UpdateRenderingStatePre(info, cell);
@@ -1306,6 +1390,9 @@ const wxHtmlCell* wxHtmlContainerCell::Find(int condition, const void* param) co
 {
     if (m_Cells)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
         {
             const wxHtmlCell *r = cell->Find(condition, param);
@@ -1321,6 +1408,9 @@ wxHtmlCell *wxHtmlContainerCell::FindCellByPos(wxCoord x, wxCoord y,
 {
     if ( flags & wxHTML_FIND_EXACT )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( const wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext() )
         {
             int cx = cell->GetPosX(),
@@ -1336,6 +1426,9 @@ wxHtmlCell *wxHtmlContainerCell::FindCellByPos(wxCoord x, wxCoord y,
     else if ( flags & wxHTML_FIND_NEAREST_AFTER )
     {
         wxHtmlCell *c;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( const wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext() )
         {
             if ( cell->IsFormattingCell() )
@@ -1352,6 +1445,9 @@ wxHtmlCell *wxHtmlContainerCell::FindCellByPos(wxCoord x, wxCoord y,
     else if ( flags & wxHTML_FIND_NEAREST_BEFORE )
     {
         wxHtmlCell *c2, *c = NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( const wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext() )
         {
             if ( cell->IsFormattingCell() )
@@ -1406,6 +1502,9 @@ wxHtmlCell *wxHtmlContainerCell::GetFirstTerminal() const
     if ( m_Cells )
     {
         wxHtmlCell *c2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxHtmlCell *c = m_Cells; c; c = c->GetNext())
         {
             c2 = c->GetFirstTerminal();
@@ -1427,6 +1526,9 @@ wxHtmlCell *wxHtmlContainerCell::GetLastTerminal() const
 
         wxHtmlCell *ctmp;
         wxHtmlCell *c2 = NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (c = m_Cells; c; c = c->GetNext())
         {
             ctmp = c->GetLastTerminal();
@@ -1442,6 +1544,9 @@ wxHtmlCell *wxHtmlContainerCell::GetLastTerminal() const
 
 static bool IsEmptyContainer(wxHtmlContainerCell *cell)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxHtmlCell *c = cell->GetFirstChild(); c; c = c->GetNext() )
     {
         if ( !c->IsTerminalCell() || !c->IsFormattingCell() )
@@ -1463,6 +1568,9 @@ void wxHtmlContainerCell::RemoveExtraSpacing(bool top, bool bottom)
         wxHtmlContainerCell *cont;
         if ( top )
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( c = m_Cells; c; c = c->GetNext() )
             {
                 if ( c->IsTerminalCell() )
@@ -1489,9 +1597,15 @@ void wxHtmlContainerCell::RemoveExtraSpacing(bool top, bool bottom)
         if ( bottom )
         {
             wxArrayPtrVoid arr;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( c = m_Cells; c; c = c->GetNext() )
                 arr.Add((void*)c);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int i = arr.GetCount() - 1; i >= 0; i--)
             {
                 c = (wxHtmlCell*)arr[i];
@@ -1626,6 +1740,9 @@ void wxHtmlWidgetCell::Draw(wxDC& WXUNUSED(dc),
     int absx = 0, absy = 0, stx, sty;
     wxHtmlCell *c = this;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (c)
     {
         absx += c->GetPosX();
@@ -1653,6 +1770,9 @@ void wxHtmlWidgetCell::DrawInvisible(wxDC& WXUNUSED(dc),
     int absx = 0, absy = 0, stx, sty;
     wxHtmlCell *c = this;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (c)
     {
         absx += c->GetPosX();
@@ -1688,6 +1808,9 @@ const wxHtmlCell* wxHtmlTerminalCellsInterator::operator++()
     if ( !m_pos )
         return NULL;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
         if ( m_pos == m_to )
@@ -1702,6 +1825,9 @@ const wxHtmlCell* wxHtmlTerminalCellsInterator::operator++()
         {
             // we must go up the hierarchy until we reach container where this
             // is not the last child, and then go down to first terminal cell:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( m_pos->GetNext() == NULL )
             {
                 m_pos = m_pos->GetParent();
@@ -1710,6 +1836,9 @@ const wxHtmlCell* wxHtmlTerminalCellsInterator::operator++()
             }
             m_pos = m_pos->GetNext();
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( m_pos->GetFirstChild() != NULL )
             m_pos = m_pos->GetFirstChild();
     } while ( !m_pos->IsTerminalCell() );

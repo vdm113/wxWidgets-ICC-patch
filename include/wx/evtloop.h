@@ -301,6 +301,9 @@ public:
         // TODO: this is, of course, horribly inefficient and a proper wait with
         //       timeout should be implemented for all ports natively...
         const wxMilliClock_t timeEnd = wxGetLocalTimeMillis() + timeout;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ;; )
         {
             if ( Pending() )

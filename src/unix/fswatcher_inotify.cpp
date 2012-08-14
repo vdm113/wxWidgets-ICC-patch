@@ -156,6 +156,9 @@ public:
     virtual bool RemoveAll()
     {
         wxFSWatchEntries::iterator it = m_watches.begin();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ; it != m_watches.end(); ++it )
         {
             (void) DoRemove(it->second);
@@ -179,6 +182,9 @@ public:
         // left > 0, we have events
         char* memory = buf;
         int event_count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (left > 0) // OPT checking 'memory' would suffice
         {
             event_count++;
@@ -410,6 +416,9 @@ protected:
     void ProcessRenames()
     {
         wxInotifyCookies::iterator it = m_cookies.begin();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( it != m_cookies.end() )
         {
             inotify_event& inevt = *(it->second);
@@ -546,6 +555,9 @@ protected:
         };
 
         unsigned int i=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ; i < WXSIZEOF(flag_mapping); ++i) {
             // in this mapping multiple flags at once don't happen
             if (flags & flag_mapping[i][0])
