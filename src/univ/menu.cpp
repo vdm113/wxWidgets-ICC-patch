@@ -522,6 +522,9 @@ wxPopupMenuWindow::GetMenuItemFromPoint(const wxPoint& pt) const
     if ( wxWindow::HitTest(pt) == wxHT_WINDOW_INSIDE )
     {
         wxCoord y = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxMenuItemIter node = m_menu->GetMenuItems().GetFirst();
               node;
               node = node->GetNext() )
@@ -570,6 +573,9 @@ void wxPopupMenuWindow::DoDraw(wxControlRenderer *renderer)
 
     wxCoord y = 0;
     const wxMenuGeometryInfo& gi = m_menu->GetGeometryInfo();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxMenuItemIter node = m_menu->GetMenuItems().GetFirst();
           node;
           node = node->GetNext() )
@@ -935,6 +941,9 @@ bool wxPopupMenuWindow::ProcessKeyDown(int key)
 
                 wxMenuItemIter nodeStart = up ? GetPrevNode() : GetNextNode(),
                                node = nodeStart;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while ( node && node->GetData()->IsSeparator() )
                 {
                     node = up ? GetPrevNode(node) : GetNextNode(node);
@@ -989,6 +998,9 @@ bool wxPopupMenuWindow::ProcessKeyDown(int key)
                 // accel
                 wxMenuItemIter nodeFound,
                                node = nodeStart;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( ;; )
                 {
                     item = node->GetData();
@@ -1389,6 +1401,9 @@ bool wxMenu::ProcessAccelEvent(const wxKeyEvent& event)
     }
 
     // try our submenus
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxMenuItemIter node = GetMenuItems().GetFirst();
           node;
           node = node->GetNext() )
@@ -1573,6 +1588,9 @@ void wxMenuItem::Check(bool check)
 
         // also uncheck all the other items in this radio group
         wxMenuItemIter node = items.Item(start);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = start; n <= end && node; n++ )
         {
             if ( n != pos )
@@ -1631,6 +1649,9 @@ wxMenuBar::wxMenuBar(size_t n, wxMenu *menus[], const wxString titles[], long WX
 {
     Init();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < n; ++i )
         Append(menus[i], titles[i]);
 }
@@ -1844,6 +1865,9 @@ void wxMenuBar::DoDraw(wxControlRenderer *renderer)
 
     wxCoord x = 0;
     size_t count = GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         if ( x > rectUpdate.GetRight() )
@@ -1897,6 +1921,9 @@ wxRect wxMenuBar::GetItemRect(size_t pos) const
     rect.y = 0;
     rect.height = GetClientSize().y;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < pos; n++ )
     {
         rect.x += GetItemWidth(n);
@@ -1939,6 +1966,9 @@ int wxMenuBar::GetMenuFromPoint(const wxPoint& pos) const
     // do find it
     wxCoord x = 0;
     size_t count = GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t item = 0; item < count; item++ )
     {
         x += GetItemWidth(item);
@@ -2278,6 +2308,9 @@ int wxMenuBar::FindNextItemForAccel(int idxStart, int key, bool *unique) const
     }
 
     idxStart = n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         const wxMenuInfo& info = m_menuInfos[n];
@@ -2328,6 +2361,9 @@ int wxMenuBar::FindNextItemForAccel(int idxStart, int key, bool *unique) const
 bool wxMenuBar::ProcessAccelEvent(const wxKeyEvent& event)
 {
     size_t n = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxMenuList::compatibility_iterator node = m_menus.GetFirst();
           node;
           node = node->GetNext(), n++ )

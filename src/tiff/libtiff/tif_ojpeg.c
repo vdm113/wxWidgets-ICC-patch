@@ -54,6 +54,9 @@
 ***************
 *** 648,651 ****
 --- 648,683 ----
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < NUM_HUFF_TBLS; i++) {
       entropy->dc_derived_tbls[i] = entropy->ac_derived_tbls[i] = NULL;
     }
@@ -97,6 +100,9 @@
 ***************
 *** 357,360 ****
 --- 357,393 ----
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < NUM_HUFF_TBLS; i++) {
       entropy->dc_derived_tbls[i] = entropy->ac_derived_tbls[i] = NULL;
     }
@@ -567,6 +573,9 @@ alloc_downsampled_buffers(TIFF *tif,jpeg_component_info *comp_info,
         int ci = 0;
         register jpeg_component_info *compptr = comp_info;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do
           { JSAMPARRAY buf;
 
@@ -580,6 +589,9 @@ alloc_downsampled_buffers(TIFF *tif,jpeg_component_info *comp_info,
               return 0;
             sp->ds_buffer[ci] = buf;
           }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (++compptr,++ci < num_components);
       };
     return 1;
@@ -600,6 +612,9 @@ OJPEGEncode(register TIFF *tif,tidata_t buf,tsize_t cc,tsample_t s)
     if ( (cc /= bytesperline)      /* No. of complete rows in caller's buffer */
        > (rows = sp->cinfo.c.image_height - sp->cinfo.c.next_scanline)
        ) cc = rows;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (--cc >= 0)
       {
         if (   CALLJPEG(sp,-1,jpeg_write_scanlines(&sp->cinfo.c,(JSAMPARRAY)&buf,1))
@@ -631,6 +646,9 @@ OJPEGEncodeRaw(register TIFF *tif,tidata_t buf,tsize_t cc,tsample_t s)
 #   else
     lines_per_MCU = sp->cinfo.c.max_samp_factor*(size = DCTSIZE);
 #   endif
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (--cc >= 0)
       { int ci = 0, clumpoffset = 0;
         register jpeg_component_info *compptr = sp->cinfo.c.comp_info;
@@ -638,9 +656,15 @@ OJPEGEncodeRaw(register TIFF *tif,tidata_t buf,tsize_t cc,tsample_t s)
      /* The fastest way to separate the data is to make 1 pass over the scan
         line for each row of each component.
      */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do
           { int ypos = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do
               { int padding;
                 register JSAMPLE *inptr = (JSAMPLE*)buf + clumpoffset,
@@ -661,21 +685,39 @@ OJPEGEncodeRaw(register TIFF *tif,tidata_t buf,tsize_t cc,tsample_t s)
                           );
                 if (compptr->h_samp_factor == 1) /* Cb & Cr fast path */
                   do *outptr++ = *inptr;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                   while ((inptr += sp->samplesperclump),--clumps_per_line > 0);
                 else /* general case */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                   do
                     {
                       xpos = 0;
                       do *outptr++ = inptr[xpos];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                       while (++xpos < compptr->h_samp_factor);
                     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                   while ((inptr += sp->samplesperclump),--clumps_per_line > 0);
                 xpos = 0; /* Pad each scan line as needed */
                 do outptr[0] = outptr[-1]; while (++outptr,++xpos < padding);
                 clumpoffset += compptr->h_samp_factor;
               }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (++ypos < compptr->v_samp_factor);
           }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (++compptr,++ci < sp->cinfo.c.num_components);
         if (++sp->scancount >= size)
           {
@@ -972,6 +1014,9 @@ OJPEGPostEncode(register TIFF *tif)
 #           endif
             register jpeg_component_info *compptr = sp->cinfo.c.comp_info;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do
 #              ifdef C_LOSSLESS_SUPPORTED
                { tsize_t row_width = compptr->width_in_data_units
@@ -985,8 +1030,14 @@ OJPEGPostEncode(register TIFF *tif)
                                , (tdata_t)sp->ds_buffer[ci][ypos-1]
                                , row_width
                                );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                  while (++ypos < compptr->v_samp_factor*size);
                }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (++compptr,++ci < sp->cinfo.c.num_components);
           };
         n = sp->cinfo.c.max_v_samp_factor*size;
@@ -1027,6 +1078,9 @@ OJPEGDecode(register TIFF *tif,tidata_t buf,tsize_t cc,tsample_t s)
     if ( (cc /= bytesperline)      /* No. of complete rows in caller's buffer */
        > (rows = sp->cinfo.d.output_height - sp->cinfo.d.output_scanline)
        ) cc = rows;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (--cc >= 0)
       {
         if (   CALLJPEG(sp,-1,jpeg_read_scanlines(&sp->cinfo.d,(JSAMPARRAY)&buf,1))
@@ -1072,6 +1126,9 @@ OJPEGDecodeRawContig(register TIFF *tif,tidata_t buf,tsize_t cc,tsample_t s)
 #   else
                   * (size = DCTSIZE);
 #   endif
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (--cc >= 0)
       { int clumpoffset, ci;
         register jpeg_component_info *compptr;
@@ -1089,10 +1146,16 @@ OJPEGDecodeRawContig(register TIFF *tif,tidata_t buf,tsize_t cc,tsample_t s)
      */
         clumpoffset = ci = 0;
         compptr = sp->cinfo.d.comp_info;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do
           { int ypos = 0;
 
             if (compptr->h_samp_factor == 1) /* fast path */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
               do
                 { register JSAMPLE *inptr =
                     sp->ds_buffer[ci][sp->scancount*compptr->v_samp_factor+ypos],
@@ -1100,30 +1163,54 @@ OJPEGDecodeRawContig(register TIFF *tif,tidata_t buf,tsize_t cc,tsample_t s)
                   register int clumps_per_line = compptr->downsampled_width;
 
                   do *outptr = *inptr++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                   while ((outptr += sp->samplesperclump),--clumps_per_line > 0);
                 }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
               while ( (clumpoffset += compptr->h_samp_factor)
                     , ++ypos < compptr->v_samp_factor
                     );
             else /* general case */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
               do
                 { register JSAMPLE *inptr =
                     sp->ds_buffer[ci][sp->scancount*compptr->v_samp_factor+ypos],
                                    *outptr = (JSAMPLE *)buf + clumpoffset;
                   register int clumps_per_line = compptr->downsampled_width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                   do
                     { register int xpos = 0;
 
                       do outptr[xpos] = *inptr++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                       while (++xpos < compptr->h_samp_factor);
                     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                   while ((outptr += sp->samplesperclump),--clumps_per_line > 0);
                 }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
               while ( (clumpoffset += compptr->h_samp_factor)
                     , ++ypos < compptr->v_samp_factor
                     );
           }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (++compptr,++ci < sp->cinfo.d.num_components);
         ++sp->scancount;
         buf += sp->bytesperline;
@@ -1176,6 +1263,9 @@ OJPEGDecodeRawSeparate(TIFF *tif,register tidata_t buf,tsize_t cc,tsample_t s)
         sp->scancount = 0;
       };
     rows = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
       { register JSAMPLE *inptr =
           sp->ds_buffer[s][sp->scancount*compptr->v_samp_factor + rows];
@@ -1185,6 +1275,9 @@ OJPEGDecodeRawSeparate(TIFF *tif,register tidata_t buf,tsize_t cc,tsample_t s)
         tif->tif_row += v;
         if (--cc <= 0) return 1; /* End of caller's buffer? */
       }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (++rows < compptr->v_samp_factor);
     ++sp->scancount;
     goto L;
@@ -1238,12 +1331,18 @@ ycc_rgb_convert(register j_decompress_ptr cinfo,JSAMPIMAGE in,JDIMENSION row,
 
         case RGB_RED  : irow2p = in[2] + row;
                         table0 = (INT32 *)cconvert->Cr_r_tab;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         while (--nrows >= 0)
                           { register JSAMPROW Cr = *irow2p++;
                              register int i = cinfo->output_width;
 
                              Y = *irow0p++;
                              outp = *out++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                              while (--i >= 0)
                                *outp++ = range_limit[*Y++ + table0[*Cr++]];
                           };
@@ -1252,6 +1351,9 @@ ycc_rgb_convert(register j_decompress_ptr cinfo,JSAMPIMAGE in,JDIMENSION row,
                         irow2p = in[2] + row;
                         table0 = cconvert->Cb_g_tab;
                         table1 = cconvert->Cr_g_tab;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         while (--nrows >= 0)
                           { register JSAMPROW Cb = *irow1p++,
                                               Cr = *irow2p++;
@@ -1259,6 +1361,9 @@ ycc_rgb_convert(register j_decompress_ptr cinfo,JSAMPIMAGE in,JDIMENSION row,
 
                              Y = *irow0p++;
                              outp = *out++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                              while (--i >= 0)
                                *outp++ =
                                  range_limit[ *Y++
@@ -1268,12 +1373,18 @@ ycc_rgb_convert(register j_decompress_ptr cinfo,JSAMPIMAGE in,JDIMENSION row,
                         return;
         case RGB_BLUE : irow1p = in[1] + row;
                         table0 = (INT32 *)cconvert->Cb_b_tab;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         while (--nrows >= 0)
                           { register JSAMPROW Cb = *irow1p++;
                              register int i = cinfo->output_width;
 
                              Y = *irow0p++;
                              outp = *out++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                              while (--i >= 0)
                                *outp++ = range_limit[*Y++ + table0[*Cb++]];
                           }
@@ -1285,6 +1396,9 @@ null_convert(register j_decompress_ptr cinfo,JSAMPIMAGE in,JDIMENSION row,
              register JSAMPARRAY out,register int nrows)
   { register JSAMPARRAY irowp = in[cinfo->output_scan_number - 1] + row;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (--nrows >= 0) _TIFFmemcpy(*out++,*irowp++,cinfo->output_width);
   }
 
@@ -1457,6 +1571,9 @@ OJPEGSetupDecode(register TIFF *tif)
         if (sp->jpegtablesmode & JPEGTABLESMODE_QUANT) /* free quant. tables */
           { register int i = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do
               { register JQUANT_TBL *q;
 
@@ -1466,11 +1583,17 @@ OJPEGSetupDecode(register TIFF *tif)
                     sp->cinfo.d.quant_tbl_ptrs[i] = 0;
                   }
               }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (++i < NUM_QUANT_TBLS);
           };
         if (sp->jpegtablesmode & JPEGTABLESMODE_HUFF) /* free Huffman tables */
           { register int i = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do
               { register JHUFF_TBL *h;
 
@@ -1485,6 +1608,9 @@ OJPEGSetupDecode(register TIFF *tif)
                     sp->cinfo.d.ac_huff_tbl_ptrs[i] = 0;
                   }
               }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (++i < NUM_HUFF_TBLS);
           };
 #       endif /* someday */
@@ -1509,6 +1635,9 @@ OJPEGSetupDecode(register TIFF *tif)
         sp->jpegtables = p = (unsigned char *)sp->src.next_input_byte;
         end_of_data = p + sp->src.bytes_in_buffer;
         p += 2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (p < end_of_data && p[0] == 0xFF)
           switch (p[1])
             {
@@ -1601,6 +1730,9 @@ OJPEGSetupDecode(register TIFF *tif)
      */
         subsampling_factors = sp->h_sampling << 3 | sp->v_sampling;
         i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do
           {
             if (   ( sp->cinfo.d.comp_info[i].h_samp_factor << 3
@@ -1614,6 +1746,9 @@ OJPEGSetupDecode(register TIFF *tif)
               };
             subsampling_factors = 011; /* Required for image components > 0 */
           }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (++i < sp->cinfo.d.num_components);
       }
     else /* not JFIF image */
@@ -1648,23 +1783,35 @@ OJPEGSetupDecode(register TIFF *tif)
             , sp->cinfo.d.num_components * sizeof *sp->cinfo.d.comp_info
             );
         i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do
           {
             sp->cinfo.d.comp_info[i].component_index = i;
             sp->cinfo.d.comp_info[i].component_needed = TRUE;
             sp->cinfo.d.cur_comp_info[i] = &sp->cinfo.d.comp_info[i];
           }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (++i < sp->cinfo.d.num_components);
         switch (jpeg_color_space)
           {
             case JCS_UNKNOWN  :
               i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
               do
                 {
                   sp->cinfo.d.comp_info[i].component_id = i;
                   sp->cinfo.d.comp_info[i].h_samp_factor =
                   sp->cinfo.d.comp_info[i].v_samp_factor = 1;
                 }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
               while (++i < sp->cinfo.d.num_components);
               break;
             case JCS_GRAYSCALE:
@@ -1679,6 +1826,9 @@ OJPEGSetupDecode(register TIFF *tif)
               i = 0;
               do sp->cinfo.d.comp_info[i].h_samp_factor =
                  sp->cinfo.d.comp_info[i].v_samp_factor = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
               while (++i < sp->cinfo.d.num_components);
               break;
             case JCS_CMYK     :
@@ -1689,10 +1839,16 @@ OJPEGSetupDecode(register TIFF *tif)
               i = 0;
               do sp->cinfo.d.comp_info[i].h_samp_factor =
                  sp->cinfo.d.comp_info[i].v_samp_factor = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
               while (++i < sp->cinfo.d.num_components);
               break;
             case JCS_YCbCr    :
               i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
               do
                 {
                   sp->cinfo.d.comp_info[i].component_id = i+1;
@@ -1702,6 +1858,9 @@ OJPEGSetupDecode(register TIFF *tif)
                   sp->cinfo.d.comp_info[i].dc_tbl_no =
                   sp->cinfo.d.comp_info[i].ac_tbl_no = i > 0;
                 }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
               while (++i < sp->cinfo.d.num_components);
               sp->cinfo.d.comp_info[0].h_samp_factor = sp->h_sampling;
               sp->cinfo.d.comp_info[0].v_samp_factor = sp->v_sampling;
@@ -2080,6 +2239,9 @@ OJPEGVSetField(register TIFF *tif,ttag_t tag,va_list ap)
 		    _TIFFmalloc(sp->jpeglosslesspredictors_length
 				* sizeof(uint16));
                if(sp->jpeglosslesspredictors==NULL){return(0);}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                for(i2=0;i2<sp->jpeglosslesspredictors_length;i2++){
                 ((uint16*)sp->jpeglosslesspredictors)[i2] =
 			((uint16*)sp->cinfo.d.Ss)[i2];
@@ -2104,6 +2266,9 @@ OJPEGVSetField(register TIFF *tif,ttag_t tag,va_list ap)
                sp->jpegpointtransform =
 		    _TIFFmalloc(sp->jpegpointtransform_length*sizeof(uint16));
                if(sp->jpegpointtransform==NULL){return(0);}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                for(i2=0;i2<sp->jpegpointtransform_length;i2++) {
                 ((uint16*)sp->jpegpointtransform)[i2] =
 			((uint16*)sp->cinfo.d.Al)[i2];
@@ -2130,6 +2295,9 @@ OJPEGVSetField(register TIFF *tif,ttag_t tag,va_list ap)
                 if(sp->jpegqtables==NULL){return(0);}
                 tiffoff = TIFFSeekFile(tif, 0, SEEK_CUR);
                 bufoff=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for(i2=0;i2<sp->jpegqtables_length;i2++){
                     TIFFSeekFile(tif, v[i2], SEEK_SET);
                     TIFFReadFile(tif, &(((unsigned char*)(sp->jpegqtables))[bufoff]),
@@ -2155,6 +2323,9 @@ OJPEGVSetField(register TIFF *tif,ttag_t tag,va_list ap)
                   to = sp->cinfo.d.quant_tbl_ptrs[i]->quantval;
                   do *to++ = *from++; while (--j > 0);
                 }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
               while (++i < v32);
               sp->jpegtablesmode |= JPEGTABLESMODE_QUANT;
             };
@@ -2185,12 +2356,18 @@ OJPEGVSetField(register TIFF *tif,ttag_t tag,va_list ap)
                     tiffoff = TIFFSeekFile(tif, 0, SEEK_CUR);
                     bufoff=0;
                     code_count=0;                
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for(i2=0;i2<sp->jpegdctables_length;i2++){
                         TIFFSeekFile(tif, v[i2], SEEK_SET);
                         TIFFReadFile(tif,
 				     &(((unsigned char*)(sp->jpegdctables))[bufoff]),
 				     16);
                         code_count=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for(k2=0;k2<16;k2++){
                             code_count+=((unsigned char*)(sp->jpegdctables))[k2+bufoff];
                         }
@@ -2209,10 +2386,16 @@ OJPEGVSetField(register TIFF *tif,ttag_t tag,va_list ap)
                     tiffoff = TIFFSeekFile(tif, 0, SEEK_CUR);
                     bufoff=0;
                     code_count=0;                
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for(i2=0;i2<sp->jpegactables_length;i2++){
                         TIFFSeekFile(tif, v[i2], SEEK_SET);
                         TIFFReadFile(tif, &(((unsigned char*)(sp->jpegactables))[bufoff]), 16);
                         code_count=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for(k2=0;k2<16;k2++){
                             code_count+=((unsigned char*)(sp->jpegactables))[k2+bufoff];
                         }
@@ -2246,6 +2429,9 @@ OJPEGVSetField(register TIFF *tif,ttag_t tag,va_list ap)
                     };
                   to = (*h++)->bits;
                   *to++ = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                   while (--j > 0) size += *to++ = *from++; /* Copy 16 Bytes */
                   if (size > sizeof (*h)->huffval/sizeof *(*h)->huffval)
                     {
@@ -2253,9 +2439,15 @@ OJPEGVSetField(register TIFF *tif,ttag_t tag,va_list ap)
                       return 0;
                     };
                   if ((j = size) > 0) do *to++ = *from++; while (--j > 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                   while (++size <= sizeof (*h)->huffval/sizeof *(*h)->huffval)
                     *to++ = 0; /* Zero the rest of the table for cleanliness */
                 }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
               while (++i < v32);
               sp->jpegtablesmode |= JPEGTABLESMODE_HUFF;
             };

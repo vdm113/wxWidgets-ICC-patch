@@ -128,6 +128,9 @@ wxSetIconsX11(WXDisplay* display, WXWindow window, const wxIconBundle& ib)
     size_t size = 0;
 
     const size_t numIcons = ib.GetIconCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < numIcons; ++i )
     {
         const wxIcon icon = ib.GetIconByIndex(i);
@@ -142,6 +145,9 @@ wxSetIconsX11(WXDisplay* display, WXWindow window, const wxIconBundle& ib)
         unsigned long* data = new unsigned long[size];
         unsigned long* ptr = data;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t i = 0; i < numIcons; ++i )
         {
             const wxImage image = ib.GetIconByIndex(i).ConvertToImage();
@@ -169,6 +175,9 @@ wxSetIconsX11(WXDisplay* display, WXWindow window, const wxIconBundle& ib)
             *ptr++ = width;
             *ptr++ = height;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( imageData < imageDataEnd )
             {
                 r = imageData[0];
@@ -332,6 +341,9 @@ static bool wxQueryWMspecSupport(Display *display, Window rootWnd, Atom feature)
         return false;
 
     // Lookup the feature we want:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned i = 0; i < natoms; i++)
     {
         if ( atoms[i] == feature )
@@ -837,6 +849,9 @@ bool wxGetKeyState(wxKeyCode key)
         XModifierKeymap *map = XGetModifierMapping(pDisplay);
         wxCHECK_MSG( map, false, wxT("failed to get X11 modifiers map") );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < 8; ++i)
         {
             if ( map->modifiermap[map->max_keypermod * i] == keyCode)
