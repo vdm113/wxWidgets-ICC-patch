@@ -558,6 +558,9 @@ bool wxAuiMDIChildFrame::Destroy()
     }
 
     size_t page_count = pClientWindow->GetPageCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t pos = 0; pos < page_count; pos++)
     {
         if (pClientWindow->GetPage(pos) == this)
@@ -606,6 +609,9 @@ void wxAuiMDIChildFrame::SetTitle(const wxString& title)
     if (pClientWindow != NULL)
     {
         size_t pos;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (pos = 0; pos < pClientWindow->GetPageCount(); pos++)
         {
             if (pClientWindow->GetPage(pos) == this)
@@ -672,6 +678,9 @@ void wxAuiMDIChildFrame::Activate()
     if (pClientWindow != NULL)
     {
         size_t pos;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (pos = 0; pos < pClientWindow->GetPageCount(); pos++)
         {
             if (pClientWindow->GetPage(pos) == this)
@@ -903,6 +912,9 @@ void wxAuiMDIClientWindow::OnSize(wxSizeEvent& evt)
 {
     wxAuiNotebook::OnSize(evt);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t pos = 0; pos < GetPageCount(); pos++)
         ((wxAuiMDIChildFrame *)GetPage(pos))->ApplyMDIChildFrameRect();
 }
