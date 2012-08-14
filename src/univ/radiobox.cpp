@@ -206,6 +206,9 @@ wxRadioBox::~wxRadioBox()
     // to disappear now and not some time later when they will be deleted by
     // our (common) parent
     unsigned int count = m_buttons.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int n = 0; n < count; n++ )
     {
         m_buttons[n]->PopEventHandler(true /* delete it */);
@@ -225,6 +228,9 @@ void wxRadioBox::Append(int count, const wxString *choices)
 
     wxWindow *parent = GetParent();
     m_buttons.Alloc(count);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int n = 0; n < count; n++ )
     {
         // make the first button in the box the start of new group by giving it
@@ -344,6 +350,9 @@ bool wxRadioBox::Enable(bool enable)
 
     // also enable/disable the buttons
     const unsigned int count = m_buttons.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int n = 0; n < count; n++ )
     {
         Enable(n, enable);
@@ -359,6 +368,9 @@ bool wxRadioBox::Show(bool show)
 
     // also show/hide the buttons
     const unsigned int count = m_buttons.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int n = 0; n < count; n++ )
     {
         Show(n, show);
@@ -384,6 +396,9 @@ void wxRadioBox::DoSetToolTip(wxToolTip *tooltip)
 
     // Also set them for all Radio Buttons
     const unsigned int count = m_buttons.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int n = 0; n < count; n++ )
     {
         if (tooltip)
@@ -404,6 +419,9 @@ wxSize wxRadioBox::GetMaxButtonSize() const
     widthMax = heightMax = 0;
 
     const unsigned int count = GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int n = 0; n < count; n++ )
     {
         m_buttons[n]->GetBestSize(&width, &height);
@@ -451,6 +469,9 @@ void wxRadioBox::DoMoveWindow(int x0, int y0, int width, int height)
         y = y0;
 
     const unsigned int count = GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int n = 0; n < count; n++ )
     {
         m_buttons[n]->SetSize(x, y, sizeBtn.x, sizeBtn.y);

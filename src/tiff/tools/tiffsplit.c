@@ -71,6 +71,9 @@ main(int argc, char* argv[])
 		strcpy(fname, argv[2]);
 	in = TIFFOpen(argv[1], "r");
 	if (in != NULL) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
 			char path[1024+1];
 			newfilename();
@@ -231,6 +234,9 @@ cpStrips(TIFF* in, TIFF* out)
 		uint32 *bytecounts;
 
 		TIFFGetField(in, TIFFTAG_STRIPBYTECOUNTS, &bytecounts);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (s = 0; s < ns; s++) {
 			if (bytecounts[s] > (uint32)bufsize) {
 				buf = (unsigned char *)_TIFFrealloc(buf, bytecounts[s]);
@@ -261,6 +267,9 @@ cpTiles(TIFF* in, TIFF* out)
 		uint32 *bytecounts;
 
 		TIFFGetField(in, TIFFTAG_TILEBYTECOUNTS, &bytecounts);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (t = 0; t < nt; t++) {
 			if (bytecounts[t] > (uint32) bufsize) {
 				buf = (unsigned char *)_TIFFrealloc(buf, bytecounts[t]);

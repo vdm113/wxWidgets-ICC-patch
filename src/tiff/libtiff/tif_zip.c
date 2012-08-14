@@ -131,6 +131,9 @@ ZIPDecode(TIFF* tif, tidata_t op, tsize_t occ, tsample_t s)
 	assert(sp != NULL);
 	sp->stream.next_out = op;
 	sp->stream.avail_out = occ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 		int state = inflate(&sp->stream, Z_PARTIAL_FLUSH);
 		if (state == Z_STREAM_END)
@@ -201,6 +204,9 @@ ZIPEncode(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 	(void) s;
 	sp->stream.next_in = bp;
 	sp->stream.avail_in = cc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 		if (deflate(&sp->stream, Z_NO_FLUSH) != Z_OK) {
 			TIFFErrorExt(tif->tif_clientdata, module, "%s: Encoder error: %s",
@@ -229,6 +235,9 @@ ZIPPostEncode(TIFF* tif)
 	int state;
 
 	sp->stream.avail_in = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 		state = deflate(&sp->stream, Z_FINISH);
 		switch (state) {
