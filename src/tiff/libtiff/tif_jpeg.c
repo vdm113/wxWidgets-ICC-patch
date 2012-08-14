@@ -632,6 +632,9 @@ alloc_downsampled_buffers(TIFF* tif, jpeg_component_info* comp_info,
 	JSAMPARRAY buf;
 	int samples_per_clump = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (ci = 0, compptr = comp_info; ci < num_components;
 	     ci++, compptr++) {
 		samples_per_clump += compptr->h_samp_factor *
@@ -800,6 +803,9 @@ JPEGPreDecode(TIFF* tif, tsample_t s)
 			    }
 		}
 		/* Rest should have sampling factors 1,1 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (ci = 1; ci < sp->cinfo.d.num_components; ci++) {
 			if (sp->cinfo.d.comp_info[ci].h_samp_factor != 1 ||
 			    sp->cinfo.d.comp_info[ci].v_samp_factor != 1) {
@@ -893,6 +899,9 @@ JPEGDecode(TIFF* tif, tidata_t buf, tsize_t cc, tsample_t s)
                             * sp->cinfo.d.num_components );
         }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do {
             if( line_work_buf != NULL )
             {
@@ -910,6 +919,9 @@ JPEGDecode(TIFF* tif, tidata_t buf, tsize_t cc, tsample_t s)
                                        * sp->cinfo.d.num_components) / 2;
                     int iPair;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for( iPair = 0; iPair < value_pairs; iPair++ )
                     {
                         unsigned char *out_ptr = 
@@ -928,6 +940,9 @@ JPEGDecode(TIFF* tif, tidata_t buf, tsize_t cc, tsample_t s)
                                        * sp->cinfo.d.num_components);
                     int iValue;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for( iValue = 0; iValue < value_count; iValue++ )
                     {
                         ((unsigned char *) buf)[iValue] = 
@@ -984,6 +999,9 @@ JPEGDecodeRaw(TIFF* tif, tidata_t buf, tsize_t cc, tsample_t s)
                                              sp->cinfo.d.num_components);
 #endif
  
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do {
             jpeg_component_info *compptr;
             int ci, clumpoffset;
@@ -1001,6 +1019,9 @@ JPEGDecodeRaw(TIFF* tif, tidata_t buf, tsize_t cc, tsample_t s)
              * over the scanline for each row of each component.
              */
             clumpoffset = 0;	/* first sample in clump */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (ci = 0, compptr = sp->cinfo.d.comp_info;
                  ci < sp->cinfo.d.num_components;
                  ci++, compptr++) {
@@ -1008,6 +1029,9 @@ JPEGDecodeRaw(TIFF* tif, tidata_t buf, tsize_t cc, tsample_t s)
                 int vsamp = compptr->v_samp_factor;
                 int ypos;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (ypos = 0; ypos < vsamp; ypos++) {
                     JSAMPLE *inptr = sp->ds_buffer[ci][sp->scancount*vsamp + ypos];
 #ifdef JPEG_LIB_MK1
@@ -1019,6 +1043,9 @@ JPEGDecodeRaw(TIFF* tif, tidata_t buf, tsize_t cc, tsample_t s)
 
                     if (hsamp == 1) {
                         /* fast path for at least Cb and Cr */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for (nclump = clumps_per_line; nclump-- > 0; ) {
                             outptr[0] = *inptr++;
                             outptr += samples_per_clump;
@@ -1027,7 +1054,13 @@ JPEGDecodeRaw(TIFF* tif, tidata_t buf, tsize_t cc, tsample_t s)
                         int xpos;
 
                         /* general case */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for (nclump = clumps_per_line; nclump-- > 0; ) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                             for (xpos = 0; xpos < hsamp; xpos++)
                                 outptr[xpos] = *inptr++;
                             outptr += samples_per_clump;
@@ -1043,6 +1076,9 @@ JPEGDecodeRaw(TIFF* tif, tidata_t buf, tsize_t cc, tsample_t s)
                 {
                     int i=0;
                     int len = sp->cinfo.d.output_width * sp->cinfo.d.num_components;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (i=0; i<len; i++)
                     {
                         ((unsigned char*)buf)[i] = tmpbuf[i] & 0xff;
@@ -1053,6 +1089,9 @@ JPEGDecodeRaw(TIFF* tif, tidata_t buf, tsize_t cc, tsample_t s)
                     int value_pairs = (sp->cinfo.d.output_width
                                        * sp->cinfo.d.num_components) / 2;
                     int iPair;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for( iPair = 0; iPair < value_pairs; iPair++ )
                     {
                         unsigned char *out_ptr = ((unsigned char *) buf) + iPair * 3;
@@ -1407,6 +1446,9 @@ JPEGEncode(TIFF* tif, tidata_t buf, tsize_t cc, tsample_t s)
 	if (cc % sp->bytesperline)
 		TIFFWarningExt(tif->tif_clientdata, tif->tif_name, "fractional scanline discarded");
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (nrows-- > 0) {
 		bufptr[0] = (JSAMPROW) buf;
 		if (TIFFjpeg_write_scanlines(sp, bufptr, 1) != 1)
@@ -1444,12 +1486,18 @@ JPEGEncodeRaw(TIFF* tif, tidata_t buf, tsize_t cc, tsample_t s)
 	/* Cb,Cr both have sampling factors 1, so this is correct */
 	clumps_per_line = sp->cinfo.c.comp_info[1].downsampled_width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (nrows-- > 0) {
 		/*
 		 * Fastest way to separate the data is to make one pass
 		 * over the scanline for each row of each component.
 		 */
 		clumpoffset = 0;		/* first sample in clump */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (ci = 0, compptr = sp->cinfo.c.comp_info;
 		     ci < sp->cinfo.c.num_components;
 		     ci++, compptr++) {
@@ -1457,24 +1505,39 @@ JPEGEncodeRaw(TIFF* tif, tidata_t buf, tsize_t cc, tsample_t s)
 		    int vsamp = compptr->v_samp_factor;
 		    int padding = (int) (compptr->width_in_blocks * DCTSIZE -
 					 clumps_per_line * hsamp);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		    for (ypos = 0; ypos < vsamp; ypos++) {
 			inptr = ((JSAMPLE*) buf) + clumpoffset;
 			outptr = sp->ds_buffer[ci][sp->scancount*vsamp + ypos];
 			if (hsamp == 1) {
 			    /* fast path for at least Cb and Cr */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			    for (nclump = clumps_per_line; nclump-- > 0; ) {
 				*outptr++ = inptr[0];
 				inptr += samples_per_clump;
 			    }
 			} else {
 			    /* general case */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			    for (nclump = clumps_per_line; nclump-- > 0; ) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (xpos = 0; xpos < hsamp; xpos++)
 				    *outptr++ = inptr[xpos];
 				inptr += samples_per_clump;
 			    }
 			}
 			/* pad each scanline as needed */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (xpos = 0; xpos < padding; xpos++) {
 			    *outptr = outptr[-1];
 			    outptr++;
@@ -1512,12 +1575,18 @@ JPEGPostEncode(TIFF* tif)
 		int ci, ypos, n;
 		jpeg_component_info* compptr;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (ci = 0, compptr = sp->cinfo.c.comp_info;
 		     ci < sp->cinfo.c.num_components;
 		     ci++, compptr++) {
 			int vsamp = compptr->v_samp_factor;
 			tsize_t row_width = compptr->width_in_blocks * DCTSIZE
 				* sizeof(JSAMPLE);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (ypos = sp->scancount * vsamp;
 			     ypos < DCTSIZE * vsamp; ypos++) {
 				_TIFFmemcpy((tdata_t)sp->ds_buffer[ci][ypos],

@@ -163,6 +163,9 @@ enum wxDirFlags
     wxString filename;
 
     bool cont = dir.GetFirst(&filename, filespec, flags);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( cont )
     {
         printf("%s\n", filename.c_str());

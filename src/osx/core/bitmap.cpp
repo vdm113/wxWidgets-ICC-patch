@@ -491,6 +491,9 @@ IconRef wxBitmapRefData::GetIconRef()
                 unsigned char * sourcePtr = (unsigned char*) GetRawAccess() ;
                 unsigned char * masksourcePtr = mask ? (unsigned char*) mask->GetRawAccess() : NULL ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int y = 0 ; y < h ; ++y, sourcePtr += m_bytesPerRow , masksourcePtr += mask ? mask->GetBytesPerRow() : 0 )
                 {
                     unsigned char * source = sourcePtr;
@@ -498,6 +501,9 @@ IconRef wxBitmapRefData::GetIconRef()
                     unsigned char * dest = ptr + y * sz * 4 ;
                     unsigned char a, r, g, b;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( int x = 0 ; x < w ; ++x )
                     {
                         a = *source ++ ;
@@ -567,6 +573,9 @@ IconRef wxBitmapRefData::GetIconRef()
                 unsigned char * sourcePtr = (unsigned char*) GetRawAccess() ;
                 unsigned char * masksourcePtr = mask ? (unsigned char*) mask->GetRawAccess() : NULL ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int y = 0 ; y < h ; ++y, sourcePtr += m_bytesPerRow , masksourcePtr += mask ? mask->GetBytesPerRow() : 0 )
                 {
                     unsigned char * source = sourcePtr;
@@ -575,6 +584,9 @@ IconRef wxBitmapRefData::GetIconRef()
                     unsigned char * maskdest = maskptr + y * sz ;
                     unsigned char a, r, g, b;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( int x = 0 ; x < w ; ++x )
                     {
                         a = *source ++ ;
@@ -664,10 +676,16 @@ CGImageRef wxBitmapRefData::CreateCGImage() const
                 memcpy( destalphastart , dataBuffer , imageSize ) ;
                 unsigned char *sourcemaskstart = (unsigned char *) m_bitmapMask->GetRawAccess() ;
                 int maskrowbytes = m_bitmapMask->GetBytesPerRow() ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int y = 0 ; y < h ; ++y , destalphastart += m_bytesPerRow, sourcemaskstart += maskrowbytes)
                 {
                     unsigned char *sourcemask = sourcemaskstart ;
                     unsigned char *destalpha = destalphastart ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( int x = 0 ; x < w ; ++x , sourcemask += kMaskBytesPerPixel , destalpha += 4 )
                     {
                         *destalpha = 0xFF - *sourcemask ;
@@ -698,9 +716,15 @@ CGImageRef wxBitmapRefData::CreateCGImage() const
                 unsigned char * bufData = (unsigned char *) membuf.GetData() ;
                 // copy one color component
                 size_t i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for( int y = 0 ; y < m_height ; bufData+= m_bytesPerRow, ++y )
                 {
                     unsigned char *bufDataIter = bufData+3;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( int x = 0 ; x < m_width ; bufDataIter += 4, ++x, ++i )
                     {
                         maskBufData[i] = *bufDataIter;
@@ -848,8 +872,14 @@ bool wxBitmap::CopyFromIcon(const wxIcon& icon)
             unsigned char *sourcemask = (unsigned char *) *maskhandle ;
             unsigned char* destination = (unsigned char*) BeginRawAccess() ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int y = 0 ; y < h ; ++y )
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int x = 0 ; x < w ; ++x )
                 {
                     unsigned char a = *sourcemask++;
@@ -904,11 +934,17 @@ wxBitmap::wxBitmap(const char bits[], int the_width, int the_height, int no_bits
             unsigned char* linestart = (unsigned char*) bits ;
             unsigned char* destptr = (unsigned char*) BeginRawAccess() ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int y = 0 ; y < the_height ; ++y , linestart += linesize, destptr += M_BITMAPDATA->GetBytesPerRow() )
             {
                 unsigned char* destination = destptr;
                 int index, bit, mask;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int x = 0 ; x < the_width ; ++x )
                 {
                     index = x / 8 ;
@@ -1210,9 +1246,15 @@ wxBitmap::wxBitmap(const wxImage& image, int depth)
         if ( destinationstart != NULL && data != NULL )
         {
             const unsigned char *alpha = hasAlpha ? image.GetAlpha() : NULL ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int y = 0; y < height; destinationstart += M_BITMAPDATA->GetBytesPerRow(), y++)
             {
                 unsigned char * destination = destinationstart;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int x = 0; x < width; x++)
                 {
                     if ( hasAlpha )
@@ -1295,6 +1337,9 @@ wxImage wxBitmap::ConvertToImage() const
     static const int MASK_BLUE = 3;
     static const int MASK_BLUE_REPLACEMENT = 2;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int yy = 0; yy < height; yy++ , sourcestart += M_BITMAPDATA->GetBytesPerRow() , mask += maskBytesPerRow )
     {
         unsigned char * maskp = mask ;
@@ -1302,6 +1347,9 @@ wxImage wxBitmap::ConvertToImage() const
         unsigned char a, r, g, b;
         long color;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int xx = 0; xx < width; xx++)
         {
             color = *((long*) source) ;
@@ -1593,11 +1641,17 @@ bool wxMask::Create(const wxBitmap& bitmap)
         memset( destdatabase , 0 , size ) ;
         unsigned char * srcdata = (unsigned char*) bitmap.GetRawAccess() ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int y = 0 ; y < m_height ; ++y , destdatabase += m_bytesPerRow )
         {
             unsigned char *destdata = destdatabase ;
             unsigned char r, g, b;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int x = 0 ; x < m_width ; ++x )
             {
                 srcdata++ ;

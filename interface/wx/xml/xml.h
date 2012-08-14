@@ -474,6 +474,9 @@ enum wxXmlDocumentLoadFlag
 
     // examine prologue
     wxXmlNode *prolog = doc.GetDocumentNode()->GetChildren();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (prolog) {
 
         if (prolog->GetType() == wxXML_PI_NODE && prolog->GetName() == "target") {
@@ -487,6 +490,9 @@ enum wxXmlDocumentLoadFlag
     }
 
     wxXmlNode *child = doc.GetRoot()->GetChildren();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (child) {
 
         if (child->GetName() == "tag1") {

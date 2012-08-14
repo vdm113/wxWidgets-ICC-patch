@@ -87,6 +87,9 @@ public:
         // case if we're called before the main event loop startup
         wxEventLoopGuarantor ensureEventLoop;
 #endif
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (ms_clipboard)
             wxEventLoopBase::GetActive()->YieldFor(wxEVT_CATEGORY_CLIPBOARD);
     }
@@ -169,6 +172,9 @@ targets_selection_received( GtkWidget *WXUNUSED(widget),
 
     // the atoms we received, holding a list of targets (= formats)
     const GdkAtom* const atoms = (GdkAtom*)gtk_selection_data_get_data(selection_data);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < selection_data_length / sizeof(GdkAtom); i++)
     {
         const wxDataFormat format(atoms[i]);
@@ -415,6 +421,9 @@ async_targets_selection_received( GtkWidget *WXUNUSED(widget),
 
     // the atoms we received, holding a list of targets (= formats)
     const GdkAtom* const atoms = (GdkAtom*)gtk_selection_data_get_data(selection_data);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < selection_data_length / sizeof(GdkAtom); i++)
     {
         const wxDataFormat format(atoms[i]);
@@ -639,6 +648,9 @@ bool wxClipboard::AddData( wxDataObject *data )
     // for explanation
     AddSupportedTarget(g_timestampAtom);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < count; i++ )
     {
         const wxDataFormat format(formats[i]);
@@ -695,6 +707,9 @@ bool wxClipboard::GetData( wxDataObject& data )
     wxDataFormatArray formats(new wxDataFormat[count]);
     data.GetAllFormats(formats.get(), wxDataObject::Set);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < count; i++ )
     {
         const wxDataFormat format(formats[i]);
