@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file OptionSet.h
  ** Manage descriptive information about an options struct for a lexer.
@@ -122,6 +129,9 @@ public:
 
 	void DefineWordListSets(const char * const wordListDescriptions[]) {
 		if (wordListDescriptions) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (size_t wl = 0; wordListDescriptions[wl]; wl++) {
 				if (!wordLists.empty())
 					wordLists += "\n";

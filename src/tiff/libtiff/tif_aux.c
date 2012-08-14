@@ -110,6 +110,9 @@ TIFFDefaultTransferFunction(TIFFDirectory* td)
 	if (!(tf[0] = (uint16 *)_TIFFmalloc(nbytes)))
 		return 0;
 	tf[0][0] = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 1; i < n; i++) {
 		double t = (double)i/((double) n-1.);
 		tf[0][i] = (uint16)floor(65535.*pow(t, 2.2) + .5);
@@ -290,10 +293,43 @@ TIFFVGetFieldDefaulted(TIFF* tif, uint32 tag, va_list ap)
 		}
 		return (1);
 	case TIFFTAG_REFERENCEBLACKWHITE:
+<<<<<<< HEAD
 		if (!td->td_refblackwhite && !TIFFDefaultRefBlackWhite(td))
 			return (0);
 		*va_arg(ap, float **) = td->td_refblackwhite;
 		return (1);
+=======
+		{
+			int i;
+			static float ycbcr_refblackwhite[] = 
+			{ 0.0F, 255.0F, 128.0F, 255.0F, 128.0F, 255.0F };
+			static float rgb_refblackwhite[6];
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+			for (i = 0; i < 3; i++) {
+				rgb_refblackwhite[2 * i + 0] = 0.0F;
+				rgb_refblackwhite[2 * i + 1] =
+					(float)((1L<<td->td_bitspersample)-1L);
+			}
+			
+			if (td->td_photometric == PHOTOMETRIC_YCBCR) {
+				/*
+				 * YCbCr (Class Y) images must have the
+				 * ReferenceBlackWhite tag set. Fix the
+				 * broken images, which lacks that tag.
+				 */
+				*va_arg(ap, float **) = ycbcr_refblackwhite;
+			} else {
+				/*
+				 * Assume RGB (Class R)
+				 */
+				*va_arg(ap, float **) = rgb_refblackwhite;
+			}
+			return 1;
+		}
+>>>>>>> sync with upstream
 	}
 	return 0;
 }

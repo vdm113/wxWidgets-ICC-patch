@@ -256,6 +256,9 @@ void wxBookCtrlBase::DoSize()
     // resize all pages to fit the new control size
     const wxRect pageRect = GetPageRect();
     const unsigned pagesCount = m_pages.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i = 0; i < pagesCount; ++i )
     {
         wxWindow * const page = m_pages[i];
@@ -319,6 +322,9 @@ void wxBookCtrlBase::OnHelp(wxHelpEvent& event)
     // if the event object == this because the book control can have other
     // subcontrols inside it (e.g. wxSpinButton in case of a notebook in wxUniv)
     wxWindow *source = wxStaticCast(event.GetEventObject(), wxWindow);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( source && source != this && source->GetParent() != this )
     {
         source = source->GetParent();

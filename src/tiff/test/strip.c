@@ -54,6 +54,9 @@ write_strips(TIFF *tif, const tdata_t array, const tsize_t size)
 	}
 
 	nstrips = TIFFNumberOfStrips(tif);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (offset = 0, strip = 0;
 	     offset < size && strip < nstrips;
 	     offset+=stripsize, strip++) {
@@ -95,6 +98,9 @@ read_strips(TIFF *tif, const tdata_t array, const tsize_t size)
 	}
 
 	nstrips = TIFFNumberOfStrips(tif);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (offset = 0, strip = 0;
 	     offset < size && strip < nstrips;
 	     offset+=stripsize, strip++) {
@@ -283,6 +289,9 @@ write_scanlines(TIFF *tif, const tdata_t array, const tsize_t size)
 		return -1;
 	}
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (offset = 0, row = 0; row < length; offset+=scanlinesize, row++) {
 		if (TIFFWriteScanline(tif, (char *)array + offset, row, 0) < 0) {
 			fprintf (stderr,

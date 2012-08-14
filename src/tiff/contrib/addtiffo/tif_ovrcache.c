@@ -177,6 +177,7 @@ static void TIFFWriteOvrRow( TIFFOvrCache * psCache )
 /* -------------------------------------------------------------------- */
 /*      Write blocks to TIFF file.                                      */
 /* -------------------------------------------------------------------- */
+<<<<<<< HEAD
 	for( iTileX = 0; iTileX < psCache->nBlocksPerRow; iTileX++ )
 	{
 		int nTileID;
@@ -243,6 +244,80 @@ static void TIFFWriteOvrRow( TIFFOvrCache * psCache )
 		}
 	}
 	/* TODO: add checks on error status return of TIFFWriteEncodedTile and TIFFWriteEncodedStrip */
+=======
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for( iTileX = 0; iTileX < psCache->nBlocksPerRow; iTileX++ )
+    {
+        int nTileID;
+
+        if (psCache->nPlanarConfig == PLANARCONFIG_SEPARATE)
+        {
+            int iSample;
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+            for( iSample = 0; iSample < psCache->nSamples; iSample++ )
+            {
+                pabyData = TIFFGetOvrBlock( psCache, iTileX, iTileY, iSample );
+
+                if( psCache->bTiled )
+                {
+                    nTileID =
+                        TIFFComputeTile( psCache->hTIFF,
+                                         iTileX * psCache->nBlockXSize,
+                                         iTileY * psCache->nBlockYSize,
+                                         0, (tsample_t) iSample );
+                    TIFFWriteEncodedTile( psCache->hTIFF, nTileID, 
+                                          pabyData,
+                                          TIFFTileSize(psCache->hTIFF) );
+                }
+                else
+                {
+                    nTileID =
+                        TIFFComputeStrip( psCache->hTIFF,
+                                          iTileY * psCache->nBlockYSize,
+                                          (tsample_t) iSample );
+
+                    TIFFWriteEncodedStrip( psCache->hTIFF, nTileID,
+                                           pabyData,
+                                           TIFFStripSize(psCache->hTIFF) );
+                }
+            }
+
+        }
+        else
+        {
+            pabyData = TIFFGetOvrBlock( psCache, iTileX, iTileY, 0 );
+
+            if( psCache->bTiled )
+            {
+                nTileID =
+                    TIFFComputeTile( psCache->hTIFF,
+                                     iTileX * psCache->nBlockXSize,
+                                     iTileY * psCache->nBlockYSize,
+                                     0, 0 );
+                TIFFWriteEncodedTile( psCache->hTIFF, nTileID, 
+                                      pabyData,
+                                      TIFFTileSize(psCache->hTIFF) );
+            }
+            else
+            {
+                nTileID =
+                    TIFFComputeStrip( psCache->hTIFF,
+                                      iTileY * psCache->nBlockYSize,
+                                      0 );
+
+                TIFFWriteEncodedStrip( psCache->hTIFF, nTileID,
+                                       pabyData,
+                                       TIFFStripSize(psCache->hTIFF) );
+            }
+        }
+    }
+    /* TODO: add checks on error status return of TIFFWriteEncodedTile and TIFFWriteEncodedStrip */
+>>>>>>> sync with upstream
 
 /* -------------------------------------------------------------------- */
 /*      Rotate buffers.                                                 */
@@ -332,6 +407,9 @@ unsigned char *TIFFGetOvrBlock_Subsampled( TIFFOvrCache *psCache,
 void TIFFDestroyOvrCache( TIFFOvrCache * psCache )
 
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( psCache->nBlockOffset < psCache->nBlocksPerColumn )
         TIFFWriteOvrRow( psCache );
 

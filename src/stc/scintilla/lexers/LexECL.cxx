@@ -105,6 +105,9 @@ static void ColouriseEclDoc(unsigned int startPos, int length, int initStyle, Wo
 	// look back to set chPrevNonWhite properly for better regex colouring
 	if (startPos > 0) {
 		int back = startPos;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (--back && IsSpaceEquiv(styler.StyleAt(back)))
 			;
 		if (styler.StyleAt(back) == SCE_ECL_OPERATOR) {
@@ -114,6 +117,9 @@ static void ColouriseEclDoc(unsigned int startPos, int length, int initStyle, Wo
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 		if (sc.atLineStart) {
 			if (sc.state == SCE_ECL_STRING) {
@@ -176,6 +182,9 @@ static void ColouriseEclDoc(unsigned int startPos, int length, int initStyle, Wo
 					else	//Data types are of from KEYWORD## 
 					{
 						int i = static_cast<int>(strlen(s)) - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 						while(i >= 0 && (isdigit(s[i]) || s[i] == '_'))
 							--i;
 
@@ -277,6 +286,9 @@ static void ColouriseEclDoc(unsigned int startPos, int length, int initStyle, Wo
 					sc.SetState(SCE_ECL_DEFAULT);
 				} else if (sc.ch == '/') {
 					sc.Forward();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					while ((sc.ch < 0x80) && islower(sc.ch))
 						sc.Forward();    // gobble regex flags
 					sc.SetState(SCE_ECL_DEFAULT);
@@ -358,6 +370,9 @@ static void ColouriseEclDoc(unsigned int startPos, int length, int initStyle, Wo
 				// Preprocessor commands are alone on their line
 				sc.SetState(SCE_ECL_PREPROCESSOR);
 				// Skip whitespace between # and preprocessor word
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				do {
 					sc.Forward();
 				} while ((sc.ch == ' ' || sc.ch == '\t') && sc.More());
@@ -388,6 +403,9 @@ static bool IsStreamCommentStyle(int style) {
 
 bool MatchNoCase(Accessor & styler, unsigned int & pos, const char *s) {
 	int i=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; *s; i++) {
 		char compare_char = tolower(*s);
 		char styler_char = tolower(styler.SafeGetCharAt(pos+i));
@@ -420,6 +438,9 @@ static void FoldEclDoc(unsigned int startPos, int length, int initStyle,
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
 	int style = initStyle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -448,6 +469,9 @@ static void FoldEclDoc(unsigned int startPos, int length, int initStyle,
 		if (foldPreprocessor && (style == SCE_ECL_PREPROCESSOR)) {
 			if (ch == '#') {
 				unsigned int j = i + 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while ((j < endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
 					j++;
 				}

@@ -65,6 +65,9 @@ compresscontig(unsigned char* out, unsigned char* rgb, uint32 n)
 {
 	register int v, red = RED, green = GREEN, blue = BLUE;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0) {
 		v = red*(*rgb++);
 		v += green*(*rgb++);
@@ -79,6 +82,9 @@ compresssep(unsigned char* out,
 {
 	register uint32 red = RED, green = GREEN, blue = BLUE;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0)
 		*out++ = (unsigned char)
 			((red*(*r++) + green*(*g++) + blue*(*b++)) >> 8);
@@ -87,6 +93,9 @@ compresssep(unsigned char* out,
 static int
 checkcmap(TIFF* tif, int n, uint16* r, uint16* g, uint16* b)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0)
 		if (*r++ >= 256 || *g++ >= 256 || *b++ >= 256)
 			return (16);
@@ -99,6 +108,9 @@ compresspalette(unsigned char* out, unsigned char* data, uint32 n, uint16* rmap,
 {
 	register int v, red = RED, green = GREEN, blue = BLUE;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0) {
 		unsigned int ix = *data++;
 		v = red*rmap[ix];
@@ -137,6 +149,9 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char *optarg;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((c = getopt(argc, argv, "c:r:R:G:B:")) != -1)
 		switch (c) {
 		case 'c':		/* compression scheme */
@@ -231,6 +246,9 @@ main(int argc, char* argv[])
 		if (checkcmap(in, 1<<bitspersample, red, green, blue) == 16) {
 			int i;
 #define	CVT(x)		(((x) * 255L) / ((1L<<16)-1))
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = (1<<bitspersample)-1; i >= 0; i--) {
 				red[i] = CVT(red[i]);
 				green[i] = CVT(green[i]);
@@ -239,6 +257,9 @@ main(int argc, char* argv[])
 #undef CVT
 		}
 		inbuf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(in));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (row = 0; row < h; row++) {
 			if (TIFFReadScanline(in, inbuf, row, 0) < 0)
 				break;
@@ -249,6 +270,9 @@ main(int argc, char* argv[])
 		break;
 	case pack(PHOTOMETRIC_RGB, PLANARCONFIG_CONTIG):
 		inbuf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(in));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (row = 0; row < h; row++) {
 			if (TIFFReadScanline(in, inbuf, row, 0) < 0)
 				break;
@@ -260,7 +284,13 @@ main(int argc, char* argv[])
 	case pack(PHOTOMETRIC_RGB, PLANARCONFIG_SEPARATE):
 		rowsize = TIFFScanlineSize(in);
 		inbuf = (unsigned char *)_TIFFmalloc(3*rowsize);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (row = 0; row < h; row++) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (s = 0; s < 3; s++)
 				if (TIFFReadScanline(in,
 				    inbuf+s*rowsize, row, s) < 0)
@@ -288,6 +318,9 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
                 compression = COMPRESSION_JPEG;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while( cp )
                 {
                     if (isdigit((int)cp[1]))
@@ -428,6 +461,9 @@ static void
 cpTags(TIFF* in, TIFF* out)
 {
     struct cpTag *p;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (p = tags; p < &tags[NTAGS]; p++)
 	cpTag(in, out, p->tag, p->count, p->type);
 }
@@ -463,6 +499,9 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);

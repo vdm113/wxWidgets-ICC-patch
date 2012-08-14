@@ -218,6 +218,9 @@ void wxSVGFileDCImpl::DoDrawLine (wxCoord x1, wxCoord y1, wxCoord x2, wxCoord y2
 
 void wxSVGFileDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoffset , wxCoord yoffset )
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 1; i < n; i++ )
     {
         DoDrawLine ( points [i-1].x + xoffset, points [i-1].y + yoffset,
@@ -343,6 +346,9 @@ void wxSVGFileDCImpl::DoDrawPolygon(int n, const wxPoint points[],
 
     s += wxT("\" \npoints=\"");
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < n;  i++)
     {
         sTmp.Printf ( wxT("%d,%d"), points [i].x+xoffset, points[i].y+yoffset );
@@ -699,6 +705,9 @@ void wxSVGFileDCImpl::DoDrawBitmap(const class wxBitmap & bmp, wxCoord x, wxCoor
 // create suitable file name
     sTmp.Printf ( wxT("_image%d.png"), m_sub_images);
     sPNG = m_filename.BeforeLast(wxT('.')) + sTmp;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (wxFile::Exists(sPNG) )
     {
         m_sub_images ++;

@@ -213,12 +213,18 @@ CheckTransparency(unsigned char **lines,
 {
     // suppose that a mask will suffice and check all the remaining alpha
     // values to see if it does
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ; y < h; y++ )
     {
         // each pixel is numColBytes+1 bytes, offset into the current line by
         // the current x position
         unsigned const char *ptr = lines[y] + (x * (numColBytes + 1));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( png_uint_32 x2 = x; x2 < w; x2++ )
         {
             // skip the grey or colour byte(s)
@@ -250,6 +256,9 @@ unsigned char *InitAlpha(wxImage *image, png_uint_32 x, png_uint_32 y)
 
     // set alpha for the pixels we had so far
     png_uint_32 end = y * image->GetWidth() + x;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( png_uint_32 i = 0; i < end; i++ )
     {
         // all the previous pixels were opaque
@@ -271,9 +280,15 @@ FindMaskColour(unsigned char **lines, png_uint_32 width, png_uint_32 height,
     wxImageHistogram h;
     unsigned nentries = 0;
     unsigned char r2, g2, b2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( png_uint_32 y2 = 0; y2 < height; y2++ )
     {
         const unsigned char *p = lines[y2];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( png_uint_32 x2 = 0; x2 < width; x2++ )
         {
             r2 = *p++;
@@ -339,9 +354,15 @@ void CopyDataFromPNG(wxImage *image,
     if ( !(color_type & PNG_COLOR_MASK_COLOR) )
     {
         // grey image: GAGAGA... where G == grey component and A == alpha
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( png_uint_32 y = 0; y < height; y++ )
         {
             const unsigned char *ptrSrc = lines[y];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( png_uint_32 x = 0; x < width; x++ )
             {
                 unsigned char g = *ptrSrc++;
@@ -413,9 +434,15 @@ void CopyDataFromPNG(wxImage *image,
     }
     else // colour image: RGBRGB...
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( png_uint_32 y = 0; y < height; y++ )
         {
             const unsigned char *ptrSrc = lines[y];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( png_uint_32 x = 0; x < width; x++ )
             {
                 unsigned char r = *ptrSrc++;
@@ -572,6 +599,9 @@ wxPNGHandler::LoadFile(wxImage *image,
     if ( !lines )
         goto error;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < height; i++)
     {
         if ((lines[i] = (unsigned char *)malloc( (size_t)(width * 4))) == NULL)
@@ -593,6 +623,9 @@ wxPNGHandler::LoadFile(wxImage *image,
         unsigned char* g = new unsigned char[numPalette];
         unsigned char* b = new unsigned char[numPalette];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int j = 0; j < numPalette; j++)
         {
             r[j] = palette[j].red;
@@ -653,6 +686,9 @@ wxPNGHandler::LoadFile(wxImage *image,
     // loaded successfully, now init wxImage with this data
     CopyDataFromPNG(image, lines, width, height, color_type);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < height; i++ )
         free( lines[i] );
     free( lines );
@@ -672,6 +708,9 @@ error:
 
     if ( lines )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned int n = 0; n < height; n++ )
             free( lines[n] );
 
@@ -825,8 +864,14 @@ bool wxPNGHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbos
             PaletteAdd(&palette, mask);
         }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = 0; y < iHeight; y++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x = 0; x < iWidth; x++)
             {
                 png_color_8 rgba;
@@ -996,9 +1041,15 @@ bool wxPNGHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbos
 
     const unsigned char *pColors = image->GetData();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int y = 0; y != iHeight; ++y)
     {
         unsigned char *pData = data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int x = 0; x != iWidth; x++)
         {
             png_color_8 clr;
