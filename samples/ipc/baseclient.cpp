@@ -251,6 +251,9 @@ void MyClient::Notify()
 
 void MyClient::StartNextTestIfNecessary()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !m_tests.empty() )
     {
         MyClientTestFunc testfunc = m_tests.front();

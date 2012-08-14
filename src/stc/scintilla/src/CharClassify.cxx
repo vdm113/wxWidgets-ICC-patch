@@ -32,6 +32,9 @@ CharClassify::CharClassify() {
 
 void CharClassify::SetDefaultCharClasses(bool includeWordClass) {
 	// Initialize all char classes to default values
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int ch = 0; ch < 256; ch++) {
 		if (ch == '\r' || ch == '\n')
 			charClass[ch] = ccNewLine;
@@ -47,6 +50,9 @@ void CharClassify::SetDefaultCharClasses(bool includeWordClass) {
 void CharClassify::SetCharClasses(const unsigned char *chars, cc newCharClass) {
 	// Apply the newCharClass to the specifed chars
 	if (chars) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (*chars) {
 			charClass[*chars] = static_cast<unsigned char>(newCharClass);
 			chars++;
@@ -58,6 +64,9 @@ int CharClassify::GetCharsOfClass(cc characterClass, unsigned char *buffer) {
 	// Get characters belonging to the given char class; return the number
 	// of characters (if the buffer is NULL, don't write to it).
 	int count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int ch = maxChar - 1; ch >= 0; --ch) {
 		if (charClass[ch] == characterClass) {
 			++count;
