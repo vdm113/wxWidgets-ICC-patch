@@ -435,6 +435,9 @@ png_text_compress(png_structp png_ptr,
    png_ptr->zstream.next_out = png_ptr->zbuf;
 
    /* This is the same compression loop as in png_write_row() */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    do
    {
       /* Compress the data */
@@ -499,6 +502,9 @@ png_text_compress(png_structp png_ptr,
    } while (png_ptr->zstream.avail_in);
 
    /* Finish the compression */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    do
    {
       /* Tell zlib we are finished */
@@ -614,6 +620,9 @@ png_write_compressed_data_out(png_structp png_ptr, compression_state *comp)
          z_cinfo = z_cmf >> 4;
          half_z_window_size = 1 << (z_cinfo + 7);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          while (uncompressed_text_size <= half_z_window_size &&
              half_z_window_size >= 256)
          {
@@ -654,6 +663,9 @@ png_write_compressed_data_out(png_structp png_ptr, compression_state *comp)
 #endif /* PNG_WRITE_OPTIMIZE_CMF_SUPPORTED */
 
    /* Write saved output buffers, if any */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0; i < comp->num_output_ptr; i++)
    {
       png_write_chunk_data(png_ptr, comp->output_ptr[i],
@@ -940,6 +952,9 @@ png_write_PLTE(png_structp png_ptr, png_const_colorp palette,
    png_write_chunk_header(png_ptr, png_PLTE, (png_uint_32)(num_pal * 3));
 #ifdef PNG_POINTER_INDEXING_SUPPORTED
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0, pal_ptr = palette; i < num_pal; i++, pal_ptr++)
    {
       buf[0] = pal_ptr->red;
@@ -954,6 +969,9 @@ png_write_PLTE(png_structp png_ptr, png_const_colorp palette,
     */
    pal_ptr=palette;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0; i < num_pal; i++)
    {
       buf[0] = pal_ptr[i].red;
@@ -1015,6 +1033,9 @@ png_write_IDAT(png_structp png_ptr, png_bytep data, png_size_t length)
             z_cinfo = z_cmf >> 4;
             half_z_window_size = 1 << (z_cinfo + 7);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (uncompressed_idat_size <= half_z_window_size &&
                 half_z_window_size >= 256)
             {
@@ -1211,6 +1232,9 @@ png_write_sPLT(png_structp png_ptr, png_const_sPLT_tp spalette)
 
    /* Loop through each palette entry, writing appropriately */
 #ifdef PNG_POINTER_INDEXING_SUPPORTED
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (ep = spalette->entries; ep<spalette->entries + spalette->nentries; ep++)
    {
       if (spalette->depth == 8)
@@ -1235,6 +1259,9 @@ png_write_sPLT(png_structp png_ptr, png_const_sPLT_tp spalette)
    }
 #else
    ep=spalette->entries;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0; i>spalette->nentries; i++)
    {
       if (spalette->depth == 8)
@@ -1505,6 +1532,9 @@ png_write_hIST(png_structp png_ptr, png_const_uint_16p hist, int num_hist)
 
    png_write_chunk_header(png_ptr, png_hIST, (png_uint_32)(num_hist * 2));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0; i < num_hist; i++)
    {
       png_save_uint_16(buf, hist[i]);
@@ -1557,6 +1587,9 @@ png_check_keyword(png_structp png_ptr, png_const_charp key, png_charpp new_key)
    }
 
    /* Replace non-printing characters with a blank and print a warning */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (ikp = key, dp = *new_key; *ikp != '\0'; ikp++, dp++)
    {
       if ((png_byte)*ikp < 0x20 ||
@@ -1583,6 +1616,9 @@ png_check_keyword(png_structp png_ptr, png_const_charp key, png_charpp new_key)
    {
       png_warning(png_ptr, "trailing spaces removed from keyword");
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       while (*kp == ' ')
       {
          *(kp--) = '\0';
@@ -1596,6 +1632,9 @@ png_check_keyword(png_structp png_ptr, png_const_charp key, png_charpp new_key)
    {
       png_warning(png_ptr, "leading spaces removed from keyword");
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       while (*kp == ' ')
       {
          kp++;
@@ -1606,6 +1645,9 @@ png_check_keyword(png_structp png_ptr, png_const_charp key, png_charpp new_key)
    png_debug1(2, "Checking for multiple internal spaces in '%s'", kp);
 
    /* Remove multiple internal spaces. */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (kflag = 0, dp = *new_key; *kp != '\0'; kp++)
    {
       if (*kp == ' ' && kflag == 0)
@@ -1893,6 +1935,9 @@ png_write_pCAL(png_structp png_ptr, png_charp purpose, png_int_32 X0,
    /* Find the length of each parameter, making sure we don't count the
     * null terminator for the last parameter.
     */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0; i < nparams; i++)
    {
       params_len[i] = png_strlen(params[i]) + (i == nparams - 1 ? 0 : 1);
@@ -1913,6 +1958,9 @@ png_write_pCAL(png_structp png_ptr, png_charp purpose, png_int_32 X0,
 
    png_free(png_ptr, new_purpose);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0; i < nparams; i++)
    {
       png_write_chunk_data(png_ptr, (png_const_bytep)params[i], params_len[i]);
@@ -2159,6 +2207,9 @@ png_write_finish_row(png_structp png_ptr)
       else
       {
          /* Loop until we find a non-zero width or height pass */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          do
          {
             png_ptr->pass++;
@@ -2198,6 +2249,9 @@ png_write_finish_row(png_structp png_ptr)
 
    /* If we get here, we've just written the last row, so we need
       to flush the compressor */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    do
    {
       /* Tell the compressor we are done */
@@ -2277,6 +2331,9 @@ png_do_write_interlace(png_row_infop row_info, png_bytep row, int pass)
             d = 0;
             shift = 7;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = png_pass_start[pass]; i < row_width;
                i += png_pass_inc[pass])
             {
@@ -2315,6 +2372,9 @@ png_do_write_interlace(png_row_infop row_info, png_bytep row, int pass)
             shift = 6;
             d = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = png_pass_start[pass]; i < row_width;
                i += png_pass_inc[pass])
             {
@@ -2351,6 +2411,9 @@ png_do_write_interlace(png_row_infop row_info, png_bytep row, int pass)
             dp = row;
             shift = 4;
             d = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = png_pass_start[pass]; i < row_width;
                 i += png_pass_inc[pass])
             {
@@ -2389,6 +2452,9 @@ png_do_write_interlace(png_row_infop row_info, png_bytep row, int pass)
             pixel_bytes = (row_info->pixel_depth >> 3);
 
             /* Loop through the row, only looking at the pixels that matter */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = png_pass_start[pass]; i < row_width;
                i += png_pass_inc[pass])
             {
@@ -2496,6 +2562,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
       png_size_t i;
       int v;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0, rp = row_buf + 1; i < row_bytes; i++, rp++)
       {
          v = *rp;
@@ -2511,6 +2580,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
          sumhi = (sum >> PNG_HISHIFT) & PNG_HIMASK; /* Gives us some footroom */
 
          /* Reduce the sum if we match any of the previous rows */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (j = 0; j < num_p_filters; j++)
          {
             if (png_ptr->prev_filters[j] == PNG_FILTER_VALUE_NONE)
@@ -2550,12 +2622,18 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
       png_bytep rp, lp, dp;
       png_size_t i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0, rp = row_buf + 1, dp = png_ptr->sub_row + 1; i < bpp;
            i++, rp++, dp++)
       {
          *dp = *rp;
       }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (lp = row_buf + 1; i < row_bytes;
          i++, rp++, lp++, dp++)
       {
@@ -2584,6 +2662,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
          lmlo = lmins & PNG_LOMASK;
          lmhi = (lmins >> PNG_HISHIFT) & PNG_HIMASK;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (j = 0; j < num_p_filters; j++)
          {
             if (png_ptr->prev_filters[j] == PNG_FILTER_VALUE_SUB)
@@ -2610,6 +2691,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
       }
 #endif
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0, rp = row_buf + 1, dp = png_ptr->sub_row + 1; i < bpp;
            i++, rp++, dp++)
       {
@@ -2618,6 +2702,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
          sum += (v < 128) ? v : 256 - v;
       }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (lp = row_buf + 1; i < row_bytes;
          i++, rp++, lp++, dp++)
       {
@@ -2637,6 +2724,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
          sumlo = sum & PNG_LOMASK;
          sumhi = (sum >> PNG_HISHIFT) & PNG_HIMASK;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (j = 0; j < num_p_filters; j++)
          {
             if (png_ptr->prev_filters[j] == PNG_FILTER_VALUE_SUB)
@@ -2676,6 +2766,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
       png_bytep rp, dp, pp;
       png_size_t i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0, rp = row_buf + 1, dp = png_ptr->up_row + 1,
           pp = prev_row + 1; i < row_bytes;
           i++, rp++, pp++, dp++)
@@ -2702,6 +2795,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
          lmlo = lmins & PNG_LOMASK;
          lmhi = (lmins >> PNG_HISHIFT) & PNG_HIMASK;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (j = 0; j < num_p_filters; j++)
          {
             if (png_ptr->prev_filters[j] == PNG_FILTER_VALUE_UP)
@@ -2728,6 +2824,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
       }
 #endif
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0, rp = row_buf + 1, dp = png_ptr->up_row + 1,
           pp = prev_row + 1; i < row_bytes; i++)
       {
@@ -2747,6 +2846,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
          sumlo = sum & PNG_LOMASK;
          sumhi = (sum >> PNG_HISHIFT) & PNG_HIMASK;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (j = 0; j < num_p_filters; j++)
          {
             if (png_ptr->prev_filters[j] == PNG_FILTER_VALUE_UP)
@@ -2786,12 +2888,18 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
       png_bytep rp, dp, pp, lp;
       png_uint_32 i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0, rp = row_buf + 1, dp = png_ptr->avg_row + 1,
            pp = prev_row + 1; i < bpp; i++)
       {
          *dp++ = (png_byte)(((int)*rp++ - ((int)*pp++ / 2)) & 0xff);
       }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (lp = row_buf + 1; i < row_bytes; i++)
       {
          *dp++ = (png_byte)(((int)*rp++ - (((int)*pp++ + (int)*lp++) / 2))
@@ -2815,6 +2923,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
          lmlo = lmins & PNG_LOMASK;
          lmhi = (lmins >> PNG_HISHIFT) & PNG_HIMASK;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (j = 0; j < num_p_filters; j++)
          {
             if (png_ptr->prev_filters[j] == PNG_FILTER_VALUE_AVG)
@@ -2841,6 +2952,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
       }
 #endif
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0, rp = row_buf + 1, dp = png_ptr->avg_row + 1,
            pp = prev_row + 1; i < bpp; i++)
       {
@@ -2849,6 +2963,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
          sum += (v < 128) ? v : 256 - v;
       }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (lp = row_buf + 1; i < row_bytes; i++)
       {
          v = *dp++ =
@@ -2868,6 +2985,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
          sumlo = sum & PNG_LOMASK;
          sumhi = (sum >> PNG_HISHIFT) & PNG_HIMASK;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (j = 0; j < num_p_filters; j++)
          {
             if (png_ptr->prev_filters[j] == PNG_FILTER_VALUE_NONE)
@@ -2907,12 +3027,18 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
       png_bytep rp, dp, pp, cp, lp;
       png_size_t i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0, rp = row_buf + 1, dp = png_ptr->paeth_row + 1,
           pp = prev_row + 1; i < bpp; i++)
       {
          *dp++ = (png_byte)(((int)*rp++ - (int)*pp++) & 0xff);
       }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (lp = row_buf + 1, cp = prev_row + 1; i < row_bytes; i++)
       {
          int a, b, c, pa, pb, pc, p;
@@ -2956,6 +3082,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
          lmlo = lmins & PNG_LOMASK;
          lmhi = (lmins >> PNG_HISHIFT) & PNG_HIMASK;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (j = 0; j < num_p_filters; j++)
          {
             if (png_ptr->prev_filters[j] == PNG_FILTER_VALUE_PAETH)
@@ -2982,6 +3111,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
       }
 #endif
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0, rp = row_buf + 1, dp = png_ptr->paeth_row + 1,
           pp = prev_row + 1; i < bpp; i++)
       {
@@ -2990,6 +3122,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
          sum += (v < 128) ? v : 256 - v;
       }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (lp = row_buf + 1, cp = prev_row + 1; i < row_bytes; i++)
       {
          int a, b, c, pa, pb, pc, p;
@@ -3043,6 +3178,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
          sumlo = sum & PNG_LOMASK;
          sumhi = (sum >> PNG_HISHIFT) & PNG_HIMASK;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (j = 0; j < num_p_filters; j++)
          {
             if (png_ptr->prev_filters[j] == PNG_FILTER_VALUE_PAETH)
@@ -3086,6 +3224,9 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
    {
       int j;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (j = 1; j < num_p_filters; j++)
       {
          png_ptr->prev_filters[j] = png_ptr->prev_filters[j - 1];
@@ -3111,6 +3252,9 @@ png_write_filtered_row(png_structp png_ptr, png_bytep filtered_row,
    png_ptr->zstream.next_in = filtered_row;
    png_ptr->zstream.avail_in = 0;
    /* Repeat until we have compressed all the data */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    do
    {
       int ret; /* Return of zlib */

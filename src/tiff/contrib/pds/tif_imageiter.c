@@ -287,8 +287,14 @@ gtTileContig(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
     TIFFGetField(tif, TIFFTAG_TILEWIDTH, &tw);
     TIFFGetField(tif, TIFFTAG_TILELENGTH, &th);
     orientation = img->orientation;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (row = 0; row < h; row += th) {
 	nrow = (row + th > h ? h - row : th);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (col = 0; col < w; col += tw) {
 	    if (TIFFReadTile(tif, buf, col, row, 0, 0) < 0 && img->stoponerr)
 		break;
@@ -348,8 +354,14 @@ gtTileSeparate(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
     TIFFGetField(tif, TIFFTAG_TILEWIDTH, &tw);
     TIFFGetField(tif, TIFFTAG_TILELENGTH, &th);
     orientation = img->orientation;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (row = 0; row < h; row += th) {
 	nrow = (row + th > h ? h - row : th);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (col = 0; col < w; col += tw) {
 	    if (TIFFReadTile(tif, r, col, row,0,0) < 0 && img->stoponerr)
 		break;
@@ -404,6 +416,9 @@ gtStripContig(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
     TIFFGetFieldDefaulted(tif, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
     scanline = TIFFScanlineSize(tif);
     fromskew = (w < imagewidth ? imagewidth - w : 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (row = 0; row < h; row += rowsperstrip) {
 	nrow = (row + rowsperstrip > h ? h - row : rowsperstrip);
 	if (TIFFReadEncodedStrip(tif, TIFFComputeStrip(tif, row, 0),
@@ -452,6 +467,9 @@ gtStripSeparate(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
     TIFFGetFieldDefaulted(tif, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
     scanline = TIFFScanlineSize(tif);
     fromskew = (w < imagewidth ? imagewidth - w : 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (row = 0; row < h; row += rowsperstrip) {
 	nrow = (row + rowsperstrip > h ? h - row : rowsperstrip);
 	if (TIFFReadEncodedStrip(tif, TIFFComputeStrip(tif, row, 0),

@@ -212,6 +212,9 @@ STDMETHODIMP wxIDropTarget::DragEnter(IDataObject *pIDataSource,
     if ( SUCCEEDED(pIDataSource->EnumFormatEtc(DATADIR_GET, &penumFmt)) )
     {
         FORMATETC fmt;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( penumFmt->Next(1, &fmt, NULL) == S_OK )
         {
             wxLogDebug(wxT("Drop source supports format %s"),
@@ -574,6 +577,9 @@ wxDataFormat wxDropTarget::MSWGetSupportedFormat(IDataObject *pIDataSource) cons
 
     // cycle through all supported formats
     size_t n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < nFormats; n++ ) {
         s_fmtMemory.cfFormat = formats[n];
 

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file LexerSimple.cxx
  ** A simple lexer with no state.
@@ -31,6 +38,9 @@ using namespace Scintilla;
 #endif
 
 LexerSimple::LexerSimple(const LexerModule *module_) : module(module_) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int wl = 0; wl < module->GetNumWordLists(); wl++) {
 		if (!wordLists.empty())
 			wordLists += "\n";

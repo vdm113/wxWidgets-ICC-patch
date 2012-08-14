@@ -627,6 +627,9 @@ void wxAuiDefaultToolBarArt::DrawGripper(wxDC& dc,
                                     const wxRect& rect)
 {
     int i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (1)
     {
         int x, y;
@@ -723,6 +726,9 @@ int wxAuiDefaultToolBarArt::ShowDropDown(wxWindow* wnd,
     size_t items_added = 0;
 
     size_t i, count = items.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < count; ++i)
     {
         wxAuiToolBarItem& item = items.Item(i);
@@ -1144,6 +1150,9 @@ wxControl* wxAuiToolBar::FindControl(int id)
 wxAuiToolBarItem* wxAuiToolBar::FindTool(int tool_id) const
 {
     size_t i, count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
         wxAuiToolBarItem& item = m_items.Item(i);
@@ -1157,6 +1166,9 @@ wxAuiToolBarItem* wxAuiToolBar::FindTool(int tool_id) const
 wxAuiToolBarItem* wxAuiToolBar::FindToolByPosition(wxCoord x, wxCoord y) const
 {
     size_t i, count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
         wxAuiToolBarItem& item = m_items.Item(i);
@@ -1181,6 +1193,9 @@ wxAuiToolBarItem* wxAuiToolBar::FindToolByPosition(wxCoord x, wxCoord y) const
 wxAuiToolBarItem* wxAuiToolBar::FindToolByPositionWithPacking(wxCoord x, wxCoord y) const
 {
     size_t i, count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
         wxAuiToolBarItem& item = m_items.Item(i);
@@ -1424,6 +1439,9 @@ void wxAuiToolBar::SetHoverItem(wxAuiToolBarItem* pitem)
     wxAuiToolBarItem* former_hover = NULL;
 
     size_t i, count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
         wxAuiToolBarItem& item = m_items.Item(i);
@@ -1449,6 +1467,9 @@ void wxAuiToolBar::SetPressedItem(wxAuiToolBarItem* pitem)
     wxAuiToolBarItem* former_item = NULL;
 
     size_t i, count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
         wxAuiToolBarItem& item = m_items.Item(i);
@@ -1520,12 +1541,18 @@ void wxAuiToolBar::ToggleTool(int tool_id, bool state)
 
             if (idx >= 0 && idx < count)
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = idx + 1; i < count; ++i)
                 {
                     if (m_items[i].m_kind != wxITEM_RADIO)
                         break;
                     m_items[i].m_state &= ~wxAUI_BUTTON_STATE_CHECKED;
                 }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = idx - 1; i >= 0; i--)
                 {
                     if (m_items[i].m_kind != wxITEM_RADIO)
@@ -1741,6 +1768,9 @@ int wxAuiToolBar::GetToolIndex(int tool_id) const
         return wxNOT_FOUND;
 
     size_t i, count = m_items.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < count; ++i)
     {
         wxAuiToolBarItem& item = m_items.Item(i);
@@ -1883,6 +1913,9 @@ bool wxAuiToolBar::RealizeHelper(wxClientDC& dc, bool horizontal)
     }
 
     size_t i, count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
         wxAuiToolBarItem& item = m_items.Item(i);
@@ -2050,6 +2083,9 @@ bool wxAuiToolBar::RealizeHelper(wxClientDC& dc, bool horizontal)
     m_sizer = outside_sizer;
 
     // calculate the rock-bottom minimum size
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
         wxAuiToolBarItem& item = m_items.Item(i);
@@ -2060,6 +2096,9 @@ bool wxAuiToolBar::RealizeHelper(wxClientDC& dc, bool horizontal)
     m_absoluteMinSize = m_sizer->GetMinSize();
 
     // reset the min sizes to what they were
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
         wxAuiToolBarItem& item = m_items.Item(i);
@@ -2149,6 +2188,9 @@ void wxAuiToolBar::DoIdleUpdate()
     bool need_refresh = false;
 
     size_t i, count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
         wxAuiToolBarItem& item = m_items.Item(i);
@@ -2228,6 +2270,9 @@ void wxAuiToolBar::OnSize(wxSizeEvent& WXUNUSED(evt))
     {
         // hide all flexible items
         size_t i, count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0, count = m_items.GetCount(); i < count; ++i)
         {
             wxAuiToolBarItem& item = m_items.Item(i);
@@ -2242,6 +2287,9 @@ void wxAuiToolBar::OnSize(wxSizeEvent& WXUNUSED(evt))
     {
         // show all flexible items
         size_t i, count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0, count = m_items.GetCount(); i < count; ++i)
         {
             wxAuiToolBarItem& item = m_items.Item(i);
@@ -2402,6 +2450,9 @@ void wxAuiToolBar::OnPaint(wxPaintEvent& WXUNUSED(evt))
 
     // paint each individual tool
     size_t i, count = m_items.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < count; ++i)
     {
         wxAuiToolBarItem& item = m_items.Item(i);
@@ -2516,11 +2567,17 @@ void wxAuiToolBar::OnLeftDown(wxMouseEvent& evt)
 
                 // add custom overflow prepend items, if any
                 count = m_customOverflowPrepend.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < count; ++i)
                     overflow_items.Add(m_customOverflowPrepend[i]);
 
                 // only show items that don't fit in the dropdown
                 count = m_items.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < count; ++i)
                 {
                     if (!GetToolFitsByIndex(i))
@@ -2529,6 +2586,9 @@ void wxAuiToolBar::OnLeftDown(wxMouseEvent& evt)
 
                 // add custom overflow append items, if any
                 count = m_customOverflowAppend.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < count; ++i)
                     overflow_items.Add(m_customOverflowAppend[i]);
 

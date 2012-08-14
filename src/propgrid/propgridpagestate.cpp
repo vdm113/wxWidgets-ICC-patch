@@ -266,6 +266,9 @@ void wxPropertyGridPageState::InitNonCatMode()
         // Prepare m_abcArray
         wxPropertyGridIterator it( this, wxPG_ITERATE_PROPERTIES );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ; !it.AtEnd(); it.Next() )
         {
             wxPGProperty* p = it.GetProperty();
@@ -319,6 +322,9 @@ void wxPropertyGridPageState::CalculateFontAndBitmapStuff( int WXUNUSED(vspacing
     // Recalculate caption text extents.
     unsigned int i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i=0;i<m_regularArray.GetChildCount();i++ )
     {
         wxPGProperty* p =m_regularArray.Item(i);
@@ -402,6 +408,9 @@ wxPGProperty* wxPropertyGridPageState::GetLastItem( int flags )
 
     // First, get last child of last parent
     wxPGProperty* pwc = (wxPGProperty*)m_properties->Last();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( pwc->GetChildCount() &&
             wxPG_ITERATOR_PARENTEXMASK_TEST(pwc, parentExMask) )
         pwc = (wxPGProperty*) pwc->Last();
@@ -410,6 +419,9 @@ wxPGProperty* wxPropertyGridPageState::GetLastItem( int flags )
     if ( pwc->GetFlags() & itemExMask )
     {
         wxPropertyGridIterator it( this, flags, pwc );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ; !it.AtEnd(); it.Prev() )
             ;
         pwc = (wxPGProperty*) it.GetProperty();
@@ -422,6 +434,9 @@ wxPropertyCategory* wxPropertyGridPageState::GetPropertyCategory( const wxPGProp
 {
     const wxPGProperty* parent = (const wxPGProperty*)p;
     const wxPGProperty* grandparent = (const wxPGProperty*)parent->GetParent();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
         parent = grandparent;
@@ -445,6 +460,9 @@ wxPGProperty* wxPropertyGridPageState::GetPropertyByLabel( const wxString& label
 
     if ( !parent ) parent = (wxPGProperty*) &m_regularArray;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i=0; i<parent->GetChildCount(); i++ )
     {
         wxPGProperty* p = parent->Item(i);
@@ -528,6 +546,7 @@ void wxPropertyGridPageState::DoSetPropertyName( wxPGProperty* p,
     do \
     { \
         iMax = parent->GetChildCount(); \
+MY_MACRO_PRAGMA_IVDEP \
         while ( i < iMax ) \
         {  \
             wxPGProperty* p = parent->Item(i);
@@ -545,6 +564,7 @@ void wxPropertyGridPageState::DoSetPropertyName( wxPGProperty* p,
         i = parent->m_arrIndex + 1; \
         parent = parent->m_parent; \
     } \
+MY_MACRO_PRAGMA_IVDEP \
     while ( parent != NULL );
 
 bool wxPropertyGridPageState::EnableCategories( bool enable )
@@ -703,6 +723,9 @@ void wxPropertyGridPageState::DoSortChildren( wxPGProperty* p,
     if ( flags & wxPG_RECURSE )
     {
         // Apply sort recursively
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned int i=0; i<p->GetChildCount(); i++ )
             DoSortChildren(p->Item(i), flags);
     }
@@ -774,6 +797,9 @@ int wxPropertyGridPageState::GetColumnFitWidth(wxClientDC& dc,
     int maxW = 0;
     int w, h;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i=0; i<pwc->GetChildCount(); i++ )
     {
         wxPGProperty* p = pwc->Item(i);
@@ -814,6 +840,9 @@ int wxPropertyGridPageState::DoGetSplitterPosition( int splitterColumn ) const
 {
     int n = GetGrid()->m_marginWidth;
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i=0; i<=splitterColumn; i++ )
         n += m_colWidths[i];
     return n;
@@ -925,6 +954,9 @@ wxSize wxPropertyGridPageState::DoFitColumns( bool WXUNUSED(allowGridResize) )
     int accWid = marginWidth;
     int maxColWidth = 500;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int col=0; col < GetColumnCount(); col++ )
     {
         int fitWid = GetColumnFitWidth(dc, m_properties, col, true);
@@ -983,6 +1015,9 @@ void wxPropertyGridPageState::CheckColumnWidths( int widthChange )
 
     //
     // Check min sizes
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i=0; i<m_colWidths.size(); i++ )
     {
         int min = GetColumnMinWidth(i);
@@ -999,6 +1034,9 @@ void wxPropertyGridPageState::CheckColumnWidths( int widthChange )
     }
 
     int colsWidth = pg->m_marginWidth;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i=0; i<m_colWidths.size(); i++ )
         colsWidth += m_colWidths[i];
 
@@ -1050,6 +1088,9 @@ void wxPropertyGridPageState::CheckColumnWidths( int widthChange )
             pg->RecalculateVirtualSize();
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i=0; i<m_colWidths.size(); i++ )
     {
         wxLogTrace("propgrid", wxS("col%i: %i"), i, m_colWidths[i]);
@@ -1123,12 +1164,18 @@ void wxPropertyGridPageState::ResetColumnSizes( int setSplitterFlags )
     unsigned int i;
     // Calculate sum of proportions
     int psum = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i=0; i<m_colWidths.size(); i++ )
         psum += m_columnProportions[i];
     int puwid = (m_pPropGrid->m_width*256) / psum;
     int cpos = 0;
 
     // Convert proportion to splitter positions
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i=0; i<(m_colWidths.size() - 1); i++ )
     {
         int cwid = (puwid*m_columnProportions[i]) / 256;
@@ -1162,6 +1209,9 @@ void wxPropertyGridPageState::DoSetColumnProportion( unsigned int column,
     if ( proportion < 1 )
         proportion = 1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( m_columnProportions.size() <= column )
         m_columnProportions.push_back(1);
 
@@ -1175,6 +1225,9 @@ int wxPropertyGridPageState::HitTestH( int x, int* pSplitterHit, int* pSplitterH
     int col = -1;
     int prevSplitter = -1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( x > cx )
     {
         col++;
@@ -1316,6 +1369,9 @@ bool wxPropertyGridPageState::DoIsPropertySelected( wxPGProperty* prop ) const
 
 void wxPropertyGridPageState::DoRemoveFromSelection( wxPGProperty* prop )
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i=0; i<m_selection.size(); i++ )
     {
         if ( m_selection[i] == prop )
@@ -1431,6 +1487,9 @@ wxVariant wxPropertyGridPageState::DoGetPropertyValues( const wxString& listname
             wxASSERT( !pwc->HasFlag(wxPG_PROP_AGGREGATE) );
 
             size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( i=0; i<pwc->GetChildCount(); i++ )
             {
                 wxPGProperty* p = pwc->Item(i);
@@ -1453,6 +1512,9 @@ wxVariant wxPropertyGridPageState::DoGetPropertyValues( const wxString& listname
             wxPropertyGridConstIterator it( this, wxPG_ITERATE_DEFAULT, pwc->Item(0) );
             it.SetBaseParent( pwc );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( ; !it.AtEnd(); it.Next() )
             {
                 const wxPGProperty* p = it.GetProperty();
@@ -1496,6 +1558,9 @@ void wxPropertyGridPageState::DoSetPropertyValues( const wxVariantList& list, wx
 
     //
     // Second pass for special entries
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( node = list.begin(); node != list.end(); ++node )
     {
         wxVariant *current = (wxVariant*)*node;
@@ -1559,6 +1624,9 @@ void wxPropertyGridPageState::DoSetPropertyValues( const wxVariantList& list, wx
 
     if ( numSpecialEntries )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( node = list.begin(); node != list.end(); ++node )
         {
             wxVariant *current = (wxVariant*)*node;
@@ -1590,6 +1658,9 @@ void wxPropertyGridPageState::DoSetPropertyValues( const wxVariantList& list, wx
                                 wxVariantList& list2 = current->GetList();
                                 wxVariantList::const_iterator node2;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                                 for ( node2 = list2.begin(); node2 != list2.end(); ++node2 )
                                 {
                                     wxVariant *attr = (wxVariant*)*node2;
@@ -1899,6 +1970,9 @@ void wxPropertyGridPageState::DoDelete( wxPGProperty* item, bool doDelete )
         wxPGProperty* cat_parent = &m_regularArray;
         int cat_index = m_regularArray.GetChildCount();
         size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < m_regularArray.GetChildCount(); i++ )
         {
             wxPGProperty* p = m_regularArray.Item(i);

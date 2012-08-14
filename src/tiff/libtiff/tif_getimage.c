@@ -624,10 +624,16 @@ gtTileContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 	    toskew = -(int32)(tw - w);
     }
      
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (row = 0; row < h; row += nrow)
     {
         rowstoread = th - (row + img->row_offset) % th;
     	nrow = (row + rowstoread > h ? h - row : rowstoread);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (col = 0; col < w; col += tw) 
         {
 	    if (TIFFReadTile(tif, buf, col+img->col_offset,  
@@ -663,10 +669,16 @@ gtTileContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
     if (flip & FLIP_HORIZONTALLY) {
 	    uint32 line;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	    for (line = 0; line < h; line++) {
 		    uint32 *left = raster + (line * w);
 		    uint32 *right = left + w - 1;
 		    
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		    while ( left < right ) {
 			    uint32 temp = *left;
 			    *left = *right;
@@ -735,7 +747,21 @@ gtTileSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 		toskew = -(int32)(tw - w);
 	}
 
+<<<<<<< HEAD
         switch( img->photometric )
+=======
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (row = 0; row < h; row += nrow) 
+    {
+        rowstoread = th - (row + img->row_offset) % th;
+    	nrow = (row + rowstoread > h ? h - row : rowstoread);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        for (col = 0; col < w; col += tw) 
+>>>>>>> sync with upstream
         {
           case PHOTOMETRIC_MINISWHITE:
           case PHOTOMETRIC_MINISBLACK:
@@ -808,8 +834,29 @@ gtTileSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 		y += (flip & FLIP_VERTICALLY ?-(int32) nrow : (int32) nrow);
 	}
 
+<<<<<<< HEAD
 	if (flip & FLIP_HORIZONTALLY) {
 		uint32 line;
+=======
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	    for (line = 0; line < h; line++) {
+		    uint32 *left = raster + (line * w);
+		    uint32 *right = left + w - 1;
+		    
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+		    while ( left < right ) {
+			    uint32 temp = *left;
+			    *left = *right;
+			    *right = temp;
+			    left++, right--;
+		    }
+	    }
+    }
+>>>>>>> sync with upstream
 
 		for (line = 0; line < h; line++) {
 			uint32 *left = raster + (line * w);
@@ -865,6 +912,7 @@ gtStripContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 		toskew = -(int32)(w - w);
 	}
 
+<<<<<<< HEAD
 	TIFFGetFieldDefaulted(tif, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
 	TIFFGetFieldDefaulted(tif, TIFFTAG_YCBCRSUBSAMPLING, &subsamplinghor, &subsamplingver);
 	scanline = TIFFScanlineSize(tif);
@@ -885,6 +933,27 @@ gtStripContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 			ret = 0;
 			break;
 		}
+=======
+    TIFFGetFieldDefaulted(tif, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
+    scanline = TIFFScanlineSize(tif);
+    fromskew = (w < imagewidth ? imagewidth - w : 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (row = 0; row < h; row += nrow) 
+    {
+        rowstoread = rowsperstrip - (row + img->row_offset) % rowsperstrip;
+        nrow = (row + rowstoread > h ? h - row : rowstoread);
+        if (TIFFReadEncodedStrip(tif,
+                                 TIFFComputeStrip(tif,row+img->row_offset, 0),
+                                 buf, 
+                                 ((row + img->row_offset)%rowsperstrip + nrow) * scanline) < 0
+            && img->stoponerr)
+        {
+            ret = 0;
+            break;
+        }
+>>>>>>> sync with upstream
 
 		pos = ((row + img->row_offset) % rowsperstrip) * scanline;
 		(*put)(img, raster+y*w, 0, y, w, nrow, fromskew, toskew, buf + pos);
@@ -894,9 +963,30 @@ gtStripContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 	if (flip & FLIP_HORIZONTALLY) {
 		uint32 line;
 
+<<<<<<< HEAD
 		for (line = 0; line < h; line++) {
 			uint32 *left = raster + (line * w);
 			uint32 *right = left + w - 1;
+=======
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	    for (line = 0; line < h; line++) {
+		    uint32 *left = raster + (line * w);
+		    uint32 *right = left + w - 1;
+		    
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+		    while ( left < right ) {
+			    uint32 temp = *left;
+			    *left = *right;
+			    *right = temp;
+			    left++, right--;
+		    }
+	    }
+    }
+>>>>>>> sync with upstream
 
 			while ( left < right ) {
 				uint32 temp = *left;
@@ -961,7 +1051,24 @@ gtStripSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 		toskew = -(int32)(w - w);
 	}
 
+<<<<<<< HEAD
         switch( img->photometric )
+=======
+    TIFFGetFieldDefaulted(tif, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
+    scanline = TIFFScanlineSize(tif);
+    fromskew = (w < imagewidth ? imagewidth - w : 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (row = 0; row < h; row += nrow) 
+    {
+        rowstoread = rowsperstrip - (row + img->row_offset) % rowsperstrip;    	
+        nrow = (row + rowstoread > h ? h - row : rowstoread);
+        offset_row = row + img->row_offset;
+    	if (TIFFReadEncodedStrip(tif, TIFFComputeStrip(tif, offset_row, 0),
+                                 r, ((row + img->row_offset)%rowsperstrip + nrow) * scanline) < 0 
+            && img->stoponerr)
+>>>>>>> sync with upstream
         {
           case PHOTOMETRIC_MINISWHITE:
           case PHOTOMETRIC_MINISBLACK:
@@ -1023,8 +1130,29 @@ gtStripSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 		y += (flip & FLIP_VERTICALLY ? -(int32) nrow : (int32) nrow);
 	}
 
+<<<<<<< HEAD
 	if (flip & FLIP_HORIZONTALLY) {
 		uint32 line;
+=======
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	    for (line = 0; line < h; line++) {
+		    uint32 *left = raster + (line * w);
+		    uint32 *right = left + w - 1;
+		    
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+		    while ( left < right ) {
+			    uint32 temp = *left;
+			    *left = *right;
+			    *right = temp;
+			    left++, right--;
+		    }
+	    }
+    }
+>>>>>>> sync with upstream
 
 		for (line = 0; line < h; line++) {
 			uint32 *left = raster + (line * w);
@@ -1067,6 +1195,7 @@ gtStripSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 
 #define	UNROLL8(w, op1, op2) {		\
     uint32 _x;				\
+MY_MACRO_PRAGMA_IVDEP \
     for (_x = w; _x >= 8; _x -= 8) {	\
 	op1;				\
 	REPEAT8(op2);			\
@@ -1078,6 +1207,7 @@ gtStripSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 }
 #define	UNROLL4(w, op1, op2) {		\
     uint32 _x;				\
+MY_MACRO_PRAGMA_IVDEP \
     for (_x = w; _x >= 4; _x -= 4) {	\
 	op1;				\
 	REPEAT4(op2);			\
@@ -1089,6 +1219,7 @@ gtStripSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 }
 #define	UNROLL2(w, op1, op2) {		\
     uint32 _x;				\
+MY_MACRO_PRAGMA_IVDEP \
     for (_x = w; _x >= 2; _x -= 2) {	\
 	op1;				\
 	REPEAT2(op2);			\
@@ -1133,7 +1264,13 @@ DECLAREContigPutFunc(put8bitcmaptile)
     int samplesperpixel = img->samplesperpixel;
 
     (void) y;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (h-- > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (x = w; x-- > 0;)
         {
 	    *cp++ = PALmap[*pp][0];
@@ -1153,6 +1290,9 @@ DECLAREContigPutFunc(put4bitcmaptile)
 
     (void) x; (void) y;
     fromskew /= 2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (h-- > 0) {
 	uint32* bw;
 	UNROLL2(w, bw = PALmap[*pp++], *cp++ = *bw++);
@@ -1170,6 +1310,9 @@ DECLAREContigPutFunc(put2bitcmaptile)
 
     (void) x; (void) y;
     fromskew /= 4;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (h-- > 0) {
 	uint32* bw;
 	UNROLL4(w, bw = PALmap[*pp++], *cp++ = *bw++);
@@ -1187,6 +1330,9 @@ DECLAREContigPutFunc(put1bitcmaptile)
 
     (void) x; (void) y;
     fromskew /= 8;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (h-- > 0) {
 	uint32* bw;
 	UNROLL8(w, bw = PALmap[*pp++], *cp++ = *bw++);
@@ -1204,7 +1350,13 @@ DECLAREContigPutFunc(putgreytile)
     uint32** BWmap = img->BWmap;
 
     (void) y;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (h-- > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (x = w; x-- > 0;)
         {
 	    *cp++ = BWmap[*pp][0];
@@ -1244,9 +1396,15 @@ DECLAREContigPutFunc(put16bitbwtile)
     uint32** BWmap = img->BWmap;
 
     (void) y;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (h-- > 0) {
         uint16 *wp = (uint16 *) pp;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (x = w; x-- > 0;)
         {
             /* use high order byte of 16bit value */
@@ -1269,6 +1427,9 @@ DECLAREContigPutFunc(put1bitbwtile)
 
     (void) x; (void) y;
     fromskew /= 8;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (h-- > 0) {
 	uint32* bw;
 	UNROLL8(w, bw = BWmap[*pp++], *cp++ = *bw++);
@@ -1286,6 +1447,9 @@ DECLAREContigPutFunc(put2bitbwtile)
 
     (void) x; (void) y;
     fromskew /= 4;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (h-- > 0) {
 	uint32* bw;
 	UNROLL4(w, bw = BWmap[*pp++], *cp++ = *bw++);
@@ -1303,6 +1467,9 @@ DECLAREContigPutFunc(put4bitbwtile)
 
     (void) x; (void) y;
     fromskew /= 2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (h-- > 0) {
 	uint32* bw;
 	UNROLL2(w, bw = BWmap[*pp++], *cp++ = *bw++);
@@ -1320,6 +1487,9 @@ DECLAREContigPutFunc(putRGBcontig8bittile)
 
     (void) x; (void) y;
     fromskew *= samplesperpixel;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (h-- > 0) {
 	UNROLL8(w, NOP,
 	    *cp++ = PACK(pp[0], pp[1], pp[2]);
@@ -1330,6 +1500,35 @@ DECLAREContigPutFunc(putRGBcontig8bittile)
 }
 
 /*
+<<<<<<< HEAD
+=======
+ * 8-bit packed samples, w/ Map => RGB
+ */
+DECLAREContigPutFunc(putRGBcontig8bitMaptile)
+{
+    TIFFRGBValue* Map = img->Map;
+    int samplesperpixel = img->samplesperpixel;
+
+    (void) y;
+    fromskew *= samplesperpixel;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (h-- > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	for (x = w; x-- > 0;) {
+	    *cp++ = PACK(Map[pp[0]], Map[pp[1]], Map[pp[2]]);
+	    pp += samplesperpixel;
+	}
+	pp += fromskew;
+	cp += toskew;
+    }
+}
+
+/*
+>>>>>>> sync with upstream
  * 8-bit packed samples => RGBA w/ associated alpha
  * (known to have Map == NULL)
  */
@@ -1339,6 +1538,9 @@ DECLAREContigPutFunc(putRGBAAcontig8bittile)
 
     (void) x; (void) y;
     fromskew *= samplesperpixel;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (h-- > 0) {
 	UNROLL8(w, NOP,
 	    *cp++ = PACK4(pp[0], pp[1], pp[2], pp[3]);
@@ -1354,6 +1556,7 @@ DECLAREContigPutFunc(putRGBAAcontig8bittile)
  */
 DECLAREContigPutFunc(putRGBUAcontig8bittile)
 {
+<<<<<<< HEAD
 	int samplesperpixel = img->samplesperpixel;
 	(void) y;
 	fromskew *= samplesperpixel;
@@ -1371,6 +1574,27 @@ DECLAREContigPutFunc(putRGBUAcontig8bittile)
 		}
 		cp += toskew;
 		pp += fromskew;
+=======
+    int samplesperpixel = img->samplesperpixel;
+
+    (void) y;
+    fromskew *= samplesperpixel;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (h-- > 0) {
+	uint32 r, g, b, a;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	for (x = w; x-- > 0;) {
+	    a = pp[3];
+	    r = (pp[0] * a) / 255;
+	    g = (pp[1] * a) / 255;
+	    b = (pp[2] * a) / 255;
+	    *cp++ = PACK4(r,g,b,a);
+	    pp += samplesperpixel;
+>>>>>>> sync with upstream
 	}
 }
 
@@ -1379,6 +1603,7 @@ DECLAREContigPutFunc(putRGBUAcontig8bittile)
  */
 DECLAREContigPutFunc(putRGBcontig16bittile)
 {
+<<<<<<< HEAD
 	int samplesperpixel = img->samplesperpixel;
 	uint16 *wp = (uint16 *)pp;
 	(void) y;
@@ -1392,6 +1617,23 @@ DECLAREContigPutFunc(putRGBcontig16bittile)
 		}
 		cp += toskew;
 		wp += fromskew;
+=======
+    int samplesperpixel = img->samplesperpixel;
+    uint16 *wp = (uint16 *)pp;
+
+    (void) y;
+    fromskew *= samplesperpixel;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (h-- > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	for (x = w; x-- > 0;) {
+	    *cp++ = PACKW(wp[0], wp[1], wp[2]);
+	    wp += samplesperpixel;
+>>>>>>> sync with upstream
 	}
 }
 
@@ -1401,6 +1643,7 @@ DECLAREContigPutFunc(putRGBcontig16bittile)
  */
 DECLAREContigPutFunc(putRGBAAcontig16bittile)
 {
+<<<<<<< HEAD
 	int samplesperpixel = img->samplesperpixel;
 	uint16 *wp = (uint16 *)pp;
 	(void) y;
@@ -1415,6 +1658,23 @@ DECLAREContigPutFunc(putRGBAAcontig16bittile)
 		}
 		cp += toskew;
 		wp += fromskew;
+=======
+    int samplesperpixel = img->samplesperpixel;
+    uint16 *wp = (uint16 *)pp;
+
+    (void) y;
+    fromskew *= samplesperpixel;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (h-- > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	for (x = w; x-- > 0;) {
+	    *cp++ = PACKW4(wp[0], wp[1], wp[2], wp[3]);
+	    wp += samplesperpixel;
+>>>>>>> sync with upstream
 	}
 }
 
@@ -1424,6 +1684,7 @@ DECLAREContigPutFunc(putRGBAAcontig16bittile)
  */
 DECLAREContigPutFunc(putRGBUAcontig16bittile)
 {
+<<<<<<< HEAD
 	int samplesperpixel = img->samplesperpixel;
 	uint16 *wp = (uint16 *)pp;
 	(void) y;
@@ -1442,6 +1703,36 @@ DECLAREContigPutFunc(putRGBUAcontig16bittile)
 		}
 		cp += toskew;
 		wp += fromskew;
+=======
+    int samplesperpixel = img->samplesperpixel;
+    uint16 *wp = (uint16 *)pp;
+
+    (void) y;
+    fromskew *= samplesperpixel;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (h-- > 0) {
+	uint32 r,g,b,a;
+	/*
+	 * We shift alpha down four bits just in case unsigned
+	 * arithmetic doesn't handle the full range.
+	 * We still have plenty of accuracy, since the output is 8 bits.
+	 * So we have (r * 0xffff) * (a * 0xfff)) = r*a * (0xffff*0xfff)
+	 * Since we want r*a * 0xff for eight bit output,
+	 * we divide by (0xffff * 0xfff) / 0xff == 0x10eff.
+	 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	for (x = w; x-- > 0;) {
+	    a = wp[3] >> 4; 
+	    r = (wp[0] * a) / 0x10eff;
+	    g = (wp[1] * a) / 0x10eff;
+	    b = (wp[2] * a) / 0x10eff;
+	    *cp++ = PACK4(r,g,b,a);
+	    wp += samplesperpixel;
+>>>>>>> sync with upstream
 	}
 }
 
@@ -1457,6 +1748,9 @@ DECLAREContigPutFunc(putRGBcontig8bitCMYKtile)
 
     (void) x; (void) y;
     fromskew *= samplesperpixel;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (h-- > 0) {
 	UNROLL8(w, NOP,
 	    k = 255 - pp[3];
@@ -1483,7 +1777,13 @@ DECLAREContigPutFunc(putRGBcontig8bitCMYKMaptile)
 
     (void) y;
     fromskew *= samplesperpixel;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (h-- > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (x = w; x-- > 0;) {
 	    k = 255 - pp[3];
 	    r = (k*(255-pp[0]))/255;
@@ -1513,6 +1813,9 @@ static void name(\
 DECLARESepPutFunc(putRGBseparate8bittile)
 {
     (void) img; (void) x; (void) y; (void) a;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (h-- > 0) {
 	UNROLL8(w, NOP, *cp++ = PACK(*r++, *g++, *b++));
 	SKEW(r, g, b, fromskew);
@@ -1525,12 +1828,30 @@ DECLARESepPutFunc(putRGBseparate8bittile)
  */
 DECLARESepPutFunc(putRGBAAseparate8bittile)
 {
+<<<<<<< HEAD
 	(void) img; (void) x; (void) y; 
 	while (h-- > 0) {
 		UNROLL8(w, NOP, *cp++ = PACK4(*r++, *g++, *b++, *a++));
 		SKEW4(r, g, b, a, fromskew);
 		cp += toskew;
 	}
+=======
+    TIFFRGBValue* Map = img->Map;
+
+    (void) y; (void) a;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (h-- > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	for (x = w; x > 0; x--)
+	    *cp++ = PACK(Map[*r++], Map[*g++], Map[*b++]);
+	SKEW(r, g, b, fromskew);
+	cp += toskew;
+    }
+>>>>>>> sync with upstream
 }
 
 /*
@@ -1538,6 +1859,7 @@ DECLARESepPutFunc(putRGBAAseparate8bittile)
  */
 DECLARESepPutFunc(putCMYKseparate8bittile)
 {
+<<<<<<< HEAD
 	(void) img; (void) y;
 	while (h-- > 0) {
 		uint32 rv, gv, bv, kv;
@@ -1551,6 +1873,17 @@ DECLARESepPutFunc(putCMYKseparate8bittile)
 		SKEW4(r, g, b, a, fromskew);
 		cp += toskew;
 	}
+=======
+    (void) img; (void) x; (void) y;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (h-- > 0) {
+	UNROLL8(w, NOP, *cp++ = PACK4(*r++, *g++, *b++, *a++));
+	SKEW4(r, g, b, a, fromskew);
+	cp += toskew;
+    }
+>>>>>>> sync with upstream
 }
 
 /*
@@ -1558,6 +1891,7 @@ DECLARESepPutFunc(putCMYKseparate8bittile)
  */
 DECLARESepPutFunc(putRGBUAseparate8bittile)
 {
+<<<<<<< HEAD
 	(void) img; (void) y;
 	while (h-- > 0) {
 		uint32 rv, gv, bv, av;
@@ -1572,6 +1906,23 @@ DECLARESepPutFunc(putRGBUAseparate8bittile)
 		}
 		SKEW4(r, g, b, a, fromskew);
 		cp += toskew;
+=======
+    (void) img; (void) y;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (h-- > 0) {
+	uint32 rv, gv, bv, av;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	for (x = w; x-- > 0;) {
+	    av = *a++;
+	    rv = (*r++ * av) / 255;
+	    gv = (*g++ * av) / 255;
+	    bv = (*b++ * av) / 255;
+	    *cp++ = PACK4(rv,gv,bv,av);
+>>>>>>> sync with upstream
 	}
 }
 
@@ -1580,6 +1931,7 @@ DECLARESepPutFunc(putRGBUAseparate8bittile)
  */
 DECLARESepPutFunc(putRGBseparate16bittile)
 {
+<<<<<<< HEAD
 	uint16 *wr = (uint16*) r;
 	uint16 *wg = (uint16*) g;
 	uint16 *wb = (uint16*) b;
@@ -1592,6 +1944,25 @@ DECLARESepPutFunc(putRGBseparate16bittile)
 		SKEW(wr, wg, wb, fromskew);
 		cp += toskew;
 	}
+=======
+    uint16 *wr = (uint16*) r;
+    uint16 *wg = (uint16*) g;
+    uint16 *wb = (uint16*) b;
+
+    (void) img; (void) y; (void) a;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (h-- > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	for (x = 0; x < w; x++)
+	    *cp++ = PACKW(*wr++, *wg++, *wb++);
+	SKEW(wr, wg, wb, fromskew);
+	cp += toskew;
+    }
+>>>>>>> sync with upstream
 }
 
 /*
@@ -1599,6 +1970,7 @@ DECLARESepPutFunc(putRGBseparate16bittile)
  */
 DECLARESepPutFunc(putRGBAAseparate16bittile)
 {
+<<<<<<< HEAD
 	uint16 *wr = (uint16*) r;
 	uint16 *wg = (uint16*) g;
 	uint16 *wb = (uint16*) b;
@@ -1613,6 +1985,26 @@ DECLARESepPutFunc(putRGBAAseparate16bittile)
 		SKEW4(wr, wg, wb, wa, fromskew);
 		cp += toskew;
 	}
+=======
+    uint16 *wr = (uint16*) r;
+    uint16 *wg = (uint16*) g;
+    uint16 *wb = (uint16*) b;
+    uint16 *wa = (uint16*) a;
+
+    (void) img; (void) y;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (h-- > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	for (x = 0; x < w; x++)
+	    *cp++ = PACKW4(*wr++, *wg++, *wb++, *wa++);
+	SKEW4(wr, wg, wb, wa, fromskew);
+	cp += toskew;
+    }
+>>>>>>> sync with upstream
 }
 
 /*
@@ -1620,6 +2012,7 @@ DECLARESepPutFunc(putRGBAAseparate16bittile)
  */
 DECLARESepPutFunc(putRGBUAseparate16bittile)
 {
+<<<<<<< HEAD
 	uint16 *wr = (uint16*) r;
 	uint16 *wg = (uint16*) g;
 	uint16 *wb = (uint16*) b;
@@ -1638,6 +2031,36 @@ DECLARESepPutFunc(putRGBUAseparate16bittile)
 		}
 		SKEW4(wr, wg, wb, wa, fromskew);
 		cp += toskew;
+=======
+    uint16 *wr = (uint16*) r;
+    uint16 *wg = (uint16*) g;
+    uint16 *wb = (uint16*) b;
+    uint16 *wa = (uint16*) a;
+
+    (void) img; (void) y;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (h-- > 0) {
+	uint32 r,g,b,a;
+	/*
+	 * We shift alpha down four bits just in case unsigned
+	 * arithmetic doesn't handle the full range.
+	 * We still have plenty of accuracy, since the output is 8 bits.
+	 * So we have (r * 0xffff) * (a * 0xfff)) = r*a * (0xffff*0xfff)
+	 * Since we want r*a * 0xff for eight bit output,
+	 * we divide by (0xffff * 0xfff) / 0xff == 0x10eff.
+	 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	for (x = w; x-- > 0;) {
+	    a = *wa++ >> 4; 
+	    r = (*wr++ * a) / 0x10eff;
+	    g = (*wg++ * a) / 0x10eff;
+	    b = (*wb++ * a) / 0x10eff;
+	    *cp++ = PACK4(r,g,b,a);
+>>>>>>> sync with upstream
 	}
 }
 
@@ -1650,7 +2073,13 @@ DECLAREContigPutFunc(putcontig8bitCIELab)
 	uint32 r, g, b;
 	(void) y;
 	fromskew *= 3;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (h-- > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (x = w; x-- > 0;) {
 			TIFFCIELabToXYZ(img->cielab,
 					(unsigned char)pp[0],
@@ -1706,6 +2135,9 @@ static void putcontig8bitYCbCrGenericTile(
     (void) y;
     fromskew = (fromskew * group_size) / h_group;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( yy = 0; yy < h; yy++ )
     {
         unsigned char *pp_line;
@@ -1715,13 +2147,22 @@ static void putcontig8bitYCbCrGenericTile(
         pp_line = pp + v_line_group * 
 
         
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( xx = 0; xx < w; xx++ )
         {
             Cb = pp
         }
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (; h >= 4; h -= 4) {
 	x = w>>2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 	    Cb = pp[16];
 	    Cr = pp[17];
@@ -1766,8 +2207,14 @@ DECLAREContigPutFunc(putcontig8bitYCbCr44tile)
     /* adjust fromskew */
     fromskew = (fromskew * 18) / 4;
     if ((h & 3) == 0 && (w & 3) == 0) {				        
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (; h >= 4; h -= 4) {
             x = w>>2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do {
                 int32 Cb = pp[16];
                 int32 Cr = pp[17];
@@ -1796,7 +2243,13 @@ DECLAREContigPutFunc(putcontig8bitYCbCr44tile)
             pp += fromskew;
         }
     } else {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (h > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (x = w; x > 0;) {
                 int32 Cb = pp[16];
                 int32 Cr = pp[17];
@@ -1860,8 +2313,14 @@ DECLAREContigPutFunc(putcontig8bitYCbCr42tile)
     (void) y;
     fromskew = (fromskew * 10) / 4;
     if ((h & 3) == 0 && (w & 1) == 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (; h >= 2; h -= 2) {
             x = w>>2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do {
                 int32 Cb = pp[8];
                 int32 Cr = pp[9];
@@ -1882,7 +2341,13 @@ DECLAREContigPutFunc(putcontig8bitYCbCr42tile)
             pp += fromskew;
         }
     } else {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (h > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (x = w; x > 0;) {
                 int32 Cb = pp[8];
                 int32 Cr = pp[9];
@@ -1934,8 +2399,14 @@ DECLAREContigPutFunc(putcontig8bitYCbCr41tile)
 {
     (void) y;
     /* XXX adjust fromskew */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do {
 	x = w>>2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 	    int32 Cb = pp[4];
 	    int32 Cr = pp[5];
@@ -1976,6 +2447,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr41tile)
  */
 DECLAREContigPutFunc(putcontig8bitYCbCr22tile)
 {
+<<<<<<< HEAD
 	uint32* cp2;
 	int32 incr = 2*toskew+w;
 	(void) y;
@@ -2027,6 +2499,77 @@ DECLAREContigPutFunc(putcontig8bitYCbCr22tile)
 			YCbCrtoRGB(cp[0], pp[0]);
 		}
 	}
+=======
+    uint32* cp1 = cp+w+toskew;
+    int32 incr = 2*toskew+w;
+
+    (void) y;
+    fromskew = (fromskew * 6) / 2;
+    if ((h & 1) == 0 && (w & 1) == 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        for (; h >= 2; h -= 2) {
+            x = w>>1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+            do {
+                int32 Cb = pp[4];
+                int32 Cr = pp[5];
+
+                YCbCrtoRGB(cp [0], pp[0]);
+                YCbCrtoRGB(cp [1], pp[1]);
+                YCbCrtoRGB(cp1[0], pp[2]);
+                YCbCrtoRGB(cp1[1], pp[3]);
+
+                cp += 2, cp1 += 2;
+                pp += 6;
+            } while (--x);
+            cp += incr, cp1 += incr;
+            pp += fromskew;
+        }
+    } else {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        while (h > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+            for (x = w; x > 0;) {
+                int32 Cb = pp[4];
+                int32 Cr = pp[5];
+                switch (x) {
+                default:
+                    switch (h) {
+                    default: YCbCrtoRGB(cp1[1], pp[ 3]); /* FALLTHROUGH */
+                    case 1:  YCbCrtoRGB(cp [1], pp[ 1]); /* FALLTHROUGH */
+                    }                                    /* FALLTHROUGH */
+                case 1:
+                    switch (h) {
+                    default: YCbCrtoRGB(cp1[0], pp[ 2]); /* FALLTHROUGH */
+                    case 1:  YCbCrtoRGB(cp [0], pp[ 0]); /* FALLTHROUGH */
+                    }                                    /* FALLTHROUGH */
+                }
+                if (x < 2) {
+                    cp += x; cp1 += x;
+                    x = 0;
+                }
+                else {
+                    cp += 2; cp1 += 2;
+                    x -= 2;
+                }
+                pp += 6;
+            }
+            if (h <= 2)
+                break;
+            h -= 2;
+            cp += incr, cp1 += incr;
+            pp += fromskew;
+        }
+    }
+>>>>>>> sync with upstream
 }
 
 /*
@@ -2034,8 +2577,21 @@ DECLAREContigPutFunc(putcontig8bitYCbCr22tile)
  */
 DECLAREContigPutFunc(putcontig8bitYCbCr21tile)
 {
+<<<<<<< HEAD
 	(void) y;
 	fromskew = (fromskew * 4) / 2;
+=======
+    (void) y;
+    fromskew = (fromskew * 4) / 2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    do {
+	x = w>>1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+>>>>>>> sync with upstream
 	do {
 		x = w>>1;
 		do {
@@ -2108,8 +2664,21 @@ DECLAREContigPutFunc(putcontig8bitYCbCr12tile)
  */
 DECLAREContigPutFunc(putcontig8bitYCbCr11tile)
 {
+<<<<<<< HEAD
 	(void) y;
 	fromskew *= 3;
+=======
+    (void) y;
+    fromskew *= 3;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    do {
+        x = w; /* was x = w>>1; patched 2000/09/25 warmerda@home.com */ 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+>>>>>>> sync with upstream
 	do {
 		x = w; /* was x = w>>1; patched 2000/09/25 warmerda@home.com */
 		do {
@@ -2234,6 +2803,9 @@ makebwmap(TIFFRGBAImage* img)
 		return (0);
     }
     p = (uint32*)(img->BWmap + 256);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 256; i++) {
 	TIFFRGBValue c;
 	img->BWmap[i] = p;
@@ -2292,9 +2864,15 @@ setupMap(TIFFRGBAImage* img)
 		return (0);
     }
     if (img->photometric == PHOTOMETRIC_MINISWHITE) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (x = 0; x <= range; x++)
 	    img->Map[x] = (TIFFRGBValue) (((range - x) * 255) / range);
     } else {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (x = 0; x <= range; x++)
 	    img->Map[x] = (TIFFRGBValue) ((x * 255) / range);
     }
@@ -2321,6 +2899,9 @@ checkcmap(TIFFRGBAImage* img)
     uint16* b = img->bluecmap;
     long n = 1L<<img->bitspersample;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (n-- > 0)
 	if (*r++ >= 256 || *g++ >= 256 || *b++ >= 256)
 	    return (16);
@@ -2335,6 +2916,9 @@ cvtcmap(TIFFRGBAImage* img)
     uint16* b = img->bluecmap;
     long i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = (1L<<img->bitspersample)-1; i >= 0; i--) {
 #define	CVT(x)		((uint16)((x)>>8))
 	r[i] = CVT(r[i]);
@@ -2369,6 +2953,9 @@ makecmap(TIFFRGBAImage* img)
 		return (0);
 	}
     p = (uint32*)(img->PALmap + 256);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 256; i++) {
 	TIFFRGBValue c;
 	img->PALmap[i] = p;
@@ -2848,6 +3435,9 @@ TIFFReadRGBATile(TIFF* tif, uint32 col, uint32 row, uint32 * raster)
     if( read_xsize == tile_xsize && read_ysize == tile_ysize )
         return( ok );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( i_row = 0; i_row < read_ysize; i_row++ ) {
         memmove( raster + (tile_ysize - i_row - 1) * tile_xsize,
                  raster + (read_ysize - i_row - 1) * read_xsize,
@@ -2856,6 +3446,9 @@ TIFFReadRGBATile(TIFF* tif, uint32 col, uint32 row, uint32 * raster)
                      0, sizeof(uint32) * (tile_xsize - read_xsize) );
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( i_row = read_ysize; i_row < tile_ysize; i_row++ ) {
         _TIFFmemset( raster + (tile_ysize - i_row - 1) * tile_xsize,
                      0, sizeof(uint32) * tile_xsize );

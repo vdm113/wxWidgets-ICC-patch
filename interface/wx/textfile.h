@@ -165,6 +165,9 @@ public:
         @code
         wxTextFile file;
         ...
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( str = file.GetFirstLine(); !file.Eof(); str = file.GetNextLine() )
         {
             // do something with the current line in str
@@ -183,6 +186,9 @@ public:
         @code
         wxTextFile file;
         ...
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( str = file.GetLastLine();
             file.GetCurrentLine() > 0;
             str = file.GetPrevLine() )

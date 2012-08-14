@@ -231,6 +231,9 @@ bool wxFileDataObject::GetDataHere( void* pBuf ) const
 {
     wxString                        sFilenames;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
     {
         sFilenames += m_filenames[i];
@@ -245,6 +248,9 @@ size_t wxFileDataObject::GetDataSize() const
 {
     size_t                          nRes = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
     {
         nRes += m_filenames[i].length();

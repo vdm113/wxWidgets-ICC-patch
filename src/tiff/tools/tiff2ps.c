@@ -252,9 +252,16 @@ main(int argc, char* argv[])
 	extern int optind;
 	FILE* output = stdout;
 
+<<<<<<< HEAD
         pageOrientation[0] = '\0';
 
 	while ((c = getopt(argc, argv, "b:d:h:H:W:L:i:w:l:o:O:P:C:r:t:acemxyzps1238DT")) != -1)
+=======
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	while ((c = getopt(argc, argv, "b:d:h:H:L:i:w:l:o:O:acelmrxyzps1238DT")) != -1)
+>>>>>>> sync with upstream
 		switch (c) {
 		case 'b':
 			bottommargin = atof(optarg);
@@ -405,6 +412,7 @@ main(int argc, char* argv[])
 		case '?':
 			usage(-1);
 		}
+<<<<<<< HEAD
 
         if (useImagemask == TRUE)
           {
@@ -466,6 +474,11 @@ main(int argc, char* argv[])
         if ((generateEPSF == TRUE) && (PSavoiddeadzone == TRUE))
 	  PSavoiddeadzone = FALSE;
 
+=======
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+>>>>>>> sync with upstream
 	for (; argc - optind > 0; optind++) {
 		TIFF* tif = TIFFOpen(filename = argv[optind], "r");
 		if (tif != NULL) {
@@ -966,8 +979,159 @@ int exportMaskedImage(FILE *fp, double pagewidth, double pageheight,
               break;
     }
 
+<<<<<<< HEAD
   return (0);
   }
+=======
+/* returns the sequence number of the page processed */
+int
+TIFF2PS(FILE* fd, TIFF* tif,
+	double pw, double ph, double lm, double bm, int cnt)
+{
+	uint32 w, h;
+	float ox, oy;
+        double prw, prh;
+	double scale = 1.0;
+	uint32 subfiletype;
+	uint16* sampleinfo;
+	static int npages = 0;
+	int split;
+
+	if (!TIFFGetField(tif, TIFFTAG_XPOSITION, &ox))
+		ox = 0;
+	if (!TIFFGetField(tif, TIFFTAG_YPOSITION, &oy))
+		oy = 0;
+	setupPageState(tif, &w, &h, &prw, &prh);
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	do {
+		tf_numberstrips = TIFFNumberOfStrips(tif);
+		TIFFGetFieldDefaulted(tif, TIFFTAG_ROWSPERSTRIP,
+		    &tf_rowsperstrip);
+		setupPageState(tif, &w, &h, &prw, &prh);
+		if (!npages)
+			PSHead(fd, tif, w, h, prw, prh, ox, oy);
+		TIFFGetFieldDefaulted(tif, TIFFTAG_BITSPERSAMPLE,
+		    &bitspersample);
+		TIFFGetFieldDefaulted(tif, TIFFTAG_SAMPLESPERPIXEL,
+		    &samplesperpixel);
+		TIFFGetFieldDefaulted(tif, TIFFTAG_PLANARCONFIG,
+		    &planarconfiguration);
+		TIFFGetField(tif, TIFFTAG_COMPRESSION, &compression);
+		TIFFGetFieldDefaulted(tif, TIFFTAG_EXTRASAMPLES,
+		    &extrasamples, &sampleinfo);
+		alpha = (extrasamples == 1 &&
+			 sampleinfo[0] == EXTRASAMPLE_ASSOCALPHA);
+		if (!TIFFGetField(tif, TIFFTAG_PHOTOMETRIC, &photometric)) {
+			switch (samplesperpixel - extrasamples) {
+			case 1:
+				if (isCCITTCompression(tif))
+					photometric = PHOTOMETRIC_MINISWHITE;
+				else
+					photometric = PHOTOMETRIC_MINISBLACK;
+				break;
+			case 3:
+				photometric = PHOTOMETRIC_RGB;
+				break;
+			case 4:
+				photometric = PHOTOMETRIC_SEPARATED;
+				break;
+			}
+		}
+		if (checkImage(tif)) {
+			tf_bytesperrow = TIFFScanlineSize(tif);
+			npages++;
+			fprintf(fd, "%%%%Page: %d %d\n", npages, npages);
+			if (!generateEPSF && ( level2 || level3 )) {
+				double psw, psh;
+				if (pw != 0.0) {
+					psw = pw * PS_UNIT_SIZE;
+					if (res_unit == RESUNIT_CENTIMETER)
+						psw *= 2.54F;
+				} else
+					psw=rotate ? prh:prw;
+				if (ph != 0.0) {
+					psh = ph * PS_UNIT_SIZE;
+					if (res_unit == RESUNIT_CENTIMETER)
+						psh *= 2.54F;
+				} else
+					psh=rotate ? prw:prh;
+				fprintf(fd,
+	"1 dict begin /PageSize [ %f %f ] def currentdict end setpagedevice\n",
+					psw, psh);
+				fputs(
+	"<<\n  /Policies <<\n    /PageSize 3\n  >>\n>> setpagedevice\n",
+				      fd);
+			}
+			fprintf(fd, "gsave\n");
+			fprintf(fd, "100 dict begin\n");
+			if (pw != 0 || ph != 0) {
+				double psw = pw, psh = ph;
+				if (!psw)
+					psw = prw;
+				if (!psh)
+					psh = prh;
+				if (maxPageHeight) { /* used -H option */
+					split = PlaceImage(fd,psw,psh,prw,prh,
+							   0,lm,bm,cnt);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+					while( split ) {
+					    PSpage(fd, tif, w, h);
+					    fprintf(fd, "end\n");
+					    fprintf(fd, "grestore\n");
+					    fprintf(fd, "showpage\n");
+					    npages++;
+					    fprintf(fd, "%%%%Page: %d %d\n",
+						    npages, npages);
+					    fprintf(fd, "gsave\n");
+					    fprintf(fd, "100 dict begin\n");
+					    split = PlaceImage(fd,psw,psh,prw,prh,
+							       split,lm,bm,cnt);
+					}
+				} else {
+					double left_offset = lm * PS_UNIT_SIZE;
+					double bottom_offset = bm * PS_UNIT_SIZE;
+					psw *= PS_UNIT_SIZE;
+					psh *= PS_UNIT_SIZE;
+
+					/* NB: maintain image aspect ratio */
+					scale = psw/prw < psh/prh ?
+						psw/prw : psh/prh;
+					if (scale > 1.0)
+						scale = 1.0;
+					if (cnt) {
+						bottom_offset +=
+							(psh - prh * scale) / 2;
+						left_offset +=
+							(psw - prw * scale) / 2;
+					}
+					fprintf(fd, "%f %f translate\n",
+						left_offset, bottom_offset);
+					fprintf(fd, "%f %f scale\n",
+						prw * scale, prh * scale);
+					if (rotate)
+						fputs ("1 1 translate 180 rotate\n", fd);
+				}
+			} else {
+				fprintf(fd, "%f %f scale\n", prw, prh);
+				if (rotate)
+					fputs ("1 1 translate 180 rotate\n", fd);
+			}
+			PSpage(fd, tif, w, h);
+			fprintf(fd, "end\n");
+			fprintf(fd, "grestore\n");
+			fprintf(fd, "showpage\n");
+		}
+		if (generateEPSF)
+			break;
+		TIFFGetFieldDefaulted(tif, TIFFTAG_SUBFILETYPE, &subfiletype);
+	} while (((subfiletype & FILETYPE_PAGE) || printAll) &&
+	    TIFFReadDirectory(tif));
+>>>>>>> sync with upstream
 
 /* Rotate an image without scaling or clipping */
 int  psRotateImage (FILE * fd, int rotation, double pswidth, double psheight,
@@ -1687,6 +1851,9 @@ static int
 checkcmap(TIFF* tif, int n, uint16* r, uint16* g, uint16* b)
 {
 	(void) tif;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0)
 		if (*r++ >= 256 || *g++ >= 256 || *b++ >= 256)
 			return (16);
@@ -1742,6 +1909,9 @@ PS_Lvl2colorspace(FILE* fd, TIFF* tif)
 		 * Convert colormap to 8-bits values.
 		 */
 #define	CVT(x)		(((x) * 255) / ((1L<<16)-1))
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < num_colors; i++) {
 			rmap[i] = CVT(rmap[i]);
 			gmap[i] = CVT(gmap[i]);
@@ -1756,6 +1926,9 @@ PS_Lvl2colorspace(FILE* fd, TIFF* tif)
 		ascii85breaklen -= 2;
 	} else
 		fputs(" <", fd);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < num_colors; i++) {
 		if (ascii85) {
 			Ascii85Put((unsigned char)rmap[i], fd);
@@ -2058,6 +2231,9 @@ PS_Lvl2ImageDict(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		/*
 		 * NOTE: This code does not work yet...
 		 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 1; i < samplesperpixel; i++)
 			fputs(" dup", fd);
 		fputs(" ]", fd);
@@ -2160,6 +2336,9 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 
 	if (use_rawdata) {
 		chunk_size = (tsize_t) bc[0];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (chunk_no = 1; chunk_no < num_chunks; chunk_no++)
 			if ((tsize_t) bc[chunk_no] > chunk_size)
 				chunk_size = (tsize_t) bc[chunk_no];
@@ -2199,6 +2378,9 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #endif
 
 	TIFFGetFieldDefaulted(tif, TIFFTAG_FILLORDER, &fillorder);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (chunk_no = 0; chunk_no < num_chunks; chunk_no++) {
 		if (ascii85)
 			Ascii85Init();
@@ -2246,6 +2428,9 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		if (alpha) {
 			int adjust, i, j = 0;
 			int ncomps = samplesperpixel - extrasamples;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = 0; i < byte_count; i+=samplesperpixel) {
 				adjust = 255 - buf_data[i + ncomps];
 				switch (ncomps) {
@@ -2273,12 +2458,18 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 			if ( ascii85_l > 0 )
 				fwrite( ascii85_p, ascii85_l, 1, fd );
 #else
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (cp = buf_data; byte_count > 0; byte_count--)
 				Ascii85Put(*cp++, fd);
 #endif
 		}
 		else
 		{
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (cp = buf_data; byte_count > 0; byte_count--) {
 				putc(hex[((*cp)>>4)&0xf], fd);
 				putc(hex[(*cp)&0xf], fd);
@@ -2397,6 +2588,9 @@ PSColorSeparatePreamble(FILE* fd, uint32 w, uint32 h, int nc)
 	int i;
 
 	PhotoshopBanner(fd, w, h, ps_bytesperrow, nc, "true %d colorimage");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < nc; i++)
 		fprintf(fd, "/line%d %ld string def\n",
 		    i, (long) ps_bytesperrow);
@@ -2404,6 +2598,9 @@ PSColorSeparatePreamble(FILE* fd, uint32 w, uint32 h, int nc)
 	    (unsigned long) w, (unsigned long) h, bitspersample);
 	fprintf(fd, "[%lu 0 0 -%lu 0 %lu] \n",
 	    (unsigned long) w, (unsigned long) h, (unsigned long) h);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < nc; i++)
 		fprintf(fd, "{currentfile line%d readhexstring pop}bind\n", i);
 	fprintf(fd, "true %d colorimage\n", nc);
@@ -2431,6 +2628,9 @@ PSDataColorContig(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 		TIFFError(filename, "No space for scanline buffer");
 		return;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (row = 0; row < h; row++) {
 		if (TIFFReadScanline(tif, tf_buf, row, 0) < 0)
 			break;
@@ -2445,6 +2645,9 @@ PSDataColorContig(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 		if (alpha) {
 			int adjust;
 			cc = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (; cc < tf_bytesperrow; cc += samplesperpixel) {
 				DOBREAK(breaklen, nc, fd);
 				/*
@@ -2464,6 +2667,9 @@ PSDataColorContig(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 			}
 		} else {
 			cc = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (; cc < tf_bytesperrow; cc += samplesperpixel) {
 				DOBREAK(breaklen, nc, fd);
 				switch (nc) {
@@ -2496,10 +2702,19 @@ PSDataColorSeparate(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 		return;
 	}
 	maxs = (samplesperpixel > nc ? nc : samplesperpixel);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (row = 0; row < h; row++) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (s = 0; s < maxs; s++) {
 			if (TIFFReadScanline(tif, tf_buf, row, s) < 0)
 				break;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (cp = tf_buf, cc = 0; cc < tf_bytesperrow; cc++) {
 				DOBREAK(breaklen, 1, fd);
 				c = *cp++;
@@ -2544,6 +2759,9 @@ PSDataPalette(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 	if (checkcmap(tif, 1<<bitspersample, rmap, gmap, bmap) == 16) {
 		int i;
 #define	CVT(x)		((unsigned short) (((x) * 255) / ((1U<<16)-1)))
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = (1<<bitspersample)-1; i >= 0; i--) {
 			rmap[i] = CVT(rmap[i]);
 			gmap[i] = CVT(gmap[i]);
@@ -2551,9 +2769,15 @@ PSDataPalette(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		}
 #undef CVT
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (row = 0; row < h; row++) {
 		if (TIFFReadScanline(tif, tf_buf, row, 0) < 0)
 			break;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (cp = tf_buf, cc = 0; cc < tf_bytesperrow; cc++) {
 			DOBREAK(breaklen, nc, fd);
 			switch (bitspersample) {
@@ -2635,6 +2859,9 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 	if (ascii85)
 		Ascii85Init();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (s = 0; s < TIFFNumberOfStrips(tif); s++) {
 		tmsize_t cc = TIFFReadEncodedStrip(tif, s, tf_buf, stripsize);
 		if (cc < 0) {
@@ -2643,6 +2870,9 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		}
 		cp = tf_buf;
 		if (photometric == PHOTOMETRIC_MINISWHITE) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (cp += cc; --cp >= tf_buf;)
 				*cp = ~*cp;
 			cp++;
@@ -2658,6 +2888,9 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #if defined( EXP_ASCII85ENCODER )
 			if (alpha) {
 				int adjust, i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (i = 0; i < cc; i+=2) {
 					adjust = 255 - cp[i + 1];
 				    cp[i / 2] = cp[i] + adjust;
@@ -2670,6 +2903,9 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 			if ( ascii85_l > 0 )
 			    fwrite( ascii85_p, ascii85_l, 1, fd );
 #else
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (cc-- > 0)
 				Ascii85Put(*cp++, fd);
 #endif /* EXP_ASCII85_ENCODER */
@@ -2678,6 +2914,9 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 
 			if (alpha) {
 				int adjust;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (cc-- > 0) {
 					DOBREAK(breaklen, 1, fd);
 					/*
@@ -2691,6 +2930,9 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 					cp++, cc--;
 				}
 			} else {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (cc-- > 0) {
 					c = *cp++;
 					DOBREAK(breaklen, 1, fd);
@@ -2743,6 +2985,9 @@ PSRawDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 
 	bufsize = (uint32) bc[0];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for ( s = 0; ++s < (tstrip_t)tf_numberstrips; ) {
 		if ( bc[s] > bufsize )
 			bufsize = (uint32) bc[s];
@@ -2776,6 +3021,9 @@ PSRawDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 	}
 #endif
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (s = 0; s < (tstrip_t) tf_numberstrips; s++) {
 		cc = TIFFReadRawStrip(tif, s, tf_buf, (tmsize_t) bc[s]);
 		if (cc < 0) {
@@ -2785,6 +3033,9 @@ PSRawDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		if (fillorder == FILLORDER_LSB2MSB)
 			TIFFReverseBits(tf_buf, cc);
 		if (!ascii85) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (cp = tf_buf; cc > 0; cc--) {
 				DOBREAK(breaklen, 1, fd);
 				c = *cp++;
@@ -2800,6 +3051,9 @@ PSRawDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 			if ( ascii85_l > 0 )
 				fwrite( ascii85_p, ascii85_l, 1, fd );
 #else
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (cp = tf_buf; cc > 0; cc--)
 				Ascii85Put(*cp++, fd);
 			Ascii85Flush(fd);
@@ -2858,8 +3112,14 @@ Ascii85Put(unsigned char code, FILE* fd)
 		unsigned char* p;
 		int n;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (n = ascii85count, p = ascii85buf; n >= 4; n -= 4, p += 4) {
 			char* cp;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (cp = Ascii85Encode(p); *cp; cp++) {
 				putc(*cp, fd);
 				if (--ascii85breaklen == 0) {
@@ -2941,6 +3201,9 @@ tsize_t Ascii85EncodeBlock( uint8 * ascii85_p, unsigned f_eod, const uint8 * raw
     {
         --raw_p;                                /* Prepare for pre-increment fetches */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ; raw_l > 3; raw_l -= 4 )
         {
             val32  = *(++raw_p) << 24;
@@ -3073,6 +3336,9 @@ usage(int code)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(code);

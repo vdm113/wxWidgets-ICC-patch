@@ -164,6 +164,7 @@ ZIPDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 	sp->stream.avail_in = (uInt) tif->tif_rawcc;
         
 	sp->stream.next_out = op;
+<<<<<<< HEAD
 	assert(sizeof(sp->stream.avail_out)==4);  /* if this assert gets raised,
 	    we need to simplify this code to reflect a ZLib that is likely updated
 	    to deal with 8byte memory sizes, though this code will respond
@@ -174,6 +175,12 @@ ZIPDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 		TIFFErrorExt(tif->tif_clientdata, module, "ZLib cannot deal with buffers this size");
 		return (0);
 	}
+=======
+	sp->stream.avail_out = occ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+>>>>>>> sync with upstream
 	do {
 		int state = inflate(&sp->stream, Z_PARTIAL_FLUSH);
 		if (state == Z_STREAM_END)
@@ -268,6 +275,7 @@ ZIPEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 
 	(void) s;
 	sp->stream.next_in = bp;
+<<<<<<< HEAD
 	assert(sizeof(sp->stream.avail_in)==4);  /* if this assert gets raised,
 	    we need to simplify this code to reflect a ZLib that is likely updated
 	    to deal with 8byte memory sizes, though this code will respond
@@ -278,6 +286,12 @@ ZIPEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 		TIFFErrorExt(tif->tif_clientdata, module, "ZLib cannot deal with buffers this size");
 		return (0);
 	}
+=======
+	sp->stream.avail_in = cc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+>>>>>>> sync with upstream
 	do {
 		if (deflate(&sp->stream, Z_NO_FLUSH) != Z_OK) {
 			TIFFErrorExt(tif->tif_clientdata, module, "Encoder error: %s",
@@ -306,6 +320,9 @@ ZIPPostEncode(TIFF* tif)
 	int state;
 
 	sp->stream.avail_in = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 		state = deflate(&sp->stream, Z_FINISH);
 		switch (state) {
