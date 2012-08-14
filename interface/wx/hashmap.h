@@ -49,6 +49,9 @@
 
         // iterate over all the elements in the class
         MyHash2::iterator it;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( it = h2.begin(); it != h2.end(); ++it )
         {
             wxString key = it->first, value = it->second;

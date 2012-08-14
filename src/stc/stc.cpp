@@ -4152,6 +4152,9 @@ int wxStyledTextCtrl::GetCurrentLine() {
 void wxStyledTextCtrl::StyleSetSpec(int styleNum, const wxString& spec) {
 
     wxStringTokenizer tkz(spec, wxT(","));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (tkz.HasMoreTokens()) {
         wxString token = tkz.GetNextToken();
 

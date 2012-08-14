@@ -54,10 +54,16 @@
     // we draw a (10, 10)-(20, 20) rect manually using the given r, g, b
     p.Offset(data, 10, 10);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int y = 0; y < 10; ++y )
     {
         wxNativePixelData::Iterator rowStart = p;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int x = 0; x < 10; ++x, ++p )
         {
             p.Red() = r;

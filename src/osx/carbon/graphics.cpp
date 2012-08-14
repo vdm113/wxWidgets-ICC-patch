@@ -478,6 +478,9 @@ wxMacCoreGraphicsPenData::wxMacCoreGraphicsPenData( wxGraphicsRenderer* renderer
             if ((dashes != NULL) && (m_count > 0))
             {
                 m_userLengths = new CGFloat[m_count];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int i = 0; i < m_count; ++i )
                 {
                     m_userLengths[i] = dashes[i] * dashUnit;
@@ -808,6 +811,9 @@ void wxMacCoreGraphicsBrushData::CalculateShadingValues (void *info, const CGFlo
     {
         // Find first component with position greater than f
         unsigned i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < stops.count; i++ )
         {
             if (stops.comps[i].pos > f)
@@ -835,6 +841,9 @@ wxMacCoreGraphicsBrushData::CreateGradientFunction(const wxGraphicsGradientStops
     static const CGFloat output_value_ranges [8] = { 0, 1, 0, 1, 0, 1, 0, 1 };
 
     m_gradientComponents.Init(stops.GetCount());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned i = 0; i < m_gradientComponents.count; i++ )
     {
         const wxGraphicsGradientStop stop = stops.Item(i);
@@ -2633,6 +2642,9 @@ void wxMacCoreGraphicsContext::GetPartialTextExtents(const wxString& text, wxArr
         wxCFRef<CTLineRef> line( CTLineCreateWithAttributedString(attrtext) );
 
         int chars = text.length();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int pos = 0; pos < (int)chars; pos ++ )
         {
             widths[pos] = CTLineGetOffsetForStringIndex( line, pos+1 , NULL );
@@ -2659,6 +2671,9 @@ void wxMacCoreGraphicsContext::GetPartialTextExtents(const wxString& text, wxArr
 
 // new implementation from JS, keep old one just in case
 #if 0
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int pos = 0; pos < (int)chars; pos ++ )
         {
             unsigned long actualNumberOfBounds = 0;
@@ -2689,6 +2704,9 @@ void wxMacCoreGraphicsContext::GetPartialTextExtents(const wxString& text, wxArr
 
         if ( err == noErr && glyphCount == (text.length()+1))
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int pos = 1; pos < (int)glyphCount ; pos ++ )
             {
                 widths[pos-1] = FixedToFloat( layoutRecords[pos].realPos );

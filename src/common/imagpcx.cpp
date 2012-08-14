@@ -62,6 +62,9 @@ void RLEencode(unsigned char *p, unsigned int size, wxOutputStream& s)
     cont = 1;
     size--;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (size-- > 0)
     {
         data = (unsigned char) *(p++);
@@ -100,6 +103,9 @@ void RLEdecode(unsigned char *p, unsigned int size, wxInputStream& s)
     // to read one or more _complete_ scanlines. Else, more than
     // 'size' bytes might be read and the buffer might overflow.
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (size != 0)
     {
         unsigned int data = (unsigned char)s.GetC();
@@ -119,6 +125,9 @@ void RLEdecode(unsigned char *p, unsigned int size, wxInputStream& s)
             if (cont > size) // can happen only if the file is malformed
                 break;
             data = (unsigned char)s.GetC();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (unsigned int i = 1; i <= cont; i++)
                 *(p++) = (unsigned char)data;
             size -= cont;
@@ -232,6 +241,9 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
 
     dst = image->GetData();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (j = height; j; j--)
     {
         if (encoding)
@@ -243,6 +255,9 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
         {
             case wxPCX_8BIT:
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < width; i++)
                 {
                     // first pass, just store the colour index
@@ -253,6 +268,9 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
             }
             case wxPCX_24BIT:
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < width; i++)
                 {
                     *(dst++) = p[i];
@@ -279,6 +297,9 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
         stream.Read(pal, 768);
 
         p = image->GetData();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (unsigned long k = height * width; k; k--)
         {
             index = *p;
@@ -291,6 +312,9 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
         unsigned char r[256];
         unsigned char g[256];
         unsigned char b[256];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < 256; i++)
         {
             r[i] = pal[3*i + 0];
@@ -374,6 +398,9 @@ int SavePCX(wxImage *image, wxOutputStream& stream)
 
     src = image->GetData();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (; height; height--)
     {
         switch (format)
@@ -382,6 +409,9 @@ int SavePCX(wxImage *image, wxOutputStream& stream)
             {
                 unsigned char r, g, b;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < width; i++)
                 {
                     r = *(src++);
@@ -395,6 +425,9 @@ int SavePCX(wxImage *image, wxOutputStream& stream)
             }
             case wxPCX_24BIT:
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < width; i++)
                 {
                     p[i] = *(src++);
@@ -418,6 +451,9 @@ int SavePCX(wxImage *image, wxOutputStream& stream)
 
         unsigned long index;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxImageHistogram::iterator entry = histogram.begin();
              entry != histogram.end(); ++entry )
         {
