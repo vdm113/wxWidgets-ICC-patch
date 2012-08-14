@@ -227,6 +227,9 @@ public:
           m_hwndBtn(GetHwndOf(btn))
     {
         // initialize all bitmaps except for the disabled one to normal state
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < wxAnyButton::State_Max; n++ )
         {
             m_iml.Add(n == wxAnyButton::State_Disabled ? bitmap.ConvertToDisabled()

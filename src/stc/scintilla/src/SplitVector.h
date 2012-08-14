@@ -50,6 +50,9 @@ protected:
 	/// reallocating if more space needed.
 	void RoomFor(int insertionLength) {
 		if (gapLength <= insertionLength) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (growSize < size / 6)
 				growSize *= 2;
 			ReAllocate(size + insertionLength + growSize);
@@ -181,6 +184,9 @@ public:
 			}
 			RoomFor(insertLength);
 			GapTo(position);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (int i = 0; i < insertLength; i++)
 				body[part1Length + i] = v;
 			lengthBody += insertLength;

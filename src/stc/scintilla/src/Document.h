@@ -113,6 +113,9 @@ struct StyledText {
 	// Return 1 when start is outside text
 	size_t LineLength(size_t start) const {
 		size_t cur = start;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while ((cur < length) && (text[cur] != '\n'))
 			cur++;
 		return cur-start;

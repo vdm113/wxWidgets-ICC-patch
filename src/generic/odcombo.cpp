@@ -330,6 +330,9 @@ bool wxVListBoxComboPopup::HandleKey( int keycode, bool saturate, wxChar keychar
         int found = -1;
         unsigned int length=m_partialCompletionString.length();
         int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i=0; i<itemCount; i++)
         {
             wxString item=GetString(i);
@@ -449,6 +452,9 @@ void wxVListBoxComboPopup::OnMouseMove(wxMouseEvent& event)
     // partially visible, we might just as well replicate the HitTest
     // loop here.
     const size_t lineMax = GetVisibleEnd();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t line = GetVisibleBegin(); line < lineMax; line++ )
     {
         y -= OnGetRowHeight(line);
@@ -550,6 +556,9 @@ int wxVListBoxComboPopup::Append(const wxString& item)
         wxArrayString strings = m_strings;
         unsigned int i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i=0; i<strings.GetCount(); i++ )
         {
             if ( item.CmpNoCase(strings.Item(i)) <= 0 )
@@ -588,6 +597,9 @@ void wxVListBoxComboPopup::ClearClientDatas()
     if ( m_clientDataItemsType == wxClientData_Object )
     {
         size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i=0; i<m_clientDatas.GetCount(); i++ )
             delete (wxClientData*) m_clientDatas[i];
     }
@@ -732,6 +744,9 @@ void wxVListBoxComboPopup::CalcWidths()
         wxClientDC dc(m_combo);
         dc.SetFont(m_useFont);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i=0; i<n; i++ )
         {
             if ( widths[i] < 0 )
@@ -786,6 +801,9 @@ void wxVListBoxComboPopup::CalcWidths()
         int bestWidth = -1;
         int bestIndex = -1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i=0; i<n; i++ )
         {
             int w = m_widths[i];
@@ -854,6 +872,9 @@ void wxVListBoxComboPopup::Populate( const wxArrayString& choices )
 
     int n = choices.GetCount();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i=0; i<n; i++ )
     {
         const wxString& item = choices.Item(i);
@@ -953,6 +974,9 @@ bool wxOwnerDrawnComboBox::Create(wxWindow *parent,
     }
 
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i=0; i<n; i++ )
         m_initChs.Add(choices[i]);
 
@@ -1096,6 +1120,9 @@ int wxOwnerDrawnComboBox::DoInsertItems(const wxArrayStringsAdapter& items,
     {
         int n = pos;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned int i = 0; i < count; ++i )
         {
             n = GetVListBoxComboPopup()->Append(items[i]);
@@ -1106,6 +1133,9 @@ int wxOwnerDrawnComboBox::DoInsertItems(const wxArrayStringsAdapter& items,
     }
     else
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned int i = 0; i < count; ++i, ++pos )
         {
             GetVListBoxComboPopup()->Insert(items[i], pos);
