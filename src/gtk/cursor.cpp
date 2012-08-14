@@ -348,6 +348,9 @@ const wxCursor wxBusyCursor::GetBusyCursor()
 static void UpdateCursors(GdkDisplay** display)
 {
     wxWindowList::const_iterator i = wxTopLevelWindows.begin();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t n = wxTopLevelWindows.size(); n--; ++i)
     {
         wxWindow* win = *i;

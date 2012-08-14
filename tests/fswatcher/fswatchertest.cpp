@@ -169,6 +169,9 @@ public:
         static int ALFA_CNT = 'z' - 'a';
 
         wxString s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0 ; i < length; ++i)
         {
             char c = 'a' + (rand() % ALFA_CNT);
@@ -676,13 +679,7 @@ void FileSystemWatcherTestCase::TestTrees()
                 CPPUNIT_ASSERT(dir.Mkdir());
 
                 const wxString prefix = dir.GetPathWithSep();
-<<<<<<< HEAD
                 const wxString ext[] = { ".txt", ".log", "" };
-=======
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
->>>>>>> patched loops for ICC
                 for ( unsigned f = 0; f < files; ++f )
                 {
                     // Just create the files.
