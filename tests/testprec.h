@@ -106,6 +106,7 @@ public:
 {\
     wxStopWatch sw; \
     wxEventLoopBase* loop = wxEventLoopBase::GetActive(); \
+MY_MACRO_PRAGMA_IVDEP \
     while(eventcounter.GetCount() < count) \
     { \
         if(sw.Time() < 100) \

@@ -157,6 +157,9 @@ _TIFFmemset(tdata_t p, int v, tsize_t c)
 {
 	char* pp = (char*) p;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (c > 0) {
 		tsize_t chunk = 0x10000 - ((uint32) pp & 0xffff);/* What's left in segment */
 		if (chunk > 0xff00)				/* No more than 0xff00 */
@@ -186,6 +189,9 @@ _TIFFmemcmp(const tdata_t d, const tdata_t s, tsize_t c)
 	tsize_t chunks, chunkd, chunk;
 	int result;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (c > 0) {
 		chunks = 0x10000 - ((uint32) ss & 0xffff);	/* What's left in segment */
 		chunkd = 0x10000 - ((uint32) dd & 0xffff);	/* What's left in segment */

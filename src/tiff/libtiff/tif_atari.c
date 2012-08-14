@@ -97,6 +97,9 @@ _tiffSeekProc(thandle_t fd, off_t off, int whence)
 	if (new_off < 0)            /* error? */
 		new_off = Fseek(0, (int) fd, SEEK_END); /* go to eof */
 	_TIFFmemset(buf, 0, sizeof(buf));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (expected_off > new_off) {
 		off = expected_off - new_off;
 		if (off > sizeof(buf))

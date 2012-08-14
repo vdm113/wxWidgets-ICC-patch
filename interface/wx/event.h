@@ -281,6 +281,9 @@ protected:
             // we do the 1000 FunctionWhichSendsEvents() calls
             wxEventBlocker blocker(this);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int i = 0; i  1000; i++ )
                 FunctionWhichSendsEvents(i);
 
@@ -1872,6 +1875,9 @@ public:
         int vX,vY,vW,vH;                 // Dimensions of client area in pixels
         wxRegionIterator upd(GetUpdateRegion()); // get the update rect list
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (upd)
         {
             vX = upd.GetX();
