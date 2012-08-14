@@ -172,6 +172,9 @@ void XrcTestCase::ObjectReferences()
 {
     wxXmlResource::Get()->InitAllHandlers();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int n = 0; n < 2; ++n )
     {
         // Load the xrc file we're just created
@@ -195,6 +198,9 @@ void XrcTestCase::ObjectReferences()
 void XrcTestCase::IDRanges()
 {
     // Tests ID ranges
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int n = 0; n < 2; ++n )
     {
         // Load the xrc file we're just created
