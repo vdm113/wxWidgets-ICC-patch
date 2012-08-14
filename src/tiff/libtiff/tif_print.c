@@ -75,6 +75,9 @@ _TIFFPrintField(FILE* fd, const TIFFFieldInfo *fip,
 		
 	fprintf(fd, "  %s: ", fip->field_name);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(j = 0; j < value_count; j++) {
 		if(fip->field_type == TIFF_BYTE)
 			fprintf(fd, "%u", ((uint8 *) raw_data)[j]);
@@ -151,6 +154,9 @@ _TIFFPrettyPrintField(TIFF* tif, FILE* fd, ttag_t tag,
 			uint16 i;
 
 			fprintf(fd, "  Reference Black/White:\n");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = 0; i < td->td_samplesperpixel; i++)
 			fprintf(fd, "    %2d: %5g %5g\n", i,
 				((float *)raw_data)[2*i+0],
@@ -162,6 +168,9 @@ _TIFFPrettyPrintField(TIFF* tif, FILE* fd, ttag_t tag,
 			uint32 i;
 			
 			fprintf(fd, "  XMLPacket (XMP Metadata):\n" );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for(i = 0; i < value_count; i++)
 				fputc(((char *)raw_data)[i], fd);
 			fprintf( fd, "\n" );
@@ -326,6 +335,9 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 	if (TIFFFieldSet(tif,FIELD_EXTRASAMPLES) && td->td_extrasamples) {
 		fprintf(fd, "  Extra Samples: %u<", td->td_extrasamples);
 		sep = "";
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < td->td_extrasamples; i++) {
 			switch (td->td_sampleinfo[i]) {
 			case EXTRASAMPLE_UNSPECIFIED:
@@ -351,6 +363,9 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 		fprintf(fd, "  Ink Names: ");
 		i = td->td_samplesperpixel;
 		sep = "";
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (cp = td->td_inknames; i > 0; cp = strchr(cp,'\0')+1, i--) {
 			fputs(sep, fd);
 			_TIFFprintAscii(fd, cp);
@@ -473,6 +488,9 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 		if (flags & TIFFPRINT_COLORMAP) {
 			fprintf(fd, "\n");
 			n = 1L<<td->td_bitspersample;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (l = 0; l < n; l++)
 				fprintf(fd, "   %5lu: %5u %5u %5u\n",
 				    l,
@@ -487,9 +505,15 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 		if (flags & TIFFPRINT_CURVES) {
 			fprintf(fd, "\n");
 			n = 1L<<td->td_bitspersample;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (l = 0; l < n; l++) {
 				fprintf(fd, "    %2lu: %5u",
 				    l, td->td_transferfunction[0][l]);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (i = 1; i < td->td_samplesperpixel; i++)
 					fprintf(fd, " %5u",
 					    td->td_transferfunction[i][l]);
@@ -500,6 +524,9 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 	}
 	if (TIFFFieldSet(tif, FIELD_SUBIFD)) {
 		fprintf(fd, "  SubIFD Offsets:");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < td->td_nsubifd; i++)
 			fprintf(fd, " %5lu", (long) td->td_subifd[i]);
 		fputc('\n', fd);
@@ -513,6 +540,9 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
             short count;
 
             count = (short) TIFFGetTagListCount(tif);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(i = 0; i < count; i++) {
                 ttag_t  tag = TIFFGetTagListEntry(tif, i);
                 const TIFFFieldInfo *fip;
@@ -607,6 +637,9 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 		fprintf(fd, "  %lu %s:\n",
 		    (long) td->td_nstrips,
 		    isTiled(tif) ? "Tiles" : "Strips");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (s = 0; s < td->td_nstrips; s++)
 			fprintf(fd, "    %3lu: [%8lu, %8lu]\n",
 			    (unsigned long) s,
@@ -618,6 +651,9 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 void
 _TIFFprintAscii(FILE* fd, const char* cp)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; *cp != '\0'; cp++) {
 		const char* tp;
 
@@ -625,6 +661,9 @@ _TIFFprintAscii(FILE* fd, const char* cp)
 			fputc(*cp, fd);
 			continue;
 		}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (tp = "\tt\bb\rr\nn\vv"; *tp; tp++)
 			if (*tp++ == *cp)
 				break;

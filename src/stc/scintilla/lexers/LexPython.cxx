@@ -126,6 +126,9 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 		if (lineCurrent > 0) {
 			lineCurrent--;
 			// Look for backslash-continued lines
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (lineCurrent > 0) {
 				int eolPos = styler.LineStart(lineCurrent) - 1;
 				int eolStyle = styler.StyleAt(eolPos);
@@ -193,6 +196,9 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 	int startIndicator = sc.currentPos;
 	bool inContinuedString = false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.atLineStart) {
@@ -261,6 +267,9 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 				} else if (kwLast == kwCDef || kwLast == kwCPDef) {
 					int pos = sc.currentPos;
 					unsigned char ch = styler.SafeGetCharAt(pos, '\0');
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					while (ch != '\0') {
 						if (ch == '(') {
 							style = SCE_P_DEFNAME;
@@ -401,6 +410,9 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 			} else if (IsPyStringStart(sc.ch, sc.chNext, sc.GetRelative(2), allowedLiterals)) {
 				unsigned int nextIndex = 0;
 				sc.SetState(GetPyStringState(styler, sc.currentPos, &nextIndex, allowedLiterals));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (nextIndex > (sc.currentPos + 1) && sc.More()) {
 					sc.Forward();
 				}
@@ -416,6 +428,9 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 static bool IsCommentLine(int line, Accessor &styler) {
 	int pos = styler.LineStart(line);
 	int eol_pos = styler.LineStart(line + 1) - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
 		if (ch == '#')
@@ -451,6 +466,9 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 	int spaceFlags = 0;
 	int lineCurrent = styler.GetLine(startPos);
 	int indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, NULL);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (lineCurrent > 0) {
 		lineCurrent--;
 		indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, NULL);
@@ -471,6 +489,9 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 	// Process all characters to end of requested range or end of any triple quote
 	//that hangs over the end of the range.  Cap processing in all cases
 	// to end of document (in case of unclosed quote at end).
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) || prevQuote)) {
 
 		// Gather info
@@ -507,6 +528,9 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 		// which effectively folds them into surrounding code rather
 		// than screwing up folding.
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (!quote &&
 		        (lineNext < docLines) &&
 		        ((indentNext & SC_FOLDLEVELWHITEFLAG) ||
@@ -527,6 +551,9 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 		int skipLine = lineNext;
 		int skipLevel = levelAfterComments;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (--skipLine > lineCurrent) {
 			int skipLineIndent = styler.IndentAmount(skipLine, &spaceFlags, NULL);
 
