@@ -88,6 +88,9 @@ public:
     // close the pipe descriptors
     void Close()
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < WXSIZEOF(m_fds); n++ )
         {
             if ( m_fds[n] != INVALID_FD )

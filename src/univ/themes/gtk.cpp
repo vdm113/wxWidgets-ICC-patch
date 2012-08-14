@@ -1081,8 +1081,14 @@ wxBitmap wxGTKRenderer::GetCheckBitmap(int flags)
         wxSize size = GetCheckBitmapSize();
         rect.width = size.x;
         rect.height = size.y;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < 2; i++ )
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int j = 0; j < 3; j++ )
                 m_bitmapsCheckbox[i][j].Create(rect.width, rect.height);
         }
@@ -1770,6 +1776,9 @@ wxMenuGeometryInfo *wxGTKRenderer::GetMenuGeometry(wxWindow *win,
             widthAccelMax = 0,
             widthBmpMax = MENU_LEFT_MARGIN;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxMenuItemList::compatibility_iterator node = menu.GetMenuItems().GetFirst();
           node;
           node = node->GetNext() )
@@ -1852,6 +1861,9 @@ void wxGTKRenderer::InitComboBitmaps()
 
     size_t n;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = ComboState_Normal; n < ComboState_Max; n++ )
     {
         m_bitmapsCombo[n].Create(sizeArrow.x, sizeArrow.y);
@@ -1868,6 +1880,9 @@ void wxGTKRenderer::InitComboBitmaps()
     wxRect rect(sizeArrow);
 
     wxMemoryDC dc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = ComboState_Normal; n < ComboState_Max; n++ )
     {
         int flags = comboButtonFlags[n];
@@ -1961,6 +1976,9 @@ void wxGTKRenderer::DrawArrowBorder(wxDC& dc,
 
     // the outer rect first
     size_t n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < WXSIZEOF(sides); n++ )
     {
         wxDirection side = sides[n];
@@ -1971,6 +1989,9 @@ void wxGTKRenderer::DrawArrowBorder(wxDC& dc,
     }
 
     // and then the inner one
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < WXSIZEOF(sides); n++ )
     {
         wxDirection side = sides[n];

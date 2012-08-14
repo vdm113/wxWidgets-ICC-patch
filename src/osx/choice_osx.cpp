@@ -35,6 +35,9 @@ wxChoice::~wxChoice()
     {
         unsigned int i, max = GetCount();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < max; ++i )
             delete GetClientObject( i );
     }
@@ -119,6 +122,9 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter & items,
                             void **clientData, wxClientDataType type)
 {
     const unsigned int numItems = items.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( unsigned int i = 0; i < numItems; ++i, ++pos )
     {
         unsigned int idx;
@@ -168,6 +174,9 @@ void wxChoice::DoDeleteOneItem(unsigned int n)
 
 void wxChoice::DoClear()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i = 0 ; i < GetCount() ; i++ )
     {
         m_popUpMenu->Delete( m_popUpMenu->FindItemByPosition( 0 ) );

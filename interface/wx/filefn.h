@@ -475,6 +475,9 @@ wxString wxFindNextFile();
 
     @code
     wxString f = wxFindFirstFile("/home/project/*.*");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !f.empty() )
     {
         ...

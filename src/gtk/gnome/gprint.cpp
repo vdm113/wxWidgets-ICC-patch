@@ -921,6 +921,9 @@ bool wxGnomePrinter::Print(wxWindow *parent, wxPrintout *printout, bool prompt )
 
 
     int copyCount;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( copyCount = 1;
           copyCount <= m_printDialogData.GetNoCopies();
           copyCount++ )
@@ -933,6 +936,9 @@ bool wxGnomePrinter::Print(wxWindow *parent, wxPrintout *printout, bool prompt )
         }
 
         int pn;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( pn = minPageNum;
               pn <= maxPageNum && printout->HasPage(pn);
               pn++ )
@@ -1116,9 +1122,21 @@ void wxGnomePrinterDCImpl::DoDrawArc(wxCoord x1,wxCoord y1,wxCoord x2,wxCoord y2
             (y2 - yc < 0) ? 90.0 : -90.0 :
             -atan2(double(y2-yc), double(x2-xc)) * RAD2DEG;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (alpha1 <= 0)   alpha1 += 360;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (alpha2 <= 0)   alpha2 += 360; // adjust angles to be between
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (alpha1 > 360)  alpha1 -= 360; // 0 and 360 degree
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (alpha2 > 360)  alpha2 -= 360;
     }
 
@@ -1206,11 +1224,17 @@ void wxGnomePrinterDCImpl::DoDrawLines(int n, wxPoint points[], wxCoord xoffset,
     SetPen (m_pen);
 
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i =0; i<n ; i++ )
         CalcBoundingBox( points[i].x+xoffset, points[i].y+yoffset);
 
     gs_libGnomePrint->gnome_print_moveto ( m_gpc, XLOG2DEV(points[0].x+xoffset), YLOG2DEV(points[0].y+yoffset) );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 1; i < n; i++)
         gs_libGnomePrint->gnome_print_lineto ( m_gpc, XLOG2DEV(points[i].x+xoffset), YLOG2DEV(points[i].y+yoffset) );
 
@@ -1233,6 +1257,9 @@ void wxGnomePrinterDCImpl::DoDrawPolygon(int n, wxPoint points[],
         gs_libGnomePrint->gnome_print_newpath( m_gpc );
         gs_libGnomePrint->gnome_print_moveto( m_gpc, XLOG2DEV(x), YLOG2DEV(y) );
         int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 1; i < n; i++)
         {
             x = points[i].x + xoffset;
@@ -1253,6 +1280,9 @@ void wxGnomePrinterDCImpl::DoDrawPolygon(int n, wxPoint points[],
         gs_libGnomePrint->gnome_print_newpath( m_gpc );
         gs_libGnomePrint->gnome_print_moveto( m_gpc, XLOG2DEV(x), YLOG2DEV(y) );
         int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 1; i < n; i++)
         {
             x = points[i].x + xoffset;
@@ -1484,6 +1514,9 @@ void wxGnomePrinterDCImpl::DoDrawSpline(const wxPointList *points)
     CalcBoundingBox( (wxCoord)x3, (wxCoord)y3 );
 
     node = node->GetNext();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         q = node->GetData();
@@ -1726,6 +1759,9 @@ void wxGnomePrinterDCImpl::SetPen( const wxPen& pen )
             int num = m_pen.GetDashes (&wx_dashes);
             gdouble *g_dashes = g_new( gdouble, num );
             int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < num; ++i)
                 g_dashes[i] = (gdouble) wx_dashes[i];
             gs_libGnomePrint -> gnome_print_setdash( m_gpc, num, g_dashes, 0);

@@ -69,12 +69,18 @@ void wxHashTableBase::Create( wxKeyType keyType, size_t size )
     m_size = size;
     m_table = new wxHashTableBase_Node*[ m_size ];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( size_t i = 0; i < m_size; ++i )
         m_table[i] = NULL;
 }
 
 void wxHashTableBase::Clear()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( size_t i = 0; i < m_size; ++i )
     {
         Node* end = m_table[i];
@@ -84,6 +90,9 @@ void wxHashTableBase::Clear()
 
         Node *curr, *next = end->GetNext();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do
         {
             curr = next;
@@ -93,6 +102,9 @@ void wxHashTableBase::Clear()
 
             delete curr;
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while( curr != end );
 
         m_table[i] = NULL;
@@ -117,6 +129,9 @@ void wxHashTableBase::DoRemoveNode( wxHashTableBase_Node* node )
         Node *start = m_table[bucket], *curr;
         Node* prev = start;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( curr = prev->GetNext(); curr != node;
              prev = curr, curr = curr->GetNext() ) ;
 
@@ -197,6 +212,9 @@ void* wxHashTableBase::DoGet( long key, long hash ) const
     Node *first = m_table[bucket]->GetNext(),
          *curr = first;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
         if( curr->m_key.integer == key )
@@ -204,6 +222,9 @@ void* wxHashTableBase::DoGet( long key, long hash ) const
 
         curr = curr->GetNext();
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( curr != first );
 
     return NULL;
@@ -221,6 +242,9 @@ void* wxHashTableBase::DoGet( const wxString& key, long hash ) const
     Node *first = m_table[bucket]->GetNext(),
          *curr = first;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
         if( *curr->m_key.string == key )
@@ -228,6 +252,9 @@ void* wxHashTableBase::DoGet( const wxString& key, long hash ) const
 
         curr = curr->GetNext();
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( curr != first );
 
     return NULL;
@@ -261,6 +288,9 @@ void* wxHashTableBase::DoDelete( long key, long hash )
          *curr = first,
          *prev = m_table[bucket];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
         if( curr->m_key.integer == key )
@@ -277,6 +307,9 @@ void* wxHashTableBase::DoDelete( long key, long hash )
         prev = curr;
         curr = curr->GetNext();
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( curr != first );
 
     return NULL;
@@ -295,6 +328,9 @@ void* wxHashTableBase::DoDelete( const wxString& key, long hash )
          *curr = first,
          *prev = m_table[bucket];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
         if( *curr->m_key.string == key )
@@ -311,6 +347,9 @@ void* wxHashTableBase::DoDelete( const wxString& key, long hash )
         prev = curr;
         curr = curr->GetNext();
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( curr != first );
 
     return NULL;
@@ -321,6 +360,9 @@ long wxHashTableBase::MakeKey( const wxString& str )
     long int_key = 0;
 
     const wxStringCharType *p = str.wx_str();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( *p )
         int_key += *p++;
 
@@ -359,6 +401,9 @@ void wxHashTable::DoDeleteContents( wxHashTableBase_Node* node )
 
 void wxHashTable::GetNextNode( size_t bucketStart )
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( size_t i = bucketStart; i < m_size; ++i )
     {
         if( m_table[i] != NULL )
