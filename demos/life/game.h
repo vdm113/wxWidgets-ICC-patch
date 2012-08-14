@@ -55,10 +55,16 @@ public:
 #ifndef __WXMAC__
         m_shape.Add( wxString::Format(wxT("%i %i"), -width/2, -height/2) );
 #endif
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(int j = 0; j < height; j++)
         {
             wxString tmp;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(int i = 0; i < width; i++)
             {
                 tmp += wxChar(shape[j * width + i]);

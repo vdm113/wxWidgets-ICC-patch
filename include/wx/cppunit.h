@@ -227,6 +227,7 @@ WX_CPPUNIT_ALLOW_EQUALS_TO_INT(unsigned wxLongLong_t)
                                                                               \
         CPPUNIT_ASSERT_EQUAL( expected.size(), a.size() );                    \
                                                                               \
+MY_MACRO_PRAGMA_IVDEP \
         for ( size_t n = 0; n < a.size(); n++ )                               \
         {                                                                     \
             CPPUNIT_ASSERT_EQUAL( expected[n], a[n] );                        \
