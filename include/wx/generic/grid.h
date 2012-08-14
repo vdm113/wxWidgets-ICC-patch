@@ -1432,6 +1432,9 @@ public:
         if ( m_colAt.IsEmpty() )
             return idx;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < m_numCols; i++ )
         {
             if ( m_colAt[i] == idx )

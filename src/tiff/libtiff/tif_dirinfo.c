@@ -536,6 +536,9 @@ _TIFFSetupFieldInfo(TIFF* tif, const TIFFFieldInfo info[], size_t n)
 	if (tif->tif_fieldinfo) {
 		size_t  i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < tif->tif_nfields; i++) 
 		{
 			TIFFFieldInfo *fld = tif->tif_fieldinfo[i];
@@ -591,6 +594,9 @@ _TIFFMergeFieldInfo(TIFF* tif, const TIFFFieldInfo info[], int n)
 	}
 	assert(tif->tif_fieldinfo != NULL);
 	tp = tif->tif_fieldinfo + tif->tif_nfields;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < n; i++)
 		*tp++ = (TIFFFieldInfo*) (info + i);	/* XXX */
 
@@ -605,6 +611,9 @@ _TIFFPrintFieldInfo(TIFF* tif, FILE* fd)
 	size_t i;
 
 	fprintf(fd, "%s: \n", tif->tif_name);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < tif->tif_nfields; i++) {
 		const TIFFFieldInfo* fip = tif->tif_fieldinfo[i];
 		fprintf(fd, "field[%2d] %5lu, %2d, %2d, %d, %2d, %5s, %5s, %s\n"
@@ -765,6 +774,9 @@ _TIFFFindFieldInfoByName(TIFF* tif, const char *field_name, TIFFDataType dt)
 						 tagNameCompare);
 	    return (ret) ? (*ret) : NULL;
         } else
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0, n = tif->tif_nfields; i < n; i++) {
 			const TIFFFieldInfo* fip = tif->tif_fieldinfo[i];
 			if (streq(fip->field_name, field_name) &&

@@ -138,6 +138,9 @@ bool wxGenericMDIParentFrame::CloseAll()
         return true; // none of the windows left
 
     wxBookCtrlBase * const book = client->GetBookCtrl();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( book->GetPageCount() )
     {
         wxGenericMDIChildFrame * const child = client->GetChild(0);
@@ -571,6 +574,9 @@ int wxGenericMDIClientWindow::FindChild(wxGenericMDIChildFrame *child) const
 {
     wxBookCtrlBase * const book = GetBookCtrl();
     const size_t count = book->GetPageCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t pos = 0; pos < count; pos++ )
     {
         if ( book->GetPage(pos) == child )

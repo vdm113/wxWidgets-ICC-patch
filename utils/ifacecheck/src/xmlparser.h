@@ -411,6 +411,9 @@ public:
 
     const wxClass* FindClass(const wxString& classname) const
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (unsigned int i=0; i<m_classes.GetCount(); i++)
                 if (m_classes[i].GetName() == classname)
                     return &m_classes[i];
@@ -428,6 +431,9 @@ public:
     unsigned int GetMethodCount() const
         {
             unsigned int methods = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (unsigned i=0; i < m_classes.GetCount(); i++)
                 methods += m_classes[i].GetMethodCount();
             return methods;
