@@ -2377,6 +2377,9 @@ void wxBoxSizer::RecalcSizes()
         // is less than what we would allocate to them taking their proportion
         // into account.
         nonFixedSpaceChanged = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = m_children.begin(), n = 0; ; ++i, ++n )
         {
             if ( nonFixedSpaceChanged )
