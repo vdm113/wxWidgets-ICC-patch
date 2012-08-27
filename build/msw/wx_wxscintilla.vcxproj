@@ -451,7 +451,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_lib\mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswud\wxscintilla\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\vc_mswud\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswud\wxscintilla\</ObjectFileName>
@@ -496,7 +496,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_lib\mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswud\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -542,7 +542,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_dll\mswunivu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;__WXUNIVERSAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;__WXUNIVERSAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswunivudll\wxscintilla\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\vc_mswunivudll\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivudll\wxscintilla\</ObjectFileName>
@@ -587,7 +587,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_dll\mswunivu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;__WXUNIVERSAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;__WXUNIVERSAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswunivudll\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -632,7 +632,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_dll\mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswuddll\wxscintilla\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\vc_mswuddll\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswuddll\wxscintilla\</ObjectFileName>
@@ -677,7 +677,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_dll\mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswuddll\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -723,7 +723,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_lib\mswunivu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;__WXUNIVERSAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;__WXUNIVERSAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswunivu\wxscintilla\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\vc_mswunivu\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivu\wxscintilla\</ObjectFileName>
@@ -768,7 +768,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_lib\mswunivu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;__WXUNIVERSAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;__WXUNIVERSAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswunivu\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -813,7 +813,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_lib\mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswu\wxscintilla\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\vc_mswu\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswu\wxscintilla\</ObjectFileName>
@@ -858,7 +858,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_lib\mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswu\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -903,7 +903,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_lib\mswunivud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;__WXUNIVERSAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;__WXUNIVERSAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswunivud\wxscintilla\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\vc_mswunivud\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivud\wxscintilla\</ObjectFileName>
@@ -948,7 +948,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_lib\mswunivud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;__WXUNIVERSAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;__WXUNIVERSAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswunivud\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -994,7 +994,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_dll\mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswudll\wxscintilla\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\vc_mswudll\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswudll\wxscintilla\</ObjectFileName>
@@ -1039,7 +1039,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_dll\mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswudll\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -1084,7 +1084,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_dll\mswunivud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;__WXUNIVERSAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;__WXUNIVERSAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswunivuddll\wxscintilla\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\vc_mswunivuddll\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivuddll\wxscintilla\</ObjectFileName>
@@ -1129,7 +1129,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\src;..\..\lib\vc_dll\mswunivud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;__WXUNIVERSAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;__WXUNIVERSAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswunivuddll\wxscintilla\wx_wxscintilla.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
