@@ -508,7 +508,7 @@
       <AdditionalIncludeDirectories>..\..\lib\vc_lib\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;__WXMSW__;NDEBUG;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>vc_mswu\wxprec_xrclib.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -555,7 +555,7 @@
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;__WXMSW__;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_XRC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswuddll\xrc\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>vc_mswuddll\wxprec_xrcdll.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <ObjectFileName>.\vc_mswuddll\xrc\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmsw294ud_xrc_vc_custom.pdb</ProgramDataBaseFileName>
@@ -623,7 +623,7 @@
       <AdditionalIncludeDirectories>..\..\lib\vc_dll\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;__WXMSW__;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_XRC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>vc_mswuddll\wxprec_xrcdll.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -740,7 +740,7 @@
       <AdditionalIncludeDirectories>..\..\lib\vc_lib\mswunivud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;__WXMSW__;__WXUNIVERSAL__;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>vc_mswunivud\wxprec_xrclib.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -856,7 +856,7 @@
       <AdditionalIncludeDirectories>..\..\lib\vc_dll\mswunivu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_USRDLL;DLL_EXPORTS;__WXMSW__;__WXUNIVERSAL__;NDEBUG;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_XRC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>vc_mswunivudll\wxprec_xrcdll.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -993,7 +993,7 @@
       <AdditionalIncludeDirectories>..\..\lib\vc_dll\mswunivud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;__WXMSW__;__WXUNIVERSAL__;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_XRC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>vc_mswunivuddll\wxprec_xrcdll.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -1108,7 +1108,7 @@
       <AdditionalIncludeDirectories>..\..\lib\vc_lib\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;__WXMSW__;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>vc_mswud\wxprec_xrclib.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -1224,7 +1224,7 @@
       <AdditionalIncludeDirectories>..\..\lib\vc_dll\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_USRDLL;DLL_EXPORTS;__WXMSW__;NDEBUG;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_XRC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>vc_mswudll\wxprec_xrcdll.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -1338,7 +1338,7 @@
       <AdditionalIncludeDirectories>..\..\lib\vc_lib\mswunivu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;__WXMSW__;__WXUNIVERSAL__;NDEBUG;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>vc_mswunivu\wxprec_xrclib.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
