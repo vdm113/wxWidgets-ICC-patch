@@ -871,6 +871,7 @@
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|X64'">
@@ -892,6 +893,7 @@
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -919,6 +921,7 @@
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -946,6 +949,7 @@
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -973,6 +977,7 @@
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -1000,6 +1005,7 @@
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Universal Debug|X64'">
@@ -1021,6 +1027,7 @@
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Universal Release|X64'">
@@ -1042,6 +1049,7 @@
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
