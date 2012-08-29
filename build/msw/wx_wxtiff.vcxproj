@@ -92,11 +92,11 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
@@ -104,24 +104,24 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
@@ -129,24 +129,24 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
@@ -154,24 +154,24 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
@@ -179,24 +179,24 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
@@ -204,24 +204,24 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
@@ -229,24 +229,24 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseILP64Interfaces>false</UseILP64Interfaces>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
@@ -254,9 +254,9 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
@@ -267,11 +267,11 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
   </PropertyGroup>
@@ -279,9 +279,9 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <PlatformToolset>Intel C++ Compiler XE 12.1</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
@@ -456,7 +456,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswuddll\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswuddll\wxtiff\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxtiffd.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qnoipo</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -469,13 +469,14 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -512,7 +513,7 @@
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
@@ -520,6 +521,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -547,7 +549,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswudll\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswudll\wxtiff\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxtiff.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qnoipo</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -559,13 +561,14 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -602,7 +605,7 @@
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
@@ -610,6 +613,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -637,7 +641,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswunivudll\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivudll\wxtiff\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxtiff.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qnoipo</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -649,13 +653,14 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -694,12 +699,13 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -727,7 +733,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswunivuddll\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivuddll\wxtiff\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxtiffd.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qnoipo</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -740,13 +746,14 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -785,12 +792,13 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -818,7 +826,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswud\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswud\wxtiff\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxtiffd.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qnoipo</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -831,13 +839,14 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -876,12 +885,13 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -909,7 +919,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswu\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswu\wxtiff\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxtiff.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qnoipo</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -921,13 +931,14 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -966,12 +977,13 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -999,7 +1011,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswunivud\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivud\wxtiff\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxtiffd.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qnoipo</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -1012,13 +1024,14 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1057,12 +1070,13 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1090,7 +1104,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswunivu\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivu\wxtiff\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxtiff.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qnoipo</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -1102,13 +1116,14 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1147,12 +1162,13 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1165,6 +1181,16 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>..\..\lib\vc_lib\wxtiff.lib</OutputFile>
     </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|X64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\tiff\libtiff\tif_aux.c">
