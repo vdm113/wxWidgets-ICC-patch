@@ -965,6 +965,9 @@ bool wxWebViewIE::IsElementVisible(IHTMLElement* elm)
     bool is_visible = true;
     //This method is not perfect but it does discover most of the hidden elements.
     //so if a better solution is found, then please do improve.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(elm1)
     {
         if(SUCCEEDED(elm1->QueryInterface(wxIID_IHTMLElement2, (void**) &elm2)))
@@ -1040,6 +1043,9 @@ void wxWebViewIE::FindInternal(const wxString& text, int flags, int internal_fla
                m_findPointers.reserve(text.Len() == 1 ? 1000 : 500);
             }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while(ptrBegin->FindText(text_bstr, find_flag, ptrEnd, NULL) == S_OK)
             {
                 if(ptrBegin->CurrentScope(&elm) == S_OK)
@@ -1174,6 +1180,9 @@ void wxWebViewIE::FindClear()
     //remove elements from m_findPointers without calling release first
     //or you will get a memory leak.
     size_t count = m_findPointers.size();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(size_t i = 0; i < count; i++)
     {
         m_findPointers[i].begin->Release();
