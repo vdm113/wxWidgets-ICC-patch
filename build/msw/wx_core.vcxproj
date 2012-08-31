@@ -8709,6 +8709,7 @@
     <ClInclude Include="..\..\include\wx\scrolwin.h" />
     <ClInclude Include="..\..\include\wx\selstore.h" />
     <ClInclude Include="..\..\include\wx\settings.h" />
+    <ClInclude Include="..\..\include\wx\simplebook.h" />
     <ClInclude Include="..\..\include\wx\sizer.h" />
     <ClInclude Include="..\..\include\wx\slider.h" />
     <ClInclude Include="..\..\include\wx\sound.h" />
