@@ -566,6 +566,9 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 
     // draw the buttons on the right side
     int offset = m_rect.x + m_rect.width;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < button_count; ++i)
     {
         wxAuiTabContainerButton& button = m_buttons.Item(button_count - i - 1);
@@ -801,6 +804,9 @@ bool wxAuiTabContainer::IsTabVisible(int tabPage, int tabOffset, wxDC* dc, wxWin
 
     // calculate size of the buttons on the right side
     int offset = m_rect.x + m_rect.width;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < button_count; ++i)
     {
         wxAuiTabContainerButton& button = m_buttons.Item(button_count - i - 1);
