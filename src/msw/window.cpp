@@ -7303,6 +7303,9 @@ wxWindow* wxFindWindowAtPoint(const wxPoint& pt)
         // WindowFromPoint() ignores the disabled children but we're supposed
         // to take them into account, so check if we have a child at this
         // coordinate using ChildWindowFromPointEx().
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ;; )
         {
             pt2.x = pt.x;
