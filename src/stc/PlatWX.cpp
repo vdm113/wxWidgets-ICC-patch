@@ -364,8 +364,14 @@ void SurfaceImpl::AlphaRectangle(PRectangle rc, int cornerSize,
         int blue  = cdf.GetBlue();
 
         wxAlphaPixelData::Iterator p(pixData);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (y=0; y<r.height; y++) {
             p.MoveTo(pixData, 0, y);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (x=0; x<r.width; x++) {
                 p.Red()   = wxPy_premultiply(red,   alphaFill);
                 p.Green() = wxPy_premultiply(green, alphaFill);
@@ -380,6 +386,9 @@ void SurfaceImpl::AlphaRectangle(PRectangle rc, int cornerSize,
         red   = cdo.GetRed();
         green = cdo.GetGreen();
         blue  = cdo.GetBlue();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (x=0; x<r.width; x++) {
             p.MoveTo(pixData, x, 0);
             p.Red()   = wxPy_premultiply(red,   alphaOutline);
@@ -393,6 +402,9 @@ void SurfaceImpl::AlphaRectangle(PRectangle rc, int cornerSize,
             p.Alpha() = alphaOutline;
         }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (y=0; y<r.height; y++) {
             p.MoveTo(pixData, 0, y);
             p.Red()   = wxPy_premultiply(red,   alphaOutline);

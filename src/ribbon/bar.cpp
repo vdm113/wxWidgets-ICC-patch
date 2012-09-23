@@ -675,6 +675,9 @@ void wxRibbonBar::RecalculateTabSizes()
                 // Do (2)
                 wxVector<PageComparedBySmallWidthAsc> sorted_pages;
                 sorted_pages.reserve(numtabs);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( i = 0; i < numtabs; ++i )
                     sorted_pages.push_back(PageComparedBySmallWidthAsc(&m_pages.Item(i)));
 
