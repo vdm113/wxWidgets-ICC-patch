@@ -148,6 +148,9 @@ wxString GetPreferredUILanguage(const wxArrayString& available)
                 wxArrayString preferred;
 
                 WCHAR *buf = langs.get();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( unsigned i = 0; i < numLangs; i++ )
                 {
                     const wxString lang(buf);
@@ -156,6 +159,9 @@ wxString GetPreferredUILanguage(const wxArrayString& available)
                 }
                 LogTraceArray(" - system preferred languages", preferred);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( wxArrayString::const_iterator j = preferred.begin();
                       j != preferred.end();
                       ++j )
@@ -188,6 +194,9 @@ void LogTraceArray(const char *prefix, CFArrayRef arr)
     if ( count )
     {
         s += wxCFStringRef::AsString((CFStringRef)CFArrayGetValueAtIndex(arr, 0));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned i = 1 ; i < count; i++ )
             s += "," + wxCFStringRef::AsString((CFStringRef)CFArrayGetValueAtIndex(arr, i));
     }
@@ -200,6 +209,9 @@ wxString GetPreferredUILanguage(const wxArrayString& available)
     wxCFRef<CFMutableArrayRef> availableArr(
         CFArrayCreateMutable(kCFAllocatorDefault, 0, &kCFTypeArrayCallBacks));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxArrayString::const_iterator i = available.begin();
           i != available.end();
           ++i )
