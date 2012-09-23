@@ -8410,6 +8410,9 @@ void wxGrid::DoSetRowSize( int row, int height )
     if ( !diff )
         return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = row; i < m_numRows; i++ )
     {
         m_rowBottoms[i] += diff;
