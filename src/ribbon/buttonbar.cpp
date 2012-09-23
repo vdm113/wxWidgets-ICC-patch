@@ -1279,6 +1279,9 @@ wxRibbonButtonBarButtonBase *wxRibbonButtonBar::GetItem(size_t n) const
 wxRibbonButtonBarButtonBase *wxRibbonButtonBar::GetItemById(int button_id) const
 {
     size_t count = m_buttons.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < count; ++i )
     {
         wxRibbonButtonBarButtonBase* button = m_buttons.Item(i);
