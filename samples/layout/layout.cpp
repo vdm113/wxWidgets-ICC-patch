@@ -728,6 +728,9 @@ MyWrapSizerFrame::MyWrapSizerFrame(const wxString &title, int x, int y )
     m_wrapSizer = new wxWrapSizer(wxHORIZONTAL);
 
     // A number of checkboxes inside a wrap sizer
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( int i = 0; i < 6; i++ )
         DoAddCheckbox();
 
