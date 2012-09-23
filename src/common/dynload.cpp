@@ -96,6 +96,9 @@ wxPluginLibrary::wxPluginLibrary(const wxString &libname, int flags)
     // the backwards direction:
     if ( m_ourFirst != oldFirst )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( const wxClassInfo* info = m_ourFirst; ; info = info->GetNext() )
         {
             if ( info->GetNext() == oldFirst )
