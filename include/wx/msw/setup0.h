@@ -5,13 +5,13 @@
 #   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/setup.h
+
 // Purpose:     Configuration for the library
 // Author:      Julian Smart
 // Modified by: Marian 'VooDooMan' Meravy
 // Created:     01/02/97
-// RCS-ID:      $Id$
+// RCS-ID:      $Id: setup0.h 69463 2011-10-18 21:57:02Z VZ $
 // Copyright:   (c) Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
