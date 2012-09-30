@@ -352,6 +352,9 @@ void wxAuiMDIParentFrame::DoHandleMenu(wxCommandEvent& event)
         case wxWINDOWCLOSEALL:
         {
             wxAuiMDIChildFrame* pActiveChild;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ((pActiveChild = GetActiveChild()) != NULL)
             {
                 if (!pActiveChild->Close())

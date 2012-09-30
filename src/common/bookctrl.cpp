@@ -148,6 +148,9 @@ wxSize wxBookCtrlBase::DoGetBestSize() const
     {
         // iterate over all pages, get the largest width and height
         const size_t nCount = m_pages.size();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t nPage = 0; nPage < nCount; nPage++ )
         {
             const wxWindow * const pPage = m_pages[nPage];
