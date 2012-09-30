@@ -638,6 +638,9 @@ wxTextCtrl::~wxTextCtrl()
 
     // this is also done by wxWindowGTK dtor, but has to be done here so our
     // DoThaw() override is called
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (IsFrozen())
         Thaw();
 
