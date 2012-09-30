@@ -255,9 +255,15 @@ public:
 
     long indices[2];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned row = 0; row < rowCount; row++ )
     {
         indices[0] = row;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned col = 0; col < colCount; col++ )
         {
             indices[1] = col;
