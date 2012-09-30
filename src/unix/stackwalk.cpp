@@ -200,6 +200,9 @@ void wxStackWalker::ProcessFrames(size_t skip)
                                &ms_addresses[skip], &ms_symbols[skip]);
 
     // now do user-defined operations on each frame
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int n = 0; n < numFrames; n++ )
         OnStackFrame(frames[n]);
 }
