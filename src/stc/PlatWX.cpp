@@ -286,6 +286,9 @@ void SurfaceImpl::Polygon(Point *pts, int npts, ColourDesired fore, ColourDesire
     BrushColour(back);
     wxPoint *p = new wxPoint[npts];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i=0; i<npts; i++) {
         p[i].x = pts[i].x;
         p[i].y = pts[i].y;
