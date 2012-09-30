@@ -2441,6 +2441,9 @@ wxWindowGTK::~wxWindowGTK()
     // avoid problem with GTK+ 2.18 where a frozen window causes the whole
     // TLW to be frozen, and if the window is then destroyed, nothing ever
     // gets painted again
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (IsFrozen())
         Thaw();
 
