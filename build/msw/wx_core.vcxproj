@@ -5318,6 +5318,7 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'"> /EHsc /opt:ref /opt:icf   /EHsc /opt:ref /opt:icf </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|X64'"> /EHsc /opt:ref /opt:icf   /EHsc /opt:ref /opt:icf </AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="..\..\src\msw\ole\safearray.cpp" />
     <ClCompile Include="..\..\src\msw\ownerdrw.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> /EHsc   /EHsc </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|X64'"> /EHsc   /EHsc </AdditionalOptions>
@@ -8330,6 +8331,7 @@
     <ClInclude Include="..\..\include\wx\msw\notebook.h" />
     <ClInclude Include="..\..\include\wx\msw\notifmsg.h" />
     <ClInclude Include="..\..\include\wx\msw\ole\oleutils.h" />
+    <ClInclude Include="..\..\include\wx\msw\ole\safearray.h" />
     <ClInclude Include="..\..\include\wx\msw\ownerdrw.h" />
     <ClInclude Include="..\..\include\wx\msw\palette.h" />
     <ClInclude Include="..\..\include\wx\msw\panel.h" />
