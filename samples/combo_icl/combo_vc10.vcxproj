@@ -77,7 +77,7 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -90,7 +90,7 @@
     <ProfileGuidedOptimization>Disabled</ProfileGuidedOptimization>
     <CodeCoverageOperations>Disabled</CodeCoverageOperations>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -102,7 +102,7 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -115,7 +115,7 @@
     <ProfileGuidedOptimization>Disabled</ProfileGuidedOptimization>
     <CodeCoverageOperations>Disabled</CodeCoverageOperations>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -127,7 +127,7 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -140,7 +140,7 @@
     <ProfileGuidedOptimization>Disabled</ProfileGuidedOptimization>
     <CodeCoverageOperations>Disabled</CodeCoverageOperations>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -152,7 +152,7 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -165,7 +165,7 @@
     <ProfileGuidedOptimization>Disabled</ProfileGuidedOptimization>
     <CodeCoverageOperations>Disabled</CodeCoverageOperations>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -177,7 +177,7 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -190,7 +190,7 @@
     <ProfileGuidedOptimization>Disabled</ProfileGuidedOptimization>
     <CodeCoverageOperations>Disabled</CodeCoverageOperations>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -202,7 +202,7 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -215,7 +215,7 @@
     <ProfileGuidedOptimization>Disabled</ProfileGuidedOptimization>
     <CodeCoverageOperations>Disabled</CodeCoverageOperations>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -227,7 +227,7 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -240,7 +240,7 @@
     <ProfileGuidedOptimization>Disabled</ProfileGuidedOptimization>
     <CodeCoverageOperations>Disabled</CodeCoverageOperations>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -252,7 +252,7 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -263,7 +263,7 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>Parallel_Static</UseIntelIPP>
+    <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelTBB>false</UseIntelTBB>
     <InstrumentIntelTBB>false</InstrumentIntelTBB>
     <UseIntelMKL>Parallel</UseIntelMKL>
