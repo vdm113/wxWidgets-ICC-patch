@@ -147,7 +147,6 @@
 /include/wx/motif/Makefile.in
 
 # /include/wx/msw/
-/include/wx/msw/setup.h
 /include/wx/msw/Makefile.in
 /include/wx/msw/Makefile
 
