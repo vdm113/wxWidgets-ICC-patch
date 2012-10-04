@@ -7,6 +7,7 @@
 *.rc            text eol=crlf
 *.icproj        text eol=crlf
 *.cmd           text eol=crlf
+*.bat           text eol=crlf
 
 *.sh            text eol=lf
 *.c             text eol=lf
