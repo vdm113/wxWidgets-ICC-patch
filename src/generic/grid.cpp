@@ -2963,6 +2963,9 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
             {
                 //Shift the column IDs
                 int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( i = 0; i < m_numCols - numCols; i++ )
                 {
                     if ( m_colAt[i] >= (int)pos )
@@ -3039,6 +3042,9 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
 
                 //Set the new columns' positions
                 int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( i = oldNumCols; i < m_numCols; i++ )
                 {
                     m_colAt[i] = i;
@@ -4546,6 +4552,9 @@ bool wxGrid::DoEndDragResizeLine(const wxGridOperations& oper)
                 // it by increasing the refresh area to cover it entirely if a
                 // part of it is affected
                 const int lineEnd = doper.PosToLine(this, posLineEnd, true);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( ; line < lineEnd; line++ )
                 {
                     int cellLines = oper.Select(
