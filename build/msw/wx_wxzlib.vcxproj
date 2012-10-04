@@ -455,7 +455,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswunivu\wxzlib\wx_wxzlib.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivu\wxzlib\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxzlib.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qnoipo</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -463,7 +463,7 @@
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
@@ -497,7 +497,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswunivu\wxzlib\wx_wxzlib.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -505,7 +505,7 @@
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>false</BrowseInformation>
@@ -545,7 +545,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswunivud\wxzlib\wx_wxzlib.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivud\wxzlib\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxzlibd.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qnoipo</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -554,7 +554,7 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
@@ -587,7 +587,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswunivud\wxzlib\wx_wxzlib.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -596,7 +596,7 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>false</BrowseInformation>
@@ -636,7 +636,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswu\wxzlib\wx_wxzlib.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswu\wxzlib\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxzlib.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qnoipo</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -644,7 +644,7 @@
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
@@ -678,7 +678,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswu\wxzlib\wx_wxzlib.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -686,7 +686,7 @@
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>false</BrowseInformation>
@@ -726,7 +726,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswudll\wxzlib\wx_wxzlib.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswudll\wxzlib\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxzlib.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qnoipo</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -734,7 +734,7 @@
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
@@ -768,7 +768,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswudll\wxzlib\wx_wxzlib.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -776,7 +776,7 @@
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>false</BrowseInformation>
@@ -816,7 +816,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswuddll\wxzlib\wx_wxzlib.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswuddll\wxzlib\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxzlibd.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qnoipo</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -825,7 +825,7 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
@@ -858,7 +858,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswuddll\wxzlib\wx_wxzlib.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -867,7 +867,7 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>false</BrowseInformation>
@@ -907,7 +907,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswunivuddll\wxzlib\wx_wxzlib.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivuddll\wxzlib\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxzlibd.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qnoipo</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -916,7 +916,7 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
@@ -949,7 +949,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswunivuddll\wxzlib\wx_wxzlib.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -958,7 +958,7 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>false</BrowseInformation>
@@ -998,7 +998,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswunivudll\wxzlib\wx_wxzlib.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivudll\wxzlib\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxzlib.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qnoipo</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -1006,7 +1006,7 @@
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
@@ -1040,7 +1040,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswunivudll\wxzlib\wx_wxzlib.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -1048,7 +1048,7 @@
       <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>false</BrowseInformation>
@@ -1088,7 +1088,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswud\wxzlib\wx_wxzlib.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswud\wxzlib\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxzlibd.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qnoipo</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -1097,7 +1097,7 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
@@ -1130,7 +1130,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswud\wxzlib\wx_wxzlib.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -1139,7 +1139,7 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>false</BrowseInformation>
