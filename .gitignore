@@ -169,8 +169,6 @@
 /lib/evc_armv4_lib
 /lib/evc_emulator_lib
 /lib/gcc_lib
-/lib/vc*_lib
-/lib/vc*_dll
 /lib/wat_lib
 /lib/Linux
 /lib/linux-gnu
@@ -2617,4 +2615,8 @@ wx_vc8arm_*.vcproj
 *.cod
 *.pdb
 rcdefs.h
+/lib/vc_dll/mswu/wx/msw
+/lib/vc_dll/mswud/wx/msw
+/lib/vc_x64_dll/mswu/wx/msw
+/lib/vc_x64_dll/mswud/wx/msw
 ## VDM
