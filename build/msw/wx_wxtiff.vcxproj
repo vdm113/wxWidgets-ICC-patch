@@ -456,7 +456,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswuddll\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswuddll\wxtiff\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxtiffd.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -499,7 +499,7 @@
       <AdditionalIncludeDirectories>..\..\src\zlib;..\..\src\jpeg;..\..\src\tiff\libtiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswuddll\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -549,7 +549,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswudll\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswudll\wxtiff\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxtiff.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -592,7 +592,7 @@
       <AdditionalIncludeDirectories>..\..\src\zlib;..\..\src\jpeg;..\..\src\tiff\libtiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswudll\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -641,7 +641,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswunivudll\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivudll\wxtiff\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxtiff.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -684,7 +684,7 @@
       <AdditionalIncludeDirectories>..\..\src\zlib;..\..\src\jpeg;..\..\src\tiff\libtiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswunivudll\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -733,7 +733,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswunivuddll\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivuddll\wxtiff\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxtiffd.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -776,7 +776,7 @@
       <AdditionalIncludeDirectories>..\..\src\zlib;..\..\src\jpeg;..\..\src\tiff\libtiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswunivuddll\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -826,7 +826,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswud\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswud\wxtiff\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxtiffd.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -869,7 +869,7 @@
       <AdditionalIncludeDirectories>..\..\src\zlib;..\..\src\jpeg;..\..\src\tiff\libtiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswud\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -919,7 +919,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswu\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswu\wxtiff\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxtiff.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -962,7 +962,7 @@
       <AdditionalIncludeDirectories>..\..\src\zlib;..\..\src\jpeg;..\..\src\tiff\libtiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswu\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -1011,7 +1011,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswunivud\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivud\wxtiff\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxtiffd.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -1054,7 +1054,7 @@
       <AdditionalIncludeDirectories>..\..\src\zlib;..\..\src\jpeg;..\..\src\tiff\libtiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswunivud\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -1104,7 +1104,7 @@
       <PrecompiledHeaderOutputFile>.\vc_mswunivu\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivu\wxtiff\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxtiff.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -1147,7 +1147,7 @@
       <AdditionalIncludeDirectories>..\..\src\zlib;..\..\src\jpeg;..\..\src\tiff\libtiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswunivu\wxtiff\wx_wxtiff.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
