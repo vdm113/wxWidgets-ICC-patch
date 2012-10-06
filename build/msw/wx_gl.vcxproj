@@ -467,7 +467,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <ObjectFileName>.\vc_mswunivu\gl\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxmswuniv29u_gl.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -511,7 +511,7 @@
       <PrecompiledHeaderOutputFile>vc_mswunivu\wxprec_gllib.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -561,7 +561,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <ObjectFileName>.\vc_mswuddll\gl\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmsw294ud_gl_vc_custom.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -632,7 +632,7 @@
       <PrecompiledHeaderOutputFile>vc_mswuddll\wxprec_gldll.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -709,7 +709,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <ObjectFileName>.\vc_mswudll\gl\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmsw294u_gl_vc_custom.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -780,7 +780,7 @@
       <PrecompiledHeaderOutputFile>vc_mswudll\wxprec_gldll.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -856,7 +856,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <ObjectFileName>.\vc_mswunivud\gl\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxmswuniv29ud_gl.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -900,7 +900,7 @@
       <PrecompiledHeaderOutputFile>vc_mswunivud\wxprec_gllib.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -951,7 +951,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <ObjectFileName>.\vc_mswu\gl\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxmsw29u_gl.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -995,7 +995,7 @@
       <PrecompiledHeaderOutputFile>vc_mswu\wxprec_gllib.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -1045,7 +1045,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <ObjectFileName>.\vc_mswud\gl\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_lib\wxmsw29ud_gl.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -1089,7 +1089,7 @@
       <PrecompiledHeaderOutputFile>vc_mswud\wxprec_gllib.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -1140,7 +1140,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <ObjectFileName>.\vc_mswunivuddll\gl\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmswuniv294ud_gl_vc_custom.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -1210,7 +1210,7 @@
       <PrecompiledHeaderOutputFile>vc_mswunivuddll\wxprec_gldll.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -1286,7 +1286,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <ObjectFileName>.\vc_mswunivudll\gl\</ObjectFileName>
       <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmswuniv294u_gl_vc_custom.pdb</ProgramDataBaseFileName>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -1356,7 +1356,7 @@
       <PrecompiledHeaderOutputFile>vc_mswunivudll\wxprec_gldll.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
+      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
