@@ -520,6 +520,9 @@ void wxAuiDefaultDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _
             art->DrawBorder(dc, window, rect);
         else
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < border_width; ++i)
             {
                 dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
