@@ -359,6 +359,9 @@ bool DoStatAny(wxStructStat& st, wxString path, bool dereference)
     // the end because the symlink resolution would happen while following the
     // path and not for the last path element itself.
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( wxEndsWithPathSeparator(path) )
     {
         const size_t posLast = path.length() - 1;
