@@ -266,6 +266,9 @@ private:
 bool
 wxIDataObject::GetSystemData(wxDataFormat format, STGMEDIUM *pmedium) const
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( SystemData::const_iterator it = m_systemData.begin();
           it != m_systemData.end();
           ++it )
@@ -284,6 +287,9 @@ wxIDataObject::GetSystemData(wxDataFormat format, STGMEDIUM *pmedium) const
 bool
 wxIDataObject::HasSystemData(wxDataFormat format) const
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( SystemData::const_iterator it = m_systemData.begin();
           it != m_systemData.end();
           ++it )
@@ -306,6 +312,9 @@ wxIDataObject::SaveSystemData(FORMATETC *pformatetc,
         return E_INVALIDARG;
 
     // remove entry if already available
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( SystemData::iterator it = m_systemData.begin();
           it != m_systemData.end();
           ++it )
@@ -497,6 +506,9 @@ wxIDataObject::wxIDataObject(wxDataObject *pDataObject)
 wxIDataObject::~wxIDataObject()
 {
     // delete system data
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( SystemData::iterator it = m_systemData.begin();
           it != m_systemData.end();
           ++it )
@@ -890,6 +902,9 @@ STDMETHODIMP wxIDataObject::EnumFormatEtc(DWORD dwDir,
     m_pDataObject->GetAllFormats(formats.get(), dir);
 
     // ... from system data
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t j = 0; j < sysFormatCount; j++ )
     {
         SystemDataEntry* entry = m_systemData[j];
