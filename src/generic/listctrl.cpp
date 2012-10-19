@@ -4563,6 +4563,9 @@ wxListMainWindow::PrefixFindItem(size_t idParent,
     }
 
     // look for the item starting with the given prefix after it
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( ( itemid < (size_t)GetItemCount() ) &&
             !GetLine(itemid)->GetText(0).Lower().StartsWith(prefix) )
     {
@@ -4576,6 +4579,9 @@ wxListMainWindow::PrefixFindItem(size_t idParent,
         itemid = 0;
 
         // and try all the items (stop when we get to the one we started from)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( ( itemid < (size_t)GetItemCount() ) && itemid != idParent &&
                     !GetLine(itemid)->GetText(0).Lower().StartsWith(prefix) )
         {
