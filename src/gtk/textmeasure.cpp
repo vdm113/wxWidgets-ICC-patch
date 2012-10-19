@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/textmeasure.cpp
 // Purpose:     wxTextMeasure implementation for wxGTK
@@ -183,6 +190,9 @@ bool wxTextMeasure::DoGetPartialTextExtents(const wxString& text,
     PangoRectangle pos;
     pango_layout_iter_get_cluster_extents(iter, NULL, &pos);
     size_t i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (pango_layout_iter_next_cluster(iter))
     {
         pango_layout_iter_get_cluster_extents(iter, NULL, &pos);
@@ -191,6 +201,9 @@ bool wxTextMeasure::DoGetPartialTextExtents(const wxString& text,
     }
 
     const size_t len = text.length();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (i < len)
         widths[i++] = PANGO_PIXELS(pos.x + pos.width);
     pango_layout_iter_free(iter);

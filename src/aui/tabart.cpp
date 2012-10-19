@@ -258,6 +258,9 @@ void wxAuiGenericTabArt::DrawBorder(wxDC& dc, wxWindow* wnd, const wxRect& rect)
     int i, border_width = GetBorderWidth(wnd);
 
     wxRect theRect(rect);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < border_width; ++i)
     {
         dc.DrawRectangle(theRect.x, theRect.y, theRect.width, theRect.height);
@@ -957,6 +960,9 @@ void wxAuiSimpleTabArt::DrawBorder(wxDC& dc, wxWindow* wnd, const wxRect& rect)
     int i, border_width = GetBorderWidth(wnd);
 
     wxRect theRect(rect);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < border_width; ++i)
     {
         dc.DrawRectangle(theRect.x, theRect.y, theRect.width, theRect.height);
