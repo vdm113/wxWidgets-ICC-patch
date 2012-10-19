@@ -44,6 +44,8 @@ include this code BEFORE any inclusion of wx's or other includes (especially STL
 Also, make sure you have same preprocessor settings of "MY_MSC_NO_ITERATOR_DEBUGGING" in wxWidgets library and in your project!
 *** NB ***
 
+If you are using 32-bit ICC, or 64-bit one and you don't have enough RAM or time, I recommend change for sub-library "core" from /Qipo to /Qip.
+
 Best regards,
 Marian 'VooDooMan' Meravy
 vdm 113 (<-remove the space character) [at sign] gmail (dot character) com
