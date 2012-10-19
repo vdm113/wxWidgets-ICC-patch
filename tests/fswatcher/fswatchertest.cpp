@@ -678,13 +678,10 @@ void FileSystemWatcherTestCase::TestTrees()
                 CPPUNIT_ASSERT(dir.Mkdir());
 
                 const wxString prefix = dir.GetPathWithSep();
-<<<<<<< HEAD
                 const wxString ext[] = { ".txt", ".log", "" };
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> patched loops for ICC
                 for ( unsigned f = 0; f < files; ++f )
                 {
                     // Just create the files.
