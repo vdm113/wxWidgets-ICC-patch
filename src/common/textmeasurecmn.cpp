@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/textmeasurecmn.cpp
 // Purpose:     wxTextMeasureBase implementation
@@ -83,6 +90,9 @@ void wxTextMeasureBase::GetMultiLineTextExtent(const wxString& text,
             heightTextTotal = 0, heightLineDefault = 0, heightLine = 0;
 
     wxString curLine;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator pc = text.begin(); ; ++pc )
     {
         if ( pc == text.end() || *pc == wxS('\n') )
@@ -145,6 +155,9 @@ void wxTextMeasureBase::GetLargestStringExtent(const wxVector<wxString>& strings
     MeasuringGuard guard(*this);
 
     wxCoord w, h, widthMax = 0, heightMax = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxVector<wxString>::const_iterator i = strings.begin();
           i != strings.end();
           ++i )
