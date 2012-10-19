@@ -451,7 +451,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MY_MSC_NO_ITERATOR_DEBUGGING=1;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswu\wxpng\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\vc_mswu\wxpng\wx_wxpng.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswu\wxpng\</ObjectFileName>
@@ -497,7 +497,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MY_MSC_NO_ITERATOR_DEBUGGING=1;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswu\wxpng\wx_wxpng.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -543,7 +543,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MY_MSC_NO_ITERATOR_DEBUGGING=1;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswud\wxpng\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\vc_mswud\wxpng\wx_wxpng.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswud\wxpng\</ObjectFileName>
@@ -589,7 +589,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MY_MSC_NO_ITERATOR_DEBUGGING=1;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswud\wxpng\wx_wxpng.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -636,7 +636,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MY_MSC_NO_ITERATOR_DEBUGGING=1;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswunivud\wxpng\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\vc_mswunivud\wxpng\wx_wxpng.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivud\wxpng\</ObjectFileName>
@@ -682,7 +682,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MY_MSC_NO_ITERATOR_DEBUGGING=1;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswunivud\wxpng\wx_wxpng.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -729,7 +729,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MY_MSC_NO_ITERATOR_DEBUGGING=1;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswudll\wxpng\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\vc_mswudll\wxpng\wx_wxpng.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswudll\wxpng\</ObjectFileName>
@@ -775,7 +775,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MY_MSC_NO_ITERATOR_DEBUGGING=1;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswudll\wxpng\wx_wxpng.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -821,7 +821,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MY_MSC_NO_ITERATOR_DEBUGGING=1;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswunivudll\wxpng\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\vc_mswunivudll\wxpng\wx_wxpng.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivudll\wxpng\</ObjectFileName>
@@ -867,7 +867,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MY_MSC_NO_ITERATOR_DEBUGGING=1;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswunivudll\wxpng\wx_wxpng.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -913,7 +913,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MY_MSC_NO_ITERATOR_DEBUGGING=1;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswunivuddll\wxpng\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\vc_mswunivuddll\wxpng\wx_wxpng.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivuddll\wxpng\</ObjectFileName>
@@ -959,7 +959,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MY_MSC_NO_ITERATOR_DEBUGGING=1;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswunivuddll\wxpng\wx_wxpng.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -1006,7 +1006,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MY_MSC_NO_ITERATOR_DEBUGGING=1;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswunivu\wxpng\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\vc_mswunivu\wxpng\wx_wxpng.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswunivu\wxpng\</ObjectFileName>
@@ -1052,7 +1052,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MY_MSC_NO_ITERATOR_DEBUGGING=1;WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswunivu\wxpng\wx_wxpng.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -1098,7 +1098,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MY_MSC_NO_ITERATOR_DEBUGGING=1;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\vc_mswuddll\wxpng\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\vc_mswuddll\wxpng\wx_wxpng.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\vc_mswuddll\wxpng\</ObjectFileName>
@@ -1144,7 +1144,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\src\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MY_MSC_NO_ITERATOR_DEBUGGING=1;WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderOutputFile>.\vc_mswuddll\wxpng\wx_wxpng.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
