@@ -5,6 +5,16 @@
 #   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
 #endif
 
+#   if defined(_SECURE_SCL)
+#       undef _SECURE_SCL
+#   endif
+#   define _SECURE_SCL 0
+
+#   if defined(_HAS_ITERATOR_DEBUGGING)
+#       undef _HAS_ITERATOR_DEBUGGING
+#   endif
+#   define _HAS_ITERATOR_DEBUGGING 0
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        combo.cpp
 // Purpose:     wxComboCtrl sample
