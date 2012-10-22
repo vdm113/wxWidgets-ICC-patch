@@ -92,7 +92,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -104,7 +104,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
@@ -117,7 +117,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -129,7 +129,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -142,7 +142,7 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -154,7 +154,7 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -167,7 +167,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -179,7 +179,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -192,7 +192,7 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -204,7 +204,7 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -217,7 +217,7 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -229,7 +229,7 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -242,7 +242,7 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -254,7 +254,7 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -267,7 +267,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
     <UseIntelMKL>Parallel</UseIntelMKL>
@@ -279,7 +279,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <InterproceduralOptimization>true</InterproceduralOptimization>
     <PlatformToolset>Intel C++ Compiler XE 13.0</PlatformToolset>
     <UseIntelIPP>Parallel_Dynamic</UseIntelIPP>
@@ -365,13 +365,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">
     <OutDir>.\..\..\lib\vc_dll\</OutDir>
     <IntDir>.\vc_mswudll\stc\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <ParallelDebugEnvironment>Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|X64'">
     <OutDir>.\..\..\lib\vc_dll\</OutDir>
     <IntDir>.\vc_mswudll\stc\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <ParallelDebugEnvironment>Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Release|Win32'">
@@ -407,13 +407,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'">
     <OutDir>.\..\..\lib\vc_dll\</OutDir>
     <IntDir>.\vc_mswunivudll\stc\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <ParallelDebugEnvironment>Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|X64'">
     <OutDir>.\..\..\lib\vc_dll\</OutDir>
     <IntDir>.\vc_mswunivudll\stc\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <ParallelDebugEnvironment>Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -429,25 +429,25 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">
     <OutDir>.\..\..\lib\vc_dll\</OutDir>
     <IntDir>.\vc_mswunivuddll\stc\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <ParallelDebugEnvironment>Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'">
     <OutDir>.\..\..\lib\vc_dll\</OutDir>
     <IntDir>.\vc_mswunivuddll\stc\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <ParallelDebugEnvironment>Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">
     <OutDir>.\..\..\lib\vc_dll\</OutDir>
     <IntDir>.\vc_mswuddll\stc\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <ParallelDebugEnvironment>Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|X64'">
     <OutDir>.\..\..\lib\vc_dll\</OutDir>
     <IntDir>.\vc_mswuddll\stc\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <ParallelDebugEnvironment>Disabled</ParallelDebugEnvironment>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">
@@ -521,7 +521,6 @@
       <LargeAddressAware>true</LargeAddressAware>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <LinkStatus>true</LinkStatus>
-      <ShowProgress>LinkVerbose</ShowProgress>
       <SetChecksum>true</SetChecksum>
     </Link>
   </ItemDefinitionGroup>
@@ -593,7 +592,6 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <LinkStatus>true</LinkStatus>
-      <ShowProgress>LinkVerbose</ShowProgress>
       <SetChecksum>true</SetChecksum>
     </Link>
   </ItemDefinitionGroup>
@@ -952,7 +950,6 @@
       <LargeAddressAware>true</LargeAddressAware>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <LinkStatus>true</LinkStatus>
-      <ShowProgress>LinkVerbose</ShowProgress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|X64'">
@@ -1023,7 +1020,6 @@
       <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <LinkStatus>true</LinkStatus>
-      <ShowProgress>LinkVerbose</ShowProgress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -1192,7 +1188,6 @@
       <LargeAddressAware>true</LargeAddressAware>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <LinkStatus>true</LinkStatus>
-      <ShowProgress>LinkVerbose</ShowProgress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'">
@@ -1263,7 +1258,6 @@
       <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <LinkStatus>true</LinkStatus>
-      <ShowProgress>LinkVerbose</ShowProgress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">
@@ -1338,7 +1332,6 @@
       <LargeAddressAware>true</LargeAddressAware>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <LinkStatus>true</LinkStatus>
-      <ShowProgress>LinkVerbose</ShowProgress>
       <SetChecksum>true</SetChecksum>
     </Link>
   </ItemDefinitionGroup>
@@ -1408,7 +1401,6 @@
       </IgnoreSpecificDefaultLibraries>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ShowProgress>LinkVerbose</ShowProgress>
       <LinkStatus>true</LinkStatus>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <SetChecksum>true</SetChecksum>
