@@ -134,6 +134,9 @@ wxWebViewIE::~wxWebViewIE()
             wxFAIL_MSG("Could not retrive internet session");
         }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(unsigned int i = 0; i < m_factories.size(); i++)
         {
             session->UnregisterNameSpace(m_factories[i], 
