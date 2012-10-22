@@ -321,32 +321,32 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|X64'">..\..\lib\vc_dll\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\webview\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|X64'">vc_mswuddll\webview\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">true</LinkIncremental>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Debug|X64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Debug|X64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Debug|X64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">..\..\lib\vc_dll\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|X64'">..\..\lib\vc_dll\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\webview\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|X64'">vc_mswudll\webview\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">true</LinkIncremental>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Release|X64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Release|X64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Release|X64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">..\..\lib\vc_dll\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'">..\..\lib\vc_dll\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">vc_mswunivuddll\webview\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'">vc_mswunivuddll\webview\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">true</LinkIncremental>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'">..\..\lib\vc_dll\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|X64'">..\..\lib\vc_dll\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'">vc_mswunivudll\webview\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|X64'">vc_mswunivudll\webview\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'">true</LinkIncremental>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|X64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|X64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|X64'">true</GenerateManifest>
   </PropertyGroup>
@@ -835,7 +835,6 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <ShowProgress>LinkVerbose</ShowProgress>
       <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
@@ -903,7 +902,6 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <ShowProgress>LinkVerbose</ShowProgress>
       <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
@@ -972,7 +970,6 @@
       <MapExports>true</MapExports>
       <LargeAddressAware>true</LargeAddressAware>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <ShowProgress>LinkVerbose</ShowProgress>
       <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
@@ -1040,7 +1037,6 @@
       <MapExports>true</MapExports>
       <LargeAddressAware>true</LargeAddressAware>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <ShowProgress>LinkVerbose</ShowProgress>
       <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
@@ -1109,7 +1105,6 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <ShowProgress>LinkVerbose</ShowProgress>
       <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
@@ -1177,7 +1172,6 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <ShowProgress>LinkVerbose</ShowProgress>
       <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
@@ -1246,7 +1240,6 @@
       <MapExports>true</MapExports>
       <LargeAddressAware>true</LargeAddressAware>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <ShowProgress>LinkVerbose</ShowProgress>
       <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
@@ -1314,7 +1307,6 @@
       <MapExports>true</MapExports>
       <LargeAddressAware>true</LargeAddressAware>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <ShowProgress>LinkVerbose</ShowProgress>
       <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
