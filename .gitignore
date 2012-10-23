@@ -2614,8 +2614,8 @@ wx_vc8arm_*.vcproj
 *.cod
 *.pdb
 rcdefs.h
-/lib/vc_dll/mswu/wx/msw
-/lib/vc_dll/mswud/wx/msw
-/lib/vc_x64_dll/mswu/wx/msw
-/lib/vc_x64_dll/mswud/wx/msw
+/lib/vc_dll/mswu/wx/
+/lib/vc_dll/mswud/wx/
+/lib/vc_x64_dll/mswu/wx/
+/lib/vc_x64_dll/mswud/wx/
 ## VDM
