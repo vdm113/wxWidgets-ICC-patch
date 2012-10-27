@@ -1637,6 +1637,7 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'"> /EHsc /opt:ref /opt:icf   /EHsc /opt:ref /opt:icf </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|X64'"> /EHsc /opt:ref /opt:icf   /EHsc /opt:ref /opt:icf </AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="..\..\src\xrc\xh_richtext.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\src\msw\version.rc">
@@ -1667,6 +1668,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\wx\xrc\xh_richtext.h" />
     <CustomBuild Include="..\..\include\wx\msw\setup.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">IF NOT EXIST ..\..\lib\vc_dll\mswud\wx\setup.h copy "%(FullPath)" ..\..\lib\vc_dll\mswud\wx\setup.h</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|X64'">IF NOT EXIST ..\..\lib\vc_dll\mswud\wx\setup.h copy "%(FullPath)" ..\..\lib\vc_dll\mswud\wx\setup.h</Command>
