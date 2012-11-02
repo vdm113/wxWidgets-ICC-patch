@@ -239,6 +239,9 @@ public:
     {
         clear();
         reserve(p_size);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < p_size; n++ )
             push_back(v);
     }
