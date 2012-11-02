@@ -523,6 +523,9 @@ void wxSVGFileDCImpl::DestroyClippingRegion()
     svg << "</g>\n";
 
     // Close clipping group elements
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < m_clipUniqueId; i++ )
     {
         svg << "</g>";
