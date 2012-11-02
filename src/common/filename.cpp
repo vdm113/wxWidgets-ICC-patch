@@ -1475,6 +1475,9 @@ bool wxFileName::Rmdir(const wxString& dir, int flags)
         // unpleasant surprises.
         bool cont = d.GetFirst(&filename, wxString(),
                                wxDIR_DIRS | wxDIR_HIDDEN | wxDIR_NO_FOLLOW);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( cont )
         {
             wxFileName::Rmdir(path + filename, flags);
@@ -1489,6 +1492,9 @@ bool wxFileName::Rmdir(const wxString& dir, int flags)
             // directory and just delete the symlinks themselves.
             cont = d.GetFirst(&filename, wxString(),
                               wxDIR_FILES | wxDIR_HIDDEN | wxDIR_NO_FOLLOW);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( cont )
             {
                 ::wxRemoveFile(path + filename);
