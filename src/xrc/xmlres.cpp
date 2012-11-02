@@ -2039,6 +2039,9 @@ wxImageList *wxXmlResourceHandlerImpl::GetImageList(const wxString& param)
     if ( HasParam(parambitmap) )
     {
         wxXmlNode *n = m_handler->m_node->GetChildren();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (n)
         {
             if (n->GetType() == wxXML_ELEMENT_NODE && n->GetName() == parambitmap)
@@ -2533,6 +2536,9 @@ void wxXmlResourceHandlerImpl::SetupWindow(wxWindow *wnd)
 
 void wxXmlResourceHandlerImpl::CreateChildren(wxObject *parent, bool this_hnd_only)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxXmlNode *n = m_handler->m_node->GetChildren(); n; n = n->GetNext() )
     {
         if ( IsObjectNode(n) )
