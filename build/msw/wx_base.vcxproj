@@ -3594,6 +3594,7 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">..\..\lib\vc_dll\mswunivud\wx\setup.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'">..\..\lib\vc_dll\mswunivud\wx\setup.h;%(Outputs)</Outputs>
     </CustomBuild>
+    <ClInclude Include="..\..\include\wx\meta\removeref.h" />
     <ClInclude Include="..\..\include\wx\msw\apptbase.h" />
     <ClInclude Include="..\..\include\wx\msw\apptrait.h" />
     <ClInclude Include="..\..\include\wx\msw\chkconf.h" />
