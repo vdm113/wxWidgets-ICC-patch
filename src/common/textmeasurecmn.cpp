@@ -181,6 +181,9 @@ wxSize wxTextMeasureBase::GetLargestStringExtent(size_t n,
     MeasuringGuard guard(*this);
 
     wxCoord w, h, widthMax = 0, heightMax = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < n; ++i )
     {
         CallGetTextExtent(strings[i], &w, &h);
