@@ -1637,6 +1637,7 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'"> /EHsc   /EHsc </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|X64'"> /EHsc   /EHsc </AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="..\..\src\xrc\xh_ribbon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\src\msw\version.rc">
@@ -1667,6 +1668,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\wx\xrc\xh_ribbon.h" />
     <CustomBuild Include="..\..\include\wx\msw\setup.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF NOT EXIST ..\..\lib\vc_lib\mswu\wx\setup.h copy "%(FullPath)" ..\..\lib\vc_lib\mswu\wx\setup.h</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|X64'">IF NOT EXIST ..\..\lib\vc_lib\mswu\wx\setup.h copy "%(FullPath)" ..\..\lib\vc_lib\mswu\wx\setup.h</Command>
