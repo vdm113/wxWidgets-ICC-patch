@@ -824,9 +824,6 @@ void FileNameTestCase::TestSymlinks()
     // Run the tests twice: once in the default symlink following mode and the
     // second time without following symlinks.
     bool deref = true;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for ( int n = 0; n < 2; ++n, deref = !deref )
     {
         const std::string msg(deref ? " failed for the link target"

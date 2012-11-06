@@ -751,9 +751,6 @@ void FileSystemWatcherTestCase::TestTrees()
 
                 const wxString prefix = dir.GetPathWithSep();
                 const wxString ext[] = { ".txt", ".log", "" };
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                 for ( unsigned f = 0; f < files; ++f )
                 {
                     // Just create the files.
