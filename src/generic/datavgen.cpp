@@ -3223,6 +3223,9 @@ void wxDataViewMainWindow::Expand( unsigned int row )
         // By expanding the node all row indices that are currently in the selection list
         // and are greater than our node have become invalid. So we have to correct that now.
         const unsigned rowAdjustment = node->GetSubTreeCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(unsigned i=0; i<m_selection.size(); ++i)
         {
             const unsigned testRow = m_selection[i];
