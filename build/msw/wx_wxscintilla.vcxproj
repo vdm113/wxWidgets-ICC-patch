@@ -371,6 +371,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>673</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_SECURE_SCL=0;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -423,6 +424,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>673</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_SECURE_SCL=0;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -475,6 +477,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>673</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_SECURE_SCL=0;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -527,6 +530,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>673</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_SECURE_SCL=0;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -579,6 +583,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>673</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_SECURE_SCL=0;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;__WXUNIVERSAL__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -631,6 +636,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>673</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_SECURE_SCL=0;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;__WXUNIVERSAL__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -683,6 +689,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>673</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_SECURE_SCL=0;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;__WXUNIVERSAL__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -735,6 +742,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>673</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_SECURE_SCL=0;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;__WXUNIVERSAL__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -787,6 +795,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>673</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_SECURE_SCL=0;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -839,6 +848,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>673</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_SECURE_SCL=0;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -891,6 +901,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>673</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_SECURE_SCL=0;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -943,6 +954,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>673</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_SECURE_SCL=0;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -995,6 +1007,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>673</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_SECURE_SCL=0;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;__WXUNIVERSAL__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1047,6 +1060,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>673</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_SECURE_SCL=0;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;__WXUNIVERSAL__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1099,6 +1113,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>673</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_SECURE_SCL=0;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;__WXUNIVERSAL__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1151,6 +1166,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
+      <DisableSpecificWarnings>673</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_SECURE_SCL=0;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;__WXUNIVERSAL__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
