@@ -78,6 +78,7 @@
     <ProjectName>xrc</ProjectName>
     <SccProjectName />
     <SccLocalPath />
+    <ProjectGuid>{E2C13BCE-893A-7DD8-BFA9-68086407CE57}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'" Label="Configuration">
@@ -486,6 +487,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -533,6 +535,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -583,6 +586,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -656,6 +660,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -731,6 +736,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -778,6 +784,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -827,6 +834,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -899,6 +907,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -973,6 +982,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1045,6 +1055,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1119,6 +1130,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1166,6 +1178,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1215,6 +1228,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1288,6 +1302,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1362,6 +1377,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1409,6 +1425,7 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
