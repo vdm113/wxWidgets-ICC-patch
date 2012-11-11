@@ -475,6 +475,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -519,6 +520,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -566,6 +568,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -610,6 +613,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -656,6 +660,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -700,6 +705,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -746,6 +752,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -790,6 +797,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -837,6 +845,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -881,6 +890,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -928,6 +938,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -972,6 +983,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1018,6 +1030,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1062,6 +1075,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1109,6 +1123,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1153,6 +1168,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
