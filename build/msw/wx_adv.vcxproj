@@ -467,7 +467,6 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -517,7 +516,6 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -570,7 +568,6 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -645,7 +642,6 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -721,7 +717,6 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -797,7 +792,6 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -874,7 +868,6 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -924,7 +917,6 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -976,7 +968,6 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1051,7 +1042,6 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1128,7 +1118,6 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1178,7 +1167,6 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1231,7 +1219,6 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1281,7 +1268,6 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1334,7 +1320,6 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1410,7 +1395,6 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
