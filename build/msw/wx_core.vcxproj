@@ -483,7 +483,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
@@ -533,7 +533,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
       <AssemblerOutput>NoListing</AssemblerOutput>
@@ -584,7 +584,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
@@ -658,7 +658,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
       <AssemblerOutput>NoListing</AssemblerOutput>
@@ -731,7 +731,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
@@ -781,7 +781,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
       <AssemblerOutput>NoListing</AssemblerOutput>
@@ -832,7 +832,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
@@ -882,7 +882,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
       <AssemblerOutput>NoListing</AssemblerOutput>
@@ -933,7 +933,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
@@ -1006,7 +1006,7 @@
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
@@ -1082,7 +1082,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
@@ -1155,7 +1155,7 @@
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
@@ -1231,7 +1231,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
@@ -1281,7 +1281,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
       <AssemblerOutput>NoListing</AssemblerOutput>
@@ -1331,7 +1331,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Optimization>MaxSpeedHighLevel</Optimization>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <BrowseInformation>false</BrowseInformation>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
@@ -1405,7 +1405,7 @@
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <Parallelization>false</Parallelization>
       <AssemblerOutput>NoListing</AssemblerOutput>
@@ -1451,7 +1451,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
     <ClCompile>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -1464,7 +1464,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|X64'">
     <ClCompile>
-      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
