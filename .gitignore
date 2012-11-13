@@ -2618,4 +2618,6 @@ rcdefs.h
 /lib/vc_dll/mswud/wx/
 /lib/vc_x64_dll/mswu/wx/
 /lib/vc_x64_dll/mswud/wx/
+/build/msw/Template
+/build/msw/X64
 ## VDM
