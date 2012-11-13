@@ -391,6 +391,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
+      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -447,6 +448,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
+      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -503,6 +505,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
+      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -559,6 +562,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
+      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -615,6 +619,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
+      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;__WXUNIVERSAL__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -671,6 +676,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
+      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;__WXUNIVERSAL__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -727,6 +733,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
+      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;__WXUNIVERSAL__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -783,6 +790,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
+      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;__WXUNIVERSAL__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -839,6 +847,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
+      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw295ud_webview_vc_custom;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -910,6 +919,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
+      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw295ud_webview_vc_custom;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -980,6 +990,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
+      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw295u_webview_vc_custom;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1051,6 +1062,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
+      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw295u_webview_vc_custom;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1121,6 +1133,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
+      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;__WXUNIVERSAL__;_UNICODE;WXBUILDING;WXDLLNAME=wxmswuniv295ud_webview_vc_custom;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1192,6 +1205,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
+      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;__WXUNIVERSAL__;_UNICODE;WXBUILDING;WXDLLNAME=wxmswuniv295ud_webview_vc_custom;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1262,6 +1276,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
+      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;__WXUNIVERSAL__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmswuniv295u_webview_vc_custom;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1333,6 +1348,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
       <DisableSpecificWarnings>673</DisableSpecificWarnings>
+      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;__WXUNIVERSAL__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmswuniv295u_webview_vc_custom;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
