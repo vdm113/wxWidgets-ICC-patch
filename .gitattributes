@@ -10,6 +10,7 @@
 *.bat           text eol=crlf
 
 *.sh            text eol=lf
+*.awk           text eol=lf
 *.c             text eol=lf
 *.cxx           text eol=lf
 *.cpp           text eol=lf
