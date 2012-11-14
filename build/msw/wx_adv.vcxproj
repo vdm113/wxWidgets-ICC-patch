@@ -466,7 +466,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>673;10369</DisableSpecificWarnings>
+      <DisableSpecificWarnings>673;10369;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -515,7 +515,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>673;10369</DisableSpecificWarnings>
+      <DisableSpecificWarnings>673;10369;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -567,7 +567,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>673;10369</DisableSpecificWarnings>
+      <DisableSpecificWarnings>673;10369;650</DisableSpecificWarnings>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -641,7 +641,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>673;10369</DisableSpecificWarnings>
+      <DisableSpecificWarnings>673;10369;650</DisableSpecificWarnings>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -716,7 +716,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>673;10369</DisableSpecificWarnings>
+      <DisableSpecificWarnings>673;10369;650</DisableSpecificWarnings>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -791,7 +791,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>673;10369</DisableSpecificWarnings>
+      <DisableSpecificWarnings>673;10369;650</DisableSpecificWarnings>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -867,7 +867,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>673;10369</DisableSpecificWarnings>
+      <DisableSpecificWarnings>673;10369;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -916,7 +916,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>673;10369</DisableSpecificWarnings>
+      <DisableSpecificWarnings>673;10369;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -967,7 +967,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>673;10369</DisableSpecificWarnings>
+      <DisableSpecificWarnings>673;10369;650</DisableSpecificWarnings>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1041,7 +1041,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>673;10369</DisableSpecificWarnings>
+      <DisableSpecificWarnings>673;10369;650</DisableSpecificWarnings>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1117,7 +1117,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>673;10369</DisableSpecificWarnings>
+      <DisableSpecificWarnings>673;10369;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1166,7 +1166,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>673;10369</DisableSpecificWarnings>
+      <DisableSpecificWarnings>673;10369;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1218,7 +1218,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>673;10369</DisableSpecificWarnings>
+      <DisableSpecificWarnings>673;10369;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1267,7 +1267,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>673;10369</DisableSpecificWarnings>
+      <DisableSpecificWarnings>673;10369;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -1319,7 +1319,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>673;10369</DisableSpecificWarnings>
+      <DisableSpecificWarnings>673;10369;650</DisableSpecificWarnings>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -1394,7 +1394,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <Cpp0xSupport>true</Cpp0xSupport>
-      <DisableSpecificWarnings>673;10369</DisableSpecificWarnings>
+      <DisableSpecificWarnings>673;10369;650</DisableSpecificWarnings>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
