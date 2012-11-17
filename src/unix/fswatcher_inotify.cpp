@@ -601,6 +601,9 @@ protected:
         };
 
         int native_flags = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned int i=0; i < WXSIZEOF(flag_mapping); ++i)
         {
             if (flags & flag_mapping[i][0])
