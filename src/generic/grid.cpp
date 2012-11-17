@@ -2962,7 +2962,6 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
             if ( !m_colAt.IsEmpty() )
             {
                 //Shift the column IDs
-                int i;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -3041,7 +3040,6 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
                 m_colAt.Add( 0, numCols );
 
                 //Set the new columns' positions
-                int i;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
