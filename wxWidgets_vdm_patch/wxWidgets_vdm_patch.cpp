@@ -347,6 +347,8 @@ unsigned directory_recurse(const string& base, const string& directory, const st
                     n.erase(n.length()-1,1);
                 n+=name;
                 cnt+=reformat(n);
+
+                break;
             }
         }
 
