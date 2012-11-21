@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
-#endif
-
 /* crc32.c -- compute the CRC-32 of a data stream
  * Copyright (C) 1995-2005 Mark Adler
  * For conditions of distribution and use, see copyright notice in zlib.h
