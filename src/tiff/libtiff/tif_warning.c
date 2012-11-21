@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* $Header: /cvs/maptools/cvsroot/libtiff/libtiff/tif_warning.c,v 1.3 2010-03-10 18:56:49 bfriesen Exp $ */
 =======
 /* token_VDM_prologue */
@@ -8,6 +9,8 @@
 #   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
 #endif
 
+=======
+>>>>>>> removed our prologue from unit files
 /* $Header: /cvs/maptools/cvsroot/libtiff/libtiff/tif_warning.c,v 1.2 2005/12/23 01:18:59 joris Exp $ */
 >>>>>>> fixed broken merge
 
