@@ -27,7 +27,7 @@
 #include <io.h>
 #include <wchar.h>
 #include <string>
-#include <list>
+#include <set>
 #include <sstream>
 #include <vector>
 #include <cassert>
@@ -54,7 +54,7 @@ bool check_return_value(int rc)
     return true;
 }
 
-unsigned reformat(const string& file)
+unsigned reformat(const string& file, bool do_prologue)
 {
     static const char* line1="#if defined(__INTEL_COMPILER)";
     static const char* line1_disabled="#if defined(__INTEL_COMPILER) && 0";
@@ -149,7 +149,7 @@ again:
         }
 #endif
 
-        if(1==ln && strcmp(buf,line_prologue_token)!=0) {
+        if(do_prologue && 1==ln && strcmp(buf,line_prologue_token)!=0) {
             fprintf(out,"%s\n%s\n\n",line_prologue_token,line_prologue);
             changed=true;
         }
@@ -309,7 +309,8 @@ again:
     return cnt;
 }
 
-static list<string> ext;
+static set<string> ext;
+static set<string> ext_prologue;
 
 unsigned directory_recurse(const string& base, const string& directory, const string& path)
 {
@@ -339,14 +340,14 @@ unsigned directory_recurse(const string& base, const string& directory, const st
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for(list<string>::iterator i1=ext.begin(); i1!=ext.end(); ++i1) {
+        for(set<string>::iterator i1=ext.begin(); i1!=ext.end(); ++i1) {
             string::size_type pos=name.rfind(*i1);
             if(pos!=string::npos && pos==name.length()-(*i1).length()) {
                 string n=directory;
                 if(n.rfind("*")==n.length()-1)
                     n.erase(n.length()-1,1);
                 n+=name;
-                cnt+=reformat(n);
+                cnt+=reformat(n,(ext_prologue.find(*i1)!=ext_prologue.end()));
 
                 break;
             }
@@ -378,14 +379,17 @@ next_entry:
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    ext.push_back(".h");
-    ext.push_back(".hh");
-    ext.push_back(".hpp");
-    ext.push_back(".hxx");
-    ext.push_back(".c");
-    ext.push_back(".cc");
-    ext.push_back(".cpp");
-    ext.push_back(".cxx");
+    ext.insert(".h");
+    ext.insert(".hh");
+    ext.insert(".hpp");
+    ext.insert(".hxx");
+
+    ext_prologue=ext;
+
+    ext.insert(".c");
+    ext.insert(".cc");
+    ext.insert(".cpp");
+    ext.insert(".cxx");
 
     TCHAR dir[MAX_PATH];
     if(!::GetCurrentDirectory(sizeof(dir) - 1, dir)) {
