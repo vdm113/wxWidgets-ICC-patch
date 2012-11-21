@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
-#endif
-
 /*
  * ComboBox.c - Das schon lange schmerzlich vermisste Combo-Box-
  *              Widget -- nun endlich auf fuer Motif!
