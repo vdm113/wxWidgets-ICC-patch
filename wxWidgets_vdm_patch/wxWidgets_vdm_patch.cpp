@@ -119,7 +119,7 @@ again:
 
 #if 0   // set to 1 for replace old token+prologue (for future re-write of prologue)
         if(1==ln && strcmp(buf,line_prologue_token)==0) {
-            // for future compatibility: erase old token, to let it replaced by new one
+            // for future compatibility: erase old token, to let it be replaced by new one
 
             changed=true;
 
