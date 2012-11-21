@@ -149,6 +149,17 @@ again:
             changed=true;
         }
 
+        {
+            size_t len=strlen(buf);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+            while(len>0 && ('\r'==buf[len-1] || '\n'==buf[len-1])) {
+                buf[len-1]=0;
+                --len;
+            }
+        }
+
         scrollback.push_back(buf);
 
         string line;
@@ -168,7 +179,7 @@ again:
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        while(line.length()>0 && (line.length()-1 !=0) && ( line[line.length()-1]=='\r' || line[line.length()-1]=='\n' || line[line.length()-1]=='\0' || line[line.length()-1]==' ' ) ) {
+        while(line.length()>0 && line.length()-1!=0 && line[line.length()-1]==' ') {
             line.erase(line.length()-1,1);
         }
 
