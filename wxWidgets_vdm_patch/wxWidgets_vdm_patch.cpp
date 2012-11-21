@@ -124,7 +124,7 @@ again:
             changed=true;
 
             // seek for an empty line as ending of the prologue
-            char buf2[length+16]="x";
+            char buf2[length+16];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -132,7 +132,12 @@ again:
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
+                buf2[0]='x';
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while('\r'!=buf2[0] && '\n'!=buf2[0]) {
+                    buf2[0]='x';
                     fgets(buf2,length,in);
                 }
                 fgets(buf2,length,in); // skip an empty line
