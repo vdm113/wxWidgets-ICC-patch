@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 dos2unix patch_in.patch
 
