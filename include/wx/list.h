@@ -1237,6 +1237,9 @@ public:
         wxVector<T> vector(size());
         size_t i = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( const_iterator it = begin(); it != end(); ++it )
         {
             vector[i++] = static_cast<T>(*it);
