@@ -745,6 +745,9 @@ bool wxHtmlHelpData::AddBook(const wxString& book)
     {
         char *buf = new char[title.Length()+1];
         size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < title.Length(); i++)
             buf[i] = (char) title[i];
         buf[i] = 0;
