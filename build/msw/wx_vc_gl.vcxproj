@@ -771,6 +771,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <SetChecksum>true</SetChecksum>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Bscmake>
       <OutputFile>..\..\lib\vc_dll\wx_vc9_gl.bsc</OutputFile>
@@ -829,6 +830,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <SetChecksum>true</SetChecksum>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Bscmake>
       <OutputFile>..\..\lib\vc_dll\wx_vc9_gl.bsc</OutputFile>
@@ -1005,6 +1007,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <SetChecksum>true</SetChecksum>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Bscmake>
       <OutputFile>..\..\lib\vc_dll\wx_vc9_gl.bsc</OutputFile>
@@ -1063,6 +1066,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <SetChecksum>true</SetChecksum>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Bscmake>
       <OutputFile>..\..\lib\vc_dll\wx_vc9_gl.bsc</OutputFile>
