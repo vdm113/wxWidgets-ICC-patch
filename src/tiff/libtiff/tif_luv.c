@@ -209,14 +209,10 @@ LogL16Decode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 
 	bp = (unsigned char*) tif->tif_rawcp;
 	cc = tif->tif_rawcc;
-<<<<<<< HEAD
 	/* get each byte string */
-=======
-					/* get each byte string */
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 	for (shft = 2*8; (shft -= 8) >= 0; ) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -351,14 +347,10 @@ LogLuvDecode32(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 
 	bp = (unsigned char*) tif->tif_rawcp;
 	cc = tif->tif_rawcc;
-<<<<<<< HEAD
 	/* get each byte string */
-=======
-					/* get each byte string */
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 	for (shft = 4*8; (shft -= 8) >= 0; ) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -367,14 +359,10 @@ LogLuvDecode32(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 			if (*bp >= 128) {		/* run */
 				rc = *bp++ + (2-128);
 				b = (uint32)*bp++ << shft;
-<<<<<<< HEAD
 				cc -= 2;                /* TODO: potential input buffer overrun when decoding corrupt or truncated data */
-=======
-				cc -= 2;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 				while (rc-- && i < npixels)
 					tp[i++] |= b;
 			} else {			/* non-run */
@@ -538,14 +526,10 @@ LogL16Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 					op = tif->tif_rawcp;
 					occ = tif->tif_rawdatasize - tif->tif_rawcc;
 				}
-<<<<<<< HEAD
 				*op++ = (uint8) j; occ--;
-=======
-				*op++ = (tidataval_t) j; occ--;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 				while (j--) {
 					*op++ = (uint8) (tp[i++] >> shft & 0xff);
 					occ--;
@@ -707,14 +691,10 @@ LogLuvEncode32(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 					op = tif->tif_rawcp;
 					occ = tif->tif_rawdatasize - tif->tif_rawcc;
 				}
-<<<<<<< HEAD
 				*op++ = (uint8) j; occ--;
-=======
-				*op++ = (tidataval_t) j; occ--;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 				while (j--) {
 					*op++ = (uint8)(tp[i++] >> shft & 0xff);
 					occ--;
@@ -743,14 +723,10 @@ LogLuvEncodeStrip(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 	tmsize_t rowlen = TIFFScanlineSize(tif);
 
 	assert(cc%rowlen == 0);
-<<<<<<< HEAD
-	while (cc && (*tif->tif_encoderow)(tif, bp, rowlen, s) == 1)
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while (cc && (*tif->tif_encoderow)(tif, bp, rowlen, s) == 0)
->>>>>>> sync with upstream
+	while (cc && (*tif->tif_encoderow)(tif, bp, rowlen, s) == 1)
 		bp += rowlen, cc -= rowlen;
 	return (cc == 0);
 }
@@ -765,14 +741,10 @@ LogLuvEncodeTile(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 	tmsize_t rowlen = TIFFTileRowSize(tif);
 
 	assert(cc%rowlen == 0);
-<<<<<<< HEAD
-	while (cc && (*tif->tif_encoderow)(tif, bp, rowlen, s) == 1)
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while (cc && (*tif->tif_encoderow)(tif, bp, rowlen, s) == 0)
->>>>>>> sync with upstream
+	while (cc && (*tif->tif_encoderow)(tif, bp, rowlen, s) == 1)
 		bp += rowlen, cc -= rowlen;
 	return (cc == 0);
 }
