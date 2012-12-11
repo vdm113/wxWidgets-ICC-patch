@@ -134,6 +134,9 @@ TIFFSwabArrayOfLong8(register uint64* lp, tmsize_t n)
 	register unsigned char t;
 	assert(sizeof(uint64)==8);
 	/* XXX unroll loop some */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0) {
 		cp = (unsigned char *)lp;
 		t = cp[7]; cp[7] = cp[0]; cp[0] = t;
@@ -165,6 +168,9 @@ TIFFSwabArrayOfFloat(register float* fp, tmsize_t n)
 	register unsigned char t;
 	assert(sizeof(float)==4);
 	/* XXX unroll loop some */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0) {
 		cp = (unsigned char *)fp;
 		t = cp[3]; cp[3] = cp[0]; cp[0] = t;
@@ -192,11 +198,13 @@ TIFFSwabDouble(double *dp)
 void
 TIFFSwabArrayOfDouble(double* dp, tmsize_t n)
 {
-<<<<<<< HEAD
 	register unsigned char *cp;
 	register unsigned char t;
 	assert(sizeof(double)==8);
 	/* XXX unroll loop some */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (n-- > 0) {
 		cp = (unsigned char *)dp;
 		t = cp[7]; cp[7] = cp[0]; cp[0] = t;
@@ -205,19 +213,6 @@ TIFFSwabArrayOfDouble(double* dp, tmsize_t n)
 		t = cp[4]; cp[4] = cp[3]; cp[3] = t;
 		dp++;
 	}
-=======
-	register uint32* lp = (uint32*) dp;
-        register uint32 t;
-
-	TIFFSwabArrayOfLong(lp, n + n);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        while (n-- > 0) {
-		t = lp[0]; lp[0] = lp[1]; lp[1] = t;
-                lp += 2;
-        }
->>>>>>> sync with upstream
 }
 #endif
 

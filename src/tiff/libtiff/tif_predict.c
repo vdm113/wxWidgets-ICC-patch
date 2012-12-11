@@ -254,17 +254,12 @@ horAcc8(TIFF* tif, uint8* cp0, tmsize_t cc)
 			unsigned int cr = cp[0];
 			unsigned int cg = cp[1];
 			unsigned int cb = cp[2];
-<<<<<<< HEAD
 			cc -= 3;
 			cp += 3;
-			while (cc>0) {
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-			do {
-				cc -= 3, cp += 3;
->>>>>>> sync with upstream
+			while (cc>0) {
 				cp[0] = (char) (cr += cp[0]);
 				cp[1] = (char) (cg += cp[1]);
 				cp[2] = (char) (cb += cp[2]);
@@ -276,17 +271,12 @@ horAcc8(TIFF* tif, uint8* cp0, tmsize_t cc)
 			unsigned int cg = cp[1];
 			unsigned int cb = cp[2];
 			unsigned int ca = cp[3];
-<<<<<<< HEAD
 			cc -= 4;
 			cp += 4;
-			while (cc>0) {
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-			do {
-				cc -= 4, cp += 4;
->>>>>>> sync with upstream
+			while (cc>0) {
 				cp[0] = (char) (cr += cp[0]);
 				cp[1] = (char) (cg += cp[1]);
 				cp[2] = (char) (cb += cp[2]);
@@ -295,13 +285,10 @@ horAcc8(TIFF* tif, uint8* cp0, tmsize_t cc)
 				cp += 4;
 			}
 		} else  {
-<<<<<<< HEAD
 			cc -= stride;
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 			do {
 				REPEAT4(stride, cp[stride] =
 					(char) (cp[stride] + *cp); cp++)
@@ -344,6 +331,9 @@ horAcc16(TIFF* tif, uint8* cp0, tmsize_t cc)
 
 	if (wc > stride) {
 		wc -= stride;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
 			REPEAT4(stride, wp[stride] += wp[0]; wp++)
 			wc -= stride;
@@ -363,6 +353,9 @@ swabHorAcc32(TIFF* tif, uint8* cp0, tmsize_t cc)
 	if (wc > stride) {
 		TIFFSwabArrayOfLong(wp, wc);
 		wc -= stride;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
 			REPEAT4(stride, wp[stride] += wp[0]; wp++)
 			wc -= stride;
@@ -476,19 +469,13 @@ PredictorDecodeTile(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 	if ((*sp->decodetile)(tif, op0, occ0, s)) {
 		tmsize_t rowsize = sp->rowsize;
 		assert(rowsize > 0);
-<<<<<<< HEAD
 		assert((occ0%rowsize)==0);
 		assert(sp->decodepfunc != NULL);
-		while (occ0 > 0) {
-			(*sp->decodepfunc)(tif, op0, rowsize);
-=======
-		assert(sp->pfunc != NULL);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		while ((long)occ0 > 0) {
-			(*sp->pfunc)(tif, op0, (tsize_t) rowsize);
->>>>>>> sync with upstream
+		while (occ0 > 0) {
+			(*sp->decodepfunc)(tif, op0, rowsize);
 			occ0 -= rowsize;
 			op0 += rowsize;
 		}
@@ -589,6 +576,9 @@ horDiff32(TIFF* tif, uint8* cp0, tmsize_t cc)
 	if (wc > stride) {
 		wc -= stride;
 		wp += wc - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
 			REPEAT4(stride, wp[stride] -= wp[0]; wp--)
 			wc -= stride;
@@ -688,17 +678,12 @@ PredictorEncodeTile(TIFF* tif, uint8* bp0, tmsize_t cc0, uint16 s)
 
 	rowsize = sp->rowsize;
 	assert(rowsize > 0);
-<<<<<<< HEAD
 	assert((cc0%rowsize)==0);
-	while (cc > 0) {
-		(*sp->encodepfunc)(tif, bp, rowsize);
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while ((long)cc > 0) {
-		(*sp->pfunc)(tif, bp, (tsize_t) rowsize);
->>>>>>> sync with upstream
+	while (cc > 0) {
+		(*sp->encodepfunc)(tif, bp, rowsize);
 		cc -= rowsize;
 		bp += rowsize;
 	}

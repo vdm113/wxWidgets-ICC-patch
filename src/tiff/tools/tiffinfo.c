@@ -309,14 +309,10 @@ ShowTile(uint32 row, uint32 col, tsample_t sample,
 #   pragma ivdep
 #endif
 	while (nrow-- > 0) {
-<<<<<<< HEAD
-	  for (cc = 0; cc < (uint32) rowsize; cc++) {
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (cc = 0; cc < rowsize; cc++) {
->>>>>>> sync with upstream
+	  for (cc = 0; cc < (uint32) rowsize; cc++) {
 			printf(" %02x", *pp++);
 			if (((cc+1) % 24) == 0)
 				putchar('\n');

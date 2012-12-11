@@ -63,12 +63,14 @@ static void usage(int code);
 int
 main(int argc, char* argv[])
 {
-<<<<<<< HEAD
 	TIFF *in, *out;
 	int c;
 	extern int optind;
 	extern char *optarg;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((c = getopt(argc, argv, "c:r:t:bn8")) != -1)
 		switch (c) {
 			case 'b':
@@ -118,9 +120,15 @@ main(int argc, char* argv[])
 	if (out == NULL)
 		return (-2);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; optind < argc-1; optind++) {
 		in = TIFFOpen(argv[optind], "r");
 		if (in != NULL) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			do {
 				if (!tiffcvt(in, out) ||
 				    !TIFFWriteDirectory(out)) {
@@ -134,82 +142,6 @@ main(int argc, char* argv[])
 	}
 	(void) TIFFClose(out);
 	return (0);
-=======
-    TIFF *in, *out;
-    int c;
-    extern int optind;
-    extern char *optarg;
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    while ((c = getopt(argc, argv, "c:r:t:bn")) != -1)
-        switch (c) {
-          case 'b':
-            process_by_block = 1;
-            break;
-            
-          case 'c':
-            if (streq(optarg, "none"))
-                compression = COMPRESSION_NONE;
-            else if (streq(optarg, "packbits"))
-                compression = COMPRESSION_PACKBITS;
-            else if (streq(optarg, "lzw"))
-                compression = COMPRESSION_LZW;
-            else if (streq(optarg, "jpeg"))
-                compression = COMPRESSION_JPEG;
-            else if (streq(optarg, "zip"))
-                compression = COMPRESSION_DEFLATE;
-            else
-                usage(-1);
-            break;
-
-          case 'r':
-            rowsperstrip = atoi(optarg);
-            break;
-
-          case 't':
-            rowsperstrip = atoi(optarg);
-            break;
-            
-          case 'n':
-            no_alpha = 1;
-            break;
-            
-          case '?':
-            usage(0);
-            /*NOTREACHED*/
-        }
-
-    if (argc - optind < 2)
-        usage(-1);
-
-    out = TIFFOpen(argv[argc-1], "w");
-    if (out == NULL)
-        return (-2);
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (; optind < argc-1; optind++) {
-        in = TIFFOpen(argv[optind], "r");
-        if (in != NULL) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            do {
-                if (!tiffcvt(in, out) ||
-                    !TIFFWriteDirectory(out)) {
-                    (void) TIFFClose(out);
-                    return (1);
-                }
-            } while (TIFFReadDirectory(in));
-            (void) TIFFClose(in);
-        }
-    }
-    (void) TIFFClose(out);
-    return (0);
->>>>>>> sync with upstream
 }
 
 static int
@@ -495,17 +427,11 @@ cvt_whole_image( TIFF *in, TIFF *out )
         size_t count = pixel_count;
         unsigned char *src, *dst;
 
-<<<<<<< HEAD
 	src = dst = (unsigned char *) raster;
-        while (count > 0)
-=======
-        src = (unsigned char *) raster;
-        dst = (unsigned char *) raster;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        while( pixel_count > 0 )
->>>>>>> sync with upstream
+        while (count > 0)
         {
 	    *(dst++) = *(src++);
 	    *(dst++) = *(src++);
@@ -515,19 +441,13 @@ cvt_whole_image( TIFF *in, TIFF *out )
         }
     }
 
-<<<<<<< HEAD
     /*
      * Write out the result in strips
      */
-    for (row = 0; row < height; row += rowsperstrip)
-=======
-    /* Write out the result in strips */
-
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for( row = 0; row < height; row += rowsperstrip )
->>>>>>> sync with upstream
+    for (row = 0; row < height; row += rowsperstrip)
     {
         unsigned char * raster_strip;
         int	rows_to_write;

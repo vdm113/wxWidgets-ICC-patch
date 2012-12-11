@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-#define TIFFLIB_VERSION_STR "LIBTIFF, Version 4.0.3\nCopyright (c) 1988-1996 Sam Leffler\nCopyright (c) 1991-1996 Silicon Graphics, Inc."
-=======
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
@@ -8,8 +5,7 @@
 #   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
 #endif
 
-#define TIFFLIB_VERSION_STR "LIBTIFF, Version 3.8.2\nCopyright (c) 1988-1996 Sam Leffler\nCopyright (c) 1991-1996 Silicon Graphics, Inc."
->>>>>>> fixed broken merge
+#define TIFFLIB_VERSION_STR "LIBTIFF, Version 4.0.3\nCopyright (c) 1988-1996 Sam Leffler\nCopyright (c) 1991-1996 Silicon Graphics, Inc."
 /*
  * This define can be used in code that requires
  * compilation-related definitions specific to a

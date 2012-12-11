@@ -236,16 +236,11 @@ _tiffosSeekProc(thandle_t fd, uint64 off, int whence)
 
 			// extend the stream to the expected size
 			os->seekp(0, ios::end);
-<<<<<<< HEAD
 			num_fill = (static_cast<uint64>(origin)) + off - os->tellp();
-			for( uint64 i = 0; i < num_fill; i++ )
-=======
-			num_fill = origin + off - (toff_t)os->tellp();
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-			for( toff_t i = 0; i < num_fill; i++ )
->>>>>>> sync with upstream
+			for( uint64 i = 0; i < num_fill; i++ )
 				os->put('\0');
 
 			// retry the seek

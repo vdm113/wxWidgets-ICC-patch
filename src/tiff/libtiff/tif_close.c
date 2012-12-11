@@ -55,20 +55,14 @@ TIFFCleanup(TIFF* tif)
 	TIFFFreeDirectory(tif);
 
 	if (tif->tif_dirlist)
-<<<<<<< HEAD
 		_TIFFfree(tif->tif_dirlist);
 
 	/*
          * Clean up client info links.
          */
-=======
-	    _TIFFfree(tif->tif_dirlist);
-	    
-	/* Clean up client info links */
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 	while( tif->tif_clientinfo )
 	{
 		TIFFClientInfoLink *link = tif->tif_clientinfo;
@@ -81,7 +75,6 @@ TIFFCleanup(TIFF* tif)
 	if (tif->tif_rawdata && (tif->tif_flags&TIFF_MYBUFFER))
 		_TIFFfree(tif->tif_rawdata);
 	if (isMapped(tif))
-<<<<<<< HEAD
 		TIFFUnmapFileContents(tif, tif->tif_base, (toff_t)tif->tif_size);
 
 	/*
@@ -90,6 +83,9 @@ TIFFCleanup(TIFF* tif)
 	if (tif->tif_fields && tif->tif_nfields > 0) {
 		uint32 i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < tif->tif_nfields; i++) {
 			TIFFField *fld = tif->tif_fields[i];
 			if (fld->field_bit == FIELD_CUSTOM &&
@@ -97,26 +93,6 @@ TIFFCleanup(TIFF* tif)
 				_TIFFfree(fld->field_name);
 				_TIFFfree(fld);
 			}
-=======
-	    TIFFUnmapFileContents(tif, tif->tif_base, tif->tif_size);
-
-	/* Clean up custom fields */
-	if (tif->tif_nfields > 0) 
-	{
-	    size_t  i;
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	    for (i = 0; i < tif->tif_nfields; i++) 
-	    {
-		TIFFFieldInfo *fld = tif->tif_fieldinfo[i];
-		if (fld->field_bit == FIELD_CUSTOM && 
-		    strncmp("Tag ", fld->field_name, 4) == 0) 
-		{
-		    _TIFFfree(fld->field_name);
-		    _TIFFfree(fld);
->>>>>>> sync with upstream
 		}
 
 		_TIFFfree(tif->tif_fields);
@@ -125,6 +101,9 @@ TIFFCleanup(TIFF* tif)
         if (tif->tif_nfieldscompat > 0) {
                 uint32 i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < tif->tif_nfieldscompat; i++) {
                         if (tif->tif_fieldscompat[i].allocated_size)
                                 _TIFFfree(tif->tif_fieldscompat[i].fields);

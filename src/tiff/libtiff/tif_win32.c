@@ -51,6 +51,9 @@ _tiffReadProc(thandle_t fd, void* buf, tmsize_t size)
 	ma=(uint8*)buf;
 	mb=size;
 	p=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (mb>0)
 	{
 		n=0x80000000UL;
@@ -81,6 +84,9 @@ _tiffWriteProc(thandle_t fd, void* buf, tmsize_t size)
 	ma=(uint8*)buf;
 	mb=size;
 	p=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (mb>0)
 	{
 		n=0x80000000UL;
@@ -211,6 +217,9 @@ TIFFFdOpen(int ifd, const char* name, const char* mode)
 	int fSuppressMap;
 	int m;
 	fSuppressMap=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (m=0; mode[m]!=0; m++)
 	{
 		if (mode[m]=='u')
@@ -364,20 +373,7 @@ _TIFFmemcpy(void* d, const void* s, tmsize_t c)
 int
 _TIFFmemcmp(const void* p1, const void* p2, tmsize_t c)
 {
-<<<<<<< HEAD
 	return (memcmp(p1, p2, (size_t) c));
-=======
-	register const BYTE *pb1 = (const BYTE *) p1;
-	register const BYTE *pb2 = (const BYTE *) p2;
-	register DWORD dwTmp = c;
-	register int iTmp;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (iTmp = 0; dwTmp-- && !iTmp; iTmp = (int)*pb1++ - (int)*pb2++)
-		;
-	return (iTmp);
->>>>>>> sync with upstream
 }
 
 #ifndef _WIN32_WCE

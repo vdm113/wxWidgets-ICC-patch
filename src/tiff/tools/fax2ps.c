@@ -295,14 +295,10 @@ findPage(TIFF* tif, uint16 pageNumber)
     uint16 pn = (uint16) -1;
     uint16 ptotal = (uint16) -1;
     if (GetPageNumber(tif)) {
-<<<<<<< HEAD
-	while (pn != (pageNumber-1) && TIFFReadDirectory(tif) && GetPageNumber(tif))
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while (pn != pageNumber && TIFFReadDirectory(tif) && GetPageNumber(tif))
->>>>>>> sync with upstream
+	while (pn != (pageNumber-1) && TIFFReadDirectory(tif) && GetPageNumber(tif))
 	    ;
 	return (pn == (pageNumber-1));
     } else
@@ -427,13 +423,11 @@ main(int argc, char** argv)
 	    fprintf(stderr, "Could not obtain temporary file.\n");
 	    exit(-2);
 	}
-<<<<<<< HEAD
 #if defined(HAVE_SETMODE) && defined(O_BINARY)
 	setmode(fileno(stdin), O_BINARY);
-=======
+#endif
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
->>>>>>> sync with upstream
 #endif
 	while ((n = read(fileno(stdin), buf, sizeof (buf))) > 0)
 	    write(fileno(fd), buf, n);

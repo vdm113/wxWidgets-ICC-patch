@@ -227,20 +227,10 @@ dump(int fd, uint64 diroff)
 	}
 	else
 		Fatal("Not a TIFF file, bad version number %u (%#x)",
-<<<<<<< HEAD
 		    hdr.common.tiff_version, hdr.common.tiff_version);
-=======
-		    hdr.tiff_version, hdr.tiff_version); 
-	printf("Magic: %#x <%s-endian> Version: %#x\n",
-	    hdr.tiff_magic,
-	    hdr.tiff_magic == TIFF_BIGENDIAN ? "big" : "little",
-	    hdr.tiff_version);
-	if (diroff == 0)
-	    diroff = hdr.tiff_diroff;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 	for (i = 0; diroff != 0; i++) {
 		if (i > 0)
 			putchar('\n');
@@ -340,7 +330,6 @@ ReadDirectory(int fd, unsigned int ix, uint64 off)
 #endif
 		dircount = n;
 		nextdiroff = 0;
-<<<<<<< HEAD
 	} else {
 		if (!bigtiff) {
 			uint32 nextdiroff32;
@@ -354,20 +343,6 @@ ReadDirectory(int fd, unsigned int ix, uint64 off)
 				nextdiroff = 0;
 			if (swabflag)
 				TIFFSwabLong8(&nextdiroff);
-=======
-	if (swabflag)
-		TIFFSwabLong(&nextdiroff);
-	printf("Directory %u: offset %lu (%#lx) next %lu (%#lx)\n", ix,
-	    (unsigned long)off, (unsigned long)off,
-	    (unsigned long)nextdiroff, (unsigned long)nextdiroff);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (dp = dir, n = dircount; n > 0; n--, dp++) {
-		if (swabflag) {
-			TIFFSwabArrayOfShort(&dp->tdir_tag, 2);
-			TIFFSwabArrayOfLong(&dp->tdir_count, 2);
->>>>>>> sync with upstream
 		}
 	}
 #if defined(__WIN32__) && (defined(_MSC_VER) || defined(__MINGW32__))
@@ -378,6 +353,9 @@ ReadDirectory(int fd, unsigned int ix, uint64 off)
 	printf("Directory %u: offset %llu (%#llx) next %llu (%#llx)\n", ix,
 	    (unsigned long long)off, (unsigned long long)off,
 	    (unsigned long long)nextdiroff, (unsigned long long)nextdiroff);
+#endif
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
 #endif
 	for (dp = (uint8*)dirmem, n = dircount; n > 0; n--) {
 		uint16 tag;
@@ -790,6 +768,9 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 	}
 	case TIFF_LONG8: {
 		uint64 *llp = (uint64*)data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (count-- > 0) {
 #if defined(__WIN32__) && defined(_MSC_VER)
 			fprintf(fd, long8fmt, sep, (unsigned __int64) *llp++);
@@ -802,6 +783,9 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 	}
 	case TIFF_SLONG8: {
 		int64 *llp = (int64*)data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (count-- > 0)
 #if defined(__WIN32__) && defined(_MSC_VER)
 			fprintf(fd, slong8fmt, sep, (__int64) *llp++), sep = " ";
@@ -876,6 +860,9 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 	}
 	case TIFF_IFD8: {
 		uint64 *llp = (uint64*)data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (count-- > 0) {
 #if defined(__WIN32__) && defined(_MSC_VER)
 			fprintf(fd, ifd8fmt, sep, (unsigned __int64) *llp++);

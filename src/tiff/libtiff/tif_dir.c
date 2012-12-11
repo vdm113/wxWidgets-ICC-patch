@@ -78,6 +78,9 @@ setDoubleArrayOneValue(double** vpp, double value, size_t nmemb)
 	*vpp = _TIFFmalloc(nmemb*sizeof(double));
 	if (*vpp)
 	{
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (nmemb--)
 			((double*)*vpp)[nmemb] = value;
 	}
@@ -100,8 +103,10 @@ setExtraSamples(TIFFDirectory* td, va_list ap, uint32* v)
 		return 0;
 	va = va_arg(ap, uint16*);
 	if (*v > 0 && va == NULL)		/* typically missing param */
-<<<<<<< HEAD
 		return 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < *v; i++) {
 		if (va[i] > EXTRASAMPLE_UNASSALPHA) {
 			/*
@@ -116,15 +121,6 @@ setExtraSamples(TIFFDirectory* td, va_list ap, uint32* v)
 				return 0;
 		}
 	}
-=======
-		return (0);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (i = 0; i < *v; i++)
-		if (va[i] > EXTRASAMPLE_UNASSALPHA)
-			return (0);
->>>>>>> sync with upstream
 	td->td_extrasamples = (uint16) *v;
 	_TIFFsetShortArray(&td->td_sampleinfo, va, td->td_extrasamples);
 	return 1;
@@ -149,18 +145,12 @@ checkInkNamesString(TIFF* tif, uint32 slen, const char* s)
 #   pragma ivdep
 #endif
 		for (; i > 0; i--) {
-<<<<<<< HEAD
-			for (; cp < ep && *cp != '\0'; cp++) {}
-			if (cp >= ep)
-				goto bad;
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-			for (; *cp != '\0'; cp++)
-				if (cp >= ep)
-					goto bad;
->>>>>>> sync with upstream
+			for (; cp < ep && *cp != '\0'; cp++) {}
+			if (cp >= ep)
+				goto bad;
 			cp++;				/* skip \0 */
 		}
 		return ((uint32)(cp-s));
@@ -465,7 +455,6 @@ _TIFFVSetField(TIFF* tif, uint32 tag, va_list ap)
 		TIFFTagValue *tv;
 		int tv_size, iCustom;
 
-<<<<<<< HEAD
 		/*
 		 * This can happen if multiple images are open with different
 		 * codecs which have private tags.  The global tag information
@@ -476,38 +465,6 @@ _TIFFVSetField(TIFF* tif, uint32 tag, va_list ap)
 		 * compression schemes and codec-specific tags are blindly copied.
 		 */
 		if(fip == NULL || fip->field_bit != FIELD_CUSTOM) {
-=======
-            /*
-             * Find the existing entry for this custom value.
-             */
-            tv = NULL;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for(iCustom = 0; iCustom < td->td_customValueCount; iCustom++) {
-                if(td->td_customValues[iCustom].info == fip) {
-                    tv = td->td_customValues + iCustom;
-                    if(tv->value != NULL)
-                    {
-                        _TIFFfree(tv->value);
-                        tv->value = NULL;
-                    }
-                    break;
-                }
-            }
-
-            /*
-             * Grow the custom list if the entry was not found.
-             */
-            if(tv == NULL) {
-		TIFFTagValue	*new_customValues;
-		
-		td->td_customValueCount++;
-		new_customValues = (TIFFTagValue *)
-			_TIFFrealloc(td->td_customValues,
-				     sizeof(TIFFTagValue) * td->td_customValueCount);
-		if (!new_customValues) {
->>>>>>> sync with upstream
 			TIFFErrorExt(tif->tif_clientdata, module,
 			    "%s: Invalid %stag \"%s\" (not supported by codec)",
 			    tif->tif_name, isPseudoTag(tag) ? "pseudo-" : "",
@@ -520,6 +477,9 @@ _TIFFVSetField(TIFF* tif, uint32 tag, va_list ap)
 		 * Find the existing entry for this custom value.
 		 */
 		tv = NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (iCustom = 0; iCustom < td->td_customValueCount; iCustom++) {
 			if (td->td_customValues[iCustom].info->field_tag == tag) {
 				tv = td->td_customValues + iCustom;
@@ -557,7 +517,6 @@ _TIFFVSetField(TIFF* tif, uint32 tag, va_list ap)
 			tv->count = 0;
 		}
 
-<<<<<<< HEAD
 		/*
 		 * Set custom value ... save a copy of the custom tag value.
 		 */
@@ -648,37 +607,6 @@ _TIFFVSetField(TIFF* tif, uint32 tag, va_list ap)
 				assert( tv->count == 1 );
 
 				switch (fip->field_type) {
-=======
-		if ((fip->field_passcount
-		    || fip->field_writecount == TIFF_VARIABLE
-		    || fip->field_writecount == TIFF_VARIABLE2
-		    || fip->field_writecount == TIFF_SPP
-		    || tv->count > 1)
-		    && fip->field_tag != TIFFTAG_PAGENUMBER
-		    && fip->field_tag != TIFFTAG_HALFTONEHINTS
-		    && fip->field_tag != TIFFTAG_YCBCRSUBSAMPLING
-		    && fip->field_tag != TIFFTAG_DOTRANGE) {
-                    _TIFFmemcpy(tv->value, va_arg(ap, void *),
-				tv->count * tv_size);
-		} else {
-		    /*
-		     * XXX: The following loop required to handle
-		     * TIFFTAG_PAGENUMBER, TIFFTAG_HALFTONEHINTS,
-		     * TIFFTAG_YCBCRSUBSAMPLING and TIFFTAG_DOTRANGE tags.
-		     * These tags are actually arrays and should be passed as
-		     * array pointers to TIFFSetField() function, but actually
-		     * passed as a list of separate values. This behaviour
-		     * must be changed in the future!
-		     */
-		    int i;
-		    char *val = (char *)tv->value;
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		    for (i = 0; i < tv->count; i++, val += tv_size) {
-			    switch (fip->field_type) {
->>>>>>> sync with upstream
 				case TIFF_BYTE:
 				case TIFF_UNDEFINED:
 					{
@@ -857,6 +785,9 @@ TIFFUnsetField(TIFF* tif, uint32 tag)
         TIFFTagValue *tv = NULL;
         int i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < td->td_customValueCount; i++) {
                 
             tv = td->td_customValues + i;
@@ -867,6 +798,9 @@ TIFFUnsetField(TIFF* tif, uint32 tag)
         if( i < td->td_customValueCount )
         {
             _TIFFfree(tv->value);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for( ; i < td->td_customValueCount-1; i++) {
                 td->td_customValues[i] = td->td_customValues[i+1];
             }
@@ -958,6 +892,9 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 				/* libtiff historially treats this as a single value. */
 				uint16 i;
 				double v = td->td_sminsamplevalue[0];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (i=1; i < td->td_samplesperpixel; ++i)
 					if( td->td_sminsamplevalue[i] < v )
 						v = td->td_sminsamplevalue[i];
@@ -972,6 +909,9 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 				/* libtiff historially treats this as a single value. */
 				uint16 i;
 				double v = td->td_smaxsamplevalue[0];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (i=1; i < td->td_samplesperpixel; ++i)
 					if( td->td_smaxsamplevalue[i] > v )
 						v = td->td_smaxsamplevalue[i];
@@ -1087,7 +1027,6 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 			{
 				int i;
 
-<<<<<<< HEAD
 				/*
 				 * This can happen if multiple images are open
 				 * with different codecs which have private
@@ -1108,26 +1047,17 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 					ret_val = 0;
 					break;
 				}
-=======
-            /*
-	     * Do we have a custom value?
-	     */
-            ret_val = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (i = 0; i < td->td_customValueCount; i++) {
-		TIFFTagValue *tv = td->td_customValues + i;
->>>>>>> sync with upstream
 
 				/*
 				 * Do we have a custom value?
 				 */
 				ret_val = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (i = 0; i < td->td_customValueCount; i++) {
 					TIFFTagValue *tv = td->td_customValues + i;
 
-<<<<<<< HEAD
 					if (tv->info->field_tag != tag)
 						continue;
 
@@ -1137,51 +1067,6 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 						else  /* Assume TIFF_VARIABLE */
 							*va_arg(ap, uint16*) = (uint16)tv->count;
 						*va_arg(ap, void **) = tv->value;
-=======
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			    for (j = 0; j < tv->count;
-				 j++, val += _TIFFDataSize(tv->info->field_type)) {
-				switch (fip->field_type) {
-					case TIFF_BYTE:
-					case TIFF_UNDEFINED:
-						*va_arg(ap, uint8*) =
-							*(uint8 *)val;
-						ret_val = 1;
-						break;
-					case TIFF_SBYTE:
-						*va_arg(ap, int8*) =
-							*(int8 *)val;
-						ret_val = 1;
-						break;
-					case TIFF_SHORT:
-						*va_arg(ap, uint16*) =
-							*(uint16 *)val;
-						ret_val = 1;
-						break;
-					case TIFF_SSHORT:
-						*va_arg(ap, int16*) =
-							*(int16 *)val;
-						ret_val = 1;
-						break;
-					case TIFF_LONG:
-					case TIFF_IFD:
-						*va_arg(ap, uint32*) =
-							*(uint32 *)val;
-						ret_val = 1;
-						break;
-					case TIFF_SLONG:
-						*va_arg(ap, int32*) =
-							*(int32 *)val;
-						ret_val = 1;
-						break;
-					case TIFF_RATIONAL:
-					case TIFF_SRATIONAL:
-					case TIFF_FLOAT:
-						*va_arg(ap, float*) =
-							*(float *)val;
->>>>>>> sync with upstream
 						ret_val = 1;
 					} else if (fip->field_tag == TIFFTAG_DOTRANGE
 						   && strcmp(fip->field_name,"DotRange") == 0) {
@@ -1621,7 +1506,6 @@ TIFFAdvanceDirectory(TIFF* tif, uint64* nextdir, uint64* off)
 uint16
 TIFFNumberOfDirectories(TIFF* tif)
 {
-<<<<<<< HEAD
 	uint64 nextdir;
 	uint16 n;
 	if (!(tif->tif_flags&TIFF_BIGTIFF))
@@ -1629,20 +1513,12 @@ TIFFNumberOfDirectories(TIFF* tif)
 	else
 		nextdir = tif->tif_header.big.tiff_diroff;
 	n = 0;
-	while (nextdir != 0 && TIFFAdvanceDirectory(tif, &nextdir, NULL))
-		n++;
-	return (n);
-=======
-    toff_t nextdir = tif->tif_header.tiff_diroff;
-    tdir_t n = 0;
-    
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (nextdir != 0 && TIFFAdvanceDirectory(tif, &nextdir, NULL))
-        n++;
-    return (n);
->>>>>>> sync with upstream
+	while (nextdir != 0 && TIFFAdvanceDirectory(tif, &nextdir, NULL))
+		n++;
+	return (n);
 }
 
 /*
@@ -1655,17 +1531,13 @@ TIFFSetDirectory(TIFF* tif, uint16 dirn)
 	uint64 nextdir;
 	uint16 n;
 
-<<<<<<< HEAD
 	if (!(tif->tif_flags&TIFF_BIGTIFF))
 		nextdir = tif->tif_header.classic.tiff_diroff;
 	else
 		nextdir = tif->tif_header.big.tiff_diroff;
-=======
-	nextdir = tif->tif_header.tiff_diroff;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 	for (n = dirn; n > 0 && nextdir != 0; n--)
 		if (!TIFFAdvanceDirectory(tif, &nextdir, NULL))
 			return (0);
@@ -1742,7 +1614,6 @@ TIFFUnlinkDirectory(TIFF* tif, uint16 dirn)
 	 * to unlink and nab the offset of the link
 	 * field we'll need to patch.
 	 */
-<<<<<<< HEAD
 	if (!(tif->tif_flags&TIFF_BIGTIFF))
 	{
 		nextdir = tif->tif_header.classic.tiff_diroff;
@@ -1753,13 +1624,9 @@ TIFFUnlinkDirectory(TIFF* tif, uint16 dirn)
 		nextdir = tif->tif_header.big.tiff_diroff;
 		off = 8;
 	}
-=======
-	nextdir = tif->tif_header.tiff_diroff;
-	off = sizeof (uint16) + sizeof (uint16);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 	for (n = dirn-1; n > 0; n--) {
 		if (nextdir == 0) {
 			TIFFErrorExt(tif->tif_clientdata, module, "Directory %d does not exist", dirn);
@@ -1827,67 +1694,6 @@ TIFFUnlinkDirectory(TIFF* tif, uint16 dirn)
 	return (1);
 }
 
-<<<<<<< HEAD
-=======
-/*			[BFC]
- *
- * Author: Bruce Cameron <cameron@petris.com>
- *
- * Set a table of tags that are to be replaced during directory process by the
- * 'IGNORE' state - or return TRUE/FALSE for the requested tag such that
- * 'ReadDirectory' can use the stored information.
- *
- * FIXME: this is never used properly. Should be removed in the future.
- */
-int
-TIFFReassignTagToIgnore (enum TIFFIgnoreSense task, int TIFFtagID)
-{
-    static int TIFFignoretags [FIELD_LAST];
-    static int tagcount = 0 ;
-    int		i;					/* Loop index */
-    int		j;					/* Loop index */
-
-    switch (task)
-    {
-      case TIS_STORE:
-        if ( tagcount < (FIELD_LAST - 1) )
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for ( j = 0 ; j < tagcount ; ++j )
-            {					/* Do not add duplicate tag */
-                if ( TIFFignoretags [j] == TIFFtagID )
-                    return (TRUE) ;
-            }
-            TIFFignoretags [tagcount++] = TIFFtagID ;
-            return (TRUE) ;
-        }
-        break ;
-        
-      case TIS_EXTRACT:
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for ( i = 0 ; i < tagcount ; ++i )
-        {
-            if ( TIFFignoretags [i] == TIFFtagID )
-                return (TRUE) ;
-        }
-        break;
-        
-      case TIS_EMPTY:
-        tagcount = 0 ;			/* Clear the list */
-        return (TRUE) ;
-        
-      default:
-        break;
-    }
-    
-    return (FALSE);
-}
-
->>>>>>> sync with upstream
 /* vim: set ts=8 sts=8 sw=8 noet: */
 /*
  * Local Variables:

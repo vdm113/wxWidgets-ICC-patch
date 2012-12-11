@@ -245,16 +245,12 @@ main(int argc, char* argv[])
 	extern int optind;
 	FILE* output = stdout;
 
-<<<<<<< HEAD
         pageOrientation[0] = '\0';
 
-	while ((c = getopt(argc, argv, "b:d:h:H:W:L:i:w:l:o:O:P:C:r:t:acemxyzps1238DT")) != -1)
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while ((c = getopt(argc, argv, "b:d:h:H:L:i:w:l:o:O:acelmrxyzps1238DT")) != -1)
->>>>>>> sync with upstream
+	while ((c = getopt(argc, argv, "b:d:h:H:W:L:i:w:l:o:O:P:C:r:t:acemxyzps1238DT")) != -1)
 		switch (c) {
 		case 'b':
 			bottommargin = atof(optarg);
@@ -405,7 +401,6 @@ main(int argc, char* argv[])
 		case '?':
 			usage(-1);
 		}
-<<<<<<< HEAD
 
         if (useImagemask == TRUE)
           {
@@ -467,11 +462,9 @@ main(int argc, char* argv[])
         if ((generateEPSF == TRUE) && (PSavoiddeadzone == TRUE))
 	  PSavoiddeadzone = FALSE;
 
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 	for (; argc - optind > 0; optind++) {
 		TIFF* tif = TIFFOpen(filename = argv[optind], "r");
 		if (tif != NULL) {
@@ -972,159 +965,8 @@ int exportMaskedImage(FILE *fp, double pagewidth, double pageheight,
               break;
     }
 
-<<<<<<< HEAD
   return (0);
   }
-=======
-/* returns the sequence number of the page processed */
-int
-TIFF2PS(FILE* fd, TIFF* tif,
-	double pw, double ph, double lm, double bm, int cnt)
-{
-	uint32 w, h;
-	float ox, oy;
-        double prw, prh;
-	double scale = 1.0;
-	uint32 subfiletype;
-	uint16* sampleinfo;
-	static int npages = 0;
-	int split;
-
-	if (!TIFFGetField(tif, TIFFTAG_XPOSITION, &ox))
-		ox = 0;
-	if (!TIFFGetField(tif, TIFFTAG_YPOSITION, &oy))
-		oy = 0;
-	setupPageState(tif, &w, &h, &prw, &prh);
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	do {
-		tf_numberstrips = TIFFNumberOfStrips(tif);
-		TIFFGetFieldDefaulted(tif, TIFFTAG_ROWSPERSTRIP,
-		    &tf_rowsperstrip);
-		setupPageState(tif, &w, &h, &prw, &prh);
-		if (!npages)
-			PSHead(fd, tif, w, h, prw, prh, ox, oy);
-		TIFFGetFieldDefaulted(tif, TIFFTAG_BITSPERSAMPLE,
-		    &bitspersample);
-		TIFFGetFieldDefaulted(tif, TIFFTAG_SAMPLESPERPIXEL,
-		    &samplesperpixel);
-		TIFFGetFieldDefaulted(tif, TIFFTAG_PLANARCONFIG,
-		    &planarconfiguration);
-		TIFFGetField(tif, TIFFTAG_COMPRESSION, &compression);
-		TIFFGetFieldDefaulted(tif, TIFFTAG_EXTRASAMPLES,
-		    &extrasamples, &sampleinfo);
-		alpha = (extrasamples == 1 &&
-			 sampleinfo[0] == EXTRASAMPLE_ASSOCALPHA);
-		if (!TIFFGetField(tif, TIFFTAG_PHOTOMETRIC, &photometric)) {
-			switch (samplesperpixel - extrasamples) {
-			case 1:
-				if (isCCITTCompression(tif))
-					photometric = PHOTOMETRIC_MINISWHITE;
-				else
-					photometric = PHOTOMETRIC_MINISBLACK;
-				break;
-			case 3:
-				photometric = PHOTOMETRIC_RGB;
-				break;
-			case 4:
-				photometric = PHOTOMETRIC_SEPARATED;
-				break;
-			}
-		}
-		if (checkImage(tif)) {
-			tf_bytesperrow = TIFFScanlineSize(tif);
-			npages++;
-			fprintf(fd, "%%%%Page: %d %d\n", npages, npages);
-			if (!generateEPSF && ( level2 || level3 )) {
-				double psw, psh;
-				if (pw != 0.0) {
-					psw = pw * PS_UNIT_SIZE;
-					if (res_unit == RESUNIT_CENTIMETER)
-						psw *= 2.54F;
-				} else
-					psw=rotate ? prh:prw;
-				if (ph != 0.0) {
-					psh = ph * PS_UNIT_SIZE;
-					if (res_unit == RESUNIT_CENTIMETER)
-						psh *= 2.54F;
-				} else
-					psh=rotate ? prw:prh;
-				fprintf(fd,
-	"1 dict begin /PageSize [ %f %f ] def currentdict end setpagedevice\n",
-					psw, psh);
-				fputs(
-	"<<\n  /Policies <<\n    /PageSize 3\n  >>\n>> setpagedevice\n",
-				      fd);
-			}
-			fprintf(fd, "gsave\n");
-			fprintf(fd, "100 dict begin\n");
-			if (pw != 0 || ph != 0) {
-				double psw = pw, psh = ph;
-				if (!psw)
-					psw = prw;
-				if (!psh)
-					psh = prh;
-				if (maxPageHeight) { /* used -H option */
-					split = PlaceImage(fd,psw,psh,prw,prh,
-							   0,lm,bm,cnt);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-					while( split ) {
-					    PSpage(fd, tif, w, h);
-					    fprintf(fd, "end\n");
-					    fprintf(fd, "grestore\n");
-					    fprintf(fd, "showpage\n");
-					    npages++;
-					    fprintf(fd, "%%%%Page: %d %d\n",
-						    npages, npages);
-					    fprintf(fd, "gsave\n");
-					    fprintf(fd, "100 dict begin\n");
-					    split = PlaceImage(fd,psw,psh,prw,prh,
-							       split,lm,bm,cnt);
-					}
-				} else {
-					double left_offset = lm * PS_UNIT_SIZE;
-					double bottom_offset = bm * PS_UNIT_SIZE;
-					psw *= PS_UNIT_SIZE;
-					psh *= PS_UNIT_SIZE;
-
-					/* NB: maintain image aspect ratio */
-					scale = psw/prw < psh/prh ?
-						psw/prw : psh/prh;
-					if (scale > 1.0)
-						scale = 1.0;
-					if (cnt) {
-						bottom_offset +=
-							(psh - prh * scale) / 2;
-						left_offset +=
-							(psw - prw * scale) / 2;
-					}
-					fprintf(fd, "%f %f translate\n",
-						left_offset, bottom_offset);
-					fprintf(fd, "%f %f scale\n",
-						prw * scale, prh * scale);
-					if (rotate)
-						fputs ("1 1 translate 180 rotate\n", fd);
-				}
-			} else {
-				fprintf(fd, "%f %f scale\n", prw, prh);
-				if (rotate)
-					fputs ("1 1 translate 180 rotate\n", fd);
-			}
-			PSpage(fd, tif, w, h);
-			fprintf(fd, "end\n");
-			fprintf(fd, "grestore\n");
-			fprintf(fd, "showpage\n");
-		}
-		if (generateEPSF)
-			break;
-		TIFFGetFieldDefaulted(tif, TIFFTAG_SUBFILETYPE, &subfiletype);
-	} while (((subfiletype & FILETYPE_PAGE) || printAll) &&
-	    TIFFReadDirectory(tif));
->>>>>>> sync with upstream
 
 /* Rotate an image without scaling or clipping */
 int  psRotateImage (FILE * fd, int rotation, double pswidth, double psheight,
@@ -1355,8 +1197,14 @@ int psMaskImage(FILE *fd, TIFF *tif, int rotation, int center,
     return (-1);
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < yimages; i++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (j = 0; j < ximages; j++)
        {
        pages++;
@@ -1643,6 +1491,9 @@ int TIFF2PS(FILE* fd, TIFF* tif, double pgwidth, double pgheight, double lm, dou
      oy = 0;
 
   /* Consolidated all the tag information into one code segment, Richard Nolde */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   do {
      tf_numberstrips = TIFFNumberOfStrips(tif);
      TIFFGetFieldDefaulted(tif, TIFFTAG_ROWSPERSTRIP, &tf_rowsperstrip);
@@ -2285,6 +2136,9 @@ PS_FlipBytes(unsigned char* buf, tsize_t count)
 
 	count--;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < count; i += 2) {
 		temp = buf[i];
 		buf[i] = buf[i + 1];
