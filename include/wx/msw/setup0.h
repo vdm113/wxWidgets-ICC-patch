@@ -5,13 +5,13 @@
 #   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
 #endif
 
+/////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/setup.h
-
 // Purpose:     Configuration for the library
 // Author:      Julian Smart
-// Modified by: Marian 'VooDooMan' Meravy
+// Modified by:
 // Created:     01/02/97
-// RCS-ID:      $Id: setup0.h 69463 2011-10-18 21:57:02Z VZ $
+// RCS-ID:      $Id$
 // Copyright:   (c) Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -52,7 +52,7 @@
 // in the version after it completely.
 //
 // Recommended setting: 0 (please update your code)
-#define WXWIN_COMPATIBILITY_2_8 0 /* VDM: changed explicitly to 1 from 0 */
+#define WXWIN_COMPATIBILITY_2_8 1
 
 // MSW-only: Set to 0 for accurate dialog units, else 1 for old behaviour when
 // default system font is used for wxWindow::GetCharWidth/Height() instead of
@@ -284,11 +284,7 @@
 // this to 0.
 //
 // Default is 1, but set to 0 if the scenario above is applicable.
-#define wxUSE_COMPILER_TLS 1 /* VDM: see below */
-#ifdef _MSC_VER
-#   undef wxUSE_COMPILER_TLS
-#   define wxUSE_COMPILER_TLS 0 /* VDM: see comment above in setup.h */
-#endif
+#define wxUSE_COMPILER_TLS 1
 
 // ----------------------------------------------------------------------------
 // Interoperability with the standard library.
@@ -336,7 +332,7 @@
 //
 // Recommended setting: 1 unless compatibility with the official wxWidgets
 // build and/or the existing code is a concern.
-#define wxUSE_STD_CONTAINERS 1 /* VDM: changed explicitly to 0 from 1 */
+#define wxUSE_STD_CONTAINERS 0
 
 // Use standard C++ streams if 1 instead of wx streams in some places. If
 // disabled, wx streams are used everywhere and wxWidgets doesn't depend on the
@@ -570,7 +566,7 @@
 // Default is 1.
 //
 // Recommended setting: 1 if you need IPv6 support
-#define wxUSE_IPV6          1 /* VDM: changed explicitly to 0 from 1 */
+#define wxUSE_IPV6          0
 
 // Set to 1 to enable virtual file systems (required by wxHTML)
 #define wxUSE_FILESYSTEM    1
@@ -1413,7 +1409,7 @@
 // ----------------------------------------------------------------------------
 
 // Set to 1 for PostScript device context.
-#define wxUSE_POSTSCRIPT  1 /* VDM: changed explicitly to 0 from 1 */
+#define wxUSE_POSTSCRIPT  0
 
 // Set to 1 to use font metric files in GetTextExtent
 #define wxUSE_AFM_FOR_POSTSCRIPT 1
@@ -1621,7 +1617,7 @@
 // Default is 0.
 //
 // Recommended setting: 0, nobody uses .INI files any more
-#define wxUSE_INICONF 1 /* VDM: changed explicitely to 1 from 0 */
+#define wxUSE_INICONF 0
 
 // ----------------------------------------------------------------------------
 // Generic versions of native controls

@@ -204,16 +204,11 @@ PackBitsEncodeChunk(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 {
 	tmsize_t rowsize = *(tmsize_t*)tif->tif_data;
 
-<<<<<<< HEAD
-	while (cc > 0) {
-		tmsize_t chunk = rowsize;
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while ((long)cc > 0) {
-		int	chunk = rowsize;
->>>>>>> sync with upstream
+	while (cc > 0) {
+		tmsize_t chunk = rowsize;
 		
 		if( cc < chunk )
 		    chunk = cc;
@@ -238,14 +233,10 @@ PackBitsDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 	(void) s;
 	bp = (char*) tif->tif_rawcp;
 	cc = tif->tif_rawcc;
-<<<<<<< HEAD
-	while (cc > 0 && occ > 0) {
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while (cc > 0 && (long)occ > 0) {
->>>>>>> sync with upstream
+	while (cc > 0 && occ > 0) {
 		n = (long) *bp++, cc--;
 		/*
 		 * Watch out for compilers that

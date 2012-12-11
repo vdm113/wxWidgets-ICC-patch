@@ -238,8 +238,10 @@ LZWSetupDecode(TIFF* tif)
 		/*
 		 * Pre-load the table.
 		 */
-<<<<<<< HEAD
 		code = 255;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
 			sp->dec_codetab[code].value = code;
 			sp->dec_codetab[code].firstchar = code;
@@ -251,18 +253,6 @@ LZWSetupDecode(TIFF* tif)
                  */
                  _TIFFmemset(&sp->dec_codetab[CODE_CLEAR], 0,
 			     (CODE_FIRST - CODE_CLEAR) * sizeof (code_t));
-=======
-                code = 255;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                do {
-                    sp->dec_codetab[code].value = code;
-                    sp->dec_codetab[code].firstchar = code;
-                    sp->dec_codetab[code].length = 1;
-                    sp->dec_codetab[code].next = NULL;
-                } while (code--);
->>>>>>> sync with upstream
 	}
 	return (1);
 }
@@ -1118,14 +1108,10 @@ cl_hash(LZWCodecState* sp)
 	register hash_t *hp = &sp->enc_hashtab[HSIZE-1];
 	register long i = HSIZE-8;
 
-<<<<<<< HEAD
-	do {
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
- 	do {
->>>>>>> sync with upstream
+	do {
 		i -= 8;
 		hp[-7].hash = -1;
 		hp[-6].hash = -1;
@@ -1137,14 +1123,10 @@ cl_hash(LZWCodecState* sp)
 		hp[ 0].hash = -1;
 		hp -= 8;
 	} while (i >= 0);
-<<<<<<< HEAD
-	for (i += 8; i > 0; i--, hp--)
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    	for (i += 8; i > 0; i--, hp--)
->>>>>>> sync with upstream
+	for (i += 8; i > 0; i--, hp--)
 		hp->hash = -1;
 }
 

@@ -600,16 +600,12 @@ int main(int argc, char** argv){
 		goto fail;
 	}
 
-<<<<<<< HEAD
-	while (argv &&
-	       (c = getopt(argc, argv,
-			   "o:q:u:x:y:w:l:r:p:e:c:a:t:s:k:jzndifbhF")) != -1){
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while ((c = getopt(argc, argv, "o:q:u:x:y:w:l:r:p:e:c:a:t:s:k:jzndifbh")) != -1){
->>>>>>> sync with upstream
+	while (argv &&
+	       (c = getopt(argc, argv,
+			   "o:q:u:x:y:w:l:r:p:e:c:a:t:s:k:jzndifbhF")) != -1){
 		switch (c) {
 			case 'o':
 				outfilename = optarg;
@@ -3530,14 +3526,10 @@ void t2p_tile_collapse_left(
 	tsize_t edgescanwidth=0;
 	
 	edgescanwidth = (scanwidth * edgetilewidth + (tilewidth - 1))/ tilewidth;
-<<<<<<< HEAD
-	for(i=0;i<tilelength;i++){
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for(i=i;i<tilelength;i++){
->>>>>>> sync with upstream
+	for(i=0;i<tilelength;i++){
 		_TIFFmemcpy( 
 			&(((char*)buffer)[edgescanwidth*i]), 
 			&(((char*)buffer)[scanwidth*i]), 
@@ -3784,14 +3776,10 @@ tsize_t t2p_write_pdf_name(unsigned char* name, TIFF* output){
 	if (namelen>126) {
 		namelen=126;
 	}
-<<<<<<< HEAD
 	written += t2pWriteFile(output, (tdata_t) "/", 1);
-=======
-	written += TIFFWriteFile(output, (tdata_t) "/", 1);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 	for (i=0;i<namelen;i++){
 		if ( ((unsigned char)name[i]) < 0x21){
 			sprintf(buffer, "#%.2X", name[i]);
@@ -3884,18 +3872,12 @@ tsize_t t2p_write_pdf_string(char* pdfstr, TIFF* output)
 	char buffer[64];
 	size_t len = 0;
 	
-<<<<<<< HEAD
 	len = strlen(pdfstr);
 	written += t2pWriteFile(output, (tdata_t) "(", 1);
-	for (i=0; i<len; i++) {
-=======
-	len=strlen(pdfstr);
-	written += TIFFWriteFile(output, (tdata_t) "(", 1);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (i=0;i<len;i++){
->>>>>>> sync with upstream
+	for (i=0; i<len; i++) {
 		if((pdfstr[i]&0x80) || (pdfstr[i]==127) || (pdfstr[i]<32)){
 			snprintf(buffer, sizeof(buffer), "\\%.3o", ((unsigned char)pdfstr[i]));
 			written += t2pWriteFile(output, (tdata_t)buffer, 4);
@@ -4295,14 +4277,10 @@ tsize_t t2p_write_pdf_page(uint32 object, T2P* t2p, TIFF* output){
 	written += t2pWriteFile(output, (tdata_t) " 0 R \n", 6);
 	written += t2pWriteFile(output, (tdata_t) "/Resources << \n", 15);
 	if( t2p->tiff_tiles[t2p->pdf_page].tiles_tilecount != 0 ){
-<<<<<<< HEAD
 		written += t2pWriteFile(output, (tdata_t) "/XObject <<\n", 12);
-=======
-		written += TIFFWriteFile(output, (tdata_t) "/XObject <<\r", 12);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 		for(i=0;i<t2p->tiff_tiles[t2p->pdf_page].tiles_tilecount;i++){
 			written += t2pWriteFile(output, (tdata_t) "/Im", 3);
 			buflen = sprintf(buffer, "%u", t2p->pdf_page+1);
@@ -5155,14 +5133,10 @@ tsize_t t2p_write_pdf_xobject_decode(T2P* t2p, TIFF* output){
 	tsize_t written=0;
 	int i=0;
 
-<<<<<<< HEAD
 	written += t2pWriteFile(output, (tdata_t) "/Decode [ ", 10);
-=======
-	written += TIFFWriteFile(output, (tdata_t) "/Decode [ ", 10);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 	for (i=0;i<t2p->tiff_samplesperpixel;i++){
 		written += t2pWriteFile(output, (tdata_t) "1 0 ", 4);
 	}
@@ -5295,16 +5269,11 @@ tsize_t t2p_write_pdf_xreftable(T2P* t2p, TIFF* output){
 
 	written += t2pWriteFile(output, (tdata_t) "xref\n0 ", 7);
 	buflen=sprintf(buffer, "%lu", (unsigned long)(t2p->pdf_xrefcount + 1));
-<<<<<<< HEAD
 	written += t2pWriteFile(output, (tdata_t) buffer, buflen);
 	written += t2pWriteFile(output, (tdata_t) " \n0000000000 65535 f \n", 22);
-=======
-	written += TIFFWriteFile(output, (tdata_t) buffer, buflen);
-	written += TIFFWriteFile(output, (tdata_t) " \r0000000000 65535 f\r\n", 22);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 	for (i=0;i<t2p->pdf_xrefcount;i++){
 		sprintf(buffer, "%.10lu 00000 n \n",
 			(unsigned long)t2p->pdf_xrefoffsets[i]);
@@ -5326,33 +5295,13 @@ tsize_t t2p_write_pdf_trailer(T2P* t2p, TIFF* output)
 	int buflen = 0;
 	size_t i = 0;
 
-<<<<<<< HEAD
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < sizeof(t2p->pdf_fileid) - 8; i += 8)
 		snprintf(t2p->pdf_fileid + i, 9, "%.8X", rand());
 
 	written += t2pWriteFile(output, (tdata_t) "trailer\n<<\n/Size ", 17);
-=======
-	((int*)fileidbuf)[0] = rand();
-	((int*)fileidbuf)[1] = rand();
-	((int*)fileidbuf)[2] = rand();
-	((int*)fileidbuf)[3] = rand();
-	t2p->pdf_fileid = (char*)_TIFFmalloc(33);
-	if(t2p->pdf_fileid == NULL) {
-		TIFFError(
-			TIFF2PDF_MODULE, 
-		"Can't allocate %u bytes of memory for t2p_write_pdf_trailer", 
-			33 );
-		t2p->t2p_error = T2P_ERR_ERROR;
-		return(0);
-	}
-	_TIFFmemset(t2p->pdf_fileid, 0x00, 33);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (i=0; i<16; i++)
-		sprintf(&(t2p->pdf_fileid[2*i]), "%.2hhX", fileidbuf[i]);
-	written += TIFFWriteFile(output, (tdata_t) "trailer\r<<\r/Size ", 17);
->>>>>>> sync with upstream
 	buflen = sprintf(buffer, "%lu", (unsigned long)(t2p->pdf_xrefcount+1));
 	written += t2pWriteFile(output, (tdata_t) buffer, buflen);
 	_TIFFmemset(buffer, 0x00, 32);	
