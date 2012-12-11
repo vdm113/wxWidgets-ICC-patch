@@ -1,18 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 /* $Id$ */
-=======
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
-#endif
-
-=======
->>>>>>> removed our prologue from unit files
-/* $Header: /cvs/maptools/cvsroot/libtiff/libtiff/tif_flush.c,v 1.3 2000/09/15 20:52:42 warmerda Exp $ */
->>>>>>> fixed broken merge
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler

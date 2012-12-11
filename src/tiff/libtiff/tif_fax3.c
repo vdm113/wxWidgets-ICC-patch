@@ -235,14 +235,10 @@ Fax3Decode1D(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 	}
 	CACHE_STATE(tif, sp);
 	thisrun = sp->curruns;
-<<<<<<< HEAD
-	while (occ > 0) {
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while ((long)occ > 0) {
->>>>>>> sync with upstream
+	while (occ > 0) {
 		a0 = 0;
 		RunLength = 0;
 		pa = thisrun;
@@ -285,14 +281,10 @@ Fax3Decode2D(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 		return (-1);
 	}
 	CACHE_STATE(tif, sp);
-<<<<<<< HEAD
-	while (occ > 0) {
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while ((long)occ > 0) {
->>>>>>> sync with upstream
+	while (occ > 0) {
 		a0 = 0;
 		RunLength = 0;
 		pa = thisrun = sp->curruns;
@@ -1098,19 +1090,15 @@ Fax3Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 	static const char module[] = "Fax3Encode";
 	Fax3CodecState* sp = EncoderState(tif);
 	(void) s;
-<<<<<<< HEAD
 	if (cc % sp->b.rowbytes)
 	{
 		TIFFErrorExt(tif->tif_clientdata, module, "Fractional scanlines cannot be written");
 		return (0);
 	}
-	while (cc > 0) {
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while ((long)cc > 0) {
->>>>>>> sync with upstream
+	while (cc > 0) {
 		if ((sp->b.mode & FAXMODE_NOEOL) == 0)
 			Fax3PutEOL(tif);
 		if (is2DEncoding(sp)) {
@@ -1456,14 +1444,10 @@ Fax4Decode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 		return (-1);
 	}
 	CACHE_STATE(tif, sp);
-<<<<<<< HEAD
-	while (occ > 0) {
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while ((long)occ > 0) {
->>>>>>> sync with upstream
+	while (occ > 0) {
 		a0 = 0;
 		RunLength = 0;
 		pa = thisrun = sp->curruns;
@@ -1510,19 +1494,15 @@ Fax4Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 	static const char module[] = "Fax4Encode";
 	Fax3CodecState *sp = EncoderState(tif);
 	(void) s;
-<<<<<<< HEAD
 	if (cc % sp->b.rowbytes)
 	{
 		TIFFErrorExt(tif->tif_clientdata, module, "Fractional scanlines cannot be written");
 		return (0);
 	}
-	while (cc > 0) {
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while ((long)cc > 0) {
->>>>>>> sync with upstream
+	while (cc > 0) {
 		if (!Fax3Encode2DRow(tif, bp, sp->refline, sp->b.rowpixels))
 			return (0);
 		_TIFFmemcpy(sp->refline, bp, sp->b.rowbytes);
@@ -1596,14 +1576,10 @@ Fax3DecodeRLE(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 	}
 	CACHE_STATE(tif, sp);
 	thisrun = sp->curruns;
-<<<<<<< HEAD
-	while (occ > 0) {
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while ((long)occ > 0) {
->>>>>>> sync with upstream
+	while (occ > 0) {
 		a0 = 0;
 		RunLength = 0;
 		pa = thisrun;

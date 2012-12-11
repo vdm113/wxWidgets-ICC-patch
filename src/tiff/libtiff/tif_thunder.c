@@ -177,19 +177,15 @@ ThunderDecodeRow(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 	uint8* row = buf;
 	
 	(void) s;
-<<<<<<< HEAD
 	if (occ % tif->tif_scanlinesize)
 	{
 		TIFFErrorExt(tif->tif_clientdata, module, "Fractional scanlines cannot be read");
 		return (0);
 	}
-	while (occ > 0) {
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while ((long)occ > 0) {
->>>>>>> sync with upstream
+	while (occ > 0) {
 		if (!ThunderDecode(tif, row, tif->tif_dir.td_imagewidth))
 			return (0);
 		occ -= tif->tif_scanlinesize;

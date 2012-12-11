@@ -267,16 +267,11 @@ TIFFGetConfiguredCODECs()
 	TIFFCodec* codecs = NULL;
 	TIFFCodec* new_codecs;
 
-<<<<<<< HEAD
-	for (cd = registeredCODECS; cd; cd = cd->next) {
-		new_codecs = (TIFFCodec *)
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (cd = registeredCODECS; cd; cd = cd->next) {
-                new_codecs = (TIFFCodec *)
->>>>>>> sync with upstream
+	for (cd = registeredCODECS; cd; cd = cd->next) {
+		new_codecs = (TIFFCodec *)
 			_TIFFrealloc(codecs, i * sizeof(TIFFCodec));
 		if (!new_codecs) {
 			_TIFFfree (codecs);
@@ -286,18 +281,12 @@ TIFFGetConfiguredCODECs()
 		_TIFFmemcpy(codecs + i - 1, cd, sizeof(TIFFCodec));
 		i++;
 	}
-<<<<<<< HEAD
-	for (c = _TIFFBuiltinCODECS; c->name; c++) {
-		if (TIFFIsCODECConfigured(c->scheme)) {
-			new_codecs = (TIFFCodec *)
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (c = _TIFFBuiltinCODECS; c->name; c++) {
-                if (TIFFIsCODECConfigured(c->scheme)) {
-                        new_codecs = (TIFFCodec *)
->>>>>>> sync with upstream
+	for (c = _TIFFBuiltinCODECS; c->name; c++) {
+		if (TIFFIsCODECConfigured(c->scheme)) {
+			new_codecs = (TIFFCodec *)
 				_TIFFrealloc(codecs, i * sizeof(TIFFCodec));
 			if (!new_codecs) {
 				_TIFFfree (codecs);
