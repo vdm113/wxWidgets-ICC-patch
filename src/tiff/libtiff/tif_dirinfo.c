@@ -286,6 +286,9 @@ td_lfind(const void *key, const void *base, size_t *nmemb, size_t size,
     char *element, *end;
 
     end = (char *)base + *nmemb * size;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (element = (char *)base; element < end; element += size)
         if (!compar(key, element))		/* key found */
             return element;
@@ -311,19 +314,12 @@ _TIFFSetupFields(TIFF* tif, const TIFFFieldArray* fieldarray)
 	if (tif->tif_fields && tif->tif_nfields > 0) {
 		uint32 i;
 
-<<<<<<< HEAD
-		for (i = 0; i < tif->tif_nfields; i++) {
-			TIFFField *fld = tif->tif_fields[i];
-			if (fld->field_bit == FIELD_CUSTOM &&
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (i = 0; i < tif->tif_nfields; i++) 
-		{
-			TIFFFieldInfo *fld = tif->tif_fieldinfo[i];
-			if (fld->field_bit == FIELD_CUSTOM && 
->>>>>>> sync with upstream
+		for (i = 0; i < tif->tif_nfields; i++) {
+			TIFFField *fld = tif->tif_fields[i];
+			if (fld->field_bit == FIELD_CUSTOM &&
 				strncmp("Tag ", fld->field_name, 4) == 0) {
 					_TIFFfree(fld->field_name);
 					_TIFFfree(fld);
@@ -394,6 +390,9 @@ _TIFFMergeFields(TIFF* tif, const TIFFField info[], uint32 n)
 	}
 
 	/* tp = tif->tif_fields + tif->tif_nfields; */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < n; i++) {
 		const TIFFField *fip =
 			TIFFFindField(tif, info[i].field_tag, TIFF_ANY);
@@ -404,16 +403,6 @@ _TIFFMergeFields(TIFF* tif, const TIFFField info[], uint32 n)
                         tif->tif_nfields++;
                 }
 	}
-<<<<<<< HEAD
-=======
-	assert(tif->tif_fieldinfo != NULL);
-	tp = tif->tif_fieldinfo + tif->tif_nfields;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (i = 0; i < n; i++)
-		*tp++ = (TIFFFieldInfo*) (info + i);	/* XXX */
->>>>>>> sync with upstream
 
         /* Sort the field info by tag number */
 	qsort(tif->tif_fields, tif->tif_nfields,
@@ -552,7 +541,6 @@ _TIFFFindFieldByName(TIFF* tif, const char *field_name, TIFFDataType dt)
 	    && streq(tif->tif_foundfield->field_name, field_name)
 	    && (dt == TIFF_ANY || dt == tif->tif_foundfield->field_type))
 		return (tif->tif_foundfield);
-<<<<<<< HEAD
 
 	/* If we are invoked with no field information, then just return. */
 	if (!tif->tif_fields)
@@ -568,34 +556,6 @@ _TIFFFindFieldByName(TIFF* tif, const char *field_name, TIFFDataType dt)
                      sizeof(TIFFField *), tagNameCompare);
 
 	return tif->tif_foundfield = (ret ? *ret : NULL);
-=======
-	/* NB: use sorted search (e.g. binary search) */
-	if(dt != TIFF_ANY) {
-            TIFFFieldInfo key = {0, 0, 0, TIFF_NOTYPE, 0, 0, 0, 0};
-	    TIFFFieldInfo* pkey = &key;
-	    const TIFFFieldInfo **ret;
-
-            key.field_name = (char *)field_name;
-            key.field_type = dt;
-
-            ret = (const TIFFFieldInfo **) lfind(&pkey,
-						 tif->tif_fieldinfo, 
-						 &tif->tif_nfields,
-						 sizeof(TIFFFieldInfo *),
-						 tagNameCompare);
-	    return (ret) ? (*ret) : NULL;
-        } else
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		for (i = 0, n = tif->tif_nfields; i < n; i++) {
-			const TIFFFieldInfo* fip = tif->tif_fieldinfo[i];
-			if (streq(fip->field_name, field_name) &&
-			    (dt == TIFF_ANY || fip->field_type == dt))
-				return (tif->tif_foundfield = fip);
-		}
-	return ((const TIFFFieldInfo *)0);
->>>>>>> sync with upstream
 }
 
 const TIFFField*
@@ -967,6 +927,9 @@ TIFFMergeFieldInfo(TIFF* tif, const TIFFFieldInfo info[], uint32 n)
 	}
 
 	tp = tif->tif_fieldscompat[nfields].fields;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < n; i++) {
 		tp->field_tag = info[i].field_tag;
 		tp->field_readcount = info[i].field_readcount;

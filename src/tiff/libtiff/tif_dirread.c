@@ -194,7 +194,6 @@ static uint64 TIFFReadUInt64(const uint8 *value)
 	return result.l;
 }
 
-<<<<<<< HEAD
 static enum TIFFReadDirEntryErr TIFFReadDirEntryByte(TIFF* tif, TIFFDirEntry* direntry, uint8* value)
 {
 	enum TIFFReadDirEntryErr err;
@@ -281,19 +280,6 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryByte(TIFF* tif, TIFFDirEntry* di
 			}
 		default:
 			return(TIFFReadDirEntryErrType);
-=======
-	/*
-	 * XXX: Trick to prevent IFD looping. The one can create TIFF file
-	 * with looped directory pointers. We will maintain a list of already
-	 * seen directories and check every IFD offset against this list.
-	 */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (n = 0; n < tif->tif_dirnumber; n++) {
-		if (tif->tif_dirlist[n] == tif->tif_diroff)
-			return (0);
->>>>>>> sync with upstream
 	}
 }
 
@@ -885,6 +871,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryByteArray(TIFF* tif, TIFFDirEntr
 				int8* m;
 				uint32 n;
 				m=(int8*)origdata;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					err=TIFFReadDirEntryCheckRangeByteSbyte(*m);
@@ -914,6 +903,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryByteArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(uint16*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -932,6 +924,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryByteArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(int16*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -950,6 +945,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryByteArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -968,6 +966,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryByteArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(int32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -986,6 +987,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryByteArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(uint64*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1004,6 +1008,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryByteArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(int64*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1061,6 +1068,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySbyteArray(TIFF* tif, TIFFDirEnt
 				uint8* m;
 				uint32 n;
 				m=(uint8*)origdata;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					err=TIFFReadDirEntryCheckRangeSbyteByte(*m);
@@ -1093,6 +1103,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySbyteArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint16*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1111,6 +1124,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySbyteArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int16*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1129,6 +1145,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySbyteArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1147,6 +1166,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySbyteArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1165,6 +1187,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySbyteArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint64*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1183,6 +1208,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySbyteArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int64*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1243,6 +1271,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryShortArray(TIFF* tif, TIFFDirEnt
 				int16* m;
 				uint32 n;
 				m=(int16*)origdata;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1274,6 +1305,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryShortArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint8*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 					*mb++=(uint16)(*ma++);
 			}
@@ -1285,6 +1319,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryShortArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int8*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					err=TIFFReadDirEntryCheckRangeShortSbyte(*ma);
@@ -1301,6 +1338,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryShortArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1319,6 +1359,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryShortArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1337,6 +1380,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryShortArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint64*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1355,6 +1401,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryShortArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int64*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1410,6 +1459,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySshortArray(TIFF* tif, TIFFDirEn
 				uint16* m;
 				uint32 n;
 				m=(uint16*)origdata;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1446,6 +1498,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySshortArray(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(uint8*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 					*mb++=(int16)(*ma++);
 			}
@@ -1457,6 +1512,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySshortArray(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(int8*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 					*mb++=(int16)(*ma++);
 			}
@@ -1468,6 +1526,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySshortArray(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1486,6 +1547,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySshortArray(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(int32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1504,6 +1568,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySshortArray(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(uint64*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1522,6 +1589,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySshortArray(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(int64*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1582,6 +1652,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLongArray(TIFF* tif, TIFFDirEntr
 				int32* m;
 				uint32 n;
 				m=(int32*)origdata;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1613,6 +1686,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLongArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(uint8*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 					*mb++=(uint32)(*ma++);
 			}
@@ -1624,6 +1700,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLongArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(int8*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					err=TIFFReadDirEntryCheckRangeLongSbyte(*ma);
@@ -1640,6 +1719,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLongArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(uint16*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1655,6 +1737,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLongArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(int16*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1673,6 +1758,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLongArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(uint64*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1691,6 +1779,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLongArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(int64*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1746,6 +1837,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlongArray(TIFF* tif, TIFFDirEnt
 				uint32* m;
 				uint32 n;
 				m=(uint32*)origdata;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1782,6 +1876,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlongArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint8*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 					*mb++=(int32)(*ma++);
 			}
@@ -1793,6 +1890,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlongArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int8*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 					*mb++=(int32)(*ma++);
 			}
@@ -1804,6 +1904,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlongArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint16*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1819,6 +1922,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlongArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int16*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1834,6 +1940,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlongArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint64*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1852,6 +1961,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlongArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int64*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1912,6 +2024,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLong8Array(TIFF* tif, TIFFDirEnt
 				int64* m;
 				uint32 n;
 				m=(int64*)origdata;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1943,6 +2058,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLong8Array(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint8*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 					*mb++=(uint64)(*ma++);
 			}
@@ -1954,6 +2072,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLong8Array(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int8*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					err=TIFFReadDirEntryCheckRangeLong8Sbyte(*ma);
@@ -1970,6 +2091,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLong8Array(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint16*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -1985,6 +2109,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLong8Array(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int16*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2003,6 +2130,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLong8Array(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2018,6 +2148,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLong8Array(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2073,6 +2206,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlong8Array(TIFF* tif, TIFFDirEn
 				uint64* m;
 				uint32 n;
 				m=(uint64*)origdata;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2109,6 +2245,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlong8Array(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(uint8*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 					*mb++=(int64)(*ma++);
 			}
@@ -2120,6 +2259,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlong8Array(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(int8*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 					*mb++=(int64)(*ma++);
 			}
@@ -2131,6 +2273,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlong8Array(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(uint16*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2146,6 +2291,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlong8Array(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(int16*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2161,6 +2309,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlong8Array(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2176,6 +2327,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlong8Array(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(int32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2249,6 +2403,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint8*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 					*mb++=(float)(*ma++);
 			}
@@ -2260,6 +2417,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int8*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 					*mb++=(float)(*ma++);
 			}
@@ -2271,6 +2431,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint16*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2286,6 +2449,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int16*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2301,6 +2467,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2316,6 +2485,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2331,6 +2503,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint64*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2355,6 +2530,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int64*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2372,6 +2550,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2396,6 +2577,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2422,6 +2606,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				TIFFCvtIEEEDoubleToNative(tif,count,(double*)origdata);
 				ma=(double*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 					*mb++=(float)(*ma++);
 			}
@@ -2492,6 +2679,9 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(uint8*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 					*mb++=(double)(*ma++);
 			}
@@ -2503,6 +2693,9 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(int8*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 					*mb++=(double)(*ma++);
 			}
@@ -2514,6 +2707,9 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(uint16*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2529,6 +2725,9 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(int16*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2544,6 +2743,9 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2559,6 +2761,9 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(int32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2574,6 +2779,9 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(uint64*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2598,6 +2806,9 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(int64*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2615,6 +2826,9 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2639,6 +2853,9 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2665,6 +2882,9 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				TIFFCvtIEEEFloatToNative(tif,count,(float*)origdata);
 				ma=(float*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 					*mb++=(double)(*ma++);
 			}
@@ -2727,6 +2947,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryIfd8Array(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<count; n++)
 				{
 					if (tif->tif_flags&TIFF_SWAB)
@@ -2761,6 +2984,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryPersampleShort(TIFF* tif, TIFFDi
 	nb=tif->tif_dir.td_samplesperpixel;
 	*value=*na++;
 	nb--;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (nb>0)
 	{
 		if (*na++!=*value)
@@ -2790,6 +3016,9 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryPersampleDouble(TIFF* tif, TIFFD
 	nb=tif->tif_dir.td_samplesperpixel;
 	*value=*na++;
 	nb--;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (nb>0)
 	{
 		if (*na++!=*value)
@@ -3466,10 +3695,16 @@ TIFFReadDirectory(TIFF* tif)
 	{
 		TIFFDirEntry* ma;
 		uint16 mb;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (ma=dir, mb=0; mb<dircount; ma++, mb++)
 		{
 			TIFFDirEntry* na;
 			uint16 nb;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (na=ma+1, nb=mb+1; nb<dircount; na++, nb++)
 			{
 				if (ma->tdir_tag==na->tdir_tag)
@@ -3506,7 +3741,6 @@ TIFFReadDirectory(TIFF* tif)
 	 * tag value then we may end up ignoring the Compression tag
 	 * value because it has an incorrect count value (if the
 	 * true value of SamplesPerPixel is not 1).
-<<<<<<< HEAD
 	 */
 	dp=TIFFReadDirectoryFindEntry(tif,dir,dircount,TIFFTAG_SAMPLESPERPIXEL);
 	if (dp)
@@ -3533,24 +3767,6 @@ TIFFReadDirectory(TIFF* tif)
 		{
 			TIFFReadDirEntryOutputErr(tif,err,module,"Compression",0);
 			goto bad;
-=======
-	 *
-	 * It sure would have been nice if Aldus had really thought
-	 * this stuff through carefully.
-	 */ 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (dp = dir, n = dircount; n > 0; n--, dp++) {
-		if (tif->tif_flags & TIFF_SWAB) {
-			TIFFSwabArrayOfShort(&dp->tdir_tag, 2);
-			TIFFSwabArrayOfLong(&dp->tdir_count, 2);
-		}
-		if (dp->tdir_tag == TIFFTAG_SAMPLESPERPIXEL) {
-			if (!TIFFFetchNormalTag(tif, dp))
-				goto bad;
-			dp->tdir_tag = IGNORE;
->>>>>>> sync with upstream
 		}
 		if (!TIFFSetField(tif,TIFFTAG_COMPRESSION,value))
 			goto bad;
@@ -3564,7 +3780,9 @@ TIFFReadDirectory(TIFF* tif)
 	/*
 	 * First real pass over the directory.
 	 */
-<<<<<<< HEAD
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (di=0, dp=dir; di<dircount; di++, dp++)
 	{
 		if (dp->tdir_tag!=IGNORE)
@@ -3592,88 +3810,6 @@ TIFFReadDirectory(TIFF* tif)
 					TIFFReadDirectoryFindFieldInfo(tif,dp->tdir_tag,&fii);
 					assert(fii != FAILED_FII);
 				}
-=======
-	fix = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (dp = dir, n = dircount; n > 0; n--, dp++) {
-
-		if (fix >= tif->tif_nfields || dp->tdir_tag == IGNORE)
-			continue;
-               
-		/*
-		 * Silicon Beach (at least) writes unordered
-		 * directory tags (violating the spec).  Handle
-		 * it here, but be obnoxious (maybe they'll fix it?).
-		 */
-		if (dp->tdir_tag < tif->tif_fieldinfo[fix]->field_tag) {
-			if (!diroutoforderwarning) {
-				TIFFWarningExt(tif->tif_clientdata, module,
-	"%s: invalid TIFF directory; tags are not sorted in ascending order",
-					       tif->tif_name);
-				diroutoforderwarning = 1;
-			}
-			fix = 0;			/* O(n^2) */
-		}
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		while (fix < tif->tif_nfields &&
-		       tif->tif_fieldinfo[fix]->field_tag < dp->tdir_tag)
-			fix++;
-		if (fix >= tif->tif_nfields ||
-		    tif->tif_fieldinfo[fix]->field_tag != dp->tdir_tag) {
-
-					TIFFWarningExt(tif->tif_clientdata,
-						       module,
-                        "%s: unknown field with tag %d (0x%x) encountered",
-						       tif->tif_name,
-						       dp->tdir_tag,
-						       dp->tdir_tag,
-						       dp->tdir_type);
-
-                    TIFFMergeFieldInfo(tif,
-                                       _TIFFCreateAnonFieldInfo(tif,
-						dp->tdir_tag,
-						(TIFFDataType) dp->tdir_type),
-				       1 );
-                    fix = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                    while (fix < tif->tif_nfields &&
-                           tif->tif_fieldinfo[fix]->field_tag < dp->tdir_tag)
-			fix++;
-		}
-		/*
-		 * Null out old tags that we ignore.
-		 */
-		if (tif->tif_fieldinfo[fix]->field_bit == FIELD_IGNORE) {
-	ignore:
-			dp->tdir_tag = IGNORE;
-			continue;
-		}
-		/*
-		 * Check data type.
-		 */
-		fip = tif->tif_fieldinfo[fix];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		while (dp->tdir_type != (unsigned short) fip->field_type
-                       && fix < tif->tif_nfields) {
-			if (fip->field_type == TIFF_ANY)	/* wildcard */
-				break;
-                        fip = tif->tif_fieldinfo[++fix];
-			if (fix >= tif->tif_nfields ||
-			    fip->field_tag != dp->tdir_tag) {
-				TIFFWarningExt(tif->tif_clientdata, module,
-			"%s: wrong data type %d for \"%s\"; tag ignored",
-					    tif->tif_name, dp->tdir_type,
-					    tif->tif_fieldinfo[fix-1]->field_name);
-				goto ignore;
->>>>>>> sync with upstream
 			}
 		}
 		if (dp->tdir_tag!=IGNORE)
@@ -3787,7 +3923,9 @@ TIFFReadDirectory(TIFF* tif)
 	/*
 	 * Second pass: extract other information.
 	 */
-<<<<<<< HEAD
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (di=0, dp=dir; di<dircount; di++, dp++)
 	{
 		switch (dp->tdir_tag)
@@ -3859,39 +3997,6 @@ TIFFReadDirectory(TIFF* tif)
                                              dp, sizeof(TIFFDirEntry) );
 #else                          
 				if (!TIFFFetchStripThing(tif,dp,tif->tif_dir.td_nstrips,&tif->tif_dir.td_stripoffset))  
-=======
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (dp = dir, n = dircount; n > 0; n--, dp++) {
-		if (dp->tdir_tag == IGNORE)
-			continue;
-		switch (dp->tdir_tag) {
-		case TIFFTAG_MINSAMPLEVALUE:
-		case TIFFTAG_MAXSAMPLEVALUE:
-		case TIFFTAG_BITSPERSAMPLE:
-		case TIFFTAG_DATATYPE:
-		case TIFFTAG_SAMPLEFORMAT:
-			/*
-			 * The 5.0 spec says the Compression tag has
-			 * one value, while earlier specs say it has
-			 * one value per sample.  Because of this, we
-			 * accept the tag if one value is supplied.
-			 *
-                         * The MinSampleValue, MaxSampleValue, BitsPerSample
-                         * DataType and SampleFormat tags are supposed to be
-                         * written as one value/sample, but some vendors
-                         * incorrectly write one value only -- so we accept
-                         * that as well (yech). Other vendors write correct
-			 * value for NumberOfSamples, but incorrect one for
-			 * BitsPerSample and friends, and we will read this
-			 * too.
-			 */
-			if (dp->tdir_count == 1) {
-				v = TIFFExtractData(tif,
-				    dp->tdir_type, dp->tdir_offset);
-				if (!TIFFSetField(tif, dp->tdir_tag, (uint16)v))
->>>>>>> sync with upstream
 					goto bad;
 #endif                                
 				break;
@@ -4152,29 +4257,18 @@ TIFFReadDirectory(TIFF* tif)
 	 * bytecounts array. See also comments for TIFFAppendToStrip()
 	 * function in tif_write.c.
 	 */
-<<<<<<< HEAD
 #if !defined(DEFER_STRILE_LOAD)        
 	if (tif->tif_dir.td_nstrips > 1) {
 		uint32 strip;
 
 		tif->tif_dir.td_stripbytecountsorted = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (strip = 1; strip < tif->tif_dir.td_nstrips; strip++) {
 			if (tif->tif_dir.td_stripoffset[strip - 1] >
 			    tif->tif_dir.td_stripoffset[strip]) {
 				tif->tif_dir.td_stripbytecountsorted = 0;
-=======
-	if (td->td_nstrips > 1) {
-		tstrip_t strip;
-
-		td->td_stripbytecountsorted = 1;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		for (strip = 1; strip < td->td_nstrips; strip++) {
-			if (td->td_stripoffset[strip - 1] >
-			    td->td_stripoffset[strip]) {
-				td->td_stripbytecountsorted = 0;
->>>>>>> sync with upstream
 				break;
 			}
 		}
@@ -4256,6 +4350,9 @@ TIFFReadDirectoryCheckOrder(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 	uint16 n;
 	TIFFDirEntry* o;
 	m=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (n=0, o=dir; n<dircount; n++, o++)
 	{
 		if (o->tdir_tag<m)
@@ -4274,6 +4371,9 @@ TIFFReadDirectoryFindEntry(TIFF* tif, TIFFDirEntry* dir, uint16 dircount, uint16
 	TIFFDirEntry* m;
 	uint16 n;
 	(void) tif;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (m=dir, n=0; n<dircount; m++, n++)
 	{
 		if (m->tdir_tag==tagid)
@@ -4288,6 +4388,9 @@ TIFFReadDirectoryFindFieldInfo(TIFF* tif, uint16 tagid, uint32* fii)
 	int32 ma,mb,mc;
 	ma=-1;
 	mc=(int32)tif->tif_nfields;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (1)
 	{
 		if (ma+1==mc)
@@ -4303,6 +4406,9 @@ TIFFReadDirectoryFindFieldInfo(TIFF* tif, uint16 tagid, uint32* fii)
 		else
 			mc=mb;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (1)
 	{
 		if (mb==0)
@@ -4338,83 +4444,23 @@ TIFFReadCustomDirectory(TIFF* tif, toff_t diroff,
 		return 0;
 	}
 	TIFFFreeDirectory(tif);
-<<<<<<< HEAD
 	_TIFFmemset(&tif->tif_dir, 0, sizeof(TIFFDirectory));
 	TIFFReadDirectoryCheckOrder(tif,dir,dircount);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (di=0, dp=dir; di<dircount; di++, dp++)
 	{
 		TIFFReadDirectoryFindFieldInfo(tif,dp->tdir_tag,&fii);
 		if (fii == FAILED_FII)
 		{
-=======
-
-	fix = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (dp = dir, i = dircount; i > 0; i--, dp++) {
-		if (tif->tif_flags & TIFF_SWAB) {
-			TIFFSwabArrayOfShort(&dp->tdir_tag, 2);
-			TIFFSwabArrayOfLong(&dp->tdir_count, 2);
-		}
-
-		if (fix >= tif->tif_nfields || dp->tdir_tag == IGNORE)
-			continue;
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		while (fix < tif->tif_nfields &&
-		       tif->tif_fieldinfo[fix]->field_tag < dp->tdir_tag)
-			fix++;
-
-		if (fix >= tif->tif_nfields ||
-		    tif->tif_fieldinfo[fix]->field_tag != dp->tdir_tag) {
-
->>>>>>> sync with upstream
 			TIFFWarningExt(tif->tif_clientdata, module,
 			    "Unknown field with tag %d (0x%x) encountered",
 			    dp->tdir_tag, dp->tdir_tag);
 			if (!_TIFFMergeFields(tif, _TIFFCreateAnonField(tif,
 						dp->tdir_tag,
-<<<<<<< HEAD
 						(TIFFDataType) dp->tdir_type),
 					     1)) {
-=======
-						(TIFFDataType)dp->tdir_type),
-					   1);
-
-			fix = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			while (fix < tif->tif_nfields &&
-			       tif->tif_fieldinfo[fix]->field_tag < dp->tdir_tag)
-				fix++;
-		}
-		/*
-		 * Null out old tags that we ignore.
-		 */
-		if (tif->tif_fieldinfo[fix]->field_bit == FIELD_IGNORE) {
-	ignore:
-			dp->tdir_tag = IGNORE;
-			continue;
-		}
-		/*
-		 * Check data type.
-		 */
-		fip = tif->tif_fieldinfo[fix];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		while (dp->tdir_type != (unsigned short) fip->field_type
-                       && fix < tif->tif_nfields) {
-			if (fip->field_type == TIFF_ANY)	/* wildcard */
-				break;
-                        fip = tif->tif_fieldinfo[++fix];
-			if (fix >= tif->tif_nfields ||
-			    fip->field_tag != dp->tdir_tag) {
->>>>>>> sync with upstream
 				TIFFWarningExt(tif->tif_clientdata, module,
 				    "Registering anonymous field with tag %d (0x%x) failed",
 				    dp->tdir_tag, dp->tdir_tag);
@@ -4432,6 +4478,9 @@ TIFFReadCustomDirectory(TIFF* tif, toff_t diroff,
 			else
 			{
 				/* check data type */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while ((fip->field_type!=TIFF_ANY)&&(fip->field_type!=dp->tdir_type))
 				{
 					fii++;
@@ -4555,16 +4604,11 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 		space = filesize - space;
 		if (td->td_planarconfig == PLANARCONFIG_SEPARATE)
 			space /= td->td_samplesperpixel;
-<<<<<<< HEAD
-		for (strip = 0; strip < td->td_nstrips; strip++)
-			td->td_stripbytecount[strip] = space;
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (i = 0; i < td->td_nstrips; i++)
-			td->td_stripbytecount[i] = space;
->>>>>>> sync with upstream
+		for (strip = 0; strip < td->td_nstrips; strip++)
+			td->td_stripbytecount[strip] = space;
 		/*
 		 * This gross hack handles the case were the offset to
 		 * the last strip is past the place where we think the strip
@@ -4578,21 +4622,19 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 	} else if (isTiled(tif)) {
 		uint64 bytespertile = TIFFTileSize64(tif);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (strip = 0; strip < td->td_nstrips; strip++)
 		    td->td_stripbytecount[strip] = bytespertile;
 	} else {
 		uint64 rowbytes = TIFFScanlineSize64(tif);
 		uint32 rowsperstrip = td->td_imagelength/td->td_stripsperimage;
-<<<<<<< HEAD
-		for (strip = 0; strip < td->td_nstrips; strip++)
-			td->td_stripbytecount[strip] = rowbytes * rowsperstrip;
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (i = 0; i < td->td_nstrips; i++)
-			td->td_stripbytecount[i] = rowbytes*rowsperstrip;
->>>>>>> sync with upstream
+		for (strip = 0; strip < td->td_nstrips; strip++)
+			td->td_stripbytecount[strip] = rowbytes * rowsperstrip;
 	}
 	TIFFSetFieldBit(tif, FIELD_STRIPBYTECOUNTS);
 	if (!TIFFFieldSet(tif, FIELD_ROWSPERSTRIP))
@@ -4624,6 +4666,9 @@ TIFFCheckDirOffset(TIFF* tif, uint64 diroff)
 	if (diroff == 0)			/* no more directories */
 		return 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (n = 0; n < tif->tif_dirnumber && tif->tif_dirlist; n++) {
 		if (tif->tif_dirlist[n] == diroff)
 			return 0;
@@ -4785,7 +4830,6 @@ TIFFFetchDirectory(TIFF* tif, uint64 diroff, TIFFDirEntry** pdir,
 			return(0);
 		}
 
-<<<<<<< HEAD
 		/*
 		 * Check for integer overflow when validating the dir_off,
 		 * otherwise a very high offset may cause an OOB read and
@@ -4814,35 +4858,9 @@ TIFFFetchDirectory(TIFF* tif, uint64 diroff, TIFFDirEntry** pdir,
 				TIFFErrorExt(tif->tif_clientdata, module,
 				    "Sanity check on directory count failed, this is probably not a valid IFD offset");
 				return 0;
-=======
-/*
- * Fetch an array of RATIONAL or SRATIONAL values.
- */
-static int
-TIFFFetchRationalArray(TIFF* tif, TIFFDirEntry* dir, float* v)
-{
-	int ok = 0;
-	uint32* l;
-
-	l = (uint32*)_TIFFCheckMalloc(tif,
-	    dir->tdir_count, TIFFDataWidth((TIFFDataType) dir->tdir_type),
-	    "to fetch array of rationals");
-	if (l) {
-		if (TIFFFetchData(tif, dir, (char *)l)) {
-			uint32 i;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (i = 0; i < dir->tdir_count; i++) {
-				ok = cvtRational(tif, dir,
-				    l[2*i+0], l[2*i+1], &v[i]);
-				if (!ok)
-					break;
->>>>>>> sync with upstream
 			}
 			dirsize = 12;
 		}
-<<<<<<< HEAD
 		else
 		{
 			tmsize_t m;
@@ -4927,6 +4945,9 @@ TIFFFetchRationalArray(TIFF* tif, TIFFDirEntry* dir, float* v)
 	}
 	ma=(uint8*)origdir;
 	mb=dir;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (n=0; n<dircount16; n++)
 	{
 		if (tif->tif_flags&TIFF_SWAB)
@@ -4954,142 +4975,6 @@ TIFFFetchRationalArray(TIFF* tif, TIFFDirEntry* dir, float* v)
 			ma+=sizeof(uint64);
 			mb->tdir_offset.toff_long8=TIFFReadUInt64(ma);
 			ma+=sizeof(uint64);
-=======
-		_TIFFfree((char *)l);
-	}
-	return (ok);
-}
-
-/*
- * Fetch an array of FLOAT values.
- */
-static int
-TIFFFetchFloatArray(TIFF* tif, TIFFDirEntry* dir, float* v)
-{
-
-	if (dir->tdir_count == 1) {
-		v[0] = *(float*) &dir->tdir_offset;
-		TIFFCvtIEEEFloatToNative(tif, dir->tdir_count, v);
-		return (1);
-	} else	if (TIFFFetchData(tif, dir, (char*) v)) {
-		TIFFCvtIEEEFloatToNative(tif, dir->tdir_count, v);
-		return (1);
-	} else
-		return (0);
-}
-
-/*
- * Fetch an array of DOUBLE values.
- */
-static int
-TIFFFetchDoubleArray(TIFF* tif, TIFFDirEntry* dir, double* v)
-{
-	if (TIFFFetchData(tif, dir, (char*) v)) {
-		TIFFCvtIEEEDoubleToNative(tif, dir->tdir_count, v);
-		return (1);
-	} else
-		return (0);
-}
-
-/*
- * Fetch an array of ANY values.  The actual values are
- * returned as doubles which should be able hold all the
- * types.  Yes, there really should be an tany_t to avoid
- * this potential non-portability ...  Note in particular
- * that we assume that the double return value vector is
- * large enough to read in any fundamental type.  We use
- * that vector as a buffer to read in the base type vector
- * and then convert it in place to double (from end
- * to front of course).
- */
-static int
-TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
-{
-	int i;
-
-	switch (dir->tdir_type) {
-	case TIFF_BYTE:
-	case TIFF_SBYTE:
-		if (!TIFFFetchByteArray(tif, dir, (uint8*) v))
-			return (0);
-		if (dir->tdir_type == TIFF_BYTE) {
-			uint8* vp = (uint8*) v;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (i = dir->tdir_count-1; i >= 0; i--)
-				v[i] = vp[i];
-		} else {
-			int8* vp = (int8*) v;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (i = dir->tdir_count-1; i >= 0; i--)
-				v[i] = vp[i];
-		}
-		break;
-	case TIFF_SHORT:
-	case TIFF_SSHORT:
-		if (!TIFFFetchShortArray(tif, dir, (uint16*) v))
-			return (0);
-		if (dir->tdir_type == TIFF_SHORT) {
-			uint16* vp = (uint16*) v;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (i = dir->tdir_count-1; i >= 0; i--)
-				v[i] = vp[i];
-		} else {
-			int16* vp = (int16*) v;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (i = dir->tdir_count-1; i >= 0; i--)
-				v[i] = vp[i];
-		}
-		break;
-	case TIFF_LONG:
-	case TIFF_SLONG:
-		if (!TIFFFetchLongArray(tif, dir, (uint32*) v))
-			return (0);
-		if (dir->tdir_type == TIFF_LONG) {
-			uint32* vp = (uint32*) v;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (i = dir->tdir_count-1; i >= 0; i--)
-				v[i] = vp[i];
-		} else {
-			int32* vp = (int32*) v;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (i = dir->tdir_count-1; i >= 0; i--)
-				v[i] = vp[i];
-		}
-		break;
-	case TIFF_RATIONAL:
-	case TIFF_SRATIONAL:
-		if (!TIFFFetchRationalArray(tif, dir, (float*) v))
-			return (0);
-		{ float* vp = (float*) v;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		  for (i = dir->tdir_count-1; i >= 0; i--)
-			v[i] = vp[i];
-		}
-		break;
-	case TIFF_FLOAT:
-		if (!TIFFFetchFloatArray(tif, dir, (float*) v))
-			return (0);
-		{ float* vp = (float*) v;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		  for (i = dir->tdir_count-1; i >= 0; i--)
-			v[i] = vp[i];
->>>>>>> sync with upstream
 		}
 		mb++;
 	}
@@ -5136,6 +5021,9 @@ TIFFFetchNormalTag(TIFF* tif, TIFFDirEntry* dp, int recover)
 					int n;
 					ma=data;
 					mb=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					while (mb<(uint32)dp->tdir_count)
 					{
 						if (*ma==0)
@@ -5762,148 +5650,12 @@ TIFFFetchNormalTag(TIFF* tif, TIFFDirEntry* dp, int recover)
 			assert(0);    /* we should never get here */
 			break;
 	}
-<<<<<<< HEAD
 	if (err!=TIFFReadDirEntryErrOk)
 	{
 		TIFFReadDirEntryOutputErr(tif,err,module,fip ? fip->field_name : "unknown tagname",recover);
 		return(0);
 	}
 	return(1);
-=======
-	return (ok);
-}
-
-#define	NITEMS(x)	(sizeof (x) / sizeof (x[0]))
-/*
- * Fetch samples/pixel short values for 
- * the specified tag and verify that
- * all values are the same.
- */
-static int
-TIFFFetchPerSampleShorts(TIFF* tif, TIFFDirEntry* dir, uint16* pl)
-{
-    uint16 samples = tif->tif_dir.td_samplesperpixel;
-    int status = 0;
-
-    if (CheckDirCount(tif, dir, (uint32) samples)) {
-        uint16 buf[10];
-        uint16* v = buf;
-
-        if (dir->tdir_count > NITEMS(buf))
-            v = (uint16*) _TIFFCheckMalloc(tif, dir->tdir_count, sizeof(uint16),
-                                      "to fetch per-sample values");
-        if (v && TIFFFetchShortArray(tif, dir, v)) {
-            uint16 i;
-            int check_count = dir->tdir_count;
-            if( samples < check_count )
-                check_count = samples;
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (i = 1; i < check_count; i++)
-                if (v[i] != v[0]) {
-					TIFFErrorExt(tif->tif_clientdata, tif->tif_name,
-                              "Cannot handle different per-sample values for field \"%s\"",
-                              _TIFFFieldWithTag(tif, dir->tdir_tag)->field_name);
-                    goto bad;
-                }
-            *pl = v[0];
-            status = 1;
-        }
-      bad:
-        if (v && v != buf)
-            _TIFFfree(v);
-    }
-    return (status);
-}
-
-/*
- * Fetch samples/pixel long values for 
- * the specified tag and verify that
- * all values are the same.
- */
-static int
-TIFFFetchPerSampleLongs(TIFF* tif, TIFFDirEntry* dir, uint32* pl)
-{
-    uint16 samples = tif->tif_dir.td_samplesperpixel;
-    int status = 0;
-
-    if (CheckDirCount(tif, dir, (uint32) samples)) {
-        uint32 buf[10];
-        uint32* v = buf;
-
-        if (dir->tdir_count > NITEMS(buf))
-            v = (uint32*) _TIFFCheckMalloc(tif, dir->tdir_count, sizeof(uint32),
-                                      "to fetch per-sample values");
-        if (v && TIFFFetchLongArray(tif, dir, v)) {
-            uint16 i;
-            int check_count = dir->tdir_count;
-
-            if( samples < check_count )
-                check_count = samples;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (i = 1; i < check_count; i++)
-                if (v[i] != v[0]) {
-					TIFFErrorExt(tif->tif_clientdata, tif->tif_name,
-                              "Cannot handle different per-sample values for field \"%s\"",
-                              _TIFFFieldWithTag(tif, dir->tdir_tag)->field_name);
-                    goto bad;
-                }
-            *pl = v[0];
-            status = 1;
-        }
-      bad:
-        if (v && v != buf)
-            _TIFFfree(v);
-    }
-    return (status);
-}
-
-/*
- * Fetch samples/pixel ANY values for the specified tag and verify that all
- * values are the same.
- */
-static int
-TIFFFetchPerSampleAnys(TIFF* tif, TIFFDirEntry* dir, double* pl)
-{
-    uint16 samples = tif->tif_dir.td_samplesperpixel;
-    int status = 0;
-
-    if (CheckDirCount(tif, dir, (uint32) samples)) {
-        double buf[10];
-        double* v = buf;
-
-        if (dir->tdir_count > NITEMS(buf))
-            v = (double*) _TIFFCheckMalloc(tif, dir->tdir_count, sizeof (double),
-                                      "to fetch per-sample values");
-        if (v && TIFFFetchAnyArray(tif, dir, v)) {
-            uint16 i;
-            int check_count = dir->tdir_count;
-            if( samples < check_count )
-                check_count = samples;
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (i = 1; i < check_count; i++)
-                if (v[i] != v[0]) {
-                    TIFFErrorExt(tif->tif_clientdata, tif->tif_name,
-                              "Cannot handle different per-sample values for field \"%s\"",
-                              _TIFFFieldWithTag(tif, dir->tdir_tag)->field_name);
-                    goto bad;
-                }
-            *pl = v[0];
-            status = 1;
-        }
-      bad:
-        if (v && v != buf)
-            _TIFFfree(v);
-    }
-    return (status);
->>>>>>> sync with upstream
 }
 
 /*
@@ -5913,7 +5665,6 @@ TIFFFetchPerSampleAnys(TIFF* tif, TIFFDirEntry* dir, double* pl)
 static int
 TIFFFetchStripThing(TIFF* tif, TIFFDirEntry* dir, uint32 nstrips, uint64** lpp)
 {
-<<<<<<< HEAD
 	static const char module[] = "TIFFFetchStripThing";
 	enum TIFFReadDirEntryErr err;
 	uint64* data;
@@ -5944,70 +5695,6 @@ TIFFFetchStripThing(TIFF* tif, TIFFDirEntry* dir, uint32 nstrips, uint64** lpp)
 	}
 	*lpp=data;
 	return(1);
-=======
-	register uint32* lp;
-	int status;
-
-        CheckDirCount(tif, dir, (uint32) nstrips);
-
-	/*
-	 * Allocate space for strip information.
-	 */
-	if (*lpp == NULL &&
-	    (*lpp = (uint32 *)_TIFFCheckMalloc(tif,
-	      nstrips, sizeof (uint32), "for strip array")) == NULL)
-		return (0);
-	lp = *lpp;
-        _TIFFmemset( lp, 0, sizeof(uint32) * nstrips );
-
-	if (dir->tdir_type == (int)TIFF_SHORT) {
-		/*
-		 * Handle uint16->uint32 expansion.
-		 */
-		uint16* dp = (uint16*) _TIFFCheckMalloc(tif,
-		    dir->tdir_count, sizeof (uint16), "to fetch strip tag");
-		if (dp == NULL)
-			return (0);
-		if( (status = TIFFFetchShortArray(tif, dir, dp)) != 0 ) {
-                    int i;
-                    
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                    for( i = 0; i < nstrips && i < (int) dir->tdir_count; i++ )
-                    {
-                        lp[i] = dp[i];
-                    }
-		}
-		_TIFFfree((char*) dp);
-
-        } else if( nstrips != (int) dir->tdir_count ) {
-            /* Special case to correct length */
-
-            uint32* dp = (uint32*) _TIFFCheckMalloc(tif,
-		    dir->tdir_count, sizeof (uint32), "to fetch strip tag");
-            if (dp == NULL)
-                return (0);
-
-            status = TIFFFetchLongArray(tif, dir, dp);
-            if( status != 0 ) {
-                int i;
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                for( i = 0; i < nstrips && i < (int) dir->tdir_count; i++ )
-                {
-                    lp[i] = dp[i];
-                }
-            }
-
-            _TIFFfree( (char *) dp );
-	} else
-            status = TIFFFetchLongArray(tif, dir, lp);
-        
-	return (status);
->>>>>>> sync with upstream
 }
 
 /*
@@ -6016,7 +5703,6 @@ TIFFFetchStripThing(TIFF* tif, TIFFDirEntry* dir, uint32 nstrips, uint64** lpp)
 static int
 TIFFFetchSubjectDistance(TIFF* tif, TIFFDirEntry* dir)
 {
-<<<<<<< HEAD
 	static const char module[] = "TIFFFetchSubjectDistance";
 	enum TIFFReadDirEntryErr err;
 	UInt64Aligned_t m;
@@ -6042,31 +5728,6 @@ TIFFFetchSubjectDistance(TIFF* tif, TIFFDirEntry* dir)
 		{
 			m.l=dir->tdir_offset.toff_long8;
 			err=TIFFReadDirEntryErrOk;
-=======
-	static const char mesg[] = "for \"ReferenceBlackWhite\" array";
-	char* cp;
-	int ok;
-
-	if (dir->tdir_type == TIFF_RATIONAL)
-		return (TIFFFetchNormalTag(tif, dir));
-	/*
-	 * Handle LONG's for backward compatibility.
-	 */
-	cp = (char *)_TIFFCheckMalloc(tif, dir->tdir_count,
-				      sizeof (uint32), mesg);
-	if( (ok = (cp && TIFFFetchLongArray(tif, dir, (uint32*) cp))) != 0) {
-		float* fp = (float*)
-		    _TIFFCheckMalloc(tif, dir->tdir_count, sizeof (float), mesg);
-		if( (ok = (fp != NULL)) != 0 ) {
-			uint32 i;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (i = 0; i < dir->tdir_count; i++)
-				fp[i] = (float)((uint32*) cp)[i];
-			ok = TIFFSetField(tif, dir->tdir_tag, fp);
-			_TIFFfree((char*) fp);
->>>>>>> sync with upstream
 		}
 	}
 	if (err==TIFFReadDirEntryErrOk)
@@ -6170,16 +5831,11 @@ ChopUpSingleUncompressedStrip(TIFF* tif)
 	 * Fill the strip information arrays with new bytecounts and offsets
 	 * that reflect the broken-up format.
 	 */
-<<<<<<< HEAD
-	for (strip = 0; strip < nstrips32; strip++) {
-		if (stripbytes > bytecount)
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (strip = 0; strip < nstrips; strip++) {
-		if (stripbytes > (tsize_t) bytecount)
->>>>>>> sync with upstream
+	for (strip = 0; strip < nstrips32; strip++) {
+		if (stripbytes > bytecount)
 			stripbytes = bytecount;
 		newcounts[strip] = stripbytes;
 		newoffsets[strip] = offset;
@@ -6230,6 +5886,9 @@ int _TIFFFillStriles( TIFF *tif )
 		uint32 strip;
 
 		tif->tif_dir.td_stripbytecountsorted = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (strip = 1; strip < tif->tif_dir.td_nstrips; strip++) {
 			if (tif->tif_dir.td_stripoffset[strip - 1] >
 			    tif->tif_dir.td_stripoffset[strip]) {

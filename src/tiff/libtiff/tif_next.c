@@ -60,32 +60,24 @@ NeXTDecode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 	 * white (we assume a PhotometricInterpretation
 	 * of ``min-is-black'').
 	 */
-<<<<<<< HEAD
-	for (op = (unsigned char*) buf, cc = occ; cc-- > 0;)
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (op = buf, cc = occ; cc-- > 0;)
->>>>>>> sync with upstream
+	for (op = (unsigned char*) buf, cc = occ; cc-- > 0;)
 		*op++ = 0xff;
 
 	bp = (unsigned char *)tif->tif_rawcp;
 	cc = tif->tif_rawcc;
 	scanline = tif->tif_scanlinesize;
-<<<<<<< HEAD
 	if (occ % scanline)
 	{
 		TIFFErrorExt(tif->tif_clientdata, module, "Fractional scanlines cannot be read");
 		return (0);
 	}
-	for (row = buf; occ > 0; occ -= scanline, row += scanline) {
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (row = buf; (long)occ > 0; occ -= scanline, row += scanline) {
->>>>>>> sync with upstream
+	for (row = buf; occ > 0; occ -= scanline, row += scanline) {
 		n = *bp++, cc--;
 		switch (n) {
 		case LITERALROW:
@@ -130,19 +122,15 @@ NeXTDecode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 			for (;;) {
 				grey = (uint32)((n>>6) & 0x3);
 				n &= 0x3f;
-<<<<<<< HEAD
 				/*
 				 * Ensure the run does not exceed the scanline
 				 * bounds, potentially resulting in a security
 				 * issue.
 				 */
-				while (n-- > 0 && npixels < imagewidth)
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-				while (n-- > 0)
->>>>>>> sync with upstream
+				while (n-- > 0 && npixels < imagewidth)
 					SETPIXEL(op, grey);
 				if (npixels >= imagewidth)
 					break;

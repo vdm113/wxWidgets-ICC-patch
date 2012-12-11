@@ -173,14 +173,10 @@ main(int argc, char* argv[])
 
 	*mp++ = 'w';
 	*mp = '\0';
-<<<<<<< HEAD
-	while ((c = getopt(argc, argv, ",:b:c:f:l:o:z:p:r:w:aistBLMC8x")) != -1)
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while ((c = getopt(argc, argv, ",:b:c:f:l:o:z:p:r:w:aistBLMC")) != -1)
->>>>>>> sync with upstream
+	while ((c = getopt(argc, argv, ",:b:c:f:l:o:z:p:r:w:aistBLMC8x")) != -1)
 		switch (c) {
 		case ',':
 			if (optarg[0] != '=') usage();
@@ -281,14 +277,10 @@ main(int argc, char* argv[])
 	if (out == NULL)
 		return (-2);
 	if ((argc - optind) == 2)
-<<<<<<< HEAD
 		pageNum = -1;
-=======
-	  pageNum = -1;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 	for (; optind < argc-1 ; optind++) {
 		char *imageCursor = argv[optind];
 		in = openSrcImage (&imageCursor);
@@ -303,7 +295,9 @@ main(int argc, char* argv[])
 			(void) TIFFClose(out);
 			return (1);
 		}
-<<<<<<< HEAD
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (;;) {
 			config = defconfig;
 			compression = defcompression;
@@ -323,28 +317,6 @@ main(int argc, char* argv[])
 				if (!nextSrcImage(in, &imageCursor)) break;
 			}else
 				if (!TIFFReadDirectory(in)) break;
-=======
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                for (;;) {
-                   config = defconfig;
-                   compression = defcompression;
-                   predictor = defpredictor;
-                   fillorder = deffillorder;
-                   rowsperstrip = defrowsperstrip;
-                   tilewidth = deftilewidth;
-                   tilelength = deftilelength;
-                   g3opts = defg3opts;
-                   if (!tiffcp(in, out) || !TIFFWriteDirectory(out)) {
-                        TIFFClose(out);
-                        return (1);
-                   }
-                   if (imageCursor) { /* seek next image directory */
-                        if (!nextSrcImage(in, &imageCursor)) break;
-                   }else
-                        if (!TIFFReadDirectory(in)) break;
->>>>>>> sync with upstream
 		}
 		(void) TIFFClose(in);
 	}
@@ -357,6 +329,9 @@ static void
 processZIPOptions(char* cp)
 {
 	if ( (cp = strchr(cp, ':')) ) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
 			cp++;
 			if (isdigit((int)*cp))
@@ -402,8 +377,10 @@ processCompressOptions(char* opt)
 	} else if (strneq(opt, "jpeg", 4)) {
 		char* cp = strchr(opt, ':');
 
-<<<<<<< HEAD
 		defcompression = COMPRESSION_JPEG;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while( cp )
 		{
 			if (isdigit((int)cp[1]))
@@ -415,23 +392,6 @@ processCompressOptions(char* opt)
 
 			cp = strchr(cp+1,':');
 		}
-=======
-                defcompression = COMPRESSION_JPEG;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                while( cp )
-                {
-                    if (isdigit((int)cp[1]))
-			quality = atoi(cp+1);
-                    else if (cp[1] == 'r' )
-			jpegcolormode = JPEGCOLORMODE_RAW;
-                    else
-                        usage();
-
-                    cp = strchr(cp+1,':');
-                }
->>>>>>> sync with upstream
 	} else if (strneq(opt, "g3", 2)) {
 		processG3Options(opt);
 		defcompression = COMPRESSION_CCITTFAX3;
@@ -522,14 +482,10 @@ usage(void)
 	int i;
 
 	setbuf(stderr, buf);
-<<<<<<< HEAD
 	fprintf(stderr, "%s\n\n", TIFFGetVersion());
-=======
-        fprintf(stderr, "%s\n\n", TIFFGetVersion());
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);
@@ -823,7 +779,6 @@ tiffcp(TIFF* in, TIFF* out)
 		if (TIFFGetField(in, TIFFTAG_ICCPROFILE, &len32, &data))
 			TIFFSetField(out, TIFFTAG_ICCPROFILE, len32, data);
 	}
-<<<<<<< HEAD
 	{
 		uint16 ninks;
 		const char* inknames;
@@ -832,6 +787,9 @@ tiffcp(TIFF* in, TIFF* out)
 			if (TIFFGetField(in, TIFFTAG_INKNAMES, &inknames)) {
 				int inknameslen = strlen(inknames) + 1;
 				const char* cp = inknames;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (ninks > 1) {
 					cp = strchr(cp, '\0');
                                         cp++;
@@ -840,27 +798,6 @@ tiffcp(TIFF* in, TIFF* out)
 				}
 				TIFFSetField(out, TIFFTAG_INKNAMES, inknameslen, inknames);
 			}
-=======
-	{ uint16 ninks;
-	  const char* inknames;
-	  if (TIFFGetField(in, TIFFTAG_NUMBEROFINKS, &ninks)) {
-		TIFFSetField(out, TIFFTAG_NUMBEROFINKS, ninks);
-		if (TIFFGetField(in, TIFFTAG_INKNAMES, &inknames)) {
-		    int inknameslen = strlen(inknames) + 1;
-		    const char* cp = inknames;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		    while (ninks > 1) {
-			    cp = strchr(cp, '\0');
-			    if (cp) {
-				    cp++;
-				    inknameslen += (strlen(cp) + 1);
-			    }
-			    ninks--;
-		    }
-		    TIFFSetField(out, TIFFTAG_INKNAMES, inknameslen, inknames);
->>>>>>> sync with upstream
 		}
 	}
 	{
@@ -983,7 +920,6 @@ static biasFn *lineSubtractFn (unsigned bits)
 DECLAREcpFunc(cpBiasedContig2Contig)
 {
 	if (spp == 1) {
-<<<<<<< HEAD
 		tsize_t biasSize = TIFFScanlineSize(bias);
 		tsize_t bufSize = TIFFScanlineSize(in);
 		tdata_t buf, biasBuf;
@@ -1000,6 +936,9 @@ DECLAREcpFunc(cpBiasedContig2Contig)
 				uint32 row;
 				buf = _TIFFmalloc(bufSize);
 				biasBuf = _TIFFmalloc(bufSize);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (row = 0; row < imagelength; row++) {
 					if (TIFFReadScanline(in, buf, row, 0) < 0
 					    && !ignore) {
@@ -1022,34 +961,6 @@ DECLAREcpFunc(cpBiasedContig2Contig)
 						    (unsigned long) row);
 						goto bad;
 					}
-=======
-	  tsize_t biasSize = TIFFScanlineSize(bias);
-	  tsize_t bufSize = TIFFScanlineSize(in);
-	  tdata_t buf, biasBuf;
-	  uint32 biasWidth = 0, biasLength = 0;
-	  TIFFGetField(bias, TIFFTAG_IMAGEWIDTH, &biasWidth);
-	  TIFFGetField(bias, TIFFTAG_IMAGELENGTH, &biasLength);
-	  if (biasSize == bufSize && 
-	      imagelength == biasLength && imagewidth == biasWidth) {
-		uint16 sampleBits = 0;
-		biasFn *subtractLine;
-		TIFFGetField(in, TIFFTAG_BITSPERSAMPLE, &sampleBits);
-		subtractLine = lineSubtractFn (sampleBits);
-		if (subtractLine) {
-			uint32 row;
-			buf = _TIFFmalloc(bufSize);
-			biasBuf = _TIFFmalloc(bufSize);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (row = 0; row < imagelength; row++) {
-				if (TIFFReadScanline(in, buf, row, 0) < 0
-				    && !ignore) {
-					TIFFError(TIFFFileName(in),
-					"Error, can't read scanline %lu",
-					(unsigned long) row);
-					goto bad;
->>>>>>> sync with upstream
 				}
 
 				_TIFFfree(buf);
@@ -1095,13 +1006,10 @@ DECLAREcpFunc(cpDecodedStrips)
 	if (buf) {
 		tstrip_t s, ns = TIFFNumberOfStrips(in);
 		uint32 row = 0;
-<<<<<<< HEAD
 		_TIFFmemset(buf, 0, stripsize);
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 		for (s = 0; s < ns; s++) {
 			tsize_t cc = (row + rowsperstrip > imagelength) ?
 			    TIFFVStripSize(in, imagelength - row) : stripsize;
@@ -1145,16 +1053,13 @@ DECLAREcpFunc(cpSeparate2SeparateByRow)
 	tsample_t s;
 
 	(void) imagewidth;
-<<<<<<< HEAD
 	buf = _TIFFmalloc(scanlinesize);
 	if (!buf)
 		return 0;
 	_TIFFmemset(buf, 0, scanlinesize);
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 	for (s = 0; s < spp; s++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -1257,18 +1162,15 @@ DECLAREcpFunc(cpSeparate2ContigByRow)
 	uint32 row;
 	tsample_t s;
 
-<<<<<<< HEAD
 	inbuf = _TIFFmalloc(scanlinesizein);
 	outbuf = _TIFFmalloc(scanlinesizeout);
 	if (!inbuf || !outbuf)
 		return 0;
 	_TIFFmemset(inbuf, 0, scanlinesizein);
 	_TIFFmemset(outbuf, 0, scanlinesizeout);
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 	for (row = 0; row < imagelength; row++) {
 		/* merge channels */
 #if defined(__INTEL_COMPILER)
@@ -1344,22 +1246,14 @@ cpContigBufToSeparateBuf(uint8* out, uint8* in,
 		{
 			int n = bytes_per_sample;
 
-<<<<<<< HEAD
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while( n-- ) {
 				*out++ = *in++;
 			}
 			in += (spp-1) * bytes_per_sample;
 		}
-=======
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                        while( n-- ) {
-                            *out++ = *in++;
-                        }
-                        in += (spp-1) * bytes_per_sample;
-                }
->>>>>>> sync with upstream
 		out += outskew;
 		in += inskew;
 	}
@@ -1381,22 +1275,14 @@ cpSeparateBufToContigBuf(uint8* out, uint8* in,
 		while (j-- > 0) {
 			int n = bytes_per_sample;
 
-<<<<<<< HEAD
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while( n-- ) {
 				*out++ = *in++;
 			}
 			out += (spp-1)*bytes_per_sample;
 		}
-=======
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                        while( n-- ) {
-                                *out++ = *in++;
-                        }
-                        out += (spp-1)*bytes_per_sample;
-                }
->>>>>>> sync with upstream
 		out += outskew;
 		in += inskew;
 	}
@@ -1801,18 +1687,12 @@ DECLAREwriteFunc(writeBufferToSeparateTiles)
 	(void) TIFFGetField(out, TIFFTAG_TILELENGTH, &tl);
 	(void) TIFFGetField(out, TIFFTAG_TILEWIDTH, &tw);
 	(void) TIFFGetField(out, TIFFTAG_BITSPERSAMPLE, &bps);
-<<<<<<< HEAD
 	assert( bps % 8 == 0 );
 	bytes_per_sample = bps/8;
 
-=======
-        assert( bps % 8 == 0 );
-        bytes_per_sample = bps/8;
-        
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
 	for (row = 0; row < imagelength; row += tl) {
 		uint32 nrow = (row+tl > imagelength) ? imagelength-row : tl;
 		uint32 colb = 0;

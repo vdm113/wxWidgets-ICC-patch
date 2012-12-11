@@ -188,19 +188,6 @@ _TIFFPrettyPrintField(TIFF* tif, const TIFFField *fip, FILE* fd, uint32 tag,
 			} 
 			return 0;
 
-<<<<<<< HEAD
-=======
-			fprintf(fd, "  Reference Black/White:\n");
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (i = 0; i < td->td_samplesperpixel; i++)
-			fprintf(fd, "    %2d: %5g %5g\n", i,
-				((float *)raw_data)[2*i+0],
-				((float *)raw_data)[2*i+1]);
-			return 1;
-		}
->>>>>>> sync with upstream
 		case TIFFTAG_XMLPACKET:
 		{
 			uint32 i;
@@ -414,18 +401,14 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 		fprintf(fd, "  Ink Names: ");
 		i = td->td_samplesperpixel;
 		sep = "";
-<<<<<<< HEAD
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (cp = td->td_inknames; 
 		     i > 0 && cp < td->td_inknames + td->td_inknameslen; 
 		     cp = strchr(cp,'\0')+1, i--) {
 			int max_chars = 
 				td->td_inknameslen - (cp - td->td_inknames);
-=======
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		for (cp = td->td_inknames; i > 0; cp = strchr(cp,'\0')+1, i--) {
->>>>>>> sync with upstream
 			fputs(sep, fd);
 			_TIFFprintAsciiBounded(fd, cp, max_chars);
 			sep = ", ";
@@ -512,6 +495,9 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 	if (TIFFFieldSet(tif,FIELD_SMINSAMPLEVALUE)) {
 		int count = (tif->tif_flags & TIFF_PERSAMPLE) ? td->td_samplesperpixel : 1;
 		fprintf(fd, "  SMin Sample Value:");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < count; ++i)
 			fprintf(fd, " %g", td->td_sminsamplevalue[i]);
 		fprintf(fd, "\n");
@@ -519,6 +505,9 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 	if (TIFFFieldSet(tif,FIELD_SMAXSAMPLEVALUE)) {
 		int count = (tif->tif_flags & TIFF_PERSAMPLE) ? td->td_samplesperpixel : 1;
 		fprintf(fd, "  SMax Sample Value:");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < count; ++i)
 			fprintf(fd, " %g", td->td_smaxsamplevalue[i]);
 		fprintf(fd, "\n");
@@ -560,6 +549,9 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 	}
 	if (TIFFFieldSet(tif,FIELD_REFBLACKWHITE)) {
 		fprintf(fd, "  Reference Black/White:\n");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < 3; i++)
 		fprintf(fd, "    %2d: %5g %5g\n", i,
 			td->td_refblackwhite[2*i+0],
@@ -603,38 +595,17 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 		fputc('\n', fd);
 	}
 
-<<<<<<< HEAD
 	/*
 	** Custom tag support.
 	*/
 	{
 		int  i;
 		short count;
-=======
-        /*
-        ** Custom tag support.
-        */
-        {
-            int  i;
-            short count;
 
-            count = (short) TIFFGetTagListCount(tif);
+		count = (short) TIFFGetTagListCount(tif);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-            for(i = 0; i < count; i++) {
-                ttag_t  tag = TIFFGetTagListEntry(tif, i);
-                const TIFFFieldInfo *fip;
-                uint16 value_count;
-                int mem_alloc = 0;
-                void *raw_data;
-
-                fip = TIFFFieldWithTag(tif, tag);
-                if(fip == NULL)
-			continue;
->>>>>>> sync with upstream
-
-		count = (short) TIFFGetTagListCount(tif);
 		for(i = 0; i < count; i++) {
 			uint32 tag = TIFFGetTagListEntry(tif, i);
 			const TIFFField *fip;
@@ -743,20 +714,16 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 void
 _TIFFprintAscii(FILE* fd, const char* cp)
 {
-<<<<<<< HEAD
 	_TIFFprintAsciiBounded( fd, cp, strlen(cp));
 }
 
 static void
 _TIFFprintAsciiBounded(FILE* fd, const char* cp, int max_chars)
 {
-	for (; max_chars > 0 && *cp != '\0'; cp++, max_chars--) {
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (; *cp != '\0'; cp++) {
->>>>>>> sync with upstream
+	for (; max_chars > 0 && *cp != '\0'; cp++, max_chars--) {
 		const char* tp;
 
 		if (isprint((int)*cp)) {
