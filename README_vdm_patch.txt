@@ -43,7 +43,6 @@ include this code BEFORE any inclusion of wx's or other includes (especially STL
 ---snip---
 Also, make sure you have same preprocessor settings of "MY_MSC_NO_ITERATOR_DEBUGGING" in wxWidgets library and in your project!
 *** NB ***
-NB: The x64 build DLL's in x64 DLL build are located in directory lib/vc_dll . When your project wants to use import libraries under MSVC, to use DLL's at run-time, you will need to copy directories lib/vc_dll/mswu and lib/vc_dll/mswud (and so on) into new directory lib/vc_x64_dll/ aftere building WX x64. There is setup.h for your project to include, so put this new path into include path of your compiler.
 
 If you are using 32-bit ICC, or 64-bit one and you don't have enough RAM or time, I recommend change for sub-library "core" from /Qipo to /Qip.
 
