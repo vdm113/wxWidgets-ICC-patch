@@ -15,6 +15,8 @@ BEGIN {
         if(NR>number_of_lines_in_prologue) {
             print $0;
         }
+    } else {
+        print $0;
     }
 }
 
