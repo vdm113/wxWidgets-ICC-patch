@@ -132,6 +132,10 @@
     #include <sys/sysinfo.h>   // for SAGET and MINFO structures
 #endif
 
+#ifdef HAVE_SETPRIORITY
+    #include <sys/resource.h>   // for setpriority()
+#endif
+
 // ----------------------------------------------------------------------------
 // conditional compilation
 // ----------------------------------------------------------------------------
@@ -557,6 +561,14 @@ long wxExecute(char **argv, int flags, wxProcess *process,
         }
     }
 
+    // priority
+    signed int prio = process->GetPriority();
+    if(prio>100 || prio<0) {
+        wxFAIL_MSG(wxT("invalid value of thread priority parameter"));
+        prio = 50;
+    }
+    prio=prio*(20+19)/100-20; // compute value in range -20..+19
+
     // fork the process
     //
     // NB: do *not* use vfork() here, it completely breaks this code for some
@@ -589,6 +601,13 @@ long wxExecute(char **argv, int flags, wxProcess *process,
             setsid();
         }
 #endif // !__VMS
+
+#if defined(HAVE_SETPRIORITY)
+        if(setpriority(PRIO_PROCESS,0,prio) != 0)
+        {
+            wxLogSysError(_("Cannot set priority: setpriority failed"));
+        }
+#endif
 
         // redirect stdin, stdout and stderr
         if ( pipeIn.IsOk() )

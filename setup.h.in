@@ -1284,5 +1284,8 @@
 /* define this when wxDC::Blit() respects SetDeviceOrigin() in wxGTK */
 #undef wxHAS_WORKING_GTK_DC_BLIT
 
+/* define when setpriority() is available */
+#undef HAVE_SETPRIORITY
+
 #endif /* __WX_SETUP_H__ */
 

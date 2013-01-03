@@ -50,6 +50,7 @@ void wxProcess::Init(wxEvtHandler *parent, int id, int flags)
 
     m_id         = id;
     m_pid        = 0;
+    m_priority   = wxPRIORITY_DEFAULT;
     m_redirect   = (flags & wxPROCESS_REDIRECT) != 0;
 
 #if wxUSE_STREAMS
@@ -174,5 +175,15 @@ bool wxProcess::Exists(int pid)
         case wxKILL_NO_PROCESS:
             return false;
     }
+}
+
+void wxProcess::SetPriority(unsigned int prio)
+{
+    m_priority=prio;
+}
+
+unsigned int wxProcess::GetPriority() const
+{
+    return m_priority;
 }
 

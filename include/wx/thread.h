@@ -93,12 +93,12 @@ enum wxThreadWait
 #endif
 };
 
-// defines the interval of priority
+// defines the interval of priority: obsolete, backwards compatibility-only
 enum
 {
-    WXTHREAD_MIN_PRIORITY      = 0u,
-    WXTHREAD_DEFAULT_PRIORITY  = 50u,
-    WXTHREAD_MAX_PRIORITY      = 100u
+    WXTHREAD_MIN_PRIORITY      = wxPRIORITY_MIN,
+    WXTHREAD_DEFAULT_PRIORITY  = wxPRIORITY_DEFAULT,
+    WXTHREAD_MAX_PRIORITY      = wxPRIORITY_MAX
 };
 
 // There are 2 types of mutexes: normal mutexes and recursive ones. The attempt

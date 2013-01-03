@@ -689,17 +689,6 @@ enum wxThreadError
 };
 
 /**
-   Defines the interval of priority
-*/
-enum
-{
-    WXTHREAD_MIN_PRIORITY      = 0u,
-    WXTHREAD_DEFAULT_PRIORITY  = 50u,
-    WXTHREAD_MAX_PRIORITY      = 100u
-};
-
-
-/**
     @class wxThread
 
     A thread is basically a path of execution through a program.
@@ -1134,10 +1123,10 @@ public:
     /**
         Gets the priority of the thread, between zero and 100.
 
-        The following priorities are defined:
-          - @b WXTHREAD_MIN_PRIORITY: 0
-          - @b WXTHREAD_DEFAULT_PRIORITY: 50
-          - @b WXTHREAD_MAX_PRIORITY: 100
+        The following symbolic constants can be used in addition to raw values in 0..100 range:
+          - @b wxPRIORITY_MIN: 0
+          - @b wxPRIORITY_DEFAULT: 50
+          - @b wxPRIORITY_MAX: 100
     */
     unsigned int GetPriority() const;
 

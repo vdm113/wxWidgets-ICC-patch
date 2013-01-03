@@ -3390,5 +3390,13 @@ typedef const void* WXWidget;
 
 #endif /* !wxUSE_NO_MANIFEST && _MSC_FULL_VER >= 140040130 */
 
+/* wxThread and wxProcess priorities */
+enum
+{
+    wxPRIORITY_MIN              = 0u,
+    wxPRIORITY_DEFAULT          = 50u,
+    wxPRIORITY_MAX              = 100u
+};
+
 #endif
     /*  _WX_DEFS_H_ */

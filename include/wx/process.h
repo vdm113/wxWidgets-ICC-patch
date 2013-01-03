@@ -111,6 +111,15 @@ public:
                         wxInputStream *errStream);
 #endif // wxUSE_STREAMS
 
+    // priority
+        // Sets the priority to "prio": see wxPRIORITY_XXX constants
+        //
+        // NB: the priority can only be set before the process is created
+    void SetPriority(unsigned int prio);
+
+        // Get the current priority.
+    unsigned int GetPriority() const;
+
     // implementation only - don't use!
     // --------------------------------
 
@@ -122,6 +131,8 @@ protected:
 
     int m_id;
     long m_pid;
+
+    unsigned m_priority;
 
 #if wxUSE_STREAMS
     // these streams are connected to stdout, stderr and stdin of the child
