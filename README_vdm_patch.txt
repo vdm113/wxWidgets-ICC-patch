@@ -8,7 +8,7 @@ I can do a very limited support... I support only ICC 12.1 and ICC 13.0 (which i
 
 This fork of wxWidgets is as of official SVN revision:
 
-r73339
+r73343
 
 Also, it uses my own pre-configured "setup.h" configuration. I have changed only these parameters (compared to default 'setup0.h'):
 #define WXWIN_COMPATIBILITY_2_8 0 /* VDM: changed explicitly to 1 from 0 */
@@ -27,21 +27,9 @@ Also, it uses my own pre-configured "setup.h" configuration. I have changed only
 I have recently changed all profiles and architectures (unsupported x86, and supported x64) to use "/Qip" ICL switch rather than "/Qipo". So Intra-procedural Optimization will be performed over each *.obj, rather at then multi-.obj manner. Performance impact of resulting code for my benchmarks is negligible, and compilation will not take 2 days (on my 8 GiB RAM machine) while compiler is requesting like 12 GiB of (virtual) RAM [Windows(R) was swapping excessively].
 
 *** NB ***
-include this code BEFORE any inclusion of wx's or other includes (especially STL), in other case you might encounter random crashes:
----snip---
-#if defined(_MSC_VER) && defined(MY_MSC_NO_ITERATOR_DEBUGGING) && MY_MSC_NO_ITERATOR_DEBUGGING==1
-#   if defined(_SECURE_SCL)
-#       undef _SECURE_SCL
-#   endif
-#   define _SECURE_SCL 0
-
-#   if defined(_HAS_ITERATOR_DEBUGGING)
-#       undef _HAS_ITERATOR_DEBUGGING
-#   endif
-#   define _HAS_ITERATOR_DEBUGGING 0
-#endif
----snip---
-Also, make sure you have same preprocessor settings of "MY_MSC_NO_ITERATOR_DEBUGGING" in wxWidgets library and in your project!
+Set in your project files these preprocessor defines, in other case you might encounter random crashes:
+_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0
+or remove these from MSVC project files of WX for debugging STL iterators, but you need to keep this consistent, i.e. WX and your project needs to have same defines.
 *** NB ***
 
 If you are using 32-bit ICC, or 64-bit one and you don't have enough RAM or time, I recommend change for sub-library "core" from /Qipo to /Qip.

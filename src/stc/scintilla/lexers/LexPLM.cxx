@@ -1,17 +1,3 @@
-/* VDM: BEGIN */
-#if defined(_MSC_VER) && defined(MY_MSC_NO_ITERATOR_DEBUGGING) && MY_MSC_NO_ITERATOR_DEBUGGING==1
-#   if defined(_SECURE_SCL)
-#       undef _SECURE_SCL
-#   endif
-#   define _SECURE_SCL 0
-
-#   if defined(_HAS_ITERATOR_DEBUGGING)
-#       undef _HAS_ITERATOR_DEBUGGING
-#   endif
-#   define _HAS_ITERATOR_DEBUGGING 0
-#endif
-/* VDM: END   */
-
 // Copyright (c) 1990-2007, Scientific Toolworks, Inc.
 // Author: Jason Haslam
 // The License.txt file describes the conditions under which this software may be distributed.
