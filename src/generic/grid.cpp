@@ -6883,6 +6883,9 @@ int wxGrid::PosToEdgeOfLine(int pos, const wxGridOperations& oper) const
     int line = oper.PosToLine(this, pos, true);
 
     // Go backwards until we find a line that is big enough.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( oper.GetLineSize(this, line) <= WXGRID_LABEL_EDGE_ZONE )
     {
         line = oper.GetLineBefore(this, line);

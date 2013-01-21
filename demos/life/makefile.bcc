@@ -54,7 +54,6 @@ WIN32_TOOLKIT_LOWERCASE = msw
 PORTNAME = base
 !endif
 !if "$(USE_GUI)" == "1"
-<<<<<<< HEAD
 PORTNAME = $(WIN32_TOOLKIT_LOWERCASE)$(TOOLKIT_VERSION)
 !endif
 !if "$(TOOLKIT)" == "MAC"
@@ -62,12 +61,6 @@ WXBASEPORT = _carbon
 !endif
 !if "$(OFFICIAL_BUILD)" == "1"
 COMPILER_VERSION = ERROR-COMPILER-VERSION-MUST-BE-SET-FOR-OFFICIAL-BUILD
-=======
-PORTNAME = msw
-!endif
-!if "$(OFFICIAL_BUILD)" == "1"
-COMPILER_VERSION = ERROR-COMPILER-VERSION-MUST-BE-SET-FOR-OFFICIAL-BUILD
->>>>>>> sync with SVN from upstream
 !endif
 !if "$(BUILD)" == "debug"
 WXDEBUGFLAG = d

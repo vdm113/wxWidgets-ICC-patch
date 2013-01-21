@@ -1721,9 +1721,15 @@ wxBitmap wxMask::GetBitmap() const
     unsigned char* dst = static_cast<unsigned char*>(bitmap.BeginRawAccess());
     const int dst_stride = bitmap.GetBitmapData()->GetBytesPerRow();
     const unsigned char* src = static_cast<unsigned char*>(GetRawAccess());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int j = 0; j < m_height; j++, src += m_bytesPerRow, dst += dst_stride)
     {
         unsigned char* d = dst;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < m_width; i++)
         {
             const unsigned char byte = src[i];

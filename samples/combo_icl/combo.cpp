@@ -424,6 +424,9 @@ public:
     {
         wxTreeItemIdValue cookie;
         wxTreeItemId child = GetFirstChild(parent,cookie);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( child.IsOk() )
         {
             if ( GetItemText(child) == text )

@@ -95,13 +95,10 @@ protected:
         wxPoint* points_alloc = NULL;
         if ( m_mirror )
         {
-<<<<<<< HEAD
             points_alloc = new wxPoint[n];
-=======
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
->>>>>>> sync with upstream
             for ( int i = 0; i < n; i++ )
             {
                 points_alloc[i].x = points[i].y;
