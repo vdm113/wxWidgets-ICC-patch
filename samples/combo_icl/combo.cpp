@@ -677,19 +677,28 @@ MyFrame::MyFrame(const wxString& title)
     wxGenericComboCtrl* gcc;
     wxOwnerDrawnComboBox* odc;
 
-    // Create common strings array
-    m_arrItems.Add( wxT("Solid") );
-    m_arrItems.Add( wxT("Transparent") );
-    m_arrItems.Add( wxT("Dot") );
-    m_arrItems.Add( wxT("Long Dash") );
-    m_arrItems.Add( wxT("Short Dash") );
-    m_arrItems.Add( wxT("Dot Dash") );
-    m_arrItems.Add( wxT("Backward Diagonal Hatch") );
-    m_arrItems.Add( wxT("Cross-diagonal Hatch") );
-    m_arrItems.Add( wxT("Forward Diagonal Hatch") );
-    m_arrItems.Add( wxT("Cross Hatch") );
-    m_arrItems.Add( wxT("Horizontal Hatch") );
-    m_arrItems.Add( wxT("Vertical Hatch") );
+    wxStopWatch sw;
+
+    sw.Start();
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (int n=0; n<cnt; n++ ) {
+        // Create common strings array
+        m_arrItems.Add( wxT("Solid") );
+        m_arrItems.Add( wxT("Transparent") );
+        m_arrItems.Add( wxT("Dot") );
+        m_arrItems.Add( wxT("Long Dash") );
+        m_arrItems.Add( wxT("Short Dash") );
+        m_arrItems.Add( wxT("Dot Dash") );
+        m_arrItems.Add( wxT("Backward Diagonal Hatch") );
+        m_arrItems.Add( wxT("Cross-diagonal Hatch") );
+        m_arrItems.Add( wxT("Forward Diagonal Hatch") );
+        m_arrItems.Add( wxT("Cross Hatch") );
+        m_arrItems.Add( wxT("Horizontal Hatch") );
+        m_arrItems.Add( wxT("Vertical Hatch") );
+    }
 
     wxLogMessage(wxT("wxArrayString diff #1 [ms] == %ld"),sw.Time());
 
