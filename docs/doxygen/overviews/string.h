@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        string.h
 // Purpose:     topic overview
@@ -249,6 +256,9 @@ access) like this:
 @code
 wxString s = "hello";
 wxString::const_iterator i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 for (i = s.begin(); i != s.end(); ++i)
 {
     wxUniChar uni_ch = *i;
@@ -310,6 +320,9 @@ wxString DeleteAllVowels(const wxString& original)
     wxString vowels( "aeuioAEIOU" );
     wxString result;
     wxString::const_iterator i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = original.begin(); i != original.end(); ++i )
     {
         if (vowels.Find( *i ) == wxNOT_FOUND)

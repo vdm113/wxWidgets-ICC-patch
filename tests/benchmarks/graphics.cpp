@@ -305,7 +305,14 @@ private:
         fflush(stdout);
 
         wxStopWatch sw;
+<<<<<<< HEAD
         for ( int n = 0; n < opts.numIters; n++ )
+=======
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        for ( int n = 0; n < opts.numLines; n++ )
+>>>>>>> sync with upstream SVN r73438 + patch for ICC
         {
             int x = rand() % opts.width,
                 y = rand() % opts.height;
@@ -333,7 +340,14 @@ private:
         fflush(stdout);
 
         wxStopWatch sw;
+<<<<<<< HEAD
         for ( int n = 0; n < opts.numIters; n++ )
+=======
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        for ( int n = 0; n < opts.numLines; n++ )
+>>>>>>> sync with upstream SVN r73438 + patch for ICC
         {
             int x = rand() % opts.width,
                 y = rand() % opts.height;

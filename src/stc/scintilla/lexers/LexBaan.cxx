@@ -50,6 +50,9 @@ static void ColouriseBaanDoc(unsigned int startPos, int length, int initStyle, W
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.state == SCE_BAAN_OPERATOR) {
@@ -85,6 +88,9 @@ static void ColouriseBaanDoc(unsigned int startPos, int length, int initStyle, W
 			}
 		} else if (sc.state == SCE_BAAN_COMMENTDOC) {
 			if (sc.MatchIgnoreCase("enddllusage")) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (unsigned int i = 0; i < 10; i++){
 					sc.Forward();
 				}
@@ -105,6 +111,9 @@ static void ColouriseBaanDoc(unsigned int startPos, int length, int initStyle, W
 				sc.SetState(SCE_BAAN_NUMBER);
 			} else if (sc.MatchIgnoreCase("dllusage")){
 					sc.SetState(SCE_BAAN_COMMENTDOC);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					do {
 						sc.Forward();
 					} while ((!sc.atLineEnd) && sc.More());
@@ -118,6 +127,9 @@ static void ColouriseBaanDoc(unsigned int startPos, int length, int initStyle, W
 				// Preprocessor commands are alone on their line
 				sc.SetState(SCE_BAAN_PREPROCESSOR);
 				// Skip whitespace between # and preprocessor word
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				do {
 					sc.Forward();
 				} while (IsASpace(sc.ch) && sc.More());
@@ -149,6 +161,9 @@ static void FoldBaanDoc(unsigned int startPos, int length, int initStyle, WordLi
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
 	int style = initStyle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

@@ -186,6 +186,9 @@ FileConfigTestCase::CheckGroupEntries(const wxFileConfig& fc,
 
     long cookie;
     wxString name;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( bool cont = fc.GetFirstEntry(name, cookie);
           cont;
           cont = fc.GetNextEntry(name, cookie), nEntries-- )
@@ -213,6 +216,9 @@ FileConfigTestCase::CheckGroupSubgroups(const wxFileConfig& fc,
 
     long cookie;
     wxString name;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( bool cont = fc.GetFirstGroup(name, cookie);
           cont;
           cont = fc.GetNextGroup(name, cookie), nGroups-- )

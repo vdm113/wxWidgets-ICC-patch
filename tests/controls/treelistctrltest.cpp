@@ -177,6 +177,9 @@ void TreeListCtrlTestCase::Traversal()
 
     // Get{First,Next}Item() test:
     unsigned numItems = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxTreeListItem item = m_treelist->GetFirstItem();
           item.IsOk();
           item = m_treelist->GetNextItem(item) )

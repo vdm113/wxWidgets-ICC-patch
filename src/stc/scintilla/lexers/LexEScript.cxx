@@ -52,6 +52,9 @@ static void ColouriseESCRIPTDoc(unsigned int startPos, int length, int initStyle
 
 	bool caseSensitive = styler.GetPropertyInt("escript.case.sensitive", 0) != 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		/*if (sc.atLineStart && (sc.state == SCE_ESCRIPT_STRING)) {
@@ -193,6 +196,9 @@ static void FoldESCRIPTDoc(unsigned int startPos, int length, int initStyle, Wor
 	int lastStart = 0;
 	char prevWord[32] = "";
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -232,6 +238,9 @@ static void FoldESCRIPTDoc(unsigned int startPos, int length, int initStyle, Wor
 			if(iswordchar(ch) && !iswordchar(chNext)) {
 				char s[32];
 				unsigned int j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for(j = 0; ( j < 31 ) && ( j < i-lastStart+1 ); j++) {
 					s[j] = static_cast<char>(tolower(styler[lastStart + j]));
 				}

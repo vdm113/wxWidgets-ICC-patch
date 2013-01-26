@@ -632,6 +632,9 @@ void wxMenuItem::Check(bool check)
 
             // also uncheck all the other items in this radio group
             wxMenuItemList::compatibility_iterator node = items.Item(start);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int n = start; n <= end && node; n++ )
             {
                 if ( n != pos )
