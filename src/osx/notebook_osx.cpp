@@ -336,6 +336,9 @@ void wxNotebook::OnSize(wxSizeEvent& event)
     unsigned int nCount = m_pages.Count();
     wxRect rect = GetPageRect() ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int nPage = 0; nPage < nCount; nPage++ )
     {
         wxNotebookPage *pPage = m_pages[nPage];

@@ -406,6 +406,9 @@ void wxDateTime::Tm::ComputeWeekDay()
 void wxDateTime::Tm::AddMonths(int monDiff)
 {
     // normalize the months field
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( monDiff < -mon )
     {
         year--;
@@ -413,6 +416,9 @@ void wxDateTime::Tm::AddMonths(int monDiff)
         monDiff += MONTHS_IN_YEAR;
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( monDiff + mon >= MONTHS_IN_YEAR )
     {
         year++;
@@ -431,6 +437,9 @@ void wxDateTime::Tm::AddMonths(int monDiff)
 void wxDateTime::Tm::AddDays(int dayDiff)
 {
     // normalize the days field
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( dayDiff + mday < 1 )
     {
         AddMonths(-1);
@@ -439,6 +448,9 @@ void wxDateTime::Tm::AddDays(int dayDiff)
     }
 
     mday = (wxDateTime::wxDateTime_t)( mday + dayDiff );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( mday > GetNumOfDaysInMonth(year, mon) )
     {
         mday -= GetNumOfDaysInMonth(year, mon);
@@ -1989,6 +2001,9 @@ wxDateTime& wxDateTime::SetToYearDay(wxDateTime::wxDateTime_t yday)
                       wxT("invalid year day") );
 
     bool isLeap = IsLeapYear(year);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( Month mon = Jan; mon < Inv_Month; wxNextMonth(mon) )
     {
         // for Dec, we can't compare with gs_cumulatedDays[mon + 1], but we
@@ -2111,6 +2126,9 @@ wxHolidayAuthoritiesArray wxDateTimeHolidayAuthority::ms_authorities;
 bool wxDateTimeHolidayAuthority::IsHoliday(const wxDateTime& dt)
 {
     size_t count = ms_authorities.size();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         if ( ms_authorities[n]->DoIsHoliday(dt) )
@@ -2133,6 +2151,9 @@ wxDateTimeHolidayAuthority::GetHolidaysInRange(const wxDateTime& dtStart,
     holidays.Clear();
 
     const size_t countAuth = ms_authorities.size();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t nAuth = 0; nAuth < countAuth; nAuth++ )
     {
         ms_authorities[nAuth]->DoGetHolidaysInRange(dtStart, dtEnd, hol);
@@ -2194,11 +2215,17 @@ size_t wxDateTimeWorkDays::DoGetHolidaysInRange(const wxDateTime& dtStart,
                dtSunLast = dtEnd.GetPrevWeekDay(wxDateTime::Sun),
                dt;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( dt = dtSatFirst; dt <= dtSatLast; dt += wxDateSpan::Week() )
     {
         holidays.Add(dt);
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( dt = dtSunFirst; dt <= dtSunLast; dt += wxDateSpan::Week() )
     {
         holidays.Add(dt);

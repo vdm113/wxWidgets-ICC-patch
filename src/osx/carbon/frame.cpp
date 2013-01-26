@@ -102,6 +102,9 @@ bool wxFrame::Enable(bool enable)
     if ( m_frameMenuBar /*&& m_frameMenuBar == wxMenuBar::MacGetInstalledMenuBar()*/)
     {
         int iMaxMenu = m_frameMenuBar->GetMenuCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0 ; i < iMaxMenu ; ++ i )
         {
             m_frameMenuBar->EnableTop( i , enable ) ;
@@ -169,6 +172,9 @@ void wxFrame::OnActivate(wxActivateEvent& event)
 
         // so we NULL it out if it's a child from some other frame
         wxWindow *win = m_winLastFocused;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( win )
         {
             if ( win->IsTopLevel() )

@@ -189,6 +189,9 @@ png_read_info(png_structp png_ptr, png_infop info_ptr)
    /* Read and check the PNG file signature. */
    png_read_sig(png_ptr, info_ptr);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (;;)
    {
       png_uint_32 length = png_read_chunk_header(png_ptr);
@@ -537,10 +540,16 @@ png_read_row(png_structp png_ptr, png_bytep row, png_bytep dsp_row)
        (uInt)(PNG_ROWBYTES(png_ptr->pixel_depth,
        png_ptr->iwidth) + 1);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    do
    {
       if (!(png_ptr->zstream.avail_in))
       {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          while (!png_ptr->idat_size)
          {
             png_crc_finish(png_ptr, 0);
@@ -691,6 +700,9 @@ png_read_rows(png_structp png_ptr, png_bytepp row,
    rp = row;
    dp = display_row;
    if (rp != NULL && dp != NULL)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < num_rows; i++)
       {
          png_bytep rptr = *rp++;
@@ -700,6 +712,9 @@ png_read_rows(png_structp png_ptr, png_bytepp row,
       }
 
    else if (rp != NULL)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < num_rows; i++)
       {
          png_bytep rptr = *rp;
@@ -708,6 +723,9 @@ png_read_rows(png_structp png_ptr, png_bytepp row,
       }
 
    else if (dp != NULL)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < num_rows; i++)
       {
          png_bytep dptr = *dp;
@@ -778,9 +796,15 @@ png_read_image(png_structp png_ptr, png_bytepp image)
 
    image_height=png_ptr->height;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (j = 0; j < pass; j++)
    {
       rp = image;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < image_height; i++)
       {
          png_read_row(png_ptr, *rp, NULL);
@@ -805,6 +829,9 @@ png_read_end(png_structp png_ptr, png_infop info_ptr)
 
    png_crc_finish(png_ptr, 0); /* Finish off CRC from last IDAT chunk */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    do
    {
       png_uint_32 length = png_read_chunk_header(png_ptr);
@@ -1283,11 +1310,17 @@ png_read_png(png_structp png_ptr, png_infop info_ptr,
 
       info_ptr->row_pointers = (png_bytepp)png_malloc(png_ptr,
           info_ptr->height * png_sizeof(png_bytep));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (iptr=0; iptr<info_ptr->height; iptr++)
          info_ptr->row_pointers[iptr] = NULL;
 
       info_ptr->free_me |= PNG_FREE_ROWS;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (row = 0; row < (int)info_ptr->height; row++)
          info_ptr->row_pointers[row] = (png_bytep)png_malloc(png_ptr,
             png_get_rowbytes(png_ptr, info_ptr));

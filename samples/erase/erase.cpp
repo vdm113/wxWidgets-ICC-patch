@@ -427,11 +427,17 @@ void MyCanvas::OnEraseBackground( wxEraseEvent& event )
     PrepareDC( dc );
 
     const wxSize size = GetVirtualSize();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int x = 0; x < size.x; x += 15 )
     {
         dc.DrawLine(x, 0, x, size.y);
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int y = 0; y < size.y; y += 15 )
     {
         dc.DrawLine(0, y, size.x, y);

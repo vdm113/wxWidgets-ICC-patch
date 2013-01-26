@@ -272,6 +272,9 @@ void MyFrame::OnFullScreen(wxCommandEvent& event)
 
 void MyFrame::OnCloseAll(wxCommandEvent& WXUNUSED(event))
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxWindowList::const_iterator i = GetChildren().begin();
           i != GetChildren().end();
           ++i )

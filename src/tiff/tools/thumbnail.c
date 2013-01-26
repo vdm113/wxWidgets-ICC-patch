@@ -81,6 +81,9 @@ main(int argc, char* argv[])
     TIFF* out;
     int c;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((c = getopt(argc, argv, "w:h:c:")) != -1) {
 	switch (c) {
 	case 'w':	tnw = strtoul(optarg, NULL, 0); break;
@@ -116,6 +119,9 @@ main(int argc, char* argv[])
 
     if (in != NULL) {
 	initScale();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 	    if (!generateThumbnail(in, out))
 		goto bad;
@@ -273,6 +279,9 @@ static void
 cpTags(TIFF* in, TIFF* out)
 {
     struct cpTag *p;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (p = tags; p < &tags[NTAGS]; p++)
 	cpTag(in, out, p->tag, p->count, p->type);
 }
@@ -289,6 +298,9 @@ cpStrips(TIFF* in, TIFF* out)
 	uint64 *bytecounts;
 
 	TIFFGetField(in, TIFFTAG_STRIPBYTECOUNTS, &bytecounts);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (s = 0; s < ns; s++) {
 	  if (bytecounts[s] > (uint64) bufsize) {
 		buf = (unsigned char *)_TIFFrealloc(buf, (tmsize_t)bytecounts[s]);
@@ -323,6 +335,9 @@ cpTiles(TIFF* in, TIFF* out)
 	uint64 *bytecounts;
 
 	TIFFGetField(in, TIFFTAG_TILEBYTECOUNTS, &bytecounts);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (t = 0; t < nt; t++) {
 	    if (bytecounts[t] > (uint64) bufsize) {
 		buf = (unsigned char *)_TIFFrealloc(buf, (tmsize_t)bytecounts[t]);
@@ -375,6 +390,9 @@ static void
 setupBitsTables()
 {
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 256; i++) {
 	int n = 0;
 	if (i&0x01) n++;
@@ -401,8 +419,14 @@ expFill(float pct[], uint32 p, uint32 n)
 {
     uint32 i;
     uint32 c = (p * n) / 100;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 1; i < c; i++)
 	pct[i] = (float) (1-exp(i/((double)(n-1)))/ M_E);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (; i < n; i++)
 	pct[i] = 0.;
 }
@@ -421,16 +445,25 @@ setupCmap()
     case EXP90:	expFill(pct, 90, 256); break;
     case EXP:	expFill(pct, 100, 256); break;
     case LINEAR:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 1; i < 256; i++)
 	    pct[i] = 1-((float)i)/(256-1);
 	break;
     }
     switch (photometric) {
     case PHOTOMETRIC_MINISWHITE:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < 256; i++)
 	    cmap[i] = clamp(255*pct[(256-1)-i], 0, 255);
 	break;
     case PHOTOMETRIC_MINISBLACK:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < 256; i++)
 	    cmap[i] = clamp(255*pct[i], 0, 255);
 	break;
@@ -464,9 +497,15 @@ setupStepTables(uint32 sw)
 	uint32 x;
 	int fw;
 	uint8 b;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (x = 0; x < tnw; x++) {
 	    uint32 sx0 = sx;
 	    err += step;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	    while (err >= limit) {
 		err -= limit;
 		sx++;
@@ -492,6 +531,9 @@ setrow(uint8* row, uint32 nrows, const uint8* rows[])
 {
     uint32 x;
     uint32 area = nrows * filterWidth;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (x = 0; x < tnw; x++) {
 	uint32 mask0 = src0[x];
 	uint32 fw = src1[x];
@@ -499,11 +541,17 @@ setrow(uint8* row, uint32 nrows, const uint8* rows[])
 	uint32 off = rowoff[x];
 	uint32 acc = 0;
 	uint32 y, i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (y = 0; y < nrows; y++) {
 	    const uint8* src = rows[y] + off;
 	    acc += bits[*src++ & mask0];
 	    switch (fw) {
 	    default:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = fw; i > 8; i--)
 		    acc += bits[*src++];
 		/* fall thru... */
@@ -539,12 +587,18 @@ setImage1(const uint8* br, uint32 rw, uint32 rh)
     int sy = 0;
     uint8* row = thumbnail;
     uint32 dy;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (dy = 0; dy < tnh; dy++) {
 	const uint8* rows[256];
 	uint32 nrows = 1;
 	fprintf(stderr, "bpr=%d, sy=%d, bpr*sy=%d\n", bpr, sy, bpr*sy);
 	rows[0] = br + bpr*sy;
 	err += step;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (err >= limit) {
 	    err -= limit;
 	    sy++;
@@ -592,6 +646,9 @@ generateThumbnail(TIFF* in, TIFF* out)
 	    return 0;
     }
     rp = raster;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (s = 0; s < ns; s++) {
 	(void) TIFFReadEncodedStrip(in, s, rp, -1);
 	rp += rps * rowsize;
@@ -644,6 +701,9 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);
