@@ -58,6 +58,9 @@ void wxMilliSleep(unsigned long milliseconds)
     delay(milliseconds);
 #else
     clock_t start = clock();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((clock() - start) * 1000 / CLOCKS_PER_SEC < (clock_t)milliseconds)
     {
         // yield if in a multitasking environment
@@ -323,6 +326,9 @@ long wxExecute(const wxString& command, int flags, wxProcess *process,
     wxChar **argv = new wxChar*[n + 1];
 
     argv[n] = NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (n-- > 0)
         argv[n] = const_cast<wxChar*>((const char *)args[n].c_str());
 
