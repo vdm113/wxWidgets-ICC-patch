@@ -177,6 +177,9 @@ bool wxListBox::Create( wxWindow* pParent,
 
     LONG                            lUi;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (lUi = 0; lUi < (LONG)n; lUi++)
     {
         Append(asChoices[lUi]);
@@ -279,6 +282,9 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
     int n = wxNOT_FOUND;
 
     unsigned int count = items.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = 0; i < count; i++)
     {
         n = (int)::WinSendMsg(GetHwnd(), LM_INSERTITEM, (MPARAM)lIndexType, (MPARAM)items[i].wx_str());
@@ -393,6 +399,9 @@ int wxListBox::GetSelections( wxArrayInt& raSelections ) const
         if (lItem != LIT_NONE)
         {
             nCount++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ((lItem = LONGFROMMR(::WinSendMsg( GetHwnd()
                                                     ,LM_QUERYSELECTION
                                                     ,(MPARAM)lItem
@@ -411,6 +420,9 @@ int wxListBox::GetSelections( wxArrayInt& raSelections ) const
                               );
 
             raSelections.Add((int)lItem);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ((lItem = LONGFROMMR(::WinSendMsg( GetHwnd()
                                                     ,LM_QUERYSELECTION
                                                     ,(MPARAM)lItem
@@ -542,6 +554,9 @@ wxSize wxListBox::DoGetBestSize() const
     int        nCy;
     wxFont     vFont = (wxFont)GetFont();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = 0; i < m_nNumItems; i++)
     {
         wxString vStr(GetString(i));
