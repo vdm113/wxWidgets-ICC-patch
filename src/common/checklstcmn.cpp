@@ -108,6 +108,9 @@ unsigned int wxCheckListBoxBase::GetCheckedItems(wxArrayInt& checkedItems) const
     unsigned int const numberOfItems = GetCount();
 
     checkedItems.clear();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i = 0; i < numberOfItems; ++i )
     {
         if ( IsChecked(i) )

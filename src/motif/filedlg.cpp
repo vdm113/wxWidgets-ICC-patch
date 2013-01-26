@@ -314,6 +314,9 @@ int wxFileDialog::ShowModal()
     XtAddGrab(XtParent(fileSel), True, False);
     XtAppContext context = (XtAppContext) wxTheApp->GetAppContext();
     XEvent event;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!m_fileSelectorReturned)
     {
         XtAppNextEvent(context, &event);

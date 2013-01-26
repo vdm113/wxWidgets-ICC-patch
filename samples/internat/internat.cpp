@@ -480,6 +480,9 @@ void MyFrame::OnTest2(wxCommandEvent& WXUNUSED(event))
         wxSscanf(d.GetValue(), "%d-%d", &first, &last);
         wxString s(title);
         s << "\n";
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int n = first; n <= last; ++n)
         {
             s << n << " " <<
@@ -501,6 +504,9 @@ void MyFrame::OnTest3(wxCommandEvent& WXUNUSED(event))
 
     wxString s(_("Testing wxTRANSLATE() (gettext_noop)"));
     s << "\n";
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < WXSIZEOF(lines); ++i)
     {
         s << lines[i] << " -> " << wxGetTranslation(lines[i]) << "\n";
