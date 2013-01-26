@@ -177,6 +177,9 @@ static void ConvertArgsToUnicode(int argc, char **argv)
 {
     gs_initData.argv = new wchar_t *[argc + 1];
     int wargc = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < argc; i++ )
     {
 #ifdef __DARWIN__
@@ -203,6 +206,9 @@ static void FreeConvertedArgs()
 {
     if ( gs_initData.argv )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < gs_initData.argc; i++ )
         {
             free(gs_initData.argv[i]);

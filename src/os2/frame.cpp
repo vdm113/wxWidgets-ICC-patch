@@ -771,6 +771,9 @@ void wxFrame::IconizeChildFrames( bool WXUNUSED(bIconize) )
   //        work. Possibly, the right thing is simply to eliminate this
   //        functions and all the calls to it from within this file.
 #if 0
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxWindowList::Node* pNode = GetChildren().GetFirst();
          pNode;
          pNode = pNode->GetNext() )
@@ -1118,6 +1121,9 @@ MRESULT EXPENTRY wxFrameMainWndProc( HWND   hWnd,
                 ::WinMapWindowPoints(pWnd->m_hFrame, HWND_DESKTOP, (PPOINTL)&vRectl, 2);
                 ::WinCalcFrameRect(pWnd->m_hFrame, &vRectl, TRUE);
                 ::WinMapWindowPoints(HWND_DESKTOP, pWnd->m_hFrame, (PPOINTL)&vRectl, 2);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for(i = 0; i < nItemCount; i++)
                 {
                     if(pWnd->m_hWnd && pSWP[i].hwnd == pWnd->m_hWnd)

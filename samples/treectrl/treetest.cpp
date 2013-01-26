@@ -584,6 +584,9 @@ void MyFrame::OnDumpSelected(wxCommandEvent& WXUNUSED(event))
     size_t count = m_treeCtrl->GetSelections(array);
     wxLogMessage(wxT("%u items selected"), unsigned(count));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         wxLogMessage(wxT("\t%s"), m_treeCtrl->GetItemText(array.Item(n)).c_str());
@@ -891,6 +894,9 @@ void MyFrame::OnSelectLast(wxCommandEvent& WXUNUSED(event))
 {
     // select the very last item of the tree
     wxTreeItemId item = m_treeCtrl->GetRootItem();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         wxTreeItemId itemChild = m_treeCtrl->GetLastChild(item);
@@ -980,6 +986,9 @@ void MyTreeCtrl::CreateImageList(int size)
         icons[TreeCtrlIcon_FolderOpened] = wxArtProvider::GetIcon(wxART_FOLDER, wxART_LIST, iconSize);
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
     {
         int sizeOrig = icons[0].GetWidth();
@@ -1022,6 +1031,9 @@ void MyTreeCtrl::CreateStateImageList(bool del)
         // Make an state image list containing small icons
         states = new wxImageList(width, height, true);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
             states->Add(icons[i]);
     }
@@ -1037,6 +1049,9 @@ void MyTreeCtrl::CreateStateImageList(bool del)
         // Make an state image list containing small icons
         states = new wxImageList(width, height, true);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
             states->Add(icons[i]);
     }
@@ -1077,6 +1092,9 @@ void MyTreeCtrl::CreateButtonsImageList(int size)
         icons[3] = wxArtProvider::GetIcon(wxART_FOLDER_OPEN, wxART_LIST, iconSize);// open, selected
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
     {
         int sizeOrig = icons[i].GetWidth();
@@ -1121,6 +1139,9 @@ void MyTreeCtrl::AddItemsRecursively(const wxTreeItemId& idParent,
         bool hasChildren = depth > 1;
 
         wxString str;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < numChildren; n++ )
         {
             // at depth 1 elements won't have any more children
@@ -1242,6 +1263,9 @@ void MyTreeCtrl::DoToggleState(const wxTreeItemId& item)
         int nState;
 
         srand (time(NULL));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do {
             nState = rand() % GetStateImageList()->GetImageCount();
         } while (nState == state);
