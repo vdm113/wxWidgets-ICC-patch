@@ -50,6 +50,9 @@ void ScoreFile::GetPlayerList( wxArrayString &list )
     if (m_config->GetFirstGroup(player, index))
     {
          list.Add( player );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (m_config->GetNextGroup(player, index))
         {
               list.Add( player );
@@ -65,6 +68,9 @@ long ScoreFile::CalcCheck(const wxString& name, int p1, int p2, int p3)
     long check = 0;
     size_t i, max = name.length();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(i = 0; i < max; ++i )
     {
         check = (check << 1) ^ (long)name[i];

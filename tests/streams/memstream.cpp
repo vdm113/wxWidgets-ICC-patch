@@ -81,6 +81,9 @@ private:
 memStream::memStream()
 {
     // Init the data buffer.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < DATABUFFER_SIZE; i++)
         m_DataBuffer[i] = (i % 0xFF);
 }

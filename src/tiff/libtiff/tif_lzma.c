@@ -182,6 +182,9 @@ LZMADecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 		return 0;
 	}
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 		/*
 		 * Save the current stream state to properly recover from the
@@ -285,6 +288,9 @@ LZMAEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 			     "Liblzma cannot deal with buffers this size");
 		return 0;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 		lzma_ret ret = lzma_code(&sp->stream, LZMA_RUN);
 		if (ret != LZMA_OK) {
@@ -315,6 +321,9 @@ LZMAPostEncode(TIFF* tif)
 	lzma_ret ret;
 
 	sp->stream.avail_in = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 		ret = lzma_code(&sp->stream, LZMA_FINISH);
 		switch (ret) {
