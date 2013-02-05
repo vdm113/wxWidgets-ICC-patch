@@ -7115,6 +7115,9 @@ wxRichTextObject* wxRichTextPlainText::Split(wxRichTextDrawingContext& context)
                 wxString text = m_text;
                 wxRichTextPlainText* lastPlainText = this;
                 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < (int) positions.GetCount(); i++)
                 {
                     int pos = positions[i];
@@ -13849,6 +13852,9 @@ int wxRichTextDrawingContext::GetVirtualSubobjectAttributesCount(wxRichTextObjec
         return 0;
 
     wxList::compatibility_iterator node = m_buffer->GetDrawingHandlers().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextDrawingHandler *handler = (wxRichTextDrawingHandler*)node->GetData();
@@ -13867,6 +13873,9 @@ int wxRichTextDrawingContext::GetVirtualSubobjectAttributes(wxRichTextObject* ob
         return 0;
 
     wxList::compatibility_iterator node = m_buffer->GetDrawingHandlers().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextDrawingHandler *handler = (wxRichTextDrawingHandler*)node->GetData();
@@ -13884,6 +13893,9 @@ bool wxRichTextDrawingContext::HasVirtualText(const wxRichTextPlainText* obj) co
         return false;
 
     wxList::compatibility_iterator node = m_buffer->GetDrawingHandlers().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextDrawingHandler *handler = (wxRichTextDrawingHandler*)node->GetData();
@@ -13901,6 +13913,9 @@ bool wxRichTextDrawingContext::GetVirtualText(const wxRichTextPlainText* obj, wx
         return false;
 
     wxList::compatibility_iterator node = m_buffer->GetDrawingHandlers().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextDrawingHandler *handler = (wxRichTextDrawingHandler*)node->GetData();
