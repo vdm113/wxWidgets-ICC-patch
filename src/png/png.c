@@ -749,6 +749,9 @@ png_handle_as_unknown(png_structp png_ptr, png_const_bytep chunk_name)
     * code was always searched from the end of the list, so it should continue
     * to do so in case there are duplicated entries.
     */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    do /* num_chunk_list > 0, so at least one */
    {
       p -= 5;
