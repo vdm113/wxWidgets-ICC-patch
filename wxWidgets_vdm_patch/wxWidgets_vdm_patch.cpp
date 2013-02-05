@@ -181,6 +181,26 @@ again:
             line.erase(line.length()-1,1);
         }
 
+        if(line.rfind("//")!=string::npos) {
+            line.erase(line.rfind("//"));
+        }
+
+        {
+            string::size_type startpos;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+            while((startpos=line.find("/*"))!=string::npos) {
+                const string::size_type endpos=line.find("*/");
+                if(endpos==string::npos) {
+                    // multi-line comment, delete until the end
+                    line.erase(startpos);
+                    break;
+                }
+                line.erase(startpos,endpos-startpos+2+1); // 2 is length of "*/"
+            }
+        }
+
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
