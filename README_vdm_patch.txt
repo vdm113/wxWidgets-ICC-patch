@@ -8,7 +8,7 @@ I can do a very limited support... I support only ICC 12.1 and ICC 13.0 (which i
 
 This fork of wxWidgets is as of official SVN revision:
 
-r73455
+r73478
 
 Also, it uses my own pre-configured "setup.h" configuration. I have changed only these parameters (compared to default 'setup0.h'):
 #define WXWIN_COMPATIBILITY_2_8 0 /* VDM: changed explicitly to 1 from 0 */
@@ -33,6 +33,8 @@ or remove these from MSVC project files of WX for debugging STL iterators, but y
 *** NB ***
 
 If you are using 32-bit ICC, or 64-bit one and you don't have enough RAM or time, I recommend change for sub-library "core" from /Qipo to /Qip.
+
+NB: Please, read file "BuildSVN.txt" in this directory as well. There are instructions for building from SVN, but as this GIT repository is regurarily updated from official SVN repository, and it is its fork, it is relevant to read it.
 
 Best regards,
 Marian 'VooDooMan' Meravy
