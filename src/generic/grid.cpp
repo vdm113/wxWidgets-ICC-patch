@@ -6894,10 +6894,16 @@ int wxGrid::PosToEdgeOfLine(int pos, const wxGridOperations& oper) const
         {
             // We need to find the previous visible line, so skip all the
             // hidden (of size 0) ones.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do
             {
                 line = oper.GetLineBefore(this, line);
             }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( line >= 0 && oper.GetLineSize(this, line) == 0 );
 
             // It can possibly be -1 here.
