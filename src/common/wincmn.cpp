@@ -2012,6 +2012,9 @@ public:
         const bool recurse = m_win->HasExtraStyle(wxWS_EX_VALIDATE_RECURSIVELY);
 
         wxWindowList& children = m_win->GetChildren();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxWindowList::iterator i = children.begin();
               i != children.end();
               ++i )
