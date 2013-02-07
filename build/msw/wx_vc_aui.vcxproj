@@ -1286,64 +1286,64 @@
     <CustomBuild Include="..\..\include\wx\msw\genrcdefs.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">Creating ..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">Creating ..\..\lib\vc_x64_dll\mswud\wx\msw\rcdefs.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_x64_dll\mswud\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">IF NOT EXIST "..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">IF NOT EXIST "..\..\lib\vc_x64_dll\mswud\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_x64_dll\mswud\wx\msw\rcdefs.h"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">..\..\lib\vc_dll\mswud\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">..\..\lib\vc_x64_dll\mswud\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">..\..\lib\vc_dll\mswud\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">..\..\lib\vc_x64_dll\mswud\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">Creating ..\..\lib\vc_dll\mswu\wx\msw\rcdefs.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">Creating ..\..\lib\vc_x64_dll\mswu\wx\msw\rcdefs.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_dll\mswu\wx\msw\rcdefs.h"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_x64_dll\mswu\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">IF NOT EXIST "..\..\lib\vc_dll\mswu\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_dll\mswu\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">IF NOT EXIST "..\..\lib\vc_x64_dll\mswu\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_x64_dll\mswu\wx\msw\rcdefs.h"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">..\..\lib\vc_dll\mswu\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">..\..\lib\vc_x64_dll\mswu\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">..\..\lib\vc_dll\mswu\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">..\..\lib\vc_x64_dll\mswu\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">Creating ..\..\lib\vc_dll\mswunivud\wx\msw\rcdefs.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|x64'">Creating ..\..\lib\vc_x64_dll\mswunivud\wx\msw\rcdefs.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_dll\mswunivud\wx\msw\rcdefs.h"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|x64'">cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_x64_dll\mswunivud\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">IF NOT EXIST "..\..\lib\vc_dll\mswunivud\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_dll\mswunivud\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|x64'">IF NOT EXIST "..\..\lib\vc_x64_dll\mswunivud\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_x64_dll\mswunivud\wx\msw\rcdefs.h"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">..\..\lib\vc_dll\mswunivud\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|x64'">..\..\lib\vc_x64_dll\mswunivud\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">..\..\lib\vc_dll\mswunivud\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|x64'">..\..\lib\vc_x64_dll\mswunivud\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'">Creating ..\..\lib\vc_dll\mswunivu\wx\msw\rcdefs.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|x64'">Creating ..\..\lib\vc_x64_dll\mswunivu\wx\msw\rcdefs.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'">cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_dll\mswunivu\wx\msw\rcdefs.h"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|x64'">cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_x64_dll\mswunivu\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'">IF NOT EXIST "..\..\lib\vc_dll\mswunivu\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_dll\mswunivu\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|x64'">IF NOT EXIST "..\..\lib\vc_x64_dll\mswunivu\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_x64_dll\mswunivu\wx\msw\rcdefs.h"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'">..\..\lib\vc_dll\mswunivu\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|x64'">..\..\lib\vc_x64_dll\mswunivu\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'">..\..\lib\vc_dll\mswunivu\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|x64'">..\..\lib\vc_x64_dll\mswunivu\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Creating ..\..\lib\vc_lib\mswud\wx\msw\rcdefs.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Creating ..\..\lib\vc_lib\mswud\wx\msw\rcdefs.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_lib\mswud\wx\msw\rcdefs.h"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_lib\mswud\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">IF NOT EXIST "..\..\lib\vc_lib\mswud\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_lib\mswud\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF NOT EXIST "..\..\lib\vc_lib\mswud\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_lib\mswud\wx\msw\rcdefs.h"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\lib\vc_lib\mswud\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\lib\vc_lib\mswud\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\lib\vc_lib\mswud\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\lib\vc_lib\mswud\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Creating ..\..\lib\vc_lib\mswu\wx\msw\rcdefs.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Creating ..\..\lib\vc_lib\mswu\wx\msw\rcdefs.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_lib\mswu\wx\msw\rcdefs.h"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_lib\mswu\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF NOT EXIST "..\..\lib\vc_lib\mswu\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_lib\mswu\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF NOT EXIST "..\..\lib\vc_lib\mswu\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_lib\mswu\wx\msw\rcdefs.h"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\lib\vc_lib\mswu\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\lib\vc_lib\mswu\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\lib\vc_lib\mswu\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\lib\vc_lib\mswu\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'">Creating ..\..\lib\vc_lib\mswunivud\wx\msw\rcdefs.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Universal Debug|x64'">Creating ..\..\lib\vc_lib\mswunivud\wx\msw\rcdefs.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'">cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_lib\mswunivud\wx\msw\rcdefs.h"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Universal Debug|x64'">cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_lib\mswunivud\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'">IF NOT EXIST "..\..\lib\vc_lib\mswunivud\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_lib\mswunivud\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Universal Debug|x64'">IF NOT EXIST "..\..\lib\vc_lib\mswunivud\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_lib\mswunivud\wx\msw\rcdefs.h"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'">..\..\lib\vc_lib\mswunivud\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Universal Debug|x64'">..\..\lib\vc_lib\mswunivud\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'">..\..\lib\vc_lib\mswunivud\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Universal Debug|x64'">..\..\lib\vc_lib\mswunivud\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Universal Release|Win32'">Creating ..\..\lib\vc_lib\mswunivu\wx\msw\rcdefs.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Universal Release|x64'">Creating ..\..\lib\vc_lib\mswunivu\wx\msw\rcdefs.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Universal Release|Win32'">cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_lib\mswunivu\wx\msw\rcdefs.h"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Universal Release|x64'">cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_lib\mswunivu\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Universal Release|Win32'">IF NOT EXIST "..\..\lib\vc_lib\mswunivu\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_lib\mswunivu\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Universal Release|x64'">IF NOT EXIST "..\..\lib\vc_lib\mswunivu\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "..\..\lib\vc_lib\mswunivu\wx\msw\rcdefs.h"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Universal Release|Win32'">..\..\lib\vc_lib\mswunivu\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Universal Release|x64'">..\..\lib\vc_lib\mswunivu\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Universal Release|Win32'">..\..\lib\vc_lib\mswunivu\wx\msw;%(AdditionalInputs)</AdditionalInputs>
