@@ -70,6 +70,9 @@ main(int argc, char* argv[])
 	}
 	in = TIFFOpen(argv[1], "r");
 	if (in != NULL) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
 			size_t path_len;
 			char *path;
@@ -241,6 +244,9 @@ cpStrips(TIFF* in, TIFF* out)
 			fprintf(stderr, "tiffsplit: strip byte counts are missing\n");
 			return (0);
 		}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (s = 0; s < ns; s++) {
 			if (bytecounts[s] > (uint64)bufsize) {
 				buf = (unsigned char *)_TIFFrealloc(buf, (tmsize_t)bytecounts[s]);
@@ -274,6 +280,9 @@ cpTiles(TIFF* in, TIFF* out)
 			fprintf(stderr, "tiffsplit: tile byte counts are missing\n");
 			return (0);
 		}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (t = 0; t < nt; t++) {
 			if (bytecounts[t] > (uint64) bufsize) {
 				buf = (unsigned char *)_TIFFrealloc(buf, (tmsize_t)bytecounts[t]);

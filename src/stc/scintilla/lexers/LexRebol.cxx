@@ -98,6 +98,9 @@ static void ColouriseRebolDoc(unsigned int startPos, int length, int initStyle, 
 	if (startPos == 0) {
 		sc.SetState(SCE_REBOL_PREFACE);
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		//--- What to do at line end ?
@@ -222,6 +225,9 @@ static void ColouriseRebolDoc(unsigned int startPos, int length, int initStyle, 
 			if (sc.MatchIgnoreCase("rebol"))
 			{
 				int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (i=5; IsASpaceOrTab(styler.SafeGetCharAt(sc.currentPos+i, 0)); i++);
 				if (sc.GetRelative(i) == '[')
 					sc.SetState(SCE_REBOL_DEFAULT);
@@ -282,6 +288,9 @@ static void FoldRebolDoc(unsigned int startPos, int length, int /* initStyle */,
 	int levelCurrent = levelPrev;
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

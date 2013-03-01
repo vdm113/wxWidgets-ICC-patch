@@ -75,6 +75,9 @@ static void colorFirstWord(WordList *keywordlists[], Accessor &styler,
 									StyleContext *sc, char *buff, int length, int)
 {
 	int c = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (sc->More() && isSpaceOrNL(sc->ch))
 	{	sc->Forward();
 	}
@@ -83,12 +86,18 @@ static void colorFirstWord(WordList *keywordlists[], Accessor &styler,
 	if (!IsAWordChar(sc->ch)) // comment, marker, etc..
 		return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (sc->More() && !isSpaceOrNL(sc->ch) && (c < length-1) && !isGCOperator(sc->ch))
 	{	buff[c] = static_cast<char>(sc->ch);
 		++c; sc->Forward();
 	}
 	buff[c] = '\0';
 	char *p = buff;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (*p)	// capitalize..
 	{	if (islower(*p)) *p = static_cast<char>(toupper(*p));
 		++p;
@@ -139,6 +148,9 @@ ColouriseGui4CliDoc(unsigned int startPos, int length, int initStyle,
 	if (sc.state != SCE_GC_COMMENTBLOCK) // colorize 1st word..
 		colorFirstWord(keywordlists, styler, &sc, buff, BUFFSIZE, currentline);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (sc.More())
 	{	noforward = 0;
 
@@ -260,6 +272,9 @@ static void FoldGui4Cli(unsigned int startPos, int length, int,
 	int styleNext = styler.StyleAt(startPos);
 	bool headerPoint = false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++)
 	{
 		char ch = chNext;

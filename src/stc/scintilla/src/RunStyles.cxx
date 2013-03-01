@@ -24,6 +24,9 @@ using namespace Scintilla;
 int RunStyles::RunFromPosition(int position) const {
 	int run = starts->PartitionFromPosition(position);
 	// Go to first element with this position
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((run > 0) && (position == starts->PositionFromPartition(run-1))) {
 		run--;
 	}
@@ -141,6 +144,9 @@ bool RunStyles::FillRange(int &position, int value, int &fillLength) {
 	if (runStart < runEnd) {
 		styles->SetValueAt(runStart, value);
 		// Remove each old run over the range
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int run=runStart+1; run<runEnd; run++) {
 			RemoveRun(runStart+1);
 		}
@@ -210,6 +216,9 @@ void RunStyles::DeleteRange(int position, int deleteLength) {
 		runEnd = SplitRun(end);
 		starts->InsertText(runStart, -deleteLength);
 		// Remove each old run over the range
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int run=runStart; run<runEnd; run++) {
 			RemoveRun(runStart);
 		}
@@ -223,6 +232,9 @@ int RunStyles::Runs() const {
 }
 
 bool RunStyles::AllSame() const {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int run = 1; run < starts->Partitions(); run++) {
 		if (styles->ValueAt(run) != styles->ValueAt(run - 1))
 			return false;
@@ -240,6 +252,9 @@ int RunStyles::Find(int value, int start) const {
 		if (styles->ValueAt(run) == value)
 			return start;
 		run++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (run < starts->Partitions()) {
 			if (styles->ValueAt(run) == value)
 				return starts->PositionFromPartition(run);

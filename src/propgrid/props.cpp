@@ -276,6 +276,9 @@ bool wxIntProperty::StringToValue( wxVariant& variant, const wxString& text, int
 
         int firstNonZeroPos = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ; i != iMax; ++i )
         {
             wxChar c = *i;
@@ -703,6 +706,9 @@ const wxString& wxPropertyGrid::DoubleToString(wxString& target,
         wxString::const_iterator i = target.end() - 1;
         size_t new_len = target.length() - 1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ; i != target.begin(); --i )
         {
             if ( *i != wxS('0') )
@@ -724,6 +730,9 @@ const wxString& wxPropertyGrid::DoubleToString(wxString& target,
         bool isZero = true;
         wxString::const_iterator i = target.begin() + 1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ; i != target.end(); i++ )
         {
             if ( *i != wxS('0') && *i != wxS('.') && *i != wxS(',') )
@@ -1114,6 +1123,9 @@ bool wxEnumProperty::ValueFromString_( wxVariant& value, const wxString& text, i
     int useIndex = -1;
     long useValue = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i=0; i<m_choices.GetCount(); i++ )
     {
         const wxString& entryLabel = m_choices.GetLabel(i);
@@ -1309,6 +1321,9 @@ void wxFlagsProperty::Init()
     }
 
     // Delete old children
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i=0; i<prevChildCount; i++ )
         delete m_children[i];
 
@@ -1324,6 +1339,9 @@ void wxFlagsProperty::Init()
     {
         const wxPGChoices& choices = m_choices;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i=0; i<GetItemCount(); i++ )
         {
             bool child_val;
@@ -1438,6 +1456,9 @@ void wxFlagsProperty::OnSetValue()
         // normalize the value (i.e. remove extra flags)
         unsigned int i;
         const wxPGChoices& choices = m_choices;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < GetItemCount(); i++ )
         {
             fullFlags |= choices.GetValue(i);
@@ -1462,6 +1483,9 @@ void wxFlagsProperty::OnSetValue()
         // Set child modified states
         unsigned int i;
         const wxPGChoices& choices = m_choices;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i<GetItemCount(); i++ )
         {
             int flag;
@@ -1488,6 +1512,9 @@ wxString wxFlagsProperty::ValueToString( wxVariant& value,
     unsigned int i;
     const wxPGChoices& choices = m_choices;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < GetItemCount(); i++ )
     {
         int doAdd;
@@ -1549,6 +1576,9 @@ bool wxFlagsProperty::StringToValue( wxVariant& variant, const wxString& text, i
 long wxFlagsProperty::IdToBit( const wxString& id ) const
 {
     unsigned int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < GetItemCount(); i++ )
     {
         if ( id == GetLabel(i) )
@@ -1567,6 +1597,9 @@ void wxFlagsProperty::RefreshChildren()
 
     const wxPGChoices& choices = m_choices;
     unsigned int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < GetItemCount(); i++ )
     {
         long flag;
@@ -1604,6 +1637,9 @@ bool wxFlagsProperty::DoSetAttribute( const wxString& name, wxVariant& value )
     if ( name == wxPG_BOOL_USE_CHECKBOX ||
          name == wxPG_BOOL_USE_DOUBLE_CLICK_CYCLING )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t i=0; i<GetChildCount(); i++ )
         {
             Item(i)->SetAttribute(name, value);
@@ -1789,6 +1825,9 @@ void wxFileProperty::OnSetValue()
         size_t len = m_wildcard.length();
 
         pos = m_wildcard.find(wxS("|"), pos);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( pos != wxString::npos && pos < (len-3) )
         {
             size_t ext_begin = pos + 3;
@@ -2199,6 +2238,9 @@ bool wxPGArrayEditorDialog::Create( wxWindow *parent,
 
     // Populate the list box
     wxArrayString arr;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i=0; i<ArrayGetCount(); i++ )
         arr.push_back(ArrayGet(i));
     m_elb->SetStrings(arr);
@@ -2546,6 +2588,9 @@ wxArrayStringProperty::ArrayStringToString( wxString& dst,
 
     wxString delimStr(delimiter);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < itemCount; i++ )
     {
         wxString str( src.Item(i) );
@@ -2621,6 +2666,9 @@ bool wxArrayStringProperty::OnButtonClick( wxPropertyGrid* propGrid,
 
     bool retVal;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (;;)
     {
         retVal = false;
