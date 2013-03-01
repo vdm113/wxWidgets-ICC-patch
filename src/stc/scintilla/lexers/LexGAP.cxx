@@ -41,6 +41,9 @@ static inline bool IsGAPOperator(char ch) {
 
 static void GetRange(unsigned int start, unsigned int end, Accessor &styler, char *s, unsigned int len) {
 	unsigned int i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((i < end - start + 1) && (i < len-1)) {
 		s[i] = static_cast<char>(styler[start + i]);
 		i++;
@@ -60,6 +63,9 @@ static void ColouriseGAPDoc(unsigned int startPos, int length, int initStyle, Wo
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		// Prevent SCE_GAP_STRINGEOL from leaking back to previous line
@@ -209,6 +215,9 @@ static void FoldGAPDoc( unsigned int startPos, int length, int initStyle,   Word
 
 	int lastStart = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

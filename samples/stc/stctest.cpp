@@ -489,6 +489,9 @@ void AppFrame::CreateMenu ()
     // hilight submenu
     wxMenu *menuHilight = new wxMenu;
     int Nr;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (Nr = 0; Nr < g_LanguagePrefsSize; Nr++) {
         menuHilight->Append (myID_HILIGHTFIRST + Nr,
                              g_LanguagePrefs [Nr].name);

@@ -137,6 +137,9 @@ static void ColouriseA68kDoc (unsigned int startPos, int length, int initStyle, 
     *
     ************************************************************/
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ; sc.More(); sc.Forward())
     {
         char Buffer[100];

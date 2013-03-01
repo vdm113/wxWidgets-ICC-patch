@@ -117,6 +117,9 @@ static int JBIGSetupEncode(TIFF* tif)
 static int JBIGCopyEncodedData(TIFF* tif, unsigned char* pp, size_t cc, uint16 s)
 {
 	(void) s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (cc > 0)
 	{
 		tmsize_t n = (tmsize_t)cc;

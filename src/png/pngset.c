@@ -206,6 +206,9 @@ png_set_hIST(png_structp png_ptr, png_infop info_ptr, png_const_uint_16p hist)
       return;
    }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0; i < info_ptr->num_palette; i++)
       png_ptr->hist[i] = hist[i];
 
@@ -306,6 +309,9 @@ png_set_pCAL(png_structp png_ptr, png_infop info_ptr,
       png_error(png_ptr, "Invalid pCAL equation type");
 
    /* Validate params[nparams] */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i=0; i<nparams; ++i)
       if (!png_check_fp_string(params[i], png_strlen(params[i])))
          png_error(png_ptr, "Invalid format for pCAL parameter");
@@ -351,6 +357,9 @@ png_set_pCAL(png_structp png_ptr, png_infop info_ptr,
 
    png_memset(info_ptr->pcal_params, 0, (nparams + 1) * png_sizeof(png_charp));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0; i < nparams; i++)
    {
       length = png_strlen(params[i]) + 1;
@@ -728,6 +737,9 @@ png_set_text_2(png_structp png_ptr, png_infop info_ptr,
       png_debug1(3, "allocated %d entries for info_ptr->text",
           info_ptr->max_text);
    }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0; i < num_text; i++)
    {
       png_size_t text_length, key_len;
@@ -970,6 +982,9 @@ png_set_sPLT(png_structp png_ptr,
    png_free(png_ptr, info_ptr->splt_palettes);
    info_ptr->splt_palettes=NULL;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0; i < nentries; i++)
    {
       png_sPLT_tp to = np + info_ptr->splt_palettes_num + i;
@@ -1042,6 +1057,9 @@ png_set_unknown_chunks(png_structp png_ptr,
    png_free(png_ptr, info_ptr->unknown_chunks);
    info_ptr->unknown_chunks = NULL;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0; i < num_unknowns; i++)
    {
       png_unknown_chunkp to = np + info_ptr->unknown_chunks_num + i;
@@ -1151,6 +1169,9 @@ png_set_keep_unknown_chunks(png_structp png_ptr, int keep, png_const_bytep
    png_memcpy(new_list + 5*old_num_chunks, chunk_list,
        (png_size_t)(5*num_chunks));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (p = new_list + 5*old_num_chunks + 4, i = 0; i<num_chunks; i++, p += 5)
       *p=(png_byte)keep;
 

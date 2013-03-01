@@ -189,9 +189,15 @@ TIFFFindCODEC(uint16 scheme)
 	const TIFFCodec* c;
 	codec_t* cd;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (cd = registeredCODECS; cd; cd = cd->next)
 		if (cd->info->scheme == scheme)
 			return ((const TIFFCodec*) cd->info);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (c = _TIFFBuiltinCODECS; c->name; c++)
 		if (c->scheme == scheme)
 			return (c);
@@ -227,6 +233,9 @@ TIFFUnRegisterCODEC(TIFFCodec* c)
 	codec_t* cd;
 	codec_t** pcd;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (pcd = &registeredCODECS; (cd = *pcd); pcd = &cd->next)
 		if (cd->info == c) {
 			*pcd = cd->next;
@@ -258,6 +267,9 @@ TIFFGetConfiguredCODECs()
 	TIFFCodec* codecs = NULL;
 	TIFFCodec* new_codecs;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (cd = registeredCODECS; cd; cd = cd->next) {
 		new_codecs = (TIFFCodec *)
 			_TIFFrealloc(codecs, i * sizeof(TIFFCodec));
@@ -269,6 +281,9 @@ TIFFGetConfiguredCODECs()
 		_TIFFmemcpy(codecs + i - 1, cd, sizeof(TIFFCodec));
 		i++;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (c = _TIFFBuiltinCODECS; c->name; c++) {
 		if (TIFFIsCODECConfigured(c->scheme)) {
 			new_codecs = (TIFFCodec *)

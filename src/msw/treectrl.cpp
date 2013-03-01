@@ -237,6 +237,9 @@ static bool SelectRange(HWND hwndTV,
     bool cont = true;
     HTREEITEM htItem = (HTREEITEM)TreeView_GetRoot(hwndTV);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( htItem && cont )
     {
         if ( (htItem == htFirst) || (htItem == htLast) )
@@ -272,6 +275,9 @@ static bool SelectRange(HWND hwndTV,
 
     // select the items in range
     cont = htFirst != htLast;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( htItem && cont )
     {
         if ( !IsItemSelected(hwndTV, htItem) )
@@ -292,6 +298,9 @@ static bool SelectRange(HWND hwndTV,
     // optionally deselect the rest
     if ( flags & SR_UNSELECT_OTHERS )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( htItem )
         {
             if ( IsItemSelected(hwndTV, htItem) )
@@ -423,6 +432,9 @@ public:
     {
         m_data = NULL;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < WXSIZEOF(m_images); n++ )
         {
             m_images[n] = -1;
@@ -691,6 +703,9 @@ bool wxTreeTraversal::Traverse(const wxTreeItemId& root, bool recursively)
 {
     wxTreeItemIdValue cookie;
     wxTreeItemId child = m_tree->GetFirstChild(root, cookie);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( child.IsOk() )
     {
         // depth first traversal
@@ -1389,6 +1404,9 @@ wxTreeItemId wxTreeCtrl::GetLastChild(const wxTreeItemId& item) const
 
     wxTreeItemId childLast,
     child = GetFirstChild(item, cookie);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( child.IsOk() )
     {
         childLast = child;
@@ -1583,6 +1601,9 @@ wxTreeItemId wxTreeCtrl::DoInsertItem(const wxTreeItemId& parent,
     {
         wxTreeItemIdValue cookie;
         wxTreeItemId idCur = GetFirstChild(parent, cookie);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( index != 0 && idCur.IsOk() )
         {
             index--;
@@ -1675,6 +1696,9 @@ void wxTreeCtrl::DeleteChildren(const wxTreeItemId& item)
 
     wxArrayTreeItemIds children;
     wxTreeItemId child = GetFirstChild(item, cookie);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( child.IsOk() )
     {
         children.Add(child);
@@ -1683,6 +1707,9 @@ void wxTreeCtrl::DeleteChildren(const wxTreeItemId& item)
     }
 
     size_t nCount = children.Count();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < nCount; n++ )
     {
         Delete(children[n]);
@@ -1817,6 +1844,9 @@ void wxTreeCtrl::DoUnselectAll()
     wxArrayTreeItemIds selections;
     size_t count = GetSelections(selections);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         DoUnselectItem(selections[n]);
@@ -1856,6 +1886,9 @@ void wxTreeCtrl::DoSelectChildren(const wxTreeItemId& parent)
 
     wxTreeItemIdValue cookie;
     wxTreeItemId child = GetFirstChild(parent, cookie);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( child.IsOk() )
     {
         DoSelectItem(child, true);
@@ -2447,6 +2480,9 @@ bool wxTreeCtrl::MSWHandleSelectionKey(unsigned vkey)
 
                 if ( vkey == VK_END )
                 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( ;; )
                     {
                         wxTreeItemId nextTemp = TreeView_GetNextVisible(
@@ -2529,6 +2565,9 @@ bool wxTreeCtrl::MSWHandleSelectionKey(unsigned vkey)
 
                 wxTreeItemId nextStart = firstVisible;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( size_t n = 1; n < visibleCount; n++ )
                 {
                     wxTreeItemId nextTemp = (vkey == VK_PRIOR) ?
@@ -2551,6 +2590,9 @@ bool wxTreeCtrl::MSWHandleSelectionKey(unsigned vkey)
                 {
                     wxTreeItemId nextEnd = nextStart;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( size_t n = 1; n < visibleCount; n++ )
                     {
                         wxTreeItemId nextTemp =
@@ -2583,6 +2625,9 @@ bool wxTreeCtrl::MSWHandleSelectionKey(unsigned vkey)
 
                 wxTreeItemId next(htSel);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( size_t n = 1; n < visibleCount; n++ )
                 {
                     wxTreeItemId nextTemp = vkey == VK_PRIOR ?
@@ -3132,6 +3177,9 @@ wxTreeCtrl::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam)
             size_t count = GetSelections(selections);
             TVGetItemRectParam param;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( size_t n = 0; n < count; n++ )
             {
                 // TreeView_GetItemRect() will return false if item is not
@@ -3543,6 +3591,9 @@ bool wxTreeCtrl::MSWOnNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result)
                             if ( index != -1 )
                             {
                                 // move images to right
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                                 for ( int i = index; i > 0; i-- )
                                 {
                                     (*s_pfnImageList_Copy)(hImageList, i,
