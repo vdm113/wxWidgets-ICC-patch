@@ -82,6 +82,9 @@ void NotebookTestCase::RowCount()
                                 wxDefaultPosition, wxSize(400, 200),
                                 wxNB_MULTILINE);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( unsigned int i = 0; i < 10; i++ )
     {
         m_notebook->AddPage(new wxPanel(m_notebook), "Panel", false, 0);

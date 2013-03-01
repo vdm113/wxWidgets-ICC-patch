@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        filefn.h
 // Purpose:     interface of wxPathList and file functions
@@ -468,6 +475,9 @@ wxString wxFindNextFile();
 
     @code
     wxString f = wxFindFirstFile("/home/project/*.*");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !f.empty() )
     {
         ...

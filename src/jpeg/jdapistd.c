@@ -51,6 +51,9 @@ jpeg_start_decompress (j_decompress_ptr cinfo)
     /* If file has multiple scans, absorb them all into the coef buffer */
     if (cinfo->inputctl->has_multiple_scans) {
 #ifdef D_MULTISCAN_FILES_SUPPORTED
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (;;) {
 	int retcode;
 	/* Call progress monitor hook if present */
@@ -101,9 +104,15 @@ output_pass_setup (j_decompress_ptr cinfo)
     cinfo->global_state = DSTATE_PRESCAN;
   }
   /* Loop over any required dummy passes */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (cinfo->master->is_dummy_pass) {
 #ifdef QUANT_2PASS_SUPPORTED
     /* Crank through the dummy pass */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (cinfo->output_scanline < cinfo->output_height) {
       JDIMENSION last_scanline;
       /* Call progress monitor hook if present */
@@ -263,6 +272,9 @@ jpeg_finish_output (j_decompress_ptr cinfo)
     ERREXIT1(cinfo, JERR_BAD_STATE, cinfo->global_state);
   }
   /* Read markers looking for SOS or EOI */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (cinfo->input_scan_number <= cinfo->output_scan_number &&
 	 ! cinfo->inputctl->eoi_reached) {
     if ((*cinfo->inputctl->consume_input) (cinfo) == JPEG_SUSPENDED)
