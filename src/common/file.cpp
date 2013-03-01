@@ -300,6 +300,9 @@ bool wxFile::ReadAll(wxString *str, const wxMBConv& conv)
 
     wxCharBuffer buf(length);
     char* p = buf.data();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         static const ssize_t READSIZE = 4096;

@@ -56,6 +56,9 @@ static void ColouriseEiffelDoc(unsigned int startPos,
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.state == SCE_EIFFEL_STRINGEOL) {
@@ -137,6 +140,9 @@ static void FoldEiffelDocIndent(unsigned int startPos, int length, int,
 	int spaceFlags = 0;
 	int indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, IsEiffelComment);
 	char chNext = styler[startPos];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -177,6 +183,9 @@ static void FoldEiffelDocKeyWords(unsigned int startPos, int length, int /* init
 	// lastDeferred should be determined by looking back to last keyword in case
 	// the "deferred" is on a line before "class"
 	bool lastDeferred = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -186,6 +195,9 @@ static void FoldEiffelDocKeyWords(unsigned int startPos, int length, int /* init
 		if ((stylePrev != SCE_EIFFEL_WORD) && (style == SCE_EIFFEL_WORD)) {
 			char s[20];
 			unsigned int j = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while ((j < (sizeof(s) - 1)) && (iswordchar(styler[i + j]))) {
 				s[j] = styler[i + j];
 				j++;

@@ -166,6 +166,9 @@ void wxStatusBarMac::OnPaint(wxPaintEvent& WXUNUSED(event))
     // compute char height only once for all panes:
     int textHeight = dc.GetCharHeight();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < m_panes.GetCount(); i ++ )
         DrawField(dc, i, textHeight);
 }
