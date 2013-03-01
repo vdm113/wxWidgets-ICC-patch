@@ -280,6 +280,9 @@ WXHRGN wxStaticBox::MSWGetRegionWithoutChildren()
     bool foundThis = false;
 
     // iterate over all child windows (not just wxWindows but all windows)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( HWND child = ::GetWindow(GetHwndOf(GetParent()), GW_CHILD);
           child;
           child = ::GetWindow(child, GW_HWNDNEXT) )

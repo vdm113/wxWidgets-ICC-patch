@@ -600,6 +600,9 @@ int main(int argc, char** argv){
 		goto fail;
 	}
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (argv &&
 	       (c = getopt(argc, argv,
 			   "o:q:u:x:y:w:l:r:p:e:c:a:t:s:k:jzndifbhF")) != -1){
@@ -849,6 +852,9 @@ void tiff2pdf_usage(){
 	int i=0;
 
 	fprintf(stderr, "%s\n\n", TIFFGetVersion());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i=0;lines[i]!=NULL;i++){
 		fprintf(stderr, "%s\n", lines[i]);
 	}
@@ -902,9 +908,15 @@ int tiff2pdf_match_paper_size(float* width, float* length, char* papersize){
 	};
 
 	len=strlen(papersize);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(i=0;i<len;i++){
 		papersize[i]=toupper(papersize[i]);
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(i=0;sizes[i]!=NULL; i++){
 		if (strcmp( (const char*)papersize, sizes[i])==0){
 			*width=(float)widths[i];
@@ -957,6 +969,9 @@ void t2p_free(T2P* t2p)
 		if(t2p->tiff_pages != NULL){
 			_TIFFfree( (tdata_t) t2p->tiff_pages);
 		}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for(i=0;i<t2p->tiff_pagecount;i++){
 			if(t2p->tiff_tiles[i].tiles_tiles != NULL){
 				_TIFFfree( (tdata_t) t2p->tiff_tiles[i].tiles_tiles);
@@ -1057,6 +1072,9 @@ void t2p_read_tiff_init(T2P* t2p, TIFF* input){
 		return;
 	}
 	_TIFFmemset( t2p->tiff_tiles, 0x00, directorycount * sizeof(T2P_TILES));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(i=0;i<directorycount;i++){
 		uint32 subfiletype = 0;
 		
@@ -1112,6 +1130,9 @@ void t2p_read_tiff_init(T2P* t2p, TIFF* input){
 	qsort((void*) t2p->tiff_pages, t2p->tiff_pagecount,
               sizeof(T2P_PAGE), t2p_cmp_t2p_page);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(i=0;i<t2p->tiff_pagecount;i++){
 		t2p->pdf_xrefcount += 5;
 		TIFFSetDirectory(input, t2p->tiff_pages[i].page_directory );
@@ -1453,6 +1474,9 @@ void t2p_read_tiff_data(T2P* t2p, TIFF* input){
 				t2p->t2p_error = T2P_ERR_ERROR;
 				return;
 			}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for(i=0;i<t2p->pdf_palettesize;i++){
 				t2p->pdf_palette[(i*3)]  = (unsigned char) (r[i]>>8);
 				t2p->pdf_palette[(i*3)+1]= (unsigned char) (g[i]>>8);
@@ -1522,6 +1546,9 @@ void t2p_read_tiff_data(T2P* t2p, TIFF* input){
 				t2p->t2p_error = T2P_ERR_ERROR;
 				return;
 			}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for(i=0;i<t2p->pdf_palettesize;i++){
 				t2p->pdf_palette[(i*4)]  = (unsigned char) (r[i]>>8);
 				t2p->pdf_palette[(i*4)+1]= (unsigned char) (g[i]>>8);
@@ -1832,6 +1859,9 @@ void t2p_read_tiff_size(T2P* t2p, TIFF* input){
 				return;
 			}
 			stripcount=TIFFNumberOfStrips(input);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for(i=0;i<stripcount;i++){
 				k = checkAdd64(k, sbc[i], t2p);
 			}
@@ -1894,6 +1924,9 @@ void t2p_read_tiff_size(T2P* t2p, TIFF* input){
 				t2p->t2p_error = T2P_ERR_ERROR;
 				return;
 			}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for(i=0;i<stripcount;i++){
 				k = checkAdd64(k, sbc[i], t2p);
 				k -=4; /* don't use SOI or EOI of strip */
@@ -2204,6 +2237,9 @@ tsize_t t2p_readwrite_pdf_image(T2P* t2p, TIFF* input, TIFF* output){
 					buffer[bufferoffset++]= (ri>>8) & 0xff;
 					buffer[bufferoffset++]= ri & 0xff;
 					stripcount=TIFFNumberOfStrips(input);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					for(i=0;i<stripcount;i++){
 						if(i != 0 ){ 
 							buffer[bufferoffset++]=0xff;
@@ -2240,6 +2276,9 @@ tsize_t t2p_readwrite_pdf_image(T2P* t2p, TIFF* input, TIFF* output){
 				_TIFFmemcpy(buffer, t2p->pdf_ojpegdata, t2p->pdf_ojpegdatalength);
 				bufferoffset=t2p->pdf_ojpegdatalength;
 				stripcount=TIFFNumberOfStrips(input);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for(i=0;i<stripcount;i++){
 					if(i != 0){
 						buffer[bufferoffset++]=0xff;
@@ -2288,6 +2327,9 @@ tsize_t t2p_readwrite_pdf_image(T2P* t2p, TIFF* input, TIFF* output){
 			}
 			stripcount=TIFFNumberOfStrips(input);
 			TIFFGetField(input, TIFFTAG_STRIPBYTECOUNTS, &sbc);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for(i=0;i<stripcount;i++){
 				if(sbc[i]>max_striplength) max_striplength=sbc[i];
 			}
@@ -2302,6 +2344,9 @@ tsize_t t2p_readwrite_pdf_image(T2P* t2p, TIFF* input, TIFF* output){
 				t2p->t2p_error = T2P_ERR_ERROR;
 				return(0);
 			}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for(i=0;i<stripcount;i++){
 				striplength=TIFFReadRawStrip(input, i, (tdata_t) stripbuffer, -1);
 				if(!t2p_process_jpeg_strip(
@@ -2344,6 +2389,9 @@ tsize_t t2p_readwrite_pdf_image(T2P* t2p, TIFF* input, TIFF* output){
                 memset(buffer, 0, t2p->tiff_datasize);
 		stripsize=TIFFStripSize(input);
 		stripcount=TIFFNumberOfStrips(input);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for(i=0;i<stripcount;i++){
 			read = 
 				TIFFReadEncodedStrip(input, 
@@ -2389,8 +2437,14 @@ tsize_t t2p_readwrite_pdf_image(T2P* t2p, TIFF* input, TIFF* output){
 				t2p->t2p_error = T2P_ERR_ERROR;
 				return(0);
 			}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for(i=0;i<stripcount;i++){
 				samplebufferoffset=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for(j=0;j<t2p->tiff_samplesperpixel;j++){
 					read = 
 						TIFFReadEncodedStrip(input, 
@@ -2431,6 +2485,9 @@ tsize_t t2p_readwrite_pdf_image(T2P* t2p, TIFF* input, TIFF* output){
                 memset(buffer, 0, t2p->tiff_datasize);
 		stripsize=TIFFStripSize(input);
 		stripcount=TIFFNumberOfStrips(input);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for(i=0;i<stripcount;i++){
 			read = 
 				TIFFReadEncodedStrip(input, 
@@ -2869,6 +2926,9 @@ tsize_t t2p_readwrite_pdf_image_tile(T2P* t2p, TIFF* input, TIFF* output, ttile_
 				return(0);
 			}
 			samplebufferoffset=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for(i=0;i<t2p->tiff_samplesperpixel;i++){
 				read = 
 					TIFFReadEncodedTile(input, 
@@ -3223,6 +3283,9 @@ int t2p_process_ojpeg_tables(T2P* t2p, TIFF* input){
 			(t2p->tiff_width ) & 0xff;
 	}
 	ojpegdata[t2p->pdf_ojpegdatalength++]=(t2p->tiff_samplesperpixel & 0xff);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(i=0;i<t2p->tiff_samplesperpixel;i++){
 		ojpegdata[t2p->pdf_ojpegdatalength++]=i;
 		if(i==0){
@@ -3233,6 +3296,9 @@ int t2p_process_ojpeg_tables(T2P* t2p, TIFF* input){
 		}
 		ojpegdata[t2p->pdf_ojpegdatalength++]=i;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(dest=0;dest<t2p->tiff_samplesperpixel;dest++){
 		ojpegdata[t2p->pdf_ojpegdatalength++]=0xff;
 		ojpegdata[t2p->pdf_ojpegdatalength++]=0xdb;
@@ -3244,6 +3310,9 @@ int t2p_process_ojpeg_tables(T2P* t2p, TIFF* input){
 		t2p->pdf_ojpegdatalength+=64;
 	}
 	offset_table=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(dest=0;dest<table_count;dest++){
 		ojpegdata[t2p->pdf_ojpegdatalength++]=0xff;
 		ojpegdata[t2p->pdf_ojpegdatalength++]=0xc4;
@@ -3254,6 +3323,9 @@ int t2p_process_ojpeg_tables(T2P* t2p, TIFF* input){
 			&(((unsigned char*)dc)[offset_table]), 16);
 		code_count=0;
 		offset_table+=16;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for(i=0;i<16;i++){
 			code_count+=ojpegdata[t2p->pdf_ojpegdatalength++];
 		}
@@ -3266,6 +3338,9 @@ int t2p_process_ojpeg_tables(T2P* t2p, TIFF* input){
 	}
 	if(proc==JPEGPROC_BASELINE){
 	offset_table=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for(dest=0;dest<table_count;dest++){
 			ojpegdata[t2p->pdf_ojpegdatalength++]=0xff;
 			ojpegdata[t2p->pdf_ojpegdatalength++]=0xc4;
@@ -3277,6 +3352,9 @@ int t2p_process_ojpeg_tables(T2P* t2p, TIFF* input){
 				&(((unsigned char*)ac)[offset_table]), 16);
 			code_count=0;
 			offset_table+=16;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for(i=0;i<16;i++){
 				code_count+=ojpegdata[t2p->pdf_ojpegdatalength++];
 			}	
@@ -3306,6 +3384,9 @@ int t2p_process_ojpeg_tables(T2P* t2p, TIFF* input){
 	ojpegdata[t2p->pdf_ojpegdatalength++]=0x00;
 	ojpegdata[t2p->pdf_ojpegdatalength++]=(6 + 2*t2p->tiff_samplesperpixel);
 	ojpegdata[t2p->pdf_ojpegdatalength++]=t2p->tiff_samplesperpixel & 0xff;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(i=0;i<t2p->tiff_samplesperpixel;i++){
 		ojpegdata[t2p->pdf_ojpegdatalength++]= i & 0xff;
 		if(proc==JPEGPROC_BASELINE){
@@ -3348,6 +3429,9 @@ int t2p_process_jpeg_strip(
 	
 	i++;
 	
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while(i<(*striplength)){
 		switch( strip[i] ){
 			case 0xd8:
@@ -3363,6 +3447,9 @@ int t2p_process_jpeg_strip(
 			case 0xca:
 				if(no==0){
 					_TIFFmemcpy(&(buffer[*bufferoffset]), &(strip[i-1]), strip[i+2]+2);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					for(j=0;j<buffer[*bufferoffset+9];j++){
 						if( (buffer[*bufferoffset+11+(2*j)]>>4) > h_samp) 
 							h_samp = (buffer[*bufferoffset+11+(2*j)]>>4);
@@ -3439,6 +3526,9 @@ void t2p_tile_collapse_left(
 	tsize_t edgescanwidth=0;
 	
 	edgescanwidth = (scanwidth * edgetilewidth + (tilewidth - 1))/ tilewidth;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(i=0;i<tilelength;i++){
 		_TIFFmemcpy( 
 			&(((char*)buffer)[edgescanwidth*i]), 
@@ -3482,7 +3572,13 @@ tsize_t t2p_sample_planar_separate_to_contig(
 	tsize_t j=0;
 	
 	stride=samplebuffersize/t2p->tiff_samplesperpixel;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(i=0;i<stride;i++){
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for(j=0;j<t2p->tiff_samplesperpixel;j++){
 			buffer[i*t2p->tiff_samplesperpixel + j] = samplebuffer[i + j*stride];
 		}
@@ -3502,9 +3598,15 @@ tsize_t t2p_sample_realize_palette(T2P* t2p, unsigned char* buffer){
 	sample_count=t2p->tiff_width*t2p->tiff_length;
 	component_count=t2p->tiff_samplesperpixel;
 	
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(i=sample_count;i>0;i--){
 		palette_offset=buffer[i-1] * component_count;
 		sample_offset= (i-1) * component_count;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for(j=0;j<component_count;j++){
 			buffer[sample_offset+j]=t2p->pdf_palette[palette_offset+j];
 		}
@@ -3523,6 +3625,9 @@ tsize_t t2p_sample_abgr_to_rgb(tdata_t data, uint32 samplecount)
 	uint32 i=0;
 	uint32 sample=0;
 	
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(i=0;i<samplecount;i++){
 		sample=((uint32*)data)[i];
 		((char*)data)[i*3]= (char) (sample & 0xff);
@@ -3543,6 +3648,9 @@ t2p_sample_rgbaa_to_rgb(tdata_t data, uint32 samplecount)
 {
 	uint32 i;
 	
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(i = 0; i < samplecount; i++)
 		memcpy((uint8*)data + i * 3, (uint8*)data + i * 4, 3);
 
@@ -3561,6 +3669,9 @@ t2p_sample_rgba_to_rgb(tdata_t data, uint32 samplecount)
 	uint32 sample = 0;
 	uint8 alpha = 0;
 	
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < samplecount; i++) {
 		sample=((uint32*)data)[i];
 		alpha=(uint8)((255 - ((sample >> 24) & 0xff)));
@@ -3581,6 +3692,9 @@ tsize_t t2p_sample_lab_signed_to_unsigned(tdata_t buffer, uint32 samplecount){
 
 	uint32 i=0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(i=0;i<samplecount;i++){
 		if( (((unsigned char*)buffer)[(i*3)+1] & 0x80) !=0){
 			((unsigned char*)buffer)[(i*3)+1] =
@@ -3663,6 +3777,9 @@ tsize_t t2p_write_pdf_name(unsigned char* name, TIFF* output){
 		namelen=126;
 	}
 	written += t2pWriteFile(output, (tdata_t) "/", 1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i=0;i<namelen;i++){
 		if ( ((unsigned char)name[i]) < 0x21){
 			sprintf(buffer, "#%.2X", name[i]);
@@ -3757,6 +3874,9 @@ tsize_t t2p_write_pdf_string(char* pdfstr, TIFF* output)
 	
 	len = strlen(pdfstr);
 	written += t2pWriteFile(output, (tdata_t) "(", 1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i=0; i<len; i++) {
 		if((pdfstr[i]&0x80) || (pdfstr[i]==127) || (pdfstr[i]<32)){
 			snprintf(buffer, sizeof(buffer), "\\%.3o", ((unsigned char)pdfstr[i]));
@@ -4096,6 +4216,9 @@ tsize_t t2p_write_pdf_pages(T2P* t2p, TIFF* output)
 	written += t2pWriteFile(output,
 		(tdata_t) "<< \n/Type /Pages \n/Kids [ ", 26);
 	page = t2p->pdf_pages+1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i=0;i<t2p->tiff_pagecount;i++){
 		buflen=sprintf(buffer, "%d", page);
 		written += t2pWriteFile(output, (tdata_t) buffer, buflen);
@@ -4155,6 +4278,9 @@ tsize_t t2p_write_pdf_page(uint32 object, T2P* t2p, TIFF* output){
 	written += t2pWriteFile(output, (tdata_t) "/Resources << \n", 15);
 	if( t2p->tiff_tiles[t2p->pdf_page].tiles_tilecount != 0 ){
 		written += t2pWriteFile(output, (tdata_t) "/XObject <<\n", 12);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for(i=0;i<t2p->tiff_tiles[t2p->pdf_page].tiles_tilecount;i++){
 			written += t2pWriteFile(output, (tdata_t) "/Im", 3);
 			buflen = sprintf(buffer, "%u", t2p->pdf_page+1);
@@ -4310,7 +4436,13 @@ void t2p_compose_pdf_page(T2P* t2p){
 		(t2p->tiff_tiles[t2p->pdf_page]).tiles_edgetilelength=
 			t2p->tiff_length % tilelength;
 		tiles=(t2p->tiff_tiles[t2p->pdf_page]).tiles_tiles;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for(i2=0;i2<tilecounty-1;i2++){
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for(i=0;i<tilecountx-1;i++){
 				boxp=&(tiles[i2*tilecountx+i].tile_box);
 				boxp->x1 = 
@@ -4345,6 +4477,9 @@ void t2p_compose_pdf_page(T2P* t2p){
 				- ((float)(t2p->pdf_imagelength * i2 * tilelength)
 				/ (float)t2p->tiff_length);
 		}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for(i=0;i<tilecountx-1;i++){
 			boxp=&(tiles[i2*tilecountx+i].tile_box);
 			boxp->x1 = 
@@ -4374,11 +4509,17 @@ void t2p_compose_pdf_page(T2P* t2p){
 			/ (float)t2p->tiff_length);
 	}
 	if(t2p->tiff_orientation==0 || t2p->tiff_orientation==1){
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for(i=0;i<(t2p->tiff_tiles[t2p->pdf_page]).tiles_tilecount;i++){
 			t2p_compose_pdf_page_orient( &(tiles[i].tile_box) , 0);
 		}
 		return;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(i=0;i<(t2p->tiff_tiles[t2p->pdf_page]).tiles_tilecount;i++){
 		boxp=&(tiles[i].tile_box);
 		boxp->x1 -= t2p->pdf_imagebox.x1;
@@ -4564,6 +4705,9 @@ tsize_t t2p_write_pdf_page_content_stream(T2P* t2p, TIFF* output){
 	T2P_BOX box;
 	
 	if(t2p->tiff_tiles[t2p->pdf_page].tiles_tilecount>0){ 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for(i=0;i<t2p->tiff_tiles[t2p->pdf_page].tiles_tilecount; i++){
 			box=t2p->tiff_tiles[t2p->pdf_page].tiles_tiles[i].tile_box;
 			buflen=sprintf(buffer, 
@@ -4990,6 +5134,9 @@ tsize_t t2p_write_pdf_xobject_decode(T2P* t2p, TIFF* output){
 	int i=0;
 
 	written += t2pWriteFile(output, (tdata_t) "/Decode [ ", 10);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i=0;i<t2p->tiff_samplesperpixel;i++){
 		written += t2pWriteFile(output, (tdata_t) "1 0 ", 4);
 	}
@@ -5124,6 +5271,9 @@ tsize_t t2p_write_pdf_xreftable(T2P* t2p, TIFF* output){
 	buflen=sprintf(buffer, "%lu", (unsigned long)(t2p->pdf_xrefcount + 1));
 	written += t2pWriteFile(output, (tdata_t) buffer, buflen);
 	written += t2pWriteFile(output, (tdata_t) " \n0000000000 65535 f \n", 22);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i=0;i<t2p->pdf_xrefcount;i++){
 		sprintf(buffer, "%.10lu 00000 n \n",
 			(unsigned long)t2p->pdf_xrefoffsets[i]);
@@ -5145,6 +5295,9 @@ tsize_t t2p_write_pdf_trailer(T2P* t2p, TIFF* output)
 	int buflen = 0;
 	size_t i = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < sizeof(t2p->pdf_fileid) - 8; i += 8)
 		snprintf(t2p->pdf_fileid + i, 9, "%.8X", rand());
 
@@ -5253,6 +5406,9 @@ tsize_t t2p_write_pdf(T2P* t2p, TIFF* input, TIFF* output){
 	written += t2p_write_pdf_obj_start(t2p->pdf_xrefcount, output);
 	written += t2p_write_pdf_pages(t2p, output);
 	written += t2p_write_pdf_obj_end(output);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for(t2p->pdf_page=0;t2p->pdf_page<t2p->tiff_pagecount;t2p->pdf_page++){
 		t2p_read_tiff_data(t2p, input);
 		if(t2p->t2p_error!=T2P_ERR_OK){return(0);}
@@ -5280,6 +5436,9 @@ tsize_t t2p_write_pdf(T2P* t2p, TIFF* input, TIFF* output){
 			written += t2p_write_pdf_obj_start(t2p->pdf_xrefcount, output);
 			written += t2p_write_pdf_transfer(t2p, output);
 			written += t2p_write_pdf_obj_end(output);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for(i=0; i < t2p->tiff_transferfunctioncount; i++){
 				t2p->pdf_xrefoffsets[t2p->pdf_xrefcount++]=written;
 				written += t2p_write_pdf_obj_start(t2p->pdf_xrefcount, output);
@@ -5323,6 +5482,9 @@ tsize_t t2p_write_pdf(T2P* t2p, TIFF* input, TIFF* output){
 			written += t2p_write_pdf_obj_end(output);
 		}
 		if(t2p->tiff_tiles[t2p->pdf_page].tiles_tilecount !=0){
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for(i2=0;i2<t2p->tiff_tiles[t2p->pdf_page].tiles_tilecount;i2++){
 				t2p->pdf_xrefoffsets[t2p->pdf_xrefcount++]=written;
 				written += t2p_write_pdf_obj_start(t2p->pdf_xrefcount, output);
