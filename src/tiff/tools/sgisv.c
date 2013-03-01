@@ -59,6 +59,9 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((c = getopt(argc, argv, "c:p:r:")) != -1)
 		switch (c) {
 		case 'b':		/* save as b&w */
@@ -145,6 +148,9 @@ usage(void)
 	int i;
 
 	setbuf(stderr, buf);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);
@@ -159,6 +165,9 @@ svRGBSeparate(TIFF* tif, uint32* ss, int xsize, int ysize)
 	unsigned char *bbuf = gbuf + stripsize;
 	register int y;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (y = 0; y <= ysize; y += rowsperstrip) {
 		unsigned char *rp, *gp, *bp;
 		register int x;
@@ -168,7 +177,13 @@ svRGBSeparate(TIFF* tif, uint32* ss, int xsize, int ysize)
 		if (n > ysize-y+1)
 			n = ysize-y+1;
 		rp = rbuf; gp = gbuf; bp = bbuf;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (x = 0; x <= xsize; x++) {
 				uint32 v = ss[x];
 				rp[x] = v;
@@ -198,6 +213,9 @@ svRGBContig(TIFF* tif, uint32* ss, int xsize, int ysize)
 	tsize_t stripsize = TIFFStripSize(tif);
 	unsigned char *strip = (unsigned char *)_TIFFmalloc(stripsize);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (y = 0; y <= ysize; y += rowsperstrip) {
 		register unsigned char *pp = strip;
 		register uint32 n;
@@ -205,7 +223,13 @@ svRGBContig(TIFF* tif, uint32* ss, int xsize, int ysize)
 		n = rowsperstrip;
 		if (n > ysize-y+1)
 			n = ysize-y+1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (x = 0; x <= xsize; x++) {
 				uint32 v = ss[x];
 				pp[0] = v;
@@ -236,7 +260,13 @@ svGrey(TIFF* tif, uint32* ss, int xsize, int ysize)
 	register int x, y;
 	unsigned char *buf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(tif));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (y = 0; y <= ysize; y++) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (x = 0; x <= xsize; x++) {
 			unsigned char *cp = (unsigned char *)&ss[x];
 			buf[x] = (RED*cp[3] + GREEN*cp[2] + BLUE*cp[1]) >> 8;

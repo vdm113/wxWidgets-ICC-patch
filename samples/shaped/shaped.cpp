@@ -509,8 +509,14 @@ void SeeThroughFrame::OnPaint(wxPaintEvent& WXUNUSED(evt))
     int width = GetClientSize().GetWidth();
     int height = GetClientSize().GetHeight();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( float x = 0.; x < 1.; x += xstep )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( float y = 0.; y < 1.; y += ystep )
         {
             wxImage::RGBValue v = wxImage::HSVtoRGB(wxImage::HSVValue(x, 1., 1.));
