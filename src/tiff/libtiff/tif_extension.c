@@ -68,6 +68,9 @@ void *TIFFGetClientInfo( TIFF *tif, const char *name )
 {
     TIFFClientInfoLink *link = tif->tif_clientinfo;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( link != NULL && strcmp(link->name,name) != 0 )
         link = link->next;
 
@@ -86,6 +89,9 @@ void TIFFSetClientInfo( TIFF *tif, void *data, const char *name )
     ** Do we have an existing link with this name?  If so, just
     ** set it.
     */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( link != NULL && strcmp(link->name,name) != 0 )
         link = link->next;
 

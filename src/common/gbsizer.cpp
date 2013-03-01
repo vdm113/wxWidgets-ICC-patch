@@ -369,6 +369,9 @@ bool wxGridBagSizer::SetItemSpan(size_t index, const wxGBSpan& span)
 wxGBSizerItem* wxGridBagSizer::FindItem(wxWindow* window)
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxGBSizerItem* item = (wxGBSizerItem*)node->GetData();
@@ -383,6 +386,9 @@ wxGBSizerItem* wxGridBagSizer::FindItem(wxWindow* window)
 wxGBSizerItem* wxGridBagSizer::FindItem(wxSizer* sizer)
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxGBSizerItem* item = (wxGBSizerItem*)node->GetData();
@@ -399,6 +405,9 @@ wxGBSizerItem* wxGridBagSizer::FindItem(wxSizer* sizer)
 wxGBSizerItem* wxGridBagSizer::FindItemAtPosition(const wxGBPosition& pos)
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxGBSizerItem* item = (wxGBSizerItem*)node->GetData();
@@ -415,6 +424,9 @@ wxGBSizerItem* wxGridBagSizer::FindItemAtPosition(const wxGBPosition& pos)
 wxGBSizerItem* wxGridBagSizer::FindItemAtPoint(const wxPoint& pt)
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxGBSizerItem* item = (wxGBSizerItem*)node->GetData();
@@ -433,6 +445,9 @@ wxGBSizerItem* wxGridBagSizer::FindItemAtPoint(const wxPoint& pt)
 wxGBSizerItem* wxGridBagSizer::FindItemWithData(const wxObject* userData)
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxGBSizerItem* item = (wxGBSizerItem*)node->GetData();
@@ -461,6 +476,9 @@ wxSize wxGridBagSizer::CalcMin()
     m_colWidths.Empty();
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxGBSizerItem* item = (wxGBSizerItem*)node->GetData();
@@ -472,15 +490,27 @@ wxSize wxGridBagSizer::CalcMin()
             item->GetEndPos(endrow, endcol);
 
             // fill heights and widths up to this item if needed
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( (int)m_rowHeights.GetCount() <= endrow )
                 m_rowHeights.Add(m_emptyCellSize.GetHeight());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( (int)m_colWidths.GetCount() <= endcol )
                 m_colWidths.Add(m_emptyCellSize.GetWidth());
 
             // See if this item increases the size of its row(s) or col(s)
             wxSize size(item->CalcMin());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (idx=row; idx <= endrow; idx++)
                 m_rowHeights[idx] = wxMax(m_rowHeights[idx], size.GetHeight() / (endrow-row+1));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (idx=col; idx <= endcol; idx++)
                 m_colWidths[idx] = wxMax(m_colWidths[idx], size.GetWidth() / (endcol-col+1));
         }
@@ -493,11 +523,17 @@ wxSize wxGridBagSizer::CalcMin()
     // Now traverse the heights and widths arrays calcing the totals, including gaps
     int width = 0;
     m_cols = m_colWidths.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (idx=0; idx < m_cols; idx++)
         width += m_colWidths[idx] + ( idx == m_cols-1 ? 0 : m_hgap );
 
     int height = 0;
     m_rows = m_rowHeights.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (idx=0; idx < m_rows; idx++)
         height += m_rowHeights[idx] + ( idx == m_rows-1 ? 0 : m_vgap );
 
@@ -525,6 +561,9 @@ void wxGridBagSizer::RecalcSizes()
     wxArrayInt rowpos;
     rowpos.Add(0, m_rows);
     int y = pt.y;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (idx=0; idx < m_rows; idx++)
     {
         height = m_rowHeights[idx] + m_vgap;
@@ -535,6 +574,9 @@ void wxGridBagSizer::RecalcSizes()
     wxArrayInt colpos;
     colpos.Add(0, m_cols);
     int x = pt.x;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (idx=0; idx < m_cols; idx++)
     {
         width = m_colWidths[idx] + m_hgap;
@@ -545,6 +587,9 @@ void wxGridBagSizer::RecalcSizes()
 
     // Now iterate the children, setting each child's dimensions
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         int row, col, endrow, endcol;
@@ -556,11 +601,17 @@ void wxGridBagSizer::RecalcSizes()
             item->GetEndPos(endrow, endcol);
 
             height = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(idx=row; idx <= endrow; idx++)
                 height += m_rowHeights[idx];
             height += (endrow - row) * m_vgap; // add a vgap for every row spanned
 
             width = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (idx=col; idx <= endcol; idx++)
                 width += m_colWidths[idx];
             width += (endcol - col) * m_hgap; // add a hgap for every col spanned
@@ -583,10 +634,16 @@ void wxGridBagSizer::AdjustForOverflow()
 {
     int row, col;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (row=0; row<(int)m_rowHeights.GetCount(); row++)
     {
         int rowExtra=INT_MAX;
         int rowHeight = m_rowHeights[row];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (col=0; col<(int)m_colWidths.GetCount(); col++)
         {
             wxGBPosition pos(row,col);
@@ -611,6 +668,9 @@ void wxGridBagSizer::AdjustForOverflow()
             {
                 // first deduct the portions of the item that are on prior rows
                 int itemHeight = item->CalcMin().GetHeight();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int r=item->GetPos().GetRow(); r<row; r++)
                     itemHeight -= (m_rowHeights[r] + GetHGap());
 
@@ -626,10 +686,16 @@ void wxGridBagSizer::AdjustForOverflow()
     }
 
     // Now do the same thing for columns
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (col=0; col<(int)m_colWidths.GetCount(); col++)
     {
         int colExtra=INT_MAX;
         int colWidth = m_colWidths[col];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (row=0; row<(int)m_rowHeights.GetCount(); row++)
         {
             wxGBPosition pos(row,col);
@@ -650,6 +716,9 @@ void wxGridBagSizer::AdjustForOverflow()
             if ( endcol == col )
             {
                 int itemWidth = item->CalcMin().GetWidth();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int c=item->GetPos().GetCol(); c<col; c++)
                     itemWidth -= (m_colWidths[c] + GetVGap());
 
@@ -676,6 +745,9 @@ bool wxGridBagSizer::CheckForIntersection(wxGBSizerItem* item, wxGBSizerItem* ex
 bool wxGridBagSizer::CheckForIntersection(const wxGBPosition& pos, const wxGBSpan& span, wxGBSizerItem* excludeItem)
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxGBSizerItem* item = (wxGBSizerItem*)node->GetData();
@@ -699,7 +771,13 @@ wxGBPosition wxGridBagSizer::FindEmptyCell()
 {
     int row, col;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (row=0; row<10; row++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (col=0; col<10; col++)
         {
             wxGBPosition pos(row, col);

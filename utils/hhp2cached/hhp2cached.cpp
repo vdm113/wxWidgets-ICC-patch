@@ -30,6 +30,9 @@ IMPLEMENT_APP(MyApp);
 
 bool MyApp::OnInit()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 1; i < argc; i++)
     {
         wxHtmlHelpData data;

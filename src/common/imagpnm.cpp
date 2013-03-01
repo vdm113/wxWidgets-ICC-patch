@@ -98,6 +98,9 @@ bool wxPNMHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbose
     if (c=='2') // Ascii GREY
     {
         wxUint32 value, size=width*height;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxUint32 i=0; i<size; ++i)
         {
             value=text_stream.Read32();
@@ -119,6 +122,9 @@ bool wxPNMHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbose
     if (c=='3') // Ascii RBG
     {
         wxUint32 value, size=3*width*height;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxUint32 i=0; i<size; ++i)
           {
             //this is very slow !!!
@@ -142,6 +148,9 @@ bool wxPNMHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbose
     {
         wxUint32 size=width*height;
         unsigned char value;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxUint32 i=0; i<size; ++i)
         {
             buf_stream.Read(&value,1);
@@ -166,6 +175,9 @@ bool wxPNMHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbose
         buf_stream.Read(ptr, 3*width*height);
         if ( maxval != 255 )
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( unsigned i = 0; i < 3*width*height; i++ )
                 ptr[i] = (255 * ptr[i])/maxval;
         }
