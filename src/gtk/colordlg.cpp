@@ -148,6 +148,9 @@ void wxColourDialog::ColourDataToDialog()
 
     GdkColor colors[wxColourData::NUM_CUSTOM];
     gint n_colors = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned i = 0; i < WXSIZEOF(colors); i++)
     {
         wxColour c = m_data.GetCustomColour(i);
@@ -214,6 +217,9 @@ void wxColourDialog::DialogToColourData()
     gint n_colors;
     if (gtk_color_selection_palette_from_string(pal, &colors, &n_colors))
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < n_colors && i < wxColourData::NUM_CUSTOM; i++)
         {
             m_data.SetCustomColour(i, wxColour(colors[i]));

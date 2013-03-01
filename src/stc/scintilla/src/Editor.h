@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file Editor.h
  ** Defines the main editor class.
@@ -101,6 +108,9 @@ public:
 		s = 0;
 		s = new char[len_];
 		len = len_;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int i = 0; i < len_; i++) {
 			s[i] = s_[i];
 		}

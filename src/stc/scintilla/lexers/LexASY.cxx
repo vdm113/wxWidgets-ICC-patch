@@ -36,6 +36,9 @@ static void ColouriseAsyDoc(unsigned int startPos, int length, int initStyle,
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.atLineStart) {
@@ -127,6 +130,9 @@ static void ColouriseAsyDoc(unsigned int startPos, int length, int initStyle,
 			} else if (sc.ch == '\'') {
 				sc.SetState(SCE_ASY_CHARACTER);
 			} else if (sc.ch == '#' && visibleChars == 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				do {
 					sc.Forward();
 				} while ((sc.ch == ' ' || sc.ch == '\t') && sc.More());
@@ -158,6 +164,9 @@ static int ParseASYWord(unsigned int pos, Accessor &styler, char *word)
   char ch=styler.SafeGetCharAt(pos);
   *word=0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while(isASYidentifier(ch) && length<100){
           word[length]=ch;
           length++;
@@ -174,6 +183,9 @@ static bool IsASYDrawingLine(int line, Accessor &styler) {
 	int startpos = pos;
 	char buffer[100]="";
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (startpos<eol_pos){
 		char ch = styler[startpos];
 		ParseASYWord(startpos,styler,buffer);
@@ -202,6 +214,9 @@ static void FoldAsyDoc(unsigned int startPos, int length, int initStyle,
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
 	int style = initStyle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
