@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/streams/bstream.h
 // Purpose:     Template class for testing base stream functions.
@@ -132,6 +139,9 @@ protected:
         CPPUNIT_ASSERT(!stream_in.Eof());
 
         // Travel to the end of the stream.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while(!stream_in.Eof())
         {
             CPPUNIT_ASSERT_MESSAGE( "unexpected non-EOF stream error",
@@ -155,6 +165,9 @@ protected:
         CPPUNIT_ASSERT_MESSAGE("EOF is not EOF?", stream_in.Eof());
 
         // Ok we found the end, let's see if we can go past it.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = 0; i < 100; i++)
             (void)stream_in.GetC();
 
@@ -243,6 +256,9 @@ protected:
         TStreamIn &stream_in = CreateInStream();
 
         // Test the full stream
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (stream_in.IsOk())
         {
             char peekChar = stream_in.Peek();
@@ -287,6 +303,9 @@ protected:
 
         const char *buf = "Some text";
         const wxFileOffset len = strlen(buf);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < len; i++ )
             stream_out.PutC(buf[i]);
 

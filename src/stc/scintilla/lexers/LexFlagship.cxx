@@ -61,6 +61,9 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		// Determine if the current state should terminate.
@@ -179,11 +182,17 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 			case SCE_FS_DISABLEDCODE:
 				if (sc.ch == '#' && visibleChars == 0) {
 					sc.SetState(bEnableCode ? SCE_FS_PREPROCESSOR : SCE_FS_PREPROCESSOR_C);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					do {	// Skip whitespace between # and preprocessor word
 						sc.Forward();
 					} while (IsASpaceOrTab(sc.ch) && sc.More());
 					if (sc.MatchIgnoreCase("pragma")) {
 						sc.Forward(6);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 						do {	// Skip more whitespace until keyword
 							sc.Forward();
 						} while (IsASpaceOrTab(sc.ch) && sc.More());
@@ -240,6 +249,9 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 				sc.SetState(bEnableCode ? SCE_FS_STRING : SCE_FS_STRING_C);
 			} else if (sc.ch == '#' && visibleChars == 0) {
 				sc.SetState(bEnableCode ? SCE_FS_PREPROCESSOR : SCE_FS_PREPROCESSOR_C);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				do {	// Skip whitespace between # and preprocessor word
 					sc.Forward();
 				} while (IsASpaceOrTab(sc.ch) && sc.More());
@@ -251,6 +263,9 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 					}
 				} else if (sc.MatchIgnoreCase("pragma")) {
 					sc.Forward(6);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					do {	// Skip more whitespace until keyword
 						sc.Forward();
 					} while (IsASpaceOrTab(sc.ch) && sc.More());
@@ -274,6 +289,9 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 				int p = 0;
 				int chSeek;
 				unsigned int endPos(startPos + length);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				do {	// Skip whitespace
 					chSeek = sc.GetRelative(++p);
 				} while (IsASpaceOrTab(chSeek) && (sc.currentPos + p < endPos));
@@ -317,6 +335,9 @@ static void FoldFlagShipDoc(unsigned int startPos, int length, int,
 	int spaceFlags = 0;
 	int indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags);
 	char chNext = styler[startPos];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

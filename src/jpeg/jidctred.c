@@ -135,6 +135,9 @@ jpeg_idct_4x4 (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   inptr = coef_block;
   quantptr = (ISLOW_MULT_TYPE *) compptr->dct_table;
   wsptr = workspace;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ctr = DCTSIZE; ctr > 0; inptr++, quantptr++, wsptr++, ctr--) {
     /* Don't bother to process column 4, because second pass won't use it */
     if (ctr == DCTSIZE-4)
@@ -194,6 +197,9 @@ jpeg_idct_4x4 (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   /* Pass 2: process 4 rows from work array, store into output array. */
 
   wsptr = workspace;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ctr = 0; ctr < 4; ctr++) {
     outptr = output_buf[ctr] + output_col;
     /* It's not clear whether a zero row test is worthwhile here ... */
@@ -287,6 +293,9 @@ jpeg_idct_2x2 (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   inptr = coef_block;
   quantptr = (ISLOW_MULT_TYPE *) compptr->dct_table;
   wsptr = workspace;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ctr = DCTSIZE; ctr > 0; inptr++, quantptr++, wsptr++, ctr--) {
     /* Don't bother to process columns 2,4,6 */
     if (ctr == DCTSIZE-2 || ctr == DCTSIZE-4 || ctr == DCTSIZE-6)
@@ -327,6 +336,9 @@ jpeg_idct_2x2 (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   /* Pass 2: process 2 rows from work array, store into output array. */
 
   wsptr = workspace;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ctr = 0; ctr < 2; ctr++) {
     outptr = output_buf[ctr] + output_col;
     /* It's not clear whether a zero row test is worthwhile here ... */

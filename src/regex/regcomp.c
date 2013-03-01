@@ -315,6 +315,9 @@ int flags;
 	v->nsubexp = 0;
 	v->subs = v->sub10;
 	v->nsubs = 10;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (j = 0; j < v->nsubs; j++)
 		v->subs[j] = NULL;
 	v->nfa = NULL;
@@ -395,6 +398,9 @@ int flags;
 	re->re_info |= nfatree(v, v->tree, debug);
 	CNOERR();
 	assert(v->nlacons == 0 || v->lacons != NULL);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 1; i < v->nlacons; i++) {
 		if (debug != NULL)
 			fprintf(debug, "\n\n\n========= LA%d ==========\n", i);
@@ -463,6 +469,9 @@ int wanted;			/* want enough room for this one */
 		return;
 	}
 	v->subs = p;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (p = &v->subs[v->nsubs]; v->nsubs < n; p++, v->nsubs++)
 		*p = NULL;
 	assert(v->nsubs == n);
@@ -521,6 +530,9 @@ struct nfa *nfa;
 	struct state *slist;
 
 	/* no loops are needed if it's anchored */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (a = pre->outs; a != NULL; a = a->outchain) {
 		assert(a->type == PLAIN);
 		if (a->co != nfa->bos[0] && a->co != nfa->bos[1])
@@ -547,8 +559,14 @@ struct nfa *nfa;
 
 	/* first, make a list of the states */
 	slist = NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (a = pre->outs; a != NULL; a = a->outchain) {
 		s = a->to;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (b = s->ins; b != NULL; b = b->inchain)
 			if (b->from != pre)
 				break;
@@ -563,9 +581,15 @@ struct nfa *nfa;
 	}
 
 	/* do the splits */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (s = slist; s != NULL; s = s2) {
 		s2 = newstate(nfa);
 		copyouts(nfa, s, s2);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (a = s->ins; a != NULL; a = b) {
 			b = a->inchain;
 			if (a->from != pre) {
@@ -607,6 +631,9 @@ struct state *final;		/* final state */
 	NOERRN();
 	branch = branches;
 	firstbranch = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {	/* a branch */
 		if (!firstbranch) {
 			/* need a place to hang it */
@@ -625,6 +652,9 @@ struct state *final;		/* final state */
 		NOERRN();
 		branch->flags |= UP(branch->flags | branch->left->flags);
 		if ((branch->flags &~ branches->flags) != 0)	/* new flags */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (t = branches; t != branch; t = t->right)
 				t->flags |= branch->flags;
 	} while (EAT('|'));
@@ -678,6 +708,9 @@ int partial;			/* is this only part of a branch? */
 	seencontent = 0;
 	t = subre(v, '=', 0, left, right);	/* op '=' is tentative */
 	NOERRN();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (!SEE('|') && !SEE(stopper) && !SEE(EOS)) {
 		if (seencontent) {	/* implicit concat operator */
 			lp = newstate(v->nfa);
@@ -1148,6 +1181,9 @@ struct vars *v;
 {
 	int n = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (SEE(DIGIT) && n < DUPMAX) {
 		n = n*10 + v->nextvalue;
 		NEXT();
@@ -1264,6 +1300,9 @@ struct state *rp;
 {
 	assert(SEE('['));
 	NEXT();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (!SEE(']') && !SEE(EOS))
 		brackpart(v, lp, rp);
 	assert(SEE(']') || ISERR());
@@ -1313,6 +1352,9 @@ struct state *rp;
 
 	/* but complementing gets messy in the presence of MCCEs... */
 	NOTE(REG_ULOCALE);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (p = v->mcces->chrs, i = v->mcces->nchrs; i > 0; p++, i--) {
 		co = GETCOLOR(v->cm, *p);
 		a = findarc(lp, PLAIN, co);
@@ -1341,6 +1383,9 @@ struct state *rp;
 				colorcomplement(v->nfa, v->cm, AHEAD, pa->to,
 									 s, rp);
 			}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (pa = pa->to->outs; pa != NULL; pa = pa->outchain)
 				if (findarc(ba->to, PLAIN, pa->co) == NULL)
 					newarc(v->nfa, PLAIN, pa->co, s, rp);
@@ -1481,6 +1526,9 @@ struct vars *v;
 	NEXT();
 
 	endp = v->now;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (SEE(PLAIN)) {
 		endp = v->now;
 		NEXT();
@@ -1513,6 +1561,9 @@ struct cvec *cv;
 	v->mccepend = newstate(v->nfa);
 	NOERR();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (mcce = 0; mcce < cv->nmcces; mcce++) {
 		p = cv->mcces[mcce];
 		leader = *p;
@@ -1596,6 +1647,9 @@ struct state *rp;
 		leads = NULL;
 
 	/* first, get the ordinary characters out of the way */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (p = cv->chrs, i = cv->nchrs; i > 0; p++, i--) {
 		ch = *p;
 		if (!ISCELEADER(v, ch))
@@ -1609,9 +1663,15 @@ struct state *rp;
 	}
 
 	/* and the ranges */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (p = cv->ranges, i = cv->nranges; i > 0; p += 2, i--) {
 		from = *p;
 		to = *(p+1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (from <= to && (ce = nextleader(v, from, to)) != NOCELT) {
 			if (from < ce)
 				subrange(v, from, ce - 1, lp, rp);
@@ -1630,6 +1690,9 @@ struct state *rp;
 
 	/* deal with the MCCE leaders */
 	NOTE(REG_ULOCALE);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (p = leads->chrs, i = leads->nchrs; i > 0; p++, i--) {
 		co = GETCOLOR(v->cm, *p);
 		a = findarc(lp, PLAIN, co);
@@ -1651,6 +1714,9 @@ struct state *rp;
 	}
 
 	/* and the MCCEs */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < cv->nmcces; i++) {
 		p = cv->mcces[i];
 		assert(singleton(v->cm, *p));
@@ -1697,6 +1763,9 @@ pchr to;
 	if (v->mcces == NULL)
 		return it;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = v->mcces->nchrs, p = v->mcces->chrs; i > 0; i--, p++) {
 		ch = *p;
 		if (from <= ch && ch <= to)
@@ -1897,6 +1966,9 @@ struct vars *v;
 	struct subre *t;
 	struct subre *next;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (t = v->treechain; t != NULL; t = next) {
 		next = t->chain;
 		if (!(t->flags&INUSE))
@@ -2007,6 +2079,9 @@ int n;
 	int i;
 
 	assert(n > 0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (sub = subs + 1, i = n - 1; i > 0; sub++, i--)	/* no 0th */
 		if (!NULLCNFA(sub->cnfa))
 			freecnfa(&sub->cnfa);
@@ -2075,6 +2150,9 @@ FILE *f;
 		printf("\nsearch:\n");
 		dumpcnfa(&g->search, f);
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 1; i < g->nlacons; i++) {
 		fprintf(f, "\nla%d (%s):\n", i,
 				(g->lacons[i].subno) ? "positive" : "negative");
