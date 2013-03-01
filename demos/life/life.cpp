@@ -437,6 +437,9 @@ void LifeFrame::OnMenu(wxCommandEvent& event)
             m_running = true;
             m_topspeed = true;
             UpdateUI();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (m_running && m_topspeed)
             {
                 OnStep();
@@ -818,10 +821,16 @@ void LifeCanvas::DrawChanged()
     }
     dc.SetLogicalFunction(wxINVERT);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!done)
     {
         done = m_life->FindMore(&cells, &ncells);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t m = 0; m < ncells; m++)
             DrawCell(cells[m].i, cells[m].j, dc);
     }
@@ -869,8 +878,14 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
         h = CellToY(j1 + 1) - y + 1;
 
         dc.SetPen(*wxLIGHT_GREY_PEN);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxInt32 yy = y; yy <= (y + h - m_cellsize); yy += m_cellsize)
             dc.DrawRectangle(x, yy, w, m_cellsize + 1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxInt32 xx = x; xx <= (x + w - m_cellsize); xx += m_cellsize)
             dc.DrawLine(xx, y, xx, y + h);
     }
@@ -879,8 +894,14 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
     dc.SetPen(*wxBLACK_PEN);
     dc.SetBrush(*wxBLACK_BRUSH);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!done)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t m = 0; m < ncells; m++)
             DrawCell(cells[m].i, cells[m].j, dc);
 
@@ -888,6 +909,9 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
     }
 
     // last set
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t m = 0; m < ncells; m++)
         DrawCell(cells[m].i, cells[m].j, dc);
 }
@@ -960,6 +984,9 @@ void LifeCanvas::OnMouse(wxMouseEvent& event)
             // iterate over i
             d = aj - (ai >> 1);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (ii != i)
             {
                 m_life->SetCell(ii, jj, alive);
@@ -978,6 +1005,9 @@ void LifeCanvas::OnMouse(wxMouseEvent& event)
             // iterate over j
             d = ai - (aj >> 1);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (jj != j)
             {
                 m_life->SetCell(ii, jj, alive);

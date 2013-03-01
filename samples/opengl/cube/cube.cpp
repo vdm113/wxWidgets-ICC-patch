@@ -56,6 +56,9 @@ static void CheckGLError()
 {
     GLenum errLast = GL_NO_ERROR;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         GLenum err = glGetError();
@@ -159,6 +162,9 @@ TestGLContext::TestGLContext(wxGLCanvas *canvas)
     // each texture could take many megabytes)
     glGenTextures(WXSIZEOF(m_textures), m_textures);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned i = 0; i < WXSIZEOF(m_textures); i++ )
     {
         glBindTexture(GL_TEXTURE_2D, m_textures[i]);
