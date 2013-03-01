@@ -1,0 +1,22 @@
+*.vcproj        text eol=crlf
+*.vcxproj       text eol=crlf
+*.filters       text eol=crlf
+*.sln           text eol=crlf
+*.dsw           text eol=crlf
+*.dsp           text eol=crlf
+*.rc            text eol=crlf
+*.icproj        text eol=crlf
+*.cmd           text eol=crlf
+*.bat           text eol=crlf
+
+*.sh            text eol=lf
+*.awk           text eol=lf
+*.c             text eol=lf
+*.cxx           text eol=lf
+*.cpp           text eol=lf
+*.h             text eol=lf
+*.hpp           text eol=lf
+*.hxx           text eol=lf
+
+*.mm            text eol=lf
+*.txt           text eol=auto
