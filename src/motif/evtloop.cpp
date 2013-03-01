@@ -112,6 +112,9 @@ int wxGUIEventLoop::Run()
     m_impl = new wxEventLoopImpl;
     m_impl->SetKeepGoing( true );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( ;; )
     {
         if( !wxDoEventLoopIteration( *this ) )
@@ -141,6 +144,9 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
     m_isInsideYield = true;
     m_eventsToProcessInsideYield = eventsToProcess;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (wxTheApp && wxTheApp->Pending())
         // TODO: implement event filtering using the eventsToProcess mask
         wxTheApp->Dispatch();
@@ -243,6 +249,9 @@ void ProcessXEvent(XEvent* event)
 
         //  to avoid flicker
         report = * event;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while( XCheckTypedWindowEvent (disp, win, ResizeRequest, &report));
 
         // TODO: when implementing refresh optimization, we can use
@@ -268,6 +277,9 @@ bool CheckForAccelerator(XEvent* event)
         wxWindow* win = NULL;
 
         // Find the first wxWindow that corresponds to this event window
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
             widget = XtParent(widget);
 
@@ -280,6 +292,9 @@ bool CheckForAccelerator(XEvent* event)
         // Now we have a wxKeyEvent and we have a wxWindow.
         // Go up the hierarchy until we find a matching accelerator,
         // or we get to the top.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (win)
         {
             if (win->ProcessAccelerator(keyEvent))
@@ -302,6 +317,9 @@ bool CheckForKeyDown(XEvent* event)
         wxWindow* win = NULL;
 
         // Find the first wxWindow that corresponds to this event window
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
             widget = XtParent(widget);
 
@@ -328,6 +346,9 @@ bool CheckForKeyUp(XEvent* event)
         wxWindow* win = NULL;
 
         // Find the first wxWindow that corresponds to this event window
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
                 widget = XtParent(widget);
 
@@ -351,6 +372,9 @@ bool wxDoEventLoopIteration( wxGUIEventLoop& evtLoop )
 {
     bool moreRequested, pendingEvents;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(;;)
     {
         pendingEvents = evtLoop.Pending();
@@ -426,6 +450,9 @@ static void wxInputCallback( XtPointer, int* fd, XtInputId* )
     char buffer[128];
 
     // wxWakeUpIdle may have been called more than once
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(;;)
     {
         fd_set in;

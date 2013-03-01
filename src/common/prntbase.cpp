@@ -1587,6 +1587,9 @@ void wxPreviewControlBar::SetZoomControl(int zoom)
     {
         int n, count = m_zoomControl->GetCount();
         long val;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (n=0; n<count; n++)
         {
             if (m_zoomControl->GetString(n).BeforeFirst(wxT('%')).ToLong(&val) &&

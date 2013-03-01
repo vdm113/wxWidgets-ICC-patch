@@ -29,6 +29,9 @@ static char **ArrayFromWordList(char *wordlist, int *len, bool onlyLineEnds = fa
 	// For rapid determination of whether a character is a separator, build
 	// a look up table.
 	bool wordSeparator[256];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i=0; i<256; i++) {
 		wordSeparator[i] = false;
 	}
@@ -38,6 +41,9 @@ static char **ArrayFromWordList(char *wordlist, int *len, bool onlyLineEnds = fa
 		wordSeparator[' '] = true;
 		wordSeparator['\t'] = true;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int j = 0; wordlist[j]; j++) {
 		int curr = static_cast<unsigned char>(wordlist[j]);
 		if (!wordSeparator[curr] && wordSeparator[prev])
@@ -49,6 +55,9 @@ static char **ArrayFromWordList(char *wordlist, int *len, bool onlyLineEnds = fa
 		words = 0;
 		prev = '\0';
 		size_t slen = strlen(wordlist);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (size_t k = 0; k < slen; k++) {
 			if (!wordSeparator[static_cast<unsigned char>(wordlist[k])]) {
 				if (!prev) {
@@ -71,6 +80,9 @@ static char **ArrayFromWordList(char *wordlist, int *len, bool onlyLineEnds = fa
 bool WordList::operator!=(const WordList &other) const {
 	if (len != other.len)
 		return true;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i=0; i<len; i++) {
 		if (strcmp(words[i], other.words[i]) != 0)
 			return true;
@@ -116,8 +128,14 @@ void WordList::Set(const char *s) {
 #else
 	SortWordList(words, len);
 #endif
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int k = 0; k < (sizeof(starts) / sizeof(starts[0])); k++)
 		starts[k] = -1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int l = len - 1; l >= 0; l--) {
 		unsigned char indexChar = words[l][0];
 		starts[indexChar] = l;
@@ -135,10 +153,16 @@ bool WordList::InList(const char *s) const {
 	unsigned char firstChar = s[0];
 	int j = starts[firstChar];
 	if (j >= 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (static_cast<unsigned char>(words[j][0]) == firstChar) {
 			if (s[1] == words[j][1]) {
 				const char *a = words[j] + 1;
 				const char *b = s + 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (*a && *a == *b) {
 					a++;
 					b++;
@@ -151,9 +175,15 @@ bool WordList::InList(const char *s) const {
 	}
 	j = starts['^'];
 	if (j >= 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (words[j][0] == '^') {
 			const char *a = words[j] + 1;
 			const char *b = s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (*a && *a == *b) {
 				a++;
 				b++;
@@ -177,6 +207,9 @@ bool WordList::InListAbbreviated(const char *s, const char marker) const {
 	unsigned char firstChar = s[0];
 	int j = starts[firstChar];
 	if (j >= 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (static_cast<unsigned char>(words[j][0]) == firstChar) {
 			bool isSubword = false;
 			int start = 1;
@@ -187,6 +220,9 @@ bool WordList::InListAbbreviated(const char *s, const char marker) const {
 			if (s[1] == words[j][start]) {
 				const char *a = words[j] + start;
 				const char *b = s + 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (*a && *a == *b) {
 					a++;
 					if (*a == marker) {
@@ -203,9 +239,15 @@ bool WordList::InListAbbreviated(const char *s, const char marker) const {
 	}
 	j = starts['^'];
 	if (j >= 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (words[j][0] == '^') {
 			const char *a = words[j] + 1;
 			const char *b = s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (*a && *a == *b) {
 				a++;
 				b++;

@@ -618,6 +618,9 @@ bool wxGStreamerMediaBackend::QueryVideoSizeFromElement(GstElement* element)
     const GList *list = NULL;
     g_object_get (G_OBJECT (element), "stream-info", &list, NULL);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ; list != NULL; list = list->next)
     {
         GObject *info = (GObject *) list->data;
@@ -783,6 +786,9 @@ bool wxGStreamerMediaBackend::SyncStateChange(GstElement* element,
          bSuccess = false;
     gint64 llTimeWaited = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
 #if 1
@@ -853,6 +859,9 @@ bool wxGStreamerMediaBackend::SyncStateChange(GstElement* element,
                                               gint64 llTimeout)
 {
     gint64 llTimeWaited = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(GST_STATE(element) != desiredstate)
     {
         if(llTimeWaited >= llTimeout)
@@ -998,6 +1007,9 @@ bool wxGStreamerMediaBackend::CheckForErrors()
     if ( m_errors.empty() )
         return false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < m_errors.size(); n++ )
     {
         const Error& err = m_errors[n];
@@ -1033,6 +1045,9 @@ bool wxGStreamerMediaBackend::CreateControl(wxControl* ctrl, wxWindow* parent,
 #if wxUSE_UNICODE
     int i;
     char **argvGST = new char*[wxTheApp->argc + 1];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < wxTheApp->argc; i++ )
     {
         argvGST[i] = wxStrdupA(wxTheApp->argv[i].utf8_str());
@@ -1057,6 +1072,9 @@ bool wxGStreamerMediaBackend::CreateControl(wxControl* ctrl, wxWindow* parent,
 
     // Cleanup arguments for unicode case
 #if wxUSE_UNICODE
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < argcGST; i++ )
     {
         free(argvGST[i]);

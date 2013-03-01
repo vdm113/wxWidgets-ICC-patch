@@ -1628,6 +1628,9 @@ IAccessible* wxIAccessible::GetChildStdAccessible(int id)
         this->get_accChildCount(& nChildren);
 
         int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < nChildren; i++)
         {
             long obtained = 0;

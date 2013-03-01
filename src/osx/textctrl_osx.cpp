@@ -713,6 +713,9 @@ int wxTextWidgetImpl::GetNumberOfLines() const
     wxString content = GetStringValue() ;
     ItemCount lines = 1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < content.length() ; i++)
     {
 #if wxOSX_USE_COCOA
@@ -733,6 +736,9 @@ wxString wxTextWidgetImpl::GetLineText(long lineNo) const
 
     // Find line first
     int count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < content.length() ; i++)
     {
         if (count == lineNo)
@@ -740,6 +746,9 @@ wxString wxTextWidgetImpl::GetLineText(long lineNo) const
             // Add chars in line then
             wxString tmp;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (size_t j = i; j < content.length(); j++)
             {
                 if (content[j] == '\n')
@@ -765,12 +774,18 @@ int wxTextWidgetImpl::GetLineLength(long lineNo) const
 
     // Find line first
     int count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < content.length() ; i++)
     {
         if (count == lineNo)
         {
             // Count chars in line then
             count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (size_t j = i; j < content.length(); j++)
             {
                 if (content[j] == '\n')

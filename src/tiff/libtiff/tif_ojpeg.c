@@ -554,6 +554,9 @@ OJPEGVSetField(TIFF* tif, uint32 tag, va_list ap)
 				}
 				sp->qtable_offset_count=(uint8)ma;
 				mb=(uint64*)va_arg(ap,uint64*);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<ma; n++)
 					sp->qtable_offset[n]=mb[n];
 			}
@@ -569,6 +572,9 @@ OJPEGVSetField(TIFF* tif, uint32 tag, va_list ap)
 				}
 				sp->dctable_offset_count=(uint8)ma;
 				mb=(uint64*)va_arg(ap,uint64*);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<ma; n++)
 					sp->dctable_offset[n]=mb[n];
 			}
@@ -584,6 +590,9 @@ OJPEGVSetField(TIFF* tif, uint32 tag, va_list ap)
 				}
 				sp->actable_offset_count=(uint8)ma;
 				mb=(uint64*)va_arg(ap,uint64*);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (n=0; n<ma; n++)
 					sp->actable_offset[n]=mb[n];
 			}
@@ -616,6 +625,9 @@ OJPEGPrintDir(TIFF* tif, FILE* fd, long flags)
 	if (TIFFFieldSet(tif,FIELD_OJPEG_JPEGQTABLES))
 	{
 		fprintf(fd,"  JpegQTables:");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (m=0; m<sp->qtable_offset_count; m++)
 			fprintf(fd," " TIFF_UINT64_FORMAT,(TIFF_UINT64_T)sp->qtable_offset[m]);
 		fprintf(fd,"\n");
@@ -623,6 +635,9 @@ OJPEGPrintDir(TIFF* tif, FILE* fd, long flags)
 	if (TIFFFieldSet(tif,FIELD_OJPEG_JPEGDCTABLES))
 	{
 		fprintf(fd,"  JpegDcTables:");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (m=0; m<sp->dctable_offset_count; m++)
 			fprintf(fd," " TIFF_UINT64_FORMAT,(TIFF_UINT64_T)sp->dctable_offset[m]);
 		fprintf(fd,"\n");
@@ -630,6 +645,9 @@ OJPEGPrintDir(TIFF* tif, FILE* fd, long flags)
 	if (TIFFFieldSet(tif,FIELD_OJPEG_JPEGACTABLES))
 	{
 		fprintf(fd,"  JpegAcTables:");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (m=0; m<sp->actable_offset_count; m++)
 			fprintf(fd," " TIFF_UINT64_FORMAT,(TIFF_UINT64_T)sp->actable_offset[m]);
 		fprintf(fd,"\n");
@@ -703,6 +721,9 @@ OJPEGPreDecode(TIFF* tif, uint16 s)
 		if (OJPEGWriteHeaderInfo(tif)==0)
 			return(0);
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (sp->write_curstrile<m)          
 	{
 		if (sp->libjpeg_jpeg_query_style==0)
@@ -738,6 +759,9 @@ OJPEGPreDecodeSkipRaw(TIFF* tif)
 		m-=sp->subsampling_convert_clines-sp->subsampling_convert_state;
 		sp->subsampling_convert_state=0;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (m>=sp->subsampling_convert_clines)
 	{
 		if (jpeg_read_raw_data_encap(sp,&(sp->libjpeg_jpeg_decompress_struct),sp->subsampling_convert_ycbcrimage,sp->subsampling_ver*8)==0)
@@ -768,6 +792,9 @@ OJPEGPreDecodeSkipScanlines(TIFF* tif)
 			return(0);
 		}
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (m=0; m<sp->lines_per_strile; m++)
 	{
 		if (jpeg_read_scanlines_encap(sp,&(sp->libjpeg_jpeg_decompress_struct),&sp->skip_buffer,1)==0)
@@ -816,6 +843,9 @@ OJPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc)
 	assert(cc>0);
 	m=buf;
 	n=cc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do
 	{
 		if (sp->subsampling_convert_state==0)
@@ -827,11 +857,20 @@ OJPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc)
 		ocb=sp->subsampling_convert_cbbuf+sp->subsampling_convert_state*sp->subsampling_convert_clinelen;
 		ocr=sp->subsampling_convert_crbuf+sp->subsampling_convert_state*sp->subsampling_convert_clinelen;
 		p=m;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (q=0; q<sp->subsampling_convert_clinelenout; q++)
 		{
 			r=oy;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (sy=0; sy<sp->subsampling_ver; sy++)
 			{
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (sx=0; sx<sp->subsampling_hor; sx++)
 					*p++=*r++;
 				r+=sp->subsampling_convert_ylinelen-sp->subsampling_hor;
@@ -864,6 +903,9 @@ OJPEGDecodeScanlines(TIFF* tif, uint8* buf, tmsize_t cc)
 	assert(cc>0);
 	m=buf;
 	n=cc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do
 	{
 		if (jpeg_read_scanlines_encap(sp,&(sp->libjpeg_jpeg_decompress_struct),&m,1)==0)
@@ -1099,6 +1141,9 @@ OJPEGReadSecondarySos(TIFF* tif, uint16 s)
 	assert(sp->sos_end[0].log!=0);
 	assert(sp->sos_end[s].log==0);
 	sp->plane_sample_offset=s-1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while(sp->sos_end[sp->plane_sample_offset].log==0)
 		sp->plane_sample_offset--;
 	sp->in_buffer_source=sp->sos_end[sp->plane_sample_offset].in_buffer_source;
@@ -1108,14 +1153,23 @@ OJPEGReadSecondarySos(TIFF* tif, uint16 s)
 	sp->in_buffer_file_togo=sp->sos_end[sp->plane_sample_offset].in_buffer_file_togo;
 	sp->in_buffer_togo=0;
 	sp->in_buffer_cur=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while(sp->plane_sample_offset<s)
 	{
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do
 		{
 			if (OJPEGReadByte(sp,&m)==0)
 				return(0);
 			if (m==255)
 			{
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				do
 				{
 					if (OJPEGReadByte(sp,&m)==0)
@@ -1206,10 +1260,19 @@ OJPEGWriteHeaderInfo(TIFF* tif)
 			*m++=(uint8*)(sp->subsampling_convert_ycbcrimage+3);
 			*m++=(uint8*)(sp->subsampling_convert_ycbcrimage+3+sp->subsampling_convert_ylines);
 			*m++=(uint8*)(sp->subsampling_convert_ycbcrimage+3+sp->subsampling_convert_ylines+sp->subsampling_convert_clines);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (n=0; n<sp->subsampling_convert_ylines; n++)
 				*m++=sp->subsampling_convert_ybuf+n*sp->subsampling_convert_ylinelen;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (n=0; n<sp->subsampling_convert_clines; n++)
 				*m++=sp->subsampling_convert_cbbuf+n*sp->subsampling_convert_clinelen;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (n=0; n<sp->subsampling_convert_clines; n++)
 				*m++=sp->subsampling_convert_crbuf+n*sp->subsampling_convert_clinelen;
 			sp->subsampling_convert_clinelenout=((sp->strile_width+sp->subsampling_hor-1)/sp->subsampling_hor);
@@ -1270,6 +1333,9 @@ OJPEGReadHeaderInfoSec(TIFF* tif)
 	sp->in_buffer_strile_count=tif->tif_dir.td_nstrips;
 	sp->in_buffer_file_togo=0;
 	sp->in_buffer_togo=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do
 	{
 		if (OJPEGReadBytePeek(sp,&m)==0)
@@ -1277,6 +1343,9 @@ OJPEGReadHeaderInfoSec(TIFF* tif)
 		if (m!=255)
 			break;
 		OJPEGReadByteAdvance(sp);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do
 		{
 			if (OJPEGReadByte(sp,&m)==0)
@@ -1355,9 +1424,15 @@ OJPEGReadHeaderInfoSec(TIFF* tif)
 		if (OJPEGReadHeaderInfoSecTablesQTable(tif)==0)
 			return(0);
 		sp->sof_marker_id=JPEG_MARKER_SOF0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (o=0; o<sp->samples_per_pixel; o++)
 			sp->sof_c[o]=o;
 		sp->sof_hv[0]=((sp->subsampling_hor<<4)|sp->subsampling_ver);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (o=1; o<sp->samples_per_pixel; o++)
 			sp->sof_hv[o]=17;
 		sp->sof_x=sp->strile_width;
@@ -1367,6 +1442,9 @@ OJPEGReadHeaderInfoSec(TIFF* tif)
 			return(0);
 		if (OJPEGReadHeaderInfoSecTablesAcTable(tif)==0)
 			return(0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (o=1; o<sp->samples_per_pixel; o++)
 			sp->sos_cs[o]=o;
 	}
@@ -1416,6 +1494,9 @@ OJPEGReadHeaderInfoSecStreamDqt(TIFF* tif)
 	else
 	{
 		m-=2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do
 		{
 			if (m<65)
@@ -1619,6 +1700,9 @@ OJPEGReadHeaderInfoSecStreamSof(TIFF* tif, uint8 marker_id)
 	}
 	/* per component stuff */
 	/* TODO: double-check that flow implies that n cannot be as big as to make us overflow sof_c, sof_hv and sof_tq arrays */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (q=0; q<n; q++)
 	{
 		/* C: Component identifier */
@@ -1711,6 +1795,9 @@ OJPEGReadHeaderInfoSecStreamSos(TIFF* tif)
 		return(0);
 	}
 	/* Cs, Td, and Ta */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (o=0; o<sp->samples_per_pixel_per_plane; o++)
 	{
 		/* Cs */
@@ -1743,10 +1830,16 @@ OJPEGReadHeaderInfoSecTablesQTable(TIFF* tif)
 		return(0);
 	}
 	sp->in_buffer_file_pos_log=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (m=0; m<sp->samples_per_pixel; m++)
 	{
 		if ((sp->qtable_offset[m]!=0) && ((m==0) || (sp->qtable_offset[m]!=sp->qtable_offset[m-1])))
 		{
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (n=0; n<m-1; n++)
 			{
 				if (sp->qtable_offset[m]==sp->qtable_offset[n])
@@ -1799,10 +1892,16 @@ OJPEGReadHeaderInfoSecTablesDcTable(TIFF* tif)
 		return(0);
 	}
 	sp->in_buffer_file_pos_log=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (m=0; m<sp->samples_per_pixel; m++)
 	{
 		if ((sp->dctable_offset[m]!=0) && ((m==0) || (sp->dctable_offset[m]!=sp->dctable_offset[m-1])))
 		{
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (n=0; n<m-1; n++)
 			{
 				if (sp->dctable_offset[m]==sp->dctable_offset[n])
@@ -1816,6 +1915,9 @@ OJPEGReadHeaderInfoSecTablesDcTable(TIFF* tif)
 			if (p!=16)
 				return(0);
 			q=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (n=0; n<16; n++)
 				q+=o[n];
 			ra=sizeof(uint32)+21+q;
@@ -1831,6 +1933,9 @@ OJPEGReadHeaderInfoSecTablesDcTable(TIFF* tif)
 			rb[sizeof(uint32)+2]=((19+q)>>8);
 			rb[sizeof(uint32)+3]=((19+q)&255);
 			rb[sizeof(uint32)+4]=m;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (n=0; n<16; n++)
 				rb[sizeof(uint32)+5+n]=o[n];
 			p=TIFFReadFile(tif,&(rb[sizeof(uint32)+21]),q);
@@ -1863,10 +1968,16 @@ OJPEGReadHeaderInfoSecTablesAcTable(TIFF* tif)
 		return(0);
 	}
 	sp->in_buffer_file_pos_log=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (m=0; m<sp->samples_per_pixel; m++)
 	{
 		if ((sp->actable_offset[m]!=0) && ((m==0) || (sp->actable_offset[m]!=sp->actable_offset[m-1])))
 		{
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (n=0; n<m-1; n++)
 			{
 				if (sp->actable_offset[m]==sp->actable_offset[n])
@@ -1880,6 +1991,9 @@ OJPEGReadHeaderInfoSecTablesAcTable(TIFF* tif)
 			if (p!=16)
 				return(0);
 			q=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (n=0; n<16; n++)
 				q+=o[n];
 			ra=sizeof(uint32)+21+q;
@@ -1895,6 +2009,9 @@ OJPEGReadHeaderInfoSecTablesAcTable(TIFF* tif)
 			rb[sizeof(uint32)+2]=((19+q)>>8);
 			rb[sizeof(uint32)+3]=((19+q)&255);
 			rb[sizeof(uint32)+4]=(16|m);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (n=0; n<16; n++)
 				rb[sizeof(uint32)+5+n]=o[n];
 			p=TIFFReadFile(tif,&(rb[sizeof(uint32)+21]),q);
@@ -1916,6 +2033,9 @@ OJPEGReadBufferFill(OJPEGState* sp)
 	tmsize_t n;
 	/* TODO: double-check: when subsamplingcorrect is set, no call to TIFFErrorExt or TIFFWarningExt should be made
 	 * in any other case, seek or read errors should be passed through */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do
 	{
 		if (sp->in_buffer_file_togo!=0)
@@ -2053,6 +2173,9 @@ OJPEGReadBlock(OJPEGState* sp, uint16 len, void* mem)
 	assert(len>0);
 	mlen=len;
 	mmem=mem;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do
 	{
 		if (sp->in_buffer_togo==0)
@@ -2108,6 +2231,9 @@ OJPEGWriteStream(TIFF* tif, void** mem, uint32* len)
 {
 	OJPEGState* sp=(OJPEGState*)tif->tif_data;
 	*len=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do
 	{
 		assert(sp->out_state<=ososEoi);
@@ -2265,6 +2391,9 @@ OJPEGWriteStreamSof(TIFF* tif, void** mem, uint32* len)
 	sp->out_buffer[8]=(sp->sof_x&255);
 	/* Nf */
 	sp->out_buffer[9]=sp->samples_per_pixel_per_plane;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (m=0; m<sp->samples_per_pixel_per_plane; m++)
 	{
 		/* C */
@@ -2293,6 +2422,9 @@ OJPEGWriteStreamSos(TIFF* tif, void** mem, uint32* len)
 	sp->out_buffer[3]=6+sp->samples_per_pixel_per_plane*2;
 	/* Ns */
 	sp->out_buffer[4]=sp->samples_per_pixel_per_plane;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (m=0; m<sp->samples_per_pixel_per_plane; m++)
 	{
 		/* Cs */

@@ -134,6 +134,9 @@ void wxFrame::DoGetClientSize( int *width, int *height ) const
 static void wxAddAccelerators(wxList& accelEntries, wxMenu* menu)
 {
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < menu->GetMenuItems().GetCount(); i++)
     {
         wxMenuItem* item = (wxMenuItem*) menu->GetMenuItems().Item(i)->GetData();
@@ -160,6 +163,9 @@ static wxAcceleratorTable wxCreateAcceleratorTableForMenuBar(wxMenuBar* menuBar)
     wxList accelEntries;
 
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < menuBar->GetMenuCount(); i++)
     {
         wxAddAccelerators(accelEntries, menuBar->GetMenu(i));
@@ -172,6 +178,9 @@ static wxAcceleratorTable wxCreateAcceleratorTableForMenuBar(wxMenuBar* menuBar)
 
     wxAcceleratorEntry* entries = new wxAcceleratorEntry[n];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < accelEntries.GetCount(); i++)
     {
         wxAcceleratorEntry* entry = (wxAcceleratorEntry*) accelEntries.Item(i)->GetData();
@@ -221,6 +230,9 @@ bool wxFrame::ShowFullScreen(bool show, long style)
     const long fsNoBar[] = {
         wxFULLSCREEN_NOMENUBAR, wxFULLSCREEN_NOTOOLBAR, wxFULLSCREEN_NOSTATUSBAR
     };
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < 3; i++)
     {
         if (show)

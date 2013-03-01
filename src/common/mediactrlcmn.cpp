@@ -121,6 +121,9 @@ bool wxMediaCtrl::Create(wxWindow* parent, wxWindowID id,
 
         const wxClassInfo* classInfo;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while((classInfo = NextBackend(&it)) != NULL)
         {
             if(!DoCreate(classInfo, parent, id,
@@ -183,6 +186,9 @@ bool wxMediaCtrl::Create(wxWindow* parent, wxWindowID id,
 
         const wxClassInfo* classInfo;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while((classInfo = NextBackend(&it)) != NULL)
         {
             if(!DoCreate(classInfo, parent, id,
@@ -244,6 +250,9 @@ bool wxMediaCtrl::DoCreate(const wxClassInfo* classInfo,
 //---------------------------------------------------------------------------
 const wxClassInfo* wxMediaCtrl::NextBackend(wxClassInfo::const_iterator* it)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxClassInfo::const_iterator end = wxClassInfo::end_classinfo();
           *it != end; ++(*it) )
     {
