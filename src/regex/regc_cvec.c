@@ -76,6 +76,9 @@ clearcvec(cv)
     cv->nmcces = 0;
     cv->nmccechrs = 0;
     cv->nranges = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < cv->mccespace; i++) {
 	cv->mcces[i] = NULL;
     }
@@ -136,6 +139,9 @@ addmcce(cv, startp, endp)
     assert(cv->nmcces < cv->mccespace);
     d = &cv->chrs[cv->chrspace - cv->nmccechrs - len - 1];
     cv->mcces[cv->nmcces++] = d;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (s = startp, i = len; i > 0; s++, i--) {
 	*d++ = *s;
     }
@@ -156,11 +162,17 @@ haschr(cv, c)
     int i;
     chr *p;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (p = cv->chrs, i = cv->nchrs; i > 0; p++, i--) {
 	if (*p == c) {
 	    return 1;
 	}
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (p = cv->ranges, i = cv->nranges; i > 0; p += 2, i--) {
 	if ((*p <= c) && (c <= *(p+1))) {
 	    return 1;

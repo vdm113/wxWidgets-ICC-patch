@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        unicode.h
 // Purpose:     topic overview
@@ -343,6 +350,9 @@ Even despite caching the index, indexed access should be replaced with
 sequential access using string iterators. For example a typical loop:
 @code
 wxString s("hello");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 for ( size_t i = 0; i < s.length(); i++ )
 {
     wchar_t ch = s[i];
@@ -353,6 +363,9 @@ for ( size_t i = 0; i < s.length(); i++ )
 should be rewritten as
 @code
 wxString s("hello");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 for ( wxString::const_iterator i = s.begin(); i != s.end(); ++i )
 {
     wchar_t ch = *i
@@ -364,6 +377,9 @@ for ( wxString::const_iterator i = s.begin(); i != s.end(); ++i )
 Another, similar, alternative is to use pointer arithmetic:
 @code
 wxString s("hello");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 for ( const wchar_t *p = s.wc_str(); *p; p++ )
 {
     wchar_t ch = *i

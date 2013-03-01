@@ -64,10 +64,16 @@ void ImageRawTestCase::RGBImage()
 
     wxImagePixelData data(image);
     wxImagePixelData::Iterator p(data);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int y = 0; y < HEIGHT; y++ )
     {
         const wxImagePixelData::Iterator rowStart = p;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int x = 0; x < WIDTH; x++ )
         {
             p.Red() =

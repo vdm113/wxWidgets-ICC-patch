@@ -56,6 +56,9 @@ inline bool isCOBOLwordstart(char ch)
 static int CountBits(int nBits)
 	{
 	int count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = 0; i < 32; ++i)
 		{
 		count += nBits & 1;
@@ -70,6 +73,9 @@ static void getRange(unsigned int start,
         char *s,
         unsigned int len) {
     unsigned int i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((i < end - start + 1) && (i < len-1)) {
         s[i] = static_cast<char>(tolower(styler[start + i]));
         i++;
@@ -96,6 +102,9 @@ static int classifyWordCOBOL(unsigned int start, unsigned int end, /*WordList &k
     if (isdigit(s[0]) || (s[0] == '.') || (s[0] == 'v')) {
         chAttr = SCE_C_NUMBER;
 		char *p = s + 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (*p) {
 			if ((!isdigit(*p) && (*p) != 'v') && isCOBOLwordchar(*p)) {
 				chAttr = SCE_C_IDENTIFIER;
@@ -168,6 +177,9 @@ static void ColouriseCOBOLDoc(unsigned int startPos, int length, int initStyle, 
     bool bNewLine = true;
     bool bAarea = !isspacechar(chNext);
 	int column = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = startPos; i < lengthDoc; i++) {
         char ch = chNext;
 
@@ -320,6 +332,9 @@ static void FoldCOBOLDoc(unsigned int startPos, int length, int, WordList *[],
     bool bAarea = !isspacechar(chNext);
 	int column = 0;
 	bool bComment = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = startPos; i < endPos; i++) {
         char ch = chNext;
         chNext = styler.SafeGetCharAt(i + 1);

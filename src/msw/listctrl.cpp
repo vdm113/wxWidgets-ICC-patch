@@ -415,6 +415,9 @@ void wxListCtrl::UpdateStyle()
 void wxListCtrl::FreeAllInternalData()
 {
     const unsigned count = m_internalData.size();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < count; n++ )
         delete m_internalData[n];
 
@@ -650,6 +653,9 @@ int wxListCtrl::GetColumnOrder(int col) const
     if ( !ListView_GetColumnOrderArray(GetHwnd(), numCols, &indexArray[0]) )
         return -1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int pos = 0; pos < numCols; pos++ )
     {
         if ( indexArray[pos] == col )
@@ -1425,6 +1431,9 @@ bool wxListCtrl::DeleteAllItems()
 // Deletes all items
 bool wxListCtrl::DeleteAllColumns()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( m_colCount > 0 )
     {
         if ( ListView_DeleteColumn(GetHwnd(), 0) == 0 )
@@ -1562,6 +1571,9 @@ long wxListCtrl::FindItem(long start, wxUIntPtr data)
     // of them)
     int idx = wxNOT_FOUND;
     const unsigned count = m_internalData.size();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < count; n++ )
     {
         if ( m_internalData[n]->lParam == (LPARAM)data )
@@ -1943,6 +1955,9 @@ int WXDLLIMPEXP_CORE wxMSWGetColumnClicked(NMHDR *nmhdr, POINT *ptClick)
     }
 
     const int colCount = Header_GetItemCount(nmhdr->hwndFrom);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int col = 0; col < colCount; col++ )
     {
         RECT rect;
@@ -2434,6 +2449,9 @@ bool wxListCtrl::MSWOnNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result)
 #if wxUSE_STOPWATCH
                     wxStopWatch sw;
 #endif // wxUSE_STOPWATCH
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( int currentPos = startPos; ; )
                     {
                         // does this item begin with searchstr?
@@ -2593,6 +2611,9 @@ bool wxListCtrl::MSWOnNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result)
             if ( wxMSWListItemData *data = MSWGetItemData(event.m_itemIndex) )
             {
                 const unsigned count = m_internalData.size();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( unsigned n = 0; n < count; n++ )
                 {
                     if ( m_internalData[n] == data )
@@ -2771,6 +2792,9 @@ static void HandleItemPaint(LPNMLVCUSTOMDRAW pLVCD, HFONT hfont)
     // also can't always trust ListView_GetItem() as it could return the old
     // item status if we're called just after the (de)selection, so remember
     // the last item to gain selection and also check for it here
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = -1;; )
     {
         i = ListView_GetNextItem(hwndList, i, LVNI_SELECTED);
@@ -2833,6 +2857,9 @@ static void HandleItemPaint(LPNMLVCUSTOMDRAW pLVCD, HFONT hfont)
     // we could use CDRF_NOTIFYSUBITEMDRAW here but it results in weird repaint
     // problems so just draw everything except the focus rect from here instead
     const int colCount = Header_GetItemCount(ListView_GetHeader(hwndList));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int col = 0; col < colCount; col++ )
     {
         pLVCD->iSubItem = col;
@@ -2953,6 +2980,9 @@ void wxListCtrl::OnPaint(wxPaintEvent& event)
     if (drawHRules)
     {
         const long top = GetTopItem();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = top; i < top + GetCountPerPage() + 1; i++ )
         {
             if (GetItemRect(i, itemRect))
@@ -3002,6 +3032,9 @@ void wxListCtrl::OnPaint(wxPaintEvent& event)
             }
 
             int x = itemRect.GetX();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int col = 0; col < numCols; col++)
             {
                 int colWidth = GetColumnWidth(indexArray[col]);

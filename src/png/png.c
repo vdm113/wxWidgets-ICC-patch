@@ -143,6 +143,9 @@ png_calculate_crc(png_structp png_ptr, png_const_bytep ptr, png_size_t length)
    {
       uLong crc = png_ptr->crc; /* Should never issue a warning */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       do
       {
          uInt safeLength = (uInt)length;
@@ -158,6 +161,9 @@ png_calculate_crc(png_structp png_ptr, png_const_bytep ptr, png_size_t length)
          ptr += safeLength;
          length -= safeLength;
       }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       while (length > 0);
 
       /* And the following is always safe because the crc is only 32 bits. */
@@ -175,6 +181,9 @@ png_user_version_check(png_structp png_ptr, png_const_charp user_png_ver)
    {
       int i = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       do
       {
          if (user_png_ver[i] != png_libpng_ver[i])
@@ -351,6 +360,9 @@ png_free_data(png_structp png_ptr, png_infop info_ptr, png_uint_32 mask,
       else
       {
          int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (i = 0; i < info_ptr->num_text; i++)
              png_free_data(png_ptr, info_ptr, PNG_FREE_TEXT, i);
          png_free(png_ptr, info_ptr->text);
@@ -393,6 +405,9 @@ png_free_data(png_structp png_ptr, png_infop info_ptr, png_uint_32 mask,
       if (info_ptr->pcal_params != NULL)
          {
             int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < (int)info_ptr->pcal_nparams; i++)
             {
                png_free(png_ptr, info_ptr->pcal_params[i]);
@@ -437,6 +452,9 @@ png_free_data(png_structp png_ptr, png_infop info_ptr, png_uint_32 mask,
          if (info_ptr->splt_palettes_num)
          {
             int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < (int)info_ptr->splt_palettes_num; i++)
                png_free_data(png_ptr, info_ptr, PNG_FREE_SPLT, i);
 
@@ -473,6 +491,9 @@ png_free_data(png_structp png_ptr, png_infop info_ptr, png_uint_32 mask,
 
          if (info_ptr->unknown_chunks_num)
          {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < info_ptr->unknown_chunks_num; i++)
                png_free_data(png_ptr, info_ptr, PNG_FREE_UNKN, i);
 
@@ -510,6 +531,9 @@ png_free_data(png_structp png_ptr, png_infop info_ptr, png_uint_32 mask,
       if (info_ptr->row_pointers)
       {
          int row;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (row = 0; row < (int)info_ptr->height; row++)
          {
             png_free(png_ptr, info_ptr->row_pointers[row]);
@@ -734,6 +758,9 @@ png_handle_as_unknown(png_structp png_ptr, png_const_bytep chunk_name)
       if (!png_memcmp(chunk_name, p, 4))
          return p[4];
    }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    while (p > p_end);
 
    return PNG_HANDLE_CHUNK_AS_DEFAULT;
@@ -1327,6 +1354,9 @@ png_check_fp_number(png_const_charp string, png_size_t size, int *statep,
    int state = *statep;
    png_size_t i = *whereami;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    while (i < size)
    {
       int type;
@@ -1485,12 +1515,18 @@ png_pow10(int power)
    {
       /* Decompose power bitwise. */
       double mult = 10;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       do
       {
          if (power & 1) d *= mult;
          mult *= mult;
          power >>= 1;
       }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       while (power > 0);
 
       if (recip) d = 1/d;
@@ -1550,6 +1586,9 @@ png_ascii_from_fp(png_structp png_ptr, png_charp ascii, png_size_t size,
          /* Avoid underflow here. */
          base = png_pow10(exp_b10); /* May underflow */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          while (base < DBL_MIN || base < fp)
          {
             /* And this may overflow. */
@@ -1570,6 +1609,9 @@ png_ascii_from_fp(png_structp png_ptr, png_charp ascii, png_size_t size,
           * test on DBL_MAX above.
           */
          fp /= base;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          while (fp >= 1) fp /= 10, ++exp_b10;
 
          /* Because of the code above fp may, at this point, be
@@ -1599,6 +1641,9 @@ png_ascii_from_fp(png_structp png_ptr, png_charp ascii, png_size_t size,
             clead = czero; /* Count of leading zeros */
             cdigits = 0;   /* Count of digits in list. */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do
             {
                double d;
@@ -1626,6 +1671,9 @@ png_ascii_from_fp(png_structp png_ptr, png_charp ascii, png_size_t size,
                      }
                      else
                      {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         while (cdigits > 0 && d > 9)
                         {
                            int ch = *--ascii;
@@ -1690,6 +1738,9 @@ png_ascii_from_fp(png_structp png_ptr, png_charp ascii, png_size_t size,
                   cdigits += czero - clead;
                   clead = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                   while (czero > 0)
                   {
                      /* exp_b10 == (-1) means we just output the decimal
@@ -1714,6 +1765,9 @@ png_ascii_from_fp(png_structp png_ptr, png_charp ascii, png_size_t size,
                   *ascii++ = (char)(48 + (int)d), ++cdigits;
                }
             }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (cdigits+czero-clead < (int)precision && fp > DBL_MIN);
 
             /* The total output count (max) is now 4+precision */
@@ -1734,6 +1788,9 @@ png_ascii_from_fp(png_structp png_ptr, png_charp ascii, png_size_t size,
                 * zeros were *not* output, so this doesn't increase
                 * the output count.
                 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                while (--exp_b10 >= 0) *ascii++ = 48;
 
                *ascii = 0;
@@ -1772,6 +1829,9 @@ png_ascii_from_fp(png_structp png_ptr, png_charp ascii, png_size_t size,
 
                cdigits = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                while (uexp_b10 > 0)
                {
                   exponent[cdigits++] = (char)(48 + uexp_b10 % 10);
@@ -1784,6 +1844,9 @@ png_ascii_from_fp(png_structp png_ptr, png_charp ascii, png_size_t size,
              */
             if ((int)size > cdigits)
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                while (cdigits > 0) *ascii++ = exponent[--cdigits];
 
                *ascii = 0;
@@ -1839,6 +1902,9 @@ png_ascii_from_fixed(png_structp png_ptr, png_charp ascii, png_size_t size,
          unsigned int ndigits = 0, first = 16 /* flag value */;
          char digits[10];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          while (num)
          {
             /* Split the low digit off num: */
@@ -1855,6 +1921,9 @@ png_ascii_from_fixed(png_structp png_ptr, png_charp ascii, png_size_t size,
 
          if (ndigits > 0)
          {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (ndigits > 5) *ascii++ = digits[--ndigits];
             /* The remaining digits are fractional digits, ndigits is '5' or
              * smaller at this point.  It is certainly not zero.  Check for a
@@ -1868,7 +1937,13 @@ png_ascii_from_fixed(png_structp png_ptr, png_charp ascii, png_size_t size,
                 * then ndigits digits to first:
                 */
                i = 5;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                while (ndigits < i) *ascii++ = 48, --i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                while (ndigits >= first) *ascii++ = digits[--ndigits];
                /* Don't output the trailing zeros! */
             }
@@ -1982,6 +2057,9 @@ png_muldiv(png_fixed_point_p res, png_fixed_point a, png_int_32 times,
             int bitshift = 32;
             png_fixed_point result = 0; /* NOTE: signed */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (--bitshift >= 0)
             {
                png_uint_32 d32, d00;
@@ -2178,6 +2256,9 @@ static png_uint_32
 png_8bit_l2[128] =
 {
 #  ifdef PNG_DO_BC
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i=128;i<256;++i) { .5 - l(i/255)/l(2)*65536*65536; }
 #  else
    4270715492U, 4222494797U, 4174646467U, 4127164793U, 4080044201U, 4033279239U,
@@ -2350,6 +2431,9 @@ static png_uint_32
 png_32bit_exp[16] =
 {
 #  ifdef PNG_DO_BC
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i=0;i<16;++i) { .5 + e(-i/16*l(2))*2^32; }
 #  else
    /* NOTE: the first entry is deliberately set to the maximum 32-bit value. */
@@ -2361,6 +2445,9 @@ png_32bit_exp[16] =
 
 /* Adjustment table; provided to explain the numbers in the code below. */
 #ifdef PNG_DO_BC
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 for (i=11;i>=0;--i){ print i, " ", (1 - e(-(2^i)/65536*l(2))) * 2^(32-i), "\n"}
    11 44937.64284865548751208448
    10 45180.98734845585101160448
@@ -2543,6 +2630,9 @@ png_build_16bit_table(png_structp png_ptr, png_uint_16pp *ptable,
    png_uint_16pp table = *ptable =
        (png_uint_16pp)png_calloc(png_ptr, num * png_sizeof(png_uint_16p));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0; i < num; i++)
    {
       png_uint_16p sub_table = table[i] =
@@ -2562,6 +2652,9 @@ png_build_16bit_table(png_structp png_ptr, png_uint_16pp *ptable,
           * bits (unsigned) so long as max <= 32767.
           */
          unsigned int j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (j = 0; j < 256; j++)
          {
             png_uint_32 ig = (j << (8-shift)) + i;
@@ -2582,6 +2675,9 @@ png_build_16bit_table(png_structp png_ptr, png_uint_16pp *ptable,
          /* We must still build a table, but do it the fast way. */
          unsigned int j;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
          for (j = 0; j < 256; j++)
          {
             png_uint_32 ig = (j << (8-shift)) + i;
@@ -2614,6 +2710,9 @@ png_build_16to8_table(png_structp png_ptr, png_uint_16pp *ptable,
     * input 16-bit value used to select a table.  Each table is itself indexed
     * by the high 8 bits of the value.
     */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0; i < num; i++)
       table[i] = (png_uint_16p)png_malloc(png_ptr,
           256 * png_sizeof(png_uint_16));
@@ -2635,6 +2734,9 @@ png_build_16to8_table(png_structp png_ptr, png_uint_16pp *ptable,
     * table entries <= 'max'
     */
    last = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (i = 0; i < 255; ++i) /* 8-bit output value */
    {
       /* Find the corresponding maximum input value */
@@ -2646,6 +2748,9 @@ png_build_16to8_table(png_structp png_ptr, png_uint_16pp *ptable,
       /* Adjust (round) to (16-shift) bits: */
       bound = (bound * max + 32768U)/65535U + 1U;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       while (last < bound)
       {
          table[last & (0xffU >> shift)][last >> (8U - shift)] = out;
@@ -2654,6 +2759,9 @@ png_build_16to8_table(png_structp png_ptr, png_uint_16pp *ptable,
    }
 
    /* And fill in the final entries. */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    while (last < (num << 8))
    {
       table[last & (0xff >> shift)][last >> (8U - shift)] = 65535U;
@@ -2692,6 +2800,9 @@ png_destroy_gamma_table(png_structp png_ptr)
    {
       int i;
       int istop = (1 << (8 - png_ptr->gamma_shift));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < istop; i++)
       {
          png_free(png_ptr, png_ptr->gamma_16_table[i]);
@@ -2712,6 +2823,9 @@ png_destroy_gamma_table(png_structp png_ptr)
    {
       int i;
       int istop = (1 << (8 - png_ptr->gamma_shift));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < istop; i++)
       {
          png_free(png_ptr, png_ptr->gamma_16_from_1[i]);
@@ -2723,6 +2837,9 @@ png_destroy_gamma_table(png_structp png_ptr)
    {
       int i;
       int istop = (1 << (8 - png_ptr->gamma_shift));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < istop; i++)
       {
          png_free(png_ptr, png_ptr->gamma_16_to_1[i]);
