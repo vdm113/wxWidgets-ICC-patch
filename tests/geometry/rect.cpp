@@ -117,6 +117,9 @@ void RectTestCase::Operators()
         { 1, 1, 4, 4, 4, 4, 1, 1, 1, 1, 4, 4 }
     };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(s_rects); n++ )
     {
         const RectData& data = s_rects[n];
@@ -161,6 +164,9 @@ void RectTestCase::Union()
         { 1, 1, 4, 4, 4, 4, 1, 1, 1, 1, 4, 4 }
     };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(s_rects); n++ )
     {
         const RectData& data = s_rects[n];

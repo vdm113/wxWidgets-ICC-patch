@@ -110,6 +110,9 @@ static int str16len(const char *s)
 {
     int count = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (s[0] && s[1]) {
         count++;
         s += 2;
@@ -557,6 +560,9 @@ wxWindow *wxWindowBase::DoFindFocus()
     // (2) The widget with the focus may not be in the widget table
     // depending on which widgets I put in the table
     wxWindow *winFocus = NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst();
           node;
           node = node->GetNext() )
@@ -891,6 +897,9 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
     dc.SetBrush(brush); // FIXME: needed?
 
     wxWindowList::compatibility_iterator cnode = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (cnode)
     {
         wxWindow *child = cnode->GetData();
@@ -982,6 +991,9 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
     // Now send expose events
 
     wxList::compatibility_iterator  node = updateRects.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRect* rect = (wxRect*) node->GetData();
@@ -1007,6 +1019,9 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
 
     // Delete the update rects
     node = updateRects.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRect* rect = (wxRect*) node->GetData();
@@ -1134,6 +1149,9 @@ bool wxWindow::DoPopupMenu(wxMenu *menu, int x, int y)
 
     wxEventLoop evtLoop;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (menu->GetId() == 1)
     {
         wxDoEventLoopIteration( evtLoop );
@@ -1637,6 +1655,9 @@ void wxWindow::DoPaint()
 void wxWindow::OnSysColourChanged(wxSysColourChangedEvent& event)
 {
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( node )
     {
         // Only propagate to non-top-level windows
@@ -1665,6 +1686,9 @@ bool wxWindow::ProcessAccelerator(wxKeyEvent& event)
     int count = m_acceleratorTable.GetCount();
     wxAcceleratorEntry* entries = m_acceleratorTable.GetEntries();
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < count; i++)
     {
         wxAcceleratorEntry* entry = & (entries[i]);
@@ -1676,6 +1700,9 @@ bool wxWindow::ProcessAccelerator(wxKeyEvent& event)
             // Need to go up to the top of the window hierarchy, since it might
             // be e.g. a menu item
             wxWindow* parent = this;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( parent && !parent->IsTopLevel() )
                 parent = parent->GetParent();
 
@@ -1999,6 +2026,9 @@ static void wxCanvasInputEvent(Widget drawingArea,
             {
                 // Implement wxFrame::OnCharHook by checking ancestor.
                 wxWindow *parent = canvas;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (parent && !parent->IsTopLevel())
                     parent = parent->GetParent();
 
@@ -2428,6 +2458,9 @@ int wxComputeColours (Display *display, const wxColour * back, const wxColour * 
     if (back)
     {
         /* 5 Colours to allocate */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < 5; i++)
             if (!YAllocColor (dpy, cmap, &g_itemColors[i]))
                 result = wxNO_COLORS;

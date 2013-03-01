@@ -165,6 +165,9 @@ void wxRichTextObjectPropertiesDialog::OnRichtextParaUpClick( wxCommandEvent& WX
     if (!iter)
         return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (iter)
     {
         if (iter->GetData() == m_parent)
@@ -199,6 +202,9 @@ void wxRichTextObjectPropertiesDialog::OnRichtextDownClick( wxCommandEvent& WXUN
     if (!iter)
         return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (iter)
     {
         if (iter->GetData() == m_parent)

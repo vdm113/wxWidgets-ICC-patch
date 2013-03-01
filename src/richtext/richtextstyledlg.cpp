@@ -474,6 +474,9 @@ iaculis malesuada. Donec bibendum ipsum ut ante porta fringilla.\n");
         m_previewCtrl->BeginStyle(attr);
         long listStart = m_previewCtrl->GetInsertionPoint() + 1;
         int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < 10; i++)
         {
             wxRichTextAttr levelAttr = * listDef->GetLevelAttributes(i);
@@ -828,6 +831,9 @@ void wxRichTextStyleOrganiserDialog::OnNewListClick( wxCommandEvent& WXUNUSED(ev
 
         // Initialize the style to make it easier to edit
         int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < 10; i++)
         {
             wxString bulletSymbol;

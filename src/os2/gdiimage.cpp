@@ -279,6 +279,9 @@ wxGDIImageHandler* wxGDIImage::FindHandler(
 {
     wxGDIImageHandlerList::compatibility_iterator   pNode = ms_handlers.GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( pNode )
     {
         wxGDIImageHandler*          pHandler = pNode->GetData();
@@ -296,6 +299,9 @@ wxGDIImageHandler* wxGDIImage::FindHandler(
 )
 {
     wxGDIImageHandlerList::compatibility_iterator   pNode = ms_handlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( pNode )
     {
         wxGDIImageHandler*          pHandler = pNode->GetData();
@@ -316,6 +322,9 @@ wxGDIImageHandler* wxGDIImage::FindHandler(
 {
     wxGDIImageHandlerList::compatibility_iterator   pNode = ms_handlers.GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( pNode )
     {
         wxGDIImageHandler*          pHandler = pNode->GetData();
@@ -331,6 +340,9 @@ void wxGDIImage::CleanUpHandlers()
 {
     wxGDIImageHandlerList::compatibility_iterator   pNode = ms_handlers.GetFirst();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( pNode )
     {
         wxGDIImageHandler*                              pHandler = pNode->GetData();
