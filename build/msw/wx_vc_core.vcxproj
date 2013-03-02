@@ -1302,6 +1302,7 @@
     <ClCompile Include="..\..\src\common\persist.cpp" />
     <ClCompile Include="..\..\src\common\pickerbase.cpp" />
     <ClCompile Include="..\..\src\common\popupcmn.cpp" />
+    <ClCompile Include="..\..\src\common\preferencescmn.cpp" />
     <ClCompile Include="..\..\src\common\prntbase.cpp" />
     <ClCompile Include="..\..\src\common\quantize.cpp" />
     <ClCompile Include="..\..\src\common\radiobtncmn.cpp" />
@@ -1338,6 +1339,7 @@
     <ClCompile Include="..\..\src\common\windowid.cpp" />
     <ClCompile Include="..\..\src\common\wrapsizer.cpp" />
     <ClCompile Include="..\..\src\common\xpmdecod.cpp" />
+    <ClCompile Include="..\..\src\generic\preferencesg.cpp" />
     <ClCompile Include="..\..\src\msw\accel.cpp">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_accel.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_accel.obj</ObjectFileName>
