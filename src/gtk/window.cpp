@@ -1098,6 +1098,9 @@ bool wxWindowGTK::GTKDoInsertTextFromIM(const char* str)
         return false;
 
     bool processed = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( wxString::const_iterator pstr = data.begin(); pstr != data.end(); ++pstr )
     {
 #if wxUSE_UNICODE
