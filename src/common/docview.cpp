@@ -1457,6 +1457,9 @@ void wxDocument::Activate()
 wxDocument* wxDocManager::FindDocumentByPath(const wxString& path) const
 {
     const wxFileName fileName(path);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxList::const_iterator i = m_docs.begin(); i != m_docs.end(); ++i )
     {
         wxDocument * const doc = wxStaticCast(*i, wxDocument);

@@ -1331,6 +1331,9 @@ void wxSizer::ShowItems( bool show )
 bool wxSizer::AreAnyItemsShown() const
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         if ( node->GetData()->IsShown() )
