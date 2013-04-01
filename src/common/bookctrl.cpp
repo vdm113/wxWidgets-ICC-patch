@@ -443,6 +443,9 @@ int wxBookCtrlBase::GetNextPage(bool forward) const
 int wxBookCtrlBase::FindPage(const wxWindow* page) const
 {
     const size_t nCount = m_pages.size();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t nPage = 0; nPage < nCount; nPage++ )
     {
         if ( m_pages[nPage] == page )
