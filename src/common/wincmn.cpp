@@ -1177,6 +1177,9 @@ void wxWindowBase::NotifyWindowOnEnableChange(bool enabled)
     // accept any input (at least under MSW where children don't accept input
     // if any of the windows in their parent chain is enabled).
 #ifndef wxHAS_NATIVE_ENABLED_MANAGEMENT
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;
           node = node->GetNext() )
