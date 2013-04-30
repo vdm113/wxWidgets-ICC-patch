@@ -148,12 +148,18 @@ void wxBitmapComboBox::RecreateControl()
 
         case wxClientData_Object:
             objectClientData.reserve(numItems);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( i = 0; i < numItems; ++i )
                 objectClientData.push_back(GetClientObject(i));
             break;
 
         case wxClientData_Void:
             voidClientData.reserve(numItems);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( i = 0; i < numItems; ++i )
                 voidClientData.push_back(GetClientData(i));
             break;
@@ -169,6 +175,9 @@ void wxBitmapComboBox::RecreateControl()
         return;
 
     // initialize the controls contents
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < numItems; i++ )
     {
         wxComboBox::Append(strings[i]);
