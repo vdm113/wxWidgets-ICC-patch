@@ -774,6 +774,9 @@ void RichTextCtrlTestCase::Table()
     CPPUNIT_ASSERT(m_rich->CanUndo() == false);
 
     // Run the tests twice: first for the original table, then for a contained one
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int t = 0; t < 2; ++t)
     {
         size_t n; // FIXME-VC6: outside of the loops for VC6 only.
