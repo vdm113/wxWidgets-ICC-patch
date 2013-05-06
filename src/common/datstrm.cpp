@@ -500,6 +500,9 @@ void wxDataInputStream::ReadDouble(double *buffer, size_t size)
 
 void wxDataInputStream::ReadFloat(float *buffer, size_t size)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (wxUint32 i=0; i<size; i++)
   {
     *(buffer++) = ReadFloat();
@@ -826,6 +829,9 @@ void wxDataOutputStream::WriteDouble(const double *buffer, size_t size)
 
 void wxDataOutputStream::WriteFloat(const float *buffer, size_t size)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (wxUint32 i=0; i<size; i++)
   {
     WriteFloat(*(buffer++));
