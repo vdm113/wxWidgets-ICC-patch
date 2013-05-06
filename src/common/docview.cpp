@@ -2151,6 +2151,9 @@ bool wxDocParentFrameAnyBase::TryProcessEvent(wxEvent& event)
         // because we want to check both for the case of a child "frame" (e.g.
         // MDI child frame or notebook page) inside this TLW and a separate
         // child TLW frame (as used in the SDI mode) here.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxWindow* win = view->GetFrame(); win; win = win->GetParent() )
         {
             if ( win == m_frame )
