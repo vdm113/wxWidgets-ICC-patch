@@ -354,6 +354,7 @@
     <Lib>
       <OutputFile>..\..\lib\vc_lib\wxregexud.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
       <OutputFile>..\..\lib\vc_lib\wx_vc9_wxregex.bsc</OutputFile>
@@ -404,6 +405,7 @@
     <Lib>
       <OutputFile>..\..\lib\vc_lib\wxregexud.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
       <OutputFile>..\..\lib\vc_lib\wx_vc9_wxregex.bsc</OutputFile>
@@ -453,6 +455,7 @@
     <Lib>
       <OutputFile>..\..\lib\vc_lib\wxregexu.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
       <OutputFile>..\..\lib\vc_lib\wx_vc9_wxregex.bsc</OutputFile>
@@ -502,6 +505,7 @@
     <Lib>
       <OutputFile>..\..\lib\vc_lib\wxregexu.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
       <OutputFile>..\..\lib\vc_lib\wx_vc9_wxregex.bsc</OutputFile>
@@ -552,6 +556,7 @@
     <Lib>
       <OutputFile>..\..\lib\vc_lib\wxregexud.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
       <OutputFile>..\..\lib\vc_lib\wx_vc9_wxregex.bsc</OutputFile>
@@ -602,6 +607,7 @@
     <Lib>
       <OutputFile>..\..\lib\vc_lib\wxregexud.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
       <OutputFile>..\..\lib\vc_lib\wx_vc9_wxregex.bsc</OutputFile>
@@ -651,6 +657,7 @@
     <Lib>
       <OutputFile>..\..\lib\vc_lib\wxregexu.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
       <OutputFile>..\..\lib\vc_lib\wx_vc9_wxregex.bsc</OutputFile>
@@ -700,6 +707,7 @@
     <Lib>
       <OutputFile>..\..\lib\vc_lib\wxregexu.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
       <OutputFile>..\..\lib\vc_lib\wx_vc9_wxregex.bsc</OutputFile>

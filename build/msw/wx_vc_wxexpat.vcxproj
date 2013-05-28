@@ -338,6 +338,7 @@
     <Lib>
       <OutputFile>..\..\lib\vc_lib\wxexpatd.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
       <OutputFile>..\..\lib\vc_lib\wx_vc9_wxexpat.bsc</OutputFile>
@@ -388,6 +389,7 @@
     <Lib>
       <OutputFile>..\..\lib\vc_lib\wxexpatd.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
       <OutputFile>..\..\lib\vc_lib\wx_vc9_wxexpat.bsc</OutputFile>
@@ -437,6 +439,7 @@
     <Lib>
       <OutputFile>..\..\lib\vc_lib\wxexpat.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
       <OutputFile>..\..\lib\vc_lib\wx_vc9_wxexpat.bsc</OutputFile>
@@ -486,6 +489,7 @@
     <Lib>
       <OutputFile>..\..\lib\vc_lib\wxexpat.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
       <OutputFile>..\..\lib\vc_lib\wx_vc9_wxexpat.bsc</OutputFile>
@@ -536,6 +540,7 @@
     <Lib>
       <OutputFile>..\..\lib\vc_lib\wxexpatd.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
       <OutputFile>..\..\lib\vc_lib\wx_vc9_wxexpat.bsc</OutputFile>
@@ -586,6 +591,7 @@
     <Lib>
       <OutputFile>..\..\lib\vc_lib\wxexpatd.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
       <OutputFile>..\..\lib\vc_lib\wx_vc9_wxexpat.bsc</OutputFile>
@@ -635,6 +641,7 @@
     <Lib>
       <OutputFile>..\..\lib\vc_lib\wxexpat.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
       <OutputFile>..\..\lib\vc_lib\wx_vc9_wxexpat.bsc</OutputFile>
@@ -684,6 +691,7 @@
     <Lib>
       <OutputFile>..\..\lib\vc_lib\wxexpat.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
       <OutputFile>..\..\lib\vc_lib\wx_vc9_wxexpat.bsc</OutputFile>
