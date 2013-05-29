@@ -1324,6 +1324,7 @@
     <ClCompile Include="..\..\src\common\markupparser.cpp" />
     <ClCompile Include="..\..\src\common\matrix.cpp" />
     <ClCompile Include="..\..\src\common\menucmn.cpp" />
+    <ClCompile Include="..\..\src\common\modalhook.cpp" />
     <ClCompile Include="..\..\src\common\mousemanager.cpp" />
     <ClCompile Include="..\..\src\common\msgout.cpp" />
     <ClCompile Include="..\..\src\common\nbkbase.cpp" />
@@ -3005,6 +3006,7 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Universal Release|Win32'">..\..\lib\vc_lib\mswunivu\wx\setup.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Universal Release|x64'">..\..\lib\vc_lib\mswunivu\wx\setup.h;%(Outputs)</Outputs>
     </CustomBuild>
+    <ClInclude Include="..\..\include\wx\modalhook.h" />
     <ClInclude Include="..\..\include\wx\msw\accel.h" />
     <ClInclude Include="..\..\include\wx\msw\ole\access.h" />
     <ClInclude Include="..\..\include\wx\msw\ole\activex.h" />
