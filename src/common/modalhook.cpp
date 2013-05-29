@@ -41,6 +41,9 @@ wxModalDialogHook::Hooks wxModalDialogHook::ms_hooks;
 void wxModalDialogHook::Register()
 {
 #if wxDEBUG_LEVEL
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( Hooks::const_iterator it = ms_hooks.begin();
           it != ms_hooks.end();
           ++it)
@@ -66,6 +69,9 @@ void wxModalDialogHook::Unregister()
 
 bool wxModalDialogHook::DoUnregister()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( Hooks::iterator it = ms_hooks.begin();
           it != ms_hooks.end();
           ++it )
@@ -93,6 +99,9 @@ int wxModalDialogHook::CallEnter(wxDialog* dialog)
     // the call to their Exit(), so do it here for symmetry as well.
     const Hooks hooks = ms_hooks;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( Hooks::const_iterator it = hooks.begin(); it != hooks.end(); ++it )
     {
         const int rc = (*it)->Enter(dialog);
@@ -113,6 +122,9 @@ void wxModalDialogHook::CallExit(wxDialog* dialog)
     // See comment in CallEnter() for the reasons for making a copy here.
     const Hooks hooks = ms_hooks;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( Hooks::const_iterator it = hooks.begin(); it != hooks.end(); ++it )
     {
         (*it)->Exit(dialog);

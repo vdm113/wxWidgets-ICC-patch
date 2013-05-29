@@ -10729,8 +10729,14 @@ wxPosition wxRichTextTable::GetFocusedCell() const
     wxPosition position(-1, -1);
     const wxRichTextObject* focus = GetBuffer()->GetRichTextCtrl()->GetFocusObject();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int row = 0; row < GetRowCount(); ++row)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int col = 0; col < GetColumnCount(); ++col)
         {
             if (GetCell(row, col) == focus)

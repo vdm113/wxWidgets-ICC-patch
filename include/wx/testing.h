@@ -205,6 +205,9 @@ public:
     // including messing up the order of errors in some cases.
     void CheckUnmetExpectations()
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( !m_expectations.empty() )
         {
             const wxModalExpectation *expect = m_expectations.front();

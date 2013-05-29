@@ -309,6 +309,9 @@ public:
         // it for arbitrary input iterators, we should have a dispatch on
         // iterator type and call it if possible.
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( InputIterator it = first; it != last; ++it )
             push_back(*it);
     }

@@ -943,6 +943,9 @@ bool wxInputStream::ReadAll(void *buffer_, size_t size)
 
     size_t totalCount = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         const size_t lastCount = Read(buffer, size).LastRead();
@@ -1105,6 +1108,9 @@ bool wxOutputStream::WriteAll(const void *buffer_, size_t size)
 
     size_t totalCount = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         const size_t lastCount = Write(buffer, size).LastWrite();

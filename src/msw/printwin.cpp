@@ -204,6 +204,9 @@ bool wxWindowsPrinter::Print(wxWindow *parent, wxPrintout *printout, bool prompt
     const int maxCopyCount = !prompt ||
                              !m_printDialogData.GetPrintData().GetNoCopies()
                              ? m_printDialogData.GetNoCopies() : 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int copyCount = 1; copyCount <= maxCopyCount; copyCount++ )
     {
         if ( !printout->OnBeginDocument(minPageNum, maxPageNum) )
