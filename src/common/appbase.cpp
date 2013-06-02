@@ -488,6 +488,9 @@ void wxAppConsoleBase::ProcessPendingEvents()
 
         // iterate until the list becomes empty: the handlers remove themselves
         // from it when they don't have any more pending events
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (!m_handlersWithPendingEvents.IsEmpty())
         {
             // In ProcessPendingEvents(), new handlers might be added
@@ -525,6 +528,9 @@ void wxAppConsoleBase::DeletePendingEvents()
     wxCHECK_RET( m_handlersWithPendingDelayedEvents.IsEmpty(),
                  "this helper list should be empty" );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i=0; i<m_handlersWithPendingEvents.GetCount(); i++)
         m_handlersWithPendingEvents[i]->DeletePendingEvents();
 
@@ -559,6 +565,9 @@ void wxAppConsoleBase::ScheduleForDestruction(wxObject *object)
 void wxAppConsoleBase::DeletePendingObjects()
 {
     wxList::compatibility_iterator node = wxPendingDelete.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxObject *obj = node->GetData();
@@ -962,6 +971,9 @@ wxString wxAppTraitsBase::GetAssertStackTrace()
     stackTrace = dump.GetStackTrace();
 
     const int count = stackTrace.Freq(wxT('\n'));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < count - maxLines; i++ )
         stackTrace = stackTrace.BeforeLast(wxT('\n'));
 
@@ -1175,6 +1187,9 @@ static void LINKAGEMODE SetTraceMasks()
     if ( wxGetEnv(wxT("WXTRACE"), &mask) )
     {
         wxStringTokenizer tkn(mask, wxT(",;:"));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( tkn.HasMoreTokens() )
             wxLog::AddTraceMask(tkn.GetNextToken());
     }

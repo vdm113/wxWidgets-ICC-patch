@@ -127,6 +127,9 @@ CPP_METHODDEF(void) wx_skip_input_data ( j_decompress_ptr cinfo, long num_bytes 
     {
         wx_src_ptr src = (wx_src_ptr) cinfo->src;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (num_bytes > (long)src->pub.bytes_in_buffer)
         {
             num_bytes -= (long) src->pub.bytes_in_buffer;
@@ -281,6 +284,9 @@ bool wxJPEGHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbos
     if ( maxWidth > 0 || maxHeight > 0 )
     {
         unsigned& scale = cinfo.scale_denom;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( (maxWidth && (cinfo.image_width / scale > maxWidth)) ||
                     (maxHeight && (cinfo.image_height / scale > maxHeight)) )
         {
@@ -303,6 +309,9 @@ bool wxJPEGHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbos
     JSAMPARRAY tempbuf = (*cinfo.mem->alloc_sarray)
                             ((j_common_ptr) &cinfo, JPOOL_IMAGE, stride, 1 );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( cinfo.output_scanline < cinfo.output_height )
     {
         jpeg_read_scanlines( &cinfo, tempbuf, 1 );
@@ -314,6 +323,9 @@ bool wxJPEGHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbos
         else // CMYK
         {
             const unsigned char* inptr = (const unsigned char*) tempbuf[0];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (size_t i = 0; i < cinfo.output_width; i++)
             {
                 wx_cmyk_to_rgb(ptr, inptr);
@@ -473,6 +485,9 @@ bool wxJPEGHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbo
 
     stride = cinfo.image_width * 3;    /* JSAMPLEs per row in image_buffer */
     image_buffer = image->GetData();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (cinfo.next_scanline < cinfo.image_height) {
         row_pointer[0] = &image_buffer[cinfo.next_scanline * stride];
         jpeg_write_scanlines( &cinfo, row_pointer, 1 );
