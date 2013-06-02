@@ -127,6 +127,9 @@ main(int argc, char* argv[])
 	extern char* optarg;
 
 	num_colors = MAX_CMAP_SIZE;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((c = getopt(argc, argv, "c:C:r:f")) != -1)
 		switch (c) {
 		case 'c':		/* compression scheme */
@@ -185,6 +188,9 @@ main(int argc, char* argv[])
 	box_list = freeboxes = (Colorbox *)_TIFFmalloc(num_colors*sizeof (Colorbox));
 	freeboxes[0].next = &freeboxes[1];
 	freeboxes[0].prev = NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 1; i < num_colors-1; ++i) {
 		freeboxes[i].next = &freeboxes[i+1];
 		freeboxes[i].prev = &freeboxes[i-1];
@@ -209,6 +215,9 @@ main(int argc, char* argv[])
 	 * STEP 3: continually subdivide boxes until no more free
 	 * boxes remain or until all colors assigned.
 	 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (freeboxes != NULL) {
 		ptr = largest_box();
 		if (ptr != NULL)
@@ -220,6 +229,9 @@ main(int argc, char* argv[])
 	/*
 	 * STEP 4: assign colors to all boxes
 	 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0, ptr = usedboxes; ptr != NULL; ++i, ptr = ptr->next) {
 		rm[i] = ((ptr->rmin + ptr->rmax) << COLOR_SHIFT) / 2;
 		gm[i] = ((ptr->gmin + ptr->gmax) << COLOR_SHIFT) / 2;
@@ -283,6 +295,9 @@ main(int argc, char* argv[])
 	 * Scale colormap to TIFF-required 16-bit values.
 	 */
 #define	SCALE(x)	(((x)*((1L<<16)-1))/255)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < MAX_CMAP_SIZE; ++i) {
 		rm[i] = SCALE(rm[i]);
 		gm[i] = SCALE(gm[i]);
@@ -340,6 +355,9 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);
@@ -363,13 +381,22 @@ get_histogram(TIFF* in, Colorbox* box)
 	box->total = imagewidth * imagelength;
 
 	{ register uint32 *ptr = &histogram[0][0][0];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	  for (i = B_LEN*B_LEN*B_LEN; i-- > 0;)
 		*ptr++ = 0;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < imagelength; i++) {
 		if (TIFFReadScanline(in, inputline, i, 0) <= 0)
 			break;
 		inptr = inputline;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (j = imagewidth; j-- > 0;) {
 			red = *inptr++ >> COLOR_SHIFT;
 			green = *inptr++ >> COLOR_SHIFT;
@@ -400,6 +427,9 @@ largest_box(void)
 
 	b = NULL;
 	size = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (p = usedboxes; p != NULL; p = p->next)
 		if ((p->rmax > p->rmin || p->gmax > p->gmin ||
 		    p->bmax > p->bmin) &&  p->total > size)
@@ -435,10 +465,19 @@ splitbox(Colorbox* ptr)
 	switch (axis) {
 	case RED:
 		histp = &hist2[ptr->rmin];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	        for (ir = ptr->rmin; ir <= ptr->rmax; ++ir) {
 			*histp = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (ig = ptr->gmin; ig <= ptr->gmax; ++ig) {
 				iptr = &histogram[ir][ig][ptr->bmin];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (ib = ptr->bmin; ib <= ptr->bmax; ++ib)
 					*histp += *iptr++;
 			}
@@ -449,10 +488,19 @@ splitbox(Colorbox* ptr)
 	        break;
 	case GREEN:
 	        histp = &hist2[ptr->gmin];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	        for (ig = ptr->gmin; ig <= ptr->gmax; ++ig) {
 			*histp = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (ir = ptr->rmin; ir <= ptr->rmax; ++ir) {
 				iptr = &histogram[ir][ig][ptr->bmin];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (ib = ptr->bmin; ib <= ptr->bmax; ++ib)
 					*histp += *iptr++;
 			}
@@ -463,10 +511,19 @@ splitbox(Colorbox* ptr)
 	        break;
 	case BLUE:
 	        histp = &hist2[ptr->bmin];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	        for (ib = ptr->bmin; ib <= ptr->bmax; ++ib) {
 			*histp = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (ir = ptr->rmin; ir <= ptr->rmax; ++ir) {
 				iptr = &histogram[ir][ptr->gmin][ib];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (ig = ptr->gmin; ig <= ptr->gmax; ++ig) {
 					*histp += *iptr;
 					iptr += B_LEN;
@@ -482,6 +539,9 @@ splitbox(Colorbox* ptr)
 	sum2 = ptr->total / 2;
 	histp = &hist2[first];
 	sum = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = first; i <= last && (sum += *histp++) < sum2; ++i)
 		;
 	if (i == first)
@@ -498,8 +558,14 @@ splitbox(Colorbox* ptr)
 	usedboxes = new;
 
 	histp = &hist2[first];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (sum1 = 0, j = first; j < i; j++)
 		sum1 += *histp++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (sum2 = 0, j = i; j <= last; j++)
 	    sum2 += *histp++;
 	new->total = sum1;
@@ -536,9 +602,18 @@ shrinkbox(Colorbox* box)
 	register int	ir, ig, ib;
 
 	if (box->rmax > box->rmin) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (ir = box->rmin; ir <= box->rmax; ++ir)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (ig = box->gmin; ig <= box->gmax; ++ig) {
 				histp = &histogram[ir][ig][box->bmin];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			        for (ib = box->bmin; ib <= box->bmax; ++ib)
 					if (*histp++ != 0) {
 						box->rmin = ir;
@@ -547,10 +622,19 @@ shrinkbox(Colorbox* box)
 			}
 	have_rmin:
 		if (box->rmax > box->rmin)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (ir = box->rmax; ir >= box->rmin; --ir)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (ig = box->gmin; ig <= box->gmax; ++ig) {
 					histp = &histogram[ir][ig][box->bmin];
 					ib = box->bmin;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					for (; ib <= box->bmax; ++ib)
 						if (*histp++ != 0) {
 							box->rmax = ir;
@@ -560,9 +644,18 @@ shrinkbox(Colorbox* box)
 	}
 have_rmax:
 	if (box->gmax > box->gmin) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (ig = box->gmin; ig <= box->gmax; ++ig)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (ir = box->rmin; ir <= box->rmax; ++ir) {
 				histp = &histogram[ir][ig][box->bmin];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			        for (ib = box->bmin; ib <= box->bmax; ++ib)
 				if (*histp++ != 0) {
 					box->gmin = ig;
@@ -571,10 +664,19 @@ have_rmax:
 			}
 	have_gmin:
 		if (box->gmax > box->gmin)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (ig = box->gmax; ig >= box->gmin; --ig)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (ir = box->rmin; ir <= box->rmax; ++ir) {
 					histp = &histogram[ir][ig][box->bmin];
 					ib = box->bmin;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					for (; ib <= box->bmax; ++ib)
 						if (*histp++ != 0) {
 							box->gmax = ig;
@@ -584,9 +686,18 @@ have_rmax:
 	}
 have_gmax:
 	if (box->bmax > box->bmin) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (ib = box->bmin; ib <= box->bmax; ++ib)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (ir = box->rmin; ir <= box->rmax; ++ir) {
 				histp = &histogram[ir][box->gmin][ib];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			        for (ig = box->gmin; ig <= box->gmax; ++ig) {
 					if (*histp != 0) {
 						box->bmin = ib;
@@ -597,10 +708,19 @@ have_gmax:
 		        }
 	have_bmin:
 		if (box->bmax > box->bmin)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (ib = box->bmax; ib >= box->bmin; --ib)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (ir = box->rmin; ir <= box->rmax; ++ir) {
 					histp = &histogram[ir][box->gmin][ib];
 					ig = box->gmin;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					for (; ig <= box->gmax; ++ig) {
 						if (*histp != 0) {
 							box->bmax = ib;
@@ -634,6 +754,9 @@ create_colorcell(int red, int green, int blue)
 	 *	   it, find distance of centermost point to furthest corner
 	 */
 	mindist = 99999999;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < num_colors; ++i) {
 		if (rm[i]>>(COLOR_DEPTH-C_DEPTH) != ir  ||
 		    gm[i]>>(COLOR_DEPTH-C_DEPTH) != ig  ||
@@ -661,6 +784,9 @@ create_colorcell(int red, int green, int blue)
 	/*
 	 * Step 3: find all points within that distance to cell.
 	 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < num_colors; ++i) {
 		if (rm[i] >> (COLOR_DEPTH-C_DEPTH) == ir  &&
 		    gm[i] >> (COLOR_DEPTH-C_DEPTH) == ig  &&
@@ -686,8 +812,14 @@ create_colorcell(int red, int green, int blue)
 	/*
 	 * Sort color cells by distance, use cheap exchange sort
 	 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (n = ptr->num_ents - 1; n > 0; n = next_n) {
 		next_n = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < n; ++i)
 			if (ptr->entries[i][1] > ptr->entries[i+1][1]) {
 				tmp = ptr->entries[i][0];
@@ -710,8 +842,17 @@ map_colortable(void)
 	register int j, tmp, d2, dist;
 	int ir, ig, ib, i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (ir = 0; ir < B_LEN; ++ir)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (ig = 0; ig < B_LEN; ++ig)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (ib = 0; ib < B_LEN; ++ib, histp++) {
 				if (*histp == 0) {
 					*histp = -1;
@@ -727,6 +868,9 @@ map_colortable(void)
 					    ig << COLOR_SHIFT,
 					    ib << COLOR_SHIFT);
 				dist = 9999999;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (i = 0; i < cell->num_ents &&
 				    dist > cell->entries[i][1]; ++i) {
 					j = cell->entries[i][0];
@@ -759,11 +903,17 @@ quant(TIFF* in, TIFF* out)
 
 	inputline = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(in));
 	outline = (unsigned char *)_TIFFmalloc(imagewidth);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < imagelength; i++) {
 		if (TIFFReadScanline(in, inputline, i, 0) <= 0)
 			break;
 		inptr = inputline;
 		outptr = outline;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (j = 0; j < imagewidth; j++) {
 			red = *inptr++ >> COLOR_SHIFT;
 			green = *inptr++ >> COLOR_SHIFT;
@@ -784,6 +934,7 @@ quant(TIFF* in, TIFF* out)
 		bad;						\
 	inptr = inputline;					\
 	nextptr = nextline;					\
+MY_MACRO_PRAGMA_IVDEP \
 	for (j = 0; j < imagewidth; ++j) {			\
 		*nextptr++ = *inptr++;				\
 		*nextptr++ = *inptr++;				\
@@ -817,6 +968,9 @@ quant_fsdither(TIFF* in, TIFF* out)
 	outline = (unsigned char *) _TIFFmalloc(TIFFScanlineSize(out));
 
 	GetInputLine(in, 0, goto bad);		/* get first line */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 1; i <= imagelength; ++i) {
 		SWAP(short *, thisline, nextline);
 		lastline = (i >= imax);
@@ -825,6 +979,9 @@ quant_fsdither(TIFF* in, TIFF* out)
 		thisptr = thisline;
 		nextptr = nextline;
 		outptr = outline;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (j = 0; j < imagewidth; ++j) {
 			int red, green, blue;
 			register int oval, r2, g2, b2;
@@ -847,6 +1004,9 @@ quant_fsdither(TIFF* in, TIFF* out)
 					cell = create_colorcell(red,
 					    green, blue);
 				dist = 9999999;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (ci = 0; ci < cell->num_ents && dist > cell->entries[ci][1]; ++ci) {
 					cj = cell->entries[ci][0];
 					d2 = (rm[cj] >> COLOR_SHIFT) - r2;

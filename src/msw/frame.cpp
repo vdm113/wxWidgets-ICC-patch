@@ -337,6 +337,9 @@ void wxFrame::AttachMenuBar(wxMenuBar *menubar)
     {
         autoMenu = new wxMenu;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( size_t n = 0; n < menubar->GetMenuCount(); n++ )
         {
             wxMenu *item = menubar->GetMenu(n);
@@ -666,6 +669,9 @@ void wxFrame::IconizeChildFrames(bool bIconize)
 {
     m_iconized = bIconize;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;
           node = node->GetNext() )

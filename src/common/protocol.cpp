@@ -118,6 +118,9 @@ wxProtocolError wxProtocol::ReadLine(wxSocketBase *sock, wxString& result)
 
     wxCharBuffer buf(LINE_BUF);
     char *pBuf = buf.data();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( sock->WaitForRead() )
     {
         // peek at the socket to see if there is a CRLF

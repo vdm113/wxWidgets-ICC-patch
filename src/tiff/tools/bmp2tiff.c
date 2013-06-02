@@ -249,6 +249,9 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((c = getopt(argc, argv, "c:r:o:h")) != -1) {
 		switch (c) {
 		case 'c':		/* compression scheme */
@@ -281,6 +284,9 @@ main(int argc, char* argv[])
 	}
 	
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (optind < argc-1) {
 		infilename = argv[optind];
 		optind++;
@@ -456,6 +462,9 @@ main(int argc, char* argv[])
 					goto bad3;
 				}
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for(clr = 0; clr < clr_tbl_size; clr++) {
 				    red_tbl[clr] = 257*clr_tbl[clr*n_clr_elems+2];
 				    green_tbl[clr] = 257*clr_tbl[clr*n_clr_elems+1];
@@ -549,6 +558,9 @@ main(int argc, char* argv[])
 				goto bad3;
 			}
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (row = 0; row < length; row++) {
 				if (info_hdr.iHeight > 0)
 					offset = file_hdr.iOffBits+(length-row-1)*size;
@@ -611,9 +623,15 @@ main(int argc, char* argv[])
 			i = 0;
 			j = 0;
 			if (info_hdr.iBitCount == 8) {		/* RLE8 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			    while(j < uncompr_size && i < compr_size) {
 				if ( comprbuf[i] ) {
 				    runlength = comprbuf[i++];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				    while( runlength > 0
 					   && j < uncompr_size
 					   && i < compr_size ) {
@@ -637,6 +655,9 @@ main(int argc, char* argv[])
 					    break;
 				    } else {            /* Absolute mode */
 					runlength = comprbuf[i++];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					for (k = 0; k < runlength && j < uncompr_size && i < compr_size; k++)
 					    uncomprbuf[j++] = comprbuf[i++];
 					if ( k & 0x01 )
@@ -646,9 +667,15 @@ main(int argc, char* argv[])
 			    }
 			}
 			else {				    /* RLE4 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			    while( j < uncompr_size && i < compr_size ) {
 				if ( comprbuf[i] ) {
 				    runlength = comprbuf[i++];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				    while( runlength > 0 && j < uncompr_size && i < compr_size ) {
 					if ( runlength & 0x01 )
 					    uncomprbuf[j++] = (comprbuf[i] & 0xF0) >> 4;
@@ -673,6 +700,9 @@ main(int argc, char* argv[])
 					    break;
 				    } else {            /* Absolute mode */
 					runlength = comprbuf[i++];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					for (k = 0; k < runlength && j < uncompr_size && i < compr_size; k++) {
 					    if (k & 0x01)
 						uncomprbuf[j++] = comprbuf[i++] & 0x0F;
@@ -688,6 +718,9 @@ main(int argc, char* argv[])
 
 			_TIFFfree(comprbuf);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (row = 0; row < length; row++) {
 				if (TIFFWriteScanline(out,
 					uncomprbuf + (length - row - 1) * width,
@@ -746,6 +779,9 @@ rearrangePixels(char *buf, uint32 width, uint32 bit_count)
 		case 16:    /* FIXME: need a sample file */
                         break;
                 case 24:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = 0; i < width; i++, buf += 3) {
 				tmp = *buf;
 				*buf = *(buf + 2);
@@ -756,6 +792,9 @@ rearrangePixels(char *buf, uint32 width, uint32 bit_count)
 			{
 				char	*buf1 = buf;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (i = 0; i < width; i++, buf += 4) {
 					tmp = *buf;
 					*buf1++ = *(buf + 2);
@@ -780,6 +819,9 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
                 compression = COMPRESSION_JPEG;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while( cp )
                 {
                     if (isdigit((int)cp[1]))
@@ -839,6 +881,9 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);

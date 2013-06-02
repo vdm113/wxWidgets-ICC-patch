@@ -324,6 +324,9 @@ public:
     {
         listitem.SetMask(wxLIST_MASK_TEXT |  wxLIST_MASK_DATA);
         int nLast = -1, nLastSelected = -1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ((nLast = this->GetNextItem(nLast,
                                          wxLIST_NEXT_ALL,
                                          wxLIST_STATE_SELECTED)) != -1)
@@ -356,6 +359,9 @@ public:
         virtual bool OnDropFiles(wxCoord WXUNUSED(x), wxCoord WXUNUSED(y),
                          const wxArrayString& files)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = 0; i < files.GetCount(); ++i)
         {
             m_list.AddToPlayList(files[i]);
@@ -437,6 +443,9 @@ bool wxMediaPlayerApp::OnCmdLineParsed(wxCmdLineParser& parser)
     if ( !wxApp::OnCmdLineParsed(parser) )
         return false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t paramNr=0; paramNr < parser.GetParamCount(); ++paramNr)
         m_params.push_back(parser.GetParam(paramNr));
 
@@ -468,6 +477,9 @@ bool wxMediaPlayerApp::OnInit()
 #if wxUSE_CMDLINE_PARSER
     if ( !m_params.empty() )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < m_params.size(); n++ )
             frame->AddToPlayList(m_params[n]);
 
@@ -740,6 +752,9 @@ wxMediaPlayerFrame::wxMediaPlayerFrame(const wxString& title)
         //
         wxConfig conf;
         wxString key, outstring;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(int i = 0; ; ++i)
         {
             key.clear();
@@ -794,6 +809,9 @@ wxMediaPlayerFrame::~wxMediaPlayerFrame()
     wxConfig conf;
     conf.DeleteAll();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(int i = 0; i < playlist->GetItemCount(); ++i)
     {
         wxString* pData = (wxString*) playlist->GetItemData(i);
@@ -1242,6 +1260,9 @@ void wxMediaPlayerFrame::OnKeyDown(wxKeyEvent& event)
         wxMediaPlayerNotebookPage* currentpage =
             (wxMediaPlayerNotebookPage*) m_notebook->GetCurrentPage();
        // delete all selected items
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
        while(true)
        {
            wxInt32 nSelectedItem = currentpage->m_playlist->GetNextItem(
@@ -1320,6 +1341,9 @@ void wxMediaPlayerFrame::OnPrev(wxCommandEvent& WXUNUSED(event))
         return;
 
     wxInt32 nLastSelectedItem = -1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(true)
     {
         wxInt32 nSelectedItem = currentpage->m_playlist->GetNextItem(nLastSelectedItem,
@@ -1373,6 +1397,9 @@ void wxMediaPlayerFrame::OnNext(wxCommandEvent& WXUNUSED(event))
         return;
 
     wxInt32 nLastSelectedItem = -1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(true)
     {
         wxInt32 nSelectedItem = currentpage->m_playlist->GetNextItem(nLastSelectedItem,
