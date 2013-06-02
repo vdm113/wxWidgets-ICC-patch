@@ -442,6 +442,9 @@ wxFileConfig::wxFileConfig(wxInputStream &inStream, const wxMBConv& conv)
     static const size_t chunkLen = 1024;
 
     wxMemoryBuffer buf(chunkLen);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
         inStream.Read(buf.GetAppendBuf(chunkLen), chunkLen);
@@ -455,6 +458,9 @@ wxFileConfig::wxFileConfig(wxInputStream &inStream, const wxMBConv& conv)
             break;
         }
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !inStream.Eof() );
 
 #if wxUSE_UNICODE
@@ -474,9 +480,15 @@ wxFileConfig::wxFileConfig(wxInputStream &inStream, const wxMBConv& conv)
     {
         // now break it into lines
         wxMemoryText memText;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( const wxChar *s = cbuf; ; ++s )
         {
             const wxChar *e = s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( *e != '\0' && *e != '\n' && *e != '\r' )
                 ++e;
 
@@ -510,6 +522,9 @@ void wxFileConfig::CleanUp()
     delete m_pRootGroup;
 
     wxFileConfigLineList *pCur = m_linesHead;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( pCur != NULL ) {
         wxFileConfigLineList *pNext = pCur->Next();
         delete pCur;
@@ -535,6 +550,9 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
 
   size_t nLineCount = buffer.GetLineCount();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for ( size_t n = 0; n < nLineCount; n++ )
   {
     wxString strLine = buffer[n];
@@ -549,6 +567,9 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
 
 
     // skip leading spaces
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( pStart = buf; wxIsspace(*pStart); pStart++ )
       ;
 
@@ -559,6 +580,9 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
     if ( *pStart == wxT('[') ) {          // a new group
       pEnd = pStart;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       while ( *++pEnd != wxT(']') ) {
         if ( *pEnd == wxT('\\') ) {
             // the next char is escaped, so skip it even if it is ']'
@@ -595,6 +619,9 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
 
       // check that there is nothing except comments left on this line
       bool bCont = true;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       while ( *++pEnd != wxT('\0') && bCont ) {
         switch ( *pEnd ) {
           case wxT('#'):
@@ -616,6 +643,9 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
     }
     else {                        // a key
       pEnd = pStart;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       while ( *pEnd && *pEnd != wxT('=') /* && !wxIsspace(*pEnd)*/ ) {
         if ( *pEnd == wxT('\\') ) {
           // next character may be space or not - still take it because it's
@@ -633,6 +663,9 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
       wxString strKey(FilterInEntryName(wxString(pStart, pEnd).Trim()));
 
       // skip whitespace
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       while ( wxIsspace(*pEnd) )
         pEnd++;
 
@@ -670,6 +703,9 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
           pEntry->SetLine(m_linesTail);
 
         // skip whitespace
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( wxIsspace(*pEnd) )
           pEnd++;
 
@@ -717,6 +753,9 @@ wxFileConfig::DoSetPath(const wxString& strPath, bool createMissingComponents)
     // change current group
     size_t n;
     m_pCurrentGroup = m_pRootGroup;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < aParts.GetCount(); n++ ) {
         wxFileConfigGroup *pNextGroup = m_pCurrentGroup->FindSubgroup(aParts[n]);
         if ( pNextGroup == NULL )
@@ -732,6 +771,9 @@ wxFileConfig::DoSetPath(const wxString& strPath, bool createMissingComponents)
 
     // recombine path parts in one variable
     m_strPath.Empty();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < aParts.GetCount(); n++ ) {
         m_strPath << wxCONFIG_PATH_SEPARATOR << aParts[n];
     }
@@ -793,6 +835,9 @@ size_t wxFileConfig::GetNumberOfEntries(bool bRecursive) const
 
         wxFileConfigGroup *pOldCurrentGroup = m_pCurrentGroup;
         size_t nSubgroups = m_pCurrentGroup->Groups().GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t nGroup = 0; nGroup < nSubgroups; nGroup++ ) {
             self->m_pCurrentGroup = m_pCurrentGroup->Groups()[nGroup];
             n += GetNumberOfEntries(true);
@@ -811,6 +856,9 @@ size_t wxFileConfig::GetNumberOfGroups(bool bRecursive) const
 
         wxFileConfigGroup *pOldCurrentGroup = m_pCurrentGroup;
         size_t nSubgroups = m_pCurrentGroup->Groups().GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t nGroup = 0; nGroup < nSubgroups; nGroup++ ) {
             self->m_pCurrentGroup = m_pCurrentGroup->Groups()[nGroup];
             n += GetNumberOfGroups(true);
@@ -1022,6 +1070,9 @@ bool wxFileConfig::Flush(bool /* bCurrentOnly */)
   // write all strings to file
   wxString filetext;
   filetext.reserve(4096);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for ( wxFileConfigLineList *p = m_linesHead; p != NULL; p = p->Next() )
   {
     filetext << p->Text() << wxTextFile::GetEOL();
@@ -1054,6 +1105,9 @@ bool wxFileConfig::Flush(bool /* bCurrentOnly */)
 bool wxFileConfig::Save(wxOutputStream& os, const wxMBConv& conv)
 {
     // save unconditionally, even if not dirty
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxFileConfigLineList *p = m_linesHead; p != NULL; p = p->Next() )
     {
         wxString line = p->Text();
@@ -1361,11 +1415,17 @@ wxFileConfigGroup::~wxFileConfigGroup()
 {
   // entries
   size_t n, nCount = m_aEntries.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for ( n = 0; n < nCount; n++ )
     delete m_aEntries[n];
 
   // subgroups
   nCount = m_aSubgroups.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for ( n = 0; n < nCount; n++ )
     delete m_aSubgroups[n];
 }
@@ -1529,6 +1589,9 @@ void wxFileConfigGroup::UpdateGroupAndSubgroupsLines()
 
     // also update all subgroups as they have this groups name in their lines
     const size_t nCount = m_aSubgroups.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < nCount; n++ )
     {
         m_aSubgroups[n]->UpdateGroupAndSubgroupsLines();
@@ -1577,6 +1640,9 @@ wxFileConfigGroup::FindEntry(const wxString& name) const
   int res;
   wxFileConfigEntry *pEntry;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while ( lo < hi ) {
     i = (lo + hi)/2;
     pEntry = m_aEntries[i];
@@ -1607,6 +1673,9 @@ wxFileConfigGroup::FindSubgroup(const wxString& name) const
   int res;
   wxFileConfigGroup *pGroup;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while ( lo < hi ) {
     i = (lo + hi)/2;
     pGroup = m_aSubgroups[i];
@@ -1699,6 +1768,9 @@ bool wxFileConfigGroup::DeleteSubgroup(wxFileConfigGroup *pGroup)
     wxLogTrace(FILECONF_TRACE_MASK,
                wxT("Removing %lu entries"), (unsigned long)nCount );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t nEntry = 0; nEntry < nCount; nEntry++ )
     {
         wxFileConfigLineList *pLine = pGroup->m_aEntries[nEntry]->GetLine();
@@ -1718,6 +1790,9 @@ bool wxFileConfigGroup::DeleteSubgroup(wxFileConfigGroup *pGroup)
     wxLogTrace( FILECONF_TRACE_MASK,
                 wxT("Removing %lu subgroups"), (unsigned long)nCount );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t nGroup = 0; nGroup < nCount; nGroup++ )
     {
         pGroup->DeleteSubgroup(pGroup->m_aSubgroups[0]);
@@ -1750,11 +1825,17 @@ bool wxFileConfigGroup::DeleteSubgroup(wxFileConfigGroup *pGroup)
             const size_t nSubgroups = m_aSubgroups.GetCount();
 
             m_pLastGroup = NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( wxFileConfigLineList *pl = pLine->Prev();
                   pl && !m_pLastGroup;
                   pl = pl->Prev() )
             {
                 // does this line belong to our subgroup?
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( size_t n = 0; n < nSubgroups; n++ )
                 {
                     // do _not_ call GetGroupLine! we don't want to add it to
@@ -1808,6 +1889,9 @@ bool wxFileConfigGroup::DeleteEntry(const wxString& name)
       const wxFileConfigLineList * const
         pNewLastLine = m_pLastEntry->GetLine()->Prev();
       const size_t nEntries = m_aEntries.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for ( size_t n = 0; n < nEntries; n++ ) {
         if ( m_aEntries[n]->GetLine() == pNewLastLine ) {
           pNewLast = m_aEntries[n];
@@ -1971,6 +2055,9 @@ static wxString FilterInValue(const wxString& str)
     if ( bQuoted )
         ++i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( const wxString::const_iterator end = str.end(); i != end; ++i )
     {
         if ( *i == wxT('\\') )
@@ -2038,6 +2125,9 @@ static wxString FilterOutValue(const wxString& str)
     strResult += wxT('"');
 
   wxChar c;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for ( size_t n = 0; n < str.Len(); n++ ) {
     switch ( str[n].GetValue() ) {
       case wxT('\n'):
@@ -2084,6 +2174,9 @@ static wxString FilterInEntryName(const wxString& str)
   wxString strResult;
   strResult.Alloc(str.Len());
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for ( const wxChar *pc = str.c_str(); *pc != '\0'; pc++ ) {
     if ( *pc == wxT('\\') ) {
       // we need to test it here or we'd skip past the NUL in the loop line
@@ -2103,6 +2196,9 @@ static wxString FilterOutEntryName(const wxString& str)
   wxString strResult;
   strResult.Alloc(str.Len());
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for ( const wxChar *pc = str.c_str(); *pc != wxT('\0'); pc++ ) {
     const wxChar c = *pc;
 

@@ -33,6 +33,9 @@
 
 bool wxPanel::HasTransparentBackground()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxWindow *win = GetParent(); win; win = win->GetParent() )
     {
         if ( win->MSWHasInheritableBackground() )

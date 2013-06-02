@@ -147,11 +147,17 @@ struct After {
 // Look ahead to see which colour "end" should have (takes colour after the following keyword)
 static void endLookAhead(char s[], LexAccessor &styler, int start, CharacterSet &setIdentifier) {
     char ch = styler.SafeGetCharAt(start, '\n');
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (' ' == ch) {
         start++;
         ch = styler.SafeGetCharAt(start, '\n');
     }
     int i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (i < 100 && setIdentifier.Contains(ch)){
         s[i] = ch;
         i++;
@@ -204,6 +210,9 @@ void SCI_METHOD LexerVisualProlog::Lex(unsigned int startPos, int length, int in
 
     // Truncate ppDefineHistory before current line
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (; sc.More(); sc.Forward()) {
 
         if (sc.atLineEnd) {
@@ -427,6 +436,9 @@ void SCI_METHOD LexerVisualProlog::Fold(unsigned int startPos, int length, int i
     char chNext = styler[startPos];
     int styleNext = styler.StyleAt(startPos);
     int style = initStyle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = startPos; i < endPos; i++) {
         char ch = chNext;
         chNext = styler.SafeGetCharAt(i + 1);

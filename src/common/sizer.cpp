@@ -662,6 +662,9 @@ void wxSizer::SetContainingWindow(wxWindow *win)
 
     // set the same window for all nested sizers as well, they also are in the
     // same window
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
           node;
           node = node->GetNext() )
@@ -688,6 +691,9 @@ bool wxSizer::Remove( wxSizer *sizer )
     wxASSERT_MSG( sizer, wxT("Removing NULL sizer") );
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -726,6 +732,9 @@ bool wxSizer::Detach( wxSizer *sizer )
     wxASSERT_MSG( sizer, wxT("Detaching NULL sizer") );
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -748,6 +757,9 @@ bool wxSizer::Detach( wxWindow *window )
     wxASSERT_MSG( window, wxT("Detaching NULL window") );
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -790,6 +802,9 @@ bool wxSizer::Replace( wxWindow *oldwin, wxWindow *newwin, bool recursive )
     wxASSERT_MSG( newwin, wxT("Replacing with NULL window") );
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -818,6 +833,9 @@ bool wxSizer::Replace( wxSizer *oldsz, wxSizer *newsz, bool recursive )
     wxASSERT_MSG( newsz, wxT("Replacing with NULL sizer") );
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -863,6 +881,9 @@ void wxSizer::Clear( bool delete_windows )
 {
     // First clear the ContainingSizer pointers
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -883,6 +904,9 @@ void wxSizer::Clear( bool delete_windows )
 void wxSizer::DeleteWindows()
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1054,6 +1078,9 @@ bool wxSizer::DoSetItemMinSize( wxWindow *window, int width, int height )
     // Is it our immediate child?
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1069,6 +1096,9 @@ bool wxSizer::DoSetItemMinSize( wxWindow *window, int width, int height )
     // No?  Search any subsizers we own then
 
     node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1092,6 +1122,9 @@ bool wxSizer::DoSetItemMinSize( wxSizer *sizer, int width, int height )
     // Is it our immediate child?
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1107,6 +1140,9 @@ bool wxSizer::DoSetItemMinSize( wxSizer *sizer, int width, int height )
     // No?  Search any subsizers we own then
 
     node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1150,6 +1186,9 @@ wxSizerItem* wxSizer::GetItem( wxWindow *window, bool recursive )
     wxASSERT_MSG( window, wxT("GetItem for NULL window") );
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1176,6 +1215,9 @@ wxSizerItem* wxSizer::GetItem( wxSizer *sizer, bool recursive )
     wxASSERT_MSG( sizer, wxT("GetItem for NULL sizer") );
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem *item = node->GetData();
@@ -1212,6 +1254,9 @@ wxSizerItem* wxSizer::GetItemById( int id, bool recursive )
     // and NOT the id of a window if the item is a window.
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1275,6 +1320,9 @@ bool wxSizer::Show( size_t index, bool show)
 void wxSizer::ShowItems( bool show )
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         node->GetData()->Show( show );
@@ -1285,6 +1333,9 @@ void wxSizer::ShowItems( bool show )
 bool wxSizer::AreAnyItemsShown() const
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         if ( node->GetData()->IsShown() )
@@ -1298,6 +1349,9 @@ bool wxSizer::AreAnyItemsShown() const
 bool wxSizer::IsShown( wxWindow *window ) const
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1317,6 +1371,9 @@ bool wxSizer::IsShown( wxWindow *window ) const
 bool wxSizer::IsShown( wxSizer *sizer ) const
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1443,9 +1500,15 @@ void wxGridSizer::RecalcSizes()
     int h = (sz.y - (nrows - 1) * m_vgap) / nrows;
 
     int x = pt.x;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int c = 0; c < ncols; c++)
     {
         int y = pt.y;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int r = 0; r < nrows; r++)
         {
             int i = r * ncols + c;
@@ -1474,6 +1537,9 @@ wxSize wxGridSizer::CalcMin()
     int h = 0;
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1489,6 +1555,9 @@ wxSize wxGridSizer::CalcMin()
     // a chance to adjust to that (we give it width component)
     node = m_children.GetFirst();
     bool didChangeMinSize = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1502,6 +1571,9 @@ wxSize wxGridSizer::CalcMin()
     {
         node = m_children.GetFirst();
         w = h = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             wxSizerItem     *item = node->GetData();
@@ -1603,11 +1675,17 @@ void wxFlexGridSizer::RecalcSizes()
     const wxSizerItemList::const_iterator end = m_children.end();
 
     int y = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int r = 0; r < nrows; r++ )
     {
         if ( m_rowHeights[r] == -1 )
         {
             // this row is entirely hidden, skip it
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int c = 0; c < ncols; c++ )
             {
                 if ( i == end )
@@ -1625,6 +1703,9 @@ void wxFlexGridSizer::RecalcSizes()
             h = hrow;
 
         int x = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int c = 0; c < ncols && i != end; c++, ++i )
         {
             const int wcol = m_colWidths[c];
@@ -1656,6 +1737,9 @@ static int SumArraySizes(const wxArrayInt& sizes, int gap)
     int total = 0;
 
     const size_t count = sizes.size();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         if ( sizes[n] != -1 )
@@ -1682,6 +1766,9 @@ void wxFlexGridSizer::FindWidthsAndHeights(int nrows, int ncols)
 
     // n is the index of the item in left-to-right top-to-bottom order
     size_t n = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxSizerItemList::iterator i = m_children.begin();
           i != m_children.end();
           ++i, ++n )
@@ -1727,6 +1814,9 @@ wxSize wxFlexGridSizer::CalcMin()
     m_rowHeights.assign(nrows, -1);
     m_colWidths.assign(ncols, -1);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxSizerItemList::iterator i = m_children.begin();
           i != m_children.end();
           ++i)
@@ -1762,6 +1852,9 @@ void wxFlexGridSizer::AdjustForFlexDirection()
         size_t n;
         int largest = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < count; ++n )
         {
             if ( array[n] > largest )
@@ -1769,6 +1862,9 @@ void wxFlexGridSizer::AdjustForFlexDirection()
         }
 
         // and now fill it with the largest value
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < count; ++n )
         {
             // don't touch hidden rows
@@ -1805,6 +1901,9 @@ DoAdjustForGrowables(int delta,
 
     const size_t count = growable.size();
     size_t idx;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( idx = 0; idx < count; idx++ )
     {
         // Since the number of rows/columns can change as items are
@@ -1829,6 +1928,9 @@ DoAdjustForGrowables(int delta,
         return;
 
     // the remaining extra free space, adjusted during each iteration
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( idx = 0; idx < count; idx++ )
     {
         if ( growable[idx] >= max_idx )
@@ -1869,6 +1971,9 @@ void wxFlexGridSizer::AdjustForGrowables(const wxSize& sz)
         {
             int nrows = CalcRows();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( size_t n = 0; n < m_growableRows.size(); n++ )
             {
                 wxASSERT_MSG( m_growableRows[n] < nrows,
@@ -1880,6 +1985,9 @@ void wxFlexGridSizer::AdjustForGrowables(const wxSize& sz)
         {
             int ncols = CalcCols();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( size_t n = 0; n < m_growableCols.size(); n++ )
             {
                 wxASSERT_MSG( m_growableCols[n] < ncols,
@@ -1908,6 +2016,9 @@ void wxFlexGridSizer::AdjustForGrowables(const wxSize& sz)
         // Iterate over all items and inform about column width
         const int ncols = GetEffectiveColsCount();
         int col = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxSizerItemList::iterator i = m_children.begin();
               i != m_children.end();
               ++i )
@@ -1989,6 +2100,9 @@ static void
 DoRemoveFromArrays(size_t idx, wxArrayInt& items, wxArrayInt& proportions)
 {
     const size_t count = items.size();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         if ( (size_t)items[n] == idx )
@@ -2087,6 +2201,9 @@ void wxBoxSizer::RecalcSizes()
     // visible items and sum of their min sizes in major direction.
 
     int minMajorSize = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = m_children.begin(); i != m_children.end(); ++i )
     {
         wxSizerItem * const item = *i;
@@ -2131,6 +2248,9 @@ void wxBoxSizer::RecalcSizes()
     {
         // Second degenerated case pass: allocate min size to all fixed size
         // items.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = m_children.begin(), n = 0; i != m_children.end(); ++i, ++n )
         {
             wxSizerItem * const item = *i;
@@ -2148,6 +2268,9 @@ void wxBoxSizer::RecalcSizes()
 
         // Third degenerated case pass: allocate min size to all the remaining,
         // i.e. non-fixed size, items.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = m_children.begin(), n = 0; i != m_children.end(); ++i, ++n )
         {
             wxSizerItem * const item = *i;
@@ -2176,6 +2299,9 @@ void wxBoxSizer::RecalcSizes()
         // still reduces into a linear one if there is enough space for all the
         // min sizes).
         bool nonFixedSpaceChanged = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = m_children.begin(), n = 0; ; ++i, ++n )
         {
             if ( nonFixedSpaceChanged )
@@ -2248,6 +2374,9 @@ void wxBoxSizer::RecalcSizes()
         // is less than what we would allocate to them taking their proportion
         // into account.
         nonFixedSpaceChanged = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = m_children.begin(), n = 0; ; ++i, ++n )
         {
             if ( nonFixedSpaceChanged )
@@ -2307,6 +2436,9 @@ void wxBoxSizer::RecalcSizes()
 
         // Last by one pass: distribute the remaining space among the non-fixed
         // items whose size weren't fixed yet according to their proportions.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = m_children.begin(), n = 0; i != m_children.end(); ++i, ++n )
         {
             wxSizerItem * const item = *i;
@@ -2332,6 +2464,9 @@ void wxBoxSizer::RecalcSizes()
 
     // Final pass: finally do position the items correctly using their sizes as
     // determined above.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = m_children.begin(), n = 0; i != m_children.end(); ++i, ++n )
     {
         wxSizerItem * const item = *i;
@@ -2405,6 +2540,9 @@ wxSize wxBoxSizer::CalcMin()
     // condition we must find the greatest min-size-to-proportion ratio for all
     // elements with non-zero proportion.
     float maxMinSizeToProp = 0.;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxSizerItemList::const_iterator i = m_children.begin();
           i != m_children.end();
           ++i )

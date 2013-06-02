@@ -37,7 +37,13 @@ static void PixmapToPixbuf(GdkPixmap* pixmap, GdkPixbuf* pixbuf, int w, int h)
         guchar* p = gdk_pixbuf_get_pixels(pixbuf);
         const int inc = 3 + int(gdk_pixbuf_get_has_alpha(pixbuf) != 0);
         const int rowpad = gdk_pixbuf_get_rowstride(pixbuf) - w * inc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = h; y; y--, p += rowpad)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x = w; x; x--, p += inc)
             {
                 // pixels are either (0,0,0) or (0xff,0xff,0xff)
@@ -56,8 +62,14 @@ static void MaskToAlpha(GdkPixmap* mask, GdkPixbuf* pixbuf, int w, int h)
     const guchar* mask_data = gdk_pixbuf_get_pixels(mask_pixbuf);
     const int rowpad = gdk_pixbuf_get_rowstride(pixbuf) - w * 4;
     const int mask_rowpad = gdk_pixbuf_get_rowstride(mask_pixbuf) - w * 3;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int y = h; y; y--, p += rowpad, mask_data += mask_rowpad)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int x = w; x; x--, p += 4, mask_data += 3)
         {
             *p = 255;
@@ -185,9 +197,15 @@ bool wxMask::InitFromColour(const wxBitmap& bitmap, const wxColour& colour)
     const guchar r = colour.Red();
     const guchar g = colour.Green();
     const guchar b = colour.Blue();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int j = 0; j < h; j++, src += stride_src, dst += stride_dst)
     {
         const guchar* s = src;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < w; i++, s += src_inc)
         {
             dst[i] = 0xff;
@@ -214,8 +232,14 @@ bool wxMask::InitFromColour(const wxBitmap& bitmap, const wxColour& colour)
         const wxByte* in = gdk_pixbuf_get_pixels(pixbuf);
         const int inc = 3 + int(gdk_pixbuf_get_has_alpha(pixbuf) != 0);
         const int rowpadding = gdk_pixbuf_get_rowstride(pixbuf) - inc * w;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = 0; y < h; y++, in += rowpadding)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x = 0; x < w; x++, in += inc, bit_index++)
                 if (in[0] == r_mask && in[1] == g_mask && in[2] == b_mask)
                     out[bit_index >> 3] ^= 1 << (bit_index & 7);
@@ -237,8 +261,14 @@ bool wxMask::InitFromColour(const wxBitmap& bitmap, const wxColour& colour)
             c.CalcPixel(colormap);
             mask_pixel = c.GetPixel();
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = 0; y < h; y++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x = 0; x < w; x++, bit_index++)
                 if (gdk_image_get_pixel(image, x, y) == mask_pixel)
                     out[bit_index >> 3] ^= 1 << (bit_index & 7);
@@ -287,9 +317,15 @@ wxBitmap wxMask::GetBitmap() const
         guchar* dst = gdk_pixbuf_get_pixels(pixbuf);
         const int stride_src = cairo_image_surface_get_stride(mask);
         const int stride_dst = gdk_pixbuf_get_rowstride(pixbuf);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int j = 0; j < h; j++, src += stride_src, dst += stride_dst)
         {
             guchar* d = dst;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int i = 0; i < w; i++, d += 3)
             {
                 d[0] = src[i];
@@ -430,8 +466,14 @@ wxBitmap::wxBitmap(const char bits[], int width, int height, int depth)
         guchar* dst = gdk_pixbuf_get_pixels(pixbuf);
         const int stride_src = (width + 7) / 8;
         const int rowinc_dst = gdk_pixbuf_get_rowstride(pixbuf) - 3 * width;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int j = 0; j < width; j++, src += stride_src, dst += rowinc_dst)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int i = 0; i < height; i++)
             {
                 guchar c = 0xff;
@@ -540,18 +582,27 @@ static void CopyImageData(
         else
         {
             const int stride = dstStride < srcStride ? dstStride : srcStride;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int j = 0; j < h; j++, src += srcStride, dst += dstStride)
                 memcpy(dst, src, stride);
         }
     }
     else
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int j = 0; j < h; j++, src += srcStride, dst += dstStride)
         {
             guchar* d = dst;
             const guchar* s = src;
             if (dstChannels == 4)
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int i = 0; i < w; i++, d += 4, s += 3)
                 {
                     d[0] = s[0];
@@ -562,6 +613,9 @@ static void CopyImageData(
             }
             else
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int i = 0; i < w; i++, d += 3, s += 4)
                 {
                     d[0] = s[0];
@@ -600,7 +654,13 @@ wxBitmap::wxBitmap(const wxImage& image, int depth)
 
     if (depth == 32 && alpha)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int j = 0; j < h; j++, dst += dstStride)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int i = 0; i < w; i++)
                 dst[i * 4 + 3] = *alpha++;
     }
@@ -613,7 +673,13 @@ wxBitmap::wxBitmap(const wxImage& image, int depth)
         const int stride = cairo_image_surface_get_stride(surface);
         dst = cairo_image_surface_get_data(surface);
         memset(dst, 0xff, stride * h);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int j = 0; j < h; j++, dst += stride)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int i = 0; i < w; i++, src += 3)
                 if (src[0] == r && src[1] == g && src[2] == b)
                     dst[i] = 0;
@@ -648,8 +714,14 @@ bool wxBitmap::CreateFromImageAsPixmap(const wxImage& image, int depth)
         memset(out, 0xff, out_size);
         const wxByte* in = image.GetData();
         unsigned bit_index = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = 0; y < h; y++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x = 0; x < w; x++, in += 3, bit_index++)
                 if (in[0] == 255 && in[1] == 255 && in[2] == 255)
                     out[bit_index >> 3] ^= 1 << (bit_index & 7);
@@ -686,8 +758,14 @@ bool wxBitmap::CreateFromImageAsPixmap(const wxImage& image, int depth)
         unsigned bit_index = 0;
         if (alpha != NULL)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int y = 0; y < h; y++)
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int x = 0; x < w; x++, bit_index++)
                     if (*alpha++ < wxIMAGE_ALPHA_THRESHOLD)
                         out[bit_index >> 3] ^= 1 << (bit_index & 7);
@@ -700,8 +778,14 @@ bool wxBitmap::CreateFromImageAsPixmap(const wxImage& image, int depth)
             const wxByte g_mask = image.GetMaskGreen();
             const wxByte b_mask = image.GetMaskBlue();
             const wxByte* in = image.GetData();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int y = 0; y < h; y++)
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int x = 0; x < w; x++, in += 3, bit_index++)
                     if (in[0] == r_mask && in[1] == g_mask && in[2] == b_mask)
                         out[bit_index >> 3] ^= 1 << (bit_index & 7);
@@ -731,8 +815,14 @@ bool wxBitmap::CreateFromImageAsPixbuf(const wxImage& image)
 
     int rowpad = gdk_pixbuf_get_rowstride(pixbuf) - 4 * width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int y = 0; y < height; y++, out += rowpad)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int x = 0; x < width; x++, out += 4, in += 3)
         {
             out[0] = in[0];
@@ -777,9 +867,15 @@ wxImage wxBitmap::ConvertToImage() const
         {
             image.SetAlpha();
             guchar* alpha = image.GetAlpha();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int j = 0; j < h; j++, src += srcStride)
             {
                 const guchar* s = src;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int i = 0; i < w; i++, s += 4)
                     *alpha++ = s[3];
             }
@@ -797,8 +893,14 @@ wxImage wxBitmap::ConvertToImage() const
         wxASSERT(cairo_image_surface_get_format(maskSurf) == CAIRO_FORMAT_A8);
         const int stride = cairo_image_surface_get_stride(maskSurf);
         const guchar* src = cairo_image_surface_get_data(maskSurf);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int j = 0; j < h; j++, src += stride)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int i = 0; i < w; i++, dst += 3)
                 if (src[i] == 0)
                 {
@@ -835,8 +937,14 @@ wxImage wxBitmap::ConvertToImage() const
         const int inc = 3 + int(alpha != NULL);
         const int rowpad = gdk_pixbuf_get_rowstride(pixbuf) - inc * w;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = 0; y < h; y++, in += rowpad)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x = 0; x < w; x++, in += inc, out += 3)
             {
                 out[0] = in[0];
@@ -885,8 +993,14 @@ wxImage wxBitmap::ConvertToImage() const
         image.SetMaskColour(MASK_RED, MASK_GREEN, MASK_BLUE);
         GdkImage* image_mask = gdk_drawable_get_image(*GetMask(), 0, 0, w, h);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = 0; y < h; y++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x = 0; x < w; x++, data += 3)
             {
                 if (gdk_image_get_pixel(image_mask, x, y) == 0)
@@ -968,6 +1082,9 @@ static cairo_surface_t* GetSubSurface(cairo_surface_t* surface, const wxRect& re
     const int dstStride = cairo_image_surface_get_stride(subSurface);
     const guchar* src = cairo_image_surface_get_data(surface) + rect.y * srcStride + x;
     guchar* dst = cairo_image_surface_get_data(subSurface);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int j = 0; j < rect.height; j++, src += srcStride, dst += dstStride)
         memcpy(dst, src, dstStride);
     cairo_surface_mark_dirty(subSurface);
@@ -1215,9 +1332,15 @@ static void SetSourceSurface1(const wxBitmapRefData* bmpData, cairo_t* cr, int x
         bg_g = bg->Green();
         bg_b = bg->Blue();
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int j = 0; j < h; j++, dst += stride)
     {
         guchar* d = dst;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < w; i++, d += channels)
             if (d[0])
             {
@@ -1340,7 +1463,13 @@ GdkPixbuf *wxBitmap::GetPixbuf() const
 
     const guchar* src = cairo_image_surface_get_data(mask);
     const int srcStride = cairo_image_surface_get_stride(mask);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int j = 0; j < h; j++, src += srcStride, dst += dstStride)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < w; i++)
             if (src[i] == 0)
                 dst[i * 4 + 3] = 0;

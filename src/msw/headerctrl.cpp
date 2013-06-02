@@ -193,6 +193,9 @@ void wxHeaderCtrl::DoSetCount(unsigned int count)
 
     // first delete all old columns
     const unsigned countOld = GetShownColumnsCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < countOld; n++ )
     {
         if ( !Header_DeleteItem(GetHwnd(), 0) )
@@ -207,6 +210,9 @@ void wxHeaderCtrl::DoSetCount(unsigned int count)
     // and add the new ones
     m_numColumns = count;
     m_isHidden.resize(m_numColumns);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
         const wxHeaderColumn& col = GetColumn(n);
@@ -359,6 +365,9 @@ void wxHeaderCtrl::DoSetColumnsOrder(const wxArrayInt& order)
     wxArrayInt orderShown;
     orderShown.reserve(m_numColumns);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < m_numColumns; n++ )
     {
         const int idx = order[n];
@@ -395,6 +404,9 @@ int wxHeaderCtrl::MSWToNativeIdx(int idx)
                   "index in the native control" );
 
     int item = idx;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < idx; i++ )
     {
         if ( GetColumn(i).IsHidden() )
@@ -414,6 +426,9 @@ int wxHeaderCtrl::MSWFromNativeIdx(int item)
     // reverse the above function
 
     unsigned idx = item;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < m_numColumns; n++ )
     {
         if ( n > idx )
@@ -434,6 +449,9 @@ int wxHeaderCtrl::MSWToNativeOrder(int pos)
                   "column position out of range" );
 
     int order = pos;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int n = 0; n < pos; n++ )
     {
         if ( GetColumn(m_colIndices[n]).IsHidden() )
@@ -451,6 +469,9 @@ int wxHeaderCtrl::MSWFromNativeOrder(int order)
                   "native column position out of range" );
 
     unsigned pos = order;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < m_numColumns; n++ )
     {
         if ( n > pos )

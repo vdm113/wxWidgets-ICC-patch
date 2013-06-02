@@ -28,12 +28,18 @@ using namespace Scintilla;
 #endif
 
 LexerBase::LexerBase() {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int wl = 0; wl < numWordLists; wl++)
 		keyWordLists[wl] = new WordList;
 	keyWordLists[numWordLists] = 0;
 }
 
 LexerBase::~LexerBase() {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int wl = 0; wl < numWordLists; wl++) {
 		delete keyWordLists[wl];
 		keyWordLists[wl] = 0;

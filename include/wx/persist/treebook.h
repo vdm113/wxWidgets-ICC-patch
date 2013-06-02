@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/persist/treebook.h
 // Purpose:     persistence support for wxBookCtrl
@@ -45,6 +52,9 @@ public:
 
         wxString expanded;
         const size_t count = book->GetPageCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < count; n++ )
         {
             if ( book->IsNodeExpanded(n) )
@@ -73,6 +83,9 @@ public:
 
             const size_t pageCount = book->GetPageCount();
             const size_t count = indices.size();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( size_t n = 0; n < count; n++ )
             {
                 unsigned long idx;

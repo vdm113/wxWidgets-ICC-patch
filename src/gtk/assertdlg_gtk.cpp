@@ -405,6 +405,9 @@ gchar *gtk_assert_dialog_get_backtrace (GtkAssertDialog *dlg)
     if (!gtk_tree_model_get_iter_first (model, &iter))
         return NULL;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
         /* append this stack frame's info to the string */
