@@ -65,6 +65,9 @@ int wxGUIAppTraits::WaitForChild(wxExecuteData& execData)
 
     // endProcData.pid will be set to 0 from wxHandleProcessTermination() when
     // the process terminates
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( endProcData.pid != 0 )
     {
         // don't consume 100% of the CPU while we're sitting in this

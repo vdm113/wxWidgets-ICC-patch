@@ -73,6 +73,9 @@ static inline bool IsAWordStart(const int ch)
 bool MatchUpperCase(Accessor &styler, int pos, const char *s)   //Same as styler.Match() but uppercase comparison (a-z,A-Z and space only)
 {
     char ch;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i=0; *s; i++)
     {
         ch=styler.SafeGetCharAt(pos+i);
@@ -91,6 +94,9 @@ static void ColourisePBDoc(unsigned int startPos, int length, int initStyle,Word
 
     StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (; sc.More(); sc.Forward()) {
         switch (sc.state)
         {
@@ -202,6 +208,9 @@ static void FoldPBDoc(unsigned int startPos, int length, int, WordList *[], Acce
     bool fNewLine=true;
     bool fMightBeMultiLineMacro=false;
     bool fBeginOfCommentFound=false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = startPos; i < endPos; i++)
     {
         char ch = chNext;

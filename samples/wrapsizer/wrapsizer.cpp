@@ -111,6 +111,9 @@ WrapSizerFrame::WrapSizerFrame()
     wxSizer *sizerMid = new wxStaticBoxSizer(wxVERTICAL, m_panel,
                                                 "With check-boxes");
     wxSizer * const sizerMidWrap = new wxWrapSizer(wxHORIZONTAL);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int nCheck = 0; nCheck < 6; nCheck++ )
     {
         wxCheckBox *chk = new wxCheckBox

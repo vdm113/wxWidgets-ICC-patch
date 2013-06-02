@@ -150,6 +150,9 @@ zlibStream::zlibStream()
      m_pTmpMemOutStream(NULL)
 {
     // Init the data buffer.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < DATABUFFER_SIZE; i++)
         m_DataBuffer[i] = (i % 0xFF);
 
@@ -359,6 +362,9 @@ void zlibStream::doTestStreamData(int input_flag, int output_flag, int compress_
 
         // Next: Check char per char if the returned data is valid.
         const char *pbuf = GetDataBuffer();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (fail_pos = 0; !zstream_in.Eof(); fail_pos++)
         {
             last_value = zstream_in.GetC();
@@ -428,6 +434,9 @@ void zlibStream::doDecompress_ExternalData(const unsigned char *data, const char
 
     bool bValueEq = true;
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; !zstream_in.Eof(); i++)
     {
         char last_value = zstream_in.GetC();
@@ -455,6 +464,9 @@ void zlibStream::doDecompress_ExternalData(const unsigned char *data, const char
         if (i == value_size)
         {
             // And if we do then try to see how long the stream actually is.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (!zstream_in.Eof())
             {
                 // Move one item along in the stream.
@@ -532,6 +544,9 @@ void zlibStream::genExtTestData(wxTextOutputStream &out, const char *buf, int fl
     out << wxT("{") << wxT("\n") << wxT("    const unsigned char data[] = {");
 
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < size; i++)
     {
         if (i+1 != size)

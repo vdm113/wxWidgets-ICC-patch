@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 // Scintilla source code edit control
 /** @file Partitioning.h
  ** Data structure used to partition an interval. Used for holding line start/end positions.
@@ -28,11 +35,17 @@ public:
 		int part1Left = part1Length - start;
 		if (range1Length > part1Left)
 			range1Length = part1Left;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (i < range1Length) {
 			body[start++] += delta;
 			i++;
 		}
 		start += gapLength;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (i < rangeLength) {
 			body[start++] += delta;
 			i++;
@@ -165,6 +178,9 @@ public:
 			return body->Length() - 1 - 1;
 		int lower = 0;
 		int upper = body->Length()-1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
 			int middle = (upper + lower + 1) / 2; 	// Round high
 			int posMiddle = body->ValueAt(middle);
