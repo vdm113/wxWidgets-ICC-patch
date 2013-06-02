@@ -89,6 +89,9 @@ wxPluginLibrary::wxPluginLibrary(const wxString &libname, int flags)
     // the backwards direction:
     if ( m_ourFirst != oldFirst )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( const wxClassInfo* info = m_ourFirst; ; info = info->GetNext() )
         {
             if ( info->GetNext() == oldFirst )
@@ -157,6 +160,9 @@ void wxPluginLibrary::UpdateClasses()
     if ( !m_ourFirst )
         return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( const wxClassInfo *info = m_ourFirst; ; info = info->GetNext() )
     {
         if( info->GetClassName() )
@@ -180,6 +186,9 @@ void wxPluginLibrary::RestoreClasses()
     if ( !m_ourFirst )
         return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( const wxClassInfo *info = m_ourFirst; ; info = info->GetNext() )
     {
         ms_classes->erase(ms_classes->find(info->GetClassName()));
@@ -204,6 +213,9 @@ void wxPluginLibrary::RegisterModules()
 
     if ( m_ourFirst )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( const wxClassInfo *info = m_ourFirst; ; info = info->GetNext() )
         {
             if( info->IsKindOf(wxCLASSINFO(wxModule)) )
@@ -223,6 +235,9 @@ void wxPluginLibrary::RegisterModules()
 
     // FIXME: Likewise this is (well was) very similar to InitializeModules()
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxModuleList::iterator it = m_wxmodules.begin();
           it != m_wxmodules.end();
           ++it)
@@ -239,6 +254,9 @@ void wxPluginLibrary::RegisterModules()
             // shortly).
 
             wxModuleList::iterator oldNode = m_wxmodules.end();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do {
                 ++it;
                 if( oldNode != m_wxmodules.end() )
@@ -257,9 +275,15 @@ void wxPluginLibrary::UnregisterModules()
 {
     wxModuleList::iterator it;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( it = m_wxmodules.begin(); it != m_wxmodules.end(); ++it )
         (*it)->Exit();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( it = m_wxmodules.begin(); it != m_wxmodules.end(); ++it )
         wxModule::UnregisterModule( *it );
 
@@ -384,6 +408,9 @@ void wxPluginManager::Unload()
 {
     wxCHECK_RET( m_entry, wxT("unloading an invalid wxPluginManager?") );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxDLManifest::iterator i = ms_manifest->begin();
           i != ms_manifest->end();
           ++i )

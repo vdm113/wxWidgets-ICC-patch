@@ -206,6 +206,9 @@ wxSize wxListCtrlBase::DoGetBestClientSize() const
     else // We do have columns, use them to determine the best width.
     {
         totalWidth = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int col = 0; col < columns; col++ )
         {
             totalWidth += GetColumnWidth(col);

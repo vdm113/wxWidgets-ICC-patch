@@ -98,6 +98,9 @@ CheckFoundMatch(const FIND_STRUCT* finddata, const wxString& filter)
 inline bool
 FindNext(FIND_DATA fd, const wxString& filter, FIND_STRUCT *finddata)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         if ( !::FindNextFile(fd, finddata) )
@@ -274,6 +277,9 @@ bool wxDirData::Read(wxString *filename)
     const wxChar *name;
     FIND_ATTR attr;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         if ( first )

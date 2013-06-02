@@ -748,6 +748,9 @@ wxMacTopLevelMouseEventHandler(EventHandlerCallRef WXUNUSED(handler),
 
         if (!gGlobalCursor.IsOk())
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( cursorTarget && !cursorTarget->MacSetupCursor( cursorPoint ) )
             {
                 cursorTarget = cursorTarget->GetParent() ;

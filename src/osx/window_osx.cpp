@@ -226,6 +226,9 @@ wxWindowMac::~wxWindowMac()
     SendDestroyEvent();
     
 #if wxUSE_HOTKEY && wxOSX_USE_COCOA_OR_CARBON
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = s_hotkeys.size()-1; i>=0; -- i )
     {
         if ( s_hotkeys[i].window == this )
@@ -244,6 +247,9 @@ wxWindowMac::~wxWindowMac()
 
 #ifndef __WXUNIVERSAL__
     // VS: make sure there's no wxFrame with last focus set to us:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxWindow *win = GetParent(); win; win = win->GetParent() )
     {
         wxFrame *frame = wxDynamicCast(win, wxFrame);
@@ -582,6 +588,9 @@ bool wxWindowMac::SetBackgroundColour(const wxColour& col )
 
 static bool wxIsWindowOrParentDisabled(wxWindow* w)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (w && !w->IsTopLevel())
     {
         if (!w->IsEnabled())
@@ -1723,6 +1732,9 @@ void wxWindowMac::ScrollWindow(int dx, int dy, const wxRect *rect)
 
     wxWindowMac *child;
     int x, y, w, h;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst(); node; node = node->GetNext())
     {
         child = node->GetData();
@@ -1866,6 +1878,9 @@ wxNonOwnedWindow* wxWindowMac::MacGetTopLevelWindow() const
 {
     wxWindowMac *iter = (wxWindowMac*)this ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( iter )
     {
         if ( iter->IsTopLevel() )
@@ -1965,6 +1980,9 @@ void wxWindowMac::MacUpdateClippedRects() const
     const wxWindow* child = (wxWindow*) this ;
     const wxWindow* parent = NULL ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !child->IsTopLevel() && ( parent = child->GetParent() ) != NULL )
     {
         if ( parent->MacIsChildOfClientArea(child) )
@@ -2114,6 +2132,9 @@ void wxWindowMac::MacPaintChildrenBorders()
 
     wxWindowMac *child;
     int x, y, w, h;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst(); node; node = node->GetNext())
     {
         child = node->GetData();
@@ -2183,6 +2204,9 @@ bool wxWindowMac::MacHasScrollBarCorner() const
     {
         wxPoint thisWindowBottomRight = GetScreenRect().GetBottomRight();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( const wxWindow *win = (wxWindow*)this; win; win = win->GetParent() )
         {
             const wxFrame *frame = wxDynamicCast( win, wxFrame ) ;
@@ -2341,6 +2365,9 @@ void wxWindowMac::MacSuperChangedPosition()
 
     wxWindowMac *child;
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( node )
     {
         child = node->GetData();
@@ -2356,6 +2383,9 @@ void wxWindowMac::MacTopLevelWindowChangedPosition()
 
     wxWindowMac *child;
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( node )
     {
         child = node->GetData();
@@ -2612,6 +2642,9 @@ wxHotKeyHandler(EventHandlerCallRef WXUNUSED(nextHandler),
 
     GetEventParameter( event, kEventParamDirectObject, typeEventHotKeyID, NULL, sizeof(hotKeyId), NULL, &hotKeyId);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned i = 0; i < s_hotkeys.size(); ++i )
     {
         if ( s_hotkeys[i].keyId == static_cast<int>(hotKeyId.id) )
@@ -2641,6 +2674,9 @@ wxHotKeyHandler(EventHandlerCallRef WXUNUSED(nextHandler),
 
 bool wxWindowMac::RegisterHotKey(int hotkeyId, int modifiers, int keycode)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned i = 0; i < s_hotkeys.size(); ++i )
     {
         if ( s_hotkeys[i].keyId == hotkeyId )
@@ -2700,6 +2736,9 @@ bool wxWindowMac::RegisterHotKey(int hotkeyId, int modifiers, int keycode)
 
 bool wxWindowMac::UnregisterHotKey(int hotkeyId)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = ((int)s_hotkeys.size())-1; i>=0; -- i )
     {
         if ( s_hotkeys[i].keyId == hotkeyId )
@@ -2732,6 +2771,9 @@ bool wxWindowMac::OSXHandleKeyEvent( wxKeyEvent& event )
     if ( !handled && event.GetEventType() == wxEVT_KEY_DOWN)
     {
         wxWindow *ancestor = this;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (ancestor)
         {
             int command = ancestor->GetAcceleratorTable()->GetCommand( event );
@@ -2814,10 +2856,16 @@ void wxWidgetImpl::RemoveAssociations(wxWidgetImpl* impl)
     // we should go on...
 
     bool found = true ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( found )
     {
         found = false ;
         MacControlMap::iterator it;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( it = wxWinMacControlList.begin(); it != wxWinMacControlList.end(); ++it )
         {
             if ( it->second == impl )

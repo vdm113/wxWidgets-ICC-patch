@@ -210,6 +210,9 @@ static pascal OSStatus wxMacWindowControlEventHandler( EventHandlerCallRef handl
                         CGFloat alpha = (CGFloat)1.0 ;
                         {
                             wxWindow* iter = thisWindow ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                             while ( iter )
                             {
                                 alpha *= (CGFloat)( iter->GetTransparent()/255.0 ) ;
@@ -513,6 +516,9 @@ wxMacWindowServiceEventHandler(EventHandlerCallRef WXUNUSED(handler),
                     pasteTypes = cEvent.GetParameter< CFMutableArrayRef >( kEventParamServicePasteTypes , typeCFMutableArrayRef ) ;
 
                 static const OSType textDataTypes[] = { kTXNTextData /* , 'utxt', 'PICT', 'MooV', 'AIFF' */  };
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( size_t i = 0 ; i < WXSIZEOF(textDataTypes) ; ++i )
                 {
                     CFStringRef typestring = CreateTypeStringWithOSType(textDataTypes[i]);
@@ -557,6 +563,9 @@ wxMacWindowServiceEventHandler(EventHandlerCallRef WXUNUSED(handler),
                 PasteboardSynchronize( pasteboard );
                 ItemCount itemCount;
                 verify_noerr( PasteboardGetItemCount( pasteboard, &itemCount ) );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for( UInt32 itemIndex = 1; itemIndex <= itemCount; itemIndex++ )
                 {
                     PasteboardItemID itemID;
@@ -627,6 +636,9 @@ WXDLLEXPORT pascal OSStatus wxMacUnicodeTextEventHandler( EventHandlerCallRef ha
             {
                 // An IME input event may return several characters, but we need to send one char at a time to
                 // EVT_CHAR
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int pos=0 ; pos < numChars ; pos++)
                 {
                     WXEVENTREF formerEvent = wxTheApp->MacGetCurrentEvent() ;
@@ -683,6 +695,9 @@ WXDLLEXPORT pascal OSStatus wxMacUnicodeTextEventHandler( EventHandlerCallRef ha
 
                 // An IME input event may return several characters, but we need to send one char at a time to
                 // EVT_CHAR
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int pos=0 ; pos < numChars ; pos++)
                 {
                     WXEVENTREF formerEvent = wxTheApp->MacGetCurrentEvent() ;
@@ -1477,6 +1492,9 @@ static void InvalidateControlAndChildren( HIViewRef control )
 
     wxASSERT_MSG( err == noErr , wxT("Unexpected error when accessing subcontrols") );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( UInt16 i = childrenCount; i >=1; --i )
     {
         HIViewRef child;

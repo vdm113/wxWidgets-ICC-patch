@@ -130,10 +130,16 @@ int wxGUIEventLoop::DoRun()
     m_impl = new wxEventLoopImpl;
 
     m_impl->m_keepGoing = true;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( m_impl->m_keepGoing )
     {
         // generate and process idle events for as long as we don't have
         // anything else to do
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( ! Pending() )
         {
 #if wxUSE_TIMER
@@ -249,6 +255,9 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
     // to do the trick, e.g. in the
     // progress dialog
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 2; i++)
     {
         m_isInsideYield = true;
@@ -259,6 +268,9 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
         wxTheApp->Dispatch();
 
         // TODO: implement event filtering using the eventsToProcess mask
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (wxTheApp && wxTheApp->Pending())
             wxTheApp->Dispatch();
 

@@ -70,6 +70,9 @@ wxRichTextAttr wxRichTextStyleDefinition::GetStyleMergedWithBase(const wxRichTex
     wxArrayString styleNames;
     wxList styles;
     const wxRichTextStyleDefinition* def = this;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (def)
     {
         styles.Insert((wxObject*) def);
@@ -95,6 +98,9 @@ wxRichTextAttr wxRichTextStyleDefinition::GetStyleMergedWithBase(const wxRichTex
 
     wxRichTextAttr attr;
     wxList::compatibility_iterator node = styles.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxRichTextStyleDefinition* def = (wxRichTextStyleDefinition*) node->GetData();
@@ -144,6 +150,9 @@ void wxRichTextListStyleDefinition::Copy(const wxRichTextListStyleDefinition& de
     wxRichTextParagraphStyleDefinition::Copy(def);
 
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 10; i++)
         m_levelStyles[i] = def.m_levelStyles[i];
 }
@@ -153,6 +162,9 @@ bool wxRichTextListStyleDefinition::operator ==(const wxRichTextListStyleDefinit
     if (!Eq(def))
         return false;
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 10; i++)
         if (!(m_levelStyles[i] == def.m_levelStyles[i]))
             return false;
@@ -213,6 +225,9 @@ void wxRichTextListStyleDefinition::SetAttributes(int i, int leftIndent, int lef
 int wxRichTextListStyleDefinition::FindLevelForIndent(int indent) const
 {
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 10; i++)
     {
         if (indent < m_levelStyles[i].GetLeftIndent())
@@ -355,6 +370,9 @@ bool wxRichTextStyleSheet::RemoveStyle(wxRichTextStyleDefinition* def, bool dele
 /// Find a definition by name
 wxRichTextStyleDefinition* wxRichTextStyleSheet::FindStyle(const wxList& list, const wxString& name, bool recurse) const
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxList::compatibility_iterator node = list.GetFirst(); node; node = node->GetNext())
     {
         wxRichTextStyleDefinition* def = (wxRichTextStyleDefinition*) node->GetData();
@@ -391,6 +409,9 @@ bool wxRichTextStyleSheet::InsertSheet(wxRichTextStyleSheet* before)
 bool wxRichTextStyleSheet::AppendSheet(wxRichTextStyleSheet* after)
 {
     wxRichTextStyleSheet* last = after;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (last && last->m_nextSheet)
     {
         last = last->m_nextSheet;
@@ -498,24 +519,36 @@ void wxRichTextStyleSheet::Copy(const wxRichTextStyleSheet& sheet)
 
     wxList::compatibility_iterator node;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (node = sheet.m_characterStyleDefinitions.GetFirst(); node; node = node->GetNext())
     {
         wxRichTextCharacterStyleDefinition* def = (wxRichTextCharacterStyleDefinition*) node->GetData();
         AddCharacterStyle(new wxRichTextCharacterStyleDefinition(*def));
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (node = sheet.m_paragraphStyleDefinitions.GetFirst(); node; node = node->GetNext())
     {
         wxRichTextParagraphStyleDefinition* def = (wxRichTextParagraphStyleDefinition*) node->GetData();
         AddParagraphStyle(new wxRichTextParagraphStyleDefinition(*def));
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (node = sheet.m_listStyleDefinitions.GetFirst(); node; node = node->GetNext())
     {
         wxRichTextListStyleDefinition* def = (wxRichTextListStyleDefinition*) node->GetData();
         AddListStyle(new wxRichTextListStyleDefinition(*def));
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (node = sheet.m_boxStyleDefinitions.GetFirst(); node; node = node->GetNext())
     {
         wxRichTextBoxStyleDefinition* def = (wxRichTextBoxStyleDefinition*) node->GetData();
@@ -630,21 +663,33 @@ void wxRichTextStyleListBox::UpdateStyles()
         size_t i;
         if (GetStyleType() == wxRICHTEXT_STYLE_ALL || GetStyleType() == wxRICHTEXT_STYLE_PARAGRAPH)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < GetStyleSheet()->GetParagraphStyleCount(); i++)
                 m_styleNames.Add(GetStyleSheet()->GetParagraphStyle(i)->GetName() + wxT("|P"));
         }
         if (GetStyleType() == wxRICHTEXT_STYLE_ALL || GetStyleType() == wxRICHTEXT_STYLE_CHARACTER)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < GetStyleSheet()->GetCharacterStyleCount(); i++)
                 m_styleNames.Add(GetStyleSheet()->GetCharacterStyle(i)->GetName() + wxT("|C"));
         }
         if (GetStyleType() == wxRICHTEXT_STYLE_ALL || GetStyleType() == wxRICHTEXT_STYLE_LIST)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < GetStyleSheet()->GetListStyleCount(); i++)
                 m_styleNames.Add(GetStyleSheet()->GetListStyle(i)->GetName() + wxT("|L"));
         }
         if (GetStyleType() == wxRICHTEXT_STYLE_ALL || GetStyleType() == wxRICHTEXT_STYLE_BOX)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < GetStyleSheet()->GetBoxStyleCount(); i++)
                 m_styleNames.Add(GetStyleSheet()->GetBoxStyle(i)->GetName() + wxT("|B"));
         }
@@ -780,6 +825,9 @@ wxString wxRichTextStyleListBox::CreateHTML(wxRichTextStyleDefinition* def) cons
     wxString normalTranslated(_("normal"));
     wxString defaultTranslated(_("default"));
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < GetStyleSheet()->GetParagraphStyleCount(); i++)
     {
         wxRichTextStyleDefinition* d = GetStyleSheet()->GetParagraphStyle(i);
@@ -801,8 +849,14 @@ wxString wxRichTextStyleListBox::CreateHTML(wxRichTextStyleDefinition* def) cons
         // Look at sizes up to 20 points, and see which is the most common
         wxArrayInt sizes;
         size_t maxSize = 20;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i <= maxSize; i++)
             sizes.Add(0);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < m_styleNames.GetCount(); i++)
         {
             wxRichTextStyleDefinition* d = GetStyle(i);
@@ -817,6 +871,9 @@ wxString wxRichTextStyleListBox::CreateHTML(wxRichTextStyleDefinition* def) cons
             }
         }
         int mostCommonSize = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i <= maxSize; i++)
         {
             if (sizes[i] > mostCommonSize)

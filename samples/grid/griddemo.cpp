@@ -952,6 +952,9 @@ void GridFrame::DeleteSelectedRows( wxCommandEvent& WXUNUSED(ev) )
     if ( grid->IsSelection() )
     {
         wxGridUpdateLocker locker(grid);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < grid->GetNumberRows(); )
         {
             if ( grid->IsInSelection( n , 0 ) )
@@ -967,6 +970,9 @@ void GridFrame::AutoSizeRow(wxCommandEvent& WXUNUSED(event))
 {
     wxGridUpdateLocker locker(grid);
     const wxArrayInt sels  = grid->GetSelectedRows();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0, count = sels.size(); n < count; n++ )
     {
         grid->AutoSizeRow( sels[n], false );
@@ -977,6 +983,9 @@ void GridFrame::AutoSizeCol(wxCommandEvent& WXUNUSED(event))
 {
     wxGridUpdateLocker locker(grid);
     const wxArrayInt sels  = grid->GetSelectedCols();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0, count = sels.size(); n < count; n++ )
     {
         grid->AutoSizeColumn( sels[n], false );
@@ -987,6 +996,9 @@ void GridFrame::AutoSizeRowLabel(wxCommandEvent& WXUNUSED(event))
 {
     wxGridUpdateLocker locker(grid);
     const wxArrayInt sels  = grid->GetSelectedRows();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0, count = sels.size(); n < count; n++ )
     {
         grid->AutoSizeRowLabelSize( sels[n] );
@@ -997,6 +1009,9 @@ void GridFrame::AutoSizeColLabel(wxCommandEvent& WXUNUSED(event))
 {
     wxGridUpdateLocker locker(grid);
     const wxArrayInt sels  = grid->GetSelectedCols();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0, count = sels.size(); n < count; n++ )
     {
         grid->AutoSizeColLabelSize( sels[n] );
@@ -1025,6 +1040,9 @@ void GridFrame::DeleteSelectedCols( wxCommandEvent& WXUNUSED(ev) )
     if ( grid->IsSelection() )
     {
         wxGridUpdateLocker locker(grid);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < grid->GetNumberCols(); )
         {
             if ( grid->IsInSelection( 0 , n ) )
@@ -1615,6 +1633,9 @@ void BugsGridTable::SetValue( int row, int col, const wxString& value )
         case Col_Severity:
             {
                 size_t n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( n = 0; n < WXSIZEOF(severities); n++ )
                 {
                     if ( severities[n] == value )
@@ -2034,6 +2055,9 @@ private:
     void UpdateOrderAndVisibility()
     {
         wxString s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int pos = 0; pos < TabularGridTable::COL_MAX; pos++ )
         {
             const int col = m_grid->GetColAt(pos);
@@ -2257,6 +2281,9 @@ void GridFrame::OnGridRender( wxCommandEvent& event )
     // sum col widths
     wxSize sizeRender( 0, 0 );
     wxGridSizesInfo sizeinfo = grid->GetColSizes();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = topLeft.GetCol(); i <= bottomRight.GetCol(); i++ )
     {
         sizeRender.x += sizeinfo.GetSize( i );
@@ -2264,6 +2291,9 @@ void GridFrame::OnGridRender( wxCommandEvent& event )
 
     // sum row heights
     sizeinfo = grid->GetRowSizes();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = topLeft.GetRow(); i <= bottomRight.GetRow(); i++ )
     {
         sizeRender.y += sizeinfo.GetSize( i );

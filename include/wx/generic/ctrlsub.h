@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/generic/ctrlsub.h
 // Purpose:     common functionality of wxItemContainer-derived controls
@@ -82,6 +89,9 @@ protected:
             // around (which would result in O(N^2) algorithm)
             m_itemsClientData.Insert(NULL, pos, numItems);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( unsigned int n = 0; n < numItems; ++n, ++pos )
                 m_itemsClientData[pos] = clientData[n];
         }

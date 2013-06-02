@@ -57,6 +57,9 @@ UINT_PTR GetNewTimerId(wxMSWTimerImpl *t)
 {
     static UINT_PTR lastTimerId = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (lastTimerId == 0 ||
             TimerMap().find(lastTimerId) != TimerMap().end())
     {

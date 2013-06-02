@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        dir.h
 // Purpose:     interface of wxDir and wxDirTraverser
@@ -156,6 +163,9 @@ enum wxDirFlags
     wxString filename;
 
     bool cont = dir.GetFirst(&filename, filespec, flags);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( cont )
     {
         printf("%s\n", filename.c_str());

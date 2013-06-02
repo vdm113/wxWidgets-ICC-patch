@@ -62,9 +62,15 @@ static inline bool IsNewline(const int ch) {
 // True if can follow ch down to the end with possibly trailing whitespace
 static bool FollowToLineEnd(const int ch, const int state, const unsigned int endPos, StyleContext &sc) {
     unsigned int i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (sc.GetRelative(++i) == ch)
         ;
     // Skip over whitespace
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (IsASpaceOrTab(sc.GetRelative(i)) && sc.currentPos + i < endPos)
         ++i;
     if (IsNewline(sc.GetRelative(i)) || sc.currentPos + i == endPos) {
@@ -84,6 +90,9 @@ static void SetStateAndZoom(const int state, const int length, const int token, 
     sc.SetState(SCE_MARKDOWN_DEFAULT);
     sc.Forward();
     bool started = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (sc.More() && !IsNewline(sc.ch)) {
         if (sc.ch == token && !started) {
             sc.SetState(state);
@@ -102,8 +111,14 @@ static void SetStateAndZoom(const int state, const int length, const int token, 
 static bool HasPrevLineContent(StyleContext &sc) {
     int i = 0;
     // Go back to the previous newline
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((--i + (int)sc.currentPos) >= 0 && !IsNewline(sc.GetRelative(i)))
         ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((--i + (int)sc.currentPos) >= 0) {
         if (IsNewline(sc.GetRelative(i)))
             break;
@@ -120,6 +135,9 @@ static bool AtTermStart(StyleContext &sc) {
 static bool IsValidHrule(const unsigned int endPos, StyleContext &sc) {
     int c, count = 1;
     unsigned int i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (++i) {
         c = sc.GetRelative(i);
         if (c == sc.ch)
@@ -154,6 +172,9 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
 
     StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (sc.More()) {
         // Skip past escaped characters
         if (sc.ch == '\\') {
@@ -183,6 +204,9 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
             bool d = true;
             if (IsNewline(sc.ch)) {
                 if (sc.chNext != '\t') {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (int c = 1; c < 5; ++c) {
                         if (sc.GetRelative(c) != ' ')
                             d = false;
@@ -191,6 +215,9 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
             }
             else if (sc.atLineStart) {
                 if (sc.ch != '\t' ) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (int i = 0; i < 4; ++i) {
                         if (sc.GetRelative(i) != ' ')
                             d = false;
@@ -226,6 +253,9 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
         else if (sc.state == SCE_MARKDOWN_CODEBK) {
             if (sc.atLineStart && sc.Match("~~~")) {
                 int i = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (!IsNewline(sc.GetRelative(i)) && sc.currentPos + i < endPos)
                     i++;
                 sc.Forward(i);
@@ -318,6 +348,9 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
             // Ordered list
             else if (IsADigit(sc.ch)) {
                 int digitCount = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (IsADigit(sc.GetRelative(++digitCount)))
                     ;
                 if (sc.GetRelative(digitCount) == '.' &&
@@ -349,17 +382,26 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
             if (sc.Match("![") || sc.ch == '[') {
                 int i = 0, j = 0, k = 0;
                 int len = endPos - sc.currentPos;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (i < len && (sc.GetRelative(++i) != ']' || sc.GetRelative(i - 1) == '\\'))
                     ;
                 if (sc.GetRelative(i) == ']') {
                     j = i;
                     if (sc.GetRelative(++i) == '(') {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         while (i < len && (sc.GetRelative(++i) != ')' || sc.GetRelative(i - 1) == '\\'))
                             ;
                         if (sc.GetRelative(i) == ')')
                             k = i;
                     }
                     else if (sc.GetRelative(i) == '[' || sc.GetRelative(++i) == '[') {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         while (i < len && (sc.GetRelative(++i) != ']' || sc.GetRelative(i - 1) == '\\'))
                             ;
                         if (sc.GetRelative(i) == ']')

@@ -163,6 +163,9 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
 #endif
 
     // TODO: implement event filtering using the eventsToProcess mask
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (gtk_events_pending())
         gtk_main_iteration();
 

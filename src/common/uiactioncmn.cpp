@@ -136,6 +136,9 @@ bool wxUIActionSimulator::Char(int keycode, int modifiers)
 
 bool wxUIActionSimulator::Text(const char *s)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( *s != '\0' )
     {
         const char ch = *s++;

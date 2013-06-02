@@ -359,8 +359,14 @@ wxImage wxImage::ShrinkBy( int xFactor , int yFactor ) const
         }
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (long y = 0; y < height; y++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (long x = 0; x < width; x++)
         {
             unsigned long avgRed = 0 ;
@@ -369,9 +375,15 @@ wxImage wxImage::ShrinkBy( int xFactor , int yFactor ) const
             unsigned long avgAlpha = 0 ;
             unsigned long counter = 0 ;
             // determine average
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int y1 = 0 ; y1 < yFactor ; ++y1 )
             {
                 long y_offset = (y * yFactor + y1) * old_width;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int x1 = 0 ; x1 < xFactor ; ++x1 )
                 {
                     const unsigned char *pixel = source_data + 3 * ( y_offset + x * xFactor + x1 ) ;
@@ -526,12 +538,18 @@ wxImage wxImage::ResampleNearest(int width, int height) const
     unsigned char* dest_pixel = target_data;
 
     long y = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( long j = 0; j < height; j++ )
     {
         const unsigned char* src_line = &source_data[(y>>16)*old_width*3];
         const unsigned char* src_alpha_line = source_alpha ? &source_alpha[(y>>16)*old_width] : 0 ;
 
         long x = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( long i = 0; i < width; i++ )
         {
             const unsigned char* src_pixel = &src_line[(x>>16)*3];
@@ -617,11 +635,17 @@ wxImage wxImage::ResampleBox(int width, int height) const
     int averaged_pixels, src_pixel_index;
     double sum_r, sum_g, sum_b, sum_a;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int y = 0; y < height; y++ )         // Destination image - Y direction
     {
         // Source pixel in the Y direction
         const BoxPrecalc& vPrecalc = vPrecalcs[y];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int x = 0; x < width; x++ )      // Destination image - X direction
         {
             // Source pixel in the X direction
@@ -729,6 +753,9 @@ wxImage wxImage::ResampleBilinear(int width, int height) const
     double r1, g1, b1, a1 = 0;
     double r2, g2, b2, a2 = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int dsty = 0; dsty < height; dsty++ )
     {
         // We need to calculate the source pixel to interpolate from - Y-axis
@@ -739,6 +766,9 @@ wxImage wxImage::ResampleBilinear(int width, int height) const
         const double dy1 = vPrecalc.dd1;
 
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int dstx = 0; dstx < width; dstx++ )
         {
             // X-axis of pixel to interpolate from
@@ -890,6 +920,9 @@ wxImage wxImage::ResampleBicubic(int width, int height) const
         // We need to calculate the source pixel to interpolate from - Y-axis
         const BicubicPrecalc& vPrecalc = vPrecalcs[dsty];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int dstx = 0; dstx < width; dstx++ )
         {
             // X-axis of pixel to interpolate from
@@ -899,12 +932,18 @@ wxImage wxImage::ResampleBicubic(int width, int height) const
             double sum_r = 0, sum_g = 0, sum_b = 0, sum_a = 0;
 
             // Here we actually determine the RGBA values for the destination pixel
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int k = -1; k <= 2; k++ )
             {
                 // Y offset
                 const int y_offset = vPrecalc.offset[k + 1];
 
                 // Loop across the X axis
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int i = -1; i <= 2; i++ )
                 {
                     // X offset
@@ -962,6 +1001,9 @@ wxImage wxImage::BlurHorizontal(int blurRadius) const
 
     // Horizontal blurring algorithm - average all pixels in the specified blur
     // radius in the X or horizontal direction
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int y = 0; y < M_IMGDATA->m_height; y++ )
     {
         // Variables used in the blurring algorithm
@@ -976,6 +1018,9 @@ wxImage wxImage::BlurHorizontal(int blurRadius) const
 
         // Calculate the average of all pixels in the blur radius for the first
         // pixel of the row
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int kernel_x = -blurRadius; kernel_x <= blurRadius; kernel_x++ )
         {
             // To deal with the pixels at the start of a row so it's not
@@ -1003,6 +1048,9 @@ wxImage wxImage::BlurHorizontal(int blurRadius) const
 
         // Now average the values of the rest of the pixels by just moving the
         // blur radius box along the row
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int x = 1; x < M_IMGDATA->m_width; x++ )
         {
             // Take care of edge pixels on the left edge by essentially
@@ -1065,6 +1113,9 @@ wxImage wxImage::BlurVertical(int blurRadius) const
 
     // Vertical blurring algorithm - same as horizontal but switched the
     // opposite direction
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int x = 0; x < M_IMGDATA->m_width; x++ )
     {
         // Variables used in the blurring algorithm
@@ -1079,6 +1130,9 @@ wxImage wxImage::BlurVertical(int blurRadius) const
 
         // Calculate the average of all pixels in our blur radius box for the
         // first pixel of the column
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int kernel_y = -blurRadius; kernel_y <= blurRadius; kernel_y++ )
         {
             // To deal with the pixels at the start of a column so it's not
@@ -1106,6 +1160,9 @@ wxImage wxImage::BlurVertical(int blurRadius) const
 
         // Now average the values of the rest of the pixels by just moving the
         // box along the column from top to bottom
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int y = 1; y < M_IMGDATA->m_height; y++ )
         {
             // Take care of pixels that would be beyond the top edge by
@@ -1194,15 +1251,24 @@ wxImage wxImage::Rotate90( bool clockwise ) const
     // to make better use of cpu cache - memory transfers
     // (note: while much better than single-pixel "strips",
     //  our vertical strips will still generally straddle 64-byte cachelines)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (long ii = 0; ii < width; )
     {
         long next_ii = wxMin(ii + 21, width);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (long j = 0; j < height; j++)
         {
             const unsigned char *source_data
                                      = M_IMGDATA->m_data + (j*width + ii)*3;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (long i = ii; i < next_ii; i++)
             {
                 if ( clockwise )
@@ -1228,14 +1294,23 @@ wxImage wxImage::Rotate90( bool clockwise ) const
         unsigned char *alpha_data = image.GetAlpha();
         unsigned char *target_alpha = 0 ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (long ii = 0; ii < width; )
         {
             long next_ii = wxMin(ii + 64, width);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (long j = 0; j < height; j++)
             {
                 source_alpha = M_IMGDATA->m_alpha + j*width + ii;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (long i = ii; i < next_ii; i++)
                 {
                     if ( clockwise )
@@ -1284,8 +1359,14 @@ wxImage wxImage::Rotate180() const
     const unsigned char *source_data = M_IMGDATA->m_data;
     unsigned char *target_data = data + width * height * 3;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (long j = 0; j < height; j++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (long i = 0; i < width; i++)
         {
             target_data -= 3;
@@ -1299,8 +1380,14 @@ wxImage wxImage::Rotate180() const
         const unsigned char *src_alpha = M_IMGDATA->m_alpha;
         unsigned char *dest_alpha = alpha + width * height;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (long j = 0; j < height; ++j)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (long i = 0; i < width; ++i)
             {
                 *(--dest_alpha) = *(src_alpha++);
@@ -1327,10 +1414,16 @@ wxImage wxImage::Mirror( bool horizontally ) const
 
     if (horizontally)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (long j = 0; j < height; j++)
         {
             data += width*3;
             target_data = data-3;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (long i = 0; i < width; i++)
             {
                 memcpy( target_data, source_data, 3 );
@@ -1349,8 +1442,14 @@ wxImage wxImage::Mirror( bool horizontally ) const
             // just copied and the line that will be copied next)
             unsigned char *dest_alpha = alpha + width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (long jj = 0; jj < height; ++jj)
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (long i = 0; i < width; ++i) {
                     *(--dest_alpha) = *(src_alpha++); // copy one pixel
                 }
@@ -1360,6 +1459,9 @@ wxImage wxImage::Mirror( bool horizontally ) const
     }
     else
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (long i = 0; i < height; i++)
         {
             target_data = data + 3*width*(height-1-i);
@@ -1376,6 +1478,9 @@ wxImage wxImage::Mirror( bool horizontally ) const
             // and decreases by 1 width before each step
             unsigned char *dest_alpha = alpha + width * height;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (long jj = 0; jj < height; ++jj)
             {
                 dest_alpha -= width;
@@ -1425,6 +1530,9 @@ wxImage wxImage::GetSubImage( const wxRect &rect ) const
     src_data += 3 * pixsoff;
     src_alpha += pixsoff; // won't be used if was NULL, so this is ok
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (long j = 0; j < subheight; ++j)
     {
         memcpy( subdata, src_data, 3 * subwidth );
@@ -1537,6 +1645,9 @@ void wxImage::Paste( const wxImage &image, int x, int y )
 
         unsigned char* target_data = GetData() + 3*((x+xx) + (y+yy)*M_IMGDATA->m_width);
         int target_step = M_IMGDATA->m_width*3;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int j = 0; j < height; j++)
         {
             memcpy( target_data, source_data, width*3 );
@@ -1557,6 +1668,9 @@ void wxImage::Paste( const wxImage &image, int x, int y )
         unsigned char* target_data = GetAlpha() + (x+xx) + (y+yy)*M_IMGDATA->m_width;
         int target_step = M_IMGDATA->m_width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int j = 0; j < height; j++,
                                     source_data += source_step,
                                     target_data += target_step)
@@ -1577,8 +1691,14 @@ void wxImage::Paste( const wxImage &image, int x, int y )
         unsigned char* target_data = GetData() + 3*((x+xx) + (y+yy)*M_IMGDATA->m_width);
         int target_step = M_IMGDATA->m_width*3;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int j = 0; j < height; j++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int i = 0; i < width*3; i+=3)
             {
                 if ((source_data[i]   != r) ||
@@ -1606,7 +1726,13 @@ void wxImage::Replace( unsigned char r1, unsigned char g1, unsigned char b1,
     const int w = GetWidth();
     const int h = GetHeight();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int j = 0; j < h; j++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < w; i++)
         {
             if ((data[0] == r1) && (data[1] == g1) && (data[2] == b1))
@@ -1639,6 +1765,9 @@ wxImage wxImage::ConvertToGreyscale(double weight_r, double weight_g, double wei
     const unsigned char maskBlue = M_IMGDATA->m_maskBlue;
 
     const long size = M_IMGDATA->m_width * M_IMGDATA->m_height;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( long i = 0; i < size; i++, src += 3, dest += 3 )
     {
         memcpy(dest, src, 3);
@@ -1684,6 +1813,9 @@ wxImage wxImage::ConvertToMono( unsigned char r, unsigned char g, unsigned char 
     unsigned char *srcd = M_IMGDATA->m_data;
     unsigned char *tard = image.GetData();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( long i = 0; i < size; i++, srcd += 3, tard += 3 )
     {
         bool on = (srcd[0] == r) && (srcd[1] == g) && (srcd[2] == b);
@@ -1705,8 +1837,14 @@ wxImage wxImage::ConvertToDisabled(unsigned char brightness) const
     int height = image.GetHeight();
     bool has_mask = image.HasMask();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int y = height-1; y >= 0; --y)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int x = width-1; x >= 0; --x)
         {
             unsigned char* data = image.GetData() + (y*(width*3))+(x*3);
@@ -1806,9 +1944,15 @@ void wxImage::SetRGB( const wxRect& rect_, unsigned char r, unsigned char g, uns
 
     unsigned char *data wxDUMMY_INITIALIZE(NULL);
     int x, y, width = GetWidth();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (y = y1; y < y2; y++)
     {
         data = M_IMGDATA->m_data + (y*width + x1)*3;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (x = x1; x < x2; x++)
         {
             *data++ = r;
@@ -1950,8 +2094,14 @@ wxImage::ConvertColourToAlpha(unsigned char r, unsigned char g, unsigned char b)
     unsigned char *alpha = GetAlpha();
     unsigned char *data = GetData();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int y = 0; y < h; y++ )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int x = 0; x < w; x++ )
         {
             *alpha++ = *data;
@@ -2007,6 +2157,9 @@ void wxImage::InitAlpha()
         const unsigned char mr = M_IMGDATA->m_maskRed;
         const unsigned char mg = M_IMGDATA->m_maskGreen;
         const unsigned char mb = M_IMGDATA->m_maskBlue;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned char *src = M_IMGDATA->m_data;
               alpha < alphaEnd;
               src += 3, alpha++ )
@@ -2164,8 +2317,14 @@ bool wxImage::SetMaskFromImage(const wxImage& mask,
     const int w = GetWidth();
     const int h = GetHeight();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int j = 0; j < h; j++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < w; i++)
         {
             if ((maskdata[0] == mr) && (maskdata[1]  == mg) && (maskdata[2] == mb))
@@ -2219,8 +2378,14 @@ bool wxImage::ConvertAlphaToMask(unsigned char mr,
     int w = GetWidth();
     int h = GetHeight();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int y = 0; y < h; y++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int x = 0; x < w; x++, imgdata += 3, alphadata++)
         {
             if (*alphadata < threshold)
@@ -2545,6 +2710,9 @@ bool wxImage::CanRead( wxInputStream &stream )
 {
     const wxList& list = GetHandlers();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxList::compatibility_iterator node = list.GetFirst(); node; node = node->GetNext() )
     {
         wxImageHandler *handler=(wxImageHandler*)node->GetData();
@@ -2563,6 +2731,9 @@ int wxImage::GetImageCount( wxInputStream &stream, wxBitmapType type )
     {
         const wxList& list = GetHandlers();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxList::compatibility_iterator node = list.GetFirst();
               node;
               node = node->GetNext() )
@@ -2631,6 +2802,9 @@ bool wxImage::DoLoad(wxImageHandler& handler, wxInputStream& stream, int index)
         // this uses the same (trivial) algorithm as the JPEG handler
         unsigned width = widthOrig,
                  height = heightOrig;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( (maxWidth && width > maxWidth) ||
                     (maxHeight && height > maxHeight) )
         {
@@ -2678,6 +2852,9 @@ bool wxImage::LoadFile( wxInputStream& stream, wxBitmapType type, int index )
         }
 
         const wxList& list = GetHandlers();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxList::compatibility_iterator node = list.GetFirst();
               node;
               node = node->GetNext() )
@@ -2829,6 +3006,9 @@ bool wxImage::RemoveHandler( const wxString& name )
 wxImageHandler *wxImage::FindHandler( const wxString& name )
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxImageHandler *handler = (wxImageHandler*)node->GetData();
@@ -2842,6 +3022,9 @@ wxImageHandler *wxImage::FindHandler( const wxString& name )
 wxImageHandler *wxImage::FindHandler( const wxString& extension, wxBitmapType bitmapType )
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxImageHandler *handler = (wxImageHandler*)node->GetData();
@@ -2860,6 +3043,9 @@ wxImageHandler *wxImage::FindHandler( const wxString& extension, wxBitmapType bi
 wxImageHandler *wxImage::FindHandler(wxBitmapType bitmapType )
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxImageHandler *handler = (wxImageHandler *)node->GetData();
@@ -2872,6 +3058,9 @@ wxImageHandler *wxImage::FindHandler(wxBitmapType bitmapType )
 wxImageHandler *wxImage::FindHandlerMime( const wxString& mimetype )
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxImageHandler *handler = (wxImageHandler *)node->GetData();
@@ -2891,6 +3080,9 @@ void wxImage::InitStandardHandlers()
 void wxImage::CleanUpHandlers()
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxImageHandler *handler = (wxImageHandler *)node->GetData();
@@ -2908,10 +3100,16 @@ wxString wxImage::GetImageExtWildcard()
 
     wxList& Handlers = wxImage::GetHandlers();
     wxList::compatibility_iterator Node = Handlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( Node )
     {
         wxImageHandler* Handler = (wxImageHandler*)Node->GetData();
         fmts += wxT("*.") + Handler->GetExtension();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = 0; i < Handler->GetAltExtensions().size(); i++)
             fmts += wxT(";*.") + Handler->GetAltExtensions()[i];
         Node = Node->GetNext();
@@ -3069,6 +3267,9 @@ void wxImage::RotateHue(double angle)
     {
         srcBytePtr = M_IMGDATA->m_data;
         dstBytePtr = srcBytePtr;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do
         {
             rgb.red = *srcBytePtr++;
@@ -3208,6 +3409,9 @@ wxImageHistogram::FindFirstUnusedColour(unsigned char *r,
 {
     unsigned long key = MakeKey(r2, g2, b2);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( find(key) != end() )
     {
         // color already used
@@ -3277,6 +3481,9 @@ unsigned long wxImage::CountColours( unsigned long stopafter ) const
     size = GetWidth() * GetHeight();
     nentries = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned long j = 0; (j < size) && (nentries <= stopafter) ; j++)
     {
         r = *(p++);
@@ -3305,6 +3512,9 @@ unsigned long wxImage::ComputeHistogram( wxImageHistogram &h ) const
     const unsigned long size = GetWidth() * GetHeight();
 
     unsigned char r, g, b;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned long n = 0; n < size; n++ )
     {
         r = *p++;
@@ -3365,6 +3575,9 @@ wxImage wxImage::Rotate(double angle,
     // Create pointer-based array to accelerate access to wxImage's data
     unsigned char ** data = new unsigned char * [h];
     data[0] = GetData();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 1; i < h; i++)
         data[i] = data[i - 1] + (3 * w);
 
@@ -3374,6 +3587,9 @@ wxImage wxImage::Rotate(double angle,
     {
         alpha = new unsigned char * [h];
         alpha[0] = GetAlpha();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 1; i < h; i++)
             alpha[i] = alpha[i - 1] + w;
     }
@@ -3440,8 +3656,14 @@ wxImage wxImage::Rotate(double angle,
     // only once, instead of repeating it for each pixel.
     if (interpolating)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = 0; y < rH; y++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x = 0; x < rW; x++)
             {
                 wxRealPoint src = wxRotatePoint (x + x1a, y + y1a, cos_angle, -sin_angle, p0);
@@ -3587,8 +3809,14 @@ wxImage wxImage::Rotate(double angle,
     }
     else // not interpolating
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = 0; y < rH; y++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x = 0; x < rW; x++)
             {
                 wxRealPoint src = wxRotatePoint (x + x1a, y + y1a, cos_angle, -sin_angle, p0);
