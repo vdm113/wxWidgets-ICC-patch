@@ -46,6 +46,9 @@ int Accessor::IndentAmount(int line, int *flags, PFNIsCommentLeader pfnIsComment
 	int indent = 0;
 	bool inPrevPrefix = line > 0;
 	int posPrev = inPrevPrefix ? LineStart(line-1) : 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((ch == ' ' || ch == '\t') && (pos < end)) {
 		if (inPrevPrefix) {
 			char chPrev = (*this)[posPrev++];

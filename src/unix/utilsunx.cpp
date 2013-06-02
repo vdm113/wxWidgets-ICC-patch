@@ -407,6 +407,9 @@ public:
     {
         Init(args.size());
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < m_argc; i++ )
         {
             m_argv[i] = wxStrdup(args[i]);
@@ -417,11 +420,17 @@ public:
     ArgsArray(wchar_t **wargv)
     {
         int argc = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( wargv[argc] )
             argc++;
 
         Init(argc);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < m_argc; i++ )
         {
             m_argv[i] = wxSafeConvertWX2MB(wargv[i]).release();
@@ -431,6 +440,9 @@ public:
 
     ~ArgsArray()
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < m_argc; i++ )
         {
             free(m_argv[i]);
@@ -640,6 +652,9 @@ long wxExecute(char **argv, int flags, wxProcess *process,
         //       above a certain threshold but non-portable solutions exist for
         //       most platforms, see [http://stackoverflow.com/questions/899038/
         //          getting-the-highest-allocated-file-descriptor]
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int fd = 0; fd < (int)FD_SETSIZE; ++fd )
         {
             if ( fd != STDIN_FILENO  &&
@@ -674,6 +689,9 @@ long wxExecute(char **argv, int flags, wxProcess *process,
 
                 // Remove unwanted variables
                 wxEnvVariableHashMap::const_iterator it;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( it = oldenv.begin(); it != oldenv.end(); ++it )
                 {
                     if ( env->env.find(it->first) == env->env.end() )
@@ -681,6 +699,9 @@ long wxExecute(char **argv, int flags, wxProcess *process,
                 }
 
                 // And add the new ones (possibly replacing the old values)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( it = env->env.begin(); it != env->env.end(); ++it )
                     wxSetEnv(it->first, it->second);
             }
@@ -689,6 +710,9 @@ long wxExecute(char **argv, int flags, wxProcess *process,
         execvp(*argv, argv);
 
         fprintf(stderr, "execvp(");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( char **a = argv; *a; a++ )
             fprintf(stderr, "%s%s", a == argv ? "" : ", ", *a);
         fprintf(stderr, ") failed with error %d!\n", errno);
@@ -858,6 +882,9 @@ static wxString wxGetCommandOutput(const wxString &cmd)
 
     wxString s;
     char buf[256];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !feof(f) )
     {
         if ( !fgets(buf, sizeof(buf), f) )
@@ -1174,6 +1201,9 @@ public:
     virtual bool OnInit() { return true; }
     virtual void OnExit()
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxEnvVars::const_iterator i = gs_envVars.begin();
               i != gs_envVars.end();
               ++i )
@@ -1479,6 +1509,9 @@ int DoWaitForChild(int pid, int flags = 0)
     int status, rc;
 
     // loop while we're getting EINTR
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         rc = waitpid(pid, &status, flags);
@@ -1568,6 +1601,9 @@ int wxAppTraits::WaitForChild(wxExecuteData& execData)
         wxRedirectedIOHandler outHandler(disp, execData.fdOut, execData.bufOut),
                               errHandler(disp, execData.fdErr, execData.bufErr);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( !endHandler.Terminated() )
         {
             disp.Dispatch();

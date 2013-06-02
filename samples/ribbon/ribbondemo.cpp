@@ -947,6 +947,9 @@ void MyFrame::OnColourGalleryButton(wxCommandEvent& evt)
 
         // Try to find colour in gallery
         wxRibbonGalleryItem *item = NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(unsigned int i = 0; i < gallery->GetCount(); ++i)
         {
             item = gallery->GetItem(i);

@@ -559,6 +559,9 @@ RegImageList::RegImageList() : wxImageList(16, 16, true)
     // should be in sync with enum RegImageList::RegIcon
     static const wxChar *aszIcons[] = { wxT("key1"),wxT("key2"),wxT("key3"),wxT("value1"),wxT("value2") };
     wxString str = wxT("icon_");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int n = 0; n < WXSIZEOF(aszIcons); n++ )
     {
         Add(wxIcon(str + aszIcons[n], wxBITMAP_TYPE_ICO_RESOURCE));
@@ -663,6 +666,9 @@ RegTreeCtrl::~RegTreeCtrl()
 
 void RegTreeCtrl::AddStdKeys()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int ui = 0; ui < wxRegKey::nStdKeys; ui++ )
     {
         InsertNewTreeNode(
@@ -1024,6 +1030,9 @@ bool RegTreeCtrl::TreeNode::OnExpand()
 
     // enumerate all subkeys
     bCont = m_pKey->GetFirstKey(str, l);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( bCont )
     {
         m_pTree->InsertNewTreeNode(
@@ -1040,6 +1049,9 @@ bool RegTreeCtrl::TreeNode::OnExpand()
 
     // enumerate all values
     bCont = m_pKey->GetFirstValue(str, l);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( bCont )
     {
         wxString strItem;
@@ -1164,6 +1176,9 @@ void RegTreeCtrl::TreeNode::DestroyChildren()
 {
     // destroy all children
     size_t nCount = m_aChildren.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < nCount; n++ )
     {
         wxTreeItemId lId = m_aChildren[n]->Id();
@@ -1203,6 +1218,9 @@ void RegTreeCtrl::TreeNode::SetRegistryView(wxRegKey::WOW64ViewMode viewMode)
 
     // Update children with new view.
     size_t nCount = m_aChildren.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t n = 0; n < nCount; n++)
         m_aChildren[n]->SetRegistryView(viewMode);
 }
@@ -1217,6 +1235,9 @@ void RegTreeCtrl::GoTo(const wxString& location)
 
     wxTreeItemId id = GetRootItem();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( tk.HasMoreTokens() )
     {
         wxString subkey = tk.GetNextToken();
@@ -1231,6 +1252,9 @@ void RegTreeCtrl::GoTo(const wxString& location)
         if ( idCurrent == GetRootItem() )
         {
             // special case: we understand both HKCU and HKEY_CURRENT_USER here
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( size_t key = 0; key < wxRegKey::nStdKeys; key++ )
             {
                 if ( subkey == wxRegKey::GetStdKeyName(key)
@@ -1245,6 +1269,9 @@ void RegTreeCtrl::GoTo(const wxString& location)
         else
         {
             // enum all children
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( id.IsOk() )
             {
                 if ( subkey == ((TreeNode *)GetItemData(id))->m_strName )
