@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/hashmap.h
 // Purpose:     wxHashMap class
@@ -95,6 +102,9 @@ protected:
     static _wxHashTable_NodeBase* GetFirstNode( size_t buckets,
                                                 _wxHashTable_NodeBase** table )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( size_t i = 0; i < buckets; ++i )
             if( table[i] )
                 return table[i];
@@ -194,6 +204,7 @@ public: \
         Node* GetNextNode() \
         { \
             size_type bucket = GetBucketForNode(m_ht,m_node); \
+MY_MACRO_PRAGMA_IVDEP \
             for( size_type i = bucket + 1; i < m_ht->m_tableBuckets; ++i ) \
             { \
                 if( m_ht->m_table[i] ) \
@@ -331,6 +342,7 @@ protected: \
         size_t bucket = m_hasher( key ) % m_tableBuckets; \
         Node* node = static_cast<Node*>(m_table[bucket]); \
  \
+MY_MACRO_PRAGMA_IVDEP \
         while( node ) \
         { \
             if( m_equals( m_getKey( node->m_value ), key ) ) \
@@ -367,6 +379,7 @@ protected: \
         size_t bucket = m_hasher( key ) % m_tableBuckets; \
         _wxHashTable_NodeBase** node = &m_table[bucket]; \
  \
+MY_MACRO_PRAGMA_IVDEP \
         while( *node ) \
         { \
             if (m_equals(m_getKey(static_cast<Node*>(*node)->m_value), key)) \
@@ -384,6 +397,7 @@ protected: \
         size_t bucket = m_hasher( key ) % m_tableBuckets; \
         Node* node = static_cast<Node*>(m_table[bucket]); \
  \
+MY_MACRO_PRAGMA_IVDEP \
         while( node ) \
         { \
             if( m_equals( m_getKey( node->m_value ), key ) ) \
@@ -741,6 +755,7 @@ public: \
 #define WX_CLEAR_HASH_MAP(type, hashmap)                                     \
     {                                                                        \
         type::iterator it, en;                                               \
+MY_MACRO_PRAGMA_IVDEP \
         for( it = (hashmap).begin(), en = (hashmap).end(); it != en; ++it )  \
             delete it->second;                                               \
         (hashmap).clear();                                                   \

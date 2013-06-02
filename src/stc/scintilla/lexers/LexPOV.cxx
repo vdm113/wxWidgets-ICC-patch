@@ -84,6 +84,9 @@ static void ColourisePovDoc(
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 		if (sc.atLineEnd) {
 			// Update the line state, so it can be seen by next line
@@ -138,6 +141,9 @@ static void ColourisePovDoc(
 				sc.GetCurrent(s, sizeof(s));
 				p = s;
 				// Skip # and whitespace between # and directive word
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				do {
 					p++;
 				} while ((*p == ' ' || *p == '\t') && *p != '\0');
@@ -211,6 +217,9 @@ static void ColourisePovDoc(
 			} else if (sc.ch == '#') {
 				sc.SetState(SCE_POV_DIRECTIVE);
 				// Skip whitespace between # and directive word
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				do {
 					sc.Forward();
 				} while ((sc.ch == ' ' || sc.ch == '\t') && sc.More());
@@ -243,6 +252,9 @@ static void FoldPovDoc(
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
 	int style = initStyle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -271,6 +283,9 @@ static void FoldPovDoc(
 		if (foldDirective && (style == SCE_POV_DIRECTIVE)) {
 			if (ch == '#') {
 				unsigned int j=i+1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while ((j<endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
 					j++;
 				}

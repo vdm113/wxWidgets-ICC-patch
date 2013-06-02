@@ -188,6 +188,9 @@ bool wxVListBox::SelectRange(size_t from, size_t to)
         }
 
         // refresh just the lines which have really changed
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < count; n++ )
         {
             RefreshRow(changed[n]);
@@ -251,6 +254,9 @@ bool wxVListBox::DoSetCurrent(int current)
             // make it entirely visible
             // BUT scrolling down when m_current is first visible makes it
             // completely hidden, so that is even worse
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( (size_t)m_current + 1 == GetVisibleRowsEnd() &&
                     (size_t)m_current != GetVisibleRowsBegin() &&
                     ScrollToRow(GetVisibleBegin() + 1) ) ;
@@ -316,6 +322,9 @@ int wxVListBox::GetNextSelected(unsigned long& cookie) const
     wxCHECK_MSG( m_selStore, wxNOT_FOUND,
                   wxT("GetFirst/NextSelected() may only be used with multiselection listboxes") );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( cookie < GetItemCount() )
     {
         if ( IsSelected(cookie++) )
@@ -328,6 +337,9 @@ int wxVListBox::GetNextSelected(unsigned long& cookie) const
 void wxVListBox::RefreshSelected()
 {
     // only refresh those items which are currently visible and selected:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = GetVisibleBegin(), end = GetVisibleEnd(); n < end; n++ )
     {
         if ( IsSelected(n) )
@@ -347,6 +359,9 @@ wxRect wxVListBox::GetItemRect(size_t n) const
     if ( n < line )
         return itemrect;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( line <= n )
     {
         itemrect.y += itemrect.height;
@@ -461,6 +476,9 @@ void wxVListBox::OnPaint(wxPaintEvent& WXUNUSED(event))
 
     // iterate over all visible lines
     const size_t lineMax = GetVisibleEnd();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t line = GetVisibleBegin(); line < lineMax; line++ )
     {
         const wxCoord hRow = OnGetRowHeight(line);

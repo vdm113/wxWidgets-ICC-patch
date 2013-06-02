@@ -296,6 +296,9 @@ bool wxBMPHandler::SaveDib(wxImage *image,
         unsigned char r, g, b;
         rgbquad = new wxUint8 [palette_size*4];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < palette_size; i++)
         {
 #if wxUSE_PALETTE
@@ -315,6 +318,9 @@ bool wxBMPHandler::SaveDib(wxImage *image,
     {
         rgbquad = new wxUint8 [palette_size*4];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < palette_size; i++ )
         {
             // if 1BPP_BW then the value should be either 0 or 255
@@ -358,10 +364,16 @@ bool wxBMPHandler::SaveDib(wxImage *image,
     int y; unsigned x;
     long int pixel;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (y = image->GetHeight() -1; y >= 0; y--)
     {
         if ( format == wxBMP_24BPP ) // 3 bytes per pixel red,green,blue
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( x = 0; x < width; x++ )
             {
                 pixel = 3*(y*width + x);
@@ -374,6 +386,9 @@ bool wxBMPHandler::SaveDib(wxImage *image,
         else if ((format == wxBMP_8BPP) ||       // 1 byte per pixel in color
                  (format == wxBMP_8BPP_PALETTE))
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (x = 0; x < width; x++)
             {
                 pixel = 3*(y*width + x);
@@ -389,6 +404,9 @@ bool wxBMPHandler::SaveDib(wxImage *image,
         }
         else if ( format == wxBMP_8BPP_GREY ) // 1 byte per pix, rgb ave to grey
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (x = 0; x < width; x++)
             {
                 pixel = 3*(y*width + x);
@@ -399,6 +417,9 @@ bool wxBMPHandler::SaveDib(wxImage *image,
         }
         else if ( format == wxBMP_8BPP_RED ) // 1 byte per pixel, red as greys
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (x = 0; x < width; x++)
             {
                 buffer[x] = (wxUint8)data[3*(y*width + x)];
@@ -406,6 +427,9 @@ bool wxBMPHandler::SaveDib(wxImage *image,
         }
         else if ( format == wxBMP_4BPP ) // 4 bpp in color
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (x = 0; x < width; x+=2)
             {
                 pixel = 3*(y*width + x);
@@ -429,6 +453,9 @@ bool wxBMPHandler::SaveDib(wxImage *image,
         }
         else if ( format == wxBMP_1BPP ) // 1 bpp in "color"
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (x = 0; x < width; x+=8)
             {
                 pixel = 3*(y*width + x);
@@ -451,6 +478,9 @@ bool wxBMPHandler::SaveDib(wxImage *image,
         }
         else if ( format == wxBMP_1BPP_BW ) // 1 bpp B&W colormap from red color ONLY
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (x = 0; x < width; x+=8)
             {
                 pixel = 3*(y*width + x);
@@ -582,6 +612,9 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
         unsigned char* r = new unsigned char[ncolors];
         unsigned char* g = new unsigned char[ncolors];
         unsigned char* b = new unsigned char[ncolors];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int j = 0; j < ncolors; j++)
         {
             if (hasPalette)
@@ -627,6 +660,9 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
             gmask = wxINT32_SWAP_ON_BE(dbuf[1]);
             bmask = wxINT32_SWAP_ON_BE(dbuf[2]);
             // find shift amount (Least significant bit of mask)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (bit = bpp-1; bit>=0; bit--)
             {
                 if (bmask & (1 << bit))
@@ -637,6 +673,9 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
                     rshift = bit;
             }
             // Find number of bits in mask (MSB-LSB+1)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (bit = 0; bit < bpp; bit++)
             {
                 if (bmask & (1 << bit))
@@ -696,6 +735,9 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
     /* set the whole image to the background color */
     if ( bpp < 16 && (comp == BI_RLE4 || comp == BI_RLE8) )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < width * height; i++)
         {
             *ptr++ = cmap[0].r;
@@ -715,11 +757,17 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
     // this case (see #10915)
     bool hasValidAlpha = false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int row = 0; row < height; row++ )
     {
         int line = isUpsideDown ? height - 1 - row : row;
 
         int linepos = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int column = 0; column < width ; )
         {
             if ( bpp < 16 )
@@ -731,6 +779,9 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
 
                 if ( bpp == 1 )
                 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (int bit = 0; bit < 8 && column < width; bit++)
                     {
                         int index = ((aByte & (0x80 >> bit)) ? 1 : 0);
@@ -782,6 +833,9 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
                                 int absolute = aByte;
                                 wxUint8 nibble[2] ;
                                 int readBytes = 0 ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                                 for (int k = 0; k < absolute; k++)
                                 {
                                     if ( !(k % 2 ) )
@@ -814,6 +868,9 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
                             nibble[0] = (wxUint8)( (aByte & 0xF0) >> 4 ) ;
                             nibble[1] = (wxUint8)( aByte & 0x0F ) ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                             for ( int l = 0; l < first && column < width; l++ )
                             {
                                 ptr[poffset    ] = cmap[nibble[l%2]].r;
@@ -827,6 +884,9 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
                     }
                     else
                     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for (int nibble = 0; nibble < 2 && column < width; nibble++)
                         {
                             int index = ((aByte & (0xF0 >> (nibble * 4))) >> (!nibble * 4));
@@ -879,6 +939,9 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
                             else
                             {
                                 int absolute = aByte;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                                 for (int k = 0; k < absolute; k++)
                                 {
                                     linepos++;
@@ -900,6 +963,9 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
                         }
                         else
                         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                             for ( int l = 0; l < first && column < width; l++ )
                             {
                                 ptr[poffset    ] = cmap[aByte].r;
@@ -974,6 +1040,9 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
                 column++;
             }
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( (linepos < linesize) && (comp != 1) && (comp != 2) )
         {
             ++linepos;
@@ -1238,6 +1307,9 @@ bool wxICOHandler::SaveFile(wxImage *image,
 
     // for each iamage write a description ICONDIRENTRY:
     ICONDIRENTRY icondirentry;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int img = 0; img < images; img++)
     {
         wxImage mask;
@@ -1255,8 +1327,14 @@ bool wxICOHandler::SaveFile(wxImage *image,
             {
                 // Go round and apply black to the masked bits:
                 int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < mask.GetWidth(); i++)
                 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (j = 0; j < mask.GetHeight(); j++)
                     {
                         if ((r == mask.GetRed(i, j)) &&
@@ -1272,7 +1350,13 @@ bool wxICOHandler::SaveFile(wxImage *image,
             // just make a black mask all over:
             mask = image->Copy();
             int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < mask.GetWidth(); i++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (j = 0; j < mask.GetHeight(); j++)
                     mask.SetRGB(i, j, 0, 0, 0 );
         }
@@ -1431,6 +1515,9 @@ bool wxICOHandler::DoLoadFile(wxImage *image, wxInputStream& stream,
     // remember how many bytes we read from the stream:
     wxFileOffset alreadySeeked = sizeof(IconDir);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = 0; i < nIcons; i++ )
     {
         if ( !stream.ReadAll(pCurrentEntry, sizeof(ICONDIRENTRY)) )

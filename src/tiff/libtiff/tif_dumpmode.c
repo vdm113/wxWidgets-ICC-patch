@@ -45,6 +45,9 @@ static int
 DumpModeEncode(TIFF* tif, uint8* pp, tmsize_t cc, uint16 s)
 {
 	(void) s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (cc > 0) {
 		tmsize_t n;
 

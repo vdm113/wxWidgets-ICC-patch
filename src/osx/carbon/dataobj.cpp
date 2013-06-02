@@ -245,6 +245,9 @@ bool wxDataObject::IsSupportedFormat( const wxDataFormat& rFormat, Direction vDi
         wxDataFormat *pFormats = new wxDataFormat[nFormatCount];
         GetAllFormats( pFormats, vDir );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t n = 0; n < nFormatCount; n++)
         {
             if (pFormats[n] == rFormat)
@@ -267,6 +270,9 @@ void wxDataObject::AddToPasteboard( void * pb, int itemID )
     wxDataFormat *array = new wxDataFormat[ GetFormatCount() ];
     GetAllFormats( array );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < GetFormatCount(); i++)
     {
         wxDataFormat thisFormat = array[ i ];
@@ -282,6 +288,9 @@ void wxDataObject::AddToPasteboard( void * pb, int itemID )
             // if wxDF_UNICODETEXT is already on the 'todo' list, skip this iteration
             // otherwise force it
             size_t j = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j = 0; j < GetFormatCount(); j++)
             {
                 if ( array[j].GetType() == wxDF_UNICODETEXT )
@@ -307,6 +316,9 @@ void wxDataObject::AddToPasteboard( void * pb, int itemID )
                 {
                     // the data is D-normalized UTF8 strings of filenames delimited with \n
                     char *fname = strtok((char*) buf,"\n");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     while (fname != NULL)
                     {
                         // translate the filepath into a fileurl and put that into the pasteobard
@@ -355,6 +367,9 @@ bool wxDataObject::IsFormatInPasteboard( void * pb, const wxDataFormat &dataForm
     err = PasteboardGetItemCount( pasteboard, &itemCount );
     if ( err == noErr )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( UInt32 itemIndex = 1; itemIndex <= itemCount && hasData == false ; itemIndex++ )
         {
             PasteboardItemID    itemID;
@@ -371,6 +386,9 @@ bool wxDataObject::IsFormatInPasteboard( void * pb, const wxDataFormat &dataForm
 
             flavorCount = CFArrayGetCount( flavorTypeArray );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for( CFIndex flavorIndex = 0; flavorIndex < flavorCount && hasData == false ; flavorIndex++ )
             {
                 CFStringRef             flavorType;
@@ -410,11 +428,17 @@ bool wxDataObject::GetFromPasteboard( void * pb )
     OSStatus err = PasteboardGetItemCount( pasteboard, &itemCount );
     if ( err == noErr )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = 0; !transferred && i < formatcount; i++)
         {
             // go through the data in our order of preference
             wxDataFormat dataFormat = array[ i ];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for( UInt32 itemIndex = 1; itemIndex <= itemCount && transferred == false ; itemIndex++ )
             {
                 PasteboardItemID    itemID = 0;
@@ -431,6 +455,9 @@ bool wxDataObject::GetFromPasteboard( void * pb )
 
                 flavorCount = CFArrayGetCount( flavorTypeArray );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for( CFIndex flavorIndex = 0; !transferred && flavorIndex < flavorCount ; flavorIndex++ )
                 {
                     CFStringRef             flavorType;
@@ -551,11 +578,17 @@ bool wxDataObject::HasDataInPasteboard( void * pb )
     OSStatus err = PasteboardGetItemCount( pasteboard, &itemCount );
     if ( err == noErr )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = 0; !hasData && i < formatcount; i++)
         {
             // go through the data in our order of preference
             wxDataFormat dataFormat = array[ i ];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for( UInt32 itemIndex = 1; itemIndex <= itemCount && hasData == false ; itemIndex++ )
             {
                 PasteboardItemID    itemID = 0;
@@ -572,6 +605,9 @@ bool wxDataObject::HasDataInPasteboard( void * pb )
 
                 flavorCount = CFArrayGetCount( flavorTypeArray );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for( CFIndex flavorIndex = 0; !hasData && flavorIndex < flavorCount ; flavorIndex++ )
                 {
                     CFStringRef             flavorType;
@@ -602,6 +638,9 @@ void wxDataObject::AddSupportedTypes( void* cfarray)
     wxDataFormat *array = new wxDataFormat[nFormats];
     GetAllFormats(array, wxDataObject::Set);
     
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < nFormats; i++)
     {
         wxDataFormat dataFormat = array[ i ];
@@ -660,6 +699,9 @@ void wxFileDataObject::GetFileNames( wxCharBuffer &buf ) const
 {
     wxString filenames;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
     {
         filenames += m_filenames[i];

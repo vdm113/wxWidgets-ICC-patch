@@ -774,6 +774,9 @@ void RichTextCtrlTestCase::Table()
     CPPUNIT_ASSERT(m_rich->CanUndo() == false);
 
     // Run the tests twice: first for the original table, then for a contained one
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int t = 0; t < 2; ++t)
     {
         size_t n; // FIXME-VC6: outside of the loops for VC6 only.
@@ -787,6 +790,9 @@ void RichTextCtrlTestCase::Table()
         CPPUNIT_ASSERT(table->GetRowCount() == 1);
 
         // Test adding columns and rows
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (n = 0; n < 3; ++n)
         {
             m_rich->BeginBatchUndo("Add col and row");
@@ -800,6 +806,9 @@ void RichTextCtrlTestCase::Table()
         CPPUNIT_ASSERT(table->GetRowCount() == 4);
 
         // Test deleting columns and rows
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (n = 0; n < 3; ++n)
         {
             m_rich->BeginBatchUndo("Delete col and row");
@@ -814,6 +823,9 @@ void RichTextCtrlTestCase::Table()
 
         // Test undo, first of the deletions...
         CPPUNIT_ASSERT(m_rich->CanUndo());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (n = 0; n < 3; ++n)
         {
             m_rich->Undo();
@@ -823,6 +835,9 @@ void RichTextCtrlTestCase::Table()
         CPPUNIT_ASSERT(table->GetRowCount() == 4);
 
         // ...then the additions
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (n = 0; n < 3; ++n)
         {
             m_rich->Undo();
@@ -834,6 +849,9 @@ void RichTextCtrlTestCase::Table()
 
         // Similarly test redo. Additions:
         CPPUNIT_ASSERT(m_rich->CanRedo());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (n = 0; n < 3; ++n)
         {
             m_rich->Redo();
@@ -843,6 +861,9 @@ void RichTextCtrlTestCase::Table()
         CPPUNIT_ASSERT(table->GetRowCount() == 4);
 
         // Deletions:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (n = 0; n < 3; ++n)
         {
             m_rich->Redo();
