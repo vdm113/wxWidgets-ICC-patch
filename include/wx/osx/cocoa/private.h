@@ -265,6 +265,8 @@ public :
     
     CGWindowLevel   GetWindowLevel() const { return m_macWindowLevel; }
     void            RestoreWindowLevel();
+    
+    static WX_NSResponder GetNextFirstResponder() ;
 protected :
     CGWindowLevel   m_macWindowLevel;
     WXWindow        m_macWindow;
