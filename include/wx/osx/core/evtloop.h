@@ -61,6 +61,7 @@ public:
       AddSourceForFD(int fd, wxEventLoopSourceHandler *handler, int flags);
 #endif // wxUSE_EVENTLOOP_SOURCE
 
+    bool ShouldProcessIdleEvents() const { return m_processIdleEvents ; }
 protected:
     void CommonModeObserverCallBack(CFRunLoopObserverRef observer, int activity);
     void DefaultModeObserverCallBack(CFRunLoopObserverRef observer, int activity);
@@ -113,6 +114,8 @@ class WXDLLIMPEXP_BASE wxCFEventLoopPauseIdleEvents : public wxObject
 public:
     wxCFEventLoopPauseIdleEvents();
     virtual ~wxCFEventLoopPauseIdleEvents();
+private:
+    bool m_formerState;
 };
 
 #endif // _WX_OSX_EVTLOOP_H_

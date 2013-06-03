@@ -252,10 +252,7 @@ bool wxNonOwnedWindow::OSXShowWithEffect(bool show,
     {
         // as apps expect a size event to occur when the window is shown,
         // generate one when it is shown with effect too
-        MacOnInternalSize();
-        wxSizeEvent event(GetSize(), m_windowId);
-        event.SetEventObject(this);
-        HandleWindowEvent(event);
+        SendSizeEvent();
     }
 
     return true;
@@ -315,11 +312,7 @@ void wxNonOwnedWindow::HandleActivated( double timestampsec, bool didActivate )
 
 void wxNonOwnedWindow::HandleResized( double timestampsec )
 {
-    MacOnInternalSize();
-    wxSizeEvent wxevent( GetSize() , GetId());
-    wxevent.SetTimestamp( (int) (timestampsec * 1000) );
-    wxevent.SetEventObject( this );
-    HandleWindowEvent(wxevent);
+    SendSizeEvent();
     // we have to inform some controls that have to reset things
     // relative to the toplevel window (e.g. OpenGL buffers)
     wxWindowMac::MacSuperChangedPosition() ; // like this only children will be notified
@@ -390,10 +383,7 @@ bool wxNonOwnedWindow::Show(bool show)
     if ( show )
     {
         // because apps expect a size event to occur at this moment
-        MacOnInternalSize();
-        wxSizeEvent event(GetSize() , m_windowId);
-        event.SetEventObject(this);
-        HandleWindowEvent(event);
+        SendSizeEvent();
     }
 
     return true ;
