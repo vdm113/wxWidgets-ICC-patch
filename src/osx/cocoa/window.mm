@@ -41,7 +41,7 @@
 
 // Get the window with the focus
 
-NSView* GetViewFromResponder( NSResponder* responder )
+NSView* wxOSXGetViewFromResponder( NSResponder* responder )
 {
     NSView* view = nil;
     if ( [responder isKindOfClass:[NSTextView class]] )
@@ -64,15 +64,28 @@ NSView* GetFocusedViewInWindow( NSWindow* keyWindow )
 {
     NSView* focusedView = nil;
     if ( keyWindow != nil )
-        focusedView = GetViewFromResponder([keyWindow firstResponder]);
+        focusedView = wxOSXGetViewFromResponder([keyWindow firstResponder]);
 
     return focusedView;
 }
 
 WXWidget wxWidgetImpl::FindFocus()
 {
-    return GetFocusedViewInWindow( [NSApp keyWindow] );
+    return GetFocusedViewInWindow( [NSApp keyWindow] );;
 }
+
+wxWidgetImpl* wxWidgetImpl::FindBestFromWXWidget(WXWidget control)
+{
+    wxWidgetImpl* impl = FindFromWXWidget(control);
+    
+    // NSScrollViews can have their subviews like NSClipView
+    // therefore check and use the NSScrollView peer in that case
+    if ( impl == NULL && [[control superview] isKindOfClass:[NSScrollView class]])
+        impl = FindFromWXWidget([control superview]);
+    
+    return impl;
+}
+
 
 NSRect wxOSXGetFrameForControl( wxWindowMac* window , const wxPoint& pos , const wxSize &size , bool adjustForOrigin )
 {
@@ -1349,14 +1362,9 @@ bool wxWidgetCocoaImpl::resignFirstResponder(WXWidget slf, void *_cmd)
     BOOL r = superimpl(slf, (SEL)_cmd);
  
     NSResponder * responder = wxNonOwnedWindowCocoaImpl::GetNextFirstResponder();
-    NSView* otherView = GetViewFromResponder(responder);
+    NSView* otherView = wxOSXGetViewFromResponder(responder);
 
-    wxWidgetImpl* otherWindow = FindFromWXWidget(otherView);
-    
-    // NSScrollViews can have their subviews like NSClipView getting focus
-    // therefore check and use the NSScrollView peer in that case
-    if ( otherWindow == NULL && [[otherView superview] isKindOfClass:[NSScrollView class]])
-        otherWindow = FindFromWXWidget([otherView superview]);
+    wxWidgetImpl* otherWindow = FindBestFromWXWidget(otherView);
     
     // It doesn't make sense to notify about the loss of focus if it's the same
     // control in the end, and just a different subview
