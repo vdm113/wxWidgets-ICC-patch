@@ -2604,8 +2604,6 @@ vc_mswunivuddll
 vc_mswunivudll
 *.vcproj.user
 *.vcxproj.user
-*.vcproj.filters
-*.vcxproj.filters
 wx_vc8arm.sln
 wx_vc8arm_*.vcproj
 /lib/vc_*/*.map
