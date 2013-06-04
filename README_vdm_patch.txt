@@ -19,13 +19,6 @@ Also, it uses my own pre-configured "setup.h" configuration. I have changed only
 #   define wxUSE_COMPILER_TLS 0 /* VDM: see comment above in setup.h */
 #endif
 
-#define wxUSE_STD_CONTAINERS 1 /* VDM: changed explicitly to 0 from 1 */
-#define wxUSE_IPV6          1 /* VDM: changed explicitly to 0 from 1 */
-#define wxUSE_POSTSCRIPT  1 /* VDM: changed explicitly to 0 from 1 */
-#define wxUSE_INICONF 1 /* VDM: changed explicitely to 1 from 0 */
-
-I have recently changed all profiles and architectures (unsupported x86, and supported x64) to use "/Qip" ICL switch rather than "/Qipo". So Intra-procedural Optimization will be performed over each *.obj, rather at then multi-.obj manner. Performance impact of resulting code for my benchmarks is negligible, and compilation will not take 2 days (on my 8 GiB RAM machine) while compiler is requesting like 12 GiB of (virtual) RAM [Windows(R) was swapping excessively].
-
 *** NB ***
 Set in your project files these preprocessor defines, in other case you might encounter random crashes:
 _HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0
