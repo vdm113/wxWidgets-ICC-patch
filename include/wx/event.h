@@ -1754,8 +1754,12 @@ public:
     wxMouseWheelAxis GetWheelAxis() const { return m_wheelAxis; }
 
     // Returns the configured number of lines (or whatever) to be scrolled per
-    // wheel action.  Defaults to one.
+    // wheel action. Defaults to three.
     int GetLinesPerAction() const { return m_linesPerAction; }
+
+    // Returns the configured number of columns (or whatever) to be scrolled per
+    // wheel action. Defaults to three.
+    int GetColumnsPerAction() const { return m_columnsPerAction; }
 
     // Is the system set to do page scrolling?
     bool IsPageScroll() const { return ((unsigned int)m_linesPerAction == UINT_MAX); }
@@ -1777,6 +1781,7 @@ public:
     int           m_wheelRotation;
     int           m_wheelDelta;
     int           m_linesPerAction;
+    int           m_columnsPerAction;
 
 protected:
     void Assign(const wxMouseEvent& evt);
