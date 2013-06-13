@@ -203,6 +203,10 @@ wxCFEventLoop::wxCFEventLoop()
     m_shouldExit = false;
     m_processIdleEvents = true;
 
+#if wxUSE_UIACTIONSIMULATOR
+    m_shouldWaitForEvent = false;
+#endif
+    
     m_runLoop = CFGetCurrentRunLoop();
 
     CFRunLoopObserverContext ctxt;
@@ -304,7 +308,15 @@ bool wxCFEventLoop::Pending() const
 
 int wxCFEventLoop::DoProcessEvents()
 {
-    return DispatchTimeout( 0 );
+    if ( m_shouldWaitForEvent )
+    {
+        int  handled = DispatchTimeout( 1000 );
+        wxASSERT_MSG( handled == 1, "No Event Available");
+        m_shouldWaitForEvent = false;
+        return handled;
+    }
+    else
+        return DispatchTimeout( 0 );
 }
 
 bool wxCFEventLoop::Dispatch()

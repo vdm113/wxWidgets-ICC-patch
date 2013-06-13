@@ -25,6 +25,8 @@ bool wxUIActionSimulator::MouseClick(int button)
     return true;
 }
 
+#ifndef __WXOSX__
+
 bool wxUIActionSimulator::MouseDblClick(int button)
 {
     MouseDown(button);
@@ -34,6 +36,16 @@ bool wxUIActionSimulator::MouseDblClick(int button)
 
     return true;
 }
+
+bool wxUIActionSimulator::MouseClickAndDragTo(long x, long y, int button)
+{
+    MouseDown(button);
+    MouseMove(x,y);
+    MouseUp(button);
+    return true;
+}
+
+#endif
 
 bool
 wxUIActionSimulator::MouseDragDrop(long x1, long y1, long x2, long y2,

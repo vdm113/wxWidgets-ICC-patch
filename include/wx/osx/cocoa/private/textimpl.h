@@ -122,6 +122,10 @@ public :
     virtual void Popup();
     virtual void Dismiss();
 
+    virtual void SetEditable(bool editable);
+
+    virtual void mouseEvent(WX_NSEvent event, WXWidget slf, void *_cmd);
+
 private:
     NSComboBox* m_comboBox;
 };
