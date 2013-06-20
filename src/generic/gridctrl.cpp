@@ -306,6 +306,9 @@ wxGridCellAutoWrapStringRenderer::GetTextLines(wxGrid& grid,
         logicalLines = wxSplit(grid.GetCellValue(row, col), '\n', '\0');
 
     wxArrayString physicalLines;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxArrayString::const_iterator it = logicalLines.begin();
           it != logicalLines.end();
           ++it )
@@ -337,6 +340,9 @@ wxGridCellAutoWrapStringRenderer::BreakLine(wxDC& dc,
 
     // For each word
     wxStringTokenizer wordTokenizer(logicalLine, wxS(" \t"), wxTOKEN_RET_DELIMS);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( wordTokenizer.HasMoreTokens() )
     {
         const wxString word = wordTokenizer.GetNextToken();
@@ -392,6 +398,9 @@ wxGridCellAutoWrapStringRenderer::BreakWord(wxDC& dc,
     // TODO: Use binary search to find the first element > maxWidth.
     const unsigned count = widths.size();
     unsigned n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
         if ( widths[n] > maxWidth )
