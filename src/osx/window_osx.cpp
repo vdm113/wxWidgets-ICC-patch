@@ -1228,7 +1228,7 @@ void wxWindowMac::DoSetClientSize(int clientwidth, int clientheight)
     }
 }
 
-float wxWindowMac::GetContentScaleFactor() const 
+double wxWindowMac::GetContentScaleFactor() const 
 {
     return GetPeer()->GetContentScaleFactor();
 }

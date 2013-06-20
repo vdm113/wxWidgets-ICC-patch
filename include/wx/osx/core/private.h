@@ -266,7 +266,7 @@ public :
     virtual void        GetPosition( int &x, int &y ) const = 0;
     virtual void        GetSize( int &width, int &height ) const = 0;
     virtual void        SetControlSize( wxWindowVariant variant ) = 0;
-    virtual float       GetContentScaleFactor() const 
+    virtual double      GetContentScaleFactor() const
     {
         return 1.0;
     }
@@ -880,7 +880,7 @@ public :
     virtual void ScreenToWindow( int *x, int *y ) = 0;
 
     virtual void WindowToScreen( int *x, int *y ) = 0;
-
+    
     virtual bool IsActive() = 0;
 
     wxNonOwnedWindow*   GetWXPeer() { return m_wxPeer; }

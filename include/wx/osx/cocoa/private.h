@@ -154,6 +154,8 @@ public :
     virtual bool        IsFlipped() const { return m_isFlipped; }
 #endif
 
+    virtual double      GetContentScaleFactor() const;
+    
     // cocoa thunk connected calls
 
     virtual unsigned int        draggingEntered(void* sender, WXWidget slf, void* _cmd);

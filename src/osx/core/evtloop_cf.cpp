@@ -308,6 +308,7 @@ bool wxCFEventLoop::Pending() const
 
 int wxCFEventLoop::DoProcessEvents()
 {
+#if wxUSE_UIACTIONSIMULATOR
     if ( m_shouldWaitForEvent )
     {
         int  handled = DispatchTimeout( 1000 );
@@ -316,6 +317,7 @@ int wxCFEventLoop::DoProcessEvents()
         return handled;
     }
     else
+#endif
         return DispatchTimeout( 0 );
 }
 
