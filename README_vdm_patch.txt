@@ -10,13 +10,12 @@ This fork of wxWidgets is as of official SVN revision:
 
 r74257
 
-Also, it uses my own pre-configured "setup.h" configuration. I have changed only these parameters (compared to default 'setup0.h'):
-#define WXWIN_COMPATIBILITY_2_8 0 /* VDM: changed explicitly to 1 from 0 */
+Also, it uses my own pre-configured "setup.h" configuration. I have changed only this parameter (compared to default 'setup0.h'):
 
-#define wxUSE_COMPILER_TLS 1 /* VDM: see below */
+#define wxUSE_COMPILER_TLS 1
 #ifdef _MSC_VER
 #   undef wxUSE_COMPILER_TLS
-#   define wxUSE_COMPILER_TLS 0 /* VDM: see comment above in setup.h */
+#   define wxUSE_COMPILER_TLS 0 /* VDM: it crashes with ICC */
 #endif
 
 *** NB ***
