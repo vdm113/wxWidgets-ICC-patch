@@ -5719,6 +5719,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8707324525DB344EA0E7D5CE /* wxdebug.xcconfig */;
 			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
 				WXROOT = "$(PROJECT_DIR)/../..";
 			};
 			name = Debug;
