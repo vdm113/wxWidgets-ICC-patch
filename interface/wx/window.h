@@ -60,6 +60,16 @@ enum wxShowEffect
 };
 
 
+/**
+   flags for SendSizeEvent()
+*/
+enum
+{
+    wxSEND_EVENT_POST = 1
+};
+
+
+
 
 /**
     Struct containing all the visual attributes of a control.
@@ -1110,6 +1120,14 @@ public:
     */
     virtual wxSize GetBestVirtualSize() const;
 
+    /**
+       Returns the magnification of the backing store of this window, eg 2.0
+       for a window on a retina screen.
+
+       @since 2.9.5
+    */
+    virtual double GetContentScaleFactor() const;
+    
     /**
         Returns the size of the left/right and top/bottom borders of this window in x
         and y components of the result respectively.
