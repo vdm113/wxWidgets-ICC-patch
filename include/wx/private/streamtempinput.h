@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/private/streamtempinput.h
 // Purpose:     defines wxStreamTempInputBuffer which is used by Unix and MSW
@@ -95,6 +102,9 @@ public:
     // the child process terminates and we know that no more data is coming
     bool ReadAll()
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( !Eof() )
         {
             if ( !Update() )

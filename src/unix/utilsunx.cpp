@@ -559,6 +559,9 @@ int BlockUntilChildExit(wxExecuteData& execData)
 #endif // wxUSE_STREAMS
 
     // And dispatch until the PID is reset from wxExecuteData::OnExit().
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( execData.pid )
     {
         dispatcher.Dispatch();
@@ -1567,6 +1570,9 @@ void wxExecuteData::OnSomeChildExited(int WXUNUSED(sig))
     // Make a copy of the list before iterating over it to avoid problems due
     // to deleting entries from it in the process.
     const ChildProcessesData allChildProcesses = ms_childProcesses;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ChildProcessesData::const_iterator it = allChildProcesses.begin();
           it != allChildProcesses.end();
           ++it )

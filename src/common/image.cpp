@@ -589,6 +589,9 @@ void ResampleBoxPrecalc(wxVector<BoxPrecalc>& boxes, int oldDim)
     const double scale_factor_1 = double(oldDim) / newDim;
     const int scale_factor_2 = (int)(scale_factor_1 / 2);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int dst = 0; dst < newDim; ++dst )
     {
         // Source pixel in the Y direction
@@ -655,8 +658,14 @@ wxImage wxImage::ResampleBox(int width, int height) const
             averaged_pixels = 0;
             sum_r = sum_g = sum_b = sum_a = 0.0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int j = vPrecalc.boxStart; j <= vPrecalc.boxEnd; ++j )
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int i = hPrecalc.boxStart; i <= hPrecalc.boxEnd; ++i )
                 {
                     // Calculate the actual index in our source pixels
@@ -702,6 +711,9 @@ void ResampleBilinearPrecalc(wxVector<BilinearPrecalc>& precalcs, int oldDim)
     const double scale_factor = double(oldDim) / newDim;
     const int srcpixmax = oldDim - 1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int dsty = 0; dsty < newDim; dsty++ )
     {
         // We need to calculate the source pixel to interpolate from - Y-axis
@@ -841,6 +853,9 @@ struct BicubicPrecalc
 void ResampleBicubicPrecalc(wxVector<BicubicPrecalc> &aWeight, int oldDim)
 {
     const int newDim = aWeight.size();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int dstd = 0; dstd < newDim; dstd++ )
     {
         // We need to calculate the source pixel to interpolate from - Y-axis
@@ -849,6 +864,9 @@ void ResampleBicubicPrecalc(wxVector<BicubicPrecalc> &aWeight, int oldDim)
 
         BicubicPrecalc &precalc = aWeight[dstd];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int k = -1; k <= 2; k++ )
         {
             precalc.offset[k + 1] = srcpixd + k < 0.0
@@ -915,6 +933,9 @@ wxImage wxImage::ResampleBicubic(int width, int height) const
     ResampleBicubicPrecalc(vPrecalcs, M_IMGDATA->m_height);
     ResampleBicubicPrecalc(hPrecalcs, M_IMGDATA->m_width);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int dsty = 0; dsty < height; dsty++ )
     {
         // We need to calculate the source pixel to interpolate from - Y-axis

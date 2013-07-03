@@ -61,6 +61,9 @@ int wxGUIEventLoop::DoRun()
     // event loops.  For example, inside this event loop, we may receive
     // Exit() for a different event loop (which we are currently inside of)
     // That Exit() will cause this gtk_main() to exit so we need to re-enter it.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !m_shouldExit )
     {
         gtk_main();

@@ -97,6 +97,9 @@ void wxGUIEventLoop::OSXDoRun()
 {
     wxMacAutoreleasePool autoreleasepool;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!m_shouldExit)
     {
         RunApplicationEventLoop();

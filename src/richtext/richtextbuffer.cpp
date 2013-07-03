@@ -9747,12 +9747,18 @@ int GetRowspanDisplacement(const wxRichTextTable* table, int row, int col, int p
     // there's nothing to stop a cell being hidden by colspan, and then again hidden from above by rowspan.
     // The answer is to look above each hidden cell in turn, which I think covers all bases.
     int deltaX = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int prevcol = 0; prevcol < col; ++prevcol)
     {
         if (!table->GetCell(row, prevcol)->IsShown())
         {
             // We've found a hidden cell. If it's hidden because of colspan to its left, it's
             // already been taken into account; but not if there's a rowspanning cell above
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int prevrow = row-1; prevrow >= 0; --prevrow)
             {
                 wxRichTextCell* cell = table->GetCell(prevrow, prevcol);
@@ -9764,6 +9770,9 @@ int GetRowspanDisplacement(const wxRichTextTable* table, int row, int col, int p
                         // There is a rowspanning cell above above the hidden one, so we need
                         // to right-shift the index cell by this column's width. Furthermore, 
                         // if the cell also colspans, we need to shift by all affected columns
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for (int colSpan = 0; colSpan < cell->GetColspan(); ++colSpan)
                             deltaX += (colWidths[prevcol+colSpan] + paddingX);
                         break;
@@ -9788,8 +9797,14 @@ void ExpandCellsWithRowspan(const wxRichTextTable* table, int paddingY, int& bot
     wxArrayInt rowTops;
     rowTops.Add(0, rowCount+1);
     int row;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (row = 0; row < rowCount; ++row)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int column = 0; column < colCount; ++column)
         {
             wxRichTextCell* cell = table->GetCell(row, column);
@@ -9804,8 +9819,14 @@ void ExpandCellsWithRowspan(const wxRichTextTable* table, int paddingY, int& bot
     
     bool needsRelay = false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (row = 0; row < rowCount-1; ++row) // -1 as the bottom row can't rowspan
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int col = 0; col < colCount; ++col)
         {
             wxRichTextCell* cell = table->GetCell(row, col);
@@ -9839,12 +9860,18 @@ void ExpandCellsWithRowspan(const wxRichTextTable* table, int paddingY, int& bot
                         
                         // Each row in the span needs to by deepened by its share of the overhang (give the first row any spare).
                         // This is achieved by increasing the value stored in the following row's rowTops
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for (int spannedRows = 0; spannedRows < span; ++spannedRows)
                         {
                             rowTops[row+spannedRows+1] += ((deltaY * (spannedRows+1))  + (spannedRows == 0 ? spare:0));
                         }
                         
                         // Any rows below the span need shifting down
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for (int rowsBelow = row + span+1; rowsBelow <= rowCount; ++rowsBelow)
                         {
                             rowTops[rowsBelow] += overhang;
@@ -9861,8 +9888,14 @@ void ExpandCellsWithRowspan(const wxRichTextTable* table, int paddingY, int& bot
         return;
 
     // There were overflowing rowspanning cells, so layout yet again to make the increased row depths show
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (row = 0; row < rowCount; ++row)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int col = 0; col < colCount; ++col)
         {
             wxRichTextCell* cell = table->GetCell(row, col);
@@ -10478,6 +10511,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
                         // Calculate the size of this spanning cell from its constituent columns
                         int xx = 0;
                         int spans = wxMin(colSpan, m_colCount - i);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for (k = i; k < (i+spans); k++)
                         {
                             if (k != i)
