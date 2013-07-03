@@ -1603,6 +1603,7 @@ void wxExecuteData::OnStart(int pid_)
     // it more than once with the same handler.
     wxTheApp->SetSignalHandler(SIGCHLD, OnSomeChildExited);
 
+<<<<<<< HEAD
     // Remember the child PID to be able to wait for it later.
     pid = pid_;
 
@@ -1610,6 +1611,16 @@ void wxExecuteData::OnStart(int pid_)
     if ( process )
         process->SetPid(pid);
 
+=======
+
+    // Remember the child PID to be able to wait for it later.
+    pid = pid_;
+
+    // Also save it in wxProcess where it will be accessible to the user code.
+    if ( process )
+        process->SetPid(pid);
+
+>>>>>>> wx_svn
     // Finally, add this object itself to the list of child processes so that
     // we can check for its termination the next time we get SIGCHLD.
     ms_childProcesses[pid] = this;
