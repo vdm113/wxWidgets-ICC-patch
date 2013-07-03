@@ -30,6 +30,7 @@ LIBDIRNAME = \
 SETUPHDIR = \
 	$(LIBDIRNAME)\$(PORTNAME)$(WXUNIVNAME)$(WXUNICODEFLAG)$(WXDEBUGFLAG)
 <<<<<<< HEAD
+<<<<<<< HEAD
 BENCH_CXXFLAGS = $(__RUNTIME_LIBS) -I$(BCCDIR)\include $(__DEBUGINFO) \
 	$(__OPTIMIZEFLAG) $(__THREADSFLAG_0) -D__WX$(TOOLKIT)__ \
 	$(__WXUNIV_DEFINE_p) $(__DEBUG_DEFINE_p) $(__NDEBUG_DEFINE_p) \
@@ -37,12 +38,17 @@ BENCH_CXXFLAGS = $(__RUNTIME_LIBS) -I$(BCCDIR)\include $(__DEBUGINFO) \
 	$(__UNICODE_DEFINE_p) $(__MSLU_DEFINE_p) -I$(SETUPHDIR) -I.\..\..\include \
 	$(____CAIRO_INCLUDEDIR_FILENAMES) -I. $(__DLLFLAG_p) -DwxUSE_GUI=0 \
 =======
+=======
+>>>>>>> wx_svn
 BENCH_CXXFLAGS = $(__RUNTIME_LIBS) -I$(BCCDIR)\include $(__DEBUGINFO) \
 	$(__OPTIMIZEFLAG) $(__THREADSFLAG_0) -D__WX$(TOOLKIT)__ \
 	$(__WXUNIV_DEFINE_p) $(__DEBUG_DEFINE_p) $(__NDEBUG_DEFINE_p) \
 	$(__EXCEPTIONS_DEFINE_p) $(__RTTI_DEFINE_p) $(__THREAD_DEFINE_p) \
 	$(__UNICODE_DEFINE_p) $(__MSLU_DEFINE_p) -I$(SETUPHDIR) -I.\..\..\include \
 	$(____CAIRO_INCLUDEDIR_FILENAMES) -I. $(__DLLFLAG_p) -DwxUSE_GUI=0 \
+<<<<<<< HEAD
+>>>>>>> wx_svn
+=======
 >>>>>>> wx_svn
 	$(CPPFLAGS) $(CXXFLAGS)
 BENCH_OBJECTS =  \
@@ -57,6 +63,7 @@ BENCH_OBJECTS =  \
 	$(OBJS)\bench_tls.obj \
 	$(OBJS)\bench_printfbench.obj
 <<<<<<< HEAD
+<<<<<<< HEAD
 BENCH_GUI_CXXFLAGS = $(__RUNTIME_LIBS) -I$(BCCDIR)\include $(__DEBUGINFO) \
 	$(__OPTIMIZEFLAG) $(__THREADSFLAG_0) -D__WX$(TOOLKIT)__ \
 	$(__WXUNIV_DEFINE_p) $(__DEBUG_DEFINE_p) $(__NDEBUG_DEFINE_p) \
@@ -68,6 +75,8 @@ BENCH_GUI_OBJECTS =  \
 	$(OBJS)\bench_gui_bench.obj \
 	$(OBJS)\bench_gui_image.obj
 =======
+=======
+>>>>>>> wx_svn
 BENCH_GUI_CXXFLAGS = $(__RUNTIME_LIBS) -I$(BCCDIR)\include $(__DEBUGINFO) \
 	$(__OPTIMIZEFLAG) $(__THREADSFLAG_0) -D__WX$(TOOLKIT)__ \
 	$(__WXUNIV_DEFINE_p) $(__DEBUG_DEFINE_p) $(__NDEBUG_DEFINE_p) \
@@ -78,6 +87,9 @@ BENCH_GUI_CXXFLAGS = $(__RUNTIME_LIBS) -I$(BCCDIR)\include $(__DEBUGINFO) \
 BENCH_GUI_OBJECTS =  \
 	$(OBJS)\bench_gui_bench.obj \
 	$(OBJS)\bench_gui_image.obj
+<<<<<<< HEAD
+>>>>>>> wx_svn
+=======
 >>>>>>> wx_svn
 
 ### Conditionally set variables: ###
@@ -125,6 +137,7 @@ EXTRALIBS_FOR_BASE =
 EXTRALIBS_FOR_BASE =   
 !endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 !if "$(TOOLKIT)" == "GTK" && "$(TOOLKIT_VERSION)" == "2"
 LIB_GTK = gtk-win32-2.0.lib gdk-win32-2.0.lib pangocairo-1.0.lib \
 	gdk_pixbuf-2.0.lib cairo.lib pango-1.0.lib gobject-2.0.lib gthread-2.0.lib \
@@ -213,6 +226,8 @@ __RUNTIME_LIBS_0 = i
 !if "$(RUNTIME_LIBS)" == "static"
 __RUNTIME_LIBS_0 =
 =======
+=======
+>>>>>>> wx_svn
 !if "$(TOOLKIT)" == "GTK" && "$(TOOLKIT_VERSION)" == "2"
 LIB_GTK = gtk-win32-2.0.lib gdk-win32-2.0.lib pangocairo-1.0.lib \
 	gdk_pixbuf-2.0.lib cairo.lib pango-1.0.lib gobject-2.0.lib gthread-2.0.lib \
@@ -300,6 +315,9 @@ __RUNTIME_LIBS_0 = i
 !endif
 !if "$(RUNTIME_LIBS)" == "static"
 __RUNTIME_LIBS_0 =
+<<<<<<< HEAD
+>>>>>>> wx_svn
+=======
 >>>>>>> wx_svn
 !endif
 !if "$(WXUNIV)" == "1"
@@ -331,7 +349,11 @@ __MSLU_DEFINE_p = -DwxUSE_UNICODE_MSLU=1
 !endif
 !if "$(USE_CAIRO)" == "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
 ____CAIRO_INCLUDEDIR_FILENAMES = -I$(CAIRO_ROOT)\include\cairo
+=======
+____CAIRO_INCLUDEDIR_FILENAMES = -I$(CAIRO_ROOT)\include\cairo
+>>>>>>> wx_svn
 =======
 ____CAIRO_INCLUDEDIR_FILENAMES = -I$(CAIRO_ROOT)\include\cairo
 >>>>>>> wx_svn
@@ -358,7 +380,11 @@ __CAIRO_LIB_p = cairo.lib
 !endif
 !if "$(USE_CAIRO)" == "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
 ____CAIRO_LIBDIR_FILENAMES = -L$(CAIRO_ROOT)\lib
+=======
+____CAIRO_LIBDIR_FILENAMES = -L$(CAIRO_ROOT)\lib
+>>>>>>> wx_svn
 =======
 ____CAIRO_LIBDIR_FILENAMES = -L$(CAIRO_ROOT)\lib
 >>>>>>> wx_svn
@@ -384,7 +410,11 @@ $(OBJS):
 ### Targets: ###
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 all: $(OBJS)\bench.exe data $(__bench_gui___depname) data-image
+=======
+all: $(OBJS)\bench.exe data $(__bench_gui___depname) data-image
+>>>>>>> wx_svn
 =======
 all: $(OBJS)\bench.exe data $(__bench_gui___depname) data-image
 >>>>>>> wx_svn
@@ -400,6 +430,7 @@ clean:
 	-if exist $(OBJS)\bench.ilf del $(OBJS)\bench.ilf
 	-if exist $(OBJS)\bench.ils del $(OBJS)\bench.ils
 <<<<<<< HEAD
+<<<<<<< HEAD
 	-if exist $(OBJS)\bench_gui.exe del $(OBJS)\bench_gui.exe
 	-if exist $(OBJS)\bench_gui.tds del $(OBJS)\bench_gui.tds
 	-if exist $(OBJS)\bench_gui.ilc del $(OBJS)\bench_gui.ilc
@@ -411,6 +442,8 @@ $(OBJS)\bench.exe: $(BENCH_OBJECTS)
 	ilink32 -Tpe -q  -L$(BCCDIR)\lib -L$(BCCDIR)\lib\psdk $(__DEBUGINFO)  -L$(LIBDIRNAME) -ap $(____CAIRO_LIBDIR_FILENAMES) $(LDFLAGS) @&&|
 	c0x32.obj $(BENCH_OBJECTS),$@,, $(__WXLIB_NET_p)  $(__WXLIB_BASE_p)  $(__WXLIB_MONO_p) $(__LIB_PNG_IF_MONO_p) wxzlib$(WXDEBUGFLAG).lib wxregex$(WXUNICODEFLAG)$(WXDEBUGFLAG).lib wxexpat$(WXDEBUGFLAG).lib $(EXTRALIBS_FOR_BASE) $(__UNICOWS_LIB_p) $(__CAIRO_LIB_p) ole2w32.lib oleacc.lib import32.lib cw32$(__THREADSFLAG)$(__RUNTIME_LIBS_0).lib,,
 =======
+=======
+>>>>>>> wx_svn
 	-if exist $(OBJS)\bench_gui.exe del $(OBJS)\bench_gui.exe
 	-if exist $(OBJS)\bench_gui.tds del $(OBJS)\bench_gui.tds
 	-if exist $(OBJS)\bench_gui.ilc del $(OBJS)\bench_gui.ilc
@@ -421,6 +454,9 @@ $(OBJS)\bench.exe: $(BENCH_OBJECTS)
 $(OBJS)\bench.exe: $(BENCH_OBJECTS)
 	ilink32 -Tpe -q  -L$(BCCDIR)\lib -L$(BCCDIR)\lib\psdk $(__DEBUGINFO)  -L$(LIBDIRNAME) -ap $(____CAIRO_LIBDIR_FILENAMES) $(LDFLAGS) @&&|
 	c0x32.obj $(BENCH_OBJECTS),$@,, $(__WXLIB_NET_p)  $(__WXLIB_BASE_p)  $(__WXLIB_MONO_p) $(__LIB_PNG_IF_MONO_p) wxzlib$(WXDEBUGFLAG).lib wxregex$(WXUNICODEFLAG)$(WXDEBUGFLAG).lib wxexpat$(WXDEBUGFLAG).lib $(EXTRALIBS_FOR_BASE) $(__UNICOWS_LIB_p) $(__CAIRO_LIB_p) ole2w32.lib oleacc.lib import32.lib cw32$(__THREADSFLAG)$(__RUNTIME_LIBS_0).lib,,
+<<<<<<< HEAD
+>>>>>>> wx_svn
+=======
 >>>>>>> wx_svn
 |
 
@@ -428,6 +464,7 @@ data:
 	if not exist $(OBJS) mkdir $(OBJS)
 	for %f in (htmltest.html) do if not exist $(OBJS)\%f copy .\%f $(OBJS)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 !if "$(USE_GUI)" == "1"
 $(OBJS)\bench_gui.exe: $(BENCH_GUI_OBJECTS)  $(OBJS)\bench_gui_sample.res
@@ -441,6 +478,8 @@ data-image:
 	for %f in (../../samples/image/horse.bmp ../../samples/image/horse.jpg ../../samples/image/horse.png ../../samples/image/horse.tif) do if not exist $(OBJS)\%f copy .\%f $(OBJS)
 
 =======
+=======
+>>>>>>> wx_svn
 !if "$(USE_GUI)" == "1"
 $(OBJS)\bench_gui.exe: $(BENCH_GUI_OBJECTS)  $(OBJS)\bench_gui_sample.res
 	ilink32 -Tpe -q  -L$(BCCDIR)\lib -L$(BCCDIR)\lib\psdk $(__DEBUGINFO)  -L$(LIBDIRNAME) -ap $(____CAIRO_LIBDIR_FILENAMES) $(LDFLAGS) @&&|
@@ -452,6 +491,9 @@ data-image:
 	if not exist $(OBJS) mkdir $(OBJS)
 	for %f in (../../samples/image/horse.bmp ../../samples/image/horse.jpg ../../samples/image/horse.png ../../samples/image/horse.tif) do if not exist $(OBJS)\%f copy .\%f $(OBJS)
 
+<<<<<<< HEAD
+>>>>>>> wx_svn
+=======
 >>>>>>> wx_svn
 $(OBJS)\bench_bench.obj: .\bench.cpp
 	$(CXX) -q -c -P -o$@ $(BENCH_CXXFLAGS) .\bench.cpp
@@ -484,6 +526,7 @@ $(OBJS)\bench_printfbench.obj: .\printfbench.cpp
 	$(CXX) -q -c -P -o$@ $(BENCH_CXXFLAGS) .\printfbench.cpp
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 $(OBJS)\bench_gui_sample.res: .\..\..\samples\sample.rc
 	brcc32 -32 -r -fo$@ -i$(BCCDIR)\include    -d__WX$(TOOLKIT)__ $(__WXUNIV_DEFINE_p_3) $(__DEBUG_DEFINE_p_3) $(__NDEBUG_DEFINE_p_3) $(__EXCEPTIONS_DEFINE_p_3) $(__RTTI_DEFINE_p_3) $(__THREAD_DEFINE_p_3) $(__UNICODE_DEFINE_p_3) $(__MSLU_DEFINE_p_3) -i$(SETUPHDIR) -i.\..\..\include $(____CAIRO_INCLUDEDIR_FILENAMES_3_p) -i. $(__DLLFLAG_p_3) -i.\..\..\samples -dNOPCH .\..\..\samples\sample.rc
 
@@ -493,6 +536,8 @@ $(OBJS)\bench_gui_bench.obj: .\bench.cpp
 $(OBJS)\bench_gui_image.obj: .\image.cpp
 	$(CXX) -q -c -P -o$@ $(BENCH_GUI_CXXFLAGS) .\image.cpp
 =======
+=======
+>>>>>>> wx_svn
 $(OBJS)\bench_gui_sample.res: .\..\..\samples\sample.rc
 	brcc32 -32 -r -fo$@ -i$(BCCDIR)\include    -d__WX$(TOOLKIT)__ $(__WXUNIV_DEFINE_p_3) $(__DEBUG_DEFINE_p_3) $(__NDEBUG_DEFINE_p_3) $(__EXCEPTIONS_DEFINE_p_3) $(__RTTI_DEFINE_p_3) $(__THREAD_DEFINE_p_3) $(__UNICODE_DEFINE_p_3) $(__MSLU_DEFINE_p_3) -i$(SETUPHDIR) -i.\..\..\include $(____CAIRO_INCLUDEDIR_FILENAMES_3_p) -i. $(__DLLFLAG_p_3) -i.\..\..\samples -dNOPCH .\..\..\samples\sample.rc
 
@@ -501,4 +546,7 @@ $(OBJS)\bench_gui_bench.obj: .\bench.cpp
 
 $(OBJS)\bench_gui_image.obj: .\image.cpp
 	$(CXX) -q -c -P -o$@ $(BENCH_GUI_CXXFLAGS) .\image.cpp
+<<<<<<< HEAD
+>>>>>>> wx_svn
+=======
 >>>>>>> wx_svn

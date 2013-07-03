@@ -320,7 +320,11 @@ TEST_OBJECTS =  &
 	$(OBJS)\test_datetimetest.obj &
 	$(OBJS)\test_evthandler.obj &
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$(OBJS)\test_evtlooptest.obj &
+=======
+	$(OBJS)\test_evtlooptest.obj &
+>>>>>>> wx_svn
 =======
 	$(OBJS)\test_evtlooptest.obj &
 >>>>>>> wx_svn
@@ -469,15 +473,21 @@ TEST_GUI_OBJECTS =  &
 	$(OBJS)\test_gui_dialogtest.obj &
 	$(OBJS)\test_gui_clone.obj &
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$(OBJS)\test_gui_evtlooptest.obj &
 	$(OBJS)\test_gui_propagation.obj &
 	$(OBJS)\test_gui_keyboard.obj &
 	$(OBJS)\test_gui_exec.obj &
 =======
+=======
+>>>>>>> wx_svn
 	$(OBJS)\test_gui_evtlooptest.obj &
 	$(OBJS)\test_gui_propagation.obj &
 	$(OBJS)\test_gui_keyboard.obj &
 	$(OBJS)\test_gui_exec.obj &
+<<<<<<< HEAD
+>>>>>>> wx_svn
+=======
 >>>>>>> wx_svn
 	$(OBJS)\test_gui_fonttest.obj &
 	$(OBJS)\test_gui_image.obj &
@@ -550,7 +560,11 @@ data : .SYMBOLIC
 data-images : .SYMBOLIC 
 	if not exist image mkdir image
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for %f in (horse_grey.bmp horse_grey_flipped.bmp horse_rle4.bmp horse_rle4_flipped.bmp horse_rle8.bmp horse_rle8_flipped.bmp horse_bicubic_50x50.png horse_bicubic_100x100.png horse_bicubic_150x150.png horse_bicubic_300x300.png horse_bilinear_50x50.png horse_bilinear_100x100.png horse_bilinear_150x150.png horse_bilinear_300x300.png horse_box_average_50x50.png horse_box_average_100x100.png horse_box_average_150x150.png horse_box_average_300x300.png) do if not exist image\%f copy .\image\%f image
+=======
+	for %f in (horse_grey.bmp horse_grey_flipped.bmp horse_rle4.bmp horse_rle4_flipped.bmp horse_rle8.bmp horse_rle8_flipped.bmp horse_bicubic_50x50.png horse_bicubic_100x100.png horse_bicubic_150x150.png horse_bicubic_300x300.png horse_bilinear_50x50.png horse_bilinear_100x100.png horse_bilinear_150x150.png horse_bilinear_300x300.png horse_box_average_50x50.png horse_box_average_100x100.png horse_box_average_150x150.png horse_box_average_300x300.png) do if not exist image\%f copy .\image\%f image
+>>>>>>> wx_svn
 =======
 	for %f in (horse_grey.bmp horse_grey_flipped.bmp horse_rle4.bmp horse_rle4_flipped.bmp horse_rle8.bmp horse_rle8_flipped.bmp horse_bicubic_50x50.png horse_bicubic_100x100.png horse_bicubic_150x150.png horse_bicubic_300x300.png horse_bilinear_50x50.png horse_bilinear_100x100.png horse_bilinear_150x150.png horse_bilinear_300x300.png horse_box_average_50x50.png horse_box_average_100x100.png horse_box_average_150x150.png horse_box_average_300x300.png) do if not exist image\%f copy .\image\%f image
 >>>>>>> wx_svn
@@ -599,9 +613,15 @@ $(OBJS)\test_evthandler.obj :  .AUTODEPEND .\events\evthandler.cpp
 	$(CXX) -bt=nt -zq -fo=$^@ $(TEST_CXXFLAGS) $<
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 $(OBJS)\test_evtlooptest.obj :  .AUTODEPEND .\events\evtlooptest.cpp
 	$(CXX) -bt=nt -zq -fo=$^@ $(TEST_CXXFLAGS) $<
 
+=======
+$(OBJS)\test_evtlooptest.obj :  .AUTODEPEND .\events\evtlooptest.cpp
+	$(CXX) -bt=nt -zq -fo=$^@ $(TEST_CXXFLAGS) $<
+
+>>>>>>> wx_svn
 =======
 $(OBJS)\test_evtlooptest.obj :  .AUTODEPEND .\events\evtlooptest.cpp
 	$(CXX) -bt=nt -zq -fo=$^@ $(TEST_CXXFLAGS) $<
@@ -1016,9 +1036,15 @@ $(OBJS)\test_gui_clone.obj :  .AUTODEPEND .\events\clone.cpp
 	$(CXX) -bt=nt -zq -fo=$^@ $(TEST_GUI_CXXFLAGS) $<
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 $(OBJS)\test_gui_evtlooptest.obj :  .AUTODEPEND .\events\evtlooptest.cpp
 	$(CXX) -bt=nt -zq -fo=$^@ $(TEST_GUI_CXXFLAGS) $<
 
+=======
+$(OBJS)\test_gui_evtlooptest.obj :  .AUTODEPEND .\events\evtlooptest.cpp
+	$(CXX) -bt=nt -zq -fo=$^@ $(TEST_GUI_CXXFLAGS) $<
+
+>>>>>>> wx_svn
 =======
 $(OBJS)\test_gui_evtlooptest.obj :  .AUTODEPEND .\events\evtlooptest.cpp
 	$(CXX) -bt=nt -zq -fo=$^@ $(TEST_GUI_CXXFLAGS) $<
@@ -1031,9 +1057,15 @@ $(OBJS)\test_gui_keyboard.obj :  .AUTODEPEND .\events\keyboard.cpp
 	$(CXX) -bt=nt -zq -fo=$^@ $(TEST_GUI_CXXFLAGS) $<
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 $(OBJS)\test_gui_exec.obj :  .AUTODEPEND .\exec\exec.cpp
 	$(CXX) -bt=nt -zq -fo=$^@ $(TEST_GUI_CXXFLAGS) $<
 
+=======
+$(OBJS)\test_gui_exec.obj :  .AUTODEPEND .\exec\exec.cpp
+	$(CXX) -bt=nt -zq -fo=$^@ $(TEST_GUI_CXXFLAGS) $<
+
+>>>>>>> wx_svn
 =======
 $(OBJS)\test_gui_exec.obj :  .AUTODEPEND .\exec\exec.cpp
 	$(CXX) -bt=nt -zq -fo=$^@ $(TEST_GUI_CXXFLAGS) $<

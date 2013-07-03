@@ -383,6 +383,7 @@ SOURCE=.\controls\richtextctrltest.cpp
 
 SOURCE=.\..\samples\sample.rc
 <<<<<<< HEAD
+<<<<<<< HEAD
 # PROP BASE Output_Dir "vc_mswudll"
 # PROP BASE Intermediate_Dir "vc_mswudll\test_gui"
 # PROP BASE Target_Dir ""
@@ -725,6 +726,8 @@ SOURCE=.\controls\richtextctrltest.cpp
 SOURCE=.\..\samples\sample.rc
 =======
 >>>>>>> wx_svn
+=======
+>>>>>>> wx_svn
 # End Source File
 # Begin Source File
 
@@ -834,6 +837,10 @@ SOURCE=.\xml\xrctest.cpp
 # End Target
 # End Project
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> wx_svn
 =======
 
 >>>>>>> wx_svn

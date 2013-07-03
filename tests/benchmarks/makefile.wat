@@ -84,6 +84,7 @@ EXTRALIBS_FOR_BASE =
 EXTRALIBS_FOR_BASE =   
 !endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 LIB_GTK =
 !ifeq TOOLKIT GTK
 !ifeq TOOLKIT_VERSION 2
@@ -123,6 +124,8 @@ __DEBUGINFO =
 !ifeq DEBUG_INFO default
 __DEBUGINFO = -d2
 =======
+=======
+>>>>>>> wx_svn
 LIB_GTK =
 !ifeq TOOLKIT GTK
 !ifeq TOOLKIT_VERSION 2
@@ -161,11 +164,15 @@ __DEBUGINFO =
 !ifeq BUILD debug
 !ifeq DEBUG_INFO default
 __DEBUGINFO = -d2
+<<<<<<< HEAD
+>>>>>>> wx_svn
+=======
 >>>>>>> wx_svn
 !endif
 !endif
 !ifeq BUILD release
 !ifeq DEBUG_INFO default
+<<<<<<< HEAD
 <<<<<<< HEAD
 __DEBUGINFO = -d0
 !endif
@@ -176,6 +183,8 @@ __DEBUGINFO = -d0
 !ifeq DEBUG_INFO 1
 __DEBUGINFO = -d2
 =======
+=======
+>>>>>>> wx_svn
 __DEBUGINFO = -d0
 !endif
 !endif
@@ -184,6 +193,9 @@ __DEBUGINFO = -d0
 !endif
 !ifeq DEBUG_INFO 1
 __DEBUGINFO = -d2
+<<<<<<< HEAD
+>>>>>>> wx_svn
+=======
 >>>>>>> wx_svn
 !endif
 __DEBUGINFO_1 =
@@ -204,6 +216,7 @@ __DEBUGINFO_1 =
 __DEBUGINFO_1 = debug all
 !endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 __OPTIMIZEFLAG =
 !ifeq BUILD debug
 __OPTIMIZEFLAG = -od
@@ -261,6 +274,8 @@ ____CAIRO_LIBDIR_FILENAMES =
 !ifeq USE_CAIRO 1
 ____CAIRO_LIBDIR_FILENAMES = libpath $(CAIRO_ROOT)\lib
 =======
+=======
+>>>>>>> wx_svn
 __OPTIMIZEFLAG =
 !ifeq BUILD debug
 __OPTIMIZEFLAG = -od
@@ -317,6 +332,9 @@ __CAIRO_LIB_p = cairo.lib
 ____CAIRO_LIBDIR_FILENAMES =
 !ifeq USE_CAIRO 1
 ____CAIRO_LIBDIR_FILENAMES = libpath $(CAIRO_ROOT)\lib
+<<<<<<< HEAD
+>>>>>>> wx_svn
+=======
 >>>>>>> wx_svn
 !endif
 __WXUNIV_DEFINE_p =
@@ -351,9 +369,15 @@ __UNICODE_DEFINE_p = -dwxUSE_UNICODE=0
 __UNICODE_DEFINE_p = -d_UNICODE
 !endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 ____CAIRO_INCLUDEDIR_FILENAMES =
 !ifeq USE_CAIRO 1
 ____CAIRO_INCLUDEDIR_FILENAMES = -i=$(CAIRO_ROOT)\include\cairo
+=======
+____CAIRO_INCLUDEDIR_FILENAMES =
+!ifeq USE_CAIRO 1
+____CAIRO_INCLUDEDIR_FILENAMES = -i=$(CAIRO_ROOT)\include\cairo
+>>>>>>> wx_svn
 =======
 ____CAIRO_INCLUDEDIR_FILENAMES =
 !ifeq USE_CAIRO 1
@@ -376,6 +400,7 @@ LIBDIRNAME = &
 SETUPHDIR = &
 	$(LIBDIRNAME)\$(PORTNAME)$(WXUNIVNAME)$(WXUNICODEFLAG)$(WXDEBUGFLAG)
 <<<<<<< HEAD
+<<<<<<< HEAD
 BENCH_CXXFLAGS = $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__THREADSFLAG) &
 	$(__RUNTIME_LIBS) -d__WX$(TOOLKIT)__ $(__WXUNIV_DEFINE_p) &
 	$(__DEBUG_DEFINE_p) $(__NDEBUG_DEFINE_p) $(__EXCEPTIONS_DEFINE_p) &
@@ -384,6 +409,8 @@ BENCH_CXXFLAGS = $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__THREADSFLAG) &
 	-wcd=549 -wcd=656 -wcd=657 -wcd=667 -i=. $(__DLLFLAG_p) -dwxUSE_GUI=0 &
 	$(__RTTIFLAG) $(__EXCEPTIONSFLAG) $(CPPFLAGS) $(CXXFLAGS)
 =======
+=======
+>>>>>>> wx_svn
 BENCH_CXXFLAGS = $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__THREADSFLAG) &
 	$(__RUNTIME_LIBS) -d__WX$(TOOLKIT)__ $(__WXUNIV_DEFINE_p) &
 	$(__DEBUG_DEFINE_p) $(__NDEBUG_DEFINE_p) $(__EXCEPTIONS_DEFINE_p) &
@@ -391,6 +418,9 @@ BENCH_CXXFLAGS = $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__THREADSFLAG) &
 	-i=$(SETUPHDIR) -i=.\..\..\include $(____CAIRO_INCLUDEDIR_FILENAMES) -wx &
 	-wcd=549 -wcd=656 -wcd=657 -wcd=667 -i=. $(__DLLFLAG_p) -dwxUSE_GUI=0 &
 	$(__RTTIFLAG) $(__EXCEPTIONSFLAG) $(CPPFLAGS) $(CXXFLAGS)
+<<<<<<< HEAD
+>>>>>>> wx_svn
+=======
 >>>>>>> wx_svn
 BENCH_OBJECTS =  &
 	$(OBJS)\bench_bench.obj &
@@ -404,6 +434,7 @@ BENCH_OBJECTS =  &
 	$(OBJS)\bench_tls.obj &
 	$(OBJS)\bench_printfbench.obj
 <<<<<<< HEAD
+<<<<<<< HEAD
 BENCH_GUI_CXXFLAGS = $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__THREADSFLAG) &
 	$(__RUNTIME_LIBS) -d__WX$(TOOLKIT)__ $(__WXUNIV_DEFINE_p) &
 	$(__DEBUG_DEFINE_p) $(__NDEBUG_DEFINE_p) $(__EXCEPTIONS_DEFINE_p) &
@@ -415,6 +446,8 @@ BENCH_GUI_OBJECTS =  &
 	$(OBJS)\bench_gui_bench.obj &
 	$(OBJS)\bench_gui_image.obj
 =======
+=======
+>>>>>>> wx_svn
 BENCH_GUI_CXXFLAGS = $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__THREADSFLAG) &
 	$(__RUNTIME_LIBS) -d__WX$(TOOLKIT)__ $(__WXUNIV_DEFINE_p) &
 	$(__DEBUG_DEFINE_p) $(__NDEBUG_DEFINE_p) $(__EXCEPTIONS_DEFINE_p) &
@@ -425,6 +458,9 @@ BENCH_GUI_CXXFLAGS = $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__THREADSFLAG) &
 BENCH_GUI_OBJECTS =  &
 	$(OBJS)\bench_gui_bench.obj &
 	$(OBJS)\bench_gui_image.obj
+<<<<<<< HEAD
+>>>>>>> wx_svn
+=======
 >>>>>>> wx_svn
 
 
@@ -435,7 +471,11 @@ $(OBJS) :
 ### Targets: ###
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 all : .SYMBOLIC $(OBJS)\bench.exe data $(__bench_gui___depname) data-image
+=======
+all : .SYMBOLIC $(OBJS)\bench.exe data $(__bench_gui___depname) data-image
+>>>>>>> wx_svn
 =======
 all : .SYMBOLIC $(OBJS)\bench.exe data $(__bench_gui___depname) data-image
 >>>>>>> wx_svn
@@ -448,7 +488,11 @@ clean : .SYMBOLIC
 	-if exist $(OBJS)\*.pch del $(OBJS)\*.pch
 	-if exist $(OBJS)\bench.exe del $(OBJS)\bench.exe
 <<<<<<< HEAD
+<<<<<<< HEAD
 	-if exist $(OBJS)\bench_gui.exe del $(OBJS)\bench_gui.exe
+=======
+	-if exist $(OBJS)\bench_gui.exe del $(OBJS)\bench_gui.exe
+>>>>>>> wx_svn
 =======
 	-if exist $(OBJS)\bench_gui.exe del $(OBJS)\bench_gui.exe
 >>>>>>> wx_svn
@@ -459,7 +503,11 @@ $(OBJS)\bench.exe :  $(BENCH_OBJECTS)
 	@%append $(OBJS)\bench.lbc name $^@
 	@%append $(OBJS)\bench.lbc option caseexact
 <<<<<<< HEAD
+<<<<<<< HEAD
 	@%append $(OBJS)\bench.lbc  $(__DEBUGINFO_1)  libpath $(LIBDIRNAME) system nt ref 'main_' $(____CAIRO_LIBDIR_FILENAMES) $(LDFLAGS)
+=======
+	@%append $(OBJS)\bench.lbc  $(__DEBUGINFO_1)  libpath $(LIBDIRNAME) system nt ref 'main_' $(____CAIRO_LIBDIR_FILENAMES) $(LDFLAGS)
+>>>>>>> wx_svn
 =======
 	@%append $(OBJS)\bench.lbc  $(__DEBUGINFO_1)  libpath $(LIBDIRNAME) system nt ref 'main_' $(____CAIRO_LIBDIR_FILENAMES) $(LDFLAGS)
 >>>>>>> wx_svn
@@ -474,6 +522,7 @@ data : .SYMBOLIC
 	for %f in (htmltest.html) do if not exist $(OBJS)\%f copy .\%f $(OBJS)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 !ifeq USE_GUI 1
 $(OBJS)\bench_gui.exe :  $(BENCH_GUI_OBJECTS) $(OBJS)\bench_gui_sample.res
 	@%create $(OBJS)\bench_gui.lbc
@@ -493,6 +542,8 @@ data-image : .SYMBOLIC
 	for %f in (../../samples/image/horse.bmp ../../samples/image/horse.jpg ../../samples/image/horse.png ../../samples/image/horse.tif) do if not exist $(OBJS)\%f copy .\%f $(OBJS)
 
 =======
+=======
+>>>>>>> wx_svn
 !ifeq USE_GUI 1
 $(OBJS)\bench_gui.exe :  $(BENCH_GUI_OBJECTS) $(OBJS)\bench_gui_sample.res
 	@%create $(OBJS)\bench_gui.lbc
@@ -511,6 +562,9 @@ data-image : .SYMBOLIC
 	if not exist $(OBJS) mkdir $(OBJS)
 	for %f in (../../samples/image/horse.bmp ../../samples/image/horse.jpg ../../samples/image/horse.png ../../samples/image/horse.tif) do if not exist $(OBJS)\%f copy .\%f $(OBJS)
 
+<<<<<<< HEAD
+>>>>>>> wx_svn
+=======
 >>>>>>> wx_svn
 $(OBJS)\bench_bench.obj :  .AUTODEPEND .\bench.cpp
 	$(CXX) -bt=nt -zq -fo=$^@ $(BENCH_CXXFLAGS) $<
@@ -543,6 +597,7 @@ $(OBJS)\bench_printfbench.obj :  .AUTODEPEND .\printfbench.cpp
 	$(CXX) -bt=nt -zq -fo=$^@ $(BENCH_CXXFLAGS) $<
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 $(OBJS)\bench_gui_sample.res :  .AUTODEPEND .\..\..\samples\sample.rc
 	wrc -q -ad -bt=nt -r -fo=$^@    -d__WX$(TOOLKIT)__ $(__WXUNIV_DEFINE_p) $(__DEBUG_DEFINE_p) $(__NDEBUG_DEFINE_p) $(__EXCEPTIONS_DEFINE_p) $(__RTTI_DEFINE_p) $(__THREAD_DEFINE_p) $(__UNICODE_DEFINE_p)  -i=$(SETUPHDIR) -i=.\..\..\include $(____CAIRO_INCLUDEDIR_FILENAMES) -i=. $(__DLLFLAG_p) -i=.\..\..\samples -dNOPCH $<
 
@@ -552,6 +607,8 @@ $(OBJS)\bench_gui_bench.obj :  .AUTODEPEND .\bench.cpp
 $(OBJS)\bench_gui_image.obj :  .AUTODEPEND .\image.cpp
 	$(CXX) -bt=nt -zq -fo=$^@ $(BENCH_GUI_CXXFLAGS) $<
 =======
+=======
+>>>>>>> wx_svn
 $(OBJS)\bench_gui_sample.res :  .AUTODEPEND .\..\..\samples\sample.rc
 	wrc -q -ad -bt=nt -r -fo=$^@    -d__WX$(TOOLKIT)__ $(__WXUNIV_DEFINE_p) $(__DEBUG_DEFINE_p) $(__NDEBUG_DEFINE_p) $(__EXCEPTIONS_DEFINE_p) $(__RTTI_DEFINE_p) $(__THREAD_DEFINE_p) $(__UNICODE_DEFINE_p)  -i=$(SETUPHDIR) -i=.\..\..\include $(____CAIRO_INCLUDEDIR_FILENAMES) -i=. $(__DLLFLAG_p) -i=.\..\..\samples -dNOPCH $<
 
@@ -560,4 +617,7 @@ $(OBJS)\bench_gui_bench.obj :  .AUTODEPEND .\bench.cpp
 
 $(OBJS)\bench_gui_image.obj :  .AUTODEPEND .\image.cpp
 	$(CXX) -bt=nt -zq -fo=$^@ $(BENCH_GUI_CXXFLAGS) $<
+<<<<<<< HEAD
+>>>>>>> wx_svn
+=======
 >>>>>>> wx_svn
