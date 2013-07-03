@@ -1603,6 +1603,7 @@ void wxExecuteData::OnStart(int pid_)
     // it more than once with the same handler.
     wxTheApp->SetSignalHandler(SIGCHLD, OnSomeChildExited);
 
+
     // Remember the child PID to be able to wait for it later.
     pid = pid_;
 
