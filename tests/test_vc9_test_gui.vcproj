@@ -540,6 +540,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\events\evtlooptest.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\exec\exec.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\font\fonttest.cpp"
 				>
 			</File>
@@ -700,6 +708,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\controls\simplebooktest.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\geometry\size.cpp"
 				>
 			</File>
@@ -799,4 +811,3 @@
 		
 	</Globals>
 </VisualStudioProject>
-

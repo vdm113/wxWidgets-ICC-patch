@@ -93,13 +93,24 @@ void wxGUIEventLoop::WakeUp()
                             kEventPriorityHigh );
 }
 
-void wxGUIEventLoop::DoRun()
+void wxGUIEventLoop::OSXDoRun()
 {
     wxMacAutoreleasePool autoreleasepool;
-    RunApplicationEventLoop();
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (!m_shouldExit)
+    {
+        RunApplicationEventLoop();
+    }
+
+    // Force enclosing event loop to temporarily exit and check
+    // if it should be stopped.
+    QuitApplicationEventLoop();
 }
 
-void wxGUIEventLoop::DoStop()
+void wxGUIEventLoop::OSXDoStop()
 {
     QuitApplicationEventLoop();
 }
@@ -127,7 +138,7 @@ wxModalEventLoop::wxModalEventLoop(WXWindow modalNativeWindow)
 
 // END move into a evtloop_osx.cpp
 
-void wxModalEventLoop::DoRun()
+void wxModalEventLoop::OSXDoRun()
 {
     wxWindowDisabler disabler(m_modalWindow);
     wxMacAutoreleasePool autoreleasepool;
@@ -163,7 +174,7 @@ void wxModalEventLoop::DoRun()
 
 }
 
-void wxModalEventLoop::DoStop()
+void wxModalEventLoop::OSXDoStop()
 {
     wxMacAutoreleasePool autoreleasepool;
     QuitAppModalLoopForWindow(m_modalNativeWindow);

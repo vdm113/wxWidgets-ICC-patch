@@ -37,9 +37,8 @@ public:
     wxModalEventLoop(WXWindow modalNativeWindow);
 
 protected:
-    virtual void DoRun();
-
-    virtual void DoStop();
+    virtual void OSXDoRun();
+    virtual void OSXDoStop();
 
     // (in case) the modal window for this event loop
     wxNonOwnedWindow* m_modalWindow;

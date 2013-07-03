@@ -545,6 +545,12 @@ typedef short int WXTYPE;
 #   endif
 #endif
 
+#if defined(__GNUC__)
+    #define WX_ATTRIBUTE_UNUSED __attribute__ ((unused))
+#else
+    #define WX_ATTRIBUTE_UNUSED
+#endif
+
 /*  Macro to issue warning when using deprecated functions with gcc3 or MSVC7: */
 #if wxCHECK_GCC_VERSION(3, 1)
     #define wxDEPRECATED(x) __attribute__((deprecated)) x
@@ -638,7 +644,7 @@ typedef short int WXTYPE;
     template <typename T>
     inline void wxDELETE(T*& ptr)
     {
-        typedef char TypeIsCompleteCheck[sizeof(T)];
+        typedef char TypeIsCompleteCheck[sizeof(T)] WX_ATTRIBUTE_UNUSED;
 
         if ( ptr != NULL )
         {
@@ -651,7 +657,7 @@ typedef short int WXTYPE;
     template <typename T>
     inline void wxDELETEA(T*& ptr)
     {
-        typedef char TypeIsCompleteCheck[sizeof(T)];
+        typedef char TypeIsCompleteCheck[sizeof(T)] WX_ATTRIBUTE_UNUSED;
 
         if ( ptr != NULL )
         {

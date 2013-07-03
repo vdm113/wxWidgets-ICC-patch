@@ -5,6 +5,7 @@
 // Created:     2009-10-18
 // RCS-ID:      $Id$
 // Copyright:   (c) 2009 Vadim Zeitlin <vadim@wxwidgets.org>
+//              (c) 2013 Rob Bresalier
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -42,97 +43,28 @@
     #include "wx/nonownedwnd.h"
 #endif
 
+#include <CoreFoundation/CFSocket.h>
+
 // ============================================================================
 // wxCFEventLoopSource and wxCFEventLoop implementation
 // ============================================================================
 
 #if wxUSE_EVENTLOOP_SOURCE
 
-namespace
+void wxCFEventLoopSource::InitSourceSocket(CFSocketRef cfSocket)
 {
+    wxASSERT_MSG( !m_cfSocket, "shouldn't be called more than once" );
 
-void EnableDescriptorCallBacks(CFFileDescriptorRef cffd, int flags)
-{
-    if ( flags & wxEVENT_SOURCE_INPUT )
-        CFFileDescriptorEnableCallBacks(cffd, kCFFileDescriptorReadCallBack);
-    if ( flags & wxEVENT_SOURCE_OUTPUT )
-        CFFileDescriptorEnableCallBacks(cffd, kCFFileDescriptorWriteCallBack);
-}
-
-void
-wx_cffiledescriptor_callback(CFFileDescriptorRef cffd,
-                             CFOptionFlags flags,
-                             void *ctxData)
-{
-    wxLogTrace(wxTRACE_EVT_SOURCE,
-               "CFFileDescriptor callback, flags=%d", flags);
-
-    wxCFEventLoopSource * const
-        source = static_cast<wxCFEventLoopSource *>(ctxData);
-
-    wxEventLoopSourceHandler * const
-        handler = source->GetHandler();
-    if ( flags & kCFFileDescriptorReadCallBack )
-        handler->OnReadWaiting();
-    if ( flags & kCFFileDescriptorWriteCallBack )
-        handler->OnWriteWaiting();
-
-    // we need to re-enable callbacks to be called again
-    EnableDescriptorCallBacks(cffd, source->GetFlags());
-}
-
-} // anonymous namespace
-
-wxEventLoopSource *
-wxCFEventLoop::AddSourceForFD(int fd,
-                              wxEventLoopSourceHandler *handler,
-                              int flags)
-{
-    wxCHECK_MSG( fd != -1, NULL, "can't monitor invalid fd" );
-
-    wxScopedPtr<wxCFEventLoopSource>
-        source(new wxCFEventLoopSource(handler, flags));
-
-    CFFileDescriptorContext ctx = { 0, source.get(), NULL, NULL, NULL };
-    wxCFRef<CFFileDescriptorRef>
-        cffd(CFFileDescriptorCreate
-             (
-                  kCFAllocatorDefault,
-                  fd,
-                  true,   // close on invalidate
-                  wx_cffiledescriptor_callback,
-                  &ctx
-             ));
-    if ( !cffd )
-        return NULL;
-
-    wxCFRef<CFRunLoopSourceRef>
-        cfsrc(CFFileDescriptorCreateRunLoopSource(kCFAllocatorDefault, cffd, 0));
-    if ( !cfsrc )
-        return NULL;
-
-    CFRunLoopRef cfloop = CFGetCurrentRunLoop();
-    CFRunLoopAddSource(cfloop, cfsrc, kCFRunLoopDefaultMode);
-
-    // Enable the callbacks initially.
-    EnableDescriptorCallBacks(cffd, source->GetFlags());
-
-    source->SetFileDescriptor(cffd.release());
-
-    return source.release();
-}
-
-void wxCFEventLoopSource::SetFileDescriptor(CFFileDescriptorRef cffd)
-{
-    wxASSERT_MSG( !m_cffd, "shouldn't be called more than once" );
-
-    m_cffd = cffd;
+    m_cfSocket = cfSocket;
 }
 
 wxCFEventLoopSource::~wxCFEventLoopSource()
 {
-    if ( m_cffd )
-        CFRelease(m_cffd);
+    if ( m_cfSocket )
+    {
+        CFSocketInvalidate(m_cfSocket);
+        CFRelease(m_cfSocket);
+    }
 }
 
 #endif // wxUSE_EVENTLOOP_SOURCE
@@ -370,7 +302,7 @@ int wxCFEventLoop::DoDispatchTimeout(unsigned long timeout)
     return 1;
 }
 
-void wxCFEventLoop::DoRun()
+void wxCFEventLoop::OSXDoRun()
 {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -397,23 +329,15 @@ void wxCFEventLoop::DoRun()
     }
 }
 
-void wxCFEventLoop::DoStop()
+void wxCFEventLoop::OSXDoStop()
 {
     CFRunLoopStop(CFGetCurrentRunLoop());
 }
 
 // enters a loop calling OnNextIteration(), Pending() and Dispatch() and
 // terminating when Exit() is called
-int wxCFEventLoop::Run()
+int wxCFEventLoop::DoRun()
 {
-    // event loops are not recursive, you need to create another loop!
-    wxCHECK_MSG( !IsRunning(), -1, wxT("can't reenter a message loop") );
-
-    // ProcessIdle() and ProcessEvents() below may throw so the code here should
-    // be exception-safe, hence we must use local objects for all actions we
-    // should undo
-    wxEventLoopActivator activate(this);
-
     // we must ensure that OnExit() is called even if an exception is thrown
     // from inside ProcessEvents() but we must call it from Exit() in normal
     // situations because it is supposed to be called synchronously,
@@ -429,7 +353,7 @@ int wxCFEventLoop::Run()
         {
 #endif // wxUSE_EXCEPTIONS
 
-            DoRun();
+            OSXDoRun();
 
 #if wxUSE_EXCEPTIONS
             // exit the outer loop as well
@@ -463,11 +387,11 @@ int wxCFEventLoop::Run()
 
 // sets the "should exit" flag and wakes up the loop so that it terminates
 // soon
-void wxCFEventLoop::Exit(int rc)
+void wxCFEventLoop::ScheduleExit(int rc)
 {
     m_exitcode = rc;
     m_shouldExit = true;
-    DoStop();
+    OSXDoStop();
 }
 
 wxCFEventLoopPauseIdleEvents::wxCFEventLoopPauseIdleEvents()

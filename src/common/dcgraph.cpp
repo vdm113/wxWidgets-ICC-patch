@@ -227,8 +227,8 @@ void wxGCDCImpl::DoDrawBitmap( const wxBitmap &bmp, wxCoord x, wxCoord y,
     wxCHECK_RET( IsOk(), wxT("wxGCDC(cg)::DoDrawBitmap - invalid DC") );
     wxCHECK_RET( bmp.IsOk(), wxT("wxGCDC(cg)::DoDrawBitmap - invalid bitmap") );
 
-    int w = bmp.GetWidth();
-    int h = bmp.GetHeight();
+    int w = bmp.GetScaledWidth();
+    int h = bmp.GetScaledHeight();
     if ( bmp.GetDepth() == 1 )
     {
         m_graphicContext->SetPen(*wxTRANSPARENT_PEN);
@@ -396,7 +396,7 @@ void wxGCDCImpl::ComputeScaleAndOrigin()
 
         // the logical origin sets the origin to have new coordinates
         m_matrixCurrent.Translate( m_deviceOriginX - m_logicalOriginX * m_signX * m_scaleX,
-                                   m_deviceOriginY-m_logicalOriginY * m_signY * m_scaleY);
+                                   m_deviceOriginY - m_logicalOriginY * m_signY * m_scaleY);
 
         m_matrixCurrent.Scale( m_scaleX * m_signX, m_scaleY * m_signY );
 

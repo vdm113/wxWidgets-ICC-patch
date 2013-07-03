@@ -1,4 +1,8 @@
+<<<<<<< HEAD:tests/benchmarks/bench.dsp
 # Microsoft Developer Studio Project File - Name="bench" - Package Owner=<4>
+=======
+# Microsoft Developer Studio Project File - Name="bench_bench" - Package Owner=<4>
+>>>>>>> wx_svn:tests/benchmarks/bench_bench.dsp
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
 # ** DO NOT EDIT **
 
@@ -7,6 +11,7 @@
 CFG=bench - Win32 Debug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
+<<<<<<< HEAD:tests/benchmarks/bench.dsp
 !MESSAGE 
 !MESSAGE NMAKE /f "bench.mak".
 !MESSAGE 
@@ -17,11 +22,27 @@ CFG=bench - Win32 Debug
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
+=======
+!MESSAGE
+!MESSAGE NMAKE /f "bench_bench.mak".
+!MESSAGE
+!MESSAGE You can specify a configuration when running NMAKE
+!MESSAGE by defining the macro CFG on the command line. For example:
+!MESSAGE
+!MESSAGE NMAKE /f "bench_bench.mak" CFG="bench - Win32 Debug"
+!MESSAGE
+!MESSAGE Possible choices for configuration are:
+!MESSAGE
+>>>>>>> wx_svn:tests/benchmarks/bench_bench.dsp
 !MESSAGE "bench - Win32 DLL Release" (based on "Win32 (x86) Console Application")
 !MESSAGE "bench - Win32 DLL Debug" (based on "Win32 (x86) Console Application")
 !MESSAGE "bench - Win32 Release" (based on "Win32 (x86) Console Application")
 !MESSAGE "bench - Win32 Debug" (based on "Win32 (x86) Console Application")
+<<<<<<< HEAD:tests/benchmarks/bench.dsp
 !MESSAGE 
+=======
+!MESSAGE
+>>>>>>> wx_svn:tests/benchmarks/bench_bench.dsp
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -176,4 +197,7 @@ SOURCE=.\tls.cpp
 # End Group
 # End Target
 # End Project
+<<<<<<< HEAD:tests/benchmarks/bench.dsp
 
+=======
+>>>>>>> wx_svn:tests/benchmarks/bench_bench.dsp

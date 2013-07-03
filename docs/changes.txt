@@ -574,6 +574,8 @@ All:
   event type constants to make using Bind() less verbose. E.g.
   wxEVT_COMMAND_MENU_SELECTED is now wxEVT_MENU (but the old name remains
   available for compatibility) (Catalin Raceanu).
+- Fix wxExecute() implementation under Unix (Rob Bresalier).
+- Also fix reading output from children exiting with -1 () (Jonathan Dagresta).
 - Add wxEvtHandler::CallAfter() method for asynchronous method calls.
 - Add support for symlinks to wxFileName (David Hart).
 - Add wxDIR_NO_FOLLOW flag for wxDir traversal (David Hart).
@@ -584,6 +586,7 @@ All:
 - Add new wxFSW_EVENT_ATTRIB and wxFSW_EVENT_UNMOUNT flags (David Hart).
 - Add separate read/written bytes counters and per-direction NOWAIT and WAITALL
   flags to wxSocket (Rob Bresalier).
+- Add wxEventLoop::ScheduleExit() (Rob Bresalier).
 - Add wxProcess::SetPriority() (Marian Meravy).
 - Add wxDir::Close() method (Silverstorm82).
 - Fix wxDateTime::GetWeekOfYear() for the last week of year (aimo).
@@ -597,6 +600,7 @@ All:
 - Add IEEE 754 single/double precision support to wxDataStream classes (net147).
 - Add wxVector<>::const_reverse_iterator (troelsk).
 - Fix thread-safety issue in wxSharedPtr<> (plorkyeran).
+- Add wxTimer::StartOnce().
 - Add Nepali translation (Him Prasad Gautam).
 
 All (GUI):
@@ -671,7 +675,9 @@ All (GUI):
 - Fix wxStyledTextCtrl::SetInsertionPointEnd() (troelsk).
 - Add wxFileDialog::GetCurrentlySelectedFilename() (Carl Godkin).
 - Add wxMouseEvent::GetColumnsPerAction() (toiffel).
+- Add support for horizontal mouse wheel scrolling in wxSTC (toiffel).
 - Improve wrapping of cell contents in wxGrid (nmset).
+- Big speed up in wxImage::Scale(wxIMAGE_QUALITY_HIGH) (Hsilgos).
 
 wxGTK:
 

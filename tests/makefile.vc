@@ -44,6 +44,7 @@ TEST_OBJECTS =  \
 	$(OBJS)\test_regconf.obj \
 	$(OBJS)\test_datetimetest.obj \
 	$(OBJS)\test_evthandler.obj \
+	$(OBJS)\test_evtlooptest.obj \
 	$(OBJS)\test_evtsource.obj \
 	$(OBJS)\test_stopwatch.obj \
 	$(OBJS)\test_timertest.obj \
@@ -175,6 +176,7 @@ TEST_GUI_OBJECTS =  \
 	$(OBJS)\test_gui_rearrangelisttest.obj \
 	$(OBJS)\test_gui_richtextctrltest.obj \
 	$(OBJS)\test_gui_searchctrltest.obj \
+	$(OBJS)\test_gui_simplebooktest.obj \
 	$(OBJS)\test_gui_slidertest.obj \
 	$(OBJS)\test_gui_spinctrldbltest.obj \
 	$(OBJS)\test_gui_spinctrltest.obj \
@@ -190,8 +192,10 @@ TEST_GUI_OBJECTS =  \
 	$(OBJS)\test_gui_windowtest.obj \
 	$(OBJS)\test_gui_dialogtest.obj \
 	$(OBJS)\test_gui_clone.obj \
+	$(OBJS)\test_gui_evtlooptest.obj \
 	$(OBJS)\test_gui_propagation.obj \
 	$(OBJS)\test_gui_keyboard.obj \
+	$(OBJS)\test_gui_exec.obj \
 	$(OBJS)\test_gui_fonttest.obj \
 	$(OBJS)\test_gui_image.obj \
 	$(OBJS)\test_gui_rawbmp.obj \
@@ -625,7 +629,7 @@ data:
 
 data-images: 
 	if not exist image mkdir image
-	for %f in (horse_grey.bmp horse_grey_flipped.bmp horse_rle4.bmp horse_rle4_flipped.bmp horse_rle8.bmp horse_rle8_flipped.bmp) do if not exist image\%f copy .\image\%f image
+	for %f in (horse_grey.bmp horse_grey_flipped.bmp horse_rle4.bmp horse_rle4_flipped.bmp horse_rle8.bmp horse_rle8_flipped.bmp horse_bicubic_50x50.png horse_bicubic_100x100.png horse_bicubic_150x150.png horse_bicubic_300x300.png horse_bilinear_50x50.png horse_bilinear_100x100.png horse_bilinear_150x150.png horse_bilinear_300x300.png horse_box_average_50x50.png horse_box_average_100x100.png horse_box_average_150x150.png horse_box_average_300x300.png) do if not exist image\%f copy .\image\%f image
 
 fr: 
 	if not exist $(OBJS)\intl\fr mkdir $(OBJS)\intl\fr
@@ -669,6 +673,9 @@ $(OBJS)\test_datetimetest.obj: .\datetime\datetimetest.cpp
 
 $(OBJS)\test_evthandler.obj: .\events\evthandler.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(TEST_CXXFLAGS) .\events\evthandler.cpp
+
+$(OBJS)\test_evtlooptest.obj: .\events\evtlooptest.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(TEST_CXXFLAGS) .\events\evtlooptest.cpp
 
 $(OBJS)\test_evtsource.obj: .\events\evtsource.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(TEST_CXXFLAGS) .\events\evtsource.cpp
@@ -1030,6 +1037,9 @@ $(OBJS)\test_gui_richtextctrltest.obj: .\controls\richtextctrltest.cpp
 $(OBJS)\test_gui_searchctrltest.obj: .\controls\searchctrltest.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(TEST_GUI_CXXFLAGS) .\controls\searchctrltest.cpp
 
+$(OBJS)\test_gui_simplebooktest.obj: .\controls\simplebooktest.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(TEST_GUI_CXXFLAGS) .\controls\simplebooktest.cpp
+
 $(OBJS)\test_gui_slidertest.obj: .\controls\slidertest.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(TEST_GUI_CXXFLAGS) .\controls\slidertest.cpp
 
@@ -1075,11 +1085,17 @@ $(OBJS)\test_gui_dialogtest.obj: .\controls\dialogtest.cpp
 $(OBJS)\test_gui_clone.obj: .\events\clone.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(TEST_GUI_CXXFLAGS) .\events\clone.cpp
 
+$(OBJS)\test_gui_evtlooptest.obj: .\events\evtlooptest.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(TEST_GUI_CXXFLAGS) .\events\evtlooptest.cpp
+
 $(OBJS)\test_gui_propagation.obj: .\events\propagation.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(TEST_GUI_CXXFLAGS) .\events\propagation.cpp
 
 $(OBJS)\test_gui_keyboard.obj: .\events\keyboard.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(TEST_GUI_CXXFLAGS) .\events\keyboard.cpp
+
+$(OBJS)\test_gui_exec.obj: .\exec\exec.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(TEST_GUI_CXXFLAGS) .\exec\exec.cpp
 
 $(OBJS)\test_gui_fonttest.obj: .\font\fonttest.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(TEST_GUI_CXXFLAGS) .\font\fonttest.cpp

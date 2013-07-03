@@ -111,8 +111,9 @@ public:
     wxBitmap(const void* data, wxBitmapType type, int width, int height, int depth = 1);
     
     // creates an bitmap from the native image format
-    wxBitmap(CGImageRef image);
+    wxBitmap(CGImageRef image, double scale = 1.0);
     wxBitmap(WX_NSImage image);
+    wxBitmap(CGContextRef bitmapcontext);
 
     // Create a bitmap compatible with the given DC
     wxBitmap(int width, int height, const wxDC& dc);
@@ -139,8 +140,15 @@ public:
         { return Create(sz.GetWidth(), sz.GetHeight(), depth); }
 
     virtual bool Create(const void* data, wxBitmapType type, int width, int height, int depth = 1);
-    bool Create( CGImageRef image );
+    bool Create( CGImageRef image, double scale = 1.0 );
     bool Create( WX_NSImage image );
+    bool Create( CGContextRef bitmapcontext);
+    
+    // Create a bitmap compatible with the given DC, inheriting its magnification factor
+    bool Create(int width, int height, const wxDC& dc);
+
+    // Create a bitmap with a scale factor, width and height are multiplied with that factor
+    bool CreateScaled(int logwidth, int logheight, int depth, double logicalScale);
     
     // virtual bool Create( WXHICON icon) ;
     virtual bool LoadFile(const wxString& name, wxBitmapType type = wxBITMAP_DEFAULT_TYPE);
@@ -204,6 +212,7 @@ public:
     void *BeginRawAccess() ;
     void EndRawAccess() ;
 
+    double GetScaleFactor() const;
 protected:
     virtual wxGDIRefData *CreateGDIRefData() const;
     virtual wxGDIRefData *CloneGDIRefData(const wxGDIRefData *data) const;

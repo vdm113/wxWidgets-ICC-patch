@@ -268,11 +268,18 @@ bool wxFileDialog::Create(wxWindow *parent, const wxString& message,
     if ( !wildCard.empty() && !defaultFileName.empty() &&
             !wxFileName(defaultFileName).HasExt() )
     {
-        // append the default extension to the initial file name: GTK won't do
-        // it for us by default (unlike e.g. MSW)
-        const wxString defaultExt = m_fc.GetCurrentWildCard().AfterFirst('.');
-        if ( defaultExt.find_first_of("?*") == wxString::npos )
-            defaultFileNameWithExt += "." + defaultExt;
+        // append the default extension, if any, to the initial file name: GTK
+        // won't do it for us by default (unlike e.g. MSW)
+        const wxFileName fnWC(m_fc.GetCurrentWildCard());
+        if ( fnWC.HasExt() )
+        {
+            // Notice that we shouldn't append the extension if it's a wildcard
+            // because this is not useful: the user would need to change it to use
+            // some fixed extension anyhow.
+            const wxString& ext = fnWC.GetExt();
+            if ( ext.find_first_of("?*") == wxString::npos )
+                defaultFileNameWithExt << "." << ext;
+        }
     }
 
 

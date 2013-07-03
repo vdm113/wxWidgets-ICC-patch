@@ -56,8 +56,10 @@ class WXDLLEXPORT wxBitmapRefData: public wxGDIRefData
     friend class WXDLLIMPEXP_FWD_CORE wxIcon;
     friend class WXDLLIMPEXP_FWD_CORE wxCursor;
 public:
+    wxBitmapRefData(int width , int height , int depth, double logicalscale);
     wxBitmapRefData(int width , int height , int depth);
-    wxBitmapRefData(CGImageRef image);
+    wxBitmapRefData(CGContextRef context);
+    wxBitmapRefData(CGImageRef image, double scale);
     wxBitmapRefData();
     wxBitmapRefData(const wxBitmapRefData &tocopy);
 
@@ -75,7 +77,7 @@ public:
     int GetWidth() const { return m_width; }
     int GetHeight() const { return m_height; }
     int GetDepth() const { return m_depth; }
-
+    double GetScaleFactor() const { return m_scaleFactor; }
     void *GetRawAccess() const;
     void *BeginRawAccess();
     void EndRawAccess();
@@ -109,7 +111,9 @@ public:
     int           GetBytesPerRow() const { return m_bytesPerRow; }
     private :
     bool Create(int width , int height , int depth);
-    bool Create( CGImageRef image );
+    bool Create(int width , int height , int depth, double logicalScale);
+    bool Create( CGImageRef image, double scale );
+    bool Create( CGContextRef bitmapcontext);
     void Init();
 
     int           m_width;
@@ -127,6 +131,7 @@ public:
 #endif
 
     CGContextRef  m_hBitmap;
+    double        m_scaleFactor;
 };
 
 
@@ -242,12 +247,13 @@ void wxBitmapRefData::Init()
 
     m_rawAccessCount = 0 ;
     m_hasAlpha = false;
+    m_scaleFactor = 1.0;
 }
 
 wxBitmapRefData::wxBitmapRefData(const wxBitmapRefData &tocopy) : wxGDIRefData()
 {
     Init();
-    Create(tocopy.m_width, tocopy.m_height, tocopy.m_depth);
+    Create(tocopy.m_width, tocopy.m_height, tocopy.m_depth, tocopy.m_scaleFactor);
 
     if (tocopy.m_bitmapMask)
         m_bitmapMask = new wxMask(*tocopy.m_bitmapMask);
@@ -271,14 +277,26 @@ wxBitmapRefData::wxBitmapRefData( int w , int h , int d )
     Create( w , h , d ) ;
 }
 
-wxBitmapRefData::wxBitmapRefData(CGImageRef image)
+wxBitmapRefData::wxBitmapRefData(int w , int h , int d, double logicalscale)
+{
+    Init() ;
+    Create( w , h , d, logicalscale ) ;
+}
+
+wxBitmapRefData::wxBitmapRefData(CGContextRef context)
 {
     Init();
-    Create( image );
+    Create( context );
+}
+
+wxBitmapRefData::wxBitmapRefData(CGImageRef image, double scale)
+{
+    Init();
+    Create( image, scale );
 }    
 // code from Technical Q&A QA1509
 
-bool wxBitmapRefData::Create(CGImageRef image)
+bool wxBitmapRefData::Create(CGImageRef image, double scale)
 {
     if ( image != NULL )
     {
@@ -286,6 +304,7 @@ bool wxBitmapRefData::Create(CGImageRef image)
         m_height = CGImageGetHeight(image);
         m_depth = 32;
         m_hBitmap = NULL;
+        m_scaleFactor = scale;
         
         m_bytesPerRow = GetBestBytesPerRow( m_width * 4 ) ;
         size_t size = m_bytesPerRow * m_height ;
@@ -309,13 +328,48 @@ bool wxBitmapRefData::Create(CGImageRef image)
             
             wxASSERT_MSG( m_hBitmap , wxT("Unable to create CGBitmapContext context") ) ;
             CGContextTranslateCTM( m_hBitmap, 0,  m_height );
-            CGContextScaleCTM( m_hBitmap, 1, -1 );
+            CGContextScaleCTM( m_hBitmap, 1*m_scaleFactor, -1*m_scaleFactor );
         } /* data != NULL */
     }
     m_ok = ( m_hBitmap != NULL ) ;
     
     return m_ok ;
     
+}
+
+bool wxBitmapRefData::Create(CGContextRef context)
+{
+    if ( context != NULL && CGBitmapContextGetData(context) )
+    {
+        m_hBitmap = context;
+        m_bytesPerRow = CGBitmapContextGetBytesPerRow(context);
+        m_width = CGBitmapContextGetWidth(context);
+        m_height = CGBitmapContextGetHeight(context);
+        m_depth = CGBitmapContextGetBitsPerPixel(context) ;
+
+        // our own contexts conform to this, always.
+        wxASSERT( m_depth == 32 );
+        
+        // determine content scale
+        CGRect userrect = CGRectMake(0, 0, 10, 10);
+        CGRect devicerect;
+        devicerect = CGContextConvertRectToDeviceSpace(context, userrect);
+        m_scaleFactor = devicerect.size.height / userrect.size.height;
+        
+        CGImageAlphaInfo alpha = CGBitmapContextGetAlphaInfo(context);
+        
+        if ( alpha == kCGImageAlphaNone || alpha == kCGImageAlphaNoneSkipFirst || alpha == kCGImageAlphaNoneSkipLast )
+        {
+            // no alpha
+        }
+        else
+        {
+            m_hasAlpha = true;
+        }
+    }
+    m_ok = ( m_hBitmap != NULL ) ;
+    
+    return m_ok ;
 }
 
 bool wxBitmapRefData::Create( int w , int h , int d )
@@ -336,11 +390,17 @@ bool wxBitmapRefData::Create( int w , int h , int d )
         m_hBitmap = CGBitmapContextCreate((char*) data, m_width, m_height, 8, m_bytesPerRow, wxMacGetGenericRGBColorSpace(), kCGImageAlphaNoneSkipFirst );
         wxASSERT_MSG( m_hBitmap , wxT("Unable to create CGBitmapContext context") ) ;
         CGContextTranslateCTM( m_hBitmap, 0,  m_height );
-        CGContextScaleCTM( m_hBitmap, 1, -1 );
+        CGContextScaleCTM( m_hBitmap, 1*m_scaleFactor, -1*m_scaleFactor );
     } /* data != NULL */
     m_ok = ( m_hBitmap != NULL ) ;
 
     return m_ok ;
+}
+
+bool wxBitmapRefData::Create( int w , int h , int d, double logicalScale )
+{
+    m_scaleFactor = logicalScale;
+    return Create(w*logicalScale,h*logicalScale,d);
 }
 
 void wxBitmapRefData::UseAlpha( bool use )
@@ -354,7 +414,7 @@ void wxBitmapRefData::UseAlpha( bool use )
     m_hBitmap = CGBitmapContextCreate((char*) m_memBuf.GetData(), m_width, m_height, 8, m_bytesPerRow, wxMacGetGenericRGBColorSpace(), m_hasAlpha ? kCGImageAlphaPremultipliedFirst : kCGImageAlphaNoneSkipFirst );
     wxASSERT_MSG( m_hBitmap , wxT("Unable to create CGBitmapContext context") ) ;
     CGContextTranslateCTM( m_hBitmap, 0,  m_height );
-    CGContextScaleCTM( m_hBitmap, 1, -1 );
+    CGContextScaleCTM( m_hBitmap, 1*m_scaleFactor, -1*m_scaleFactor );
 }
 
 void *wxBitmapRefData::GetRawAccess() const
@@ -975,9 +1035,9 @@ wxBitmap::wxBitmap(const void* data, wxBitmapType type, int width, int height, i
     (void) Create(data, type, width, height, depth);
 }
 
-wxBitmap::wxBitmap(int width, int height, const wxDC& WXUNUSED(dc))
+wxBitmap::wxBitmap(int width, int height, const wxDC& dc)
 {
-    (void) Create(width, height);
+    (void)Create(width, height, dc);
 }
 
 wxBitmap::wxBitmap(const wxString& filename, wxBitmapType type)
@@ -985,9 +1045,9 @@ wxBitmap::wxBitmap(const wxString& filename, wxBitmapType type)
     LoadFile(filename, type);
 }
 
-wxBitmap::wxBitmap(CGImageRef image)
+wxBitmap::wxBitmap(CGImageRef image, double scale)
 {
-    (void) Create(image);
+    (void) Create(image,scale);
 }
 
 wxGDIRefData* wxBitmap::CreateGDIRefData() const
@@ -1053,14 +1113,27 @@ wxBitmap::wxBitmap(WX_NSImage image)
 
 bool wxBitmap::Create(WX_NSImage image)
 {
-    wxCFRef<CGImageRef> cgimage(wxOSXCreateCGImageFromNSImage(image));
-    return Create(cgimage);
+    return Create(wxOSXCreateBitmapContextFromNSImage(image));
+}
+
+wxBitmap::wxBitmap(CGContextRef bitmapcontext)
+{
+    (void)Create(bitmapcontext);
+}
+
+bool wxBitmap::Create(CGContextRef bitmapcontext)
+{
+    UnRef();
+    
+    m_refData = new wxBitmapRefData( bitmapcontext );
+    
+    return M_BITMAPDATA->IsOk() ;
 }
 
 WX_NSImage wxBitmap::GetNSImage() const
 {
     wxCFRef< CGImageRef > cgimage(CreateCGImage());
-    return wxOSXGetNSImageFromCGImage( cgimage );
+    return wxOSXGetNSImageFromCGImage( cgimage, GetScaleFactor() );
 }
 
 #endif
@@ -1082,11 +1155,13 @@ wxBitmap wxBitmap::GetSubBitmap(const wxRect &rect) const
                 (rect.y+rect.height <= GetHeight()),
                 wxNullBitmap, wxT("invalid bitmap or bitmap region") );
 
-    wxBitmap ret( rect.width, rect.height, GetDepth() );
+    wxBitmap ret;
+    double scale = GetScaleFactor();
+    ret.CreateScaled( rect.width, rect.height, GetDepth(), scale );
     wxASSERT_MSG( ret.IsOk(), wxT("GetSubBitmap error") );
 
-    int destwidth = rect.width ;
-    int destheight = rect.height ;
+    int destwidth = rect.width*scale ;
+    int destheight = rect.height*scale ;
 
     {
         unsigned char *sourcedata = (unsigned char*) GetRawAccess() ;
@@ -1097,7 +1172,7 @@ wxBitmap wxBitmap::GetSubBitmap(const wxRect &rect) const
         {
             int sourcelinesize = GetBitmapData()->GetBytesPerRow() ;
             int destlinesize = ret.GetBitmapData()->GetBytesPerRow() ;
-            unsigned char *source = sourcedata + rect.x * 4 + rect.y * sourcelinesize ;
+            unsigned char *source = sourcedata + int(rect.x * scale * 4 + rect.y *scale * sourcelinesize) ;
             unsigned char *dest = destdata ;
 
 #if defined(__INTEL_COMPILER)
@@ -1160,11 +1235,29 @@ bool wxBitmap::Create(int w, int h, int d)
     return M_BITMAPDATA->IsOk() ;
 }
 
-bool wxBitmap::Create(CGImageRef image)
+bool wxBitmap::Create(int w, int h, const wxDC& dc)
+{
+    double factor = dc.GetContentScaleFactor();
+    return CreateScaled(w,h,wxBITMAP_SCREEN_DEPTH, factor);
+}
+
+bool wxBitmap::CreateScaled(int w, int h, int d, double logicalScale)
 {
     UnRef();
     
-    m_refData = new wxBitmapRefData( image );
+    if ( d < 0 )
+        d = wxDisplayDepth() ;
+    
+    m_refData = new wxBitmapRefData( w , h , d, logicalScale );
+    
+    return M_BITMAPDATA->IsOk() ;
+}
+
+bool wxBitmap::Create(CGImageRef image, double scale)
+{
+    UnRef();
+    
+    m_refData = new wxBitmapRefData( image, scale );
     
     return M_BITMAPDATA->IsOk() ;
 }
@@ -1449,6 +1542,13 @@ int wxBitmap::GetWidth() const
    wxCHECK_MSG( IsOk(), -1, wxT("invalid bitmap") );
 
    return M_BITMAPDATA->GetWidth() ;
+}
+
+double wxBitmap::GetScaleFactor() const
+{
+    wxCHECK_MSG( IsOk(), -1, wxT("invalid bitmap") );
+    
+    return M_BITMAPDATA->GetScaleFactor() ;
 }
 
 int wxBitmap::GetDepth() const
@@ -1823,9 +1923,23 @@ bool wxBundleResourceHandler::LoadFile(wxBitmap *bitmap,
 {
     wxString ext = GetExtension().Lower();
     wxCFStringRef resname(name);
+    wxCFStringRef resname2x(name+"@2x");
     wxCFStringRef restype(ext);
+    double scale = 1.0;
     
-    wxCFRef<CFURLRef> imageURL(CFBundleCopyResourceURL(CFBundleGetMainBundle(), resname, restype, NULL));
+    wxCFRef<CFURLRef> imageURL;
+    
+    if ( wxOSXGetMainScreenContentScaleFactor() > 1.9 )
+    {
+        imageURL.reset(CFBundleCopyResourceURL(CFBundleGetMainBundle(), resname2x, restype, NULL));
+        scale = 2.0;
+    }
+    
+    if ( imageURL.get() == NULL )
+    {
+        imageURL.reset(CFBundleCopyResourceURL(CFBundleGetMainBundle(), resname, restype, NULL));
+        scale = 1.0;
+    }
     
     if ( imageURL.get() != NULL )
     {
@@ -1841,7 +1955,7 @@ bool wxBundleResourceHandler::LoadFile(wxBitmap *bitmap,
                                                        kCGRenderingIntentDefault);
         if ( image != NULL )
         {
-            bitmap->Create(image);
+            bitmap->Create(image,scale);
             CGImageRelease(image);
         }
     }

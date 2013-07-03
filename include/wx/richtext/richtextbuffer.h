@@ -5569,6 +5569,14 @@ public:
 
 // Accessors
 
+    int GetColspan() const;
+
+    void SetColspan(long span) { GetProperties().SetProperty(wxT("colspan"), span); }
+
+    int GetRowspan() const;
+
+    void SetRowspan(long span) { GetProperties().SetProperty(wxT("rowspan"), span); }
+
 // Operations
 
     virtual wxRichTextObject* Clone() const { return new wxRichTextCell(*this); }
