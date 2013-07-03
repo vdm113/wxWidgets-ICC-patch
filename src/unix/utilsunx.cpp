@@ -851,7 +851,6 @@ long wxExecute(char **argv, int flags, wxProcess *process,
             // Ensure that the housekeeping data is kept alive, it will be
             // destroyed only when the child terminates.
             execDataPtr.release();
-<<<<<<< HEAD
 
             return execData.pid;
         }
@@ -865,21 +864,6 @@ long wxExecute(char **argv, int flags, wxProcess *process,
         }
 
 
-=======
-
-            return execData.pid;
-        }
-
-
-        // If we don't need to dispatch any events, things are relatively
-        // simple and we don't need to delegate to wxAppTraits.
-        if ( flags & wxEXEC_NOEVENTS )
-        {
-            return BlockUntilChildExit(execData);
-        }
-
-
->>>>>>> wx_svn
         // If we do need to dispatch events, enter a local event loop waiting
         // until the child exits. As the exact kind of event loop depends on
         // the sort of application we're in (console or GUI), we delegate this
@@ -1619,18 +1603,6 @@ void wxExecuteData::OnStart(int pid_)
     // it more than once with the same handler.
     wxTheApp->SetSignalHandler(SIGCHLD, OnSomeChildExited);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    // Remember the child PID to be able to wait for it later.
-    pid = pid_;
-
-    // Also save it in wxProcess where it will be accessible to the user code.
-    if ( process )
-        process->SetPid(pid);
-
-=======
-=======
->>>>>>> wx_svn
 
     // Remember the child PID to be able to wait for it later.
     pid = pid_;
@@ -1639,10 +1611,6 @@ void wxExecuteData::OnStart(int pid_)
     if ( process )
         process->SetPid(pid);
 
-<<<<<<< HEAD
->>>>>>> wx_svn
-=======
->>>>>>> wx_svn
     // Finally, add this object itself to the list of child processes so that
     // we can check for its termination the next time we get SIGCHLD.
     ms_childProcesses[pid] = this;

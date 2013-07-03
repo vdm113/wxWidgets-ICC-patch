@@ -30,11 +30,6 @@ Package=<4>
 {{{
 Begin Project Dependency
 Project_Dep_Name core
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> wx_svn
 End Project Dependency
 Begin Project Dependency
 Project_Dep_Name base
@@ -43,10 +38,6 @@ End Project Dependency
 
 ###############################################################################
 
-<<<<<<< HEAD
->>>>>>> wx_svn
-=======
->>>>>>> wx_svn
 Project: "net"=..\..\build\msw\wx_net.dsp - Package Owner=<4>
 
 Package=<5>

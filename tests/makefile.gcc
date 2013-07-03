@@ -43,15 +43,7 @@ TEST_OBJECTS =  \
 	$(OBJS)\test_regconf.o \
 	$(OBJS)\test_datetimetest.o \
 	$(OBJS)\test_evthandler.o \
-<<<<<<< HEAD
-<<<<<<< HEAD
 	$(OBJS)\test_evtlooptest.o \
-=======
-	$(OBJS)\test_evtlooptest.o \
->>>>>>> wx_svn
-=======
-	$(OBJS)\test_evtlooptest.o \
->>>>>>> wx_svn
 	$(OBJS)\test_evtsource.o \
 	$(OBJS)\test_stopwatch.o \
 	$(OBJS)\test_timertest.o \
@@ -197,24 +189,10 @@ TEST_GUI_OBJECTS =  \
 	$(OBJS)\test_gui_windowtest.o \
 	$(OBJS)\test_gui_dialogtest.o \
 	$(OBJS)\test_gui_clone.o \
-<<<<<<< HEAD
-<<<<<<< HEAD
 	$(OBJS)\test_gui_evtlooptest.o \
 	$(OBJS)\test_gui_propagation.o \
 	$(OBJS)\test_gui_keyboard.o \
 	$(OBJS)\test_gui_exec.o \
-=======
-	$(OBJS)\test_gui_evtlooptest.o \
-	$(OBJS)\test_gui_propagation.o \
-	$(OBJS)\test_gui_keyboard.o \
-	$(OBJS)\test_gui_exec.o \
->>>>>>> wx_svn
-=======
-	$(OBJS)\test_gui_evtlooptest.o \
-	$(OBJS)\test_gui_propagation.o \
-	$(OBJS)\test_gui_keyboard.o \
-	$(OBJS)\test_gui_exec.o \
->>>>>>> wx_svn
 	$(OBJS)\test_gui_fonttest.o \
 	$(OBJS)\test_gui_image.o \
 	$(OBJS)\test_gui_rawbmp.o \
@@ -500,15 +478,7 @@ data:
 
 data-images: 
 	if not exist image mkdir image
-<<<<<<< HEAD
-<<<<<<< HEAD
 	for %%f in (horse_grey.bmp horse_grey_flipped.bmp horse_rle4.bmp horse_rle4_flipped.bmp horse_rle8.bmp horse_rle8_flipped.bmp horse_bicubic_50x50.png horse_bicubic_100x100.png horse_bicubic_150x150.png horse_bicubic_300x300.png horse_bilinear_50x50.png horse_bilinear_100x100.png horse_bilinear_150x150.png horse_bilinear_300x300.png horse_box_average_50x50.png horse_box_average_100x100.png horse_box_average_150x150.png horse_box_average_300x300.png) do if not exist image\%%f copy .\image\%%f image
-=======
-	for %%f in (horse_grey.bmp horse_grey_flipped.bmp horse_rle4.bmp horse_rle4_flipped.bmp horse_rle8.bmp horse_rle8_flipped.bmp horse_bicubic_50x50.png horse_bicubic_100x100.png horse_bicubic_150x150.png horse_bicubic_300x300.png horse_bilinear_50x50.png horse_bilinear_100x100.png horse_bilinear_150x150.png horse_bilinear_300x300.png horse_box_average_50x50.png horse_box_average_100x100.png horse_box_average_150x150.png horse_box_average_300x300.png) do if not exist image\%%f copy .\image\%%f image
->>>>>>> wx_svn
-=======
-	for %%f in (horse_grey.bmp horse_grey_flipped.bmp horse_rle4.bmp horse_rle4_flipped.bmp horse_rle8.bmp horse_rle8_flipped.bmp horse_bicubic_50x50.png horse_bicubic_100x100.png horse_bicubic_150x150.png horse_bicubic_300x300.png horse_bilinear_50x50.png horse_bilinear_100x100.png horse_bilinear_150x150.png horse_bilinear_300x300.png horse_box_average_50x50.png horse_box_average_100x100.png horse_box_average_150x150.png horse_box_average_300x300.png) do if not exist image\%%f copy .\image\%%f image
->>>>>>> wx_svn
 
 fr: 
 	if not exist $(OBJS)\intl\fr mkdir $(OBJS)\intl\fr
@@ -553,21 +523,9 @@ $(OBJS)\test_datetimetest.o: ./datetime/datetimetest.cpp
 $(OBJS)\test_evthandler.o: ./events/evthandler.cpp
 	$(CXX) -c -o $@ $(TEST_CXXFLAGS) $(CPPDEPS) $<
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 $(OBJS)\test_evtlooptest.o: ./events/evtlooptest.cpp
 	$(CXX) -c -o $@ $(TEST_CXXFLAGS) $(CPPDEPS) $<
 
-=======
-$(OBJS)\test_evtlooptest.o: ./events/evtlooptest.cpp
-	$(CXX) -c -o $@ $(TEST_CXXFLAGS) $(CPPDEPS) $<
-
->>>>>>> wx_svn
-=======
-$(OBJS)\test_evtlooptest.o: ./events/evtlooptest.cpp
-	$(CXX) -c -o $@ $(TEST_CXXFLAGS) $(CPPDEPS) $<
-
->>>>>>> wx_svn
 $(OBJS)\test_evtsource.o: ./events/evtsource.cpp
 	$(CXX) -c -o $@ $(TEST_CXXFLAGS) $(CPPDEPS) $<
 
@@ -976,42 +934,18 @@ $(OBJS)\test_gui_dialogtest.o: ./controls/dialogtest.cpp
 $(OBJS)\test_gui_clone.o: ./events/clone.cpp
 	$(CXX) -c -o $@ $(TEST_GUI_CXXFLAGS) $(CPPDEPS) $<
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 $(OBJS)\test_gui_evtlooptest.o: ./events/evtlooptest.cpp
 	$(CXX) -c -o $@ $(TEST_GUI_CXXFLAGS) $(CPPDEPS) $<
 
-=======
-$(OBJS)\test_gui_evtlooptest.o: ./events/evtlooptest.cpp
-	$(CXX) -c -o $@ $(TEST_GUI_CXXFLAGS) $(CPPDEPS) $<
-
->>>>>>> wx_svn
-=======
-$(OBJS)\test_gui_evtlooptest.o: ./events/evtlooptest.cpp
-	$(CXX) -c -o $@ $(TEST_GUI_CXXFLAGS) $(CPPDEPS) $<
-
->>>>>>> wx_svn
 $(OBJS)\test_gui_propagation.o: ./events/propagation.cpp
 	$(CXX) -c -o $@ $(TEST_GUI_CXXFLAGS) $(CPPDEPS) $<
 
 $(OBJS)\test_gui_keyboard.o: ./events/keyboard.cpp
 	$(CXX) -c -o $@ $(TEST_GUI_CXXFLAGS) $(CPPDEPS) $<
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 $(OBJS)\test_gui_exec.o: ./exec/exec.cpp
 	$(CXX) -c -o $@ $(TEST_GUI_CXXFLAGS) $(CPPDEPS) $<
 
-=======
-$(OBJS)\test_gui_exec.o: ./exec/exec.cpp
-	$(CXX) -c -o $@ $(TEST_GUI_CXXFLAGS) $(CPPDEPS) $<
-
->>>>>>> wx_svn
-=======
-$(OBJS)\test_gui_exec.o: ./exec/exec.cpp
-	$(CXX) -c -o $@ $(TEST_GUI_CXXFLAGS) $(CPPDEPS) $<
-
->>>>>>> wx_svn
 $(OBJS)\test_gui_fonttest.o: ./font/fonttest.cpp
 	$(CXX) -c -o $@ $(TEST_GUI_CXXFLAGS) $(CPPDEPS) $<
 
