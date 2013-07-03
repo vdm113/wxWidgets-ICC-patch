@@ -479,8 +479,6 @@ SOURCE=.\streams\zlibstream.cpp
 # End Target
 # End Project
 
-=======
->>>>>>> wx_svn
 # PROP BASE Output_Dir "vc_mswudll"
 # PROP BASE Intermediate_Dir "vc_mswudll\test"
 # PROP BASE Target_Dir ""

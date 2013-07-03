@@ -382,8 +382,6 @@ SOURCE=.\controls\richtextctrltest.cpp
 # Begin Source File
 
 SOURCE=.\..\samples\sample.rc
-=======
->>>>>>> wx_svn
 # PROP BASE Output_Dir "vc_mswudll"
 # PROP BASE Intermediate_Dir "vc_mswudll\test_gui"
 # PROP BASE Target_Dir ""
