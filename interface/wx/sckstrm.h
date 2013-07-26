@@ -9,7 +9,6 @@
 // Name:        sckstrm.h
 // Purpose:     interface of wxSocketOutputStream
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

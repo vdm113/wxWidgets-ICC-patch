@@ -9,7 +9,6 @@
 // Name:        ribbon/gallery.h
 // Purpose:     interface of wxRibbonGallery
 // Author:      Peter Cawley
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
 

@@ -11,7 +11,6 @@
 // Author:      Robert Roebling
 // Modified by: Vadim Zeitlin (2005-10-10): wxScrolledWindow is now common
 // Created:     01/02/97
-// RCS-ID:      $Id$
 // Copyright:   (c) Robert Roebling
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

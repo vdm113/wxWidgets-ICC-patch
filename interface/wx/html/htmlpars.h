@@ -9,7 +9,6 @@
 // Name:        html/htmlpars.h
 // Purpose:     interface of wxHtmlTagHandler
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

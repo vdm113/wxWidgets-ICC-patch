@@ -9,7 +9,6 @@
 // Name:        aui/auibook.h
 // Purpose:     interface of wxAuiNotebook
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

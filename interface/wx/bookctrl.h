@@ -9,7 +9,6 @@
 // Name:        bookctrl.h
 // Purpose:     interface of wxBookCtrlBase
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

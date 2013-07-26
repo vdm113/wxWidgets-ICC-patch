@@ -11,7 +11,6 @@
 // Author:      Stefan Neis
 // Modified by:
 // Created:     20/02/2000
-// RCS-ID:      $Id$
 // Copyright:   (c) Stefan Neis
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

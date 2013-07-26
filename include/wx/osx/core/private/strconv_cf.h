@@ -11,7 +11,6 @@
 // Author:      David Elliott, Ryan Norton
 // Modified by:
 // Created:     2007-07-06
-// RCS-ID:      $Id$
 // Copyright:   (c) 2004 Ryan Norton
 //              (c) 2007 David Elliott
 // Licence:     wxWindows licence

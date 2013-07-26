@@ -9,7 +9,6 @@
 // Name:        main.h
 // Purpose:     Main page of the Doxygen manual
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

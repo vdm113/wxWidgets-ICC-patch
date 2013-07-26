@@ -9,7 +9,6 @@
 // Name:        dateevt.h
 // Purpose:     interface of wxDateEvent
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

@@ -9,7 +9,6 @@
 // Name:        tracker.h
 // Purpose:     interface of wxTrackable
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

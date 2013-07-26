@@ -9,7 +9,6 @@
 // Name:        log.h
 // Purpose:     interface of wxLog* classes
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

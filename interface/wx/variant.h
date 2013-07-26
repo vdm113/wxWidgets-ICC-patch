@@ -9,7 +9,6 @@
 // Name:        variant.h
 // Purpose:     interface of wxVariant
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

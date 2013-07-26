@@ -9,7 +9,6 @@
 // Name:        glcanvas.h
 // Purpose:     interface of wxGLContext and wxGLCanvas
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

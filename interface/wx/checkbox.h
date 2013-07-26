@@ -9,7 +9,6 @@
 // Name:        checkbox.h
 // Purpose:     interface of wxCheckBox
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

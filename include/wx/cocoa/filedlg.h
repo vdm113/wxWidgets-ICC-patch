@@ -11,7 +11,6 @@
 // Author:      Ryan Norton
 // Modified by:
 // Created:     2004-10-02
-// RCS-ID:      $Id$
 // Copyright:   (c) Ryan Norton
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

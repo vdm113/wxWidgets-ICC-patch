@@ -9,7 +9,6 @@
 // Name:        wx/wxcrt.h
 // Purpose:     interface of global wx wrappers for CRT functions
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

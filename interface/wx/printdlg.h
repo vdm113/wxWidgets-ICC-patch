@@ -9,7 +9,6 @@
 // Name:        printdlg.h
 // Purpose:     interface of wxPrintDialog
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

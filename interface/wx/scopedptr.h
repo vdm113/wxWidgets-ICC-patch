@@ -9,7 +9,6 @@
 // Name:        wx/scopedptr.h
 // Purpose:     interface of wxScopedPtr
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

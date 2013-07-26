@@ -10,7 +10,6 @@
 // Purpose:     OS/2 implementation of wxTlsValue<>
 // Author:      Stefan Neis
 // Created:     2008-08-30
-// RCS-ID:      $Id$
 // Copyright:   (c) 2008 Stefan Neis
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////

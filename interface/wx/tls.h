@@ -9,7 +9,6 @@
 // Name:        wx/tls.h
 // Purpose:     wxTLS_TYPE()
 // Author:      Vadim Zeitlin
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

@@ -9,7 +9,6 @@
 // Name:        dialog.h
 // Purpose:     interface of wxDialog
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

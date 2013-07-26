@@ -9,7 +9,6 @@
 // Name:        html/helpdlg.h
 // Purpose:     interface of wxHtmlHelpDialog
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

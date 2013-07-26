@@ -9,7 +9,6 @@
 // Name:        buffer.h
 // Purpose:     interface of wxMemoryBuffer
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

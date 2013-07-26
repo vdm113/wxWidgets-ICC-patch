@@ -9,7 +9,6 @@
 // Name:        animate.h
 // Purpose:     interface of wxAnimation* classes
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

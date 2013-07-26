@@ -9,7 +9,6 @@
 // Name:        mdi.h
 // Purpose:     interface of wxMDIClientWindow
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

@@ -9,7 +9,6 @@
 // Name:        zipstrm.h
 // Purpose:     interface of wxZipNotifier
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

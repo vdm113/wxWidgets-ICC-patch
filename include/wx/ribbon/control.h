@@ -11,7 +11,6 @@
 // Author:      Peter Cawley
 // Modified by:
 // Created:     2009-06-05
-// RCS-ID:      $Id$
 // Copyright:   (C) Peter Cawley
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////

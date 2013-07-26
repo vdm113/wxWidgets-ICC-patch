@@ -11,7 +11,6 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     2010-11-14
-// RCS-ID:      $Id$
 // Copyright:   (c) Julian Smart
 // Licence:     wxWindows Licence
 /////////////////////////////////////////////////////////////////////////////

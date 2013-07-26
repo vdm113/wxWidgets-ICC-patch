@@ -9,7 +9,6 @@
 // Name:        html/winpars.h
 // Purpose:     interface of wxHtmlTagsModule
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

@@ -9,7 +9,6 @@
 // Name:        hash.h
 // Purpose:     interface of wxHashTable
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

@@ -9,7 +9,6 @@
 // Name:        fontdlg.h
 // Purpose:     interface of wxFontDialog
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

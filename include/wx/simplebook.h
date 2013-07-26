@@ -10,7 +10,6 @@
 // Purpose:     wxBookCtrlBase-derived class without any controller.
 // Author:      Vadim Zeitlin
 // Created:     2012-08-21
-// RCS-ID:      $Id$
 // Copyright:   (c) 2012 Vadim Zeitlin <vadim@wxwidgets.org>
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////

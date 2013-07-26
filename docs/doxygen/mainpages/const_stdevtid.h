@@ -9,7 +9,6 @@
 // Name:        const_stdevtid.h
 // Purpose:     std event values enumerated
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

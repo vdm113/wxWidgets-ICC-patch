@@ -9,7 +9,6 @@
 // Name:        tokenzr.h
 // Purpose:     interface of wxStringTokenizer
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

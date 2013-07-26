@@ -9,7 +9,6 @@
 // Name:        splash.h
 // Purpose:     interface of wxSplashScreen
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

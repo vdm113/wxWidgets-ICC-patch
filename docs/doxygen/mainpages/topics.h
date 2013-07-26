@@ -9,7 +9,6 @@
 // Name:        topics.h
 // Purpose:     Topic overviews page of the Doxygen manual
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

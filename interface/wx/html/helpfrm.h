@@ -9,7 +9,6 @@
 // Name:        html/helpfrm.h
 // Purpose:     interface of wxHtmlHelpFrame
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

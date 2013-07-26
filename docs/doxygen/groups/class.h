@@ -9,7 +9,6 @@
 // Name:        class.h
 // Purpose:     Main class group docs
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

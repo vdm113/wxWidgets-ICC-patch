@@ -11,7 +11,6 @@
  Author:      Vadim Zeitlin
  Modified by:
  Created:
- RCS-ID:      $Id$
  Copyright:   (c) Vadim Zeitlin
  Licence:     wxWindows Licence
 */

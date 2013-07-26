@@ -9,7 +9,6 @@
 // Name:        sckipc.h
 // Purpose:     interface of wxTCPServer
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

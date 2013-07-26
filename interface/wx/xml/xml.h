@@ -9,7 +9,6 @@
 // Name:        xml/xml.h
 // Purpose:     interface of wxXmlNode, wxXmlAttribute, wxXmlDocument
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

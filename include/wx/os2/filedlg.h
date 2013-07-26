@@ -11,7 +11,6 @@
 // Author:      David Webster
 // Modified by:
 // Created:     10/05/99
-// RCS-ID:      $Id$
 // Copyright:   (c) David Webster
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

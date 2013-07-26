@@ -9,7 +9,6 @@
 // Name:        translation.h
 // Purpose:     wxTranslation class
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

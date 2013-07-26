@@ -9,7 +9,6 @@
 // Name:        aboutdlg.h
 // Purpose:     interface of wxAboutDialogInfo
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

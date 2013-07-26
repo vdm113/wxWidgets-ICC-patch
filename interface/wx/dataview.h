@@ -9,7 +9,6 @@
 // Name:        dataview.h
 // Purpose:     interface of wxDataView* classes
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

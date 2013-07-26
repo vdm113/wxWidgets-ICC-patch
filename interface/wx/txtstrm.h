@@ -9,7 +9,6 @@
 // Name:        txtstrm.h
 // Purpose:     interface of wxTextInputStream
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

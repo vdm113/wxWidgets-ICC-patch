@@ -9,7 +9,6 @@
 // Name:        metafile.h
 // Purpose:     interface of wxMetafileDC
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

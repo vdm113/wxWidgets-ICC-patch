@@ -11,7 +11,6 @@
 // Author:
 // Modified by:
 // Created:
-// RCS-ID:      $Id$
 // Copyright:   (c) wxWidgets team
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////

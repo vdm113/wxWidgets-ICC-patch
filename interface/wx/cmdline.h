@@ -9,7 +9,6 @@
 // Name:        cmdline.h
 // Purpose:     interface of wxCmdLineParser
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

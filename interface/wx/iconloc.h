@@ -9,7 +9,6 @@
 // Name:        iconloc.h
 // Purpose:     interface of wxIconLocation
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

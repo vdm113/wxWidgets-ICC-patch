@@ -9,7 +9,6 @@
 // Name:        clipbrd.h
 // Purpose:     interface of wxClipboard
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

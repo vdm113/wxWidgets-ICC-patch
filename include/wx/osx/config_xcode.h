@@ -11,7 +11,6 @@
 // Author:      Stefan Csomor
 // Modified by:
 // Created:     29.04.04
-// RCS-ID:      $Id$
 // Copyright:   (c) wxWidgets team
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////

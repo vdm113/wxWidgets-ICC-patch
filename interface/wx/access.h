@@ -9,7 +9,6 @@
 // Name:        access.h
 // Purpose:     interface of wxAccessible
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

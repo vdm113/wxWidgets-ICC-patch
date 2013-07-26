@@ -9,7 +9,6 @@
 // Name:        caret.h
 // Purpose:     interface of wxCaret
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

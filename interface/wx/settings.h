@@ -9,7 +9,6 @@
 // Name:        settings.h
 // Purpose:     interface of wxSystemSettings
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

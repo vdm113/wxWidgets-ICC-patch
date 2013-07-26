@@ -9,7 +9,6 @@
 // Name:        class_gdi.h
 // Purpose:     Graphics Device Interface classes group docs
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

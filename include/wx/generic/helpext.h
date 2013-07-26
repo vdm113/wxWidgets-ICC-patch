@@ -11,7 +11,6 @@
 // Author:      Karsten Ballueder (Ballueder@usa.net)
 // Modified by:
 // Copyright:   (c) Karsten Ballueder 1998
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

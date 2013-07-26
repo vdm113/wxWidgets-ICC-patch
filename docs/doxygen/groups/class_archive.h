@@ -9,7 +9,6 @@
 // Name:        class_archive.h
 // Purpose:     wxArchive* classes group docs
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

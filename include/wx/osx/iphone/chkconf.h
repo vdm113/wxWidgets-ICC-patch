@@ -11,7 +11,6 @@
  * Author:      Stefan Csomor
  * Modified by:
  * Created:     2008-07-30
- * RCS-ID:      $Id$
  * Copyright:   (c) Stefan Csomor
  * Licence:     wxWindows licence
  */

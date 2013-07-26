@@ -9,7 +9,6 @@
 // Name:        bmpcbox.h
 // Purpose:     interface of wxBitmapComboBox
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 
