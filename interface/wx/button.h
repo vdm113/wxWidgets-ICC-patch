@@ -9,7 +9,6 @@
 // Name:        button.h
 // Purpose:     interface of wxButton
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

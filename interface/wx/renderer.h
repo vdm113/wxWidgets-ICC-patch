@@ -9,7 +9,6 @@
 // Name:        renderer.h
 // Purpose:     interface of wxRendererNative
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

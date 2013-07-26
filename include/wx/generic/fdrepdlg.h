@@ -11,7 +11,6 @@
 // Author:      Markus Greither
 // Modified by:
 // Created:     25/05/2001
-// RCS-ID:      $Id$
 // Copyright:   (c) wxWidgets team
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

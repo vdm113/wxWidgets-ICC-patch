@@ -10,7 +10,6 @@
 // Purpose:     wxTimer class based on core foundation
 // Author:      Stefan Csomor
 // Created:     2008-07-16
-// RCS-ID:      $Id$
 // Copyright:   (c) Stefan Csomor
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

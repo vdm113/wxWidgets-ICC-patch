@@ -9,7 +9,6 @@
 // Name:        spinctrl.h
 // Purpose:     interface of wxSpinCtrl
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

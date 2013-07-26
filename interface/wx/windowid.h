@@ -9,7 +9,6 @@
 // Name:        windowid.h
 // Purpose:     interface of wxIdManager
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

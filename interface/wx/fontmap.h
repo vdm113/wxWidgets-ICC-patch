@@ -9,7 +9,6 @@
 // Name:        fontmap.h
 // Purpose:     interface of wxFontMapper
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

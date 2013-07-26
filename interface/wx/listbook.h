@@ -9,7 +9,6 @@
 // Name:        listbook.h
 // Purpose:     interface of wxListbook
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

@@ -9,7 +9,6 @@
 // Name:        htmllbox.h
 // Purpose:     interface of wxHtmlListBox
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

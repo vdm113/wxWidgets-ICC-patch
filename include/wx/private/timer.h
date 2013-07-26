@@ -10,7 +10,6 @@
 // Purpose:     Base class for wxTimer implementations
 // Author:      Lukasz Michalski <lmichalski@sf.net>
 // Created:     31.10.2006
-// RCS-ID:      $Id$
 // Copyright:   (c) 2006-2007 wxWidgets dev team
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

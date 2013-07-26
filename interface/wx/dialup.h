@@ -9,7 +9,6 @@
 // Name:        dialup.h
 // Purpose:     interface of wxDialUpManager
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

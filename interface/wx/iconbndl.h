@@ -9,7 +9,6 @@
 // Name:        iconbndl.h
 // Purpose:     interface of wxIconBundle
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

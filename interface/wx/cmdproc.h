@@ -9,7 +9,6 @@
 // Name:        cmdproc.h
 // Purpose:     interface of wxCommandProcessor and wxCommand
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

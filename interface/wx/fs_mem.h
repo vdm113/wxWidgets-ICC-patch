@@ -9,7 +9,6 @@
 // Name:        fs_mem.h
 // Purpose:     interface of wxMemoryFSHandler
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

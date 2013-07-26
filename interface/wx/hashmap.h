@@ -9,7 +9,6 @@
 // Name:        hashmap.h
 // Purpose:     interface of wxHashMap
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

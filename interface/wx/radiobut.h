@@ -9,7 +9,6 @@
 // Name:        radiobut.h
 // Purpose:     interface of wxRadioButton
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

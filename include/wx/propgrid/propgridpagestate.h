@@ -11,7 +11,6 @@
 // Author:      Jaakko Salli
 // Modified by:
 // Created:     2008-08-24
-// RCS-ID:      $Id$
 // Copyright:   (c) Jaakko Salli
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

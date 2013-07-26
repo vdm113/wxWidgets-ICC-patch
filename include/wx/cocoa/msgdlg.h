@@ -10,7 +10,6 @@
 // Purpose:     wxMessageDialog class
 // Author:      Gareth Simpson
 // Created:     2007-10-29
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

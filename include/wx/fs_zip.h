@@ -10,7 +10,6 @@
 // Purpose:     wxZipFSHandler typedef for compatibility
 // Author:      Mike Wetherell
 // Copyright:   (c) 2006 Mike Wetherell
-// CVS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

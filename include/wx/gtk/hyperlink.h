@@ -11,7 +11,6 @@
 // Author:      Francesco Montorsi
 // Modified by:
 // Created:     14/2/2007
-// RCS-ID:      $Id$
 // Copyright:   (c) 2007 Francesco Montorsi
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

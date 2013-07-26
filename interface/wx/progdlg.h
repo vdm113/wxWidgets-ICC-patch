@@ -9,7 +9,6 @@
 // Name:        progdlg.h
 // Purpose:     interface of wxProgressDialog
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

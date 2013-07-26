@@ -9,7 +9,6 @@
 // Name:        imaglist.h
 // Purpose:     interface of wxImageList
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

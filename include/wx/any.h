@@ -11,7 +11,6 @@
 // Author:      Jaakko Salli
 // Modified by:
 // Created:     07/05/2009
-// RCS-ID:      $Id$
 // Copyright:   (c) wxWidgets team
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

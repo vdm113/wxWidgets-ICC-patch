@@ -9,7 +9,6 @@
 // Name:        utils.h
 // Purpose:     interface of various utility classes and functions
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

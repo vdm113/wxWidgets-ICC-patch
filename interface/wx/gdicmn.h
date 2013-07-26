@@ -9,7 +9,6 @@
 // Name:        gdicmn.h
 // Purpose:     interface of wxRealPoint
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

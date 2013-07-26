@@ -9,7 +9,6 @@
 // Name:        dcmirror.h
 // Purpose:     interface of wxMirrorDC
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

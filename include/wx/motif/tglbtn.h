@@ -12,7 +12,6 @@
 // Author:      Mattia Barbon
 // Modified by:
 // Created:     10.02.03
-// RCS-ID:      $Id$
 // Copyright:   (c) 2003 Mattia Barbon
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

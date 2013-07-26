@@ -9,7 +9,6 @@
 // Name:        richtext/richtexthtml.h
 // Purpose:     interface of wxRichTextHTMLHandler
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

@@ -9,7 +9,6 @@
 // Name:        list.h
 // Purpose:     interface of wxList<T>
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

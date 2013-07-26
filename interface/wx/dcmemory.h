@@ -9,7 +9,6 @@
 // Name:        dcmemory.h
 // Purpose:     interface of wxMemoryDC
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

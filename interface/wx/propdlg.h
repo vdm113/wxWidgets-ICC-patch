@@ -9,7 +9,6 @@
 // Name:        propdlg.h
 // Purpose:     interface of wxPropertySheetDialog
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

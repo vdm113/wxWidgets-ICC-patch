@@ -11,7 +11,6 @@
 // Author:      Diaa M. Sami
 // Modified by:
 // Created:     Aug-10-2007
-// RCS-ID:      $Id$
 // Copyright:   (c) Diaa M. Sami
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////

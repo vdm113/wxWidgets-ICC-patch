@@ -9,7 +9,6 @@
 // Name:        ctrlsub.h
 // Purpose:     interface of wxControlWithItems
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

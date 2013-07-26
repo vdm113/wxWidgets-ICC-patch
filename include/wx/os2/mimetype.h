@@ -11,7 +11,6 @@
 // Author:      David Webster
 // Modified by:
 // Created:     01.21.99
-// RCS-ID:      $Id$
 // Copyright:   adopted from msw port -- (c) 1998 Vadim Zeitlin <zeitlin@dptmaths.ens-cachan.fr>
 // Licence:     wxWindows licence (part of wxExtra library)
 /////////////////////////////////////////////////////////////////////////////

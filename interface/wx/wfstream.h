@@ -9,7 +9,6 @@
 // Name:        wfstream.h
 // Purpose:     interface of wxTempFileOutputStream
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

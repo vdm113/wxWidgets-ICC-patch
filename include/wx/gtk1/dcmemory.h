@@ -9,7 +9,6 @@
 // Name:        wx/gtk1/dcmemory.h
 // Purpose:
 // Author:      Robert Roebling
-// RCS-ID:      $Id$
 // Copyright:   (c) 1998 Robert Roebling
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

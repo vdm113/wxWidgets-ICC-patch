@@ -9,7 +9,6 @@
 // Name:        control.h
 // Purpose:     interface of wxControl
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

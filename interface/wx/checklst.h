@@ -9,7 +9,6 @@
 // Name:        checklst.h
 // Purpose:     interface of wxCheckListBox
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

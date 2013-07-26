@@ -9,7 +9,6 @@
 // Name:        string.h
 // Purpose:     interface of wxStringBuffer, wxString
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

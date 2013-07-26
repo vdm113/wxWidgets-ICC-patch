@@ -9,7 +9,6 @@
 // Name:        validate.h
 // Purpose:     interface of wxValidator
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

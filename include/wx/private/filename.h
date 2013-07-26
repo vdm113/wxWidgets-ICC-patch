@@ -11,7 +11,6 @@
 // Author:      Mike Wetherell
 // Modified by:
 // Created:     2006-10-22
-// RCS-ID:      $Id$
 // Copyright:   (c) 2006 Mike Wetherell
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

@@ -9,7 +9,6 @@
 // Name:        apptrait.h
 // Purpose:     interface of wxAppTraits
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

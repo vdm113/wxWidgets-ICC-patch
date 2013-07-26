@@ -9,7 +9,6 @@
 // Name:        joystick.h
 // Purpose:     interface of wxJoystick
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

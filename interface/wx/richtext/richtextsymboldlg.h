@@ -9,7 +9,6 @@
 // Name:        richtext/richtextsymboldlg.h
 // Purpose:     interface of wxSymbolPickerDialog
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

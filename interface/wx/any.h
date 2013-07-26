@@ -9,7 +9,6 @@
 // Name:        any.h
 // Purpose:     interface of wxAny
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

@@ -9,7 +9,6 @@
 // Name:        sysopt.h
 // Purpose:     interface of wxSystemOptions
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

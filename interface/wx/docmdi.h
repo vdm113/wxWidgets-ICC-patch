@@ -9,7 +9,6 @@
 // Name:        docmdi.h
 // Purpose:     interface of wxDocMDIParentFrame and wxDocMDIChildFrame
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

@@ -9,7 +9,6 @@
 // Name:        dcsvg.h
 // Purpose:     interface of wxSVGFileDC
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

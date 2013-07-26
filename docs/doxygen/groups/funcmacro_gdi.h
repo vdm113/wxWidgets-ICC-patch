@@ -9,7 +9,6 @@
 // Name:        funcmacro_gdi.h
 // Purpose:     Graphics Device Interface function and macro docs
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

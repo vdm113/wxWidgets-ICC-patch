@@ -9,7 +9,6 @@
 // Name:        class_webview.h
 // Purpose:     WebView classes group docs
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

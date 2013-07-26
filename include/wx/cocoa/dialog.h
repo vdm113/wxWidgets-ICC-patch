@@ -11,7 +11,6 @@
 // Author:      David Elliott
 // Modified by:
 // Created:     2002/12/15
-// RCS-ID:      $Id$
 // Copyright:   David Elliott
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

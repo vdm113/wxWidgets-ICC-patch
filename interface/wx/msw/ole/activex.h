@@ -9,7 +9,6 @@
 // Name:        msw/ole/activex.h
 // Purpose:     interface of wxActiveXEvent
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

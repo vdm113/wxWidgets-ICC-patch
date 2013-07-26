@@ -9,7 +9,6 @@
 // Name:        splitter.h
 // Purpose:     interface of wxSplitterWindow
 // Author:      wxWidgets team
-// RCS-ID:      $Id$
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 
