@@ -988,7 +988,7 @@ public:
     /**
         Returns the number of stops.
     */
-    unsigned GetCount() const;
+    size_t GetCount() const;
 
     /**
         Set the start colour to @a col
@@ -1351,7 +1351,7 @@ public:
     /**
         Rotates this matrix clockwise (in radians).
 
-        @param radians
+        @param angle
             Rotation angle in radians, clockwise.
     */
     virtual void Rotate(wxDouble angle);

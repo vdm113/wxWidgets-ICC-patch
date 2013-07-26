@@ -8698,6 +8698,7 @@ wxString wxRichTextBuffer::GetExtWildcard(bool combine, bool save, wxArrayInt* t
     return wildcard;
 }
 
+#if wxUSE_FFILE && wxUSE_STREAMS
 /// Load a file
 bool wxRichTextBuffer::LoadFile(const wxString& filename, wxRichTextFileType type)
 {
@@ -8726,7 +8727,9 @@ bool wxRichTextBuffer::SaveFile(const wxString& filename, wxRichTextFileType typ
     else
         return false;
 }
+#endif // wxUSE_FFILE && wxUSE_STREAMS
 
+#if wxUSE_STREAMS
 /// Load from a stream
 bool wxRichTextBuffer::LoadFile(wxInputStream& stream, wxRichTextFileType type)
 {
@@ -8755,6 +8758,7 @@ bool wxRichTextBuffer::SaveFile(wxOutputStream& stream, wxRichTextFileType type)
     else
         return false;
 }
+#endif // wxUSE_STREAMS
 
 /// Copy the range to the clipboard
 bool wxRichTextBuffer::CopyToClipboard(const wxRichTextRange& range)

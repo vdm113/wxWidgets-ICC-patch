@@ -228,7 +228,7 @@ protected:
 
 public:
     VirtualProtocol(wxSharedPtr<wxWebViewHandler> handler);
-    ~VirtualProtocol() {}
+    virtual ~VirtualProtocol() {}
 
     //IUnknown
     DECLARE_IUNKNOWN_METHODS;
@@ -263,7 +263,8 @@ class ClassFactory : public IClassFactory
 {
 public:
     ClassFactory(wxSharedPtr<wxWebViewHandler> handler) : m_handler(handler) 
-    { AddRef(); }
+        { AddRef(); }
+    virtual ~ClassFactory() {}
 
     wxString GetName() { return m_handler->GetName(); }
 
@@ -293,7 +294,7 @@ class DocHostUIHandler : public wxIDocHostUIHandler
 {
 public:
     DocHostUIHandler(wxWebView* browser) { m_browser = browser; }
-    ~DocHostUIHandler() {};
+    virtual ~DocHostUIHandler() {}
 
     virtual HRESULT wxSTDCALL ShowContextMenu(DWORD dwID, POINT *ppt,
                                               IUnknown *pcmdtReserved,

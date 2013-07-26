@@ -147,6 +147,7 @@
 /include/wx/motif/Makefile.in
 
 # /include/wx/msw/
+/include/wx/msw/setup.h
 /include/wx/msw/Makefile.in
 /include/wx/msw/Makefile
 
@@ -168,6 +169,8 @@
 /lib/evc_armv4_lib
 /lib/evc_emulator_lib
 /lib/gcc_lib
+/lib/vc*_lib
+/lib/vc*_dll
 /lib/wat_lib
 /lib/Linux
 /lib/linux-gnu
@@ -2620,4 +2623,14 @@ rcdefs.h
 /build/msw/Template
 /build/msw/X64
 /include/wx/msw/setup.h
-## VDM
+# VDM
+/wxWidgets_vdm_patch/Debug
+/wxWidgets_vdm_patch/Release
+/wxWidgets_vdm_patch/X64
+/build/msw/Debug*
+/build/msw/Release*
+/build/msw/X64*
+*.sdf
+*.opensdf
+*.suo
+#end vdm

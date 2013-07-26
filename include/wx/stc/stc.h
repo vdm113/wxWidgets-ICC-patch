@@ -4564,8 +4564,8 @@ public:
     }
     virtual void Replace(long from, long to, const wxString& text)
     {
-        SetTargetStart(from);
-        SetTargetEnd(to);
+        SetTargetStart((int)from);
+        SetTargetEnd((int)to);
         ReplaceTarget(text);
     }
 
@@ -4586,7 +4586,7 @@ public:
 
     virtual void SetInsertionPoint(long pos)
     {
-        SetCurrentPos(pos == -1 ? GetLastPosition() : pos);
+        SetCurrentPos(int(pos == -1 ? GetLastPosition() : pos));
     }
     virtual long GetInsertionPoint() const { return GetCurrentPos(); }
     virtual long GetLastPosition() const { return GetTextLength(); }
@@ -4599,8 +4599,8 @@ public:
         }
         else
         {
-            SetSelectionStart(from);
-            SetSelectionEnd(to);
+            SetSelectionStart((int)from);
+            SetSelectionEnd((int)to);
         }
     }
 
@@ -4626,9 +4626,9 @@ public:
         long f, t;
         GetSelection(&f, &t);
         if ( from )
-            *from = f;
+            *from = (int)f;
         if ( to )
-            *to = t;
+            *to = (int)t;
     }
 #endif
 
@@ -4680,14 +4680,14 @@ public:
 
     virtual long XYToPosition(long x, long y) const
     {
-        long pos = PositionFromLine(y);
+        long pos = PositionFromLine((int)y);
         pos += x;
         return pos;
     }
 
     virtual bool PositionToXY(long pos, long *x, long *y) const
     {
-        long l = LineFromPosition(pos);
+        int l = LineFromPosition((int)pos);
         if ( l == -1 )
             return false;
 
@@ -4700,7 +4700,7 @@ public:
         return true;
     }
 
-    virtual void ShowPosition(long pos) { GotoPos(pos); }
+    virtual void ShowPosition(long pos) { GotoPos((int)pos); }
 
     // FIXME-VC6: can't use wxWindow here because of "error C2603: illegal
     //            access declaration: 'wxWindow' is not a direct base of

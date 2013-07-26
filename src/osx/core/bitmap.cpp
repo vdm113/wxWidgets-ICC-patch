@@ -25,6 +25,8 @@
 
 #include "wx/rawbmp.h"
 
+#include "wx/filename.h"
+
 IMPLEMENT_DYNAMIC_CLASS(wxBitmap, wxGDIObject)
 IMPLEMENT_DYNAMIC_CLASS(wxMask, wxObject)
 
@@ -1277,10 +1279,29 @@ bool wxBitmap::LoadFile(const wxString& filename, wxBitmapType type)
     else
     {
 #if wxUSE_IMAGE
-        wxImage loadimage(filename, type);
+        double scale = 1.0;
+        wxString fname = filename;
+        
+        if  ( type == wxBITMAP_TYPE_PNG )
+        {
+            if ( wxOSXGetMainScreenContentScaleFactor() > 1.9 )
+            {
+                wxFileName fn(filename);
+                fn.MakeAbsolute();
+                fn.SetName(fn.GetName()+"@2x");
+                
+                if ( fn.Exists() )
+                {
+                    fname = fn.GetFullPath();
+                    scale = 2.0;
+                }
+            }
+        }
+
+        wxImage loadimage(fname, type);
         if (loadimage.IsOk())
         {
-            *this = loadimage;
+            *this = wxBitmap(loadimage,-1,scale);
 
             return true;
         }
@@ -1312,7 +1333,7 @@ bool wxBitmap::Create(const void* data, wxBitmapType type, int width, int height
 
 #if wxUSE_IMAGE
 
-wxBitmap::wxBitmap(const wxImage& image, int depth)
+wxBitmap::wxBitmap(const wxImage& image, int depth, double scale)
 {
     wxCHECK_RET( image.IsOk(), wxT("invalid image") );
 
@@ -1322,7 +1343,7 @@ wxBitmap::wxBitmap(const wxImage& image, int depth)
 
     wxBitmapRefData* bitmapRefData;
 
-    m_refData = bitmapRefData = new wxBitmapRefData( width , height , depth ) ;
+    m_refData = bitmapRefData = new wxBitmapRefData( width/scale, height/scale, depth, scale) ;
 
     if ( bitmapRefData->IsOk())
     {

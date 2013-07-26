@@ -363,6 +363,32 @@ typedef short int WXTYPE;
     #endif
 #endif
 
+#if defined(__has_include)
+    #if !defined(HAVE_TYPE_TRAITS) && __has_include(<type_traits>)
+        #define HAVE_TYPE_TRAITS
+    #endif
+
+    #if !defined(HAVE_TR1_TYPE_TRAITS) && __has_include(<tr1/type_traits>)
+        #define HAVE_TR1_TYPE_TRAITS
+    #endif
+
+    #if !defined(HAVE_STD_UNORDERED_MAP) && __has_include(<unordered_map>)
+        #define HAVE_STD_UNORDERED_MAP
+    #endif
+
+    #if !defined(HAVE_TR1_UNORDERED_MAP) && __has_include(<tr1/unordered_map>)
+        #define HAVE_TR1_UNORDERED_MAP
+    #endif
+
+    #if !defined(HAVE_STD_UNORDERED_SET) && __has_include(<unordered_set>)
+        #define HAVE_STD_UNORDERED_SET
+    #endif
+
+    #if !defined(HAVE_TR1_UNORDERED_SET) && __has_include(<tr1/unordered_set>)
+        #define HAVE_TR1_UNORDERED_SET
+    #endif
+#endif // defined(__has_include)
+
 /* provide replacement for C99 va_copy() if the compiler doesn't have it */
 
 /* could be already defined by configure or the user */
@@ -405,17 +431,6 @@ typedef short int WXTYPE;
         #endif
     #endif /* va_copy/!va_copy */
 #endif /* wxVaCopy */
-
-#ifndef HAVE_VARIADIC_MACROS
-    #if wxCHECK_WATCOM_VERSION(1,2)
-        #define HAVE_VARIADIC_MACROS
-    #endif
-
-    #if wxCHECK_VISUALC_VERSION(9)
-        #define HAVE_VARIADIC_MACROS
-    #endif
-#endif /* HAVE_VARIADIC_MACROS */
-
 
 #ifndef HAVE_WOSTREAM
     /*
@@ -1047,7 +1062,7 @@ typedef wxUint32 wxDword;
    architectures to be able to pass wxLongLong_t to the standard functions
    prototyped as taking "long long" such as strtoll().
  */
-#if (defined(__VISUALC__) && defined(__WIN32__))
+#if (defined(__VISUALC__) || defined(__INTELC__)) && defined(__WIN32__)
     #define wxLongLong_t __int64
     #define wxLongLongSuffix i64
     #define wxLongLongFmtSpec "I64"

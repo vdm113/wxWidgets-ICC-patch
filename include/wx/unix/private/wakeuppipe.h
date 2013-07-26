@@ -72,6 +72,7 @@ private:
 
 // This class can be used from multiple threads, i.e. its WakeUp() can be
 // called concurrently.
+#if wxUSE_THREADS
 
 class wxWakeUpPipeMT : public wxWakeUpPipe
 {
@@ -98,5 +99,11 @@ private:
     // Protects access to m_pipeIsEmpty.
     wxCriticalSection m_pipeLock;
 };
+
+#else // !wxUSE_THREADS
+
+typedef wxWakeUpPipe wxWakeUpPipeMT;
+
+#endif // wxUSE_THREADS/!wxUSE_THREADS
 
 #endif // _WX_UNIX_PRIVATE_WAKEUPPIPE_H_
