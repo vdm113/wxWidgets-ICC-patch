@@ -69,18 +69,26 @@ public:
 
     // This can be called by the window to indicate that it never wants to have
     // the focus for itself.
-    void DisableSelfFocus() { m_acceptsFocusSelf = false; }
+    void DisableSelfFocus()
+        { m_acceptsFocusSelf = false; UpdateParentCanFocus(); }
+
+    // This can be called to undo the effect of a previous DisableSelfFocus()
+    // (otherwise calling it is not necessary as the window does accept focus
+    // by default).
+    void EnableSelfFocus()
+        { m_acceptsFocusSelf = true; UpdateParentCanFocus(); }
 
     // should be called from SetFocus(), returns false if we did nothing with
     // the focus and the default processing should take place
     bool DoSetFocus();
 
     // returns whether we should accept focus ourselves or not
-    bool AcceptsFocus() const { return m_acceptsFocusSelf; }
+    bool AcceptsFocus() const;
 
     // Returns whether we or one of our children accepts focus.
     bool AcceptsFocusRecursively() const
-        { return m_acceptsFocusSelf || m_acceptsFocusChildren; }
+        { return AcceptsFocus() ||
+            (m_acceptsFocusChildren && HasAnyChildrenAcceptingFocus()); }
 
     // We accept focus from keyboard if we accept it at all.
     bool AcceptsFocusFromKeyboard() const { return AcceptsFocusRecursively(); }
@@ -97,6 +105,10 @@ protected:
     // return true if we have any children accepting focus
     bool HasAnyFocusableChildren() const;
 
+    // return true if we have any children that do accept focus right now
+    bool HasAnyChildrenAcceptingFocus() const;
+
+
     // the parent window we manage the children for
     wxWindow *m_winParent;
 
@@ -104,6 +116,9 @@ protected:
     wxWindow *m_winLastFocused;
 
 private:
+    // Update the window status to reflect whether it is getting focus or not.
+    void UpdateParentCanFocus();
+
     // Indicates whether the associated window can ever have focus itself.
     //
     // Usually this is the case, e.g. a wxPanel can be used either as a

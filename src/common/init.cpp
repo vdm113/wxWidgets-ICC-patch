@@ -479,6 +479,9 @@ int wxEntryReal(int& argc, wxChar **argv)
 
     wxTRY
     {
+#if defined(__WXOSX__) && wxOSX_USE_COCOA_OR_IPHONE
+        // everything done in OnRun using native callbacks
+#else
         // app initialization
         if ( !wxTheApp->CallOnInit() )
         {
@@ -494,7 +497,7 @@ int wxEntryReal(int& argc, wxChar **argv)
         } callOnExit;
 
         WX_SUPPRESS_UNUSED_WARN(callOnExit);
-
+#endif
         // app execution
         return wxTheApp->OnRun();
     }

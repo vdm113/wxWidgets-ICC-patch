@@ -11,6 +11,10 @@
    and attribute content.
 */
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #ifndef XML_CHARDATA_H
 #define XML_CHARDATA_H 1
 
@@ -37,3 +41,7 @@ int CharData_CheckXMLChars(CharData *storage, const XML_Char *s);
 
 
 #endif  /* XML_CHARDATA_H */
+
+#ifdef __cplusplus
+}
+#endif

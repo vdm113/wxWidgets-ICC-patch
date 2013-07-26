@@ -50,7 +50,7 @@
 #if wxUSE_FFILE
     #include "wx/ffile.h"
 #elif wxUSE_FILE
-    #include "wx/ffile.h"
+    #include "wx/file.h"
 #endif
 
 #ifdef __WXGTK__
@@ -4436,7 +4436,7 @@ wxStyledTextCtrl::DoLoadFile(const wxString& filename, int WXUNUSED(fileType))
     if ( file.IsOpened() )
     {
         wxString text;
-        if ( file.ReadAll(&text, *wxConvCurrent) )
+        if ( file.ReadAll(&text, wxConvAuto()) )
         {
             // Detect the EOL: we use just the first line because there is not
             // much we can do if the file uses inconsistent EOLs anyhow, we'd

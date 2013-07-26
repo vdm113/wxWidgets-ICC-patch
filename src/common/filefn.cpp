@@ -785,11 +785,13 @@ wxPathOnly (wxChar *path)
     {
         static wxChar buf[_MAXPATHLEN];
 
-        // Local copy
-        wxStrcpy (buf, path);
-
         int l = wxStrlen(path);
         int i = l - 1;
+        if ( i >= _MAXPATHLEN )
+            return NULL;
+
+        // Local copy
+        wxStrcpy (buf, path);
 
         // Search backward for a backward or forward slash
 #if defined(__INTEL_COMPILER)
@@ -834,11 +836,14 @@ wxString wxPathOnly (const wxString& path)
     {
         wxChar buf[_MAXPATHLEN];
 
-        // Local copy
-        wxStrcpy(buf, path);
-
         int l = path.length();
         int i = l - 1;
+
+        if ( i >= _MAXPATHLEN )
+            return wxString();
+
+        // Local copy
+        wxStrcpy(buf, path);
 
         // Search backward for a backward or forward slash
 #if defined(__INTEL_COMPILER)
@@ -1448,7 +1453,7 @@ wxChar *wxDoGetCwd(wxChar *buf, int sz)
         buf = new wxChar[sz + 1];
     }
 
-    bool ok wxDUMMY_INITIALIZE(false);
+    bool ok = false;
 
     // for the compilers which have Unicode version of _getcwd(), call it
     // directly, for the others call the ANSI version and do the translation

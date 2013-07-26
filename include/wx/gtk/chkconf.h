@@ -52,6 +52,11 @@
 #   define wxUSE_METAFILE 0
 #endif
 
+#if wxUSE_ENH_METAFILE
+#   undef  wxUSE_ENH_METAFILE
+#   define wxUSE_ENH_METAFILE 0
+#endif
+
 #ifndef __UNIX__
 
 #   undef  wxUSE_WEBVIEW
