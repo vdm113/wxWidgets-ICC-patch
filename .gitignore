@@ -2581,5 +2581,7 @@
 /build/msw/Debug*
 /build/msw/Release*
 /build/msw/X64*
+*.sdf
+*.opensdf
 #end vdm
 
