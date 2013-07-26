@@ -147,6 +147,7 @@
 /include/wx/motif/Makefile.in
 
 # /include/wx/msw/
+/include/wx/msw/setup.h
 /include/wx/msw/Makefile.in
 /include/wx/msw/Makefile
 
@@ -168,6 +169,8 @@
 /lib/evc_armv4_lib
 /lib/evc_emulator_lib
 /lib/gcc_lib
+/lib/vc*_lib
+/lib/vc*_dll
 /lib/wat_lib
 /lib/Linux
 /lib/linux-gnu
@@ -2570,54 +2573,3 @@
 # /utils/wxrc/
 /utils/wxrc/*.sln
 /utils/wxrc/*.dsw
-
-## VDM
-Debug
-*.dll
-*.dsw
-ipch
-My Inspector XE Results*
-*.obj
-Release
-*.*sdf
-*.suo
-*.user
-vc8arm_winceu
-vc8arm_winceud
-vc9arm_winceu
-vc9arm_winceud
-vc_msw
-vc_mswd
-vc_mswddll
-vc_mswdll
-vc_mswhdll
-vc_mswuddll
-vc_mswudll
-vc_mswuhdll
-vc_mswuniv
-vc_mswunivd
-vc_mswunivddll
-vc_mswunivdll
-vc_mswunivu
-vc_mswunivud
-vc_mswunivuddll
-vc_mswunivudll
-*.vcproj.user
-*.vcxproj.user
-wx_vc8arm.sln
-wx_vc8arm_*.vcproj
-/lib/vc_*/*.map
-/lib/vc_*/*.lib
-/lib/vc_*/*.dll
-/lib/vc_*/*.exp
-*.cod
-*.pdb
-rcdefs.h
-/lib/vc_dll/mswu/wx/
-/lib/vc_dll/mswud/wx/
-/lib/vc_x64_dll/mswu/wx/
-/lib/vc_x64_dll/mswud/wx/
-/build/msw/Template
-/build/msw/X64
-/include/wx/msw/setup.h
-## VDM
