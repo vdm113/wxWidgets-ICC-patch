@@ -2573,3 +2573,13 @@
 # /utils/wxrc/
 /utils/wxrc/*.sln
 /utils/wxrc/*.dsw
+
+# vdm
+/wxWidgets_vdm_patch/Debug
+/wxWidgets_vdm_patch/Release
+/wxWidgets_vdm_patch/X64
+/build/msw/Debug*
+/build/msw/Release*
+/build/msw/X64*
+#end vdm
+
