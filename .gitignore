@@ -2583,5 +2583,6 @@
 /build/msw/X64*
 *.sdf
 *.opensdf
+*.suo
 #end vdm
 
