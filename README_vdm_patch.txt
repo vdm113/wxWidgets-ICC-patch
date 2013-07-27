@@ -6,9 +6,9 @@ The original sources were patched by (see above) SW for ICL 12.1 and 13.0. There
 
 I can do a very limited support... I support only ICC 12.1 and ICC 13.0 (which is beta ATM) under Windows's MSVC 2010 with x64 builds, though x86 (32-bit) builds might be successful, but I have not tried it (I mean x86).
 
-This fork of wxWidgets is as of official SVN revision:
+This fork of wxWidgets is as of the official GIT repository:
 
-r74602
+https://github.com/wxWidgets/wxWidgets
 
 Also, it uses my own pre-configured "setup.h" configuration. I have changed only this parameter (compared to default 'setup0.h'):
 
