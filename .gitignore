@@ -2623,7 +2623,7 @@ rcdefs.h
 /build/msw/Template
 /build/msw/X64
 /include/wx/msw/setup.h
-# VDM
+
 /wxWidgets_vdm_patch/Debug
 /wxWidgets_vdm_patch/Release
 /wxWidgets_vdm_patch/X64
