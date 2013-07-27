@@ -98,7 +98,7 @@
 /* -------------------------------------------------------------------------- */
 
 /* VC++ and BC++ starting with 5.2 have TCHAR support */
-#ifdef __VISUALC__
+#if ((defined(__VISUALC__) || defined(__INTEL_COMPILER)) && defined(_WIN32))
     #define wxHAVE_TCHAR_SUPPORT
 #elif defined(__BORLANDC__) && (__BORLANDC__ >= 0x520)
     #define wxHAVE_TCHAR_SUPPORT
