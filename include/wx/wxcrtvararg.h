@@ -479,7 +479,7 @@ WX_DEFINE_SCANFUNC(wxSscanf, 2, (const wxCStrData& str, const wchar_t *format),
                    wxCRT_SscanfW, (str.AsWCharBuf(), wxScanfConvertFormatW(format)))
 
 // Visual C++ doesn't provide vsscanf()
-#if !(defined(__VISUALC___) || defined(__INTEL_COMPILER))
+#ifndef __VISUALC___
 int WXDLLIMPEXP_BASE wxVsscanf(const char *str, const char *format, va_list ap);
 int WXDLLIMPEXP_BASE wxVsscanf(const wchar_t *str, const wchar_t *format, va_list ap);
 int WXDLLIMPEXP_BASE wxVsscanf(const wxScopedCharBuffer& str, const char *format, va_list ap);

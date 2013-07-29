@@ -84,7 +84,7 @@
 // constants
 // ----------------------------------------------------------------------------
 
-#if defined(__VISUALC__) || defined(__INTEL_COMPILER) || defined(__DIGITALMARS__)
+#if defined(__VISUALC__) || defined(__DIGITALMARS__)
     typedef int mode_t;
 #endif
 
@@ -193,7 +193,7 @@ enum wxPosixPermissions
     #define   wxStructStat struct _stat
 #elif (defined(__WINDOWS__) || defined(__OS2__)) && \
       ( \
-        defined(__VISUALC__) || defined(__INTEL_COMPILER) || \
+        defined(__VISUALC__) || \
         defined(__MINGW64__) || \
         (defined(__MINGW32__) && !defined(__WINE__) && \
                                 wxCHECK_W32API_VERSION(0, 5)) || \
