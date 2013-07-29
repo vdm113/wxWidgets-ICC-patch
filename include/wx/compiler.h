@@ -25,7 +25,9 @@
 
 #ifdef __INTEL_COMPILER
 #   define __INTELC__
-#elif defined(_MSC_VER)
+#endif
+
+#if defined(_MSC_VER)
     /*
        define another standard symbol for Microsoft Visual C++: the standard
        one (_MSC_VER) is also defined by some other compilers.
