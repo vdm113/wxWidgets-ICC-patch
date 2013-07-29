@@ -24,7 +24,7 @@
 
 #ifndef __WX_SETUP_H__
 // For non-configure builds assume vsscanf is available, if not Visual C or DMC
-#if defined (__VISUALC__) || defined(_INTEL_COMPILER) && !defined (__DMC__)
+#if !defined (__VISUALC__) && !defined (__DMC__)
     #define HAVE_VSSCANF 1
 #endif
 #endif
