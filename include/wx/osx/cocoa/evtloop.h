@@ -23,8 +23,6 @@ public:
     wxGUIEventLoop();
     ~wxGUIEventLoop();
     
-    int Run();
-    
     void BeginModalSession( wxWindow* modalWindow );
     
     void EndModalSession();
@@ -33,8 +31,6 @@ public:
 
     void OSXUseLowLevelWakeup(bool useIt)
         { m_osxLowLevelWakeUp = useIt ; }
-    
-    void OSXOnWillTerminate();
     
 protected:
     virtual int DoDispatchTimeout(unsigned long timeout);
