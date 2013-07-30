@@ -284,10 +284,6 @@
 //
 // Default is 1, but set to 0 if the scenario above is applicable.
 #define wxUSE_COMPILER_TLS 1
-#ifdef _MSC_VER
-#   undef wxUSE_COMPILER_TLS
-#   define wxUSE_COMPILER_TLS 0
-#endif
 
 // ----------------------------------------------------------------------------
 // Interoperability with the standard library.
