@@ -10,14 +10,6 @@ This fork of wxWidgets is as of the official GIT repository:
 
 https://github.com/wxWidgets/wxWidgets
 
-Also, it uses my own pre-configured "setup.h" configuration. I have changed only this parameter (compared to default 'setup0.h'):
-
-#define wxUSE_COMPILER_TLS 1
-#ifdef _MSC_VER
-#   undef wxUSE_COMPILER_TLS
-#   define wxUSE_COMPILER_TLS 0 /* VDM: it crashes with ICC */
-#endif
-
 *** NB ***
 Set in your project files these preprocessor defines, in other case you might encounter random crashes:
 _HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0
