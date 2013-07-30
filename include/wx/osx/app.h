@@ -148,6 +148,7 @@ public:
     virtual void         MacNewFile() ;
     // in response of a reopen-application apple event
     virtual void         MacReopenApp() ;
+#if wxOSX_USE_COCOA_OR_IPHONE
     // immediately before the native event loop launches
     virtual void         OSXOnWillFinishLaunching();
     // immediately when the native event loop starts, no events have been served yet
@@ -156,6 +157,13 @@ public:
     virtual bool         OSXOnShouldTerminate();
     // before application terminates
     virtual void         OSXOnWillTerminate();
+
+private:
+    bool                m_onInitResult;
+    
+public:
+
+#endif
     
     // Hide the application windows the same as the system hide command would do it.
     void MacHideApp();

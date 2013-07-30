@@ -5,6 +5,7 @@
 #   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
 #endif
 
+
 /*
  * Copyright (c) 2009 Frank Warmerdam
  *
