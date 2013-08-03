@@ -474,3 +474,4 @@ BENCHMARK_FUNC(ParseHTML)
 
     return true;
 }
+
