@@ -2550,7 +2550,6 @@
 /tests/test_test.vcproj
 
 # /tests/benchmarks/
-/tests/benchmarks/*.sln
 /tests/benchmarks/*.dsw
 
 # /utils/emulator/src/
