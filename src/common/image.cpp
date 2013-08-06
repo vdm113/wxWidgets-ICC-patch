@@ -1794,6 +1794,9 @@ wxImage wxImage::ConvertToGreyscale(double weight_r, double weight_g, double wei
 
     const unsigned char* src = M_IMGDATA->m_data;
     unsigned char* dst = image.GetData();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (size--)
     {
         unsigned char r = *src++;
@@ -1870,6 +1873,9 @@ wxImage wxImage::ConvertToDisabled(unsigned char brightness) const
 
     const unsigned char* src = M_IMGDATA->m_data;
     unsigned char* dst = image.GetData();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (size--)
     {
         unsigned char r = *src++;
