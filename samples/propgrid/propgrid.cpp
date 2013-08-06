@@ -3168,6 +3168,9 @@ void GetColumnWidths(wxClientDC &dc, wxPropertyGrid *grid, wxPGProperty *root, i
                          state->GetColumnMinWidth(1),
                          state->GetColumnMinWidth(2) };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned ii = 0; ii < root->GetChildCount(); ++ii)
     {
         wxPGProperty* p = root->Item(ii);
@@ -3176,6 +3179,9 @@ void GetColumnWidths(wxClientDC &dc, wxPropertyGrid *grid, wxPGProperty *root, i
         width[1] = std::max(width[1], state->GetColumnFullWidth(dc, p, 1));
         width[2] = std::max(width[2], state->GetColumnFullWidth(dc, p, 2));
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned ii = 0; ii < root->GetChildCount(); ++ii)
     {
         wxPGProperty* p = root->Item(ii);
