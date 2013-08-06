@@ -591,6 +591,8 @@ public:
                           unsigned int col,
                           bool subProps) const;
 
+    int GetColumnFullWidth(wxClientDC &dc, wxPGProperty *p, unsigned int col);
+
     /**
         Returns information about arbitrary position in the grid.
 
