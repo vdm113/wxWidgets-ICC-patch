@@ -47,7 +47,7 @@ bool check_return_value(int rc)
     return true;
 }
 
-unsigned reformat(const string& file, bool do_prologue)
+unsigned reformat(const string& file, bool do_prologue, bool do_patch)
 {
     static const char* line1="#if defined(__INTEL_COMPILER)";
     static const char* line1_disabled="#if defined(__INTEL_COMPILER) && 0";
@@ -59,6 +59,9 @@ unsigned reformat(const string& file, bool do_prologue)
 
     static const char* inline_pragma="MY_MACRO_PRAGMA_IVDEP \\";
 
+    static const size_t length=4096; // ugly limitation to 4096!
+    char tmp_buf[length+16];
+
     unsigned cnt=0;
     bool changed=false;
 
@@ -67,14 +70,6 @@ unsigned reformat(const string& file, bool do_prologue)
     FILE* in=fopen(file.c_str(),"r");
     if(!in) {
         check_return_value(errno);
-        return cnt;
-    }
-    string tmp_file=file;
-    tmp_file.append("-tmp");
-    FILE* out=fopen(tmp_file.c_str(),"w+b");
-    if(!out) {
-        check_return_value(errno);
-        fclose(in);
         return cnt;
     }
 
@@ -86,8 +81,6 @@ unsigned reformat(const string& file, bool do_prologue)
 #endif
     while(in && !feof(in)) {
 again:
-        static const size_t length=4096; // ugly limitation to 4096!
-
         char buf[length+16];
         if(fgets(buf,length,in)==NULL) {
             if(feof(in)) {
@@ -102,19 +95,17 @@ again:
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-            while(len>0 && '\r'==buf[len-1] || '\n'==buf[len-1]) {
+            while(len>0 && ('\r'==buf[len-1] || '\n'==buf[len-1])) {
                 buf[len-1]='\0';
-                len=strlen(buf);
+                --len;
             }
         }
 
         ++ln;
+        scrollback.push_back(buf);
 
-#if 0   // set to 1 for replace old token+prologue (for future re-write of prologue)
         if(1==ln && strcmp(buf,line_prologue_token)==0) {
-            // for future compatibility: erase old token, to let it be replaced by new one
-
-            changed=true;
+            size_t cnt=0;
 
             // seek for an empty line as ending of the prologue
             char buf2[length+16];
@@ -122,9 +113,9 @@ again:
 #   pragma ivdep
 #endif
             do {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
+                scrollback.clear();
+                scrollback.push_back(buf);
+
                 buf2[0]='x';
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -133,32 +124,34 @@ again:
                     buf2[0]='x';
                     fgets(buf2,length,in);
                 }
-                fgets(buf2,length,in); // skip an empty line
-                buf2[length]='\0';
-                if('\r'!=buf2[0] || '\n'!=buf2[0]) {
-                    strcpy(buf,buf2);
-                }
+                scrollback.push_back(buf2);
+                ++cnt;
             } while(strcmp(buf2,line_prologue_token)==0); // might be broken, i.e. twice or more prologue occurence
-        }
-#endif
 
-        if(do_prologue && 1==ln && strcmp(buf,line_prologue_token)!=0) {
-            fprintf(out,"%s\n%s\n\n",line_prologue_token,line_prologue);
-            changed=true;
-        }
+            if(1!=cnt) {
+                changed=true;
+            }
 
-        {
-            size_t len=strlen(buf);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            while(len>0 && ('\r'==buf[len-1] || '\n'==buf[len-1])) {
-                buf[len-1]=0;
-                --len;
+            if(!do_patch) {
+                changed=true;
+                scrollback.clear();
+                continue;
             }
         }
 
-        scrollback.push_back(buf);
+        if(do_patch && do_prologue && 1==ln && strcmp(buf,line_prologue_token)!=0) {
+            sprintf(tmp_buf,"%s\n%s\n",line_prologue_token,line_prologue);
+            string save=scrollback.back();
+            scrollback.clear();
+            scrollback.push_back(tmp_buf);
+            scrollback.push_back(save);
+            changed=true;
+        }
+
+        if(!do_patch && do_prologue && 1==ln && strcmp(buf,line_prologue_token)==0) {
+            scrollback.push_back(buf);
+            changed=true;
+        }
 
         string line;
 #if defined(__INTEL_COMPILER)
@@ -171,8 +164,6 @@ again:
             } else
                 break;
         }
-
-        bool reformat=false;
 
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -208,6 +199,8 @@ again:
             line.erase(line.length()-1,1);
         }
 
+        bool reformat=false;
+
         // for
         if(!line.compare("for")) {
             reformat=true;
@@ -225,6 +218,7 @@ again:
 
         if(reformat && scrollback.size()>3) {
             vector<string>::const_iterator i1=scrollback.end();
+            --i1;
             if(
                 (
                     (*(i1-1)).compare(line3)==0 &&
@@ -232,7 +226,9 @@ again:
                     ( (*(i1-3)).compare(line1)==0 || (*(i1-3)).compare(line1_disabled)==0 )
                 )
             ) {
-                reformat=false;
+                reformat=!do_patch;
+            } else {
+                reformat=do_patch;
             }
         }
 
@@ -240,60 +236,76 @@ again:
             vector<string>::reverse_iterator i1=scrollback.rbegin();
             if(i1!=scrollback.rend()) {
                 ++i1;
-                if(!(*i1).compare(inline_pragma))
+                if(do_patch && !(*i1).compare(inline_pragma))
                     reformat=false;
             }
-            if(scrollback.size()>3) {
-                int i3=0;
+            int i3=0;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-                for(int i2=0; i2<3; ++i2) {
-                    string ln=*i1;
-                    ++i1;
+            for(int i2=0; i2<3; ++i2) {
+                string ln=*i1;
+                ++i1;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-                    while(ln.length()!=0 && ( ln[ln.length()-1]=='\r' || ln[ln.length()-1]=='\n') )
-                        ln.erase(ln.length()-1,1);
-                    const char* cmp;
-                    switch(i2) {
-                        case 0:
-                            cmp=line3;
-                            break;
-                        case 1:
-                            cmp=line2;
-                            break;
-                        case 2:
-                            cmp=line1;
-                            break;
-                    }
-                    if(!ln.compare(cmp)) {
-                        ++i3;
-                    } else {
-                        if(2==i2 && !ln.compare(line1_disabled)) {
-                            ++i3;
-                        } else {
-                            break;
-                        }
-                    }
+                while(ln.length()!=0 && ( ln[ln.length()-1]=='\r' || ln[ln.length()-1]=='\n') )
+                    ln.erase(ln.length()-1,1);
+                const char* cmp;
+                switch(i2) {
+                    case 0:
+                        cmp=line3;
+                        break;
+                    case 1:
+                        cmp=line2;
+                        break;
+                    case 2:
+                        cmp=line1;
+                        break;
                 }
-                if(3==i3) {
-                    reformat=false;
+                if(!ln.compare(cmp)) {
+                    ++i3;
+                } else if(2==i2 && !ln.compare(line1_disabled)) {
+                    ++i3;
+                } else {
+                    break;
                 }
+            }
+            if(3==i3) {
+                reformat=!do_patch;
             }
 
             if(reformat) {
-                if(last_char_was_backslash) {
-                    fprintf(out,"%s\n",inline_pragma);
+                string save=scrollback.back();
+                if(do_patch) {
+                    if(last_char_was_backslash) {
+                        sprintf(tmp_buf,"%s",inline_pragma);
+                        scrollback.pop_back();
+                        scrollback.push_back(tmp_buf);
+                        scrollback.push_back(save);
+                    } else {
+                        sprintf(tmp_buf,"%s\n%s\n%s",line1, line2, line3);
+                        scrollback.pop_back();
+                        scrollback.push_back(tmp_buf);
+                        scrollback.push_back(save);
+                    }
                 } else {
-                    fprintf(out,"%s\n%s\n%s\n",line1, line2, line3);
+                    if(last_char_was_backslash) {
+                        scrollback.pop_back();
+                        scrollback.pop_back();
+                        scrollback.push_back(save);
+                    } else {
+                        scrollback.pop_back();
+                        scrollback.pop_back();
+                        scrollback.pop_back();
+                        scrollback.pop_back();
+                        scrollback.push_back(save);
+                    }
                 }
                 if(!changed)
                     ++cnt;
             }
         }
-        fprintf(out,"%s\n",buf);
 
         {
             size_t i1=strlen(buf);
@@ -306,17 +318,29 @@ again:
     }
 
     fclose(in);
-    fclose(out);
+
+    if(changed || 0!=cnt) {
+        FILE* in=fopen(file.c_str(),"w+b");
+        if(!in) {
+            check_return_value(errno);
+            return cnt;
+        }
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        for(vector<string>::const_iterator i1=scrollback.begin(); i1!=scrollback.end(); ++i1) {
+            fprintf(in,"%s\n",(*i1).c_str());
+        }
+
+        fclose(in);
+    }
 
     if(changed)
         ++cnt;
 
     if(cnt) {
-        printf("Patched file: %s\n",file.c_str());
-        remove(file.c_str());
-        rename(tmp_file.c_str(),file.c_str());
-    } else {
-        remove(tmp_file.c_str());
+        printf("Processed file: %s\n",file.c_str());
     }
 
     return cnt;
@@ -325,7 +349,7 @@ again:
 static set<string> ext;
 static set<string> ext_prologue;
 
-unsigned directory_recurse(const string& base, const string& directory, const string& path)
+unsigned directory_recurse(const string& base, const string& directory, const string& path, bool do_patch)
 {
     unsigned cnt=0;
 
@@ -360,7 +384,7 @@ unsigned directory_recurse(const string& base, const string& directory, const st
                 if(n.rfind("*")==n.length()-1)
                     n.erase(n.length()-1,1);
                 n+=name;
-                cnt+=reformat(n,(ext_prologue.find(*i1)!=ext_prologue.end()));
+                cnt+=reformat(n,(ext_prologue.find(*i1)!=ext_prologue.end()),do_patch);
 
                 break;
             }
@@ -371,7 +395,7 @@ unsigned directory_recurse(const string& base, const string& directory, const st
             dir_name.erase(dir_name.length()-1,1);
             dir_name+=name;
             dir_name.append("\\*");
-            cnt+=directory_recurse(base,dir_name,name);
+            cnt+=directory_recurse(base,dir_name,name,do_patch);
         }
 
 next_entry:
@@ -392,6 +416,30 @@ next_entry:
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+    bool do_patch;
+
+    {
+        bool usage=false;
+
+        if(argc!=2) {
+            usage=true;
+        } else {
+            if(strcmp(argv[1],"-p")==0) {
+                do_patch=true;
+            } else if(strcmp(argv[1],"-u")==0) {
+                do_patch=false;
+            } else {
+                usage=true;
+            }
+        }
+
+        if(usage) {
+            fprintf(stderr,"Usage: switch '-p' patches, switch '-u' unpatches.\nPress any key to exit.\n");
+            getchar();
+            return 0;
+        }
+    }
+
     ext.insert(".h");
     ext.insert(".hh");
     ext.insert(".hpp");
@@ -410,9 +458,9 @@ int _tmain(int argc, _TCHAR* argv[])
     }
     string d=dir;
     d.append("\\..\\*");
-    unsigned cnt=directory_recurse(".",d,d);
+    unsigned cnt=directory_recurse(".",d,d,do_patch);
 
-    printf("%u occurences patched. Press any key to exit.\n",cnt);
+    printf("%u occurences processed. Press any key to exit.\n",cnt);
 
     getchar();
 }
