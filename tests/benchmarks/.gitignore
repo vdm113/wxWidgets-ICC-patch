@@ -1,0 +1,7 @@
+*.vc
+*.vcproj
+bench_vc7.sln
+bench_vc9.sln
+bench_vc10.sln
+
+#eof
