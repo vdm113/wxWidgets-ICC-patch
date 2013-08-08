@@ -563,6 +563,7 @@ Major new features in this release
 All:
 
 - Allow using custom HTTP methods with wxHTTP (Kolya Kosenko).
+- Add wxFileName::SetPermissions() (Catalin Raceanu).
 - Fix build with wxUSE_FFILE==0 (jroemmler).
 
 All (GUI):
@@ -574,6 +575,7 @@ All (GUI):
 wxMSW:
 
 - It is now possible to tab into radio boxes again.
+- Fix launching some types of files under Windows 7 and later (Steven Houchins).
 
 wxOSX:
 
