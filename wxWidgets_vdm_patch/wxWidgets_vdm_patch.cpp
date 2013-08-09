@@ -92,6 +92,12 @@ again:
         buf[length]='\0';
         {
             size_t len=strlen(buf);
+<<<<<<< HEAD
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+=======
+>>>>>>> m
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -165,6 +171,12 @@ again:
                 break;
         }
 
+<<<<<<< HEAD
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+=======
+>>>>>>> m
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -240,12 +252,24 @@ again:
                     reformat=false;
             }
             int i3=0;
+<<<<<<< HEAD
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
             for(int i2=0; i2<3; ++i2) {
                 string ln=*i1;
                 ++i1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+=======
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+            for(int i2=0; i2<3; ++i2) {
+                string ln=*i1;
+                ++i1;
+>>>>>>> m
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -326,6 +350,12 @@ again:
             return cnt;
         }
 
+<<<<<<< HEAD
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+=======
+>>>>>>> m
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
