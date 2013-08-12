@@ -92,12 +92,6 @@ again:
         buf[length]='\0';
         {
             size_t len=strlen(buf);
-<<<<<<< HEAD
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-=======
->>>>>>> m
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -171,12 +165,6 @@ again:
                 break;
         }
 
-<<<<<<< HEAD
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-=======
->>>>>>> m
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -262,17 +250,6 @@ again:
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-=======
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for(int i2=0; i2<3; ++i2) {
-                string ln=*i1;
-                ++i1;
->>>>>>> m
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                 while(ln.length()!=0 && ( ln[ln.length()-1]=='\r' || ln[ln.length()-1]=='\n') )
                     ln.erase(ln.length()-1,1);
                 const char* cmp;
@@ -350,12 +327,6 @@ again:
             return cnt;
         }
 
-<<<<<<< HEAD
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-=======
->>>>>>> m
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
