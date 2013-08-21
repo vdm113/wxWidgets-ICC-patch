@@ -240,7 +240,6 @@ again:
                     reformat=false;
             }
             int i3=0;
-<<<<<<< HEAD
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
