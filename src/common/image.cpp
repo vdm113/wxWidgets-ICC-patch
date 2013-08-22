@@ -366,11 +366,6 @@ wxImage wxImage::ShrinkBy( int xFactor , int yFactor ) const
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (long y = 0; y < height; y++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (long x = 0; x < width; x++)
         {
             unsigned long avgRed = 0 ;
@@ -379,12 +374,6 @@ wxImage wxImage::ShrinkBy( int xFactor , int yFactor ) const
             unsigned long avgAlpha = 0 ;
             unsigned long counter = 0 ;
             // determine average
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for ( int y1 = 0 ; y1 < yFactor ; ++y1 )
-            {
-                long y_offset = (y * yFactor + y1) * old_width;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -668,11 +657,6 @@ wxImage wxImage::ResampleBox(int width, int height) const
             averaged_pixels = 0;
             sum_r = sum_g = sum_b = sum_a = 0.0;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for ( int j = vPrecalc.boxStart; j <= vPrecalc.boxEnd; ++j )
-            {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1403,11 +1387,6 @@ wxImage wxImage::Rotate180() const
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (long j = 0; j < height; j++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (long i = 0; i < width; i++)
         {
             target_data -= 3;
@@ -1421,11 +1400,6 @@ wxImage wxImage::Rotate180() const
         const unsigned char *src_alpha = M_IMGDATA->m_alpha;
         unsigned char *dest_alpha = alpha + width * height;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (long j = 0; j < height; ++j)
-        {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1488,11 +1462,6 @@ wxImage wxImage::Mirror( bool horizontally ) const
             // just copied and the line that will be copied next)
             unsigned char *dest_alpha = alpha + width;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (long jj = 0; jj < height; ++jj)
-            {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1750,11 +1719,6 @@ void wxImage::Paste( const wxImage &image, int x, int y )
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (int j = 0; j < height; j++)
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for (int i = 0; i < width*3; i+=3)
             {
                 if ((source_data[i]   != r) ||
@@ -1782,10 +1746,6 @@ void wxImage::Replace( unsigned char r1, unsigned char g1, unsigned char b1,
     const int w = GetWidth();
     const int h = GetHeight();
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (int j = 0; j < h; j++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -2022,12 +1982,6 @@ void wxImage::SetRGB( const wxRect& rect_, unsigned char r, unsigned char g, uns
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (y = y1; y < y2; y++)
-    {
-        data = M_IMGDATA->m_data + (y*width + x1)*3;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (x = x1; x < x2; x++)
         {
             *data++ = r;
@@ -2169,11 +2123,6 @@ wxImage::ConvertColourToAlpha(unsigned char r, unsigned char g, unsigned char b)
     unsigned char *alpha = GetAlpha();
     unsigned char *data = GetData();
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for ( int y = 0; y < h; y++ )
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -2405,11 +2354,6 @@ bool wxImage::SetMaskFromImage(const wxImage& mask,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (int j = 0; j < h; j++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (int i = 0; i < w; i++)
         {
             if ((maskdata[0] == mr) && (maskdata[1]  == mg) && (maskdata[2] == mb))
@@ -2463,11 +2407,6 @@ bool wxImage::ConvertAlphaToMask(unsigned char mr,
     int w = GetWidth();
     int h = GetHeight();
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (int y = 0; y < h; y++)
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -3754,11 +3693,6 @@ wxImage wxImage::Rotate(double angle,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (int y = 0; y < rH; y++)
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for (int x = 0; x < rW; x++)
             {
                 wxRealPoint src = wxRotatePoint (x + x1a, y + y1a, cos_angle, -sin_angle, p0);
@@ -3904,11 +3838,6 @@ wxImage wxImage::Rotate(double angle,
     }
     else // not interpolating
     {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (int y = 0; y < rH; y++)
-        {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

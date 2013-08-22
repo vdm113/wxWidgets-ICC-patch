@@ -1735,11 +1735,6 @@ static wxBitmap CreateAntialiasedBitmap(const wxImage& img)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (y = 0; y < size; y++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (x = 0; x < size; x++)
         {
             sr = sg = sb = smask = 0;
@@ -1793,48 +1788,6 @@ static wxImage CutEmptyBorders(const wxImage& img)
 #define MK_DTTMP(x,y)      dttmp = dt + ((x + y * w) * 3)
 #define NOEMPTY_PIX(empt)  if (dttmp[0] != mr || dttmp[1] != mg || dttmp[2] != mb) {empt = false; break;}
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (empt = true, top = 0; empt && top < h; top++)
-    {
-        MK_DTTMP(0, top);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (i = 0; i < w; i++, dttmp+=3)
-            NOEMPTY_PIX(empt)
-    }
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (empt = true, bottom = h-1; empt && bottom > top; bottom--)
-    {
-        MK_DTTMP(0, bottom);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (i = 0; i < w; i++, dttmp+=3)
-            NOEMPTY_PIX(empt)
-    }
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (empt = true, left = 0; empt && left < w; left++)
-    {
-        MK_DTTMP(left, 0);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (i = 0; i < h; i++, dttmp+=3*w)
-            NOEMPTY_PIX(empt)
-    }
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (empt = true, right = w-1; empt && right > left; right--)
-    {
-        MK_DTTMP(right, 0);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

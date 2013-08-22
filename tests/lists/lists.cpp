@@ -135,12 +135,6 @@ void ListsTestCase::wxStdListTest()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for ( i = 0; i < 5; ++i )
-        list1.push_back(i + &i);
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for ( it = list1.begin(), en = list1.end(), i = 0;
           it != en; ++it, ++i )
     {

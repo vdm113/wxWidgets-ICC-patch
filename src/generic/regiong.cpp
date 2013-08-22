@@ -1320,12 +1320,6 @@ miRegionOp(
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-            do
-            {
-                r1BandEnd = r1;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                 while ((r1BandEnd < r1End) && (r1BandEnd->y1 == r1->y1))
                 {
                     r1BandEnd++;
@@ -1338,12 +1332,6 @@ miRegionOp(
     }
     else if ((r2 != r2End) && (nonOverlap2Func != NULL))
     {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        do
-        {
-            r2BandEnd = r2;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

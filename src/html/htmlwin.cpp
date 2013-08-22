@@ -1137,11 +1137,6 @@ void wxHtmlWindow::DoEraseBackground(wxDC& dc)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( wxCoord x = 0; x < sz.x; x += sizeBmp.x )
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for ( wxCoord y = 0; y < sz.y; y += sizeBmp.y )
             {
                 dc.DrawBitmap(m_bmpBg, x, y, true /* use mask */);

@@ -74,11 +74,6 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( i = 0; i < argcDFB; i++ )
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             while ( strcmp(wxConvUTF8.cWX2MB(argv[i]), argvDFB[i]) != 0 )
             {
                 memmove(argv + i, argv + i + 1, (argc - i)*sizeof(*argv));

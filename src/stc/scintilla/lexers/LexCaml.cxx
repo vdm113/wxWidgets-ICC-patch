@@ -165,12 +165,6 @@ static void InternalLexOrFold(int foldOrLex, unsigned int startPos, int length,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (; words[nWL]; nWL++) ;	// count # of WordList PTRs needed
-	WordList** wl = new WordList* [nWL + 1];// alloc WordList PTRs
-	int i = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	for (; i < nWL; i++) {
 		wl[i] = new WordList();	// (works or THROWS bad_alloc EXCEPTION)
 		wl[i]->Set(words[i]);

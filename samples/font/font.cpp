@@ -1101,11 +1101,6 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for ( int i = 0; i < 7; i++ )
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for ( int j = 0; j < 32; j++ )
         {
             wxChar c = (wxChar)(32 * (i + 1) + j);

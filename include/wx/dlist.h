@@ -819,11 +819,6 @@ public:
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        while (n < size())
-            pop_back();
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         while (n > size())
             push_back(v);
     }

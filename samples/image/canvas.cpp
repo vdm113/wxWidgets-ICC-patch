@@ -694,10 +694,6 @@ void MyCanvas::CreateAntiAliasedBitmap()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (int y = 1; y < 149; y++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (int x = 1; x < 149; x++)
         {
             int red = original.GetRed( x*2, y*2 ) +

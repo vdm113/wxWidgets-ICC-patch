@@ -1071,11 +1071,6 @@ void wxMonoRenderer::DrawScrollbarThumb(wxDC& dc,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for ( wxCoord y = rect.GetTop(); y <= rect.GetBottom(); y++ )
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for ( wxCoord x = rect.GetLeft() + (y % 2); x <= rect.GetRight(); x+=2 )
         {
             dc.DrawPoint(x, y);

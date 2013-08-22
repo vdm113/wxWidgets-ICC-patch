@@ -92,11 +92,6 @@ fsdither(TIFF* in, TIFF* out)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (j = 0; j < imagewidth; ++j)
-		*nextptr++ = *inptr++;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	for (i = 1; i < imagelength; ++i) {
 		tmpptr = thisline;
 		thisline = nextline;

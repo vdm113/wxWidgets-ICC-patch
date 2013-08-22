@@ -494,21 +494,11 @@ wxSize wxGridBagSizer::CalcMin()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-            while ( (int)m_rowHeights.GetCount() <= endrow )
-                m_rowHeights.Add(m_emptyCellSize.GetHeight());
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             while ( (int)m_colWidths.GetCount() <= endcol )
                 m_colWidths.Add(m_emptyCellSize.GetWidth());
 
             // See if this item increases the size of its row(s) or col(s)
             wxSize size(item->CalcMin());
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (idx=row; idx <= endrow; idx++)
-                m_rowHeights[idx] = wxMax(m_rowHeights[idx], size.GetHeight() / (endrow-row+1));
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -777,10 +767,6 @@ wxGBPosition wxGridBagSizer::FindEmptyCell()
 {
     int row, col;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (row=0; row<10; row++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

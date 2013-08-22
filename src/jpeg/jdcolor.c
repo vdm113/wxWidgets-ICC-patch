@@ -203,16 +203,6 @@ null_convert (j_decompress_ptr cinfo,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  while (--num_rows >= 0) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (ci = 0; ci < num_components; ci++) {
-      inptr = input_buf[ci][input_row];
-      outptr = output_buf[0] + ci;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
       for (count = num_cols; count > 0; count--) {
 	*outptr = *inptr++;	/* needn't bother with GETJSAMPLE() here */
 	outptr += num_components;
@@ -255,12 +245,6 @@ gray_rgb_convert (j_decompress_ptr cinfo,
   register JDIMENSION col;
   JDIMENSION num_cols = cinfo->output_width;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  while (--num_rows >= 0) {
-    inptr = input_buf[0][input_row++];
-    outptr = *output_buf++;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

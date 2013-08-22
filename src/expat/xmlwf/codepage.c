@@ -26,12 +26,6 @@ codepageMap(int cp, int *map)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (i = 0; i < 256; i++)
-    map[i] = -1;
-  if (info.MaxCharSize > 1) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (i = 0; i < MAX_LEADBYTES; i+=2) {
       int j, lim;
       if (info.LeadByte[i] == 0 && info.LeadByte[i + 1] == 0)

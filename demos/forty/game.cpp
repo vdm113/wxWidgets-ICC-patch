@@ -333,11 +333,6 @@ void Game::Deal()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i < 10; i++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (j = 1; j <= 4; j++)
         {
             card = m_pack->RemoveTopCard();
@@ -858,12 +853,6 @@ void Pack::Shuffle()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i <= m_topCard; i++)
-    {
-        int pos = rand() % (m_topCard + 1);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         while (temp[pos])
         {
             pos--;
@@ -877,12 +866,6 @@ void Pack::Shuffle()
     // Copy each card back into the m_pack in a random
     // position. If position is occupied then find nearest
     // unoccupied position after the random position.
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (i = 0; i <= m_topCard; i++)
-    {
-        int pos = rand() % (m_topCard + 1);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

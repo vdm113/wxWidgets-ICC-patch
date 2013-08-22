@@ -124,7 +124,6 @@ public:
     //@{
     /**
         Check that this matrix is identical with @a t.
-        Check that this matrix is identical with @t.
 
         @param t
             The matrix compared with this.
@@ -135,7 +134,6 @@ public:
 
     /**
         Check that this matrix differs from @a t.
-        Check that this matrix differs from @t.
 
         @param t
             The matrix compared with this.
@@ -191,7 +189,6 @@ public:
         @return The point with the transformations applied.
     */
     wxPoint2DDouble TransformPoint(const wxPoint2DDouble& p) const;
-    wxPoint2DDouble TransformPoint(const wxPoint2DDouble& src) const;
     void TransformPoint(wxDouble* x, wxDouble* y) const;
 
     /**
@@ -203,7 +200,6 @@ public:
         @return The source with the transformations applied.
     */
     wxPoint2DDouble TransformDistance(const wxPoint2DDouble& p) const;
-    wxPoint2DDouble TransformDistance(const wxPoint2DDouble& src) const;
     void TransformDistance(wxDouble* dx, wxDouble* dy) const;
 
 };

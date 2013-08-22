@@ -877,16 +877,6 @@ bool wxRibbonToolBar::Realize()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for(nrows = m_nrows_min; nrows <= m_nrows_max; ++nrows)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for(r = 0; r < nrows; ++r)
-            row_sizes[r] = wxSize(0, 0);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for(g = 0; g < group_count; ++g)
         {
             wxRibbonToolBarToolGroup* group = m_groups.Item(g);

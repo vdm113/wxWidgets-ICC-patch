@@ -997,11 +997,6 @@ static void SetAlpha(wxImage *image)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (int y = 0; y < height; ++y)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (int x = 0; x < width; ++x)
         {
             ptr[y*width + x] = (x*y) & wxIMAGE_ALPHA_OPAQUE;
@@ -1101,11 +1096,6 @@ void ImageTestCase::SavePNG()
     int x, y;
     const int width = expected8.GetWidth();
     const int height = expected8.GetHeight();
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (y = 0; y < height; ++y)
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

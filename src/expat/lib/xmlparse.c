@@ -3009,11 +3009,6 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        while (*s++ != XML_T(ASCII_COLON))
-          ;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         do {  /* copies null terminator */
           const XML_Char c = *s;
           if (!poolAppendChar(&tempPool, *s))
@@ -3081,11 +3076,6 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
     }
   }
   /* clear flags for the remaining attributes */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  for (; i < attIndex; i += 2)
-    ((XML_Char *)(appAtts[i]))[-1] = 0;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

@@ -3012,12 +3012,6 @@ void wxPGChoices::Add( const wxChar* const* labels, const ValArrItem* values )
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while ( *p ) { p++; itemcount++; }
-
-    unsigned int i;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for ( i = 0; i < itemcount; i++ )
     {
         int value = i;

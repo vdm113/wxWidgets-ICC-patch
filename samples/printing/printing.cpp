@@ -107,10 +107,6 @@ bool MyApp::OnInit(void)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i < image.GetWidth(); i++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
        for (j = 0; j < image.GetHeight(); j++)
           image.SetAlpha( i, j, 50 );
     m_bitmap = image;

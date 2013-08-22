@@ -648,11 +648,6 @@ wxFontMapperBase::NonInteractiveCharsetToEncoding(const wxString& charset)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( size_t i = 0; i < WXSIZEOF(gs_encodingNames); ++i )
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for ( const wxChar* const* encName = gs_encodingNames[i]; *encName; ++encName )
             {
                 if ( cs.CmpNoCase(*encName) == 0 )
@@ -877,11 +872,6 @@ wxFontEncoding wxFontMapperBase::GetEncodingFromName(const wxString& name)
 {
     const size_t count = WXSIZEOF(gs_encodingNames);
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for ( size_t i = 0; i < count; i++ )
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

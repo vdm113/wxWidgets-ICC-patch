@@ -3484,7 +3484,6 @@ public:
 
     /**
         Returns the origin of the help event which is one of the wxHelpEvent::Origin
-        Returns the origin of the help event which is one of the ::wxHelpEventOrigin
         values.
 
         The application may handle events generated using the keyboard or mouse
@@ -3902,7 +3901,6 @@ public:
         Sets the flags for this event.
         The @a flags can be a combination of the 
         wxNavigationKeyEvent::wxNavigationKeyEventFlags values.
-        The @a flags can be a combination of the ::wxNavigationKeyEventFlags values.
     */
     void SetFlags(long flags);
 

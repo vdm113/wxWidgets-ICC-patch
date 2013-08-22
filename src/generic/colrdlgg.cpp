@@ -384,12 +384,6 @@ void wxGenericColourDialog::PaintBasicColours(wxDC& dc)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i < 6; i++)
-    {
-        int j;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (j = 0; j < 8; j++)
         {
             int ptr = i*8 + j;
@@ -409,12 +403,6 @@ void wxGenericColourDialog::PaintBasicColours(wxDC& dc)
 void wxGenericColourDialog::PaintCustomColours(wxDC& dc)
 {
   int i;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  for (i = 0; i < 2; i++)
-  {
-    int j;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

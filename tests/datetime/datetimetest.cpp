@@ -752,12 +752,6 @@ void DateTimeTestCase::TestTimeFormat()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( size_t d = 0; d < WXSIZEOF(formatTestDates); d++ )
-        {
-            wxDateTime dt = formatTestDates[d].DT();
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for ( unsigned n = 0; n < WXSIZEOF(formatTestFormats); n++ )
             {
                 const char *fmt = formatTestFormats[n].format;

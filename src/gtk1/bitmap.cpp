@@ -479,11 +479,6 @@ wxBitmap wxBitmap::Rescale( int clipx, int clipy, int clipwidth, int clipheight,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (int x = 0; x < width; x++)
-        tablex[x] = (int) (scx * (x+clipx));
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (int y = 0; y < height; y++)
         tabley[y] = (int) (scy * (y+clipy));
 
@@ -695,11 +690,6 @@ bool wxBitmap::CreateFromImageAsBitmap(const wxImage& img)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (int y = 0; y < height; y++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (int x = 0; x < width; x++)
         {
             int r = data[index];
@@ -849,11 +839,6 @@ bool wxBitmap::CreateFromImageAsPixmap(const wxImage& img)
     unsigned char* data = image.GetData();
 
     int index = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (int y = 0; y < height; y++)
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1092,11 +1077,6 @@ wxImage wxBitmap::ConvertToImage() const
     GdkColormap *cmap = gtk_widget_get_default_colormap();
 
     long pos = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (int j = 0; j < GetHeight(); j++)
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

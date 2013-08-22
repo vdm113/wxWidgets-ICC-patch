@@ -295,16 +295,6 @@ void wxHtmlParser::DoParsing(const wxString::const_iterator& begin_pos_,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (begin_pos < end_pos)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        while (m_CurTag && m_CurTag->GetBeginIter() < begin_pos)
-            m_CurTag = m_CurTag->GetNextTag();
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         while (m_CurTextPiece < piecesCnt &&
                pieces[m_CurTextPiece].m_start < begin_pos)
             m_CurTextPiece++;

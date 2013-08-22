@@ -199,11 +199,6 @@ struct state *s;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while ((a = s->ins) != NULL)
-		freearc(nfa, a);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	while ((a = s->outs) != NULL)
 		freearc(nfa, a);
 	freestate(nfa, s);
@@ -818,16 +813,6 @@ FILE *f;			/* for debug output; NULL none */
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	do {
-		progress = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		for (s = nfa->states; s != NULL && !NISERR(); s = nexts) {
-			nexts = s->next;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			for (a = s->outs; a != NULL && !NISERR(); a = nexta) {
 				nexta = a->outchain;
 				if (a->type == '^' || a->type == BEHIND)
@@ -948,16 +933,6 @@ FILE *f;			/* for debug output; NULL none */
 	int progress;
 
 	/* find and push until there are no more */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	do {
-		progress = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		for (s = nfa->states; s != NULL && !NISERR(); s = nexts) {
-			nexts = s->next;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1168,16 +1143,6 @@ FILE *f;			/* for debug output; NULL none */
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	do {
-		progress = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		for (s = nfa->states; s != NULL && !NISERR(); s = nexts) {
-			nexts = s->next;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			for (a = s->outs; a != NULL && !NISERR(); a = nexta) {
 				nexta = a->outchain;
 				if (a->type == EMPTY && unempty(nfa, a))
@@ -1352,10 +1317,6 @@ struct nfa *nfa;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (a = nfa->pre->outs; a != NULL; a = a->outchain)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (aa = a->to->outs; aa != NULL; aa = aa->outchain)
 			if (aa->to == nfa->post)
 				return REG_UEMPTYMATCH;
@@ -1477,10 +1438,6 @@ struct carc *last;
 	if (last - first <= 1)
 		return;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (p = first; p <= last; p++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1659,10 +1616,6 @@ FILE *f;
 	}
 	if (a->from != s)
 		fprintf(f, "?%d?", a->from->no);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (ab = &a->from->oas; ab != NULL; ab = ab->next) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

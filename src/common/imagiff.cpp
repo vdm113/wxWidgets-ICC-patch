@@ -710,12 +710,6 @@ int wxIFFDecoder::ReadIFF()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (int i=0; i < height; i++) {
-            byte bitmsk = 0x80;                 // left most bit (mask)
-            const byte *workptr2 = workptr;     // work ptr to source
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for (int j=0; j < bmhd_width; j++) {
             long col = 0;
             long colbit = 1;

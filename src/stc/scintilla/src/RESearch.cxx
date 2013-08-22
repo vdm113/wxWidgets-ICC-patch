@@ -276,11 +276,6 @@ void RESearch::Init() {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (int i = 0; i < MAXTAG; i++)
-		pat[i] = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	for (int j = 0; j < BITBLK; j++)
 		bittab[j] = 0;
 }

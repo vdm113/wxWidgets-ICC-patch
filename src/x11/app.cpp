@@ -160,11 +160,6 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( int i = 0; i < argC; i++ )
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             while ( !argV[i] )
             {
                 memmove(argV + i, argV + i + 1, (argCOrig - i)*sizeof(wxChar *));

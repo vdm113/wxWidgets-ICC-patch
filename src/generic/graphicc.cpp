@@ -1607,12 +1607,6 @@ wxImage wxCairoBitmapData::ConvertToImage() const
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( int y = 0; y < m_height; y++ )
-        {
-            const wxUint32* const rowStart = src;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for ( int x = 0; x < m_width; x++ )
             {
                 const wxUint32 argb = *src++;
@@ -1631,12 +1625,6 @@ wxImage wxCairoBitmapData::ConvertToImage() const
     else // RGB
     {
         // Things are pretty simple in this case, just copy RGB bytes.
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for ( int y = 0; y < m_height; y++ )
-        {
-            const wxUint32* const rowStart = src;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

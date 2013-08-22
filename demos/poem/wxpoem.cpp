@@ -227,11 +227,6 @@ void MainWindow::ScanBuffer(wxDC *dc, bool DrawIt, int *max_x, int *max_y)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        while (((ch = poem_buffer[i]) != 13) && (ch != 0))
-#else
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         while (((ch = poem_buffer[i]) != 10) && (ch != 0))
 #endif
         {

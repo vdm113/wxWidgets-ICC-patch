@@ -366,11 +366,6 @@ setTab(char *tab, struct range *ranges, size_t nRanges)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (i = 0; i < nRanges; i++) {
-    if (ranges[i].end) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
       for (j = ranges[i].start; j <= ranges[i].end; j++)
         tab[j] = 1;
     }
@@ -400,11 +395,6 @@ printTabs(char *tab)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (i = 0; i < 512; i++) {
-    int kind = tab[i*256];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (j = 1; j < 256; j++)
       if (tab[i*256 +j] != kind) {
         kind = -1;
@@ -414,11 +404,6 @@ printTabs(char *tab)
       pageIndex[i] = pageIndex[i - 256];
     else if (kind == -1) { 
       pageIndex[i] = nBitmaps++;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-      for (j = 0; j < 8; j++) {
-        unsigned val = 0;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

@@ -39,18 +39,6 @@ static const char *NextField(const char *s) {
 	while (*s && *s == ' ') {
 		s++;
 	}
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	while (*s && *s != ' ') {
-		s++;
-	}
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	while (*s && *s == ' ') {
-		s++;
-	}
 	return s;
 }
 
@@ -202,12 +190,6 @@ void XPM::Draw(Surface *surface, PRectangle &rc) {
 	// Centre the pixmap
 	int startY = rc.top + (rc.Height() - height) / 2;
 	int startX = rc.left + (rc.Width() - width) / 2;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (int y=0; y<height; y++) {
-		int prevCode = 0;
-		int xStartRun = 0;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -401,10 +383,6 @@ RGBAImage::RGBAImage(const XPM &xpm) {
 	height = xpm.GetHeight();
 	width = xpm.GetWidth();
 	pixelBytes.resize(CountBytes());
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (int y=0; y<height; y++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

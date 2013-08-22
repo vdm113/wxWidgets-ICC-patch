@@ -188,48 +188,6 @@ void HashesTestCase::wxHashTableTest()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( i = 99; i >= 0; --i )
-            CPPUNIT_ASSERT( hash.Get(i) == &o + i );
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for ( i = 0; i < COUNT; ++i )
-            hash.Put(i, &o + i + 20);
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for ( i = 99; i >= 0; --i )
-            CPPUNIT_ASSERT( hash.Get(i) == &o + i);
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for ( i = 0; i < COUNT/2; ++i )
-            CPPUNIT_ASSERT( hash.Delete(i) == &o + i);
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for ( i = COUNT/2; i < COUNT; ++i )
-            CPPUNIT_ASSERT( hash.Get(i) == &o + i);
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for ( i = 0; i < COUNT/2; ++i )
-            CPPUNIT_ASSERT( hash.Get(i) == &o + i + 20);
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for ( i = 0; i < COUNT/2; ++i )
-            CPPUNIT_ASSERT( hash.Delete(i) == &o + i + 20);
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for ( i = 0; i < COUNT/2; ++i )
             CPPUNIT_ASSERT( hash.Get(i) == NULL);
 

@@ -1473,12 +1473,6 @@ wxCmdLineParser::ConvertStringToArgs(const wxString& cmdline,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for ( ;; )
-    {
-        // skip white space
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         while ( p != end && (*p == ' ' || *p == '\t') )
             ++p;
 

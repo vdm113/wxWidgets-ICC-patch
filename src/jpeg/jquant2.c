@@ -240,11 +240,6 @@ prescan_quantize (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (row = 0; row < num_rows; row++) {
-    ptr = input_buf[row];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (col = width; col > 0; col--) {
       /* get pixel value and index into the histogram */
       histp = & histogram[GETJSAMPLE(ptr[0]) >> C0_SHIFT]
@@ -356,15 +351,6 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (c0 = c0min; c0 <= c0max; c0++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-      for (c1 = c1min; c1 <= c1max; c1++) {
-	histp = & histogram[c0][c1][c2min];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	for (c2 = c2min; c2 <= c2max; c2++)
 	  if (*histp++ != 0) {
 	    boxp->c0min = c0min = c0;
@@ -373,15 +359,6 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
       }
  have_c0min:
   if (c0max > c0min)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (c0 = c0max; c0 >= c0min; c0--)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-      for (c1 = c1min; c1 <= c1max; c1++) {
-	histp = & histogram[c0][c1][c2min];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -414,15 +391,6 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (c1 = c1min; c1 <= c1max; c1++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-      for (c0 = c0min; c0 <= c0max; c0++) {
-	histp = & histogram[c0][c1][c2min];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	for (c2 = c2min; c2 <= c2max; c2++)
 	  if (*histp++ != 0) {
 	    boxp->c1min = c1min = c1;
@@ -431,15 +399,6 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
       }
  have_c1min:
   if (c1max > c1min)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (c1 = c1max; c1 >= c1min; c1--)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-      for (c0 = c0min; c0 <= c0max; c0++) {
-	histp = & histogram[c0][c1][c2min];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -472,15 +431,6 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (c2 = c2min; c2 <= c2max; c2++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-      for (c0 = c0min; c0 <= c0max; c0++) {
-	histp = & histogram[c0][c1min][c2];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	for (c1 = c1min; c1 <= c1max; c1++, histp += HIST_C2_ELEMS)
 	  if (*histp != 0) {
 	    boxp->c2min = c2min = c2;
@@ -489,15 +439,6 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
       }
  have_c2min:
   if (c2max > c2min)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (c2 = c2max; c2 >= c2min; c2--)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-      for (c0 = c0min; c0 <= c0max; c0++) {
-	histp = & histogram[c0][c1min][c2];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -533,15 +474,6 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
   
   /* Now scan remaining volume of box and compute population */
   ccount = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  for (c0 = c0min; c0 <= c0max; c0++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (c1 = c1min; c1 <= c1max; c1++) {
-      histp = & histogram[c0][c1][c2min];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -662,15 +594,6 @@ compute_color (j_decompress_ptr cinfo, boxptr boxp, int icolor)
   c1min = boxp->c1min;  c1max = boxp->c1max;
   c2min = boxp->c2min;  c2max = boxp->c2max;
   
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  for (c0 = c0min; c0 <= c0max; c0++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (c1 = c1min; c1 <= c1max; c1++) {
-      histp = & histogram[c0][c1][c2min];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1019,18 +942,6 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (ic0 = BOX_C0_ELEMS-1; ic0 >= 0; ic0--) {
-      dist1 = dist0;
-      xx1 = inc1;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-      for (ic1 = BOX_C1_ELEMS-1; ic1 >= 0; ic1--) {
-	dist2 = dist1;
-	xx2 = inc2;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	for (ic2 = BOX_C2_ELEMS-1; ic2 >= 0; ic2--) {
 	  if (dist2 < *bptr) {
 	    *bptr = dist2;
@@ -1108,15 +1019,6 @@ fill_inverse_cmap (j_decompress_ptr cinfo, int c0, int c1, int c2)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (ic0 = 0; ic0 < BOX_C0_ELEMS; ic0++) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (ic1 = 0; ic1 < BOX_C1_ELEMS; ic1++) {
-      cachep = & histogram[c0+ic0][c1+ic1][c2];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
       for (ic2 = 0; ic2 < BOX_C2_ELEMS; ic2++) {
 	*cachep++ = (histcell) (GETJSAMPLE(*cptr++) + 1);
       }
@@ -1143,12 +1045,6 @@ pass2_no_dither (j_decompress_ptr cinfo,
   JDIMENSION col;
   JDIMENSION width = cinfo->output_width;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  for (row = 0; row < num_rows; row++) {
-    inptr = input_buf[row];
-    outptr = output_buf[row];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

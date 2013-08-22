@@ -1603,11 +1603,6 @@ void wxTextCtrl::DrawLinePart( wxDC &dc, int x, int y, const wxString &toDraw, c
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (pos < len)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         while (toDraw[pos] == wxT(' '))
         {
             pos++;
@@ -2193,11 +2188,6 @@ void wxTextCtrl::Unindent()
 
     m_undos.Append( new wxSourceUndoStep( wxSOURCE_UNDO_LINE, startY, endY, this ) );
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (int i = startY; i <= endY; i++)
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

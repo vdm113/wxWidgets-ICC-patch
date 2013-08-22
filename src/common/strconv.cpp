@@ -930,11 +930,6 @@ size_t wxMBConvUTF7::FromWChar(char *dst, size_t dstLen,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-            for ( ;; )
-            {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                 for ( unsigned lsb = 0; lsb < 2; lsb++ )
                 {
                     state.accum <<= 8;

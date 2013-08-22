@@ -637,20 +637,12 @@ PixarLogMakeTables(PixarLogState *sp)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i < 16384; i++)  {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	while ((i/16383.)*(i/16383.) > ToLinearF[j]*ToLinearF[j+1])
 	    j++;
 	From14[i] = j;
     }
 
     j = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (i = 0; i < 256; i++)  {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

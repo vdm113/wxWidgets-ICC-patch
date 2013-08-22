@@ -1483,11 +1483,6 @@ wxFileType* wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-                    for (CFIndex iExt = 0; iExt < cfaExtensions.GetCount(); ++iExt)
-                    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                         for (size_t iWXExt = 0; iWXExt < asExtensions.GetCount(); ++iWXExt)
                         {
                             if (asExtensions[iWXExt] ==
@@ -1838,11 +1833,6 @@ wxMimeTypesManagerImpl::Unassociate(wxFileType *pFileType)
                         if (!cfaExtensions.IsOk())
                             continue;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                        for (CFIndex iExt = 0; iExt < cfaExtensions.GetCount(); ++iExt)
-                        {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

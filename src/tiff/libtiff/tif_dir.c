@@ -147,10 +147,6 @@ checkInkNamesString(TIFF* tif, uint32 slen, const char* s)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (; i > 0; i--) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			for (; cp < ep && *cp != '\0'; cp++) {}
 			if (cp >= ep)
 				goto bad;

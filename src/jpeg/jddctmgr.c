@@ -236,10 +236,6 @@ start_pass (j_decompress_ptr cinfo)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (row = 0; row < DCTSIZE; row++) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	  for (col = 0; col < DCTSIZE; col++) {
 	    fmtbl[i] = (FLOAT_MULT_TYPE)
 	      ((double) qtbl->quantval[i] *

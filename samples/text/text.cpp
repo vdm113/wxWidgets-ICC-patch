@@ -1645,12 +1645,6 @@ RichTextFrame::RichTextFrame(wxWindow* parent, const wxString& title):
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i < 10; i++)
-    {
-        int j;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (j = 0; j < 10; j++)
         {
             value << wxT("Hello, welcome to a very simple rich text editor. You can set some character and paragraph styles from the Edit menu. ");

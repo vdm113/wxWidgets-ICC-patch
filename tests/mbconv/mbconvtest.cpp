@@ -1282,11 +1282,6 @@ static wchar_t *wx_wcscat(wchar_t *dest, const wchar_t *src)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (*d)
-        d++;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     while ((*d++ = *src++) != 0)
         ;
     return dest;

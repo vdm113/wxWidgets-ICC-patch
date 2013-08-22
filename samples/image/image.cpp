@@ -489,12 +489,6 @@ public:
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-            for ( int y = 0; y < SIZE; ++y )
-            {
-                wxAlphaPixelData::Iterator rowStart = p;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                 for ( int x = 0; x < SIZE; ++x )
                 {
                     p.Alpha() = 0;

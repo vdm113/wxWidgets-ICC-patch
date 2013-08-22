@@ -3140,10 +3140,6 @@ png_ascii_from_fixed(png_const_structrp png_ptr, png_charp ascii,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-               while (ndigits < i) *ascii++ = 48, --i;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                while (ndigits >= first) *ascii++ = digits[--ndigits];
                /* Don't output the trailing zeros! */
             }

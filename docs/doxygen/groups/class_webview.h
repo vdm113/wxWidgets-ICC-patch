@@ -22,4 +22,3 @@ for internet browsing. It is built around a series of backends, and exposes
 common functions for them.
 
 */
-*/

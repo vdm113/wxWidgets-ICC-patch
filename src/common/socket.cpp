@@ -639,10 +639,6 @@ MY_MACRO_PRAGMA_IVDEP \
             rc = (syscall); \
         } \
 MY_MACRO_PRAGMA_IVDEP \
-        do { \
-            rc = (syscall); \
-        } \
-MY_MACRO_PRAGMA_IVDEP \
         while ( rc == -1 && errno == EINTR )
 #else
     #define DO_WHILE_EINTR( rc, syscall ) rc = (syscall)

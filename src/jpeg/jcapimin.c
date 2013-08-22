@@ -72,12 +72,6 @@ jpeg_CreateCompress (j_compress_ptr cinfo, int version, size_t structsize)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (i = 0; i < NUM_QUANT_TBLS; i++)
-    cinfo->quant_tbl_ptrs[i] = NULL;
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
     cinfo->dc_huff_tbl_ptrs[i] = NULL;
     cinfo->ac_huff_tbl_ptrs[i] = NULL;
@@ -175,11 +169,6 @@ jpeg_finish_compress (j_compress_ptr cinfo)
   } else if (cinfo->global_state != CSTATE_WRCOEFS)
     ERREXIT1(cinfo, JERR_BAD_STATE, cinfo->global_state);
   /* Perform any remaining passes */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  while (! cinfo->master->is_last_pass) {
-    (*cinfo->master->prepare_for_pass) (cinfo);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

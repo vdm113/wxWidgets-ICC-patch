@@ -1376,11 +1376,6 @@ void wxHtmlHelpWindow::OptionsDialog()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i < m_NormalFonts->GetCount(); i++)
-        dlg.NormalFont->Append((*m_NormalFonts)[i]);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (i = 0; i < m_FixedFonts->GetCount(); i++)
         dlg.FixedFont->Append((*m_FixedFonts)[i]);
     if (!m_NormalFace.empty())

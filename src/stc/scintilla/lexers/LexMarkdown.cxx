@@ -71,12 +71,6 @@ static bool FollowToLineEnd(const int ch, const int state, const unsigned int en
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (sc.GetRelative(++i) == ch)
-        ;
-    // Skip over whitespace
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     while (IsASpaceOrTab(sc.GetRelative(i)) && sc.currentPos + i < endPos)
         ++i;
     if (IsNewline(sc.GetRelative(i)) || sc.currentPos + i == endPos) {
@@ -117,11 +111,6 @@ static void SetStateAndZoom(const int state, const int length, const int token, 
 static bool HasPrevLineContent(StyleContext &sc) {
     int i = 0;
     // Go back to the previous newline
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    while ((--i + (int)sc.currentPos) >= 0 && !IsNewline(sc.GetRelative(i)))
-        ;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

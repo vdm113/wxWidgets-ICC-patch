@@ -1239,9 +1239,6 @@ public:
           - @c wxPRIORITY_MIN: 0
           - @c wxPRIORITY_DEFAULT: 50
           - @c wxPRIORITY_MAX: 100
-          - ::wxPRIORITY_MIN: 0
-          - ::wxPRIORITY_DEFAULT: 50
-          - ::wxPRIORITY_MAX: 100
     */
     void SetPriority(unsigned int priority);
 
@@ -1284,7 +1281,6 @@ public:
         This function can only be called from another thread context.
 
         @param flags
-        @param waitMode
             As described in wxThreadWait documentation, wxTHREAD_WAIT_BLOCK
             should be used as the wait mode even although currently
             wxTHREAD_WAIT_YIELD is for compatibility reasons. This parameter is

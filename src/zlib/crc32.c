@@ -134,11 +134,6 @@ local void make_crc_table()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (n = 0; n < 256; n++) {
-            c = (unsigned long)n;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for (k = 0; k < 8; k++)
                 c = c & 1 ? poly ^ (c >> 1) : c >> 1;
             crc_table[0][n] = c;
@@ -147,12 +142,6 @@ local void make_crc_table()
 #ifdef BYFOUR
         /* generate crc for each value followed by one, two, and three zeros,
            and then the byte reversal of those as well as the first table */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (n = 0; n < 256; n++) {
-            c = crc_table[0][n];
-            crc_table[4][n] = REV(c);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

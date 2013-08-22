@@ -638,11 +638,6 @@ miloadAET(EdgeTableEntry *AET, EdgeTableEntry *ETEs)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (ETEs)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         while (AET && (AET->bres.minor < ETEs->bres.minor))
         {
             pPrevAET = AET;

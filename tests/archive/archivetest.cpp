@@ -392,12 +392,6 @@ void TempDir::RemoveDir(wxString& path)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i < WXSIZEOF(files); i++)
-        wxRemoveFile(tmp + wxFileName(files[i], wxPATH_UNIX).GetFullPath());
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (i = 0; i < WXSIZEOF(dirs); i++)
         wxRmdir(tmp + wxFileName(dirs[i], wxPATH_UNIX).GetFullPath());
 
@@ -1349,12 +1343,6 @@ void CorruptionTestCase::ExtractArchive(wxInputStream& in)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (entry.get() != NULL) {
-        char buf[1024];
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         while (arc->IsOk())
             arc->Read(buf, sizeof(buf));
 
@@ -1414,18 +1402,6 @@ ArchiveTestSuite *ArchiveTestSuite::makeSuite()
 {
     typedef wxArrayString::iterator Iter;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (int generic = 0; generic < 2; generic++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (Iter i = m_unarchivers.begin(); i != m_unarchivers.end(); ++i)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (Iter j = m_archivers.begin(); j != m_archivers.end(); ++j)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

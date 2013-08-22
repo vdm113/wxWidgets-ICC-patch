@@ -79,11 +79,6 @@ struct colormap *cm;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (t = &cm->tree[0], j = NBYTS-1; j > 0; t = nextt, j--) {
-		nextt = t + 1;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (i = BYTTAB-1; i >= 0; i--)
 			t->tptr[i] = nextt;
 	}
@@ -320,12 +315,6 @@ pcolor co;
 	}
 
 	if ((size_t)co == cm->max) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		while (cm->max > WHITE && UNUSEDCOLOR(&cm->cd[cm->max]))
-			cm->max--;
-		assert(cm->free >= 0);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

@@ -631,12 +631,6 @@ main(int argc, char* argv[])
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-			    while(j < uncompr_size && i < compr_size) {
-				if ( comprbuf[i] ) {
-				    runlength = comprbuf[i++];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 				    while( runlength > 0
 					   && j < uncompr_size
 					   && i < compr_size ) {
@@ -672,12 +666,6 @@ main(int argc, char* argv[])
 			    }
 			}
 			else {				    /* RLE4 */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			    while( j < uncompr_size && i < compr_size ) {
-				if ( comprbuf[i] ) {
-				    runlength = comprbuf[i++];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

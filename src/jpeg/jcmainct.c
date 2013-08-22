@@ -187,12 +187,6 @@ process_data_buffer_main (j_compress_ptr cinfo,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  while (mymain->cur_iMCU_row < cinfo->total_iMCU_rows) {
-    /* Realign the virtual buffers if at the start of an iMCU row. */
-    if (mymain->rowgroup_ctr == 0) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
       for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
 	   ci++, compptr++) {
 	mymain->buffer[ci] = (*cinfo->mem->access_virt_sarray)

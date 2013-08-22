@@ -337,12 +337,6 @@ void EXT_LEXER_DECL Lex(unsigned int lexer, unsigned int startPos, int length, i
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-   for (; words[nWL]; nWL++) ;
-   WordList** wl = new WordList* [nWL + 1];
-   int i = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
    for (; i<nWL; i++)
    {
       wl[i] = new WordList();

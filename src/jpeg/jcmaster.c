@@ -166,10 +166,6 @@ validate_script (j_compress_ptr cinfo)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (ci = 0; ci < cinfo->num_components; ci++) 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
       for (coefi = 0; coefi < DCTSIZE2; coefi++)
 	*last_bitpos_ptr++ = -1;
 #else

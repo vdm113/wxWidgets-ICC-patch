@@ -1033,12 +1033,6 @@ wxGDIPlusBitmapData::wxGDIPlusBitmapData( wxGraphicsRenderer* renderer,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( size_t y = 0 ; y < height ; ++y)
-        {
-            maskIndex = 0 ;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for( size_t x = 0 ; x < width; ++x)
             {
                 if ( x % 8 == 0)
@@ -1756,11 +1750,6 @@ void wxGDIPlusContext::DrawIcon( const wxIcon &icon, wxDouble x, wxDouble y, wxD
             interim.GetPixelFormat(),&data);
 
         bool hasAlpha = false;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for ( size_t y = 0 ; y < height && !hasAlpha ; ++y)
-        {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

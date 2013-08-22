@@ -601,7 +601,6 @@ wxLoadUserResource(const void **outData,
         The current module is used by default. This parameter is new since
         wxWidgets 2.9.1.
     @return A pointer to the data to be <tt>delete[]</tt>d by caller on success
-    @return A pointer to the data to be <tt>delete[]<tt>d by caller on success
         or @NULL on error.
 
     This function is available under Windows only.

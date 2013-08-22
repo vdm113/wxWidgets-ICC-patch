@@ -176,11 +176,6 @@ void wxControlRenderer::DrawBitmap(wxDC &dc,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( ; x < rect.width; x += width )
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for ( y = 0; y < rect.height; y += height )
             {
                 // no need to use mask here as we cover the entire window area

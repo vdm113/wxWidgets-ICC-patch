@@ -279,12 +279,6 @@ bool wxGIFHandler::DoSaveFile(const wxImage& image, wxOutputStream *stream,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (int y = 0; y < height; y++)
-    {
-        m_pixelCount -= width_even;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (int x = 0; x < width; x++)
         {
             wxRGB rgb;

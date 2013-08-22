@@ -225,12 +225,6 @@ emit_dht (j_compress_ptr cinfo, int index, wxjpeg_boolean is_ac)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 1; i <= 16; i++)
-      emit_byte(cinfo, htbl->bits[i]);
-    
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (i = 0; i < length; i++)
       emit_byte(cinfo, htbl->huffval[i]);
     
@@ -250,12 +244,6 @@ emit_dac (j_compress_ptr cinfo)
   char ac_in_use[NUM_ARITH_TBLS];
   int length, i;
   jpeg_component_info *compptr;
-  
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  for (i = 0; i < NUM_ARITH_TBLS; i++)
-    dc_in_use[i] = ac_in_use[i] = 0;
   
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

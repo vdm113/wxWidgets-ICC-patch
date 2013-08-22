@@ -176,12 +176,6 @@ wxHtmlTagsCache::wxHtmlTagsCache(const wxString& source)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-                while (pos < end)
-                {
-                    // find the ending tag
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                     while (pos + 1 < end &&
                            (*pos != '<' || *(pos+1) != '/'))
                         ++pos;

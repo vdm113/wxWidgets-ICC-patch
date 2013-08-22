@@ -577,12 +577,6 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-            for (i = col+cell_cols; i < cols; i++)
-            {
-                bool is_empty = true;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                 for (int j=row; j < row + cell_rows; j++)
                 {
                     // check w/ anchor cell for multicell block

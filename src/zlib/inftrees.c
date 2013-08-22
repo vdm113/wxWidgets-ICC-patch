@@ -112,11 +112,6 @@ unsigned short FAR *work;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (len = 0; len <= MAXBITS; len++)
-        count[len] = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (sym = 0; sym < codes; sym++)
         count[lens[sym]]++;
 

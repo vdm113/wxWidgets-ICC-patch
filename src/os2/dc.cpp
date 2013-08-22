@@ -1456,11 +1456,6 @@ void wxPMDCImpl::DoDrawBitmap(
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-                for (i = 0; i < rBmp.GetHeight(); i++)
-                {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                     for (j = 0; j < rBmp.GetWidth(); j++)
                     {
                         // Byte 1
@@ -1635,11 +1630,6 @@ void wxPMDCImpl::DoDrawBitmap(
                 unsigned char           cBlueBack  = (unsigned char)lBackGround;
 
                 pucData = pucBits;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                for (i = 0; i < rBmp.GetHeight(); i++)
-                {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

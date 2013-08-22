@@ -113,12 +113,6 @@ output_pass_setup (j_decompress_ptr cinfo)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  while (cinfo->master->is_dummy_pass) {
-#ifdef QUANT_2PASS_SUPPORTED
-    /* Crank through the dummy pass */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     while (cinfo->output_scanline < cinfo->output_height) {
       JDIMENSION last_scanline;
       /* Call progress monitor hook if present */

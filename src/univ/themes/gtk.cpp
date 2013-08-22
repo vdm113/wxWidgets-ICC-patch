@@ -1081,11 +1081,6 @@ wxBitmap wxGTKRenderer::GetCheckBitmap(int flags)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( int i = 0; i < 2; i++ )
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for ( int j = 0; j < 3; j++ )
                 m_bitmapsCheckbox[i][j].Create(rect.width, rect.height);
         }

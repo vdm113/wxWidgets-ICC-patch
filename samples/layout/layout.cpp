@@ -319,11 +319,6 @@ void MyFlexSizerFrame::InitFlexSizer(wxFlexGridSizer *sizer, wxWindow* parent)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for ( int i = 0; i < 3; i++ )
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for ( int j = 0; j < 3; j++ )
         {
             wxWindow * const cell = new wxGenericStaticText

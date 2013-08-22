@@ -330,8 +330,6 @@ MY_MACRO_PRAGMA_IVDEP \
 MY_MACRO_PRAGMA_IVDEP \
     for (;;) {								\
 MY_MACRO_PRAGMA_IVDEP \
-    for (;;) {								\
-MY_MACRO_PRAGMA_IVDEP \
 	for (;;) {							\
 	    LOOKUP16(12, TIFFFaxWhiteTable, eof1d);			\
 	    switch (TabEnt->State) {					\

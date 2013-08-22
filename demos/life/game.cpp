@@ -565,10 +565,6 @@ bool Life::FindMore(LifeCell *cells[], size_t *ncells)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( ; m_y <= m_y1; m_y += 8, m_x = m_x0)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for ( ; m_x <= m_x1; m_x += 8)
             {
                 if ((c = LinkBox(m_x, m_y, false)) == NULL)
@@ -593,10 +589,6 @@ bool Life::FindMore(LifeCell *cells[], size_t *ncells)
     }
     else
     {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for ( ; m_y <= m_y1; m_y += 8, m_x = m_x0)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

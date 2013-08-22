@@ -670,12 +670,6 @@ void wxGCDCImpl::DoDrawSpline(const wxPointList *points)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while ((node = node->GetNext()) != NULL)
-#else
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     while ((node = node->GetNext()))
 #endif // !wxUSE_STD_CONTAINERS
 

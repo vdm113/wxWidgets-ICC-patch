@@ -209,12 +209,6 @@ bool wxExtHelpController::ParseMapFileLine(const wxString& line)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while ( isascii(*p) && !wxIsspace(*p) )
-        url += *p++;
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     while ( isascii(*p) && wxIsspace(*p) )
         p++;
 

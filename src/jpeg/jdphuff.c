@@ -703,10 +703,6 @@ jinit_phuff_decoder (j_decompress_ptr cinfo)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (ci = 0; ci < cinfo->num_components; ci++) 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (i = 0; i < DCTSIZE2; i++)
       *coef_bit_ptr++ = -1;
 }

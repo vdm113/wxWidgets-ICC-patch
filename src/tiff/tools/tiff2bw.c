@@ -283,10 +283,6 @@ main(int argc, char* argv[])
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (row = 0; row < h; row++) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			for (s = 0; s < 3; s++)
 				if (TIFFReadScanline(in,
 				    inbuf+s*rowsize, row, s) < 0)

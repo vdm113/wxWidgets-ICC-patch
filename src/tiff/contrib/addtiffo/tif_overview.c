@@ -179,11 +179,6 @@ TIFF_GetSourceSamples( double * padfSamples, unsigned char *pabySrc,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for( iYOff = 0; iYOff < nYSize; iYOff++ )
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for( iXOff = 0; iXOff < nXSize; iXOff++ )
         {
             unsigned char *pabyData;
@@ -521,11 +516,6 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-                    for( nSourceYSec = nSourceY; nSourceYSec < nSourceYSecEnd; nSourceYSec ++)
-                    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                         for( nSourceXSec = nSourceX; nSourceXSec < nSourceXSecEnd; nSourceXSec ++)
                         {
                             nCummulator += * ( pabySrcTile + ( nSourceYSec / nVerSubsampling ) * nSourceSampleRowSize
@@ -571,11 +561,6 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
                     if( nSourceYSecEnd > ( nBlockYSize / nVerSubsampling ) )
                         nSourceYSecEnd = ( nBlockYSize / nVerSubsampling );
                     nCummulator = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                    for( nSourceYSec = nSourceY; nSourceYSec < nSourceYSecEnd; nSourceYSec ++)
-                    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -936,11 +921,6 @@ void TIFFBuildOverviews( TIFF *hTIFF, int nOverviews, int * panOvList,
 /*      Loop over the source raster, applying data to the               */
 /*      destination raster.                                             */
 /* -------------------------------------------------------------------- */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for( nSYOff = 0; nSYOff < (int) nYSize; nSYOff += nBlockYSize )
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

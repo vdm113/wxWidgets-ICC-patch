@@ -1129,18 +1129,6 @@ void wxGnomePrinterDCImpl::DoDrawArc(wxCoord x1,wxCoord y1,wxCoord x2,wxCoord y2
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        while (alpha1 <= 0)   alpha1 += 360;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        while (alpha2 <= 0)   alpha2 += 360; // adjust angles to be between
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        while (alpha1 > 360)  alpha1 -= 360; // 0 and 360 degree
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         while (alpha2 > 360)  alpha2 -= 360;
     }
 

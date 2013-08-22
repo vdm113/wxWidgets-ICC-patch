@@ -144,10 +144,6 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (i = 0; i < 128; i++)  m_Table[i] = (wchar_t)i; // 7bit ASCII
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (i = 128; i < 65536; i++)  m_Table[i] = (wchar_t)0;
 
         if (method == wxCONVERT_SUBSTITUTE)
@@ -547,26 +543,6 @@ wxFontEncodingArray wxEncodingConverter::GetPlatformEquivalents(wxFontEncoding e
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (EquivalentEncodings[clas][0][0] != STOP)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (i = 0; i < NUM_OF_PLATFORMS; i++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (e = 0; EquivalentEncodings[clas][i][e] != STOP; e++)
-                if (EquivalentEncodings[clas][i][e] == enc)
-                {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                    for (f = EquivalentEncodings[clas][platform]; *f != STOP; f++)
-                        if (*f == enc) arr.push_back(enc);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                     for (f = EquivalentEncodings[clas][platform]; *f != STOP; f++)
                         if (!FindEncoding(arr, *f)) arr.push_back(*f);
                     i = NUM_OF_PLATFORMS/*hack*/; break;
@@ -588,25 +564,6 @@ wxFontEncodingArray wxEncodingConverter::GetAllEquivalents(wxFontEncoding enc)
     arr = GetPlatformEquivalents(enc); // we want them to be first items in array
 
     clas = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    while (EquivalentEncodings[clas][0][0] != STOP)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (i = 0; i < NUM_OF_PLATFORMS; i++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (e = 0; EquivalentEncodings[clas][i][e] != STOP; e++)
-                if (EquivalentEncodings[clas][i][e] == enc)
-                {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                    for (j = 0; j < NUM_OF_PLATFORMS; j++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

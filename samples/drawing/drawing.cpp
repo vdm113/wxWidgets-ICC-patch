@@ -1249,11 +1249,6 @@ void MyCanvas::DrawSplines(wxDC& dc)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for ( int m = 0; m < 4; m++ )
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for ( int n = 0; n < 5; n++ )
         {
             letters[m][n].x = center.x - R + letters[m][n].x * dx;

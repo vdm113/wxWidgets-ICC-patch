@@ -2902,11 +2902,6 @@ wxString wxXmlResource::FindXRCIDById(int numId)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for ( int i = 0; i < XRCID_TABLE_SIZE; i++ )
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for ( XRCID_record *rec = XRCID_Records[i]; rec; rec = rec->next )
         {
             if ( rec->id == numId )

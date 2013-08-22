@@ -386,11 +386,6 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( i = 0; i < argcGTK; i++ )
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             while ( strcmp(wxConvUTF8.cWX2MB(argv_[i]), argvGTK[i]) != 0 )
             {
                 memmove(argv_ + i, argv_ + i + 1, (argc_ - i)*sizeof(*argv_));

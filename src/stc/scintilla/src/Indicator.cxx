@@ -116,19 +116,11 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (int x=0; x<width; x++) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			for (int y=0; y<rcBox.Height(); y += rcBox.Height()-1) {
 				image.SetPixel(x, y, fore, ((x + y) % 2) ? outlineAlpha : fillAlpha);
 			}
 		}
 		// Draw vertical lines left and right
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		for (int y=1; y<rcBox.Height(); y++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

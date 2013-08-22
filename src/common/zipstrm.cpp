@@ -491,11 +491,6 @@ size_t wxRawInputStream::OnSysRead(void *buffer, size_t size)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (count < size && IsOk())
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         while (m_parent_i_stream->IsOk() && m_tee->GetCount() == 0)
             m_parent_i_stream->Read(m_dummy.data(), BUFSIZE);
 
@@ -845,11 +840,6 @@ wxString wxZipEntry::GetInternalName(const wxString& name,
     if (isDir)
         internal.erase(internal.length() - 1);
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    while (!internal.empty() && *internal.begin() == '/')
-        internal.erase(0, 1);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1366,12 +1356,6 @@ void wxZipInputStream::Init(const wxString& file)
     wxZipEntryPtr_ entry;
 
     if (ffile->IsOk()) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        do {
-            entry.reset(GetNextEntry());
-        }
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

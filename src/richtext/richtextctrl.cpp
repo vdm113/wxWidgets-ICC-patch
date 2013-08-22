@@ -3069,11 +3069,6 @@ wxRichTextTable* wxRichTextCtrl::WriteTable(int rows, int cols, const wxRichText
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (j = 0; j < rows; j++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (i = 0; i < cols; i++)
         {
             table->GetCell(j, i)->GetAttributes() = cellAttr;

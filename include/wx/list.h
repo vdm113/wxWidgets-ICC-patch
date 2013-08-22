@@ -1012,9 +1012,6 @@ MY_MACRO_PRAGMA_IVDEP \
             while (n < size())                                              \
                 pop_back();                                                 \
 MY_MACRO_PRAGMA_IVDEP \
-            while (n < size())                                              \
-                pop_back();                                                 \
-MY_MACRO_PRAGMA_IVDEP \
             while (n > size())                                              \
                 push_back(v);                                                \
         }                                                                   \

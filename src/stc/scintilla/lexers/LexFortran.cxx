@@ -61,17 +61,6 @@ unsigned int GetContinuedPos(unsigned int pos, Accessor &styler) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while (!IsALineEnd(styler.SafeGetCharAt(pos++))) continue;
-	if (styler.SafeGetCharAt(pos) == '\n') pos++;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	while (IsABlank(styler.SafeGetCharAt(pos++))) continue;
-	char chCur = styler.SafeGetCharAt(pos);
-	if (chCur == '&') {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		while (IsABlank(styler.SafeGetCharAt(++pos))) continue;
 		return pos;
 	} else {
@@ -124,12 +113,6 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 					sc.SetState(SCE_F_COMMENT);
 				}
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-				while (!sc.atLineEnd && sc.More()) sc.Forward(); // Until line end
-			} else if (toLineStart >= 72) {
-				sc.SetState(SCE_F_COMMENT);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

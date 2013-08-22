@@ -50,12 +50,6 @@ class SVector {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (; i<len; i++) {
-			newv[i] = v[i];
-		}
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (; i<size; i++) {
 			newv[i] = 0;
 		}

@@ -281,12 +281,6 @@ FindMaskColour(unsigned char **lines, png_uint_32 width, png_uint_32 height,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for ( png_uint_32 y2 = 0; y2 < height; y2++ )
-    {
-        const unsigned char *p = lines[y2];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for ( png_uint_32 x2 = 0; x2 < width; x2++ )
         {
             r2 = *p++;
@@ -352,12 +346,6 @@ void CopyDataFromPNG(wxImage *image,
     if ( !(color_type & PNG_COLOR_MASK_COLOR) )
     {
         // grey image: GAGAGA... where G == grey component and A == alpha
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for ( png_uint_32 y = 0; y < height; y++ )
-        {
-            const unsigned char *ptrSrc = lines[y];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -438,12 +426,6 @@ void CopyDataFromPNG(wxImage *image,
     }
     else // colour image: RGBRGB...
     {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for ( png_uint_32 y = 0; y < height; y++ )
-        {
-            const unsigned char *ptrSrc = lines[y];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -882,11 +864,6 @@ bool wxPNGHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbos
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (int y = 0; y < iHeight; y++)
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for (int x = 0; x < iWidth; x++)
             {
                 png_color_8 rgba;
@@ -1056,12 +1033,6 @@ bool wxPNGHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbos
 
     const unsigned char *pColors = image->GetData();
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (int y = 0; y != iHeight; ++y)
-    {
-        unsigned char *pData = data;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

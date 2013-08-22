@@ -222,12 +222,6 @@ main(int argc, char* argv[])
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (row = 0; row < imagelength; row++) {
-			if (!TIFFReadScanline(in, ibuf, row, 0))
-				goto done;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			for (pp = obuf, x = 0; x < imagewidth; x++)
 				*pp++ = (unsigned char) rmap[ibuf[x]];
 			if (!TIFFWriteScanline(out, obuf, row, 0))

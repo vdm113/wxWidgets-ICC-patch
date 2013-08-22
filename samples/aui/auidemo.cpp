@@ -436,10 +436,6 @@ private:
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (int x = 0; x < 25; ++x)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for (int y = 0; y < 14; ++y)
             {
                 wxColour pixcol = c;

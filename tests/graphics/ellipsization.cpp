@@ -108,16 +108,6 @@ void EllipsizationTestCase::NormalCase()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( unsigned int  f = 0; f < WXSIZEOF(flagsToTest); f++ )
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for ( unsigned int m = 0; m < WXSIZEOF(modesToTest); m++ )
-            {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                 for ( unsigned int w = 0; w < WXSIZEOF(widthsToTest); w++ )
                 {
                     wxString ret = wxControl::Ellipsize

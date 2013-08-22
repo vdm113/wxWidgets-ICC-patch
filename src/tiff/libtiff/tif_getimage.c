@@ -1177,10 +1177,6 @@ DECLAREContigPutFunc(put8bitcmaptile)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (h-- > 0) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	for (x = w; x-- > 0;)
         {
 	    *cp++ = PALmap[*pp][0];
@@ -1267,10 +1263,6 @@ DECLAREContigPutFunc(putgreytile)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (h-- > 0) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	for (x = w; x-- > 0;)
         {
 	    *cp++ = BWmap[*pp][0];
@@ -1297,10 +1289,6 @@ DECLAREContigPutFunc(putagreytile)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (h-- > 0) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	for (x = w; x-- > 0;)
         {
             *cp++ = BWmap[*pp][0] & (*(pp+1) << 24 | ~A1);
@@ -1320,12 +1308,6 @@ DECLAREContigPutFunc(put16bitbwtile)
     uint32** BWmap = img->BWmap;
 
     (void) y;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    while (h-- > 0) {
-        uint16 *wp = (uint16 *) pp;
-
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1469,12 +1451,6 @@ DECLAREContigPutFunc(putRGBUAcontig8bittile)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while (h-- > 0) {
-		uint32 r, g, b, a;
-		uint8* m;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (x = w; x-- > 0;) {
 			a = pp[3];
 			m = img->UaToAa+(a<<8);
@@ -1498,10 +1474,6 @@ DECLAREContigPutFunc(putRGBcontig16bittile)
 	uint16 *wp = (uint16 *)pp;
 	(void) y;
 	fromskew *= samplesperpixel;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	while (h-- > 0) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1537,10 +1509,6 @@ DECLAREContigPutFunc(putRGBAAcontig16bittile)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while (h-- > 0) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (x = w; x-- > 0;) {
 			*cp++ = PACK4(img->Bitdepth16To8[wp[0]],
 			    img->Bitdepth16To8[wp[1]],
@@ -1563,12 +1531,6 @@ DECLAREContigPutFunc(putRGBUAcontig16bittile)
 	uint16 *wp = (uint16 *)pp;
 	(void) y;
 	fromskew *= samplesperpixel;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	while (h-- > 0) {
-		uint32 r,g,b,a;
-		uint8* m;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1633,10 +1595,6 @@ DECLAREContigPutFunc(putRGBcontig8bitCMYKMaptile)
 
     (void) y;
     fromskew *= samplesperpixel;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    while (h-- > 0) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1713,11 +1671,6 @@ DECLARESepPutFunc(putCMYKseparate8bittile)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while (h-- > 0) {
-		uint32 rv, gv, bv, kv;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (x = w; x-- > 0;) {
 			kv = 255 - *a++;
 			rv = (kv*(255-*r++))/255;
@@ -1736,12 +1689,6 @@ DECLARESepPutFunc(putCMYKseparate8bittile)
 DECLARESepPutFunc(putRGBUAseparate8bittile)
 {
 	(void) img; (void) y;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	while (h-- > 0) {
-		uint32 rv, gv, bv, av;
-		uint8* m;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1780,10 +1727,6 @@ DECLARESepPutFunc(putRGBseparate16bittile)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while (h-- > 0) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (x = 0; x < w; x++)
 			*cp++ = PACK(img->Bitdepth16To8[*wr++],
 			    img->Bitdepth16To8[*wg++],
@@ -1803,10 +1746,6 @@ DECLARESepPutFunc(putRGBAAseparate16bittile)
 	uint16 *wb = (uint16*) b;
 	uint16 *wa = (uint16*) a;
 	(void) img; (void) y;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	while (h-- > 0) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1843,12 +1782,6 @@ DECLARESepPutFunc(putRGBUAseparate16bittile)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while (h-- > 0) {
-		uint32 r,g,b,a;
-		uint8* m;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (x = w; x-- > 0;) {
 			a = img->Bitdepth16To8[*wa++];
 			m = img->UaToAa+(a<<8);
@@ -1871,10 +1804,6 @@ DECLAREContigPutFunc(putcontig8bitCIELab)
 	uint32 r, g, b;
 	(void) y;
 	fromskew *= 3;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	while (h-- > 0) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1965,11 +1894,6 @@ static void putcontig8bitYCbCrGenericTile(
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (; h >= 4; h -= 4) {
-	x = w>>2;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	do {
 	    Cb = pp[16];
 	    Cr = pp[17];
@@ -2022,11 +1946,6 @@ DECLAREContigPutFunc(putcontig8bitYCbCr44tile)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (; h >= 4; h -= 4) {
-            x = w>>2;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             do {
                 int32 Cb = pp[16];
                 int32 Cr = pp[17];
@@ -2055,10 +1974,6 @@ DECLAREContigPutFunc(putcontig8bitYCbCr44tile)
             pp += fromskew;
         }
     } else {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        while (h > 0) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -2137,11 +2052,6 @@ DECLAREContigPutFunc(putcontig8bitYCbCr42tile)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (; h >= 2; h -= 2) {
-            x = w>>2;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             do {
                 int32 Cb = pp[8];
                 int32 Cr = pp[9];
@@ -2162,10 +2072,6 @@ DECLAREContigPutFunc(putcontig8bitYCbCr42tile)
             pp += fromskew;
         }
     } else {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        while (h > 0) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -2232,11 +2138,6 @@ DECLAREContigPutFunc(putcontig8bitYCbCr41tile)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    do {
-	x = w>>2;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	do {
 	    int32 Cb = pp[4];
 	    int32 Cr = pp[5];
@@ -2282,11 +2183,6 @@ DECLAREContigPutFunc(putcontig8bitYCbCr22tile)
 	(void) y;
 	fromskew = (fromskew / 2) * 6;
 	cp2 = cp+w+toskew;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	while (h>=2) {
-		x = w;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -2359,11 +2255,6 @@ DECLAREContigPutFunc(putcontig8bitYCbCr21tile)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	do {
-		x = w>>1;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		do {
 			int32 Cb = pp[2];
 			int32 Cr = pp[3];
@@ -2401,11 +2292,6 @@ DECLAREContigPutFunc(putcontig8bitYCbCr12tile)
 	(void) y;
 	fromskew = (fromskew / 2) * 4;
 	cp2 = cp+w+toskew;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	while (h>=2) {
-		x = w;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -2458,11 +2344,6 @@ DECLAREContigPutFunc(putcontig8bitYCbCr11tile)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	do {
-		x = w; /* was x = w>>1; patched 2000/09/25 warmerda@home.com */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		do {
 			int32 Cb = pp[1];
 			int32 Cr = pp[2];
@@ -2484,11 +2365,6 @@ DECLARESepPutFunc(putseparate8bitYCbCr11tile)
 	(void) y;
 	(void) a;
 	/* TODO: naming of input vars is still off, change obfuscating declaration inside define, or resolve obfuscation */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	while (h-- > 0) {
-		x = w;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -2657,12 +2533,6 @@ setupMap(TIFFRGBAImage* img)
 		return (0);
     }
     if (img->photometric == PHOTOMETRIC_MINISWHITE) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (x = 0; x <= range; x++)
-	    img->Map[x] = (TIFFRGBValue) (((range - x) * 255) / range);
-    } else {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -3065,11 +2935,6 @@ BuildMapUaToAa(TIFFRGBAImage* img)
 		return(0);
 	}
 	m=img->UaToAa;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (na=0; na<256; na++)
-	{
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

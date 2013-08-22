@@ -202,7 +202,6 @@ public:
         if it's the only remaining top level window.
 
         @param enable
-        @enable
             If @true, the application will not quit unless the help frame is
             closed. Default is @false, i.e. the application does exit if only
             the help window remains opened.

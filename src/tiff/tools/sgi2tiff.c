@@ -268,11 +268,6 @@ cpContig(IMAGE* in, TIFF* out)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (y = in->ysize-1; y >= 0; y--) {
-			getrow(in, r, y, 0);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			for (x = in->xsize-1; x >= 0; x--)
 				pp[x] = r[x];
 			if (TIFFWriteScanline(out, buf, in->ysize-y-1, 0) < 0)
@@ -298,15 +293,6 @@ cpSeparate(IMAGE* in, TIFF* out)
 	uint8* pp = (uint8*) buf;
 	int x, y, z;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (z = 0; z < in->zsize; z++) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		for (y = in->ysize-1; y >= 0; y--) {
-			getrow(in, r, y, z);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

@@ -122,7 +122,6 @@ public:
         int left, right, top, bottom;
     };
     DecorSize m_decorSize;
-    wxSize m_decorSize;
 
     // private gtk_timeout_add result for mimicing wxUSER_ATTENTION_INFO and
     // wxUSER_ATTENTION_ERROR difference, -2 for no hint, -1 for ERROR hint, rest for GtkTimeout handle.
@@ -134,7 +133,6 @@ public:
     void GTKDoGetSize(int *width, int *height) const;
 
     void GTKUpdateDecorSize(const DecorSize& decorSize);
-    void GTKUpdateDecorSize(const wxSize& decorSize);
 
 protected:
     // give hints to the Window Manager for how the size
@@ -161,7 +159,6 @@ protected:
 private:
     void Init();
     DecorSize& GetCachedDecorSize();
-    wxSize& GetCachedDecorSize();
 
     // size hint increments
     int m_incWidth, m_incHeight;

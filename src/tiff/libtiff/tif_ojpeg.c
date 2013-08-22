@@ -874,17 +874,6 @@ OJPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (q=0; q<sp->subsampling_convert_clinelenout; q++)
-		{
-			r=oy;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (sy=0; sy<sp->subsampling_ver; sy++)
-			{
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 				for (sx=0; sx<sp->subsampling_hor; sx++)
 					*p++=*r++;
 				r+=sp->subsampling_convert_ylinelen-sp->subsampling_hor;
@@ -1175,11 +1164,6 @@ OJPEGReadSecondarySos(TIFF* tif, uint16 s)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while(sp->plane_sample_offset<s)
-	{
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		do
 		{
 			if (OJPEGReadByte(sp,&m)==0)
@@ -1279,16 +1263,6 @@ OJPEGWriteHeaderInfo(TIFF* tif)
 			*m++=(uint8*)(sp->subsampling_convert_ycbcrimage+3);
 			*m++=(uint8*)(sp->subsampling_convert_ycbcrimage+3+sp->subsampling_convert_ylines);
 			*m++=(uint8*)(sp->subsampling_convert_ycbcrimage+3+sp->subsampling_convert_ylines+sp->subsampling_convert_clines);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (n=0; n<sp->subsampling_convert_ylines; n++)
-				*m++=sp->subsampling_convert_ybuf+n*sp->subsampling_convert_ylinelen;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (n=0; n<sp->subsampling_convert_clines; n++)
-				*m++=sp->subsampling_convert_cbbuf+n*sp->subsampling_convert_clinelen;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1453,12 +1427,6 @@ OJPEGReadHeaderInfoSec(TIFF* tif)
 		if (OJPEGReadHeaderInfoSecTablesQTable(tif)==0)
 			return(0);
 		sp->sof_marker_id=JPEG_MARKER_SOF0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		for (o=0; o<sp->samples_per_pixel; o++)
-			sp->sof_c[o]=o;
-		sp->sof_hv[0]=((sp->subsampling_hor<<4)|sp->subsampling_ver);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

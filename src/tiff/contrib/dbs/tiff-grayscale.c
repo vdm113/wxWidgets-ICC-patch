@@ -113,10 +113,6 @@ int main(int argc, char **argv)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i < HEIGHT; i++) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (j = 0, k = 0; j < WIDTH;) {
             gray_index = (j / chunk_size) + ((i / chunk_size) * nchunks);
 

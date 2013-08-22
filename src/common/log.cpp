@@ -1045,10 +1045,6 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while ( *psz != '\0' ) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for ( n = nStart; (n < nMax) && (*psz != '\0'); n++ )
             putc(*psz++, f);
 

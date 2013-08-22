@@ -822,12 +822,6 @@ static int readContigTilesIntoBuffer (TIFF* in, uint8* buf,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (row = 0; row < imagelength; row += tl)
-    {
-    nrow = (row + tl > imagelength) ? imagelength - row : tl;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (col = 0; col < imagewidth; col += tw)
       {
       tbytes = TIFFReadTile(in, tilebuf, col, row, 0, 0);
@@ -1007,17 +1001,6 @@ static int  readSeparateTilesIntoBuffer (TIFF* in, uint8 *obuf,
   /* Each tile contains only the data for a single plane
    * arranged in scanlines of tw * bytes_per_sample bytes.
    */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  for (row = 0; row < imagelength; row += tl)
-    {
-    nrow = (row + tl > imagelength) ? imagelength - row : tl;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (col = 0; col < imagewidth; col += tw)
-      {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1212,11 +1195,6 @@ writeBufferToSeparateStrips (TIFF* out, uint8* buf,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (s = 0; s < spp; s++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (row = 0; row < length; row += rowsperstrip)
       {
       nrows = (row + rowsperstrip > length) ? length - row : rowsperstrip;
@@ -1297,12 +1275,6 @@ static int writeBufferToContigTiles (TIFF* out, uint8* buf, uint32 imagelength,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (row = 0; row < imagelength; row += tl)
-    {
-    nrow = (row + tl > imagelength) ? imagelength - row : tl;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (col = 0; col < imagewidth; col += tw)
       {
       /* Calculate visible portion of tile. */
@@ -1361,12 +1333,6 @@ static int writeBufferToSeparateTiles (TIFF* out, uint8* buf, uint32 imagelength
   TIFFGetField(out, TIFFTAG_BITSPERSAMPLE, &bps);
   src_rowsize = ((imagewidth * spp * bps) + 7) / 8;
          
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  for (row = 0; row < imagelength; row += tl)
-    {
-    nrow = (row + tl > imagelength) ? imagelength - row : tl;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -2569,11 +2535,6 @@ static int dump_data (FILE *dumpfile, int format, char *dump_tag, unsigned char 
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i < count; i++)
-      {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
       for (j = 0, k = 7; j < 8; j++, k--)
         {
 	bitset = (*(data + i)) & (((unsigned char)1 << k)) ? 1 : 0;
@@ -2855,11 +2816,6 @@ extractContigSamplesBytes (uint8 *in, uint8 *out, uint32 cols,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (col = start; col < end; col++)
-      {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
       for (sindex = sample; (sindex < spp) && (sindex < (sample + count)); sindex++)
         {
         bit_offset = col * bps * spp;
@@ -2920,12 +2876,6 @@ extractContigSamples8bits (uint8 *in, uint8 *out, uint32 cols,
   ready_bits = 0;
   maskbits =  (uint8)-1 >> ( 8 - bps);
   buff1 = buff2 = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  for (col = start; col < end; col++)
-    {    /* Compute src byte(s) and bits within byte(s) */
-    bit_offset = col * bps * spp;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -3013,12 +2963,6 @@ extractContigSamples16bits (uint8 *in, uint8 *out, uint32 cols,
   ready_bits = 0;
   maskbits = (uint16)-1 >> (16 - bps);
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  for (col = start; col < end; col++)
-    {    /* Compute src byte(s) and bits within byte(s) */
-    bit_offset = col * bps * spp;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -3342,12 +3286,6 @@ extractContigSamplesShifted8bits (uint8 *in, uint8 *out, uint32 cols,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (col = start; col < end; col++)
-    {    /* Compute src byte(s) and bits within byte(s) */
-    bit_offset = col * bps * spp;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (sindex = sample; (sindex < spp) && (sindex < (sample + count)); sindex++)
       {
       if (sindex == 0)
@@ -3428,12 +3366,6 @@ extractContigSamplesShifted16bits (uint8 *in, uint8 *out, uint32 cols,
 
   ready_bits = shift;
   maskbits = (uint16)-1 >> (16 - bps);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  for (col = start; col < end; col++)
-    {    /* Compute src byte(s) and bits within byte(s) */
-    bit_offset = col * bps * spp;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -3955,18 +3887,6 @@ combineSeparateSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
       }
     dst = out + (row * dst_rowsize);
     row_offset = row * src_rowsize;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (col = 0; col < cols; col++)
-      {
-      col_offset = row_offset + (col * (bps / 8)); 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-      for (s = 0; (s < spp) && (s < MAX_SAMPLES); s++)
-        {
-        src = srcbuffs[s] + col_offset; 
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -4551,18 +4471,6 @@ combineSeparateTileSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
     TIFFError("","Tile row %4d, Src offset %6d   Dst offset %6d", 
               row, src_offset, dst - out);
 #endif
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (col = 0; col < cols; col++)
-      {
-      col_offset = src_offset + (col * (bps / 8)); 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-      for (s = 0; (s < spp) && (s < MAX_SAMPLES); s++)
-        {
-        src = srcbuffs[s] + col_offset; 
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -5190,11 +5098,6 @@ static int readSeparateStripsIntoBuffer (TIFF *in, uint8 *obuf, uint32 length,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (j = 0; (j < strips_per_sample) && (result == 1); j++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (s = 0; (s < spp) && (s < MAX_SAMPLES); s++)
       {
       buff = srcbuffs[s];
@@ -5304,12 +5207,6 @@ get_page_geometry (char *name, struct pagedef *page)
     {
     char *ptr;
     int n; 
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (ptr = name; *ptr; ptr++)
-      *ptr = (char)tolower((int)*ptr);
 
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -8429,12 +8326,6 @@ rotateContigSamples8bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (row = 0; row < length ; row++)
-    {
-    bit_offset = col * bps * spp;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (sample = 0; sample < spp; sample++)
       {
       if (sample == 0)
@@ -8508,12 +8399,6 @@ rotateContigSamples16bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
   ready_bits = 0;
   maskbits =  (uint16)-1 >> (16 - bps);
   buff1 = buff2 = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  for (row = 0; row < length; row++)
-    {
-    bit_offset = col * bps * spp;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -8604,12 +8489,6 @@ rotateContigSamples24bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
   ready_bits = 0;
   maskbits =  (uint32)-1 >> (32 - bps);
   buff1 = buff2 = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  for (row = 0; row < length; row++)
-    {
-    bit_offset = col * bps * spp;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -8719,12 +8598,6 @@ rotateContigSamples32bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
   ready_bits = 0;
   maskbits =  (uint64)-1 >> (64 - bps);
   buff1 = buff2 = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  for (row = 0; row < length; row++)
-    {
-    bit_offset = col * bps * spp;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -8879,12 +8752,6 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-                for (row = 0; row < length; row++)
-                   {
-		   dst_offset = (length - row - 1) * rowsize;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                    for (col = 0; col < width; col++)
                      { 
 		     col_offset = (width - col - 1) * pix_offset;
@@ -8961,11 +8828,6 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
                   dst_offset = col * colsize;
 		  src = ibuff + src_offset;
 		  dst = rbuff + dst_offset;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                  for (row = length; row > 0; row--)
-                    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -9055,11 +8917,6 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
                   dst_offset = (width - col - 1) * colsize;
 		  src = ibuff + src_offset;
 		  dst = rbuff + dst_offset;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                  for (row = length; row > 0; row--)
-                    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -9536,11 +9393,6 @@ reverseSamplesBytes (uint16 spp, uint16 bps, uint32 width,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-             for (col = 0; col < (width / 2); col++)
-               { 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	       for (i = 0; i < spp; i++)
                   {
 		  bytebuff1 = *src;
@@ -9718,10 +9570,6 @@ invertImage(uint16 photometric, uint16 spp, uint16 bps, uint32 width, uint32 len
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-             for (row = 0; row < length; row++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                for (col = 0; col < width; col++)
                  {
 		 *src_uint32 = (uint32)0xFFFFFFFF - *src_uint32;
@@ -9729,10 +9577,6 @@ invertImage(uint16 photometric, uint16 spp, uint16 bps, uint32 width, uint32 len
                  }
             break;
     case 16: src_uint16 = (uint16 *)src;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-             for (row = 0; row < length; row++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

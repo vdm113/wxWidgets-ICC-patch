@@ -221,12 +221,6 @@ void DoReadLL(T *buffer, size_t size, wxInputStream *input, bool be_order)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( size_t uiIndex = 0; uiIndex != size; ++uiIndex )
-        {
-            buffer[uiIndex] = 0l;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for ( unsigned ui = 0; ui != 8; ++ui )
             {
                 buffer[uiIndex] = buffer[uiIndex] * 256l +
@@ -238,12 +232,6 @@ void DoReadLL(T *buffer, size_t size, wxInputStream *input, bool be_order)
     }
     else // little endian
     {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for ( size_t uiIndex=0; uiIndex!=size; ++uiIndex )
-        {
-            buffer[uiIndex] = 0l;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -279,12 +267,6 @@ static void DoWriteLL(const T *buffer, size_t size, wxOutputStream *output, bool
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( size_t uiIndex = 0; uiIndex != size; ++uiIndex )
-        {
-            DataType i64 = buffer[uiIndex];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for ( unsigned ui = 0; ui != 8; ++ui )
             {
                 pchBuffer[idx_base + 7 - ui] =
@@ -297,12 +279,6 @@ static void DoWriteLL(const T *buffer, size_t size, wxOutputStream *output, bool
     }
     else // little endian
     {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for ( size_t uiIndex=0; uiIndex != size; ++uiIndex )
-        {
-            DataType i64 = buffer[uiIndex];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

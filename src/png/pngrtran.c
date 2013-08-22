@@ -514,11 +514,6 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-                  do
-                     j--;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                   while ((int)png_ptr->quantize_sort[j] >= maximum_colors);
 
                   palette[i] = palette[j];
@@ -542,11 +537,6 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
                {
                   png_color tmp_color;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                  do
-                     j--;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -651,11 +641,6 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
           */
          max_d = 96;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-         while (num_new_palette > maximum_colors)
-         {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

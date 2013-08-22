@@ -107,12 +107,6 @@ uLong ZEXPORT adler32(adler, buf, len)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (len >= NMAX) {
-        len -= NMAX;
-        n = NMAX / 16;          /* NMAX is divisible by 16 */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         do {
             DO16(buf);          /* 16 sums unrolled */
             buf += 16;

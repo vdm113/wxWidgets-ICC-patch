@@ -1334,11 +1334,6 @@ bool wxICOHandler::SaveFile(wxImage *image,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-                for (i = 0; i < mask.GetWidth(); i++)
-                {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                     for (j = 0; j < mask.GetHeight(); j++)
                     {
                         if ((r == mask.GetRed(i, j)) &&
@@ -1354,10 +1349,6 @@ bool wxICOHandler::SaveFile(wxImage *image,
             // just make a black mask all over:
             mask = image->Copy();
             int i, j;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (i = 0; i < mask.GetWidth(); i++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

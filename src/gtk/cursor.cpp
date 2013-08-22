@@ -126,12 +126,6 @@ wxCursor::wxCursor(const char bits[], int width, int height,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (int j = 0; j < height; j++, data += stride)
-        {
-            guchar* p = data;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for (int i = 0; i < width; i++, p += n_channels)
             {
                 if (p[0])
@@ -280,10 +274,6 @@ void wxCursor::InitFromImage( const wxImage & image )
         {
             guchar* d = gdk_pixbuf_get_pixels(pixbuf);
             const int stride = gdk_pixbuf_get_rowstride(pixbuf);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (int j = 0; j < h; j++, d += stride)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

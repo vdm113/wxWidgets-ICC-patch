@@ -323,11 +323,6 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (yoffset = coef->MCU_vert_offset; yoffset < coef->MCU_rows_per_iMCU_row;
-       yoffset++) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (MCU_col_num = coef->mcu_ctr; MCU_col_num < cinfo->MCUs_per_row;
 	 MCU_col_num++) {
       /* Construct list of pointers to DCT blocks belonging to this MCU */

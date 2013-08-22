@@ -173,11 +173,6 @@ main(int argc, char* argv[])
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (j = 0; j < 3; j++) {
-#define	SCALE(x)	(((x)*((1L<<16)-1))/255)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			for (i = h.ras_maplength/3; i-- > 0;)
 				*map++ = SCALE(*buf++);
 			if ((i = h.ras_maplength/3) < mapsize) {

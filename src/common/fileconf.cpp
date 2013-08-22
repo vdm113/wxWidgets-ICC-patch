@@ -488,12 +488,6 @@ wxFileConfig::wxFileConfig(wxInputStream &inStream, const wxMBConv& conv)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( const wxChar *s = cbuf; ; ++s )
-        {
-            const wxChar *e = s;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             while ( *e != '\0' && *e != '\n' && *e != '\r' )
                 ++e;
 

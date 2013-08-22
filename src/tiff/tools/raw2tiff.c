@@ -293,12 +293,6 @@ main(int argc, char* argv[])
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (row = 0; row < length; row++) {
-		switch(interleaving) {
-		case BAND:			/* band interleaved data */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			for (band = 0; band < nbands; band++) {
 				lseek(fd,
 				      hdr_size + (length*band+row)*linebytes,

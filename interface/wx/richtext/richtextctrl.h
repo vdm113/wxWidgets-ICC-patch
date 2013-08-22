@@ -2300,7 +2300,6 @@ public:
         @param commandType
             The type of the event.
         @param winid
-        @param id
             Window identifier. The value @c wxID_ANY indicates a default value.
     */
     wxRichTextEvent(wxEventType commandType = wxEVT_NULL, int winid = 0);

@@ -436,12 +436,6 @@ wxString wxMarkupParser::Quote(const wxString& text)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for ( wxString::const_iterator it = text.begin(); it != text.end(); ++it )
-    {
-        unsigned n;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for ( n = 0; n < WXSIZEOF(xmlEntities); n++ )
         {
             const XMLEntity& xmlEnt = xmlEntities[n];

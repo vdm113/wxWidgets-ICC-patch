@@ -455,11 +455,6 @@ bool MyApp::TileBitmap(const wxRect& rect, wxDC& dc, wxBitmap& bitmap)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = rect.x; i < rect.x + rect.width; i += w)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (j = rect.y; j < rect.y + rect.height; j+= h)
             dc.DrawBitmap(bitmap, i, j);
     }

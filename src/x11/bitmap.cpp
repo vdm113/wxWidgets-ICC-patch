@@ -535,11 +535,6 @@ bool wxBitmap::CreateFromImage( const wxImage& image, int depth )
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i < w; i++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (j = 0; j < h; j++)
         {
             unsigned char red = image.GetRed(i, j);
@@ -686,11 +681,6 @@ bool wxBitmap::CreateFromImage( const wxImage& image, int depth )
             wxTheApp->GetVisualInfo(M_BMPDATA->m_display)->m_colorCube;
 
         int index = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (int y = 0; y < height; y++)
-        {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -908,11 +898,6 @@ wxImage wxBitmap::ConvertToImage() const
     int width = GetWidth();
     int height = GetHeight();
     long pos = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (int j = 0; j < height; j++)
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

@@ -113,10 +113,6 @@ int main(int argc, char **argv)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i < 255; i++) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (j = 0; j < 75; j++) {
              scan_line[j * 3] = 255;
              scan_line[(j * 3) + 1] = 255 - i;
@@ -172,10 +168,6 @@ int main(int argc, char **argv)
         }
         TIFFWriteScanline(tif, scan_line, i, 0);
     }
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (i = 255; i < 512; i++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

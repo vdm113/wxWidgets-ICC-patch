@@ -139,11 +139,6 @@ void LongLongTestCase::Comparison()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for ( size_t n = 0; n < WXSIZEOF(testLongs); n++ )
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for ( size_t m = 0; m < WXSIZEOF(lls); m++ )
         {
             CPPUNIT_ASSERT( (lls[m] < testLongs[n]) == (ls[m] < testLongs[n]) );

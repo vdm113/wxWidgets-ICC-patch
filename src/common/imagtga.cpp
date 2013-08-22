@@ -97,11 +97,6 @@ void FlipTGA(unsigned char* imageData, int width, int height, short pixelSize)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for ( ; line1 < line2; line2 -= (lineLength * 2))
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (int index = 0; index < lineLength; line1++, line2++, index++)
         {
             temp = *line1;
@@ -795,12 +790,6 @@ int SaveTGA(const wxImage& image, wxOutputStream *stream)
 
     unsigned char *src = image.GetData();
     unsigned char *alpha = image.GetAlpha();
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (int y = 0; y < size.y; ++y)
-    {
-        unsigned char *dst = scanlineData;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

@@ -1040,12 +1040,6 @@ wxConcatFiles (const wxString& file1, const wxString& file2, const wxString& fil
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for( int i=0; i<2; i++)
-    {
-        wxFile *in = i==0 ? &in1 : &in2;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         do{
             if ( (ofs = in->Read(buf,WXSIZEOF(buf))) == wxInvalidOffset ) return false;
             if ( ofs > 0 )

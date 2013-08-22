@@ -478,11 +478,6 @@ wxBitmap::wxBitmap(const char bits[], int width, int height, int depth)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( int rows = 0; rows < height; rows++ )
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for ( size_t cols = 0; cols < bytesPerLine; cols++ )
             {
                 unsigned char val = *src++;
@@ -709,11 +704,6 @@ bool wxBitmap::CreateFromImage(const wxImage& image, int depth, const wxDC& dc)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i < image.GetWidth(); i++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (j = 0; j < image.GetHeight(); j++)
         {
             unsigned char red = image.GetRed(i, j);
@@ -795,11 +785,6 @@ wxImage wxBitmap::ConvertToImage() const
     HBITMAP hOldBitmap = ::SelectObject(hMemDC, hBitmap);
 
     int i, j;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (i = 0; i < GetWidth(); i++)
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

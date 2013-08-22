@@ -920,12 +920,6 @@ cclass(v, startp, endp, cases)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	    for (i=0 ; i<NUM_ALPHA_CHAR ; i++) {
-		addchr(cv, alphaCharTable[i]);
-	    }
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	    for (i=0 ; i<NUM_ALPHA_RANGE ; i++) {
 		addrange(cv, alphaRangeTable[i].start,
 			alphaRangeTable[i].end);

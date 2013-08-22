@@ -204,12 +204,6 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (row = 0; row < imagelength; row++) {
-			if (TIFFReadScanline(tif2, buf2, row, 0) < 0)
-				checkEOF(tif2, row, -1)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			for (s = 0; s < samplesperpixel; s++) {
 				if (TIFFReadScanline(tif1, buf1, row, s) < 0)
 					checkEOF(tif1, row, s)
@@ -228,12 +222,6 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (row = 0; row < imagelength; row++) {
-			if (TIFFReadScanline(tif1, buf1, row, 0) < 0)
-				checkEOF(tif1, row, -1)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			for (s = 0; s < samplesperpixel; s++) {
 				if (TIFFReadScanline(tif2, buf2, row, s) < 0)
 					checkEOF(tif2, row, s)
@@ -243,10 +231,6 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 		}
 		break;
 	case pack(PLANARCONFIG_SEPARATE, PLANARCONFIG_SEPARATE):
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		for (s = 0; s < samplesperpixel; s++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -383,12 +367,6 @@ ContigCompare(int sample, uint32 row,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-          for (pix = 0; pix < imagewidth; pix += ppb) {
-              int		s;
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
               for(s = 0; s < samples_to_test; s++) {
                   if (*pix1 != *pix2) {
                       if( sample == -1 )
@@ -406,12 +384,6 @@ ContigCompare(int sample, uint32 row,
       case 16: 
       {
           uint16 *pix1 = (uint16 *)p1, *pix2 = (uint16 *)p2;
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-          for (pix = 0; pix < imagewidth; pix++) {
-              int	s;
 
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -446,12 +418,6 @@ ContigCompare(int sample, uint32 row,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (pix = 0; pix < imagewidth; pix++) {
-			int	s;
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			for(s = 0; s < samples_to_test; s++) {
 				if (*pix1 != *pix2) {
 					PrintIntDiff(row, sample, pix,
@@ -464,12 +430,6 @@ ContigCompare(int sample, uint32 row,
 		}
 	} else if (sampleformat == SAMPLEFORMAT_IEEEFP) {
 		float *pix1 = (float *)p1, *pix2 = (float *)p2;
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		for (pix = 0; pix < imagewidth; pix++) {
-			int	s;
 
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

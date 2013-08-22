@@ -999,10 +999,6 @@ struct vars *v;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (;;) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		while (!ATEOS() && iscspace(*v->now))
 			v->now++;
 		if (ATEOS() || *v->now != CHR('#'))

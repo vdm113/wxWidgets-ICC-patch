@@ -625,12 +625,6 @@ png_write_image(png_structrp png_ptr, png_bytepp image)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-   for (pass = 0; pass < num_pass; pass++)
-   {
-      /* Loop through image */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
       for (i = 0, rp = image; i < png_ptr->height; i++, rp++)
       {
          png_write_row(png_ptr, *rp);
@@ -1896,11 +1890,6 @@ png_write_image_8bit(png_voidp argument)
                reciprocal = UNP_RECIPROCAL(alpha);
 
             c = channels;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            do /* always at least one channel */
-               *out_ptr++ = png_unpremultiply(*in_ptr++, alpha, reciprocal);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

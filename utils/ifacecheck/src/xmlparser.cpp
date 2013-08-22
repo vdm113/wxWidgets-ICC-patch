@@ -561,10 +561,6 @@ bool wxClass::CheckConsistency() const
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (unsigned int i=0; i<m_methods.GetCount(); i++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (unsigned int j=0; j<m_methods.GetCount(); j++)
             if (i!=j && m_methods[i] == m_methods[j])
             {
@@ -1209,11 +1205,6 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
     }
 
     // resolve parent names
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (i=0; i<m_classes.GetCount(); i++)
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

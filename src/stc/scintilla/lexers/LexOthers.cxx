@@ -261,12 +261,6 @@ static void ColouriseBatchLine(
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-			for (unsigned int keywordLength = 2; keywordLength < wbl && keywordLength < 7 && !sKeywordFound; keywordLength++) {
-				wbo = 0;
-				// Copy Keyword Length from Word Buffer into Special Keyword Buffer
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 				for (; wbo < keywordLength; wbo++) {
 					sKeywordBuffer[wbo] = static_cast<char>(wordBuffer[wbo]);
 				}
@@ -1314,11 +1308,6 @@ static bool latexIsLetter(int ch) {
 }
 
 static bool latexIsTagValid(int &i, int l, Accessor &styler) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	while (i < l) {
-		if (styler.SafeGetCharAt(i) == '{') {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

@@ -284,12 +284,6 @@ void wxPluginLibrary::UnregisterModules()
 #   pragma ivdep
 #endif
     for ( it = m_wxmodules.begin(); it != m_wxmodules.end(); ++it )
-        (*it)->Exit();
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for ( it = m_wxmodules.begin(); it != m_wxmodules.end(); ++it )
         wxModule::UnregisterModule( *it );
 
     // NB: content of the list was deleted by UnregisterModule calls above:

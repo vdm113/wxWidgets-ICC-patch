@@ -165,10 +165,6 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (row = 0; row < DCTSIZE; row++) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	  for (col = 0; col < DCTSIZE; col++) {
 	    fdtbl[i] = (FAST_FLOAT)
 	      (1.0 / (((double) qtbl->quantval[i] *

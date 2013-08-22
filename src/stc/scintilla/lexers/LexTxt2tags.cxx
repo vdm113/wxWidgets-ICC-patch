@@ -56,12 +56,6 @@ static bool FollowToLineEnd(const int ch, const int state, const unsigned int en
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (sc.GetRelative(++i) == ch)
-        ;
-    // Skip over whitespace
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     while (IsASpaceOrTab(sc.GetRelative(i)) && sc.currentPos + i < endPos)
         ++i;
     if (IsNewline(sc.GetRelative(i)) || sc.currentPos + i == endPos) {
@@ -77,11 +71,6 @@ static bool FollowToLineEnd(const int ch, const int state, const unsigned int en
 static bool HasPrevLineContent(StyleContext &sc) {
     int i = 0;
     // Go back to the previous newline
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    while ((--i + sc.currentPos) && !IsNewline(sc.GetRelative(i)))
-        ;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

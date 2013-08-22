@@ -389,12 +389,6 @@ get_histogram(TIFF* in, Colorbox* box)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	  for (i = B_LEN*B_LEN*B_LEN; i-- > 0;)
-		*ptr++ = 0;
-	}
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	for (i = 0; i < imagelength; i++) {
 		if (TIFFReadScanline(in, inputline, i, 0) <= 0)
 			break;
@@ -483,16 +477,6 @@ splitbox(Colorbox* ptr)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	        for (ir = ptr->rmin; ir <= ptr->rmax; ++ir) {
-			*histp = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (ig = ptr->gmin; ig <= ptr->gmax; ++ig) {
-				iptr = &histogram[ir][ig][ptr->bmin];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 				for (ib = ptr->bmin; ib <= ptr->bmax; ++ib)
 					*histp += *iptr++;
 			}
@@ -516,16 +500,6 @@ splitbox(Colorbox* ptr)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	        for (ig = ptr->gmin; ig <= ptr->gmax; ++ig) {
-			*histp = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (ir = ptr->rmin; ir <= ptr->rmax; ++ir) {
-				iptr = &histogram[ir][ig][ptr->bmin];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 				for (ib = ptr->bmin; ib <= ptr->bmax; ++ib)
 					*histp += *iptr++;
 			}
@@ -536,16 +510,6 @@ splitbox(Colorbox* ptr)
 	        break;
 	case BLUE:
 	        histp = &hist2[ptr->bmin];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	        for (ib = ptr->bmin; ib <= ptr->bmax; ++ib) {
-			*histp = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (ir = ptr->rmin; ir <= ptr->rmax; ++ir) {
-				iptr = &histogram[ir][ptr->gmin][ib];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -593,11 +557,6 @@ splitbox(Colorbox* ptr)
 	usedboxes = new;
 
 	histp = &hist2[first];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (sum1 = 0, j = first; j < i; j++)
-		sum1 += *histp++;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -654,15 +613,6 @@ shrinkbox(Colorbox* box)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (ir = box->rmin; ir <= box->rmax; ++ir)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (ig = box->gmin; ig <= box->gmax; ++ig) {
-				histp = &histogram[ir][ig][box->bmin];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			        for (ib = box->bmin; ib <= box->bmax; ++ib)
 					if (*histp++ != 0) {
 						box->rmin = ir;
@@ -671,16 +621,6 @@ shrinkbox(Colorbox* box)
 			}
 	have_rmin:
 		if (box->rmax > box->rmin)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (ir = box->rmax; ir >= box->rmin; --ir)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-				for (ig = box->gmin; ig <= box->gmax; ++ig) {
-					histp = &histogram[ir][ig][box->bmin];
-					ib = box->bmin;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -715,15 +655,6 @@ have_rmax:
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (ig = box->gmin; ig <= box->gmax; ++ig)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (ir = box->rmin; ir <= box->rmax; ++ir) {
-				histp = &histogram[ir][ig][box->bmin];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			        for (ib = box->bmin; ib <= box->bmax; ++ib)
 				if (*histp++ != 0) {
 					box->gmin = ig;
@@ -732,16 +663,6 @@ have_rmax:
 			}
 	have_gmin:
 		if (box->gmax > box->gmin)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (ig = box->gmax; ig >= box->gmin; --ig)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-				for (ir = box->rmin; ir <= box->rmax; ++ir) {
-					histp = &histogram[ir][ig][box->bmin];
-					ib = box->bmin;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -776,15 +697,6 @@ have_gmax:
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (ib = box->bmin; ib <= box->bmax; ++ib)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (ir = box->rmin; ir <= box->rmax; ++ir) {
-				histp = &histogram[ir][box->gmin][ib];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			        for (ig = box->gmin; ig <= box->gmax; ++ig) {
 					if (*histp != 0) {
 						box->bmin = ib;
@@ -795,16 +707,6 @@ have_gmax:
 		        }
 	have_bmin:
 		if (box->bmax > box->bmin)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (ib = box->bmax; ib >= box->bmin; --ib)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-				for (ir = box->rmin; ir <= box->rmax; ++ir) {
-					histp = &histogram[ir][box->gmin][ib];
-					ig = box->gmin;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -917,11 +819,6 @@ create_colorcell(int red, int green, int blue)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (n = ptr->num_ents - 1; n > 0; n = next_n) {
-		next_n = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (i = 0; i < n; ++i)
 			if (ptr->entries[i][1] > ptr->entries[i+1][1]) {
 				tmp = ptr->entries[i][0];
@@ -944,14 +841,6 @@ map_colortable(void)
 	register int j, tmp, d2, dist;
 	int ir, ig, ib, i;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (ir = 0; ir < B_LEN; ++ir)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		for (ig = 0; ig < B_LEN; ++ig)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

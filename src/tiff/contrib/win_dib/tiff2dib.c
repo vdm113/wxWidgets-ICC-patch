@@ -190,12 +190,6 @@ RowsPerStrip);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-                    for (l = 0; l < nrow; l++) 
-                      {
-                         if (SamplePerPixel  == 3)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                            for (i=0;i< (int) (imageWidth);i++)
                               {
                                lpBits[i*SamplePerPixel+0]=buf[l*LineSize+i*Sample

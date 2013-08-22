@@ -78,7 +78,6 @@ public:
         the given region described by the parameters of this method and the previously
         set clipping region.
         Clipping is implemented in the SVG output using SVG group elements (\<g\>), with
-        Clipping is implemented in the SVG output using SVG group elements (<g>), with
         nested group elements being used to represent clipping region intersections when
         two or more calls are made to SetClippingRegion().
     */
@@ -107,7 +106,6 @@ public:
         Destroys the current clipping region so that none of the DC is clipped.
         Since intersections arising from sequential calls to SetClippingRegion are represented
         with nested SVG group elements (\<g\>), all such groups are closed when
-        with nested SVG group elements (<g>), all such groups are closed when
         DestroyClippingRegion is called.
     */
     void DestroyClippingRegion();

@@ -1412,11 +1412,6 @@ XmlInitUnknownEncoding(void *mem,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (i = 0; i < (int)sizeof(struct normal_encoding); i++)
-    ((char *)mem)[i] = ((char *)&latin1_encoding)[i];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
   for (i = 0; i < 128; i++)
     if (latin1_encoding.type[i] != BT_OTHER
         && latin1_encoding.type[i] != BT_NONXML

@@ -366,24 +366,6 @@ local void check_header(s)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        while (len-- != 0 && get_byte(s) != EOF) ;
-    }
-    if ((flags & ORIG_NAME) != 0) { /* skip the original file name */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        while ((c = get_byte(s)) != 0 && c != EOF) ;
-    }
-    if ((flags & COMMENT) != 0) {   /* skip the .gz file comment */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        while ((c = get_byte(s)) != 0 && c != EOF) ;
-    }
-    if ((flags & HEAD_CRC) != 0) {  /* skip the header crc */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (len = 0; len < 2; len++) (void)get_byte(s);
     }
     s->z_err = s->z_eof ? Z_DATA_ERROR : Z_OK;

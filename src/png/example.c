@@ -557,12 +557,6 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
 #   pragma ivdep
 #endif
    for (row = 0; row < height; row++)
-      row_pointers[row] = NULL;
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-   for (row = 0; row < height; row++)
       row_pointers[row] = png_malloc(png_ptr, png_get_rowbytes(png_ptr,
          info_ptr));
 
@@ -573,12 +567,6 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
 #else no_entire /* Read the image one or more scanlines at a time */
    /* The other way to read images - deal with interlacing: */
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-   for (pass = 0; pass < number_passes; pass++)
-   {
-#ifdef single /* Read the image a single row at a time */
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

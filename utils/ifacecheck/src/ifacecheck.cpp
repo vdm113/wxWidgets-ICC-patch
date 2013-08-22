@@ -631,11 +631,6 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i=0; i < cToUpdate.GetCount(); i++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (j=0; j < cToUpdate[i]->GetMethodCount(); j++)
         {
             wxMethod& m = cToUpdate[i]->GetMethod(j);

@@ -629,10 +629,6 @@ void wxWindowDCImpl::DoDrawArc( wxCoord x1, wxCoord y1, wxCoord x2, wxCoord y2,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (alpha2 <= 0) alpha2 += 360*64;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     while (alpha1 > 360*64) alpha1 -= 360*64;
 
     if (m_gdkwindow)
@@ -1057,12 +1053,6 @@ ScaleMask(GdkPixmap* mask, int x, int y, int w, int h, int dst_w, int dst_h, dou
     const guchar* row = gdk_pixbuf_get_pixels(pixbuf);
     const int rowstride = gdk_pixbuf_get_rowstride(pixbuf);
     memset(data, 0, data_size);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (int j = 0; j < dst_h; j++, row += rowstride, out += out_rowstride)
-    {
-        const guchar* in = row;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

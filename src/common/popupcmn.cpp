@@ -275,8 +275,6 @@ void wxPopupTransientWindow::Popup(wxWindow *winFocus)
     // this case neither and we can't reliably distinguish between them.
     const wxWindowList& children = GetChildren();
     if ( children.GetCount() == 1 )
-    const wxWindowList& children = GetChildren();
-    if ( children.GetCount() )
     {
         m_child = children.GetFirst()->GetData();
     }
@@ -484,21 +482,6 @@ void wxPopupTransientWindow::OnIdle(wxIdleEvent& event)
                 {
                     m_child->CaptureMouse();
                 }
-        wxPoint pos = ScreenToClient(wxGetMousePosition());
-        wxRect rect(GetSize());
-
-        if ( rect.Contains(pos) )
-        {
-            if ( m_child->HasCapture() )
-            {
-                m_child->ReleaseMouse();
-            }
-        }
-        else
-        {
-            if ( !m_child->HasCapture() )
-            {
-                m_child->CaptureMouse();
             }
         }
     }

@@ -504,11 +504,6 @@ bool wxTIFFHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbos
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (uint32 i = 0; i < h; i++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (uint32 j = 0; j < w; j++)
         {
             *(ptr++) = (unsigned char)TIFFGetR(raster[pos]);

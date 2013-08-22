@@ -333,7 +333,6 @@ public:
         Get any client data associated with the tool.
 
         @param tool_id
-        @param toolId
             ID of the tool in question, as passed to AddTool().
 
         @return Client data, or @NULL if there is none.
@@ -346,7 +345,6 @@ public:
         Called to determine whether a tool is enabled (responds to user input).
 
         @param tool_id
-        @param toolId
             ID of the tool in question, as passed to AddTool().
 
         @return @true if the tool is enabled, @false otherwise.
@@ -361,7 +359,6 @@ public:
         Returns the help string for the given tool.
 
         @param tool_id
-        @param toolId
             ID of the tool in question, as passed to AddTool().
 
         @since 2.9.4
@@ -372,7 +369,6 @@ public:
         Return the kind of the given tool.
 
         @param tool_id
-        @param toolId
             ID of the tool in question, as passed to AddTool().
 
         @since 2.9.4
@@ -384,7 +380,6 @@ public:
         is not found.
 
         @param tool_id
-        @param toolId
             ID of the tool in question, as passed to AddTool().
 
         @since 2.9.4
@@ -395,7 +390,6 @@ public:
         Gets the on/off state of a toggle tool.
 
         @param tool_id
-        @param toolId
             ID of the tool in question, as passed to AddTool().
 
         @return @true if the tool is toggled on, @false otherwise.
@@ -436,8 +430,6 @@ public:
             ID of the tool in question, as passed to AddTool().
         @param clientData
             The client data to use.
-        @param id
-            ID of the tool in question, as passed to AddTool().
 
         @since 2.9.4
     */
@@ -460,7 +452,6 @@ public:
         Sets the help string shown in tooltip for the given tool.
 
         @param tool_id
-        @param tool_Id
             ID of the tool in question, as passed to AddTool().
         @param helpString
             A string for the help.

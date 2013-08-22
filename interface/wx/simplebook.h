@@ -38,7 +38,6 @@
     the program calls SetSelection().
 
     @library{wxcore}
-    @library{none}
     @category{bookctrl}
 
     @see wxBookCtrl, wxNotebook, @ref page_samples_notebook

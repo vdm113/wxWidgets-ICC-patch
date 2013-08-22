@@ -127,12 +127,6 @@ static void ColouriseYAMLLine(
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-			while ((i < lengthLine) && isspacechar(lineBuffer[i]))
-				i++;
-			unsigned int endValue = lengthLine - 1;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			while ((endValue >= i) && isspacechar(lineBuffer[endValue]))
 				endValue--;
 			lineBuffer[endValue + 1] = '\0';

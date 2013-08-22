@@ -659,11 +659,6 @@ wxDCImpl::DoDrawPolyPolygon(int n,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i < j; i++)
-        pts[i] = points[i];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (i = 2; i <= n; i++)
     {
         lastOfs -= count[n-i];
@@ -1033,11 +1028,6 @@ void wxDCImpl::DoGradientFillConcentric(const wxRect& rect,
     double dGradient;
     double dx, dy;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for ( wxInt32 x = 0; x < rect.GetWidth(); x++ )
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1523,18 +1513,6 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        while( sa<0 ) sa += 360;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        while( ea<0 ) ea += 360;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        while( sa>=360 ) sa -= 360;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         while( ea>=360 ) ea -= 360;
         // calculate quadrant numbers
         if( sa > 270 ) sq = 3;
@@ -1630,12 +1608,6 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        while( !bReady )
-        {
-            wxPointList::compatibility_iterator node;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for( node = pointsarray[q].GetFirst(); node; node = node->GetNext() )
             {
                 // once: go to starting point in start quadrant
@@ -1678,12 +1650,6 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
         points->Append( new wxPoint( xea, yea ) );
 
         // delete points
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for( q = 0; q < 4; ++q )
-        {
-            wxPointList::compatibility_iterator node;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

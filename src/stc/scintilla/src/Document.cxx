@@ -1341,12 +1341,6 @@ int Document::ParaUp(int pos) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while (line >= 0 && IsWhiteLine(line)) { // skip empty lines
-		line--;
-	}
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	while (line >= 0 && !IsWhiteLine(line)) { // skip non-empty lines
 		line--;
 	}
@@ -1356,12 +1350,6 @@ int Document::ParaUp(int pos) {
 
 int Document::ParaDown(int pos) {
 	int line = LineFromPosition(pos);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	while (line < LinesTotal() && !IsWhiteLine(line)) { // skip non-empty lines
-		line++;
-	}
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1437,11 +1425,6 @@ int Document::NextWordStart(int pos, int delta) {
 		}
 	} else {
 		CharClassify::cc ccStart = WordCharClass(cb.CharAt(pos));
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		while (pos < (Length()) && (WordCharClass(cb.CharAt(pos)) == ccStart))
-			pos++;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -1637,12 +1620,6 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-			while (forward ? (pos < endSearch) : (pos >= endSearch)) {
-				if (CharAt(pos) == charStartSearch) {
-					bool found = (pos + lengthFind) <= limitPos;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 					for (int indexSearch = 1; (indexSearch < lengthFind) && found; indexSearch++) {
 						found = CharAt(pos + indexSearch) == search[indexSearch];
 					}
@@ -1760,11 +1737,6 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 			const int endSearch = (startPos <= endPos) ? endPos - lengthFind + 1 : endPos;
 			std::vector<char> searchThing(lengthFind + 1);
 			pcf->Fold(&searchThing[0], searchThing.size(), search, lengthFind);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			while (forward ? (pos < endSearch) : (pos >= endSearch)) {
-				bool found = (pos + lengthFind) <= limitPos;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -2227,23 +2199,11 @@ int Document::WordPartRight(int pos) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		while (pos < length && !isascii(cb.CharAt(pos)))
-			++pos;
-	} else if (IsLowerCase(startChar)) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		while (pos < length && IsLowerCase(cb.CharAt(pos)))
 			++pos;
 	} else if (IsUpperCase(startChar)) {
 		if (IsLowerCase(cb.CharAt(pos + 1))) {
 			++pos;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			while (pos < length && IsLowerCase(cb.CharAt(pos)))
-				++pos;
-		} else {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -2259,18 +2219,6 @@ int Document::WordPartRight(int pos) {
 		if (IsLowerCase(cb.CharAt(pos)) && IsUpperCase(cb.CharAt(pos - 1)))
 			--pos;
 	} else if (IsADigit(startChar)) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		while (pos < length && IsADigit(cb.CharAt(pos)))
-			++pos;
-	} else if (IsPunctuation(startChar)) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		while (pos < length && IsPunctuation(cb.CharAt(pos)))
-			++pos;
-	} else if (isspacechar(startChar)) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

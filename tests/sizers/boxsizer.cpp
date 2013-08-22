@@ -301,12 +301,6 @@ void BoxSizerTestCase::CalcMin()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for ( n = 0; n < NUM_TEST_ITEM; n++ )
-        child[n] = new wxWindow(m_win, wxID_ANY);
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for ( unsigned i = 0; i < WXSIZEOF(calcMinTestData); i++ )
     {
         m_sizer->Clear();

@@ -210,11 +210,6 @@ bool wxRichTextFloatCollector::GetFloatingObjects(wxRichTextObjectList& objects)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i < m_left.GetCount(); i++)
-        objects.Append(m_left[i]->anchor);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (i = 0; i < m_right.GetCount(); i++)
         objects.Append(m_right[i]->anchor);
     return true;
@@ -9813,11 +9808,6 @@ void ExpandCellsWithRowspan(const wxRichTextTable* table, int paddingY, int& bot
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (row = 0; row < rowCount; ++row)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (int column = 0; column < colCount; ++column)
         {
             wxRichTextCell* cell = table->GetCell(row, column);
@@ -9832,11 +9822,6 @@ void ExpandCellsWithRowspan(const wxRichTextTable* table, int paddingY, int& bot
     
     bool needsRelay = false;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (row = 0; row < rowCount-1; ++row) // -1 as the bottom row can't rowspan
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -9906,11 +9891,6 @@ void ExpandCellsWithRowspan(const wxRichTextTable* table, int paddingY, int& bot
         return;
 
     // There were overflowing rowspanning cells, so layout yet again to make the increased row depths show
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (row = 0; row < rowCount; ++row)
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -10073,11 +10053,6 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (j = 0; j < m_rowCount; j++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextCell* cell = GetCell(j, i);
@@ -10090,11 +10065,6 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
         }
     }
     // 0.2: find which cells are subsumed by a spanning cell
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (j = 0; j < m_rowCount; j++)
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -10708,11 +10678,6 @@ void wxRichTextTable::CalculateRange(long start, long& end)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i < m_rowCount; i++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (j = 0; j < m_colCount; j++)
         {
             wxRichTextCell* child = GetCell(i, j);
@@ -10780,12 +10745,6 @@ void wxRichTextTable::Copy(const wxRichTextTable& obj)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = 0; i < m_rowCount; i++)
-    {
-        wxRichTextObjectPtrArray& colArray = m_cells[i];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (j = 0; j < m_colCount; j++)
         {
             wxRichTextCell* cell = wxDynamicCast(obj.GetCell(i, j)->Clone(), wxRichTextCell);
@@ -10814,12 +10773,6 @@ bool wxRichTextTable::CreateTable(int rows, int cols)
     m_cells.Add(wxRichTextObjectPtrArray(), rows);
 
     int i, j;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (i = 0; i < rows; i++)
-    {
-        wxRichTextObjectPtrArray& colArray = m_cells[i];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -10932,11 +10885,6 @@ wxRichTextSelection wxRichTextTable::GetSelection(long start, long end) const
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (i = topRow; i <= bottomRow; i++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (j = leftCol; j <= rightCol; j++)
         {
             wxRichTextCell* cell = GetCell(i, j);
@@ -10985,11 +10933,6 @@ wxPosition wxRichTextTable::GetFocusedCell() const
     wxPosition position(-1, -1);
     const wxRichTextObject* focus = GetBuffer()->GetRichTextCtrl()->GetFocusObject();
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (int row = 0; row < GetRowCount(); ++row)
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -11054,12 +10997,6 @@ bool wxRichTextTable::DeleteRows(int startRow, int noRows)
     }
 
     int i, j;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (i = startRow; i < (startRow+noRows); i++)
-    {
-        wxRichTextObjectPtrArray& colArray = m_cells[startRow];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -11136,12 +11073,6 @@ bool wxRichTextTable::DeleteColumns(int startCol, int noCols)
     bool deleteRows = (noCols == m_colCount);
 
     int i, j;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (i = 0; i < m_rowCount; i++)
-    {
-        wxRichTextObjectPtrArray& colArray = m_cells[deleteRows ? 0 : i];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -11260,12 +11191,6 @@ bool wxRichTextTable::AddColumns(int startCol, int noCols, const wxRichTextAttr&
     }
 
     int i, j;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (i = 0; i < m_rowCount; i++)
-    {
-        wxRichTextObjectPtrArray& colArray = m_cells[i];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

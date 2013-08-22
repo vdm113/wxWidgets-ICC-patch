@@ -190,12 +190,6 @@ static int styleCheckIdentifier(LexAccessor &styler, unsigned int bk) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while (bk > 0 && styler.StyleAt(bk) == SCE_PL_IDENTIFIER) {
-		bk--;
-	}
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	while (bk > 0) {
 		int bkstyle = styler.StyleAt(bk);
 		if (bkstyle == SCE_PL_DEFAULT
@@ -964,12 +958,6 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 					sc.Forward();
 				break;
 			}
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			while (!sc.atLineEnd) {		// "EOF" and `EOF` interpolated
-				int s = 0, endType = 0;
-				int maxSeg = endPos - sc.currentPos;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

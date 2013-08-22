@@ -845,11 +845,6 @@ bool wxToolBar::Realize()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-                            for ( int y = 0; y < h; y++ )
-                            {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                                 for ( int x = 0; x < w; x++ )
                                 {
                                     if ( imgGreyed.IsTransparent(x, y) )
@@ -2043,11 +2038,6 @@ WXHBITMAP wxToolBar::MapBitmap(WXHBITMAP bitmap, int width, int height)
 
     wxCOLORMAP *cmap = wxGetStdColourMap();
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for ( int i = 0; i < width; i++ )
-    {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

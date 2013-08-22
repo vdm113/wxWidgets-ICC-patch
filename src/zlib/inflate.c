@@ -232,18 +232,6 @@ struct inflate_state FAR *state;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        while (sym < 144) state->lens[sym++] = 8;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        while (sym < 256) state->lens[sym++] = 9;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        while (sym < 280) state->lens[sym++] = 7;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         while (sym < 288) state->lens[sym++] = 8;
         next = fixed;
         lenfix = next;
@@ -480,8 +468,6 @@ MY_MACRO_PRAGMA_IVDEP \
 /* Assure that there are at least n bits in the bit accumulator.  If there is
    not enough available input to do that, then return from inflate(). */
 #define NEEDBITS(n) \
-MY_MACRO_PRAGMA_IVDEP \
-    do { \
 MY_MACRO_PRAGMA_IVDEP \
     do { \
 MY_MACRO_PRAGMA_IVDEP \
@@ -940,10 +926,6 @@ int flush;
             state->have = 0;
             state->mode = CODELENS;
         case CODELENS:
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            while (state->have < state->nlen + state->ndist) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

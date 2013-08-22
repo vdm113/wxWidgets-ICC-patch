@@ -77,22 +77,6 @@ wxHtmlWinParser::wxHtmlWinParser(wxHtmlWindowInterface *wndIface)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (i = 0; i < 2; i++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (j = 0; j < 2; j++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                for (k = 0; k < 2; k++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                    for (l = 0; l < 2; l++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                         for (m = 0; m < 7; m++)
                         {
                             m_FontsTable[i][j][k][l][m] = NULL;
@@ -122,22 +106,6 @@ wxHtmlWinParser::~wxHtmlWinParser()
 {
     int i, j, k, l, m;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (i = 0; i < 2; i++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (j = 0; j < 2; j++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (k = 0; k < 2; k++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                for (l = 0; l < 2; l++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -232,22 +200,6 @@ void wxHtmlWinParser::SetFonts(const wxString& normal_face,
     SetInputEncoding(m_InputEnc);
 #endif
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (i = 0; i < 2; i++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (j = 0; j < 2; j++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (k = 0; k < 2; k++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                for (l = 0; l < 2; l++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

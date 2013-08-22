@@ -207,12 +207,6 @@ select_ncolors (j_decompress_ptr cinfo, int Ncolors[])
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  do {
-    iroot++;
-    temp = iroot;		/* set temp = iroot ** nc */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (i = 1; i < nc; i++)
       temp *= iroot;
   } while (temp <= (long) max_colors); /* repeat till iroot exceeds root */
@@ -237,11 +231,6 @@ select_ncolors (j_decompress_ptr cinfo, int Ncolors[])
    * (Example: for 16 colors, we start at 2*2*2, go to 3*2*2, then 4*2*2.)
    * In RGB colorspace, try to increment G first, then R, then B.
    */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  do {
-    changed = FALSE;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -348,11 +337,6 @@ create_colormap (j_decompress_ptr cinfo)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-      for (ptr = j * blksize; ptr < total_colors; ptr += blkdist) {
-	/* fill in blksize entries beginning at ptr */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	for (k = 0; k < blksize; k++)
 	  colormap[i][ptr+k] = (JSAMPLE) val;
       }
@@ -424,10 +408,6 @@ create_colorindex (j_decompress_ptr cinfo)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (j = 0; j <= MAXJSAMPLE; j++) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
       while (j > k)		/* advance val if past boundary */
 	k = largest_input_value(cinfo, i, ++val, nci-1);
       /* premultiply so that no multiplication needed in main processing */
@@ -474,10 +454,6 @@ make_odither_array (j_decompress_ptr cinfo, int ncolors)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (j = 0; j < ODITHER_SIZE; j++) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (k = 0; k < ODITHER_SIZE; k++) {
       num = ((JPEG_INT32) (ODITHER_CELLS-1 - 2*((int)base_dither_matrix[j][k])))
 	    * MAXJSAMPLE;
@@ -504,12 +480,6 @@ create_odither_tables (j_decompress_ptr cinfo)
   ODITHER_MATRIX_PTR odither;
   int i, j, nci;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  for (i = 0; i < cinfo->out_color_components; i++) {
-    nci = cquantize->Ncolors[i]; /* # of distinct values for this color */
-    odither = NULL;		/* search for matching prior component */
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -564,17 +534,6 @@ color_quantize (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  for (row = 0; row < num_rows; row++) {
-    ptrin = input_buf[row];
-    ptrout = output_buf[row];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (col = width; col > 0; col--) {
-      pixcode = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
       for (ci = 0; ci < nc; ci++) {
 	pixcode += GETJSAMPLE(colorindex[ci][GETJSAMPLE(*ptrin++)]);
       }
@@ -599,12 +558,6 @@ color_quantize3 (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
   JDIMENSION col;
   JDIMENSION width = cinfo->output_width;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  for (row = 0; row < num_rows; row++) {
-    ptrin = input_buf[row];
-    ptrout = output_buf[row];
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

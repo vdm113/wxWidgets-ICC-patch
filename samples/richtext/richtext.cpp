@@ -1204,11 +1204,6 @@ void MyFrame::WriteInitialText()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (j = 0; j < table->GetRowCount(); j++)
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for (i = 0; i < table->GetColumnCount(); i++)
             {
                 wxString msg = wxString::Format(wxT("This is cell %d, %d"), (j+1), (i+1));

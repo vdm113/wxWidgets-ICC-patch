@@ -238,11 +238,6 @@ pre_process_context (j_compress_ptr cinfo,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (ci = 0; ci < cinfo->num_components; ci++) {
-	  int row;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	  for (row = 1; row <= cinfo->max_v_samp_factor; row++) {
 	    jcopy_sample_rows(prep->color_buf[ci], 0,
 			      prep->color_buf[ci], -row,

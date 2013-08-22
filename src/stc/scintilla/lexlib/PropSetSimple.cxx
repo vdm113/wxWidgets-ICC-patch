@@ -63,12 +63,6 @@ void PropSetSimple::Set(const char *keyVal) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while (IsASpaceCharacter(*keyVal))
-		keyVal++;
-	const char *endVal = keyVal;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	while (*endVal && (*endVal != '\n'))
 		endVal++;
 	const char *eqAt = strchr(keyVal, '=');

@@ -1906,11 +1906,6 @@ wxDocTemplate *wxDocManager::SelectDocumentType(wxDocTemplate **templates,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (i = 0; i < n; i++)
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for (j = 0; j < noTemplates; j++)
             {
                 if (strings[i] == templates[j]->m_description)
@@ -1991,11 +1986,6 @@ wxDocTemplate *wxDocManager::SelectViewType(wxDocTemplate **templates,
         // are typically short.
         int j;
         n = strings.Count();
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (i = 0; i < n; i++)
-        {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

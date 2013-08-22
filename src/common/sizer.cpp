@@ -1508,12 +1508,6 @@ void wxGridSizer::RecalcSizes()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (int c = 0; c < ncols; c++)
-    {
-        int y = pt.y;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (int r = 0; r < nrows; r++)
         {
             int i = r * ncols + c;

@@ -279,10 +279,6 @@ void FormatConverterTestCase::doTest(const char *input,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (const wxChar **prec = precs; *prec; prec++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (const wxChar **width = flag_width; *width; width++)
             check(fmt + *width + *prec + input,
                   fmt + *width + *prec + expectedScanf,

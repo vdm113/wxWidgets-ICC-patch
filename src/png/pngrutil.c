@@ -3445,12 +3445,6 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-                     do
-                     {
-                        size_t c = bytes_to_copy;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                         do
                         {
                            *dp32++ = *sp32++;
@@ -3487,11 +3481,6 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-                     do
-                        *dp++ = *sp++;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                      while (--row_width > 0);
                      return;
                   }
@@ -3507,12 +3496,6 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
                      size_t skip = (bytes_to_jump-bytes_to_copy) /
                         (sizeof (png_uint_16));
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                     do
-                     {
-                        size_t c = bytes_to_copy;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -3547,11 +3530,6 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
                      /* End of row - 1 byte left, bytes_to_copy > row_width: */
                      dp = (png_bytep)dp16;
                      sp = (png_const_bytep)sp16;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                     do
-                        *dp++ = *sp++;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -3653,12 +3631,6 @@ png_do_read_interlace(png_row_infop row_info, png_bytep row, int pass,
                 s_inc = 1;
             }
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (i = 0; i < row_info->width; i++)
-            {
-               v = (png_byte)((*sp >> sshift) & 0x01);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

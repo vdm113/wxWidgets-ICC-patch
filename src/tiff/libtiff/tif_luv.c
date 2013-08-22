@@ -216,10 +216,6 @@ LogL16Decode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (shft = 2*8; (shft -= 8) >= 0; ) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (i = 0; i < npixels && cc > 0; )
 			if (*bp >= 128) {		/* run */
 				rc = *bp++ + (2-128);   /* TODO: potential input buffer overrun when decoding corrupt or truncated data */
@@ -358,10 +354,6 @@ LogLuvDecode32(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (shft = 4*8; (shft -= 8) >= 0; ) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (i = 0; i < npixels && cc > 0; )
 			if (*bp >= 128) {		/* run */
 				rc = *bp++ + (2-128);
@@ -480,10 +472,6 @@ LogL16Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (shft = 2*8; (shft -= 8) >= 0; )
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (i = 0; i < npixels; i += rc) {
 			if (occ < 4) {
 				tif->tif_rawcp = op;
@@ -494,12 +482,6 @@ LogL16Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 				occ = tif->tif_rawdatasize - tif->tif_rawcc;
 			}
 			mask = 0xff << shft;		/* find next run */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (beg = i; beg < npixels; beg += rc) {
-				b = (int16) (tp[beg] & mask);
-				rc = 1;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -655,10 +637,6 @@ LogLuvEncode32(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (shft = 4*8; (shft -= 8) >= 0; )
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (i = 0; i < npixels; i += rc) {
 			if (occ < 4) {
 				tif->tif_rawcp = op;
@@ -669,12 +647,6 @@ LogLuvEncode32(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 				occ = tif->tif_rawdatasize - tif->tif_rawcc;
 			}
 			mask = 0xff << shft;		/* find next run */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (beg = i; beg < npixels; beg += rc) {
-				b = tp[beg] & mask;
-				rc = 1;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -939,11 +911,6 @@ oog_encode(double u, double v)		/* encode out-of-gamut chroma */
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (i = NANGLES; i--; )
-			eps[i] = 2.;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (vi = UV_NVS; vi--; ) {
 			va = UV_VSTART + (vi+.5)*UV_SQSIZ;
 			ustep = uv_row[vi].nus-1;
@@ -963,18 +930,6 @@ oog_encode(double u, double v)		/* encode out-of-gamut chroma */
 				}
 			}
 		}
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		for (i = NANGLES; i--; )	/* fill any holes */
-			if (eps[i] > 1.5) {
-				int	i1, i2;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-				for (i1 = 1; i1 < NANGLES/2; i1++)
-					if (eps[(i+i1)%NANGLES] < 1.5)
-						break;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

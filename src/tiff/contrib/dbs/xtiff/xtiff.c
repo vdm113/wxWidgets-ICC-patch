@@ -810,12 +810,6 @@ GetTIFFImage()
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-            for (i = 0; i < tfImageHeight; i++) {
-                if (TIFFReadScanline(tfFile, scan_line, i, 0) < 0)
-                    break;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                 for (input_p = scan_line, j = 0; j < tfImageWidth; j++) {
                     *(output_p + red_shift) = *input_p++;
                     *(output_p + green_shift) = *input_p++;
@@ -826,12 +820,6 @@ GetTIFFImage()
                 }
             }
         } else {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for (s = 0; s < tfSamplesPerPixel; s++) {
-                if (s == 3)             /* skip the fourth channel */
-                    continue;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

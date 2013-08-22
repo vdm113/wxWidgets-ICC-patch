@@ -783,11 +783,6 @@ JPEGFixupTagsSubsamplingSec(struct JPEGFixupTagsSubsamplingData* data)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while (1)
-	{
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		while (1)
 		{
 			if (!JPEGFixupTagsSubsamplingReadByte(data,&m))
@@ -1438,10 +1433,6 @@ JPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-						for (nclump = clumps_per_line; nclump-- > 0; ) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 							for (xpos = 0; xpos < hsamp; xpos++)
 								outptr[xpos] = *inptr++;
 							outptr += samples_per_clump;
@@ -1978,10 +1969,6 @@ JPEGEncodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 			    }
 			} else {
 			    /* general case */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			    for (nclump = clumps_per_line; nclump-- > 0; ) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

@@ -91,7 +91,6 @@ public:
     //@{
     /**
         Check that this matrix is identical with @a t.
-        Check that this matrix is identical with @t.
 
         @param t
             The matrix compared with this.
@@ -102,7 +101,6 @@ public:
 
     /**
         Check that this matrix differs from @a t.
-        Check that this matrix differs from @t.
 
         @param t
             The matrix compared with this.

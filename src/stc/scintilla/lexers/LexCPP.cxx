@@ -1174,11 +1174,6 @@ void LexerCPP::EvaluateTokens(std::vector<std::string> &tokens) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (int prec=precArithmetic; prec <= precLogical; prec++) {
-		// Looking at 3 tokens at a time so end at 2 before end
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (size_t k=0; (k+2)<tokens.size();) {
 			char chOp = tokens[k+1][0];
 			if (

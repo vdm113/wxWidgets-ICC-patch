@@ -502,11 +502,6 @@ static bool sureThisIsNotHeredoc(int lt2StartPos,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (firstWordPosn += 1; firstWordPosn <= lt2StartPos; firstWordPosn += 1) {
-        // Inner loop looks at the name
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (; firstWordPosn <= lt2StartPos; firstWordPosn += 1) {
             newStyle = styler.StyleAt(firstWordPosn);
             if (newStyle != prevStyle) {

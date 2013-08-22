@@ -60,14 +60,6 @@ main(int argc, char** argv)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (R = 0; R < 256; R++) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (G = 0; G < 256; G++)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	    for (B = 0; B < 256; B++)
 		check(R, G, B);
 	printf("[%3u] c %u/%u b %u/%u (R %u/%d/%u G %u/%d/%u B %u/%d/%u)\n"

@@ -856,11 +856,6 @@ wxString wxRichTextStyleListBox::CreateHTML(wxRichTextStyleDefinition* def) cons
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (i = 0; i <= maxSize; i++)
-            sizes.Add(0);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (i = 0; i < m_styleNames.GetCount(); i++)
         {
             wxRichTextStyleDefinition* d = GetStyle(i);

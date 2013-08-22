@@ -419,11 +419,6 @@ fpAcc(TIFF* tif, uint8* cp0, tmsize_t cc)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (count = 0; count < wc; count++) {
-		uint32 byte;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (byte = 0; byte < bps; byte++) {
 			#ifdef WORDS_BIGENDIAN
 			cp[bps * count + byte] = tmp[byte * wc + count];
@@ -609,11 +604,6 @@ fpDiff(TIFF* tif, uint8* cp0, tmsize_t cc)
 		return;
 
 	_TIFFmemcpy(tmp, cp0, cc);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	for (count = 0; count < wc; count++) {
-		uint32 byte;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

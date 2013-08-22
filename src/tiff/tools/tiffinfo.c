@@ -218,10 +218,6 @@ ShowStrip(tstrip_t strip, unsigned char* pp, uint32 nrow, tsize_t scanline)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	while (nrow-- > 0) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 		for (cc = 0; cc < scanline; cc++) {
 			printf(" %02x", *pp++);
 			if (((cc+1) % 24) == 0)
@@ -283,10 +279,6 @@ TIFFReadSeparateStripData(TIFF* tif)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (row = 0; row < h; row += rowsperstrip) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			for (s = 0; s < samplesperpixel; s++) {
 				uint32 nrow = (row+rowsperstrip > h ?
 				    h-row : rowsperstrip);
@@ -312,10 +304,6 @@ ShowTile(uint32 row, uint32 col, tsample_t sample,
 	if (sample != (tsample_t) -1)
 		printf(",%u", sample);
 	printf("):\n");
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-	while (nrow-- > 0) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -354,10 +342,6 @@ TIFFReadContigTileData(TIFF* tif)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-		for (row = 0; row < h; row += th) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 			for (col = 0; col < w; col += tw) {
 				if (TIFFReadTile(tif, buf, col, row, 0, 0) < 0) {
 					if (stoponerr)
@@ -387,14 +371,6 @@ TIFFReadSeparateTileData(TIFF* tif)
 		TIFFGetField(tif, TIFFTAG_TILEWIDTH, &tw);
 		TIFFGetField(tif, TIFFTAG_TILELENGTH, &th);
 		TIFFGetField(tif, TIFFTAG_SAMPLESPERPIXEL, &samplesperpixel);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		for (row = 0; row < h; row += th) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-			for (col = 0; col < w; col += tw) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

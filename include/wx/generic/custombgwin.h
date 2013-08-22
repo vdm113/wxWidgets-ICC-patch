@@ -42,11 +42,6 @@ protected:
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for ( int x = 0; x < clientSize.x; x += bitmapSize.x )
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for ( int y = 0; y < clientSize.y; y += bitmapSize.y )
             {
                 dc.DrawBitmap(m_bitmapBg, x, y);

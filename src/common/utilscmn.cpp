@@ -890,17 +890,6 @@ void wxQsort(void* pbase, size_t total_elems,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-          do
-            {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-              while ((*cmp) ((void *) left_ptr, (void *) mid, user_data) < 0)
-                left_ptr += size;
-
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
               while ((*cmp) ((void *) mid, (void *) right_ptr, user_data) < 0)
                 right_ptr -= size;
 
@@ -989,12 +978,6 @@ void wxQsort(void* pbase, size_t total_elems,
     /* Insertion sort, running from left-hand-side up to right-hand-side.  */
 
     run_ptr = base_ptr + size;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    while ((run_ptr += size) <= end_ptr)
-      {
-        tmp_ptr = run_ptr - size;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

@@ -137,12 +137,6 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-                    while (pos < lng)
-                    {
-                        // find the ending tag
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                         while (pos + 1 < lng &&
                                (src[pos] != '<' || src[pos+1] != '/'))
                             ++pos;

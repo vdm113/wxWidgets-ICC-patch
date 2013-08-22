@@ -369,11 +369,6 @@ void SurfaceImpl::AlphaRectangle(PRectangle rc, int cornerSize,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-        for (y=0; y<r.height; y++) {
-            p.MoveTo(pixData, 0, y);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for (x=0; x<r.width; x++) {
                 p.Red()   = wxPy_premultiply(red,   alphaFill);
                 p.Green() = wxPy_premultiply(green, alphaFill);
@@ -441,11 +436,6 @@ wxBitmap BitmapFromRGBAImage(int width, int height, const unsigned char *pixelsI
     wxAlphaPixelData pixData(bmp);
 
     wxAlphaPixelData::Iterator p(pixData);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (y=0; y<height; y++) {
-        p.MoveTo(pixData, 0, y);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

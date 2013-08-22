@@ -344,12 +344,6 @@ DECLAREContigPutFunc(putContig1bitTile)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (h-- > 0) {
-        _TIFFmemcpy(ucp, pp, w);
-        /*
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (x = wb; x-- > 0;) {
             *cp++ = rgbi(Map[pp[0]], Map[pp[1]], Map[pp[2]]);
             pp += samplesperpixel;

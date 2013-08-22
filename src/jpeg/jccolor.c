@@ -358,17 +358,6 @@ null_convert (j_compress_ptr cinfo,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-  while (--num_rows >= 0) {
-    /* It seems fastest to make a separate pass for each component. */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (ci = 0; ci < nc; ci++) {
-      inptr = *input_buf;
-      outptr = output_buf[ci][output_row];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
       for (col = 0; col < num_cols; col++) {
 	outptr[col] = inptr[ci]; /* don't need GETJSAMPLE() here */
 	inptr += nc;

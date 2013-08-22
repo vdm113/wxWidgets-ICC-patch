@@ -217,16 +217,6 @@ void wxXVisualInfo::Init( Display* dpy, XVisualInfo* vi )
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    for (int r = 0; r < 32; r++)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (int g = 0; g < 32; g++)
-        {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for (int b = 0; b < 32; b++)
             {
                 int rr = (r << 3) | (r >> 2);

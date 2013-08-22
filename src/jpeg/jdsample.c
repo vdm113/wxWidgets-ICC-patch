@@ -221,11 +221,6 @@ int_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (outptr < outend) {
-      invalue = *inptr++;	/* don't need GETJSAMPLE() here */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
       for (h = h_expand; h > 0; h--) {
 	*outptr++ = invalue;
       }
@@ -391,10 +386,6 @@ h2v2_fancy_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   int inrow, outrow, v;
 
   inrow = outrow = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-  while (outrow < cinfo->max_v_samp_factor) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

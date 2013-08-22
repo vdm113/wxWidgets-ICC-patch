@@ -289,11 +289,6 @@ count_zero_samples(png_structp png_ptr, png_row_infop row_info, png_bytep data)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-       for (n = 0, nstop=row_info->width; n<nstop; n++)
-       {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
           for (channel = 0; channel < color_channels; channel++)
           {
              if (row_info->bit_depth == 8)
@@ -1385,12 +1380,6 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
    t_misc += (t_stop - t_start);
    t_start = t_stop;
 #endif
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-   for (pass = 0; pass < num_pass; pass++)
-   {
-      pngtest_debug1("Writing row data for pass %d", pass);
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

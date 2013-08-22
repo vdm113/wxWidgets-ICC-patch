@@ -136,11 +136,6 @@ void WordList::Set(const char *s) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-	for (unsigned int k = 0; k < (sizeof(starts) / sizeof(starts[0])); k++)
-		starts[k] = -1;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
 	for (int l = len - 1; l >= 0; l--) {
 		unsigned char indexChar = words[l][0];
 		starts[indexChar] = l;
@@ -180,12 +175,6 @@ bool WordList::InList(const char *s) const {
 	}
 	j = starts['^'];
 	if (j >= 0) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		while (words[j][0] == '^') {
-			const char *a = words[j] + 1;
-			const char *b = s;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -250,12 +239,6 @@ bool WordList::InListAbbreviated(const char *s, const char marker) const {
 	}
 	j = starts['^'];
 	if (j >= 0) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-		while (words[j][0] == '^') {
-			const char *a = words[j] + 1;
-			const char *b = s;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif

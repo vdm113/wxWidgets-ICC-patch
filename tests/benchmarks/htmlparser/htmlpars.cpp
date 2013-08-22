@@ -310,16 +310,6 @@ void wx28HtmlParser::DoParsing(int begin_pos, int end_pos)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
-    while (begin_pos < end_pos)
-    {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        while (m_CurTag && m_CurTag->GetBeginPos() < begin_pos)
-            m_CurTag = m_CurTag->GetNextTag();
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         while (m_CurTextPiece < piecesCnt &&
                pieces[m_CurTextPiece].m_pos < begin_pos)
             m_CurTextPiece++;
