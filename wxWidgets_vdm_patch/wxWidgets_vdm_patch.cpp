@@ -12,11 +12,6 @@
 
 #include "stdafx.h"
 
-// wxWidgets_vdm_patch.cpp : Defines the entry point for the console application.
-//
-
-#include "stdafx.h"
-
 #include <io.h>
 #include <wchar.h>
 #include <string>
@@ -124,7 +119,6 @@ again:
                     buf2[0]='x';
                     fgets(buf2,length,in);
                 }
-                scrollback.push_back(buf2);
                 ++cnt;
             } while(strcmp(buf2,line_prologue_token)==0); // might be broken, i.e. twice or more prologue occurence
 
@@ -139,13 +133,15 @@ again:
             }
         }
 
-        if(do_patch && do_prologue && 1==ln && strcmp(buf,line_prologue_token)!=0) {
+        if(do_patch && do_prologue && 1==ln) {
             sprintf(tmp_buf,"%s\n%s\n",line_prologue_token,line_prologue);
             string save=scrollback.back();
             scrollback.clear();
             scrollback.push_back(tmp_buf);
-            scrollback.push_back(save);
-            changed=true;
+            if(save.compare(line_prologue_token)) {
+                scrollback.push_back(save);
+                changed=true;
+            }
         }
 
         if(!do_patch && do_prologue && 1==ln && strcmp(buf,line_prologue_token)==0) {
