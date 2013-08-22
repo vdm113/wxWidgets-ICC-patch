@@ -190,7 +190,13 @@ null_convert (j_decompress_ptr cinfo,
   JDIMENSION num_cols = cinfo->output_width;
   int ci;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (--num_rows >= 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ci = 0; ci < num_components; ci++) {
       inptr = input_buf[ci][input_row];
       outptr = output_buf[0] + ci;
@@ -249,6 +255,9 @@ gray_rgb_convert (j_decompress_ptr cinfo,
   register JDIMENSION col;
   JDIMENSION num_cols = cinfo->output_width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (--num_rows >= 0) {
     inptr = input_buf[0][input_row++];
     outptr = *output_buf++;

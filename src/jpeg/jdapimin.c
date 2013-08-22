@@ -61,6 +61,9 @@ jpeg_CreateDecompress (j_decompress_ptr cinfo, int version, size_t structsize)
   cinfo->progress = NULL;
   cinfo->src = NULL;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < NUM_QUANT_TBLS; i++)
     cinfo->quant_tbl_ptrs[i] = NULL;
 

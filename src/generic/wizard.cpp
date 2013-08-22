@@ -1014,6 +1014,9 @@ bool wxWizard::TileBitmap(const wxRect& rect, wxDC& dc, const wxBitmap& bitmap)
     dcMem.SelectObjectAsSource(bitmap);
 
     int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = rect.x; i < rect.x + rect.width; i += w)
     {
 #if defined(__INTEL_COMPILER)

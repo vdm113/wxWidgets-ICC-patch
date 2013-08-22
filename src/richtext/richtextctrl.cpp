@@ -3061,6 +3061,9 @@ wxRichTextTable* wxRichTextCtrl::WriteTable(int rows, int cols, const wxRichText
     table->SetParent(NULL);
 
     int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (j = 0; j < rows; j++)
     {
 #if defined(__INTEL_COMPILER)

@@ -1196,6 +1196,9 @@ void MyFrame::WriteInitialText()
         wxRichTextTable* table = r.WriteTable(6, 4, attr, cellAttr);
 
         int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0; j < table->GetRowCount(); j++)
         {
 #if defined(__INTEL_COMPILER)

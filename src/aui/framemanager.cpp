@@ -348,9 +348,15 @@ static void CopyDocksAndPanes(wxAuiDockInfoArray& dest_docks,
     dest_docks = src_docks;
     dest_panes = src_panes;
     int i, j, k, dock_count, pc1, pc2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0, dock_count = dest_docks.GetCount(); i < dock_count; ++i)
     {
         wxAuiDockInfo& dock = dest_docks.Item(i);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0, pc1 = dock.panes.GetCount(); j < pc1; ++j)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -520,7 +526,13 @@ static void FindDocks(wxAuiDockInfoArray& docks,
 
     arr.Clear();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (layer = begin_layer; layer <= end_layer; ++layer)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (row = begin_row; row <= end_row; ++row)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

@@ -1274,6 +1274,9 @@ static wchar_t *wx_wcscpy(wchar_t *dest, const wchar_t *src)
 static wchar_t *wx_wcscat(wchar_t *dest, const wchar_t *src)
 {
     wchar_t *d = dest;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (*d)
         d++;
 #if defined(__INTEL_COMPILER)

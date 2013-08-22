@@ -801,6 +801,9 @@ GetTIFFImage()
         }
 
         if (tfPlanarConfiguration == PLANARCONFIG_CONTIG) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < tfImageHeight; i++) {
                 if (TIFFReadScanline(tfFile, scan_line, i, 0) < 0)
                     break;
@@ -823,6 +826,9 @@ GetTIFFImage()
                 }
             }
         } else {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (s = 0; s < tfSamplesPerPixel; s++) {
                 if (s == 3)             /* skip the fourth channel */
                     continue;

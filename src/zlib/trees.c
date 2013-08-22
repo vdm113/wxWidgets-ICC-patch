@@ -257,6 +257,9 @@ local void tr_static_init()
 
     /* Initialize the mapping length (0..255) -> length code (0..28) */
     length = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (code = 0; code < LENGTH_CODES-1; code++) {
         base_length[code] = length;
 #if defined(__INTEL_COMPILER)
@@ -280,6 +283,9 @@ local void tr_static_init()
 
     /* Initialize the mapping dist (0..32K) -> dist code (0..29) */
     dist = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (code = 0 ; code < 16; code++) {
         base_dist[code] = dist;
 #if defined(__INTEL_COMPILER)
@@ -296,6 +302,9 @@ local void tr_static_init()
     }
     Assert (dist == 256, "tr_static_init: dist != 256");
     dist >>= 7; /* from now on, all distances are divided by 128 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ; code < D_CODES; code++) {
         base_dist[code] = dist << 7;
 #if defined(__INTEL_COMPILER)
@@ -313,10 +322,22 @@ local void tr_static_init()
     Assert (dist == 256, "tr_static_init: 256+dist != 512");
 
     /* Construct the codes of the static literal tree */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (bits = 0; bits <= MAX_BITS; bits++) bl_count[bits] = 0;
     n = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (n <= 143) static_ltree[n++].Len = 8, bl_count[8]++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (n <= 255) static_ltree[n++].Len = 9, bl_count[9]++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (n <= 279) static_ltree[n++].Len = 7, bl_count[7]++;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -478,7 +499,13 @@ local void init_block(s)
     int n; /* iterates over tree elements */
 
     /* Initialize the trees. */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0; n < L_CODES;  n++) s->dyn_ltree[n].Freq = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0; n < D_CODES;  n++) s->dyn_dtree[n].Freq = 0;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -617,6 +644,9 @@ local void gen_bitlen(s, desc)
     /* This happens for example on obj2 and pic of the Calgary corpus */
 
     /* Find the first bit length which could increase: */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do {
         bits = max_length-1;
 #if defined(__INTEL_COMPILER)
@@ -642,6 +672,9 @@ local void gen_bitlen(s, desc)
      * lengths instead of fixing only the wrong ones. This idea is taken
      * from 'ar' written by Haruhiko Okumura.)
      */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (bits = max_length; bits != 0; bits--) {
         n = s->bl_count[bits];
 #if defined(__INTEL_COMPILER)

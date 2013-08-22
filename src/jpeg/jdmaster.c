@@ -127,6 +127,9 @@ jpeg_calc_output_dimensions (j_decompress_ptr cinfo)
    * This saves time if the upsampler gets to use 1:1 scaling.
    * Note this code assumes that the supported DCT scalings are powers of 2.
    */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
     int ssize = cinfo->min_DCT_scaled_size;

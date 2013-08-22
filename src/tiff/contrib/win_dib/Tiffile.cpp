@@ -335,6 +335,9 @@ DECLAREContigPutFunc(putContig1bitTile)
     /* Conver 'w' to bytes from pixels (rounded up) */
     w = (w+7)/8;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (h-- > 0) {
         _TIFFmemcpy(ucp, pp, w);
         /*

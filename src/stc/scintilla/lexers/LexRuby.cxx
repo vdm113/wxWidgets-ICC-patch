@@ -494,6 +494,9 @@ static bool sureThisIsNotHeredoc(int lt2StartPos,
     }
     int newStyle = prevStyle;
     // Some compilers incorrectly warn about uninit newStyle
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (firstWordPosn += 1; firstWordPosn <= lt2StartPos; firstWordPosn += 1) {
         // Inner loop looks at the name
 #if defined(__INTEL_COMPILER)

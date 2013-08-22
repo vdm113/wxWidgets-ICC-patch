@@ -191,6 +191,9 @@ struct state *s;
 {
 	struct arc *a;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((a = s->ins) != NULL)
 		freearc(nfa, a);
 #if defined(__INTEL_COMPILER)
@@ -802,8 +805,14 @@ FILE *f;			/* for debug output; NULL none */
 	int progress;
 
 	/* find and pull until there are no more */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 		progress = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (s = nfa->states; s != NULL && !NISERR(); s = nexts) {
 			nexts = s->next;
 #if defined(__INTEL_COMPILER)
@@ -939,8 +948,14 @@ FILE *f;			/* for debug output; NULL none */
 	int progress;
 
 	/* find and push until there are no more */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 		progress = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (s = nfa->states; s != NULL && !NISERR(); s = nexts) {
 			nexts = s->next;
 #if defined(__INTEL_COMPILER)
@@ -1140,8 +1155,14 @@ FILE *f;			/* for debug output; NULL none */
 	int progress;
 
 	/* find and eliminate empties until there are no more */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 		progress = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (s = nfa->states; s != NULL && !NISERR(); s = nexts) {
 			nexts = s->next;
 #if defined(__INTEL_COMPILER)
@@ -1324,6 +1345,9 @@ struct nfa *nfa;
 
 	if (nfa->pre->outs == NULL)
 		return REG_UIMPOSSIBLE;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (a = nfa->pre->outs; a != NULL; a = a->outchain)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -1453,6 +1477,9 @@ struct carc *last;
 	if (last - first <= 1)
 		return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (p = first; p <= last; p++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -1632,6 +1659,9 @@ FILE *f;
 	}
 	if (a->from != s)
 		fprintf(f, "?%d?", a->from->no);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (ab = &a->from->oas; ab != NULL; ab = ab->next) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

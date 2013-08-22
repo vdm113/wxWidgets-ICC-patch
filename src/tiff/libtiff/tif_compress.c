@@ -188,6 +188,9 @@ TIFFFindCODEC(uint16 scheme)
 	const TIFFCodec* c;
 	codec_t* cd;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (cd = registeredCODECS; cd; cd = cd->next)
 		if (cd->info->scheme == scheme)
 			return ((const TIFFCodec*) cd->info);

@@ -848,6 +848,9 @@ wxString wxRichTextStyleListBox::CreateHTML(wxRichTextStyleDefinition* def) cons
         // Look at sizes up to 20 points, and see which is the most common
         wxArrayInt sizes;
         size_t maxSize = 20;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i <= maxSize; i++)
             sizes.Add(0);
 #if defined(__INTEL_COMPILER)

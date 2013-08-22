@@ -1073,6 +1073,9 @@ wxBitmap wxGTKRenderer::GetCheckBitmap(int flags)
         wxSize size = GetCheckBitmapSize();
         rect.width = size.x;
         rect.height = size.y;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < 2; i++ )
         {
 #if defined(__INTEL_COMPILER)

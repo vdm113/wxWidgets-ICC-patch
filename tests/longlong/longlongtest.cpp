@@ -131,6 +131,9 @@ void LongLongTestCase::Comparison()
     lls[0] = ls[0];
     lls[1] = ls[1];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(testLongs); n++ )
     {
 #if defined(__INTEL_COMPILER)

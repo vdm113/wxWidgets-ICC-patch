@@ -212,6 +212,9 @@ void DoReadLL(T *buffer, size_t size, wxInputStream *input, bool be_order)
     size_t idx_base = 0;
     if ( be_order )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t uiIndex = 0; uiIndex != size; ++uiIndex )
         {
             buffer[uiIndex] = 0l;
@@ -235,6 +238,9 @@ void DoReadLL(T *buffer, size_t size, wxInputStream *input, bool be_order)
     }
     else // little endian
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t uiIndex=0; uiIndex!=size; ++uiIndex )
         {
             buffer[uiIndex] = 0l;
@@ -264,6 +270,9 @@ static void DoWriteLL(const T *buffer, size_t size, wxOutputStream *output, bool
     size_t idx_base = 0;
     if ( be_order )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t uiIndex = 0; uiIndex != size; ++uiIndex )
         {
             DataType i64 = buffer[uiIndex];
@@ -288,6 +297,9 @@ static void DoWriteLL(const T *buffer, size_t size, wxOutputStream *output, bool
     }
     else // little endian
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t uiIndex=0; uiIndex != size; ++uiIndex )
         {
             DataType i64 = buffer[uiIndex];

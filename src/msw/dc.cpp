@@ -1181,6 +1181,9 @@ void wxMSWDCImpl::DoDrawSpline(const wxPointList *points)
     bezier_pos++;
 
 #if !wxUSE_STD_CONTAINERS
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((node = node->GetNext()) != NULL)
 #else
 #if defined(__INTEL_COMPILER)

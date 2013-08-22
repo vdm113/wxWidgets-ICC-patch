@@ -346,6 +346,9 @@ void wxWindowDCImpl::DoDrawArc( wxCoord x1, wxCoord y1, wxCoord x2, wxCoord y2, 
     radius2 *= 64.0;
     int alpha1 = (int) radius1;
     int alpha2 = (int) (radius2 - radius1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (alpha2 <= 0)
         alpha2 += 360 * 64;
 #if defined(__INTEL_COMPILER)
@@ -1254,6 +1257,9 @@ void wxWindowDCImpl::DoDrawRotatedText( const wxString &text, wxCoord x, wxCoord
     bool lastFore = false, lastBack = false;
 
     // This rotates counterclockwise around the top left corner.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int rx = minx; rx < maxx; rx++)
     {
 #if defined(__INTEL_COMPILER)
@@ -2233,6 +2239,9 @@ static void XCopyRemote(Display *src_display, Display *dest_display,
     cache_pos = 0;
     all_cache = False;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < w; i++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

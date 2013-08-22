@@ -559,6 +559,9 @@ struct nfa *nfa;
 
 	/* first, make a list of the states */
 	slist = NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (a = pre->outs; a != NULL; a = a->outchain) {
 		s = a->to;
 #if defined(__INTEL_COMPILER)
@@ -583,6 +586,9 @@ struct nfa *nfa;
 	}
 
 	/* do the splits */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (s = slist; s != NULL; s = s2) {
 		s2 = newstate(nfa);
 		copyouts(nfa, s, s2);
@@ -1668,6 +1674,9 @@ struct state *rp;
 	}
 
 	/* and the ranges */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (p = cv->ranges, i = cv->nranges; i > 0; p += 2, i--) {
 		from = *p;
 		to = *(p+1);

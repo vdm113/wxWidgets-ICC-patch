@@ -210,6 +210,9 @@ wxUint32 wxTarHeaderBlock::Sum(bool SignedSum /*=false*/)
     wxUint32 n = 0;
 
     if (SignedSum)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = 0; i < sizeof(data); i++)
             n += (signed char)p[i];
     else
@@ -278,6 +281,9 @@ wxTarNumber wxTarHeaderBlock::GetOctal(int id)
 {
     wxTarNumber n = 0;
     const char *p = Get(id);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (*p == ' ')
         p++;
 #if defined(__INTEL_COMPILER)
@@ -632,6 +638,9 @@ wxString wxTarEntry::GetInternalName(const wxString& name,
     if (isDir)
         internal.erase(internal.length() - 1);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!internal.empty() && *internal.begin() == '/')
         internal.erase(0, 1);
 #if defined(__INTEL_COMPILER)
@@ -957,6 +966,9 @@ wxTarNumber wxTarInputStream::GetHeaderNumber(int id) const
     if ((value = GetExtendedHeader(m_hdr->Name(id))) != wxEmptyString) {
         wxTarNumber n = 0;
         wxString::const_iterator p = value.begin();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (*p == ' ' && p != value.end())
             p++;
 #if defined(__INTEL_COMPILER)

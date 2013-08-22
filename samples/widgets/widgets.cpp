@@ -1130,6 +1130,9 @@ void WidgetsFrame::OnAutoCompleteCustom(wxCommandEvent& WXUNUSED(event))
 
             if ( prefix.length() == 1 )
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int i = 0; i < 10; i++ )
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -1167,6 +1170,9 @@ void WidgetsFrame::OnAutoCompleteCustom(wxCommandEvent& WXUNUSED(event))
 
             if ( prefix2.length() == 4 )
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( char c = 'a'; c <= 'z'; c++ )
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

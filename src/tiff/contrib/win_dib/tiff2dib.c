@@ -181,6 +181,9 @@ RowsPerStrip);
                   } 
             else
                   {  
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (l = 0; l < nrow; l++) 
                       {
                          if (SamplePerPixel  == 3)

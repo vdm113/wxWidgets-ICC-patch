@@ -41,6 +41,9 @@ class SVector {
 		int *newv = new int[newSize];
 		size = newSize;
         unsigned int i=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (; i<len; i++) {
 			newv[i] = v[i];
 		}

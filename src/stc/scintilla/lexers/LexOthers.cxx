@@ -252,6 +252,9 @@ static void ColouriseBatchLine(
 			//     Affected Commands are in Length range 2-6
 			//     Good that ERRORLEVEL, EXIST, CALL, DO, LOADHIGH, and LH are unaffected
 			sKeywordFound = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (unsigned int keywordLength = 2; keywordLength < wbl && keywordLength < 7 && !sKeywordFound; keywordLength++) {
 				wbo = 0;
 				// Copy Keyword Length from Word Buffer into Special Keyword Buffer
@@ -1311,6 +1314,9 @@ static bool latexIsLetter(int ch) {
 }
 
 static bool latexIsTagValid(int &i, int l, Accessor &styler) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (i < l) {
 		if (styler.SafeGetCharAt(i) == '{') {
 #if defined(__INTEL_COMPILER)

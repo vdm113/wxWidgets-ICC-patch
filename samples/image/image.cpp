@@ -480,6 +480,9 @@ public:
                 return;
             }
             wxAlphaPixelData::Iterator p(data);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int y = 0; y < SIZE; ++y )
             {
                 wxAlphaPixelData::Iterator rowStart = p;

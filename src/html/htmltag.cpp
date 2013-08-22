@@ -167,6 +167,9 @@ wxHtmlTagsCache::wxHtmlTagsCache(const wxString& source)
 
                 // find next matching tag
                 int tag_len = wxStrlen(tagBuffer);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (pos < end)
                 {
                     // find the ending tag

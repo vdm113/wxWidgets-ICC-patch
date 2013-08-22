@@ -344,6 +344,9 @@ static wxString MakeCorrectPath(const wxString& path)
     r << p.GetChar(0) << p.GetChar(1);
 
     // skip trailing ../.., if any
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 2; i < cnt && (p.GetChar(i) == wxT('/') || p.GetChar(i) == wxT('.')); i++) r << p.GetChar(i);
 
     // remove back references: translate dir1/../dir2 to dir2
@@ -361,6 +364,9 @@ static wxString MakeCorrectPath(const wxString& path)
         r << p.GetChar(i);
         if (p.GetChar(i) == wxT('/') && p.GetChar(i-1) == wxT('.') && p.GetChar(i-2) == wxT('.'))
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j = r.length() - 2; j >= 0 && r.GetChar(j) != wxT('/') && r.GetChar(j) != wxT(':'); j--) {}
             if (j >= 0 && r.GetChar(j) != wxT(':'))
             {

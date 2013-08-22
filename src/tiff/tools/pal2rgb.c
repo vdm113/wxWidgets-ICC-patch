@@ -213,6 +213,9 @@ main(int argc, char* argv[])
 		}
 		break;
 	  case PLANARCONFIG_SEPARATE:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (row = 0; row < imagelength; row++) {
 			if (!TIFFReadScanline(in, ibuf, row, 0))
 				goto done;

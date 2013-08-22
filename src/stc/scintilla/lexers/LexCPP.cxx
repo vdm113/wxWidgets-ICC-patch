@@ -1166,6 +1166,9 @@ void LexerCPP::EvaluateTokens(std::vector<std::string> &tokens) {
 
 	// Evaluate expressions in precedence order
 	enum precedence { precArithmetic, precRelative, precLogical };
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int prec=precArithmetic; prec <= precLogical; prec++) {
 		// Looking at 3 tokens at a time so end at 2 before end
 #if defined(__INTEL_COMPILER)

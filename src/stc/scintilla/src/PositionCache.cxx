@@ -679,6 +679,9 @@ void PositionCache::MeasureWidths(Surface *surface, ViewStyle &vstyle, unsigned 
 		// Break up into segments
 		unsigned int startSegment = 0;
 		XYPOSITION xStartSegment = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (startSegment < len) {
 			unsigned int lenSegment = pdoc->SafeSegment(s + startSegment, len - startSegment, BreakFinder::lengthEachSubdivision);
 			surface->MeasureWidths(vstyle.styles[styleNumber].font, s + startSegment, lenSegment, positions + startSegment);

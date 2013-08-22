@@ -480,6 +480,9 @@ chr *start;			/* where the attempt got started */
 	ispost = 0;
 	noprogress = 1;
 	gotstate = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < d->nstates; i++)
 		if (ISBSET(css->states, i))
 #if defined(__INTEL_COMPILER)
@@ -502,8 +505,14 @@ chr *start;			/* where the attempt got started */
 				}
 	dolacons = (gotstate) ? (cnfa->flags&HASLACONS) : 0;
 	sawlacons = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (dolacons) {		/* transitive closure */
 		dolacons = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < d->nstates; i++)
 			if (ISBSET(d->work, i))
 #if defined(__INTEL_COMPILER)

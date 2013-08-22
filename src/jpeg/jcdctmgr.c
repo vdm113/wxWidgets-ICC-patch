@@ -158,6 +158,9 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 	}
 	fdtbl = fdct->float_divisors[qtblno];
 	i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (row = 0; row < DCTSIZE; row++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

@@ -171,6 +171,9 @@ TIFF_GetSourceSamples( double * padfSamples, unsigned char *pabySrc,
 
     iSample = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( iYOff = 0; iYOff < nYSize; iYOff++ )
     {
 #if defined(__INTEL_COMPILER)
@@ -510,6 +513,9 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
                     if( nSourceYSecEnd > nBlockYSize )
                         nSourceYSecEnd = nBlockYSize;
                     nCummulator = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for( nSourceYSec = nSourceY; nSourceYSec < nSourceYSecEnd; nSourceYSec ++)
                     {
 #if defined(__INTEL_COMPILER)
@@ -565,6 +571,9 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
                     if( nSourceYSecEnd > ( nBlockYSize / nVerSubsampling ) )
                         nSourceYSecEnd = ( nBlockYSize / nVerSubsampling );
                     nCummulator = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for( nSourceYSec = nSourceY; nSourceYSec < nSourceYSecEnd; nSourceYSec ++)
                     {
 #if defined(__INTEL_COMPILER)
@@ -927,6 +936,9 @@ void TIFFBuildOverviews( TIFF *hTIFF, int nOverviews, int * panOvList,
 /*      Loop over the source raster, applying data to the               */
 /*      destination raster.                                             */
 /* -------------------------------------------------------------------- */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( nSYOff = 0; nSYOff < (int) nYSize; nSYOff += nBlockYSize )
     {
 #if defined(__INTEL_COMPILER)

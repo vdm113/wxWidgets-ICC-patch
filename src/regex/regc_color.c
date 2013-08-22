@@ -71,6 +71,9 @@ struct colormap *cm;
 	cd->nchrs = CHR_MAX - CHR_MIN + 1;
 
 	/* upper levels of tree */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (t = &cm->tree[0], j = NBYTS-1; j > 0; t = nextt, j--) {
 		nextt = t + 1;
 #if defined(__INTEL_COMPILER)
@@ -317,6 +320,9 @@ pcolor co;
 	}
 
 	if ((size_t)co == cm->max) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (cm->max > WHITE && UNUSEDCOLOR(&cm->cd[cm->max]))
 			cm->max--;
 		assert(cm->free >= 0);

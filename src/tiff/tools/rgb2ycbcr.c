@@ -120,6 +120,9 @@ main(int argc, char* argv[])
 	if (out == NULL)
 		return (-2);
 	setupLumaTables();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; optind < argc-1; optind++) {
 		in = TIFFOpen(argv[optind], "r");
 		if (in != NULL) {
@@ -192,6 +195,9 @@ cvtClump(unsigned char* op, uint32* raster, uint32 ch, uint32 cw, uint32 w)
 	 * Convert ch-by-cw block of RGB
 	 * to YCbCr and sample accordingly.
 	 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (k = 0; k < ch; k++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -212,9 +218,15 @@ cvtClump(unsigned char* op, uint32* raster, uint32 ch, uint32 cw, uint32 w)
 			*op++ = V2Code(Y,
 			    refBlackWhite[0], refBlackWhite[1], 255);
 		}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (; j < horizSubSampling; j++)
 			*op++ = Yzero;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; k < vertSubSampling; k++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -252,6 +264,9 @@ cvtStrip(unsigned char* op, uint32* raster, uint32 nrows, uint32 width)
 	int clumpSize = vertSubSampling * horizSubSampling + 2;
 	uint32 *tp;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; nrows >= vertSubSampling; nrows -= vertSubSampling) {
 		tp = raster;
 #if defined(__INTEL_COMPILER)

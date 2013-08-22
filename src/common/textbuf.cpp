@@ -227,8 +227,14 @@ wxTextFileType wxTextBuffer::GuessType() const
         }
 
     size_t n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < nScan; n++ )     // the beginning
         AnalyseLine(n);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = (nCount - nScan)/2; n < (nCount + nScan)/2; n++ )
         AnalyseLine(n);
 #if defined(__INTEL_COMPILER)

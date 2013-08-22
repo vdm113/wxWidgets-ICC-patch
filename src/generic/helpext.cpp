@@ -200,6 +200,9 @@ bool wxExtHelpController::ParseMapFileLine(const wxString& line)
     // next should be the URL
     wxString url;
     url.reserve(line.length());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( isascii(*p) && !wxIsspace(*p) )
         url += *p++;
 

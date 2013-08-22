@@ -1636,6 +1636,9 @@ RichTextFrame::RichTextFrame(wxWindow* parent, const wxString& title):
 
     wxString value;
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 10; i++)
     {
         int j;

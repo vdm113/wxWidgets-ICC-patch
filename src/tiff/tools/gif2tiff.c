@@ -361,8 +361,14 @@ readraster(void)
 	suffix[code] = code;
     }
     stackp = stack;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (count = getc(infile); count > 0; count = getc(infile)) {
 	fread(buf,1,count,infile);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (ch=buf; count-- > 0; ch++) {
 	    datum += (unsigned long) *ch << bits;
 	    bits += 8;

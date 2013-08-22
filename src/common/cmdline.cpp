@@ -1464,6 +1464,9 @@ wxCmdLineParser::ConvertStringToArgs(const wxString& cmdline,
     const wxString::const_iterator end = cmdline.end();
     wxString::const_iterator p = cmdline.begin();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         // skip white space

@@ -811,6 +811,9 @@ public:
         { return const_reverse_iterator(NULL, GetFirst()); }
     void resize(size_type n, value_type v = value_type())
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (n < size())
             pop_back();
 #if defined(__INTEL_COMPILER)

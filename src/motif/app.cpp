@@ -201,6 +201,9 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
     if ( argcX11 != argc )
     {
         // we have to drop the parameters which were consumed by X11+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < argcX11; i++ )
         {
 #if defined(__INTEL_COMPILER)

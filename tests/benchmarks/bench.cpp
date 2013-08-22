@@ -281,6 +281,9 @@ int BenchApp::OnRun()
              timeMax = 0,
              timeTotal = 0;
         bool ok = func->Init();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( long a = 0; ok && a < m_avgCount; a++ )
         {
             wxStopWatch sw;

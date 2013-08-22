@@ -1031,6 +1031,9 @@ wxConcatFiles (const wxString& file1, const wxString& file2, const wxString& fil
     ssize_t ofs;
     unsigned char buf[1024];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( int i=0; i<2; i++)
     {
         wxFile *in = i==0 ? &in1 : &in2;

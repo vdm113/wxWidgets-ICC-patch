@@ -98,6 +98,9 @@ uLong ZEXPORT adler32(adler, buf, len)
     }
 
     /* do length NMAX blocks -- requires just one modulo operation */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (len >= NMAX) {
         len -= NMAX;
         n = NMAX / 16;          /* NMAX is divisible by 16 */

@@ -701,6 +701,9 @@ int wxIFFDecoder::ReadIFF()
             height = bmhd_height;
         }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i=0; i < height; i++) {
             byte bitmsk = 0x80;                 // left most bit (mask)
             const byte *workptr2 = workptr;     // work ptr to source

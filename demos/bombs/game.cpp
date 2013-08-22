@@ -60,6 +60,9 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
     m_width = aWidth;
     m_height = aHeight;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(x=0; x<m_width; x++)
     {
 #if defined(__INTEL_COMPILER)
@@ -88,6 +91,9 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
     }
 
     m_numBombCells = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(x=0; x<m_width; x++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -101,6 +107,9 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
             {
                 m_numBombCells++;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for(xx=x-1; xx<=x+1; xx++)
                     if (xx>=0 && xx<m_width)
 #if defined(__INTEL_COMPILER)

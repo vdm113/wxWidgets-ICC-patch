@@ -1111,6 +1111,9 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
 
         // Implement OnCharHook by checking ancestor top level windows
         wxWindow *parent = win;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (parent && !parent->IsTopLevel())
             parent = parent->GetParent();
 

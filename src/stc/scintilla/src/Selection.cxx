@@ -283,6 +283,9 @@ void Selection::MovePositions(bool insertion, int startChange, int length) {
 }
 
 void Selection::TrimSelection(SelectionRange range) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (size_t i=0; i<ranges.size();) {
 		if ((i != mainRange) && (ranges[i].Trim(range))) {
 			// Trimmed to empty so remove
@@ -386,6 +389,9 @@ void Selection::Clear() {
 }
 
 void Selection::RemoveDuplicates() {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (size_t i=0; i<ranges.size()-1; i++) {
 		if (ranges[i].Empty()) {
 			size_t j=i+1;

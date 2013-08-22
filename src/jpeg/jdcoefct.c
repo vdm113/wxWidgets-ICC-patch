@@ -160,6 +160,9 @@ decompress_onepass (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
   inverse_DCT_method_ptr inverse_DCT;
 
   /* Loop to process as much as one whole iMCU row */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (yoffset = coef->MCU_vert_offset; yoffset < coef->MCU_rows_per_iMCU_row;
        yoffset++) {
 #if defined(__INTEL_COMPILER)
@@ -288,6 +291,9 @@ consume_data (j_decompress_ptr cinfo)
   }
 
   /* Loop to process one whole iMCU row */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (yoffset = coef->MCU_vert_offset; yoffset < coef->MCU_rows_per_iMCU_row;
        yoffset++) {
 #if defined(__INTEL_COMPILER)
@@ -302,9 +308,15 @@ consume_data (j_decompress_ptr cinfo)
 	 MCU_col_num++) {
       /* Construct list of pointers to DCT blocks belonging to this MCU */
       blkn = 0;			/* index of current DCT block within MCU */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
 	compptr = cinfo->cur_comp_info[ci];
 	start_col = MCU_col_num * compptr->MCU_width;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (yindex = 0; yindex < compptr->MCU_height; yindex++) {
 	  buffer_ptr = buffer[ci][yindex+yoffset] + start_col;
 #if defined(__INTEL_COMPILER)
@@ -406,6 +418,9 @@ decompress_data (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
     inverse_DCT = cinfo->idct->inverse_DCT[ci];
     output_ptr = output_buf[ci];
     /* Loop over all DCT blocks to be processed. */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (block_row = 0; block_row < block_rows; block_row++) {
       buffer_ptr = buffer[block_row];
       output_col = 0;

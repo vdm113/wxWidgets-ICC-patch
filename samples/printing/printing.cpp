@@ -100,6 +100,9 @@ bool MyApp::OnInit(void)
     wxImage image( wxT("test.jpg") );
     image.SetAlpha();
     int i,j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < image.GetWidth(); i++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

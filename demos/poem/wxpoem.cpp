@@ -219,6 +219,9 @@ void MainWindow::ScanBuffer(wxDC *dc, bool DrawIt, int *max_x, int *max_y)
     {
         j = 0;
 #if defined(__WXMSW__) || defined(__WXMAC__)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (((ch = poem_buffer[i]) != 13) && (ch != 0))
 #else
 #if defined(__INTEL_COMPILER)

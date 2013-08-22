@@ -743,6 +743,9 @@ void DateTimeTestCase::TestTimeFormat()
         wxDateTime::TimeZone tz(timeZonesOffsets[idxtz]);
         const bool isLocalTz = tz.GetOffset() == -wxGetTimeZone();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t d = 0; d < WXSIZEOF(formatTestDates); d++ )
         {
             wxDateTime dt = formatTestDates[d].DT();

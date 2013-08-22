@@ -272,6 +272,9 @@ FindMaskColour(unsigned char **lines, png_uint_32 width, png_uint_32 height,
     wxImageHistogram h;
     unsigned nentries = 0;
     unsigned char r2, g2, b2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( png_uint_32 y2 = 0; y2 < height; y2++ )
     {
         const unsigned char *p = lines[y2];
@@ -349,6 +352,9 @@ void CopyDataFromPNG(wxImage *image,
     if ( !(color_type & PNG_COLOR_MASK_COLOR) )
     {
         // grey image: GAGAGA... where G == grey component and A == alpha
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( png_uint_32 y = 0; y < height; y++ )
         {
             const unsigned char *ptrSrc = lines[y];
@@ -432,6 +438,9 @@ void CopyDataFromPNG(wxImage *image,
     }
     else // colour image: RGBRGB...
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( png_uint_32 y = 0; y < height; y++ )
         {
             const unsigned char *ptrSrc = lines[y];
@@ -865,6 +874,9 @@ bool wxPNGHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbos
             PaletteAdd(&palette, mask);
         }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = 0; y < iHeight; y++)
         {
 #if defined(__INTEL_COMPILER)
@@ -1044,6 +1056,9 @@ bool wxPNGHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbos
 
     const unsigned char *pColors = image->GetData();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int y = 0; y != iHeight; ++y)
     {
         unsigned char *pData = data;

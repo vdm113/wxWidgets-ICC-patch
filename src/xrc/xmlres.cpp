@@ -2894,6 +2894,9 @@ int wxXmlResource::DoGetXRCID(const char *str_id, int value_if_not_found)
 /* static */
 wxString wxXmlResource::FindXRCIDById(int numId)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < XRCID_TABLE_SIZE; i++ )
     {
 #if defined(__INTEL_COMPILER)

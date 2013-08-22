@@ -104,6 +104,9 @@ output_pass_setup (j_decompress_ptr cinfo)
     cinfo->global_state = DSTATE_PRESCAN;
   }
   /* Loop over any required dummy passes */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (cinfo->master->is_dummy_pass) {
 #ifdef QUANT_2PASS_SUPPORTED
     /* Crank through the dummy pass */

@@ -770,6 +770,9 @@ CGImageRef wxBitmapRefData::CreateCGImage() const
                 unsigned char * bufData = (unsigned char *) membuf.GetData() ;
                 // copy one color component
                 size_t i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for( int y = 0 ; y < m_height ; bufData+= m_bytesPerRow, ++y )
                 {
                     unsigned char *bufDataIter = bufData+3;
@@ -929,6 +932,9 @@ bool wxBitmap::CopyFromIcon(const wxIcon& icon)
             unsigned char *sourcemask = (unsigned char *) *maskhandle ;
             unsigned char* destination = (unsigned char*) BeginRawAccess() ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int y = 0 ; y < h ; ++y )
             {
 #if defined(__INTEL_COMPILER)
@@ -1372,6 +1378,9 @@ wxBitmap::wxBitmap(const wxImage& image, int depth, double scale)
         if ( destinationstart != NULL && data != NULL )
         {
             const unsigned char *alpha = hasAlpha ? image.GetAlpha() : NULL ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int y = 0; y < height; destinationstart += M_BITMAPDATA->GetBytesPerRow(), y++)
             {
                 unsigned char * destination = destinationstart;
@@ -1864,6 +1873,9 @@ wxBitmap wxMask::GetBitmap() const
     unsigned char* dst = static_cast<unsigned char*>(bitmap.BeginRawAccess());
     const int dst_stride = bitmap.GetBitmapData()->GetBytesPerRow();
     const unsigned char* src = static_cast<unsigned char*>(GetRawAccess());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int j = 0; j < m_height; j++, src += m_bytesPerRow, dst += dst_stride)
     {
         unsigned char* d = dst;

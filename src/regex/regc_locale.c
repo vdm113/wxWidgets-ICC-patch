@@ -911,6 +911,9 @@ cclass(v, startp, endp, cases)
     case CC_ALNUM:
 	cv = getcvec(v, NUM_ALPHA_CHAR, NUM_DIGIT_RANGE + NUM_ALPHA_RANGE, 0);
 	if (cv) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	    for (i=0 ; i<NUM_ALPHA_CHAR ; i++) {
 		addchr(cv, alphaCharTable[i]);
 	    }

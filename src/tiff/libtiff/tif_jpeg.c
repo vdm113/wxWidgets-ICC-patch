@@ -775,6 +775,9 @@ JPEGFixupTagsSubsamplingSec(struct JPEGFixupTagsSubsamplingData* data)
 {
 	static const char module[] = "JPEGFixupTagsSubsamplingSec";
 	uint8 m;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (1)
 	{
 #if defined(__INTEL_COMPILER)
@@ -1428,6 +1431,9 @@ JPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 						int xpos;
 
 						/* general case */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 						for (nclump = clumps_per_line; nclump-- > 0; ) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -1972,6 +1978,9 @@ JPEGEncodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 			    }
 			} else {
 			    /* general case */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			    for (nclump = clumps_per_line; nclump-- > 0; ) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

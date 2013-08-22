@@ -315,6 +315,9 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
   }
 
   /* Loop to process one whole iMCU row */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (yoffset = coef->MCU_vert_offset; yoffset < coef->MCU_rows_per_iMCU_row;
        yoffset++) {
 #if defined(__INTEL_COMPILER)

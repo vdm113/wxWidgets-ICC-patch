@@ -623,6 +623,9 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
     // update the other method's locations for those methods which belong to the modified header
     // and are placed _below_ the modified method
     wxClassPtrArray cToUpdate = m_doxyInterface.FindClassesDefinedIn(header);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i=0; i < cToUpdate.GetCount(); i++)
     {
 #if defined(__INTEL_COMPILER)

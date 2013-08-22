@@ -195,6 +195,9 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 #define	pack(a,b)	((a)<<8)|(b)
 	switch (pack(config1, config2)) {
 	case pack(PLANARCONFIG_SEPARATE, PLANARCONFIG_CONTIG):
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (row = 0; row < imagelength; row++) {
 			if (TIFFReadScanline(tif2, buf2, row, 0) < 0)
 				checkEOF(tif2, row, -1)
@@ -216,6 +219,9 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 		}
 		break;
 	case pack(PLANARCONFIG_CONTIG, PLANARCONFIG_SEPARATE):
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (row = 0; row < imagelength; row++) {
 			if (TIFFReadScanline(tif1, buf1, row, 0) < 0)
 				checkEOF(tif1, row, -1)
@@ -237,6 +243,9 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 		}
 		break;
 	case pack(PLANARCONFIG_SEPARATE, PLANARCONFIG_SEPARATE):
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (s = 0; s < samplesperpixel; s++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -365,6 +374,9 @@ ContigCompare(int sample, uint32 row,
       {
           unsigned char *pix1 = p1, *pix2 = p2;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
           for (pix = 0; pix < imagewidth; pix += ppb) {
               int		s;
 
@@ -395,6 +407,9 @@ ContigCompare(int sample, uint32 row,
       {
           uint16 *pix1 = (uint16 *)p1, *pix2 = (uint16 *)p2;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
           for (pix = 0; pix < imagewidth; pix++) {
               int	s;
 
@@ -422,6 +437,9 @@ ContigCompare(int sample, uint32 row,
 	    || sampleformat == SAMPLEFORMAT_INT) {
 		uint32 *pix1 = (uint32 *)p1, *pix2 = (uint32 *)p2;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (pix = 0; pix < imagewidth; pix++) {
 			int	s;
 
@@ -447,6 +465,9 @@ ContigCompare(int sample, uint32 row,
 	} else if (sampleformat == SAMPLEFORMAT_IEEEFP) {
 		float *pix1 = (float *)p1, *pix2 = (float *)p2;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (pix = 0; pix < imagewidth; pix++) {
 			int	s;
 

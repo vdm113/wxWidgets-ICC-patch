@@ -1241,6 +1241,9 @@ void MyCanvas::DrawSplines(wxDC& dc)
     const int dx = 2 * R / letters[3][4].x;
     const int h[4] = { -R/2, 0, R/4, R/2 };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int m = 0; m < 4; m++ )
     {
 #if defined(__INTEL_COMPILER)

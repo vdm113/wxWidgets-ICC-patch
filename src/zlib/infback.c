@@ -85,8 +85,17 @@ struct inflate_state FAR *state;
 
         /* literal/length table */
         sym = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (sym < 144) state->lens[sym++] = 8;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (sym < 256) state->lens[sym++] = 9;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (sym < 280) state->lens[sym++] = 7;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -195,6 +204,7 @@ MY_MACRO_PRAGMA_IVDEP \
    not enough available input to do that, then return from inflateBack() with
    an error. */
 #define NEEDBITS(n) \
+MY_MACRO_PRAGMA_IVDEP \
     do { \
 MY_MACRO_PRAGMA_IVDEP \
     do { \
@@ -428,6 +438,9 @@ void FAR *out_desc;
 
             /* get length and distance code code lengths */
             state->have = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (state->have < state->nlen + state->ndist) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

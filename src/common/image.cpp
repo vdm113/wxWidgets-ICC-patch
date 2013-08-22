@@ -358,6 +358,9 @@ wxImage wxImage::ShrinkBy( int xFactor , int yFactor ) const
         }
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (long y = 0; y < height; y++)
     {
 #if defined(__INTEL_COMPILER)
@@ -376,6 +379,9 @@ wxImage wxImage::ShrinkBy( int xFactor , int yFactor ) const
             unsigned long avgAlpha = 0 ;
             unsigned long counter = 0 ;
             // determine average
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int y1 = 0 ; y1 < yFactor ; ++y1 )
             {
                 long y_offset = (y * yFactor + y1) * old_width;
@@ -662,6 +668,9 @@ wxImage wxImage::ResampleBox(int width, int height) const
             averaged_pixels = 0;
             sum_r = sum_g = sum_b = sum_a = 0.0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int j = vPrecalc.boxStart; j <= vPrecalc.boxEnd; ++j )
             {
 #if defined(__INTEL_COMPILER)
@@ -1386,6 +1395,9 @@ wxImage wxImage::Rotate180() const
     const unsigned char *source_data = M_IMGDATA->m_data;
     unsigned char *target_data = data + width * height * 3;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (long j = 0; j < height; j++)
     {
 #if defined(__INTEL_COMPILER)
@@ -1409,6 +1421,9 @@ wxImage wxImage::Rotate180() const
         const unsigned char *src_alpha = M_IMGDATA->m_alpha;
         unsigned char *dest_alpha = alpha + width * height;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (long j = 0; j < height; ++j)
         {
 #if defined(__INTEL_COMPILER)
@@ -1473,6 +1488,9 @@ wxImage wxImage::Mirror( bool horizontally ) const
             // just copied and the line that will be copied next)
             unsigned char *dest_alpha = alpha + width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (long jj = 0; jj < height; ++jj)
             {
 #if defined(__INTEL_COMPILER)
@@ -1724,6 +1742,9 @@ void wxImage::Paste( const wxImage &image, int x, int y )
         unsigned char* target_data = GetData() + 3*((x+xx) + (y+yy)*M_IMGDATA->m_width);
         int target_step = M_IMGDATA->m_width*3;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int j = 0; j < height; j++)
         {
 #if defined(__INTEL_COMPILER)
@@ -1761,6 +1782,9 @@ void wxImage::Replace( unsigned char r1, unsigned char g1, unsigned char b1,
     const int w = GetWidth();
     const int h = GetHeight();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int j = 0; j < h; j++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -1989,6 +2013,9 @@ void wxImage::SetRGB( const wxRect& rect_, unsigned char r, unsigned char g, uns
 
     unsigned char *data wxDUMMY_INITIALIZE(NULL);
     int x, y, width = GetWidth();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (y = y1; y < y2; y++)
     {
         data = M_IMGDATA->m_data + (y*width + x1)*3;
@@ -2142,6 +2169,9 @@ wxImage::ConvertColourToAlpha(unsigned char r, unsigned char g, unsigned char b)
     unsigned char *alpha = GetAlpha();
     unsigned char *data = GetData();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int y = 0; y < h; y++ )
     {
 #if defined(__INTEL_COMPILER)
@@ -2367,6 +2397,9 @@ bool wxImage::SetMaskFromImage(const wxImage& mask,
     const int w = GetWidth();
     const int h = GetHeight();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int j = 0; j < h; j++)
     {
 #if defined(__INTEL_COMPILER)
@@ -2430,6 +2463,9 @@ bool wxImage::ConvertAlphaToMask(unsigned char mr,
     int w = GetWidth();
     int h = GetHeight();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int y = 0; y < h; y++)
     {
 #if defined(__INTEL_COMPILER)
@@ -3710,6 +3746,9 @@ wxImage wxImage::Rotate(double angle,
     // only once, instead of repeating it for each pixel.
     if (interpolating)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = 0; y < rH; y++)
         {
 #if defined(__INTEL_COMPILER)
@@ -3865,6 +3904,9 @@ wxImage wxImage::Rotate(double angle,
     }
     else // not interpolating
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int y = 0; y < rH; y++)
         {
 #if defined(__INTEL_COMPILER)

@@ -922,6 +922,9 @@ size_t wxMBConvUTF7::FromWChar(char *dst, size_t dstLen,
             }
 
             // BASE64 encode string
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( ;; )
             {
 #if defined(__INTEL_COMPILER)

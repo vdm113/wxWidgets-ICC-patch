@@ -181,6 +181,9 @@ static int styleCheckIdentifier(LexAccessor &styler, unsigned int bk) {
 	if (styler.SafeGetCharAt(bk) == '>')	// inputsymbol, like <foo>
 		return 1;
 	// backtrack to check for possible "->" or "::" before identifier
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (bk > 0 && styler.StyleAt(bk) == SCE_PL_IDENTIFIER) {
 		bk--;
 	}
@@ -961,6 +964,9 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 					sc.Forward();
 				break;
 			}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (!sc.atLineEnd) {		// "EOF" and `EOF` interpolated
 				int s = 0, endType = 0;
 				int maxSeg = endPos - sc.currentPos;

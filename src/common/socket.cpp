@@ -634,6 +634,7 @@ const wxSockAddressImpl& wxSocketImpl::GetLocal()
 // is EINTR
 #ifdef __UNIX__
     #define DO_WHILE_EINTR( rc, syscall ) \
+MY_MACRO_PRAGMA_IVDEP \
         do { \
             rc = (syscall); \
         } \

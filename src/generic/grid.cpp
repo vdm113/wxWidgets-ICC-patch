@@ -1338,6 +1338,9 @@ void wxGridStringTable::Clear()
     {
         numCols = m_data[0].GetCount();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( row = 0; row < numRows; row++ )
         {
 #if defined(__INTEL_COMPILER)
@@ -1483,6 +1486,9 @@ bool wxGridStringTable::InsertCols( size_t pos, size_t numCols )
             m_colLabels[i] = wxGridTableBase::GetColLabelValue( i );
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( row = 0; row < curNumRows; row++ )
     {
 #if defined(__INTEL_COMPILER)
@@ -5514,6 +5520,9 @@ bool wxGrid::SetModelValues()
 
     if ( m_table )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( row = 0; row < m_numRows; row++ )
         {
 #if defined(__INTEL_COMPILER)
@@ -5911,6 +5920,9 @@ wxGrid::DrawRangeGridLines(wxDC& dc,
 
     // subtract multi cell span area from clipping region for lines
     wxRect rect;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int row = topLeft.GetRow(); row <= bottomRight.GetRow(); row++ )
     {
 #if defined(__INTEL_COMPILER)
@@ -6005,6 +6017,9 @@ void wxGrid::DrawAllGridLines( wxDC& dc, const wxRegion & WXUNUSED(reg) )
     int cell_rows, cell_cols;
     wxRect rect;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int j = topRow; j <= bottomRow; j++ )
     {
 #if defined(__INTEL_COMPILER)
@@ -6964,6 +6979,9 @@ wxRect wxGrid::CellToRect( int row, int col ) const
 
         rect.x = GetColLeft(col);
         rect.y = GetRowTop(row);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i=col; i < col + cell_cols; i++)
             rect.width += GetColWidth(i);
 #if defined(__INTEL_COMPILER)
@@ -8175,6 +8193,9 @@ void wxGrid::SetCellSize( int row, int col, int num_rows, int num_cols )
         if ((cell_rows > 1) || (cell_cols > 1))
         {
             int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j=row; j < row + cell_rows; j++)
             {
 #if defined(__INTEL_COMPILER)
@@ -8202,6 +8223,9 @@ void wxGrid::SetCellSize( int row, int col, int num_rows, int num_cols )
         if (((num_rows > 1) || (num_cols > 1)) && (num_rows >= 1) && (num_cols >= 1))
         {
             int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j=row; j < row + num_rows; j++)
             {
 #if defined(__INTEL_COMPILER)
@@ -9299,6 +9323,9 @@ wxRect wxGrid::BlockToDeviceRect( const wxGridCellCoords& topLeft,
     const int visibleLeftCol = wxMax(leftCol, onScreenLeftmostCol);
     const int visibleRightCol = wxMin(rightCol, onScreenRightmostCol);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int j = visibleTopRow; j <= visibleBottomRow; j++ )
     {
 #if defined(__INTEL_COMPILER)

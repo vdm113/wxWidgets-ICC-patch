@@ -327,6 +327,7 @@ MY_MACRO_PRAGMA_IVDEP \
  * insure the decoder recognized an EOL before running out of data.
  */
 #define EXPAND1D(eoflab) do {						\
+MY_MACRO_PRAGMA_IVDEP \
     for (;;) {								\
 MY_MACRO_PRAGMA_IVDEP \
     for (;;) {								\

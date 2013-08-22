@@ -281,6 +281,9 @@ count_zero_samples(png_structp png_ptr, png_row_infop row_info, png_bytep data)
        int color_channels = row_info->channels;
        if (row_info->color_type > 3)color_channels--;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
        for (n = 0, nstop=row_info->width; n<nstop; n++)
        {
 #if defined(__INTEL_COMPILER)
@@ -1381,6 +1384,9 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
    t_stop = (float)clock();
    t_misc += (t_stop - t_start);
    t_start = t_stop;
+#endif
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
 #endif
    for (pass = 0; pass < num_pass; pass++)
    {

@@ -651,6 +651,9 @@ wxDCImpl::DoDrawPolyPolygon(int n,
         j      += count[i];
     }
     pts = new wxPoint[j+n-1];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < j; i++)
         pts[i] = points[i];
 #if defined(__INTEL_COMPILER)
@@ -1030,6 +1033,9 @@ void wxDCImpl::DoGradientFillConcentric(const wxRect& rect,
     double dGradient;
     double dx, dy;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxInt32 x = 0; x < rect.GetWidth(); x++ )
     {
 #if defined(__INTEL_COMPILER)
@@ -1502,8 +1508,17 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
     {
         bUseAngles = true;
         // normalisation of angles
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while( sa<0 ) sa += 360;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while( ea<0 ) ea += 360;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while( sa>=360 ) sa -= 360;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -1606,6 +1621,9 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
         bool bStarted = false;
         bool bReady = false;
         bool bForceTurn = ( sq == eq && sa > ea );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while( !bReady )
         {
             wxPointList::compatibility_iterator node;
@@ -1660,6 +1678,9 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
         points->Append( new wxPoint( xea, yea ) );
 
         // delete points
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( q = 0; q < 4; ++q )
         {
             wxPointList::compatibility_iterator node;

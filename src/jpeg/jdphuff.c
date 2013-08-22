@@ -696,6 +696,9 @@ jinit_phuff_decoder (j_decompress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				cinfo->num_components*DCTSIZE2*SIZEOF(int));
   coef_bit_ptr = & cinfo->coef_bits[0][0];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ci = 0; ci < cinfo->num_components; ci++) 
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

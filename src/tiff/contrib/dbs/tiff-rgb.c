@@ -106,6 +106,9 @@ int main(int argc, char **argv)
 
     scan_line = (unsigned char *) malloc(WIDTH * 3);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 255; i++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -169,6 +172,9 @@ int main(int argc, char **argv)
         }
         TIFFWriteScanline(tif, scan_line, i, 0);
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 255; i < 512; i++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

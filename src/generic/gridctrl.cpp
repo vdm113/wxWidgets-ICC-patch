@@ -568,6 +568,9 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
         if ((best_width > rectCell.width) && (col < cols) && grid.GetTable())
         {
             int i, c_cols, c_rows;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = col+cell_cols; i < cols; i++)
             {
                 bool is_empty = true;

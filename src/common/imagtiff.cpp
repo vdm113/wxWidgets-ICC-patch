@@ -496,6 +496,9 @@ bool wxTIFFHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbos
 
     uint32 pos = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (uint32 i = 0; i < h; i++)
     {
 #if defined(__INTEL_COMPILER)

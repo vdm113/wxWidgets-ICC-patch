@@ -24,6 +24,9 @@ int main(int argc, char *argv[])
     unsigned i;
     charsetItem table[256];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 256; i++) { table[i].c = i, table[i].u = 0; /* unknown */}
 
 #if defined(__INTEL_COMPILER)

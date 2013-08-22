@@ -137,6 +137,9 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
         if ((out_tbl = GetEncTable(output_enc)) == NULL) return false;
 
         m_Table = new wchar_t[65536];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < 128; i++)  m_Table[i] = (wchar_t)i; // 7bit ASCII
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -521,12 +524,24 @@ wxFontEncodingArray wxEncodingConverter::GetPlatformEquivalents(wxFontEncoding e
     wxFontEncodingArray arr;
 
     clas = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (EquivalentEncodings[clas][0][0] != STOP)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < NUM_OF_PLATFORMS; i++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (e = 0; EquivalentEncodings[clas][i][e] != STOP; e++)
                 if (EquivalentEncodings[clas][i][e] == enc)
                 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (f = EquivalentEncodings[clas][platform]; *f != STOP; f++)
                         if (*f == enc) arr.push_back(enc);
 #if defined(__INTEL_COMPILER)
@@ -573,12 +588,24 @@ wxFontEncodingArray wxEncodingConverter::GetAllEquivalents(wxFontEncoding enc)
     arr = GetPlatformEquivalents(enc); // we want them to be first items in array
 
     clas = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (EquivalentEncodings[clas][0][0] != STOP)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < NUM_OF_PLATFORMS; i++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (e = 0; EquivalentEncodings[clas][i][e] != STOP; e++)
                 if (EquivalentEncodings[clas][i][e] == enc)
                 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (j = 0; j < NUM_OF_PLATFORMS; j++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

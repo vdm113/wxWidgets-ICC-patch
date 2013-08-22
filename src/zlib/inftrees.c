@@ -104,6 +104,9 @@ unsigned short FAR *work;
      */
 
     /* accumulate lengths for codes (assumes lens[] all in 0..MAXBITS) */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (len = 0; len <= MAXBITS; len++)
         count[len] = 0;
 #if defined(__INTEL_COMPILER)

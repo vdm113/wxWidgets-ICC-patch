@@ -1448,6 +1448,9 @@ void wxPMDCImpl::DoDrawBitmap(
                 //
                 bool                    bpp16 = (wxDisplayDepth() == 16);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < rBmp.GetHeight(); i++)
                 {
 #if defined(__INTEL_COMPILER)
@@ -1632,6 +1635,9 @@ void wxPMDCImpl::DoDrawBitmap(
                 unsigned char           cBlueBack  = (unsigned char)lBackGround;
 
                 pucData = pucBits;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < rBmp.GetHeight(); i++)
                 {
 #if defined(__INTEL_COMPILER)

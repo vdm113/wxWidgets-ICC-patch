@@ -230,6 +230,9 @@ pre_process_context (j_compress_ptr cinfo,
 					 numrows);
       /* Pad at top of image, if first time through */
       if (prep->rows_to_go == cinfo->image_height) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (ci = 0; ci < cinfo->num_components; ci++) {
 	  int row;
 #if defined(__INTEL_COMPILER)

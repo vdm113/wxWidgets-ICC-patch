@@ -176,6 +176,9 @@ svRGBSeparate(TIFF* tif, uint32* ss, int xsize, int ysize)
 		if (n > ysize-y+1)
 			n = ysize-y+1;
 		rp = rbuf; gp = gbuf; bp = bbuf;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -223,6 +226,9 @@ svRGBContig(TIFF* tif, uint32* ss, int xsize, int ysize)
 		n = rowsperstrip;
 		if (n > ysize-y+1)
 			n = ysize-y+1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		do {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -261,6 +267,9 @@ svGrey(TIFF* tif, uint32* ss, int xsize, int ysize)
 	register int x, y;
 	unsigned char *buf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(tif));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (y = 0; y <= ysize; y++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

@@ -178,6 +178,9 @@ process_data_buffer_main (j_compress_ptr cinfo,
   jpeg_component_info *compptr;
   wxjpeg_boolean writing = (mymain->pass_mode != JBUF_CRANK_DEST);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (mymain->cur_iMCU_row < cinfo->total_iMCU_rows) {
     /* Realign the virtual buffers if at the start of an iMCU row. */
     if (mymain->rowgroup_ctr == 0) {

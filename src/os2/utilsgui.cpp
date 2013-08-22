@@ -774,6 +774,9 @@ wxBitmap wxDisableBitmap(
     //
     // Get the mask value
     //
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < rBmp.GetHeight(); i++)
     {
 #if defined(__INTEL_COMPILER)

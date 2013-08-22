@@ -165,6 +165,9 @@ main(int argc, char* argv[])
 			return (-8);
 		}
 		map = red;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (j = 0; j < 3; j++) {
 #define	SCALE(x)	(((x)*((1L<<16)-1))/255)
 #if defined(__INTEL_COMPILER)

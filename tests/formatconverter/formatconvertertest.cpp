@@ -272,6 +272,9 @@ void FormatConverterTestCase::doTest(const char *input,
     wxString fmt(wxT("%"));
 
     // try the test for a variety of combinations of flag, width and precision
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (const wxChar **prec = precs; *prec; prec++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

@@ -268,6 +268,9 @@ RESearch::~RESearch() {
 void RESearch::Init() {
 	sta = NOP;                  /* status of lastpat */
 	bol = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (int i = 0; i < MAXTAG; i++)
 		pat[i] = 0;
 #if defined(__INTEL_COMPILER)

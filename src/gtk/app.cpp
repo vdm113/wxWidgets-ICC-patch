@@ -378,6 +378,9 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
     if ( argcGTK != argc_ )
     {
         // we have to drop the parameters which were consumed by GTK+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < argcGTK; i++ )
         {
 #if defined(__INTEL_COMPILER)

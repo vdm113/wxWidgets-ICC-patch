@@ -198,6 +198,9 @@ void wxHtmlTableCell::ReallocCols(int cols)
 {
     int i,j;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_NumRows; i++)
     {
         m_CellInfo[i] = (cellStruct*) realloc(m_CellInfo[i], sizeof(cellStruct) * cols);
@@ -358,6 +361,9 @@ void wxHtmlTableCell::AddCell(wxHtmlContainerCell *cell, const wxHtmlTag& tag)
                 ReallocRows(r + m_CellInfo[r][c].rowspan);
             if (c + m_CellInfo[r][c].colspan > m_NumCols)
                 ReallocCols(c + m_CellInfo[r][c].colspan);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = r; i < r + m_CellInfo[r][c].rowspan; i++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -413,6 +419,9 @@ void wxHtmlTableCell::ComputeMinMaxWidths()
 
     m_MaxTotalWidth = 0;
     int percentage = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int c = 0; c < m_NumCols; c++)
     {
 #if defined(__INTEL_COMPILER)
@@ -675,6 +684,9 @@ void wxHtmlTableCell::Layout(int w)
         wxHtmlContainerCell *actcell;
 
         ypos[0] = m_Spacing + m_Border;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (actrow = 1; actrow <= m_NumRows; actrow++) ypos[actrow] = -1;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

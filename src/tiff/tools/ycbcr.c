@@ -49,7 +49,13 @@ main(int argc, char** argv)
     D5 = D3*LumaRed / LumaGreen;
     D6 = D4*LumaBlue / LumaGreen;
     setupLumaTables();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (R = 0; R < 256; R++) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (G = 0; G < 256; G++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

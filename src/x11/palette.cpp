@@ -97,7 +97,13 @@ wxPaletteRefData::~wxPaletteRefData()
             //      XFreeColors(display, cmap, pix_array, pix_array_n, 0);
             // Be careful not to free '0' pixels...
             int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(i=j=0; i<pix_array_n; i=j) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while(j<pix_array_n && pix_array[j]!=0) j++;
                 if(j > i) XFreeColors(display, cmap, &pix_array[i], j-i, 0);
 #if defined(__INTEL_COMPILER)

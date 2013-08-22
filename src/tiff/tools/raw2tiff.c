@@ -284,6 +284,9 @@ main(int argc, char* argv[])
 	TIFFSetField(out, TIFFTAG_ROWSPERSTRIP, rowsperstrip );
 
 	lseek(fd, hdr_size, SEEK_SET);		/* Skip the file header */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (row = 0; row < length; row++) {
 		switch(interleaving) {
 		case BAND:			/* band interleaved data */

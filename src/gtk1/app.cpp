@@ -459,8 +459,14 @@ bool wxApp::OnInitGui()
 
     m_colorCube = (unsigned char*)malloc(32 * 32 * 32);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int r = 0; r < 32; r++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int g = 0; g < 32; g++)
         {
 #if defined(__INTEL_COMPILER)
@@ -584,6 +590,9 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
     if ( argcGTK != argc )
     {
         // we have to drop the parameters which were consumed by GTK+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < argcGTK; i++ )
         {
 #if defined(__INTEL_COMPILER)

@@ -62,6 +62,9 @@ static inline bool IsNewline(const int ch) {
 // True if can follow ch down to the end with possibly trailing whitespace
 static bool FollowToLineEnd(const int ch, const int state, const unsigned int endPos, StyleContext &sc) {
     unsigned int i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (sc.GetRelative(++i) == ch)
         ;
     // Skip over whitespace
@@ -114,6 +117,9 @@ static void SetStateAndZoom(const int state, const int length, const int token, 
 static bool HasPrevLineContent(StyleContext &sc) {
     int i = 0;
     // Go back to the previous newline
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((--i + (int)sc.currentPos) >= 0 && !IsNewline(sc.GetRelative(i)))
         ;
 #if defined(__INTEL_COMPILER)

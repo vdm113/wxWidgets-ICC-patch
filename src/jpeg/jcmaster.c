@@ -159,6 +159,9 @@ validate_script (j_compress_ptr cinfo)
 #ifdef C_PROGRESSIVE_SUPPORTED
     cinfo->progressive_mode = TRUE;
     last_bitpos_ptr = & last_bitpos[0][0];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ci = 0; ci < cinfo->num_components; ci++) 
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

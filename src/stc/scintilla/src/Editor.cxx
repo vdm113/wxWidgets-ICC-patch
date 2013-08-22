@@ -1732,6 +1732,9 @@ static int WidthStyledText(Surface *surface, ViewStyle &vs, int styleOffset,
 	const char *text, const unsigned char *styles, size_t len) {
 	int width = 0;
 	size_t start = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (start < len) {
 		size_t style = styles[start];
 		size_t endSegment = start;
@@ -1781,6 +1784,9 @@ void DrawStyledText(Surface *surface, ViewStyle &vs, int styleOffset, PRectangle
 	if (st.multipleStyles) {
 		int x = rcText.left;
 		size_t i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (i < length) {
 			size_t end = i;
 			int style = st.styles[i + start];
@@ -3494,6 +3500,9 @@ void Editor::RefreshPixMaps(Surface *surfaceWindow) {
 		}
 
 		pixmapSelPattern->FillRectangle(rcPattern, colourFMFill);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int y = 0; y < patternSize; y++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -4410,6 +4419,9 @@ void Editor::PasteRectangular(SelectionPosition pos, const char *ptr, int len) {
 		InsertSpace(sel.RangeMain().caret.Position(), sel.RangeMain().caret.VirtualSpace()));
 	int xInsert = XFromPosition(sel.RangeMain().caret);
 	bool prevCr = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((len > 0) && IsEOLChar(ptr[len-1]))
 		len--;
 #if defined(__INTEL_COMPILER)
@@ -5136,6 +5148,9 @@ void Editor::ChangeCaseOfSelection(int caseMapping) {
 
 			if (sMapped != sText) {
 				size_t firstDifference = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (sMapped[firstDifference] == sText[firstDifference])
 					firstDifference++;
 				size_t lastDifference = sMapped.size() - 1;
@@ -6211,6 +6226,9 @@ void Editor::CopySelectionRange(SelectionText *ss, bool allowLineCopy) {
 		std::vector<SelectionRange> rangesInOrder = sel.RangesCopy();
 		if (sel.selType == Selection::selRectangle)
 			std::sort(rangesInOrder.begin(), rangesInOrder.end());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (size_t r=0; r<rangesInOrder.size(); r++) {
 			SelectionRange current = rangesInOrder[r];
 #if defined(__INTEL_COMPILER)

@@ -561,6 +561,9 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 		if (flags & TIFFPRINT_CURVES) {
 			fprintf(fd, "\n");
 			n = 1L<<td->td_bitspersample;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (l = 0; l < n; l++) {
 				fprintf(fd, "    %2lu: %5u",
 				    l, td->td_transferfunction[0][l]);

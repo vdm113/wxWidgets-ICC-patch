@@ -3315,6 +3315,9 @@ wxRecursionGuardFlag changing;
 
 bool IsInCaptureStack(wxWindowBase* win)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxVector<wxWindow*>::const_iterator it = stack.begin();
           it != stack.end();
           ++it )
@@ -3482,6 +3485,9 @@ void wxWindowBase::NotifyCaptureLost()
 
     // if the capture was lost unexpectedly, notify every window that has
     // capture (on stack or current) about it and clear the stack:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !wxMouseCapture::stack.empty() )
     {
         DoNotifyWindowAboutCaptureLost(wxMouseCapture::stack.back());

@@ -687,6 +687,9 @@ void MyCanvas::CreateAntiAliasedBitmap()
 
     /* This is quite slow, but safe. Use wxImage::GetData() for speed instead. */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int y = 1; y < 149; y++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

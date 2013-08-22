@@ -168,6 +168,9 @@ void wxControlRenderer::DrawBitmap(wxDC &dc,
     if ( stretch & wxTILE )
     {
         // tile the bitmap
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ; x < rect.width; x += width )
         {
 #if defined(__INTEL_COMPILER)

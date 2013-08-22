@@ -1598,6 +1598,9 @@ wxImage wxCairoBitmapData::ConvertToImage() const
     {
         // We need to also copy alpha and undo the pre-multiplication as Cairo
         // stores pre-multiplied values in this format while wxImage does not.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int y = 0; y < m_height; y++ )
         {
             const wxUint32* const rowStart = src;
@@ -1628,6 +1631,9 @@ wxImage wxCairoBitmapData::ConvertToImage() const
     else // RGB
     {
         // Things are pretty simple in this case, just copy RGB bytes.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int y = 0; y < m_height; y++ )
         {
             const wxUint32* const rowStart = src;

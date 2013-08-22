@@ -17,6 +17,9 @@ codepageMap(int cp, int *map)
   CPINFO info;
   if (!GetCPInfo(cp, &info) || info.MaxCharSize > 2)
     return 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < 256; i++)
     map[i] = -1;
   if (info.MaxCharSize > 1) {

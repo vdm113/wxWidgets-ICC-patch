@@ -215,6 +215,9 @@ wxBitmap::wxBitmap(
 
         char*                       pzDst = pzData;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (nRows = 0; nRows < nHeight; nRows++)
         {
 #if defined(__INTEL_COMPILER)
@@ -675,6 +678,9 @@ bool wxBitmap::CreateFromImage (
             vHeader.cbImage = nBytePerLine * nHeight;
         }
         ptbits = pucBits;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0; j < nHeight; j++)
         {
 #if defined(__INTEL_COMPILER)
@@ -791,6 +797,9 @@ bool wxBitmap::CreateFromImage (
                 vHeader.cbImage = nBytePerLine * nHeight;
             }
             ptbits = pucBits;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int j = 0; j < nHeight; j++)
             {
 #if defined(__INTEL_COMPILER)
@@ -1006,6 +1015,9 @@ wxImage wxBitmap::ConvertToImage() const
     unsigned char*                  ptdata = pData;
     unsigned char*                  ptbits = lpBits;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < nHeight; i++)
     {
 #if defined(__INTEL_COMPILER)
@@ -1076,6 +1088,9 @@ wxImage wxBitmap::ConvertToImage() const
 
         ptdata = pData;
         ptbits = lpBits;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < nHeight; i++)
         {
 #if defined(__INTEL_COMPILER)
@@ -1452,6 +1467,9 @@ bool wxMask::Create(
     // This is not very efficient, but I can't think
     // of a better way of doing it
     //
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int w = 0; w < rBitmap.GetWidth(); w++)
     {
 #if defined(__INTEL_COMPILER)

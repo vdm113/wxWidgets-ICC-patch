@@ -340,6 +340,9 @@ bool wxHtmlCell::IsBefore(wxHtmlCell *cell) const
     unsigned d2 = cell->GetDepth();
 
     if ( d1 > d2 )
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (; d1 != d2; d1-- )
             c1 = c1->m_Parent;
     else if ( d1 < d2 )
@@ -1603,6 +1606,9 @@ void wxHtmlContainerCell::RemoveExtraSpacing(bool top, bool bottom)
         if ( bottom )
         {
             wxArrayPtrVoid arr;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( c = m_Cells; c; c = c->GetNext() )
                 arr.Add((void*)c);
 

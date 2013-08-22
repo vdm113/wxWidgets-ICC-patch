@@ -238,6 +238,9 @@ int main(int argc, char **argv)
 
     scan_line = (unsigned char *) malloc(WIDTH / (8 / bits_per_pixel));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < HEIGHT; i++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

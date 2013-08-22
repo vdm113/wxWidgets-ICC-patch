@@ -34,6 +34,9 @@ protected:
         const wxSize clientSize = win->GetClientSize();
         const wxSize bitmapSize = m_bitmapBg.GetSize();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int x = 0; x < clientSize.x; x += bitmapSize.x )
         {
 #if defined(__INTEL_COMPILER)

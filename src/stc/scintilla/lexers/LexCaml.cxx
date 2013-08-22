@@ -156,6 +156,9 @@ static void InternalLexOrFold(int foldOrLex, unsigned int startPos, int length,
 	WindowAccessor wa(window, ps);
 	// create and initialize WordList(s)
 	int nWL = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; words[nWL]; nWL++) ;	// count # of WordList PTRs needed
 	WordList** wl = new WordList* [nWL + 1];// alloc WordList PTRs
 	int i = 0;

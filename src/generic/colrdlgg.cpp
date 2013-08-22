@@ -375,6 +375,9 @@ void wxGenericColourDialog::InitializeColours(void)
 void wxGenericColourDialog::PaintBasicColours(wxDC& dc)
 {
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 6; i++)
     {
         int j;
@@ -406,6 +409,9 @@ void wxGenericColourDialog::PaintBasicColours(wxDC& dc)
 void wxGenericColourDialog::PaintCustomColours(wxDC& dc)
 {
   int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < 2; i++)
   {
     int j;

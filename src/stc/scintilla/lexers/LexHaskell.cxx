@@ -328,6 +328,9 @@ void EXT_LEXER_DECL Lex(unsigned int lexer, unsigned int startPos, int length, i
    WindowAccessor wa(window, ps);
 
    int nWL = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (; words[nWL]; nWL++) ;
    WordList** wl = new WordList* [nWL + 1];
    int i = 0;

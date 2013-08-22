@@ -992,6 +992,9 @@ struct vars *v;
 
 	assert(v->cflags&REG_EXPANDED);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (;;) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

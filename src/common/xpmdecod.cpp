@@ -574,6 +574,9 @@ static bool GetRGBFromName(const char *inname, bool *isNone,
     // lot of gray...
 
     // so first extract ' '
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((p = strchr(name, ' ')) != NULL)
     {
 #if defined(__INTEL_COMPILER)
@@ -662,6 +665,9 @@ static const char *ParseColor(const char *data)
     const char *q;
     int i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; targets[i] != NULL; i++)
     {
         r = data;
@@ -834,6 +840,9 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
     wxXPMColourMap::iterator entry;
     wxXPMColourMap::iterator end = clr_tbl.end();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (j = 0; j < height; j++)
     {
 #if defined(__INTEL_COMPILER)

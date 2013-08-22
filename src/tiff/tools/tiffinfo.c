@@ -211,6 +211,9 @@ ShowStrip(tstrip_t strip, unsigned char* pp, uint32 nrow, tsize_t scanline)
 	register tsize_t cc;
 
 	printf("Strip %lu:\n", (unsigned long) strip);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (nrow-- > 0) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -273,6 +276,9 @@ TIFFReadSeparateStripData(TIFF* tif)
 		TIFFGetField(tif, TIFFTAG_IMAGELENGTH, &h);
 		TIFFGetField(tif, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
 		TIFFGetField(tif, TIFFTAG_SAMPLESPERPIXEL, &samplesperpixel);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (row = 0; row < h; row += rowsperstrip) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -306,6 +312,9 @@ ShowTile(uint32 row, uint32 col, tsample_t sample,
 	if (sample != (tsample_t) -1)
 		printf(",%u", sample);
 	printf("):\n");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (nrow-- > 0) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -338,6 +347,9 @@ TIFFReadContigTileData(TIFF* tif)
 		TIFFGetField(tif, TIFFTAG_IMAGELENGTH, &h);
 		TIFFGetField(tif, TIFFTAG_TILEWIDTH, &tw);
 		TIFFGetField(tif, TIFFTAG_TILELENGTH, &th);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (row = 0; row < h; row += th) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -375,7 +387,13 @@ TIFFReadSeparateTileData(TIFF* tif)
 		TIFFGetField(tif, TIFFTAG_TILEWIDTH, &tw);
 		TIFFGetField(tif, TIFFTAG_TILELENGTH, &th);
 		TIFFGetField(tif, TIFFTAG_SAMPLESPERPIXEL, &samplesperpixel);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (row = 0; row < h; row += th) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (col = 0; col < w; col += tw) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

@@ -418,6 +418,9 @@ expFill(float pct[], uint32 p, uint32 n)
 {
     uint32 i;
     uint32 c = (p * n) / 100;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 1; i < c; i++)
 	pct[i] = (float) (1-exp(i/((double)(n-1)))/ M_E);
 #if defined(__INTEL_COMPILER)
@@ -498,6 +501,9 @@ setupStepTables(uint32 sw)
 	uint32 x;
 	int fw;
 	uint8 b;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (x = 0; x < tnw; x++) {
 	    uint32 sx0 = sx;
 	    err += step;

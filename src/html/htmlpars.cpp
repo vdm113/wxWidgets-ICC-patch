@@ -282,8 +282,14 @@ void wxHtmlParser::DoParsing(const wxString::const_iterator& begin_pos_,
     wxHtmlTextPieces& pieces = *m_TextPieces;
     size_t piecesCnt = pieces.size();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (begin_pos < end_pos)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (m_CurTag && m_CurTag->GetBeginIter() < begin_pos)
             m_CurTag = m_CurTag->GetNextTag();
 #if defined(__INTEL_COMPILER)

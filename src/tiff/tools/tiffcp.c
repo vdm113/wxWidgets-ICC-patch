@@ -1056,6 +1056,9 @@ DECLAREcpFunc(cpSeparate2SeparateByRow)
 	if (!buf)
 		return 0;
 	_TIFFmemset(buf, 0, scanlinesize);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (s = 0; s < spp; s++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -1107,6 +1110,9 @@ DECLAREcpFunc(cpContig2SeparateByRow)
 	_TIFFmemset(inbuf, 0, scanlinesizein);
 	_TIFFmemset(outbuf, 0, scanlinesizeout);
 	/* unpack channels */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (s = 0; s < spp; s++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -1169,6 +1175,9 @@ DECLAREcpFunc(cpSeparate2ContigByRow)
 		return 0;
 	_TIFFmemset(inbuf, 0, scanlinesizein);
 	_TIFFmemset(outbuf, 0, scanlinesizeout);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (row = 0; row < imagelength; row++) {
 		/* merge channels */
 #if defined(__INTEL_COMPILER)
@@ -1217,6 +1226,9 @@ static void
 cpStripToTile(uint8* out, uint8* in,
     uint32 rows, uint32 cols, int outskew, int inskew)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (rows-- > 0) {
 		uint32 j = cols;
 #if defined(__INTEL_COMPILER)
@@ -1239,6 +1251,9 @@ cpContigBufToSeparateBuf(uint8* out, uint8* in,
     uint32 rows, uint32 cols, int outskew, int inskew, tsample_t spp,
     int bytes_per_sample )
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (rows-- > 0) {
 		uint32 j = cols;
 #if defined(__INTEL_COMPILER)
@@ -1271,8 +1286,14 @@ cpSeparateBufToContigBuf(uint8* out, uint8* in,
     uint32 rows, uint32 cols, int outskew, int inskew, tsample_t spp,
     int bytes_per_sample)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (rows-- > 0) {
 		uint32 j = cols;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (j-- > 0) {
 			int n = bytes_per_sample;
 
@@ -1374,6 +1395,9 @@ DECLAREreadFunc(readSeparateStripsIntoBuffer)
 		uint8* bufp = (uint8*) buf;
 		uint32 row;
 		tsample_t s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (row = 0; row < imagelength; row++) {
 			/* merge channels */
 #if defined(__INTEL_COMPILER)
@@ -1503,6 +1527,9 @@ DECLAREreadFunc(readSeparateTilesIntoBuffer)
 		uint32 colb = 0;
 		uint32 col;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (col = 0; col < imagewidth; col += tw) {
 			tsample_t s;
 
@@ -1595,6 +1622,9 @@ DECLAREwriteFunc(writeBufferToSeparateStrips)
 		return (0);
 	_TIFFmemset(obuf, 0, stripsize);
 	(void) TIFFGetFieldDefaulted(out, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (s = 0; s < spp; s++) {
 		uint32 row;
 #if defined(__INTEL_COMPILER)
@@ -1717,6 +1747,9 @@ DECLAREwriteFunc(writeBufferToSeparateTiles)
 		uint32 colb = 0;
 		uint32 col;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (col = 0; col < imagewidth; col += tw) {
 			tsample_t s;
 #if defined(__INTEL_COMPILER)

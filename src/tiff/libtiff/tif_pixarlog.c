@@ -630,6 +630,9 @@ PixarLogMakeTables(PixarLogState *sp)
      * saves a little table space.
      */
     j = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 16384; i++)  {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -644,6 +647,9 @@ PixarLogMakeTables(PixarLogState *sp)
     }
 
     j = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 256; i++)  {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

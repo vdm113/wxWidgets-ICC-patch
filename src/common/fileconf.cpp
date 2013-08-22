@@ -479,6 +479,9 @@ wxFileConfig::wxFileConfig(wxInputStream &inStream, const wxMBConv& conv)
     {
         // now break it into lines
         wxMemoryText memText;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( const wxChar *s = cbuf; ; ++s )
         {
             const wxChar *e = s;

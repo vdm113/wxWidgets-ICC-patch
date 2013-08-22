@@ -140,6 +140,9 @@ checkInkNamesString(TIFF* tif, uint32 slen, const char* s)
 	if (slen > 0) {
 		const char* ep = s+slen;
 		const char* cp = s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (; i > 0; i--) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

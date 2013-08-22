@@ -3001,6 +3001,9 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
             return XML_ERROR_NO_MEMORY;
           uriHash = CHAR_HASH(uriHash, c);
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (*s++ != XML_T(ASCII_COLON))
           ;
 #if defined(__INTEL_COMPILER)
@@ -3078,6 +3081,9 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
     }
   }
   /* clear flags for the remaining attributes */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (; i < attIndex; i += 2)
     ((XML_Char *)(appAtts[i]))[-1] = 0;
 #if defined(__INTEL_COMPILER)

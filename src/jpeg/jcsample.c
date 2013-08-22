@@ -94,6 +94,9 @@ expand_right_edge (JSAMPARRAY image_data, int num_rows,
   int numcols = (int) (output_cols - input_cols);
 
   if (numcols > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (row = 0; row < num_rows; row++) {
       ptr = image_data[row] + input_cols;
       pixval = ptr[-1];		/* don't need GETJSAMPLE() here */
@@ -171,11 +174,20 @@ int_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
 		    cinfo->image_width, output_cols * h_expand);
 
   inrow = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
     outptr = output_data[outrow];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (outcol = 0, outcol_h = 0; outcol < output_cols;
 	 outcol++, outcol_h += h_expand) {
       outvalue = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (v = 0; v < v_expand; v++) {
 	inptr = input_data[inrow+v] + outcol_h;
 #if defined(__INTEL_COMPILER)

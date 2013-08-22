@@ -126,6 +126,9 @@ local void make_crc_table()
             poly |= 1UL << (31 - p[n]);
 
         /* generate a crc for every 8-bit value */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (n = 0; n < 256; n++) {
             c = (unsigned long)n;
 #if defined(__INTEL_COMPILER)
@@ -144,6 +147,9 @@ local void make_crc_table()
 #ifdef BYFOUR
         /* generate crc for each value followed by one, two, and three zeros,
            and then the byte reversal of those as well as the first table */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (n = 0; n < 256; n++) {
             c = crc_table[0][n];
             crc_table[4][n] = REV(c);

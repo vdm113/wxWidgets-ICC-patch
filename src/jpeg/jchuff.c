@@ -233,6 +233,9 @@ jpeg_make_c_derived_tbl (j_compress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   code = 0;
   si = huffsize[0];
   p = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (huffsize[p]) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -877,7 +880,13 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
    * one bit longer.
    */
   
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = MAX_CLEN; i > 16; i--) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (bits[i] > 0) {
       j = i - 2;		/* find length of new prefix to be used */
 #if defined(__INTEL_COMPILER)
@@ -918,6 +927,9 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
    * changes made above, but the JPEG spec seems to think this works.
    */
   p = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 1; i <= MAX_CLEN; i++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

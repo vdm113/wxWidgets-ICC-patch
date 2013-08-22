@@ -442,6 +442,9 @@ bool wxPrinterDCImpl::DoBlit(wxCoord xdest, wxCoord ydest,
         MemoryHDC dcMask(dcSrc);
         SelectInHDC selectMask(dcMask, (HBITMAP)mask->GetMaskBitmap());
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int x = 0; x < width; x++)
         {
 #if defined(__INTEL_COMPILER)
@@ -479,6 +482,9 @@ bool wxPrinterDCImpl::DoBlit(wxCoord xdest, wxCoord ydest,
             // printer colours and so we need copy the bitmap pixel by pixel.
             HDC dcSrc = GetHdcOf(*msw_impl);
             RECT rect;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int y = 0; y < height; y++)
             {
                 // optimization: draw identical adjacent pixels together.

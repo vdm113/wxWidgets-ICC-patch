@@ -119,6 +119,9 @@ main(int argc, char* argv[])
 	if (out == NULL)
 		return (-2);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; optind < argc-1; optind++) {
 		in = TIFFOpen(argv[optind], "r");
 		if (in != NULL) {
@@ -191,6 +194,9 @@ cvt_by_tile( TIFF *in, TIFF *out )
     /*
      * Loop over the tiles.
      */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( row = 0; ok && row < height; row += tile_height )
     {
 #if defined(__INTEL_COMPILER)

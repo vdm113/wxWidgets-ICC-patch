@@ -260,6 +260,9 @@ cpContig(IMAGE* in, TIFF* out)
 		uint8* pp = (uint8*) buf;
 
 		r = (short *)_TIFFmalloc(in->xsize * sizeof (short));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (y = in->ysize-1; y >= 0; y--) {
 			getrow(in, r, y, 0);
 #if defined(__INTEL_COMPILER)
@@ -295,7 +298,13 @@ cpSeparate(IMAGE* in, TIFF* out)
 	uint8* pp = (uint8*) buf;
 	int x, y, z;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (z = 0; z < in->zsize; z++) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (y = in->ysize-1; y >= 0; y--) {
 			getrow(in, r, y, z);
 #if defined(__INTEL_COMPILER)

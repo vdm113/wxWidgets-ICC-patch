@@ -126,6 +126,9 @@ void ListsTestCase::wxStdListTest()
     wxListInt::iterator it, en;
     wxListInt::reverse_iterator rit, ren;
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < 5; ++i )
         list1.push_back(i + &i);
 

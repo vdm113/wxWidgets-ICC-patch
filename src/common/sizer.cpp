@@ -1499,6 +1499,9 @@ void wxGridSizer::RecalcSizes()
     int h = (sz.y - (nrows - 1) * m_vgap) / nrows;
 
     int x = pt.x;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int c = 0; c < ncols; c++)
     {
         int y = pt.y;

@@ -344,8 +344,14 @@ null_convert (j_compress_ptr cinfo,
   int nc = cinfo->num_components;
   JDIMENSION num_cols = cinfo->image_width;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (--num_rows >= 0) {
     /* It seems fastest to make a separate pass for each component. */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ci = 0; ci < nc; ci++) {
       inptr = *input_buf;
       outptr = output_buf[ci][output_row];

@@ -1393,8 +1393,17 @@ void wxGtkPrinterDCImpl::DoDrawArc(wxCoord x1,wxCoord y1,wxCoord x2,wxCoord y2,w
             (y2 - yc < 0) ? 90.0 : -90.0 :
             atan2(double(y2-yc), double(x2-xc)) * RAD2DEG;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (alpha1 <= 0)   alpha1 += 360;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (alpha2 <= 0)   alpha2 += 360; // adjust angles to be between.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (alpha1 > 360)  alpha1 -= 360; // 0 and 360 degree.
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

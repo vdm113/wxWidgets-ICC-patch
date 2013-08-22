@@ -349,6 +349,9 @@ void wxArrayString::Insert(const wxString& str, size_t nIndex, size_t nInsert)
 
   Grow(nInsert);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (int j = m_nCount - nIndex - 1; j >= 0; j--)
       m_pItems[nIndex + nInsert + j] = m_pItems[nIndex + j];
 

@@ -2766,6 +2766,9 @@ bool wxRichTextTable::ImportFromXML(wxRichTextBuffer* buffer, wxXmlNode* node, w
 
     m_cells.Add(wxRichTextObjectPtrArray(), m_rowCount);
     int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_rowCount; i++)
     {
         wxRichTextObjectPtrArray& colArray = m_cells[i];
@@ -2814,6 +2817,9 @@ bool wxRichTextTable::ExportXML(wxOutputStream& stream, int indent, wxRichTextXM
     }
 
     int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_rowCount; i++)
     {
 #if defined(__INTEL_COMPILER)
@@ -2851,6 +2857,9 @@ bool wxRichTextTable::ExportXML(wxXmlNode* parent, wxRichTextXMLHandler* handler
     elementNode->AddAttribute(wxT("cols"), wxString::Format(wxT("%d"), m_colCount));
 
     int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_rowCount; i++)
     {
 #if defined(__INTEL_COMPILER)

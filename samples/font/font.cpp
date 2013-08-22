@@ -1093,6 +1093,9 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
 
 
     // print all font symbols from 32 to 256 in 7 rows of 32 chars each
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < 7; i++ )
     {
 #if defined(__INTEL_COMPILER)

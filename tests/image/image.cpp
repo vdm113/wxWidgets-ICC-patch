@@ -989,6 +989,9 @@ static void SetAlpha(wxImage *image)
     unsigned char *ptr = image->GetAlpha();
     const int width = image->GetWidth();
     const int height = image->GetHeight();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int y = 0; y < height; ++y)
     {
 #if defined(__INTEL_COMPILER)
@@ -1098,6 +1101,9 @@ void ImageTestCase::SavePNG()
     int x, y;
     const int width = expected8.GetWidth();
     const int height = expected8.GetHeight();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (y = 0; y < height; ++y)
     {
 #if defined(__INTEL_COMPILER)

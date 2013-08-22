@@ -1368,6 +1368,9 @@ void wxHtmlHelpWindow::OptionsDialog()
         m_FixedFace = fnt.GetFaceName();
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_NormalFonts->GetCount(); i++)
         dlg.NormalFont->Append((*m_NormalFonts)[i]);
 #if defined(__INTEL_COMPILER)

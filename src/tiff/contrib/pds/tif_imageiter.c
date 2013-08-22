@@ -276,6 +276,9 @@ gtTileContig(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
     TIFFGetField(tif, TIFFTAG_TILEWIDTH, &tw);
     TIFFGetField(tif, TIFFTAG_TILELENGTH, &th);
     orientation = img->orientation;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (row = 0; row < h; row += th) {
 	nrow = (row + th > h ? h - row : th);
 #if defined(__INTEL_COMPILER)
@@ -345,6 +348,9 @@ gtTileSeparate(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
     TIFFGetField(tif, TIFFTAG_TILEWIDTH, &tw);
     TIFFGetField(tif, TIFFTAG_TILELENGTH, &th);
     orientation = img->orientation;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (row = 0; row < h; row += th) {
 	nrow = (row + th > h ? h - row : th);
 #if defined(__INTEL_COMPILER)

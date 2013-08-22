@@ -679,6 +679,9 @@ png_read_image(png_structrp png_ptr, png_bytepp image)
 
    image_height=png_ptr->height;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for (j = 0; j < pass; j++)
    {
       rp = image;
@@ -2661,6 +2664,9 @@ png_image_read_colormap(png_voidp argument)
                      /* Add 27 r,g,b entries each with created by composing with
                       * the background at alpha 0.5.
                       */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                      for (r=0; r<256; r = (r << 1) | 0x7f)
                      {
 #if defined(__INTEL_COMPILER)

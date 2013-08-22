@@ -208,6 +208,9 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   code = 0;
   si = huffsize[0];
   p = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (huffsize[p]) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -259,6 +262,9 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   MEMZERO(dtbl->look_nbits, SIZEOF(dtbl->look_nbits));
 
   p = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (l = 1; l <= HUFF_LOOKAHEAD; l++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

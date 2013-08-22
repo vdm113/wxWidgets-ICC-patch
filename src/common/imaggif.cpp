@@ -270,6 +270,9 @@ bool wxGIFHandler::DoSaveFile(const wxImage& image, wxOutputStream *stream,
     SetupCompress(stream, 8);
 
     m_pixelCount = height * width_even;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int y = 0; y < height; y++)
     {
         m_pixelCount -= width_even;

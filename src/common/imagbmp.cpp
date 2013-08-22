@@ -1326,6 +1326,9 @@ bool wxICOHandler::SaveFile(wxImage *image,
             {
                 // Go round and apply black to the masked bits:
                 int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < mask.GetWidth(); i++)
                 {
 #if defined(__INTEL_COMPILER)
@@ -1351,6 +1354,9 @@ bool wxICOHandler::SaveFile(wxImage *image,
             // just make a black mask all over:
             mask = image->Copy();
             int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < mask.GetWidth(); i++)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

@@ -837,6 +837,9 @@ bool wxToolBar::Realize()
                         {
                             // we need to have light grey background colour for
                             // MapBitmap() to work correctly
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                             for ( int y = 0; y < h; y++ )
                             {
 #if defined(__INTEL_COMPILER)
@@ -2040,6 +2043,9 @@ WXHBITMAP wxToolBar::MapBitmap(WXHBITMAP bitmap, int width, int height)
 
     wxCOLORMAP *cmap = wxGetStdColourMap();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < width; i++ )
     {
 #if defined(__INTEL_COMPILER)

@@ -274,6 +274,9 @@ void wxPluginLibrary::UnregisterModules()
 {
     wxModuleList::iterator it;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( it = m_wxmodules.begin(); it != m_wxmodules.end(); ++it )
         (*it)->Exit();
 

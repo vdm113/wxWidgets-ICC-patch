@@ -127,6 +127,9 @@ printruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 	    } else
 		l++;
 	}
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (runlength > 0 && runlength <= 6) {
 	    uint32 bitsleft = 6;
 	    int t = 0;
@@ -328,6 +331,9 @@ fax2ps(TIFF* tif, uint16 npages, uint16* pages, char* filename)
 	}
     } else {
 	uint16 pageNumber = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do
 	    printTIF(tif, pageNumber++);
 #if defined(__INTEL_COMPILER)

@@ -361,6 +361,9 @@ void SurfaceImpl::AlphaRectangle(PRectangle rc, int cornerSize,
         int blue  = cdf.GetBlue();
 
         wxAlphaPixelData::Iterator p(pixData);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (y=0; y<r.height; y++) {
             p.MoveTo(pixData, 0, y);
 #if defined(__INTEL_COMPILER)
@@ -438,6 +441,9 @@ wxBitmap BitmapFromRGBAImage(int width, int height, const unsigned char *pixelsI
     wxAlphaPixelData pixData(bmp);
 
     wxAlphaPixelData::Iterator p(pixData);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (y=0; y<height; y++) {
         p.MoveTo(pixData, 0, y);
 #if defined(__INTEL_COMPILER)

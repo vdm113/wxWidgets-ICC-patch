@@ -2507,6 +2507,9 @@ static Boolean FetchXmStringTableResource(Widget w,
 	    XtMalloc(Entries * sizeof(XmString));
 	
 	p = TmpList;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for ( Entry = 0; Entry < Entries; ++Entry ) {
 	    pStart = p;
 #if defined(__INTEL_COMPILER)

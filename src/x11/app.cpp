@@ -152,6 +152,9 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
     if ( argC != argCOrig )
     {
         // remove the arguments we consumed
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < argC; i++ )
         {
 #if defined(__INTEL_COMPILER)

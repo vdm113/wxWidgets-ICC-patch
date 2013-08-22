@@ -254,6 +254,9 @@ public:
 
     long indices[2];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned row = 0; row < rowCount; row++ )
     {
         indices[0] = row;

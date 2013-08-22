@@ -66,6 +66,9 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
     if ( argcDFB != argc )
     {
         // we have to drop the parameters which were consumed by DFB+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < argcDFB; i++ )
         {
 #if defined(__INTEL_COMPILER)

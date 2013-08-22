@@ -109,6 +109,9 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		int width = Platform::Minimum(rcBox.Width(), 4000);
 		RGBAImage image(width, rcBox.Height(), 0);
 		// Draw horizontal lines top and bottom
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int x=0; x<width; x++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -122,6 +125,9 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 			}
 		}
 		// Draw vertical lines left and right
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (int y=1; y<rcBox.Height(); y++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

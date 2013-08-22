@@ -204,8 +204,14 @@ void wxXVisualInfo::Init( Display* dpy, XVisualInfo* vi )
 
     m_colorCube = (unsigned char*)malloc(32 * 32 * 32);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int r = 0; r < 32; r++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int g = 0; g < 32; g++)
         {
 #if defined(__INTEL_COMPILER)

@@ -411,6 +411,9 @@ fpAcc(TIFF* tif, uint8* cp0, tmsize_t cc)
 
 	_TIFFmemcpy(tmp, cp0, cc);
 	cp = (uint8 *) cp0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (count = 0; count < wc; count++) {
 		uint32 byte;
 #if defined(__INTEL_COMPILER)
@@ -606,6 +609,9 @@ fpDiff(TIFF* tif, uint8* cp0, tmsize_t cc)
 		return;
 
 	_TIFFmemcpy(tmp, cp0, cc);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (count = 0; count < wc; count++) {
 		uint32 byte;
 #if defined(__INTEL_COMPILER)

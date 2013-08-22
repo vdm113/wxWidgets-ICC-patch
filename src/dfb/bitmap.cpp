@@ -50,6 +50,9 @@ void CopyPixelsAndSwapRGB(unsigned w, unsigned h,
 {
     unsigned src_advance = src_pitch - SrcPixSize * w;
     unsigned dst_advance = dst_pitch - DstPixSize * w;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned y = 0; y < h; y++, src += src_advance, dst += dst_advance )
     {
 #if defined(__INTEL_COMPILER)
@@ -118,6 +121,9 @@ void CopySurfaceToImage(const wxIDirectFBSurfacePtr& surface, wxImage& image)
         // NB: "+3" is to get pointer to alpha component
         const unsigned char *src = ((unsigned char*)locked.ptr) + 3;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned y = 0; y < height; y++, src += advance )
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
@@ -178,6 +184,9 @@ void CopyImageToSurface(const wxImage& image,
         // NB: "+3" is to get pointer to alpha component
         unsigned char *dest = ((unsigned char*)locked.ptr) + 3;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned y = 0; y < height; y++, dest += advance )
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

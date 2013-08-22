@@ -276,6 +276,9 @@ main(int argc, char* argv[])
 	case pack(PHOTOMETRIC_RGB, PLANARCONFIG_SEPARATE):
 		rowsize = TIFFScanlineSize(in);
 		inbuf = (unsigned char *)_TIFFmalloc(3*rowsize);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (row = 0; row < h; row++) {
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

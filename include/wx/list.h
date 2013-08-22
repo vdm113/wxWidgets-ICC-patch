@@ -1008,6 +1008,7 @@ private:
             { return const_reverse_iterator(NULL, GetFirst()); }            \
         void resize(size_type n, value_type v = value_type())               \
         {                                                                   \
+MY_MACRO_PRAGMA_IVDEP \
             while (n < size())                                              \
                 pop_back();                                                 \
 MY_MACRO_PRAGMA_IVDEP \

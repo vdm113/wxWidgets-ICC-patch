@@ -877,6 +877,9 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
         h = CellToY(j1 + 1) - y + 1;
 
         dc.SetPen(*wxLIGHT_GREY_PEN);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxInt32 yy = y; yy <= (y + h - m_cellsize); yy += m_cellsize)
             dc.DrawRectangle(x, yy, w, m_cellsize + 1);
 #if defined(__INTEL_COMPILER)
@@ -895,6 +898,9 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
     dc.SetPen(*wxBLACK_PEN);
     dc.SetBrush(*wxBLACK_BRUSH);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!done)
     {
 #if defined(__INTEL_COMPILER)

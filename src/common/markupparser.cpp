@@ -427,6 +427,9 @@ wxString wxMarkupParser::Quote(const wxString& text)
     wxString quoted;
     quoted.reserve(text.length());
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator it = text.begin(); it != text.end(); ++it )
     {
         unsigned n;

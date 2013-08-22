@@ -118,6 +118,9 @@ static void ColouriseYAMLLine(
 			styler.ColourTo(startLine + i, SCE_YAML_OPERATOR);
 			// Non-folding scalar
 			i++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while ((i < lengthLine) && isspacechar(lineBuffer[i]))
 				i++;
 			unsigned int endValue = lengthLine - 1;

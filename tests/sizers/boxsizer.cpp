@@ -292,6 +292,9 @@ void BoxSizerTestCase::CalcMin()
 
     unsigned n;
     wxWindow *child[NUM_TEST_ITEM];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < NUM_TEST_ITEM; n++ )
         child[n] = new wxWindow(m_win, wxID_ANY);
 

@@ -622,6 +622,9 @@ main(int argc, char* argv[])
 			i = 0;
 			j = 0;
 			if (info_hdr.iBitCount == 8) {		/* RLE8 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			    while(j < uncompr_size && i < compr_size) {
 				if ( comprbuf[i] ) {
 				    runlength = comprbuf[i++];
@@ -669,6 +672,9 @@ main(int argc, char* argv[])
 			    }
 			}
 			else {				    /* RLE4 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			    while( j < uncompr_size && i < compr_size ) {
 				if ( comprbuf[i] ) {
 				    runlength = comprbuf[i++];

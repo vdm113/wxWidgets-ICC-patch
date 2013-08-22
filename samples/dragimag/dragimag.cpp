@@ -447,6 +447,9 @@ bool MyApp::TileBitmap(const wxRect& rect, wxDC& dc, wxBitmap& bitmap)
     int h = bitmap.GetHeight();
 
     int i, j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = rect.x; i < rect.x + rect.width; i += w)
     {
 #if defined(__INTEL_COMPILER)

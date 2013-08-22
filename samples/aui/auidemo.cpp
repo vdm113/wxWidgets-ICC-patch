@@ -429,6 +429,9 @@ private:
     {
         wxImage image;
         image.Create(25,14);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int x = 0; x < 25; ++x)
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep

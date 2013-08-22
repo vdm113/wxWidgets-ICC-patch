@@ -151,6 +151,9 @@ compress_data (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
   jpeg_component_info *compptr;
 
   /* Loop to write as much as one whole iMCU row */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (yoffset = coef->MCU_vert_offset; yoffset < coef->MCU_rows_per_iMCU_row;
        yoffset++) {
 #if defined(__INTEL_COMPILER)
@@ -339,6 +342,9 @@ compress_first_pass (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 	lastblockrow = buffer[block_row-1];
 	jzero_far((void FAR *) thisblockrow,
 		  (size_t) (blocks_across * SIZEOF(JBLOCK)));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (MCUindex = 0; MCUindex < MCUs_across; MCUindex++) {
 	  lastDC = lastblockrow[h_samp_factor-1][0];
 #if defined(__INTEL_COMPILER)
@@ -404,6 +410,9 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
   }
 
   /* Loop to process one whole iMCU row */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (yoffset = coef->MCU_vert_offset; yoffset < coef->MCU_rows_per_iMCU_row;
        yoffset++) {
 #if defined(__INTEL_COMPILER)
@@ -418,9 +427,15 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 	 MCU_col_num++) {
       /* Construct list of pointers to DCT blocks belonging to this MCU */
       blkn = 0;			/* index of current DCT block within MCU */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
 	compptr = cinfo->cur_comp_info[ci];
 	start_col = MCU_col_num * compptr->MCU_width;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (yindex = 0; yindex < compptr->MCU_height; yindex++) {
 	  buffer_ptr = buffer[ci][yindex+yoffset] + start_col;
 #if defined(__INTEL_COMPILER)
