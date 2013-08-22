@@ -285,6 +285,9 @@ td_lfind(const void *key, const void *base, size_t *nmemb, size_t size,
     char *element, *end;
 
     end = (char *)base + *nmemb * size;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (element = (char *)base; element < end; element += size)
         if (!compar(key, element))		/* key found */
             return element;
@@ -310,6 +313,9 @@ _TIFFSetupFields(TIFF* tif, const TIFFFieldArray* fieldarray)
 	if (tif->tif_fields && tif->tif_nfields > 0) {
 		uint32 i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (i = 0; i < tif->tif_nfields; i++) {
 			TIFFField *fld = tif->tif_fields[i];
 			if (fld->field_bit == FIELD_CUSTOM &&
@@ -383,6 +389,9 @@ _TIFFMergeFields(TIFF* tif, const TIFFField info[], uint32 n)
 	}
 
 	/* tp = tif->tif_fields + tif->tif_nfields; */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < n; i++) {
 		const TIFFField *fip =
 			TIFFFindField(tif, info[i].field_tag, TIFF_ANY);
@@ -407,6 +416,9 @@ _TIFFPrintFieldInfo(TIFF* tif, FILE* fd)
 	uint32 i;
 
 	fprintf(fd, "%s: \n", tif->tif_name);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < tif->tif_nfields; i++) {
 		const TIFFField* fip = tif->tif_fields[i];
 		fprintf(fd, "field[%2d] %5lu, %2d, %2d, %d, %2d, %5s, %5s, %s\n"
@@ -914,6 +926,9 @@ TIFFMergeFieldInfo(TIFF* tif, const TIFFFieldInfo info[], uint32 n)
 	}
 
 	tp = tif->tif_fieldscompat[nfields].fields;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < n; i++) {
 		tp->field_tag = info[i].field_tag;
 		tp->field_readcount = info[i].field_readcount;

@@ -129,6 +129,9 @@ ImageTestCase::~ImageTestCase()
 void ImageTestCase::LoadFromFile()
 {
     wxImage img;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i=0; i<WXSIZEOF(g_testfiles); i++)
         CPPUNIT_ASSERT(img.LoadFile(g_testfiles[i].file));
 }
@@ -151,6 +154,9 @@ void ImageTestCase::LoadFromSocketStream()
         { "http://www.wxwidgets.org/favicon.ico", wxBITMAP_TYPE_ICO }
     };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i=0; i<WXSIZEOF(testData); i++)
     {
         wxURL url(testData[i].url);
@@ -185,6 +191,9 @@ void ImageTestCase::LoadFromSocketStream()
 
 void ImageTestCase::LoadFromZipStream()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i=0; i<WXSIZEOF(g_testfiles); i++)
     {
         switch (g_testfiles[i].type)
@@ -824,6 +833,9 @@ void ImageTestCase::SizeImage()
    };
 
    const wxImage src_img(xpm_orig);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    for ( unsigned i = 0; i < WXSIZEOF(sizeTestData); i++ )
    {
        SizeTestData& st = sizeTestData[i];
@@ -854,6 +866,9 @@ void ImageTestCase::CompareLoadedImage()
     wxImage expected24("horse.png");
     CPPUNIT_ASSERT( expected24.IsOk() );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i=0; i<WXSIZEOF(g_testfiles); i++)
     {
         if ( !(g_testfiles[i].bitDepth == 8 || g_testfiles[i].bitDepth == 24)
@@ -976,6 +991,14 @@ static void SetAlpha(wxImage *image)
     const int height = image->GetHeight();
     for (int y = 0; y < height; ++y)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (int y = 0; y < height; ++y)
+    {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int x = 0; x < width; ++x)
         {
             ptr[y*width + x] = (x*y) & wxIMAGE_ALPHA_OPAQUE;
@@ -998,6 +1021,9 @@ void ImageTestCase::CompareSavedImage()
 
 #if wxUSE_PALETTE
     unsigned char greys[256];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 256; ++i)
     {
         greys[i] = i;
@@ -1014,6 +1040,9 @@ void ImageTestCase::CompareSavedImage()
     SetAlpha(&expected32);
 
     const wxList& list = wxImage::GetHandlers();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxList::compatibility_iterator node = list.GetFirst();
         node; node = node->GetNext() )
     {
@@ -1071,6 +1100,14 @@ void ImageTestCase::SavePNG()
     const int height = expected8.GetHeight();
     for (y = 0; y < height; ++y)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (y = 0; y < height; ++y)
+    {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (x = 0; x < width; ++x)
         {
             expected8.SetAlpha(x, y, expected8.GetRed(x, y));
@@ -1164,6 +1201,9 @@ void ImageTestCase::SaveAnimatedGIF()
     wxImageArray images;
     images.Add(image);
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 4-1; ++i)
     {
         images.Add( images[i].Rotate90() );
@@ -1180,6 +1220,9 @@ void ImageTestCase::SaveAnimatedGIF()
     const int imageCount = handler.GetImageCount(memIn);
     CPPUNIT_ASSERT_EQUAL(4, imageCount);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < imageCount; ++i)
     {
         wxFileOffset pos = memIn.TellI();
@@ -1270,6 +1313,9 @@ void ImageTestCase::GIFComment()
 
     wxImageArray images;
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 4; ++i)
     {
         if (i)
@@ -1295,6 +1341,9 @@ void ImageTestCase::GIFComment()
     wxMemoryInputStream memIn(memOut);
     CPPUNIT_ASSERT(memIn.IsOk());
     const int imageCount = handler.GetImageCount(memIn);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < imageCount; ++i)
     {
         wxFileOffset pos = memIn.TellI();

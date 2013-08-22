@@ -73,6 +73,9 @@ wxAcceleratorTable::wxAcceleratorTable(int n, const wxAcceleratorEntry entries[]
     data->m_count = n;
     data->m_entries = new wxAcceleratorEntry[n];
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < n; i++)
         data->m_entries[i] = entries[i];
 

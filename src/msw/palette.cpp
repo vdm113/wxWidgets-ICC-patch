@@ -41,6 +41,9 @@ public:
         if ( !pPal )
             return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < n; i++ )
         {
             pPal->palPalEntry[i].peRed = red[i];

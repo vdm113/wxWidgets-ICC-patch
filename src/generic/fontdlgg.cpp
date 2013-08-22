@@ -335,6 +335,9 @@ void wxGenericFontDialog::CreateWidgets()
 #if !USE_SPINCTRL_FOR_POINT_SIZE
     wxString *pointSizes = new wxString[40];
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < 40; i++)
     {
         wxChar buf[5];

@@ -1017,6 +1017,9 @@ void wxGtkPrinter::BeginPrint(wxPrintout *printout, GtkPrintOperation *operation
                 GtkPageRange* range;
                 int i;
                 range = gtk_print_settings_get_page_ranges (settings, &num_ranges);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i=0; i<num_ranges; i++)
                 {
                     if (range[i].end < range[i].start) range[i].end = range[i].start;
@@ -1393,6 +1396,21 @@ void wxGtkPrinterDCImpl::DoDrawArc(wxCoord x1,wxCoord y1,wxCoord x2,wxCoord y2,w
         while (alpha1 <= 0)   alpha1 += 360;
         while (alpha2 <= 0)   alpha2 += 360; // adjust angles to be between.
         while (alpha1 > 360)  alpha1 -= 360; // 0 and 360 degree.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        while (alpha1 <= 0)   alpha1 += 360;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        while (alpha2 <= 0)   alpha2 += 360; // adjust angles to be between.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        while (alpha1 > 360)  alpha1 -= 360; // 0 and 360 degree.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (alpha2 > 360)  alpha2 -= 360;
     }
 
@@ -1467,11 +1485,17 @@ void wxGtkPrinterDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoff
     SetPen (m_pen);
 
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i =0; i<n ; i++ )
         CalcBoundingBox( points[i].x+xoffset, points[i].y+yoffset);
 
     cairo_move_to ( m_cairo, XLOG2DEV(points[0].x+xoffset), YLOG2DEV(points[0].y+yoffset) );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 1; i < n; i++)
         cairo_line_to ( m_cairo, XLOG2DEV(points[i].x+xoffset), YLOG2DEV(points[i].y+yoffset) );
 
@@ -1495,6 +1519,9 @@ void wxGtkPrinterDCImpl::DoDrawPolygon(int n, const wxPoint points[],
     cairo_new_path(m_cairo);
     cairo_move_to( m_cairo, XLOG2DEV(x), YLOG2DEV(y) );
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 1; i < n; i++)
     {
         int xx = points[i].x + xoffset;
@@ -1642,6 +1669,9 @@ void wxGtkPrinterDCImpl::DoDrawSpline(const wxPointList *points)
     CalcBoundingBox( (wxCoord)x3, (wxCoord)y3 );
 
     node = node->GetNext();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         q = node->GetData();
@@ -1894,6 +1924,9 @@ void wxGtkPrinterDCImpl::SetPen( const wxPen& pen )
             int num = m_pen.GetDashes (&wx_dashes);
             gdouble *g_dashes = g_new( gdouble, num );
             int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < num; ++i)
                 g_dashes[i] = (gdouble) wx_dashes[i];
             cairo_set_dash( m_cairo, g_dashes, num, 0);

@@ -224,6 +224,9 @@ long wxExecute(
 {
     wxString                        sCommand;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (*ppArgv != NULL)
     {
         wxString                    sArg((wxChar*)(*ppArgv++));

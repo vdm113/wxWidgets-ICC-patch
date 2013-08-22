@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        affinematrix2d.h
 // Purpose:     interface of wxAffineMatrix2D
@@ -84,6 +91,7 @@ public:
     //@{
     /**
         Check that this matrix is identical with @a t.
+        Check that this matrix is identical with @t.
 
         @param t
             The matrix compared with this.
@@ -94,6 +102,7 @@ public:
 
     /**
         Check that this matrix differs from @a t.
+        Check that this matrix differs from @t.
 
         @param t
             The matrix compared with this.

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        utils.h
 // Purpose:     interface of various utility classes and functions
@@ -117,6 +124,9 @@ public:
     @code
     wxBusyCursor wait;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < 100000; i++)
         DoACalculation();
     @endcode
@@ -591,6 +601,7 @@ wxLoadUserResource(const void **outData,
         The current module is used by default. This parameter is new since
         wxWidgets 2.9.1.
     @return A pointer to the data to be <tt>delete[]</tt>d by caller on success
+    @return A pointer to the data to be <tt>delete[]<tt>d by caller on success
         or @NULL on error.
 
     This function is available under Windows only.

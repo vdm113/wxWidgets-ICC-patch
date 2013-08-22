@@ -159,6 +159,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int nCmdShow)
     ShowWindow(g_hwndMain, nCmdShow);
 
     MSG msg;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( GetMessage(&msg, NULL, 0, 0) )
     {
         TranslateMessage(&msg);

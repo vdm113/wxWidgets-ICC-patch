@@ -594,6 +594,9 @@ wxSemaError wxSemaphoreInternal::Wait()
 {
     wxMutexLocker locker(m_mutex);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( m_count == 0 )
     {
         wxLogTrace(TRACE_SEMA,
@@ -631,6 +634,9 @@ wxSemaError wxSemaphoreInternal::WaitTimeout(unsigned long milliseconds)
 
     wxLongLong startTime = wxGetLocalTimeMillis();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( m_count == 0 )
     {
         wxLongLong elapsed = wxGetLocalTimeMillis() - startTime;
@@ -1813,6 +1819,9 @@ void wxThreadModule::OnExit()
         }
     } // unlock mutex before deleting the threads as they lock it in their dtor
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0u; n < count; n++ )
     {
         // Delete calls the destructor which removes the current entry. We

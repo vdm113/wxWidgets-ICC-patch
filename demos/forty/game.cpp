@@ -40,16 +40,25 @@ Game::Game(int wins, int games, int score) :
     m_pack = new Pack(2, 2 + 4 * (CardHeight + 2));
     srand(time(0));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 5; i++) m_pack->Shuffle();
 
     m_discard = new Discard(2, 2 + 5 * (CardHeight + 2));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 8; i++)
     {
         m_foundations[i] = new Foundation(2 + (i / 4) * (CardWidth + 2),
                     2 + (i % 4) * (CardHeight + 2));
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 10; i++)
     {
         m_bases[i] = new Base(8 + (i + 2) * (CardWidth + 2), 2);
@@ -74,12 +83,18 @@ void Game::Layout()
 
     m_discard->SetPos(2, 2 + 5 * (CardHeight + 2));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 8; i++)
     {
                 m_foundations[i]->SetPos(2 + (i / 4) * (CardWidth + 2),
                                          2 + (i % 4) * (CardHeight + 2));
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 10; i++)
     {
         m_bases[i]->SetPos(8 + (i + 2) * (CardWidth + 2), 2);
@@ -97,10 +112,16 @@ Game::~Game()
 
     delete m_pack;
     delete m_discard;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 8; i++)
     {
         delete m_foundations[i];
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 10; i++)
     {
         delete m_bases[i];
@@ -223,6 +244,9 @@ void Game::DisplayScore(wxDC& dc)
 
     // count the number of cards in foundations
     m_currentScore = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < 8; i++)
     {
         m_currentScore += m_foundations[i]->GetNumCards();
@@ -277,15 +301,24 @@ void Game::Deal()
     // Reset all the piles, the undo buffer and shuffle the m_pack
     m_moveIndex = 0;
     m_pack->ResetPile();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 5; i++)
     {
         m_pack->Shuffle();
     }
     m_discard->ResetPile();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 10; i++)
     {
         m_bases[i]->ResetPile();
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i <  8; i++)
     {
         m_foundations[i]->ResetPile();
@@ -294,6 +327,14 @@ void Game::Deal()
     // Deal the initial 40 cards onto the bases
     for (i = 0; i < 10; i++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (i = 0; i < 10; i++)
+    {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 1; j <= 4; j++)
         {
             card = m_pack->RemoveTopCard();
@@ -319,10 +360,16 @@ void Game::Redraw(wxDC& dc)
     int i;
     m_pack->Redraw(dc);
     m_discard->Redraw(dc);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 8; i++)
     {
         m_foundations[i]->Redraw(dc);
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 10; i++)
     {
         m_bases[i]->Redraw(dc);
@@ -365,6 +412,9 @@ Pile* Game::WhichPile(int x, int y)
     }
 
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 8; i++)
     {
         if (m_foundations[i]->GetCard(x, y) &&
@@ -374,6 +424,9 @@ Pile* Game::WhichPile(int x, int y)
         }
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < 10; i++)
     {
         if (m_bases[i]->GetCard(x, y) &&
@@ -456,6 +509,9 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
             // to an ace of the same suit
             if (card->GetPipValue() == 1)
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for(i = 0; i < 4; i++)
                 {
                     Card* m_topCard = m_foundations[i]->GetTopCard();
@@ -475,6 +531,9 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
             }
 
             // try to place the card on a foundation
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(i = 0; i < 8; i++)
             {
                 if (m_foundations[i]->AcceptCard(card) && m_foundations[i] != pile)
@@ -486,6 +545,9 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
                 }
             }
             // try to place the card on a populated base
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(i = 0; i < 10; i++)
             {
                 if (m_bases[i]->AcceptCard(card) &&
@@ -499,6 +561,9 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
                 }
             }
             // try to place the card on any base
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(i = 0; i < 10; i++)
             {
                 if (m_bases[i]->AcceptCard(card) && m_bases[i] != pile)
@@ -520,6 +585,9 @@ bool Game::HaveYouWon()
 {
     if (m_pack->GetTopCard()) return false;
     if (m_discard->GetTopCard()) return false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(int i = 0; i < 10; i++)
     {
         if (m_bases[i]->GetTopCard()) return false;
@@ -543,6 +611,9 @@ bool Game::CanYouGo(int x, int y)
         if (card)
         {
             int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(i = 0; i < 8; i++)
             {
                 if (m_foundations[i]->AcceptCard(card) && m_foundations[i] != pile)
@@ -550,6 +621,9 @@ bool Game::CanYouGo(int x, int y)
                     return true;
                 }
             }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(i = 0; i < 10; i++)
             {
                 if (m_bases[i]->GetTopCard() &&
@@ -582,6 +656,9 @@ void Game::LButtonUp(wxDC& dc, int x, int y)
 
         // find the nearest pile which will accept the card
         int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < 8; i++)
         {
             if (DropCard(x, y, m_foundations[i], m_liftedCard))
@@ -593,6 +670,9 @@ void Game::LButtonUp(wxDC& dc, int x, int y)
                 }
             }
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < 10; i++)
         {
             if (DropCard(x, y, m_bases[i], m_liftedCard))
@@ -737,6 +817,9 @@ void Game::MouseMove(wxDC& dc, int mx, int my)
 //----------------------------------------------//
 Pack::Pack(int x, int y) : Pile(x, y, 0, 0)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (m_topCard = 0; m_topCard < NumCards; m_topCard++)
     {
         m_cards[m_topCard] = new Card(1 + m_topCard / 2, facedown);
@@ -756,6 +839,9 @@ void Pack::Shuffle()
     // Copy the cards into a temporary array. Start by clearing
     // the array and then copy the card into a random position.
     // If the position is occupied then find the next lower position.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i <= m_topCard; i++)
     {
         temp[i] = 0;
@@ -763,6 +849,15 @@ void Pack::Shuffle()
     for (i = 0; i <= m_topCard; i++)
     {
         int pos = rand() % (m_topCard + 1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (i = 0; i <= m_topCard; i++)
+    {
+        int pos = rand() % (m_topCard + 1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (temp[pos])
         {
             pos--;
@@ -779,6 +874,15 @@ void Pack::Shuffle()
     for (i = 0; i <= m_topCard; i++)
     {
         int pos = rand() % (m_topCard + 1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (i = 0; i <= m_topCard; i++)
+    {
+        int pos = rand() % (m_topCard + 1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (m_cards[pos])
         {
             pos++;
@@ -819,6 +923,9 @@ void Pack::AddCard(Card* card)
 
 Pack::~Pack()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (m_topCard = 0; m_topCard < NumCards; m_topCard++)
     {
         delete m_cards[m_topCard];
@@ -905,6 +1012,9 @@ void Discard::Redraw(wxDC& dc)
         {
             int x = m_x;
             int y = m_y;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int i = 0; i <= m_topCard; i++)
             {
                 m_cards[i]->Draw(dc, x, y);
@@ -963,6 +1073,9 @@ Card* Discard::RemoveTopCard(wxDC& dc, int m_xOffset, int m_yOffset)
         dc.SetClippingRegion(topX - m_xOffset, topY - m_yOffset,
                      CardWidth, CardHeight);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = m_topCard - 31; i <= m_topCard - 31 + CardWidth / m_dx; i++)
         {
             m_cards[i]->Draw(dc, m_x - m_xOffset + i * m_dx, m_y - m_yOffset);

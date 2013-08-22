@@ -1,0 +1,13 @@
+wx_vc7*
+wx_vc8*
+wx_vc9*
+wx_vc10*
+*.bcc
+*.dsp
+*.dsw
+*.gcc
+*.vc
+*.vcproj
+*.wat
+
+#eof

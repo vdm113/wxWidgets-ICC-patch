@@ -90,6 +90,9 @@ int test_packbits()
         goto failure;
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < length; i++ )
     {
         if( !TIFFWriteEncodedStrip( tif, i, buf, 10 ) )
@@ -188,6 +191,9 @@ int rewrite_test( const char *filename, int length, int bigtiff,
         goto failure;
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < length; i++ )
     {
         if( !TIFFWriteScanline( tif, buf, i, 0 ) )
@@ -219,6 +225,9 @@ int rewrite_test( const char *filename, int length, int bigtiff,
     }
 
     upd_rowoffset = (uint64 *) _TIFFmalloc(sizeof(uint64) * length);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( i = 0; i < length; i++ )
         upd_rowoffset[i] = base_value + i*10;
 
@@ -232,6 +241,9 @@ int rewrite_test( const char *filename, int length, int bigtiff,
     _TIFFfree( upd_rowoffset );
 
     upd_bytecount = (uint64 *) _TIFFmalloc(sizeof(uint64) * length);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( i = 0; i < length; i++ )
         upd_bytecount[i] = 100 + i*10;
 
@@ -260,6 +272,9 @@ int rewrite_test( const char *filename, int length, int bigtiff,
         goto failure;
     }
         
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( i = 0; i < length; i++ )
     {
         uint64 expect = base_value + i*10;
@@ -283,6 +298,9 @@ int rewrite_test( const char *filename, int length, int bigtiff,
         goto failure;
     }
         
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( i = 0; i < length; i++ )
     {
         uint64 expect = 100 + i*10;

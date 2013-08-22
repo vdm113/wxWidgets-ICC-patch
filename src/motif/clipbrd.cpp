@@ -200,6 +200,9 @@ wxClipboard::~wxClipboard()
 void wxClipboard::Clear()
 {
     wxDataObjectList::compatibility_iterator node = m_data.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         delete node->GetData();
@@ -207,6 +210,9 @@ void wxClipboard::Clear()
     }
     m_data.Clear();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( wxDataIdToDataObjectList::compatibility_iterator node2 = m_idToObject.GetFirst();
          node2; node2 = node2->GetNext() )
     {
@@ -247,6 +253,9 @@ void wxClipboardCallback( Widget xwidget, long* data_id,
     wxDataObject* dobj = NULL;
     size_t size = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( wxDataIdToDataObjectList::compatibility_iterator node2 =
              wxTheClipboard->m_idToObject.GetFirst();
          node2; node2 = node2->GetNext() )
@@ -270,6 +279,9 @@ void wxClipboardCallback( Widget xwidget, long* data_id,
     if( !dobj->GetDataHere( dfarr[*priv], buffer.data() ) )
         return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( XmClipboardCopyByName( xdisplay, xwindow, *data_id,
                                   buffer.data(), size, 0 )
            == XmClipboardLocked );
@@ -291,6 +303,9 @@ bool wxClipboard::AddData( wxDataObject *data )
 
     int retval;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( ( retval = XmClipboardStartCopy( xdisplay, xwindow, label(),
                                             timestamp, xwidget,
                                             wxClipboardCallback,
@@ -303,12 +318,18 @@ bool wxClipboard::AddData( wxDataObject *data )
     wxDataFormatScopedArray dfarr( new wxDataFormat[count] );
     data->GetAllFormats( dfarr.get(), wxDataObject::Get );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( size_t i = 0; i < count; ++i )
     {
         size_t size = data->GetDataSize( dfarr[i] );
         long data_id;
         wxString id = dfarr[i].GetId();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while( ( retval = XmClipboardCopy( xdisplay, xwindow, itemId,
                                            id.char_str(),
                                            NULL, size, i, &data_id ) )
@@ -317,6 +338,9 @@ bool wxClipboard::AddData( wxDataObject *data )
         m_idToObject.Append( new wxDataIdToDataObject( data, data_id, size ) );
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( XmClipboardEndCopy( xdisplay, xwindow, itemId )
            == XmClipboardLocked );
 
@@ -339,6 +363,9 @@ bool wxClipboard::IsSupported(const wxDataFormat& format)
     unsigned long  max_name_length;
     wxString id = format.GetId();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( ( retval = XmClipboardLock( xdisplay, xwindow ) )
            == XmClipboardLocked );
     if( retval != XmClipboardSuccess )
@@ -350,6 +377,9 @@ bool wxClipboard::IsSupported(const wxDataFormat& format)
         wxCharBuffer buf( max_name_length + 1 );
         unsigned long copied;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( int i = 0; i < count; ++i )
         {
             if( XmClipboardInquireFormat( xdisplay, xwindow, i + 1,
@@ -380,6 +410,9 @@ public:
         : m_display( display ), m_window( window ) { }
     ~wxClipboardEndRetrieve()
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while( XmClipboardEndRetrieve( m_display, m_window )
                == XmClipboardLocked );
     }
@@ -402,6 +435,9 @@ bool wxClipboard::GetData( wxDataObject& data )
     ///////////////////////////////////////////////////////////////////////////
     // determine if the cliboard holds any format we like
     ///////////////////////////////////////////////////////////////////////////
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( ( retval = XmClipboardStartRetrieve( xdisplay, xwindow,
                                                 timestamp ) )
            == XmClipboardLocked );
@@ -422,6 +458,9 @@ bool wxClipboard::GetData( wxDataObject& data )
         wxCharBuffer buf( max_name_length + 1 );
         unsigned long copied;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( int i = 0; i < count; ++i )
         {
             if( XmClipboardInquireFormat( xdisplay, xwindow, i + 1,
@@ -440,6 +479,9 @@ bool wxClipboard::GetData( wxDataObject& data )
             }
 
             // try all other formats
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for( size_t i = 0; i < dfcount; ++i )
             {
                 if( buf == dfarr[i].GetId() )
@@ -458,6 +500,9 @@ bool wxClipboard::GetData( wxDataObject& data )
     long dummy2;
     wxString id = chosenFormat.GetId();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( ( retval = XmClipboardInquireLength( xdisplay, xwindow,
                                                 id.char_str(),
                                                 &length ) )
@@ -467,6 +512,9 @@ bool wxClipboard::GetData( wxDataObject& data )
 
     wxCharBuffer buf(length);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( ( retval = XmClipboardRetrieve( xdisplay, xwindow,
                                            id.char_str(),
                                            (XtPointer)buf.data(),

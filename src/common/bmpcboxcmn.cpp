@@ -70,6 +70,9 @@ void wxBitmapComboBoxBase::UpdateInternals()
 {
     m_fontHeight = GetControl()->GetCharHeight() + EXTRA_FONT_HEIGHT;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( m_bitmaps.GetCount() < GetItemContainer()->GetCount() )
         m_bitmaps.Add( new wxBitmap() );
 }
@@ -96,6 +99,9 @@ wxBitmap wxBitmapComboBoxBase::GetItemBitmap(unsigned int n) const
 
 void wxBitmapComboBoxBase::BCBDoClear()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned i = 0; i < m_bitmaps.size(); i++ )
         delete GetBitmapPtr(i);
 

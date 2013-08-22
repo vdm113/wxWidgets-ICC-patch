@@ -329,6 +329,9 @@ START_TEST(test_illegal_utf8)
     char text[100];
     int i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 128; i <= 255; ++i) {
         sprintf(text, "<e>%ccd</e>", i);
         if (XML_Parse(parser, text, strlen(text), XML_TRUE) == XML_STATUS_OK) {
@@ -630,6 +633,9 @@ is_whitespace_normalized(const XML_Char *s, int is_cdata)
 {
     int blanks = 0;
     int at_start = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (*s) {
         if (*s == ' ')
             ++blanks;
@@ -684,6 +690,9 @@ check_attr_contains_normalized_whitespace(void *userData,
                                           const XML_Char **atts)
 {
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; atts[i] != NULL; i += 2) {
         const XML_Char *attrname = atts[i];
         const XML_Char *value = atts[i + 1];
@@ -744,6 +753,9 @@ UnknownEncodingHandler(void *data,const XML_Char *encoding,XML_Encoding *info)
 {
     if (strcmp(encoding,"unsupported-encoding") == 0) {
         int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < 256; ++i)
             info->map[i] = i;
         info->data = NULL;
@@ -1140,6 +1152,9 @@ overwrite_start_checker(void *userData, const XML_Char *name,
     CharData *storage = (CharData *) userData;
     CharData_AppendString(storage, "start ");
     CharData_AppendXMLChars(storage, name, -1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (*atts != NULL) {
         CharData_AppendString(storage, "\nattribute ");
         CharData_AppendXMLChars(storage, *atts, -1);
@@ -1494,6 +1509,9 @@ main(int argc, char *argv[])
     /* run the tests for internal helper functions */
     testhelper_is_whitespace_normalized();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 1; i < argc; ++i) {
         char *opt = argv[i];
         if (strcmp(opt, "-v") == 0 || strcmp(opt, "--verbose") == 0)

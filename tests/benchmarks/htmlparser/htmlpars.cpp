@@ -82,6 +82,9 @@ wx28HtmlParser::wx28HtmlParser()
 
 wx28HtmlParser::~wx28HtmlParser()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (RestoreState()) {}
     DestroyDOMTree();
 
@@ -89,6 +92,9 @@ wx28HtmlParser::~wx28HtmlParser()
     {
         wxList& tmp = *m_HandlersStack;
         wxList::iterator it, en;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( it = tmp.begin(), en = tmp.end(); it != en; ++it )
             delete (wxHashTable*)*it;
         tmp.clear();
@@ -157,6 +163,9 @@ void wx28HtmlParser::CreateDOMSubTree(wx28HtmlTag *cur,
         i = end_pos;
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (i < end_pos)
     {
         c = m_Source.GetChar(i);
@@ -177,6 +186,9 @@ void wx28HtmlParser::CreateDOMSubTree(wx28HtmlTag *cur,
                 // according to HTML 4.0
                 int dashes = 0;
                 i += 4;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (i < end_pos)
                 {
                     c = m_Source.GetChar(i++);
@@ -236,6 +248,9 @@ void wx28HtmlParser::CreateDOMSubTree(wx28HtmlTag *cur,
             // ... or skip ending tag:
             else
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (i < end_pos && m_Source.GetChar(i) != wxT('>')) i++;
                 textBeginning = i+1;
             }
@@ -253,6 +268,9 @@ void wx28HtmlParser::DestroyDOMTree()
 {
     wx28HtmlTag *t1, *t2;
     t1 = m_Tags;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (t1)
     {
         t2 = t1->GetNextSibling();
@@ -283,6 +301,19 @@ void wx28HtmlParser::DoParsing(int begin_pos, int end_pos)
     {
         while (m_CurTag && m_CurTag->GetBeginPos() < begin_pos)
             m_CurTag = m_CurTag->GetNextTag();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (begin_pos < end_pos)
+    {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        while (m_CurTag && m_CurTag->GetBeginPos() < begin_pos)
+            m_CurTag = m_CurTag->GetNextTag();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (m_CurTextPiece < piecesCnt &&
                pieces[m_CurTextPiece].m_pos < begin_pos)
             m_CurTextPiece++;
@@ -339,6 +370,9 @@ void wx28HtmlParser::AddTagHandler(wx28HtmlTagHandler *handler)
     wxString s(handler->GetSupportedTags());
     wxStringTokenizer tokenizer(s, wxT(", "));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (tokenizer.HasMoreTokens())
         m_HandlersHash.Put(tokenizer.GetNextToken(), handler);
 
@@ -360,6 +394,9 @@ void wx28HtmlParser::PushTagHandler(wx28HtmlTagHandler *handler, const wxString&
 
     m_HandlersStack->Insert((wxObject*)new wxHashTable(m_HandlersHash));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (tokenizer.HasMoreTokens())
     {
         key = tokenizer.GetNextToken();
@@ -495,6 +532,9 @@ wxString wx28HtmlEntitiesParser::Parse(const wxString& input)
     const wxChar *in_str = input.c_str();
     wxString output;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (c = in_str, last = in_str; *c != wxT('\0'); c++)
     {
         if (*c == wxT('&'))
@@ -511,6 +551,9 @@ wxString wx28HtmlEntitiesParser::Parse(const wxString& input)
             const wxChar *ent_s = c;
             wxChar entity_char;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (; (*c >= wxT('a') && *c <= wxT('z')) ||
                    (*c >= wxT('A') && *c <= wxT('Z')) ||
                    (*c >= wxT('0') && *c <= wxT('9')) ||
@@ -842,6 +885,9 @@ wxChar wx28HtmlEntitiesParser::GetEntityChar(const wxString& entity)
         static size_t substitutions_cnt = 0;
 
         if (substitutions_cnt == 0)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (substitutions[substitutions_cnt].code != 0)
                 substitutions_cnt++;
 
@@ -849,6 +895,9 @@ wxChar wx28HtmlEntitiesParser::GetEntityChar(const wxString& entity)
 #ifdef __WXWINCE__
         // bsearch crashes under WinCE for some reason
         size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < substitutions_cnt; i++)
         {
             if (entity == substitutions[i].name)

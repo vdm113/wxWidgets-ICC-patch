@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/testing.h
 // Purpose:     helpers for GUI testing
@@ -197,6 +204,9 @@ public:
     // including messing up the order of errors in some cases.
     void CheckUnmetExpectations()
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( !m_expectations.empty() )
         {
             const wxModalExpectation *expect = m_expectations.front();
@@ -224,6 +234,9 @@ public:
 protected:
     virtual int Enter(wxDialog *dlg)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( !m_expectations.empty() )
         {
             const wxModalExpectation *expect = m_expectations.front();

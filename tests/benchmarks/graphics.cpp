@@ -154,6 +154,9 @@ private:
     // updated on screen.
     void UpdateRGB(unsigned char* data, int n)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int y = 0; y < opts.height; ++y )
         {
             memset(data, n % 256, 3*opts.width);
@@ -176,6 +179,9 @@ private:
         fflush(stdout);
 
         wxStopWatch sw;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
             UpdateRGB(g_image.GetData(), n);
@@ -270,6 +276,9 @@ private:
         wxStopWatch sw;
         int x = 0,
             y = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
             int x1 = rand() % opts.width,
@@ -304,6 +313,9 @@ private:
         fflush(stdout);
 
         wxStopWatch sw;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
             int x = rand() % opts.width,
@@ -332,6 +344,9 @@ private:
         fflush(stdout);
 
         wxStopWatch sw;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
             int x = rand() % opts.width,
@@ -360,6 +375,9 @@ private:
         wxImage image(wxSize(opts.width, opts.height), false /* don't clear */);
 
         wxStopWatch sw;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
             UpdateRGB(image.GetData(), n);
@@ -388,15 +406,24 @@ private:
         wxNativePixelData data(bitmap);
 
         wxStopWatch sw;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
             unsigned char c = n % 256;
             {
                 wxNativePixelData::Iterator p(data);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int y = 0; y < opts.height; ++y )
                 {
                     wxNativePixelData::Iterator rowStart = p;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( int x = 0; x < opts.width; ++x )
                     {
                         p.Red() =

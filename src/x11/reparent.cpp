@@ -114,6 +114,9 @@ bool wxReparenter::Reparent(wxWindow* newParent, wxAdoptedWindow* toReparent)
         /* Stacking order is preserved since XQueryTree returns its children in
            bottommost to topmost order
          */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (each=0; each<numchildren; each++)
         {
             XGetWindowAttributes( wxGlobalDisplay(),
@@ -154,6 +157,9 @@ bool wxReparenter::WaitAndReparent(wxWindow* newParent, wxAdoptedWindow* toRepar
     sm_done = false;
 
     wxEventLoop eventLoop;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!sm_done)
     {
         if (eventLoop.Pending())
@@ -276,6 +282,9 @@ WXWindow wxReparenter::FindAClientWindow(WXWindow window, const wxString& name)
     XSetErrorHandler(old);
 
     result = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i=0; i<(int)numchildren && !result ;i++) {
         result = (Window) FindAClientWindow((WXWindow) children[i], name);
     }

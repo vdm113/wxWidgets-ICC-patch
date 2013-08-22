@@ -80,6 +80,9 @@ private:
 
 void wxDFBEventsHandler::OnReadWaiting()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         int size = read(m_fd,
@@ -219,6 +222,9 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
     // TODO: implement event filtering using the eventsToProcess mask
 
     // process all pending events:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( Pending() )
         Dispatch();
 
@@ -228,6 +234,9 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
     // it's necessary to call ProcessIdle() to update the frames sizes which
     // might have been changed (it also will update other things set from
     // OnUpdateUI() which is a nice (and desired) side effect)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( ProcessIdle() ) {}
 
 #if wxUSE_LOG

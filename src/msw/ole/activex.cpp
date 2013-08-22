@@ -580,6 +580,9 @@ public:
                                 OLECMD prgCmds[], OLECMDTEXT *)
     {
         if (prgCmds == NULL) return E_INVALIDARG;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (ULONG nCmd = 0; nCmd < cCmds; nCmd++)
         {
             // unsupported by default
@@ -763,6 +766,9 @@ public:
 
         // process the events from the activex method
         m_activeX->ProcessEvent(event);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (DWORD i = 0; i < pDispParams->cArgs; i++)
         {
             size_t params_index = pDispParams->cArgs - i - 1;
@@ -813,6 +819,9 @@ wxVariant &wxActiveXEvent::operator [](size_t idx)
     // But it may be zero if the event has been created by wx program code.
     if (native)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( m_params.GetCount()<=idx )
         {
             m_params.Append(wxActiveXEvents::ms_invalidEntryMarker);
@@ -967,6 +976,9 @@ void wxActiveXContainer::CreateActiveX(REFIID iid, IUnknown* pUnk)
     wxASSERT(ta->typekind == TKIND_COCLASS);
 
     // iterate contained interfaces
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < ta->cImplTypes; i++)
     {
         HREFTYPE rt = 0;

@@ -78,6 +78,9 @@ bool MyApp::OnInit()
         return false;
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 1; i < argc; i++)
         help->AddBook(wxFileName(argv[i]));
 

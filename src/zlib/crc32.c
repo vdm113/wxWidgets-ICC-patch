@@ -119,12 +119,23 @@ local void make_crc_table()
 
         /* make exclusive-or pattern from polynomial (0xedb88320UL) */
         poly = 0UL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (n = 0; n < sizeof(p)/sizeof(unsigned char); n++)
             poly |= 1UL << (31 - p[n]);
 
         /* generate a crc for every 8-bit value */
         for (n = 0; n < 256; n++) {
             c = (unsigned long)n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        for (n = 0; n < 256; n++) {
+            c = (unsigned long)n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (k = 0; k < 8; k++)
                 c = c & 1 ? poly ^ (c >> 1) : c >> 1;
             crc_table[0][n] = c;
@@ -136,6 +147,15 @@ local void make_crc_table()
         for (n = 0; n < 256; n++) {
             c = crc_table[0][n];
             crc_table[4][n] = REV(c);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        for (n = 0; n < 256; n++) {
+            c = crc_table[0][n];
+            crc_table[4][n] = REV(c);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (k = 1; k < 4; k++) {
                 c = crc_table[0][c & 0xff] ^ (c >> 8);
                 crc_table[k][n] = c;
@@ -148,6 +168,9 @@ local void make_crc_table()
     }
     else {      /* not first */
         /* wait for the other guy to finish (not efficient, but rare) */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (crc_table_empty)
             ;
     }
@@ -166,6 +189,9 @@ local void make_crc_table()
         write_table(out, crc_table[0]);
 #  ifdef BYFOUR
         fprintf(out, "#ifdef BYFOUR\n");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (k = 1; k < 8; k++) {
             fprintf(out, "  },\n  {\n");
             write_table(out, crc_table[k]);
@@ -185,6 +211,9 @@ local void write_table(out, table)
 {
     int n;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0; n < 256; n++)
         fprintf(out, "%s0x%08lxUL%s", n % 5 ? "" : "    ", table[n],
                 n == 255 ? "\n" : (n % 5 == 4 ? ",\n" : ", "));
@@ -239,6 +268,9 @@ unsigned long ZEXPORT crc32(crc, buf, len)
     }
 #endif /* BYFOUR */
     crc = crc ^ 0xffffffffUL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (len >= 8) {
         DO8;
         len -= 8;
@@ -268,16 +300,25 @@ local unsigned long crc32_little(crc, buf, len)
 
     c = (u4)crc;
     c = ~c;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (len && ((ptrdiff_t)buf & 3)) {
         c = crc_table[0][(c ^ *buf++) & 0xff] ^ (c >> 8);
         len--;
     }
 
     buf4 = (const u4 FAR *)(const void FAR *)buf;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (len >= 32) {
         DOLIT32;
         len -= 32;
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (len >= 4) {
         DOLIT4;
         len -= 4;
@@ -308,6 +349,9 @@ local unsigned long crc32_big(crc, buf, len)
 
     c = REV((u4)crc);
     c = ~c;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (len && ((ptrdiff_t)buf & 3)) {
         c = crc_table[4][(c >> 24) ^ *buf++] ^ (c << 8);
         len--;
@@ -315,10 +359,16 @@ local unsigned long crc32_big(crc, buf, len)
 
     buf4 = (const u4 FAR *)(const void FAR *)buf;
     buf4--;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (len >= 32) {
         DOBIG32;
         len -= 32;
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (len >= 4) {
         DOBIG4;
         len -= 4;
@@ -345,6 +395,9 @@ local unsigned long gf2_matrix_times(mat, vec)
     unsigned long sum;
 
     sum = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (vec) {
         if (vec & 1)
             sum ^= *mat;
@@ -361,6 +414,9 @@ local void gf2_matrix_square(square, mat)
 {
     int n;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0; n < GF2_DIM; n++)
         square[n] = gf2_matrix_times(mat, mat[n]);
 }
@@ -383,6 +439,9 @@ uLong ZEXPORT crc32_combine(crc1, crc2, len2)
     /* put operator for one zero bit in odd */
     odd[0] = 0xedb88320L;           /* CRC-32 polynomial */
     row = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 1; n < GF2_DIM; n++) {
         odd[n] = row;
         row <<= 1;
@@ -396,6 +455,9 @@ uLong ZEXPORT crc32_combine(crc1, crc2, len2)
 
     /* apply len2 zeros to crc1 (first square will put the operator for one
        zero byte, eight zero bits, in even) */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do {
         /* apply zeros operator for this bit of len2 */
         gf2_matrix_square(even, odd);

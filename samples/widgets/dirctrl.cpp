@@ -261,6 +261,9 @@ void DirCtrlWidgetsPage::CreateDirCtrl()
     );
 
     wxString filter;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < 3; ++i)
     {
         if (m_fltr[i]->IsChecked())

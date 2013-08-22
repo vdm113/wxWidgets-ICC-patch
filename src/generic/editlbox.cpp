@@ -302,6 +302,9 @@ void wxEditableListBox::SetStrings(const wxArrayString& strings)
     m_listCtrl->DeleteAllItems();
     size_t i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < strings.GetCount(); i++)
         m_listCtrl->InsertItem(i, strings[i]);
 
@@ -313,6 +316,9 @@ void wxEditableListBox::GetStrings(wxArrayString& strings) const
 {
     strings.Clear();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < m_listCtrl->GetItemCount()-1; i++)
         strings.Add(m_listCtrl->GetItemText(i));
 }

@@ -363,6 +363,9 @@ wxRegionIterator& wxRegionIterator::operator=(const wxRegionIterator& ri)
     if ( m_numRects )
     {
         m_rects = new wxRect[m_numRects];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( long n = 0; n < m_numRects; n++ )
             m_rects[n] = ri.m_rects[n];
     }
@@ -400,6 +403,9 @@ void wxRegionIterator::Reset(const wxRegion& region)
 
         RECT* rect = (RECT*) ((char*)rgnData + sizeof(RGNDATAHEADER));
         size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < header->nCount; i++)
         {
             m_rects[i] = wxRect(rect->left, rect->top,

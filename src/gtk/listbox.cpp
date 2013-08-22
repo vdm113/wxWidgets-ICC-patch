@@ -617,6 +617,9 @@ int wxListBox::FindString( const wxString &item, bool bCase ) const
     //Sort of hackish - maybe there is a faster way
     unsigned int nCount = wxListBox::GetCount();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(unsigned int i = 0; i < nCount; ++i)
     {
         if( item.IsSameAs( wxListBox::GetString(i), bCase ) )
@@ -679,6 +682,9 @@ int wxListBox::GetSelections( wxArrayInt& aSelections ) const
 
     if (gtk_tree_model_get_iter_first(GTK_TREE_MODEL(m_liststore), &iter))
     { //gtk_tree_selection_get_selected_rows is GTK 2.2+ so iter instead
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do
         {
             if (gtk_tree_selection_iter_is_selected(selection, &iter))
@@ -861,6 +867,9 @@ wxSize wxListBox::DoGetBestSize() const
     if ( count )
     {
         int wLine;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned int i = 0; i < count; i++ )
         {
             GetTextExtent(GetString(i), &wLine, NULL);

@@ -250,6 +250,9 @@ void wxAuiGenericTabArt::DrawBorder(wxDC& dc, wxWindow* wnd, const wxRect& rect)
     int i, border_width = GetBorderWidth(wnd);
 
     wxRect theRect(rect);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < border_width; ++i)
     {
         dc.DrawRectangle(theRect.x, theRect.y, theRect.width, theRect.height);
@@ -732,6 +735,9 @@ int wxAuiGenericTabArt::ShowDropDown(wxWindow* wnd,
     wxMenu menuPopup;
 
     size_t i, count = pages.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < count; ++i)
     {
         const wxAuiNotebookPage& page = pages.Item(i);
@@ -788,6 +794,9 @@ int wxAuiGenericTabArt::GetBestTabCtrlSize(wxWindow* wnd,
 
     int max_y = 0;
     size_t i, page_count = pages.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < page_count; ++i)
     {
         wxAuiNotebookPage& page = pages.Item(i);
@@ -943,6 +952,9 @@ void wxAuiSimpleTabArt::DrawBorder(wxDC& dc, wxWindow* wnd, const wxRect& rect)
     int i, border_width = GetBorderWidth(wnd);
 
     wxRect theRect(rect);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < border_width; ++i)
     {
         dc.DrawRectangle(theRect.x, theRect.y, theRect.width, theRect.height);
@@ -1247,6 +1259,9 @@ int wxAuiSimpleTabArt::ShowDropDown(wxWindow* wnd,
     wxMenu menuPopup;
 
     size_t i, count = pages.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < count; ++i)
     {
         const wxAuiNotebookPage& page = pages.Item(i);

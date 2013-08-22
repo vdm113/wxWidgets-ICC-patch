@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        thread.h
 // Purpose:     interface of all thread-related wxWidgets classes
@@ -341,6 +348,9 @@ public:
             int offset = 0;
 
             // here we do our long task, periodically calling TestDestroy():
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (!GetThread()->TestDestroy())
             {
                 // since this Entry() is implemented in MyFrame context we don't
@@ -428,6 +438,9 @@ public:
         @code
             wxThread::ExitCode Entry()
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (!GetThread()->TestDestroy())
                 {
                     // ... do some work ...
@@ -784,6 +797,9 @@ enum wxThreadError
 
     wxThread::ExitCode MyThread::Entry()
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (!TestDestroy())
         {
             // ... do a bit of work...
@@ -853,6 +869,9 @@ enum wxThreadError
                 // the possibility to enter its destructor
                 // (which is guarded with m_pThreadCS critical section!)
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (1)
         {
             { // was the ~MyThread() function executed?
@@ -1220,6 +1239,9 @@ public:
           - @c wxPRIORITY_MIN: 0
           - @c wxPRIORITY_DEFAULT: 50
           - @c wxPRIORITY_MAX: 100
+          - ::wxPRIORITY_MIN: 0
+          - ::wxPRIORITY_DEFAULT: 50
+          - ::wxPRIORITY_MAX: 100
     */
     void SetPriority(unsigned int priority);
 
@@ -1262,6 +1284,7 @@ public:
         This function can only be called from another thread context.
 
         @param flags
+        @param waitMode
             As described in wxThreadWait documentation, wxTHREAD_WAIT_BLOCK
             should be used as the wait mode even although currently
             wxTHREAD_WAIT_YIELD is for compatibility reasons. This parameter is
@@ -1573,6 +1596,9 @@ enum wxMutexError
         wxMutexLocker lock(s_mutexProtectingTheGlobalData);
 
         size_t count = s_data.Count();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < count; n++ )
         {
             if ( s_data[n] > num )

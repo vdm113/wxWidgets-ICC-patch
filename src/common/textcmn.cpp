@@ -803,6 +803,9 @@ bool wxTextAttr::TabsEq(const wxArrayInt& tabs1, const wxArrayInt& tabs2)
         return false;
 
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < tabs1.GetCount(); i++)
     {
         if (tabs1[i] != tabs2[i])

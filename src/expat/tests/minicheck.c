@@ -117,6 +117,14 @@ srunner_run_all(SRunner *runner, int verbosity)
     tc = suite->tests;
     while (tc != NULL) {
         int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (tc != NULL) {
+        int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < tc->ntests; ++i) {
             runner->nchecks++;
 

@@ -77,6 +77,9 @@ int main(int argc, char **argv)
     gray = (uint16 *) malloc(cmsize * sizeof(uint16));
 
     gray[0] = 3000;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 1; i < cmsize; i++)
         gray[i] = (uint16) (-log10((double) i / (cmsize - 1)) * 1000);
 
@@ -104,6 +107,13 @@ int main(int argc, char **argv)
     scan_line = (unsigned char *) malloc(WIDTH / (8 / bits_per_pixel));
 
     for (i = 0; i < HEIGHT; i++) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (i = 0; i < HEIGHT; i++) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0, k = 0; j < WIDTH;) {
             gray_index = (j / chunk_size) + ((i / chunk_size) * nchunks);
 

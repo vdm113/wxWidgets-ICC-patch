@@ -435,6 +435,9 @@ void MyFrame::OnQuery(wxCommandEvent& WXUNUSED(event))
         long obtained = 0;
         VARIANT *var = new VARIANT[childCount];
         int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < childCount; i++)
         {
             VariantInit(& (var[i]));
@@ -443,6 +446,9 @@ void MyFrame::OnQuery(wxCommandEvent& WXUNUSED(event))
 
         if (S_OK == AccessibleChildren(accessibleFrame, 0, childCount, var, &obtained))
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < childCount; i++)
             {
                 IAccessible* childAccessible = NULL;
@@ -515,6 +521,9 @@ void MyFrame::LogObject(int indent, IAccessible* obj)
     }
 
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 1; i <= childCount; i++)
     {
         GetInfo(obj, i, name, role);

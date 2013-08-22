@@ -126,6 +126,9 @@ bool wxTextFile::OnRead(const wxMBConv& conv)
         wxASSERT_MSG( m_file.Tell() == 0, wxT("should be at start of file") );
 
         char *dst = buf.data();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t nRemaining = bufSize; nRemaining > 0; )
         {
             size_t nToRead = BLOCK_SIZE;
@@ -160,6 +163,9 @@ bool wxTextFile::OnRead(const wxMBConv& conv)
     else // file is not seekable
     {
         char block[BLOCK_SIZE];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ;; )
         {
             ssize_t nRead = m_file.Read(block, WXSIZEOF(block));
@@ -214,6 +220,9 @@ bool wxTextFile::OnRead(const wxMBConv& conv)
     // the beginning of the current line, changes inside the loop
     wxString::const_iterator lineStart = str.begin();
     const wxString::const_iterator end = str.end();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator p = lineStart; p != end; p++ )
     {
         const wxChar ch = *p;
@@ -301,6 +310,9 @@ bool wxTextFile::OnWrite(wxTextFileType typeNew, const wxMBConv& conv)
     }
 
     size_t nCount = GetLineCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < nCount; n++ ) {
         fileTmp.Write(GetLine(n) +
                       GetEOL(typeNew == wxTextFileType_None ? GetLineType(n)

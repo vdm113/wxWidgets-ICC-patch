@@ -54,6 +54,9 @@ wxWindowMSW *wxGUIEventLoop::ms_winCritical = NULL;
 
 bool wxGUIEventLoop::IsChildOfCriticalWindow(wxWindowMSW *win)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( win )
     {
         if ( win == ms_winCritical )
@@ -75,6 +78,9 @@ bool wxGUIEventLoop::PreProcessMessage(WXMSG *msg)
     // children which themselves were not created by wx (i.e. wxActiveX control children)
     if ( !wndThis )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( hwnd && (::GetWindowLong(hwnd, GWL_STYLE) & WS_CHILD ))
         {
             hwnd = ::GetParent(hwnd);
@@ -130,6 +136,9 @@ bool wxGUIEventLoop::PreProcessMessage(WXMSG *msg)
     }
 
     // try translations first: the accelerators override everything
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wnd = wndThis; wnd; wnd = wnd->GetParent() )
     {
         if ( wnd->MSWTranslateMessage((WXMSG *)msg))
@@ -143,6 +152,9 @@ bool wxGUIEventLoop::PreProcessMessage(WXMSG *msg)
     }
 
     // now try the other hooks (kbd navigation is handled here)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wnd = wndThis; wnd; wnd = wnd->GetParent() )
     {
         if ( wnd->MSWProcessMessage((WXMSG *)msg) )
@@ -213,6 +225,9 @@ bool wxGUIEventLoop::Dispatch()
             s_hadGuiLock = true;
 
             wxMsgList::compatibility_iterator node = s_aSavedMessages.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (node)
             {
                 MSG* pMsg = node->GetData();
@@ -285,6 +300,9 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
     // the main event loop in order to stop it
     MSG msg;
     int nPaintsReceived = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( PeekMessage(&msg, (HWND)0, 0, 0, PM_NOREMOVE) &&
             msg.message != WM_QUIT )
     {
@@ -440,6 +458,9 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
 
     // put back unprocessed events in the queue
     DWORD id = GetCurrentThreadId();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i=0; i<m_arrMSG.GetCount(); i++)
     {
         PostThreadMessage(id, m_arrMSG[i].message,

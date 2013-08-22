@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        mymodels.h
 // Purpose:     wxDataViewCtrl wxWidgets sample
@@ -48,6 +55,9 @@ public:
     {
         // free all our children nodes
         size_t count = m_children.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = 0; i < count; i++)
         {
             MyMusicTreeModelNode *child = m_children[i];

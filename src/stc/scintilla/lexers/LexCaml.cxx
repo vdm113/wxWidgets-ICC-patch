@@ -159,6 +159,15 @@ static void InternalLexOrFold(int foldOrLex, unsigned int startPos, int length,
 	for (; words[nWL]; nWL++) ;	// count # of WordList PTRs needed
 	WordList** wl = new WordList* [nWL + 1];// alloc WordList PTRs
 	int i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	for (; words[nWL]; nWL++) ;	// count # of WordList PTRs needed
+	WordList** wl = new WordList* [nWL + 1];// alloc WordList PTRs
+	int i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; i < nWL; i++) {
 		wl[i] = new WordList();	// (works or THROWS bad_alloc EXCEPTION)
 		wl[i]->Set(words[i]);
@@ -171,6 +180,9 @@ static void InternalLexOrFold(int foldOrLex, unsigned int startPos, int length,
 		ColouriseCamlDoc(startPos, length, initStyle, wl, wa);
 	wa.Flush();
 	// clean up before leaving
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = nWL - 1; i >= 0; i--)
 		delete wl[i];
 	delete [] wl;
@@ -203,6 +215,9 @@ void ColouriseCamlDoc(
 	int nesting = (state_ >= SCE_CAML_COMMENT)? (state_ - SCE_CAML_COMMENT): 0;
 
 	// foreach char in range...
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (sc.More()) {
 		// set up [per-char] state info
 		int state2 = -1;				// (ASSUME no state change)
@@ -258,6 +273,9 @@ void ColouriseCamlDoc(
 				if (n < 24) {
 					// length is believable as keyword, [re-]construct token
 					char t[24];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					for (int i = -n; i < 0; i++)
 						t[n + i] = static_cast<char>(sc.GetRelative(i));
 					t[n] = '\0';
@@ -391,6 +409,9 @@ void ColouriseCamlDoc(
 					styler.ColourTo(chColor, SCE_CAML_WHITE), styler.Flush();
 				// ... then backtrack to determine original SML literal type
 				int p = chColor - 2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (; p >= 0 && styler.StyleAt(p) == SCE_CAML_WHITE; p--) ;
 				if (p >= 0)
 					state2 = static_cast<int>(styler.StyleAt(p));

@@ -478,6 +478,9 @@ bool operator == (const wxArrayDouble& a, const wxArrayDouble& b)
 
     size_t i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i=0; i<a.GetCount(); i++ )
     {
         // Can't do direct equality comparison with floating point numbers.
@@ -562,6 +565,9 @@ void wxArrayDoubleProperty::GenerateValueAsString( wxString& target, int prec, b
 
     const wxArrayDouble& value = wxArrayDoubleRefFromVariant(m_value);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i=0; i<value.GetCount(); i++ )
     {
 

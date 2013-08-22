@@ -111,6 +111,9 @@ bool wxHIDDevice::Create (int nClass, int nType, int nDev)
 
     //Now we iterate through them
     io_object_t pObject;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( (pObject = IOIteratorNext(pIterator)) != 0)
     {
         if(--nDev != 0)
@@ -276,6 +279,9 @@ size_t wxHIDDevice::GetCount (int nClass, int nType)
     //Now we iterate through them
     size_t nCount = 0;
     io_object_t pObject;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( (pObject = IOIteratorNext(pIterator)) != 0)
     {
         ++nCount;
@@ -479,6 +485,9 @@ void wxHIDKeyboard::DoBuildCookies(CFArrayRef Array)
     int i;
     long nUsage;
 //    bool bEOTriggered = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < CFArrayGetCount(Array); ++i)
     {
         const void* ref = CFDictionaryGetValue(
@@ -651,6 +660,9 @@ class wxHIDModule : public wxModule
         }
         virtual void OnExit()
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for(size_t i = 0; i < sm_keyboards.GetCount(); ++i)
                 delete (wxHIDKeyboard*) sm_keyboards[i];
             sm_keyboards.Clear();

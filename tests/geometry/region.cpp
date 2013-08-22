@@ -36,6 +36,9 @@ namespace
 unsigned GetRectsCount(const wxRegion& rgn)
 {
     unsigned count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxRegionIterator iter(rgn); iter.HaveRects(); ++iter )
         count++;
     return count;

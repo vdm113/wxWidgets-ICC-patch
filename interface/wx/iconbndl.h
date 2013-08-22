@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        iconbndl.h
 // Purpose:     interface of wxIconBundle
@@ -122,6 +129,13 @@ public:
         function returns the smallest icon of the size larger than the 
         requested one or, if this fails too, just the icon closest to the
         specified size.
+        ::FALLBACK_NONE is given, the function returns an invalid icon. If
+        ::FALLBACK_SYSTEM is given, it tries to find the icon of standard
+        system size, regardless of the size passed as parameter. Otherwise, or
+        if the icon system size is not found neither, but
+        ::FALLBACK_NEAREST_LARGER flag is specified, the function returns the
+        smallest icon of the size larger than the requested one or, if this
+        fails too, just the icon closest to the specified size.
 
         The @a flags parameter is available only since wxWidgets 2.9.4.
     */

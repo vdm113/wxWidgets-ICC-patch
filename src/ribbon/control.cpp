@@ -111,6 +111,9 @@ bool wxRibbonControl::Realize()
 
 wxRibbonBar* wxRibbonControl::GetAncestorRibbonBar()const
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxWindow* win = GetParent(); win; win = win->GetParent() )
     {
         wxRibbonBar* bar = wxDynamicCast(win, wxRibbonBar);

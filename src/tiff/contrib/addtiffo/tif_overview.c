@@ -173,6 +173,14 @@ TIFF_GetSourceSamples( double * padfSamples, unsigned char *pabySrc,
 
     for( iYOff = 0; iYOff < nYSize; iYOff++ )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for( iYOff = 0; iYOff < nYSize; iYOff++ )
+    {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( iXOff = 0; iXOff < nXSize; iXOff++ )
         {
             unsigned char *pabyData;
@@ -281,6 +289,9 @@ void TIFF_DownSample( unsigned char *pabySrcTile,
 /*      Loop over scanline chunks to process, establishing where the    */
 /*      data is going.                                                  */
 /* ==================================================================== */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( j = 0; j*nOMult < nBlockYSize; j++ )
     {
         if( j + nTYOff >= nOBlockYSize )
@@ -298,6 +309,9 @@ void TIFF_DownSample( unsigned char *pabySrcTile,
         {
             pabySrc = pabySrcTile + j*nOMult*nBlockXSize * nPixelGroupBytes;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for( i = 0; i*nOMult < nBlockXSize; i++ )
             {
                 if( i + nTXOff >= nOBlockXSize )
@@ -308,6 +322,9 @@ void TIFF_DownSample( unsigned char *pabySrcTile,
                  * of the source block of pixels.
                  */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for( k = 0; k < nPixelBytes; k++ )
                     pabyDst[k] = pabySrc[k];
 
@@ -325,6 +342,9 @@ void TIFF_DownSample( unsigned char *pabySrcTile,
         {
             pabySrc = pabySrcTile + j*nOMult*nBlockXSize * nPixelGroupBytes;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for( i = 0; i*nOMult < nBlockXSize; i++ )
             {
                 double   dfTotal;
@@ -343,6 +363,9 @@ void TIFF_DownSample( unsigned char *pabySrcTile,
                                        nPixelGroupBytes * nBlockXSize );
 
                 dfTotal = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for( iSample = 0; iSample < nXSize*nYSize; iSample++ )
                 {
                     dfTotal += padfSamples[iSample];
@@ -395,6 +418,9 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
     {
     	if( nSample == 0 )
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for( nSourceY = 0, nDestY = nTYOff; 
                  nSourceY < nBlockYSize; 
                  nSourceY += nOMult, nDestY ++)
@@ -402,6 +428,9 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
                 if( nDestY >= nOBlockYSize )
                     break;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for( nSourceX = 0, nDestX = nTXOff; 
                      nSourceX < nBlockXSize; 
                      nSourceX += nOMult, nDestX ++)
@@ -423,6 +452,9 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
         else
         {
             nSampleOffsetInSampleBlock = nHorSubsampling * nVerSubsampling + nSample - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for( nSourceY = 0, nDestY = ( nTYOff / nVerSubsampling ); 
                  nSourceY < ( nBlockYSize / nVerSubsampling );
                  nSourceY += nOMult, nDestY ++)
@@ -430,6 +462,9 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
                 if( nDestY*nVerSubsampling >= nOBlockYSize )
                     break;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             	for( nSourceX = 0, nDestX = ( nTXOff / nHorSubsampling ); 
                      nSourceX < ( nBlockXSize / nHorSubsampling );
                      nSourceX += nOMult, nDestX ++)
@@ -452,11 +487,17 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
     {
     	if( nSample == 0 )
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for( nSourceY = 0, nDestY = nTYOff; nSourceY < nBlockYSize; nSourceY += nOMult, nDestY ++)
             {
                 if( nDestY >= nOBlockYSize )
                     break;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for( nSourceX = 0, nDestX = nTXOff; nSourceX < nBlockXSize; nSourceX += nOMult, nDestX ++)
                 {
                     if( nDestX >= nOBlockXSize )
@@ -471,6 +512,14 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
                     nCummulator = 0;
                     for( nSourceYSec = nSourceY; nSourceYSec < nSourceYSecEnd; nSourceYSec ++)
                     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+                    for( nSourceYSec = nSourceY; nSourceYSec < nSourceYSecEnd; nSourceYSec ++)
+                    {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for( nSourceXSec = nSourceX; nSourceXSec < nSourceXSecEnd; nSourceXSec ++)
                         {
                             nCummulator += * ( pabySrcTile + ( nSourceYSec / nVerSubsampling ) * nSourceSampleRowSize
@@ -491,12 +540,18 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
         else
         {
             nSampleOffsetInSampleBlock = nHorSubsampling * nVerSubsampling + nSample - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for( nSourceY = 0, nDestY = ( nTYOff / nVerSubsampling ); nSourceY < ( nBlockYSize / nVerSubsampling );
                  nSourceY += nOMult, nDestY ++)
             {
                 if( nDestY*nVerSubsampling >= nOBlockYSize )
                     break;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for( nSourceX = 0, nDestX = ( nTXOff / nHorSubsampling ); nSourceX < ( nBlockXSize / nHorSubsampling );
                      nSourceX += nOMult, nDestX ++)
                 {
@@ -512,6 +567,14 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
                     nCummulator = 0;
                     for( nSourceYSec = nSourceY; nSourceYSec < nSourceYSecEnd; nSourceYSec ++)
                     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+                    for( nSourceYSec = nSourceY; nSourceYSec < nSourceYSecEnd; nSourceYSec ++)
+                    {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for( nSourceXSec = nSourceX; nSourceXSec < nSourceXSecEnd; nSourceXSec ++)
                         {
                             nCummulator += * ( pabySrcTile + nSourceYSec * nSourceSampleRowSize
@@ -551,6 +614,9 @@ void TIFF_ProcessFullResBlock( TIFF *hTIFF, int nPlanarConfig,
 {
     int		iOverview, iSample;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( iSample = 0; iSample < nSamples; iSample++ )
     {
         /*
@@ -581,6 +647,9 @@ void TIFF_ProcessFullResBlock( TIFF *hTIFF, int nPlanarConfig,
         /*        
          * Loop over destination overview layers
          */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( iOverview = 0; iOverview < nOverviews; iOverview++ )
         {
             TIFFOvrCache *poRBI = papoRawBIs[iOverview];
@@ -804,6 +873,9 @@ void TIFFBuildOverviews( TIFF *hTIFF, int nOverviews, int * panOvList,
 /* -------------------------------------------------------------------- */
     papoRawBIs = (TIFFOvrCache **) _TIFFmalloc(nOverviews*sizeof(void*));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( i = 0; i < nOverviews; i++ )
     {
         uint32  nOXSize, nOYSize, nOBlockXSize, nOBlockYSize;
@@ -857,6 +929,14 @@ void TIFFBuildOverviews( TIFF *hTIFF, int nOverviews, int * panOvList,
 /* -------------------------------------------------------------------- */
     for( nSYOff = 0; nSYOff < (int) nYSize; nSYOff += nBlockYSize )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for( nSYOff = 0; nSYOff < (int) nYSize; nSYOff += nBlockYSize )
+    {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( nSXOff = 0; nSXOff < (int) nXSize; nSXOff += nBlockXSize )
         {
             /*
@@ -878,6 +958,9 @@ void TIFFBuildOverviews( TIFF *hTIFF, int nOverviews, int * panOvList,
 /* -------------------------------------------------------------------- */
 /*      Cleanup the rawblockedimage files.                              */
 /* -------------------------------------------------------------------- */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( i = 0; i < nOverviews; i++ )
     {
         TIFFDestroyOvrCache( papoRawBIs[i] );

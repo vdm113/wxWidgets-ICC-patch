@@ -122,6 +122,9 @@ bool wxFontEnumerator::EnumerateEncodingsUTF8(const wxString& facename)
     if ( !count )
         return false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         OnFontEncoding(facenames[n], utf8);

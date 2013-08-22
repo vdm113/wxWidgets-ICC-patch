@@ -385,6 +385,9 @@ bool wxPenRefData::Alloc()
        {
            dash = new DWORD[m_nbDash];
            int rw = m_width > 1 ? m_width : 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
            for ( int i = 0; i < m_nbDash; i++ )
                dash[i] = m_dash[i] * rw;
        }

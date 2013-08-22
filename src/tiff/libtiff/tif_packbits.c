@@ -76,11 +76,17 @@ PackBitsEncode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 	ep = tif->tif_rawdata + tif->tif_rawdatasize;
 	state = BASE;
 	lastliteral = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (cc > 0) {
 		/*
 		 * Find the longest string of identical bytes.
 		 */
 		b = *bp++, cc--, n = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (; cc > 0 && b == *bp; cc--, bp++)
 			n++;
 	again:
@@ -97,6 +103,9 @@ PackBitsEncode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 				if (!TIFFFlushData1(tif))
 					return (-1);
 				op = tif->tif_rawcp;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while (slop-- > 0)
 					*op++ = *lastliteral++;
 				lastliteral = tif->tif_rawcp;
@@ -194,6 +203,9 @@ PackBitsEncodeChunk(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 {
 	tmsize_t rowsize = *(tmsize_t*)tif->tif_data;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (cc > 0) {
 		tmsize_t chunk = rowsize;
 		
@@ -220,6 +232,9 @@ PackBitsDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 	(void) s;
 	bp = (char*) tif->tif_rawcp;
 	cc = tif->tif_rawcc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (cc > 0 && occ > 0) {
 		n = (long) *bp++, cc--;
 		/*
@@ -241,6 +256,9 @@ PackBitsDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 			}
 			occ -= n;
 			b = *bp++, cc--;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (n-- > 0)
 				*op++ = (uint8) b;
 		} else {		/* copy next n+1 bytes literally */

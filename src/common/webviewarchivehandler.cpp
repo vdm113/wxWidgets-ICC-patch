@@ -23,6 +23,9 @@ static wxString EscapeFileNameCharsInURL(const char *in)
 {
     wxString s;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( const unsigned char *p = (const unsigned char*)in; *p; ++p )
     {
         const unsigned char c = *p;
@@ -67,6 +70,9 @@ wxFSFile* wxWebViewArchiveHandler::GetFile(const wxString &uri)
 
     //We iterate through the string to see if there is a protocol description
     size_t start = wxString::npos;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(size_t i = 0; i < path.length(); i++)
     {
         if(path[i] == ';' && path.substr(i, 10) == ";protocol=")

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        string.h
 // Purpose:     interface of wxStringBuffer, wxString
@@ -1411,6 +1418,9 @@ public:
 
                 result.Alloc(len);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( size_t n = 0; n < len; n++ )
                 {
                     if ( strchr("aeuio", tolower(original[n])) == NULL )

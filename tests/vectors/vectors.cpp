@@ -201,6 +201,9 @@ void VectorsTestCase::Iterators()
     v.push_back(4);
 
     int value = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxVector<int>::iterator i = v.begin(); i != v.end(); ++i, ++value )
     {
         CPPUNIT_ASSERT_EQUAL( value, *i );
@@ -309,6 +312,9 @@ void VectorsTestCase::Sort()
 
     wxVectorSort(v);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (idx=1; idx<v.size(); idx++)
     {
         CPPUNIT_ASSERT( v[idx-1] <= v[idx] );

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        intl.h
 // Purpose:     interface of wxLocale
@@ -455,6 +462,7 @@ public:
         @param name
             The name of the locale. Only used in diagnostic messages.
         @param shortName
+        @param short
             The standard 2 letter locale abbreviation; it is used as the
             directory prefix when looking for the message catalog files.
         @param locale

@@ -46,6 +46,9 @@ bool wxRadioButton::Create( wxWindow *parent,
         // search backward for last group start
         wxRadioButton *chief = NULL;
         wxWindowList::compatibility_iterator node = parent->GetChildren().GetLast();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             wxWindow *child = node->GetData();
@@ -82,6 +85,9 @@ void wxRadioButton::SetValue(bool val)
         cycle = this->NextInCycle();
         if (cycle != NULL)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (cycle != this)
             {
                 cycle->SetValue( false );
@@ -115,6 +121,9 @@ bool wxRadioButton::OSXHandleClicked( double WXUNUSED(timestampsec) )
     cycle = this->NextInCycle();
     if (cycle != NULL)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (cycle != this)
         {
             if (cycle->GetValue())
@@ -145,6 +154,9 @@ wxRadioButton *wxRadioButton::AddInCycle(wxRadioButton *cycle)
     else
     {
         current = cycle;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (current->m_cycle != cycle)
             current = current->m_cycle;
 
@@ -162,6 +174,9 @@ void wxRadioButton::RemoveFromCycle()
 
     // Find the previous one and make it point to the next one
     wxRadioButton* prev = this;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (prev->m_cycle != this)
         prev = prev->m_cycle;
 

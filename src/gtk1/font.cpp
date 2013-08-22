@@ -299,6 +299,9 @@ wxFontRefData::wxFontRefData(const wxString& fontname)
 
 void wxFontRefData::ClearGdkFonts()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxScaledFontList::iterator i = m_scaled_xfonts.begin();
           i != m_scaled_xfonts.end();
           ++i )

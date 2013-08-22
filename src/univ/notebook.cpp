@@ -544,6 +544,9 @@ void wxNotebook::DoDraw(wxControlRenderer *renderer)
     bool isVertical = IsVertical();
 
     wxRect rectSel;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = m_firstVisible; n < m_lastVisible; n++ )
     {
         GetTabSize(n, &rect.width, &rect.height);
@@ -629,6 +632,9 @@ int wxNotebook::HitTest(const wxPoint& pt, long *flags) const
             break;
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = m_firstVisible; n < m_lastVisible; n++ )
     {
         GetTabSize(n, &rectTabs.width, &rectTabs.height);
@@ -690,6 +696,9 @@ wxRect wxNotebook::GetTabRect(int page) const
     else
     {
         widthBefore = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < page; n++ )
         {
             widthBefore += m_widths[n];
@@ -1012,6 +1021,9 @@ void wxNotebook::CalcLastVisibleTab()
 
     wxCoord widthLast = 0;
     size_t n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = m_firstVisible; n < count; n++ )
     {
         GetTabSize(n, &rect.width, &rect.height);
@@ -1101,6 +1113,9 @@ void wxNotebook::UpdateSpinBtn()
         // mean that all tabs are shown - so we go backwards until we arrive to
         // the beginning (then all tabs are indeed shown) or find a tab such
         // that not all tabs after it are shown
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( (m_lastFullyVisible == count - 1) && (m_firstVisible > 0) )
         {
             // this is equivalent to ScrollTo(m_firstVisible - 1) but more
@@ -1201,6 +1216,9 @@ void wxNotebook::ScrollTo(size_t page)
     // set the first visible tab and offset (easy)
     m_firstVisible = page;
     m_offset = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < m_firstVisible; n++ )
     {
         m_offset += GetTabWidth(n);
@@ -1234,6 +1252,9 @@ void wxNotebook::ScrollLastTo(size_t page)
     }
 
     m_firstVisible = page;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( (m_firstVisible > 0) && (widthTabs <= widthAll) )
     {
         widthTabs += GetTabWidth(--m_firstVisible);

@@ -536,6 +536,9 @@ void wxFrame::OnActivate(wxActivateEvent& event)
     if (!event.GetActive())
         return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(wxWindowList::compatibility_iterator node = GetChildren().GetFirst(); node;
         node = node->GetNext())
     {

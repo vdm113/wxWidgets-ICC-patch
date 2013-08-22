@@ -61,10 +61,16 @@ void GarbageTestCase::LoadGarbage()
 
     wxInitAllImageHandlers();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t size = 1; size < GARBAGE_DATA_SIZE; size *= size+1)
     {
         // first, generate some garbage data
         unsigned char *data = new unsigned char[size];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = 0; i < size; i++)
             data[i] = rand();
 
@@ -98,6 +104,9 @@ void GarbageTestCase::DoLoadFile(const wxString& fullname)
     CPPUNIT_ASSERT( img.LoadFile(fullname) == false );
         // test with the default wxBITMAP_TYPE_ANY
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (type = wxBITMAP_TYPE_BMP; type < wxBITMAP_TYPE_ANY; type++)
         CPPUNIT_ASSERT( img.LoadFile(fullname, (wxBitmapType)type) == false );
             // test with all other possible wxBITMAP_TYPE_* flags
@@ -107,6 +116,9 @@ void GarbageTestCase::DoLoadFile(const wxString& fullname)
     CPPUNIT_ASSERT( bmp.LoadFile(fullname) == false );
         // test with the default wxBITMAP_TYPE_ANY
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (type = wxBITMAP_TYPE_BMP; type < wxBITMAP_TYPE_ANY; type++)
         CPPUNIT_ASSERT( bmp.LoadFile(fullname, (wxBitmapType)type) == false );
             // test with all other possible wxBITMAP_TYPE_* flags
@@ -116,6 +128,9 @@ void GarbageTestCase::DoLoadFile(const wxString& fullname)
     CPPUNIT_ASSERT( icon.LoadFile(fullname) == false );
         // test with the default wxICON_DEFAULT_TYPE
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (type = wxBITMAP_TYPE_BMP; type < wxBITMAP_TYPE_ANY; type++)
         CPPUNIT_ASSERT( icon.LoadFile(fullname, (wxBitmapType)type) == false );
             // test with all other possible wxBITMAP_TYPE_* flags
@@ -126,6 +141,9 @@ void GarbageTestCase::DoLoadFile(const wxString& fullname)
     CPPUNIT_ASSERT( anim.LoadFile(fullname) == false );
         // test with the default wxANIMATION_TYPE_ANY
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (type = wxANIMATION_TYPE_INVALID+1; type < wxANIMATION_TYPE_ANY; type++)
         CPPUNIT_ASSERT( anim.LoadFile(fullname, (wxAnimationType)type) == false );
             // test with all other possible wxANIMATION_TYPE_* flags
@@ -163,6 +181,9 @@ void GarbageTestCase::DoLoadStream(wxInputStream& stream)
     CPPUNIT_ASSERT( img.LoadFile(stream) == false );
         // test with the default wxBITMAP_TYPE_ANY
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (type = wxBITMAP_TYPE_INVALID+1; type < wxBITMAP_TYPE_ANY; type++)
         CPPUNIT_ASSERT( img.LoadFile(stream, (wxBitmapType)type) == false );
             // test with all other possible wxBITMAP_TYPE_* flags
@@ -173,6 +194,9 @@ void GarbageTestCase::DoLoadStream(wxInputStream& stream)
     CPPUNIT_ASSERT( anim.Load(stream) == false );
         // test with the default wxANIMATION_TYPE_ANY
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (type = wxANIMATION_TYPE_INVALID+1; type < wxANIMATION_TYPE_ANY; type++)
         CPPUNIT_ASSERT( anim.Load(stream, (wxAnimationType)type) == false );
             // test with all other possible wxANIMATION_TYPE_* flags

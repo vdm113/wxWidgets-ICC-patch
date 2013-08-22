@@ -204,6 +204,9 @@ wxTangoArtProvider::CreateBitmap(const wxArtID& id,
     #undef BITMAP_DATA_FOR_SIZE
     #undef BITMAP_DATA
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < WXSIZEOF(s_allBitmaps); n++ )
     {
         const BitmapEntry& entry = s_allBitmaps[n];

@@ -245,6 +245,9 @@ static void BuildListFromNN(wxArrayString& list, NETRESOURCE* pResSrc,
         DWORD size = 256;
         NETRESOURCE* pRes = (NETRESOURCE*)malloc(size);
         memset(pRes, 0, sizeof(NETRESOURCE));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (rc = s_pWNetEnumResource(hEnum, &count, pRes, &size), rc == NO_ERROR || rc == ERROR_MORE_DATA)
         {
             if (s_cancelSearch)
@@ -352,12 +355,18 @@ static bool BuildRemoteList(wxArrayString& list, NETRESOURCE* pResSrc,
 
         // apply list from bottom to top to preserve indexes if removing items.
         ssize_t iList = list.GetCount()-1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (ssize_t iMounted = mounted.GetCount()-1; iMounted >= 0 && iList >= 0; iMounted--)
         {
             int compare;
             wxString all(list[iList]);
             wxString mount(mounted[iMounted]);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (compare =
                      wxStricmp(list[iList].c_str(), mounted[iMounted].c_str()),
                    compare > 0 && iList >= 0)
@@ -426,6 +435,9 @@ wxArrayString wxFSVolumeBase::GetVolumes(int flagsSet, int flagsUnset)
     // Parse the list into an array, applying appropriate filters.
     TCHAR *pVol;
     pVol = buf;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (*pVol)
     {
         FilteredAdd(list, pVol, flagsSet, flagsUnset);
@@ -449,6 +461,9 @@ wxArrayString wxFSVolumeBase::GetVolumes(int flagsSet, int flagsUnset)
         wxArrayString nn;
         if (BuildRemoteList(nn, 0, flagsSet, flagsUnset))
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (size_t idx = 0; idx < nn.GetCount(); idx++)
                 list.Add(nn[idx]);
         }
@@ -570,6 +585,9 @@ void wxFSVolume::InitIcons()
 {
     m_icons.Alloc(wxFS_VOL_ICO_MAX);
     wxIcon null;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int idx = 0; idx < wxFS_VOL_ICO_MAX; idx++)
         m_icons.Add(null);
 }

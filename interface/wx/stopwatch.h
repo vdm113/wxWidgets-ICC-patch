@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        stopwatch.h
 // Purpose:     interface of wxStopWatch
@@ -25,6 +32,7 @@
     @endcode
 
     Since wxWidgets 2.9.3 this class uses @c QueryPerformanceCounter()
+    Since wxWidgets 2.9.3 this class uses @c ::QueryPerformanceCounter()
     function under MSW to measure the elapsed time. It provides higher
     precision than the usual timer functions but can suffer from bugs in its
     implementation in some Windows XP versions. If you encounter such problems,

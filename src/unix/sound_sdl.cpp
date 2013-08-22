@@ -295,6 +295,9 @@ bool wxSoundBackendSDL::Play(wxSoundData *data, unsigned flags,
     if (!(flags & wxSOUND_ASYNC))
     {
         wxLogTrace(wxT("sound"), wxT("waiting for sample to finish"));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (m_playing && m_data == data)
         {
 #if wxUSE_THREADS

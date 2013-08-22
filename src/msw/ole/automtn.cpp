@@ -123,6 +123,9 @@ bool wxAutomationObject::Invoke(const wxString& member, int action,
     // Find number of names args
     int namedArgCount = 0;
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < noArgs; i++)
     {
         if ( !INVOKEARG(i).GetName().empty() )
@@ -139,6 +142,9 @@ bool wxAutomationObject::Invoke(const wxString& member, int action,
     // (all totally logical; hey, we're dealing with OLE here.)
 
     int j = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < namedArgCount; i++)
     {
         if ( !INVOKEARG(i).GetName().empty() )
@@ -179,6 +185,9 @@ bool wxAutomationObject::Invoke(const wxString& member, int action,
 
     // Convert the wxVariants to VARIANTARGs
     wxVector<wxOleVariantArg> oleArgs(noArgs);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < noArgs; i++)
     {
         // Again, reverse args

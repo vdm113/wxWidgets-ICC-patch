@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        event.h
 // Purpose:     interface of wxEvtHandler, wxEventBlocker and many
@@ -292,6 +299,9 @@ protected:
             // we do the 1000 FunctionWhichSendsEvents() calls
             wxEventBlocker blocker(this);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int i = 0; i  1000; i++ )
                 FunctionWhichSendsEvents(i);
 
@@ -2188,6 +2198,9 @@ public:
         int vX,vY,vW,vH;                 // Dimensions of client area in pixels
         wxRegionIterator upd(GetUpdateRegion()); // get the update rect list
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (upd)
         {
             vX = upd.GetX();
@@ -3471,6 +3484,7 @@ public:
 
     /**
         Returns the origin of the help event which is one of the wxHelpEvent::Origin
+        Returns the origin of the help event which is one of the ::wxHelpEventOrigin
         values.
 
         The application may handle events generated using the keyboard or mouse
@@ -3888,6 +3902,7 @@ public:
         Sets the flags for this event.
         The @a flags can be a combination of the 
         wxNavigationKeyEvent::wxNavigationKeyEventFlags values.
+        The @a flags can be a combination of the ::wxNavigationKeyEventFlags values.
     */
     void SetFlags(long flags);
 

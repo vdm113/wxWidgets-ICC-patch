@@ -46,6 +46,9 @@ private:
 wxThread::ExitCode MyJoinableThread::Entry()
 {
     unsigned long res = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 1; n < m_n; n++ )
     {
         res *= n;
@@ -92,6 +95,9 @@ wxThread::ExitCode MyDetachedThread::Entry()
             gs_counter++;
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < m_n; n++ )
     {
         if ( TestDestroy() )
@@ -253,6 +259,9 @@ void MiscThreadTestCase::TestDetached()
     MyDetachedThread *threads[nThreads];
 
     size_t n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < nThreads; n++ )
     {
         threads[n] = new MyDetachedThread(10, 'A' + n);
@@ -261,6 +270,9 @@ void MiscThreadTestCase::TestDetached()
     threads[0]->SetPriority(wxPRIORITY_MIN);
     threads[1]->SetPriority(wxPRIORITY_MAX);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < nThreads; n++ )
     {
         CPPUNIT_ASSERT_EQUAL( wxTHREAD_NO_ERROR, threads[n]->Run() );
@@ -277,12 +289,18 @@ void MiscThreadTestCase::TestSemaphore()
     wxSemaphore sem(SEM_LIMIT, SEM_LIMIT);
     ArrayThreads threads;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < 3*SEM_LIMIT; i++ )
     {
         threads.Add(new MySemaphoreThread(i, &sem));
         CPPUNIT_ASSERT_EQUAL( wxTHREAD_NO_ERROR, threads.Last()->Run() );
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < threads.GetCount(); n++ )
     {
         CPPUNIT_ASSERT_EQUAL( 0, (long)threads[n]->Wait() );
@@ -304,6 +322,9 @@ void MiscThreadTestCase::TestThreadSuspend()
     // in an error)
     wxMilliSleep(300);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < 3; n++ )
     {
         thread->Pause();
@@ -382,11 +403,17 @@ void MiscThreadTestCase::TestThreadConditions()
     MyWaitingThread *threads[10];
 
     size_t n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < WXSIZEOF(threads); n++ )
     {
         threads[n] = new MyWaitingThread( &mutex, &condition );
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < WXSIZEOF(threads); n++ )
     {
         CPPUNIT_ASSERT_EQUAL( wxTHREAD_NO_ERROR, threads[n]->Run() );
@@ -395,6 +422,9 @@ void MiscThreadTestCase::TestThreadConditions()
     // wait until all threads run
     // NOTE: main thread is waiting for the other threads to start
     size_t nRunning = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( nRunning < WXSIZEOF(threads) )
     {
         CPPUNIT_ASSERT_EQUAL( wxSEMA_NO_ERROR, gs_cond.Wait() );

@@ -77,6 +77,9 @@ wxDirData::wxDirData(const wxString& dirname)
     size_t n = m_dirname.length();
     wxCHECK_RET( n, wxT("empty dir name in wxDir") );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( n > 0 && wxIsPathSeparator(m_dirname[--n]) )
         ;
 
@@ -125,6 +128,9 @@ bool wxDirData::Read(wxString *filename)
     wxString name ;
     wxString lowerfilespec = m_filespec.Lower();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( noErr == err )
     {
         HFSUniStr255 uniname ;

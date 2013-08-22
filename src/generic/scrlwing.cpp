@@ -153,6 +153,9 @@ void wxAutoScrollTimer::Notify()
             // the mouse event coordinates should be client, not screen as
             // returned by wxGetMousePosition
             wxWindow *parentTop = m_win;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( parentTop->GetParent() )
                 parentTop = parentTop->GetParent();
             wxPoint ptOrig = parentTop->GetPosition();
@@ -1038,6 +1041,9 @@ void wxScrollHelperBase::HandleOnMouseWheel(wxMouseEvent& event)
                 newEvent.SetEventType(wxEVT_SCROLLWIN_LINEDOWN);
 
             int times = abs(lines);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (; times > 0; times--)
                 m_win->GetEventHandler()->ProcessEvent(newEvent);
         }
@@ -1313,6 +1319,9 @@ void wxScrollHelper::AdjustScrollbars()
     //
     // VZ: normally this loop should be over in at most 2 iterations, I don't
     //     know why do we need 5 of them
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int iterationCount = 0; iterationCount < 5; iterationCount++ )
     {
         wxSize clientSize = GetTargetSize();

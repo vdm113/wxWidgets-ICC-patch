@@ -402,6 +402,9 @@ void ListboxWidgetsPage::CreateLbox()
     if ( m_lbox )
     {
         int count = m_lbox->GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < count; n++ )
         {
             items.Add(m_lbox->GetString(n));
@@ -476,6 +479,9 @@ void ListboxWidgetsPage::OnButtonChange(wxCommandEvent& WXUNUSED(event))
     wxArrayInt selections;
     int count = m_lbox->GetSelections(selections);
     wxString s = m_textChange->GetValue();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int n = 0; n < count; n++ )
     {
         m_lbox->SetString(selections[n], s);
@@ -508,6 +514,9 @@ void ListboxWidgetsPage::OnButtonDeleteSel(wxCommandEvent& WXUNUSED(event))
 {
     wxArrayInt selections;
     int n = m_lbox->GetSelections(selections);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( n > 0 )
     {
         m_lbox->Delete(selections[--n]);
@@ -536,6 +545,9 @@ void ListboxWidgetsPage::OnButtonAdd(wxCommandEvent& WXUNUSED(event))
 void ListboxWidgetsPage::OnButtonAddMany(wxCommandEvent& WXUNUSED(event))
 {
     // "many" means 1000 here
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int n = 0; n < 1000; n++ )
     {
         m_lbox->Append(wxString::Format(wxT("item #%u"), n));

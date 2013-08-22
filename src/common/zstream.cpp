@@ -207,6 +207,9 @@ size_t wxZlibInputStream::OnSysRead(void *buffer, size_t size)
   m_inflate->next_out = (unsigned char *)buffer;
   m_inflate->avail_out = size;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (err == Z_OK && m_inflate->avail_out > 0) {
     if (m_inflate->avail_in == 0 && m_parent_i_stream->IsOk()) {
       m_parent_i_stream->Read(m_z_buffer, m_z_size);
@@ -367,6 +370,9 @@ void wxZlibOutputStream::DoFlush(bool final)
   int err = Z_OK;
   bool done = false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (err == Z_OK || err == Z_STREAM_END) {
     size_t len = m_z_size  - m_deflate->avail_out;
     if (len) {
@@ -403,6 +409,9 @@ size_t wxZlibOutputStream::OnSysWrite(const void *buffer, size_t size)
   m_deflate->next_in = (unsigned char *)buffer;
   m_deflate->avail_in = size;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (err == Z_OK && m_deflate->avail_in > 0) {
     if (m_deflate->avail_out == 0) {
       m_parent_o_stream->Write(m_z_buffer, m_z_size);

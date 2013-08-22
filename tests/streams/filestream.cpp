@@ -117,6 +117,9 @@ wxString fileStream::GetInFileName() const
         wxFileOutputStream out(FILENAME_FILEINSTREAM);
 
         // Init the data buffer.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = 0; i < DATABUFFER_SIZE; i++)
             buf[i] = (i % 0xFF);
 

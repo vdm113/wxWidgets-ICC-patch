@@ -250,6 +250,9 @@ wxString wxStandardPaths::GetDocumentsDir() const
             if (textFile.Open(dirsFile))
             {
                 size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (i = 0; i < textFile.GetLineCount(); i++)
                 {
                     wxString line(textFile[i]);

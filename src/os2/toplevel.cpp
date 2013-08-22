@@ -186,6 +186,9 @@ void wxTopLevelWindowOS2::OnActivate(
         //
         wxWindow*                   pWin = m_pWinLastFocused;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (pWin)
         {
             if (pWin->IsTopLevel())

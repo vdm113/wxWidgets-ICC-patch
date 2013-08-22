@@ -119,6 +119,9 @@ void wxScrollBar::Init()
 
     m_thumbPosOld = -1;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(m_elementsState); n++ )
     {
         m_elementsState[n] = 0;
@@ -575,6 +578,9 @@ void wxScrollBar::UpdateThumb()
 {
     if ( m_dirty )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < WXSIZEOF(m_elementsState); n++ )
         {
             if ( m_elementsState[n] & wxCONTROL_DIRTY )

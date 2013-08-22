@@ -100,6 +100,9 @@ static void wxPushOrPopEventHandlers(wxContextHelp* help, wxWindow* win, bool pu
         win->PopEventHandler(true);
 
     wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxWindow* child = node->GetData();
@@ -183,6 +186,9 @@ bool wxContextHelp::EventLoop()
 {
     m_inHelp = true;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( m_inHelp )
     {
         if (wxTheApp->Pending())

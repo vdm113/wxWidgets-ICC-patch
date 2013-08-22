@@ -264,6 +264,9 @@ void wxRichTextFormattingDialog::SetFormattingDialogFactory(wxRichTextFormatting
 wxWindow* wxRichTextFormattingDialog::FindPage(wxClassInfo* info) const
 {
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < GetBookCtrl()->GetPageCount(); i++)
     {
         wxWindow* w = GetBookCtrl()->GetPage(i);
@@ -287,6 +290,9 @@ bool wxRichTextFormattingDialogFactory::CreatePages(long pages, wxRichTextFormat
     int availablePageCount = GetPageIdCount();
     int i;
     bool selected = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < availablePageCount; i ++)
     {
         int pageId = GetPageId(i);
@@ -554,6 +560,9 @@ void wxRichTextFontPreviewCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
 wxRichTextFormattingDialog* wxRichTextFormattingDialog::GetDialog(wxWindow* win)
 {
     wxWindow* p = win->GetParent();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (p && !wxDynamicCast(p, wxRichTextFormattingDialog))
         p = p->GetParent();
     wxRichTextFormattingDialog* dialog = wxDynamicCast(p, wxRichTextFormattingDialog);
@@ -658,6 +667,9 @@ bool wxRichTextFormattingDialog::ConvertFromString(const wxString& string, int& 
     bool dot = false;
     ret = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned int i = 0; i < string.Len() && remain; i++)
     {
         if (!(chars[i] >= wxT('0') && chars[i] <= wxT('9')) && !(scale == wxTEXT_ATTR_UNITS_TENTHS_MM && chars[i] == wxT('.')))
@@ -675,6 +687,9 @@ bool wxRichTextFormattingDialog::ConvertFromString(const wxString& string, int& 
         ret = ret * 10 + chars[i] - wxT('0');
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (remain-- > 0 && scale == wxTEXT_ATTR_UNITS_TENTHS_MM)
         ret *= 10;
 
@@ -710,6 +725,9 @@ void wxRichTextColourSwatchCtrl::OnMouseEvent(wxMouseEvent& event)
     if (event.LeftDown())
     {
         wxWindow* parent = GetParent();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (parent != NULL && !wxDynamicCast(parent, wxDialog) && !wxDynamicCast(parent, wxFrame))
             parent = parent->GetParent();
 

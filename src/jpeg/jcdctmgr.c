@@ -59,6 +59,9 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
   JQUANT_TBL * qtbl;
   DCTELEM * dtbl;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
     qtblno = compptr->quant_tbl_no;
@@ -81,6 +84,9 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 				      DCTSIZE2 * SIZEOF(DCTELEM));
       }
       dtbl = fdct->divisors[qtblno];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < DCTSIZE2; i++) {
 	dtbl[i] = ((DCTELEM) qtbl->quantval[i]) << 3;
       }
@@ -115,6 +121,9 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 					DCTSIZE2 * SIZEOF(DCTELEM));
 	}
 	dtbl = fdct->divisors[qtblno];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < DCTSIZE2; i++) {
 	  dtbl[i] = (DCTELEM)
 	    DESCALE(MULTIPLY16V16((JPEG_INT32) qtbl->quantval[i],
@@ -150,6 +159,13 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 	fdtbl = fdct->float_divisors[qtblno];
 	i = 0;
 	for (row = 0; row < DCTSIZE; row++) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	for (row = 0; row < DCTSIZE; row++) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	  for (col = 0; col < DCTSIZE; col++) {
 	    fdtbl[i] = (FAST_FLOAT)
 	      (1.0 / (((double) qtbl->quantval[i] *
@@ -192,6 +208,9 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
 
   sample_data += start_row;	/* fold in the vertical offset once */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (bi = 0; bi < num_blocks; bi++, start_col += DCTSIZE) {
     /* Load data into workspace, applying unsigned->signed conversion */
     { register DCTELEM *workspaceptr;
@@ -199,6 +218,9 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
       register int elemr;
 
       workspaceptr = workspace;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (elemr = 0; elemr < DCTSIZE; elemr++) {
 	elemptr = sample_data[elemr] + start_col;
 #if DCTSIZE == 8		/* unroll the inner loop */
@@ -212,6 +234,9 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
 	*workspaceptr++ = GETJSAMPLE(*elemptr++) - CENTERJSAMPLE;
 #else
 	{ register int elemc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	  for (elemc = DCTSIZE; elemc > 0; elemc--) {
 	    *workspaceptr++ = GETJSAMPLE(*elemptr++) - CENTERJSAMPLE;
 	  }
@@ -228,6 +253,9 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
       register int i;
       register JCOEFPTR output_ptr = coef_blocks[bi];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < DCTSIZE2; i++) {
 	qval = divisors[i];
 	temp = workspace[i];
@@ -282,6 +310,9 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
 
   sample_data += start_row;	/* fold in the vertical offset once */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (bi = 0; bi < num_blocks; bi++, start_col += DCTSIZE) {
     /* Load data into workspace, applying unsigned->signed conversion */
     { register FAST_FLOAT *workspaceptr;
@@ -289,6 +320,9 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
       register int elemr;
 
       workspaceptr = workspace;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (elemr = 0; elemr < DCTSIZE; elemr++) {
 	elemptr = sample_data[elemr] + start_col;
 #if DCTSIZE == 8		/* unroll the inner loop */
@@ -302,6 +336,9 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
 	*workspaceptr++ = (FAST_FLOAT)(GETJSAMPLE(*elemptr++) - CENTERJSAMPLE);
 #else
 	{ register int elemc;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	  for (elemc = DCTSIZE; elemc > 0; elemc--) {
 	    *workspaceptr++ = (FAST_FLOAT)
 	      (GETJSAMPLE(*elemptr++) - CENTERJSAMPLE);
@@ -319,6 +356,9 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
       register int i;
       register JCOEFPTR output_ptr = coef_blocks[bi];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (i = 0; i < DCTSIZE2; i++) {
 	/* Apply the quantization and scaling factor */
 	temp = workspace[i] * divisors[i];
@@ -378,6 +418,9 @@ jinit_forward_dct (j_compress_ptr cinfo)
   }
 
   /* Mark divisor tables unallocated */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < NUM_QUANT_TBLS; i++) {
     fdct->divisors[i] = NULL;
 #ifdef DCT_FLOAT_SUPPORTED

@@ -214,6 +214,9 @@ TIFFClientOpen(
 	 * option permits applications that only want to look at the tags,
 	 * for example, to get the unadulterated TIFF tag information.
 	 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (cp = mode; *cp; cp++)
 		switch (*cp) {
 			case 'b':

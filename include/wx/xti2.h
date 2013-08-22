@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/wxt2.h
 // Purpose:     runtime metadata information (extended class info)
@@ -272,6 +279,9 @@ void wxFromStringConverter( const wxString &s, wxAny &v)
 template<typename iter, typename collection_t > void wxListCollectionToAnyList( 
                                                                                const collection_t& coll, wxAnyList &value )
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( iter current = coll.GetFirst(); current; 
          current = current->GetNext() )
     {
@@ -282,6 +292,9 @@ template<typename iter, typename collection_t > void wxListCollectionToAnyList(
 template<typename collection_t> void wxArrayCollectionToVariantArray( 
                                                                      const collection_t& coll, wxAnyList &value )
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( size_t i = 0; i < coll.GetCount(); i++ )
     {
         value.Append( new wxAny(coll[i]) );

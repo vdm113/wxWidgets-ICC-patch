@@ -91,6 +91,9 @@ jpeg_copy_critical_parameters (j_decompress_ptr srcinfo,
   dstinfo->data_precision = srcinfo->data_precision;
   dstinfo->CCIR601_sampling = srcinfo->CCIR601_sampling;
   /* Copy the source's quantization tables. */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (tblno = 0; tblno < NUM_QUANT_TBLS; tblno++) {
     if (srcinfo->quant_tbl_ptrs[tblno] != NULL) {
       qtblptr = & dstinfo->quant_tbl_ptrs[tblno];
@@ -109,6 +112,9 @@ jpeg_copy_critical_parameters (j_decompress_ptr srcinfo,
   if (dstinfo->num_components < 1 || dstinfo->num_components > MAX_COMPONENTS)
     ERREXIT2(dstinfo, JERR_COMPONENT_COUNT, dstinfo->num_components,
 	     MAX_COMPONENTS);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ci = 0, incomp = srcinfo->comp_info, outcomp = dstinfo->comp_info;
        ci < dstinfo->num_components; ci++, incomp++, outcomp++) {
     outcomp->component_id = incomp->component_id;
@@ -126,6 +132,9 @@ jpeg_copy_critical_parameters (j_decompress_ptr srcinfo,
     slot_quant = srcinfo->quant_tbl_ptrs[tblno];
     c_quant = incomp->quant_table;
     if (c_quant != NULL) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (coefi = 0; coefi < DCTSIZE2; coefi++) {
 	if (c_quant->quantval[coefi] != slot_quant->quantval[coefi])
 	  ERREXIT1(dstinfo, JERR_MISMATCHED_QUANT_TABLE, tblno);
@@ -294,6 +303,9 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
   jpeg_component_info *compptr;
 
   /* Align the virtual buffers for the components used in this scan. */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
     compptr = cinfo->cur_comp_info[ci];
     buffer[ci] = (*cinfo->mem->access_virt_barray)
@@ -305,20 +317,37 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
   /* Loop to process one whole iMCU row */
   for (yoffset = coef->MCU_vert_offset; yoffset < coef->MCU_rows_per_iMCU_row;
        yoffset++) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+  for (yoffset = coef->MCU_vert_offset; yoffset < coef->MCU_rows_per_iMCU_row;
+       yoffset++) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (MCU_col_num = coef->mcu_ctr; MCU_col_num < cinfo->MCUs_per_row;
 	 MCU_col_num++) {
       /* Construct list of pointers to DCT blocks belonging to this MCU */
       blkn = 0;			/* index of current DCT block within MCU */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
 	compptr = cinfo->cur_comp_info[ci];
 	start_col = MCU_col_num * compptr->MCU_width;
 	blockcnt = (MCU_col_num < last_MCU_col) ? compptr->MCU_width
 						: compptr->last_col_width;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (yindex = 0; yindex < compptr->MCU_height; yindex++) {
 	  if (coef->iMCU_row_num < last_iMCU_row ||
 	      yindex+yoffset < compptr->last_row_height) {
 	    /* Fill in pointers to real blocks in this row */
 	    buffer_ptr = buffer[ci][yindex+yoffset] + start_col;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	    for (xindex = 0; xindex < blockcnt; xindex++)
 	      MCU_buffer[blkn++] = buffer_ptr++;
 	  } else {
@@ -331,6 +360,9 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 	   * block's DC value.  The init routine has already zeroed the
 	   * AC entries, so we need only set the DC entries correctly.
 	   */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	  for (; xindex < compptr->MCU_width; xindex++) {
 	    MCU_buffer[blkn] = coef->dummy_buffer[blkn];
 	    MCU_buffer[blkn][0][0] = MCU_buffer[blkn-1][0][0];
@@ -387,6 +419,9 @@ transencode_coef_controller (j_compress_ptr cinfo,
     (*cinfo->mem->alloc_large) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				C_MAX_BLOCKS_IN_MCU * SIZEOF(JBLOCK));
   jzero_far((void FAR *) buffer, C_MAX_BLOCKS_IN_MCU * SIZEOF(JBLOCK));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < C_MAX_BLOCKS_IN_MCU; i++) {
     coef->dummy_buffer[i] = buffer + i;
   }

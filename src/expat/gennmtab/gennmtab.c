@@ -360,6 +360,14 @@ setTab(char *tab, struct range *ranges, size_t nRanges)
   int j;
   for (i = 0; i < nRanges; i++) {
     if (ranges[i].end) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+  for (i = 0; i < nRanges; i++) {
+    if (ranges[i].end) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (j = ranges[i].start; j <= ranges[i].end; j++)
         tab[j] = 1;
     }
@@ -383,6 +391,14 @@ printTabs(char *tab)
 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,\n");
   for (i = 0; i < 512; i++) {
     int kind = tab[i*256];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+  for (i = 0; i < 512; i++) {
+    int kind = tab[i*256];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (j = 1; j < 256; j++)
       if (tab[i*256 +j] != kind) {
         kind = -1;
@@ -394,6 +410,14 @@ printTabs(char *tab)
       pageIndex[i] = nBitmaps++;
       for (j = 0; j < 8; j++) {
         unsigned val = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+      for (j = 0; j < 8; j++) {
+        unsigned val = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (k = 0; k < 32; k++) {
           if (tab[i*256 + j*32 +k])
             val |= (1 << k);
@@ -407,6 +431,9 @@ printTabs(char *tab)
   }
   printf("};\n");
   printf("static const unsigned char nmstrtPages[] = {\n");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < 512; i++) {
     if (i == 256)
       printf("};\nstatic const unsigned char namePages[] = {\n");

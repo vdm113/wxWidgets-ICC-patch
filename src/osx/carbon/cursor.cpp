@@ -218,6 +218,9 @@ CursHandle wxGetStockCursor( int number )
 
 #ifndef WORDS_BIGENDIAN
     short *sptr = (short*) *c ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0 ; i < 2 * 16 /* image and mask */ ; ++i, ++sptr )
     {
         *sptr = CFSwapInt16( *sptr ) ;
@@ -309,6 +312,9 @@ short GetCTabIndex( CTabHandle colors , RGBColor *col )
     short retval = 0 ;
     unsigned long bestdiff = 0xFFFF ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0 ; i < (**colors).ctSize ; ++i )
     {
         unsigned long diff = abs(col->red -  (**colors).ctTable[i].rgb.red ) +
@@ -385,6 +391,9 @@ void wxCursor::CreateFromImage(const wxImage & image)
     HandToHand( (Handle *) &newColors );
 
     // set the values to the indices
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0 ; i < (**newColors).ctSize ; ++i )
     {
         (**newColors).ctTable[i].value = i ;
@@ -426,10 +435,16 @@ void wxCursor::CreateFromImage(const wxImage & image)
     unsigned char mg = image16.GetMaskGreen() ;
     unsigned char mb = image16.GetMaskBlue() ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int y = 0 ; y < h ; ++y )
     {
         short rowbits = 0, maskbits = 0 ;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int x = 0 ; x < w ; ++x )
         {
             long pos = (y * w + x) * 3;

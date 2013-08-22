@@ -70,6 +70,9 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((c = getopt(argc, argv, "ltz:")) != -1)
 		switch (c) {
 		case 'l':
@@ -94,6 +97,9 @@ main(int argc, char* argv[])
 	if (tif2 == NULL)
 		return (-2);
 	dirnum = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (tiffcmp(tif1, tif2)) {
 		if (!TIFFReadDirectory(tif1)) {
 			if (!TIFFReadDirectory(tif2))
@@ -131,6 +137,9 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);
@@ -189,6 +198,15 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 		for (row = 0; row < imagelength; row++) {
 			if (TIFFReadScanline(tif2, buf2, row, 0) < 0)
 				checkEOF(tif2, row, -1)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+		for (row = 0; row < imagelength; row++) {
+			if (TIFFReadScanline(tif2, buf2, row, 0) < 0)
+				checkEOF(tif2, row, -1)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (s = 0; s < samplesperpixel; s++) {
 				if (TIFFReadScanline(tif1, buf1, row, s) < 0)
 					checkEOF(tif1, row, s)
@@ -201,6 +219,15 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 		for (row = 0; row < imagelength; row++) {
 			if (TIFFReadScanline(tif1, buf1, row, 0) < 0)
 				checkEOF(tif1, row, -1)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+		for (row = 0; row < imagelength; row++) {
+			if (TIFFReadScanline(tif1, buf1, row, 0) < 0)
+				checkEOF(tif1, row, -1)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (s = 0; s < samplesperpixel; s++) {
 				if (TIFFReadScanline(tif2, buf2, row, s) < 0)
 					checkEOF(tif2, row, s)
@@ -211,6 +238,13 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 		break;
 	case pack(PLANARCONFIG_SEPARATE, PLANARCONFIG_SEPARATE):
 		for (s = 0; s < samplesperpixel; s++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+		for (s = 0; s < samplesperpixel; s++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (row = 0; row < imagelength; row++) {
 				if (TIFFReadScanline(tif1, buf1, row, s) < 0)
 					checkEOF(tif1, row, s)
@@ -221,6 +255,9 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 			}
 		break;
 	case pack(PLANARCONFIG_CONTIG, PLANARCONFIG_CONTIG):
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (row = 0; row < imagelength; row++) {
 			if (TIFFReadScanline(tif1, buf1, row, 0) < 0)
 				checkEOF(tif1, row, -1)
@@ -331,6 +368,15 @@ ContigCompare(int sample, uint32 row,
           for (pix = 0; pix < imagewidth; pix += ppb) {
               int		s;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+          for (pix = 0; pix < imagewidth; pix += ppb) {
+              int		s;
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
               for(s = 0; s < samples_to_test; s++) {
                   if (*pix1 != *pix2) {
                       if( sample == -1 )
@@ -352,6 +398,15 @@ ContigCompare(int sample, uint32 row,
           for (pix = 0; pix < imagewidth; pix++) {
               int	s;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+          for (pix = 0; pix < imagewidth; pix++) {
+              int	s;
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
               for(s = 0; s < samples_to_test; s++) {
                   if (*pix1 != *pix2)
                       PrintIntDiff(row, sample, pix, *pix1, *pix2);
@@ -370,6 +425,15 @@ ContigCompare(int sample, uint32 row,
 		for (pix = 0; pix < imagewidth; pix++) {
 			int	s;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+		for (pix = 0; pix < imagewidth; pix++) {
+			int	s;
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for(s = 0; s < samples_to_test; s++) {
 				if (*pix1 != *pix2) {
 					PrintIntDiff(row, sample, pix,
@@ -386,6 +450,15 @@ ContigCompare(int sample, uint32 row,
 		for (pix = 0; pix < imagewidth; pix++) {
 			int	s;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+		for (pix = 0; pix < imagewidth; pix++) {
+			int	s;
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for(s = 0; s < samples_to_test; s++) {
 				if (fabs(*pix1 - *pix2) < 0.000000000001) {
 					PrintFloatDiff(row, sample, pix,
@@ -425,6 +498,9 @@ PrintIntDiff(uint32 row, int sample, uint32 pix, uint32 w1, uint32 w2)
 		mask1 =  ~((-1) << bitspersample);
 		s = (8 - bitspersample);
 		mask2 = mask1 << s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (; mask2 && pix < imagewidth;
 		     mask2 >>= bitspersample, s -= bitspersample, pix++) {
 			if ((w1 & mask2) ^ (w2 & mask2)) {
@@ -492,6 +568,9 @@ SeparateCompare(int reversed, int sample, uint32 row,
 	int pixel;
 
 	cp1 += sample;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (pixel = 0; npixels-- > 0; pixel++, cp1 += samplesperpixel, p2++) {
 		if (*cp1 != *p2) {
 			printf("Scanline %lu, pixel %lu, sample %ld: ",
@@ -583,10 +662,16 @@ CheckShortArrayTag(TIFF* tif1, TIFF* tif2, int tag, char* name)
 				return (1);
 			printf("%s: value mismatch, <%u:", name, n1);
 			sep = "";
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = 0; i < n1; i++)
 				printf("%s%u", sep, a1[i]), sep = ",";
 			printf("> and <%u: ", n2);
 			sep = "";
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (i = 0; i < n2; i++)
 				printf("%s%u", sep, a2[i]), sep = ",";
 			printf(">\n");

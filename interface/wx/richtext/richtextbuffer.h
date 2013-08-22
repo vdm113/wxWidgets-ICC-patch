@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/richtext/richtextbuffer.h
 // Purpose:     Buffer for wxRichTextCtrl
@@ -2085,6 +2092,7 @@ public:
     /**
         Lay the item out at the specified position with the given size constraint.
         Layout must set the cached size. @a rect is the available space for the object,
+        Layout must set the cached size. @rect is the available space for the object,
         and @a parentRect is the container that is used to determine a relative size
         or position (for example if a text box must be 50% of the parent text box).
     */
@@ -3564,6 +3572,7 @@ public:
     /**
         Lay the item out at the specified position with the given size constraint.
         Layout must set the cached size. @a rect is the available space for the object,
+        Layout must set the cached size. @rect is the available space for the object,
         and @a parentRect is the container that is used to determine a relative size
         or position (for example if a text box must be 50% of the parent text box).
     */
@@ -3665,6 +3674,7 @@ public:
         Constructor, creating a field type definition with a text label.
 
         @param name
+        @param parent
             The name of the type definition. This must be unique, and is the type
             name used when adding a field to a control.
         @param label
@@ -3684,6 +3694,10 @@ public:
             The name of the type definition. This must be unique, and is the type
             name used when adding a field to a control.
         @param bitmap
+        @param parent
+            The name of the type definition. This must be unique, and is the type
+            name used when adding a field to a control.
+        @param label
             The bitmap label to be shown on the field.
         @param displayStyle
             The display style: one of wxRICHTEXT_FIELD_STYLE_RECTANGLE,
@@ -3729,6 +3743,7 @@ public:
     /**
         Lay the item out at the specified position with the given size constraint.
         Layout must set the cached size. @a rect is the available space for the object,
+        Layout must set the cached size. @rect is the available space for the object,
         and @a parentRect is the container that is used to determine a relative size
         or position (for example if a text box must be 50% of the parent text box).
     */

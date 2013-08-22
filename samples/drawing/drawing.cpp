@@ -778,6 +778,9 @@ void MyCanvas::DrawText(wxDC& dc)
     wxString text;
     dc.SetBackgroundMode(wxTRANSPARENT);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int n = -180; n < 180; n += 30 )
     {
         text.Printf(wxT("     %d rotated text"), n);
@@ -860,6 +863,9 @@ void MyCanvas::DrawImages(wxDC& dc, DrawMode mode)
         cy = gs_bmpWithColMask->GetHeight();
 
     wxMemoryDC memDC;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(rasterOperations); n++ )
     {
         wxCoord x = 120 + 150*(n%4),
@@ -889,6 +895,9 @@ void MyCanvas::DrawWithLogicalOps(wxDC& dc)
     dc.SetBrush(*wxTRANSPARENT_BRUSH);
 
     size_t n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < WXSIZEOF(rasterOperations); n++ )
     {
         wxCoord x = 20 + 150*(n%4),
@@ -904,6 +913,9 @@ void MyCanvas::DrawWithLogicalOps(wxDC& dc)
     // now some filled rectangles
     dc.SetBrush(wxBrush(m_owner->m_colourForeground));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < WXSIZEOF(rasterOperations); n++ )
     {
         wxCoord x = 20 + 150*(n%4),
@@ -996,6 +1008,9 @@ void MyCanvas::DrawGraphics(wxGraphicsContext* gc)
     gc->SetPen(wxPen("navy"));
     gc->SetBrush(wxBrush("pink"));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( int i = 0 ; i < 3 ; ++i )
     {
         wxString label;
@@ -1037,6 +1052,9 @@ void MyCanvas::DrawGraphics(wxGraphicsContext* gc)
     gc->Translate(0, 20);
 
     gc->SetBrush(wxBrush(wxColour(178,  34,  34, 128)));// 128 == half transparent
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( int i = 0 ; i < 8 ; ++i )
     {
         gc->Scale(1.08, 1.08); // increase scale by 8%
@@ -1055,6 +1073,9 @@ void MyCanvas::DrawGraphics(wxGraphicsContext* gc)
 
     // draw our path again, rotating it about the central point,
     // and changing colors as we go
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int angle = 0 ; angle < 360 ; angle += 30 )
     {
         gc->PushState(); // save this new current state so we can
@@ -1169,6 +1190,9 @@ void MyCanvas::DrawSplines(wxDC& dc)
     unsigned int radius_pos = 0;
     unsigned int angle_pos = 0;
     int angle = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < n; i++ )
     {
         angle += angles[ angle_pos ];
@@ -1219,6 +1243,14 @@ void MyCanvas::DrawSplines(wxDC& dc)
 
     for ( int m = 0; m < 4; m++ )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for ( int m = 0; m < 4; m++ )
+    {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int n = 0; n < 5; n++ )
         {
             letters[m][n].x = center.x - R + letters[m][n].x * dx;
@@ -1564,6 +1596,9 @@ void MyCanvas::Draw(wxDC& pdc)
     if ( m_owner->m_textureBackground )
     {
         dc.SetPen(*wxMEDIUM_GREY_PEN);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < 200; i++ )
             dc.DrawLine(0, i*10, i*10, 0);
     }

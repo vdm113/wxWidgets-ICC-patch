@@ -250,6 +250,9 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter& items,
     int idx = wxNOT_FOUND;
 
     const unsigned int numItems = items.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i = 0; i < numItems; ++i )
     {
         const wxString& item = items[i];
@@ -366,6 +369,9 @@ void wxListBox::DoDeleteOneItem(unsigned int n)
     // the one being deleted must change and the item itselfm ust be removed
     int index = wxNOT_FOUND;
     unsigned int count = m_selections.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int item = 0; item < count; item++ )
     {
         if ( m_selections[item] == (int)n )
@@ -784,6 +790,9 @@ wxCoord wxListBox::GetMaxWidth() const
         wxListBox *self = wxConstCast(this, wxListBox);
         wxCoord width;
         unsigned int count = GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned int n = 0; n < count; n++ )
         {
             GetTextExtent(this->GetString(n), &width, NULL);
@@ -841,6 +850,9 @@ wxSize wxListBox::DoGetBestClientSize() const
             height = 0;
 
     unsigned int count = GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int n = 0; n < count; n++ )
     {
         wxCoord w,h;
@@ -950,6 +962,9 @@ bool wxListBox::FindItem(const wxString& prefix, bool strictlyAfter)
     size_t len = prefix.length();
 
     // loop over all items in the listbox
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int item = first; item != (int)last; item < (int)(count - 1) ? item++ : item = 0 )
     {
         if ( wxStrnicmp(this->GetString(item).c_str(), prefix, len) == 0 )
@@ -1052,17 +1067,26 @@ void wxListBox::ExtendSelection(int itemTo)
     // anchor and the specified item and only them
 
     int n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < itemFrom; n++ )
     {
         Deselect(n);
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ; n <= itemTo; n++ )
     {
         SetSelection(n);
     }
 
     unsigned int count = GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ; n < (int)count; n++ )
     {
         Deselect(n);

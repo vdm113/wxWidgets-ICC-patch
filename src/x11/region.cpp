@@ -87,6 +87,9 @@ wxRegion::wxRegion( size_t WXUNUSED(n), const wxPoint *WXUNUSED(points), wxPolyg
 {
 #if 0
     XPoint *xpoints = new XPoint[n];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0 ; i < n ; i++ )
     {
         xpoints[i].x = points[i].x;
@@ -405,6 +408,9 @@ void wxRIRefData::CreateRects( const wxRegion& region )
         if (m_numRects)
         {
             m_rects = new wxRect[m_numRects];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (size_t i=0; i < m_numRects; ++i)
             {
                 _XBox &xr = r->rects[i];

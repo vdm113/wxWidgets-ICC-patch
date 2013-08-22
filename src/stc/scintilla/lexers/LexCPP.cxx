@@ -51,6 +51,9 @@ static bool IsSpaceEquiv(int state) {
 // fixes this, and is highly recommended for readability anyway.
 static bool FollowsPostfixOperator(StyleContext &sc, LexAccessor &styler) {
 	int pos = (int) sc.currentPos;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (--pos > 0) {
 		char ch = styler[pos];
 		if (ch == '+' || ch == '-') {
@@ -66,6 +69,9 @@ static bool followsReturnKeyword(StyleContext &sc, LexAccessor &styler) {
 	int currentLine = styler.GetLine(pos);
 	int lineStartPos = styler.LineStart(currentLine);
 	char ch;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (--pos > lineStartPos) {
 		ch = styler.SafeGetCharAt(pos);
 		if (ch != ' ' && ch != '\t') {
@@ -74,6 +80,9 @@ static bool followsReturnKeyword(StyleContext &sc, LexAccessor &styler) {
 	}
 	const char *retBack = "nruter";
 	const char *s = retBack;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (*s
 		&& pos >= lineStartPos
 		&& styler.SafeGetCharAt(pos) == *s) {
@@ -87,6 +96,9 @@ static std::string GetRestOfLine(LexAccessor &styler, int start, bool allowSpace
 	std::string restOfLine;
 	int i =0;
 	char ch = styler.SafeGetCharAt(start, '\n');
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((ch != '\r') && (ch != '\n')) {
 		if (allowSpace || (ch != ' '))
 			restOfLine += ch;
@@ -107,6 +119,9 @@ static std::vector<std::string> Tokenize(const std::string &s) {
 	// Break into space separated tokens
 	std::string word;
 	std::vector<std::string> tokens;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (const char *cp = s.c_str(); *cp; cp++) {
 		if ((*cp == ' ') || (*cp == '\t')) {
 			if (!word.empty()) {
@@ -419,6 +434,9 @@ int SCI_METHOD LexerCPP::WordListSet(int n, const char *wl) {
 			if (n == 4) {
 				// Rebuild preprocessorDefinitions
 				preprocessorDefinitionsStart.clear();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (int nDefinition = 0; nDefinition < ppDefinitions.len; nDefinition++) {
 					char *cpDefinition = ppDefinitions.words[nDefinition];
 					char *cpEquals = strchr(cpDefinition, '=');
@@ -489,6 +507,9 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 	// look back to set chPrevNonWhite properly for better regex colouring
 	if (startPos > 0) {
 		int back = startPos;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (--back && IsSpaceEquiv(MaskActive(styler.StyleAt(back))))
 			;
 		if (MaskActive(styler.StyleAt(back)) == SCE_C_OPERATOR) {
@@ -513,6 +534,9 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 	}
 
 	std::map<std::string, std::string> preprocessorDefinitions = preprocessorDefinitionsStart;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (std::vector<PPDefinition>::iterator itDef = ppDefineHistory.begin(); itDef != ppDefineHistory.end(); ++itDef) {
 		preprocessorDefinitions[itDef->key] = itDef->value;
 	}
@@ -522,6 +546,9 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 
 	int activitySet = preproc.IsInactive() ? activeFlag : 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; sc.More();) {
 
 		if (sc.atLineStart) {
@@ -718,6 +745,9 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 				break;
 			case SCE_C_STRINGRAW:
 				if (sc.Match(rawStringTerminator.c_str())) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					for (size_t termPos=rawStringTerminator.size(); termPos; termPos--)
 						sc.Forward();
 					sc.SetState(SCE_C_DEFAULT|activitySet);
@@ -740,6 +770,9 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 					sc.SetState(SCE_C_DEFAULT|activitySet);
 				} else if (sc.ch == '/') {
 					sc.Forward();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					while ((sc.ch < 0x80) && islower(sc.ch))
 						sc.Forward();    // gobble regex flags
 					sc.SetState(SCE_C_DEFAULT|activitySet);
@@ -766,6 +799,9 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 				break;
 			case SCE_C_TRIPLEVERBATIM:
 				if (sc.Match("\"\"\"")) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 					while (sc.Match('"')) {
 						sc.Forward();
 					}
@@ -834,6 +870,9 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 					if (MaskActive(styler.StyleAt(sc.currentPos - 1)) == SCE_C_STRINGRAW) {
 						sc.SetState(SCE_C_STRINGRAW|activitySet);
 						rawStringTerminator = ")";
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 						for (int termPos = sc.currentPos + 1;; termPos++) {
 							char chTerminator = styler.SafeGetCharAt(termPos, '(');
 							if (chTerminator == '(')
@@ -856,6 +895,9 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 				// Preprocessor commands are alone on their line
 				sc.SetState(SCE_C_PREPROCESSOR|activitySet);
 				// Skip whitespace between # and preprocessor word
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				do {
 					sc.Forward();
 				} while ((sc.ch == ' ' || sc.ch == '\t') && sc.More());
@@ -971,6 +1013,9 @@ void SCI_METHOD LexerCPP::Fold(unsigned int startPos, int length, int initStyle,
 	int styleNext = MaskActive(styler.StyleAt(startPos));
 	int style = MaskActive(initStyle);
 	const bool userDefinedFoldMarkers = !options.foldExplicitStart.empty() && !options.foldExplicitEnd.empty();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -1007,6 +1052,9 @@ void SCI_METHOD LexerCPP::Fold(unsigned int startPos, int length, int initStyle,
 		if (options.foldPreprocessor && (style == SCE_C_PREPROCESSOR)) {
 			if (ch == '#') {
 				unsigned int j = i + 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				while ((j < endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
 					j++;
 				}
@@ -1059,6 +1107,9 @@ void SCI_METHOD LexerCPP::Fold(unsigned int startPos, int length, int initStyle,
 void LexerCPP::EvaluateTokens(std::vector<std::string> &tokens) {
 
 	// Evaluate defined() statements to either 0 or 1
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (size_t i=0; (i+2)<tokens.size();) {
 		if ((tokens[i] == "defined") && (tokens[i+1] == "(")) {
 			const char *val = "0";
@@ -1079,6 +1130,9 @@ void LexerCPP::EvaluateTokens(std::vector<std::string> &tokens) {
 	// Find bracketed subexpressions and recurse on them
 	std::vector<std::string>::iterator itBracket = std::find(tokens.begin(), tokens.end(), "(");
 	std::vector<std::string>::iterator itEndBracket = std::find(tokens.begin(), tokens.end(), ")");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((itBracket != tokens.end()) && (itEndBracket != tokens.end()) && (itEndBracket > itBracket)) {
 		std::vector<std::string> inBracket(itBracket + 1, itEndBracket);
 		EvaluateTokens(inBracket);
@@ -1094,6 +1148,9 @@ void LexerCPP::EvaluateTokens(std::vector<std::string> &tokens) {
 	}
 
 	// Evaluate logical negations
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (size_t j=0; (j+1)<tokens.size();) {
 		if (setNegationOp.Contains(tokens[j][0])) {
 			int isTrue = atoi(tokens[j+1].c_str());
@@ -1111,6 +1168,14 @@ void LexerCPP::EvaluateTokens(std::vector<std::string> &tokens) {
 	enum precedence { precArithmetic, precRelative, precLogical };
 	for (int prec=precArithmetic; prec <= precLogical; prec++) {
 		// Looking at 3 tokens at a time so end at 2 before end
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	for (int prec=precArithmetic; prec <= precLogical; prec++) {
+		// Looking at 3 tokens at a time so end at 2 before end
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (size_t k=0; (k+2)<tokens.size();) {
 			char chOp = tokens[k+1][0];
 			if (
@@ -1164,6 +1229,9 @@ bool LexerCPP::EvaluateExpression(const std::string &expr, const std::map<std::s
 	std::string word;
 	std::vector<std::string> tokens;
 	const char *cp = expr.c_str();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (;;) {
 		if (setWord.Contains(*cp)) {
 			word += *cp;

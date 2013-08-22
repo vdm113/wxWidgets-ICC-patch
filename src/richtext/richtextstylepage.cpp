@@ -179,6 +179,9 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 if (sheet)
                 {
                     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (i = 0; i < sheet->GetListStyleCount(); i++)
                     {
                         wxRichTextListStyleDefinition* p = wxDynamicCast(sheet->GetListStyle(i), wxRichTextListStyleDefinition);
@@ -196,6 +199,9 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 if (sheet)
                 {
                     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (i = 0; i < sheet->GetParagraphStyleCount(); i++)
                     {
                         wxRichTextParagraphStyleDefinition* p = wxDynamicCast(sheet->GetParagraphStyle(i), wxRichTextParagraphStyleDefinition);
@@ -214,6 +220,9 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 if (listDef)
                 {
                     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (i = 0; i < sheet->GetListStyleCount(); i++)
                     {
                         wxRichTextListStyleDefinition* p = wxDynamicCast(sheet->GetListStyle(i), wxRichTextListStyleDefinition);
@@ -224,6 +233,9 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 else if (paraDef)
                 {
                     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (i = 0; i < sheet->GetParagraphStyleCount(); i++)
                     {
                         wxRichTextParagraphStyleDefinition* p = wxDynamicCast(sheet->GetParagraphStyle(i), wxRichTextParagraphStyleDefinition);
@@ -234,6 +246,9 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 else if (boxDef)
                 {
                     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (i = 0; i < sheet->GetBoxStyleCount(); i++)
                     {
                         wxRichTextBoxStyleDefinition* p = wxDynamicCast(sheet->GetBoxStyle(i), wxRichTextBoxStyleDefinition);
@@ -244,6 +259,9 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 else if (charDef)
                 {
                     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (i = 0; i < sheet->GetCharacterStyleCount(); i++)
                     {
                         wxRichTextCharacterStyleDefinition* p = wxDynamicCast(sheet->GetCharacterStyle(i), wxRichTextCharacterStyleDefinition);

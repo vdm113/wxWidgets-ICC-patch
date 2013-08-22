@@ -71,6 +71,9 @@ private:
 
 backStream::backStream()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (unsigned i = 0; i < TESTSIZE; i++)
         m_testdata[i] = i;
 }
@@ -182,6 +185,9 @@ void backStream::Seek(wxInputStream& in)
     CPPUNIT_ASSERT_EQUAL(size_t(0), in.LastRead());
     CPPUNIT_ASSERT(in.Eof());
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxFileOffset i = TESTSIZE - 1; i >= 0; i--) {
         CPPUNIT_ASSERT_EQUAL(i, in.SeekI(i));
         CPPUNIT_ASSERT_EQUAL(i, in.TellI());

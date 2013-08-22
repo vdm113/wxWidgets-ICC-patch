@@ -264,6 +264,9 @@ void wxListBox::DoSetSelection(int N, bool select)
                            NULL);
 
             int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < n; i++)
                 XmListSelectPos ((Widget) m_mainWidget,
                                  selections[i] + 1, False);
@@ -295,6 +298,9 @@ bool wxListBox::IsSelected(int N) const
     else
     {
         int j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0; j < count; j++)
             if (theSelections[j] == N)
                 return true;
@@ -318,6 +324,9 @@ int wxListBox::GetSelections(wxArrayInt& aSelections) const
             aSelections.Alloc(posCnt);
 
             int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < posCnt; i++)
                 aSelections.Add(posList[i] - 1);
 
@@ -385,6 +394,9 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
     XmString *text = new XmString[numItems];
     unsigned int i;
 #if XmVersion > 1001
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < numItems; i++)
     {
         text[i] = wxStringToXmString(items[i]);
@@ -395,12 +407,18 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
     AllocClientData(numItems);
 
     unsigned int idx = pos;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = 0; i < numItems; i++, idx++ )
     {
         text[i] = wxStringToXmString(items[i]);
         XmListAddItemUnselected(listBox, text[i], GetMotifPosition(idx));
         InsertNewItemClientData(idx, clientData, i, type);
     }
+#endif
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
 #endif
     for (i = 0; i < numItems; i++)
         XmStringFree(text[i]);
@@ -577,6 +595,9 @@ wxSize wxDoGetListBoxBestSize( Widget listWidget, const wxWindow* window )
                    XmNshadowThickness, &shadow,
                    NULL );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( size_t i = 0; i < (size_t)max; ++i )
     {
         window->GetTextExtent( wxDoGetStringInList( listWidget, i ), &x, &y );

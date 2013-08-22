@@ -408,6 +408,9 @@ void wxFillLogFont( LOGFONT*      pFattrs,  // OS2 GPI FATTRS
         }
         if (*pflId == 0L)
             *pflId = 1L;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(unsigned long LCNum = 0; LCNum < (unsigned long)lNumLids; LCNum++)
             if(alIds[LCNum] == *pflId)
                ++*pflId;
@@ -471,6 +474,9 @@ void wxOS2SelectMatchingFontByName(
     int                             fsSelection = 0;
 
     nMinDiff0 = 0xf000;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(i = 0;i < 16; i++)
         anMinDiff[i] = nMinDiff0;
 
@@ -555,6 +561,9 @@ void wxOS2SelectMatchingFontByName(
     // Matching logic to find the right FM struct
     //
     nIndex = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(i = 0, nIs = 0; i < nNumFonts; i++)
     {
         anDiff[0] = wxGpiStrcmp((wxChar*)pFM[i].szFacename, zFontFaceName);
@@ -690,6 +699,9 @@ int wxGpiStrcmp(
         if(l1 < l0)
             l = l1;
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(i=0;i<l;i++)
     {
         d = s0[i]-s1[i];

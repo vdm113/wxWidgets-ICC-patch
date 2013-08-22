@@ -594,6 +594,9 @@ void wxRegionIterator::Reset(
                                              ,pRect
                                             );
 #endif
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for( LONG i = 0; i < m_lNumRects; i++)
                 {
                     m_pRects[i].x      = pRect[i].xLeft;

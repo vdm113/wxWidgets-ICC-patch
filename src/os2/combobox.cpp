@@ -148,6 +148,9 @@ bool wxComboBox::Create(
     //
     SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < n; i++)
     {
         Append(asChoices[i]);

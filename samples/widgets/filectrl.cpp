@@ -245,6 +245,9 @@ void FileCtrlWidgetsPage::CreateFileCtrl()
                            );
 
     wxString wildcard;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int i = 0; i < WXSIZEOF( m_fltr ); ++i )
     {
         if ( m_fltr[i]->IsChecked() )

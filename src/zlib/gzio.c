@@ -136,6 +136,9 @@ local gzFile gz_open (path, mode, fd)
     strcpy(s->path, path); /* do this early for debugging */
 
     s->mode = '\0';
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do {
         if (*p == 'r') s->mode = 'r';
         if (*p == 'w' || *p == 'a') s->mode = 'w';
@@ -333,6 +336,9 @@ local void check_header(s)
     }
 
     /* Discard time, xflags and OS code: */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (len = 0; len < 6; len++) (void)get_byte(s);
 
     if ((flags & EXTRA_FIELD) != 0) { /* skip the extra field */
@@ -348,6 +354,27 @@ local void check_header(s)
         while ((c = get_byte(s)) != 0 && c != EOF) ;
     }
     if ((flags & HEAD_CRC) != 0) {  /* skip the header crc */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        while (len-- != 0 && get_byte(s) != EOF) ;
+    }
+    if ((flags & ORIG_NAME) != 0) { /* skip the original file name */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        while ((c = get_byte(s)) != 0 && c != EOF) ;
+    }
+    if ((flags & COMMENT) != 0) {   /* skip the .gz file comment */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        while ((c = get_byte(s)) != 0 && c != EOF) ;
+    }
+    if ((flags & HEAD_CRC) != 0) {  /* skip the header crc */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (len = 0; len < 2; len++) (void)get_byte(s);
     }
     s->z_err = s->z_eof ? Z_DATA_ERROR : Z_OK;
@@ -427,6 +454,9 @@ int ZEXPORT gzread (file, buf, len)
         }
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (s->stream.avail_out != 0) {
 
         if (s->transparent) {
@@ -550,6 +580,9 @@ char * ZEXPORT gzgets(file, buf, len)
     char *b = buf;
     if (buf == Z_NULL || len <= 0) return Z_NULL;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (--len > 0 && gzread(file, buf, 1) == 1 && *buf++ != '\n') ;
     *buf = '\0';
     return b == buf && len > 0 ? Z_NULL : b;
@@ -573,6 +606,9 @@ int ZEXPORT gzwrite (file, buf, len)
     s->stream.next_in = (Bytef*)buf;
     s->stream.avail_in = len;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (s->stream.avail_in != 0) {
 
         if (s->stream.avail_out == 0) {
@@ -617,6 +653,9 @@ int ZEXPORTVA gzprintf (gzFile file, const char *format, /* args */ ...)
 #  ifdef HAS_vsprintf_void
     (void)vsprintf(buf, format, va);
     va_end(va);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (len = 0; len < sizeof(buf); len++)
         if (buf[len] == 0) break;
 #  else
@@ -654,6 +693,9 @@ int ZEXPORTVA gzprintf (file, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10,
 #  ifdef HAS_sprintf_void
     sprintf(buf, format, a1, a2, a3, a4, a5, a6, a7, a8,
             a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (len = 0; len < sizeof(buf); len++)
         if (buf[len] == 0) break;
 #  else
@@ -719,6 +761,9 @@ local int do_flush (file, flush)
 
     s->stream.avail_in = 0; /* should be zero already anyway */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (;;) {
         len = Z_BUFSIZE - s->stream.avail_out;
 
@@ -796,6 +841,9 @@ z_off_t ZEXPORT gzseek (file, offset, whence)
             if (s->inbuf == Z_NULL) return -1L;
             zmemzero(s->inbuf, Z_BUFSIZE);
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (offset > 0)  {
             uInt size = Z_BUFSIZE;
             if (offset < Z_BUFSIZE) size = (uInt)offset;
@@ -845,6 +893,9 @@ z_off_t ZEXPORT gzseek (file, offset, whence)
         offset--;
         if (s->last) s->z_err = Z_STREAM_END;
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (offset > 0)  {
         int size = Z_BUFSIZE;
         if (offset < Z_BUFSIZE) size = (int)offset;
@@ -927,6 +978,9 @@ local void putLong (file, x)
     uLong x;
 {
     int n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0; n < 4; n++) {
         fputc((int)(x & 0xff), file);
         x >>= 8;

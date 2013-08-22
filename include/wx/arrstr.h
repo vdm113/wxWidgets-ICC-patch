@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/arrstr.h
 // Purpose:     wxArrayString class
@@ -81,6 +88,9 @@ public:
     {
         reserve(src.size());
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < src.size(); n++ )
             Add(src[n]);
     }
@@ -301,6 +311,9 @@ public:
   {
       clear();
       reserve(std::distance(first, last));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for(; first != last; ++first)
           push_back(*first);
   }
@@ -309,6 +322,9 @@ public:
   {
       clear();
       reserve(last - first);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for(; first != last; ++first)
           push_back(*first);
   }
@@ -401,6 +417,9 @@ public:
         if( m_strings ) return m_strings;
         size_t count = m_array.GetCount();
         m_strings = new wxString[count];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( size_t i = 0; i < count; ++i )
             m_strings[i] = m_array[i];
         return m_strings;

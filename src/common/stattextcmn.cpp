@@ -107,6 +107,9 @@ void wxTextWrapper::Wrap(wxWindow *win, const wxString& text, int widthMax)
 
     wxString::const_iterator lastSpace = text.end();
     wxString::const_iterator lineStart = text.begin();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator p = lineStart; ; ++p )
     {
         if ( IsStartOfNewLine() )

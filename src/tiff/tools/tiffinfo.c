@@ -74,6 +74,9 @@ main(int argc, char* argv[])
 	uint64 diroff = 0;
 	int chopstrips = 0;		/* disable strip chopping */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while ((c = getopt(argc, argv, "f:o:cdDSjilmrsvwz0123456789")) != -1)
 		switch (c) {
 		case '0': case '1': case '2': case '3':
@@ -131,6 +134,9 @@ main(int argc, char* argv[])
 	old_error_handler = TIFFSetErrorHandler(PrivateErrorHandler);
 
 	multiplefiles = (argc - optind > 1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (; optind < argc; optind++) {
 		if (multiplefiles)
 			printf("%s:\n", argv[optind]);
@@ -143,6 +149,9 @@ main(int argc, char* argv[])
 				if (TIFFSetSubDirectory(tif, diroff))
 					tiffinfo(tif, order, flags, 1);
 			} else {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				do {
 					toff_t offset;
 
@@ -188,6 +197,9 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);
@@ -200,6 +212,13 @@ ShowStrip(tstrip_t strip, unsigned char* pp, uint32 nrow, tsize_t scanline)
 
 	printf("Strip %lu:\n", (unsigned long) strip);
 	while (nrow-- > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	while (nrow-- > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (cc = 0; cc < scanline; cc++) {
 			printf(" %02x", *pp++);
 			if (((cc+1) % 24) == 0)
@@ -222,6 +241,9 @@ TIFFReadContigStripData(TIFF* tif)
 
 		TIFFGetField(tif, TIFFTAG_IMAGELENGTH, &h);
 		TIFFGetField(tif, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (row = 0; row < h; row += rowsperstrip) {
 			uint32 nrow = (row+rowsperstrip > h ?
 			    h-row : rowsperstrip);
@@ -252,6 +274,13 @@ TIFFReadSeparateStripData(TIFF* tif)
 		TIFFGetField(tif, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
 		TIFFGetField(tif, TIFFTAG_SAMPLESPERPIXEL, &samplesperpixel);
 		for (row = 0; row < h; row += rowsperstrip) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+		for (row = 0; row < h; row += rowsperstrip) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (s = 0; s < samplesperpixel; s++) {
 				uint32 nrow = (row+rowsperstrip > h ?
 				    h-row : rowsperstrip);
@@ -278,6 +307,13 @@ ShowTile(uint32 row, uint32 col, tsample_t sample,
 		printf(",%u", sample);
 	printf("):\n");
 	while (nrow-- > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	while (nrow-- > 0) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	  for (cc = 0; cc < (uint32) rowsize; cc++) {
 			printf(" %02x", *pp++);
 			if (((cc+1) % 24) == 0)
@@ -303,6 +339,13 @@ TIFFReadContigTileData(TIFF* tif)
 		TIFFGetField(tif, TIFFTAG_TILEWIDTH, &tw);
 		TIFFGetField(tif, TIFFTAG_TILELENGTH, &th);
 		for (row = 0; row < h; row += th) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+		for (row = 0; row < h; row += th) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (col = 0; col < w; col += tw) {
 				if (TIFFReadTile(tif, buf, col, row, 0, 0) < 0) {
 					if (stoponerr)
@@ -334,6 +377,17 @@ TIFFReadSeparateTileData(TIFF* tif)
 		TIFFGetField(tif, TIFFTAG_SAMPLESPERPIXEL, &samplesperpixel);
 		for (row = 0; row < h; row += th) {
 			for (col = 0; col < w; col += tw) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+		for (row = 0; row < h; row += th) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+			for (col = 0; col < w; col += tw) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 				for (s = 0; s < samplesperpixel; s++) {
 					if (TIFFReadTile(tif, buf, col, row, 0, s) < 0) {
 						if (stoponerr)
@@ -371,6 +425,9 @@ ShowRawBytes(unsigned char* pp, uint32 n)
 {
 	uint32 i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < n; i++) {
 		printf(" %02x", *pp++);
 		if (((i+1) % 24) == 0)
@@ -384,6 +441,9 @@ ShowRawWords(uint16* pp, uint32 n)
 {
 	uint32 i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < n; i++) {
 		printf(" %04x", *pp++);
 		if (((i+1) % 15) == 0)
@@ -405,6 +465,9 @@ TIFFReadRawData(TIFF* tif, int bitrev)
 		tdata_t buf = _TIFFmalloc(bufsize);
 		tstrip_t s;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (s = 0; s < nstrips; s++) {
 			if (stripbc[s] > bufsize) {
 				buf = _TIFFrealloc(buf, (tmsize_t)stripbc[s]);

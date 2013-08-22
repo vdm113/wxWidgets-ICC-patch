@@ -41,6 +41,9 @@ static uint32 VARARGS68K call_68k_code (struct ExecIFace *IExec, void *code, int
 	if (stack) {
 		uint32 *sp = (uint32 *)(stack + 4096);
 		args += num_args;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		while (num_args--) {
 			*--sp = *--args;
 		}

@@ -250,6 +250,9 @@ void wxGridCellEnumRenderer::SetParameters(const wxString& params)
     m_choices.Empty();
 
     wxStringTokenizer tk(params, wxT(','));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( tk.HasMoreTokens() )
     {
         m_choices.Add(tk.GetNextToken());
@@ -302,6 +305,9 @@ wxGridCellAutoWrapStringRenderer::GetTextLines(wxGrid& grid,
         logicalLines = wxSplit(grid.GetCellValue(row, col), '\n', '\0');
 
     wxArrayString physicalLines;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxArrayString::const_iterator it = logicalLines.begin();
           it != logicalLines.end();
           ++it )
@@ -333,6 +339,9 @@ wxGridCellAutoWrapStringRenderer::BreakLine(wxDC& dc,
 
     // For each word
     wxStringTokenizer wordTokenizer(logicalLine, wxS(" \t"), wxTOKEN_RET_DELIMS);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( wordTokenizer.HasMoreTokens() )
     {
         const wxString word = wordTokenizer.GetNextToken();
@@ -388,6 +397,9 @@ wxGridCellAutoWrapStringRenderer::BreakWord(wxDC& dc,
     // TODO: Use binary search to find the first element > maxWidth.
     const unsigned count = widths.size();
     unsigned n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( n = 0; n < count; n++ )
     {
         if ( widths[n] > maxWidth )
@@ -442,6 +454,9 @@ wxGridCellAutoWrapStringRenderer::GetBestSize(wxGrid& grid,
     // M is a nice large character 'y' gives descender!.
     dc.GetTextExtent(wxT("My"), &x, &y);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
         width+=10;
@@ -504,6 +519,9 @@ wxSize wxGridCellStringRenderer::DoGetBestSize(const wxGridCellAttr& attr,
     wxCoord x = 0, y = 0, max_x = 0;
     dc.SetFont(attr.GetFont());
     wxStringTokenizer tk(text, wxT('\n'));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( tk.HasMoreTokens() )
     {
         dc.GetTextExtent(tk.GetNextToken(), &x, &y);
@@ -553,6 +571,15 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
             for (i = col+cell_cols; i < cols; i++)
             {
                 bool is_empty = true;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+            for (i = col+cell_cols; i < cols; i++)
+            {
+                bool is_empty = true;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int j=row; j < row + cell_rows; j++)
                 {
                     // check w/ anchor cell for multicell block
@@ -594,6 +621,9 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
             int col_end = col + cell_cols + overflowCols;
             if (col_end >= grid.GetNumberCols())
                 col_end = grid.GetNumberCols() - 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int i = col + cell_cols; i <= col_end; i++)
             {
                 clip.width = grid.GetColSize(i) - 1;

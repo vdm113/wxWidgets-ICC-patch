@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 /*
  * File:    wx/os2/pngread.h
  * Purpose: PNG file reader
@@ -208,11 +215,17 @@ inline void wxPNGReaderIter::SetRow(byte *buf, int n)
   if (n<0)
     n = ima->GetWidth();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (int i=0; i<n; i++) IterImage[i] = buf[i];
 }
 
 inline void wxPNGReaderIter::GetRow(byte *buf, int n)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (int i=0; i<n; i++) buf[i] = IterImage[i];
 }
 

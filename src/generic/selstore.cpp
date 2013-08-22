@@ -102,12 +102,18 @@ bool wxSelectionStore::SelectRange(unsigned itemFrom, unsigned itemTo,
             //       knowing the possible range
 
             unsigned item;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( item = 0; item < itemFrom; item++ )
             {
                 if ( selOld.Index(item) == wxNOT_FOUND )
                     m_itemsSel.Add(item);
             }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( item = itemTo + 1; item < m_count; item++ )
             {
                 if ( selOld.Index(item) == wxNOT_FOUND )
@@ -137,6 +143,9 @@ bool wxSelectionStore::SelectRange(unsigned itemFrom, unsigned itemTo,
             if ( start <= end )
             {
                 // delete all of them (from end to avoid changing indices)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int i = end; i >= (int)start; i-- )
                 {
                     if ( itemsChanged )
@@ -165,6 +174,9 @@ bool wxSelectionStore::SelectRange(unsigned itemFrom, unsigned itemTo,
         }
 
         // just add the items to the selection
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( unsigned item = itemFrom; item <= itemTo; item++ )
         {
             if ( SelectItem(item, select) && itemsChanged )
@@ -204,6 +216,9 @@ void wxSelectionStore::OnItemDelete(unsigned item)
     }
 
     // and adjust the index of all which follow it
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( i < count )
     {
         // all following elements must be greater than the one we deleted
@@ -219,6 +234,9 @@ void wxSelectionStore::SetItemCount(unsigned count)
     // decreased
     if ( count < m_count )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t i = m_itemsSel.GetCount(); i > 0; i-- )
         {
             if ( m_itemsSel[i - 1] >= count )

@@ -89,6 +89,9 @@ printruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 
     (void) buf;
     printf("%d m(", row++);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (runs < erun) {
 	if (runlength <= 0) {
 	    colormode ^= 1;
@@ -110,6 +113,9 @@ printruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 	 * characters (i.e., no escape codes or octal chars).
 	 */
 	l = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (runlength > 6) {	/* Run is greater than six... */
 	    if (runlength >= WBarr[l].width) {
 		if (n == 0) {
@@ -124,6 +130,15 @@ printruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 	while (runlength > 0 && runlength <= 6) {
 	    uint32 bitsleft = 6;
 	    int t = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	while (runlength > 0 && runlength <= 6) {
+	    uint32 bitsleft = 6;
+	    int t = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	    while (bitsleft) {
 		if (runlength <= bitsleft) {
 		    if (colormode)
@@ -189,6 +204,9 @@ emitFont(FILE* fd)
 	NULL
     };
     int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; fontPrologue[i] != NULL; i++)
 	fprintf(fd, "%s\n", fontPrologue[i]);
 }
@@ -260,6 +278,9 @@ printTIF(TIFF* tif, uint16 pageNumber)
     TIFFSetField(tif, TIFFTAG_FAXFILLFUNC, printruns);
     ns = TIFFNumberOfStrips(tif);
     row = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (s = 0; s < ns; s++)
 	(void) TIFFReadEncodedStrip(tif, s, (tdata_t) NULL, (tsize_t) -1);
     printf("p\n");
@@ -276,6 +297,9 @@ findPage(TIFF* tif, uint16 pageNumber)
     uint16 pn = (uint16) -1;
     uint16 ptotal = (uint16) -1;
     if (GetPageNumber(tif)) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (pn != (pageNumber-1) && TIFFReadDirectory(tif) && GetPageNumber(tif))
 	    ;
 	return (pn == (pageNumber-1));
@@ -293,6 +317,9 @@ fax2ps(TIFF* tif, uint16 npages, uint16* pages, char* filename)
 	if (!GetPageNumber(tif))
 	    fprintf(stderr, "%s: No page numbers, counting directories.\n",
 		filename);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; i < npages; i++) {
 	    if (findPage(tif, pages[i]))
 		printTIF(tif, pages[i]);
@@ -303,6 +330,14 @@ fax2ps(TIFF* tif, uint16 npages, uint16* pages, char* filename)
 	uint16 pageNumber = 0;
 	do
 	    printTIF(tif, pageNumber++);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	do
+	    printTIF(tif, pageNumber++);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	while (TIFFReadDirectory(tif));
     }
 }
@@ -328,6 +363,9 @@ main(int argc, char** argv)
     int c, dowarnings = 0;		/* if 1, enable library warnings */
     TIFF* tif;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((c = getopt(argc, argv, "l:p:x:y:W:H:wS")) != -1)
 	switch (c) {
 	case 'H':		/* page height */
@@ -367,6 +405,9 @@ main(int argc, char** argv)
     if (!dowarnings)
 	TIFFSetWarningHandler(0);
     if (optind < argc) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	do {
 	    tif = TIFFOpen(argv[optind], "r");
 	    if (tif) {
@@ -388,6 +429,9 @@ main(int argc, char** argv)
 	}
 #if defined(HAVE_SETMODE) && defined(O_BINARY)
 	setmode(fileno(stdin), O_BINARY);
+#endif
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
 #endif
 	while ((n = read(fileno(stdin), buf, sizeof (buf))) > 0)
 	    write(fileno(fd), buf, n);
@@ -433,6 +477,9 @@ usage(int code)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(code);

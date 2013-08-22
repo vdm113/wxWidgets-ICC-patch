@@ -20,6 +20,7 @@
 /* use NO_DIVIDE if your processor does not do division in hardware */
 #ifdef NO_DIVIDE
 #  define MOD(a) \
+MY_MACRO_PRAGMA_IVDEP \
     do { \
         if (a >= (BASE << 16)) a -= (BASE << 16); \
         if (a >= (BASE << 15)) a -= (BASE << 15); \
@@ -40,6 +41,7 @@
         if (a >= BASE) a -= BASE; \
     } while (0)
 #  define MOD4(a) \
+MY_MACRO_PRAGMA_IVDEP \
     do { \
         if (a >= (BASE << 4)) a -= (BASE << 4); \
         if (a >= (BASE << 3)) a -= (BASE << 3); \
@@ -82,6 +84,9 @@ uLong ZEXPORT adler32(adler, buf, len)
 
     /* in case short lengths are provided, keep it somewhat fast */
     if (len < 16) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (len--) {
             adler += *buf++;
             sum2 += adler;
@@ -96,6 +101,15 @@ uLong ZEXPORT adler32(adler, buf, len)
     while (len >= NMAX) {
         len -= NMAX;
         n = NMAX / 16;          /* NMAX is divisible by 16 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (len >= NMAX) {
+        len -= NMAX;
+        n = NMAX / 16;          /* NMAX is divisible by 16 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do {
             DO16(buf);          /* 16 sums unrolled */
             buf += 16;
@@ -106,11 +120,17 @@ uLong ZEXPORT adler32(adler, buf, len)
 
     /* do remaining bytes (less than NMAX, still just one modulo) */
     if (len) {                  /* avoid modulos if none remaining */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (len >= 16) {
             len -= 16;
             DO16(buf);
             buf += 16;
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (len--) {
             adler += *buf++;
             sum2 += adler;

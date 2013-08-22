@@ -536,6 +536,9 @@ void WidgetsFrame::InitBook()
     // as we need the image list first
     //
     // we also construct the pages menu during this first iteration
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( cat = 0; cat < MAX_PAGES; cat++ )
     {
 #if USE_TREEBOOK
@@ -548,6 +551,9 @@ void WidgetsFrame::InitBook()
                                          wxBK_DEFAULT);
 #endif
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( WidgetsPageInfo *info = WidgetsPage::ms_widgetPages;
               info;
               info = info->GetNext() )
@@ -597,6 +603,9 @@ void WidgetsFrame::InitBook()
     m_book->AssignImageList(imageList);
 #endif
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( cat = 0; cat < MAX_PAGES; cat++ )
     {
 #if USE_TREEBOOK
@@ -610,6 +619,9 @@ void WidgetsFrame::InitBook()
 
         // now do add them
         size_t count = pages[cat].GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < count; n++ )
         {
 #if USE_TREEBOOK
@@ -727,6 +739,9 @@ void WidgetsFrame::OnPageChanged(WidgetsBookCtrlEvent& event)
 
         WidgetsBookCtrl *book = wxStaticCast(page->GetParent(), WidgetsBookCtrl);
         wxSize size;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t i = 0; i < book->GetPageCount(); ++i )
         {
             wxWindow *page = book->GetPage(i);
@@ -775,6 +790,9 @@ void WidgetsFrame::OnSetTooltip(wxCommandEvent& WXUNUSED(event))
     WidgetsPage *page = CurrentPage();
 
     const Widgets widgets = page->GetWidgets();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( Widgets::const_iterator it = widgets.begin();
           it != widgets.end();
           ++it )
@@ -820,6 +838,9 @@ void WidgetsFrame::OnSetFgCol(wxCommandEvent& WXUNUSED(event))
     m_colFg = col;
 
     const Widgets widgets = page->GetWidgets();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( Widgets::const_iterator it = widgets.begin();
           it != widgets.end();
           ++it )
@@ -843,6 +864,9 @@ void WidgetsFrame::OnSetBgCol(wxCommandEvent& WXUNUSED(event))
     m_colBg = col;
 
     const Widgets widgets = page->GetWidgets();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( Widgets::const_iterator it = widgets.begin();
           it != widgets.end();
           ++it )
@@ -877,6 +901,9 @@ void WidgetsFrame::OnSetFont(wxCommandEvent& WXUNUSED(event))
     m_font = font;
 
     const Widgets widgets = page->GetWidgets();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( Widgets::const_iterator it = widgets.begin();
           it != widgets.end();
           ++it )
@@ -896,6 +923,9 @@ void WidgetsFrame::OnSetFont(wxCommandEvent& WXUNUSED(event))
 void WidgetsFrame::OnEnable(wxCommandEvent& event)
 {
     const Widgets widgets = CurrentPage()->GetWidgets();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( Widgets::const_iterator it = widgets.begin();
           it != widgets.end();
           ++it )
@@ -937,6 +967,9 @@ void WidgetsFrame::OnToggleLayoutDirection(wxCommandEvent& event)
                                               : wxLayout_LeftToRight;
 
     const Widgets widgets = CurrentPage()->GetWidgets();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( Widgets::const_iterator it = widgets.begin();
           it != widgets.end();
           ++it )
@@ -960,6 +993,9 @@ void WidgetsFrame::OnToggleBusyCursor(wxCommandEvent& event)
                                         : wxSTANDARD_CURSOR));
 
     const Widgets widgets = CurrentPage()->GetWidgets();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( Widgets::const_iterator it = widgets.begin();
           it != widgets.end();
           ++it )
@@ -991,6 +1027,9 @@ void WidgetsFrame::OnAutoCompleteFixed(wxCommandEvent& WXUNUSED(event))
     wxArrayString completion_choices;
 
     // add a few strings so a completion occurs on any letter typed
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( char idxc = 'a'; idxc < 'z'; ++idxc )
         completion_choices.push_back(wxString::Format("%c%c", idxc, idxc));
 
@@ -1092,6 +1131,13 @@ void WidgetsFrame::OnAutoCompleteCustom(wxCommandEvent& WXUNUSED(event))
             if ( prefix.length() == 1 )
             {
                 for ( int i = 0; i < 10; i++ )
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+                for ( int i = 0; i < 10; i++ )
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( int j = 0; j < 10; j++ )
                         res.push_back(wxString::Format("%s%02d",
                                                        prefix, 10*i + j));
@@ -1102,6 +1148,9 @@ void WidgetsFrame::OnAutoCompleteCustom(wxCommandEvent& WXUNUSED(event))
 
             if ( prefix.length() == 2 )
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int i = 0; i < 10; i++ )
                     res.push_back(wxString::Format("%s%d", prefix, i));
                 return;
@@ -1119,6 +1168,13 @@ void WidgetsFrame::OnAutoCompleteCustom(wxCommandEvent& WXUNUSED(event))
             if ( prefix2.length() == 4 )
             {
                 for ( char c = 'a'; c <= 'z'; c++ )
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+                for ( char c = 'a'; c <= 'z'; c++ )
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( char d = 'a'; d <= 'z'; d++ )
                         res.push_back(wxString::Format("%s%c%c", prefix2, c, d));
                 return;
@@ -1128,6 +1184,9 @@ void WidgetsFrame::OnAutoCompleteCustom(wxCommandEvent& WXUNUSED(event))
 
             if ( prefix.length() == 5 )
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( char c = 'a'; c <= 'z'; c++ )
                     res.push_back(prefix + c);
             }
@@ -1195,6 +1254,9 @@ WidgetsPageInfo::WidgetsPageInfo(Constructor ctor, const wxChar *label, int cate
         else
         {
             WidgetsPageInfo *node_next;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do
             {
                 node_next = node_prev->GetNext();
@@ -1217,6 +1279,9 @@ WidgetsPageInfo::WidgetsPageInfo(Constructor ctor, const wxChar *label, int cate
                 }
                 node_prev = node_next;
             }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( node_next );
         }
     }

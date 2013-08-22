@@ -189,6 +189,9 @@ void TimePickerWidgetsPage::CreateTimePicker()
     const wxDateTime value = m_timePicker->GetValue();
 
     size_t count = m_sizerTimePicker->GetChildren().GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         m_sizerTimePicker->Remove(0);

@@ -279,6 +279,9 @@ bool wxGDIImage::RemoveHandler(const wxString& name)
 wxGDIImageHandler *wxGDIImage::FindHandler(const wxString& name)
 {
     wxGDIImageHandlerList::compatibility_iterator node = ms_handlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( node )
     {
         wxGDIImageHandler *handler = node->GetData();
@@ -294,6 +297,9 @@ wxGDIImageHandler *wxGDIImage::FindHandler(const wxString& extension,
                                            long type)
 {
     wxGDIImageHandlerList::compatibility_iterator node = ms_handlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( node )
     {
         wxGDIImageHandler *handler = node->GetData();
@@ -311,6 +317,9 @@ wxGDIImageHandler *wxGDIImage::FindHandler(const wxString& extension,
 wxGDIImageHandler *wxGDIImage::FindHandler(long type)
 {
     wxGDIImageHandlerList::compatibility_iterator node = ms_handlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( node )
     {
         wxGDIImageHandler *handler = node->GetData();
@@ -326,6 +335,9 @@ wxGDIImageHandler *wxGDIImage::FindHandler(long type)
 void wxGDIImage::CleanUpHandlers()
 {
     wxGDIImageHandlerList::compatibility_iterator node = ms_handlers.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( node )
     {
         wxGDIImageHandler *handler = node->GetData();
@@ -576,6 +588,9 @@ bool wxICOResourceHandler::LoadIcon(wxIcon *icon,
             { wxT("wxICON_INFORMATION"),       IDI_ASTERISK    },
         };
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t nIcon = 0; !hicon && nIcon < WXSIZEOF(stdIcons); nIcon++ )
         {
             if ( name == stdIcons[nIcon].name )

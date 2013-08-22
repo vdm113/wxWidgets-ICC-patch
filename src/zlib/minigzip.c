@@ -108,6 +108,9 @@ void gz_compress(in, out)
      */
     if (gz_compress_mmap(in, out) == Z_OK) return;
 #endif
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (;;) {
         len = (int)fread(buf, 1, sizeof(buf), in);
         if (ferror(in)) {
@@ -170,6 +173,9 @@ void gz_uncompress(in, out)
     int len;
     int err;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (;;) {
         len = gzread(in, buf, sizeof(buf));
         if (len < 0) error (gzerror(in, &err));
@@ -278,6 +284,9 @@ int main(argc, argv)
     prog = argv[0];
     argc--, argv++;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (argc > 0) {
       if (strcmp(*argv, "-d") == 0)
         uncompr = 1;
@@ -309,6 +318,9 @@ int main(argc, argv)
             gz_compress(stdin, file);
         }
     } else {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do {
             if (uncompr) {
                 file_uncompress(*argv);

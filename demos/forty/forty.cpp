@@ -323,6 +323,9 @@ bool FortyAboutDialog::AddControls(wxWindow* parent)
         if (file.Exists())
         {
             file.Open();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( htmlText = file.GetFirstLine();
                   !file.Eof();
                   htmlText << file.GetNextLine() << wxT("\n") ) ;

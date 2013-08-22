@@ -234,6 +234,14 @@ prescan_quantize (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 
   for (row = 0; row < num_rows; row++) {
     ptr = input_buf[row];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+  for (row = 0; row < num_rows; row++) {
+    ptr = input_buf[row];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (col = width; col > 0; col--) {
       /* get pixel value and index into the histogram */
       histp = & histogram[GETJSAMPLE(ptr[0]) >> C0_SHIFT]
@@ -279,6 +287,9 @@ find_biggest_color_pop (boxptr boxlist, int numboxes)
   register long maxc = 0;
   boxptr which = NULL;
   
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0, boxp = boxlist; i < numboxes; i++, boxp++) {
     if (boxp->colorcount > maxc && boxp->volume > 0) {
       which = boxp;
@@ -299,6 +310,9 @@ find_biggest_volume (boxptr boxlist, int numboxes)
   register JPEG_INT32 maxv = 0;
   boxptr which = NULL;
   
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0, boxp = boxlist; i < numboxes; i++, boxp++) {
     if (boxp->volume > maxv) {
       which = boxp;
@@ -330,6 +344,18 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
     for (c0 = c0min; c0 <= c0max; c0++)
       for (c1 = c1min; c1 <= c1max; c1++) {
 	histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (c0 = c0min; c0 <= c0max; c0++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+      for (c1 = c1min; c1 <= c1max; c1++) {
+	histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (c2 = c2min; c2 <= c2max; c2++)
 	  if (*histp++ != 0) {
 	    boxp->c0min = c0min = c0;
@@ -341,6 +367,18 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
     for (c0 = c0max; c0 >= c0min; c0--)
       for (c1 = c1min; c1 <= c1max; c1++) {
 	histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (c0 = c0max; c0 >= c0min; c0--)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+      for (c1 = c1min; c1 <= c1max; c1++) {
+	histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (c2 = c2min; c2 <= c2max; c2++)
 	  if (*histp++ != 0) {
 	    boxp->c0max = c0max = c0;
@@ -352,6 +390,18 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
     for (c1 = c1min; c1 <= c1max; c1++)
       for (c0 = c0min; c0 <= c0max; c0++) {
 	histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (c1 = c1min; c1 <= c1max; c1++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+      for (c0 = c0min; c0 <= c0max; c0++) {
+	histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (c2 = c2min; c2 <= c2max; c2++)
 	  if (*histp++ != 0) {
 	    boxp->c1min = c1min = c1;
@@ -363,6 +413,18 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
     for (c1 = c1max; c1 >= c1min; c1--)
       for (c0 = c0min; c0 <= c0max; c0++) {
 	histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (c1 = c1max; c1 >= c1min; c1--)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+      for (c0 = c0min; c0 <= c0max; c0++) {
+	histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (c2 = c2min; c2 <= c2max; c2++)
 	  if (*histp++ != 0) {
 	    boxp->c1max = c1max = c1;
@@ -374,6 +436,18 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
     for (c2 = c2min; c2 <= c2max; c2++)
       for (c0 = c0min; c0 <= c0max; c0++) {
 	histp = & histogram[c0][c1min][c2];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (c2 = c2min; c2 <= c2max; c2++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+      for (c0 = c0min; c0 <= c0max; c0++) {
+	histp = & histogram[c0][c1min][c2];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (c1 = c1min; c1 <= c1max; c1++, histp += HIST_C2_ELEMS)
 	  if (*histp != 0) {
 	    boxp->c2min = c2min = c2;
@@ -385,6 +459,18 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
     for (c2 = c2max; c2 >= c2min; c2--)
       for (c0 = c0min; c0 <= c0max; c0++) {
 	histp = & histogram[c0][c1min][c2];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (c2 = c2max; c2 >= c2min; c2--)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+      for (c0 = c0min; c0 <= c0max; c0++) {
+	histp = & histogram[c0][c1min][c2];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (c1 = c1min; c1 <= c1max; c1++, histp += HIST_C2_ELEMS)
 	  if (*histp != 0) {
 	    boxp->c2max = c2max = c2;
@@ -411,6 +497,18 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
   for (c0 = c0min; c0 <= c0max; c0++)
     for (c1 = c1min; c1 <= c1max; c1++) {
       histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+  for (c0 = c0min; c0 <= c0max; c0++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (c1 = c1min; c1 <= c1max; c1++) {
+      histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (c2 = c2min; c2 <= c2max; c2++, histp++)
 	if (*histp != 0) {
 	  ccount++;
@@ -429,6 +527,9 @@ median_cut (j_decompress_ptr cinfo, boxptr boxlist, int numboxes,
   int c0,c1,c2,cmax;
   register boxptr b1,b2;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   while (numboxes < desired_colors) {
     /* Select box to split.
      * Current algorithm: by population for first half, then by volume.
@@ -519,6 +620,18 @@ compute_color (j_decompress_ptr cinfo, boxptr boxp, int icolor)
   for (c0 = c0min; c0 <= c0max; c0++)
     for (c1 = c1min; c1 <= c1max; c1++) {
       histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+  for (c0 = c0min; c0 <= c0max; c0++)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (c1 = c1min; c1 <= c1max; c1++) {
+      histp = & histogram[c0][c1][c2min];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (c2 = c2min; c2 <= c2max; c2++) {
 	if ((count = *histp++) != 0) {
 	  total += count;
@@ -559,6 +672,9 @@ select_colors (j_decompress_ptr cinfo, int desired_colors)
   /* Perform median-cut to produce final box list */
   numboxes = median_cut(cinfo, boxlist, numboxes, desired_colors);
   /* Compute the representative color for each box, fill colormap */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < numboxes; i++)
     compute_color(cinfo, & boxlist[i], i);
   cinfo->actual_number_of_colors = numboxes;
@@ -684,6 +800,9 @@ find_nearby_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
    */
   minmaxdist = 0x7FFFFFFFL;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < numcolors; i++) {
     /* We compute the squared-c0-distance term, then add in the other two. */
     x = GETJSAMPLE(cinfo->colormap[0][i]);
@@ -763,6 +882,9 @@ find_nearby_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
    * within minmaxdist of some part of the box need be considered.
    */
   ncolors = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < numcolors; i++) {
     if (mindist[i] <= minmaxdist)
       colorlist[ncolors++] = (JSAMPLE) i;
@@ -795,6 +917,9 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 
   /* Initialize best-distance for each cell of the update box */
   bptr = bestdist;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = BOX_C0_ELEMS*BOX_C1_ELEMS*BOX_C2_ELEMS-1; i >= 0; i--)
     *bptr++ = 0x7FFFFFFFL;
   
@@ -808,6 +933,9 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #define STEP_C1  ((1 << C1_SHIFT) * C1_SCALE)
 #define STEP_C2  ((1 << C2_SHIFT) * C2_SCALE)
   
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < numcolors; i++) {
     icolor = GETJSAMPLE(colorlist[i]);
     /* Compute (square of) distance from minc0/c1/c2 to this color */
@@ -831,6 +959,21 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
       for (ic1 = BOX_C1_ELEMS-1; ic1 >= 0; ic1--) {
 	dist2 = dist1;
 	xx2 = inc2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (ic0 = BOX_C0_ELEMS-1; ic0 >= 0; ic0--) {
+      dist1 = dist0;
+      xx1 = inc1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+      for (ic1 = BOX_C1_ELEMS-1; ic1 >= 0; ic1--) {
+	dist2 = dist1;
+	xx2 = inc2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (ic2 = BOX_C2_ELEMS-1; ic2 >= 0; ic2--) {
 	  if (dist2 < *bptr) {
 	    *bptr = dist2;
@@ -899,6 +1042,18 @@ fill_inverse_cmap (j_decompress_ptr cinfo, int c0, int c1, int c2)
   for (ic0 = 0; ic0 < BOX_C0_ELEMS; ic0++) {
     for (ic1 = 0; ic1 < BOX_C1_ELEMS; ic1++) {
       cachep = & histogram[c0+ic0][c1+ic1][c2];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+  for (ic0 = 0; ic0 < BOX_C0_ELEMS; ic0++) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (ic1 = 0; ic1 < BOX_C1_ELEMS; ic1++) {
+      cachep = & histogram[c0+ic0][c1+ic1][c2];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
       for (ic2 = 0; ic2 < BOX_C2_ELEMS; ic2++) {
 	*cachep++ = (histcell) (GETJSAMPLE(*cptr++) + 1);
       }
@@ -928,6 +1083,15 @@ pass2_no_dither (j_decompress_ptr cinfo,
   for (row = 0; row < num_rows; row++) {
     inptr = input_buf[row];
     outptr = output_buf[row];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+  for (row = 0; row < num_rows; row++) {
+    inptr = input_buf[row];
+    outptr = output_buf[row];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (col = width; col > 0; col--) {
       /* get pixel value and index into the cache */
       c0 = GETJSAMPLE(*inptr++) >> C0_SHIFT;
@@ -971,6 +1135,9 @@ pass2_fs_dither (j_decompress_ptr cinfo,
   JSAMPROW colormap2 = cinfo->colormap[2];
   SHIFT_TEMPS
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (row = 0; row < num_rows; row++) {
     inptr = input_buf[row];
     outptr = output_buf[row];
@@ -995,6 +1162,9 @@ pass2_fs_dither (j_decompress_ptr cinfo,
     belowerr0 = belowerr1 = belowerr2 = 0;
     bpreverr0 = bpreverr1 = bpreverr2 = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (col = width; col > 0; col--) {
       /* curN holds the error propagated from the previous pixel on the
        * current line.  Add the error propagated from the previous line
@@ -1120,14 +1290,23 @@ init_error_limit (j_decompress_ptr cinfo)
 #define STEPSIZE ((MAXJSAMPLE+1)/16)
   /* Map errors 1:1 up to +- MAXJSAMPLE/16 */
   out = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (in = 0; in < STEPSIZE; in++, out++) {
     table[in] = out; table[-in] = -out;
   }
   /* Map errors 1:2 up to +- 3*MAXJSAMPLE/16 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (; in < STEPSIZE*3; in++, out += (in&1) ? 0 : 1) {
     table[in] = out; table[-in] = -out;
   }
   /* Clamp the rest to final out value (which is (MAXJSAMPLE+1)/8) */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (; in <= MAXJSAMPLE; in++) {
     table[in] = out; table[-in] = -out;
   }
@@ -1213,6 +1392,9 @@ start_pass_2_quant (j_decompress_ptr cinfo, wxjpeg_boolean is_pre_scan)
   }
   /* Zero the histogram or inverse color map, if necessary */
   if (cquantize->needs_zeroed) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < HIST_C0_ELEMS; i++) {
       jzero_far((void FAR *) histogram[i],
 		HIST_C1_ELEMS*HIST_C2_ELEMS * SIZEOF(histcell));
@@ -1262,6 +1444,9 @@ jinit_2pass_quantizer (j_decompress_ptr cinfo)
   /* Allocate the histogram/inverse colormap storage */
   cquantize->histogram = (hist3d) (*cinfo->mem->alloc_small)
     ((j_common_ptr) cinfo, JPOOL_IMAGE, HIST_C0_ELEMS * SIZEOF(hist2d));
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
   for (i = 0; i < HIST_C0_ELEMS; i++) {
     cquantize->histogram[i] = (hist2d) (*cinfo->mem->alloc_large)
       ((j_common_ptr) cinfo, JPOOL_IMAGE,

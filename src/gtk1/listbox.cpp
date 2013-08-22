@@ -247,6 +247,9 @@ gtk_listbox_button_press_callback( GtkWidget *widget,
             listbox->m_blockEvent = true;
 
             int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; i < (int)listbox->GetCount(); i++)
                 if (i != sel)
                     gtk_list_unselect_item( GTK_LIST(listbox->m_list), i );
@@ -440,6 +443,9 @@ gtk_listbox_realized_callback( GtkWidget *WXUNUSED(widget), wxListBox *win )
         wxapp_install_idle_handler();
 
     GList *child = win->m_list->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (child = win->m_list->children; child != NULL; child = child->next)
         gtk_widget_show( GTK_WIDGET(child->data) );
 
@@ -591,6 +597,9 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter& items,
 
     const unsigned numItems = items.GetCount();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned int n = 0; n < numItems; ++n, ++pos )
     {
         const wxString& item = items[n];
@@ -835,6 +844,9 @@ int wxListBox::FindString( const wxString &item, bool bCase ) const
 
     GList *child = m_list->children;
     int count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (child)
     {
         if ( item.IsSameAs( GetRealLabel(child), bCase ) )
@@ -859,6 +871,9 @@ int wxListBox::GetSelection() const
 
     GList *child = m_list->children;
     int count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (child)
     {
         if (GTK_WIDGET(child->data)->state == GTK_STATE_SELECTED) return count;
@@ -875,6 +890,9 @@ int wxListBox::GetSelections( wxArrayInt& aSelections ) const
     // get the number of selected items first
     GList *child = m_list->children;
     int count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (child = m_list->children; child != NULL; child = child->next)
     {
         if (GTK_WIDGET(child->data)->state == GTK_STATE_SELECTED)
@@ -888,6 +906,9 @@ int wxListBox::GetSelections( wxArrayInt& aSelections ) const
         // now fill the list
         aSelections.Alloc(count); // optimization attempt
         int i = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (child = m_list->children; child != NULL; child = child->next, i++)
         {
             if (GTK_WIDGET(child->data)->state == GTK_STATE_SELECTED)
@@ -975,6 +996,9 @@ int wxListBox::GtkGetIndex( GtkWidget *item ) const
     {
         GList *child = m_list->children;
         int count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (child)
         {
             if (GTK_WIDGET(child->data) == item) return count;
@@ -989,6 +1013,9 @@ int wxListBox::GtkGetIndex( GtkWidget *item ) const
 void wxListBox::ApplyToolTip( GtkTooltips *tips, const wxChar *tip )
 {
     GList *child = m_list->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (child)
     {
         gtk_tooltips_set_tip( tips, GTK_WIDGET( child->data ), wxConvCurrent->cWX2MB(tip), NULL );
@@ -1023,6 +1050,9 @@ void wxListBox::DoApplyWidgetStyle(GtkRcStyle *style)
     }
 
     GList *child = m_list->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (child)
     {
         gtk_widget_modify_style( GTK_WIDGET(child->data), style );
@@ -1050,6 +1080,9 @@ void wxListBox::OnInternalIdle()
         gdk_window_set_cursor( GTK_WIDGET(m_list)->window, cursor.GetCursor() );
 
         GList *child = m_list->children;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (child)
         {
             GtkBin *bin = GTK_BIN( child->data );
@@ -1084,6 +1117,9 @@ wxSize wxListBox::DoGetBestSize() const
     int wLine;
 
     // Find the widest line
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(unsigned int i = 0; i < GetCount(); i++) {
         wxString str(GetString(i));
         GetTextExtent(str, &wLine, NULL);

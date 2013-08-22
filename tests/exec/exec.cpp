@@ -194,6 +194,9 @@ void ExecTestCase::TestExecute()
     // Test the sync execution case with/without wxEXEC_NOEVENTS flag
     // because we use either an event loop or wxSelectDispatcher
     // depending on this flag, and we want to test both cases.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (useNoeventsFlag = 0; useNoeventsFlag <=1 ; ++useNoeventsFlag )
     {
         int execFlags = wxEXEC_SYNC;

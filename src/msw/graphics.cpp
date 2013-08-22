@@ -702,6 +702,9 @@ wxGDIPlusPenData::wxGDIPlusPenData( wxGraphicsRenderer* renderer, const wxPen &p
             if ((dashes != NULL) && (count > 0))
             {
                 REAL *userLengths = new REAL[count];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( int i = 0; i < count; ++i )
                 {
                     userLengths[i] = dashes[i];
@@ -870,6 +873,9 @@ wxGDIPlusBrushData::SetGradientStops(T *brush,
     wxVector<Color> colors(numStops);
     wxVector<REAL> positions(numStops);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned i = 0; i < numStops; i++ )
     {
         wxGraphicsGradientStop stop = stops.Item(i);
@@ -1021,6 +1027,15 @@ wxGDIPlusBitmapData::wxGDIPlusBitmapData( wxGraphicsRenderer* renderer,
         for ( size_t y = 0 ; y < height ; ++y)
         {
             maskIndex = 0 ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        for ( size_t y = 0 ; y < height ; ++y)
+        {
+            maskIndex = 0 ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for( size_t x = 0 ; x < width; ++x)
             {
                 if ( x % 8 == 0)
@@ -1485,6 +1500,9 @@ void wxGDIPlusContext::StrokeLines( size_t n, const wxPoint2DDouble *points)
    {
        wxGDIPlusOffsetHelper helper( m_context , ShouldOffset() );
        Point *cpoints = new Point[n];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
        for (size_t i = 0; i < n; i++)
        {
            cpoints[i].X = (int)(points[i].m_x );
@@ -1503,6 +1521,9 @@ void wxGDIPlusContext::DrawLines( size_t n, const wxPoint2DDouble *points, wxPol
 
     wxGDIPlusOffsetHelper helper( m_context , ShouldOffset() );
     Point *cpoints = new Point[n];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < n; i++)
     {
         cpoints[i].X = (int)(points[i].m_x );
@@ -1734,6 +1755,14 @@ void wxGDIPlusContext::DrawIcon( const wxIcon &icon, wxDouble x, wxDouble y, wxD
         bool hasAlpha = false;
         for ( size_t y = 0 ; y < height && !hasAlpha ; ++y)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        for ( size_t y = 0 ; y < height && !hasAlpha ; ++y)
+        {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for( size_t x = 0 ; x < width && !hasAlpha; ++x)
             {
                 ARGB *dest = (ARGB*)((BYTE*)data.Scan0 + data.Stride*y + x*4);
@@ -1859,10 +1888,16 @@ void wxGDIPlusContext::GetPartialTextExtents(const wxString& text, wxArrayDouble
     CharacterRange* ranges = new CharacterRange[maxSpan] ;
     Region* regions = new Region[maxSpan];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( remainder > 0 )
     {
         size_t span = wxMin( maxSpan, remainder );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for( size_t i = 0 ; i < span ; ++i)
         {
             ranges[i].First = 0 ;
@@ -1872,6 +1907,9 @@ void wxGDIPlusContext::GetPartialTextExtents(const wxString& text, wxArrayDouble
         m_context->MeasureCharacterRanges(ws, -1 , f,layoutRect, &strFormat,span,regions) ;
 
         RectF bbox ;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t i = 0 ; i < span ; ++i)
         {
             regions[i].GetBounds(&bbox,m_context);

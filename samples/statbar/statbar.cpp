@@ -621,6 +621,9 @@ void MyFrame::OnSetStatusFields(wxCommandEvent& WXUNUSED(event))
         sb->SetFieldsCount(nFields, widths);
 
         wxString s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( long n = 0; n < nFields; n++ )
         {
             if ( widths )
@@ -655,6 +658,9 @@ void MyFrame::OnResetFieldsWidth(wxCommandEvent& WXUNUSED(event))
 
     const int n = pStat->GetFieldsCount();
     pStat->SetStatusWidths(n, NULL);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < n; i++ )
         pStat->SetStatusText("same size", i);
 }
@@ -670,6 +676,9 @@ void MyFrame::OnShowFieldsRect(wxCommandEvent& WXUNUSED(event))
     dc.SetBrush(*wxTRANSPARENT_BRUSH);
 
     const int n = pStat->GetFieldsCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0; i < n; i++ )
     {
         wxRect r;
@@ -765,6 +774,9 @@ void MyFrame::ApplyPaneStyle()
     int fields = sb->GetFieldsCount();
     int *styles = new int[fields];
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 1; i < fields; i++)
         styles[i] = wxSB_NORMAL;
 

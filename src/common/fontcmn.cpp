@@ -257,6 +257,9 @@ void wxFontBase::SetPixelSize( const wxSize& pixelSize )
     // NB: this assignment was separated from the variable definition
     // in order to fix a gcc v3.3.3 compiler crash
     int currentSize = GetPointSize();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (currentSize > 0)
     {
         dc.SetFont(*static_cast<wxFont*>(this));
@@ -570,6 +573,9 @@ wxFont wxFont::Scaled(float x) const
 void wxNativeFontInfo::SetFaceName(const wxArrayString& facenames)
 {
 #if wxUSE_FONTENUM
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (size_t i=0; i < facenames.GetCount(); i++)
     {
         if (wxFontEnumerator::IsValidFacename(facenames[i]))
@@ -926,6 +932,9 @@ bool wxNativeFontInfo::FromUserString(const wxString& s)
 #endif
     bool insideQuotes = false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( tokenizer.HasMoreTokens() )
     {
         wxString token = tokenizer.GetNextToken();

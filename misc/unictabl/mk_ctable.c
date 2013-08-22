@@ -26,6 +26,14 @@ int main(int argc, char *argv[])
 
     for (i = 0; i < 256; i++) { table[i].c = i, table[i].u = 0; /* unknown */}
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (i = 0; i < 256; i++) { table[i].c = i, table[i].u = 0; /* unknown */}
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!feof(stdin))
     {
         scanf("%i\t%i\n", &enc, &unic);
@@ -46,6 +54,9 @@ int main(int argc, char *argv[])
            "static const wxUint16 encoding_table__%s[128] = {",
            argv[2], argv[1], argv[2]);
            
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 128; i < 256; i++)
     { 
         if (i % 8 == 0)
@@ -66,6 +77,9 @@ int main(int argc, char *argv[])
            "static wxUint16 encoding_table_rev__%s[128] = {",
            argv[2]);
            
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 128; i < 256; i++)
     { 
         if (i % 4 == 0)

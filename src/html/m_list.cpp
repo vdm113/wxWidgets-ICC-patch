@@ -114,6 +114,9 @@ int wxHtmlListCell::ComputeMaxBase(wxHtmlCell *cell)
 
     wxHtmlCell *child = cell->GetFirstChild();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(child)
     {
         int base = ComputeMaxBase( child );
@@ -134,6 +137,9 @@ void wxHtmlListCell::Layout(int w)
     int s_width = m_Width - m_IndentLeft;
 
     int vpos = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int r = 0; r < m_NumRows; r++)
     {
         // do layout first time to layout contents and adjust pos
@@ -179,6 +185,9 @@ void wxHtmlListCell::ComputeMinMaxWidths()
     m_MaxTotalWidth = 0;
     m_Width = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int r = 0; r < m_NumRows; r++)
     {
         wxHtmlListItemStruct& row = m_RowInfo[r];

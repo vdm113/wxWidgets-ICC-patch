@@ -273,6 +273,9 @@ bool wxToolBar::Realize()
     wxBitmap bmp, insensBmp;
 
     wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( node )
     {
         wxToolBarTool *tool = (wxToolBarTool *)node->GetData();
@@ -497,6 +500,9 @@ bool wxToolBar::DoDeleteTool(size_t WXUNUSED(pos), wxToolBarToolBase *tool)
     int packing = GetToolPacking();
     int offset = 0;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
          node; node = node->GetNext() )
     {
@@ -639,6 +645,9 @@ void wxToolBar::DoSetSize(int x, int y, int width, int height, int sizeFlags)
 wxToolBarToolBase *wxToolBar::FindToolByWidget(WXWidget w) const
 {
     wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( node )
     {
         wxToolBarTool *tool = (wxToolBarTool *)node->GetData();

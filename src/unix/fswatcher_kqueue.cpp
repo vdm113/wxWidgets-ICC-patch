@@ -160,6 +160,9 @@ public:
     virtual bool RemoveAll()
     {
         wxFSWatchEntries::iterator it = m_watches.begin();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ; it != m_watches.end(); ++it )
         {
             (void) DoRemove(it->second);
@@ -175,6 +178,9 @@ public:
                     "Kqueue not initialized or invalid kqueue descriptor" );
 
         // read events
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do
         {
             struct kevent event;
@@ -193,6 +199,9 @@ public:
             // we have event, so process it
             ProcessNativeEvent(event);
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (true);
 
         // when ret>0 we still have events, when ret<=0 we return
@@ -220,6 +229,9 @@ protected:
         // iterate over old/curr file lists and compute changes
         wxArrayString::iterator oit = old.files.begin();
         wxArrayString::iterator cit = curr.files.begin();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ; oit != old.files.end() && cit != curr.files.end(); )
         {
             if ( *cit == *oit )
@@ -244,6 +256,9 @@ protected:
         // border conditions
         if ( oit == old.files.end() )
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( ; cit != curr.files.end(); ++cit )
             {
                 changedFiles.push_back( *cit );
@@ -252,6 +267,9 @@ protected:
         }
         else if ( cit == curr.files.end() )
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( ; oit != old.files.end(); ++oit )
             {
                 changedFiles.push_back( *oit );
@@ -265,6 +283,9 @@ protected:
         wxLogTrace(wxTRACE_FSWATCHER, "Changed files:");
         wxArrayString::iterator it = changedFiles.begin();
         wxArrayInt::iterator it2 = changedFlags.begin();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( ; it != changedFiles.end(); ++it, ++it2)
         {
             wxString action = (*it2 == wxFSW_EVENT_CREATE) ?
@@ -292,6 +313,9 @@ protected:
 
         // TODO ignore events we didn't ask for + refactor this cascade ifs
         // check for events
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( nflags )
         {
             // when monitoring dir, this means create/delete
@@ -310,6 +334,9 @@ protected:
 
                 wxArrayString::iterator it = changedFiles.begin();
                 wxArrayInt::iterator changeType = changedFlags.begin();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( ; it != changedFiles.end(); ++it, ++changeType )
                 {
                     const wxString fullpath = w.GetPath() +

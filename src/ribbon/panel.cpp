@@ -94,6 +94,9 @@ bool wxRibbonPanel::Create(wxWindow* parent,
 void wxRibbonPanel::SetArtProvider(wxRibbonArtProvider* art)
 {
     m_art = art;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;
           node = node->GetNext() )
@@ -273,6 +276,9 @@ void wxRibbonPanel::DoSetSize(int x, int y, int width, int height, int sizeFlags
         // Note that for sizers, this routine disallows the use of mixed shown
         // and hidden controls
         // TODO ? use some list of user set invisible children to restore status.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
                   node;
                   node = node->GetNext())
@@ -654,6 +660,9 @@ bool wxRibbonPanel::Realize()
 {
     bool status = true;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
                   node;
                   node = node->GetNext())
@@ -832,6 +841,9 @@ bool wxRibbonPanel::ShowExpanded()
     // and thus assume a new position.
     // NB: Children iterators not used as behaviour is not well defined
     // when iterating over a container which is being emptied
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(!GetChildren().IsEmpty())
     {
         wxWindow *child = GetChildren().GetFirst()->GetData();
@@ -883,6 +895,9 @@ bool wxRibbonPanel::TryAfter(wxEvent& evt)
 
 static bool IsAncestorOf(wxWindow *ancestor, wxWindow *window)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(window != NULL)
     {
         wxWindow *parent = window->GetParent();
@@ -960,6 +975,9 @@ bool wxRibbonPanel::HideExpanded()
     // Move children back to original panel
     // NB: Children iterators not used as behaviour is not well defined
     // when iterating over a container which is being emptied
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(!GetChildren().IsEmpty())
     {
         wxWindow *child = GetChildren().GetFirst()->GetData();
@@ -1035,6 +1053,9 @@ wxRect wxRibbonPanel::GetExpandedPosition(wxRect panel,
 
     const unsigned display_n = wxDisplay::GetCount();
     unsigned display_i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(display_i = 0; display_i < display_n; ++display_i)
     {
         wxRect display = wxDisplay(display_i).GetGeometry();

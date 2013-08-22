@@ -165,6 +165,9 @@ bool wxClipboard::GetData( wxDataObject& data )
 
     if ( m_data )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = 0; !transferred && i < formatcount; i++)
         {
             wxDataFormat format = array[ i ];

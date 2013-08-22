@@ -72,6 +72,9 @@ TAG_HANDLER_BEGIN(FONT, "FONT" )
             wxStringTokenizer tk(tag.GetParam(wxT("FACE")), wxT(","));
             int index;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (tk.HasMoreTokens())
             {
                 if ((index = m_Faces.Index(tk.GetNextToken(), false)) != wxNOT_FOUND)

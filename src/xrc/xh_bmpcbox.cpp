@@ -78,6 +78,9 @@ wxObject *wxBitmapComboBoxXmlHandler::DoCreateResource()
 
         wxXmlNode *n = children_node;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (n)
         {
             if ((n->GetType() == wxXML_ELEMENT_NODE) &&

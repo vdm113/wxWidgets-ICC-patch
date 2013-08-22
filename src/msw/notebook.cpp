@@ -436,6 +436,9 @@ bool wxNotebook::SetPageText(size_t nPage, const wxString& strText)
     {
         const wxRect r = GetPageSize();
         const size_t count = m_pages.Count();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t page = 0; page < count; page++ )
             m_pages[page]->SetSize(r);
     }
@@ -652,6 +655,9 @@ bool wxNotebook::DeleteAllPages()
 {
     size_t nPageCount = GetPageCount();
     size_t nPage;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( nPage = 0; nPage < nPageCount; nPage++ )
         delete m_pages[nPage];
 
@@ -1003,6 +1009,9 @@ void wxNotebook::OnSize(wxSizeEvent& event)
     int width = rc.right - rc.left,
         height = rc.bottom - rc.top;
     size_t nCount = m_pages.Count();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t nPage = 0; nPage < nCount; nPage++ ) {
         wxNotebookPage *pPage = m_pages[nPage];
         pPage->SetSize(rc.left, rc.top, width, height);
@@ -1027,6 +1036,9 @@ void wxNotebook::OnSize(wxSizeEvent& event)
     if ( !m_hasSubclassedUpdown )
     {
         // iterate over all child windows to find spin button
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( HWND child = ::GetWindow(GetHwnd(), GW_CHILD);
               child;
               child = ::GetWindow(child, GW_HWNDNEXT) )

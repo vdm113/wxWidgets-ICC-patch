@@ -116,6 +116,9 @@ void wxBitmapCache::CreateImageIfNeeded( WXWidget w )
 WXPixmap wxBitmapCache::GetPixmapFromCache(WXWidget w)
 {
     Widget widget = (Widget)w;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while( XmIsGadget( widget ) )
         widget = XtParent( widget );
 

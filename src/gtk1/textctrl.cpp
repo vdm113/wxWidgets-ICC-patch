@@ -521,11 +521,17 @@ wxString wxTextCtrl::GetLineText( long lineNo ) const
             wxString buf;
             long i;
             int currentLine = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = 0; currentLine != lineNo && text[i]; i++ )
                 if (text[i] == '\n')
             currentLine++;
             // Now get the text
             int j;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j = 0; text[i] && text[i] != '\n'; i++, j++ )
                 buf += text[i];
 
@@ -565,6 +571,9 @@ bool wxTextCtrl::PositionToXY(long pos, long *x, long *y ) const
         *y=0;   // First Line
 
         const wxChar* stop = text.c_str() + pos;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( const wxChar *p = text.c_str(); p < stop; p++ )
         {
             if (*p == wxT('\n'))
@@ -598,6 +607,9 @@ long wxTextCtrl::XYToPosition(long x, long y ) const
     if (!(m_windowStyle & wxTE_MULTILINE)) return 0;
 
     long pos=0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for( int i=0; i<y; i++ ) pos += GetLineLength(i) + 1; // one for '\n'
 
     pos += x;
@@ -620,6 +632,9 @@ int wxTextCtrl::GetNumberOfLines() const
         if (text)
         {
             int currentLine = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int i = 0; i < len; i++ )
             {
                 if (text[i] == '\n')
@@ -983,6 +998,9 @@ void wxTextCtrl::OnChar( wxKeyEvent &key_event )
         // as the clicking the default button.
 
         wxWindow *top_frame = m_parent;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (top_frame->GetParent() && !(top_frame->IsTopLevel()))
             top_frame = top_frame->GetParent();
 

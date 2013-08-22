@@ -146,6 +146,9 @@ void wxExtHelpController::DeleteList()
     if (m_MapList)
     {
         wxList::compatibility_iterator node = m_MapList->GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             delete (wxExtHelpMapEntry *)node->GetData();
@@ -170,6 +173,9 @@ bool wxExtHelpController::ParseMapFileLine(const wxString& line)
     const wxChar *p = line.c_str();
 
     // skip whitespace
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( isascii(*p) && wxIsspace(*p) )
         p++;
 
@@ -185,6 +191,9 @@ bool wxExtHelpController::ParseMapFileLine(const wxString& line)
         return false;
 
     p = end;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( isascii(*p) && wxIsspace(*p) )
         p++;
 
@@ -194,6 +203,15 @@ bool wxExtHelpController::ParseMapFileLine(const wxString& line)
     while ( isascii(*p) && !wxIsspace(*p) )
         url += *p++;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while ( isascii(*p) && !wxIsspace(*p) )
+        url += *p++;
+
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( isascii(*p) && wxIsspace(*p) )
         p++;
 
@@ -202,6 +220,9 @@ bool wxExtHelpController::ParseMapFileLine(const wxString& line)
     if ( *p == WXEXTHELP_COMMENTCHAR )
     {
         p++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( isascii(*p) && wxIsspace(*p) )
             p++;
         doc = p;
@@ -289,6 +310,9 @@ bool wxExtHelpController::LoadFile(const wxString& file)
     if ( !input.Open(mapFile.GetFullPath()) )
         return false;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString& line = input.GetFirstLine();
           !input.Eof();
           line = input.GetNextLine() )
@@ -321,6 +345,9 @@ bool wxExtHelpController::DisplayContents()
     wxString contents;
     wxList::compatibility_iterator node = m_MapList->GetFirst();
     wxExtHelpMapEntry *entry;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         entry = (wxExtHelpMapEntry *)node->GetData();
@@ -353,6 +380,9 @@ bool wxExtHelpController::DisplaySection(int sectionNo)
     wxBusyCursor b; // display a busy cursor
     wxList::compatibility_iterator node = m_MapList->GetFirst();
     wxExtHelpMapEntry *entry;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         entry = (wxExtHelpMapEntry *)node->GetData();
@@ -407,6 +437,9 @@ bool wxExtHelpController::KeywordSearch(const wxString& k,
             compA.LowerCase();
         }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (node)
         {
             entry = (wxExtHelpMapEntry *)node->GetData();
@@ -427,6 +460,9 @@ bool wxExtHelpController::KeywordSearch(const wxString& k,
                 //if (choices[idx].empty()) // didn't contain the ';'
                 //   choices[idx] = (**i).doc;
                 choices[idx] = wxEmptyString;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for (int j=0; ; j++)
                 {
                     wxChar targetChar = entry->doc.c_str()[j];

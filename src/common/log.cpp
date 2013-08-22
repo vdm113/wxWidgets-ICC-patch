@@ -614,6 +614,9 @@ wxLogLevel wxLog::GetComponentLevel(wxString component)
     wxCRIT_SECT_LOCKER(lock, GetLevelsCS());
 
     const wxStringToNumHashMap& componentLevels = GetComponentLevels();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !component.empty() )
     {
         wxStringToNumHashMap::const_iterator
@@ -688,6 +691,9 @@ void wxLog::ClearTraceMasks()
     wxCRIT_SECT_LOCKER(lock, GetTraceMaskCS());
 
     const wxArrayString& masks = GetTraceMasks();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxArrayString::const_iterator it = masks.begin(),
                                         en = masks.end();
           it != en;
@@ -753,6 +759,9 @@ void wxLog::FlushThreadMessages()
 
     if ( !bufferedLogRecords.empty() )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( wxLogRecords::const_iterator it = bufferedLogRecords.begin();
               it != bufferedLogRecords.end();
               ++it )
@@ -1030,16 +1039,29 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
 
     size_t n;
     while ( *psz != '\0' ) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while ( *psz != '\0' ) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = nStart; (n < nMax) && (*psz != '\0'); n++ )
             putc(*psz++, f);
 
         // wrapped?
         if ( *psz != '\0' ) {
             /*putc('\n', f);*/
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( n = 0; n < nStart; n++ )
                 putc(' ', f);
 
             // as we wrapped, squeeze all white space
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while ( isspace(*psz) )
                 psz++;
         }

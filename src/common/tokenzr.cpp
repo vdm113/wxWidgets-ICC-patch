@@ -48,6 +48,9 @@ find_first_of(const wxChar *delims, size_t len,
 {
     wxASSERT_MSG( from <= end,  wxT("invalid index") );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator i = from; i != end; ++i )
     {
         if ( wxTmemchr(delims, *i, len) )
@@ -64,6 +67,9 @@ find_first_not_of(const wxChar *delims, size_t len,
 {
     wxASSERT_MSG( from <= end,  wxT("invalid index") );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator i = from; i != end; ++i )
     {
         if ( !wxTmemchr(delims, *i, len) )
@@ -95,6 +101,9 @@ void wxStringTokenizer::SetString(const wxString& str,
         // whitespace delimiters, strtok() behaviour is better because we want
         // to count consecutive spaces as one delimiter)
         wxString::const_iterator p;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( p = delims.begin(); p != delims.end(); ++p )
         {
             if ( !wxIsspace(*p) )
@@ -212,6 +221,9 @@ size_t wxStringTokenizer::CountTokens() const
     wxStringTokenizer tkz(wxString(m_pos, m_stringEnd), m_delims, m_mode);
 
     size_t count = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( tkz.HasMoreTokens() )
     {
         count++;
@@ -229,6 +241,9 @@ size_t wxStringTokenizer::CountTokens() const
 wxString wxStringTokenizer::GetNextToken()
 {
     wxString token;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
         if ( !HasMoreTokens() )
@@ -271,6 +286,9 @@ wxString wxStringTokenizer::GetNextToken()
             m_lastDelim = (pos == m_stringEnd) ? wxT('\0') : (wxChar)*pos;
         }
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !AllowEmpty() && token.empty() );
 
     return token;
@@ -286,6 +304,9 @@ wxArrayString wxStringTokenize(const wxString& str,
 {
     wxArrayString tokens;
     wxStringTokenizer tk(str, delims, mode);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( tk.HasMoreTokens() )
     {
         tokens.Add(tk.GetNextToken());

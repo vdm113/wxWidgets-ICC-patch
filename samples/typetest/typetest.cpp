@@ -285,11 +285,17 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
 
     wxFileOutputStream file_output( file_name );
     wxBufferedOutputStream buf_output( file_output );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ch = 0; ch < 10; ch++)
         buf_output.Write( &ch, 1 );
     buf_output.Sync();
 
     wxFileInputStream file_input( file_name );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ch2 = 0; ch2 < 10; ch2++)
     {
         file_input.Read( &ch, 1 );
@@ -302,6 +308,9 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
 
     wxFileOutputStream file_output2( file_name2 );
     wxBufferedOutputStream buf_output2( file_output2 );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ch = 0; ch < 10; ch++)
         buf_output2.Write( &ch, 1 );
     buf_output2.SeekO( 3 );
@@ -310,6 +319,9 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
     buf_output2.Sync();
 
     wxFileInputStream file_input2( file_name2 );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ch2 = 0; ch2 < 10; ch2++)
     {
         file_input2.Read( &ch, 1 );
@@ -320,6 +332,9 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
     // now append 2000 bytes to file (bigger than buffer)
     buf_output2.SeekO( 0, wxFromEnd );
     ch = 1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < 2000; i++)
        buf_output2.Write( &ch, 1 );
     buf_output2.Sync();
@@ -329,11 +344,17 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
 
     wxFileInputStream file_input3( file_name2 );
     wxBufferedInputStream buf_input3( file_input3 );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ch2 = 0; ch2 < 10; ch2++)
     {
         buf_input3.Read( &ch, 1 );
         textCtrl.WriteText( (wxChar)(ch + wxT('0')) );
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int j = 0; j < 2000; j++)
        buf_input3.Read( &ch, 1 );
     textCtrl.WriteText( wxT("\n") );
@@ -356,6 +377,9 @@ void MyApp::DoStreamDemo3(wxCommandEvent& WXUNUSED(event))
     textCtrl.WriteText( wxT("Writing number 0 to 9 to wxFileOutputStream:\n\n") );
 
     wxFileOutputStream file_output( file_name );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ch = 0; ch < 10; ch++)
         file_output.Write( &ch, 1 );
 
@@ -364,6 +388,9 @@ void MyApp::DoStreamDemo3(wxCommandEvent& WXUNUSED(event))
     textCtrl.WriteText( wxT("Reading 0 to 10 to wxFileInputStream:\n\n") );
 
     wxFileInputStream file_input( file_name );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ch2 = 0; ch2 < 11; ch2++)
     {
         file_input.Read( &ch, 1 );
@@ -413,6 +440,9 @@ void MyApp::DoStreamDemo3(wxCommandEvent& WXUNUSED(event))
     textCtrl.WriteText( wxT("Reading 0 to 10 to wxFFileInputStream:\n\n") );
 
     wxFFileInputStream ffile_input( file_name );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ch2 = 0; ch2 < 11; ch2++)
     {
         ffile_input.Read( &ch, 1 );
@@ -462,6 +492,9 @@ void MyApp::DoStreamDemo3(wxCommandEvent& WXUNUSED(event))
 
     wxFFileInputStream ffile_input2( file_name );
     wxBufferedInputStream buf_input( ffile_input2 );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ch2 = 0; ch2 < 11; ch2++)
     {
         buf_input.Read( &ch, 1 );
@@ -518,6 +551,9 @@ void MyApp::DoStreamDemo4(wxCommandEvent& WXUNUSED(event))
     textCtrl.WriteText( wxT("Writing 2000x 1 to wxFileOutputStream.\n\n") );
 
     wxFileOutputStream file_output( file_name );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < 2000; i++)
     {
         char ch = 1;
@@ -657,6 +693,9 @@ void MyApp::DoStreamDemo5(wxCommandEvent& WXUNUSED(event))
     textCtrl.WriteText( wxT("Writing number 0 to 9 to wxFileOutputStream:\n\n") );
 
     wxFileOutputStream file_output( file_name );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ch = 0; ch < 10; ch++)
         file_output.Write( &ch, 1 );
 
@@ -732,6 +771,9 @@ void MyApp::DoStreamDemo6(wxCommandEvent& WXUNUSED(event))
     textCtrl.WriteText( wxT("Writing number 0 to 9 to wxFileOutputStream...\n\n") );
 
     wxFileOutputStream file_output( file_name );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ch = 0; ch < 10; ch++)
         file_output.Write( &ch, 1 );
 
@@ -811,6 +853,9 @@ void MyApp::DoStreamDemo7(wxCommandEvent& WXUNUSED(event))
     textCtrl.WriteText( wxT("Writing number 0 to 9 to wxFileOutputStream...\n\n") );
 
     wxFileOutputStream file_output( file_name );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (ch = 0; ch < 10; ch++)
         file_output.Write( &ch, 1 );
 
@@ -1039,6 +1084,9 @@ void MyApp::DoVariantDemo(wxCommandEvent& WXUNUSED(event) )
 
     size_t n = var1.GetCount();
     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = (size_t) 0; i < n; i++)
     {
         textCtrl << wxT("var1[") << (int) i << wxT("] (type ") << var1[i].GetType() << wxT(") = ") << var1[i].MakeString() << wxT("\n");

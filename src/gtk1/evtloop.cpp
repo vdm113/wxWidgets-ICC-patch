@@ -74,6 +74,9 @@ int wxGUIEventLoop::DoRun()
     // event loops.  For example, inside this event loop, we may recieve
     // Exit() for a different event loop (which we are currently inside of)
     // That Exit() will cause this gtk_main() to exit so we need to re-enter it.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !m_shouldExit )
     {
         gtk_main();
@@ -162,6 +165,9 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
 #endif
 
     // TODO: implement event filtering using the eventsToProcess mask
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (gtk_events_pending())
         gtk_main_iteration();
 

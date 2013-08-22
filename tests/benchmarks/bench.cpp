@@ -37,6 +37,10 @@ static const char OPTION_NUM_RUNS = 'n';
 static const char OPTION_NUMERIC_PARAM = 'p';
 static const char OPTION_STRING_PARAM = 's';
 
+//
+
+char tmp[4096];
+
 // ----------------------------------------------------------------------------
 // BenchApp declaration
 // ----------------------------------------------------------------------------
@@ -76,6 +80,7 @@ private:
 };
 
 IMPLEMENT_APP_CONSOLE(BenchApp)
+IMPLEMENT_APP(BenchApp)
 
 // ============================================================================
 // Bench namespace symbols implementation
@@ -111,6 +116,9 @@ bool BenchApp::OnInit()
 
     wxPrintf("wxWidgets benchmarking program\n"
              "Build: %s\n", WX_BUILD_OPTIONS_SIGNATURE);
+    sprintf(tmp,"wxWidgets benchmarking program\n"
+             "Build: %s\n", WX_BUILD_OPTIONS_SIGNATURE);
+    wxLogMessage(tmp);
 
 #if wxUSE_GUI
     // create a hidden parent window to be used as parent for the GUI controls
@@ -200,6 +208,8 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
         if ( numRunsSpecified )
         {
             wxFprintf(stderr, "Incompatible options specified.\n");
+            sprintf(tmp, "Incompatible options specified.\n");
+            wxLogMessage(tmp);
 
             return false;
         }
@@ -210,6 +220,9 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
 
     // construct sorted array for quick verification of benchmark names
     wxSortedArrayString benchmarks;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( Bench::Function *func = Bench::Function::GetFirst();
           func;
           func = func->GetNext() )
@@ -217,12 +230,17 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
         benchmarks.push_back(func->GetName());
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         const wxString name = parser.GetParam(n);
         if ( benchmarks.Index(name) == wxNOT_FOUND )
         {
             wxFprintf(stderr, "No benchmark named \"%s\".\n", name);
+            sprintf(tmp, "No benchmark named \"%s\".\n", name);
+            wxLogMessage(tmp);
             return false;
         }
 
@@ -235,6 +253,9 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
 int BenchApp::OnRun()
 {
     int rc = EXIT_SUCCESS;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( Bench::Function *func = Bench::Function::GetFirst();
           func;
           func = func->GetNext() )
@@ -253,6 +274,8 @@ int BenchApp::OnRun()
         }
 
         wxPrintf("Benchmarking %s%s: ", func->GetName(), params);
+        sprintf(tmp,"Benchmarking %s%s: ", func->GetName(), params);
+        wxLogMessage(tmp);
 
         long timeMin = LONG_MAX,
              timeMax = 0,
@@ -261,6 +284,15 @@ int BenchApp::OnRun()
         for ( long a = 0; ok && a < m_avgCount; a++ )
         {
             wxStopWatch sw;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        for ( long a = 0; ok && a < m_avgCount; a++ )
+        {
+            wxStopWatch sw;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( long n = 0; n < m_numRuns && ok; n++ )
             {
                 ok = func->Run();
@@ -281,11 +313,14 @@ int BenchApp::OnRun()
         if ( !ok )
         {
             wxPrintf("ERROR\n");
+            wxLogMessage("ERROR\n");
             rc = EXIT_FAILURE;
         }
         else
         {
             wxPrintf("%ldms total, ", timeTotal);
+            sprintf(tmp,"%ldms total, ", timeTotal);
+            wxLogMessage(tmp);
 
             long times = m_avgCount;
             if ( m_avgCount > 2 )
@@ -296,6 +331,9 @@ int BenchApp::OnRun()
 
             wxPrintf("%.2f avg (min=%ld, max=%ld)\n",
                      (float)timeTotal / times, timeMin, timeMax);
+            sprintf(tmp,"%.2f avg (min=%ld, max=%ld)\n",
+                     (float)timeTotal / times, timeMin, timeMax);
+            wxLogMessage(tmp);
         }
 
         fflush(stdout);
@@ -317,10 +355,17 @@ int BenchApp::OnExit()
 void BenchApp::ListBenchmarks()
 {
     wxPrintf("Available benchmarks:\n");
+    sprintf(tmp,"Available benchmarks:\n");
+    wxLogMessage(tmp);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( Bench::Function *func = Bench::Function::GetFirst();
           func;
           func = func->GetNext() )
     {
         wxPrintf("\t%s\n", func->GetName());
+        sprintf(tmp,"\t%s\n", func->GetName());
+        wxLogMessage(tmp);
     }
 }

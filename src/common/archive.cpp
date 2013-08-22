@@ -85,6 +85,9 @@ void wxArchiveClassFactory::Remove()
     {
         wxArchiveClassFactory **pp = &sm_first;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (*pp != this)
             pp = &(*pp)->m_next;
 

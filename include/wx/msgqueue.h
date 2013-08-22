@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msqqueue.h
 // Purpose:     Message queues for inter-thread communication
@@ -99,6 +106,9 @@ public:
         wxCHECK( locker.IsOk(), wxMSGQUEUE_MISC_ERROR );
 
         const wxMilliClock_t waitUntil = wxGetLocalTimeMillis() + timeout;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( m_messages.empty() )
         {
             wxCondError result = m_conditionNotEmpty.WaitTimeout(timeout);
@@ -133,6 +143,9 @@ public:
 
         wxCHECK( locker.IsOk(), wxMSGQUEUE_MISC_ERROR );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( m_messages.empty() )
         {
             wxCondError result = m_conditionNotEmpty.Wait();

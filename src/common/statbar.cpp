@@ -144,6 +144,9 @@ void wxStatusBarBase::SetFieldsCount(int number, const int *widths)
 
         // add more entries with the default style and zero width
         // (this will be set later)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (size_t i = m_panes.GetCount(); i < (size_t)number; ++i)
             m_panes.Add(newPane);
     }
@@ -170,6 +173,9 @@ void wxStatusBarBase::SetStatusWidths(int WXUNUSED_UNLESS_DEBUG(n),
     }
     else
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t i = 0; i < m_panes.GetCount(); i++ )
             m_panes[i].SetWidth(widths[i]);
 
@@ -187,6 +193,9 @@ void wxStatusBarBase::SetStatusStyles(int WXUNUSED_UNLESS_DEBUG(n),
 
     wxASSERT_MSG( (size_t)n == m_panes.GetCount(), wxT("field number mismatch") );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < m_panes.GetCount(); i++ )
         m_panes[i].SetStyle(styles[i]);
 
@@ -206,6 +215,9 @@ wxArrayInt wxStatusBarBase::CalculateAbsWidths(wxCoord widthTotal) const
         // pixels among all fields:
         int widthToUse = widthTotal;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( size_t i = m_panes.GetCount(); i > 0; i-- )
         {
             // divide the unassigned width evently between the
@@ -223,6 +235,9 @@ wxArrayInt wxStatusBarBase::CalculateAbsWidths(wxCoord widthTotal) const
             nVarCount = 0,
             i;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < m_panes.GetCount(); i++ )
         {
             if ( m_panes[i].GetWidth() >= 0 )
@@ -235,6 +250,9 @@ wxArrayInt wxStatusBarBase::CalculateAbsWidths(wxCoord widthTotal) const
         int widthExtra = widthTotal - nTotalWidth;
 
         // do fill the array
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( i = 0; i < m_panes.GetCount(); i++ )
         {
             if ( m_panes[i].GetWidth() >= 0 )

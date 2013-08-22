@@ -66,6 +66,9 @@ wxObject *wxSplitterWindowXmlHandler::DoCreateResource()
 
     wxWindow *win1 = NULL, *win2 = NULL;
     wxXmlNode *n = m_node->GetChildren();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (n)
     {
         if ((n->GetType() == wxXML_ELEMENT_NODE) &&

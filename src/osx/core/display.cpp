@@ -103,6 +103,9 @@ static CGDisplayErr wxOSXGetDisplayList(CGDisplayCount maxDisplays,
             error = CGGetOnlineDisplayList(onlineCount,onlineDisplays,&onlineCount);
             if ( error == kCGErrorSuccess )
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( CGDisplayCount i = 0; i < onlineCount; ++i )
                 {
                     if ( CGDisplayMirrorsDisplay(onlineDisplays[i]) != kCGNullDirectDisplay )
@@ -154,6 +157,9 @@ int wxDisplayFactoryMacOSX::GetFromPoint(const wxPoint& p)
         err = wxOSXGetDisplayList(theCount, theIDs, &theCount);
         wxASSERT(err == CGDisplayNoErr);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (nWhich = 0; nWhich < (int) theCount; ++nWhich)
         {
             if (theIDs[nWhich] == theID)
@@ -236,6 +242,9 @@ wxArrayVideoModes wxDisplayImplMacOSX::GetModes(const wxVideoMode& mode) const
 
     CFArrayRef theArray = CGDisplayAvailableModes( m_id );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (CFIndex i = 0; i < CFArrayGetCount(theArray); ++i)
     {
         CFDictionaryRef theValue = (CFDictionaryRef) CFArrayGetValueAtIndex( theArray, i );

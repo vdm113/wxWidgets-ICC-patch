@@ -313,6 +313,9 @@ struct wxMSWCommandLineArguments
 
         // +1 here for the terminating NULL
         argv = new wxChar *[argc + 1];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < argc; i++ )
         {
             argv[i] = wxStrdup(args[i].t_str());
@@ -327,6 +330,9 @@ struct wxMSWCommandLineArguments
         if ( !argc )
             return;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < argc; i++ )
         {
             free(argv[i]);

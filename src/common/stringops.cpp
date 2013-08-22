@@ -94,6 +94,9 @@ bool wxStringOperationsUtf8::IsValidUtf8String(const char *str, size_t len)
     const unsigned char *c = (const unsigned char*)str;
     const unsigned char * const end = (len == wxStringImpl::npos) ? NULL : c + len;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ; c != end && *c; ++c )
     {
         unsigned char b = *c;
@@ -141,6 +144,9 @@ bool wxStringOperationsUtf8::IsValidUtf8String(const char *str, size_t len)
         }
         else if ( b <= 0xEF ) // E1..EC EE..EF
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int i = 0; i < 2; ++i )
             {
                 b = *(++c);
@@ -155,6 +161,9 @@ bool wxStringOperationsUtf8::IsValidUtf8String(const char *str, size_t len)
             b = *(++c);
             if ( !(b >= 0x90 && b <= 0xBF ) )
                 return false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int i = 0; i < 2; ++i )
             {
                 b = *(++c);
@@ -164,6 +173,9 @@ bool wxStringOperationsUtf8::IsValidUtf8String(const char *str, size_t len)
         }
         else if ( b <= 0xF3 ) // F1..F3
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int i = 0; i < 3; ++i )
             {
                 b = *(++c);
@@ -176,6 +188,9 @@ bool wxStringOperationsUtf8::IsValidUtf8String(const char *str, size_t len)
             b = *(++c);
             if ( !(b >= 0x80 && b <= 0x8F ) )
                 return false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( int i = 0; i < 2; ++i )
             {
                 b = *(++c);
@@ -284,6 +299,9 @@ wxStringOperationsUtf8::DecodeNonAsciiChar(wxStringImpl::const_iterator i)
 
     // all remaining bytes, if any, are handled in the same way regardless of
     // sequence's length:
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ++i ; len > 1; --len, ++i )
     {
         wxASSERT_MSG( ((unsigned char)*i & 0xC0) == 0x80,
@@ -304,6 +322,9 @@ wxCharBuffer wxStringOperationsUtf8::EncodeNChars(size_t n, const wxUniChar& ch)
 
     wxCharBuffer buf(n * len);
     char *ptr = buf.data();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < n; i++, ptr += len )
     {
         memcpy(ptr, once.data, len);

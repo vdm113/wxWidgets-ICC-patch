@@ -448,6 +448,9 @@ miInsertEdgeInET(EdgeTable *ET, EdgeTableEntry *ETE,  int scanline,
      */
     pPrevSLL = &ET->scanlines;
     pSLL = pPrevSLL->next;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (pSLL && (pSLL->scanline < scanline))
     {
         pPrevSLL = pSLL;
@@ -483,6 +486,9 @@ miInsertEdgeInET(EdgeTable *ET, EdgeTableEntry *ETE,  int scanline,
      */
     prev = (EdgeTableEntry *)NULL;
     start = pSLL->edgelist;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (start && (start->bres.minor < ETE->bres.minor))
     {
         prev = start;
@@ -557,6 +563,9 @@ miCreateETandAET(int count, const wxPoint * pts, EdgeTable *ET, EdgeTableEntry *
      *  In this loop we are dealing with two vertices at
      *  a time -- these make up one edge of the polygon.
      */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (count--)
     {
         CurrPt = pts++;
@@ -623,6 +632,14 @@ miloadAET(EdgeTableEntry *AET, EdgeTableEntry *ETEs)
     AET = AET->next;
     while (ETEs)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (ETEs)
+    {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (AET && (AET->bres.minor < ETEs->bres.minor))
         {
             pPrevAET = AET;
@@ -670,6 +687,9 @@ micomputeWAET(EdgeTableEntry *AET)
     AET->nextWETE = (EdgeTableEntry *)NULL;
     pWETE = AET;
     AET = AET->next;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (AET)
     {
         if (AET->ClockWise)
@@ -707,10 +727,16 @@ miInsertionSort(EdgeTableEntry *AET)
     int changed = 0;
     
     AET = AET->next;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (AET)
     {
         pETEinsert = AET;
         pETEchase = AET;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (pETEchase->back->bres.minor > AET->bres.minor)
             pETEchase = pETEchase->back;
         
@@ -739,6 +765,9 @@ miFreeStorage(ScanLineListBlock *pSLLBlock)
 {
     ScanLineListBlock   *tmpSLLBlock;
     
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (pSLLBlock) 
     {
         tmpSLLBlock = pSLLBlock->next;
@@ -792,6 +821,9 @@ scanFillGeneralPoly( wxRegion* rgn,
         /*
          *  for each scanline
          */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (y = ET.ymin; y < ET.ymax; y++)
         {
             /*
@@ -809,6 +841,9 @@ scanFillGeneralPoly( wxRegion* rgn,
             /*
              *  for each active edge
              */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (pAET)
             {
                 ptsOut->x = pAET->bres.minor;
@@ -824,6 +859,9 @@ scanFillGeneralPoly( wxRegion* rgn,
                     // (*pgc->ops->FillSpans)(dst, pgc,
                     //     nPts, FirstPoint, FirstWidth,1);
                     
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( int i = 0 ; i < nPts; ++i)
                     {
                         wxRect rect;
@@ -848,6 +886,9 @@ scanFillGeneralPoly( wxRegion* rgn,
         /*
          *  for each scanline
          */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (y = ET.ymin; y < ET.ymax; y++)
         {
             /*
@@ -867,6 +908,9 @@ scanFillGeneralPoly( wxRegion* rgn,
             /*
              *  for each active edge
              */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             while (pAET)
             {
                 /*
@@ -888,6 +932,9 @@ scanFillGeneralPoly( wxRegion* rgn,
                     {
                         // (*pgc->ops->FillSpans)(dst, pgc,
                         //     nPts, FirstPoint, FirstWidth,1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for ( int i = 0 ; i < nPts ; ++i)
                         {
                             wxRect rect;
@@ -903,6 +950,9 @@ scanFillGeneralPoly( wxRegion* rgn,
                     }
                     
                     pWETE = pWETE->nextWETE;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     while (pWETE != pAET)
                         EVALUATEEDGEWINDING(pAET, pPrevAET, y, fixWAET);
                     pWETE = pWETE->nextWETE;
@@ -927,6 +977,9 @@ scanFillGeneralPoly( wxRegion* rgn,
      */
     // (*pgc->ops->FillSpans)(dst, pgc,
     //     nPts, FirstPoint, FirstWidth,1);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( int i = 0 ; i < nPts; ++i)
     {
         wxRect rect;
@@ -960,6 +1013,9 @@ wxRegion::wxRegion(size_t n, const wxPoint *points, wxPolygonFillMode fillStyle)
     size_t idx;     
      
     // Find the max size needed to draw the polygon 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (idx=0; idx<n; idx++) 
     { 
         wxPoint pt = points[idx]; 
@@ -1250,6 +1306,9 @@ void wxRegionIterator::SetRects(long numRects, wxRect *rects)
         int i;
 
         m_rects = new wxRect[numRects];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < numRects; i++)
             m_rects[i] = rects[i];
     }

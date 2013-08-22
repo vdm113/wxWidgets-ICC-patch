@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/window.h
 // Purpose:     wxWindowBase class - the interface of wxWindow
@@ -1829,6 +1836,15 @@ private:
 
     // base for dialog unit conversion, i.e. average character size
     wxSize GetDlgUnitBase() const;
+
+    // the stack of windows which have captured the mouse
+    static struct WXDLLIMPEXP_FWD_CORE wxWindowNext *ms_winCaptureNext;
+
+    // the window that currently has mouse capture
+    static wxWindow *ms_winCaptureCurrent;
+
+    // indicates if execution is inside CaptureMouse/ReleaseMouse
+    static bool ms_winCaptureChanging;
 
 
     // number of Freeze() calls minus the number of Thaw() calls: we're frozen

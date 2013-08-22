@@ -199,6 +199,9 @@ bool wxRemoteHtmlHelpController::DoConnection()
             }
         }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( !isconn_1 )
         {
             //try every second for a while, then leave it to user

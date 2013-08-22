@@ -289,6 +289,9 @@ char wxFTP::GetResult()
     bool badReply = false;
     bool firstLine = true;
     bool endOfReply = false;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( !endOfReply && !badReply )
     {
         wxString line;
@@ -468,6 +471,9 @@ wxString wxFTP::Pwd()
         }
         else
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( ++p; (bool)*p; ++p ) // FIXME-DMARS
             {
                 if ( *p == wxT('"') )
@@ -850,6 +856,9 @@ bool wxFTP::GetList(wxArrayString& files,
     }
 
     files.Empty();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (ReadLine(sock, line) == wxPROTO_NOERR )
     {
         files.Add(line);
@@ -962,6 +971,9 @@ int wxFTP::GetFileSize(const wxString& fileName)
                     // filename. The search is not case-sensitive.
                     const size_t numFiles = fileList.size();
                     size_t i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for ( i = 0; i < fileList.GetCount(); i++ )
                     {
                         if ( fileList[i].Upper().Contains(fileName.Upper()) )

@@ -211,6 +211,9 @@ wxCondError wxConditionInternal::Broadcast()
 {
     wxCriticalSectionLocker lock(m_csWaiters);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( m_numWaiters > 0 )
     {
         if ( m_semaphore.Post() != wxSEMA_NO_ERROR )

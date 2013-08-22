@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        interface/wx/treelist.h
 // Purpose:     wxTreeListCtrl class documentation
@@ -550,6 +557,9 @@ public:
 
         The iteration stops when this function returns an invalid item, i.e.
         @code
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for ( wxTreeListItem item = tree->GetFirstItem();
                   item.IsOk();
                   item = tree->GetNextItem(item) )

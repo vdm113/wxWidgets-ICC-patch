@@ -95,6 +95,9 @@ public:
 
         m_num = gdk_screen_get_n_monitors(screen);
         m_screens = new ScreenInfo[m_num];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int i = 0; i < m_num; i++ )
         {
             GdkRectangle rect;
@@ -192,6 +195,9 @@ int wxDisplayFactoryX11::GetFromPoint(const wxPoint& p)
     ScreensInfo screens;
 
     const unsigned numscreens(screens.GetCount());
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( unsigned i = 0; i < numscreens; ++i )
     {
         const ScreenInfo& s = screens[i];
@@ -248,6 +254,9 @@ wxArrayVideoModes wxDisplayImplX11::GetModes(const wxVideoMode& mode) const
 
     if (XF86VidModeGetAllModeLines(pDisplay, nScreen, &nNumModes, &ppXModes) == TRUE)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < nNumModes; ++i)
         {
             if (mode == wxDefaultVideoMode || //According to display.h All modes valid if dafault mode...
@@ -295,6 +304,9 @@ bool wxDisplayImplX11::ChangeMode(const wxVideoMode& mode)
         bRet = XF86VidModeSwitchToMode((Display*)wxGetDisplay(), DefaultScreen((Display*)wxGetDisplay()),
                      ppXModes[0]) == TRUE;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < nNumModes; ++i)
         {
             wxClearXVM((*ppXModes[i]));
@@ -303,6 +315,9 @@ bool wxDisplayImplX11::ChangeMode(const wxVideoMode& mode)
     }
     else
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < nNumModes; ++i)
         {
             if (!bRet &&
@@ -334,6 +349,9 @@ wxArrayVideoModes wxDisplayImplX11::GetModes(const wxVideoMode& modeMatch) const
     wxArrayVideoModes modes;
     if ( depths )
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( int x = 0; x < count_return; ++x )
         {
             wxVideoMode mode(m_rect.GetWidth(), m_rect.GetHeight(), depths[x]);

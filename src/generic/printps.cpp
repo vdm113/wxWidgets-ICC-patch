@@ -170,6 +170,9 @@ bool wxPostScriptPrinter::Print(wxWindow *parent, wxPrintout *printout, bool pro
     bool keepGoing = true;
 
     int copyCount;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (copyCount = 1; copyCount <= m_printDialogData.GetNoCopies(); copyCount ++)
     {
         if (!printout->OnBeginDocument(m_printDialogData.GetFromPage(), m_printDialogData.GetToPage()))
@@ -186,6 +189,9 @@ bool wxPostScriptPrinter::Print(wxWindow *parent, wxPrintout *printout, bool pro
         }
 
         int pn;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (pn = m_printDialogData.GetFromPage(); keepGoing && (pn <= m_printDialogData.GetToPage()) && printout->HasPage(pn);
         pn++)
         {

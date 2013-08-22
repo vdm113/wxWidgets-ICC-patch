@@ -175,6 +175,9 @@ wxAcceleratorEntry::ParseAccel(const wxString& text, int *flagsOut, int *keyOut)
     // parse the accelerator string
     int accelFlags = wxACCEL_NORMAL;
     wxString current;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = (size_t)posTab; n < label.length(); n++ )
     {
         if ( (label[n] == '+') || (label[n] == '-') )
@@ -239,6 +242,9 @@ wxAcceleratorEntry::ParseAccel(const wxString& text, int *flagsOut, int *keyOut)
                                          WXK_F1, 1, 12);
             if ( !keyCode )
             {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 for ( size_t n = 0; n < WXSIZEOF(wxKeyNames); n++ )
                 {
                     const wxKeyName& kn = wxKeyNames[n];
@@ -341,6 +347,9 @@ wxString wxAcceleratorEntry::AsPossiblyLocalizedString(bool localized) const
     else // check the named keys
     {
         size_t n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for ( n = 0; n < WXSIZEOF(wxKeyNames); n++ )
         {
             const wxKeyName& kn = wxKeyNames[n];

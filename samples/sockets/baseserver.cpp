@@ -346,6 +346,9 @@ bool Server::OnInit()
 
 int Server::OnExit()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( TList::compatibility_iterator it = m_threadWorkers.GetFirst();
           it;
           it = it->GetNext() )
@@ -354,6 +357,9 @@ int Server::OnExit()
         delete it->GetData();
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( EList::compatibility_iterator it2 = m_eventWorkers.GetFirst();
           it2;
           it2->GetNext() )
@@ -429,6 +435,9 @@ void Server::OnSocketEvent(wxSocketEvent& pEvent)
 void  Server::OnWorkerEvent(WorkerEvent& pEvent)
 {
     //wxLogMessage("Got worker event");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(TList::compatibility_iterator it = m_threadWorkers.GetFirst(); it ; it = it->GetNext())
     {
         if (it->GetData() == pEvent.m_sender)
@@ -445,6 +454,9 @@ void  Server::OnWorkerEvent(WorkerEvent& pEvent)
             break;
         }
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(EList::compatibility_iterator it2 = m_eventWorkers.GetFirst(); it2 ; it2 = it2->GetNext())
     {
         if (it2->GetData() == pEvent.m_sender)
@@ -504,6 +516,9 @@ wxThread::ExitCode ThreadWorker::Entry()
         unsigned char signature[2];
         LogWorker("ThreadWorker: reading for data");
         to_process = 2;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do
         {
             m_socket->Read(&signature,to_process);
@@ -517,6 +532,9 @@ wxThread::ExitCode ThreadWorker::Entry()
             LogWorker(wxString::Format("to_process: %d",to_process));
 
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (!m_socket->Error() && to_process != 0);
 
         if (signature[0] == 0)
@@ -539,6 +557,9 @@ wxThread::ExitCode ThreadWorker::Entry()
         to_process = size;
         LogWorker(wxString::Format("ThreadWorker: reading %d bytes of data",to_process));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do
         {
             m_socket->Read(buf,to_process);
@@ -552,10 +573,16 @@ wxThread::ExitCode ThreadWorker::Entry()
             LogWorker(wxString::Format("ThreadWorker: %d bytes readed, %d todo",m_socket->LastCount(),to_process));
 
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while(!m_socket->Error() && to_process != 0);
 
         to_process = size;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do
         {
             m_socket->Write(buf,to_process);
@@ -567,6 +594,9 @@ wxThread::ExitCode ThreadWorker::Entry()
            to_process -= m_socket->LastCount();
            LogWorker(wxString::Format("ThreadWorker: %d bytes written, %d todo",m_socket->LastCount(),to_process));
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while(!m_socket->Error() && to_process != 0);
     }
 
@@ -604,6 +634,9 @@ EventWorker::DoRead()
     if (m_inbuf == NULL)
     {
         //read message header
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         do
         {
             m_socket->Read(m_signature + m_infill, 2 - m_infill);
@@ -647,12 +680,18 @@ EventWorker::DoRead()
                 }
             }
         }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while(!m_socket->Error() && (2 - m_infill != 0));
     }
 
     if (m_inbuf == NULL)
         return;
     //read message data
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
         if (m_size == m_infill)
@@ -683,6 +722,9 @@ EventWorker::DoRead()
             DoWrite();
         }
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while(!m_socket->Error());
 };
 
@@ -716,6 +758,9 @@ void EventWorker::OnSocketEvent(wxSocketEvent& pEvent)
 
 void  EventWorker::DoWrite()
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do
     {
         if (m_written == m_size)
@@ -756,6 +801,9 @@ void  EventWorker::DoWrite()
         LogWorker(wxString::Format("Written %d of %d bytes, todo %d",
                   m_socket->LastCount(),m_size,m_size - m_written));
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (!m_socket->Error());
 }
 

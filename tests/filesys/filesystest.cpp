@@ -102,6 +102,9 @@ void FileSystemTestCase::UrlParsing()
     };
 
     UrlTester tst;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(data); n++ )
     {
         const Data& d = data[n];

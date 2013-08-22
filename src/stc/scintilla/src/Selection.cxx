@@ -188,6 +188,9 @@ SelectionSegment Selection::Limits() const {
 		return SelectionSegment();
 	} else {
 		SelectionSegment sr(ranges[0].anchor, ranges[0].caret);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 		for (size_t i=1; i<ranges.size(); i++) {
 			sr.Extend(ranges[i].anchor);
 			sr.Extend(ranges[i].caret);
@@ -234,6 +237,9 @@ void Selection::SetMoveExtends(bool moveExtends_) {
 }
 
 bool Selection::Empty() const {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (size_t i=0; i<ranges.size(); i++) {
 		if (!ranges[i].Empty())
 			return false;
@@ -243,6 +249,9 @@ bool Selection::Empty() const {
 
 SelectionPosition Selection::Last() const {
 	SelectionPosition lastPosition;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (size_t i=0; i<ranges.size(); i++) {
 		if (lastPosition < ranges[i].caret)
 			lastPosition = ranges[i].caret;
@@ -254,6 +263,9 @@ SelectionPosition Selection::Last() const {
 
 int Selection::Length() const {
 	int len = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (size_t i=0; i<ranges.size(); i++) {
 		len += ranges[i].Length();
 	}
@@ -261,6 +273,9 @@ int Selection::Length() const {
 }
 
 void Selection::MovePositions(bool insertion, int startChange, int length) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (size_t i=0; i<ranges.size(); i++) {
 		ranges[i].caret.MoveForInsertDelete(insertion, startChange, length);
 		ranges[i].anchor.MoveForInsertDelete(insertion, startChange, length);
@@ -271,6 +286,15 @@ void Selection::TrimSelection(SelectionRange range) {
 	for (size_t i=0; i<ranges.size();) {
 		if ((i != mainRange) && (ranges[i].Trim(range))) {
 			// Trimmed to empty so remove
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	for (size_t i=0; i<ranges.size();) {
+		if ((i != mainRange) && (ranges[i].Trim(range))) {
+			// Trimmed to empty so remove
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			for (size_t j=i; j<ranges.size()-1; j++) {
 				ranges[j] = ranges[j+1];
 				if (j == mainRange-1)
@@ -316,6 +340,9 @@ void Selection::CommitTentative() {
 }
 
 int Selection::CharacterInSelection(int posCharacter) const {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (size_t i=0; i<ranges.size(); i++) {
 		if (ranges[i].ContainsCharacter(posCharacter))
 			return i == mainRange ? 1 : 2;
@@ -324,6 +351,9 @@ int Selection::CharacterInSelection(int posCharacter) const {
 }
 
 int Selection::InSelectionForEOL(int pos) const {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (size_t i=0; i<ranges.size(); i++) {
 		if (!ranges[i].Empty() && (pos > ranges[i].Start().Position()) && (pos <= ranges[i].End().Position()))
 			return i == mainRange ? 1 : 2;
@@ -333,6 +363,9 @@ int Selection::InSelectionForEOL(int pos) const {
 
 int Selection::VirtualSpaceFor(int pos) const {
 	int virtualSpace = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 	for (size_t i=0; i<ranges.size(); i++) {
 		if ((ranges[i].caret.Position() == pos) && (virtualSpace < ranges[i].caret.VirtualSpace()))
 			virtualSpace = ranges[i].caret.VirtualSpace();
@@ -356,6 +389,15 @@ void Selection::RemoveDuplicates() {
 	for (size_t i=0; i<ranges.size()-1; i++) {
 		if (ranges[i].Empty()) {
 			size_t j=i+1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+	for (size_t i=0; i<ranges.size()-1; i++) {
+		if (ranges[i].Empty()) {
+			size_t j=i+1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
 			while (j<ranges.size()) {
 				if (ranges[i] == ranges[j]) {
 					ranges.erase(ranges.begin() + j);

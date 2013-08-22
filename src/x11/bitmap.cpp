@@ -162,10 +162,16 @@ bool wxMask::Create( const wxBitmap& bitmap,
 
     int width = image.GetWidth();
     int height = image.GetHeight();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int j = 0; j < height; j++)
     {
         int start_x = -1;
         int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < width; i++)
         {
             if ((data[index] == red) &&
@@ -523,6 +529,14 @@ bool wxBitmap::CreateFromImage( const wxImage& image, int depth )
     int i, j;
     for (i = 0; i < w; i++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (i = 0; i < w; i++)
+    {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j = 0; j < h; j++)
         {
             unsigned char red = image.GetRed(i, j);
@@ -671,6 +685,14 @@ bool wxBitmap::CreateFromImage( const wxImage& image, int depth )
         int index = 0;
         for (int y = 0; y < height; y++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+        for (int y = 0; y < height; y++)
+        {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (int x = 0; x < width; x++)
             {
                 int r = data[index];
@@ -882,6 +904,14 @@ wxImage wxBitmap::ConvertToImage() const
     long pos = 0;
     for (int j = 0; j < height; j++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    for (int j = 0; j < height; j++)
+    {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int i = 0; i < width; i++)
         {
             unsigned long pixel = XGetPixel( x_image, i, j );
@@ -1203,6 +1233,9 @@ bool wxGetImageFromDrawable(GR_DRAW_ID drawable, int srcX, int srcY, int width, 
             pixels);
 
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(x = 0; x < sinfo.cols; x++) {
 
         pp = (unsigned char *)pixels +

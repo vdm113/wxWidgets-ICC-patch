@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/checkeddelete.h
 // Purpose:     wxCHECKED_DELETE() macro
@@ -22,6 +29,9 @@
    checked deleters are used to make sure that the type being deleted is really
    a complete type.: otherwise sizeof() would result in a compile-time error
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    do { ... } while ( 0 ) construct is used to have an anonymous scope
    (otherwise we could have name clashes between different "complete"s) but
    still force a semicolon after the macro

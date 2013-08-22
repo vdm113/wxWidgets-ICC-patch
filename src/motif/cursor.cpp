@@ -79,6 +79,9 @@ wxCursorRefData::wxCursorRefData()
 wxCursorRefData::~wxCursorRefData()
 {
     wxXCursorList::compatibility_iterator node = m_cursors.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxXCursor* c = node->GetData();
@@ -106,12 +109,18 @@ wxCursor::wxCursor(const wxImage & image)
 
     int i, j, i8;
     unsigned char c, cMask;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i=0; i<imagebitcount; i++)
     {
         bits[i] = 0xff;
         i8 = i * 8;
 
         cMask = 0xfe; // 11111110
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (j=0; j<8; j++)
         {
             // possible overflow if we do the summation first ?
@@ -130,12 +139,18 @@ wxCursor::wxCursor(const wxImage & image)
             g = image.GetMaskGreen(),
             b = image.GetMaskBlue();
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i=0; i<imagebitcount; i++)
         {
             maskBits[i] = 0x0;
             i8 = i * 8;
 
             cMask = 0x1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (j=0; j<8; j++)
             {
                 if (rgbBits[(i8+j)*3] != r || rgbBits[(i8+j)*3+1] != g || rgbBits[(i8+j)*3+2] != b)
@@ -146,6 +161,9 @@ wxCursor::wxCursor(const wxImage & image)
     }
     else // no mask
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i=0; i<imagebitcount; i++)
             maskBits[i] = 0xFF;
     }
@@ -322,6 +340,9 @@ WXCursor wxCursor::GetXCursor(WXDisplay* display) const
     if (!M_CURSORDATA)
         return (WXCursor) 0;
     wxXCursorList::compatibility_iterator node = M_CURSORDATA->m_cursors.GetFirst();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (node)
     {
         wxXCursor* c = node->GetData();
@@ -475,6 +496,9 @@ wxXSetBusyCursor (wxWindow * win, const wxCursor * cursor)
 
     XFlush (display);
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst (); node;
         node = node->GetNext())
     {
@@ -489,6 +513,9 @@ void wxBeginBusyCursor(const wxCursor *cursor)
     wxBusyCursorCount++;
     if (wxBusyCursorCount == 1)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst (); node;
             node = node->GetNext())
         {
@@ -507,6 +534,9 @@ void wxEndBusyCursor()
     wxBusyCursorCount--;
     if (wxBusyCursorCount == 0)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for(wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst (); node;
             node = node->GetNext())
         {

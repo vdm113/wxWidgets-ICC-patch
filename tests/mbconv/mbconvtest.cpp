@@ -233,6 +233,9 @@ void MBConvTestCase::WC2CP1250()
     };
 
     wxCSConv cs1250(wxFONTENCODING_CP1250);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(data); n++ )
     {
         const Data& d = data[n];
@@ -257,6 +260,9 @@ wxString CByteArrayFormat( const void* data, size_t len, const wxChar* name )
 
     result.Printf( wxT("static const unsigned char %s[%i] = \n{"), name, (int)len );
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < len; i++ )
     {
         if ( i != 0 )
@@ -1057,6 +1063,9 @@ void MBConvTestCase::TestDecoder(
     CPPUNIT_ASSERT(  outputBuffer[outputWritten] == 0 );
 
     // make sure the rest of the output buffer is untouched
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = (wideChars+1)*sizeof(wchar_t); i < (outputBufferChars*sizeof(wchar_t)); i++ )
     {
         CPPUNIT_ASSERT( ((unsigned char*)outputBuffer.data())[i] == UNINITIALIZED );
@@ -1116,12 +1125,18 @@ void MBConvTestCase::TestEncoder(
     size_t i;
 
     // the output buffer should be null terminated
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = multiBytes; i < multiBytes + sizeofNull; i++ )
     {
         CPPUNIT_ASSERT( ((unsigned char*)outputBuffer.data())[i] == 0 );
     }
 
     // make sure the rest of the output buffer is untouched
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( i = multiBytes + sizeofNull; i < outputBufferSize; i++ )
     {
         CPPUNIT_ASSERT( ((unsigned char*)outputBuffer.data())[i] == UNINITIALIZED );
@@ -1148,6 +1163,9 @@ void MBConvTestCase::TestStreamDecoder(
     // (which has exposed some problems with wxMBConv)
     wxMemoryInputStream memoryInputStream( multiBuffer, multiBytes );
     wxTextInputStream textInputStream( memoryInputStream, wxT(""), converter );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < wideChars; i++ )
     {
         wxChar wc = textInputStream.GetChar();
@@ -1179,6 +1197,9 @@ void MBConvTestCase::TestStreamEncoder(
     wxMemoryOutputStream memoryOutputStream;
     // wxEOL_UNIX will pass \n \r unchanged
     wxTextOutputStream textOutputStream( memoryOutputStream, wxEOL_UNIX, converter );
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < wideChars; i++ )
     {
         textOutputStream.PutChar( wideBuffer[i] );
@@ -1240,6 +1261,9 @@ void MBConvTestCase::UTF8Octal(const char *charSequence,
 static wchar_t *wx_wcscpy(wchar_t *dest, const wchar_t *src)
 {
     wchar_t *d = dest;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((*d++ = *src++) != 0)
         ;
     return dest;
@@ -1252,6 +1276,14 @@ static wchar_t *wx_wcscat(wchar_t *dest, const wchar_t *src)
     wchar_t *d = dest;
     while (*d)
         d++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+    while (*d)
+        d++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ((*d++ = *src++) != 0)
         ;
     return dest;
@@ -1261,6 +1293,9 @@ static wchar_t *wx_wcscat(wchar_t *dest, const wchar_t *src)
 //
 static int wx_wcscmp(const wchar_t *s1, const wchar_t *s2)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (*s1 == *s2 && *s1 != 0)
     {
         s1++;
@@ -1274,6 +1309,9 @@ static int wx_wcscmp(const wchar_t *s1, const wchar_t *s2)
 static size_t wx_wcslen(const wchar_t *s)
 {
     const wchar_t *t = s;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (*t != 0)
         t++;
     return t - s;
