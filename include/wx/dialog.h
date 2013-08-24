@@ -74,7 +74,7 @@ extern WXDLLIMPEXP_DATA_CORE(const char) wxDialogNameStr[];
 class WXDLLIMPEXP_CORE wxDialogBase : public wxTopLevelWindow
 {
 public:
-    wxDialogBase() { Init(); }
+    wxDialogBase();
     virtual ~wxDialogBase() { }
 
     // define public wxDialog methods to be implemented by the derived classes
@@ -248,9 +248,6 @@ protected:
     static bool                         sm_layoutAdaptation;
 
 private:
-    // common part of all ctors
-    void Init();
-
     // helper of GetParentForModalDialog(): returns the passed in window if it
     // can be used as our parent or NULL if it can't
     wxWindow *CheckIfCanBeUsedAsParent(wxWindow *parent) const;
