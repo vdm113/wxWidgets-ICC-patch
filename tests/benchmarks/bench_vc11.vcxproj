@@ -165,7 +165,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <OptimizationDiagnosticLevel>Disable</OptimizationDiagnosticLevel>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args</AdditionalOptions>
       <OptimizationDiagnosticsFile>$(OutDir)/$(TargetName).rep</OptimizationDiagnosticsFile>
       <AnalyzeIncludeFiles>true</AnalyzeIncludeFiles>
       <GAPDiagnosticsFile>$(IntDir)$(TargetName).gap</GAPDiagnosticsFile>
@@ -239,7 +239,7 @@
       <TypeLibFormat>NewFormat</TypeLibFormat>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>..\..\lib\vc_x64_dll\mswud\;..\..\samples\;..\..\include\</AdditionalIncludeDirectories>
@@ -372,7 +372,7 @@ copy /Y "$(TargetDir)\*.ptx " "$(MSBuildProjectDirectory)\..\src\Recorder7_Proce
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <OptimizationDiagnosticLevel>Disable</OptimizationDiagnosticLevel>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args</AdditionalOptions>
       <OptimizationDiagnosticsFile>$(OutDir)/$(TargetName).rep</OptimizationDiagnosticsFile>
       <AnalyzeIncludeFiles>true</AnalyzeIncludeFiles>
       <GAPDiagnosticsFile>$(IntDir)$(TargetName).gap</GAPDiagnosticsFile>
@@ -450,7 +450,7 @@ copy /Y "$(TargetDir)\*.ptx " "$(MSBuildProjectDirectory)\..\src\Recorder7_Proce
       <TypeLibFormat>NewFormat</TypeLibFormat>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args</AdditionalOptions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
