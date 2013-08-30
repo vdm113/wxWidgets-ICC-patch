@@ -579,6 +579,10 @@ wxGTK:
 - Fix horizontal mouse wheel scrolling (minoki).
 - Fix wxMenu::GetTitle() before the menu is appended to the bar (David Hart).
 
+wxGTK:
+
+- Fix wxMenu::GetTitle() before the menu is appended to the bar (David Hart).
+
 wxMSW:
 
 - It is now possible to tab into radio boxes again.
