@@ -21,7 +21,6 @@
 #include "wx/object.h"
 #include "wx/arrstr.h"
 
-class  wxColour;
 class  wx28HtmlEntitiesParser;
 
 //-----------------------------------------------------------------------------
@@ -98,8 +97,6 @@ public:
     //                           (or ("WhaT.jpg") if with_commas == true)
     wxString GetParam(const wxString& par, bool with_commas = false) const;
 
-    // Convenience functions:
-    bool GetParamAsColour(const wxString& par, wxColour *clr) const;
     bool GetParamAsInt(const wxString& par, int *clr) const;
 
     // Scans param like scanf() functions family does.

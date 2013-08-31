@@ -1936,9 +1936,11 @@ size_allocate(GtkWidget*, GtkAllocation* alloc, wxWindow* win)
     GtkAllocation a;
     gtk_widget_get_allocation(win->m_widget, &a);
     // update position for widgets in native containers, such as wxToolBar
-    // (for widgets in a wxPizza, the values should already be the same)
-    win->m_x = a.x;
-    win->m_y = a.y;
+    if (!WX_IS_PIZZA(gtk_widget_get_parent(win->m_widget)))
+    {
+        win->m_x = a.x;
+        win->m_y = a.y;
+    }
     win->m_useCachedClientSize = true;
     if (win->m_clientWidth != w || win->m_clientHeight != h)
     {
@@ -4646,7 +4648,9 @@ int wxWindowGTK::GetScrollRange( int orient ) const
 //   difference due to possible inexactness in floating point arithmetic
 static inline bool IsScrollIncrement(double increment, double x)
 {
-    wxASSERT(increment > 0);
+    wxASSERT(increment >= 0);
+    if ( increment == 0. )
+        return false;
     const double tolerance = 1.0 / 1024;
     return fabs(increment - fabs(x)) < tolerance;
 }
