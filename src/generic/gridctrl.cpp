@@ -304,6 +304,11 @@ wxGridCellAutoWrapStringRenderer::GetTextLines(wxGrid& grid,
     const wxArrayString
         logicalLines = wxSplit(grid.GetCellValue(row, col), '\n', '\0');
 
+    // Trying to do anything if the column is hidden anyhow doesn't make sense
+    // and we run into problems in BreakLine() in this case.
+    if ( maxWidth <= 0 )
+        return logicalLines;
+
     wxArrayString physicalLines;
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
