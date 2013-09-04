@@ -3386,10 +3386,7 @@ void wxGrid::ProcessRowLabelMouseEvent( wxMouseEvent& event )
     if ( event.Dragging() )
     {
         if (!m_isDragging)
-        {
             m_isDragging = true;
-            m_rowLabelWin->CaptureMouse();
-        }
 
         if ( event.LeftIsDown() )
         {
@@ -3439,11 +3436,7 @@ void wxGrid::ProcessRowLabelMouseEvent( wxMouseEvent& event )
         return;
 
     if (m_isDragging)
-    {
-        if (m_rowLabelWin->HasCapture())
-            m_rowLabelWin->ReleaseMouse();
         m_isDragging = false;
-    }
 
     // ------------ Entering or leaving the window
     //
@@ -3670,7 +3663,6 @@ void wxGrid::ProcessColLabelMouseEvent( wxMouseEvent& event )
         if (!m_isDragging)
         {
             m_isDragging = true;
-            GetColLabelWindow()->CaptureMouse();
 
             if ( m_cursorMode == WXGRID_CURSOR_MOVE_COL && col != -1 )
                 DoStartMoveCol(col);
@@ -3761,11 +3753,7 @@ void wxGrid::ProcessColLabelMouseEvent( wxMouseEvent& event )
         return;
 
     if (m_isDragging)
-    {
-        if (GetColLabelWindow()->HasCapture())
-            GetColLabelWindow()->ReleaseMouse();
         m_isDragging = false;
-    }
 
     // ------------ Entering or leaving the window
     //
