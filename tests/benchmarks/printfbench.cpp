@@ -103,7 +103,6 @@ const wxString g_verylongString =
 // main
 // ----------------------------------------------------------------------------
 
-#ifndef _WIN32
 BENCHMARK_FUNC(SnprintfWithPositionals)
 {
     wxChar buffer[BUFSIZE];
@@ -121,7 +120,6 @@ BENCHMARK_FUNC(Snprintf)
     DO_BENCHMARK(wxSnprintf, )
     return true;
 }
-#endif
 
 BENCHMARK_FUNC(SystemSnprintfWithPositionals)
 {
