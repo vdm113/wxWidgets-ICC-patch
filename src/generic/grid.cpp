@@ -8647,11 +8647,17 @@ wxGrid::AutoSizeColOrRow(int colOrRow, bool setAsMin, wxGridDirection direction)
     {
         if ( column )
         {
+            if ( !IsRowShown(rowOrCol) )
+                continue;
+
             row = rowOrCol;
             col = colOrRow;
         }
         else
         {
+            if ( !IsColShown(rowOrCol) )
+                continue;
+
             row = colOrRow;
             col = rowOrCol;
         }
