@@ -1702,7 +1702,9 @@ wxCairoContext::wxCairoContext( wxGraphicsRenderer* renderer, const wxPrinterDC&
 
 #ifdef __WXGTK20__
     const wxDCImpl *impl = dc.GetImpl();
-    Init( (cairo_t*) impl->GetCairoContext() );
+    cairo_t* cr = static_cast<cairo_t*>(impl->GetCairoContext());
+    if (cr)
+        Init(cairo_reference(cr));
 #endif
     wxSize sz = dc.GetSize();
     m_width = sz.x;
@@ -1748,7 +1750,7 @@ wxCairoContext::wxCairoContext( wxGraphicsRenderer* renderer, const wxWindowDC& 
 #ifdef __WXGTK3__
     cairo_t* cr = static_cast<cairo_t*>(dc.GetImpl()->GetCairoContext());
     if (cr)
-        Init(cr);
+        Init(cairo_reference(cr));
 #elif defined __WXGTK20__
     wxGTKDCImpl *impldc = (wxGTKDCImpl*) dc.GetImpl();
     Init( gdk_cairo_create( impldc->GetGDKWindow() ) );
@@ -1823,7 +1825,7 @@ wxCairoContext::wxCairoContext( wxGraphicsRenderer* renderer, const wxMemoryDC& 
 #ifdef __WXGTK3__
     cairo_t* cr = static_cast<cairo_t*>(dc.GetImpl()->GetCairoContext());
     if (cr)
-        Init(cr);
+        Init(cairo_reference(cr));
 #elif defined __WXGTK20__
     wxGTKDCImpl *impldc = (wxGTKDCImpl*) dc.GetImpl();
     Init( gdk_cairo_create( impldc->GetGDKWindow() ) );

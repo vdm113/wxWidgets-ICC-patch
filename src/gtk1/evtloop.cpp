@@ -25,7 +25,6 @@
 
 #include "wx/evtloop.h"
 #include "wx/private/eventloopsourcesmanager.h"
-#include "wx/apptrait.h"
 
 #ifndef WX_PRECOMP
     #include "wx/app.h"
