@@ -968,8 +968,6 @@ bool wxRichTextParagraphLayoutBox::ExportXML(wxXmlNode* parent, wxRichTextXMLHan
         child->ExportXML(elementNode, handler);
     }
 
-    handler->GetHelper().OutputIndentation(stream, indent);
-    handler->GetHelper().OutputString(stream, wxT("</") + nodeName + wxT(">"));
     return true;
 }
 #endif
