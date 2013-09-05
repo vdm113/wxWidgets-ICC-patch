@@ -5,7 +5,6 @@ wx_vc10*
 *.bcc
 *.dsp
 *.dsw
-*.gcc
 *.vc
 *.vcproj
 *.wat
