@@ -3127,6 +3127,9 @@ void wxAuiNotebook::OnChildFocusNotebook(wxChildFocusEvent& evt)
 
     // find the page containing the focused child
     wxWindow* win = evt.GetWindow();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while ( win )
     {
         // pages have the notebook as the parent, so stop when we reach one

@@ -184,6 +184,9 @@ public:
 
         Equivalent to
         @code
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( !predicate() )
         {
             wxCondError e = Wait();
