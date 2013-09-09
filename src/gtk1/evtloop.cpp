@@ -25,6 +25,7 @@
 
 #include "wx/evtloop.h"
 #include "wx/private/eventloopsourcesmanager.h"
+#include "wx/apptrait.h"
 
 #ifndef WX_PRECOMP
     #include "wx/app.h"
@@ -82,6 +83,9 @@ int wxGUIEventLoop::DoRun()
    // gtk_main_quit is called when closing the dialog????)
    // So for the moment this code is disabled and nested event loops
    // probably fail for wxGTK1
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    while ( !m_shouldExit )
     {
 #endif
