@@ -34,7 +34,7 @@
     saving a buffer if needed.
  */
 
-class WXDLLIMPEXP_RICHTEXT wxRichTextXMLHelper: public wxObject
+class wxRichTextXMLHelper: public wxObject
 {
 public:
     wxRichTextXMLHelper() { Init(); }
