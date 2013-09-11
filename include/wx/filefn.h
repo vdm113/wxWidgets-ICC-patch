@@ -99,7 +99,7 @@
     #endif
 #endif
 
-#if (defined(__VISUALC__) && !defined(__WXWINCE__)) || (defined(__WINDOWS__) && defined (__INTELC__))
+#if defined(__VISUALC__) && !defined(__WXWINCE__)
     typedef _off_t off_t;
 #elif defined(__SYMANTEC__)
     typedef long off_t;
@@ -194,7 +194,7 @@ enum wxPosixPermissions
     #define   wxStructStat struct _stat
 #elif (defined(__WINDOWS__) || defined(__OS2__)) && \
       ( \
-        (defined(__VISUALC__) || (defined(__WINDOWS__) && defined (__INTELC__))) || \
+        defined(__VISUALC__) || \
         defined(__MINGW64__) || \
         (defined(__MINGW32__) && !defined(__WINE__) && \
                                 wxCHECK_W32API_VERSION(0, 5)) || \
@@ -208,10 +208,10 @@ enum wxPosixPermissions
     #undef wxHAS_HUGE_STDIO_FILES
 
     // detect compilers which have support for huge files
-    #if (defined(__VISUALC__) || (defined(__WINDOWS__) && defined (__INTELC__)))
+    #if defined(__VISUALC__)
         #define wxHAS_HUGE_FILES 1
     #elif defined(__MINGW32__) || defined(__MINGW64__)
-        #define wxHAS_HUGE_FILES 1f
+        #define wxHAS_HUGE_FILES 1
     #elif defined(_LARGE_FILES)
         #define wxHAS_HUGE_FILES 1
     #endif
@@ -484,31 +484,18 @@ enum wxPosixPermissions
     #define   wxFsync      fsync
     #define   wxEof        eof
 
-#ifndef _MSC_VER  // eliminate MSVC warnings about deprecation of these functions regarding to POSIX standard
     #define   wxCRT_MkDir      mkdir
     #define   wxCRT_RmDir      rmdir
-#else
-    #define   wxCRT_MkDir      _mkdir
-    #define   wxCRT_RmDir      _rmdir
-#endif
 
     #define   wxTell(fd)   lseek(fd, 0, SEEK_CUR)
 
     #define   wxStructStat struct stat
 
-#ifndef _MSC_VER // eliminate MSVC warnings about deprecation of these functions regarding to POSIX standard
     #define   wxCRT_Open       open
     #define   wxCRT_Stat       stat
     #define   wxCRT_Lstat      lstat
     #define   wxCRT_Access     access
     #define   wxCRT_Chmod      chmod
-#else
-    #define   wxCRT_Open       _open
-    #define   wxCRT_Stat       _stat
-    #define   wxCRT_Lstat      _lstat
-    #define   wxCRT_Access     _access
-    #define   wxCRT_Chmod      _chmod
-#endif
 
     #define wxHAS_NATIVE_LSTAT
 #endif // platforms
