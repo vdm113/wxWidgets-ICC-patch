@@ -484,18 +484,31 @@ enum wxPosixPermissions
     #define   wxFsync      fsync
     #define   wxEof        eof
 
+#ifndef _MSC_VER  // eliminate MSVC warnings about deprecation of these functions regarding to POSIX standard
     #define   wxCRT_MkDir      mkdir
     #define   wxCRT_RmDir      rmdir
+#else
+    #define   wxCRT_MkDir      _mkdir
+    #define   wxCRT_RmDir      _rmdir
+#endif
 
     #define   wxTell(fd)   lseek(fd, 0, SEEK_CUR)
 
     #define   wxStructStat struct stat
 
+#ifndef _MSC_VER // eliminate MSVC warnings about deprecation of these functions regarding to POSIX standard
     #define   wxCRT_Open       open
     #define   wxCRT_Stat       stat
     #define   wxCRT_Lstat      lstat
     #define   wxCRT_Access     access
     #define   wxCRT_Chmod      chmod
+#else
+    #define   wxCRT_Open       _open
+    #define   wxCRT_Stat       _stat
+    #define   wxCRT_Lstat      _lstat
+    #define   wxCRT_Access     _access
+    #define   wxCRT_Chmod      _chmod
+#endif
 
     #define wxHAS_NATIVE_LSTAT
 #endif // platforms

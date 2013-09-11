@@ -179,7 +179,11 @@ WXDLLIMPEXP_BASE void *calloc( size_t num, size_t size );
         #define wxCRT_StrdupA _strdup
     #endif
 #elif !defined(__WXWINCE__)
+#   ifndef _MSC_VER  // eliminate MSVC warnings about deprecation of these functions regarding to POSIX standard
     #define wxCRT_StrdupA strdup
+#   else
+    #define wxCRT_StrdupA _strdup
+#endif
 #endif
 
 /* most Windows compilers provide _wcsdup() */
