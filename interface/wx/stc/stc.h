@@ -2524,7 +2524,7 @@
         TOWRITE
     @endEventTable
 
-    @library{wxbase}
+    @library{wxstc}
     @category{stc}
 
     @see wxStyledTextEvent
@@ -3741,12 +3741,12 @@ public:
     int ReplaceTarget(const wxString& text);
 
     /**
-        Replace the target text with the argument text after \d processing.
+        Replace the target text with the argument text after \\d processing.
         Text is counted so it can contain NULs.
-        Looks for \d where d is between 1 and 9 and replaces these with the strings
+        Looks for \\d where d is between 1 and 9 and replaces these with the strings
         matched in the last search operation which were surrounded by \( and \).
         Returns the length of the replacement text including any change
-        caused by processing the \d patterns.
+        caused by processing the \\d patterns.
     */
     int ReplaceTargetRE(const wxString& text);
 
@@ -4087,7 +4087,7 @@ public:
     void SetMultiPaste(int multiPaste);
 
     /**
-        Retrieve the effect of pasting when there are multiple selections..
+        Retrieve the effect of pasting when there are multiple selections.
     */
     int GetMultiPaste() const;
 
@@ -5574,8 +5574,8 @@ public:
     
           bold                    turns on bold
           italic                  turns on italics
-          fore:[name or #RRGGBB]  sets the foreground colour
-          back:[name or #RRGGBB]  sets the background colour
+          fore:[name or \#RRGGBB]  sets the foreground colour
+          back:[name or \#RRGGBB]  sets the background colour
           face:[facename]         sets the font face name to use
           size:[num]              sets the font size in points
           eol                     turns on eol filling
@@ -5803,7 +5803,7 @@ public:
 
     @todo list styled text ctrl events.
 
-    @library{stc}
+    @library{wxstc}
     @category{events,stc}
 */
 
