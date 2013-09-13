@@ -2415,6 +2415,9 @@ void wxPostScriptDCImpl::DoGetTextExtent(const wxString& string,
         if (externalLeading) (*externalLeading) = 0;
         return;
     }
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for(; *p; p++)
     {
         if(lastWidths[*p]== INT_MIN)

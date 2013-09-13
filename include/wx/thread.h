@@ -355,6 +355,9 @@ public:
     template<typename Functor>
     wxCondError Wait(const Functor& predicate)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while ( !predicate() )
         {
             wxCondError e = Wait();

@@ -452,6 +452,9 @@ wxGridCellAutoWrapStringRenderer::GetBestSize(wxGrid& grid,
 
     // Search for a shape no taller than the golden ratio.
     wxSize size;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( size.x = 10; ; size.x += 10 )
     {
         const size_t
