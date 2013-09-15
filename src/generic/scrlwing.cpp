@@ -313,17 +313,28 @@ bool wxScrollHelperEvtHandler::ProcessEvent(wxEvent& event)
 }
 
 // ============================================================================
-// wxScrollHelperBase implementation
+// wxAnyScrollHelperBase and wxScrollHelperBase implementation
 // ============================================================================
+
+// ----------------------------------------------------------------------------
+// wxAnyScrollHelperBase
+// ----------------------------------------------------------------------------
+
+wxAnyScrollHelperBase::wxAnyScrollHelperBase(wxWindow* win)
+{
+    wxASSERT_MSG( win, wxT("associated window can't be NULL in wxScrollHelper") );
+
+    m_win = win;
+    m_targetWindow = NULL;
+}
 
 // ----------------------------------------------------------------------------
 // wxScrollHelperBase construction
 // ----------------------------------------------------------------------------
 
 wxScrollHelperBase::wxScrollHelperBase(wxWindow *win)
+    : wxAnyScrollHelperBase(win)
 {
-    wxASSERT_MSG( win, wxT("associated window can't be NULL in wxScrollHelper") );
-
     m_xScrollPixelsPerLine =
     m_yScrollPixelsPerLine =
     m_xScrollPosition =
@@ -344,14 +355,9 @@ wxScrollHelperBase::wxScrollHelperBase(wxWindow *win)
     m_wheelRotation = 0;
 #endif
 
-    m_win =
-    m_targetWindow = NULL;
-
     m_timerAutoScroll = NULL;
 
     m_handler = NULL;
-
-    m_win = win;
 
     m_win->SetScrollHelper(static_cast<wxScrollHelper *>(this));
 
@@ -482,11 +488,6 @@ void wxScrollHelperBase::SetTargetWindow(wxWindow *target)
         return;
 
     DoSetTargetWindow(target);
-}
-
-wxWindow *wxScrollHelperBase::GetTargetWindow() const
-{
-    return m_targetWindow;
 }
 
 // ----------------------------------------------------------------------------
