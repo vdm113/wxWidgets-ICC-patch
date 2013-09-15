@@ -3527,7 +3527,7 @@ public:
 
     virtual bool EditProperties(wxWindow* parent, wxRichTextBuffer* buffer);
 
-    virtual wxString GetPropertiesMenuLabel() const { return _("&Box"); }
+    virtual wxString GetPropertiesMenuLabel() const { return wxGetTranslation("&Box"); }
 
 // Accessors
 
@@ -4652,7 +4652,7 @@ public:
 
     virtual bool EditProperties(wxWindow* parent, wxRichTextBuffer* buffer);
 
-    virtual wxString GetPropertiesMenuLabel() const { return _("&Picture"); }
+    virtual wxString GetPropertiesMenuLabel() const { return wxGetTranslation("&Picture"); }
 
     virtual bool UsesParagraphAttributes() const { return false; }
 
@@ -5582,7 +5582,7 @@ public:
 
     virtual bool EditProperties(wxWindow* parent, wxRichTextBuffer* buffer);
 
-    virtual wxString GetPropertiesMenuLabel() const { return _("&Cell"); }
+    virtual wxString GetPropertiesMenuLabel() const { return wxGetTranslation("&Cell"); }
 
 // Accessors
 
@@ -5672,7 +5672,7 @@ public:
 
     virtual bool EditProperties(wxWindow* parent, wxRichTextBuffer* buffer);
 
-    virtual wxString GetPropertiesMenuLabel() const { return _("&Table"); }
+    virtual wxString GetPropertiesMenuLabel() const { return wxGetTranslation("&Table"); }
 
     // Returns true if objects of this class can accept the focus, i.e. a call to SetFocusObject
     // is possible. For example, containers supporting text, such as a text box object, can accept the focus,
