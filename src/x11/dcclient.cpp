@@ -2345,7 +2345,7 @@ void wxWindowDCImpl::ComputeScaleAndOrigin()
 
     wxDCImpl::ComputeScaleAndOrigin();
 
-    /* CMB: if scale has changed call SetPen to recalulate the line width */
+    /* CMB: if scale has changed call SetPen to recalculate the line width */
     if ((m_scaleX != origScaleX || m_scaleY != origScaleY) &&
         (m_pen.IsOk()))
     {
