@@ -9740,8 +9740,14 @@ bool wxRichTextTable::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
     int colCount = GetColumnCount();
     int rowCount = GetRowCount();
     int col, row;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (col = 0; col < colCount; col++)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (row = 0; row < rowCount; row++)
         {
             if (row == 0 || row == (rowCount-1) || col == 0 || col == (colCount-1))
