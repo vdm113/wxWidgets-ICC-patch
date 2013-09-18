@@ -626,7 +626,7 @@ OSStatus wxThreadInternal::MacThreadStart(void *parameter)
 
     if ( !dontRunAtAll )
     {
-        pthread->m_exitcode = thread->Entry();
+        pthread->m_exitcode = thread->CallEntry();
 
         {
             wxCriticalSectionLocker lock(thread->m_critsect);

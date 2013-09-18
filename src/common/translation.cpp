@@ -47,7 +47,7 @@
 #include "wx/tokenzr.h"
 #include "wx/fontmap.h"
 #include "wx/stdpaths.h"
-#include "wx/hashset.h"
+#include "wx/private/threadinfo.h"
 
 #ifdef __WINDOWS__
     #include "wx/dynlib.h"
@@ -1638,38 +1638,31 @@ wxString wxTranslations::GetBestTranslation(const wxString& domain,
 }
 
 
-namespace
-{
-WX_DECLARE_HASH_SET(wxString, wxStringHash, wxStringEqual,
-                    wxLocaleUntranslatedStrings);
-}
-
 /* static */
 const wxString& wxTranslations::GetUntranslatedString(const wxString& str)
 {
-    static wxLocaleUntranslatedStrings s_strings;
+    wxLocaleUntranslatedStrings& strings = wxThreadInfo.untranslatedStrings;
 
-    wxLocaleUntranslatedStrings::iterator i = s_strings.find(str);
-    if ( i == s_strings.end() )
-        return *s_strings.insert(str).first;
+    wxLocaleUntranslatedStrings::iterator i = strings.find(str);
+    if ( i == strings.end() )
+        return *strings.insert(str).first;
 
     return *i;
 }
 
 
-const wxString& wxTranslations::GetString(const wxString& origString,
-                                          const wxString& domain) const
+const wxString *wxTranslations::GetTranslatedString(const wxString& origString,
+                                                    const wxString& domain) const
 {
-    return GetString(origString, origString, UINT_MAX, domain);
+    return GetTranslatedString(origString, UINT_MAX, domain);
 }
 
-const wxString& wxTranslations::GetString(const wxString& origString,
-                                          const wxString& origString2,
-                                          unsigned n,
-                                          const wxString& domain) const
+const wxString *wxTranslations::GetTranslatedString(const wxString& origString,
+                                                    unsigned n,
+                                                    const wxString& domain) const
 {
     if ( origString.empty() )
-        return GetUntranslatedString(origString);
+        return NULL;
 
     const wxString *trans = NULL;
     wxMsgCatalog *pMsgCat;
@@ -1707,14 +1700,9 @@ const wxString& wxTranslations::GetString(const wxString& origString,
             (!domain.empty() ? wxString::Format("domain '%s' ", domain) : wxString()),
             m_lang
         );
-
-        if (n == UINT_MAX)
-            return GetUntranslatedString(origString);
-        else
-            return GetUntranslatedString(n == 1 ? origString : origString2);
     }
 
-    return *trans;
+    return trans;
 }
 
 
