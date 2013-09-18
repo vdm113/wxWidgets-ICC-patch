@@ -54,18 +54,6 @@ public:
     //     logging
     bool loggingDisabled;
 
-#if wxUSE_INTL
-    // Storage for wxTranslations::GetUntranslatedString()
-    wxLocaleUntranslatedStrings untranslatedStrings;
-#endif
-
-#if wxUSE_THREADS
-    // Cleans up storage for the current thread. Should be called when a thread
-    // is being destroyed. If it's not called, the only bad thing that happens
-    // is that the memory is deallocated later, on process termination.
-    static void ThreadCleanUp();
-#endif
-
 private:
     wxThreadSpecificInfo() : logger(NULL), loggingDisabled(false) {}
 };
