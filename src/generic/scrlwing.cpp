@@ -189,6 +189,9 @@ void wxAutoScrollTimer::Notify()
 // wxScrollHelperEvtHandler
 // ----------------------------------------------------------------------------
 
+// Notice that this method is currently duplicated in the method with the same
+// name in wxVarScrollHelperEvtHandler class, until this is fixed, the other
+// copy of the method needs to be modified every time this version is.
 bool wxScrollHelperEvtHandler::ProcessEvent(wxEvent& event)
 {
     wxEventType evType = event.GetEventType();
@@ -313,17 +316,30 @@ bool wxScrollHelperEvtHandler::ProcessEvent(wxEvent& event)
 }
 
 // ============================================================================
-// wxScrollHelperBase implementation
+// wxAnyScrollHelperBase and wxScrollHelperBase implementation
 // ============================================================================
+
+// ----------------------------------------------------------------------------
+// wxAnyScrollHelperBase
+// ----------------------------------------------------------------------------
+
+wxAnyScrollHelperBase::wxAnyScrollHelperBase(wxWindow* win)
+{
+    wxASSERT_MSG( win, wxT("associated window can't be NULL in wxScrollHelper") );
+
+    m_win = win;
+    m_targetWindow = NULL;
+
+    m_kbdScrollingEnabled = true;
+}
 
 // ----------------------------------------------------------------------------
 // wxScrollHelperBase construction
 // ----------------------------------------------------------------------------
 
 wxScrollHelperBase::wxScrollHelperBase(wxWindow *win)
+    : wxAnyScrollHelperBase(win)
 {
-    wxASSERT_MSG( win, wxT("associated window can't be NULL in wxScrollHelper") );
-
     m_xScrollPixelsPerLine =
     m_yScrollPixelsPerLine =
     m_xScrollPosition =
@@ -336,22 +352,15 @@ wxScrollHelperBase::wxScrollHelperBase(wxWindow *win)
     m_xScrollingEnabled =
     m_yScrollingEnabled = true;
 
-    m_kbdScrollingEnabled = true;
-
     m_scaleX =
     m_scaleY = 1.0;
 #if wxUSE_MOUSEWHEEL
     m_wheelRotation = 0;
 #endif
 
-    m_win =
-    m_targetWindow = NULL;
-
     m_timerAutoScroll = NULL;
 
     m_handler = NULL;
-
-    m_win = win;
 
     m_win->SetScrollHelper(static_cast<wxScrollHelper *>(this));
 
@@ -482,11 +491,6 @@ void wxScrollHelperBase::SetTargetWindow(wxWindow *target)
         return;
 
     DoSetTargetWindow(target);
-}
-
-wxWindow *wxScrollHelperBase::GetTargetWindow() const
-{
-    return m_targetWindow;
 }
 
 // ----------------------------------------------------------------------------
@@ -819,7 +823,7 @@ void wxScrollHelperBase::HandleOnSize(wxSizeEvent& WXUNUSED(event))
 
 // This calls OnDraw, having adjusted the origin according to the current
 // scroll position
-void wxScrollHelperBase::HandleOnPaint(wxPaintEvent& WXUNUSED(event))
+void wxAnyScrollHelperBase::HandleOnPaint(wxPaintEvent& WXUNUSED(event))
 {
     // don't use m_targetWindow here, this is always called for ourselves
     wxPaintDC dc(m_win);
@@ -832,7 +836,7 @@ void wxScrollHelperBase::HandleOnPaint(wxPaintEvent& WXUNUSED(event))
 // compatibility here - if we used OnKeyDown(), the programs which process
 // arrows themselves in their OnChar() would never get the message and like
 // this they always have the priority
-void wxScrollHelperBase::HandleOnChar(wxKeyEvent& event)
+void wxAnyScrollHelperBase::HandleOnChar(wxKeyEvent& event)
 {
     if ( !m_kbdScrollingEnabled )
     {

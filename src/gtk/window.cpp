@@ -1623,30 +1623,18 @@ gtk_window_motion_notify_callback( GtkWidget * WXUNUSED(widget),
 // "scroll_event" (mouse wheel event)
 //-----------------------------------------------------------------------------
 
-static gboolean
-window_scroll_event_hscrollbar(GtkWidget*, GdkEventScroll* gdk_event, wxWindow* win)
+// Compute lines/columns per action the same way as private GTK+ function
+// _gtk_range_get_wheel_delta()
+static inline int GetWheelScrollActionDelta(GtkRange* range)
 {
-    if (gdk_event->direction != GDK_SCROLL_LEFT &&
-        gdk_event->direction != GDK_SCROLL_RIGHT)
-    {
-        return false;
-    }
-
-    GtkRange *range = win->m_scrollBar[wxWindow::ScrollDir_Horz];
-
-    if (range && gtk_widget_get_visible(GTK_WIDGET(range)))
+    int delta = 3;
+    if (range)
     {
         GtkAdjustment* adj = gtk_range_get_adjustment(range);
-        double delta = gtk_adjustment_get_step_increment(adj) * 3;
-        if (gdk_event->direction == GDK_SCROLL_LEFT)
-            delta = -delta;
-
-        gtk_range_set_value(range, gtk_adjustment_get_value(adj) + delta);
-
-        return TRUE;
+        const double page_size = gtk_adjustment_get_page_size(adj);
+        delta = wxRound(pow(page_size, 2.0 / 3.0));
     }
-
-    return FALSE;
+    return delta;
 }
 
 static gboolean
@@ -1655,85 +1643,92 @@ window_scroll_event(GtkWidget*, GdkEventScroll* gdk_event, wxWindow* win)
     wxMouseEvent event(wxEVT_MOUSEWHEEL);
     InitMouseEvent(win, event, gdk_event);
 
-    // FIXME: Get these values from GTK or GDK
-    event.m_linesPerAction = 3;
-    event.m_columnsPerAction = 3;
     event.m_wheelDelta = 120;
 
-    // Determine the scroll direction.
-    switch (gdk_event->direction)
-    {
-        case GDK_SCROLL_UP:
-        case GDK_SCROLL_RIGHT:
-            event.m_wheelRotation = 120;
-            break;
-
-        case GDK_SCROLL_DOWN:
-        case GDK_SCROLL_LEFT:
-            event.m_wheelRotation = -120;
-            break;
 #if GTK_CHECK_VERSION(3,4,0)
-        case GDK_SCROLL_SMOOTH:
-            // TODO
-#endif
-        default:
-            return false;  // Unknown/unhandled direction
-    }
-
-    // And the scroll axis.
-    switch (gdk_event->direction)
+    if (gdk_event->direction == GDK_SCROLL_SMOOTH)
     {
-        case GDK_SCROLL_UP:
-        case GDK_SCROLL_DOWN:
-            event.m_wheelAxis = wxMOUSE_WHEEL_VERTICAL;
-            break;
-
-        case GDK_SCROLL_LEFT:
-        case GDK_SCROLL_RIGHT:
+        bool processed_x = false;
+        if (gdk_event->delta_x)
+        {
             event.m_wheelAxis = wxMOUSE_WHEEL_HORIZONTAL;
-            break;
-#if GTK_CHECK_VERSION(3,4,0)
-        case GDK_SCROLL_SMOOTH:
-            // TODO
-            break;
-#endif
+            event.m_wheelRotation = int(event.m_wheelDelta * gdk_event->delta_x);
+            GtkRange* range = win->m_scrollBar[wxWindow::ScrollDir_Horz];
+            event.m_linesPerAction = GetWheelScrollActionDelta(range);
+            event.m_columnsPerAction = event.m_linesPerAction;
+            processed_x = win->GTKProcessEvent(event);
+        }
+        bool processed_y = false;
+        if (gdk_event->delta_y)
+        {
+            event.m_wheelAxis = wxMOUSE_WHEEL_VERTICAL;
+            event.m_wheelRotation = int(event.m_wheelDelta * gdk_event->delta_y);
+            GtkRange* range = win->m_scrollBar[wxWindow::ScrollDir_Vert];
+            event.m_linesPerAction = GetWheelScrollActionDelta(range);
+            event.m_columnsPerAction = event.m_linesPerAction;
+            processed_y = win->GTKProcessEvent(event);
+        }
+        return processed_x || processed_y;
     }
-
-    if (win->GTKProcessEvent(event))
-      return TRUE;
-
+#endif // GTK_CHECK_VERSION(3,4,0)
     GtkRange *range;
     switch (gdk_event->direction)
     {
         case GDK_SCROLL_UP:
         case GDK_SCROLL_DOWN:
             range = win->m_scrollBar[wxWindow::ScrollDir_Vert];
+            event.m_wheelAxis = wxMOUSE_WHEEL_VERTICAL;
             break;
-
         case GDK_SCROLL_LEFT:
         case GDK_SCROLL_RIGHT:
             range = win->m_scrollBar[wxWindow::ScrollDir_Horz];
+            event.m_wheelAxis = wxMOUSE_WHEEL_HORIZONTAL;
             break;
-
         default:
             return false;
     }
 
-    if (range && gtk_widget_get_visible(GTK_WIDGET(range)))
+    event.m_wheelRotation = event.m_wheelDelta;
+    if (gdk_event->direction == GDK_SCROLL_UP ||
+        gdk_event->direction == GDK_SCROLL_LEFT)
     {
-        GtkAdjustment* adj = gtk_range_get_adjustment(range);
-        double delta = gtk_adjustment_get_step_increment(adj) * 3;
-        if (gdk_event->direction == GDK_SCROLL_UP ||
-            gdk_event->direction == GDK_SCROLL_LEFT)
-            delta = -delta;
-
-        gtk_range_set_value(range, gtk_adjustment_get_value(adj) + delta);
-
-        return TRUE;
+        event.m_wheelRotation = -event.m_wheelRotation;
     }
+    event.m_linesPerAction = GetWheelScrollActionDelta(range);
+    event.m_columnsPerAction = event.m_linesPerAction;
 
-    return FALSE;
+    return win->GTKProcessEvent(event);
 }
+
+#if GTK_CHECK_VERSION(3,4,0)
+static gboolean
+hscrollbar_scroll_event(GtkWidget* widget, GdkEventScroll* gdk_event, wxWindow* win)
+{
+    GdkEventScroll event2;
+    if (gdk_event->direction == GDK_SCROLL_SMOOTH && gdk_event->delta_x == 0)
+    {
+        memcpy(&event2, gdk_event, sizeof(event2));
+        event2.delta_x = event2.delta_y;
+        event2.delta_y = 0;
+        gdk_event = &event2;
+    }
+    return window_scroll_event(widget, gdk_event, win);
+}
+
+static gboolean
+vscrollbar_scroll_event(GtkWidget* widget, GdkEventScroll* gdk_event, wxWindow* win)
+{
+    GdkEventScroll event2;
+    if (gdk_event->direction == GDK_SCROLL_SMOOTH && gdk_event->delta_y == 0)
+    {
+        memcpy(&event2, gdk_event, sizeof(event2));
+        event2.delta_y = event2.delta_x;
+        event2.delta_x = 0;
+        gdk_event = &event2;
+    }
+    return window_scroll_event(widget, gdk_event, win);
+}
+#endif // GTK_CHECK_VERSION(3,4,0)
 
 //-----------------------------------------------------------------------------
 // "popup-menu"
@@ -2672,12 +2667,21 @@ void wxWindowGTK::ConnectWidget( GtkWidget *widget )
 
     g_signal_connect (widget, "scroll_event",
                       G_CALLBACK (window_scroll_event), this);
-    if (m_scrollBar[ScrollDir_Horz])
-        g_signal_connect (m_scrollBar[ScrollDir_Horz], "scroll_event",
-                      G_CALLBACK (window_scroll_event_hscrollbar), this);
-    if (m_scrollBar[ScrollDir_Vert])
-        g_signal_connect (m_scrollBar[ScrollDir_Vert], "scroll_event",
-                      G_CALLBACK (window_scroll_event), this);
+    for (int i = 0; i < 2; i++)
+    {
+        GtkRange* range = m_scrollBar[i];
+        if (range)
+        {
+#if GTK_CHECK_VERSION(3,4,0)
+            GCallback cb = GCallback(i == ScrollDir_Horz
+                ? hscrollbar_scroll_event
+                : vscrollbar_scroll_event);
+#else
+            GCallback cb = GCallback(window_scroll_event);
+#endif
+            g_signal_connect(range, "scroll_event", cb, this);
+        }
+    }
 
     g_signal_connect (widget, "popup_menu",
                      G_CALLBACK (wxgtk_window_popup_menu_callback), this);
