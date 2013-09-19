@@ -10817,6 +10817,9 @@ bool wxRichTextTable::CreateTable(int rows, int cols)
 {
     ClearTable();
 
+    wxRichTextAttr cellattr;
+    cellattr.SetTextColour(GetBasicStyle().GetTextColour());
+
     m_rowCount = rows;
     m_colCount = cols;
 
@@ -10835,6 +10838,8 @@ bool wxRichTextTable::CreateTable(int rows, int cols)
         for (j = 0; j < cols; j++)
         {
             wxRichTextCell* cell = new wxRichTextCell;
+            cell->GetAttributes() = cellattr;
+
             AppendChild(cell);
             cell->AddParagraph(wxEmptyString);
 
