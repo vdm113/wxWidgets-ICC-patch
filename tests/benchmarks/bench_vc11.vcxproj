@@ -199,7 +199,7 @@
       <AdditionalLibraryDirectories>..\..\lib\vc_dll\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>wxmsw29ud_core.lib;wxbase29ud.lib;wxmsw29ud_html.lib</AdditionalDependencies>
+      <AdditionalDependencies>wxmsw30ud_core.lib;wxbase30ud.lib;wxmsw30ud_html.lib</AdditionalDependencies>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
     </Link>
@@ -296,7 +296,7 @@ bash version.sh $(AssemblyName)</Command>
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>wxmsw29ud_core.lib;wxbase29ud.lib;wxmsw29ud_html.lib</AdditionalDependencies>
+      <AdditionalDependencies>wxmsw30ud_core.lib;wxbase30ud.lib;wxmsw30ud_html.lib</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <AdditionalLibraryDirectories>..\..\lib\vc_x64_dll\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
@@ -405,7 +405,7 @@ copy /Y "$(TargetDir)\*.ptx " "$(MSBuildProjectDirectory)\..\src\Recorder7_Proce
       <AdditionalLibraryDirectories>..\..\lib\vc_dll\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>wxmsw29u_core.lib;wxbase29u.lib;wxmsw29u_html.lib</AdditionalDependencies>
+      <AdditionalDependencies>wxmsw30u_core.lib;wxbase30u.lib;wxmsw30u_html.lib</AdditionalDependencies>
       <AdditionalOptions>/Qvec-report1</AdditionalOptions>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -512,7 +512,7 @@ bash version.sh $(AssemblyName)</Command>
     </ProjectReference>
     <Link>
       <AdditionalOptions>/Qvec-report1</AdditionalOptions>
-      <AdditionalDependencies>wxmsw29u_core.lib;wxbase29u.lib;wxmsw29u_html.lib</AdditionalDependencies>
+      <AdditionalDependencies>wxmsw30u_core.lib;wxbase30u.lib;wxmsw30u_html.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib\vc_x64_dll\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
