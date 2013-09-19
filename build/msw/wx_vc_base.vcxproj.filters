@@ -919,6 +919,7 @@
     <ClInclude Include="..\..\include\wx\zstream.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\meta\removeref.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\include\wx\msw\setup.h">
@@ -927,5 +928,6 @@
     <CustomBuild Include="..\..\include\wx\msw\genrcdefs.h">
       <Filter>MSW Headers</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\..\include\wx\univ\setup.h" />
   </ItemGroup>
 </Project>

@@ -903,6 +903,46 @@
     <ClCompile Include="..\..\src\generic\preferencesg.cpp">
       <Filter>Generic Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\univ\bmpbuttn.cpp" />
+    <ClCompile Include="..\..\src\univ\button.cpp" />
+    <ClCompile Include="..\..\src\univ\checkbox.cpp" />
+    <ClCompile Include="..\..\src\univ\checklst.cpp" />
+    <ClCompile Include="..\..\src\univ\choice.cpp" />
+    <ClCompile Include="..\..\src\univ\combobox.cpp" />
+    <ClCompile Include="..\..\src\univ\control.cpp" />
+    <ClCompile Include="..\..\src\univ\ctrlrend.cpp" />
+    <ClCompile Include="..\..\src\univ\dialog.cpp" />
+    <ClCompile Include="..\..\src\univ\framuniv.cpp" />
+    <ClCompile Include="..\..\src\univ\gauge.cpp" />
+    <ClCompile Include="..\..\src\univ\themes\gtk.cpp" />
+    <ClCompile Include="..\..\src\univ\inpcons.cpp" />
+    <ClCompile Include="..\..\src\univ\inphand.cpp" />
+    <ClCompile Include="..\..\src\univ\listbox.cpp" />
+    <ClCompile Include="..\..\src\univ\menu.cpp" />
+    <ClCompile Include="..\..\src\univ\themes\metal.cpp" />
+    <ClCompile Include="..\..\src\univ\themes\mono.cpp" />
+    <ClCompile Include="..\..\src\univ\notebook.cpp" />
+    <ClCompile Include="..\..\src\univ\radiobox.cpp" />
+    <ClCompile Include="..\..\src\univ\radiobut.cpp" />
+    <ClCompile Include="..\..\src\univ\scrarrow.cpp" />
+    <ClCompile Include="..\..\src\univ\scrolbar.cpp" />
+    <ClCompile Include="..\..\src\univ\scrthumb.cpp" />
+    <ClCompile Include="..\..\src\univ\settingsuniv.cpp" />
+    <ClCompile Include="..\..\src\univ\slider.cpp" />
+    <ClCompile Include="..\..\src\univ\spinbutt.cpp" />
+    <ClCompile Include="..\..\src\univ\statbmp.cpp" />
+    <ClCompile Include="..\..\src\univ\statbox.cpp" />
+    <ClCompile Include="..\..\src\univ\statline.cpp" />
+    <ClCompile Include="..\..\src\univ\stattext.cpp" />
+    <ClCompile Include="..\..\src\univ\statusbr.cpp" />
+    <ClCompile Include="..\..\src\univ\stdrend.cpp" />
+    <ClCompile Include="..\..\src\univ\textctrl.cpp" />
+    <ClCompile Include="..\..\src\univ\tglbtn.cpp" />
+    <ClCompile Include="..\..\src\univ\theme.cpp" />
+    <ClCompile Include="..\..\src\univ\toolbar.cpp" />
+    <ClCompile Include="..\..\src\univ\topluniv.cpp" />
+    <ClCompile Include="..\..\src\univ\themes\win32.cpp" />
+    <ClCompile Include="..\..\src\univ\winuniv.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\src\msw\version.rc">
@@ -1571,9 +1611,6 @@
       <Filter>Common Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\ribbon\buttonbar.h">
-      <Filter>Common Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\wx\cairo.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\calctrl.h">
@@ -2524,9 +2561,57 @@
     <ClInclude Include="..\..\include\wx\xpmhand.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\windowptr.h">
-      <Filter>Common Headers</Filter>
-    </ClInclude>
+    <ClInclude Include="..\..\include\wx\msw\ole\safearray.h" />
+    <ClInclude Include="..\..\include\wx\msw\webview_missing.h" />
+    <ClInclude Include="..\..\include\wx\univ\anybutton.h" />
+    <ClInclude Include="..\..\include\wx\univ\app.h" />
+    <ClInclude Include="..\..\include\wx\univ\bmpbuttn.h" />
+    <ClInclude Include="..\..\include\wx\univ\button.h" />
+    <ClInclude Include="..\..\include\wx\univ\checkbox.h" />
+    <ClInclude Include="..\..\include\wx\univ\checklst.h" />
+    <ClInclude Include="..\..\include\wx\univ\chkconf.h" />
+    <ClInclude Include="..\..\include\wx\univ\choice.h" />
+    <ClInclude Include="..\..\include\wx\univ\colschem.h" />
+    <ClInclude Include="..\..\include\wx\univ\combobox.h" />
+    <ClInclude Include="..\..\include\wx\univ\control.h" />
+    <ClInclude Include="..\..\include\wx\univ\custombgwin.h" />
+    <ClInclude Include="..\..\include\wx\univ\dialog.h" />
+    <ClInclude Include="..\..\include\wx\univ\frame.h" />
+    <ClInclude Include="..\..\include\wx\univ\gauge.h" />
+    <ClInclude Include="..\..\include\wx\univ\inpcons.h" />
+    <ClInclude Include="..\..\include\wx\univ\inphand.h" />
+    <ClInclude Include="..\..\include\wx\univ\listbox.h" />
+    <ClInclude Include="..\..\include\wx\univ\menu.h" />
+    <ClInclude Include="..\..\include\wx\univ\menuitem.h" />
+    <ClInclude Include="..\..\include\wx\univ\notebook.h" />
+    <ClInclude Include="..\..\include\wx\univ\panel.h" />
+    <ClInclude Include="..\..\include\wx\univ\radiobox.h" />
+    <ClInclude Include="..\..\include\wx\univ\radiobut.h" />
+    <ClInclude Include="..\..\include\wx\univ\renderer.h" />
+    <ClInclude Include="..\..\include\wx\univ\scrarrow.h" />
+    <ClInclude Include="..\..\include\wx\univ\scrolbar.h" />
+    <ClInclude Include="..\..\include\wx\univ\scrthumb.h" />
+    <ClInclude Include="..\..\include\wx\univ\scrtimer.h" />
+    <ClInclude Include="..\..\include\wx\univ\slider.h" />
+    <ClInclude Include="..\..\include\wx\univ\spinbutt.h" />
+    <ClInclude Include="..\..\include\wx\univ\statbmp.h" />
+    <ClInclude Include="..\..\include\wx\univ\statbox.h" />
+    <ClInclude Include="..\..\include\wx\univ\statline.h" />
+    <ClInclude Include="..\..\include\wx\univ\stattext.h" />
+    <ClInclude Include="..\..\include\wx\univ\statusbr.h" />
+    <ClInclude Include="..\..\include\wx\univ\stdrend.h" />
+    <ClInclude Include="..\..\include\wx\univ\textctrl.h" />
+    <ClInclude Include="..\..\include\wx\univ\tglbtn.h" />
+    <ClInclude Include="..\..\include\wx\univ\theme.h" />
+    <ClInclude Include="..\..\include\wx\univ\toolbar.h" />
+    <ClInclude Include="..\..\include\wx\univ\toplevel.h" />
+    <ClInclude Include="..\..\include\wx\univ\window.h" />
+    <ClInclude Include="..\..\include\wx\richtext\richtexttabspage.h" />
+    <ClInclude Include="..\..\include\wx\webviewfshandler.h" />
+    <ClInclude Include="..\..\include\wx\xrc\xh_auinotbk.h" />
+    <ClInclude Include="..\..\include\wx\xrc\xh_ribbon.h" />
+    <ClInclude Include="..\..\include\wx\xrc\xh_richtext.h" />
+    <ClInclude Include="..\..\include\wx\xrc\xmlreshandler.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\include\wx\msw\setup.h">
@@ -2535,5 +2620,6 @@
     <CustomBuild Include="..\..\include\wx\msw\genrcdefs.h">
       <Filter>MSW Headers</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\..\include\wx\univ\setup.h" />
   </ItemGroup>
 </Project>
