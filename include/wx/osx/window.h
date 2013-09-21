@@ -284,7 +284,7 @@ public:
     //
     // this is useful for a few Cocoa function which can work with either views
     // or windows indiscriminately, e.g. for setting NSViewAnimationTargetKey
-    virtual void *OSXGetViewOrWindow() const;
+    virtual void *OSXGetViewOrWindow() const { return GetHandle(); }
 #endif // Cocoa
 
     void *              MacGetCGContextRef() { return m_cgContextRef ; }

@@ -384,7 +384,7 @@ bool wxHIDDevice::IsActive(int nIndex)
 // ----------------------------------------------------------------------------
 bool wxHIDDevice::HasElement(int nIndex)
 {
-    return m_pCookies[nIndex] != 0;
+    return (void*) m_pCookies[nIndex] != NULL;
 }
 
 // ----------------------------------------------------------------------------

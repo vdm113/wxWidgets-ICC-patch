@@ -499,11 +499,6 @@ WXWindow wxNonOwnedWindow::GetWXWindow() const
     return m_nowpeer ? m_nowpeer->GetWXWindow() : NULL;
 }
 
-void *wxNonOwnedWindow::OSXGetViewOrWindow() const
-{
-    return GetWXWindow();
-}
-
 // ---------------------------------------------------------------------------
 // Shape implementation
 // ---------------------------------------------------------------------------

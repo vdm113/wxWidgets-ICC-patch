@@ -1662,7 +1662,7 @@ window_scroll_event(GtkWidget*, GdkEventScroll* gdk_event, wxWindow* win)
         if (gdk_event->delta_y)
         {
             event.m_wheelAxis = wxMOUSE_WHEEL_VERTICAL;
-            event.m_wheelRotation = int(event.m_wheelDelta * -gdk_event->delta_y);
+            event.m_wheelRotation = int(event.m_wheelDelta * gdk_event->delta_y);
             GtkRange* range = win->m_scrollBar[wxWindow::ScrollDir_Vert];
             event.m_linesPerAction = GetWheelScrollActionDelta(range);
             event.m_columnsPerAction = event.m_linesPerAction;
@@ -1689,7 +1689,7 @@ window_scroll_event(GtkWidget*, GdkEventScroll* gdk_event, wxWindow* win)
     }
 
     event.m_wheelRotation = event.m_wheelDelta;
-    if (gdk_event->direction == GDK_SCROLL_DOWN ||
+    if (gdk_event->direction == GDK_SCROLL_UP ||
         gdk_event->direction == GDK_SCROLL_LEFT)
     {
         event.m_wheelRotation = -event.m_wheelRotation;
