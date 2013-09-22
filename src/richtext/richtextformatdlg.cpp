@@ -607,7 +607,8 @@ void wxRichTextFormattingDialog::SetDimensionValue(wxTextAttrDimension& dim, wxT
 
     if (!dim.IsValid())
     {
-        checkBox->SetValue(false);
+        if (checkBox)
+            checkBox->SetValue(false);
         valueCtrl->SetValue(wxT("0"));
         unitsCtrl->SetSelection(0);
 #if 0
@@ -617,7 +618,8 @@ void wxRichTextFormattingDialog::SetDimensionValue(wxTextAttrDimension& dim, wxT
     }
     else
     {
-        checkBox->SetValue(true);
+        if (checkBox)
+            checkBox->SetValue(true);
         if (dim.GetUnits() == wxTEXT_ATTR_UNITS_TENTHS_MM)
         {
             unitsIdx = 1;
@@ -641,7 +643,7 @@ void wxRichTextFormattingDialog::SetDimensionValue(wxTextAttrDimension& dim, wxT
 
 void wxRichTextFormattingDialog::GetDimensionValue(wxTextAttrDimension& dim, wxTextCtrl* valueCtrl, wxComboBox* unitsCtrl, wxCheckBox* checkBox)
 {
-    if (!checkBox->GetValue())
+    if (checkBox && !checkBox->GetValue())
     {
         dim.Reset();
     }
