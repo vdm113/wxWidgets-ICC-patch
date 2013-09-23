@@ -9799,10 +9799,6 @@ bool wxRichTextTable::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
     return true;
 }
 
-WX_DECLARE_OBJARRAY(wxRect, wxRichTextRectArray);
-WX_DEFINE_OBJARRAY(wxRichTextRectArray);
-
-
     // Helper function for Layout() that clears the space needed by a cell with rowspan > 1
 int GetRowspanDisplacement(const wxRichTextTable* table, int row, int col, int paddingX, const wxArrayInt& colWidths)
 {
@@ -14502,9 +14498,8 @@ void wxTextAttrCollectCommonAttributes(wxTextAttr& currentStyle, const wxTextAtt
 }
 
 WX_DEFINE_OBJARRAY(wxRichTextVariantArray);
-
-// JACS 2013-01-27
 WX_DEFINE_OBJARRAY(wxRichTextAttrArray);
+WX_DEFINE_OBJARRAY(wxRichTextRectArray);
 
 IMPLEMENT_DYNAMIC_CLASS(wxRichTextProperties, wxObject)
 
