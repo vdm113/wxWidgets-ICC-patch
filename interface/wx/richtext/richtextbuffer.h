@@ -5891,6 +5891,11 @@ public:
     void MakeObject(wxRichTextObject* obj) { m_objectAddress.Create(m_buffer, obj); }
 
     /**
+        Sets the existing and new objects, for use with wxRICHTEXT_CHANGE_OBJECT.
+    */
+    void SetOldAndNewObjects(wxRichTextObject* oldObj, wxRichTextObject* newObj);
+
+    /**
         Calculate arrays for refresh optimization.
     */
     void CalculateRefreshOptimizations(wxArrayInt& optimizationLineCharPositions, wxArrayInt& optimizationLineYPositions);
