@@ -701,7 +701,7 @@ int wxRichTextObject::ConvertPixelsToTenthsMM(int ppi, int pixels, double scale)
 
 // Draw the borders and background for the given rectangle and attributes.
 // Width and height are taken to be the outer margin size, not the content.
-bool wxRichTextObject::DrawBoxAttributes(wxDC& dc, wxRichTextBuffer* buffer, const wxRichTextAttr& attr, const wxRect& boxRect, int flags)
+bool wxRichTextObject::DrawBoxAttributes(wxDC& dc, wxRichTextBuffer* buffer, const wxRichTextAttr& attr, const wxRect& boxRect, int flags, wxRichTextObject* obj)
 {
     // Assume boxRect is the area around the content
     wxRect marginRect = boxRect;
@@ -731,11 +731,23 @@ bool wxRichTextObject::DrawBoxAttributes(wxDC& dc, wxRichTextBuffer* buffer, con
 
     if (flags & wxRICHTEXT_DRAW_GUIDELINES)
     {
-        wxRichTextAttr editBorderAttr = attr;
+        wxRichTextAttr editBorderAttr;
         // TODO: make guideline colour configurable
         editBorderAttr.GetTextBoxAttr().GetBorder().SetColour(*wxLIGHT_GREY);
         editBorderAttr.GetTextBoxAttr().GetBorder().SetWidth(1, wxTEXT_ATTR_UNITS_PIXELS);
         editBorderAttr.GetTextBoxAttr().GetBorder().SetStyle(wxTEXT_BOX_ATTR_BORDER_SOLID);
+
+        if (obj)
+        {
+            wxRichTextCell* cell = wxDynamicCast(obj, wxRichTextCell);
+            if (cell)
+            {
+                // This ensures that thin lines drawn by adjacent cells (left and above)
+                // don't get overwritten by the guidelines.
+                editBorderAttr.GetTextBoxAttr().GetBorder().GetLeft().Reset();
+                editBorderAttr.GetTextBoxAttr().GetBorder().GetTop().Reset();
+            }
+        }
 
         DrawBorder(dc, buffer, editBorderAttr.GetTextBoxAttr().GetBorder(), borderRect, flags);
     }
@@ -1940,7 +1952,7 @@ bool wxRichTextParagraphLayoutBox::Draw(wxDC& dc, wxRichTextDrawingContext& cont
     int theseFlags = flags;
     if (!GetParent())
         theseFlags &= ~wxRICHTEXT_DRAW_GUIDELINES;
-    DrawBoxAttributes(dc, GetBuffer(), attr, thisRect, theseFlags);
+    DrawBoxAttributes(dc, GetBuffer(), attr, thisRect, theseFlags, this);
 
     if (wxRichTextBuffer::GetFloatingLayoutMode())
         DrawFloats(dc, context, range, selection, rect, descent, style);
@@ -11077,7 +11089,7 @@ bool wxRichTextTable::DeleteRows(int startRow, int noRows)
         // Create a clone containing the current state of the table. It will be used to Undo the action
         clone = wxStaticCast(this->Clone(), wxRichTextTable);
         clone->SetParent(GetParent());
-        action = new wxRichTextAction(NULL, _("Delete row"), wxRICHTEXT_CHANGE_OBJECT, buffer, this, rtc);
+        action = new wxRichTextAction(NULL, _("Delete Row"), wxRICHTEXT_CHANGE_OBJECT, buffer, this, rtc);
         action->SetObject(this);
         action->SetPosition(GetRange().GetStart());
     }
@@ -11151,7 +11163,7 @@ bool wxRichTextTable::DeleteColumns(int startCol, int noCols)
         // Create a clone containing the current state of the table. It will be used to Undo the action
         clone = wxStaticCast(this->Clone(), wxRichTextTable);
         clone->SetParent(GetParent());
-        action = new wxRichTextAction(NULL, _("Delete column"), wxRICHTEXT_CHANGE_OBJECT, buffer, this, rtc);
+        action = new wxRichTextAction(NULL, _("Delete Column"), wxRICHTEXT_CHANGE_OBJECT, buffer, this, rtc);
         action->SetObject(this);
         action->SetPosition(GetRange().GetStart());
     }
@@ -11738,7 +11750,7 @@ bool wxRichTextAction::Do()
             else
                 container->InvalidateHierarchy(GetRange());
 
-            UpdateAppearance(GetPosition());
+            UpdateAppearance(GetPosition(), true);
 
             // TODO: send new kind of modification event
 
