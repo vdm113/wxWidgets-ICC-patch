@@ -346,6 +346,7 @@
       <OffloadConstructs>None</OffloadConstructs>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <StringPooling>true</StringPooling>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -398,6 +399,7 @@
       <OffloadConstructs>None</OffloadConstructs>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <StringPooling>true</StringPooling>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -449,6 +451,7 @@
       <OffloadConstructs>None</OffloadConstructs>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <StringPooling>true</StringPooling>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -500,6 +503,7 @@
       <OffloadConstructs>None</OffloadConstructs>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <StringPooling>true</StringPooling>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -552,6 +556,7 @@
       <OffloadConstructs>None</OffloadConstructs>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <StringPooling>true</StringPooling>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -604,6 +609,7 @@
       <OffloadConstructs>None</OffloadConstructs>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <StringPooling>true</StringPooling>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -655,6 +661,7 @@
       <OffloadConstructs>None</OffloadConstructs>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <StringPooling>true</StringPooling>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -706,6 +713,7 @@
       <OffloadConstructs>None</OffloadConstructs>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <StringPooling>true</StringPooling>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -758,6 +766,7 @@
       <OffloadConstructs>None</OffloadConstructs>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <StringPooling>true</StringPooling>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -809,6 +818,7 @@
       <OffloadConstructs>None</OffloadConstructs>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <StringPooling>true</StringPooling>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -859,6 +869,7 @@
       <OffloadConstructs>None</OffloadConstructs>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <StringPooling>true</StringPooling>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -909,6 +920,7 @@
       <OffloadConstructs>None</OffloadConstructs>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <StringPooling>true</StringPooling>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -960,6 +972,7 @@
       <OffloadConstructs>None</OffloadConstructs>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <StringPooling>true</StringPooling>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1011,6 +1024,7 @@
       <OffloadConstructs>None</OffloadConstructs>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <StringPooling>true</StringPooling>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1061,6 +1075,7 @@
       <OffloadConstructs>None</OffloadConstructs>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <StringPooling>true</StringPooling>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1111,6 +1126,7 @@
       <OffloadConstructs>None</OffloadConstructs>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <StringPooling>true</StringPooling>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
