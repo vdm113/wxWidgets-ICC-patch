@@ -820,7 +820,7 @@ bool wxRichTextObject::DrawBorder(wxDC& dc, wxRichTextBuffer* buffer, const wxTe
             wxBrush brush(col);
             dc.SetPen(pen);
             dc.SetBrush(brush);
-            dc.DrawRectangle(rect.x + rect.width - borderRight, rect.y, borderRight, rect.height);
+            dc.DrawRectangle(rect.x + rect.width - borderRight, rect.y, borderRight, rect.height + 1);
         }
     }
 
@@ -877,7 +877,7 @@ bool wxRichTextObject::DrawBorder(wxDC& dc, wxRichTextBuffer* buffer, const wxTe
             wxBrush brush(col);
             dc.SetPen(pen);
             dc.SetBrush(brush);
-            dc.DrawRectangle(rect.x, rect.y + rect.height - borderBottom, rect.width, borderBottom);
+            dc.DrawRectangle(rect.x, rect.y + rect.height - borderBottom + 1, rect.width, borderBottom);
         }
     }
 
@@ -11038,8 +11038,14 @@ wxPosition wxRichTextTable::GetFocusedCell() const
 
 int wxRichTextTable::HitTest(wxDC& dc, wxRichTextDrawingContext& context, const wxPoint& pt, long& textPosition, wxRichTextObject** obj, wxRichTextObject** contextObj, int flags)
 {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int row = 0; row < GetRowCount(); ++row)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (int col = 0; col < GetColumnCount(); ++col)
         {
             wxRichTextCell* cell = GetCell(row, col);
