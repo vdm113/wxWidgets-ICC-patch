@@ -379,6 +379,10 @@ bool wxRichTextObject::ImportFromXML(wxRichTextBuffer* WXUNUSED(buffer), wxXmlNo
     handler->GetHelper().ImportProperties(GetProperties(), node);
     handler->GetHelper().ImportStyle(GetAttributes(), node, UsesParagraphAttributes());
 
+    wxString value = node->GetAttribute(wxT("show"), wxEmptyString);
+    if (!value.IsEmpty())
+        Show(value == wxT("1"));
+
     *recurse = true;
 
     return true;
@@ -392,6 +396,8 @@ bool wxRichTextObject::ExportXML(wxOutputStream& stream, int indent, wxRichTextX
     handler->GetHelper().OutputString(stream, wxT("<") + GetXMLNodeName());
 
     wxString style = handler->GetHelper().AddAttributes(GetAttributes(), true);
+    if (!IsShown())
+        style << wxT(" show=\"0\"");
 
     handler->GetHelper().OutputString(stream, style + wxT(">"));
 
@@ -428,6 +434,8 @@ bool wxRichTextObject::ExportXML(wxXmlNode* parent, wxRichTextXMLHandler* handle
     parent->AddChild(elementNode);
     handler->GetHelper().AddAttributes(elementNode, GetAttributes(), true);
     handler->GetHelper().WriteProperties(elementNode, GetProperties());
+    if (!IsShown())
+        elementNode->AddAttribute(wxT("show"), wxT("0"));
 
     wxRichTextCompositeObject* composite = wxDynamicCast(this, wxRichTextCompositeObject);
     if (composite)
