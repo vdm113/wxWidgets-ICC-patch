@@ -99,7 +99,7 @@
     #endif
 #endif
 
-#if defined(__VISUALC__) && !defined(__WXWINCE__)
+#if (defined(__VISUALC__) && !defined(__WXWINCE__)) || (defined(__WINDOWS__) && defined (__INTELC__))
     typedef _off_t off_t;
 #elif defined(__SYMANTEC__)
     typedef long off_t;
@@ -194,7 +194,7 @@ enum wxPosixPermissions
     #define   wxStructStat struct _stat
 #elif (defined(__WINDOWS__) || defined(__OS2__)) && \
       ( \
-        defined(__VISUALC__) || \
+        (defined(__VISUALC__) || (defined(__WINDOWS__) && defined (__INTELC__))) || \
         defined(__MINGW64__) || \
         (defined(__MINGW32__) && !defined(__WINE__) && \
                                 wxCHECK_W32API_VERSION(0, 5)) || \
@@ -208,10 +208,10 @@ enum wxPosixPermissions
     #undef wxHAS_HUGE_STDIO_FILES
 
     // detect compilers which have support for huge files
-    #if defined(__VISUALC__)
+    #if (defined(__VISUALC__) || (defined(__WINDOWS__) && defined (__INTELC__)))
         #define wxHAS_HUGE_FILES 1
     #elif defined(__MINGW32__) || defined(__MINGW64__)
-        #define wxHAS_HUGE_FILES 1
+        #define wxHAS_HUGE_FILES 1f
     #elif defined(_LARGE_FILES)
         #define wxHAS_HUGE_FILES 1
     #endif
@@ -483,7 +483,6 @@ enum wxPosixPermissions
     #define   wxSeek       lseek
     #define   wxFsync      fsync
     #define   wxEof        eof
-
     #define   wxCRT_MkDir      mkdir
     #define   wxCRT_RmDir      rmdir
 
