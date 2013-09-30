@@ -305,6 +305,13 @@ void wxHtmlTableCell::AddCell(wxHtmlContainerCell *cell, const wxHtmlTag& tag)
 
     /* scan for parameters: */
 
+    // id:
+    wxString idvalue;
+    if (tag.GetParamAsString(wxT("ID"), &idvalue))
+    {
+        cell->SetId(idvalue);
+    }
+
     // width:
     {
         if (tag.HasParam(wxT("WIDTH")))
