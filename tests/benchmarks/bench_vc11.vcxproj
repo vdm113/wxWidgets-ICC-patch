@@ -159,7 +159,7 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -178,6 +178,7 @@
       <AdditionalIncludeDirectories>..\..\lib\vc_dll\mswud\;..\..\samples\;..\..\include\</AdditionalIncludeDirectories>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -202,6 +203,7 @@
       <AdditionalDependencies>wxmsw30ud_core.lib;wxbase30ud.lib;wxmsw30ud_html.lib</AdditionalDependencies>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <AdditionalOptions>/Qvec-report1</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Message>Performing registration</Message>
@@ -262,7 +264,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <BrowseInformation>false</BrowseInformation>
       <FunctionLevelLinking>false</FunctionLevelLinking>
@@ -279,6 +281,7 @@
       <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <OffloadConstructs>None</OffloadConstructs>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -295,7 +298,7 @@ bash version.sh $(AssemblyName)</Command>
       </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Qvec-report1</AdditionalOptions>
       <AdditionalDependencies>wxmsw30ud_core.lib;wxbase30ud.lib;wxmsw30ud_html.lib</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <AdditionalLibraryDirectories>..\..\lib\vc_x64_dll\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -366,7 +369,7 @@ copy /Y "$(TargetDir)\*.ptx " "$(MSBuildProjectDirectory)\..\src\Recorder7_Proce
       <StringPooling>true</StringPooling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -384,6 +387,7 @@ copy /Y "$(TargetDir)\*.ptx " "$(MSBuildProjectDirectory)\..\src\Recorder7_Proce
       <OffloadConstructs>None</OffloadConstructs>
       <AdditionalIncludeDirectories>..\..\lib\vc_dll\mswu\;..\..\samples\;..\..\include\</AdditionalIncludeDirectories>
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -478,7 +482,7 @@ copy /Y "$(TargetDir)\*.ptx " "$(MSBuildProjectDirectory)\..\src\Recorder7_Proce
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointModel>Fast2</FloatingPointModel>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <BrowseInformation>false</BrowseInformation>
       <FunctionLevelLinking>false</FunctionLevelLinking>
@@ -492,6 +496,7 @@ copy /Y "$(TargetDir)\*.ptx " "$(MSBuildProjectDirectory)\..\src\Recorder7_Proce
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
       <OffloadConstructs>None</OffloadConstructs>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
