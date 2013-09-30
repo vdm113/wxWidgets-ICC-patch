@@ -11382,8 +11382,14 @@ bool wxRichTextTableBlock::ComputeBlockForSelection(wxRichTextTable* table, wxRi
         wxRichTextTableBlock selBlock(-1, -1, -1, -1);
         wxRichTextRangeArray ranges = selection.GetRanges();
         int row, col;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (row = 0; row < table->GetRowCount(); row++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (col = 0; col < table->GetColumnCount(); col++)
             {
                 if (selection.WithinSelection(table->GetCell(row, col)->GetRange().GetStart()))

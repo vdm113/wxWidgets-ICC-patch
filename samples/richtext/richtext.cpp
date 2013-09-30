@@ -2325,6 +2325,9 @@ wxRichTextTable* MyRichTextCtrl::FindTable() const
         return table;
     }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (obj)
     {
         obj = obj->GetParent();
