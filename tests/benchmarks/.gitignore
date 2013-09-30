@@ -9,5 +9,6 @@ bench_vc7.sln
 bench_vc8.sln
 bench_vc9.sln
 bench_vc10.sln
+Makefile.in
 
 #eof
