@@ -526,6 +526,7 @@ int ZEXPORT gzread (file, buf, len)
       Reads one byte from the compressed file. gzgetc returns this byte
    or -1 in case of end of file or error.
 */
+#undef gzgetc   /* VDM */
 int ZEXPORT gzgetc(file)
     gzFile file;
 {
