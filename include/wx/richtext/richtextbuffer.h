@@ -3340,7 +3340,7 @@ public:
     /**
         Sets with undo the properties for the given object.
     */
-    virtual bool SetObjectPropertiesWithUndo(wxRichTextObject& obj, const wxRichTextProperties& properties);
+    virtual bool SetObjectPropertiesWithUndo(wxRichTextObject& obj, const wxRichTextProperties& properties, wxRichTextObject* objToSet = NULL);
 
     /**
         Test if this whole range has character attributes of the specified kind. If any
@@ -6145,6 +6145,16 @@ public:
         Returns the action name.
     */
     const wxString& GetName() const { return m_name; }
+
+    /**
+        Instructs the first Do() command should be skipped as it's already been applied.
+    */
+    void SetIgnoreFirstTime(bool b) { m_ignoreThis = b; }
+
+    /**
+        Returns true if the first Do() command should be skipped as it's already been applied.
+    */
+    bool GetIgnoreFirstTime() const { return m_ignoreThis; }
 
 protected:
     // Action name
