@@ -203,7 +203,7 @@ protected:
 
     @library{wxhtml}
     @category{ctrl}
-    @appearance{simplehtmllistbox}
+    @genericAppearance{simplehtmllistbox}
 
     @see wxSimpleHtmlListBox::Create
 */
