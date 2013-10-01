@@ -152,7 +152,7 @@
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /GL /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -203,7 +203,7 @@
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /GL /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;WIN64;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;WIN64;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -254,7 +254,7 @@
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /GL /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -304,7 +304,7 @@
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /GL /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;WIN64;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;WIN64;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -354,7 +354,7 @@
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /GL /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -405,7 +405,7 @@
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /GL /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;WIN64;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;WIN64;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -456,7 +456,7 @@
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /GL /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -506,7 +506,7 @@
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /GL /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;WIN64;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;WIN64;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>

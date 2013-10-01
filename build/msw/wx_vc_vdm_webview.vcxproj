@@ -164,7 +164,7 @@
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /GL /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -217,7 +217,7 @@
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /GL /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;WIN64;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -270,7 +270,7 @@
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /GL /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -322,7 +322,7 @@
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /GL /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;WIN64;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -374,10 +374,10 @@
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /GL /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_LIB;WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -406,6 +406,7 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw30ud_webview_vc_custom;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -428,6 +429,8 @@
       <GenerateMapFile>true</GenerateMapFile>
       <MapExports>true</MapExports>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
+      <ShowProgress>LinkVerbose</ShowProgress>
+      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
     </Link>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_webview.bsc</OutputFile>
@@ -440,10 +443,10 @@
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /GL /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_LIB;WIN32;WIN64;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;WIN64;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -472,6 +475,7 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw30ud_webview_vc_custom;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -493,6 +497,8 @@
       <GenerateMapFile>true</GenerateMapFile>
       <MapExports>true</MapExports>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
+      <ShowProgress>LinkVerbose</ShowProgress>
+      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
     </Link>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_webview.bsc</OutputFile>
@@ -505,10 +511,10 @@
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /GL /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_LIB;WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -536,6 +542,7 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw30u_webview_vc_custom;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -558,6 +565,8 @@
       <GenerateMapFile>true</GenerateMapFile>
       <MapExports>true</MapExports>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
+      <ShowProgress>LinkVerbose</ShowProgress>
+      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
     </Link>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_webview.bsc</OutputFile>
@@ -570,10 +579,10 @@
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /GL /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeedHighLevel</Optimization>
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_LIB;WIN32;WIN64;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;WIN64;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -601,6 +610,7 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw30u_webview_vc_custom;WXUSINGDLL;WXMAKINGDLL_WEBVIEW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -622,6 +632,8 @@
       <GenerateMapFile>true</GenerateMapFile>
       <MapExports>true</MapExports>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
+      <ShowProgress>LinkVerbose</ShowProgress>
+      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
     </Link>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_webview.bsc</OutputFile>
