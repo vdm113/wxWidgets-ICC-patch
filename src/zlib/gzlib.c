@@ -120,9 +120,6 @@ local gzFile gz_open(path, fd, mode)
     state->level = Z_DEFAULT_COMPRESSION;
     state->strategy = Z_DEFAULT_STRATEGY;
     state->direct = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     while (*mode) {
         if (*mode >= '0' && *mode <= '9')
             state->level = *mode - '0';
@@ -627,9 +624,6 @@ unsigned ZLIB_INTERNAL gz_intmax()
     unsigned p, q;
 
     p = 1;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     do {
         q = p;
         p <<= 1;

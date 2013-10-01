@@ -546,9 +546,6 @@ void FAR *out_desc;
             }
             if (here.op && (here.op & 0xf0) == 0) {
                 last = here;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                 for (;;) {
                     here = state->lencode[last.val +
                             (BITS(last.bits + last.op) >> last.bits)];
@@ -606,9 +603,6 @@ void FAR *out_desc;
             }
             if ((here.op & 0xf0) == 0) {
                 last = here;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                 for (;;) {
                     here = state->distcode[last.val +
                             (BITS(last.bits + last.op) >> last.bits)];
