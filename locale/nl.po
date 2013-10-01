@@ -1152,6 +1152,11 @@ msgstr "Kolom toevoegen"
 msgid "Add Row"
 msgstr "Rij toevoegen"
 
+#: ../src/richtext/richtextbuffer.cpp:10688
+#, fuzzy
+msgid "Add Row"
+msgstr "voeg rij toe"
+
 #: ../src/html/helpwnd.cpp:439
 msgid "Add current page to bookmarks"
 msgstr "Voeg huidige pagina toe aan favorieten"

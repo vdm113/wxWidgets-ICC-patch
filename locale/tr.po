@@ -1158,6 +1158,11 @@ msgstr "Sütun Ekleyin"
 msgid "Add Row"
 msgstr "Satır Ekleyin"
 
+#: ../src/richtext/richtextbuffer.cpp:10688
+#, fuzzy
+msgid "Add Row"
+msgstr "Satır ekleyin"
+
 #: ../src/html/helpwnd.cpp:439
 msgid "Add current page to bookmarks"
 msgstr "Geçerli sayfayı yer imlerine ekleyin"

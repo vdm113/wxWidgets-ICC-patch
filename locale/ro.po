@@ -1157,6 +1157,11 @@ msgstr "Adaugă coloană"
 msgid "Add Row"
 msgstr "Adaugă rând"
 
+#: ../src/richtext/richtextbuffer.cpp:10688
+#, fuzzy
+msgid "Add Row"
+msgstr "Adauga rând"
+
 #: ../src/html/helpwnd.cpp:439
 msgid "Add current page to bookmarks"
 msgstr "Adaugă pagina curentă la însemne"

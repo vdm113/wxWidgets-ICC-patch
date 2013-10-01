@@ -1157,6 +1157,11 @@ msgstr "Adicionar Coluna"
 msgid "Add Row"
 msgstr "Adicionar Fileira"
 
+#: ../src/richtext/richtextbuffer.cpp:10688
+#, fuzzy
+msgid "Add Row"
+msgstr "Adicionar fileira"
+
 #: ../src/html/helpwnd.cpp:439
 msgid "Add current page to bookmarks"
 msgstr "Adicionar a página atual aos favoritos"
