@@ -31,11 +31,6 @@
        as VC++.
      */
 #    if defined(__VISUALC__) || defined(__BORLANDC__) || defined(__WATCOMC__)
-
-#    if defined(__INTELC__)
-#        pragma warning(disable: 1744) /* warning #1744: field of class type without a DLL interface used in a class with a DLL interface */
-#    endif
-
 #        define WXEXPORT __declspec(dllexport)
 #        define WXIMPORT __declspec(dllimport)
     /*

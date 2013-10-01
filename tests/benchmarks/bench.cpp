@@ -37,8 +37,6 @@ static const char OPTION_NUM_RUNS = 'n';
 static const char OPTION_NUMERIC_PARAM = 'p';
 static const char OPTION_STRING_PARAM = 's';
 
-char tmp[4096];
-
 // ----------------------------------------------------------------------------
 // BenchApp declaration
 // ----------------------------------------------------------------------------
@@ -77,7 +75,7 @@ private:
     wxString m_strParam;
 };
 
-IMPLEMENT_APP(BenchApp)
+IMPLEMENT_APP_CONSOLE(BenchApp)
 
 // ============================================================================
 // Bench namespace symbols implementation
@@ -111,9 +109,8 @@ bool BenchApp::OnInit()
     if ( !BenchAppBase::OnInit() )
         return false;
 
-    sprintf(tmp,"wxWidgets benchmarking program\n"
+    wxPrintf("wxWidgets benchmarking program\n"
              "Build: %s\n", WX_BUILD_OPTIONS_SIGNATURE);
-    wxLogMessage(tmp);
 
 #if wxUSE_GUI
     // create a hidden parent window to be used as parent for the GUI controls
@@ -264,8 +261,7 @@ int BenchApp::OnRun()
             params += wxString::Format(" with s=\"%s\"", m_strParam);
         }
 
-        sprintf(tmp,"Benchmarking %s%s: ", func->GetName(), params);
-        wxLogMessage(tmp);
+        wxPrintf("Benchmarking %s%s: ", func->GetName(), params);
 
         long timeMin = LONG_MAX,
              timeMax = 0,
@@ -299,14 +295,12 @@ int BenchApp::OnRun()
 
         if ( !ok )
         {
-            sprintf(tmp,"ERROR\n");
-            wxLogMessage(tmp);
+            wxPrintf("ERROR\n");
             rc = EXIT_FAILURE;
         }
         else
         {
-            sprintf(tmp,"%ldms total, ", timeTotal);
-            wxLogMessage(tmp);
+            wxPrintf("%ldms total, ", timeTotal);
 
             long times = m_avgCount;
             if ( m_avgCount > 2 )
@@ -315,9 +309,8 @@ int BenchApp::OnRun()
                 times -= 2;
             }
 
-            sprintf(tmp,"%.2f avg (min=%ld, max=%ld)\n",
+            wxPrintf("%.2f avg (min=%ld, max=%ld)\n",
                      (float)timeTotal / times, timeMin, timeMax);
-            wxLogMessage(tmp);
         }
 
         fflush(stdout);
@@ -338,8 +331,7 @@ int BenchApp::OnExit()
 /* static */
 void BenchApp::ListBenchmarks()
 {
-    sprintf(tmp,"Available benchmarks:\n");
-    wxLogMessage(tmp);
+    wxPrintf("Available benchmarks:\n");
 #if defined(__INTEL_COMPILER)
 #   pragma ivdep
 #endif
@@ -347,7 +339,6 @@ void BenchApp::ListBenchmarks()
           func;
           func = func->GetNext() )
     {
-        sprintf(tmp,"\t%s\n", func->GetName());
-        wxLogMessage(tmp);
+        wxPrintf("\t%s\n", func->GetName());
     }
 }
