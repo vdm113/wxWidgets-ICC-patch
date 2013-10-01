@@ -192,8 +192,7 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
-      <DisableSpecificWarnings>;809;650</DisableSpecificWarnings>
+      <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -204,6 +203,7 @@
       <OutputFile>$(OutDir)wxjpegd.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxjpeg.bsc</OutputFile>
@@ -244,8 +244,7 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
-      <DisableSpecificWarnings>;809;650</DisableSpecificWarnings>
+      <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -256,6 +255,7 @@
       <OutputFile>$(OutDir)wxjpegd.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxjpeg.bsc</OutputFile>
@@ -295,8 +295,7 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
-      <DisableSpecificWarnings>;809;650</DisableSpecificWarnings>
+      <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -307,6 +306,7 @@
       <OutputFile>$(OutDir)wxjpeg.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxjpeg.bsc</OutputFile>
@@ -346,8 +346,7 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
-      <DisableSpecificWarnings>;809;650</DisableSpecificWarnings>
+      <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -358,6 +357,7 @@
       <OutputFile>$(OutDir)wxjpeg.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxjpeg.bsc</OutputFile>
@@ -398,8 +398,7 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
-      <DisableSpecificWarnings>;809;650</DisableSpecificWarnings>
+      <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -410,6 +409,7 @@
       <OutputFile>$(OutDir)wxjpegd.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxjpeg.bsc</OutputFile>
@@ -450,8 +450,7 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
-      <DisableSpecificWarnings>;809;650</DisableSpecificWarnings>
+      <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -462,6 +461,7 @@
       <OutputFile>$(OutDir)wxjpegd.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxjpeg.bsc</OutputFile>
@@ -501,8 +501,7 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
-      <DisableSpecificWarnings>;809;650</DisableSpecificWarnings>
+      <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -513,6 +512,7 @@
       <OutputFile>$(OutDir)wxjpeg.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxjpeg.bsc</OutputFile>
@@ -552,8 +552,7 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
-      <DisableSpecificWarnings>;809;650</DisableSpecificWarnings>
+      <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -564,6 +563,7 @@
       <OutputFile>$(OutDir)wxjpeg.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxjpeg.bsc</OutputFile>
