@@ -1150,12 +1150,14 @@ msgid "Add"
 msgstr "Adaugă"
 
 #: ../src/richtext/richtextbuffer.cpp:10751
+#, fuzzy
 msgid "Add Column"
-msgstr "Adaugă coloană"
+msgstr "Adauga coloană"
 
 #: ../src/richtext/richtextbuffer.cpp:10688
+#, fuzzy
 msgid "Add Row"
-msgstr "Adaugă rând"
+msgstr "Adauga rând"
 
 #: ../src/html/helpwnd.cpp:439
 msgid "Add current page to bookmarks"
@@ -2588,10 +2590,12 @@ msgid "Delete A&ll"
 msgstr "Șter&ge tot"
 
 #: ../src/richtext/richtextbuffer.cpp:10637
+#, fuzzy
 msgid "Delete Column"
 msgstr "Șterge coloană"
 
 #: ../src/richtext/richtextbuffer.cpp:10587
+#, fuzzy
 msgid "Delete Row"
 msgstr "Șterge rând"
 

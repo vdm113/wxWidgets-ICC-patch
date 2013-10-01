@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wxWidgets 3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-01 19:04+0200\n"
-"PO-Revision-Date: 2013-10-07 20:21+0530\n"
+"PO-Revision-Date: 2013-09-12 19:48+0530\n"
 "Last-Translator: DINAKAR T.D. <td.dinkar@gmail.com>\n"
 "Language-Team: DINAKAR T.D. <td.dinkar@gmail.com>\n"
 "Language: ta\n"
@@ -1145,10 +1145,12 @@ msgid "Add"
 msgstr "ஏற்றுக"
 
 #: ../src/richtext/richtextbuffer.cpp:10751
+#, fuzzy
 msgid "Add Column"
 msgstr "செங்குத்து வரிசையை சேர்க்கவும்"
 
 #: ../src/richtext/richtextbuffer.cpp:10688
+#, fuzzy
 msgid "Add Row"
 msgstr "கிடை வரிசையை சேர்க்கவும்"
 
@@ -2573,10 +2575,12 @@ msgid "Delete A&ll"
 msgstr "எல்லாவற்றையும் அழி"
 
 #: ../src/richtext/richtextbuffer.cpp:10637
+#, fuzzy
 msgid "Delete Column"
 msgstr "செங்குத்து வரிசையை அழிக்கவும்"
 
 #: ../src/richtext/richtextbuffer.cpp:10587
+#, fuzzy
 msgid "Delete Row"
 msgstr "கிடை வரிசையை அழிக்கவும்"
 
