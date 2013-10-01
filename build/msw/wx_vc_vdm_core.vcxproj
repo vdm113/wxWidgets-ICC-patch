@@ -133,16 +133,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\lib\vc_lib\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\lib\vc_lib\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">..\..\lib\vc_dll\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\lib\vc_$(Platform)_lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\lib\vc_$(Platform)_lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">..\..\lib\vc_$(Platform)_dll\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\</IntDir>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">..\..\lib\vc_dll\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">..\..\lib\vc_$(Platform)_dll\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\</IntDir>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">true</GenerateManifest>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">wxmsw30ud_core</TargetName>
@@ -171,8 +171,8 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>vc_mswud\wxprec_corelib.pch</PrecompiledHeaderOutputFile>
-      <ObjectFileName>vc_mswud\core\</ObjectFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswud\wxprec_corelib.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(Platform)\$(Configuration)\vc_mswud\core\</ObjectFileName>
       <ProgramDataBaseFileName>$(OutDir)wxmsw30ud_core.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -224,8 +224,8 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>vc_mswud\wxprec_corelib.pch</PrecompiledHeaderOutputFile>
-      <ObjectFileName>vc_mswud\core\</ObjectFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswud\wxprec_corelib.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(Platform)\$(Configuration)\vc_mswud\core\</ObjectFileName>
       <ProgramDataBaseFileName>$(OutDir)wxmsw30ud_core.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -275,8 +275,8 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>vc_mswu\wxprec_corelib.pch</PrecompiledHeaderOutputFile>
-      <ObjectFileName>vc_mswu\core\</ObjectFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswu\wxprec_corelib.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(Platform)\$(Configuration)\vc_mswu\core\</ObjectFileName>
       <ProgramDataBaseFileName>$(OutDir)wxmsw30u_core.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -327,8 +327,8 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>vc_mswu\wxprec_corelib.pch</PrecompiledHeaderOutputFile>
-      <ObjectFileName>vc_mswu\core\</ObjectFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswu\wxprec_corelib.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(Platform)\$(Configuration)\vc_mswu\core\</ObjectFileName>
       <ProgramDataBaseFileName>$(OutDir)wxmsw30u_core.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -381,8 +381,8 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>vc_mswuddll\wxprec_coredll.pch</PrecompiledHeaderOutputFile>
-      <ObjectFileName>vc_mswuddll\core\</ObjectFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswuddll\wxprec_coredll.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(Platform)\$(Configuration)\vc_mswuddll\core\</ObjectFileName>
       <ProgramDataBaseFileName>$(OutDir)wxmsw30ud_core_vc_custom.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -447,8 +447,8 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>vc_mswuddll\wxprec_coredll.pch</PrecompiledHeaderOutputFile>
-      <ObjectFileName>vc_mswuddll\core\</ObjectFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswuddll\wxprec_coredll.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(Platform)\$(Configuration)\vc_mswuddll\core\</ObjectFileName>
       <ProgramDataBaseFileName>$(OutDir)wxmsw30ud_core_vc_custom.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -510,8 +510,8 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>vc_mswudll\wxprec_coredll.pch</PrecompiledHeaderOutputFile>
-      <ObjectFileName>vc_mswudll\core\</ObjectFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswudll\wxprec_coredll.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(Platform)\$(Configuration)\vc_mswudll\core\</ObjectFileName>
       <ProgramDataBaseFileName>$(OutDir)wxmsw30u_core_vc_custom.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -575,8 +575,8 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>vc_mswudll\wxprec_coredll.pch</PrecompiledHeaderOutputFile>
-      <ObjectFileName>vc_mswudll\core\</ObjectFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswudll\wxprec_coredll.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(Platform)\$(Configuration)\vc_mswudll\core\</ObjectFileName>
       <ProgramDataBaseFileName>$(OutDir)wxmsw30u_core_vc_custom.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -768,14 +768,14 @@
     <ClCompile Include="..\..\src\common\xpmdecod.cpp" />
     <ClCompile Include="..\..\src\generic\preferencesg.cpp" />
     <ClCompile Include="..\..\src\msw\accel.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_accel.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_accel.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_accel.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_accel.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_accel.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_accel.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_accel.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_accel.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_accel.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_accel.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_accel.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_accel.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_accel.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_accel.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_accel.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_accel.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\ole\access.cpp" />
     <ClCompile Include="..\..\src\msw\ole\activex.cpp" />
@@ -785,80 +785,80 @@
     <ClCompile Include="..\..\src\msw\ole\automtn.cpp" />
     <ClCompile Include="..\..\src\msw\bitmap.cpp" />
     <ClCompile Include="..\..\src\msw\bmpbuttn.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_bmpbuttn.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_bmpbuttn.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_bmpbuttn.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_bmpbuttn.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_bmpbuttn.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_bmpbuttn.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_bmpbuttn.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_bmpbuttn.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_bmpbuttn.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_bmpbuttn.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_bmpbuttn.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_bmpbuttn.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_bmpbuttn.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_bmpbuttn.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_bmpbuttn.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_bmpbuttn.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\brush.cpp" />
     <ClCompile Include="..\..\src\msw\button.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_button.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_button.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_button.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_button.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_button.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_button.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_button.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_button.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_button.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_button.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_button.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_button.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_button.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_button.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_button.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_button.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\caret.cpp" />
     <ClCompile Include="..\..\src\msw\checkbox.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_checkbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_checkbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_checkbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_checkbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_checkbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_checkbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_checkbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_checkbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_checkbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_checkbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_checkbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_checkbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_checkbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_checkbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_checkbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_checkbox.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\checklst.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_checklst.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_checklst.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_checklst.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_checklst.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_checklst.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_checklst.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_checklst.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_checklst.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_checklst.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_checklst.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_checklst.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_checklst.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_checklst.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_checklst.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_checklst.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_checklst.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\choice.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_choice.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_choice.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_choice.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_choice.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_choice.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_choice.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_choice.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_choice.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_choice.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_choice.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_choice.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_choice.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_choice.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_choice.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_choice.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_choice.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\clipbrd.cpp" />
     <ClCompile Include="..\..\src\msw\colordlg.cpp" />
     <ClCompile Include="..\..\src\msw\colour.cpp" />
     <ClCompile Include="..\..\src\msw\combo.cpp" />
     <ClCompile Include="..\..\src\msw\combobox.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_combobox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_combobox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_combobox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_combobox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_combobox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_combobox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_combobox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_combobox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_combobox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_combobox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_combobox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_combobox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_combobox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_combobox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_combobox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_combobox.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\control.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_control.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_control.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_control.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_control.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_control.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_control.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_control.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_control.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_control.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_control.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_control.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_control.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_control.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_control.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_control.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_control.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\cursor.cpp" />
     <ClCompile Include="..\..\src\msw\data.cpp" />
@@ -869,14 +869,14 @@
     <ClCompile Include="..\..\src\msw\dcprint.cpp" />
     <ClCompile Include="..\..\src\msw\dcscreen.cpp" />
     <ClCompile Include="..\..\src\msw\dialog.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_dialog.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_dialog.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_dialog.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_dialog.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_dialog.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_dialog.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_dialog.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_dialog.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_dialog.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_dialog.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_dialog.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_dialog.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_dialog.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_dialog.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_dialog.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_dialog.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\dialup.cpp" />
     <ClCompile Include="..\..\src\msw\dib.cpp" />
@@ -888,14 +888,14 @@
     <ClCompile Include="..\..\src\msw\enhmeta.cpp" />
     <ClCompile Include="..\..\src\msw\evtloop.cpp" />
     <ClCompile Include="..\..\src\msw\fdrepdlg.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_fdrepdlg.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_fdrepdlg.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_fdrepdlg.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_fdrepdlg.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_fdrepdlg.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_fdrepdlg.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_fdrepdlg.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_fdrepdlg.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_fdrepdlg.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_fdrepdlg.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_fdrepdlg.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_fdrepdlg.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_fdrepdlg.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_fdrepdlg.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_fdrepdlg.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_fdrepdlg.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\filedlg.cpp" />
     <ClCompile Include="..\..\src\msw\font.cpp" />
@@ -904,14 +904,14 @@
     <ClCompile Include="..\..\src\msw\fontutil.cpp" />
     <ClCompile Include="..\..\src\msw\frame.cpp" />
     <ClCompile Include="..\..\src\msw\gauge.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_gauge.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_gauge.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_gauge.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_gauge.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_gauge.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_gauge.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_gauge.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_gauge.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_gauge.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_gauge.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_gauge.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_gauge.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_gauge.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_gauge.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_gauge.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_gauge.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\gdiimage.cpp" />
     <ClCompile Include="..\..\src\msw\gdiobj.cpp" />
@@ -924,36 +924,36 @@
     <ClCompile Include="..\..\src\msw\imaglist.cpp" />
     <ClCompile Include="..\..\src\msw\iniconf.cpp" />
     <ClCompile Include="..\..\src\msw\listbox.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_listbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_listbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_listbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_listbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_listbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_listbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_listbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_listbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_listbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_listbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_listbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_listbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_listbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_listbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_listbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_listbox.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\listctrl.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_listctrl.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_listctrl.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_listctrl.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_listctrl.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_listctrl.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_listctrl.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_listctrl.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_listctrl.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_listctrl.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_listctrl.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_listctrl.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_listctrl.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_listctrl.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_listctrl.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_listctrl.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_listctrl.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\main.cpp" />
     <ClCompile Include="..\..\src\msw\mdi.cpp" />
     <ClCompile Include="..\..\src\msw\menu.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_menu.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_menu.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_menu.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_menu.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_menu.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_menu.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_menu.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_menu.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_menu.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_menu.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_menu.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_menu.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_menu.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_menu.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_menu.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_menu.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\menuitem.cpp" />
     <ClCompile Include="..\..\src\msw\metafile.cpp" />
@@ -964,14 +964,14 @@
     <ClCompile Include="..\..\src\msw\nativewin.cpp" />
     <ClCompile Include="..\..\src\msw\nonownedwnd.cpp" />
     <ClCompile Include="..\..\src\msw\notebook.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_notebook.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_notebook.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_notebook.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_notebook.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_notebook.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_notebook.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_notebook.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_notebook.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_notebook.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_notebook.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_notebook.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_notebook.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_notebook.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_notebook.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_notebook.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_notebook.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\ole\oleutils.cpp" />
     <ClCompile Include="..\..\src\msw\ole\safearray.cpp" />
@@ -984,141 +984,141 @@
     <ClCompile Include="..\..\src\msw\printwin.cpp" />
     <ClCompile Include="..\..\src\msw\progdlg.cpp" />
     <ClCompile Include="..\..\src\msw\radiobox.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_radiobox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_radiobox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_radiobox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_radiobox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_radiobox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_radiobox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_radiobox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_radiobox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_radiobox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_radiobox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_radiobox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_radiobox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_radiobox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_radiobox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_radiobox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_radiobox.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\radiobut.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_radiobut.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_radiobut.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_radiobut.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_radiobut.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_radiobut.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_radiobut.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_radiobut.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_radiobut.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_radiobut.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_radiobut.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_radiobut.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_radiobut.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_radiobut.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_radiobut.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_radiobut.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_radiobut.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\region.cpp" />
     <ClCompile Include="..\..\src\msw\renderer.cpp" />
     <ClCompile Include="..\..\src\msw\richmsgdlg.cpp" />
     <ClCompile Include="..\..\src\msw\scrolbar.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_scrolbar.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_scrolbar.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_scrolbar.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_scrolbar.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_scrolbar.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_scrolbar.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_scrolbar.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_scrolbar.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_scrolbar.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_scrolbar.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_scrolbar.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_scrolbar.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_scrolbar.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_scrolbar.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_scrolbar.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_scrolbar.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\settings.cpp" />
     <ClCompile Include="..\..\src\msw\slider.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_slider.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_slider.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_slider.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_slider.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_slider.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_slider.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_slider.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_slider.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_slider.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_slider.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_slider.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_slider.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_slider.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_slider.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_slider.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_slider.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\spinbutt.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_spinbutt.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_spinbutt.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_spinbutt.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_spinbutt.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_spinbutt.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_spinbutt.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_spinbutt.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_spinbutt.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_spinbutt.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_spinbutt.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_spinbutt.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_spinbutt.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_spinbutt.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_spinbutt.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_spinbutt.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_spinbutt.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\spinctrl.cpp" />
     <ClCompile Include="..\..\src\msw\statbmp.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_statbmp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_statbmp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_statbmp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_statbmp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_statbmp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_statbmp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_statbmp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_statbmp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_statbmp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_statbmp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_statbmp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_statbmp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_statbmp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_statbmp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_statbmp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_statbmp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\statbox.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_statbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_statbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_statbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_statbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_statbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_statbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_statbox.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_statbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_statbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_statbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_statbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_statbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_statbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_statbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_statbox.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_statbox.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\statline.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_statline.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_statline.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_statline.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_statline.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_statline.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_statline.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_statline.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_statline.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_statline.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_statline.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_statline.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_statline.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_statline.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_statline.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_statline.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_statline.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\stattext.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_stattext.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_stattext.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_stattext.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_stattext.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_stattext.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_stattext.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_stattext.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_stattext.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_stattext.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_stattext.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_stattext.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_stattext.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_stattext.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_stattext.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_stattext.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_stattext.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\statusbar.cpp" />
     <ClCompile Include="..\..\src\msw\textctrl.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_textctrl.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_textctrl.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_textctrl.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_textctrl.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_textctrl.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_textctrl.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_textctrl.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_textctrl.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_textctrl.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_textctrl.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_textctrl.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_textctrl.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_textctrl.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_textctrl.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_textctrl.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_textctrl.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\textentry.cpp" />
     <ClCompile Include="..\..\src\msw\textmeasure.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_textmeasure.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_textmeasure.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_textmeasure.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_textmeasure.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_textmeasure.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_textmeasure.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_textmeasure.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_textmeasure.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_textmeasure.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_textmeasure.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_textmeasure.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_textmeasure.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_textmeasure.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_textmeasure.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_textmeasure.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_textmeasure.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\tglbtn.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_tglbtn.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_tglbtn.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_tglbtn.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_tglbtn.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_tglbtn.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_tglbtn.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_tglbtn.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_tglbtn.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_tglbtn.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_tglbtn.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_tglbtn.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_tglbtn.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_tglbtn.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_tglbtn.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_tglbtn.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_tglbtn.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\toolbar.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\msw_toolbar.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\msw_toolbar.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\msw_toolbar.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\msw_toolbar.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\msw_toolbar.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\msw_toolbar.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\msw_toolbar.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\msw_toolbar.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_toolbar.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\msw_toolbar.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_toolbar.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\msw_toolbar.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\msw_toolbar.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\msw_toolbar.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\msw_toolbar.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\msw_toolbar.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\tooltip.cpp" />
     <ClCompile Include="..\..\src\msw\toplevel.cpp" />
@@ -1244,14 +1244,14 @@
     <ClCompile Include="..\..\src\generic\statbmpg.cpp" />
     <ClCompile Include="..\..\src\generic\stattextg.cpp" />
     <ClCompile Include="..\..\src\generic\statusbr.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\core\generic_statusbr.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_mswuddll\core\generic_statusbr.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\core\generic_statusbr.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_mswudll\core\generic_statusbr.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\core\generic_statusbr.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_mswud\core\generic_statusbr.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\core\generic_statusbr.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_mswu\core\generic_statusbr.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\vc_mswuddll\core\generic_statusbr.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\vc_mswuddll\core\generic_statusbr.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\vc_mswudll\core\generic_statusbr.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\vc_mswudll\core\generic_statusbr.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\vc_mswud\core\generic_statusbr.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\vc_mswud\core\generic_statusbr.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\vc_mswu\core\generic_statusbr.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\vc_mswu\core\generic_statusbr.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\src\generic\textdlgg.cpp" />
     <ClCompile Include="..\..\src\generic\tipwin.cpp" />
