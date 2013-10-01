@@ -204,6 +204,7 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <DisableSpecificWarnings>1744</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -257,6 +258,7 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <DisableSpecificWarnings>1744</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -309,6 +311,7 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <DisableSpecificWarnings>1744</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -361,6 +364,7 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
+      <DisableSpecificWarnings>1744</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -415,6 +419,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
+      <DisableSpecificWarnings>1744</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw30ud_core_vc_custom;WXUSINGDLL;WXMAKINGDLL_CORE;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -481,6 +486,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
+      <DisableSpecificWarnings>1744</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw30ud_core_vc_custom;WXUSINGDLL;WXMAKINGDLL_CORE;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -545,6 +551,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
+      <DisableSpecificWarnings>1744</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw30u_core_vc_custom;WXUSINGDLL;WXMAKINGDLL_CORE;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -610,6 +617,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
+      <DisableSpecificWarnings>1744</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw30u_core_vc_custom;WXUSINGDLL;WXMAKINGDLL_CORE;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
