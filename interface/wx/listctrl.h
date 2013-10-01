@@ -1549,7 +1549,7 @@ public:
 
     @library{wxcore}
     @category{ctrl}
-    @appearance{listview}
+    @appearance{listctrl}
 
     @see wxListView::SetColumnImage
 */
