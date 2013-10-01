@@ -132,9 +132,6 @@ unsigned short FAR *work;
         *bits = 1;
         return 0;     /* no symbols, but wait for decoding to report error */
     }
-#if defined(__INTEL_COMPILER) // VDM auto patch
-#   pragma ivdep
-#endif
     for (min = 1; min < max; min++)
         if (count[min] != 0) break;
     if (root < min) root = min;

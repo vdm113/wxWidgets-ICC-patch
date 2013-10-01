@@ -9,8 +9,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="7.10"
-	Name="sdk_exe"
-	ProjectGUID="{9F5C91C5-9982-53C5-B7D1-FBADA02791EC}">
+	Name="wxzlib"
+	ProjectGUID="{DDD86D36-A4F6-5A54-AE2C-144B3594E1CE}">
 	<Platforms>
 		<Platform
 			Name="Win32"/>
@@ -18,24 +18,24 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="vc_mswud"
-			IntermediateDirectory="vc_mswud\sdk_exe"
-			ConfigurationType="1"
+			OutputDirectory="..\..\lib\vc_lib"
+			IntermediateDirectory="vc_mswud\wxzlib"
+			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="TRUE"
 				ExceptionHandling="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				BufferSecurityCheck="TRUE"
 				RuntimeTypeInfo="TRUE"
-				ObjectFile="vc_mswud\sdk_exe\"
-				ProgramDataBaseFileName="vc_mswud\sdk_exe.pdb"
+				ObjectFile="vc_mswud\wxzlib\"
+				ProgramDataBaseFileName="..\..\lib\vc_lib\wxzlibd.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				Detect64BitPortabilityProblems="TRUE"
@@ -43,20 +43,12 @@
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalOptions=""
-				AdditionalDependencies="vc_mswud\my_dll.lib user32.lib"
-				OutputFile="vc_mswud\sdk_exe.exe"
-				LinkIncremental="2"
-				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories=""
-				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="vc_mswud\sdk_exe.pdb"
-				SubSystem="2"
-				TargetMachine="1"/>
+				Name="VCLibrarianTool"
+				OutputFile="..\..\lib\vc_lib\wxzlibd.lib"
+				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				AdditionalIncludeDirectories=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -66,7 +58,7 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;_WINDOWS"
+				PreprocessorDefinitions="_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				Culture="1033"
 				AdditionalIncludeDirectories=""/>
 			<Tool
@@ -82,21 +74,21 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="vc_mswu"
-			IntermediateDirectory="vc_mswu\sdk_exe"
-			ConfigurationType="1"
+			OutputDirectory="..\..\lib\vc_lib"
+			IntermediateDirectory="vc_mswu\wxzlib"
+			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_WINDOWS"
+				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				ExceptionHandling="TRUE"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="TRUE"
-				ObjectFile="vc_mswu\sdk_exe\"
-				ProgramDataBaseFileName="vc_mswu\sdk_exe.pdb"
+				ObjectFile="vc_mswu\wxzlib\"
+				ProgramDataBaseFileName="..\..\lib\vc_lib\wxzlib.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				Detect64BitPortabilityProblems="TRUE"
@@ -104,22 +96,12 @@
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalOptions=""
-				AdditionalDependencies="vc_mswu\my_dll.lib user32.lib"
-				OutputFile="vc_mswu\sdk_exe.exe"
-				LinkIncremental="1"
-				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories=""
-				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="vc_mswu\sdk_exe.pdb"
-				SubSystem="2"
-				TargetMachine="1"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"/>
+				Name="VCLibrarianTool"
+				OutputFile="..\..\lib\vc_lib\wxzlib.lib"
+				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_WINDOWS"
+				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				AdditionalIncludeDirectories=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -129,7 +111,7 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_WINDOWS"
+				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				Culture="1033"
 				AdditionalIncludeDirectories=""/>
 			<Tool
@@ -145,24 +127,24 @@
 		</Configuration>
 		<Configuration
 			Name="DLL Debug|Win32"
-			OutputDirectory="vc_mswuddll"
-			IntermediateDirectory="vc_mswuddll\sdk_exe"
-			ConfigurationType="1"
+			OutputDirectory="..\..\lib\vc_dll"
+			IntermediateDirectory="vc_mswuddll\wxzlib"
+			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="TRUE"
 				ExceptionHandling="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				BufferSecurityCheck="TRUE"
 				RuntimeTypeInfo="TRUE"
-				ObjectFile="vc_mswuddll\sdk_exe\"
-				ProgramDataBaseFileName="vc_mswuddll\sdk_exe.pdb"
+				ObjectFile="vc_mswuddll\wxzlib\"
+				ProgramDataBaseFileName="..\..\lib\vc_dll\wxzlibd.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				Detect64BitPortabilityProblems="TRUE"
@@ -170,20 +152,12 @@
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalOptions=""
-				AdditionalDependencies="vc_mswuddll\my_dll.lib user32.lib"
-				OutputFile="vc_mswuddll\sdk_exe.exe"
-				LinkIncremental="2"
-				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories=""
-				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="vc_mswuddll\sdk_exe.pdb"
-				SubSystem="2"
-				TargetMachine="1"/>
+				Name="VCLibrarianTool"
+				OutputFile="..\..\lib\vc_dll\wxzlibd.lib"
+				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				AdditionalIncludeDirectories=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -193,7 +167,7 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;_WINDOWS"
+				PreprocessorDefinitions="_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				Culture="1033"
 				AdditionalIncludeDirectories=""/>
 			<Tool
@@ -209,21 +183,21 @@
 		</Configuration>
 		<Configuration
 			Name="DLL Release|Win32"
-			OutputDirectory="vc_mswudll"
-			IntermediateDirectory="vc_mswudll\sdk_exe"
-			ConfigurationType="1"
+			OutputDirectory="..\..\lib\vc_dll"
+			IntermediateDirectory="vc_mswudll\wxzlib"
+			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_WINDOWS"
+				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				ExceptionHandling="TRUE"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="TRUE"
-				ObjectFile="vc_mswudll\sdk_exe\"
-				ProgramDataBaseFileName="vc_mswudll\sdk_exe.pdb"
+				ObjectFile="vc_mswudll\wxzlib\"
+				ProgramDataBaseFileName="..\..\lib\vc_dll\wxzlib.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				Detect64BitPortabilityProblems="TRUE"
@@ -231,22 +205,12 @@
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalOptions=""
-				AdditionalDependencies="vc_mswudll\my_dll.lib user32.lib"
-				OutputFile="vc_mswudll\sdk_exe.exe"
-				LinkIncremental="1"
-				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories=""
-				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="vc_mswudll\sdk_exe.pdb"
-				SubSystem="2"
-				TargetMachine="1"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"/>
+				Name="VCLibrarianTool"
+				OutputFile="..\..\lib\vc_dll\wxzlib.lib"
+				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_WINDOWS"
+				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				AdditionalIncludeDirectories=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -256,7 +220,7 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_WINDOWS"
+				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				Culture="1033"
 				AdditionalIncludeDirectories=""/>
 			<Tool
@@ -280,7 +244,49 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
 			<File
-				RelativePath=".\sdk_exe.cpp">
+				RelativePath="..\..\src\zlib\adler32.c">
+			</File>
+			<File
+				RelativePath="..\..\src\zlib\compress.c">
+			</File>
+			<File
+				RelativePath="..\..\src\zlib\crc32.c">
+			</File>
+			<File
+				RelativePath="..\..\src\zlib\deflate.c">
+			</File>
+			<File
+				RelativePath="..\..\src\zlib\gzclose.c">
+			</File>
+			<File
+				RelativePath="..\..\src\zlib\gzlib.c">
+			</File>
+			<File
+				RelativePath="..\..\src\zlib\gzread.c">
+			</File>
+			<File
+				RelativePath="..\..\src\zlib\gzwrite.c">
+			</File>
+			<File
+				RelativePath="..\..\src\zlib\infback.c">
+			</File>
+			<File
+				RelativePath="..\..\src\zlib\inffast.c">
+			</File>
+			<File
+				RelativePath="..\..\src\zlib\inflate.c">
+			</File>
+			<File
+				RelativePath="..\..\src\zlib\inftrees.c">
+			</File>
+			<File
+				RelativePath="..\..\src\zlib\trees.c">
+			</File>
+			<File
+				RelativePath="..\..\src\zlib\uncompr.c">
+			</File>
+			<File
+				RelativePath="..\..\src\zlib\zutil.c">
 			</File>
 		</Filter>
 	</Files>
