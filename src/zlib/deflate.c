@@ -360,15 +360,9 @@ int ZEXPORT deflateSetDictionary (strm, dictionary, dictLength)
     strm->avail_in = dictLength;
     strm->next_in = (z_const Bytef *)dictionary;
     fill_window(s);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     while (s->lookahead >= MIN_MATCH) {
         str = s->strstart;
         n = s->lookahead - (MIN_MATCH-1);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         do {
             UPDATE_HASH(s, s->ins_h, s->window[str + MIN_MATCH-1]);
 #ifndef FASTEST
@@ -478,9 +472,6 @@ int ZEXPORT deflatePrime (strm, bits, value)
     s = strm->state;
     if ((Bytef *)(s->d_buf) < s->pending_out + ((Buf_size + 7) >> 3))
         return Z_BUF_ERROR;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     do {
         put = Buf_size - s->bi_valid;
         if (put > bits)
@@ -603,17 +594,11 @@ uLong ZEXPORT deflateBound(strm, sourceLen)
                 wraplen += 2 + s->gzhead->extra_len;
             str = s->gzhead->name;
             if (str != Z_NULL)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                 do {
                     wraplen++;
                 } while (*str++);
             str = s->gzhead->comment;
             if (str != Z_NULL)
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                 do {
                     wraplen++;
                 } while (*str++);
@@ -1438,9 +1423,6 @@ local void fill_window(s)
 
     Assert(s->lookahead < MIN_LOOKAHEAD, "already enough lookahead");
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     do {
         more = (unsigned)(s->window_size -(ulg)s->lookahead -(ulg)s->strstart);
 
@@ -1524,9 +1506,6 @@ local void fill_window(s)
             UPDATE_HASH(s, s->ins_h, s->window[str + 1]);
 #if MIN_MATCH != 3
             Call UPDATE_HASH() MIN_MATCH-3 more times
-#endif
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
 #endif
             while (s->insert) {
                 UPDATE_HASH(s, s->ins_h, s->window[str + MIN_MATCH-1]);
@@ -1957,9 +1936,6 @@ local block_state deflate_rle(s, flush)
             prev = *scan;
             if (prev == *++scan && prev == *++scan && prev == *++scan) {
                 strend = s->window + s->strstart + MAX_MATCH;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                 do {
                 } while (prev == *++scan && prev == *++scan &&
                          prev == *++scan && prev == *++scan &&
@@ -2011,9 +1987,6 @@ local block_state deflate_huff(s, flush)
 {
     int bflush;             /* set if current block must be flushed */
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for (;;) {
         /* Make sure that we have a literal to write. */
         if (s->lookahead == 0) {
