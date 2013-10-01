@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: wxWidgets 3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-01 19:04+0200\n"
-"PO-Revision-Date: 2013-10-25 22:00+0700\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"PO-Revision-Date: 2012-10-27 20:48+0700\n"
+"Last-Translator: doplank <doplank@gmx.com>\n"
 "Language-Team: ID <doplank@gmx.com>\n"
 "Language: id_ID\n"
 "MIME-Version: 1.0\n"
@@ -1148,15 +1148,15 @@ msgstr "Tambah"
 
 #: ../src/richtext/richtextbuffer.cpp:10751
 msgid "Add Column"
-msgstr "Tambah Kolom"
+msgstr ""
 
 #: ../src/richtext/richtextbuffer.cpp:10688
 msgid "Add Row"
-msgstr "Tambah Baris"
+msgstr ""
 
 #: ../src/html/helpwnd.cpp:439
 msgid "Add current page to bookmarks"
-msgstr "Tambahkan halaman ini ke penanda taut"
+msgstr "Tambahkan halaman ini ke bookmark"
 
 #: ../src/generic/colrdlgg.cpp:283
 msgid "Add to custom colours"
@@ -2580,12 +2580,14 @@ msgid "Delete A&ll"
 msgstr "Hapus Semu&a"
 
 #: ../src/richtext/richtextbuffer.cpp:10637
+#, fuzzy
 msgid "Delete Column"
-msgstr "Hapus Kolom"
+msgstr "Hapus seleksi"
 
 #: ../src/richtext/richtextbuffer.cpp:10587
+#, fuzzy
 msgid "Delete Row"
-msgstr "Hapus Baris"
+msgstr "Hapus"
 
 #: ../src/richtext/richtextstyledlg.cpp:779
 msgid "Delete Style"
@@ -8443,3 +8445,622 @@ msgstr "galat zlib %d"
 #: ../src/richtext/richtextbulletspage.cpp:301
 msgid "~"
 msgstr "~"
+
+#~ msgid "Print preview"
+#~ msgstr "Pratinjau cetakan"
+
+#~ msgid "'"
+#~ msgstr "'"
+
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "3"
+#~ msgstr "3"
+
+#~ msgid "4"
+#~ msgstr "4"
+
+#~ msgid "5"
+#~ msgstr "5"
+
+#~ msgid "6"
+#~ msgstr "6"
+
+#~ msgid "7"
+#~ msgstr "7"
+
+#~ msgid "8"
+#~ msgstr "8"
+
+#~ msgid "9"
+#~ msgstr "9"
+
+#~ msgid "Can't monitor non-existent path \"%s\" for changes."
+#~ msgstr "Tidak dapat memonitor jalur yang tidak ada \"%s\" untuk diubah."
+
+#~ msgid "File system containing watched object was unmounted"
+#~ msgstr "Berkas sistem berisi objek yang tidak dikenali"
+
+#, fuzzy
+#~ msgid "&Preview..."
+#~ msgstr " Preview"
+
+#, fuzzy
+#~ msgid "Preview..."
+#~ msgstr " Preview"
+
+#~ msgid "&Save..."
+#~ msgstr "&Simpan..."
+
+#, fuzzy
+#~ msgid "About "
+#~ msgstr "&Tentang..."
+
+#~ msgid "All files (*.*)|*"
+#~ msgstr "Semua file (*.*)|*"
+
+#~ msgid "Cannot initialize SciTech MGL!"
+#~ msgstr "Tidak bisa menginisialisasi SciTech MGL!"
+
+#~ msgid "Cannot initialize display."
+#~ msgstr "Tidak bisa menginisialisasi tampilan."
+
+#~ msgid "Cannot start thread: error writing TLS"
+#~ msgstr "Tidak bisa memulai thread: kesalahan menulis TLS"
+
+#~ msgid "Close\tAlt-F4"
+#~ msgstr "Tutup\tAlt-F4"
+
+#~ msgid "Couldn't create cursor."
+#~ msgstr "Tidak bisa menciptakan kursor"
+
+#~ msgid "Directory '%s' doesn't exist!"
+#~ msgstr "Direktori '%s' tidak ada!"
+
+#~ msgid "File %s does not exist."
+#~ msgstr "File %s tidak ada."
+
+#~ msgid "Mode %ix%i-%i not available."
+#~ msgstr "Mode %ix%i-%i tidak tersedia."
+
+#~ msgid "Paper Size"
+#~ msgstr "Ukuran Kertas"
+
+#~ msgid "&Goto..."
+#~ msgstr "&Pindah ke..."
+
+#~ msgid "<<"
+#~ msgstr "<<"
+
+#~ msgid ">>|"
+#~ msgstr ">>|"
+
+#~ msgid "Can't check image format of file '%s': file does not exist."
+#~ msgstr "Tidak bisa memeriksa format citra dari file '%s': file tidak ada."
+
+#~ msgid "Can't load image from file '%s': file does not exist."
+#~ msgstr "Tidak bisa memuat citra dari file '%s': file tidak ada."
+
+#~ msgid "Cannot convert dialog units: dialog unknown."
+#~ msgstr "Tidak bisa mengkonversi unit-unit dialog: dialog tidak diketahui"
+
+#, fuzzy
+#~ msgid "Cannot convert from the charset '%s'!"
+#~ msgstr "Tidak bisa mengkonversi dari pengkodean '%s'!"
+
+#~ msgid "Cannot find container for unknown control '%s'."
+#~ msgstr ""
+#~ "Tidak bisa menemukan penampung untuk kontrol yang tak diketahui '%s'."
+
+#~ msgid "Cannot find font node '%s'."
+#~ msgstr "Tidak bisa menemukan titik huruf '%s'."
+
+#~ msgid "Cannot open file '%s'."
+#~ msgstr "Tidak bisa membuka file '%s'."
+
+#~ msgid "Cannot parse coordinates from '%s'."
+#~ msgstr "Tidak bisa mem-parse koordinat dari '%s'."
+
+#~ msgid "Cannot parse dimension from '%s'."
+#~ msgstr "Tidak bisa mem-parse dimensi dari '%s'."
+
+#, fuzzy
+#~ msgid "Cant create the thread event queue"
+#~ msgstr "Tidak bisa menciptakan thread"
+
+#, fuzzy
+#~ msgid "Click to cancel this window."
+#~ msgstr "Tutul jendela ini"
+
+#, fuzzy
+#~ msgid "Click to confirm your selection."
+#~ msgstr "Klik untuk mengkonfirmasi font yang dipilih."
+
+#~ msgid "Could not unlock mutex"
+#~ msgstr "Tidak dapat membuka mutex"
+
+#~ msgid "Error while waiting on semaphore"
+#~ msgstr "Error ketika menunggu semaphore"
+
+#, fuzzy
+#~ msgid "Failed to connect to session manager: %s"
+#~ msgstr "Gagal untuk %s koneksi dialup:  %s"
+
+#~ msgid "Failed to create a status bar."
+#~ msgstr "Gagal menciptakan baris status"
+
+#, fuzzy
+#~ msgid "Failed to register OpenGL window class."
+#~ msgstr "Gagal menginisialisasi OpenGL"
+
+#~ msgid "Fatal error"
+#~ msgstr "Kesalahan fatal"
+
+#~ msgid "Fatal error: "
+#~ msgstr "Kesalahan fatal:"
+
+#~ msgid "Go forward to the next HTML page"
+#~ msgstr "Ke depan ke halaman HTML berikutnya"
+
+#~ msgid "Goto Page"
+#~ msgstr "Ke Halaman"
+
+#~ msgid "Help : %s"
+#~ msgstr "Pertolongan : %s"
+
+#~ msgid "I64"
+#~ msgstr "I64"
+
+#~ msgid "Invalid XRC resource '%s': doesn't have root node 'resource'."
+#~ msgstr "Sesumber XRC '%s' tidak sah: tidak mempunyai titik akar 'resource'."
+
+#~ msgid "No handler found for XML node '%s', class '%s'!"
+#~ msgstr "Tidak ada handler yang ditemukan untuk titik XML '%s', class '%s'!"
+
+#, fuzzy
+#~ msgid "No image handler for type %ld defined."
+#~ msgstr "Tidak ada handler citra untuk tipe %d didefinisikan."
+
+#, fuzzy
+#~ msgid "Owner not initialized."
+#~ msgstr "Tidak bisa menginisialisasi tampilan."
+
+#, fuzzy
+#~ msgid "Passed item is invalid."
+#~ msgstr "'%s' tidak sah"
+
+#~ msgid "Preparing help window..."
+#~ msgstr "Menyiapkan jendela pertolongan..."
+
+#~ msgid "Program aborted."
+#~ msgstr "Program dibatalkan."
+
+#~ msgid "Referenced object node with ref=\"%s\" not found!"
+#~ msgstr "Titik obyek tereferensi dengan ref=\"%s\" tidak ditemukan"
+
+#~ msgid "Resource files must have same version number!"
+#~ msgstr "File sesumber harus mempunyai nomor versi yang sama!"
+
+#~ msgid "Search!"
+#~ msgstr "Cari!"
+
+#~ msgid "Sorry, could not open this file for saving."
+#~ msgstr "Maaf, tidak bisa membuka file untuk menyimpan."
+
+#~ msgid "Sorry, could not save this file."
+#~ msgstr "Maaf, tidak bisa menyimpan file ini."
+
+#~ msgid "Status: "
+#~ msgstr "Status:"
+
+#~ msgid "Subclass '%s' not found for resource '%s', not subclassing!"
+#~ msgstr ""
+#~ "Subclass '%s' tidak ditemukan untuk sesumber '%s', bukan pen-subklas-an"
+
+#, fuzzy
+#~ msgid ""
+#~ "The file '%s' couldn't be opened.\n"
+#~ "It has been removed from the most recently used files list."
+#~ msgstr ""
+#~ "File '%s' tidak ada dan tidak bisa dibuka.\n"
+#~ " File tersebut telah dihilangkan dari daftar file-file yang paling banyak "
+#~ "digunakan."
+
+#~ msgid "The path '%s' contains too many \"..\"!"
+#~ msgstr "Path '%s' berisi terlalu banyak \"..\"!"
+
+#~ msgid "Trying to solve a NULL hostname: giving up"
+#~ msgstr "Mencoba memecahkan nama host NULL: menyerah"
+
+#~ msgid "Unknown style flag "
+#~ msgstr "Flag style tidak diketahui"
+
+#~ msgid "Warning"
+#~ msgstr "Peringatan"
+
+#~ msgid "XRC resource '%s' (class '%s') not found!"
+#~ msgstr "Sesumber XRC '%s' (class '%s') tidak ditemukan!"
+
+#, fuzzy
+#~ msgid "XRC resource: Cannot create animation from '%s'."
+#~ msgstr "Sesumber XRC: Tidak bisa menciptakan bitmap dari '%s'."
+
+#~ msgid "XRC resource: Cannot create bitmap from '%s'."
+#~ msgstr "Sesumber XRC: Tidak bisa menciptakan bitmap dari '%s'."
+
+#, fuzzy
+#~ msgid ""
+#~ "XRC resource: Incorrect colour specification '%s' for attribute '%s'."
+#~ msgstr ""
+#~ "Sesumber XRC: Spesifikasi warna '%s' tidak benar untuk properti '%s'."
+
+#~ msgid "[EMPTY]"
+#~ msgstr "[KOSONG]"
+
+#~ msgid "catalog file for domain '%s' not found."
+#~ msgstr "File katalog untuk domain '%s' tidak ditemukan."
+
+#, fuzzy
+#~ msgid "encoding %i"
+#~ msgstr "Pengkodean tidak diketahui (%d)"
+
+#~ msgid "looking for catalog '%s' in path '%s'."
+#~ msgstr "mencari katalog '%s' di path '%s'."
+
+#~ msgid "wxSearchEngine::LookFor must be called before scanning!"
+#~ msgstr "wxSearchEngine::LookFor harus dipanggil sebelum pemeriksaan!"
+
+#~ msgid "wxSocket: invalid signature in ReadMsg."
+#~ msgstr "wxSocket: penanda tidak sah pada ReadMsg"
+
+#~ msgid "wxSocket: unknown event!."
+#~ msgstr "wxSocket: event tidak dikenal!."
+
+#~ msgid "\t%s: %s\n"
+#~ msgstr "\t%s: %s\n"
+
+#, fuzzy
+#~ msgid " Couldn't create the UnicodeConverter"
+#~ msgstr "Tidak bisa menciptakan pewaktu"
+
+#~ msgid "#define %s must be an integer."
+#~ msgstr "#define %s harus berupa integer."
+
+#~ msgid "%s not a bitmap resource specification."
+#~ msgstr "%s bukan suatu spesifikasi sesumber bitmap."
+
+#~ msgid "%s not an icon resource specification."
+#~ msgstr "%s bukan suatu spesifikasi sesumber ikon"
+
+#~ msgid "%s: ill-formed resource file syntax."
+#~ msgstr "%s: bentuk sintaksis file sesumber tidak baik."
+
+#~ msgid "&Open"
+#~ msgstr "&Buka"
+
+#~ msgid "&Print"
+#~ msgstr "&Cetak"
+
+#~ msgid "*** A debug report has been generated\n"
+#~ msgstr "*** Laporan debug telah dihasilkan\n"
+
+#~ msgid "*** It can be found in \"%s\"\n"
+#~ msgstr "*** Dapat ditemukan di \"%s\"\n"
+
+#, fuzzy
+#~ msgid ""
+#~ ", expected static, #include or #define\n"
+#~ "while parsing resource."
+#~ msgstr ""
+#~ ", diharapkan static, #include atau #define\n"
+#~ " saat sedang mem-parsing sesumber"
+
+#~ msgid "Bitmap resource specification %s not found."
+#~ msgstr "Spesifikasi sesumber Bitmap %s tidak ditemukan."
+
+#~ msgid ""
+#~ "Could not resolve control class or id '%s'. Use (non-zero) integer "
+#~ "instead\n"
+#~ " or provide #define (see manual for caveats)"
+#~ msgstr ""
+#~ "Tidak bisa memecahkan class control atau id '%s'. Gunakan integer (tidak "
+#~ "nol) sebagai gantinya\n"
+#~ " atau sediakan #define (lihat manual untuk keterangan lebih lanjut)"
+
+#~ msgid ""
+#~ "Could not resolve menu id '%s'. Use (non-zero) integer instead\n"
+#~ "or provide #define (see manual for caveats)"
+#~ msgstr ""
+#~ "Tidak bisa memecahkan id menu '%s'. Gunakan integer (tidak nol) sebagai "
+#~ "gantinya\n"
+#~ " atau sediakan #define (lihat manual untuk penjelasan lebih lanjut)"
+
+#, fuzzy
+#~ msgid "Couldn't end the context on the overlay window"
+#~ msgstr "Tidak bisa memperoleh penunjuk thread saat ini"
+
+#, fuzzy
+#~ msgid "Expected '*' while parsing resource."
+#~ msgstr "Diharapkan '*' saat sedang mem-parsing sesumber"
+
+#, fuzzy
+#~ msgid "Expected '=' while parsing resource."
+#~ msgstr "Mengharapkan '=' saat sedang mem-parsing sesumber"
+
+#, fuzzy
+#~ msgid "Expected 'char' while parsing resource."
+#~ msgstr "Mengharapkan 'char' saat sedang mem-parsing sesumber."
+
+#~ msgid ""
+#~ "Failed to find XBM resource %s.\n"
+#~ "Forgot to use wxResourceLoadBitmapData?"
+#~ msgstr ""
+#~ "Gagal menemukan sesumber XBM %s.\n"
+#~ "Lupa menggunakan wxResourceLoadBitmapData?"
+
+#~ msgid ""
+#~ "Failed to find XBM resource %s.\n"
+#~ "Forgot to use wxResourceLoadIconData?"
+#~ msgstr ""
+#~ "Gagal menemukan sesumber XBM %s.\n"
+#~ "Lupa menggunakan wxResourceLoadIconData?"
+
+#~ msgid ""
+#~ "Failed to find XPM resource %s.\n"
+#~ "Forgot to use wxResourceLoadBitmapData?"
+#~ msgstr ""
+#~ "Gagal menemukan sesumber XPM %s.\n"
+#~ " Lupa menggunakan wxResourceLoadBitmapData?"
+
+#~ msgid "Failed to get clipboard data."
+#~ msgstr "Gagal memperoleh data clipboard."
+
+#~ msgid "Failed to load shared library '%s' Error '%s'"
+#~ msgstr "Gagal memuat shared library '%s' Kesalahan '%s'"
+
+#~ msgid "Found "
+#~ msgstr "Menemukan"
+
+#~ msgid "Icon resource specification %s not found."
+#~ msgstr "Spesifikasi sesumber ikon %s tidak ditemukan."
+
+#~ msgid "Ill-formed resource file syntax."
+#~ msgstr "Bentuk sintaksis file sesumber tidak tepat"
+
+#~ msgid "Long Conversions not supported"
+#~ msgstr "Konversi Long tidak didukung"
+
+#~ msgid "No XPM icon facility available!"
+#~ msgstr "Tidak ada fasilitas ikon XPM tersedia!"
+
+#~ msgid "Option '%s' requires a value, '=' expected."
+#~ msgstr "Pilihan '%s' memerlukan suatu nilai, '=' diharapkan."
+
+#, fuzzy
+#~ msgid "Select all"
+#~ msgstr "Pilih &Semuanya"
+
+#, fuzzy
+#~ msgid "Unexpected end of file while parsing resource."
+#~ msgstr "Akhri file tidak diharapkan pada saat mem-parsing sesumber."
+
+#, fuzzy
+#~ msgid "Unrecognized style %s while parsing resource."
+#~ msgstr "Style %s tidak dikenali pada saat mem-parsing sesumber."
+
+#~ msgid "Warning: attempt to remove HTML tag handler from empty stack."
+#~ msgstr ""
+#~ "Peringatan: berusaha menghilangkan handler tag HTML dari stack kosong."
+
+#~ msgid "establish"
+#~ msgstr "mengadakan"
+
+#~ msgid "initiate"
+#~ msgstr "inisiasi"
+
+#~ msgid "invalid eof() return value."
+#~ msgstr "nilai kembali eof() tidak sah."
+
+#, fuzzy
+#~ msgid "unknown line terminator"
+#~ msgstr "kesalahan tidak diketahui"
+
+#~ msgid "writing"
+#~ msgstr "menulis"
+
+#~ msgid "."
+#~ msgstr "."
+
+#~ msgid "Cannot open URL '%s'"
+#~ msgstr "Tidak bisa membuka URL '%s'"
+
+#~ msgid "Error "
+#~ msgstr "Kesalahan"
+
+#~ msgid "Failed to create directory %s/.gnome."
+#~ msgstr "Gagal membuat direktori %s/.gnome."
+
+#~ msgid "Failed to create directory %s/mime-info."
+#~ msgstr "Gagal membuat direktori %s/mime-info."
+
+#~ msgid "MP Thread Support is not available on this System"
+#~ msgstr "Support terhadap MP Thread tidak tersedia pada sistem ini"
+
+#~ msgid "Mailcap file %s, line %d: incomplete entry ignored."
+#~ msgstr "File Mailcap %s, baris %d: isian tidak lengkap diacuhkan."
+
+#~ msgid "Mime.types file %s, line %d: unterminated quoted string."
+#~ msgstr "File Mime.types %s, baris %d: kutipan string tidak berujung"
+
+#~ msgid "Unknown field in file %s, line %d: '%s'."
+#~ msgstr "Field dalam file %s tidak diketahui, baris %d: '%s'."
+
+#~ msgid "bold "
+#~ msgstr "tebal"
+
+#~ msgid "light "
+#~ msgstr "ringan"
+
+#~ msgid "underlined "
+#~ msgstr "bergaris bawah"
+
+#, fuzzy
+#~ msgid "unsupported zip archive"
+#~ msgstr "Format clipboard tidak didukung."
+
+#, fuzzy
+#~ msgid ""
+#~ "Failed to get stack backtrace:\n"
+#~ "%s"
+#~ msgstr "Gagal memperoleh nama ISO: %s"
+
+#~ msgid "Loading Grey Ascii PNM image is not yet implemented."
+#~ msgstr "Memuat citra PNM Ascii Abu-abu belum diimplementasikan."
+
+#~ msgid "Loading Grey Raw PNM image is not yet implemented."
+#~ msgstr "Memuat citra PNM Mentah Abu-abu belum diimplementasikan."
+
+#, fuzzy
+#~ msgid "Cannot wait on thread to exit."
+#~ msgstr "Tidak bisa menunggu penghentian thread"
+
+#~ msgid "Could not load Rich Edit DLL '%s'"
+#~ msgstr "Tidak bisa memuat DLL Rich Edit '%s'"
+
+#~ msgid "ZIP handler currently supports only local files!"
+#~ msgstr "Handler ZIP saat ini hanya mendukung file-file lokal!"
+
+#, fuzzy
+#~ msgid ""
+#~ "can't seek on file descriptor %d, large files support is not enabled."
+#~ msgstr "Tidak bisa melakukan seek pada file descriptor %d"
+
+#~ msgid "More..."
+#~ msgstr "Lebih..."
+
+#~ msgid "Setup"
+#~ msgstr "Atur"
+
+#~ msgid "GetUnusedColour:: No Unused Color in image "
+#~ msgstr "GetUnusedColour:: Tidak ada Unused Color dalam citra"
+
+#~ msgid ""
+#~ "Can't create list control window, check that comctl32.dll is installed."
+#~ msgstr ""
+#~ "Tidak bisa menciptakan jendela list control, periksa apakah comctl32.dll "
+#~ "terinstall"
+
+#~ msgid "Can't delete value of key '%s'"
+#~ msgstr "Tidak bisa menghapus nilai dari kunci '%s'"
+
+#~ msgid "gmtime() failed"
+#~ msgstr "gmtime() gagal"
+
+#~ msgid "mktime() failed"
+#~ msgstr "mktime() gagal"
+
+#~ msgid "%d"
+#~ msgstr "%d"
+
+#~ msgid "%d...%d"
+#~ msgstr "%d...%d"
+
+#, fuzzy
+#~ msgid ""
+#~ "<html><body><table><tr><td>Normal face<br>(and <u>underlined</u>. "
+#~ "<i>Italic face.</i> <b>Bold face.</b> <b><i>Bold italic face.</i></"
+#~ "b><br><font size=-2>font size -2</font><br><font size=-1>font size -1</"
+#~ "font><br><font size=+0>font size +0</font><br><font size=+1>font size +1</"
+#~ "font><br><font size=+2>font size +2</font><br><font size=+3>font size +3</"
+#~ "font><br><font size=+4>font size +4</font><br><td><p><tt>Fixed size face."
+#~ "<br> <b>bold</b> <i>italic</i> <b><i>bold italic <u>underlined</u></i></"
+#~ "b><br><font size=-2>font size -2</font><br><font size=-1>font size -1</"
+#~ "font><br><font size=+0>font size +0</font><br><font size=+1>font size +1</"
+#~ "font><br><font size=+2>font size +2</font><br><font size=+3>font size +3</"
+#~ "font><br><font size=+4>font size +4</font></tt></table></body></html>"
+#~ msgstr ""
+#~ "<html><body>Tampilah normal<br>(dan <u>bergaris bawah</u>. <i>Tampilan "
+#~ "miring.</i> <b>Tampilan tebal.</b> <b><i>Tampilan miring tebal.</i></"
+#~ "b><br><font size=-2>ukuran huruf -2</font><br><font size=-1>ukuran huruf "
+#~ "-1</font><br><font size=+0>ukuran huruf</font><br><font size=+1>ukuran "
+#~ "huruf +1</font><br><font size=+2>ukuran huruf +2</font><br><font size="
+#~ "+3>ukuran huruf +3</font><br><font size=+4>ukuran huruf +4</"
+#~ "font><br><p><tt>Tampilan ukuran tetap.<br> <b>tebal</b> <i>miring</i> "
+#~ "<b><i>miring tebal <u>bergaris bawah</u></i></b><br><font size=-2>ukuran "
+#~ "huruf -2</font><br><font size=-1>ukuran huruf -1</font><br><font size="
+#~ "+0>ukuran huruf +0</font><br><font size=+1>ukuran huruf +1</"
+#~ "font><br><font size=+2>ukuran huruf +2</font><br><font size=+3>ukuran "
+#~ "huruf +3</font><br><font size=+4>ukuran huruf +4</font></tt></body></html>"
+
+#~ msgid "Can't create dialog using memory template"
+#~ msgstr "Tidak bisa menciptakan dialog menggunakan template memory"
+
+#~ msgid "Can't create dialog using template '%ul'"
+#~ msgstr "Tidak bisa menciptakan dialog menggunakan template '%ul'"
+
+#~ msgid "Did you forget to include wx/os2/wx.rc in your resources?"
+#~ msgstr "Apakah anda lupa menyertakan wx/os2/wx.rc di sesumber anda?"
+
+#~ msgid "Failed to create dialog. Incorrect DLGTEMPLATE?"
+#~ msgstr "Gagal menciptakan dialog. DLGTEMPLATE salah?"
+
+#~ msgid "Fatal error: exiting"
+#~ msgstr "Kesalahan fatal: keluar"
+
+#~ msgid ""
+#~ "HTML files (*.htm)|*.htm|HTML files (*.html)|*.html|Help books (*.htb)|*."
+#~ "htb|Help books (*.zip)|*.zip|HTML Help Project (*.hhp)|*.hhp|All files (*."
+#~ "*)|*"
+#~ msgstr ""
+#~ "File-file HTML (*.htm)|*.htm|File-file HTML (*.html)|*.html|Buku "
+#~ "pertolongan (*.htb)|*.htb|Buku pertolongan (*.zip)|*.zip|Proyek "
+#~ "Pertolongan HTML (*.hhp)|*.hhp|Semua file (*.*)|*"
+
+#~ msgid "Load file"
+#~ msgstr "Memuat file"
+
+#~ msgid "Save file"
+#~ msgstr "Simpan file "
+
+#~ msgid "wxDllLoader failed to GetSymbol '%s'"
+#~ msgstr "wxDllLoader gagal pada GetSymbol '%s'"
+
+#~ msgid "wxDynamicLibrary failed to GetSymbol '%s'"
+#~ msgstr "wxDynamicLibrary gagal pada GetSymbol '%s'"
+
+#~ msgid "<DIR> "
+#~ msgstr "<DIR> "
+
+#~ msgid "<LINK> "
+#~ msgstr "<LINK> "
+
+#~ msgid "DIB Header: Cannot deal with 4bit encoded yet."
+#~ msgstr "Header DIB: Belum bisa berurusan dengan 4bit dikodekan"
+
+#~ msgid "ReleaseMutex()"
+#~ msgstr "ReleaseMutex()"
+
+#~ msgid "Screenshot captured: "
+#~ msgstr "Screenshot yang ditangkap:"
+
+#~ msgid "XRC resource: Cannot create dialog without instance."
+#~ msgstr "Sesumber XRC: Tidak bisa menciptakan dialog tanpa instan."
+
+#~ msgid "large"
+#~ msgstr "besar"
+
+#~ msgid "medium"
+#~ msgstr "sedang"
+
+#~ msgid "small"
+#~ msgstr "kecil"
+
+#~ msgid "very large"
+#~ msgstr "sangat besar"
+
+#~ msgid "very small"
+#~ msgstr "sangat kecil"

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: wxWidgets 3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-01 19:04+0200\n"
-"PO-Revision-Date: 2013-11-02 14:37+0100\n"
+"PO-Revision-Date: 2013-08-23 19:26+0100\n"
 "Last-Translator: Xabier Aramendi (Azpidatziak) <azpidatziak@gmail.com>\n"
 "Language-Team: (EUS_Xabier Aramendi) <azpidatziak@gmail.com>\n"
 "Language: eu\n"
@@ -1146,12 +1146,14 @@ msgid "Add"
 msgstr "Gehitua"
 
 #: ../src/richtext/richtextbuffer.cpp:10751
+#, fuzzy
 msgid "Add Column"
-msgstr "Gehitu Zutabea"
+msgstr "Gehitu zutabea"
 
 #: ../src/richtext/richtextbuffer.cpp:10688
+#, fuzzy
 msgid "Add Row"
-msgstr "Gehitu Lerroa"
+msgstr "Gehitu lerroa"
 
 #: ../src/html/helpwnd.cpp:439
 msgid "Add current page to bookmarks"
@@ -2574,12 +2576,14 @@ msgid "Delete A&ll"
 msgstr "Ezabatu &Denak"
 
 #: ../src/richtext/richtextbuffer.cpp:10637
+#, fuzzy
 msgid "Delete Column"
-msgstr "Ezabatu Zutabea"
+msgstr "Ezabatu zutabea"
 
 #: ../src/richtext/richtextbuffer.cpp:10587
+#, fuzzy
 msgid "Delete Row"
-msgstr "Ezabatu Lerroa"
+msgstr "Ezabatu lerroa"
 
 #: ../src/richtext/richtextstyledlg.cpp:779
 msgid "Delete Style"

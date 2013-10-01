@@ -1151,9 +1151,10 @@ msgstr "&Bieżący rozmiar"
 msgid "Add"
 msgstr "Dodaj"
 
-#: ../src/richtext/richtextbuffer.cpp:10648
-msgid "Add column"
-msgstr "Dodaj kolumnę"
+#: ../src/richtext/richtextbuffer.cpp:10751
+#, fuzzy
+msgid "Add Column"
+msgstr "Dodaj kolumnÄ"
 
 #: ../src/richtext/richtextbuffer.cpp:10688
 #, fuzzy
@@ -1162,7 +1163,7 @@ msgstr "Dodaj wiersz"
 
 #: ../src/html/helpwnd.cpp:439
 msgid "Add current page to bookmarks"
-msgstr "Dodaj bieżącą stronę do listy zakładek"
+msgstr "Dodaj bieÅ¼ÄcÄ stronÄ do listy zakÅadek"
 
 #: ../src/generic/colrdlgg.cpp:283
 msgid "Add to custom colours"
@@ -1690,9 +1691,7 @@ msgstr "Nie można utworzyć muteksu."
 
 #: ../src/osx/carbon/dataview.cpp:895
 msgid "Cannot create new column's ID. Probably max. number of columns reached."
-msgstr ""
-"Nie można utworzyć nowego ID kolumny. Prawdopodobnie została osiągnięta "
-"maks. liczba kolumn."
+msgstr "Nie moÅ¼na utworzyÄ nowego ID kolumny. Prawdopodobnie zostaÅa osiÄgniÄta maks. liczba kolumn."
 
 #: ../src/common/filefn.cpp:1336
 #, c-format
@@ -1903,8 +1902,7 @@ msgstr "Zmień styl"
 #: ../src/common/fileconf.cpp:372
 #, c-format
 msgid "Changes won't be saved to avoid overwriting the existing file \"%s\""
-msgstr ""
-"Zmiany nie zostaną zapisane, aby uniknąć nadpisania istniejącego pliku \"%s\""
+msgstr "Zmiany nie zostanÄ zapisane, aby uniknÄÄ nadpisania istniejÄcego pliku \"%s\""
 
 #: ../src/richtext/richtextstyles.cpp:1059
 msgid "Character styles"
@@ -2197,8 +2195,7 @@ msgstr ""
 msgid ""
 "Compositing not supported by this system, please enable it in your Window "
 "Manager."
-msgstr ""
-"Kompozycje nie są wspierane w tym systemie, proszę je włączyć w managerze."
+msgstr "Kompozycje nie sÄ wspierane w tym systemie, proszÄ je wÅÄczyÄ w managerze."
 
 #: ../src/html/helpwnd.cpp:1554
 msgid "Compressed HTML Help file (*.chm)|*.chm|"
@@ -2357,8 +2354,8 @@ msgstr "Nie można wystartować podglądu dokumentu."
 msgid "Could not start printing."
 msgstr "Nie można rozpocząć drukowania."
 
-# przenieść?
-#: ../src/common/wincmn.cpp:2114
+# przenieÅÄ?
+#: ../src/common/wincmn.cpp:2131
 msgid "Could not transfer data to window"
 msgstr "Nie można przenieść danych do okna"
 
@@ -2608,6 +2605,16 @@ msgstr "UsuÅ kolumnÄUsuÅ wybÃ³r"
 msgid "Delete Row"
 msgstr "UsuÅ wiersz"
 
+#: ../src/richtext/richtextbuffer.cpp:10637
+#, fuzzy
+msgid "Delete Column"
+msgstr "UsuÅ kolumnÄUsuÅ wybÃ³r"
+
+#: ../src/richtext/richtextbuffer.cpp:10587
+#, fuzzy
+msgid "Delete Row"
+msgstr "UsuÅ wiersz"
+
 #: ../src/richtext/richtextstyledlg.cpp:779
 msgid "Delete Style"
 msgstr "Usuń styl"
@@ -2616,17 +2623,9 @@ msgstr "Usuń styl"
 msgid "Delete Text"
 msgstr "Usuń tekst"
 
-#: ../src/richtext/richtextbuffer.cpp:10540
-msgid "Delete column"
-msgstr "Usuń kolumnęUsuń wybór"
-
 #: ../src/generic/editlbox.cpp:274
 msgid "Delete item"
 msgstr "Usuń pozycję"
-
-#: ../src/richtext/richtextbuffer.cpp:10472
-msgid "Delete row"
-msgstr "Usuń wiersz"
 
 #: ../src/common/stockitem.cpp:260
 msgid "Delete selection"
@@ -2668,8 +2667,8 @@ msgid ""
 "Dial up functions are unavailable because the remote access service (RAS) is "
 "not installed on this machine. Please install it."
 msgstr ""
-"Funkcje Dial up nie są dostępne, ponieważ serwis zdalnego dostępu (RAS) nie "
-"jest zainstalowany na tej maszynie. Zainstaluj go."
+"Funkcje Dial up nie sÄ dostÄpne, poniewaÅ¼ serwis zdalnego dostÄpu (RAS) nie jest zainstalowany na "
+"tej maszynie. Zainstaluj go."
 
 #: ../src/generic/tipdlg.cpp:230
 msgid "Did you know..."
@@ -2710,9 +2709,7 @@ msgstr "Odrzucić zmiany i wczytać ponownie ostatnio zapisaną wersję?"
 msgid ""
 "Display all index items that contain given substring. Search is case "
 "insensitive."
-msgstr ""
-"Wyświetla wszystkie elementy indeksu zawierające podany łańcuch. Szuka bez "
-"uwzględniania wielkości liter."
+msgstr "WyÅwietla wszystkie elementy indeksu zawierajÄce podany ÅaÅcuch. Szuka bez uwzglÄdniania wielkoÅci liter."
 
 #: ../src/html/helpwnd.cpp:692
 msgid "Display options dialog"
@@ -3166,9 +3163,7 @@ msgstr "Nie udało się utworzyć pozycji rejestru dla plików '%s'."
 #: ../src/msw/fdrepdlg.cpp:442
 #, c-format
 msgid "Failed to create the standard find/replace dialog (error code %d)"
-msgstr ""
-"Nie udało się utworzyć standardowego okna dialogowego wyszukaj/zastąp (kod "
-"błędu %d)"
+msgstr "Nie udaÅo siÄ utworzyÄ standardowego okna dialogowego wyszukaj/zastÄp (kod bÅÄdu %d)"
 
 #: ../src/unix/wakeuppipe.cpp:52
 msgid "Failed to create wake up pipe used by event loop."
@@ -3190,8 +3185,7 @@ msgstr "Nie udało się pobranie listy trybów video"
 # to moja swobodna interpretacja
 #: ../src/msw/dde.cpp:727
 msgid "Failed to establish an advise loop with DDE server"
-msgstr ""
-"Nie udało się rozpocząć transakcji doradzającej (advise) z serwerem DDE"
+msgstr "Nie udaÅo siÄ rozpoczÄÄ transakcji doradzajÄcej (advise) z serwerem DDE"
 
 #: ../src/msw/dialup.cpp:650 ../src/msw/dialup.cpp:884
 #, c-format
@@ -3278,9 +3272,7 @@ msgstr "Nie udało się zainstalować obsługi sygnału"
 msgid ""
 "Failed to join a thread, potential memory leak detected - please restart the "
 "program"
-msgstr ""
-"Nie udało połączyć się z wątkiem, potencjalny wyciek pamięci - uruchom "
-"program ponownie"
+msgstr "Nie udaÅo poÅÄczyÄ siÄ z wÄtkiem, potencjalny wyciek pamiÄci - uruchom program ponownie"
 
 #: ../src/msw/utils.cpp:745
 #, c-format
@@ -3572,8 +3564,7 @@ msgstr "Nie udało się zakończyć wątku."
 
 #: ../src/msw/dde.cpp:746
 msgid "Failed to terminate the advise loop with DDE server"
-msgstr ""
-"Nie udało się zakończyć transakcji doradzającej (advise) z serwerem DDE"
+msgstr "Nie udaÅo siÄ zakoÅczyÄ transakcji doradzajÄcej (advise) z serwerem DDE"
 
 #: ../src/msw/dialup.cpp:959
 #, c-format
@@ -3837,8 +3828,7 @@ msgstr "Funkcja GetPropertyCollection wywołana w ogólnym akcesorze"
 
 #: ../include/wx/xtiprop.h:206
 msgid "GetPropertyCollection called w/o valid collection getter"
-msgstr ""
-"Funkcja GetPropertyCollection wywołana bez poprawnego modułu pobierającego"
+msgstr "Funkcja GetPropertyCollection wywoÅana bez poprawnego moduÅu pobierajÄcego"
 
 #: ../src/html/helpwnd.cpp:673
 msgid "Go back"
@@ -4038,8 +4028,8 @@ msgid ""
 "If possible, try changing the layout parameters to make the printout more "
 "narrow."
 msgstr ""
-"Jeżeli to możliwe, spróbuj zmodyfikować parametry układu, aby uczynić wydruk "
-"węższy."
+"JeÅ¼eli to moÅ¼liwe, sprÃ³buj zmodyfikowaÄ parametry ukÅadu, aby uczyniÄ "
+"wydruk wÄÅ¼szy."
 
 #: ../src/generic/dbgrptg.cpp:358
 msgid ""
@@ -4104,8 +4094,8 @@ msgid ""
 "Impossible to create a rich edit control, using simple text control instead. "
 "Please reinstall riched32.dll"
 msgstr ""
-"Nie jest możliwe utworzenie kontrolki rich edit, użyj zamiast tego prostego "
-"'text control'. Przeinstaluj riched32.dll"
+"Nie jest moÅ¼liwe utworzenie kontrolki rich edit, uÅ¼yj zamiast tego "
+"prostego 'text control'. Przeinstaluj riched32.dll"
 
 #: ../src/unix/utilsunx.cpp:307
 msgid "Impossible to get child process input"
@@ -4549,8 +4539,7 @@ msgstr "Cieńszy"
 #: ../src/generic/helpext.cpp:298
 #, c-format
 msgid "Line %lu of map file \"%s\" has invalid syntax, skipped."
-msgstr ""
-"Linijka %lu pliku mapy \"%s\" posiada nieprawidłową składnię, pominięta."
+msgstr "Linijka %lu pliku mapy \"%s\" posiada nieprawidÅowÄ skÅadniÄ, pominiÄta."
 
 #: ../src/richtext/richtextliststylepage.cpp:444
 msgid "Line spacing:"
@@ -4625,8 +4614,8 @@ msgid ""
 "MS HTML Help functions are unavailable because the MS HTML Help library is "
 "not installed on this machine. Please install it."
 msgstr ""
-"Funkcje pomocy dla MS HTML Help nie są dostępne, ponieważ biblioteka MS HTML "
-"Help nie jest zainstalowana na tej maszynie. Zainstaluj ją."
+"Funkcje pomocy dla MS HTML Help nie sÄ dostÄpne, poniewaÅ¼ biblioteka MS HTML Help nie jest zainstalowana na tej "
+"maszynie. Zainstaluj jÄ."
 
 #: ../src/univ/themes/win32.cpp:3754
 msgid "Ma&ximize"
@@ -5579,10 +5568,6 @@ msgstr "Wydruk w kolorze"
 msgid "Print previe&w..."
 msgstr "Podgląd &wydruku"
 
-#: ../src/gtk/gnome/gprint.cpp:944
-msgid "Print preview"
-msgstr "Podgląd wydruku"
-
 #: ../src/common/docview.cpp:1244
 msgid "Print preview creation failed."
 msgstr "Nie udało się utworzyć podglądu wydruku."
@@ -5670,9 +5655,7 @@ msgstr "Wydruk"
 #, c-format
 msgid ""
 "Processing debug report has failed, leaving the files in \"%s\" directory."
-msgstr ""
-"Przetwarzanie raportu błędów nie powiodło się, pozostawiając pliku w "
-"katalogu \"%s\"."
+msgstr "Przetwarzanie raportu bÅÄdÃ³w nie powiodÅo siÄ, pozostawiajÄc pliku w katalogu \"%s\"."
 
 #: ../src/osx/carbon/dataview.cpp:2472
 msgid "Progress renderer cannot render value type; value type: "
@@ -5808,8 +5791,7 @@ msgstr "Usuń bieżącą stronę z listy zakładek"
 #: ../src/common/rendcmn.cpp:194
 #, c-format
 msgid "Renderer \"%s\" has incompatible version %d.%d and couldn't be loaded."
-msgstr ""
-"Wizualizator \"%s\" ma niezgodną wersję %d.%d i nie może być załadowany."
+msgstr "Wizualizator \"%s\" ma niezgodnÄ wersjÄ %d.%d i nie moÅ¼e byÄ zaÅadowany."
 
 #: ../src/osx/carbon/dataview.cpp:1430
 msgid "Rendering failed."
@@ -5959,9 +5941,7 @@ msgstr "Szukaj"
 msgid ""
 "Search contents of help book(s) for all occurrences of the text you typed "
 "above"
-msgstr ""
-"Przeszukuje zawartość pliku(ów) pomocy dla wszystkich wystąpień "
-"wprowadzonego powyżej tekstu"
+msgstr "Przeszukuje zawartoÅÄ pliku(Ã³w) pomocy dla wszystkich wystÄpieÅ wprowadzonego powyÅ¼ej tekstu"
 
 #: ../src/generic/fdrepdlg.cpp:160
 msgid "Search direction"
@@ -6007,8 +5987,8 @@ msgstr "Zaznacz wszystko"
 msgid "Select a document template"
 msgstr "Wybierz szablon dokumentu"
 
-# perspektywę?
-#: ../src/common/docview.cpp:1952
+# perspektywÄ?
+#: ../src/common/docview.cpp:1951
 msgid "Select a document view"
 msgstr "Wybierz widok dokumentu"
 
@@ -6047,8 +6027,7 @@ msgstr "Usuń styl komórki"
 
 #: ../include/wx/xtiprop.h:179
 msgid "SetProperty called w/o valid setter"
-msgstr ""
-"Funkcja SetProperty wywołana bez poprawnej moduły ustawiającego właściwość"
+msgstr "Funkcja SetProperty wywoÅana bez poprawnej moduÅy ustawiajÄcego wÅaÅciwoÅÄ"
 
 #: ../src/common/filename.cpp:2632
 msgid "Setting directory access times is not supported under this OS version"
@@ -6728,9 +6707,7 @@ msgstr "Nie ma kolumny lub rendera dla określonej kolumny indeksu."
 #: ../src/richtext/richtextprint.cpp:614 ../src/html/htmprint.cpp:735
 msgid ""
 "There was a problem during page setup: you may need to set a default printer."
-msgstr ""
-"Wystąpił błąd podczas konfigurowania strony: powinieneś określić domyślną "
-"drukarkę."
+msgstr "WystÄpiÅ bÅÄd podczas konfigurowania strony: powinieneÅ okreÅliÄ domyÅlnÄ drukarkÄ."
 
 #: ../src/html/htmprint.cpp:255
 msgid ""
@@ -6761,30 +6738,26 @@ msgid ""
 "This system doesn't support date controls, please upgrade your version of "
 "comctl32.dll"
 msgstr ""
-"Ten system nie wspiera wyboru daty, należy zaktualizować bibliotekę comctl32."
-"dll"
+"Ten system nie wspiera wyboru daty, naleÅ¼y zaktualizowaÄ bibliotekÄ "
+"comctl32.dll"
 
 #: ../src/msw/thread.cpp:1300
 msgid ""
 "Thread module initialization failed: cannot store value in thread local "
 "storage"
-msgstr ""
-"Zainicjowanie modułu wątków nie powiodło się: nie można odłożyć wartości do "
-"lokalnej pamięci wątków"
+msgstr "Zainicjowanie moduÅu wÄtkÃ³w nie powiodÅo siÄ: nie moÅ¼na odÅoÅ¼yÄ wartoÅci do lokalnej pamiÄci wÄtkÃ³w"
 
 #: ../src/unix/threadpsx.cpp:1758
 msgid "Thread module initialization failed: failed to create thread key"
-msgstr ""
-"Zainicjowanie modułu wątków nie powiodło się: nie udało się utworzyć klucza "
-"wątków"
+msgstr "Zainicjowanie moduÅu wÄtkÃ³w nie powiodÅo siÄ: nie udaÅo siÄ utworzyÄ klucza wÄtkÃ³w"
 
 #: ../src/msw/thread.cpp:1288
 msgid ""
 "Thread module initialization failed: impossible to allocate index in thread "
 "local storage"
 msgstr ""
-"Zainicjowanie modułu wątków nie powiodło się: nie jest możliwe przydzielenie "
-"indeksu w lokalnej pamięci wątków."
+"Zainicjowanie moduÅu wÄtkÃ³w nie powiodÅo siÄ: nie jest moÅ¼liwe przydzielenie indeksu w lokalnej "
+"pamiÄci wÄtkÃ³w."
 
 #: ../src/unix/threadpsx.cpp:1038
 msgid "Thread priority setting is ignored."
@@ -7705,23 +7678,19 @@ msgstr "parametr nie przeszedł kontroli poprawności DDEML"
 
 #: ../src/msw/dde.cpp:1123
 msgid "a request for a synchronous advise transaction has timed out."
-msgstr ""
-"upłynął czas oczekiwania na rozpoczęcie synchronicznej transakcji advise."
+msgstr "upÅynÄÅ czas oczekiwania na rozpoczÄcie synchronicznej transakcji advise."
 
 #: ../src/msw/dde.cpp:1129
 msgid "a request for a synchronous data transaction has timed out."
-msgstr ""
-"upłynął czas oczekiwania na rozpoczęcie synchronicznej transakcji data."
+msgstr "upÅynÄÅ czas oczekiwania na rozpoczÄcie synchronicznej transakcji data."
 
 #: ../src/msw/dde.cpp:1138
 msgid "a request for a synchronous execute transaction has timed out."
-msgstr ""
-"upłynął czas oczekiwania na rozpoczęcie synchronicznej transakcji execute."
+msgstr "upÅynÄÅ czas oczekiwania na rozpoczÄcie synchronicznej transakcji execute."
 
 #: ../src/msw/dde.cpp:1156
 msgid "a request for a synchronous poke transaction has timed out."
-msgstr ""
-"upłynął czas oczekiwania na rozpoczęcie synchronicznej transakcji poke."
+msgstr "upÅynÄÅ czas oczekiwania na rozpoczÄcie synchronicznej transakcji poke."
 
 #: ../src/msw/dde.cpp:1171
 msgid "a request to end an advise transaction has timed out."
@@ -8209,7 +8178,7 @@ msgstr "obiekty nie może mieć węzłów typu 'XML Text'"
 
 #: ../src/html/chm.cpp:339
 msgid "out of memory"
-msgstr "brak wolnej pamięci"
+msgstr "brak wolnej pamiÄci"
 
 #: ../src/richtext/richtextsizepage.cpp:340
 #: ../src/richtext/richtextsizepage.cpp:374
@@ -8775,9 +8744,7 @@ msgstr "~"
 #~ msgid ""
 #~ "HTML pagination algorithm generated more than the allowed maximum number "
 #~ "of pages and it can't continue any longer!"
-#~ msgstr ""
-#~ "Algorytm paginacji HTML generował więcej niż dozwoloną maksymalną liczbę "
-#~ "stron i nie może być dłużej kontynuowany!"
+#~ msgstr "Algorytm paginacji HTML generowaÅ wiÄcej niÅ¼ dozwolonÄ maksymalnÄ liczbÄ stron i nie moÅ¼e byÄ dÅuÅ¼ej kontynuowany!"
 
 #~ msgid "Help : %s"
 #~ msgstr "Pomoc : %s"
@@ -8973,17 +8940,15 @@ msgstr "~"
 #~ "instead\n"
 #~ " or provide #define (see manual for caveats)"
 #~ msgstr ""
-#~ "Nie rozpoznano klasy lub identyfikatora '%s'. Użyj (niezerową) liczbę "
-#~ "całkowitą \n"
-#~ " lub #define (szukaj szczegółów w dokumentacji)"
+#~ "Nie rozpoznano klasy lub identyfikatora '%s'. UÅ¼yj (niezerowÄ) liczbÄ caÅkowitÄ \n"
+#~ " lub #define (szukaj szczegÃ³ÅÃ³w w dokumentacji)"
 
 #~ msgid ""
 #~ "Could not resolve menu id '%s'. Use (non-zero) integer instead\n"
 #~ "or provide #define (see manual for caveats)"
 #~ msgstr ""
-#~ "Nie rozpoznano identyfikatora menu '%s'. Użyj (niezerową) liczbę "
-#~ "całkowitą \n"
-#~ " lub #define (szukaj szczegółów w dokumentacji)"
+#~ "Nie rozpoznano identyfikatora menu '%s'. UÅ¼yj (niezerowÄ) liczbÄ caÅkowitÄ \n"
+#~ " lub #define (szukaj szczegÃ³ÅÃ³w w dokumentacji)"
 
 #, fuzzy
 #~ msgid "Couldn't end the context on the overlay window"
@@ -9132,7 +9097,8 @@ msgstr "~"
 #~ msgstr "Nie udało się usyskać listy ISP: %s"
 
 #~ msgid "Loading Grey Ascii PNM image is not yet implemented."
-#~ msgstr "Ładowanie obrazów Grey Ascii PNM nie jest jeszcze zaimplementowane."
+#~ msgstr ""
+#~ "Åadowanie obrazÃ³w Grey Ascii PNM nie jest jeszcze zaimplementowane."
 
 #~ msgid "Loading Grey Raw PNM image is not yet implemented."
 #~ msgstr "Ładowanie obrazów Grey Raw PNM nie jest jeszcze zaimplementowane."
