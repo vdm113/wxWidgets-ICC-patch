@@ -203,7 +203,6 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
@@ -214,6 +213,7 @@
     <Lib>
       <OutputFile>$(OutDir)wxbase30ud_vc_custom.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_base.bsc</OutputFile>
@@ -257,7 +257,6 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
@@ -268,6 +267,7 @@
     <Lib>
       <OutputFile>$(OutDir)wxbase30ud_vc_custom.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_base.bsc</OutputFile>
@@ -310,7 +310,6 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
@@ -321,6 +320,7 @@
     <Lib>
       <OutputFile>$(OutDir)wxbase30u_vc_custom.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_base.bsc</OutputFile>
@@ -363,7 +363,6 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
@@ -374,6 +373,7 @@
     <Lib>
       <OutputFile>$(OutDir)wxbase30u_vc_custom.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_base.bsc</OutputFile>
@@ -417,7 +417,6 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
@@ -427,7 +426,7 @@
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)wxbase30ud_vc_custom.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -484,7 +483,6 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
@@ -494,7 +492,7 @@
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)wxbase30ud_vc_custom.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -549,7 +547,6 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
@@ -559,7 +556,7 @@
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)wxbase30u_vc_custom.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -615,7 +612,6 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
@@ -625,7 +621,7 @@
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)wxbase30u_vc_custom.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>

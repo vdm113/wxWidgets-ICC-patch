@@ -196,7 +196,6 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
@@ -208,6 +207,7 @@
       <OutputFile>$(OutDir)wxregexud.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxregex.bsc</OutputFile>
@@ -248,7 +248,6 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
@@ -260,6 +259,7 @@
       <OutputFile>$(OutDir)wxregexud.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxregex.bsc</OutputFile>
@@ -299,7 +299,6 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
@@ -311,6 +310,7 @@
       <OutputFile>$(OutDir)wxregexu.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxregex.bsc</OutputFile>
@@ -350,7 +350,6 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
@@ -362,6 +361,7 @@
       <OutputFile>$(OutDir)wxregexu.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxregex.bsc</OutputFile>
@@ -402,7 +402,6 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
@@ -414,6 +413,7 @@
       <OutputFile>$(OutDir)wxregexud.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxregex.bsc</OutputFile>
@@ -454,7 +454,6 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
@@ -466,6 +465,7 @@
       <OutputFile>$(OutDir)wxregexud.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxregex.bsc</OutputFile>
@@ -505,7 +505,6 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
@@ -517,6 +516,7 @@
       <OutputFile>$(OutDir)wxregexu.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxregex.bsc</OutputFile>
@@ -556,7 +556,6 @@
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>LoopsSuccessVectorized1</VectorizerDiagnosticLevel>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
@@ -568,6 +567,7 @@
       <OutputFile>$(OutDir)wxregexu.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxregex.bsc</OutputFile>
