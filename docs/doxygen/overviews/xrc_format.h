@@ -2022,6 +2022,8 @@ wxWizardPageSimple classes. They both support the following properties
 
 @beginTable
 @hdr3col{property, type, description}
+@row3col{title, @ref overview_xrcformat_type_text,
+    Wizard window's title (default: none).}
 @row3col{bitmap, @ref overview_xrcformat_type_bitmap,
     Page-specific bitmap (default: none).}
 @endTable
