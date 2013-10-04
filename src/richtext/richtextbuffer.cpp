@@ -782,8 +782,9 @@ bool wxRichTextObject::DrawBorder(wxDC& dc, wxRichTextBuffer* buffer, const wxTe
                 penStyle = wxLONG_DASH;
             wxPen pen(col, 1, penStyle);
             dc.SetPen(pen);
-            dc.DrawLine(rect.x, rect.y, rect.x, rect.y + rect.height);
 
+            // Note that the last point is not drawn.
+            dc.DrawLine(rect.x, rect.y, rect.x, rect.y + rect.height);
         }
         else if (borderLeft > 1)
         {
@@ -811,8 +812,8 @@ bool wxRichTextObject::DrawBorder(wxDC& dc, wxRichTextBuffer* buffer, const wxTe
                 penStyle = wxLONG_DASH;
             wxPen pen(col, 1, penStyle);
             dc.SetPen(pen);
-            dc.DrawLine(rect.x + rect.width, rect.y, rect.x + rect.width, rect.y + rect.height + 1);
-
+            // Note that the last point is not drawn.
+            dc.DrawLine(rect.x + rect.width - 1, rect.y, rect.x + rect.width - 1, rect.y + rect.height);
         }
         else if (borderRight > 1)
         {
@@ -820,7 +821,7 @@ bool wxRichTextObject::DrawBorder(wxDC& dc, wxRichTextBuffer* buffer, const wxTe
             wxBrush brush(col);
             dc.SetPen(pen);
             dc.SetBrush(brush);
-            dc.DrawRectangle(rect.x + rect.width - borderRight, rect.y, borderRight, rect.height + 1);
+            dc.DrawRectangle(rect.x + rect.width - borderRight, rect.y, borderRight, rect.height);
         }
     }
 
@@ -868,8 +869,7 @@ bool wxRichTextObject::DrawBorder(wxDC& dc, wxRichTextBuffer* buffer, const wxTe
                 penStyle = wxLONG_DASH;
             wxPen pen(col, 1, penStyle);
             dc.SetPen(pen);
-            dc.DrawLine(rect.x, rect.y + rect.height, rect.x + rect.width, rect.y + rect.height);
-
+            dc.DrawLine(rect.x, rect.y + rect.height - 1, rect.x + rect.width, rect.y + rect.height - 1);
         }
         else if (borderBottom > 1)
         {
@@ -877,7 +877,7 @@ bool wxRichTextObject::DrawBorder(wxDC& dc, wxRichTextBuffer* buffer, const wxTe
             wxBrush brush(col);
             dc.SetPen(pen);
             dc.SetBrush(brush);
-            dc.DrawRectangle(rect.x, rect.y + rect.height - borderBottom + 1, rect.width, borderBottom);
+            dc.DrawRectangle(rect.x, rect.y + rect.height - borderBottom, rect.width, borderBottom);
         }
     }
 
