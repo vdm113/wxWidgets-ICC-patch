@@ -117,9 +117,6 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 
     /* decode literals and length/distances until end-of-block or not enough
        input data or output space */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     do {
         if (bits < 15) {
             hold += (unsigned long)(PUP(in)) << bits;
@@ -198,26 +195,17 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                         }
 #ifdef INFLATE_ALLOW_INVALID_DISTANCE_TOOFAR_ARRR
                         if (len <= op - whave) {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                             do {
                                 PUP(out) = 0;
                             } while (--len);
                             continue;
                         }
                         len -= op - whave;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                         do {
                             PUP(out) = 0;
                         } while (--op > whave);
                         if (op == 0) {
                             from = out - dist;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                             do {
                                 PUP(out) = PUP(from);
                             } while (--len);
@@ -230,9 +218,6 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                         from += wsize - op;
                         if (op < len) {         /* some from window */
                             len -= op;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                             do {
                                 PUP(out) = PUP(from);
                             } while (--op);
@@ -244,9 +229,6 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                         op -= wnext;
                         if (op < len) {         /* some from end of window */
                             len -= op;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                             do {
                                 PUP(out) = PUP(from);
                             } while (--op);
@@ -254,9 +236,6 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                             if (wnext < len) {  /* some from start of window */
                                 op = wnext;
                                 len -= op;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                                 do {
                                     PUP(out) = PUP(from);
                                 } while (--op);
@@ -268,18 +247,12 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                         from += wnext - op;
                         if (op < len) {         /* some from window */
                             len -= op;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                             do {
                                 PUP(out) = PUP(from);
                             } while (--op);
                             from = out - dist;  /* rest from output */
                         }
                     }
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                     while (len > 2) {
                         PUP(out) = PUP(from);
                         PUP(out) = PUP(from);
@@ -294,9 +267,6 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                 }
                 else {
                     from = out - dist;          /* copy direct from output */
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                     do {                        /* minimum length is three */
                         PUP(out) = PUP(from);
                         PUP(out) = PUP(from);
