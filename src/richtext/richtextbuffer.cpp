@@ -627,7 +627,7 @@ wxRect wxRichTextObject::GetAvailableContentArea(wxDC& dc, wxRichTextDrawingCont
     wxRect marginRect, borderRect, contentRect, paddingRect, outlineRect;
     marginRect = outerRect;
     wxRichTextAttr attr(GetAttributes());
-    context.ApplyVirtualAttributes(attr, (wxRichTextObject*) this);
+    ((wxRichTextObject*)this)->AdjustAttributes(attr, context);
     GetBoxRects(dc, GetBuffer(), attr, marginRect, borderRect, contentRect, paddingRect, outlineRect);
     return contentRect;
 }
@@ -1160,12 +1160,19 @@ bool wxRichTextObject::LayoutToBestSize(wxDC& dc, wxRichTextDrawingContext& cont
     return true;
 }
 
+// Adjusts the attributes for virtual attribute provision, collapsed borders, etc.
+bool wxRichTextObject::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingContext& context)
+{
+    context.ApplyVirtualAttributes(attr, this);
+
+    return true;
+}
+
 // Move the object recursively, by adding the offset from old to new
 void wxRichTextObject::Move(const wxPoint& pt)
 {
     SetPosition(pt);
 }
-
 
 /*!
  * wxRichTextCompositeObject
@@ -1942,7 +1949,7 @@ bool wxRichTextParagraphLayoutBox::Draw(wxDC& dc, wxRichTextDrawingContext& cont
     wxRect thisRect(GetPosition(), GetCachedSize());
 
     wxRichTextAttr attr(GetAttributes());
-    context.ApplyVirtualAttributes(attr, this);
+    AdjustAttributes(attr, context);
 
     int flags = style;
     if (selection.IsValid() && GetParentContainer() != this && selection.GetContainer() == this && selection.WithinSelection(GetRange().GetStart(), GetParentContainer()))
@@ -2004,7 +2011,7 @@ bool wxRichTextParagraphLayoutBox::Layout(wxDC& dc, wxRichTextDrawingContext& co
     bool formatRect = (style & wxRICHTEXT_LAYOUT_SPECIFIED_RECT) == wxRICHTEXT_LAYOUT_SPECIFIED_RECT;
 
     wxRichTextAttr attr(GetAttributes());
-    context.ApplyVirtualAttributes(attr, this);
+    AdjustAttributes(attr, context);
 
     // If only laying out a specific area, the passed rect has a different meaning:
     // the visible part of the buffer. This is used in wxRichTextCtrl::OnSize,
@@ -4734,9 +4741,9 @@ bool wxRichTextParagraph::Draw(wxDC& dc, wxRichTextDrawingContext& context, cons
     // different for different objects.
     wxRect paraRect = GetRect();
     wxRichTextAttr attr = GetCombinedAttributes();
-    context.ApplyVirtualAttributes(attr, this);
+    AdjustAttributes(attr, context);
 
-    DrawBoxAttributes(dc, GetBuffer(), attr, paraRect);
+    DrawBoxAttributes(dc, GetBuffer(), attr, paraRect, 0);
 
     // Draw the bullet, if any
     if ((attr.GetBulletStyle() == wxTEXT_ATTR_BULLET_STYLE_NONE) == 0 && (attr.GetBulletStyle() & wxTEXT_ATTR_BULLET_STYLE_CONTINUATION) == 0)
@@ -4921,7 +4928,7 @@ bool wxRichTextParagraph::Layout(wxDC& dc, wxRichTextDrawingContext& context, co
     }
 
     wxRichTextAttr attr = GetCombinedAttributes();
-    context.ApplyVirtualAttributes(attr, this);
+    AdjustAttributes(attr, context);
 
     // ClearLines();
 
@@ -6608,7 +6615,7 @@ void wxRichTextParagraph::LayoutFloat(wxDC& dc, wxRichTextDrawingContext& contex
         {
             int x = 0;
             wxRichTextAttr parentAttr(GetAttributes());
-            context.ApplyVirtualAttributes(parentAttr, this);
+            AdjustAttributes(parentAttr, context);
 #if 1
             // 27-09-2012
             wxRect availableSpace = GetParent()->GetAvailableContentArea(dc, context, rect);
@@ -6761,7 +6768,7 @@ bool wxRichTextPlainText::Draw(wxDC& dc, wxRichTextDrawingContext& context, cons
     wxASSERT (para != NULL);
 
     wxRichTextAttr textAttr(para ? para->GetCombinedAttributes(GetAttributes(), false /* no box attributes */) : GetAttributes());
-    context.ApplyVirtualAttributes(textAttr, this);
+    AdjustAttributes(textAttr, context);
 
     // Let's make the assumption for now that for content in a paragraph, including
     // text, we never have a discontinuous selection. So we only deal with a
@@ -7133,7 +7140,7 @@ bool wxRichTextPlainText::GetRangeSize(const wxRichTextRange& range, wxSize& siz
     int relativeX = position.x - GetParent()->GetPosition().x;
 
     wxRichTextAttr textAttr(para ? para->GetCombinedAttributes(GetAttributes()) : GetAttributes());
-    context.ApplyVirtualAttributes(textAttr, (wxRichTextObject*) this);
+    ((wxRichTextObject*) this)->AdjustAttributes(textAttr, context);
 
     // Always assume unformatted text, since at this level we have no knowledge
     // of line breaks - and we don't need it, since we'll calculate size within
@@ -9685,6 +9692,80 @@ int wxRichTextCell::HitTest(wxDC& dc, wxRichTextDrawingContext& context, const w
     }
 }
 
+// Adjusts the attributes for virtual attribute provision, collapsed borders, etc.
+bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingContext& context)
+{
+    wxRichTextObject::AdjustAttributes(attr, context);
+
+    wxRichTextTable* table = wxDynamicCast(GetParent(), wxRichTextTable);
+    if (table && table->GetAttributes().GetTextBoxAttr().HasCollapseBorders() &&
+        table->GetAttributes().GetTextBoxAttr().GetCollapseBorders() == wxTEXT_BOX_ATTR_COLLAPSE_FULL)
+    {
+        // Collapse borders:
+        // (1) Reset left and top for all cells;
+        // (2) for bottom and right, ignore if at edge of table, otherwise
+        //     use this cell's border if present, otherwise adjacent border if not.
+        // Takes into account spanning by checking if adjacent cells are shown.
+        int row, col;
+        if (table->GetCellRowColumnPosition(GetRange().GetStart(), row, col))
+        {
+            attr.GetTextBoxAttr().GetBorder().GetLeft().Reset();
+            attr.GetTextBoxAttr().GetBorder().GetTop().Reset();
+
+            // Compute right border
+            wxRichTextCell* adjacentCellRight = NULL;
+            int i;
+            for (i = col+1; i < table->GetColumnCount(); i++)
+            {
+                wxRichTextCell* cell = table->GetCell(row, i);
+                if (cell->IsShown())
+                {
+                    adjacentCellRight = cell;
+                    break;
+                }
+            }
+            // If no adjacent cell (either because they were hidden or at the edge of the table)
+            // then we must reset the border
+            if (!adjacentCellRight)
+                attr.GetTextBoxAttr().GetBorder().GetRight().Reset();
+            else
+            {
+                if (!attr.GetTextBoxAttr().GetBorder().GetRight().IsValid() ||
+                    attr.GetTextBoxAttr().GetBorder().GetRight().GetWidth().GetValue() == 0)
+                {
+                    attr.GetTextBoxAttr().GetBorder().GetRight() = adjacentCellRight->GetAttributes().GetTextBoxAttr().GetBorder().GetLeft();
+                }
+            }
+
+            // Compute bottom border
+            wxRichTextCell* adjacentCellBelow = NULL;
+            for (i = row+1; i < table->GetRowCount(); i++)
+            {
+                wxRichTextCell* cell = table->GetCell(i, col);
+                if (cell->IsShown())
+                {
+                    adjacentCellBelow = cell;
+                    break;
+                }
+            }
+            // If no adjacent cell (either because they were hidden or at the edge of the table)
+            // then we must reset the border
+            if (!adjacentCellBelow)
+                attr.GetTextBoxAttr().GetBorder().GetBottom().Reset();
+            else
+            {
+                if (!attr.GetTextBoxAttr().GetBorder().GetBottom().IsValid() ||
+                    attr.GetTextBoxAttr().GetBorder().GetBottom().GetWidth().GetValue() == 0)
+                {
+                    attr.GetTextBoxAttr().GetBorder().GetBottom() = adjacentCellBelow->GetAttributes().GetTextBoxAttr().GetBorder().GetTop();
+                }
+            }
+        }
+    }
+
+    return true;
+}
+
 /// Copy
 void wxRichTextCell::Copy(const wxRichTextCell& obj)
 {
@@ -9808,43 +9889,45 @@ bool wxRichTextTable::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
 {
     wxRichTextBox::Draw(dc, context, range, selection, rect, descent, style);
 
-    int colCount = GetColumnCount();
-    int rowCount = GetRowCount();
-    int col, row;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (col = 0; col < colCount; col++)
+    // If the table is not collapsed (in which case the outer table box provides the border),
+    // draw the overall border again using cell borders in case it has been overwritten by
+    // adjacent cell borders of different colours.
+    if (!GetAttributes().GetTextBoxAttr().HasCollapseBorders() ||
+        GetAttributes().GetTextBoxAttr().GetCollapseBorders() != wxTEXT_BOX_ATTR_COLLAPSE_FULL)
     {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (row = 0; row < rowCount; row++)
+        int colCount = GetColumnCount();
+        int rowCount = GetRowCount();
+        int col, row;
+        for (col = 0; col < colCount; col++)
         {
-            if (row == 0 || row == (rowCount-1) || col == 0 || col == (colCount-1))
+            for (row = 0; row < rowCount; row++)
             {
-                wxRichTextCell* cell = GetCell(row, col);
-                if (cell && cell->IsShown() && !cell->GetRange().IsOutside(range))
+                if (row == 0 || row == (rowCount-1) || col == 0 || col == (colCount-1))
                 {
-                    wxRect childRect(cell->GetPosition(), cell->GetCachedSize());
-                    wxRichTextAttr attr(cell->GetAttributes());
-                    if (row != 0)
-                        attr.GetTextBoxAttr().GetBorder().GetTop().Reset();
-                    if (row != (rowCount-1))
-                        attr.GetTextBoxAttr().GetBorder().GetBottom().Reset();
-                    if (col != 0)
-                        attr.GetTextBoxAttr().GetBorder().GetLeft().Reset();
-                    if (col != (colCount-1))
-                        attr.GetTextBoxAttr().GetBorder().GetRight().Reset();
-
-                    if (attr.GetTextBoxAttr().GetBorder().IsValid())
+                    wxRichTextCell* cell = GetCell(row, col);
+                    if (cell && cell->IsShown() && !cell->GetRange().IsOutside(range))
                     {
-                        wxRect boxRect(cell->GetPosition(), cell->GetCachedSize());
-                        wxRect marginRect = boxRect;
-                        wxRect contentRect, borderRect, paddingRect, outlineRect;
+                        wxRect childRect(cell->GetPosition(), cell->GetCachedSize());
+                        wxRichTextAttr attr(cell->GetAttributes());
+                        cell->AdjustAttributes(attr, context);
+                        if (row != 0)
+                            attr.GetTextBoxAttr().GetBorder().GetTop().Reset();
+                        if (row != (rowCount-1))
+                            attr.GetTextBoxAttr().GetBorder().GetBottom().Reset();
+                        if (col != 0)
+                            attr.GetTextBoxAttr().GetBorder().GetLeft().Reset();
+                        if (col != (colCount-1))
+                            attr.GetTextBoxAttr().GetBorder().GetRight().Reset();
 
-                        cell->GetBoxRects(dc, GetBuffer(), attr, marginRect, borderRect, contentRect, paddingRect, outlineRect);
-                        cell->DrawBorder(dc, GetBuffer(), attr.GetTextBoxAttr().GetBorder(), borderRect);
+                        if (attr.GetTextBoxAttr().GetBorder().IsValid())
+                        {
+                            wxRect boxRect(cell->GetPosition(), cell->GetCachedSize());
+                            wxRect marginRect = boxRect;
+                            wxRect contentRect, borderRect, paddingRect, outlineRect;
+
+                            cell->GetBoxRects(dc, GetBuffer(), attr, marginRect, borderRect, contentRect, paddingRect, outlineRect);
+                            cell->DrawBorder(dc, GetBuffer(), attr.GetTextBoxAttr().GetBorder(), borderRect);
+                        }
                     }
                 }
             }
@@ -10058,7 +10141,7 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     wxTextAttrDimensionConverter converter(dc, scale, availableSpace.GetSize());
 
     wxRichTextAttr attr(GetAttributes());
-    context.ApplyVirtualAttributes(attr, this);
+    AdjustAttributes(attr, context);
 
     bool tableHasPercentWidth = (attr.GetTextBoxAttr().GetWidth().GetUnits() == wxTEXT_ATTR_UNITS_PERCENTAGE);
     // If we have no fixed table size, and assuming we're not pushed for
@@ -10262,7 +10345,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             if (cell->IsShown())
             {
                 int cellTotalLeftMargin = 0, cellTotalRightMargin = 0, cellTotalTopMargin = 0, cellTotalBottomMargin = 0;
-                GetTotalMargin(dc, buffer, cell->GetAttributes(), cellTotalLeftMargin, cellTotalRightMargin, cellTotalTopMargin, cellTotalBottomMargin);
+                wxRichTextAttr cellAttr(cell->GetAttributes());
+                cell->AdjustAttributes(cellAttr, context);
+                GetTotalMargin(dc, buffer, cellAttr, cellTotalLeftMargin, cellTotalRightMargin, cellTotalTopMargin, cellTotalBottomMargin);
 
                 overallRowContentMargin += (cellTotalLeftMargin + cellTotalRightMargin);
                 visibleCellCount ++;
@@ -10399,7 +10484,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             if (cell->IsShown())
             {
                 int cellTotalLeftMargin = 0, cellTotalRightMargin = 0, cellTotalTopMargin = 0, cellTotalBottomMargin = 0;
-                GetTotalMargin(dc, buffer, cell->GetAttributes(), cellTotalLeftMargin, cellTotalRightMargin, cellTotalTopMargin, cellTotalBottomMargin);
+                wxRichTextAttr cellAttr(cell->GetAttributes());
+                cell->AdjustAttributes(cellAttr, context);
+                GetTotalMargin(dc, buffer, cellAttr, cellTotalLeftMargin, cellTotalRightMargin, cellTotalTopMargin, cellTotalBottomMargin);
 
                 overallRowContentMargin += (cellTotalLeftMargin + cellTotalRightMargin);
                 visibleCellCount ++;
@@ -10725,6 +10812,22 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // TODO: calculate min size
     {
         SetMinSize(GetCachedSize());
+    }
+
+    return true;
+}
+
+// Adjusts the attributes for virtual attribute provision, collapsed borders, etc.
+bool wxRichTextTable::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingContext& context)
+{
+    wxRichTextObject::AdjustAttributes(attr, context);
+
+    if (attr.GetTextBoxAttr().HasCollapseBorders() &&
+        attr.GetTextBoxAttr().GetCollapseBorders() == wxTEXT_BOX_ATTR_COLLAPSE_FULL)
+    {
+        // Padding between the table border and the table cells no longer
+        // applies in collapsed mode.
+        attr.GetTextBoxAttr().GetPadding().Reset();
     }
 
     return true;
@@ -11805,7 +11908,7 @@ bool wxRichTextAction::Do()
             else
                 container->InvalidateHierarchy(GetRange());
 
-            UpdateAppearance(GetPosition());
+            UpdateAppearance(GetPosition(), true);
 
             wxRichTextEvent cmdEvent(
                 wxEVT_RICHTEXT_STYLE_CHANGED,
@@ -12420,7 +12523,7 @@ bool wxRichTextImage::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
         return false;
 
     wxRichTextAttr attr(GetAttributes());
-    context.ApplyVirtualAttributes(attr, this);
+    AdjustAttributes(attr, context);
 
     DrawBoxAttributes(dc, GetBuffer(), attr, wxRect(rect.GetPosition(), GetCachedSize()));
 
@@ -12454,7 +12557,7 @@ bool wxRichTextImage::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     contentRect = wxRect(wxPoint(0,0), imageSize);
 
     wxRichTextAttr attr(GetAttributes());
-    context.ApplyVirtualAttributes(attr, this);
+    AdjustAttributes(attr, context);
 
     GetBoxRects(dc, GetBuffer(), attr, marginRect, borderRect, contentRect, paddingRect, outlineRect);
 
@@ -12484,7 +12587,7 @@ bool wxRichTextImage::GetRangeSize(const wxRichTextRange& range, wxSize& size, i
     }
 
     wxRichTextAttr attr(GetAttributes());
-    context.ApplyVirtualAttributes(attr, (wxRichTextObject*) this);
+    ((wxRichTextObject*)this)->AdjustAttributes(attr, context);
 
     wxSize imageSize(m_imageCache.GetWidth(), m_imageCache.GetHeight());
     wxRect marginRect, borderRect, contentRect, paddingRect, outlineRect;
