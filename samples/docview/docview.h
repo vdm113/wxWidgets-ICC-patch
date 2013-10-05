@@ -21,9 +21,7 @@
 
 #include "wx/docview.h"
 
-class MyFrame;
 class MyCanvas;
-class DrawingView;
 
 // Define a new application
 class MyApp : public wxApp

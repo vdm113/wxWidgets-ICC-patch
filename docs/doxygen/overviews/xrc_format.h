@@ -29,6 +29,9 @@
 This document describes the format of XRC resource files, as used by
 wxXmlResource.
 
+Formal description in the form of a RELAX NG schema is located in the
+@c misc/schema subdirectory of the wxWidgets sources.
+
 XRC file is a XML file with all of its elements in the
 @c http://www.wxwidgets.org/wxxrc namespace. For backward compatibility,
 @c http://www.wxwindows.org/wxxrc namespace is accepted as well (and treated
@@ -517,6 +520,8 @@ from properties lists below.
     wxWindow::SetOwnBackgroundColour() (default: none).}
 @row3col{enabled, @ref overview_xrcformat_type_bool,
     If set to 0, the control is disabled (default: 1).}
+@row3col{focused, @ref overview_xrcformat_type_bool,
+    If set to 1, the control has focus initially (default: 0).}
 @row3col{hidden, @ref overview_xrcformat_type_bool,
     If set to 1, the control is created hidden (default: 0).}
 @row3col{tooltip, @ref overview_xrcformat_type_text,
@@ -691,7 +696,7 @@ Example:
 @beginTable
 @hdr3col{property, type, description}
 @row3col{label, @ref overview_xrcformat_type_text,
-    Label to display on the button (may be empty if only bitmap is used).}
+    Label to display on the button (may be omitted if only the bitmap or stock ID is used).}
 @row3col{bitmap, @ref overview_xrcformat_type_bitmap,
     Bitmap to display in the button (optional).}
 @row3col{bitmapposition, @c wxLEFT|wxRIGHT|wxTOP|wxBOTTOM,
@@ -711,7 +716,7 @@ No additional properties.
 @beginTable
 @hdr3col{property, type, description}
 @row3col{label, @ref overview_xrcformat_type_text,
-     Label to use for the checkbox (required).}
+     Label to use for the checkbox (default: empty).}
 @row3col{checked, @ref overview_xrcformat_type_bool,
      Should the checkbox be checked initially (default: 0)?}
 @endTable
@@ -1264,7 +1269,7 @@ wxMenuItem objects support the following properties:
 @beginTable
 @hdr3col{property, type, description}
 @row3col{label, @ref overview_xrcformat_type_text,
-     Item's label (required).}
+     Item's label (may be omitted if stock ID is used).}
 @row3col{accel, @ref overview_xrcformat_type_text_notrans,
      Item's accelerator (default: none).}
 @row3col{radio, @ref overview_xrcformat_type_bool,
@@ -1443,7 +1448,7 @@ Each @c propertysheetpage has exactly one non-toplevel window as its child.
 @beginTable
 @hdr3col{property, type, description}
 @row3col{label, @ref overview_xrcformat_type_text,
-     Label for the whole box (required).}
+     Label for the whole box (default: empty).}
 @row3col{dimension, integer,
      Specifies the maximum number of rows (if style contains
      @c wxRA_SPECIFY_ROWS) or columns (if style contains @c wxRA_SPECIFY_COLS)
@@ -1491,10 +1496,17 @@ Example:
 @endcode
 
 
-@subsubsection xrc_wxribbon wxRibbonBar
+@subsubsection xrc_wxribbonbar wxRibbonBar
 
-A wxRibbonBar is a container of ribbon pages which, in turn, contain elements
-that can be wxRibbonControl or wxRibbonGallery.
+@beginTable
+@hdr3col{property, type, description}
+@row3col{art-provider, @ref overview_xrcformat_type_string,
+    One of @c default, @c aui or @c msw (default: @c default).}
+@endTable
+
+A wxRibbonBar may have @ref xrc_wxribbonpage child objects. The @c page
+pseudo-class may be used instead of @c wxRibbonPage when used as wxRibbonBar
+children.
 
 Example:
 @code
@@ -1536,6 +1548,85 @@ later only and you need to explicitly register its handler using
     AddHandler(new wxRibbonXmlHandler);
 @endcode
 to use it.
+
+
+@subsubsection xrc_wxribbonbuttonbar wxRibbonButtonBar
+
+No additional properties.
+
+wxRibbonButtonBar can have child objects of the @c button pseudo-class. @c button
+objects have the following properties:
+
+@beginTable
+@hdr3col{property, type, description}
+@row3col{hybrid, @ref overview_xrcformat_type_bool,
+    If true, the @c wxRIBBON_BUTTON_HYBRID kind is used (default: false).}
+@row3col{disabled, @ref overview_xrcformat_type_bool,
+    Whether the button should be disabled (default: false).}
+@row3col{label, @ref overview_xrcformat_type_text,
+    Item's label (required).}
+@row3col{bitmap, @ref overview_xrcformat_type_bitmap,
+    Item's bitmap (required).}
+@row3col{small-bitmap, @ref overview_xrcformat_type_bitmap,
+    Small bitmap (default: none).}
+@row3col{disabled-bitmap, @ref overview_xrcformat_type_bitmap,
+    Disabled bitmap (default: none).}
+@row3col{small-disabled-bitmap, @ref overview_xrcformat_type_bitmap,
+    Small disabled bitmap (default: none).}
+@row3col{help, @ref overview_xrcformat_type_text,
+    Item's help text (default: none).}
+@endTable
+
+
+@subsubsection xrc_wxribboncontrol wxRibbonControl
+
+No additional properties.
+
+Objects of this type *must* be subclassed with the @c subclass attribute.
+
+
+@subsubsection xrc_wxribbongallery wxRibbonGallery
+
+No additional properties.
+
+wxRibbonGallery can have child objects of the @c item pseudo-class. @c item
+objects have the following properties:
+
+@beginTable
+@hdr3col{property, type, description}
+@row3col{bitmap, @ref overview_xrcformat_type_bitmap,
+    Item's bitmap (default: none).}
+@endTable
+
+
+@subsubsection xrc_wxribbonpage wxRibbonPage
+
+@beginTable
+@hdr3col{property, type, description}
+@row3col{label, @ref overview_xrcformat_type_text,
+    Label (default: none).}
+@row3col{icon, @ref overview_xrcformat_type_bitmap,
+    Icon (default: none).}
+@endTable
+
+A wxRibbonPage may have children of any type derived from wxRibbonControl.
+Most commontly, wxRibbonPanel is used. As a special case, the @c panel
+pseudo-class may be used instead of @c wxRibbonPanel when used as wxRibbonPage
+children.
+
+
+@subsubsection xrc_wxribbonpanel wxRibbonPanel
+
+@beginTable
+@hdr3col{property, type, description}
+@row3col{label, @ref overview_xrcformat_type_text,
+    Label (default: none).}
+@row3col{icon, @ref overview_xrcformat_type_bitmap,
+    Icon (default: none).}
+@endTable
+
+A wxRibbonPanel may have children of any type derived from wxRibbonControl or
+a single wxSizer child with non-ribbon windows in it.
 
 
 @subsubsection xrc_wxrichtextctrl wxRichTextCtrl
@@ -1728,7 +1819,7 @@ child and the second one for right/bottom child window.
 @beginTable
 @hdr3col{property, type, description}
 @row3col{label, @ref overview_xrcformat_type_text,
-     Static box's label (required).}
+     Static box's label (default: empty).}
 @endTable
 
 
@@ -1742,7 +1833,7 @@ No additional properties.
 @beginTable
 @hdr3col{property, type, description}
 @row3col{label, @ref overview_xrcformat_type_text,
-     Label to display (required).}
+     Label to display (default: empty).}
 @row3col{wrap, @ref overview_xrcformat_type_dimension,
      Wrap the text so that each line is at most the given number of pixels, see
      wxStaticText::Wrap() (default: no wrap).}
@@ -2020,6 +2111,8 @@ wxWizardPageSimple classes. They both support the following properties
 
 @beginTable
 @hdr3col{property, type, description}
+@row3col{title, @ref overview_xrcformat_type_text,
+    Wizard window's title (default: none).}
 @row3col{bitmap, @ref overview_xrcformat_type_bitmap,
     Page-specific bitmap (default: none).}
 @endTable
@@ -2060,7 +2153,7 @@ they have one property:
 
 @beginTable
 @hdr3col{property, type, description}
-@row3col{size, @ref overview_xrcformat_type_size, Size of the empty space (required).}
+@row3col{size, @ref overview_xrcformat_type_size, Size of the empty space (default: @c wxDefaultSize).}
 @endTable
 
 Both @c sizeritem and @c spacer objects can have any of the following
@@ -2158,7 +2251,7 @@ class-specific properties. All classes support the following properties:
 @row3col{orient, @ref overview_xrcformat_type_style,
     Sizer orientation, "wxHORIZONTAL" or "wxVERTICAL" (default: wxHORIZONTAL).}
 @row3col{label, @ref overview_xrcformat_type_text,
-    Label to be used for the static box around the sizer (required).}
+    Label to be used for the static box around the sizer (default: empty).}
 @endTable
 
 @subsection overview_xrcformat_wxgridsizer wxGridSizer
