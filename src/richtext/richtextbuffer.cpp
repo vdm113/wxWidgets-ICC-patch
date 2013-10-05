@@ -9732,9 +9732,6 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
             // Compute right border
             wxRichTextCell* adjacentCellRight = NULL;
             int i;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for (i = col+1; i < table->GetColumnCount(); i++)
             {
                 wxRichTextCell* cell = table->GetCell(row, i);
@@ -9759,9 +9756,6 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
 
             // Compute bottom border
             wxRichTextCell* adjacentCellBelow = NULL;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for (i = row+1; i < table->GetRowCount(); i++)
             {
                 wxRichTextCell* cell = table->GetCell(i, col);
@@ -9921,14 +9915,8 @@ bool wxRichTextTable::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
         int colCount = GetColumnCount();
         int rowCount = GetRowCount();
         int col, row;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (col = 0; col < colCount; col++)
         {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for (row = 0; row < rowCount; row++)
             {
                 if (row == 0 || row == (rowCount-1) || col == 0 || col == (colCount-1))
