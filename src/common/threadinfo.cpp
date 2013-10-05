@@ -72,9 +72,6 @@ void wxThreadSpecificInfo::ThreadCleanUp()
 
     // find this thread's instance in GetAllThreadInfos() and destroy it
     wxCriticalSectionLocker lock(GetAllThreadInfosCS());
-#if defined(__INTEL_COMPILER) // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxAllThreadInfos::iterator i = GetAllThreadInfos().begin();
           i != GetAllThreadInfos().end();
           ++i )
