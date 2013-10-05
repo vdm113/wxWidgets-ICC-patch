@@ -9723,80 +9723,36 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
     wxRichTextObject::AdjustAttributes(attr, context);
 
     wxRichTextTable* table = wxDynamicCast(GetParent(), wxRichTextTable);
-    if (IsShown() && table && table->GetAttributes().GetTextBoxAttr().HasCollapseBorders() &&
+    if (table && table->GetAttributes().GetTextBoxAttr().HasCollapseBorders() &&
         table->GetAttributes().GetTextBoxAttr().GetCollapseBorders() == wxTEXT_BOX_ATTR_COLLAPSE_FULL)
     {
         // Collapse borders:
-        // (1) Reset left and top for all cells unless there is no table border there;
-        // (2) for bottom and right, reset if at edge of table and there are no table borders,
-        //     otherwise use this cell's border if present, otherwise adjacent border if not.
+        // (1) Reset left and top for all cells;
+        // (2) for bottom and right, ignore if at edge of table, otherwise
+        //     use this cell's border if present, otherwise adjacent border if not.
         // Takes into account spanning by checking if adjacent cells are shown.
         int row, col;
         if (table->GetCellRowColumnPosition(GetRange().GetStart(), row, col))
         {
-            if (col == 0)
-            {
-                // Only remove the cell border on the left edge if we have a table border
-                if (table->GetAttributes().GetTextBoxAttr().GetBorder().GetLeft().IsValid())
-                    attr.GetTextBoxAttr().GetBorder().GetLeft().Reset();
-            }
-            else
-                attr.GetTextBoxAttr().GetBorder().GetLeft().Reset();
-
-            if (row == 0)
-            {
-                // Only remove the cell border on the top edge if we have a table border
-                if (table->GetAttributes().GetTextBoxAttr().GetBorder().GetTop().IsValid())
-                    attr.GetTextBoxAttr().GetBorder().GetTop().Reset();
-            }
-            else
-                attr.GetTextBoxAttr().GetBorder().GetTop().Reset();
+            attr.GetTextBoxAttr().GetBorder().GetLeft().Reset();
+            attr.GetTextBoxAttr().GetBorder().GetTop().Reset();
 
             // Compute right border
-
-            // We need to explicity look at the spans, not just whether
-            // the cell is visible, because that doesn't tell us which
-            // cell to look at for border information.
             wxRichTextCell* adjacentCellRight = NULL;
-
-            int nextCol = col + GetColSpan();
-            if  (nextCol >= table->GetColumnCount())
+            int i;
+            for (i = col+1; i < table->GetColumnCount(); i++)
             {
-                // Do nothing - at edge of table
-            }
-            else
-            {
-                wxRichTextCell* nextRightCell = table->GetCell(row, nextCol);
-                if (nextRightCell->IsShown())
+                wxRichTextCell* cell = table->GetCell(row, i);
+                if (cell->IsShown())
                 {
-                    adjacentCellRight = nextRightCell;
-                }
-                else
-                {
-                    // Must be hidden by a rowspan above. Go hunting for it.
-                    int r;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                    for (r = row-1; r >= 0; r--)
-                    {
-                        nextRightCell = table->GetCell(r, nextCol);
-                        if (nextRightCell->IsShown())
-                        {
-                            adjacentCellRight = nextRightCell;
-                            break;
-                        }
-                    }
+                    adjacentCellRight = cell;
+                    break;
                 }
             }
-
             // If no adjacent cell (either because they were hidden or at the edge of the table)
-            // then we must reset the border, if there's a right table border.
+            // then we must reset the border
             if (!adjacentCellRight)
-            {
-                if (table->GetAttributes().GetTextBoxAttr().GetBorder().GetRight().IsValid())
-                    attr.GetTextBoxAttr().GetBorder().GetRight().Reset();
-            }
+                attr.GetTextBoxAttr().GetBorder().GetRight().Reset();
             else
             {
                 if (!attr.GetTextBoxAttr().GetBorder().GetRight().IsValid() ||
@@ -9808,45 +9764,19 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
 
             // Compute bottom border
             wxRichTextCell* adjacentCellBelow = NULL;
-
-            int nextRow = row + GetRowSpan();
-            if  (nextRow >= table->GetRowCount())
+            for (i = row+1; i < table->GetRowCount(); i++)
             {
-                // Do nothing - at edge of table
-            }
-            else
-            {
-                wxRichTextCell* nextBottomCell = table->GetCell(nextRow, col);
-                if (nextBottomCell->IsShown())
+                wxRichTextCell* cell = table->GetCell(i, col);
+                if (cell->IsShown())
                 {
-                    adjacentCellBelow = nextBottomCell;
-                }
-                else
-                {
-                    // Must be hidden by a colspan to the left. Go hunting for it.
-                    int c;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                    for (c = col-1; c >= 0; c--)
-                    {
-                        nextBottomCell = table->GetCell(nextRow, c);
-                        if (nextBottomCell->IsShown())
-                        {
-                            adjacentCellBelow = nextBottomCell;
-                            break;
-                        }
-                    }
+                    adjacentCellBelow = cell;
+                    break;
                 }
             }
-
             // If no adjacent cell (either because they were hidden or at the edge of the table)
-            // then we must reset the border, if there's a bottom table border.
+            // then we must reset the border
             if (!adjacentCellBelow)
-            {
-                if (table->GetAttributes().GetTextBoxAttr().GetBorder().GetBottom().IsValid())
-                    attr.GetTextBoxAttr().GetBorder().GetBottom().Reset();
-            }
+                attr.GetTextBoxAttr().GetBorder().GetBottom().Reset();
             else
             {
                 if (!attr.GetTextBoxAttr().GetBorder().GetBottom().IsValid() ||
@@ -9993,14 +9923,8 @@ bool wxRichTextTable::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
         int colCount = GetColumnCount();
         int rowCount = GetRowCount();
         int col, row;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for (col = 0; col < colCount; col++)
         {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for (row = 0; row < rowCount; row++)
             {
                 if (row == 0 || row == (rowCount-1) || col == 0 || col == (colCount-1))
@@ -10441,6 +10365,12 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             wxRichTextBox* cell = GetCell(j, i);
             if (cell->IsShown())
             {
+                int cellTotalLeftMargin = 0, cellTotalRightMargin = 0, cellTotalTopMargin = 0, cellTotalBottomMargin = 0;
+                wxRichTextAttr cellAttr(cell->GetAttributes());
+                cell->AdjustAttributes(cellAttr, context);
+                GetTotalMargin(dc, buffer, cellAttr, cellTotalLeftMargin, cellTotalRightMargin, cellTotalTopMargin, cellTotalBottomMargin);
+
+                overallRowContentMargin += (cellTotalLeftMargin + cellTotalRightMargin);
                 visibleCellCount ++;
             }
         }
@@ -10550,6 +10480,12 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             wxRichTextBox* cell = GetCell(j, i);
             if (cell->IsShown())
             {
+                int cellTotalLeftMargin = 0, cellTotalRightMargin = 0, cellTotalTopMargin = 0, cellTotalBottomMargin = 0;
+                wxRichTextAttr cellAttr(cell->GetAttributes());
+                cell->AdjustAttributes(cellAttr, context);
+                GetTotalMargin(dc, buffer, cellAttr, cellTotalLeftMargin, cellTotalRightMargin, cellTotalTopMargin, cellTotalBottomMargin);
+
+                overallRowContentMargin += (cellTotalLeftMargin + cellTotalRightMargin);
                 visibleCellCount ++;
             }
         }
