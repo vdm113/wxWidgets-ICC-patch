@@ -10236,9 +10236,6 @@ int GetRowspanDisplacement(const wxRichTextTable* table, int row, int col, int p
                         // There is a rowspanning cell above above the hidden one, so we need
                         // to right-shift the index cell by this column's width. Furthermore, 
                         // if the cell also colspans, we need to shift by all affected columns
-#if defined(__INTEL_COMPILER) // VDM auto patch
-#   pragma ivdep
-#endif
                         for (int colSpan = 0; colSpan < cell->GetColSpan(); ++colSpan)
                             deltaX += (colWidths[prevcol+colSpan] + paddingX);
                         break;
