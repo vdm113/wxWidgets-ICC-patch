@@ -10508,6 +10508,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
     // (3.1) if a column has zero width, make it the maximum unspecified width (i.e. using
     // the cell's contents to calculate the width)
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         if (colWidths[i] == 0)
