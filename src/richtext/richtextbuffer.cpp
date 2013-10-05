@@ -9807,6 +9807,86 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
     wxRichTextObject::AdjustAttributes(attr, context);
 
     wxRichTextTable* table = wxDynamicCast(GetParent(), wxRichTextTable);
+    if (table && table->GetAttributes().GetTextBoxAttr().HasCollapseBorders() &&
+        table->GetAttributes().GetTextBoxAttr().GetCollapseBorders() == wxTEXT_BOX_ATTR_COLLAPSE_FULL)
+    {
+        // Collapse borders:
+        // (1) Reset left and top for all cells;
+        // (2) for bottom and right, ignore if at edge of table, otherwise
+        //     use this cell's border if present, otherwise adjacent border if not.
+        // Takes into account spanning by checking if adjacent cells are shown.
+        int row, col;
+        if (table->GetCellRowColumnPosition(GetRange().GetStart(), row, col))
+        {
+            attr.GetTextBoxAttr().GetBorder().GetLeft().Reset();
+            attr.GetTextBoxAttr().GetBorder().GetTop().Reset();
+
+            // Compute right border
+            wxRichTextCell* adjacentCellRight = NULL;
+            int i;
+            for (i = col+1; i < table->GetColumnCount(); i++)
+            {
+                wxRichTextCell* cell = table->GetCell(row, i);
+                if (cell->IsShown())
+                {
+                    adjacentCellRight = cell;
+                    break;
+                }
+            }
+            // If no adjacent cell (either because they were hidden or at the edge of the table)
+            // then we must reset the border
+            if (!adjacentCellRight)
+                attr.GetTextBoxAttr().GetBorder().GetRight().Reset();
+            else
+            {
+                if (!attr.GetTextBoxAttr().GetBorder().GetRight().IsValid() ||
+                    attr.GetTextBoxAttr().GetBorder().GetRight().GetWidth().GetValue() == 0)
+                {
+                    attr.GetTextBoxAttr().GetBorder().GetRight() = adjacentCellRight->GetAttributes().GetTextBoxAttr().GetBorder().GetLeft();
+                }
+            }
+
+            // Compute bottom border
+            wxRichTextCell* adjacentCellBelow = NULL;
+            for (i = row+1; i < table->GetRowCount(); i++)
+            {
+                wxRichTextCell* cell = table->GetCell(i, col);
+                if (cell->IsShown())
+                {
+                    adjacentCellBelow = cell;
+                    break;
+                }
+            }
+            // If no adjacent cell (either because they were hidden or at the edge of the table)
+            // then we must reset the border
+            if (!adjacentCellBelow)
+                attr.GetTextBoxAttr().GetBorder().GetBottom().Reset();
+            else
+            {
+                if (!attr.GetTextBoxAttr().GetBorder().GetBottom().IsValid() ||
+                    attr.GetTextBoxAttr().GetBorder().GetBottom().GetWidth().GetValue() == 0)
+                {
+                    attr.GetTextBoxAttr().GetBorder().GetBottom() = adjacentCellBelow->GetAttributes().GetTextBoxAttr().GetBorder().GetTop();
+                }
+            }
+        }
+    }
+
+    return true;
+}
+
+/// Copy
+void wxRichTextCell::Copy(const wxRichTextCell& obj)
+{
+    wxRichTextBox::Copy(obj);
+}
+
+// Edit properties via a GUI
+bool wxRichTextCell::EditProperties(wxWindow* parent, wxRichTextBuffer* buffer)
+{
+    wxRichTextObject::AdjustAttributes(attr, context);
+
+    wxRichTextTable* table = wxDynamicCast(GetParent(), wxRichTextTable);
     if (IsShown() && table && table->GetAttributes().GetTextBoxAttr().HasCollapseBorders() &&
         table->GetAttributes().GetTextBoxAttr().GetCollapseBorders() == wxTEXT_BOX_ATTR_COLLAPSE_FULL)
     {
@@ -10081,14 +10161,8 @@ bool wxRichTextTable::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
         int colCount = GetColumnCount();
         int rowCount = GetRowCount();
         int col, row;
-#if defined(__INTEL_COMPILER) // VDM auto patch
-#   pragma ivdep
-#endif
         for (col = 0; col < colCount; col++)
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
-#   pragma ivdep
-#endif
             for (row = 0; row < rowCount; row++)
             {
                 if (row == 0 || row == (rowCount-1) || col == 0 || col == (colCount-1))
@@ -10115,7 +10189,7 @@ bool wxRichTextTable::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
                             wxRect contentRect, borderRect, paddingRect, outlineRect;
 
                             cell->GetBoxRects(dc, GetBuffer(), attr, marginRect, borderRect, contentRect, paddingRect, outlineRect);
-                            cell->DrawBorder(dc, GetBuffer(), attr, attr.GetTextBoxAttr().GetBorder(), borderRect);
+                            cell->DrawBorder(dc, GetBuffer(), attr.GetTextBoxAttr().GetBorder(), borderRect);
                         }
                     }
                 }
@@ -10528,6 +10602,12 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             wxRichTextBox* cell = GetCell(j, i);
             if (cell->IsShown())
             {
+                int cellTotalLeftMargin = 0, cellTotalRightMargin = 0, cellTotalTopMargin = 0, cellTotalBottomMargin = 0;
+                wxRichTextAttr cellAttr(cell->GetAttributes());
+                cell->AdjustAttributes(cellAttr, context);
+                GetTotalMargin(dc, buffer, cellAttr, cellTotalLeftMargin, cellTotalRightMargin, cellTotalTopMargin, cellTotalBottomMargin);
+
+                overallRowContentMargin += (cellTotalLeftMargin + cellTotalRightMargin);
                 visibleCellCount ++;
             }
         }
@@ -10642,6 +10722,12 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             wxRichTextBox* cell = GetCell(j, i);
             if (cell->IsShown())
             {
+                int cellTotalLeftMargin = 0, cellTotalRightMargin = 0, cellTotalTopMargin = 0, cellTotalBottomMargin = 0;
+                wxRichTextAttr cellAttr(cell->GetAttributes());
+                cell->AdjustAttributes(cellAttr, context);
+                GetTotalMargin(dc, buffer, cellAttr, cellTotalLeftMargin, cellTotalRightMargin, cellTotalTopMargin, cellTotalBottomMargin);
+
+                overallRowContentMargin += (cellTotalLeftMargin + cellTotalRightMargin);
                 visibleCellCount ++;
             }
         }
