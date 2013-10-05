@@ -9852,7 +9852,7 @@ bool wxRichTextCell::EditProperties(wxWindow* parent, wxRichTextBuffer* buffer)
 }
 
 // The next 2 methods return span values. Note that the default is 1, not 0
-int wxRichTextCell::GetColspan() const
+int wxRichTextCell::GetColSpan() const
 {
     int span = 1;
     if (GetProperties().HasProperty(wxT("colspan")))
@@ -9863,7 +9863,7 @@ int wxRichTextCell::GetColspan() const
     return span;
 }
 
-int wxRichTextCell::GetRowspan() const
+int wxRichTextCell::GetRowSpan() const
 {
     int span = 1;
     if (GetProperties().HasProperty(wxT("rowspan")))
@@ -9967,16 +9967,13 @@ int GetRowspanDisplacement(const wxRichTextTable* table, int row, int col, int p
                 wxRichTextCell* cell = table->GetCell(prevrow, prevcol);
                 if (cell && cell->IsShown())
                 {
-                    int rowSpan = cell->GetRowspan();
+                    int rowSpan = cell->GetRowSpan();
                     if (rowSpan > 1 && rowSpan > (row-prevrow))
                     {
                         // There is a rowspanning cell above above the hidden one, so we need
                         // to right-shift the index cell by this column's width. Furthermore, 
                         // if the cell also colspans, we need to shift by all affected columns
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-                        for (int colSpan = 0; colSpan < cell->GetColspan(); ++colSpan)
+                        for (int colSpan = 0; colSpan < cell->GetColSpan(); ++colSpan)
                             deltaX += (colWidths[prevcol+colSpan] + paddingX);
                         break;
                     }
@@ -10035,7 +10032,7 @@ void ExpandCellsWithRowspan(const wxRichTextTable* table, int paddingY, int& bot
             wxRichTextCell* cell = table->GetCell(row, col);
             if (cell && cell->IsShown())
             {
-                int span = cell->GetRowspan();
+                int span = cell->GetRowSpan();
                 if (span > 1)
                 {
                     span = wxMin(span, rowCount-row); // Don't try to span below the table!
@@ -10107,7 +10104,7 @@ void ExpandCellsWithRowspan(const wxRichTextTable* table, int paddingY, int& bot
                 wxPoint position(cell->GetPosition().x, rowTops[row]);
 
                 // GetRowspan() will usually return 1, but may be greater
-                wxSize size(cell->GetCachedSize().GetWidth(), rowTops[row + cell->GetRowspan()] - rowTops[row] - paddingY);
+                wxSize size(cell->GetCachedSize().GetWidth(), rowTops[row + cell->GetRowSpan()] - rowTops[row] - paddingY);
 
                 wxRect availableCellSpace = wxRect(position, size);
                 cell->Invalidate(wxRICHTEXT_ALL);
@@ -10261,8 +10258,8 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextCell* cell = GetCell(j, i);
-            int colSpan = cell->GetColspan();
-            int rowSpan = cell->GetRowspan();
+            int colSpan = cell->GetColSpan();
+            int rowSpan = cell->GetRowSpan();
             if (colSpan > 1 || rowSpan > 1)
             {
                 rectArray.Add(wxRect(i, j, colSpan, rowSpan));
@@ -10287,8 +10284,8 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             }
             else
             {
-                int colSpan = cell->GetColspan();
-                int rowSpan = cell->GetRowspan();
+                int colSpan = cell->GetColSpan();
+                int rowSpan = cell->GetRowSpan();
 
                 if (colSpan > 1 || rowSpan > 1)
                 {
@@ -10369,7 +10366,7 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             wxRichTextCell* cell = GetCell(j, i);
             if (cell->IsShown())
             {
-                int colSpan = cell->GetColspan();
+                int colSpan = cell->GetColSpan();
 
                 // Lay out cell to find min/max widths
                 cell->Invalidate(wxRICHTEXT_ALL);
@@ -10508,7 +10505,7 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             wxRichTextCell* cell = GetCell(j, i);
             if (cell->IsShown())
             {
-                int colSpan = cell->GetColspan();
+                int colSpan = cell->GetColSpan();
                 if (colSpan > 1)
                 {
                     int spans = wxMin(colSpan, m_colCount - i);
@@ -10722,7 +10719,7 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
                 if (colWidths[i] > 0) // absolute or proportional width has been specified
                 {
-                    int colSpan = cell->GetColspan();
+                    int colSpan = cell->GetColSpan();
                     wxRect availableCellSpace;
 
                     // Take into account spans
@@ -10759,7 +10756,7 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
                     // TODO: use GetCachedSize().x to compute 'natural' size
 
                     x += (availableCellSpace.GetWidth() + paddingX);
-                    if ((cell->GetCachedSize().y > maxCellHeight) && (cell->GetRowspan() < 2))
+                    if ((cell->GetCachedSize().y > maxCellHeight) && (cell->GetRowSpan() < 2))
                         maxCellHeight = cell->GetCachedSize().y;
                 }
             }
