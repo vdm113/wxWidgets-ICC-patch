@@ -255,8 +255,14 @@ local void tr_static_init()
 
     /* Initialize the mapping length (0..255) -> length code (0..28) */
     length = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (code = 0; code < LENGTH_CODES-1; code++) {
         base_length[code] = length;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (n = 0; n < (1<<extra_lbits[code]); n++) {
             _length_code[length++] = (uch)code;
         }
@@ -270,16 +276,28 @@ local void tr_static_init()
 
     /* Initialize the mapping dist (0..32K) -> dist code (0..29) */
     dist = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (code = 0 ; code < 16; code++) {
         base_dist[code] = dist;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (n = 0; n < (1<<extra_dbits[code]); n++) {
             _dist_code[dist++] = (uch)code;
         }
     }
     Assert (dist == 256, "tr_static_init: dist != 256");
     dist >>= 7; /* from now on, all distances are divided by 128 */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for ( ; code < D_CODES; code++) {
         base_dist[code] = dist << 7;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (n = 0; n < (1<<(extra_dbits[code]-7)); n++) {
             _dist_code[256 + dist++] = (uch)code;
         }
@@ -287,11 +305,26 @@ local void tr_static_init()
     Assert (dist == 256, "tr_static_init: 256+dist != 512");
 
     /* Construct the codes of the static literal tree */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (bits = 0; bits <= MAX_BITS; bits++) bl_count[bits] = 0;
     n = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (n <= 143) static_ltree[n++].Len = 8, bl_count[8]++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (n <= 255) static_ltree[n++].Len = 9, bl_count[9]++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (n <= 279) static_ltree[n++].Len = 7, bl_count[7]++;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (n <= 287) static_ltree[n++].Len = 8, bl_count[8]++;
     /* Codes 286 and 287 do not exist, but we must include them in the
      * tree construction to get a canonical Huffman tree (longest code
@@ -300,6 +333,9 @@ local void tr_static_init()
     gen_codes((ct_data *)static_ltree, L_CODES+1, bl_count);
 
     /* The static distance tree is trivial: */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0; n < D_CODES; n++) {
         static_dtree[n].Len = 5;
         static_dtree[n].Code = bi_reverse((unsigned)n, 5);
@@ -334,18 +370,27 @@ void gen_trees_header()
             "/* header created automatically with -DGEN_TREES_H */\n\n");
 
     fprintf(header, "local const ct_data static_ltree[L_CODES+2] = {\n");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < L_CODES+2; i++) {
         fprintf(header, "{{%3u},{%3u}}%s", static_ltree[i].Code,
                 static_ltree[i].Len, SEPARATOR(i, L_CODES+1, 5));
     }
 
     fprintf(header, "local const ct_data static_dtree[D_CODES] = {\n");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < D_CODES; i++) {
         fprintf(header, "{{%2u},{%2u}}%s", static_dtree[i].Code,
                 static_dtree[i].Len, SEPARATOR(i, D_CODES-1, 5));
     }
 
     fprintf(header, "const uch ZLIB_INTERNAL _dist_code[DIST_CODE_LEN] = {\n");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < DIST_CODE_LEN; i++) {
         fprintf(header, "%2u%s", _dist_code[i],
                 SEPARATOR(i, DIST_CODE_LEN-1, 20));
@@ -353,18 +398,27 @@ void gen_trees_header()
 
     fprintf(header,
         "const uch ZLIB_INTERNAL _length_code[MAX_MATCH-MIN_MATCH+1]= {\n");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < MAX_MATCH-MIN_MATCH+1; i++) {
         fprintf(header, "%2u%s", _length_code[i],
                 SEPARATOR(i, MAX_MATCH-MIN_MATCH, 20));
     }
 
     fprintf(header, "local const int base_length[LENGTH_CODES] = {\n");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < LENGTH_CODES; i++) {
         fprintf(header, "%1u%s", base_length[i],
                 SEPARATOR(i, LENGTH_CODES-1, 20));
     }
 
     fprintf(header, "local const int base_dist[D_CODES] = {\n");
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < D_CODES; i++) {
         fprintf(header, "%5u%s", base_dist[i],
                 SEPARATOR(i, D_CODES-1, 10));
@@ -411,8 +465,17 @@ local void init_block(s)
     int n; /* iterates over tree elements */
 
     /* Initialize the trees. */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0; n < L_CODES;  n++) s->dyn_ltree[n].Freq = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0; n < D_CODES;  n++) s->dyn_dtree[n].Freq = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0; n < BL_CODES; n++) s->bl_tree[n].Freq = 0;
 
     s->dyn_ltree[END_BLOCK].Freq = 1;
@@ -456,6 +519,9 @@ local void pqdownheap(s, tree, k)
 {
     int v = s->heap[k];
     int j = k << 1;  /* left son of k */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (j <= s->heap_len) {
         /* Set j to the smallest of the two sons: */
         if (j < s->heap_len &&
@@ -501,6 +567,9 @@ local void gen_bitlen(s, desc)
     ush f;              /* frequency */
     int overflow = 0;   /* number of elements with bit length too large */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (bits = 0; bits <= MAX_BITS; bits++) s->bl_count[bits] = 0;
 
     /* In a first pass, compute the optimal bit lengths (which may
@@ -508,6 +577,9 @@ local void gen_bitlen(s, desc)
      */
     tree[s->heap[s->heap_max]].Len = 0; /* root of the heap */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (h = s->heap_max+1; h < HEAP_SIZE; h++) {
         n = s->heap[h];
         bits = tree[tree[n].Dad].Len + 1;
@@ -530,8 +602,14 @@ local void gen_bitlen(s, desc)
     /* This happens for example on obj2 and pic of the Calgary corpus */
 
     /* Find the first bit length which could increase: */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do {
         bits = max_length-1;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (s->bl_count[bits] == 0) bits--;
         s->bl_count[bits]--;      /* move one leaf down the tree */
         s->bl_count[bits+1] += 2; /* move one overflow item as its brother */
@@ -547,8 +625,14 @@ local void gen_bitlen(s, desc)
      * lengths instead of fixing only the wrong ones. This idea is taken
      * from 'ar' written by Haruhiko Okumura.)
      */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (bits = max_length; bits != 0; bits--) {
         n = s->bl_count[bits];
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         while (n != 0) {
             m = s->heap[--h];
             if (m > max_code) continue;
@@ -584,6 +668,9 @@ local void gen_codes (tree, max_code, bl_count)
     /* The distribution counts are first used to generate the code values
      * without bit reversal.
      */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (bits = 1; bits <= MAX_BITS; bits++) {
         next_code[bits] = code = (code + bl_count[bits-1]) << 1;
     }
@@ -594,6 +681,9 @@ local void gen_codes (tree, max_code, bl_count)
             "inconsistent bit counts");
     Tracev((stderr,"\ngen_codes: max_code %d ", max_code));
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0;  n <= max_code; n++) {
         int len = tree[n].Len;
         if (len == 0) continue;
@@ -630,6 +720,9 @@ local void build_tree(s, desc)
      */
     s->heap_len = 0, s->heap_max = HEAP_SIZE;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0; n < elems; n++) {
         if (tree[n].Freq != 0) {
             s->heap[++(s->heap_len)] = max_code = n;
@@ -644,6 +737,9 @@ local void build_tree(s, desc)
      * possible code. So to avoid special checks later on we force at least
      * two codes of non zero frequency.
      */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (s->heap_len < 2) {
         node = s->heap[++(s->heap_len)] = (max_code < 2 ? ++max_code : 0);
         tree[node].Freq = 1;
@@ -656,12 +752,18 @@ local void build_tree(s, desc)
     /* The elements heap[heap_len/2+1 .. heap_len] are leaves of the tree,
      * establish sub-heaps of increasing lengths:
      */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = s->heap_len/2; n >= 1; n--) pqdownheap(s, tree, n);
 
     /* Construct the Huffman tree by repeatedly combining the least two
      * frequent nodes.
      */
     node = elems;              /* next internal node of the tree */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do {
         pqremove(s, tree, n);  /* n = node of least frequency */
         m = s->heap[SMALLEST]; /* m = node of next least frequency */
@@ -717,6 +819,9 @@ local void scan_tree (s, tree, max_code)
     if (nextlen == 0) max_count = 138, min_count = 3;
     tree[max_code+1].Len = (ush)0xffff; /* guard */
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0; n <= max_code; n++) {
         curlen = nextlen; nextlen = tree[n+1].Len;
         if (++count < max_count && curlen == nextlen) {
@@ -762,11 +867,17 @@ local void send_tree (s, tree, max_code)
     /* tree[max_code+1].Len = -1; */  /* guard already set */
     if (nextlen == 0) max_count = 138, min_count = 3;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0; n <= max_code; n++) {
         curlen = nextlen; nextlen = tree[n+1].Len;
         if (++count < max_count && curlen == nextlen) {
             continue;
         } else if (count < min_count) {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             do { send_code(s, curlen, s->bl_tree); } while (--count != 0);
 
         } else if (curlen != 0) {
@@ -816,6 +927,9 @@ local int build_bl_tree(s)
      * requires that at least 4 bit length codes be sent. (appnote.txt says
      * 3 but the actual value used is 4.)
      */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (max_blindex = BL_CODES-1; max_blindex >= 3; max_blindex--) {
         if (s->bl_tree[bl_order[max_blindex]].Len != 0) break;
     }
@@ -845,6 +959,9 @@ local void send_all_trees(s, lcodes, dcodes, blcodes)
     send_bits(s, lcodes-257, 5); /* not +255 as stated in appnote.txt */
     send_bits(s, dcodes-1,   5);
     send_bits(s, blcodes-4,  4); /* not -3 as stated in appnote.txt */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (rank = 0; rank < blcodes; rank++) {
         Tracev((stderr, "\nbl code %2d ", bl_order[rank]));
         send_bits(s, s->bl_tree[bl_order[rank]].Len, 3);
@@ -1035,6 +1152,9 @@ int ZLIB_INTERNAL _tr_tally (s, dist, lc)
         ulg out_length = (ulg)s->last_lit*8L;
         ulg in_length = (ulg)((long)s->strstart - s->block_start);
         int dcode;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (dcode = 0; dcode < D_CODES; dcode++) {
             out_length += (ulg)s->dyn_dtree[dcode].Freq *
                 (5L+extra_dbits[dcode]);
@@ -1127,6 +1247,9 @@ local int detect_data_type(s)
     int n;
 
     /* Check for non-textual ("black-listed") bytes. */
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 0; n <= 31; n++, black_mask >>= 1)
         if ((black_mask & 1) && (s->dyn_ltree[n].Freq != 0))
             return Z_BINARY;
@@ -1135,6 +1258,9 @@ local int detect_data_type(s)
     if (s->dyn_ltree[9].Freq != 0 || s->dyn_ltree[10].Freq != 0
             || s->dyn_ltree[13].Freq != 0)
         return Z_TEXT;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (n = 32; n < LITERALS; n++)
         if (s->dyn_ltree[n].Freq != 0)
             return Z_TEXT;
@@ -1155,6 +1281,9 @@ local unsigned bi_reverse(code, len)
     int len;       /* its bit length */
 {
     register unsigned res = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     do {
         res |= code & 1;
         code >>= 1, res <<= 1;
@@ -1218,6 +1347,9 @@ local void copy_block(s, buf, len, header)
     }
 #ifdef DEBUG
     s->bits_sent += (ulg)len<<3;
+#endif
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
 #endif
     while (len--) {
         put_byte(s, *buf++);
