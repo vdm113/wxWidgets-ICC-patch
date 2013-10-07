@@ -447,6 +447,7 @@ int _tmain(int argc, _TCHAR* argv[])
     ext.insert(".cc");
     ext.insert(".cpp");
     ext.insert(".cxx");
+    ext.insert(".C");
 
     TCHAR dir[MAX_PATH];
     if(!::GetCurrentDirectory(sizeof(dir) - 1, dir)) {
