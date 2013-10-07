@@ -323,6 +323,9 @@ void wxApp::MacPrintFiles(const wxArrayString & fileNames )
 {
     size_t i;
     const size_t fileCount = fileNames.GetCount();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < fileCount; i++)
     {
         MacPrintFile(fileNames[i]);

@@ -203,7 +203,7 @@
       <OutputFile>$(OutDir)wxpngd.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
-      <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxpng.bsc</OutputFile>
@@ -255,7 +255,7 @@
       <OutputFile>$(OutDir)wxpngd.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
-      <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxpng.bsc</OutputFile>
@@ -306,7 +306,7 @@
       <OutputFile>$(OutDir)wxpng.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
-      <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxpng.bsc</OutputFile>
@@ -357,7 +357,7 @@
       <OutputFile>$(OutDir)wxpng.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
-      <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxpng.bsc</OutputFile>
@@ -409,7 +409,7 @@
       <OutputFile>$(OutDir)wxpngd.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
-      <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxpng.bsc</OutputFile>
@@ -461,7 +461,7 @@
       <OutputFile>$(OutDir)wxpngd.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
-      <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxpng.bsc</OutputFile>
@@ -512,7 +512,7 @@
       <OutputFile>$(OutDir)wxpng.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
-      <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxpng.bsc</OutputFile>
@@ -563,7 +563,7 @@
       <OutputFile>$(OutDir)wxpng.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
-      <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Qvec-report2 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_wxpng.bsc</OutputFile>
