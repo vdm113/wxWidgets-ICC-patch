@@ -728,9 +728,6 @@ long wxExecute(char **argv, int flags, wxProcess *process,
         //
         //     Application Specific Information:
         //     BUG IN CLIENT OF LIBDISPATCH: Do not close random Unix descriptors
-#if defined(__INTEL_COMPILER) // VDM auto patch
-#   pragma ivdep
-#endif
         for ( int fd = 0; fd < (int)FD_SETSIZE; ++fd )
         {
             if ( fd != STDIN_FILENO  &&
