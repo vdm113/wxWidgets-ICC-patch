@@ -369,6 +369,9 @@ int main (int argc, char **argv)
 
    XEvent event;
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
    while (!quit)
    {
       XtAppNextEvent (appContext, &event);
