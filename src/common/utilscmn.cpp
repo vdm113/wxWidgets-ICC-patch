@@ -639,7 +639,11 @@ static bool ReadAll(wxInputStream *is, wxArrayString& output)
     // Notice that wxTextInputStream doesn't work correctly with wxConvAuto
     // currently, see #14720, so use the current locale conversion explicitly
     // under assumption that any external program should be using it too.
-    wxTextInputStream tis(*is, " \t", wxConvLibc);
+    wxTextInputStream tis(*is, " \t"
+#if wxUSE_UNICODE
+                                    , wxConvLibc
+#endif
+                                                );
 
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
