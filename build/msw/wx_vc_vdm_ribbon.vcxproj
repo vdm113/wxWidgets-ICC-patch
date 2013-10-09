@@ -45,7 +45,9 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>true</UseIntelIPP>
+    <UseIntelIPP>false</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -53,7 +55,9 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>true</UseIntelIPP>
+    <UseIntelIPP>false</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -61,7 +65,9 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>true</UseIntelIPP>
+    <UseIntelIPP>false</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -69,7 +75,9 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>true</UseIntelIPP>
+    <UseIntelIPP>false</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -77,7 +85,9 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>true</UseIntelIPP>
+    <UseIntelIPP>false</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -85,7 +95,9 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>true</UseIntelIPP>
+    <UseIntelIPP>false</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -93,7 +105,9 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>true</UseIntelIPP>
+    <UseIntelIPP>false</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -101,7 +115,9 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
     <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>true</UseIntelIPP>
+    <UseIntelIPP>false</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -212,6 +228,7 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
+      <OpenMP>None</OpenMP>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -266,6 +283,7 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
+      <OpenMP>None</OpenMP>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -319,6 +337,7 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
+      <OpenMP>None</OpenMP>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -372,6 +391,7 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
+      <OpenMP>None</OpenMP>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -427,6 +447,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
+      <OpenMP>None</OpenMP>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw30ud_ribbon;WXUSINGDLL;WXMAKINGDLL_RIBBON;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -493,6 +514,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
+      <OpenMP>None</OpenMP>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw30ud_ribbon;WXUSINGDLL;WXMAKINGDLL_RIBBON;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -557,6 +579,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
+      <OpenMP>None</OpenMP>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw30u_ribbon;WXUSINGDLL;WXMAKINGDLL_RIBBON;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -622,6 +645,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
+      <OpenMP>None</OpenMP>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw30u_ribbon;WXUSINGDLL;WXMAKINGDLL_RIBBON;%(PreprocessorDefinitions)</PreprocessorDefinitions>
