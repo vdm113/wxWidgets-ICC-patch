@@ -19,6 +19,7 @@
 #include <sstream>
 #include <vector>
 #include <cassert>
+#include <conio.h>
 #include <Windows.h>
 
 using namespace std;
@@ -431,7 +432,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
         if(usage) {
             fprintf(stderr,"Usage: switch '-p' patches, switch '-u' unpatches.\nPress any key to exit.\n");
-            getchar();
+            getch();
             return 0;
         }
     }
@@ -459,6 +460,6 @@ int _tmain(int argc, _TCHAR* argv[])
 
     printf("%u occurences processed. Press any key to exit.\n",cnt);
 
-    getchar();
+    getch();
 }
 
