@@ -10599,12 +10599,6 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             wxRichTextBox* cell = GetCell(j, i);
             if (cell->IsShown())
             {
-                int cellTotalLeftMargin = 0, cellTotalRightMargin = 0, cellTotalTopMargin = 0, cellTotalBottomMargin = 0;
-                wxRichTextAttr cellAttr(cell->GetAttributes());
-                cell->AdjustAttributes(cellAttr, context);
-                GetTotalMargin(dc, buffer, cellAttr, cellTotalLeftMargin, cellTotalRightMargin, cellTotalTopMargin, cellTotalBottomMargin);
-
-                overallRowContentMargin += (cellTotalLeftMargin + cellTotalRightMargin);
                 visibleCellCount ++;
             }
         }
@@ -10718,12 +10712,6 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             wxRichTextBox* cell = GetCell(j, i);
             if (cell->IsShown())
             {
-                int cellTotalLeftMargin = 0, cellTotalRightMargin = 0, cellTotalTopMargin = 0, cellTotalBottomMargin = 0;
-                wxRichTextAttr cellAttr(cell->GetAttributes());
-                cell->AdjustAttributes(cellAttr, context);
-                GetTotalMargin(dc, buffer, cellAttr, cellTotalLeftMargin, cellTotalRightMargin, cellTotalTopMargin, cellTotalBottomMargin);
-
-                overallRowContentMargin += (cellTotalLeftMargin + cellTotalRightMargin);
                 visibleCellCount ++;
             }
         }
@@ -10767,7 +10755,7 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
                             // then we simply stop constraining the columns; instead, we'll just fit the spanning
                             // cells to the columns later.
                             cellWidth = cell->GetMinSize().x;
-
+                            
                             if (cell->GetMaxSize().x > cellWidth)
                                 cellWidth = cell->GetMaxSize().x;
                         }
