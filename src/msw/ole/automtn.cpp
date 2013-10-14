@@ -70,6 +70,7 @@ wxAutomationObject::wxAutomationObject(WXIDISPATCH* dispatchPtr)
 {
     m_dispatchPtr = dispatchPtr;
     m_lcid = LOCALE_SYSTEM_DEFAULT;
+    m_convertVariantFlags = wxOleConvertVariant_Default;
 }
 
 wxAutomationObject::~wxAutomationObject()
@@ -223,7 +224,7 @@ bool wxAutomationObject::Invoke(const wxString& member, int action,
         if (vReturnPtr)
         {
             // Convert result to wxVariant form
-            if (!wxConvertOleToVariant(vReturn, retValue))
+            if (!wxConvertOleToVariant(vReturn, retValue, m_convertVariantFlags))
                 return false;
             // Mustn't release the dispatch pointer
             if (vReturn.vt == VT_DISPATCH)
@@ -483,6 +484,7 @@ bool wxAutomationObject::GetObject(wxAutomationObject& obj, const wxString& prop
     {
         obj.SetDispatchPtr(dispatch);
         obj.SetLCID(GetLCID());
+        obj.SetConvertVariantFlags(GetConvertVariantFlags());
         return true;
     }
     else
@@ -497,6 +499,7 @@ bool wxAutomationObject::GetObject(wxAutomationObject& obj, const wxString& prop
     {
         obj.SetDispatchPtr(dispatch);
         obj.SetLCID(GetLCID());
+        obj.SetConvertVariantFlags(GetConvertVariantFlags());
         return true;
     }
     else
@@ -615,6 +618,17 @@ void wxAutomationObject::SetLCID(LCID lcid)
 {
     m_lcid = lcid;
 }
+
+long wxAutomationObject::GetConvertVariantFlags() const
+{
+    return m_convertVariantFlags;
+}
+
+void wxAutomationObject::SetConvertVariantFlags(long flags)
+{
+    m_convertVariantFlags = flags;
+}
+
 
 static void
 ShowException(const wxString& member,
