@@ -103,6 +103,9 @@ local void make_crc_table()
 
         /* make exclusive-or pattern from polynomial (0xedb88320UL) */
         poly = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (n = 0; n < (int)(sizeof(p)/sizeof(unsigned char)); n++)
             poly |= (z_crc_t)1 << (31 - p[n]);
 
@@ -112,6 +115,9 @@ local void make_crc_table()
 #endif
         for (n = 0; n < 256; n++) {
             c = (z_crc_t)n;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (k = 0; k < 8; k++)
                 c = c & 1 ? poly ^ (c >> 1) : c >> 1;
             crc_table[0][n] = c;
@@ -126,6 +132,9 @@ local void make_crc_table()
         for (n = 0; n < 256; n++) {
             c = crc_table[0][n];
             crc_table[4][n] = ZSWAP32(c);
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (k = 1; k < 4; k++) {
                 c = crc_table[0][c & 0xff] ^ (c >> 8);
                 crc_table[k][n] = c;
@@ -280,6 +289,9 @@ local unsigned long crc32_little(crc, buf, len)
     }
 
     buf4 = (const z_crc_t FAR *)(const void FAR *)buf;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     while (len >= 32) {
         DOLIT32;
         len -= 32;

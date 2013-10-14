@@ -9721,19 +9721,37 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
         table->GetAttributes().GetTextBoxAttr().GetCollapseBorders() == wxTEXT_BOX_ATTR_COLLAPSE_FULL)
     {
         // Collapse borders:
-        // (1) Reset left and top for all cells;
-        // (2) for bottom and right, ignore if at edge of table, otherwise
-        //     use this cell's border if present, otherwise adjacent border if not.
+        // (1) Reset left and top for all cells unless there is no table border there;
+        // (2) for bottom and right, reset if at edge of table and there are no table borders,
+        //     otherwise use this cell's border if present, otherwise adjacent border if not.
         // Takes into account spanning by checking if adjacent cells are shown.
         int row, col;
         if (table->GetCellRowColumnPosition(GetRange().GetStart(), row, col))
         {
-            attr.GetTextBoxAttr().GetBorder().GetLeft().Reset();
-            attr.GetTextBoxAttr().GetBorder().GetTop().Reset();
+            if (col == 0)
+            {
+                // Only remove the cell border on the left edge if we have a table border
+                if (table->GetAttributes().GetTextBoxAttr().GetBorder().GetLeft().IsValid())
+                    attr.GetTextBoxAttr().GetBorder().GetLeft().Reset();
+            }
+            else
+                attr.GetTextBoxAttr().GetBorder().GetLeft().Reset();
+
+            if (row == 0)
+            {
+                // Only remove the cell border on the top edge if we have a table border
+                if (table->GetAttributes().GetTextBoxAttr().GetBorder().GetTop().IsValid())
+                    attr.GetTextBoxAttr().GetBorder().GetTop().Reset();
+            }
+            else
+                attr.GetTextBoxAttr().GetBorder().GetTop().Reset();
 
             // Compute right border
             wxRichTextCell* adjacentCellRight = NULL;
             int i;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = col+1; i < table->GetColumnCount(); i++)
             {
                 wxRichTextCell* cell = table->GetCell(row, i);
@@ -9744,9 +9762,12 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
                 }
             }
             // If no adjacent cell (either because they were hidden or at the edge of the table)
-            // then we must reset the border
+            // then we must reset the border, if there's a right table border.
             if (!adjacentCellRight)
-                attr.GetTextBoxAttr().GetBorder().GetRight().Reset();
+            {
+                if (table->GetAttributes().GetTextBoxAttr().GetBorder().GetRight().IsValid())
+                    attr.GetTextBoxAttr().GetBorder().GetRight().Reset();
+            }
             else
             {
                 if (!attr.GetTextBoxAttr().GetBorder().GetRight().IsValid() ||
@@ -9758,6 +9779,9 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
 
             // Compute bottom border
             wxRichTextCell* adjacentCellBelow = NULL;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (i = row+1; i < table->GetRowCount(); i++)
             {
                 wxRichTextCell* cell = table->GetCell(i, col);
@@ -9768,9 +9792,12 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
                 }
             }
             // If no adjacent cell (either because they were hidden or at the edge of the table)
-            // then we must reset the border
+            // then we must reset the border, if there's a bottom table border.
             if (!adjacentCellBelow)
-                attr.GetTextBoxAttr().GetBorder().GetBottom().Reset();
+            {
+                if (table->GetAttributes().GetTextBoxAttr().GetBorder().GetBottom().IsValid())
+                    attr.GetTextBoxAttr().GetBorder().GetBottom().Reset();
+            }
             else
             {
                 if (!attr.GetTextBoxAttr().GetBorder().GetBottom().IsValid() ||
@@ -9917,8 +9944,14 @@ bool wxRichTextTable::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
         int colCount = GetColumnCount();
         int rowCount = GetRowCount();
         int col, row;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (col = 0; col < colCount; col++)
         {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
             for (row = 0; row < rowCount; row++)
             {
                 if (row == 0 || row == (rowCount-1) || col == 0 || col == (colCount-1))
@@ -9992,6 +10025,9 @@ int GetRowspanDisplacement(const wxRichTextTable* table, int row, int col, int p
                         // There is a rowspanning cell above above the hidden one, so we need
                         // to right-shift the index cell by this column's width. Furthermore, 
                         // if the cell also colspans, we need to shift by all affected columns
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                         for (int colSpan = 0; colSpan < cell->GetColSpan(); ++colSpan)
                             deltaX += (colWidths[prevcol+colSpan] + paddingX);
                         break;
@@ -10425,6 +10461,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     }
 
     // (2) Allocate initial column widths from minimum widths, absolute values and proportions
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         if (absoluteColWidths[i] > 0)
