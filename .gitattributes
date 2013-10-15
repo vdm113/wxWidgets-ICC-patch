@@ -8,6 +8,10 @@
 *.icproj        text eol=crlf
 *.cmd           text eol=crlf
 *.bat           text eol=crlf
+*.vc            text eol=crlf
+*.wat           text eol=crlf
+*.tgt           text eol=crlf
+*.bcc           text eol=crlf
 
 *.sh            text eol=lf
 *.awk           text eol=lf
