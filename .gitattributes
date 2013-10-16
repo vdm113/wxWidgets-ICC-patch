@@ -24,4 +24,4 @@
 *.C             text eol=lf
 
 *.mm            text eol=lf
-*.txt           text eol=auto
+*.txt           text=auto
