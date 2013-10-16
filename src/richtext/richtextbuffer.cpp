@@ -9818,7 +9818,7 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
     wxRichTextObject::AdjustAttributes(attr, context);
 
     wxRichTextTable* table = wxDynamicCast(GetParent(), wxRichTextTable);
-    if (table && table->GetAttributes().GetTextBoxAttr().HasCollapseBorders() &&
+    if (IsShown() && table && table->GetAttributes().GetTextBoxAttr().HasCollapseBorders() &&
         table->GetAttributes().GetTextBoxAttr().GetCollapseBorders() == wxTEXT_BOX_ATTR_COLLAPSE_FULL)
     {
         // Collapse borders:
@@ -9833,17 +9833,40 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
             attr.GetTextBoxAttr().GetBorder().GetTop().Reset();
 
             // Compute right border
+
+            // We need to explicity look at the spans, not just whether
+            // the cell is visible, because that doesn't tell us which
+            // cell to look at for border information.
             wxRichTextCell* adjacentCellRight = NULL;
-            int i;
-            for (i = col+1; i < table->GetColumnCount(); i++)
+
+            int nextCol = col + GetColSpan();
+            if  (nextCol >= table->GetColumnCount())
             {
-                wxRichTextCell* cell = table->GetCell(row, i);
-                if (cell->IsShown())
+                // Do nothing - at edge of table
+            }
+            else
+            {
+                wxRichTextCell* nextRightCell = table->GetCell(row, nextCol);
+                if (nextRightCell->IsShown())
                 {
-                    adjacentCellRight = cell;
-                    break;
+                    adjacentCellRight = nextRightCell;
+                }
+                else
+                {
+                    // Must be hidden by a rowspan above. Go hunting for it.
+                    int r;
+                    for (r = row-1; r >= 0; r--)
+                    {
+                        nextRightCell = table->GetCell(r, nextCol);
+                        if (nextRightCell->IsShown())
+                        {
+                            adjacentCellRight = nextRightCell;
+                            break;
+                        }
+                    }
                 }
             }
+
             // If no adjacent cell (either because they were hidden or at the edge of the table)
             // then we must reset the border
             if (!adjacentCellRight)
@@ -9859,15 +9882,35 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
 
             // Compute bottom border
             wxRichTextCell* adjacentCellBelow = NULL;
-            for (i = row+1; i < table->GetRowCount(); i++)
+
+            int nextRow = row + GetRowSpan();
+            if  (nextRow >= table->GetRowCount())
             {
-                wxRichTextCell* cell = table->GetCell(i, col);
-                if (cell->IsShown())
+                // Do nothing - at edge of table
+            }
+            else
+            {
+                wxRichTextCell* nextBottomCell = table->GetCell(col, nextRow);
+                if (nextBottomCell->IsShown())
                 {
-                    adjacentCellBelow = cell;
-                    break;
+                    adjacentCellBelow = nextBottomCell;
+                }
+                else
+                {
+                    // Must be hidden by a colspan to the left. Go hunting for it.
+                    int c;
+                    for (c = col-1; c >= 0; c--)
+                    {
+                        nextBottomCell = table->GetCell(nextRow, c);
+                        if (nextBottomCell->IsShown())
+                        {
+                            adjacentCellBelow = nextBottomCell;
+                            break;
+                        }
+                    }
                 }
             }
+
             // If no adjacent cell (either because they were hidden or at the edge of the table)
             // then we must reset the border
             if (!adjacentCellBelow)
@@ -14412,7 +14455,7 @@ int wxTextAttrDimensionConverter::GetPixels(const wxTextAttrDimension& dim, int 
         }
 
         // Scaling is used in e.g. printing
-        if (m_scale != 1.0 && dim.GetUnits() != wxTEXT_ATTR_UNITS_PIXELS && dim.GetUnits() != wxTEXT_ATTR_UNITS_PERCENTAGE)
+        if (m_scale != 1.0)
             pixelsDouble /= m_scale;
 
         int pixelsInt = int(pixelsDouble + 0.5);
