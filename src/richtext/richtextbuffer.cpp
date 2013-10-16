@@ -9772,6 +9772,9 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
                 {
                     // Must be hidden by a rowspan above. Go hunting for it.
                     int r;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (r = row-1; r >= 0; r--)
                     {
                         nextRightCell = table->GetCell(r, nextCol);
@@ -9819,6 +9822,9 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
                 {
                     // Must be hidden by a colspan to the left. Go hunting for it.
                     int c;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                     for (c = col-1; c >= 0; c--)
                     {
                         nextBottomCell = table->GetCell(nextRow, c);
