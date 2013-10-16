@@ -414,19 +414,28 @@ next_entry:
 int _tmain(int argc, _TCHAR* argv[])
 {
     bool do_patch;
+    bool do_nowait=false;
 
     {
         bool usage=false;
 
-        if(argc!=2) {
+        if(argc<2) {
             usage=true;
         } else {
-            if(strcmp(argv[1],"-p")==0) {
-                do_patch=true;
-            } else if(strcmp(argv[1],"-u")==0) {
-                do_patch=false;
-            } else {
-                usage=true;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
+            for(size_t i1=1; i1<argc; ++i1) {
+                if(strcmp(argv[i1],"-p")==0) {
+                    do_patch=true;
+                } else if(strcmp(argv[i1],"-u")==0) {
+                    do_patch=false;
+                } else if(strcmp(argv[i1],"--no-wait")==0) {
+                    do_nowait=true;
+                } else {
+                    usage=true;
+                    break;
+                }
             }
         }
 
@@ -458,8 +467,11 @@ int _tmain(int argc, _TCHAR* argv[])
     d.append("\\..\\*");
     unsigned cnt=directory_recurse(".",d,d,do_patch);
 
-    printf("%u occurences processed. Press any key to exit.\n",cnt);
+    if(!do_nowait) {
+        printf("%u occurences processed. Press any key to exit.\n",cnt);
+        getch();
+    }
 
-    getch();
+    return 0;
 }
 
