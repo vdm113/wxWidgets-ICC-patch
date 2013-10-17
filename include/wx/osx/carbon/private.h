@@ -20,11 +20,6 @@
 #ifndef _WX_PRIVATE_H_
 #define _WX_PRIVATE_H_
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED < MAC_OS_X_VERSION_10_5
-typedef UInt32 URefCon;
-typedef SInt32 SRefCon;
-#endif
-
 #if wxUSE_GUI
 
 #include "wx/osx/uma.h"
@@ -35,10 +30,6 @@ typedef SInt32 SRefCon;
 #include "wx/osx/dcmemory.h"
 
 // app.h
-
-#if MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_5
-bool wxMacConvertEventToRecord( EventRef event , EventRecord *rec);
-#endif
 
 #endif // wxUSE_GUI
 
@@ -275,12 +266,6 @@ WXDLLIMPEXP_CORE Rect wxMacGetBoundsForControl( wxWindowMac* window , const wxPo
 ControlActionUPP GetwxMacLiveScrollbarActionProc();
 
 // additional optional event defines
-
-#if MAC_OS_X_VERSION_MAX_ALLOWED < MAC_OS_X_VERSION_10_5
-enum {
-    kEventControlFocusPartChanged = 164
-};
-#endif
 
 class WXDLLIMPEXP_CORE wxMacControl : public wxWidgetImpl
 {
