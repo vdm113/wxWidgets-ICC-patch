@@ -48,7 +48,6 @@
  * text rendering system
  */
 
-#define wxOSX_USE_CORE_TEXT 1
 #define wxOSX_USE_ATSU_TEXT 0
 
 /*

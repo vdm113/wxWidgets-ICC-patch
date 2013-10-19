@@ -159,9 +159,7 @@ public:
     CGFontRef OSXGetCGFont() const;
 #endif
 
-#if wxOSX_USE_CORE_TEXT
     CTFontRef OSXGetCTFont() const;
-#endif
 
 #if wxOSX_USE_ATSU_TEXT
     // Returns an ATSUStyle not ATSUStyle*
