@@ -2437,9 +2437,6 @@ void wxMacCoreGraphicsContext::GetPartialTextExtents(const wxString& text, wxArr
     wxCFRef<CTLineRef> line( CTLineCreateWithAttributedString(attrtext) );
 
     int chars = text.length();
-#if defined(__INTEL_COMPILER) // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int pos = 0; pos < (int)chars; pos ++ )
     {
         widths[pos] = CTLineGetOffsetForStringIndex( line, pos+1 , NULL );
