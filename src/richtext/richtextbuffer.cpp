@@ -11879,6 +11879,21 @@ bool wxRichTextAction::Do()
             CalculateRefreshOptimizations(optimizationLineCharPositions, optimizationLineYPositions);
 #endif
 
+            // Check if the current object focus needs to be changed before deletion of content
+            if (m_ctrl)
+            {
+                wxRichTextObject* c = m_ctrl->GetFocusObject();
+                while (c)
+                {
+                    if (c == container)
+                    {
+                        m_ctrl->StoreFocusObject(container);
+                        break;
+                    }
+                    c = c->GetParent();
+                }
+            }
+
             container->DeleteRange(GetRange());
             container->UpdateRanges();
             // InvalidateHierarchy goes up the hierarchy as well as down, otherwise with a nested object,
@@ -12036,6 +12051,21 @@ bool wxRichTextAction::Undo()
 #if wxRICHTEXT_USE_OPTIMIZED_DRAWING
             CalculateRefreshOptimizations(optimizationLineCharPositions, optimizationLineYPositions);
 #endif
+
+            // Check if the current object focus needs to be changed before deletion of content
+            if (m_ctrl)
+            {
+                wxRichTextObject* c = m_ctrl->GetFocusObject();
+                while (c)
+                {
+                    if (c == container)
+                    {
+                        m_ctrl->StoreFocusObject(container);
+                        break;
+                    }
+                    c = c->GetParent();
+                }
+            }
 
             container->DeleteRange(GetRange());
             container->UpdateRanges();
