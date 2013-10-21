@@ -1548,7 +1548,7 @@ public:
     */
     virtual bool HasCharacterAttributes(const wxRichTextRange& range, const wxRichTextAttr& style) const
     {
-        return GetBuffer().HasCharacterAttributes(range.ToInternal(), style);
+        return GetFocusObject()->HasCharacterAttributes(range.ToInternal(), style);
     }
 
     /**
@@ -1559,7 +1559,7 @@ public:
     */
     virtual bool HasParagraphAttributes(const wxRichTextRange& range, const wxRichTextAttr& style) const
     {
-        return GetBuffer().HasParagraphAttributes(range.ToInternal(), style);
+        return GetFocusObject()->HasParagraphAttributes(range.ToInternal(), style);
     }
 
     /**
