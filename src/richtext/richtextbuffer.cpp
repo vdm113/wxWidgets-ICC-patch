@@ -11887,6 +11887,9 @@ bool wxRichTextAction::Do()
             if (m_ctrl)
             {
                 wxRichTextObject* c = m_ctrl->GetFocusObject();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (c)
                 {
                     if (c == container)
@@ -12060,6 +12063,9 @@ bool wxRichTextAction::Undo()
             if (m_ctrl)
             {
                 wxRichTextObject* c = m_ctrl->GetFocusObject();
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
                 while (c)
                 {
                     if (c == container)
