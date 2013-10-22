@@ -20,7 +20,7 @@ If you are using 32-bit ICC, or 64-bit one and you don't have enough RAM or time
 
 NB: Please, read file "BuildSVN.txt" in this directory as well. There are instructions for building from SVN, but as this GIT repository is regurarily updated from official SVN repository, and it is its fork, it is relevant to read it.
 
-NB: Please, checkout from this GIT repository by GIT's tag revision. They are considered as "stable". When I will check that SVN from upstream is compile-able without errors, then I test GUI, I will make a GIT tag like 'wx_svn_XXX' where "XXX" is the upstream/official SVN revision number. This is just to make you sure that this commit/tag is working well (upstream might do a mistake, we all are humans...).
+NB: I only support x64 builds, as Win32 builds are known to be broken. This is due ICC bug.
 
 Best regards,
 Marian 'VooDooMan' Meravy
