@@ -7,7 +7,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/richtext/richtextborderspage.h
-// Purpose:
+// Purpose:     A border editing page for the wxRTC formatting dialog.
 // Author:      Julian Smart
 // Modified by:
 // Created:     21/10/2010 11:34:24
@@ -18,7 +18,6 @@
 
 #ifndef _RICHTEXTBORDERSPAGE_H_
 #define _RICHTEXTBORDERSPAGE_H_
-
 
 /*!
  * Includes
@@ -85,6 +84,9 @@ public:
     virtual bool TransferDataToWindow();
     virtual bool TransferDataFromWindow();
 
+    /// Updates the synchronization checkboxes to reflect the state of the attributes
+    void UpdateSyncControls();
+
     /// Updates the preview
     void OnCommand(wxCommandEvent& event);
 
@@ -104,8 +106,20 @@ public:
     /// wxEVT_COMMAND_CHECKBOX_CLICKED event handler for ID_RICHTEXT_BORDER_LEFT_CHECKBOX
     void OnRichtextBorderCheckboxClick( wxCommandEvent& event );
 
+    /// wxEVT_COMMAND_TEXT_UPDATED event handler for ID_RICHTEXT_BORDER_LEFT
+    void OnRichtextBorderLeftValueTextUpdated( wxCommandEvent& event );
+
     /// wxEVT_UPDATE_UI event handler for ID_RICHTEXT_BORDER_LEFT
     void OnRichtextBorderLeftUpdate( wxUpdateUIEvent& event );
+
+    /// wxEVT_COMMAND_COMBOBOX_SELECTED event handler for ID_RICHTEXT_BORDER_LEFT_UNITS
+    void OnRichtextBorderLeftUnitsSelected( wxCommandEvent& event );
+
+    /// wxEVT_COMMAND_COMBOBOX_SELECTED event handler for ID_RICHTEXT_BORDER_LEFT_STYLE
+    void OnRichtextBorderLeftStyleSelected( wxCommandEvent& event );
+
+    /// wxEVT_UPDATE_UI event handler for ID_RICHTEXT_BORDER_RIGHT_CHECKBOX
+    void OnRichtextBorderOtherCheckboxUpdate( wxUpdateUIEvent& event );
 
     /// wxEVT_UPDATE_UI event handler for ID_RICHTEXT_BORDER_RIGHT
     void OnRichtextBorderRightUpdate( wxUpdateUIEvent& event );
@@ -116,8 +130,26 @@ public:
     /// wxEVT_UPDATE_UI event handler for ID_RICHTEXT_BORDER_BOTTOM
     void OnRichtextBorderBottomUpdate( wxUpdateUIEvent& event );
 
+    /// wxEVT_COMMAND_CHECKBOX_CLICKED event handler for ID_RICHTEXT_BORDER_SYNCHRONIZE
+    void OnRichtextBorderSynchronizeClick( wxCommandEvent& event );
+
+    /// wxEVT_UPDATE_UI event handler for ID_RICHTEXT_BORDER_SYNCHRONIZE
+    void OnRichtextBorderSynchronizeUpdate( wxUpdateUIEvent& event );
+
+    /// wxEVT_COMMAND_TEXT_UPDATED event handler for ID_RICHTEXT_OUTLINE_LEFT
+    void OnRichtextOutlineLeftTextUpdated( wxCommandEvent& event );
+
     /// wxEVT_UPDATE_UI event handler for ID_RICHTEXT_OUTLINE_LEFT
     void OnRichtextOutlineLeftUpdate( wxUpdateUIEvent& event );
+
+    /// wxEVT_COMMAND_COMBOBOX_SELECTED event handler for ID_RICHTEXT_OUTLINE_LEFT_UNITS
+    void OnRichtextOutlineLeftUnitsSelected( wxCommandEvent& event );
+
+    /// wxEVT_COMMAND_COMBOBOX_SELECTED event handler for ID_RICHTEXT_OUTLINE_LEFT_STYLE
+    void OnRichtextOutlineLeftStyleSelected( wxCommandEvent& event );
+
+    /// wxEVT_UPDATE_UI event handler for ID_RICHTEXT_OUTLINE_RIGHT_CHECKBOX
+    void OnRichtextOutlineOtherCheckboxUpdate( wxUpdateUIEvent& event );
 
     /// wxEVT_UPDATE_UI event handler for ID_RICHTEXT_OUTLINE_RIGHT
     void OnRichtextOutlineRightUpdate( wxUpdateUIEvent& event );
@@ -127,6 +159,12 @@ public:
 
     /// wxEVT_UPDATE_UI event handler for ID_RICHTEXT_OUTLINE_BOTTOM
     void OnRichtextOutlineBottomUpdate( wxUpdateUIEvent& event );
+
+    /// wxEVT_COMMAND_CHECKBOX_CLICKED event handler for ID_RICHTEXT_OUTLINE_SYNCHRONIZE
+    void OnRichtextOutlineSynchronizeClick( wxCommandEvent& event );
+
+    /// wxEVT_UPDATE_UI event handler for ID_RICHTEXT_OUTLINE_SYNCHRONIZE
+    void OnRichtextOutlineSynchronizeUpdate( wxUpdateUIEvent& event );
 
 ////@end wxRichTextBordersPage event handler declarations
 
@@ -163,6 +201,7 @@ public:
     wxComboBox* m_bottomBorderWidthUnits;
     wxComboBox* m_bottomBorderStyle;
     wxRichTextColourSwatchCtrl* m_bottomBorderColour;
+    wxCheckBox* m_borderSyncCtrl;
     wxCheckBox* m_leftOutlineCheckbox;
     wxTextCtrl* m_leftOutlineWidth;
     wxComboBox* m_leftOutlineWidthUnits;
@@ -183,6 +222,7 @@ public:
     wxComboBox* m_bottomOutlineWidthUnits;
     wxComboBox* m_bottomOutlineStyle;
     wxRichTextColourSwatchCtrl* m_bottomOutlineColour;
+    wxCheckBox* m_outlineSyncCtrl;
     wxRichTextBorderPreviewCtrl* m_borderPreviewCtrl;
     /// Control identifiers
     enum {
@@ -209,6 +249,7 @@ public:
         ID_RICHTEXT_BORDER_BOTTOM_UNITS = 10820,
         ID_RICHTEXT_BORDER_BOTTOM_STYLE = 10821,
         ID_RICHTEXT_BORDER_BOTTOM_COLOUR = 10822,
+        ID_RICHTEXT_BORDER_SYNCHRONIZE = 10845,
         ID_RICHTEXTBORDERSPAGE_OUTLINE = 10823,
         ID_RICHTEXT_OUTLINE_LEFT_CHECKBOX = 10824,
         ID_RICHTEXT_OUTLINE_LEFT = 10825,
@@ -230,6 +271,7 @@ public:
         ID_RICHTEXT_OUTLINE_BOTTOM_UNITS = 10841,
         ID_RICHTEXT_OUTLINE_BOTTOM_STYLE = 10842,
         ID_RICHTEXT_OUTLINE_BOTTOM_COLOUR = 10843,
+        ID_RICHTEXT_OUTLINE_SYNCHRONIZE = 10846,
         ID_RICHTEXT_BORDER_PREVIEW = 10844
     };
 ////@end wxRichTextBordersPage member variables
