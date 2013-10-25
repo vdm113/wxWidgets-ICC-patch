@@ -22,6 +22,8 @@
 
 #if wxUSE_GRID
 
+#include "wx/scopedptr.h"
+
 class wxGridCellEditorEvtHandler : public wxEvtHandler
 {
 public:
