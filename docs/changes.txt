@@ -619,6 +619,10 @@ wxGTK:
 
 - Fix DrawArc() when printing.
 
+wxGTK:
+
+- Fix DrawArc() when printing.
+
 wxMSW:
 
 - Optional better handling of SAFEARRAYs in wxAutomationObject (PB).
