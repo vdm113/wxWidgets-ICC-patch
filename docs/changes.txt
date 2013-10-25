@@ -557,8 +557,30 @@ Major new features in this release
   was added.
 
 
-3.0: (released 2013-09-??)
---------------------------
+3.0-RC2: (released 2013-10-xx)
+------------------------------
+
+All:
+
+- Add possibility to validate the input files against a schema to wxrc.
+- Fix recently broken compilation with Intel compiler.
+- Fix reading of files with Mac EOLs in wxTextFile.
+
+All (GUI):
+
+- Fix wxListEvent::GetData() in LLP64 builds.
+
+wxGTK:
+
+- Fix DrawArc() when printing.
+
+wxMSW:
+
+- Optional better handling of SAFEARRAYs in wxAutomationObject (PB).
+
+
+3.0-RC1: (released 2013-10-07)
+------------------------------
 
 All:
 
