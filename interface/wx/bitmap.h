@@ -185,7 +185,7 @@ public:
     is running and from the wxWidgets configuration.
     If all possible wxWidgets settings are used:
     - wxMSW supports BMP and ICO files, BMP and ICO resources;
-    - wxGTK supports XPM files;
+    - wxGTK supports any file supported by gdk-pixbuf;
     - wxMac supports PICT resources;
     - wxX11 supports XPM files, XPM data, XBM data;
 
@@ -340,11 +340,6 @@ public:
         The resulting bitmap will use the provided colour depth (or that of the
         current system if depth is ::wxBITMAP_SCREEN_DEPTH) which entails that a
         colour reduction may take place.
-
-        When in 8-bit mode (PseudoColour mode), the GTK port will use a color cube
-        created on program start-up to look up colors. This ensures a very fast conversion,
-        but the image quality won't be perfect (and could be better for photo images using
-        more sophisticated dithering algorithms).
 
         On Windows, if there is a palette present (set with SetPalette), it will be
         used when creating the wxBitmap (most useful in 8-bit display mode).
@@ -736,7 +731,7 @@ public:
     /**
         Constructs a mask from a bitmap and a palette index that indicates the
         background.
-        Not yet implemented for GTK.
+        Not implemented for GTK.
 
         @param bitmap
             A valid bitmap.
@@ -763,7 +758,7 @@ public:
     /**
         Constructs a mask from a bitmap and a palette index that indicates the
         background.
-        Not yet implemented for GTK.
+        Not implemented for GTK.
 
         @param bitmap
             A valid bitmap.
