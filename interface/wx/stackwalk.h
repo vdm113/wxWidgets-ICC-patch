@@ -88,7 +88,7 @@ public:
 
 protected:
     /**
-        This function must be overrided to process the given frame.
+        This function must be overidden to process the given frame.
     */
     virtual void OnStackFrame(const wxStackFrame& frame) = 0;
 };
