@@ -5447,6 +5447,14 @@ bool wxRichTextParagraph::Layout(wxDC& dc, wxRichTextDrawingContext& context, co
             node = node->GetNext();
         }
 
+        {
+            // Give the minimum width at least one character width
+            wxFont font(buffer->GetFontTable().FindFont(attr));
+            wxCheckSetFont(dc, font);
+            int charWidth = dc.GetCharWidth();
+            minWidth = wxMax(charWidth, minWidth);
+        }
+
         wxRect marginRect, borderRect, contentRect, paddingRect, outlineRect;
         contentRect = wxRect(wxPoint(0, 0), wxSize(minWidth, currentPosition.y + spaceAfterPara));
         GetBoxRects(dc, buffer, attr, marginRect, borderRect, contentRect, paddingRect, outlineRect);
@@ -10310,13 +10318,16 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     wxArrayInt maxUnspecifiedColumnWidths;
     maxUnspecifiedColumnWidths.Add(0, m_colCount);
 
-    // wxArrayInt percentageColWidthsSpanning(m_colCount);
-    // These are only relevant when the first column contains spanning information.
-    // wxArrayInt columnSpans(m_colCount); // Each contains 1 for non-spanning cell, > 1 for spanning cell.
     wxArrayInt maxColWidths;
     maxColWidths.Add(0, m_colCount);
+
     wxArrayInt minColWidths;
     minColWidths.Add(0, m_colCount);
+
+    // Separately record the minimum width of columns with
+    // nowrap cells
+    wxArrayInt minColWidthsNoWrap;
+    minColWidthsNoWrap.Add(0, m_colCount);
 
     wxSize tableSize(tableWidth, 0);
 
@@ -10328,13 +10339,11 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     for (i = 0; i < m_colCount; i++)
     {
         absoluteColWidths[i] = 0;
-        // absoluteColWidthsSpanning[i] = 0;
         percentageColWidths[i] = -1;
-        // percentageColWidthsSpanning[i] = -1;
         colWidths[i] = 0;
         maxColWidths[i] = 0;
         minColWidths[i] = 0;
-        // columnSpans[i] = 1;
+        minColWidthsNoWrap[i] = 0;
     }
 
     // (0) Determine which cells are visible according to spans
@@ -10510,15 +10519,19 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
                     if (colSpan == 1 && cell->GetMaxSize().x && cell->GetMaxSize().x > maxColWidths[i])
                         maxColWidths[i] = cell->GetMaxSize().x;
+
+                    if (cell->GetAttributes().GetTextBoxAttr().HasWhitespaceMode() &&
+                        (cell->GetAttributes().GetTextBoxAttr().GetWhitespaceMode() == wxTEXT_BOX_ATTR_WHITESPACE_NO_WRAP))
+                    {
+                        if (cell->GetMaxSize().x > minColWidthsNoWrap[i])
+                            minColWidthsNoWrap[i] = cell->GetMaxSize().x;
+                    }
                 }
             }
         }
     }
 
-    // (2) Allocate initial column widths from minimum widths, absolute values and proportions
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
+    // (2) Allocate initial column widths from absolute values and proportions
     for (i = 0; i < m_colCount; i++)
     {
         if (absoluteColWidths[i] > 0)
@@ -10529,8 +10542,6 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
         {
             colWidths[i] = percentageColWidths[i];
         }
-        else
-            colWidths[i] = maxUnspecifiedColumnWidths[i];
     }
 
     // (3) Process absolute or proportional widths of spanning columns,
@@ -10661,21 +10672,45 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     int tableWidthMinusPadding = internalTableWidth - (m_colCount-1)*paddingX;
     int widthLeft = tableWidthMinusPadding;
     int stretchColCount = 0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-    for (i = 0; i < m_colCount; i++)
-    {
-        // Subtract min width from width left, then
-        // add the colShare to the min width
-        if (colWidths[i] > 0) // absolute or proportional width has been specified
-            widthLeft -= colWidths[i];
-        else
-        {
-            if (minColWidths[i] > 0)
-                widthLeft -= minColWidths[i];
+    bool relaxConstraints = false;
 
-            stretchColCount ++;
+    size_t phase;
+    for (phase = 0; phase < 2; phase ++)
+    {
+        widthLeft = tableWidthMinusPadding;
+        stretchColCount = 0;
+        for (i = 0; i < m_colCount; i++)
+        {
+            // Subtract min width from width left, then
+            // add the colShare to the min width
+            if (colWidths[i] > 0) // absolute or proportional width has been specified
+                widthLeft -= colWidths[i];
+            else
+            {
+                int minColWidth = wxMax(minColWidths[i], minColWidthsNoWrap[i]);
+
+                // If we're at phase 2, it means we had insufficient space, so
+                // this time, don't take maxUnspecifiedColumnWidths into account
+                // since we will simply apportion the remaining space.
+                if (phase == 0)
+                    minColWidth = wxMax(minColWidth, maxUnspecifiedColumnWidths[i]);
+                if (minColWidth > 0)
+                    widthLeft -= minColWidth;
+
+                // Don't allow this to stretch if we're not wrapping; give the space
+                // to other columns instead.
+                if (minColWidthsNoWrap[i] == 0)
+                    stretchColCount ++;
+            }
+        }
+        if (widthLeft >= 0)
+            break;
+        else if (phase == 0)
+        {
+            relaxConstraints = true;
+
+            // If there was insufficient space, we're now shrinking to fit the available width.
+            stretchToFitTableWidth = true;
         }
     }
 
@@ -10685,6 +10720,23 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
         colShare = widthLeft / stretchColCount;
     int colShareRemainder = widthLeft - (colShare * stretchColCount);
 
+    // Check if any columns will go below their minimum width. If so, give
+    // up and size columns equally to avoid rendering problems.
+    if (colShare < 0)
+    {
+        for (i = 0; i < m_colCount; i++)
+        {
+            int w = colWidths[i];
+            if (w == 0)
+                w = wxMax(minColWidths[i], minColWidthsNoWrap[i]);
+            if ((w + colShare) < minColWidths[i])
+            {
+                stretchColCount = 0;
+                break;
+            }
+        }
+    }
+
     // Check we don't have enough space, in which case shrink all columns, overriding
     // any absolute/proportional widths
     // TODO: actually we would like to divide up the shrinkage according to size.
@@ -10692,38 +10744,60 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // Could first choose an arbitrary value for stretching cells, and then calculate
     // factors to multiply each width by.
     // TODO: want to record this fact and pass to an iteration that tries e.g. min widths
+    bool shareEqually = false;
     if (widthLeft < 0 || (stretchToFitTableWidth && (stretchColCount == 0)))
     {
-        colShare = tableWidthMinusPadding / m_colCount;
-        colShareRemainder = tableWidthMinusPadding - (colShare * m_colCount);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
+        if (stretchColCount == 0)
+        {
+            // No columns to stretch or squash, so give up and divide space equally
+            colShare = tableWidthMinusPadding / m_colCount;
+            colShareRemainder = tableWidthMinusPadding - (colShare * m_colCount);
+            shareEqually = true;
+        }
+
         for (i = 0; i < m_colCount; i++)
         {
             colWidths[i] = 0;
-            minColWidths[i] = 0;
         }
     }
 
     // We have to adjust the columns if either we need to shrink the
     // table to fit the parent/table width, or we explicitly set the
     // table width and need to stretch out the table.
-    if (widthLeft < 0 || stretchToFitTableWidth)
+    for (i = 0; i < m_colCount; i++)
     {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-        for (i = 0; i < m_colCount; i++)
+        if (colWidths[i] <= 0) // absolute or proportional width has not been specified
         {
-            if (colWidths[i] <= 0) // absolute or proportional width has not been specified
+            if (widthLeft < 0 || stretchToFitTableWidth)
             {
-                if (minColWidths[i] > 0)
-                    colWidths[i] = minColWidths[i] + colShare;
-                else
-                    colWidths[i] = colShare;
+                int minColWidth = wxMax(minColWidths[i], minColWidthsNoWrap[i]);
+
+                // Don't use a value for unspecified widths if we have insufficient space,
+                // unless it's a nowrap cell which is likely to be small.
+                // Actually this code is useless because if minColWidthsNoWrap exists,
+                // it'll be the same value as maxUnspecifiedColumnWidths.
+                if (!relaxConstraints)
+                    minColWidth = wxMax(minColWidth, maxUnspecifiedColumnWidths[i]);
+
+                if (minColWidth > 0 && !shareEqually)
+                    colWidths[i] = minColWidth;
+
+                // Don't allocate extra space if not wrapping since we assume a tight fit.
+                // Unless shareEqually forces us to distribute space because we didn't have any
+                // stretchable columns.
+                if ((minColWidthsNoWrap[i] == 0) || shareEqually)
+                    colWidths[i] += colShare;
+
                 if (i == (m_colCount-1))
                     colWidths[i] += colShareRemainder; // ensure all pixels are filled
+            }
+            else
+            {
+                // We're not stretching or shrinking, so calculate the column width
+                // consistent with how we calculated the remaining table width previously.
+                int minColWidth = wxMax(minColWidths[i], minColWidthsNoWrap[i]);
+                minColWidth = wxMax(minColWidth, maxUnspecifiedColumnWidths[i]);
+                colWidths[i] = minColWidth;
             }
         }
     }
@@ -13474,6 +13548,7 @@ void wxTextBoxAttr::Reset()
     m_flags = 0;
     m_floatMode = wxTEXT_BOX_ATTR_FLOAT_NONE;
     m_clearMode = wxTEXT_BOX_ATTR_CLEAR_NONE;
+    m_whitespaceMode = wxTEXT_BOX_ATTR_WHITESPACE_NONE;
     m_collapseMode = wxTEXT_BOX_ATTR_COLLAPSE_NONE;
     m_verticalAlignment = wxTEXT_BOX_ATTR_VERTICAL_ALIGNMENT_NONE;
     m_boxStyleName = wxEmptyString;
@@ -13497,6 +13572,7 @@ bool wxTextBoxAttr::operator== (const wxTextBoxAttr& attr) const
         m_flags == attr.m_flags &&
         m_floatMode == attr.m_floatMode &&
         m_clearMode == attr.m_clearMode &&
+        m_whitespaceMode == attr.m_whitespaceMode &&
         m_collapseMode == attr.m_collapseMode &&
         m_verticalAlignment == attr.m_verticalAlignment &&
 
@@ -13523,6 +13599,7 @@ bool wxTextBoxAttr::EqPartial(const wxTextBoxAttr& attr, bool weakTest) const
              (!HasClearMode() && attr.HasClearMode()) ||
              (!HasCollapseBorders() && attr.HasCollapseBorders()) ||
              (!HasVerticalAlignment() && attr.HasVerticalAlignment()) ||
+             (!HasWhitespaceMode() && attr.HasWhitespaceMode()) ||
              (!HasBoxStyleName() && attr.HasBoxStyleName())))
     {
         return false;
@@ -13537,6 +13614,9 @@ bool wxTextBoxAttr::EqPartial(const wxTextBoxAttr& attr, bool weakTest) const
         return false;
 
     if (attr.HasVerticalAlignment() && HasVerticalAlignment() && (attr.GetVerticalAlignment() != GetVerticalAlignment()))
+        return false;
+
+    if (attr.HasWhitespaceMode() && HasWhitespaceMode() && (GetWhitespaceMode() != attr.GetWhitespaceMode()))
         return false;
 
     if (attr.HasBoxStyleName() && HasBoxStyleName() && (attr.GetBoxStyleName() != GetBoxStyleName()))
@@ -13608,6 +13688,12 @@ bool wxTextBoxAttr::Apply(const wxTextBoxAttr& attr, const wxTextBoxAttr* compar
             SetVerticalAlignment(attr.GetVerticalAlignment());
     }
 
+    if (attr.HasWhitespaceMode())
+    {
+        if (!(compareWith && compareWith->HasWhitespaceMode() && compareWith->GetWhitespaceMode() == attr.GetWhitespaceMode()))
+            SetWhitespaceMode(attr.GetWhitespaceMode());
+    }
+
     if (attr.HasBoxStyleName())
     {
         if (!(compareWith && compareWith->HasBoxStyleName() && compareWith->GetBoxStyleName() == attr.GetBoxStyleName()))
@@ -13642,6 +13728,9 @@ bool wxTextBoxAttr::RemoveStyle(const wxTextBoxAttr& attr)
 
     if (attr.HasVerticalAlignment())
         RemoveFlag(wxTEXT_BOX_ATTR_VERTICAL_ALIGNMENT);
+
+    if (attr.HasWhitespaceMode())
+        RemoveFlag(wxTEXT_BOX_ATTR_WHITESPACE);
 
     if (attr.HasBoxStyleName())
     {
@@ -13742,6 +13831,25 @@ void wxTextBoxAttr::CollectCommonAttributes(const wxTextBoxAttr& attr, wxTextBox
     }
     else
         absentAttr.AddFlag(wxTEXT_BOX_ATTR_VERTICAL_ALIGNMENT);
+
+    if (attr.HasWhitespaceMode())
+    {
+        if (!clashingAttr.HasWhitespaceMode() && !absentAttr.HasWhitespaceMode())
+        {
+            if (HasWhitespaceMode())
+            {
+                if (GetWhitespaceMode() != attr.GetWhitespaceMode())
+                {
+                    clashingAttr.AddFlag(wxTEXT_BOX_ATTR_WHITESPACE);
+                    RemoveFlag(wxTEXT_BOX_ATTR_WHITESPACE);
+                }
+            }
+            else
+                SetWhitespaceMode(attr.GetWhitespaceMode());
+        }
+    }
+    else
+        absentAttr.AddFlag(wxTEXT_BOX_ATTR_WHITESPACE);
 
     if (attr.HasBoxStyleName())
     {
