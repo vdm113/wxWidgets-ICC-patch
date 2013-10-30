@@ -10532,6 +10532,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     }
 
     // (2) Allocate initial column widths from absolute values and proportions
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         if (absoluteColWidths[i] > 0)
@@ -10675,10 +10678,16 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     bool relaxConstraints = false;
 
     size_t phase;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (phase = 0; phase < 2; phase ++)
     {
         widthLeft = tableWidthMinusPadding;
         stretchColCount = 0;
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             // Subtract min width from width left, then
@@ -10724,6 +10733,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // up and size columns equally to avoid rendering problems.
     if (colShare < 0)
     {
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             int w = colWidths[i];
@@ -10755,6 +10767,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             shareEqually = true;
         }
 
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             colWidths[i] = 0;
@@ -10764,6 +10779,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // We have to adjust the columns if either we need to shrink the
     // table to fit the parent/table width, or we explicitly set the
     // table width and need to stretch out the table.
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         if (colWidths[i] <= 0) // absolute or proportional width has not been specified
