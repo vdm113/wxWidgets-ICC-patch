@@ -563,6 +563,9 @@ void SurfaceImpl::MeasureWidths(Font &font, const char *s, int len, XYPOSITION *
     }
 #else // !wxUSE_UNICODE
     // If not unicode then just use the widths we have
+#if defined(__INTEL_COMPILER)
+#   pragma ivdep
+#endif
     for (int i = 0; i < len; i++) {
         positions[i] = tpos[i];
     }
