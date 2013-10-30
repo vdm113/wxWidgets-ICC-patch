@@ -22,6 +22,10 @@ NB: Please, read file "BuildSVN.txt" in this directory as well. There are instru
 
 NB: I only support x64 builds, as Win32 builds are known to be broken. This is due ICC bug.
 
+If you get errors with ICC 14 SP1 Update 1 with MSVS 2013 RTM like "TRACKER : error TRK0002: Failed to execute command [...] The operation identifier is not valid.", follow these two URL's for workaround:
+http://software.intel.com/en-us/forums/topic/486611
+http://software.intel.com/en-us/articles/fail-to-build-x64-configuration-in-visual-studio-2013-with-error-trk0002-failed-to-execute
+
 Best regards,
 Marian 'VooDooMan' Meravy
 vdm 113 (<-remove the space character) [at sign] gmail (dot character) com
