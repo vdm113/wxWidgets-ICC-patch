@@ -25,6 +25,7 @@ NB: I only support x64 builds, as Win32 builds are known to be broken. This is d
 If you get errors with ICC 14 SP1 Update 1 with MSVS 2013 RTM like "TRACKER : error TRK0002: Failed to execute command [...] The operation identifier is not valid.", follow these two URL's for workaround:
 http://software.intel.com/en-us/forums/topic/486611
 http://software.intel.com/en-us/articles/fail-to-build-x64-configuration-in-visual-studio-2013-with-error-trk0002-failed-to-execute
+Please note ICC 14 SP1 Update 1 is broken, and unable to link the library (linker produces errors with unresolved external that actually doesn't exist). I recommend to use ICC 14 SP1 (first non-beta version).
 
 Best regards,
 Marian 'VooDooMan' Meravy
