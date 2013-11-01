@@ -33,7 +33,7 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
     bool found = false;
     const wxFontBundleList& list = wxFontsManager::Get()->GetBundles();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxFontBundleList::const_iterator f = list.begin(); f != list.end(); ++f )

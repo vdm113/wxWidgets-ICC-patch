@@ -156,7 +156,7 @@ public:
         // this is reset to NULL if we modify the format string
         m_fmtOrig = format;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( *format )
@@ -177,7 +177,7 @@ public:
 #endif // wxUSE_PRINTF_POS_PARAMS
 
                 // skip any flags
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 while ( IsFlagChar(*format) )
@@ -377,7 +377,7 @@ private:
 
     void SkipDigits(const CharType **ptpc)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( **ptpc >= wxT('0') && **ptpc <= wxT('9') )

@@ -204,7 +204,7 @@ wxDCCacheEntry* wxPMDCImpl::FindBitmapInCache(
     wxNode*                         pNode = m_svBitmapCache.First();
     BITMAPINFOHEADER2               vBmpHdr;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while(pNode)
@@ -272,7 +272,7 @@ wxDCCacheEntry* wxPMDCImpl::FindDCInCache(
     int                             nDepth = 24; // we'll fix this up later ::GetDeviceCaps((HDC) dc, PLANES) * ::GetDeviceCaps((HDC) dc, BITSPIXEL);
     wxNode*                         pNode = m_svDCCache.First();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while(pNode)
@@ -889,7 +889,7 @@ void wxPMDCImpl::DoDrawPolygon( int n,
                                      ,sizeof(POINTL)
                                     ); // well, new will call malloc
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(i = 0; i < n; i++)
@@ -929,7 +929,7 @@ void wxPMDCImpl::DoDrawLines(
         LONG                            lBorderColor = m_pen.GetColour().GetPixel();
 
         ::GpiSetColor(m_hPS, lBorderColor);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(i = 1; i < n; i++)
@@ -950,7 +950,7 @@ void wxPMDCImpl::DoDrawLines(
         vPoint.y = OS2Y(vPoints[0].y,0);
         ::GpiMove(m_hPS, &vPoint);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < n; i++)
@@ -1448,12 +1448,12 @@ void wxPMDCImpl::DoDrawBitmap(
                 //
                 bool                    bpp16 = (wxDisplayDepth() == 16);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (i = 0; i < rBmp.GetHeight(); i++)
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (j = 0; j < rBmp.GetWidth(); j++)
@@ -1491,7 +1491,7 @@ void wxPMDCImpl::DoDrawBitmap(
                         }
                         pucDataMask += 3;
                     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (j = 0; j < nPadding; j++)
@@ -1630,12 +1630,12 @@ void wxPMDCImpl::DoDrawBitmap(
                 unsigned char           cBlueBack  = (unsigned char)lBackGround;
 
                 pucData = pucBits;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (i = 0; i < rBmp.GetHeight(); i++)
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (j = 0; j < rBmp.GetWidth(); j++)
@@ -2219,7 +2219,7 @@ void wxPMDCImpl::DoGetTextExtent(
     vPtMax.x = avPoint[0].x;
     vPtMin.y = avPoint[0].y;
     vPtMax.y = avPoint[0].y;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 1; i < 4; i++)

@@ -242,7 +242,7 @@ wxSize wxListBox::DoGetBestSize() const
         dc.SetFont(GetFont());
 
         // Find the widest line
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (unsigned int i = 0; i < GetCount(); i++)
@@ -348,7 +348,7 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter& items,
     unsigned int startpos = pos;
 
     const unsigned int numItems = items.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int i = 0; i < numItems; ++i )

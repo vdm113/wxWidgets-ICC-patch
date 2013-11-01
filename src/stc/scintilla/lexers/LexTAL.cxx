@@ -51,7 +51,7 @@ static void getRange(unsigned int start,
 		char *s,
 		unsigned int len) {
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((i < end - start + 1) && (i < len-1)) {
@@ -154,7 +154,7 @@ static void ColouriseTALDoc(unsigned int startPos, int length, int initStyle, Wo
 
 	styler.StartSegment(startPos);
 	int visibleChars = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
@@ -292,7 +292,7 @@ static void FoldTALDoc(unsigned int startPos, int length, int initStyle, WordLis
 
 	int lastStart = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
@@ -355,7 +355,7 @@ static void FoldTALDoc(unsigned int startPos, int length, int initStyle, WordLis
 		if (foldPreprocessor && (style == SCE_C_PREPROCESSOR)) {
 			if (ch == '{' && chNext == '$') {
 				unsigned int j=i+2; // skip {$
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				while ((j<endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {

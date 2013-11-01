@@ -393,7 +393,7 @@ void ButtonWidgetsPage::CreateButton()
             label = m_button->GetLabel();
 
         size_t count = m_sizerButton->GetChildren().GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < count; n++ )

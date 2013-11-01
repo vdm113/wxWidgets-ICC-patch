@@ -24,7 +24,7 @@
 const wxFilterClassFactory *
 wxFilterClassFactory::Find(const wxString& protocol, wxStreamProtocolType type)
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (const wxFilterClassFactory *f = GetFirst(); f; f = f->GetNext())

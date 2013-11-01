@@ -2,7 +2,7 @@
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#   define MY_MACRO_PRAGMA_IVDEP
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1236,7 +1236,7 @@ public:
         wxVector<T> vector(size());
         size_t i = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( const_iterator it = begin(); it != end(); ++it )

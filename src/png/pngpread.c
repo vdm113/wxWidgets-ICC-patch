@@ -35,7 +35,7 @@ png_process_data(png_structrp png_ptr, png_inforp info_ptr,
 
    png_push_restore_buffer(png_ptr, buffer, buffer_size);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
    while (png_ptr->buffer_size)
@@ -670,7 +670,7 @@ png_push_save_buffer(png_structrp png_ptr)
          png_bytep dp;
 
          istop = png_ptr->save_buffer_size;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
          for (i = 0, sp = png_ptr->save_buffer_ptr, dp = png_ptr->save_buffer;
@@ -849,7 +849,7 @@ png_process_IDAT_data(png_structrp png_ptr, png_bytep buffer,
    /* Keep going until the decompressed data is all processed
     * or the stream marked as finished.
     */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
    while (png_ptr->zstream.avail_in > 0 &&
@@ -999,7 +999,7 @@ png_push_process_row(png_structrp png_ptr)
          case 0:
          {
             int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < 8 && png_ptr->pass == 0; i++)
@@ -1010,7 +1010,7 @@ png_push_process_row(png_structrp png_ptr)
 
             if (png_ptr->pass == 2) /* Pass 1 might be empty */
             {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                for (i = 0; i < 4 && png_ptr->pass == 2; i++)
@@ -1022,7 +1022,7 @@ png_push_process_row(png_structrp png_ptr)
 
             if (png_ptr->pass == 4 && png_ptr->height <= 4)
             {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                for (i = 0; i < 2 && png_ptr->pass == 4; i++)
@@ -1044,7 +1044,7 @@ png_push_process_row(png_structrp png_ptr)
          case 1:
          {
             int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < 8 && png_ptr->pass == 1; i++)
@@ -1055,7 +1055,7 @@ png_push_process_row(png_structrp png_ptr)
 
             if (png_ptr->pass == 2) /* Skip top 4 generated rows */
             {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                for (i = 0; i < 4 && png_ptr->pass == 2; i++)
@@ -1072,7 +1072,7 @@ png_push_process_row(png_structrp png_ptr)
          {
             int i;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < 4 && png_ptr->pass == 2; i++)
@@ -1081,7 +1081,7 @@ png_push_process_row(png_structrp png_ptr)
                png_read_push_finish_row(png_ptr);
             }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < 4 && png_ptr->pass == 2; i++)
@@ -1092,7 +1092,7 @@ png_push_process_row(png_structrp png_ptr)
 
             if (png_ptr->pass == 4) /* Pass 3 might be empty */
             {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                for (i = 0; i < 2 && png_ptr->pass == 4; i++)
@@ -1109,7 +1109,7 @@ png_push_process_row(png_structrp png_ptr)
          {
             int i;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < 4 && png_ptr->pass == 3; i++)
@@ -1120,7 +1120,7 @@ png_push_process_row(png_structrp png_ptr)
 
             if (png_ptr->pass == 4) /* Skip top two generated rows */
             {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                for (i = 0; i < 2 && png_ptr->pass == 4; i++)
@@ -1137,7 +1137,7 @@ png_push_process_row(png_structrp png_ptr)
          {
             int i;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < 2 && png_ptr->pass == 4; i++)
@@ -1146,7 +1146,7 @@ png_push_process_row(png_structrp png_ptr)
                png_read_push_finish_row(png_ptr);
             }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < 2 && png_ptr->pass == 4; i++)
@@ -1168,7 +1168,7 @@ png_push_process_row(png_structrp png_ptr)
          {
             int i;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < 2 && png_ptr->pass == 5; i++)
@@ -1242,7 +1242,7 @@ png_read_push_finish_row(png_structrp png_ptr)
       png_ptr->row_number = 0;
       memset(png_ptr->prev_row, 0, png_ptr->rowbytes + 1);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       do

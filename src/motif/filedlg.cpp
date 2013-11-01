@@ -313,7 +313,7 @@ int wxFileDialog::ShowModal()
     XtAddGrab(XtParent(fileSel), True, False);
     XtAppContext context = (XtAppContext) wxTheApp->GetAppContext();
     XEvent event;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (!m_fileSelectorReturned)

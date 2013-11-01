@@ -433,7 +433,7 @@ void wxFontRefData::ClearX11Fonts()
 #if wxUSE_UNICODE
 #else
     wxList::compatibility_iterator node = m_fonts.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -874,7 +874,7 @@ wxXFont* wxFont::GetInternalFont(double scale, WXDisplay* display) const
 
     // search existing fonts first
     wxList::compatibility_iterator node = M_FONTDATA->m_fonts.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)

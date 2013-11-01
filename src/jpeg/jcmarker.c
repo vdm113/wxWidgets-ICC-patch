@@ -153,7 +153,7 @@ emit_dqt (j_compress_ptr cinfo, int index)
     ERREXIT1(cinfo, JERR_NO_QUANT_TABLE, index);
 
   prec = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < DCTSIZE2; i++) {
@@ -168,7 +168,7 @@ emit_dqt (j_compress_ptr cinfo, int index)
 
     emit_byte(cinfo, index + (prec<<4));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < DCTSIZE2; i++) {
@@ -207,7 +207,7 @@ emit_dht (j_compress_ptr cinfo, int index, wxjpeg_boolean is_ac)
     emit_marker(cinfo, M_DHT);
     
     length = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 1; i <= 16; i++)
@@ -216,13 +216,13 @@ emit_dht (j_compress_ptr cinfo, int index, wxjpeg_boolean is_ac)
     emit_2bytes(cinfo, length + 2 + 1 + 16);
     emit_byte(cinfo, index);
     
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 1; i <= 16; i++)
       emit_byte(cinfo, htbl->bits[i]);
     
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < length; i++)
@@ -245,13 +245,13 @@ emit_dac (j_compress_ptr cinfo)
   int length, i;
   jpeg_component_info *compptr;
   
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < NUM_ARITH_TBLS; i++)
     dc_in_use[i] = ac_in_use[i] = 0;
   
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < cinfo->comps_in_scan; i++) {
@@ -261,7 +261,7 @@ emit_dac (j_compress_ptr cinfo)
   }
   
   length = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < NUM_ARITH_TBLS; i++)
@@ -271,7 +271,7 @@ emit_dac (j_compress_ptr cinfo)
   
   emit_2bytes(cinfo, length*2 + 2);
   
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < NUM_ARITH_TBLS; i++) {
@@ -322,7 +322,7 @@ emit_sof (j_compress_ptr cinfo, JPEG_MARKER code)
 
   emit_byte(cinfo, cinfo->num_components);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -347,7 +347,7 @@ emit_sos (j_compress_ptr cinfo)
   
   emit_byte(cinfo, cinfo->comps_in_scan);
   
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < cinfo->comps_in_scan; i++) {
@@ -534,7 +534,7 @@ write_frame_header (j_compress_ptr cinfo)
    * Note that emit_dqt() suppresses any duplicate tables.
    */
   prec = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -551,7 +551,7 @@ write_frame_header (j_compress_ptr cinfo)
     is_baseline = FALSE;
   } else {
     is_baseline = TRUE;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -603,7 +603,7 @@ write_scan_header (j_compress_ptr cinfo)
     /* Emit Huffman tables.
      * Note that emit_dht() suppresses any duplicate tables.
      */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < cinfo->comps_in_scan; i++) {
@@ -661,7 +661,7 @@ write_tables_only (j_compress_ptr cinfo)
 
   emit_marker(cinfo, M_SOI);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < NUM_QUANT_TBLS; i++) {
@@ -670,7 +670,7 @@ write_tables_only (j_compress_ptr cinfo)
   }
 
   if (! cinfo->arith_code) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < NUM_HUFF_TBLS; i++) {

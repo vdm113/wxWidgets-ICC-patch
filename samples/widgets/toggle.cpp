@@ -355,7 +355,7 @@ void ToggleWidgetsPage::CreateToggle()
         label = m_toggle->GetLabel();
         value = m_toggle->GetValue();
         size_t count = m_sizerToggle->GetChildren().GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < count; n++ )

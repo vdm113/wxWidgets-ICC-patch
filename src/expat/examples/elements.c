@@ -27,7 +27,7 @@ startElement(void *userData, const char *name, const char **atts)
 {
   int i;
   int *depthPtr = (int *)userData;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < *depthPtr; i++)
@@ -52,7 +52,7 @@ main(int argc, char *argv[])
   int depth = 0;
   XML_SetUserData(parser, &depth);
   XML_SetElementHandler(parser, startElement, endElement);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   do {

@@ -80,7 +80,7 @@ bool wxFileDropTarget::OnDropFiles( long x, long y, size_t nFiles, const char * 
   wxLogDebug( "Got %d dropped files.", (int)nFiles );
   wxLogDebug( "At x: %d, y: %d.", (int)x, (int)y );
   size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < nFiles; i++)
@@ -95,7 +95,7 @@ bool wxFileDropTarget::OnDrop(long x, long y, const void *data, size_t size )
   size_t number = 0;
   char *text = (char*) data;
   size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < size; i++)
@@ -106,7 +106,7 @@ bool wxFileDropTarget::OnDrop(long x, long y, const void *data, size_t size )
   char **files = new char*[number];
 
   text = (char*) data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for ( i = 0; i < number; i++)

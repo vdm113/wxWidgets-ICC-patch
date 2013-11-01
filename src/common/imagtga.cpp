@@ -89,12 +89,12 @@ void FlipTGA(unsigned char* imageData, int width, int height, short pixelSize)
     unsigned char *line2 = &imageData[lineLength * (height - 1)];
 
     unsigned char temp;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ; line1 < line2; line2 -= (lineLength * 2))
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int index = 0; index < lineLength; line1++, line2++, index++)
@@ -116,7 +116,7 @@ int DecodeRLE(unsigned char* imageData, unsigned long imageSize,
     unsigned int length;
     unsigned char buf[4];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (index < imageSize)
@@ -148,7 +148,7 @@ int DecodeRLE(unsigned char* imageData, unsigned long imageSize,
             if ( !stream.Read(buf, pixelSize) )
                 return wxTGA_IOERR;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (unsigned int i = 0; i < length; i++)
@@ -278,7 +278,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
         palette = (unsigned char *) malloc(paletteLength * 3);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (unsigned int i = 0; i < paletteLength; i++)
@@ -330,7 +330,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 8:
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
@@ -349,7 +349,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 16:
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
@@ -397,7 +397,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
                 {
                     unsigned char temp;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
@@ -423,7 +423,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 24:
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
@@ -439,7 +439,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 32:
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
@@ -482,7 +482,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 8:
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
@@ -498,7 +498,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 16:
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
@@ -547,7 +547,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 8:
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
@@ -566,7 +566,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 16:
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
@@ -616,7 +616,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
                 {
                     unsigned char temp;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
@@ -642,7 +642,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 24:
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
@@ -658,7 +658,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 32:
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
@@ -703,7 +703,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 8:
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
@@ -719,7 +719,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 16:
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
@@ -790,13 +790,13 @@ int SaveTGA(const wxImage& image, wxOutputStream *stream)
 
     unsigned char *src = image.GetData();
     unsigned char *alpha = image.GetAlpha();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int y = 0; y < size.y; ++y)
     {
         unsigned char *dst = scanlineData;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int x = 0; x < size.x; ++x)

@@ -138,7 +138,7 @@ bool wxANIDecoder::DoCanRead(wxInputStream& stream) const
         return false;
 
     // we have a riff file:
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( stream.IsOk() )
@@ -198,7 +198,7 @@ struct wxANIHeader
         // to the file header!)
         wxInt32 * const start = (wxInt32 *)this;
         wxInt32 * const end = start + sizeof(wxANIHeader)/sizeof(wxInt32);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxInt32 *p = start; p != end; p++ )
@@ -247,7 +247,7 @@ bool wxANIDecoder::Load( wxInputStream& stream )
     m_info.Clear();
 
     // we have a riff file:
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( !stream.Eof() )
@@ -300,7 +300,7 @@ bool wxANIDecoder::Load( wxInputStream& stream )
                 return false;       // rate chunks should always be placed after anih chunk
 
             wxASSERT(m_info.GetCount() == m_nFrames);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (unsigned int i=0; i<m_nFrames; i++)
@@ -317,7 +317,7 @@ bool wxANIDecoder::Load( wxInputStream& stream )
                 return false;       // seq chunks should always be placed after anih chunk
 
             wxASSERT(m_info.GetCount() == m_nFrames);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (unsigned int i=0; i<m_nFrames; i++)
@@ -360,7 +360,7 @@ bool wxANIDecoder::Load( wxInputStream& stream )
     {
         // if no SEQ chunk is available, display the frames in the order
         // they were loaded
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (unsigned int i=0; i<m_nFrames; i++)
@@ -370,7 +370,7 @@ bool wxANIDecoder::Load( wxInputStream& stream )
 
     // if some frame has an invalid delay, use the global delay given in the
     // ANI header
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i=0; i<m_nFrames; i++)

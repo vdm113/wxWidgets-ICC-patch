@@ -270,7 +270,7 @@ wxMenu * wxDeepCopyMenu( wxMenu *menu )
     // create the main menu
     wxMenu *m_pMenu = new wxMenu(menu->GetTitle());
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (theNode != NULL)

@@ -937,7 +937,7 @@ int wxKillAllChildren(long pid, wxSignal sig, wxKillError *krc)
         return -1;
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do {
@@ -1692,7 +1692,7 @@ extern long wxCharsetToCodepage(const char *name)
     wxString cn(name);
 
     // follow the alias loop
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )

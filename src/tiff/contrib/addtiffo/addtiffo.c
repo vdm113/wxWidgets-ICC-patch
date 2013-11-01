@@ -90,7 +90,7 @@ int main( int argc, char ** argv )
         return( 1 );
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while( argv[1][0] == '-' )
@@ -119,7 +119,7 @@ int main( int argc, char ** argv )
 /* -------------------------------------------------------------------- */
 /*      Collect the user requested reduction factors.                   */
 /* -------------------------------------------------------------------- */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while( nOverviewCount < argc - 2 && nOverviewCount < 100 )

@@ -144,7 +144,7 @@ void AutoComplete::Select(const char *word) {
 	int location = -1;
 	int start = 0; // lower bound of the api array block to search
 	int end = lb->Length() - 1; // upper bound of the api array block to search
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((start <= end) && (location == -1)) { // Binary searching loop
@@ -158,7 +158,7 @@ void AutoComplete::Select(const char *word) {
 			cond = strncmp(word, item, lenWord);
 		if (!cond) {
 			// Find first match
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			while (pivot > start) {
@@ -175,7 +175,7 @@ void AutoComplete::Select(const char *word) {
 			if (ignoreCase
 				&& ignoreCaseBehaviour == SC_CASEINSENSITIVEBEHAVIOUR_RESPECTCASE) {
 				// Check for exact-case match
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (; pivot <= end; pivot++) {

@@ -162,7 +162,7 @@ Callback::OnDataAvailable(DWORD grfBSCF,
 	  XML_Char wcharset[CHARSET_MAX];
 	  XML_Char *p1 = wcharset;
 	  const char *p2 = charset;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	  while ((*p1++ = (unsigned char)*p2++) != 0)
@@ -179,7 +179,7 @@ Callback::OnDataAvailable(DWORD grfBSCF,
   if (!parser_)
     return E_ABORT;
   if (pstgmed->tymed == TYMED_ISTREAM) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (totalRead_ < dwSize) {
@@ -274,7 +274,7 @@ openStream(XML_Parser parser,
   hr = CreateURLMoniker(0, uri, &m);
 #else
   LPWSTR uriw = new wchar_t[strlen(uri) + 1];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (int i = 0;; i++) {
@@ -387,7 +387,7 @@ processURL(XML_Parser parser, IMoniker *baseMoniker,
     return 0;
   }
   MSG msg;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (!qi.stop && GetMessage (&msg, NULL, 0, 0)) {

@@ -377,7 +377,7 @@ void wxColourDatabase::Initialize()
 
     size_t n;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < WXSIZEOF(wxColourTable); n++ )
@@ -388,7 +388,7 @@ void wxColourDatabase::Initialize()
 
 #ifdef __WXPM__
     m_palTable = new long[n];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < WXSIZEOF(wxColourTable); n++ )
@@ -467,7 +467,7 @@ wxString wxColourDatabase::FindName(const wxColour& colour) const
 
     typedef wxStringToColourHashMap::iterator iterator;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( iterator it = m_map->begin(), en = m_map->end(); it != en; ++it )
@@ -532,7 +532,7 @@ wxStockGDI::~wxStockGDI()
 
 void wxStockGDI::DeleteAll()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned i = 0; i < ITEMCOUNT; i++)
@@ -770,7 +770,7 @@ wxGDIObjListBase::wxGDIObjListBase()
 
 wxGDIObjListBase::~wxGDIObjListBase()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (wxList::compatibility_iterator node = list.GetFirst(); node; node = node->GetNext())
@@ -781,7 +781,7 @@ wxGDIObjListBase::~wxGDIObjListBase()
 
 wxPen *wxPenList::FindOrCreatePen (const wxColour& colour, int width, wxPenStyle style)
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxList::compatibility_iterator node = list.GetFirst();
@@ -808,7 +808,7 @@ wxPen *wxPenList::FindOrCreatePen (const wxColour& colour, int width, wxPenStyle
 
 wxBrush *wxBrushList::FindOrCreateBrush (const wxColour& colour, wxBrushStyle style)
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxList::compatibility_iterator node = list.GetFirst();
@@ -852,7 +852,7 @@ wxFont *wxFontList::FindOrCreateFont(int pointSize,
 
     wxFont *font;
     wxList::compatibility_iterator node;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (node = list.GetFirst(); node; node = node->GetNext())
@@ -946,7 +946,7 @@ wxSize wxGetDisplayPPI()
 wxResourceCache::~wxResourceCache ()
 {
     wxList::compatibility_iterator node = GetFirst ();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node) {

@@ -97,7 +97,7 @@ bool wxComboBox::Create(wxWindow *parent, wxWindowID id,
     m_mainWidget = (Widget) buttonWidget;
 
     int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < n; ++i)
@@ -198,7 +198,7 @@ int wxComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
     const unsigned int numItems = items.GetCount();
 
     AllocClientData(numItems);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int i = 0; i < numItems; ++i, ++pos )
@@ -235,7 +235,7 @@ void wxComboBox::Clear()
     XmListDeleteAllItems (GetXmList(this));
 #else
     size_t n = m_stringArray.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while(n > 0)

@@ -161,7 +161,7 @@ public:
         static int ALFA_CNT = 'z' - 'a';
 
         wxString s;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0 ; i < length; ++i)
@@ -746,7 +746,7 @@ void FileSystemWatcherTestCase::TestTrees()
 
             // Create a branch of 5 numbered subdirs, each containing 3
             // numbered files
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( unsigned d = 0; d < subdirs; ++d )
@@ -756,7 +756,7 @@ void FileSystemWatcherTestCase::TestTrees()
 
                 const wxString prefix = dir.GetPathWithSep();
                 const wxString ext[] = { ".txt", ".log", "" };
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( unsigned f = 0; f < files; ++f )

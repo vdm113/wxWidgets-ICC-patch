@@ -68,7 +68,7 @@ int ConvertWXArrayToC(const wxArrayString& aChoices, wxString **choices)
     int n = aChoices.GetCount();
     *choices = new wxString[n];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < n; i++ )
@@ -487,7 +487,7 @@ bool wxSingleChoiceDialog::Create( wxWindow *parent,
 
     if (clientData)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < n; i++)
@@ -601,7 +601,7 @@ void wxMultiChoiceDialog::SetSelections(const wxArrayInt& selections)
         // first clear all currently selected items
         size_t n,
             count = checkListBox->GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( n = 0; n < count; ++n )
@@ -612,7 +612,7 @@ void wxMultiChoiceDialog::SetSelections(const wxArrayInt& selections)
 
         // now select the ones which should be selected
         count = selections.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( n = 0; n < count; n++ )
@@ -627,7 +627,7 @@ void wxMultiChoiceDialog::SetSelections(const wxArrayInt& selections)
     // first clear all currently selected items
     size_t n,
            count = m_listbox->GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < count; ++n )
@@ -637,7 +637,7 @@ void wxMultiChoiceDialog::SetSelections(const wxArrayInt& selections)
 
     // now select the ones which should be selected
     count = selections.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < count; n++ )
@@ -655,7 +655,7 @@ bool wxMultiChoiceDialog::TransferDataFromWindow()
     if (checkListBox)
     {
         size_t count = checkListBox->GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < count; n++ )
@@ -668,7 +668,7 @@ bool wxMultiChoiceDialog::TransferDataFromWindow()
 #endif
 
     size_t count = m_listbox->GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )

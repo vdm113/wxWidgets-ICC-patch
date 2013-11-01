@@ -56,7 +56,7 @@ wxJoystick::wxJoystick(int joystick)
     int i, maxsticks;
 
     maxsticks = joyGetNumDevs();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( i=0; i<maxsticks; i++ )
@@ -287,7 +287,7 @@ int wxJoystick::GetNumberJoysticks()
     int i, maxsticks, actualsticks;
     maxsticks = joyGetNumDevs();
     actualsticks = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( i=0; i<maxsticks; i++ )

@@ -52,7 +52,7 @@ public:
         m_count = a.size();
         m_strings = new const gchar *[m_count + 1];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < m_count; n++ )
@@ -81,7 +81,7 @@ public:
     ~GtkArray()
     {
 #if !wxUSE_UNICODE
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < m_count; n++ )
@@ -213,7 +213,7 @@ void wxAboutBox(const wxAboutDialogInfo& info, wxWindow* WXUNUSED(parent))
     {
         const wxArrayString& translators = info.GetTranslators();
         const size_t count = translators.size();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < count; n++ )

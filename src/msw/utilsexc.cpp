@@ -172,7 +172,7 @@ public:
                     wxLogDebug(wxT("Failed to stop all wxExecute monitor threads"));
                 }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( size_t n = 0; n < numThreads; n++ )
@@ -262,7 +262,7 @@ public:
     // close the pipe descriptors
     void Close()
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < WXSIZEOF(m_handles); n++ )
@@ -505,7 +505,7 @@ size_t wxPipeOutputStream::OnSysWrite(const void *buffer, size_t len)
     m_lasterror = wxSTREAM_NO_ERROR;
 
     DWORD totalWritten = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( len > 0 )
@@ -615,7 +615,7 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
         ddeCommand.reserve(256);
 
         const wxChar *p = cmd.c_str() + 7;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( *p && *p != wxT('#') )
@@ -633,7 +633,7 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
             wxFAIL_MSG(wxT("invalid WX_DDE command in wxExecute"));
         }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( *p && *p != wxT('#') )
@@ -651,7 +651,7 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
             wxFAIL_MSG(wxT("invalid WX_DDE command in wxExecute"));
         }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( *p && *p != wxT('#') )
@@ -669,7 +669,7 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
             wxFAIL_MSG(wxT("invalid WX_DDE command in wxExecute"));
         }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( *p )
@@ -811,7 +811,7 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
             wxEnvVariableHashMap::const_iterator it;
 
             size_t envSz = 1; // ending '\0'
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( it = env->env.begin(); it != env->env.end(); ++it )
@@ -824,7 +824,7 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
             envBuffer.extend(envSz);
 
             wxChar *p = envBuffer.data();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( it = env->env.begin(); it != env->env.end(); ++it )
@@ -1066,7 +1066,7 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
     }
 
     // wait until the child process terminates
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( data->state )
@@ -1116,7 +1116,7 @@ long wxExecuteImpl(CharType **argv, int flags, wxProcess *handler,
     command.reserve(1024);
 
     wxString arg;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )

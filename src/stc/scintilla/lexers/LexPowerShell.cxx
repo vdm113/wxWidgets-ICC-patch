@@ -45,7 +45,7 @@ static void ColourisePowerShellDoc(unsigned int startPos, int length, int initSt
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward()) {
@@ -143,7 +143,7 @@ static void FoldPowerShellDoc(unsigned int startPos, int length, int initStyle,
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
 	int style = initStyle;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {

@@ -103,19 +103,19 @@ local void make_crc_table()
 
         /* make exclusive-or pattern from polynomial (0xedb88320UL) */
         poly = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (n = 0; n < (int)(sizeof(p)/sizeof(unsigned char)); n++)
             poly |= (z_crc_t)1 << (31 - p[n]);
 
         /* generate a crc for every 8-bit value */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (n = 0; n < 256; n++) {
             c = (z_crc_t)n;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (k = 0; k < 8; k++)
@@ -126,13 +126,13 @@ local void make_crc_table()
 #ifdef BYFOUR
         /* generate crc for each value followed by one, two, and three zeros,
            and then the byte reversal of those as well as the first table */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (n = 0; n < 256; n++) {
             c = crc_table[0][n];
             crc_table[4][n] = ZSWAP32(c);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (k = 1; k < 4; k++) {
@@ -147,7 +147,7 @@ local void make_crc_table()
     }
     else {      /* not first */
         /* wait for the other guy to finish (not efficient, but rare) */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (crc_table_empty)
@@ -168,7 +168,7 @@ local void make_crc_table()
         write_table(out, crc_table[0]);
 #  ifdef BYFOUR
         fprintf(out, "#ifdef BYFOUR\n");
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (k = 1; k < 8; k++) {
@@ -190,7 +190,7 @@ local void write_table(out, table)
 {
     int n;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (n = 0; n < 256; n++)
@@ -248,7 +248,7 @@ unsigned long ZEXPORT crc32(crc, buf, len)
     }
 #endif /* BYFOUR */
     crc = crc ^ 0xffffffffUL;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (len >= 8) {
@@ -280,7 +280,7 @@ local unsigned long crc32_little(crc, buf, len)
 
     c = (z_crc_t)crc;
     c = ~c;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (len && ((ptrdiff_t)buf & 3)) {
@@ -289,14 +289,14 @@ local unsigned long crc32_little(crc, buf, len)
     }
 
     buf4 = (const z_crc_t FAR *)(const void FAR *)buf;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (len >= 32) {
         DOLIT32;
         len -= 32;
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (len >= 4) {
@@ -329,7 +329,7 @@ local unsigned long crc32_big(crc, buf, len)
 
     c = ZSWAP32((z_crc_t)crc);
     c = ~c;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (len && ((ptrdiff_t)buf & 3)) {
@@ -339,14 +339,14 @@ local unsigned long crc32_big(crc, buf, len)
 
     buf4 = (const z_crc_t FAR *)(const void FAR *)buf;
     buf4--;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (len >= 32) {
         DOBIG32;
         len -= 32;
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (len >= 4) {
@@ -375,7 +375,7 @@ local unsigned long gf2_matrix_times(mat, vec)
     unsigned long sum;
 
     sum = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (vec) {
@@ -394,7 +394,7 @@ local void gf2_matrix_square(square, mat)
 {
     int n;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (n = 0; n < GF2_DIM; n++)
@@ -419,7 +419,7 @@ local uLong crc32_combine_(crc1, crc2, len2)
     /* put operator for one zero bit in odd */
     odd[0] = 0xedb88320UL;          /* CRC-32 polynomial */
     row = 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (n = 1; n < GF2_DIM; n++) {
@@ -435,7 +435,7 @@ local uLong crc32_combine_(crc1, crc2, len2)
 
     /* apply len2 zeros to crc1 (first square will put the operator for one
        zero byte, eight zero bits, in even) */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do {

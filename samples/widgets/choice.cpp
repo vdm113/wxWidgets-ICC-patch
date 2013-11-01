@@ -306,7 +306,7 @@ void ChoiceWidgetsPage::CreateChoice()
     if ( m_choice )
     {
         int count = m_choice->GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int n = 0; n < count; n++ )
@@ -392,7 +392,7 @@ void ChoiceWidgetsPage::OnButtonAddMany(wxCommandEvent& WXUNUSED(event))
 {
     // "many" means 1000 here
     wxArrayString strings;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int n = 0; n < 1000; n++ )

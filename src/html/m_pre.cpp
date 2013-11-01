@@ -33,7 +33,7 @@ static wxString LINKAGEMODE HtmlizeLinebreaks(const wxString& str)
     out.reserve(str.length()); // we'll certainly need at least that
 
     const wxString::const_iterator end = str.end();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxString::const_iterator i = str.begin(); i != end; ++i )
@@ -41,7 +41,7 @@ static wxString LINKAGEMODE HtmlizeLinebreaks(const wxString& str)
         switch ( (*i).GetValue() )
         {
             case '<':
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 while ( i != end && *i != '>' )

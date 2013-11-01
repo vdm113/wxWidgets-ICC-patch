@@ -23,7 +23,7 @@ static wxString EscapeFileNameCharsInURL(const char *in)
 {
     wxString s;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( const unsigned char *p = (const unsigned char*)in; *p; ++p )
@@ -70,7 +70,7 @@ wxFSFile* wxWebViewArchiveHandler::GetFile(const wxString &uri)
 
     //We iterate through the string to see if there is a protocol description
     size_t start = wxString::npos;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(size_t i = 0; i < path.length(); i++)

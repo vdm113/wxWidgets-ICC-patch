@@ -250,7 +250,7 @@ void wxGridCellEnumRenderer::SetParameters(const wxString& params)
     m_choices.Empty();
 
     wxStringTokenizer tk(params, wxT(','));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( tk.HasMoreTokens() )
@@ -310,7 +310,7 @@ wxGridCellAutoWrapStringRenderer::GetTextLines(wxGrid& grid,
         return logicalLines;
 
     wxArrayString physicalLines;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxArrayString::const_iterator it = logicalLines.begin();
@@ -344,7 +344,7 @@ wxGridCellAutoWrapStringRenderer::BreakLine(wxDC& dc,
 
     // For each word
     wxStringTokenizer wordTokenizer(logicalLine, wxS(" \t"), wxTOKEN_RET_DELIMS);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( wordTokenizer.HasMoreTokens() )
@@ -402,7 +402,7 @@ wxGridCellAutoWrapStringRenderer::BreakWord(wxDC& dc,
     // TODO: Use binary search to find the first element > maxWidth.
     const unsigned count = widths.size();
     unsigned n;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < count; n++ )
@@ -452,7 +452,7 @@ wxGridCellAutoWrapStringRenderer::GetBestSize(wxGrid& grid,
 
     // Search for a shape no taller than the golden ratio.
     wxSize size;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size.x = 10; ; size.x += 10 )
@@ -515,7 +515,7 @@ wxSize wxGridCellStringRenderer::DoGetBestSize(const wxGridCellAttr& attr,
     wxCoord x = 0, y = 0, max_x = 0;
     dc.SetFont(attr.GetFont());
     wxStringTokenizer tk(text, wxT('\n'));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( tk.HasMoreTokens() )
@@ -564,13 +564,13 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
         if ((best_width > rectCell.width) && (col < cols) && grid.GetTable())
         {
             int i, c_cols, c_rows;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = col+cell_cols; i < cols; i++)
             {
                 bool is_empty = true;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (int j=row; j < row + cell_rows; j++)
@@ -614,7 +614,7 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
             int col_end = col + cell_cols + overflowCols;
             if (col_end >= grid.GetNumberCols())
                 col_end = grid.GetNumberCols() - 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i = col + cell_cols; i <= col_end; i++)

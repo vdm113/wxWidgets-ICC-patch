@@ -115,12 +115,12 @@ srunner_run_all(SRunner *runner, int verbosity)
     assert(runner != NULL);
     suite = runner->suite;
     tc = suite->tests;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (tc != NULL) {
         int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < tc->ntests; ++i) {

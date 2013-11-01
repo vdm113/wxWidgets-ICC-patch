@@ -73,7 +73,7 @@ void wxRadioButton::OnCheck()
     // with wxRB_GROUP style
     const wxWindowList& siblings = GetParent()->GetChildren();
     wxWindowList::compatibility_iterator nodeStart = siblings.Find(this);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( nodeStart )
@@ -89,7 +89,7 @@ void wxRadioButton::OnCheck()
 
     // now clear all radio buttons from the starting one until the next
     // one with wxRB_GROUP style
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( nodeStart )

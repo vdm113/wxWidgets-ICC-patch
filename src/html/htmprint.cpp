@@ -150,7 +150,7 @@ int wxHtmlDCRenderer::Render(int x, int y,
     int pbreak, hght;
 
     pbreak = (int)(from + m_Height);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (m_Cells->AdjustPagebreak(&pbreak, known_pagebreaks, m_Height)) {}
@@ -440,7 +440,7 @@ void wxHtmlPrintout::SetHtmlFile(const wxString& htmlfile)
     wxString doc;
 
     wxList::compatibility_iterator node = m_Filters.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -500,7 +500,7 @@ void wxHtmlPrintout::CountPages()
 
     m_PageBreaks.Clear();
     m_PageBreaks.Add( 0);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -786,7 +786,7 @@ void wxHtmlEasyPrinting::SetFonts(const wxString& normal_face, const wxString& f
     if (sizes)
     {
         m_FontsSizes = m_FontsSizesArr;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < 7; i++) m_FontsSizes[i] = sizes[i];

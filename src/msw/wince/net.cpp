@@ -100,7 +100,7 @@ static void strcpyLC(char* szDst, const char* szSrc, int cch)
 {
  int i;
  char ch;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
  for (i = 0, ch = szSrc[i]; i < cch && ch != 0; ch = szSrc[++i])
@@ -123,7 +123,7 @@ struct servent * WINSOCKAPI getservbyport(int port, const char * proto)
  if (NULL != proto)
   strcpyLC(szProtoLC, proto, CCH_MAX_PROTO+1);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
  while (NULL != ps->s_name)
@@ -159,7 +159,7 @@ struct servent * WINSOCKAPI getservbyname(const char * name,
  if (NULL != proto)
   strcpyLC(szProtoLC, proto, CCH_MAX_PROTO+1);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
  while (NULL != ps->s_name)
@@ -184,7 +184,7 @@ struct servent * WINSOCKAPI getservbyname(const char * name,
 struct protoent * WINSOCKAPI getprotobynumber(int proto)
 {
  struct protoent *pr = &RgProtoEnt[0];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
  while (NULL != pr->p_name)

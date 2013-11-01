@@ -173,7 +173,7 @@ void wxMDIParentFrame::RemoveChild(wxWindowBase *child)
         // the current child isn't active any more, try to find another one
         m_currentChild = NULL;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -277,7 +277,7 @@ void wxMDIParentFrame::OnSysColourChanged(wxSysColourChangedEvent& event)
 
 bool wxMDIParentFrame::ShouldBeVisible() const
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();

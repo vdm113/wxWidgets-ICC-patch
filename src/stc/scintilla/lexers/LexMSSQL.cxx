@@ -65,7 +65,7 @@ static char classifyWordSQL(unsigned int start,
     WordList &kwStoredProcedures    = *keywordlists[KW_MSSQL_STORED_PROCEDURES];
     WordList &kwOperators           = *keywordlists[KW_MSSQL_OPERATORS];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = 0; i < end - start + 1 && i < 128; i++) {
@@ -133,7 +133,7 @@ static void ColouriseMSSQLDoc(unsigned int startPos, int length,
 	char chNext = styler[startPos];
 	styler.StartSegment(startPos);
 	unsigned int lengthDoc = startPos + length;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
@@ -307,7 +307,7 @@ static void FoldMSSQLDoc(unsigned int startPos, int length, int, WordList *[], A
 	char chNext = styler[startPos];
 	bool inComment = (styler.StyleAt(startPos-1) == SCE_MSSQL_COMMENT);
     char s[10];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
@@ -326,7 +326,7 @@ static void FoldMSSQLDoc(unsigned int startPos, int length, int, WordList *[], A
         if (style == SCE_MSSQL_STATEMENT) {
             // Folding between begin or case and end
             if (ch == 'b' || ch == 'B' || ch == 'c' || ch == 'C' || ch == 'e' || ch == 'E') {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (unsigned int j = 0; j < 5; j++) {

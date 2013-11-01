@@ -49,15 +49,15 @@ main(int argc, char** argv)
     D5 = D3*LumaRed / LumaGreen;
     D6 = D4*LumaBlue / LumaGreen;
     setupLumaTables();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (R = 0; R < 256; R++) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (G = 0; G < 256; G++)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (B = 0; B < 256; B++)
@@ -96,7 +96,7 @@ setupLuma(float c)
 {
     float *v = (float *)_TIFFmalloc(256 * sizeof (float));
     int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 256; i++)

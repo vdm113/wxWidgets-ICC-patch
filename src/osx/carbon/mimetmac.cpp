@@ -113,7 +113,7 @@ OSErr BuildVolumeList(Boolean includeRemote, short *vols,
         return noErr;
 
     // iterate through volumes
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (volPB.volumeParam.ioVolIndex = 1;
@@ -177,7 +177,7 @@ OSErr FindApplication(OSType appCreator, Boolean includeRemote, Str255 appName, 
         return err;
 
     // iterate through the list
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i=0; i<volCount; i++)
@@ -284,7 +284,7 @@ pascal OSErr FSpGetFullPath( const FSSpec *spec,
                     pb.dirInfo.ioDrParID = tempSpec.parID;
 
                     // loop until we have an error or find the root directory
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     do
@@ -303,7 +303,7 @@ pascal OSErr FSpGetFullPath( const FSSpec *spec,
                             result = MemError();
                         }
                     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     while ( (result == noErr) && (pb.dirInfo.ioDrDirID != fsRtDirID) );
@@ -602,7 +602,7 @@ void wxMimeTypesManagerImpl::Initialize(int WXUNUSED(mailcapStyles), const wxStr
     ICMapEntry entry;
     long pos;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (long i = 1; i <= m_lCount; ++i)
@@ -656,7 +656,7 @@ wxFileType* wxMimeTypesManagerImpl::GetFileTypeFromExtension(const wxString& e)
     ICMapEntry entry;
     long pos;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (long i = 1; i <= m_lCount; ++i)
@@ -688,7 +688,7 @@ wxFileType* wxMimeTypesManagerImpl::GetFileTypeFromMimeType(const wxString& mime
     long pos;
 
     // low level functions - iterate through the database
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (long i = 1; i <= m_lCount; ++i)
@@ -720,7 +720,7 @@ size_t wxMimeTypesManagerImpl::EnumAllFileTypes(wxArrayString& mimetypes)
 
     // low level functions - iterate through the database
     lStartCount = (long) mimetypes.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (long i = 1; i <= m_lCount; ++i)
@@ -914,7 +914,7 @@ public:
 
         CFDictionaryGetKeysAndValues(cfdRef, pKeys, pValues);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (CFIndex i = 0; i < cfiCount; ++i)
@@ -943,7 +943,7 @@ public:
 
     static void PrintOutArray(wxString& sMessage, CFArrayRef cfaRef)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (CFIndex i = 0; i < CFArrayGetCount(cfaRef); ++i)
@@ -1289,7 +1289,7 @@ void wxCFDictionary::MakeValidXML()
         // for plist xml format, all dictionary keys must be cfstrings and
         // no values in the dictionary or subkeys/values can be NULL;
         // additionally, CFURLs are not allowed
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (CFIndex i = 0; i < cfiCount; ++i)
@@ -1347,7 +1347,7 @@ void wxCFDictionary::MakeValidXML()
 
 void wxCFArray::MakeValidXML()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (CFIndex i = 0; i < GetCount(); ++i)
@@ -1461,7 +1461,7 @@ wxFileType* wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
 
                 // search for duplicates
                 CFIndex i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (i = 0; i < cfaDocTypes.GetCount(); ++i)
@@ -1475,12 +1475,12 @@ wxFileType* wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
                     if (!cfaExtensions.IsOk())
                         continue;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (CFIndex iExt = 0; iExt < cfaExtensions.GetCount(); ++iExt)
                     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                         for (size_t iWXExt = 0; iWXExt < asExtensions.GetCount(); ++iWXExt)
@@ -1528,7 +1528,7 @@ wxFileType* wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
                 //'*' for unrestricted
                 if (ftInfo.GetExtensionsCount() != 0)
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (size_t iExtension = 0; iExtension < ftInfo.GetExtensionsCount(); ++iExtension)
@@ -1819,7 +1819,7 @@ wxMimeTypesManagerImpl::Unassociate(wxFileType *pFileType)
 
                     //search for duplicate
                     CFIndex i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (i = 0; i < cfaDocTypes.GetCount(); ++i)
@@ -1833,12 +1833,12 @@ wxMimeTypesManagerImpl::Unassociate(wxFileType *pFileType)
                         if (!cfaExtensions.IsOk())
                             continue;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                         for (CFIndex iExt = 0; iExt < cfaExtensions.GetCount(); ++iExt)
                         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                             for (size_t iWXExt = 0; iWXExt < asExtensions.GetCount(); ++iWXExt)
@@ -1912,7 +1912,7 @@ wxMimeTypesManagerImpl::Unassociate(wxFileType *pFileType)
                         wxCFDictionary::PrintOutArray(sPrintOut, (CFArrayRef)(CFTypeRef)cfaDocTypes);
                         wxLogDebug(sPrintOut);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                         for (size_t i = 0; i < asExtensions.GetCount(); ++i)

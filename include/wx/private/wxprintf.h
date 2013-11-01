@@ -2,7 +2,7 @@
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#   define MY_MACRO_PRAGMA_IVDEP
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -221,7 +221,7 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
 
     m_bAlignLeft = in_prec = prec_dot = false;
     m_pArgPos = m_pArgEnd = format;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -350,7 +350,7 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
                 {
                     int len = 0;
                     CHECK_PREC
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     while ( (*m_pArgEnd >= CharType('0')) &&
@@ -377,7 +377,7 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
                                     // numbers are preceding it
 
                     // remove from m_szFlags all digits previously added
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     do {
@@ -514,7 +514,7 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
             return false;
         }
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (!done);
@@ -699,7 +699,7 @@ int wxPrintfConvSpec<CharType>::Process(CharType *buf, size_t lenMax, wxPrintfAr
                 size_t i;
 
                 if (!m_bAlignLeft)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (i = 1; i < (size_t)m_nMinWidth; i++)
@@ -708,7 +708,7 @@ int wxPrintfConvSpec<CharType>::Process(CharType *buf, size_t lenMax, wxPrintfAr
                 APPEND_CH(val);
 
                 if (m_bAlignLeft)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (i = 1; i < (size_t)m_nMinWidth; i++)
@@ -741,7 +741,7 @@ int wxPrintfConvSpec<CharType>::Process(CharType *buf, size_t lenMax, wxPrintfAr
 
                 if (!m_bAlignLeft)
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (i = len; i < m_nMinWidth; i++)
@@ -754,7 +754,7 @@ int wxPrintfConvSpec<CharType>::Process(CharType *buf, size_t lenMax, wxPrintfAr
 
                 if (m_bAlignLeft)
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (i = len; i < m_nMinWidth; i++)
@@ -835,7 +835,7 @@ struct wxPrintfConvSpecParser
         memset(pspec, 0, sizeof(pspec));
 
         // parse the format string
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( const CharType *toparse = fmt; *toparse != wxT('\0'); toparse++ )
@@ -870,7 +870,7 @@ struct wxPrintfConvSpecParser
                 if ( strchr(++f, '*') )
                     numAsterisks++;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( unsigned n = 0; n < numAsterisks; n++ )

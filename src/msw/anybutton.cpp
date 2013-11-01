@@ -220,7 +220,7 @@ public:
           m_hwndBtn(GetHwndOf(btn))
     {
         // initialize all bitmaps except for the disabled one to normal state
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int n = 0; n < wxAnyButton::State_Max; n++ )

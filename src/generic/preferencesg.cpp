@@ -119,7 +119,7 @@ protected:
         //       can determine its best size. We'll need to extend
         //       wxPreferencesPage with a GetBestSize() virtual method to make
         //       it possible to defer the creation.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( Pages::const_iterator i = m_pages.begin();

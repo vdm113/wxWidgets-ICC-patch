@@ -138,7 +138,7 @@ wxgtk_webview_webkit_navigation(WebKitWebView *,
         wxSharedPtr<wxWebViewHandler> handler;
         wxVector<wxSharedPtr<wxWebViewHandler> > hanlders = webKitCtrl->GetHandlers();
         //We are not vetoed so see if we match one of the additional handlers
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(wxVector<wxSharedPtr<wxWebViewHandler> >::iterator it = hanlders.begin();
@@ -363,7 +363,7 @@ wxgtk_webview_webkit_resource_req(WebKitWebView *,
     wxVector<wxSharedPtr<wxWebViewHandler> > hanlders = webKitCtrl->GetHandlers();
 
     //We are not vetoed so see if we match one of the additional handlers
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(wxVector<wxSharedPtr<wxWebViewHandler> >::iterator it = hanlders.begin();
@@ -634,7 +634,7 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewWebKit::GetBackwardHistory
     GList* list = webkit_web_back_forward_list_get_back_list_with_limit(history,
                                                                         m_historyLimit);
     //We need to iterate in reverse to get the order we desire
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(int i = g_list_length(list) - 1; i >= 0 ; i--)
@@ -657,7 +657,7 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewWebKit::GetForwardHistory(
     history = webkit_web_view_get_back_forward_list(m_web_view);
     GList* list = webkit_web_back_forward_list_get_forward_list_with_limit(history,
                                                                            m_historyLimit);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(guint i = 0; i < g_list_length(list); i++)

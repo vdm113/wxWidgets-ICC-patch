@@ -276,12 +276,12 @@ gtTileContig(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
     TIFFGetField(tif, TIFFTAG_TILEWIDTH, &tw);
     TIFFGetField(tif, TIFFTAG_TILELENGTH, &th);
     orientation = img->orientation;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (row = 0; row < h; row += th) {
 	nrow = (row + th > h ? h - row : th);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (col = 0; col < w; col += tw) {
@@ -343,12 +343,12 @@ gtTileSeparate(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
     TIFFGetField(tif, TIFFTAG_TILEWIDTH, &tw);
     TIFFGetField(tif, TIFFTAG_TILELENGTH, &th);
     orientation = img->orientation;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (row = 0; row < h; row += th) {
 	nrow = (row + th > h ? h - row : th);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (col = 0; col < w; col += tw) {
@@ -405,7 +405,7 @@ gtStripContig(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
     TIFFGetFieldDefaulted(tif, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
     scanline = TIFFScanlineSize(tif);
     fromskew = (w < imagewidth ? imagewidth - w : 0);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (row = 0; row < h; row += rowsperstrip) {
@@ -456,7 +456,7 @@ gtStripSeparate(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
     TIFFGetFieldDefaulted(tif, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
     scanline = TIFFScanlineSize(tif);
     fromskew = (w < imagewidth ? imagewidth - w : 0);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (row = 0; row < h; row += rowsperstrip) {

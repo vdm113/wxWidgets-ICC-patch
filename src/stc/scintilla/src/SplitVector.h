@@ -2,7 +2,7 @@
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#   define MY_MACRO_PRAGMA_IVDEP
 #endif
 
 // Scintilla source code edit control
@@ -50,7 +50,7 @@ protected:
 	/// reallocating if more space needed.
 	void RoomFor(int insertionLength) {
 		if (gapLength <= insertionLength) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			while (growSize < size / 6)
@@ -184,7 +184,7 @@ public:
 			}
 			RoomFor(insertLength);
 			GapTo(position);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (int i = 0; i < insertLength; i++)

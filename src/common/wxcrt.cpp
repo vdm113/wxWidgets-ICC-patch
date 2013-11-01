@@ -759,7 +759,7 @@ size_t wxStrlen(const wxChar16 *s )
 {
     if (!s) return 0;
     size_t i=0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (*s!=0) { ++i; ++s; };
@@ -780,7 +780,7 @@ size_t wxStrlen(const wxChar32 *s )
 {
     if (!s) return 0;
     size_t i=0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (*s!=0) { ++i; ++s; };
@@ -801,7 +801,7 @@ wxChar32* wxStrdup(const wxChar32* s)
 WXDLLIMPEXP_BASE int wxCRT_StricmpA(const char *psz1, const char *psz2)
 {
   register char c1, c2;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   do {
@@ -816,7 +816,7 @@ WXDLLIMPEXP_BASE int wxCRT_StricmpA(const char *psz1, const char *psz2)
 WXDLLIMPEXP_BASE int wxCRT_StricmpW(const wchar_t *psz1, const wchar_t *psz2)
 {
   register wchar_t c1, c2;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   do {
@@ -832,7 +832,7 @@ WXDLLIMPEXP_BASE int wxCRT_StrnicmpA(const char *s1, const char *s2, size_t n)
 {
   // initialize the variables just to suppress stupid gcc warning
   register char c1 = 0, c2 = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (n && ((c1 = wxTolower(*s1)) == (c2 = wxTolower(*s2)) ) && c1) n--, s1++, s2++;
@@ -849,7 +849,7 @@ WXDLLIMPEXP_BASE int wxCRT_StrnicmpW(const wchar_t *s1, const wchar_t *s2, size_
 {
   // initialize the variables just to suppress stupid gcc warning
   register wchar_t c1 = 0, c2 = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (n && ((c1 = wxTolower(*s1)) == (c2 = wxTolower(*s2)) ) && c1) n--, s1++, s2++;
@@ -871,7 +871,7 @@ WXDLLIMPEXP_BASE int wxCRT_StrnicmpW(const wchar_t *s1, const wchar_t *s2, size_
 extern "C" WXDLLIMPEXP_BASE size_t wxCRT_StrlenW(const wchar_t *s)
 {
     size_t n = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( *s++ )
@@ -934,7 +934,7 @@ wxCRT_StrtoullBase(const T* nptr, T** endptr, int base, T* sign)
     wxString::const_iterator end = wxstr.end();
 
     // Skip spaces
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( i != end && wxIsspace(*i) ) ++i;
@@ -989,7 +989,7 @@ wxCRT_StrtoullBase(const T* nptr, T** endptr, int base, T* sign)
     if ( base == 0 )
         base = 10;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ; i != end; ++i )

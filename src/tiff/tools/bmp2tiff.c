@@ -248,7 +248,7 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((c = getopt(argc, argv, "c:r:o:h")) != -1) {
@@ -283,7 +283,7 @@ main(int argc, char* argv[])
 	}
 	
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (optind < argc-1) {
@@ -461,7 +461,7 @@ main(int argc, char* argv[])
 					goto bad3;
 				}
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for(clr = 0; clr < clr_tbl_size; clr++) {
@@ -557,7 +557,7 @@ main(int argc, char* argv[])
 				goto bad3;
 			}
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (row = 0; row < length; row++) {
@@ -622,13 +622,13 @@ main(int argc, char* argv[])
 			i = 0;
 			j = 0;
 			if (info_hdr.iBitCount == 8) {		/* RLE8 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			    while(j < uncompr_size && i < compr_size) {
 				if ( comprbuf[i] ) {
 				    runlength = comprbuf[i++];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				    while( runlength > 0
@@ -654,7 +654,7 @@ main(int argc, char* argv[])
 					    break;
 				    } else {            /* Absolute mode */
 					runlength = comprbuf[i++];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 					for (k = 0; k < runlength && j < uncompr_size && i < compr_size; k++)
@@ -666,13 +666,13 @@ main(int argc, char* argv[])
 			    }
 			}
 			else {				    /* RLE4 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			    while( j < uncompr_size && i < compr_size ) {
 				if ( comprbuf[i] ) {
 				    runlength = comprbuf[i++];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				    while( runlength > 0 && j < uncompr_size && i < compr_size ) {
@@ -699,7 +699,7 @@ main(int argc, char* argv[])
 					    break;
 				    } else {            /* Absolute mode */
 					runlength = comprbuf[i++];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 					for (k = 0; k < runlength && j < uncompr_size && i < compr_size; k++) {
@@ -717,7 +717,7 @@ main(int argc, char* argv[])
 
 			_TIFFfree(comprbuf);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (row = 0; row < length; row++) {
@@ -778,7 +778,7 @@ rearrangePixels(char *buf, uint32 width, uint32 bit_count)
 		case 16:    /* FIXME: need a sample file */
                         break;
                 case 24:
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (i = 0; i < width; i++, buf += 3) {
@@ -791,7 +791,7 @@ rearrangePixels(char *buf, uint32 width, uint32 bit_count)
 			{
 				char	*buf1 = buf;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (i = 0; i < width; i++, buf += 4) {
@@ -818,7 +818,7 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
                 compression = COMPRESSION_JPEG;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 while( cp )
@@ -880,7 +880,7 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; stuff[i] != NULL; i++)

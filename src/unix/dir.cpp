@@ -93,7 +93,7 @@ wxDirData::wxDirData(const wxString& dirname)
     size_t n = m_dirname.length();
     wxCHECK_RET( n, wxT("empty dir name in wxDir") );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( n > 0 && m_dirname[--n] == '/' )
@@ -128,7 +128,7 @@ bool wxDirData::Read(wxString *filename)
 
     wxString de_d_name;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( !matches )

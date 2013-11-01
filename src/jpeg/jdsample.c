@@ -99,7 +99,7 @@ sep_upsample (j_decompress_ptr cinfo,
 
   /* Fill the conversion buffer, if it's empty */
   if (upsample->next_row_out >= cinfo->max_v_samp_factor) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -205,7 +205,7 @@ int_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   v_expand = upsample->v_expand[compptr->component_index];
 
   inrow = outrow = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (outrow < cinfo->max_v_samp_factor) {
@@ -213,12 +213,12 @@ int_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
     inptr = input_data[inrow];
     outptr = output_data[outrow];
     outend = outptr + cinfo->output_width;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (outptr < outend) {
       invalue = *inptr++;	/* don't need GETJSAMPLE() here */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (h = h_expand; h > 0; h--) {
@@ -251,14 +251,14 @@ h2v1_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   JSAMPROW outend;
   int inrow;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (inrow = 0; inrow < cinfo->max_v_samp_factor; inrow++) {
     inptr = input_data[inrow];
     outptr = output_data[inrow];
     outend = outptr + cinfo->output_width;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (outptr < outend) {
@@ -286,14 +286,14 @@ h2v2_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   int inrow, outrow;
 
   inrow = outrow = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (outrow < cinfo->max_v_samp_factor) {
     inptr = input_data[inrow];
     outptr = output_data[outrow];
     outend = outptr + cinfo->output_width;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (outptr < outend) {
@@ -334,7 +334,7 @@ h2v1_fancy_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   register JDIMENSION colctr;
   int inrow;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (inrow = 0; inrow < cinfo->max_v_samp_factor; inrow++) {
@@ -345,7 +345,7 @@ h2v1_fancy_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
     *outptr++ = (JSAMPLE) invalue;
     *outptr++ = (JSAMPLE) ((invalue * 3 + GETJSAMPLE(*inptr) + 2) >> 2);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (colctr = compptr->downsampled_width - 2; colctr > 0; colctr--) {
@@ -386,11 +386,11 @@ h2v2_fancy_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   int inrow, outrow, v;
 
   inrow = outrow = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (outrow < cinfo->max_v_samp_factor) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (v = 0; v < 2; v++) {
@@ -409,7 +409,7 @@ h2v2_fancy_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
       *outptr++ = (JSAMPLE) ((thiscolsum * 3 + nextcolsum + 7) >> 4);
       lastcolsum = thiscolsum; thiscolsum = nextcolsum;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (colctr = compptr->downsampled_width - 2; colctr > 0; colctr--) {
@@ -462,7 +462,7 @@ jinit_upsampler (j_decompress_ptr cinfo)
   /* Verify we can handle the sampling factors, select per-component methods,
    * and create storage as needed.
    */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;

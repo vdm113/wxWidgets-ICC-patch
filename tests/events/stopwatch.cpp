@@ -120,14 +120,14 @@ void StopWatchTestCase::BackwardsClockBug()
     wxStopWatch sw;
     wxStopWatch sw2;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < 10; n++ )
     {
         sw2.Start();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t m = 0; m < 10000; m++ )

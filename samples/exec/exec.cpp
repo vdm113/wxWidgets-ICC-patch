@@ -540,7 +540,7 @@ MyFrame::~MyFrame()
     // any processes left until now must be deleted manually: normally this is
     // done when the associated process terminates but it must be still running
     // if this didn't happen until now
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < m_allAsync.size(); n++ )
@@ -778,7 +778,7 @@ ExecQueryDialog::ExecQueryDialog(const wxString& cmd)
     wxEnvVariableHashMap env;
     if ( wxGetEnvMap(&env) )
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxEnvVariableHashMap::iterator it = env.begin();
@@ -801,7 +801,7 @@ void ExecQueryDialog::GetEnvironment(wxEnvVariableHashMap& env)
                  value;
 
         const int nb = m_envtext->GetNumberOfLines();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int l = 0; l < nb; l++ )
@@ -1271,7 +1271,7 @@ void MyFrame::OnDDERequest(wxCommandEvent& WXUNUSED(event))
 void MyFrame::OnIdle(wxIdleEvent& event)
 {
     size_t count = m_running.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -1343,7 +1343,7 @@ void MyFrame::ShowOutput(const wxString& cmd,
     m_lbox->Append(wxString::Format(wxT("--- %s of '%s' ---"),
                                     title.c_str(), cmd.c_str()));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -1407,7 +1407,7 @@ bool MyPipedProcess::HasInput()
 void MyPipedProcess::OnTerminate(int pid, int status)
 {
     // show the rest of the output
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( HasInput() )
@@ -1508,7 +1508,7 @@ void MyPipeFrame::OnBtnSendFile(wxCommandEvent& WXUNUSED(event))
     // and we would dead lock
     size_t len = data.length();
     const wxChar *pc = data.c_str();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( len )
@@ -1538,7 +1538,7 @@ void MyPipeFrame::DoGet()
 
 void MyPipeFrame::DoGetFromStream(wxTextCtrl *text, wxInputStream& in)
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( in.CanRead() )

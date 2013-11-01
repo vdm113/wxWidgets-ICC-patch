@@ -169,7 +169,7 @@ TIFFWritePrivateDataSubDirectory(TIFF* tif,
 	 * in-place in each field.
 	 */
 	nfields = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (b = 0; b <= pdir_fields_last; b++)
@@ -229,7 +229,7 @@ TIFFWritePrivateDataSubDirectory(TIFF* tif,
 	 * standard TIFF tags. Should add a general mechanism for overloading
 	 * write function for each field, just like Brian kept telling me!!!
 	 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (fip = field_info; fip->field_tag; fip++) {
@@ -265,7 +265,7 @@ TIFFWritePrivateDataSubDirectory(TIFF* tif,
 		 * we do this byte-swapping; i.e. they only
 		 * byte-swap indirect data.
 		 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (dir = (TIFFDirEntry*) data; dircount; dir++, dircount--) {
@@ -530,7 +530,7 @@ TIFFWritePerSampleShorts(TIFF* tif, ttag_t tag, TIFFDirEntry* dir)
 	if (samples > NITEMS(buf))
 		w = (uint16*) _TIFFmalloc(samples * sizeof (uint16));
 	TIFFGetField(tif, tag, &v);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < samples; i++)
@@ -558,7 +558,7 @@ TIFFWritePerSampleAnys(TIFF* tif,
 	if (samples > NITEMS(buf))
 		w = (double*) _TIFFmalloc(samples * sizeof (double));
 	TIFFGetField(tif, tag, &v);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < samples; i++)
@@ -599,7 +599,7 @@ TIFFWriteShortTable(TIFF* tif,
 	/* XXX -- yech, fool TIFFWriteData */
 	dir->tdir_count = (uint32) (1L<<tif->tif_dir.td_bitspersample);
 	off = tif->tif_dataoff;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < n; i++)
@@ -684,7 +684,7 @@ TIFFWriteRationalArray(TIFF* tif,
 	dir->tdir_type = (short) type;
 	dir->tdir_count = n;
 	t = (uint32*) _TIFFmalloc(2*n * sizeof (uint32));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < n; i++) {
@@ -703,7 +703,7 @@ TIFFWriteRationalArray(TIFF* tif,
 		}
 		den = 1L;
 		if (fv > 0) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			while (fv < 1L<<(31-3) && den < 1L<<(31-3))
@@ -765,7 +765,7 @@ TIFFWriteAnyArray(TIFF* tif,
 	switch (type) {
 	case TIFF_BYTE:
 		{ unsigned char* bp = (unsigned char*) w;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		  for (i = 0; i < n; i++)
@@ -779,7 +779,7 @@ TIFFWriteAnyArray(TIFF* tif,
 		break;
 	case TIFF_SBYTE:
 		{ signed char* bp = (signed char*) w;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		  for (i = 0; i < n; i++)
@@ -793,7 +793,7 @@ TIFFWriteAnyArray(TIFF* tif,
 		break;
 	case TIFF_SHORT:
 		{ uint16* bp = (uint16*) w;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		  for (i = 0; i < n; i++)
@@ -804,7 +804,7 @@ TIFFWriteAnyArray(TIFF* tif,
 		break;
 	case TIFF_SSHORT:
 		{ int16* bp = (int16*) w;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		  for (i = 0; i < n; i++)
@@ -815,7 +815,7 @@ TIFFWriteAnyArray(TIFF* tif,
 		break;
 	case TIFF_LONG:
 		{ uint32* bp = (uint32*) w;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		  for (i = 0; i < n; i++)
@@ -826,7 +826,7 @@ TIFFWriteAnyArray(TIFF* tif,
 		break;
 	case TIFF_SLONG:
 		{ int32* bp = (int32*) w;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		  for (i = 0; i < n; i++)
@@ -837,7 +837,7 @@ TIFFWriteAnyArray(TIFF* tif,
 		break;
 	case TIFF_FLOAT:
 		{ float* bp = (float*) w;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		  for (i = 0; i < n; i++)
@@ -981,7 +981,7 @@ TIFFLinkDirectory(TIFF* tif)
 	 * Not the first directory, search to the last and append.
 	 */
 	nextdir = tif->tif_header.tiff_diroff;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	do {

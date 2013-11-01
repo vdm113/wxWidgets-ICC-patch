@@ -488,7 +488,7 @@ void AppFrame::CreateMenu ()
     // hilight submenu
     wxMenu *menuHilight = new wxMenu;
     int Nr;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (Nr = 0; Nr < g_LanguagePrefsSize; Nr++) {

@@ -205,7 +205,7 @@ bool wxCFEventLoop::YieldFor(long eventsToProcess)
 #endif // wxUSE_LOG
 
     // process all pending events:
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( DoProcessEvents() == 1 )
@@ -214,7 +214,7 @@ bool wxCFEventLoop::YieldFor(long eventsToProcess)
     // it's necessary to call ProcessIdle() to update the frames sizes which
     // might have been changed (it also will update other things set from
     // OnUpdateUI() which is a nice (and desired) side effect)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( ProcessIdle() ) {}
@@ -303,7 +303,7 @@ int wxCFEventLoop::DoDispatchTimeout(unsigned long timeout)
 
 void wxCFEventLoop::OSXDoRun()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )
@@ -317,7 +317,7 @@ void wxCFEventLoop::OSXDoRun()
         // Pending() returns true, do process them
         if ( m_shouldExit )
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while ( DoProcessEvents() == 1 )
@@ -343,7 +343,7 @@ int wxCFEventLoop::DoRun()
     // wxModalEventLoop depends on this (so we can't just use ON_BLOCK_EXIT or
     // something similar here)
 #if wxUSE_EXCEPTIONS
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )

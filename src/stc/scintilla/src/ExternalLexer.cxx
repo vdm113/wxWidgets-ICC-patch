@@ -72,7 +72,7 @@ LexerLibrary::LexerLibrary(const char *ModuleName) {
 
 			int nl = GetLexerCount();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (int i = 0; i < nl; i++) {
@@ -110,7 +110,7 @@ void LexerLibrary::Release() {
 	LexerMinder *lm;
 	LexerMinder *lmNext;
 	lm = first;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (NULL != lm) {
@@ -158,7 +158,7 @@ void LexerManager::Load(const char *path) {
 }
 
 void LexerManager::LoadLexerLibrary(const char *module) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (LexerLibrary *ll = first; ll; ll= ll->next) {
@@ -179,7 +179,7 @@ void LexerManager::Clear() {
 	if (NULL != first) {
 		LexerLibrary *cur = first;
 		LexerLibrary *next;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (cur) {

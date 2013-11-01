@@ -2,7 +2,7 @@
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#   define MY_MACRO_PRAGMA_IVDEP
 #endif
 
 // Scintilla source code edit control
@@ -36,7 +36,7 @@ public:
 		size = size_;
 		valueAfter = valueAfter_;
 		bset = new bool[size];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int i=0; i < size; i++) {
@@ -54,7 +54,7 @@ public:
 		size = other.size;
 		valueAfter = other.valueAfter;
 		bset = new bool[size];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int i=0; i < size; i++) {
@@ -69,7 +69,7 @@ public:
 	CharacterSet &operator=(const CharacterSet &other) {
 		if (this != &other) {
 			bool *bsetNew = new bool[other.size];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (int i=0; i < other.size; i++) {
@@ -88,7 +88,7 @@ public:
 		bset[val] = true;
 	}
 	void AddString(const char *setToAdd) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (const char *cp=setToAdd; *cp; cp++) {

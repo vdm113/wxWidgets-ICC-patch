@@ -29,7 +29,7 @@ bsearch(const void *key, const void *base, size_t num, size_t size,
 
     char *lo = (char *)base;
     char *hi = lo + num*size;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( lo < hi )

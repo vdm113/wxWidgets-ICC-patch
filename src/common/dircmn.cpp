@@ -114,7 +114,7 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
     if ( flags & wxDIR_DIRS )
     {
         wxString dirname;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( bool cont = GetFirst(&dirname, wxEmptyString,
@@ -145,7 +145,7 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
                         // this shouldn't be treated as an error -- instead
                         // let the user code decide what to do
                         bool ok;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                         do
@@ -178,7 +178,7 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
                                     break;
                             }
                         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                         while ( !ok );
@@ -204,7 +204,7 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
 
         wxString filename;
         bool cont = GetFirst(&filename, filespec, flags);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( cont )

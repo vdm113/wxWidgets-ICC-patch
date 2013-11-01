@@ -2,7 +2,7 @@
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#   define MY_MACRO_PRAGMA_IVDEP
 #endif
 
 /* folder_open.png - 523 bytes */

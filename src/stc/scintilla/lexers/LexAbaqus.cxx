@@ -73,7 +73,7 @@ static void ColouriseABAQUSDoc(unsigned int startPos, int length, int initStyle,
 	// *word,[ paramname[=paramvalue]]*
 	// if the line ends with a , the keyword line continues onto the new line
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward()) {
@@ -356,7 +356,7 @@ static int LineType(int line, Accessor &styler) {
     char ch = ' ';
 
     int i = pos ;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( i < eol_pos ) {
@@ -404,7 +404,7 @@ static int LineType(int line, Accessor &styler) {
 	wlen++ ;
 
     i++ ;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( (i < eol_pos) && (wlen < 255) ) {
@@ -473,7 +473,7 @@ WordList *[], Accessor &styler) {
 
     // Scan until we find the previous keyword line
     // this will give us the level reference that we need
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( prvKeyLine > 0 ) {
@@ -494,7 +494,7 @@ WordList *[], Accessor &styler) {
     prvKeyLine = -1 ;
 
     // Now start scanning over the lines.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int line = startLine; line <= endLine; line++ ) {
@@ -546,7 +546,7 @@ WordList *[], Accessor &styler) {
 				datLevel = level ;
 			}
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( int ll = beginData; ll < beginComment; ll++ )
@@ -565,7 +565,7 @@ WordList *[], Accessor &styler) {
 				}
             }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( int lll = beginComment; lll < line; lll++ )
@@ -587,7 +587,7 @@ WordList *[], Accessor &styler) {
         // a data line or a keyword line
         const int docLines = styler.GetLine(styler.Length() - 1);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int line = endLine + 1; line <= docLines; line++ ) {
@@ -617,7 +617,7 @@ WordList *[], Accessor &styler) {
 		datLevel = level ;
 	}
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int ll = beginData; ll < beginComment; ll++ )
@@ -630,7 +630,7 @@ WordList *[], Accessor &styler) {
 	if ( prvKeyLineTp == 6 ) {
 		level -= 1 ;
 	}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for ( int m = beginComment; m <= endLine; m++ )

@@ -245,7 +245,7 @@ void CheckBoxWidgetsPage::CreateCheckbox()
     wxString label = m_checkbox->GetLabel();
 
     size_t count = m_sizerCheckbox->GetChildren().GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )

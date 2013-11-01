@@ -946,7 +946,7 @@ void MyFrame::OnColourGalleryButton(wxCommandEvent& evt)
 
         // Try to find colour in gallery
         wxRibbonGalleryItem *item = NULL;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(unsigned int i = 0; i < gallery->GetCount(); ++i)

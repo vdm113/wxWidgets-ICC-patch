@@ -52,7 +52,7 @@ void ColouriseSMLDoc(
 	WordList& keywords3 = *keywordlists[2];
 	const int useMagic = styler.GetPropertyInt("lexer.caml.magic", 0);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (sc.More()) {
@@ -95,7 +95,7 @@ void ColouriseSMLDoc(
 				const int n = sc.currentPos - chToken;
 				if (n < 24) {
 					char t[24];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 					for (int i = -n; i < 0; i++)

@@ -497,7 +497,7 @@ GdkAtom wxDropTarget::GetMatchingPair(bool quiet)
         return (GdkAtom) 0;
 
     GList *child = m_dragContext->targets;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (child)
@@ -867,7 +867,7 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
     wxDataFormat *array = new wxDataFormat[ m_data->GetFormatCount() ];
     m_data->GetAllFormats( array );
     size_t count = m_data->GetFormatCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < count; i++)
@@ -897,7 +897,7 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
 
         PrepareIcon( action, context );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (m_waiting)

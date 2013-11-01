@@ -207,7 +207,7 @@ size_t wxZlibInputStream::OnSysRead(void *buffer, size_t size)
   m_inflate->next_out = (unsigned char *)buffer;
   m_inflate->avail_out = size;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (err == Z_OK && m_inflate->avail_out > 0) {
@@ -370,7 +370,7 @@ void wxZlibOutputStream::DoFlush(bool final)
   int err = Z_OK;
   bool done = false;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (err == Z_OK || err == Z_STREAM_END) {
@@ -409,7 +409,7 @@ size_t wxZlibOutputStream::OnSysWrite(const void *buffer, size_t size)
   m_deflate->next_in = (unsigned char *)buffer;
   m_deflate->avail_in = size;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (err == Z_OK && m_deflate->avail_in > 0) {

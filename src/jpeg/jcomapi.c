@@ -37,7 +37,7 @@ jpeg_abort (j_common_ptr cinfo)
   /* Releasing pools in reverse order might help avoid fragmentation
    * with some (brain-damaged) malloc libraries.
    */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (pool = JPOOL_NUMPOOLS-1; pool > JPOOL_PERMANENT; pool--) {

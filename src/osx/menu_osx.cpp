@@ -202,7 +202,7 @@ bool wxMenu::DoInsertOrAppend(wxMenuItem *item, size_t pos)
     // in any existing radio items after this item.
     if ( pos < GetMenuItemCount() - 1 ) // takes into account pos == -1 case
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxMenuItemList::compatibility_iterator
@@ -273,7 +273,7 @@ wxMenuItem *wxMenu::DoRemove(wxMenuItem *item)
                 node = GetMenuItems().Item(endGroup);
             wxASSERT_MSG( node, wxS("Should have valid radio group end") );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while ( node->GetData() != item )
@@ -298,7 +298,7 @@ wxMenuItem *wxMenu::DoRemove(wxMenuItem *item)
     size_t pos;
     wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( pos = 0; node; pos++ )
@@ -359,7 +359,7 @@ void wxMenu::DoRearrange()
     wxMenuItemList::compatibility_iterator node;
     wxMenuItem *item;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (pos = 0, node = GetMenuItems().GetFirst(); node; node = node->GetNext(), pos++)
@@ -687,7 +687,7 @@ wxMenuBar::wxMenuBar(size_t count, wxMenu *menus[], const wxString titles[], lon
 {
     Init();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < count; i++ )
@@ -766,7 +766,7 @@ void wxMenuBar::MacInstallMenuBar()
 
     if ( UMAGetHelpMenuDontCreate( &helpMenuHandle , &firstUserHelpMenuItem) == noErr )
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = CountMenuItems( helpMenuHandle ) ; i >= firstUserHelpMenuItem ; --i )
@@ -802,7 +802,7 @@ void wxMenuBar::MacInstallMenuBar()
     wxString strippedHelpMenuTitle = wxStripMenuCodes( wxApp::s_macHelpMenuTitleName ) ;
     wxString strippedTranslatedHelpMenuTitle = wxStripMenuCodes( wxString( _("&Help") ) ) ;
     wxMenuList::compatibility_iterator menuIter = m_menus.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < m_menus.GetCount(); i++, menuIter = menuIter->GetNext())
@@ -814,7 +814,7 @@ void wxMenuBar::MacInstallMenuBar()
 
         if ( strippedMenuTitle == wxT("?") || strippedMenuTitle == strippedHelpMenuTitle || strippedMenuTitle == strippedTranslatedHelpMenuTitle )
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (node = menu->GetMenuItems().GetFirst(); node; node = node->GetNext())
@@ -969,7 +969,7 @@ bool wxMenuBar::Enable(bool enable)
     wxCHECK_MSG( IsAttached(), false, wxT("doesn't work with unattached menubars") );
 
     size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < GetMenuCount(); i++)

@@ -255,7 +255,7 @@ horAcc8(TIFF* tif, uint8* cp0, tmsize_t cc)
 			unsigned int cb = cp[2];
 			cc -= 3;
 			cp += 3;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			while (cc>0) {
@@ -272,7 +272,7 @@ horAcc8(TIFF* tif, uint8* cp0, tmsize_t cc)
 			unsigned int ca = cp[3];
 			cc -= 4;
 			cp += 4;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			while (cc>0) {
@@ -285,7 +285,7 @@ horAcc8(TIFF* tif, uint8* cp0, tmsize_t cc)
 			}
 		} else  {
 			cc -= stride;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			do {
@@ -309,7 +309,7 @@ swabHorAcc16(TIFF* tif, uint8* cp0, tmsize_t cc)
 	if (wc > stride) {
 		TIFFSwabArrayOfShort(wp, wc);
 		wc -= stride;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		do {
@@ -330,7 +330,7 @@ horAcc16(TIFF* tif, uint8* cp0, tmsize_t cc)
 
 	if (wc > stride) {
 		wc -= stride;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		do {
@@ -352,7 +352,7 @@ swabHorAcc32(TIFF* tif, uint8* cp0, tmsize_t cc)
 	if (wc > stride) {
 		TIFFSwabArrayOfLong(wp, wc);
 		wc -= stride;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		do {
@@ -373,7 +373,7 @@ horAcc32(TIFF* tif, uint8* cp0, tmsize_t cc)
 
 	if (wc > stride) {
 		wc -= stride;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		do {
@@ -401,7 +401,7 @@ fpAcc(TIFF* tif, uint8* cp0, tmsize_t cc)
 	if (!tmp)
 		return;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (count > stride) {
@@ -411,12 +411,12 @@ fpAcc(TIFF* tif, uint8* cp0, tmsize_t cc)
 
 	_TIFFmemcpy(tmp, cp0, cc);
 	cp = (uint8 *) cp0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (count = 0; count < wc; count++) {
 		uint32 byte;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (byte = 0; byte < bps; byte++) {
@@ -470,7 +470,7 @@ PredictorDecodeTile(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 		assert(rowsize > 0);
 		assert((occ0%rowsize)==0);
 		assert(sp->decodepfunc != NULL);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (occ0 > 0) {
@@ -502,7 +502,7 @@ horDiff8(TIFF* tif, uint8* cp0, tmsize_t cc)
 			int r2 = cp[0];
 			int g2 = cp[1];
 			int b2 = cp[2];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			do {
@@ -517,7 +517,7 @@ horDiff8(TIFF* tif, uint8* cp0, tmsize_t cc)
 			int g2 = cp[1];
 			int b2 = cp[2];
 			int a2 = cp[3];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			do {
@@ -529,7 +529,7 @@ horDiff8(TIFF* tif, uint8* cp0, tmsize_t cc)
 			} while ((cc -= 4) > 0);
 		} else {
 			cp += cc - 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			do {
@@ -552,7 +552,7 @@ horDiff16(TIFF* tif, uint8* cp0, tmsize_t cc)
 	if (wc > stride) {
 		wc -= stride;
 		wp += wc - 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		do {
@@ -575,7 +575,7 @@ horDiff32(TIFF* tif, uint8* cp0, tmsize_t cc)
 	if (wc > stride) {
 		wc -= stride;
 		wp += wc - 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		do {
@@ -604,12 +604,12 @@ fpDiff(TIFF* tif, uint8* cp0, tmsize_t cc)
 		return;
 
 	_TIFFmemcpy(tmp, cp0, cc);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (count = 0; count < wc; count++) {
 		uint32 byte;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (byte = 0; byte < bps; byte++) {
@@ -625,7 +625,7 @@ fpDiff(TIFF* tif, uint8* cp0, tmsize_t cc)
 
 	cp = (uint8 *) cp0;
 	cp += cc - stride - 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (count = cc; count > stride; count -= stride)
@@ -678,7 +678,7 @@ PredictorEncodeTile(TIFF* tif, uint8* bp0, tmsize_t cc0, uint16 s)
 	rowsize = sp->rowsize;
 	assert(rowsize > 0);
 	assert((cc0%rowsize)==0);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (cc > 0) {

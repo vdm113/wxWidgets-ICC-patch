@@ -112,7 +112,7 @@ bool wxColourBase::FromString(const wxString& str)
             wxCharBuffer alphaBuf(len);
             char * const alphaPtr = alphaBuf.data();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( unsigned n = 0; n < len; n++ )

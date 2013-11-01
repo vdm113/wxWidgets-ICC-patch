@@ -56,7 +56,7 @@ UINT_PTR GetNewTimerId(wxMSWTimerImpl *t)
 {
     static UINT_PTR lastTimerId = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (lastTimerId == 0 ||

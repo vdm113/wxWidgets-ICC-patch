@@ -246,7 +246,7 @@ main(int argc, char* argv[])
 
         pageOrientation[0] = '\0';
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((c = getopt(argc, argv, "b:d:h:H:W:L:i:w:l:o:O:P:C:r:t:acemxyzps1238DT")) != -1)
@@ -461,7 +461,7 @@ main(int argc, char* argv[])
         if ((generateEPSF == TRUE) && (PSavoiddeadzone == TRUE))
 	  PSavoiddeadzone = FALSE;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; argc - optind > 0; optind++) {
@@ -1196,12 +1196,12 @@ int psMaskImage(FILE *fd, TIFF *tif, int rotation, int center,
     return (-1);
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < yimages; i++)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (j = 0; j < ximages; j++)
@@ -1490,7 +1490,7 @@ int TIFF2PS(FILE* fd, TIFF* tif, double pgwidth, double pgheight, double lm, dou
      oy = 0;
 
   /* Consolidated all the tag information into one code segment, Richard Nolde */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   do {
@@ -1694,7 +1694,7 @@ static int
 checkcmap(TIFF* tif, int n, uint16* r, uint16* g, uint16* b)
 {
 	(void) tif;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (n-- > 0)
@@ -1752,7 +1752,7 @@ PS_Lvl2colorspace(FILE* fd, TIFF* tif)
 		 * Convert colormap to 8-bits values.
 		 */
 #define	CVT(x)		(((x) * 255) / ((1L<<16)-1))
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (i = 0; i < num_colors; i++) {
@@ -1769,7 +1769,7 @@ PS_Lvl2colorspace(FILE* fd, TIFF* tif)
 		ascii85breaklen -= 2;
 	} else
 		fputs(" <", fd);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < num_colors; i++) {
@@ -2074,7 +2074,7 @@ PS_Lvl2ImageDict(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		/*
 		 * NOTE: This code does not work yet...
 		 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (i = 1; i < samplesperpixel; i++)
@@ -2135,7 +2135,7 @@ PS_FlipBytes(unsigned char* buf, tsize_t count)
 
 	count--;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < count; i += 2) {
@@ -2182,7 +2182,7 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 
 	if (use_rawdata) {
 		chunk_size = (tsize_t) bc[0];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (chunk_no = 1; chunk_no < num_chunks; chunk_no++)
@@ -2224,7 +2224,7 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #endif
 
 	TIFFGetFieldDefaulted(tif, TIFFTAG_FILLORDER, &fillorder);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (chunk_no = 0; chunk_no < num_chunks; chunk_no++) {
@@ -2274,7 +2274,7 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		if (alpha) {
 			int adjust, i, j = 0;
 			int ncomps = samplesperpixel - extrasamples;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (i = 0; i < byte_count; i+=samplesperpixel) {
@@ -2304,7 +2304,7 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 			if ( ascii85_l > 0 )
 				fwrite( ascii85_p, ascii85_l, 1, fd );
 #else
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (cp = buf_data; byte_count > 0; byte_count--)
@@ -2313,7 +2313,7 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		}
 		else
 		{
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (cp = buf_data; byte_count > 0; byte_count--) {
@@ -2434,7 +2434,7 @@ PSColorSeparatePreamble(FILE* fd, uint32 w, uint32 h, int nc)
 	int i;
 
 	PhotoshopBanner(fd, w, h, ps_bytesperrow, nc, "true %d colorimage");
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < nc; i++)
@@ -2444,7 +2444,7 @@ PSColorSeparatePreamble(FILE* fd, uint32 w, uint32 h, int nc)
 	    (unsigned long) w, (unsigned long) h, bitspersample);
 	fprintf(fd, "[%lu 0 0 -%lu 0 %lu] \n",
 	    (unsigned long) w, (unsigned long) h, (unsigned long) h);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < nc; i++)
@@ -2474,7 +2474,7 @@ PSDataColorContig(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 		TIFFError(filename, "No space for scanline buffer");
 		return;
 	}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (row = 0; row < h; row++) {
@@ -2491,7 +2491,7 @@ PSDataColorContig(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 		if (alpha) {
 			int adjust;
 			cc = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (; cc < tf_bytesperrow; cc += samplesperpixel) {
@@ -2513,7 +2513,7 @@ PSDataColorContig(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 			}
 		} else {
 			cc = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (; cc < tf_bytesperrow; cc += samplesperpixel) {
@@ -2548,17 +2548,17 @@ PSDataColorSeparate(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 		return;
 	}
 	maxs = (samplesperpixel > nc ? nc : samplesperpixel);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (row = 0; row < h; row++) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (s = 0; s < maxs; s++) {
 			if (TIFFReadScanline(tif, tf_buf, row, s) < 0)
 				break;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (cp = tf_buf, cc = 0; cc < tf_bytesperrow; cc++) {
@@ -2605,7 +2605,7 @@ PSDataPalette(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 	if (checkcmap(tif, 1<<bitspersample, rmap, gmap, bmap) == 16) {
 		int i;
 #define	CVT(x)		((unsigned short) (((x) * 255) / ((1U<<16)-1)))
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (i = (1<<bitspersample)-1; i >= 0; i--) {
@@ -2615,13 +2615,13 @@ PSDataPalette(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		}
 #undef CVT
 	}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (row = 0; row < h; row++) {
 		if (TIFFReadScanline(tif, tf_buf, row, 0) < 0)
 			break;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (cp = tf_buf, cc = 0; cc < tf_bytesperrow; cc++) {
@@ -2705,7 +2705,7 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 	if (ascii85)
 		Ascii85Init();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (s = 0; s < TIFFNumberOfStrips(tif); s++) {
@@ -2716,7 +2716,7 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		}
 		cp = tf_buf;
 		if (photometric == PHOTOMETRIC_MINISWHITE) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (cp += cc; --cp >= tf_buf;)
@@ -2734,7 +2734,7 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #if defined( EXP_ASCII85ENCODER )
 			if (alpha) {
 				int adjust, i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (i = 0; i < cc; i+=2) {
@@ -2749,7 +2749,7 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 			if ( ascii85_l > 0 )
 			    fwrite( ascii85_p, ascii85_l, 1, fd );
 #else
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			while (cc-- > 0)
@@ -2760,7 +2760,7 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 
 			if (alpha) {
 				int adjust;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				while (cc-- > 0) {
@@ -2776,7 +2776,7 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 					cp++, cc--;
 				}
 			} else {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				while (cc-- > 0) {
@@ -2831,7 +2831,7 @@ PSRawDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 
 	bufsize = (uint32) bc[0];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for ( s = 0; ++s < (tstrip_t)tf_numberstrips; ) {
@@ -2867,7 +2867,7 @@ PSRawDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 	}
 #endif
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (s = 0; s < (tstrip_t) tf_numberstrips; s++) {
@@ -2879,7 +2879,7 @@ PSRawDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		if (fillorder == FILLORDER_LSB2MSB)
 			TIFFReverseBits(tf_buf, cc);
 		if (!ascii85) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (cp = tf_buf; cc > 0; cc--) {
@@ -2897,7 +2897,7 @@ PSRawDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 			if ( ascii85_l > 0 )
 				fwrite( ascii85_p, ascii85_l, 1, fd );
 #else
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (cp = tf_buf; cc > 0; cc--)
@@ -2958,12 +2958,12 @@ Ascii85Put(unsigned char code, FILE* fd)
 		unsigned char* p;
 		int n;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (n = ascii85count, p = ascii85buf; n >= 4; n -= 4, p += 4) {
 			char* cp;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (cp = Ascii85Encode(p); *cp; cp++) {
@@ -3047,7 +3047,7 @@ tsize_t Ascii85EncodeBlock( uint8 * ascii85_p, unsigned f_eod, const uint8 * raw
     {
         --raw_p;                                /* Prepare for pre-increment fetches */
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( ; raw_l > 3; raw_l -= 4 )
@@ -3182,7 +3182,7 @@ usage(int code)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; stuff[i] != NULL; i++)

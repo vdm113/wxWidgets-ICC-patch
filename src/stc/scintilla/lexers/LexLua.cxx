@@ -34,7 +34,7 @@ using namespace Scintilla;
 // The maximum number of '=' characters allowed is 254.
 static int LongDelimCheck(StyleContext &sc) {
 	int sep = 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (sc.GetRelative(sep) == '=' && sep < 0xFF)
@@ -96,7 +96,7 @@ static void ColouriseLuaDoc(
 		// shbang line: # is a comment only if first char of the script
 		sc.SetState(SCE_LUA_COMMENTLINE);
 	}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward()) {
@@ -140,7 +140,7 @@ static void ColouriseLuaDoc(
 				sc.Forward();
 				int ln = 0, maxln = startPos + length - sc.currentPos;
 				int c;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				while (ln < maxln) {		// determine line extent
@@ -150,7 +150,7 @@ static void ColouriseLuaDoc(
 					ln++;
 				}
 				maxln = ln; ln = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				while (ln < maxln) {		// skip over spaces/tabs
@@ -162,7 +162,7 @@ static void ColouriseLuaDoc(
 				if (setWordStart.Contains(sc.GetRelative(ln))) {
 					int i = 0;
 					char s[100];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 					while (ln < maxln) {	// get potential label
@@ -175,7 +175,7 @@ static void ColouriseLuaDoc(
 					}
 					s[i] = '\0'; int lbl = ln;
 					if (!keywords.InList(s)) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 						while (ln < maxln) {		// skip over spaces/tabs
@@ -220,7 +220,7 @@ static void ColouriseLuaDoc(
 					sc.ChangeState(SCE_LUA_WORD);
 					if (strcmp(s, "goto") == 0) {	// goto <label> forward scan
 						sc.SetState(SCE_LUA_DEFAULT);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 						while (IsASpaceOrTab(sc.ch) && !sc.atLineEnd)
@@ -228,7 +228,7 @@ static void ColouriseLuaDoc(
 						if (setWordStart.Contains(sc.ch)) {
 							sc.SetState(SCE_LUA_LABEL);
 							sc.Forward();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 							while (setWord.Contains(sc.ch))
@@ -400,7 +400,7 @@ static void FoldLuaDoc(unsigned int startPos, int length, int /* initStyle */, W
 	int styleNext = styler.StyleAt(startPos);
 	char s[10];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
@@ -411,7 +411,7 @@ static void FoldLuaDoc(unsigned int startPos, int length, int /* initStyle */, W
 		bool atEOL = (ch == '\r' && chNext != '\n') || (ch == '\n');
 		if (style == SCE_LUA_WORD) {
 			if (ch == 'i' || ch == 'd' || ch == 'f' || ch == 'e' || ch == 'r' || ch == 'u') {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (unsigned int j = 0; j < 8; j++) {

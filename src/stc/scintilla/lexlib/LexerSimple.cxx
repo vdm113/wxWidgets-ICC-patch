@@ -31,7 +31,7 @@ using namespace Scintilla;
 #endif
 
 LexerSimple::LexerSimple(const LexerModule *module_) : module(module_) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int wl = 0; wl < module->GetNumWordLists(); wl++) {

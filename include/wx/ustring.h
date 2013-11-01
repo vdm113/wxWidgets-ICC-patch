@@ -2,7 +2,7 @@
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#   define MY_MACRO_PRAGMA_IVDEP
 #endif
 
 
@@ -220,7 +220,7 @@ public:
             wxU32CharBuffer buffer(n);
             wxChar32 *p = buffer.data();
             size_type i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < n; i++)
@@ -316,7 +316,7 @@ public:
         wxCharBuffer buffer(n);
         char *p = buffer.data();
         size_type i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < n; i++)
@@ -340,7 +340,7 @@ public:
         wxU16CharBuffer buffer(n);
         wxChar16 *p = buffer.data();
         size_type i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < n; i++)
@@ -404,7 +404,7 @@ public:
             wxU32CharBuffer buffer(n);
             wxChar32 *p = buffer.data();
             size_type i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < n; i++)

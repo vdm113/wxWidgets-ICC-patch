@@ -190,7 +190,7 @@ void BoxSizerTestCase::Size3()
     child[1] = new wxWindow(m_win, wxID_ANY);
     child[2] = new wxWindow(m_win, wxID_ANY);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned i = 0; i < WXSIZEOF(layoutTestData); i++ )
@@ -202,7 +202,7 @@ void BoxSizerTestCase::Size3()
         // (in which case the first ones might get enough of it but not the
         // last ones) so test a couple of permutations of test data unless
         // specifically disabled for this test case
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned p = 0; p < 3; p++)
@@ -231,7 +231,7 @@ void BoxSizerTestCase::Size3()
             m_sizer->Clear();
 
             unsigned j;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( j = 0; j < WXSIZEOF(child); j++ )
@@ -240,7 +240,7 @@ void BoxSizerTestCase::Size3()
             m_win->SetClientSize(ltd.x, -1);
             m_win->Layout();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( j = 0; j < WXSIZEOF(child); j++ )
@@ -292,13 +292,13 @@ void BoxSizerTestCase::CalcMin()
 
     unsigned n;
     wxWindow *child[NUM_TEST_ITEM];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < NUM_TEST_ITEM; n++ )
         child[n] = new wxWindow(m_win, wxID_ANY);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned i = 0; i < WXSIZEOF(calcMinTestData); i++ )
@@ -306,7 +306,7 @@ void BoxSizerTestCase::CalcMin()
         m_sizer->Clear();
 
         const CalcMinTestData& cmtd = calcMinTestData[i];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( n = 0; n < NUM_TEST_ITEM; n++ )

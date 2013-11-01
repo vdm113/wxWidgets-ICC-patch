@@ -51,7 +51,7 @@ static void gtk_choice_clicked_callback( GtkWidget *WXUNUSED(widget), wxChoice *
     int count = 0;
 
     GList *child = menu_shell->children;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (child)
@@ -136,7 +136,7 @@ bool wxChoice::Create( wxWindow *parent, wxWindowID id,
 
     GtkWidget *menu = gtk_menu_new();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = 0; i < (unsigned int)n; i++)
@@ -171,7 +171,7 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter & items,
 
     GtkWidget *menu = gtk_option_menu_get_menu( GTK_OPTION_MENU(m_widget) );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int i = 0; i < count; ++i, ++pos )
@@ -257,7 +257,7 @@ void wxChoice::DoDeleteOneItem(unsigned int n)
     wxArrayString items;
     wxArrayPtrVoid itemsData;
     items.Alloc(count);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned i = 0; i < count; i++, node = node->GetNext() )
@@ -288,7 +288,7 @@ int wxChoice::FindString( const wxString &string, bool bCase ) const
     GtkMenuShell *menu_shell = GTK_MENU_SHELL( gtk_option_menu_get_menu( GTK_OPTION_MENU(m_widget) ) );
     int count = 0;
     GList *child = menu_shell->children;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (child)
@@ -329,7 +329,7 @@ void wxChoice::SetString(unsigned int n, const wxString& str )
     GtkMenuShell *menu_shell = GTK_MENU_SHELL( gtk_option_menu_get_menu( GTK_OPTION_MENU(m_widget) ) );
     unsigned int count = 0;
     GList *child = menu_shell->children;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (child)
@@ -361,7 +361,7 @@ wxString wxChoice::GetString(unsigned int n) const
     GtkMenuShell *menu_shell = GTK_MENU_SHELL( gtk_option_menu_get_menu( GTK_OPTION_MENU(m_widget) ) );
     unsigned int count = 0;
     GList *child = menu_shell->children;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (child)
@@ -395,7 +395,7 @@ unsigned int wxChoice::GetCount() const
     GtkMenuShell *menu_shell = GTK_MENU_SHELL( gtk_option_menu_get_menu( GTK_OPTION_MENU(m_widget) ) );
     unsigned int count = 0;
     GList *child = menu_shell->children;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (child)
@@ -440,7 +440,7 @@ void wxChoice::DoApplyWidgetStyle(GtkRcStyle *style)
     gtk_widget_modify_style( GTK_WIDGET( menu_shell ), style );
 
     GList *child = menu_shell->children;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (child)
@@ -538,7 +538,7 @@ wxSize wxChoice::DoGetBestSize() const
     {
         int width;
         unsigned int count = GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned int n = 0; n < count; n++ )

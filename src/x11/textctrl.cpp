@@ -52,7 +52,7 @@ wxSourceUndoStep::wxSourceUndoStep( wxSourceUndo type, int y1, int y2, wxTextCtr
     } else
     if (m_type == wxSOURCE_UNDO_BACK)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = m_y1; i < m_y2+2; i++)
@@ -65,7 +65,7 @@ wxSourceUndoStep::wxSourceUndoStep( wxSourceUndo type, int y1, int y2, wxTextCtr
     } else
     if (m_type == wxSOURCE_UNDO_DELETE)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = m_y1; i < m_y2+1; i++)
@@ -105,7 +105,7 @@ void wxSourceUndoStep::Undo()
     if (m_type == wxSOURCE_UNDO_DELETE)
     {
         m_owner->m_lines[m_y1].m_text = m_lines[0];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 1; i < (int)m_lines.GetCount(); i++)
@@ -117,7 +117,7 @@ void wxSourceUndoStep::Undo()
     if (m_type == wxSOURCE_UNDO_PASTE)
     {
         m_owner->m_lines[m_y1].m_text = m_text;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < m_y2-m_y1; i++)
@@ -276,7 +276,7 @@ bool wxTextCtrl::Create( wxWindow *parent,
 wxString wxTextCtrl::GetValue() const
 {
     wxString ret;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < m_lines.GetCount(); i++)
@@ -309,7 +309,7 @@ void wxTextCtrl::DoSetValue(const wxString& value, int flags)
     {
         int begin = 0;
         int pos = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (;;)
@@ -473,7 +473,7 @@ int wxTextCtrl::PixelToPos( int line, int pixel )
 
     int w = 0;
     int res = text.Len();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (res > 0)
@@ -506,7 +506,7 @@ void wxTextCtrl::WriteText(const wxString& text2)
     wxString text( text2 );
     wxArrayString lines;
     int pos;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( (pos = text.Find('\n')) != -1 )
@@ -524,7 +524,7 @@ void wxTextCtrl::WriteText(const wxString& text2)
     if (len < m_cursorX)
     {
         wxString tmp;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < m_cursorX-len; i++)
@@ -552,7 +552,7 @@ void wxTextCtrl::WriteText(const wxString& text2)
 
         m_lines[m_cursorY].m_text = tmp1;
         int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 1; i < count; i++)
@@ -573,7 +573,7 @@ void wxTextCtrl::AppendText(const wxString& text2)
     wxString text( text2 );
     wxArrayString lines;
     int pos;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( (pos = text.Find('\n')) != -1 )
@@ -602,7 +602,7 @@ void wxTextCtrl::AppendText(const wxString& text2)
 
         m_lines[y].m_text = tmp;
         int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 1; i < count; i++)
@@ -622,7 +622,7 @@ long wxTextCtrl::XYToPosition(long x, long y) const
 {
     long ret = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < m_lines.GetCount(); i++)
@@ -656,7 +656,7 @@ bool wxTextCtrl::PositionToXY(long pos, long *x, long *y) const
     long xx = 0;
     long yy = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < m_lines.GetCount(); i++)
@@ -733,7 +733,7 @@ void wxTextCtrl::Copy()
             sel = tmp;
             sel.Append( wxT("\n") );
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = selStartY+1; i < selEndY; i++)
@@ -791,7 +791,7 @@ void wxTextCtrl::Paste()
     wxString text( data.GetText() );
     wxArrayString lines;
     int pos;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( (pos = text.Find('\n')) != -1 )
@@ -809,7 +809,7 @@ void wxTextCtrl::Paste()
     if (len < m_cursorX)
     {
         wxString tmp;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < m_cursorX-len; i++)
@@ -837,7 +837,7 @@ void wxTextCtrl::Paste()
 
         m_lines[m_cursorY].m_text = tmp1;
         int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 1; i < count; i++)
@@ -965,7 +965,7 @@ void wxTextCtrl::SearchForBrackets()
 
         int endY = m_cursorY-60;
         if (endY < 0) endY = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int y = m_cursorY; y >= endY; y--)
@@ -974,7 +974,7 @@ void wxTextCtrl::SearchForBrackets()
             if (y == m_cursorY)
                 current.erase(m_cursorX-1,current.Len()-m_cursorX+1);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int n = current.Len()-1; n >= 0; n--)
@@ -982,7 +982,7 @@ void wxTextCtrl::SearchForBrackets()
                 // ignore chars
                 if (current[(size_t) (n)] == '\'')
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (int m = n-1; m >= 0; m--)
@@ -1000,7 +1000,7 @@ void wxTextCtrl::SearchForBrackets()
                 // ignore strings
                 if (current[(size_t) (n)] == '\"')
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (int m = n-1; m >= 0; m--)
@@ -1052,7 +1052,7 @@ void wxTextCtrl::SearchForBrackets()
 
         int endY = m_cursorY+60;
         if (endY > (int)(m_lines.GetCount()-1)) endY = m_lines.GetCount()-1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int y = m_cursorY; y <= endY; y++)
@@ -1062,7 +1062,7 @@ void wxTextCtrl::SearchForBrackets()
             if (y == m_cursorY)
                 start = m_cursorX+1;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int n = start; n < (int)current.Len(); n++)
@@ -1070,7 +1070,7 @@ void wxTextCtrl::SearchForBrackets()
                 // ignore chars
                 if (current[(size_t) (n)] == '\'')
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (int m = n+1; m < (int)current.Len(); m++)
@@ -1088,7 +1088,7 @@ void wxTextCtrl::SearchForBrackets()
                 // ignore strings
                 if (current[(size_t) (n)] == '\"')
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (int m = n+1; m < (int)current.Len(); m++)
@@ -1179,7 +1179,7 @@ void wxTextCtrl::Delete()
         if (selStartX < len)
             m_lines[selStartY].m_text.Remove( selStartX );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < selEndY-selStartY-1; i++)
@@ -1228,7 +1228,7 @@ void wxTextCtrl::DoChar( char c )
     if (m_cursorX >= (int)tmp.Len())
     {
         int len = tmp.Len();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < m_cursorX - len; i++)
@@ -1346,7 +1346,7 @@ void wxTextCtrl::DoDelete()
 
         m_undos.Append( new wxSourceUndoStep( wxSOURCE_UNDO_DELETE, m_cursorY, m_cursorY+1, this ) );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < (m_cursorX-len); i++)
@@ -1395,7 +1395,7 @@ void wxTextCtrl::DoReturn()
         int cursorY = m_cursorY + 1;
 
         wxString new_tmp;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = 0; i < indent; i++) new_tmp.Append( ' ' );
@@ -1418,7 +1418,7 @@ void wxTextCtrl::DoReturn()
         int cursorY = m_cursorY + 1;
 
         wxString new_tmp;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = 0; i < indent; i++) new_tmp.Append( ' ' );
@@ -1447,7 +1447,7 @@ void wxTextCtrl::DoDClick()
         if (p > 0)
         {
             ch = line[(size_t) (p-1)];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while (((ch >= 'a') && (ch <= 'z')) ||
@@ -1466,7 +1466,7 @@ void wxTextCtrl::DoDClick()
         if (p < (int)line.Len())
         {
             ch = line[(size_t) (p)];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while (((ch >= 'a') && (ch <= 'z')) ||
@@ -1488,7 +1488,7 @@ wxString wxTextCtrl::GetNextToken( wxString &line, size_t &pos )
 {
     wxString ret;
     size_t len = line.Len();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t p = pos; p < len; p++)
@@ -1497,7 +1497,7 @@ wxString wxTextCtrl::GetNextToken( wxString &line, size_t &pos )
         {
             if (line[p] == '#')
             {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (size_t q = p; q < len; q++)
@@ -1510,7 +1510,7 @@ wxString wxTextCtrl::GetNextToken( wxString &line, size_t &pos )
         {
             if ((line[p] == '/') && (p+1 < len) && (line[(size_t) (p+1)] == '/'))
             {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (size_t q = p; q < len; q++)
@@ -1523,7 +1523,7 @@ wxString wxTextCtrl::GetNextToken( wxString &line, size_t &pos )
         if (line[p] == '"')
         {
             ret.Append( line[p] );
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (size_t q = p+1; q < len; q++)
@@ -1539,7 +1539,7 @@ wxString wxTextCtrl::GetNextToken( wxString &line, size_t &pos )
         if (line[p] == '\'')
         {
             ret.Append( line[p] );
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (size_t q = p+1; q < len; q++)
@@ -1558,7 +1558,7 @@ wxString wxTextCtrl::GetNextToken( wxString &line, size_t &pos )
             (line[p] == '#'))
         {
            ret.Append( line[p] );
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
            for (size_t q = p+1; q < len; q++)
@@ -1595,12 +1595,12 @@ void wxTextCtrl::DrawLinePart( wxDC &dc, int x, int y, const wxString &toDraw, c
     size_t pos = 0;
     size_t len = origin.Len();
     dc.SetTextForeground( colour );
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (pos < len)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (toDraw[pos] == wxT(' '))
@@ -1614,7 +1614,7 @@ void wxTextCtrl::DrawLinePart( wxDC &dc, int x, int y, const wxString &toDraw, c
         wxString current;
         current += toDraw[pos];
         pos++;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( (toDraw[pos] == origin[pos]) && (pos < len))
@@ -1681,7 +1681,7 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
 
         size_t pos = 0;
         wxString token( GetNextToken( line, pos ) );
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( !token.empty() )
@@ -1689,7 +1689,7 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
             if (m_keywords.Index( token ) != wxNOT_FOUND)
             {
                 size_t end_pos = pos + token.Len();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (size_t i = pos; i < end_pos; i++)
@@ -1701,7 +1701,7 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
             if (m_defines.Index( token ) != wxNOT_FOUND)
             {
                 size_t end_pos = pos + token.Len();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (size_t i = pos; i < end_pos; i++)
@@ -1714,7 +1714,7 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
                 ((token.Len() > 2) && (token[(size_t) (0)] == 'w') && (token[(size_t) (1)] == 'x')))
             {
                 size_t end_pos = pos + token.Len();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (size_t i = pos; i < end_pos; i++)
@@ -1726,7 +1726,7 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
             if ((token.Len() >= 2) && (token[(size_t) (0)] == '/') && (token[(size_t) (1)] == '/') && (m_lang == wxSOURCE_LANG_CPP))
             {
                 size_t end_pos = pos + token.Len();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (size_t i = pos; i < end_pos; i++)
@@ -1739,7 +1739,7 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
                 ((m_lang == wxSOURCE_LANG_PYTHON) || (m_lang == wxSOURCE_LANG_PERL)))
             {
                 size_t end_pos = pos + token.Len();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (size_t i = pos; i < end_pos; i++)
@@ -1751,7 +1751,7 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
             if ((token[(size_t) (0)] == '"') || (token[(size_t) (0)] == '\''))
             {
                 size_t end_pos = pos + token.Len();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (size_t i = pos; i < end_pos; i++)
@@ -1785,7 +1785,7 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
         int ww = PosToPixel( lineNum, selEndX ) - xx;
         dc.DrawRectangle( xx+2, lineNum*m_lineHeight+2, ww, m_lineHeight );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = (size_t)selStartX; i < (size_t)selEndX; i++)
@@ -1798,7 +1798,7 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
     {
         dc.DrawRectangle( 0+2, lineNum*m_lineHeight+2, 10000, m_lineHeight );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = 0; i < line.Len(); i++)
@@ -1813,7 +1813,7 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
         int xx = PosToPixel( lineNum, selStartX );
         dc.DrawRectangle( xx+2, lineNum*m_lineHeight+2, 10000, m_lineHeight );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = (size_t)selStartX; i < line.Len(); i++)
@@ -1828,7 +1828,7 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
         int ww = PosToPixel( lineNum, selEndX );
         dc.DrawRectangle( 0+2, lineNum*m_lineHeight+2, ww, m_lineHeight );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = 0; i < (size_t)selEndX; i++)
@@ -1872,7 +1872,7 @@ void wxTextCtrl::OnPaint( wxPaintEvent &event )
     dc.SetPen( *wxTRANSPARENT_PEN );
     dc.SetBrush( wxBrush( wxTHEME_COLOUR(HIGHLIGHT), wxSOLID ) );
     int upper = wxMin( (int)m_lines.GetCount(), scroll_y+(size_y/m_lineHeight)+2 );
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = scroll_y; i < upper; i++)
@@ -2082,7 +2082,7 @@ void wxTextCtrl::OnChar( wxKeyEvent &event )
             m_overwrite = false;
             int i = 4-(m_cursorX % 4);
             if (i == 0) i = 4;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int c = 0; c < i; c++)
@@ -2160,7 +2160,7 @@ void wxTextCtrl::Indent()
 
     m_undos.Append( new wxSourceUndoStep( wxSOURCE_UNDO_LINE, startY, endY, this ) );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = startY; i <= endY; i++)
@@ -2188,12 +2188,12 @@ void wxTextCtrl::Unindent()
 
     m_undos.Append( new wxSourceUndoStep( wxSOURCE_UNDO_LINE, startY, endY, this ) );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = startY; i <= endY; i++)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int n = 0; n < 4; n++)

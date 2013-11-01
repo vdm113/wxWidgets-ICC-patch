@@ -43,7 +43,7 @@ static unsigned int SpaceCount(char* lineBuffer) {
 
 	char* headBuffer = lineBuffer;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (*headBuffer == ' ')
@@ -92,7 +92,7 @@ static void ColouriseYAMLLine(
 		return;
 	}
 	// Skip initial spaces
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((i < lengthLine) && lineBuffer[i] == ' ') { // YAML always uses space, never TABS or anything else
@@ -107,7 +107,7 @@ static void ColouriseYAMLLine(
 		styler.ColourTo(endPos, SCE_YAML_COMMENT);
 		return;
 	}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (i < lengthLine) {
@@ -118,13 +118,13 @@ static void ColouriseYAMLLine(
 			styler.ColourTo(startLine + i, SCE_YAML_OPERATOR);
 			// Non-folding scalar
 			i++;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			while ((i < lengthLine) && isspacechar(lineBuffer[i]))
 				i++;
 			unsigned int endValue = lengthLine - 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			while ((endValue >= i) && isspacechar(lineBuffer[endValue]))
@@ -134,7 +134,7 @@ static void ColouriseYAMLLine(
 				i++;
 				if (lineBuffer[i] == '+' || lineBuffer[i] == '-')
 					i++;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				while ((i < lengthLine) && isspacechar(lineBuffer[i]))
@@ -167,7 +167,7 @@ static void ColouriseYAMLLine(
 				return;
 			} else {
 				unsigned int i2 = i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				while ((i < lengthLine) && lineBuffer[i]) {
@@ -199,7 +199,7 @@ static void ColouriseYAMLDoc(unsigned int startPos, int length, int, WordList *k
 	unsigned int maxPos = styler.Length();
 	unsigned int lineCurrent = styler.GetLine(startPos);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < maxPos && i < endPos; i++) {
@@ -239,7 +239,7 @@ static void FoldYAMLDoc(unsigned int startPos, int length, int /*initStyle - unu
 	int spaceFlags = 0;
 	int lineCurrent = styler.GetLine(startPos);
 	int indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, NULL);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (lineCurrent > 0) {
@@ -259,7 +259,7 @@ static void FoldYAMLDoc(unsigned int startPos, int length, int /*initStyle - unu
 	// Process all characters to end of requested range
 	// or comment that hangs over the end of the range.  Cap processing in all cases
 	// to end of document (in case of unclosed comment at end).
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) || prevComment)) {
@@ -294,7 +294,7 @@ static void FoldYAMLDoc(unsigned int startPos, int length, int /*initStyle - unu
 		// which effectively folds them into surrounding code rather
 		// than screwing up folding.
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while ((lineNext < docLines) &&
@@ -316,7 +316,7 @@ static void FoldYAMLDoc(unsigned int startPos, int length, int /*initStyle - unu
 		int skipLine = lineNext;
 		int skipLevel = levelAfterComments;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (--skipLine > lineCurrent) {

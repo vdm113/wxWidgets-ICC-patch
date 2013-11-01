@@ -53,7 +53,7 @@ void ListBaseTestCase::ColumnsOrder()
 
     // check that the order is natural in the beginning
     const wxArrayInt orderOrig = list->GetColumnsOrder();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < NUM_COLS; n++ )
@@ -69,14 +69,14 @@ void ListBaseTestCase::ColumnsOrder()
 
     // check that we get back the same order as we set
     const wxArrayInt orderNew = list->GetColumnsOrder();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < NUM_COLS; n++ )
         CPPUNIT_ASSERT_EQUAL( order[n], orderNew[n] );
 
     // and the order -> index mappings for individual columns
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < NUM_COLS; n++ )
@@ -370,7 +370,7 @@ void ListBaseTestCase::Visible()
 
     int count = list->GetCountPerPage();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( int i = 0; i < count + 10; i++ )

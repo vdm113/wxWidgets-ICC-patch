@@ -132,7 +132,7 @@ bool wxApp::DoIdle()
 
     gdk_threads_enter();
     bool needMore;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do {
@@ -351,7 +351,7 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
 #if wxUSE_UNICODE
     // gtk_init() wants UTF-8, not wchar_t, so convert
     char **argvGTK = new char *[argc_ + 1];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < argc_; i++ )
@@ -378,12 +378,12 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
     if ( argcGTK != argc_ )
     {
         // we have to drop the parameters which were consumed by GTK+
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i = 0; i < argcGTK; i++ )
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while ( strcmp(wxConvUTF8.cWX2MB(argv_[i]), argvGTK[i]) != 0 )
@@ -398,7 +398,7 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
     //else: gtk_init() didn't modify our parameters
 
     // free our copy
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < argcGTK; i++ )
@@ -426,7 +426,7 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
         wxArrayString opt, desc;
         m_traits->GetStandardCmdLineOptions(opt, desc);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i = 0; i < argc_; i++ )
@@ -434,7 +434,7 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
             // leave just the names of the options with values
             const wxString str = wxString(argv_[i]).BeforeFirst('=');
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( size_t j = 0; j < opt.size(); j++ )

@@ -56,7 +56,7 @@ static void ColouriseMMIXALDoc(unsigned int startPos, int length, int initStyle,
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward())
@@ -106,7 +106,7 @@ static void ColouriseMMIXALDoc(unsigned int startPos, int length, int initStyle,
 				char s[100];
 				sc.GetCurrent(s, sizeof(s));
 				if (*s == ':') {	// ignore base prefix for match
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 					for (size_t i = 0; i != sizeof(s); ++i) {

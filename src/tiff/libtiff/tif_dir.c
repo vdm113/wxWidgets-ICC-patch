@@ -77,7 +77,7 @@ setDoubleArrayOneValue(double** vpp, double value, size_t nmemb)
 	*vpp = _TIFFmalloc(nmemb*sizeof(double));
 	if (*vpp)
 	{
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (nmemb--)
@@ -103,7 +103,7 @@ setExtraSamples(TIFFDirectory* td, va_list ap, uint32* v)
 	va = va_arg(ap, uint16*);
 	if (*v > 0 && va == NULL)		/* typically missing param */
 		return 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < *v; i++) {
@@ -140,11 +140,11 @@ checkInkNamesString(TIFF* tif, uint32 slen, const char* s)
 	if (slen > 0) {
 		const char* ep = s+slen;
 		const char* cp = s;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (; i > 0; i--) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (; cp < ep && *cp != '\0'; cp++) {}
@@ -422,7 +422,7 @@ _TIFFVSetField(TIFF* tif, uint32 tag, va_list ap)
 		break;
 	case TIFFTAG_TRANSFERFUNCTION:
 		v = (td->td_samplesperpixel - td->td_extrasamples) > 1 ? 3 : 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (i = 0; i < v; i++)
@@ -476,7 +476,7 @@ _TIFFVSetField(TIFF* tif, uint32 tag, va_list ap)
 		 * Find the existing entry for this custom value.
 		 */
 		tv = NULL;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (iCustom = 0; iCustom < td->td_customValueCount; iCustom++) {
@@ -784,7 +784,7 @@ TIFFUnsetField(TIFF* tif, uint32 tag)
         TIFFTagValue *tv = NULL;
         int i;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < td->td_customValueCount; i++) {
@@ -797,7 +797,7 @@ TIFFUnsetField(TIFF* tif, uint32 tag)
         if( i < td->td_customValueCount )
         {
             _TIFFfree(tv->value);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for( ; i < td->td_customValueCount-1; i++) {
@@ -891,7 +891,7 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 				/* libtiff historially treats this as a single value. */
 				uint16 i;
 				double v = td->td_sminsamplevalue[0];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (i=1; i < td->td_samplesperpixel; ++i)
@@ -908,7 +908,7 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 				/* libtiff historially treats this as a single value. */
 				uint16 i;
 				double v = td->td_smaxsamplevalue[0];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (i=1; i < td->td_samplesperpixel; ++i)
@@ -1051,7 +1051,7 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 				 * Do we have a custom value?
 				 */
 				ret_val = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (i = 0; i < td->td_customValueCount; i++) {
@@ -1221,7 +1221,7 @@ TIFFFreeDirectory(TIFF* tif)
 	TIFFClrFieldBit(tif, FIELD_YCBCRPOSITIONING);
 
 	/* Cleanup custom tag values */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for( i = 0; i < td->td_customValueCount; i++ ) {
@@ -1512,7 +1512,7 @@ TIFFNumberOfDirectories(TIFF* tif)
 	else
 		nextdir = tif->tif_header.big.tiff_diroff;
 	n = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (nextdir != 0 && TIFFAdvanceDirectory(tif, &nextdir, NULL))
@@ -1534,7 +1534,7 @@ TIFFSetDirectory(TIFF* tif, uint16 dirn)
 		nextdir = tif->tif_header.classic.tiff_diroff;
 	else
 		nextdir = tif->tif_header.big.tiff_diroff;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (n = dirn; n > 0 && nextdir != 0; n--)
@@ -1623,7 +1623,7 @@ TIFFUnlinkDirectory(TIFF* tif, uint16 dirn)
 		nextdir = tif->tif_header.big.tiff_diroff;
 		off = 8;
 	}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (n = dirn-1; n > 0; n--) {

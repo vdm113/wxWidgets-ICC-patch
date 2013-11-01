@@ -81,7 +81,7 @@ static bool CanonicalizeParams(wxString& command)
     //     return a string with _exactly_ one '%s'!
     bool foundFilename = false;
     size_t len = command.length();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; (n < len) && !foundFilename; n++ )
@@ -158,7 +158,7 @@ size_t wxFileTypeImpl::GetAllCommands(wxArrayString *verbs,
     long dummy;
     wxString verb;
     bool ok = rkey.GetFirstKey(verb, dummy);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( ok )
@@ -559,7 +559,7 @@ size_t wxMimeTypesManagerImpl::EnumAllFileTypes(wxArrayString& mimetypes)
     wxString type;
     long cookie;
     bool cont = key.GetFirstKey(type, cookie);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( cont )
@@ -661,7 +661,7 @@ wxFileType *wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
 
     // now make other extensions have the same filetype
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (iExtCount=1; iExtCount < ftInfo.GetExtensionsCount(); iExtCount++ )

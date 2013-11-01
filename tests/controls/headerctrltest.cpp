@@ -112,14 +112,14 @@ void HeaderCtrlTestCase::Reorder()
 
     int n;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < COL_COUNT; n++ )
         m_header->AppendColumn(wxHeaderColumnSimple(wxString::Format("%d", n)));
 
     wxArrayInt order = m_header->GetColumnsOrder(); // initial order: [0 1 2 3]
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < COL_COUNT; n++ )

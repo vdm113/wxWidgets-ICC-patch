@@ -61,7 +61,7 @@ bool wxRearrangeList::Create(wxWindow *parent,
     wxArrayString itemsInOrder;
     itemsInOrder.reserve(count);
     size_t n;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < count; n++ )
@@ -78,7 +78,7 @@ bool wxRearrangeList::Create(wxWindow *parent,
         return false;
 
     // and now check all the items which should be initially checked
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < count; n++ )

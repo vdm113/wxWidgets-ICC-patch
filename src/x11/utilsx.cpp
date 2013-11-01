@@ -128,7 +128,7 @@ static void wxCalcPrecAndShift( unsigned long mask, int *shift, int *prec )
     *shift = 0;
     *prec = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (!(mask & 0x1))
@@ -137,7 +137,7 @@ static void wxCalcPrecAndShift( unsigned long mask, int *shift, int *prec )
         mask >>= 1;
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (mask & 0x1)
@@ -193,7 +193,7 @@ void wxXVisualInfo::Init( Display* dpy, XVisualInfo* vi )
     m_visualColormap = new XColor[m_visualColormapSize];
     XColor* colors = (XColor*) m_visualColormap;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < m_visualColormapSize; i++)
@@ -204,17 +204,17 @@ void wxXVisualInfo::Init( Display* dpy, XVisualInfo* vi )
 
     m_colorCube = (unsigned char*)malloc(32 * 32 * 32);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int r = 0; r < 32; r++)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int g = 0; g < 32; g++)
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int b = 0; b < 32; b++)
@@ -229,7 +229,7 @@ void wxXVisualInfo::Init( Display* dpy, XVisualInfo* vi )
                 {
                     int max = 3 * 65536;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (int i = 0; i < m_visualColormapSize; i++)

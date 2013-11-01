@@ -123,7 +123,7 @@ void wxIniConfig::SetPath(const wxString& strPath)
   else {
     // translate
     m_strGroup = aParts[0u];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t nPart = 1; nPart < nPartsCount; nPart++ ) {
@@ -154,7 +154,7 @@ const wxString& wxIniConfig::GetPath() const
     s_str << m_strGroup;
     if ( !m_strPath.empty() )
       s_str << wxCONFIG_PATH_SEPARATOR;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( const wxStringCharType *p = m_strPath.wx_str(); *p != '\0'; p++ ) {

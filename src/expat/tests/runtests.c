@@ -329,7 +329,7 @@ START_TEST(test_illegal_utf8)
     char text[100];
     int i;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 128; i <= 255; ++i) {
@@ -633,7 +633,7 @@ is_whitespace_normalized(const XML_Char *s, int is_cdata)
 {
     int blanks = 0;
     int at_start = 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (*s) {
@@ -690,7 +690,7 @@ check_attr_contains_normalized_whitespace(void *userData,
                                           const XML_Char **atts)
 {
     int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; atts[i] != NULL; i += 2) {
@@ -753,7 +753,7 @@ UnknownEncodingHandler(void *data,const XML_Char *encoding,XML_Encoding *info)
 {
     if (strcmp(encoding,"unsupported-encoding") == 0) {
         int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < 256; ++i)
@@ -1152,7 +1152,7 @@ overwrite_start_checker(void *userData, const XML_Char *name,
     CharData *storage = (CharData *) userData;
     CharData_AppendString(storage, "start ");
     CharData_AppendXMLChars(storage, name, -1);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (*atts != NULL) {
@@ -1509,7 +1509,7 @@ main(int argc, char *argv[])
     /* run the tests for internal helper functions */
     testhelper_is_whitespace_normalized();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 1; i < argc; ++i) {

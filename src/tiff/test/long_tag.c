@@ -100,7 +100,7 @@ main(int argc, char **argv)
 		goto failure;
 	}
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < NTAGS; i++) {
@@ -136,7 +136,7 @@ main(int argc, char **argv)
 	if (CheckLongField(tif, TIFFTAG_ROWSPERSTRIP, rows_per_strip) < 0)
 		goto failure;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < NTAGS; i++) {

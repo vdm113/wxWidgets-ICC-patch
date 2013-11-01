@@ -112,7 +112,7 @@ main(argc, argv)
     setbuf(stderr, NULL);
     pname = argv[0];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (--argc) {
@@ -222,7 +222,7 @@ main(argc, argv)
     memset(blue, 0, sizeof(blue));
     if (depth == 8) {
 	TIFFSetField(tif, TIFFTAG_COLORMAP, red, green, blue);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < Colormap.length; i++) {
@@ -234,7 +234,7 @@ main(argc, argv)
     if (Verbose)
 	fprintf(stderr, "%dx%dx%d image, ", width, height, depth);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (row = 0; row < height; row++)

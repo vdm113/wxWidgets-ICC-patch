@@ -86,7 +86,7 @@ main(int argc, char* argv[])
 
         oerror = TIFFSetErrorHandler(NULL);
         owarning = TIFFSetWarningHandler(NULL);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ((c = getopt(argc, argv, "d:o:p:eflmsvw?")) != -1)
@@ -390,7 +390,7 @@ raster_special(int key, int x, int y)
                 break;
                 case GLUT_KEY_END:              /* last image in current file */
                         TIFFRGBAImageEnd(&img);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                         while (!TIFFLastDirectory(tif))
@@ -429,7 +429,7 @@ usage(void)
 
         setbuf(stderr, buf);
                 fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; stuff[i] != NULL; i++)

@@ -245,7 +245,7 @@ void FileCtrlWidgetsPage::CreateFileCtrl()
                            );
 
     wxString wildcard;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int i = 0; i < WXSIZEOF( m_fltr ); ++i )

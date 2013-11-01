@@ -99,7 +99,7 @@ wxAcceleratorTable::wxAcceleratorTable(int n, const wxAcceleratorEntry entries[]
     m_refData = new wxAcceleratorRefData;
 
     ACCEL* arr = new ACCEL[n];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < n; i++ )

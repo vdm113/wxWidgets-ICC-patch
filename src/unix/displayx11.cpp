@@ -95,7 +95,7 @@ public:
 
         m_num = gdk_screen_get_n_monitors(screen);
         m_screens = new ScreenInfo[m_num];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = 0; i < m_num; i++ )
@@ -195,7 +195,7 @@ int wxDisplayFactoryX11::GetFromPoint(const wxPoint& p)
     ScreensInfo screens;
 
     const unsigned numscreens(screens.GetCount());
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned i = 0; i < numscreens; ++i )
@@ -254,7 +254,7 @@ wxArrayVideoModes wxDisplayImplX11::GetModes(const wxVideoMode& mode) const
 
     if (XF86VidModeGetAllModeLines(pDisplay, nScreen, &nNumModes, &ppXModes) == TRUE)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < nNumModes; ++i)
@@ -304,7 +304,7 @@ bool wxDisplayImplX11::ChangeMode(const wxVideoMode& mode)
         bRet = XF86VidModeSwitchToMode((Display*)wxGetDisplay(), DefaultScreen((Display*)wxGetDisplay()),
                      ppXModes[0]) == TRUE;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < nNumModes; ++i)
@@ -315,7 +315,7 @@ bool wxDisplayImplX11::ChangeMode(const wxVideoMode& mode)
     }
     else
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < nNumModes; ++i)
@@ -349,7 +349,7 @@ wxArrayVideoModes wxDisplayImplX11::GetModes(const wxVideoMode& modeMatch) const
     wxArrayVideoModes modes;
     if ( depths )
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int x = 0; x < count_return; ++x )

@@ -147,7 +147,7 @@ void wxBitmapComboBox::RecreateControl()
 
         case wxClientData_Object:
             objectClientData.reserve(numItems);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i = 0; i < numItems; ++i )
@@ -156,7 +156,7 @@ void wxBitmapComboBox::RecreateControl()
 
         case wxClientData_Void:
             voidClientData.reserve(numItems);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i = 0; i < numItems; ++i )
@@ -174,7 +174,7 @@ void wxBitmapComboBox::RecreateControl()
         return;
 
     // initialize the controls contents
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < numItems; i++ )
@@ -326,7 +326,7 @@ int wxBitmapComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
 
     m_bitmaps.Alloc(countNew);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int i = 0; i < numItems; i++ )
@@ -339,7 +339,7 @@ int wxBitmapComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
 
     if ( index == wxNOT_FOUND )
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = numItems-1; i >= 0; i-- )

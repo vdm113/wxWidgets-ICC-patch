@@ -50,7 +50,7 @@ start(void *data, const char *el, const char **attr)
 {
   int i;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < Depth; i++)
@@ -58,7 +58,7 @@ start(void *data, const char *el, const char **attr)
 
   printf("%s", el);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; attr[i]; i += 2) {
@@ -86,7 +86,7 @@ main(int argc, char *argv[])
 
   XML_SetElementHandler(p, start, end);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (;;) {

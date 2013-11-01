@@ -107,7 +107,7 @@ public:
         SetRowCount(MAX_LINES);
 
         int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i = 0; i < MAX_LINES; ++i )
@@ -144,7 +144,7 @@ public:
         wxSize clientSize = GetClientSize();
 
         wxCoord y = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t line = lineFirst; line < lineLast; line++ )
@@ -210,7 +210,7 @@ public:
         SetColumnCount(MAX_LINES);
 
         int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i = 0; i < MAX_LINES; ++i )
@@ -247,7 +247,7 @@ public:
         wxSize clientSize = GetClientSize();
 
         wxCoord x = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t line = lineFirst; line < lineLast; line++ )
@@ -313,7 +313,7 @@ public:
         SetRowColumnCount(MAX_LINES, MAX_LINES);
 
         int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i = 0; i < MAX_LINES; ++i )
@@ -359,7 +359,7 @@ public:
 
         wxCoord y = 0;
         wxCoord x = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t row = rowFirst; row < rowLast; row++ )
@@ -368,7 +368,7 @@ public:
             dc.DrawLine(0, y, clientSize.GetWidth(), y);
 
             x = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( size_t col = columnFirst; col < columnLast; col++ )

@@ -359,7 +359,7 @@ bool wxMakeMetafilePlaceable(const wxString& WXUNUSED(filename),
     // Calculate checksum
     WORD *p;
     mfPLACEABLEHEADER *pMFHead = &header;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (p =(WORD *)pMFHead,pMFHead -> checksum = 0; p < (WORD *)&pMFHead ->checksum; ++p)
@@ -425,7 +425,7 @@ bool wxMakeMetafilePlaceable(const wxString& WXUNUSED(filename),
     }
 
     int ch = -2;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (ch != EOF)

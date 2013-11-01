@@ -413,7 +413,7 @@ public:
     {
         wxTreeItemIdValue cookie;
         wxTreeItemId child = GetFirstChild(parent,cookie);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( child.IsOk() )
@@ -780,7 +780,7 @@ MyFrame::MyFrame(const wxString& title)
     cc->SetPopupControl(iface);
 
     int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<100; i++ )
@@ -810,7 +810,7 @@ MyFrame::MyFrame(const wxString& title)
 
     wxTreeItemId groupId;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<4; i++ )
@@ -819,7 +819,7 @@ MyFrame::MyFrame(const wxString& title)
             wxString::Format(wxT("Branch %02i"),i));
 
         int n;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( n=0; n<25; n++ )

@@ -136,7 +136,7 @@ void wxApp::HandleSockets()
         timeout.tv_usec = 0;
         if ( select(m_maxSocketNr, &readfds, &writefds, 0, &timeout) > 0)
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = m_lastUsedHandle + 1; i != m_lastUsedHandle;
@@ -145,7 +145,7 @@ void wxApp::HandleSockets()
                 if (FD_ISSET(i, &readfds))
                 {
                     int r;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (r = 0; r < m_maxSocketHandles; r++){
@@ -162,7 +162,7 @@ void wxApp::HandleSockets()
                 if (FD_ISSET(i, &writefds))
                 {
                     int r;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (r = 0; r < m_maxSocketHandles; r++)
@@ -515,7 +515,7 @@ int wxApp::AddSocketHandler(int handle, int mask,
     struct GsocketCallbackInfo
         *CallbackInfo = (struct GsocketCallbackInfo *)m_sockCallbackInfo;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (find = 0; find < m_maxSocketHandles; find++)
@@ -528,7 +528,7 @@ int wxApp::AddSocketHandler(int handle, int mask,
                                      (m_maxSocketHandles+=10)*
                                      sizeof(struct GsocketCallbackInfo));
         CallbackInfo = (struct GsocketCallbackInfo *)m_sockCallbackInfo;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (find = m_maxSocketHandles - 10; find < m_maxSocketHandles; find++)

@@ -183,7 +183,7 @@ Status XGetWindowAttributes(Display* display, Window w,
      * or we will report a window as mapped when it is not.
      */
     parent = info.parent;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (parent)
@@ -287,7 +287,7 @@ int XParseColor(Display* display, Colormap cmap,
                 const char* cname, XColor* color)
 {
     int i = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;)
@@ -422,7 +422,7 @@ int XTranslateCoordinates(Display* display, Window srcWindow, Window destWindow,
     int offy = 0;
 
     Window w = srcWindow;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (w != GR_ROOT_WINDOW_ID)
@@ -437,7 +437,7 @@ int XTranslateCoordinates(Display* display, Window srcWindow, Window destWindow,
 
     w = destWindow;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (w != GR_ROOT_WINDOW_ID)

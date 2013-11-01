@@ -133,7 +133,7 @@ static int CheckTeXInterface(
     // some day we can make something lexer.tex.mapping=(all,0)(nl,1)(en,2)...
 
     if (styler.SafeGetCharAt(0) == '%') {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (unsigned int i = 0; i < startPos + length; i++) {
@@ -205,7 +205,7 @@ static void ColouriseTeXDoc(
 
 	bool going = sc.More() ; // needed because of a fuzzy end of file state
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; going; sc.Forward()) {
@@ -315,7 +315,7 @@ static int ParseTeXCommand(unsigned int pos, Accessor &styler, char *command)
   }
 
   // find end
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
      while(isWordChar(ch) && !isNumber(ch) && ch!='_' && ch!='.' && length<100){
@@ -377,7 +377,7 @@ static bool IsTeXCommentLine(int line, Accessor &styler) {
 
 	int startpos = pos;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (startpos<eol_pos){
@@ -403,7 +403,7 @@ static void FoldTexDoc(unsigned int startPos, int length, int, WordList *[], Acc
 	char chNext=styler[startPos];
 	char buffer[100]="";
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i=startPos; i < endPos; i++) {

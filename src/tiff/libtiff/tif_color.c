@@ -135,7 +135,7 @@ TIFFCIELabToRGBInit(TIFFCIELabToRGB* cielab,
 	gamma = 1.0 / cielab->display.d_gammaR ;
 	cielab->rstep =
 		(cielab->display.d_YCR - cielab->display.d_Y0R)	/ cielab->range;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for(i = 0; i <= cielab->range; i++) {
@@ -147,7 +147,7 @@ TIFFCIELabToRGBInit(TIFFCIELabToRGB* cielab,
 	gamma = 1.0 / cielab->display.d_gammaG ;
 	cielab->gstep =
 	    (cielab->display.d_YCR - cielab->display.d_Y0R) / cielab->range;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for(i = 0; i <= cielab->range; i++) {
@@ -159,7 +159,7 @@ TIFFCIELabToRGBInit(TIFFCIELabToRGB* cielab,
 	gamma = 1.0 / cielab->display.d_gammaB ;
 	cielab->bstep =
 	    (cielab->display.d_YCR - cielab->display.d_Y0R) / cielab->range;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for(i = 0; i <= cielab->range; i++) {
@@ -235,7 +235,7 @@ TIFFYCbCrToRGBInit(TIFFYCbCrToRGB* ycbcr, float *luma, float *refBlackWhite)
 	(uint8*) ycbcr+TIFFroundup_32(sizeof (TIFFYCbCrToRGB), sizeof (long)));  
     _TIFFmemset(clamptab, 0, 256);		/* v < 0 => 0 */
     ycbcr->clamptab = (clamptab += 256);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 256; i++)
@@ -264,7 +264,7 @@ TIFFYCbCrToRGBInit(TIFFYCbCrToRGB* ycbcr, float *luma, float *refBlackWhite)
        * tag) so there is some range shifting to do here when
        * constructing tables indexed by the raw pixel data.
        */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (i = 0, x = -128; i < 256; i++, x++) {

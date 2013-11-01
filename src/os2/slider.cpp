@@ -1096,7 +1096,7 @@ void wxSlider::DoSetTickFreq( int n )
     vWndParams.cbCtlData = vSlData.cbSize;
     vWndParams.pCtlData = (PVOID)&vSlData;
     ::WinSendMsg(GetHwnd(), WM_SETWINDOWPARAMS, (MPARAM)&vWndParams, (MPARAM)0);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 1; i < (m_nRangeMax - m_nRangeMin)/n; i++)

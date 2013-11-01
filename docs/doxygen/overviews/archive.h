@@ -2,7 +2,7 @@
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#   define MY_MACRO_PRAGMA_IVDEP
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -80,7 +80,7 @@ auto_ptr<wxZipEntry> entry;
 wxFFileInputStream in(wxT("test.zip"));
 wxZipInputStream zip(in);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 while (entry.reset(zip.GetNextEntry()), entry.get() != NULL)
@@ -124,7 +124,7 @@ auto_ptr<wxZipEntry> entry;
 outzip.CopyArchiveMetaData(inzip);
 
 // call CopyEntry for each entry except those matching the pattern
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 while (entry.reset(inzip.GetNextEntry()), entry.get() != NULL)
@@ -174,14 +174,14 @@ wxFFileInputStream in(wxT("test.zip"));
 wxZipInputStream zip(in);
 
 // call GetNextEntry() until the required internal name is found
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 do
 {
     entry.reset(zip.GetNextEntry());
 }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 while (entry.get() != NULL && entry->GetInternalName() != name);
@@ -208,7 +208,7 @@ wxFFileInputStream in(wxT("test.zip"));
 wxZipInputStream zip(in);
 
 // load the zip catalog
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 while ((entry = zip.GetNextEntry()) != NULL)
@@ -318,7 +318,7 @@ if (in->IsOk())
         auto_ptr<wxArchiveEntry> entry;
 
         // list the contents of the archive
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ((entry.reset(arc->GetNextEntry())), entry.get() != NULL)
@@ -406,7 +406,7 @@ auto_ptr<wxArchiveEntry> entry;
 
 outarc->CopyArchiveMetaData(*arc);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 while (entry.reset(arc->GetNextEntry()), entry.get() != NULL)
@@ -446,7 +446,7 @@ MyNotifier notifier;
 
 outarc->CopyArchiveMetaData(*arc);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 while (entry.reset(arc->GetNextEntry()), entry.get() != NULL)

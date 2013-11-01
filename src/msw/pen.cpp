@@ -385,7 +385,7 @@ bool wxPenRefData::Alloc()
        {
            dash = new DWORD[m_nbDash];
            int rw = m_width > 1 ? m_width : 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
            for ( int i = 0; i < m_nbDash; i++ )

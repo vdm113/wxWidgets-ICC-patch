@@ -82,7 +82,7 @@ void wxHTTP::SetProxyMode(bool on)
 wxHTTP::wxHeaderIterator wxHTTP::FindHeader(const wxString& header)
 {
     wxHeaderIterator it = m_headers.begin();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxHeaderIterator en = m_headers.end(); it != en; ++it )
@@ -97,7 +97,7 @@ wxHTTP::wxHeaderIterator wxHTTP::FindHeader(const wxString& header)
 wxHTTP::wxHeaderConstIterator wxHTTP::FindHeader(const wxString& header) const
 {
     wxHeaderConstIterator it = m_headers.begin();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxHeaderConstIterator en = m_headers.end(); it != en; ++it )
@@ -112,7 +112,7 @@ wxHTTP::wxHeaderConstIterator wxHTTP::FindHeader(const wxString& header) const
 wxHTTP::wxCookieIterator wxHTTP::FindCookie(const wxString& cookie)
 {
     wxCookieIterator it = m_cookies.begin();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxCookieIterator en = m_cookies.end(); it != en; ++it )
@@ -127,7 +127,7 @@ wxHTTP::wxCookieIterator wxHTTP::FindCookie(const wxString& cookie)
 wxHTTP::wxCookieConstIterator wxHTTP::FindCookie(const wxString& cookie) const
 {
     wxCookieConstIterator it = m_cookies.begin();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxCookieConstIterator en = m_cookies.end(); it != en; ++it )
@@ -182,7 +182,7 @@ wxString wxHTTP::GenerateAuthString(const wxString& user, const wxString& pass) 
 
     size_t len = toencode.length();
     const wxChar *from = toencode.c_str();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (len >= 3) { // encode full blocks first
@@ -256,7 +256,7 @@ void wxHTTP::SendHeaders()
     typedef wxStringToStringHashMap::iterator iterator;
     wxString buf;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (iterator it = m_headers.begin(), en = m_headers.end(); it != en; ++it )
@@ -277,7 +277,7 @@ bool wxHTTP::ParseHeaders()
     ClearCookies();
     m_read = true;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )

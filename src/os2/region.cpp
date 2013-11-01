@@ -594,7 +594,7 @@ void wxRegionIterator::Reset(
                                              ,pRect
                                             );
 #endif
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for( LONG i = 0; i < m_lNumRects; i++)

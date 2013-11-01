@@ -120,7 +120,7 @@ local gzFile gz_open(path, fd, mode)
     state->level = Z_DEFAULT_COMPRESSION;
     state->strategy = Z_DEFAULT_STRATEGY;
     state->direct = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (*mode) {
@@ -627,7 +627,7 @@ unsigned ZLIB_INTERNAL gz_intmax()
     unsigned p, q;
 
     p = 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do {

@@ -89,7 +89,7 @@ bool wxPalette::Create( int n,
     if (!pualTable)
         return false;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < n; i ++)
@@ -158,7 +158,7 @@ int wxPalette::GetPixel( unsigned char cRed,
     // Now loop through and find the matching entry
     //
     ULONG i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < ulNumEntries; i++)

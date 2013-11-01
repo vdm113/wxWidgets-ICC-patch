@@ -188,7 +188,7 @@ bool wxDataObject::IsSupportedFormat(const wxDataFormat& format, Direction dir) 
         GetAllFormats(formats,dir);
 
         size_t n;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( n = 0; n < nFormatCount; n++ )
@@ -212,7 +212,7 @@ bool wxFileDataObject::GetDataHere(void *buf) const
 {
     wxString filenames;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
@@ -231,7 +231,7 @@ size_t wxFileDataObject::GetDataSize() const
 {
     size_t res = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
@@ -251,7 +251,7 @@ bool wxFileDataObject::SetData(size_t WXUNUSED(size), const void *buf)
     // we get data in the text/uri-list format, i.e. as a sequence of URIs
     // (filenames prefixed by "file:") delimited by "\r\n"
     wxString filename;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( const char *p = (const char *)buf; ; p++ )

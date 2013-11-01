@@ -272,7 +272,7 @@ int wxJoystick::GetNumberButtons() const
 {
     int nCount = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(int nIndex = 0; nIndex < 40; ++nIndex)
@@ -287,7 +287,7 @@ int wxJoystick::GetNumberAxes() const
 {
     int nCount = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(int nIndex = 40; nIndex < 50; ++nIndex)
@@ -577,7 +577,7 @@ void wxHIDJoystick::BuildCookies(CFArrayRef Array)
 
     //paranoid debugging stuff
 #if 0
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(int i = 0; i < 50; ++i)
@@ -589,7 +589,7 @@ void wxHIDJoystick::MakeCookies(CFArrayRef Array)
 {
     int i, nUsage, nPage;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < CFArrayGetCount(Array); ++i)
@@ -757,7 +757,7 @@ void* wxJoystickThread::Entry()
 
     double dTime;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while(true)
@@ -824,7 +824,7 @@ void* wxJoystickThread::Entry()
     ret = (*m_hid->GetQueue())->getNextEvent(m_hid->GetQueue(),
                     &hidevent, bogustime, 0);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (ret != kIOReturnUnderrun)
@@ -843,7 +843,7 @@ void* wxJoystickThread::Entry()
         //Find the cookie that changed
         int nIndex = 0;
         IOHIDElementCookie* pCookies = m_hid->GetCookies();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while(nIndex < 50)

@@ -471,7 +471,7 @@ void MyFrame::OnFileSystemEvent(wxFileSystemWatcherEvent& event)
         // otherwise there'll be asserts if later we try to remove it
         wxString eventpath = event.GetPath().GetFullPath();
         bool found(false);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t n = m_filesList->GetItemCount(); n > 0; --n)

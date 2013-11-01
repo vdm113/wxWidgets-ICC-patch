@@ -30,7 +30,7 @@ static int nextLanguage = SCLEX_AUTOMATIC+1;
 
 const LexerModule *Catalogue::Find(int language) {
 	Scintilla_LinkLexers();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (std::vector<LexerModule *>::iterator it=lexerCatalogue.begin();
@@ -45,7 +45,7 @@ const LexerModule *Catalogue::Find(int language) {
 const LexerModule *Catalogue::Find(const char *languageName) {
 	Scintilla_LinkLexers();
 	if (languageName) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (std::vector<LexerModule *>::iterator it=lexerCatalogue.begin();

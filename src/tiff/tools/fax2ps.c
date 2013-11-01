@@ -89,7 +89,7 @@ printruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 
     (void) buf;
     printf("%d m(", row++);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (runs < erun) {
@@ -113,7 +113,7 @@ printruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 	 * characters (i.e., no escape codes or octal chars).
 	 */
 	l = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (runlength > 6) {	/* Run is greater than six... */
@@ -127,13 +127,13 @@ printruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 	    } else
 		l++;
 	}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (runlength > 0 && runlength <= 6) {
 	    uint32 bitsleft = 6;
 	    int t = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	    while (bitsleft) {
@@ -201,7 +201,7 @@ emitFont(FILE* fd)
 	NULL
     };
     int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; fontPrologue[i] != NULL; i++)
@@ -275,7 +275,7 @@ printTIF(TIFF* tif, uint16 pageNumber)
     TIFFSetField(tif, TIFFTAG_FAXFILLFUNC, printruns);
     ns = TIFFNumberOfStrips(tif);
     row = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (s = 0; s < ns; s++)
@@ -294,7 +294,7 @@ findPage(TIFF* tif, uint16 pageNumber)
     uint16 pn = (uint16) -1;
     uint16 ptotal = (uint16) -1;
     if (GetPageNumber(tif)) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (pn != (pageNumber-1) && TIFFReadDirectory(tif) && GetPageNumber(tif))
@@ -314,7 +314,7 @@ fax2ps(TIFF* tif, uint16 npages, uint16* pages, char* filename)
 	if (!GetPageNumber(tif))
 	    fprintf(stderr, "%s: No page numbers, counting directories.\n",
 		filename);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < npages; i++) {
@@ -325,12 +325,12 @@ fax2ps(TIFF* tif, uint16 npages, uint16* pages, char* filename)
 	}
     } else {
 	uint16 pageNumber = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	do
 	    printTIF(tif, pageNumber++);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (TIFFReadDirectory(tif));
@@ -358,7 +358,7 @@ main(int argc, char** argv)
     int c, dowarnings = 0;		/* if 1, enable library warnings */
     TIFF* tif;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ((c = getopt(argc, argv, "l:p:x:y:W:H:wS")) != -1)
@@ -400,7 +400,7 @@ main(int argc, char** argv)
     if (!dowarnings)
 	TIFFSetWarningHandler(0);
     if (optind < argc) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	do {
@@ -425,7 +425,7 @@ main(int argc, char** argv)
 #if defined(HAVE_SETMODE) && defined(O_BINARY)
 	setmode(fileno(stdin), O_BINARY);
 #endif
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((n = read(fileno(stdin), buf, sizeof (buf))) > 0)
@@ -472,7 +472,7 @@ usage(int code)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; stuff[i] != NULL; i++)

@@ -240,7 +240,7 @@ public:
 
     virtual ~wxPGHeaderCtrl()
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (unsigned int i=0; i<m_columns.size(); i++ )
@@ -280,7 +280,7 @@ public:
         unsigned int colCount = page->GetColumnCount();
         EnsureColumnCount(colCount);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned int i=0; i<colCount; i++ )
@@ -300,7 +300,7 @@ public:
         const wxPropertyGridPage* page = m_page;
         unsigned int colCount = page->GetColumnCount();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned int i=0; i<colCount; i++ )
@@ -328,7 +328,7 @@ public:
 private:
     void EnsureColumnCount(unsigned int count)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( m_columns.size() < count )
@@ -345,7 +345,7 @@ private:
         // Compensate for the internal border
         int x = -((pg->GetSize().x - pg->GetClientSize().x) / 2);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i=0; i<col; i++ )
@@ -627,7 +627,7 @@ wxPropertyGridManager::~wxPropertyGridManager()
     wxDELETE(m_pPropGrid);
 
     size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<m_arrPages.size(); i++ )
@@ -672,7 +672,7 @@ bool wxPropertyGridManager::SetFont( const wxFont& font )
 
     // TODO: Need to do caption recacalculations for other pages as well.
     unsigned int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<m_arrPages.size(); i++ )
@@ -832,7 +832,7 @@ void wxPropertyGridManager::SelectPage( int index )
 int wxPropertyGridManager::GetPageByName( const wxString& name ) const
 {
     size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<GetPageCount(); i++ )
@@ -850,7 +850,7 @@ int wxPropertyGridManager::GetPageByState( const wxPropertyGridPageState* pState
     wxASSERT( pState );
 
     size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<GetPageCount(); i++ )
@@ -893,7 +893,7 @@ void wxPropertyGridManager::Clear()
     m_pPropGrid->Freeze();
 
     int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=(int)GetPageCount()-1; i>=0; i-- )
@@ -1100,7 +1100,7 @@ wxPropertyGridPage* wxPropertyGridManager::InsertPage( int index,
 bool wxPropertyGridManager::IsAnyModified() const
 {
     size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<GetPageCount(); i++ )
@@ -1150,7 +1150,7 @@ void wxPropertyGridManager::SetColumnTitle( int idx, const wxString& title )
 bool wxPropertyGridManager::IsPropertySelected( wxPGPropArg id ) const
 {
     wxPG_PROP_ARG_CALL_PROLOG_RETVAL(false)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int i=0; i<GetPageCount(); i++ )
@@ -1683,7 +1683,7 @@ void wxPropertyGridManager::RecreateControls()
 wxPGProperty* wxPropertyGridManager::DoGetPropertyByName( const wxString& name ) const
 {
     size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<GetPageCount(); i++ )
@@ -1752,7 +1752,7 @@ void wxPropertyGridManager::OnToolbarClick( wxCommandEvent &event )
         wxPropertyGridPage* pdc;
 
         // Find page with given id.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=0; i<GetPageCount(); i++ )
@@ -1854,7 +1854,7 @@ void wxPropertyGridManager::SetSplitterLeft( bool subProps, bool allPages )
         int highest = 0;
         unsigned int i;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=0; i<GetPageCount(); i++ )
@@ -1941,7 +1941,7 @@ void wxPropertyGridManager::OnResize( wxSizeEvent& WXUNUSED(event) )
         m_pPropGrid->GetClientSize(&pgWidth, &pgHeight);
 
         // Regenerate splitter positions for non-current pages
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned int i=0; i<GetPageCount(); i++ )
@@ -2093,7 +2093,7 @@ void wxPropertyGridManager::SetSplitterPosition( int pos, int splitterColumn )
                   wxT("SetSplitterPosition() has no effect until pages have been added") );
 
     size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<GetPageCount(); i++ )

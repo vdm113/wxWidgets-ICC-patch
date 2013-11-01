@@ -783,7 +783,7 @@ void wxListCtrl::DoSetSize( int x, int y, int width, int height, int sizeFlags )
     if (m_dbImpl)
     {
         int totalWidth = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int column = 0; column < GetColumnCount(); column++)
@@ -1013,7 +1013,7 @@ bool wxListCtrl::SetColumnWidth(int col, int width)
 
         if (col == -1)
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int column = 0; column < GetColumnCount(); column++)
@@ -1213,7 +1213,7 @@ bool wxListCtrl::SetItemState(long item, long state, long stateMask)
             }
             else
             {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for(int i = 0; i < GetItemCount();i++)
@@ -1615,7 +1615,7 @@ long wxListCtrl::GetNextItem(long item, int geom, int state) const
         if ( geom == wxLIST_NEXT_ALL || geom == wxLIST_NEXT_BELOW )
         {
             long count = m_dbImpl->MacGetCount() ;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( long line = item + 1 ; line < count; line++ )
@@ -1641,7 +1641,7 @@ long wxListCtrl::GetNextItem(long item, int geom, int state) const
             if ( item2 == -1 )
                 item2 = m_dbImpl->MacGetCount();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( long line = item2 - 1 ; line >= 0; line-- )
@@ -1788,7 +1788,7 @@ bool wxListCtrl::DeleteAllColumns()
     {
         UInt32 cols;
         m_dbImpl->GetColumnCount(&cols);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (UInt32 col = 0; col < cols; col++)
@@ -1908,7 +1908,7 @@ long wxListCtrl::FindItem(long start, const wxString& str, bool partial)
         idx = 0;
     long count = GetItemCount();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (idx < count)
@@ -1943,7 +1943,7 @@ long wxListCtrl::FindItem(long start, long data)
         idx = 0;
     long count = GetItemCount();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (idx < count)
@@ -2005,7 +2005,7 @@ wxListCtrl::HitTest(const wxPoint& point, int& flags, long *ptrSubItem) const
         if (row < GetItemCount() )
         {
             short column;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for( column = 0; column < GetColumnCount(); column++ )
@@ -2411,7 +2411,7 @@ void wxListCtrl::RefreshItems(long itemFrom, long itemTo)
 
         if ( !IsVirtual() )
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( long i = 0; i < count; i++ )
@@ -2422,7 +2422,7 @@ void wxListCtrl::RefreshItems(long itemFrom, long itemTo)
         }
         else
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( long i = 0; i < count; i++ )
@@ -3396,7 +3396,7 @@ int wxListCtrl::CalcColumnAutoWidth(int col) const
 {
     int width = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < GetItemCount(); i++ )

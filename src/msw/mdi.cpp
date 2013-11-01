@@ -261,7 +261,7 @@ wxMDIChildFrame *wxMDIParentFrame::GetActiveChild() const
 int wxMDIParentFrame::GetChildFramesCount() const
 {
     int count = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxWindowList::const_iterator i = GetChildren().begin();
@@ -417,7 +417,7 @@ void wxMDIParentFrame::DoMenuUpdates(wxMenu* menu)
             if ( bar != NULL )
             {
                 int nCount = bar->GetMenuCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (int n = 0; n < nCount; n++)
@@ -637,7 +637,7 @@ bool wxMDIParentFrame::HandleActivate(int state, bool minimized, WXHWND activate
 void wxMDIParentFrame::OnMDIChild(wxCommandEvent& event)
 {
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( node )
@@ -1380,7 +1380,7 @@ void wxMDIClientWindow::DoSetSize(int x, int y, int width, int height, int sizeF
         if (GetParent())
         {
             wxWindowList::compatibility_iterator node = GetParent()->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while (node)
@@ -1469,7 +1469,7 @@ void MDIInsertWindowMenu(wxWindow *win, WXHMENU hMenu, HMENU menuWin)
         // Try to insert Window menu in front of Help, otherwise append it.
         int N = GetMenuItemCount(hmenu);
         bool inserted = false;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = 0; i < N; i++ )
@@ -1513,7 +1513,7 @@ void MDIRemoveWindowMenu(wxWindow *win, WXHMENU hMenu)
         wxChar buf[1024];
 
         int N = ::GetMenuItemCount(hmenu);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = 0; i < N; i++ )

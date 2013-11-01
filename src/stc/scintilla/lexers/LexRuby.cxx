@@ -70,7 +70,7 @@ static bool inline iswhitespace(char ch) {
 
 static bool followsDot(unsigned int pos, Accessor &styler) {
     styler.Flush();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (; pos >= 1; --pos) {
@@ -111,7 +111,7 @@ static int ClassifyWordRb(unsigned int start, unsigned int end, WordList &keywor
 	if (lim >= MAX_KEYWORD_LENGTH) {
 		lim = MAX_KEYWORD_LENGTH - 1;
 	}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = start, j = 0; j < lim; i++, j++) {
@@ -159,7 +159,7 @@ static bool isMatch(Accessor &styler, int lengthDoc, int pos, const char *val) {
 	if ((pos + static_cast<int>(strlen(val))) >= lengthDoc) {
 		return false;
 	}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (*val) {
@@ -183,7 +183,7 @@ static bool lookingAtHereDocDelim(Accessor	   &styler,
     if (!isMatch(styler, lengthDoc, pos, HereDocDelim)) {
         return false;
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (--pos > 0) {
@@ -234,7 +234,7 @@ static bool currLineContainsHereDelims(int& startPos,
         return false;
 
     int pos;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (pos = startPos - 1; pos > 0; pos--) {
@@ -364,7 +364,7 @@ static bool RE_CanFollowKeyword(const char *keyword) {
 static int skipWhitespace(int startPos,
                            int endPos,
                            Accessor &styler) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = startPos; i < endPos; i++) {
@@ -411,7 +411,7 @@ static bool sureThisIsHeredoc(int iPrev,
     }
     int firstWordEndPosn = firstWordPosn;
     char *dst = prevWord;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;) {
@@ -444,7 +444,7 @@ static bool haveTargetMatch(int currPos,
         return false;
     }
     int i, j;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = targetStartPos, j = currPos;
@@ -494,12 +494,12 @@ static bool sureThisIsNotHeredoc(int lt2StartPos,
     }
     int newStyle = prevStyle;
     // Some compilers incorrectly warn about uninit newStyle
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (firstWordPosn += 1; firstWordPosn <= lt2StartPos; firstWordPosn += 1) {
         // Inner loop looks at the name
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (; firstWordPosn <= lt2StartPos; firstWordPosn += 1) {
@@ -574,7 +574,7 @@ static bool sureThisIsNotHeredoc(int lt2StartPos,
     } else {
         return definitely_not_a_here_doc;
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (; j < lengthDoc; j++) {
@@ -613,7 +613,7 @@ static bool sureThisIsNotHeredoc(int lt2StartPos,
     if (last_line > lineStart + 50) {
         last_line = lineStart + 50;
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int line_num = lineStart + 1; line_num <= last_line; line_num++) {
@@ -654,7 +654,7 @@ static void synchronizeDocStart(unsigned int& startPos,
     int pos = startPos;
     // Quick way to characterize each line
     int lineStart;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (lineStart = styler.GetLine(pos); lineStart > 0; lineStart--) {
@@ -778,14 +778,14 @@ static void ColouriseRbDoc(unsigned int startPos, int length, int initStyle,
     int brace_counts = 0;   // Number of #{ ... } things within an expression
 
     int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < INNER_STRINGS_MAX_COUNT; i++) {
         inner_string_types[i] = 0;
         inner_expn_brace_counts[i] = 0;
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = startPos; i < lengthDoc; i++) {
@@ -1340,7 +1340,7 @@ static void ColouriseRbDoc(unsigned int startPos, int length, int initStyle,
                 Quote.Count--;
                 if (Quote.Count == 0) {
                     // Include the options
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     while (isSafeAlpha(chNext)) {
@@ -1377,7 +1377,7 @@ static void ColouriseRbDoc(unsigned int startPos, int length, int initStyle,
                     // for now, handle as comment
                     styler.ColourTo(i - 1, state);
                     bool inEscape = false;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     while (++i < lengthDoc) {
@@ -1464,7 +1464,7 @@ static void getPrevWord(int pos,
 {
     int i;
     styler.Flush();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = pos - 1; i > 0; i--) {
@@ -1476,7 +1476,7 @@ static void getPrevWord(int pos,
     if (i < pos - MAX_KEYWORD_LENGTH) // overflow
         i = pos - MAX_KEYWORD_LENGTH;
     char *dst = prevWord;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (; i <= pos; i++) {
@@ -1518,7 +1518,7 @@ static bool keywordIsModifier(const char *word,
     // We want to step backwards until we don't care about the current
     // position. But first move lineStartPosn back behind any
     // continuations immediately above word.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (lineStartPosn > 0) {
@@ -1541,7 +1541,7 @@ static bool keywordIsModifier(const char *word,
     }
 
     styler.Flush();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (--pos >= lineStartPosn) {
@@ -1629,7 +1629,7 @@ static bool keywordDoStartsLoop(int pos,
 	int lineStart = styler.GetLine(pos);
     int lineStartPosn = styler.LineStart(lineStart);
     styler.Flush();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (--pos >= lineStartPosn) {
@@ -1647,7 +1647,7 @@ static bool keywordDoStartsLoop(int pos,
             char *dst = prevWord;
             int wordLen = 0;
             int start_word;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (start_word = pos;
@@ -1750,7 +1750,7 @@ static void FoldRbDoc(unsigned int startPos, int length, int initStyle,
 	int styleNext = styler.StyleAt(startPos);
 	int stylePrev = startPos <= 1 ? SCE_RB_DEFAULT : styler.StyleAt(startPos - 1);
     bool buffer_ends_with_eol = false;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {

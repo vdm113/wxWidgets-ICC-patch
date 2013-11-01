@@ -61,7 +61,7 @@ void wxHashTableBase::Create( wxKeyType keyType, size_t size )
     m_size = size;
     m_table = new wxHashTableBase_Node*[ m_size ];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( size_t i = 0; i < m_size; ++i )
@@ -70,7 +70,7 @@ void wxHashTableBase::Create( wxKeyType keyType, size_t size )
 
 void wxHashTableBase::Clear()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( size_t i = 0; i < m_size; ++i )
@@ -82,7 +82,7 @@ void wxHashTableBase::Clear()
 
         Node *curr, *next = end->GetNext();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         do
@@ -94,7 +94,7 @@ void wxHashTableBase::Clear()
 
             delete curr;
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while( curr != end );
@@ -121,7 +121,7 @@ void wxHashTableBase::DoRemoveNode( wxHashTableBase_Node* node )
         Node *start = m_table[bucket], *curr;
         Node* prev = start;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for( curr = prev->GetNext(); curr != node;
@@ -204,7 +204,7 @@ void* wxHashTableBase::DoGet( long key, long hash ) const
     Node *first = m_table[bucket]->GetNext(),
          *curr = first;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -214,7 +214,7 @@ void* wxHashTableBase::DoGet( long key, long hash ) const
 
         curr = curr->GetNext();
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while( curr != first );
@@ -234,7 +234,7 @@ void* wxHashTableBase::DoGet( const wxString& key, long hash ) const
     Node *first = m_table[bucket]->GetNext(),
          *curr = first;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -244,7 +244,7 @@ void* wxHashTableBase::DoGet( const wxString& key, long hash ) const
 
         curr = curr->GetNext();
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while( curr != first );
@@ -280,7 +280,7 @@ void* wxHashTableBase::DoDelete( long key, long hash )
          *curr = first,
          *prev = m_table[bucket];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -299,7 +299,7 @@ void* wxHashTableBase::DoDelete( long key, long hash )
         prev = curr;
         curr = curr->GetNext();
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while( curr != first );
@@ -320,7 +320,7 @@ void* wxHashTableBase::DoDelete( const wxString& key, long hash )
          *curr = first,
          *prev = m_table[bucket];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -339,7 +339,7 @@ void* wxHashTableBase::DoDelete( const wxString& key, long hash )
         prev = curr;
         curr = curr->GetNext();
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while( curr != first );
@@ -352,7 +352,7 @@ long wxHashTableBase::MakeKey( const wxString& str )
     long int_key = 0;
 
     const wxStringCharType *p = str.wx_str();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while( *p )
@@ -393,7 +393,7 @@ void wxHashTable::DoDeleteContents( wxHashTableBase_Node* node )
 
 void wxHashTable::GetNextNode( size_t bucketStart )
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( size_t i = bucketStart; i < m_size; ++i )

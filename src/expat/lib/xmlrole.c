@@ -816,7 +816,7 @@ attlist2(PROLOG_STATE *state,
         KW_NMTOKENS,
       };
       int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (i = 0; i < (int)(sizeof(types)/sizeof(types[0])); i++)

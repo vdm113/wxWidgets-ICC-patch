@@ -1586,7 +1586,7 @@ void wxPreviewControlBar::SetZoomControl(int zoom)
     {
         int n, count = m_zoomControl->GetCount();
         long val;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (n=0; n<count; n++)

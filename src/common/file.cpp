@@ -299,7 +299,7 @@ bool wxFile::ReadAll(wxString *str, const wxMBConv& conv)
 
     wxCharBuffer buf(length);
     char* p = buf.data();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )

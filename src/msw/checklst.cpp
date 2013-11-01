@@ -332,7 +332,7 @@ void wxCheckListBox::OnKeyDown(wxKeyEvent& event)
             }
         }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = 0; i < count; i++ )

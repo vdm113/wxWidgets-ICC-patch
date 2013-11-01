@@ -62,7 +62,7 @@ inline int NestingLevelLookBehind(unsigned int startPos, Accessor &styler) {
 	int ch;
 	int nestingLevel = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = 0; i < startPos; i++) {
@@ -129,7 +129,7 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 	}
 
 	// "the loop"
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward()) {
@@ -138,7 +138,7 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 				// backtrack to get last state:
 				// comments are like whitespace, so we must return to the previous state
 				unsigned int i = startPos;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (; i > 0; i--) {
@@ -146,7 +146,7 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 						if (lastStateC == SCE_CSS_OPERATOR) {
 							op = styler.SafeGetCharAt(i-1);
 							opPrev = styler.SafeGetCharAt(i-2);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 							while (--i) {
@@ -178,7 +178,7 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 			if (sc.ch != (sc.state == SCE_CSS_DOUBLESTRING ? '\"' : '\''))
 				continue;
 			unsigned int i = sc.currentPos;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			while (i && styler[i-1] == '\\')
@@ -193,7 +193,7 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 				unsigned int i = startPos;
 				op = styler.SafeGetCharAt(i-1);
 				opPrev = styler.SafeGetCharAt(i-2);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				while (--i) {
@@ -401,7 +401,7 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 				unsigned int endPos = startPos + length;
 				int ch;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (unsigned int i = sc.currentPos; i < endPos; i++) {
@@ -436,7 +436,7 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 			char s[100];
 			sc.GetCurrentLowered(s, sizeof(s));
 			char *s2 = s;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			while (*s2 && !IsAWordChar(*s2))
@@ -536,7 +536,7 @@ static void FoldCSSDoc(unsigned int startPos, int length, int, WordList *[], Acc
 	int levelCurrent = levelPrev;
 	char chNext = styler[startPos];
 	bool inComment = (styler.StyleAt(startPos-1) == SCE_CSS_COMMENT);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {

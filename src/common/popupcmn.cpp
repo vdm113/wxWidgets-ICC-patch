@@ -654,7 +654,7 @@ void wxPopupFocusHandler::OnKillFocus(wxFocusEvent& event)
     // when we lose focus we always disappear - unless it goes to the popup (in
     // which case we don't really lose it)
     wxWindow *win = event.GetWindow();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( win )

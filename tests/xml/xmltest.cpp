@@ -40,7 +40,7 @@ void CheckXml(const wxXmlNode *n, ...)
 
     wxXmlNode *child = n->GetChildren();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;)

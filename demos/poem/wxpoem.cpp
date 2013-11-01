@@ -133,7 +133,7 @@ MainWindow::MainWindow(wxFrame *frame, wxWindowID id, const wxString& title,
 
 MainWindow::~MainWindow()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i=0;i<4;i++)
@@ -212,19 +212,19 @@ void MainWindow::ScanBuffer(wxDC *dc, bool DrawIt, int *max_x, int *max_y)
         y += char_height;
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (ch != 0 && !page_break)
     {
         j = 0;
 #if defined(__WXMSW__) || defined(__WXMAC__)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (((ch = poem_buffer[i]) != 13) && (ch != 0))
 #else
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (((ch = poem_buffer[i]) != 10) && (ch != 0))
@@ -735,7 +735,7 @@ int LoadIndex(const wxChar *file_name)
 
     wxFscanf(index_file, wxT("%ld"), &nitems);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < nitems; i++)
@@ -829,7 +829,7 @@ bool LoadPoem(const wxChar *file_name, long position)
 
     int ch = 0;
     int i = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ((ch != EOF) && (ch != '#'))
@@ -898,7 +898,7 @@ long MainWindow::DoSearch(void)
 
     fseek(file, find_start, SEEK_SET);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ((ch != EOF) && !found)
@@ -993,7 +993,7 @@ bool Compile(void)
 
     // Do rest
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do {
@@ -1021,7 +1021,7 @@ bool Compile(void)
     }
 
     wxFprintf(file, wxT("%ld\n\n"), nitems);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (j = 0; j < nitems; j++)

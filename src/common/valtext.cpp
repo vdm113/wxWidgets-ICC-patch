@@ -40,7 +40,7 @@
 
 static bool wxIsNumeric(const wxString& val)
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxString::const_iterator i = val.begin(); i != val.end(); ++i )
@@ -223,7 +223,7 @@ namespace
 
 bool CheckString(bool (*func)(const wxUniChar&), const wxString& str)
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxString::const_iterator i = str.begin(); i != str.end(); ++i )
@@ -265,7 +265,7 @@ wxString wxTextValidator::IsValid(const wxString& val) const
 
 bool wxTextValidator::ContainsOnlyIncludedCharacters(const wxString& val) const
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxString::const_iterator i = val.begin(); i != val.end(); ++i )
@@ -279,7 +279,7 @@ bool wxTextValidator::ContainsOnlyIncludedCharacters(const wxString& val) const
 
 bool wxTextValidator::ContainsExcludedCharacters(const wxString& val) const
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxString::const_iterator i = val.begin(); i != val.end(); ++i )
@@ -295,7 +295,7 @@ void wxTextValidator::SetCharIncludes(const wxString& chars)
 {
     wxArrayString arr;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxString::const_iterator i = chars.begin(); i != chars.end(); ++i )
@@ -308,7 +308,7 @@ void wxTextValidator::SetCharExcludes(const wxString& chars)
 {
     wxArrayString arr;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxString::const_iterator i = chars.begin(); i != chars.end(); ++i )

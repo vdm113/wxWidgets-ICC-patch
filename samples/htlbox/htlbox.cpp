@@ -337,7 +337,7 @@ void MyFrame::CreateBox()
         // concrete control and doesn't support virtual mode, this we need
         // to add all of its items from the beginning
         wxArrayString arr;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t n = 0; n < 1000; n++ )
@@ -530,7 +530,7 @@ void MyFrame::OnLboxSelect(wxCommandEvent& event)
 
         bool first = true;
         unsigned long cookie;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int item = m_hlbox->GetFirstSelected(cookie);

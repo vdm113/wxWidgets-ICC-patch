@@ -2,7 +2,7 @@
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#   define MY_MACRO_PRAGMA_IVDEP
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -184,7 +184,7 @@ public:
 
         Equivalent to
         @code
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( !predicate() )
@@ -378,7 +378,7 @@ public:
             int offset = 0;
 
             // here we do our long task, periodically calling TestDestroy():
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while (!GetThread()->TestDestroy())
@@ -468,7 +468,7 @@ public:
         @code
             wxThread::ExitCode Entry()
             {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 while (!GetThread()->TestDestroy())
@@ -827,7 +827,7 @@ enum wxThreadError
 
     wxThread::ExitCode MyThread::Entry()
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (!TestDestroy())
@@ -899,7 +899,7 @@ enum wxThreadError
                 // the possibility to enter its destructor
                 // (which is guarded with m_pThreadCS critical section!)
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (1)
@@ -1622,7 +1622,7 @@ enum wxMutexError
         wxMutexLocker lock(s_mutexProtectingTheGlobalData);
 
         size_t count = s_data.Count();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < count; n++ )

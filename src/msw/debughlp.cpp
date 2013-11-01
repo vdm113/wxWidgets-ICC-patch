@@ -257,7 +257,7 @@ wxDbgHelpDLL::DumpBaseType(BasicType bt, DWORD64 length, PVOID pAddress)
             if ( ::IsBadStringPtrA(pc, NUM_CHARS) == 0 )
             {
                 s += wxT('"');
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( size_t n = 0; n < NUM_CHARS && *pc; n++, pc++ )
@@ -460,7 +460,7 @@ wxDbgHelpDLL::DumpUDT(PSYMBOL_INFO pSym, void *pVariable, unsigned level)
         SYMBOL_INFO sym;
         wxZeroMemory(sym);
         sym.ModBase = pSym->ModBase;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned i = 0; i < dwChildrenCount; i++ )
@@ -495,7 +495,7 @@ wxDbgHelpDLL::SymbolTag
 wxDbgHelpDLL::DereferenceSymbol(PSYMBOL_INFO pSym, void **ppData)
 {
     SymbolTag tag = SYMBOL_TAG_NULL;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )

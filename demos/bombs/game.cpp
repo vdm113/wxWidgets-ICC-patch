@@ -60,12 +60,12 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
     m_width = aWidth;
     m_height = aHeight;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(x=0; x<m_width; x++)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(y=0; y<m_height; y++)
@@ -86,11 +86,11 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
     }
 
     m_numBombCells = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(x=0; x<m_width; x++)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(y=0; y<m_height; y++)
@@ -98,12 +98,12 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
             {
                 m_numBombCells++;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for(xx=x-1; xx<=x+1; xx++)
                     if (xx>=0 && xx<m_width)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                         for(yy=y-1; yy<=y+1; yy++)

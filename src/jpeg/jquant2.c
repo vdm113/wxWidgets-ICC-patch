@@ -232,12 +232,12 @@ prescan_quantize (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
   JDIMENSION col;
   JDIMENSION width = cinfo->output_width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (row = 0; row < num_rows; row++) {
     ptr = input_buf[row];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (col = width; col > 0; col--) {
@@ -285,7 +285,7 @@ find_biggest_color_pop (boxptr boxlist, int numboxes)
   register long maxc = 0;
   boxptr which = NULL;
   
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0, boxp = boxlist; i < numboxes; i++, boxp++) {
@@ -308,7 +308,7 @@ find_biggest_volume (boxptr boxlist, int numboxes)
   register JPEG_INT32 maxv = 0;
   boxptr which = NULL;
   
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0, boxp = boxlist; i < numboxes; i++, boxp++) {
@@ -339,16 +339,16 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
   c2min = boxp->c2min;  c2max = boxp->c2max;
   
   if (c0max > c0min)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (c0 = c0min; c0 <= c0max; c0++)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (c1 = c1min; c1 <= c1max; c1++) {
 	histp = & histogram[c0][c1][c2min];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (c2 = c2min; c2 <= c2max; c2++)
@@ -359,16 +359,16 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
       }
  have_c0min:
   if (c0max > c0min)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (c0 = c0max; c0 >= c0min; c0--)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (c1 = c1min; c1 <= c1max; c1++) {
 	histp = & histogram[c0][c1][c2min];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (c2 = c2min; c2 <= c2max; c2++)
@@ -379,16 +379,16 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
       }
  have_c0max:
   if (c1max > c1min)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (c1 = c1min; c1 <= c1max; c1++)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (c0 = c0min; c0 <= c0max; c0++) {
 	histp = & histogram[c0][c1][c2min];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (c2 = c2min; c2 <= c2max; c2++)
@@ -399,16 +399,16 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
       }
  have_c1min:
   if (c1max > c1min)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (c1 = c1max; c1 >= c1min; c1--)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (c0 = c0min; c0 <= c0max; c0++) {
 	histp = & histogram[c0][c1][c2min];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (c2 = c2min; c2 <= c2max; c2++)
@@ -419,16 +419,16 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
       }
  have_c1max:
   if (c2max > c2min)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (c2 = c2min; c2 <= c2max; c2++)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (c0 = c0min; c0 <= c0max; c0++) {
 	histp = & histogram[c0][c1min][c2];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (c1 = c1min; c1 <= c1max; c1++, histp += HIST_C2_ELEMS)
@@ -439,16 +439,16 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
       }
  have_c2min:
   if (c2max > c2min)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (c2 = c2max; c2 >= c2min; c2--)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (c0 = c0min; c0 <= c0max; c0++) {
 	histp = & histogram[c0][c1min][c2];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (c1 = c1min; c1 <= c1max; c1++, histp += HIST_C2_ELEMS)
@@ -474,16 +474,16 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
   
   /* Now scan remaining volume of box and compute population */
   ccount = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (c0 = c0min; c0 <= c0max; c0++)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (c1 = c1min; c1 <= c1max; c1++) {
       histp = & histogram[c0][c1][c2min];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (c2 = c2min; c2 <= c2max; c2++, histp++)
@@ -504,7 +504,7 @@ median_cut (j_decompress_ptr cinfo, boxptr boxlist, int numboxes,
   int c0,c1,c2,cmax;
   register boxptr b1,b2;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (numboxes < desired_colors) {
@@ -594,16 +594,16 @@ compute_color (j_decompress_ptr cinfo, boxptr boxp, int icolor)
   c1min = boxp->c1min;  c1max = boxp->c1max;
   c2min = boxp->c2min;  c2max = boxp->c2max;
   
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (c0 = c0min; c0 <= c0max; c0++)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (c1 = c1min; c1 <= c1max; c1++) {
       histp = & histogram[c0][c1][c2min];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (c2 = c2min; c2 <= c2max; c2++) {
@@ -646,7 +646,7 @@ select_colors (j_decompress_ptr cinfo, int desired_colors)
   /* Perform median-cut to produce final box list */
   numboxes = median_cut(cinfo, boxlist, numboxes, desired_colors);
   /* Compute the representative color for each box, fill colormap */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < numboxes; i++)
@@ -774,7 +774,7 @@ find_nearby_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
    */
   minmaxdist = 0x7FFFFFFFL;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < numcolors; i++) {
@@ -856,7 +856,7 @@ find_nearby_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
    * within minmaxdist of some part of the box need be considered.
    */
   ncolors = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < numcolors; i++) {
@@ -891,7 +891,7 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 
   /* Initialize best-distance for each cell of the update box */
   bptr = bestdist;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = BOX_C0_ELEMS*BOX_C1_ELEMS*BOX_C2_ELEMS-1; i >= 0; i--)
@@ -907,7 +907,7 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #define STEP_C1  ((1 << C1_SHIFT) * C1_SCALE)
 #define STEP_C2  ((1 << C2_SHIFT) * C2_SCALE)
   
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < numcolors; i++) {
@@ -927,19 +927,19 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
     bptr = bestdist;
     cptr = bestcolor;
     xx0 = inc0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ic0 = BOX_C0_ELEMS-1; ic0 >= 0; ic0--) {
       dist1 = dist0;
       xx1 = inc1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (ic1 = BOX_C1_ELEMS-1; ic1 >= 0; ic1--) {
 	dist2 = dist1;
 	xx2 = inc2;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (ic2 = BOX_C2_ELEMS-1; ic2 >= 0; ic2--) {
@@ -1007,16 +1007,16 @@ fill_inverse_cmap (j_decompress_ptr cinfo, int c0, int c1, int c2)
   c1 <<= BOX_C1_LOG;
   c2 <<= BOX_C2_LOG;
   cptr = bestcolor;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ic0 = 0; ic0 < BOX_C0_ELEMS; ic0++) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ic1 = 0; ic1 < BOX_C1_ELEMS; ic1++) {
       cachep = & histogram[c0+ic0][c1+ic1][c2];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (ic2 = 0; ic2 < BOX_C2_ELEMS; ic2++) {
@@ -1045,13 +1045,13 @@ pass2_no_dither (j_decompress_ptr cinfo,
   JDIMENSION col;
   JDIMENSION width = cinfo->output_width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (row = 0; row < num_rows; row++) {
     inptr = input_buf[row];
     outptr = output_buf[row];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (col = width; col > 0; col--) {
@@ -1097,7 +1097,7 @@ pass2_fs_dither (j_decompress_ptr cinfo,
   JSAMPROW colormap2 = cinfo->colormap[2];
   SHIFT_TEMPS
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (row = 0; row < num_rows; row++) {
@@ -1124,7 +1124,7 @@ pass2_fs_dither (j_decompress_ptr cinfo,
     belowerr0 = belowerr1 = belowerr2 = 0;
     bpreverr0 = bpreverr1 = bpreverr2 = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (col = width; col > 0; col--) {
@@ -1252,21 +1252,21 @@ init_error_limit (j_decompress_ptr cinfo)
 #define STEPSIZE ((MAXJSAMPLE+1)/16)
   /* Map errors 1:1 up to +- MAXJSAMPLE/16 */
   out = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (in = 0; in < STEPSIZE; in++, out++) {
     table[in] = out; table[-in] = -out;
   }
   /* Map errors 1:2 up to +- 3*MAXJSAMPLE/16 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (; in < STEPSIZE*3; in++, out += (in&1) ? 0 : 1) {
     table[in] = out; table[-in] = -out;
   }
   /* Clamp the rest to final out value (which is (MAXJSAMPLE+1)/8) */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (; in <= MAXJSAMPLE; in++) {
@@ -1354,7 +1354,7 @@ start_pass_2_quant (j_decompress_ptr cinfo, wxjpeg_boolean is_pre_scan)
   }
   /* Zero the histogram or inverse color map, if necessary */
   if (cquantize->needs_zeroed) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < HIST_C0_ELEMS; i++) {
@@ -1406,7 +1406,7 @@ jinit_2pass_quantizer (j_decompress_ptr cinfo)
   /* Allocate the histogram/inverse colormap storage */
   cquantize->histogram = (hist3d) (*cinfo->mem->alloc_small)
     ((j_common_ptr) cinfo, JPOOL_IMAGE, HIST_C0_ELEMS * SIZEOF(hist2d));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < HIST_C0_ELEMS; i++) {

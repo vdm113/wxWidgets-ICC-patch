@@ -77,14 +77,14 @@ int main (int argc, char *argv[])
 
   i = 0;
   XMLBufEnd = XMLBuf + fileSize;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (i < nrOfLoops) {
     XMLBufPtr = XMLBuf;
     isFinal = 0;
     tstart = clock();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do {

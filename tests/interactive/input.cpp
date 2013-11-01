@@ -87,7 +87,7 @@ void InteractiveInputTestCase::TestDiskInfo()
 #ifdef TEST_INFO_FUNCTIONS
     wxPuts(wxT("*** Testing wxGetDiskSpace() ***"));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )
@@ -135,7 +135,7 @@ void InteractiveInputTestCase::TestRegExInteractive()
 #ifdef TEST_REGEX 
     wxPuts(wxT("*** Testing RE interactively ***"));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )
@@ -158,7 +158,7 @@ void InteractiveInputTestCase::TestRegExInteractive()
         }
 
         wxChar text[128];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( ;; )
@@ -179,7 +179,7 @@ void InteractiveInputTestCase::TestRegExInteractive()
                 wxPrintf(wxT("Pattern matches at '%s'\n"), re.GetMatch(text).c_str());
 
                 size_t start, len;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( size_t n = 1; ; n++ )
@@ -252,7 +252,7 @@ void InteractiveInputTestCase::TestFtpInteractive()
     }
     
     wxChar buf[128];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )
@@ -286,7 +286,7 @@ void InteractiveInputTestCase::TestFtpInteractive()
                 wxPrintf(wxT("--- %s of '%s' under '%s':\n"),
                        start.c_str(), wildcard.c_str(), ftp.Pwd().c_str());
                 size_t count = files.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( size_t n = 0; n < count; n++ )
@@ -327,7 +327,7 @@ void InteractiveInputTestCase::TestDateTimeInteractive()
 
     wxChar buf[128];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )

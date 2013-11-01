@@ -134,7 +134,7 @@ skip_input_data (j_decompress_ptr cinfo, long num_bytes)
    * any trouble anyway --- large skips are infrequent.
    */
   if (num_bytes > 0) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (num_bytes > (long) src->pub.bytes_in_buffer) {

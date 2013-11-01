@@ -225,7 +225,7 @@ bool wxRadioBox::Create( wxWindow *parent, wxWindowID id, const wxString& title,
 
     wxString label;
     GSList *radio_button_group = NULL;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < n; i++)
@@ -234,7 +234,7 @@ bool wxRadioBox::Create( wxWindow *parent, wxWindowID id, const wxString& title,
             radio_button_group = gtk_radio_button_group( GTK_RADIO_BUTTON(m_radio) );
 
         label.Empty();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( const wxChar *pc = choices[i]; *pc; pc++ )
@@ -294,7 +294,7 @@ bool wxRadioBox::Create( wxWindow *parent, wxWindowID id, const wxString& title,
 wxRadioBox::~wxRadioBox()
 {
     wxList::compatibility_iterator node = m_boxes.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -319,7 +319,7 @@ bool wxRadioBox::Show(bool show)
         gtk_widget_hide( m_widget );
 
     wxList::compatibility_iterator node = m_boxes.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -344,7 +344,7 @@ void wxRadioBox::SetFocus()
     if (m_boxes.GetCount() == 0) return;
 
     wxList::compatibility_iterator node = m_boxes.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -383,7 +383,7 @@ int wxRadioBox::GetSelection(void) const
     int count = 0;
 
     wxList::compatibility_iterator node = m_boxes.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -440,7 +440,7 @@ bool wxRadioBox::Enable( bool enable )
         return false;
 
     wxList::compatibility_iterator node = m_boxes.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -527,7 +527,7 @@ unsigned int wxRadioBox::GetCount() const
 void wxRadioBox::GtkDisableEvents()
 {
     wxList::compatibility_iterator node = m_boxes.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -542,7 +542,7 @@ void wxRadioBox::GtkDisableEvents()
 void wxRadioBox::GtkEnableEvents()
 {
     wxList::compatibility_iterator node = m_boxes.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -559,7 +559,7 @@ void wxRadioBox::DoApplyWidgetStyle(GtkRcStyle *style)
     gtk_widget_modify_style( m_widget, style );
 
     wxList::compatibility_iterator node = m_boxes.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -577,7 +577,7 @@ void wxRadioBox::DoApplyWidgetStyle(GtkRcStyle *style)
 void wxRadioBox::ApplyToolTip( GtkTooltips *tips, const wxChar *tip )
 {
     wxList::compatibility_iterator node = m_boxes.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -595,7 +595,7 @@ bool wxRadioBox::IsOwnGtkWindow( GdkWindow *window )
         return true;
 
     wxList::compatibility_iterator node = m_boxes.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)

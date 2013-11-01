@@ -240,7 +240,7 @@ bool wxDirData::Read(
     const wxChar*                   zName;
     FIND_ATTR                       vAttr;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )

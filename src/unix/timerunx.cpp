@@ -66,7 +66,7 @@ wxTimerScheduler *wxTimerScheduler::ms_instance = NULL;
 
 wxTimerScheduler::~wxTimerScheduler()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxTimerList::iterator node = m_timers.begin();
@@ -86,7 +86,7 @@ void wxTimerScheduler::DoAddTimer(wxTimerSchedule *s)
 {
     // do an insertion sort to keep the list sorted in expiration order
     wxTimerList::iterator node;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( node = m_timers.begin(); node != m_timers.end(); ++node )
@@ -109,7 +109,7 @@ void wxTimerScheduler::RemoveTimer(wxUnixTimerImpl *timer)
 {
     wxLogTrace(wxTrace_Timer, wxT("Removing timer %d"), timer->GetId());
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxTimerList::iterator node = m_timers.begin();
@@ -153,7 +153,7 @@ bool wxTimerScheduler::NotifyExpired()
 
     typedef wxVector<wxUnixTimerImpl *> TimerImpls;
     TimerImpls toNotify;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxTimerList::iterator next,
@@ -204,7 +204,7 @@ bool wxTimerScheduler::NotifyExpired()
     if ( toNotify.empty() )
         return false;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( TimerImpls::const_iterator i = toNotify.begin(),

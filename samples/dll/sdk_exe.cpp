@@ -159,7 +159,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int nCmdShow)
     ShowWindow(g_hwndMain, nCmdShow);
 
     MSG msg;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( GetMessage(&msg, NULL, 0, 0) )

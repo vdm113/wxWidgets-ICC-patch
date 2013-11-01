@@ -581,7 +581,7 @@ void MyFrame::RecreateBook()
 #endif // wxUSE_TREEBOOK
 
         const int count = oldBook->GetPageCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int n = 0; n < count; n++ )
@@ -1032,7 +1032,7 @@ void MyFrame::OnBookCtrl(wxBookCtrlBaseEvent& event)
     const wxBookCtrlBase * const
         book = static_cast<wxBookCtrlBase *>(event.GetEventObject());
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < WXSIZEOF(events); n++ )

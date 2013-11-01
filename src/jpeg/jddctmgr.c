@@ -95,7 +95,7 @@ start_pass (j_decompress_ptr cinfo)
   inverse_DCT_method_ptr method_ptr = NULL;
   JQUANT_TBL * qtbl;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -167,7 +167,7 @@ start_pass (j_decompress_ptr cinfo)
 	 * coefficients, but are stored as ints to ensure access efficiency.
 	 */
 	ISLOW_MULT_TYPE * ismtbl = (ISLOW_MULT_TYPE *) compptr->dct_table;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < DCTSIZE2; i++) {
@@ -201,7 +201,7 @@ start_pass (j_decompress_ptr cinfo)
 	};
 	SHIFT_TEMPS
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < DCTSIZE2; i++) {
@@ -229,11 +229,11 @@ start_pass (j_decompress_ptr cinfo)
 	};
 
 	i = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (row = 0; row < DCTSIZE; row++) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	  for (col = 0; col < DCTSIZE; col++) {
@@ -271,7 +271,7 @@ jinit_inverse_dct (j_decompress_ptr cinfo)
   cinfo->idct = (struct jpeg_inverse_dct *) idct;
   idct->pub.start_pass = start_pass;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;

@@ -113,7 +113,7 @@ wxAcceleratorTable::wxAcceleratorTable(
     m_refData = new wxAcceleratorRefData;
     pArr = (PACCELTABLE) new BYTE[nAccelLength];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < n; i++)
@@ -216,7 +216,7 @@ wxString wxPMTextToLabel( const wxString& rsTitle )
     if (rsTitle.empty())
         return(sTitle);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (zPc = rsTitle.c_str(); *zPc != wxT('\0'); zPc++)

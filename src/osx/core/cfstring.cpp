@@ -27,7 +27,7 @@
 void wxMacConvertNewlines13To10( char * data )
 {
     char * buf = data ;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while( (buf=strchr(buf,0x0d)) != NULL )
@@ -40,7 +40,7 @@ void wxMacConvertNewlines13To10( char * data )
 void wxMacConvertNewlines10To13( char * data )
 {
     char * buf = data ;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while( (buf=strchr(buf,0x0a)) != NULL )

@@ -205,7 +205,7 @@ CheckTransparency(unsigned char **lines,
 {
     // suppose that a mask will suffice and check all the remaining alpha
     // values to see if it does
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ; y < h; y++ )
@@ -214,7 +214,7 @@ CheckTransparency(unsigned char **lines,
         // the current x position
         unsigned const char *ptr = lines[y] + (x * (numColBytes + 1));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( png_uint_32 x2 = x; x2 < w; x2++ )
@@ -248,7 +248,7 @@ unsigned char *InitAlpha(wxImage *image, png_uint_32 x, png_uint_32 y)
 
     // set alpha for the pixels we had so far
     png_uint_32 end = y * image->GetWidth() + x;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( png_uint_32 i = 0; i < end; i++ )
@@ -272,13 +272,13 @@ FindMaskColour(unsigned char **lines, png_uint_32 width, png_uint_32 height,
     wxImageHistogram h;
     unsigned nentries = 0;
     unsigned char r2, g2, b2;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( png_uint_32 y2 = 0; y2 < height; y2++ )
     {
         const unsigned char *p = lines[y2];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( png_uint_32 x2 = 0; x2 < width; x2++ )
@@ -346,13 +346,13 @@ void CopyDataFromPNG(wxImage *image,
     if ( !(color_type & PNG_COLOR_MASK_COLOR) )
     {
         // grey image: GAGAGA... where G == grey component and A == alpha
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( png_uint_32 y = 0; y < height; y++ )
         {
             const unsigned char *ptrSrc = lines[y];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( png_uint_32 x = 0; x < width; x++ )
@@ -426,13 +426,13 @@ void CopyDataFromPNG(wxImage *image,
     }
     else // colour image: RGBRGB...
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( png_uint_32 y = 0; y < height; y++ )
         {
             const unsigned char *ptrSrc = lines[y];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( png_uint_32 x = 0; x < width; x++ )
@@ -591,7 +591,7 @@ wxPNGHandler::LoadFile(wxImage *image,
     if ( !lines )
         goto error;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < height; i++)
@@ -615,7 +615,7 @@ wxPNGHandler::LoadFile(wxImage *image,
         unsigned char* g = new unsigned char[numPalette];
         unsigned char* b = new unsigned char[numPalette];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int j = 0; j < numPalette; j++)
@@ -678,7 +678,7 @@ wxPNGHandler::LoadFile(wxImage *image,
     // loaded successfully, now init wxImage with this data
     CopyDataFromPNG(image, lines, width, height, color_type);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < height; i++ )
@@ -700,7 +700,7 @@ error:
 
     if ( lines )
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned int n = 0; n < height; n++ )
@@ -856,12 +856,12 @@ bool wxPNGHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbos
             PaletteAdd(&palette, mask);
         }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int y = 0; y < iHeight; y++)
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int x = 0; x < iWidth; x++)
@@ -1033,13 +1033,13 @@ bool wxPNGHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbos
 
     const unsigned char *pColors = image->GetData();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int y = 0; y != iHeight; ++y)
     {
         unsigned char *pData = data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int x = 0; x != iWidth; x++)

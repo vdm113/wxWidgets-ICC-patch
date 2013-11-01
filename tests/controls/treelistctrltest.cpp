@@ -176,7 +176,7 @@ void TreeListCtrlTestCase::Traversal()
 
     // Get{First,Next}Item() test:
     unsigned numItems = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxTreeListItem item = m_treelist->GetFirstItem();

@@ -50,7 +50,7 @@ wxHtmlStyleParams::wxHtmlStyleParams(const wxHtmlTag& tag)
     // Each option is a name and a value separated by a colon
     // Split the list into names and values
     wxStringTokenizer tkz(wd, wxT(";"), wxTOKEN_STRTOK);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( tkz.HasMoreTokens() )

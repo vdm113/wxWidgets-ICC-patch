@@ -90,7 +90,7 @@ static bool DoRegionUnion(wxRegionBase& region,
     // rectangles to add to the region.
     int width = image.GetWidth();
     int height = image.GetHeight();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int y=0; y < height; y++)
@@ -99,14 +99,14 @@ static bool DoRegionUnion(wxRegionBase& region,
         rect.y = y;
         rect.height = 1;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int x=0; x < width; x++)
         {
             // search for a continuous range of non-transparent pixels
             int x0 = x;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while ( x < width)

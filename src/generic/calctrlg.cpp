@@ -141,7 +141,7 @@ void wxGenericCalendarCtrl::Init()
     m_calendarWeekWidth = 0;
 
     wxDateTime::WeekDay wd;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wd = wxDateTime::Sun; wd < wxDateTime::Inv_WeekDay; wxNextWDay(wd) )
@@ -149,7 +149,7 @@ void wxGenericCalendarCtrl::Init()
         m_weekdays[wd] = wxDateTime::GetWeekDayName(wd, wxDateTime::Name_Abbr);
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < WXSIZEOF(m_attrs); n++ )
@@ -228,7 +228,7 @@ bool wxGenericCalendarCtrl::Create(wxWindow *parent,
 
 wxGenericCalendarCtrl::~wxGenericCalendarCtrl()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < WXSIZEOF(m_attrs); n++ )
@@ -270,7 +270,7 @@ void wxGenericCalendarCtrl::CreateMonthComboBox()
                                   wxCB_READONLY | wxCLIP_SIBLINGS);
 
     wxDateTime::Month m;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( m = wxDateTime::Jan; m < wxDateTime::Inv_Month; wxNextMonth(m) )
@@ -769,7 +769,7 @@ void wxGenericCalendarCtrl::RecalcGeometry()
     // determine the column width (weekday names are not necessarily wider
     // than the numbers (in some languages), so let's not assume that they are)
     m_widthCol = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int day = 10; day <= 31; day++)
@@ -784,7 +784,7 @@ void wxGenericCalendarCtrl::RecalcGeometry()
         }
     }
     wxDateTime::WeekDay wd;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wd = wxDateTime::Sun; wd < wxDateTime::Inv_WeekDay; wxNextWDay(wd) )
@@ -911,7 +911,7 @@ void wxGenericCalendarCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
         dc.DrawRectangle(0, y, GetClientSize().x, m_heightRow);
 
         bool startOnMonday = HasFlag(wxCAL_MONDAY_FIRST);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int wd = 0; wd < 7; wd++ )
@@ -941,7 +941,7 @@ void wxGenericCalendarCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
         dc.SetPen(wxPen(m_colHeaderBg, 1, wxSOLID));
         dc.DrawRectangle( 0, y, m_calendarWeekWidth, m_heightRow * 6 );
         wxDateTime date = GetStartDate();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < 6; ++i )
@@ -961,7 +961,7 @@ void wxGenericCalendarCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
 #endif
 
     dc.SetBackgroundMode(wxBRUSHSTYLE_SOLID);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t nWeek = 1; nWeek <= 6; nWeek++, y += m_heightRow )
@@ -978,7 +978,7 @@ void wxGenericCalendarCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
         wxLogDebug("painting week %d at y = %d\n", nWeek, y);
 #endif
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int wd = 0; wd < 7; wd++ )
@@ -1717,7 +1717,7 @@ void wxGenericCalendarCtrl::SetHoliday(size_t day)
 
 void wxGenericCalendarCtrl::ResetHolidayAttrs()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t day = 0; day < 31; day++ )

@@ -201,7 +201,7 @@ void VectorsTestCase::Iterators()
     v.push_back(4);
 
     int value = 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxVector<int>::iterator i = v.begin(); i != v.end(); ++i, ++value )
@@ -312,7 +312,7 @@ void VectorsTestCase::Sort()
 
     wxVectorSort(v);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (idx=1; idx<v.size(); idx++)

@@ -234,7 +234,7 @@ Fax3Decode1D(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 	}
 	CACHE_STATE(tif, sp);
 	thisrun = sp->curruns;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (occ > 0) {
@@ -280,7 +280,7 @@ Fax3Decode2D(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 		return (-1);
 	}
 	CACHE_STATE(tif, sp);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (occ > 0) {
@@ -382,7 +382,7 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 	if ((erun-runs)&1)
 	    *erun++ = 0;
 	x = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; runs < erun; runs += 2) {
@@ -402,7 +402,7 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 			    /*
 			     * Align to longword boundary and fill.
 			     */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			    for (; n && !isAligned(cp, long); n--)
@@ -410,7 +410,7 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 			    lp = (long*) cp;
 			    nw = (int32)(n / sizeof (long));
 			    n -= nw * sizeof (long);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			    do {
@@ -443,7 +443,7 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 			    /*
 			     * Align to longword boundary and fill.
 			     */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			    for (; n && !isAligned(cp, long); n--)
@@ -451,7 +451,7 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 			    lp = (long*) cp;
 			    nw = (int32)(n / sizeof (long));
 			    n -= nw * sizeof (long);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			    do {
@@ -663,7 +663,7 @@ putspan(TIFF* tif, int32 span, const tableentry* tab)
 	int data = sp->data;
 	unsigned int code, length;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (span >= 2624) {
@@ -856,7 +856,7 @@ find0span(unsigned char* bp, int32 bs, int32 be)
 		/*
 		 * Align to longword boundary and check longwords.
 		 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (!isAligned(bp, long)) {
@@ -866,7 +866,7 @@ find0span(unsigned char* bp, int32 bs, int32 be)
 			bp++;
 		}
 		lp = (long*) bp;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while ((bits >= (int32)(8 * sizeof(long))) && (0 == *lp)) {
@@ -878,7 +878,7 @@ find0span(unsigned char* bp, int32 bs, int32 be)
 	/*
 	 * Scan full bytes for all 0's.
 	 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (bits >= 8) {
@@ -924,7 +924,7 @@ find1span(unsigned char* bp, int32 bs, int32 be)
 		/*
 		 * Align to longword boundary and check longwords.
 		 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (!isAligned(bp, long)) {
@@ -934,7 +934,7 @@ find1span(unsigned char* bp, int32 bs, int32 be)
 			bp++;
 		}
 		lp = (long*) bp;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while ((bits >= (int32)(8 * sizeof(long))) && (~0 == *lp)) {
@@ -946,7 +946,7 @@ find1span(unsigned char* bp, int32 bs, int32 be)
 	/*
 	 * Scan full bytes for all 1's.
 	 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (bits >= 8) {
@@ -992,7 +992,7 @@ Fax3Encode1DRow(TIFF* tif, unsigned char* bp, uint32 bits)
 	int32 span;
         uint32 bs = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (;;) {
@@ -1044,7 +1044,7 @@ Fax3Encode2DRow(TIFF* tif, unsigned char* bp, unsigned char* rp, uint32 bits)
 	uint32 b1 = (PIXEL(rp, 0) != 0 ? 0 : finddiff(rp, 0, bits, 0));
 	uint32 a2, b2;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (;;) {
@@ -1094,7 +1094,7 @@ Fax3Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 		TIFFErrorExt(tif->tif_clientdata, module, "Fractional scanlines cannot be written");
 		return (0);
 	}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (cc > 0) {
@@ -1147,7 +1147,7 @@ Fax3Close(TIFF* tif)
 
 		if (is2DEncoding(sp))
 			code = (code<<1) | (sp->tag == G3_1D), length++;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (i = 0; i < 6; i++)
@@ -1443,7 +1443,7 @@ Fax4Decode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 		return (-1);
 	}
 	CACHE_STATE(tif, sp);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (occ > 0) {
@@ -1498,7 +1498,7 @@ Fax4Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 		TIFFErrorExt(tif->tif_clientdata, module, "Fractional scanlines cannot be written");
 		return (0);
 	}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (cc > 0) {
@@ -1575,7 +1575,7 @@ Fax3DecodeRLE(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 	}
 	CACHE_STATE(tif, sp);
 	thisrun = sp->curruns;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (occ > 0) {

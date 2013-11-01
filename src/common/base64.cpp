@@ -30,7 +30,7 @@ wxBase64Encode(char *dst, size_t dstLen, const void *src_, size_t srcLen)
     size_t encLen = 0;
 
     // encode blocks of 3 bytes into 4 base64 characters
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ; srcLen >= 3; srcLen -= 3, src += 3 )
@@ -122,7 +122,7 @@ wxBase64Decode(void *dst_, size_t dstLen,
     bool end = false;                       // set when we find padding
     size_t padLen = 0;                      // length lost to padding
     const char *p;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( p = src; srcLen; p++, srcLen-- )

@@ -353,7 +353,7 @@ bool wxTextEntry::DoAutoCompleteStrings(const wxArrayString& choices)
     GtkListStore * const store = gtk_list_store_new(1, G_TYPE_STRING);
     GtkTreeIter iter;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxArrayString::const_iterator i = choices.begin();

@@ -870,7 +870,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryByteArray(TIFF* tif, TIFFDirEntr
 				int8* m;
 				uint32 n;
 				m=(int8*)origdata;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -902,7 +902,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryByteArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(uint16*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -923,7 +923,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryByteArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(int16*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -944,7 +944,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryByteArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -965,7 +965,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryByteArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(int32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -986,7 +986,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryByteArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(uint64*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1007,7 +1007,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryByteArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(int64*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1067,7 +1067,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySbyteArray(TIFF* tif, TIFFDirEnt
 				uint8* m;
 				uint32 n;
 				m=(uint8*)origdata;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1102,7 +1102,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySbyteArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint16*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1123,7 +1123,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySbyteArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int16*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1144,7 +1144,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySbyteArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1165,7 +1165,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySbyteArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1186,7 +1186,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySbyteArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint64*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1207,7 +1207,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySbyteArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int64*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1270,7 +1270,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryShortArray(TIFF* tif, TIFFDirEnt
 				int16* m;
 				uint32 n;
 				m=(int16*)origdata;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1304,7 +1304,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryShortArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint8*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1318,7 +1318,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryShortArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int8*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1337,7 +1337,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryShortArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1358,7 +1358,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryShortArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1379,7 +1379,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryShortArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint64*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1400,7 +1400,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryShortArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int64*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1458,7 +1458,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySshortArray(TIFF* tif, TIFFDirEn
 				uint16* m;
 				uint32 n;
 				m=(uint16*)origdata;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1497,7 +1497,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySshortArray(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(uint8*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1511,7 +1511,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySshortArray(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(int8*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1525,7 +1525,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySshortArray(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1546,7 +1546,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySshortArray(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(int32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1567,7 +1567,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySshortArray(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(uint64*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1588,7 +1588,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySshortArray(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(int64*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1651,7 +1651,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLongArray(TIFF* tif, TIFFDirEntr
 				int32* m;
 				uint32 n;
 				m=(int32*)origdata;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1685,7 +1685,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLongArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(uint8*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1699,7 +1699,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLongArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(int8*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1718,7 +1718,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLongArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(uint16*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1736,7 +1736,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLongArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(int16*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1757,7 +1757,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLongArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(uint64*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1778,7 +1778,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLongArray(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(int64*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1836,7 +1836,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlongArray(TIFF* tif, TIFFDirEnt
 				uint32* m;
 				uint32 n;
 				m=(uint32*)origdata;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1875,7 +1875,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlongArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint8*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1889,7 +1889,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlongArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int8*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1903,7 +1903,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlongArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint16*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1921,7 +1921,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlongArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int16*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1939,7 +1939,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlongArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint64*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -1960,7 +1960,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlongArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int64*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2023,7 +2023,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLong8Array(TIFF* tif, TIFFDirEnt
 				int64* m;
 				uint32 n;
 				m=(int64*)origdata;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2057,7 +2057,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLong8Array(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint8*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2071,7 +2071,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLong8Array(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int8*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2090,7 +2090,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLong8Array(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint16*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2108,7 +2108,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLong8Array(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int16*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2129,7 +2129,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLong8Array(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2147,7 +2147,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryLong8Array(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2205,7 +2205,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlong8Array(TIFF* tif, TIFFDirEn
 				uint64* m;
 				uint32 n;
 				m=(uint64*)origdata;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2244,7 +2244,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlong8Array(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(uint8*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2258,7 +2258,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlong8Array(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(int8*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2272,7 +2272,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlong8Array(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(uint16*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2290,7 +2290,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlong8Array(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(int16*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2308,7 +2308,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlong8Array(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2326,7 +2326,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntrySlong8Array(TIFF* tif, TIFFDirEn
 				uint32 n;
 				ma=(int32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2402,7 +2402,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint8*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2416,7 +2416,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int8*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2430,7 +2430,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint16*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2448,7 +2448,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int16*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2466,7 +2466,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2484,7 +2484,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2502,7 +2502,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint64*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2529,7 +2529,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(int64*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2549,7 +2549,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2576,7 +2576,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2605,7 +2605,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryFloatArray(TIFF* tif, TIFFDirEnt
 				TIFFCvtIEEEDoubleToNative(tif,count,(double*)origdata);
 				ma=(double*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2678,7 +2678,7 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(uint8*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2692,7 +2692,7 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(int8*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2706,7 +2706,7 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(uint16*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2724,7 +2724,7 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(int16*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2742,7 +2742,7 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2760,7 +2760,7 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(int32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2778,7 +2778,7 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(uint64*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2805,7 +2805,7 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(int64*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2825,7 +2825,7 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2852,7 +2852,7 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2881,7 +2881,7 @@ TIFFReadDirEntryDoubleArray(TIFF* tif, TIFFDirEntry* direntry, double** value)
 				TIFFCvtIEEEFloatToNative(tif,count,(float*)origdata);
 				ma=(float*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2946,7 +2946,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryIfd8Array(TIFF* tif, TIFFDirEntr
 				uint32 n;
 				ma=(uint32*)origdata;
 				mb=data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<count; n++)
@@ -2983,7 +2983,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryPersampleShort(TIFF* tif, TIFFDi
 	nb=tif->tif_dir.td_samplesperpixel;
 	*value=*na++;
 	nb--;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (nb>0)
@@ -3015,7 +3015,7 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryPersampleDouble(TIFF* tif, TIFFD
 	nb=tif->tif_dir.td_samplesperpixel;
 	*value=*na++;
 	nb--;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (nb>0)
@@ -3694,14 +3694,14 @@ TIFFReadDirectory(TIFF* tif)
 	{
 		TIFFDirEntry* ma;
 		uint16 mb;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (ma=dir, mb=0; mb<dircount; ma++, mb++)
 		{
 			TIFFDirEntry* na;
 			uint16 nb;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (na=ma+1, nb=mb+1; nb<dircount; na++, nb++)
@@ -3779,7 +3779,7 @@ TIFFReadDirectory(TIFF* tif)
 	/*
 	 * First real pass over the directory.
 	 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (di=0, dp=dir; di<dircount; di++, dp++)
@@ -3922,7 +3922,7 @@ TIFFReadDirectory(TIFF* tif)
 	/*
 	 * Second pass: extract other information.
 	 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (di=0, dp=dir; di<dircount; di++, dp++)
@@ -4261,7 +4261,7 @@ TIFFReadDirectory(TIFF* tif)
 		uint32 strip;
 
 		tif->tif_dir.td_stripbytecountsorted = 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (strip = 1; strip < tif->tif_dir.td_nstrips; strip++) {
@@ -4349,7 +4349,7 @@ TIFFReadDirectoryCheckOrder(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 	uint16 n;
 	TIFFDirEntry* o;
 	m=0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (n=0, o=dir; n<dircount; n++, o++)
@@ -4370,7 +4370,7 @@ TIFFReadDirectoryFindEntry(TIFF* tif, TIFFDirEntry* dir, uint16 dircount, uint16
 	TIFFDirEntry* m;
 	uint16 n;
 	(void) tif;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (m=dir, n=0; n<dircount; m++, n++)
@@ -4387,7 +4387,7 @@ TIFFReadDirectoryFindFieldInfo(TIFF* tif, uint16 tagid, uint32* fii)
 	int32 ma,mb,mc;
 	ma=-1;
 	mc=(int32)tif->tif_nfields;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (1)
@@ -4405,7 +4405,7 @@ TIFFReadDirectoryFindFieldInfo(TIFF* tif, uint16 tagid, uint32* fii)
 		else
 			mc=mb;
 	}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (1)
@@ -4445,7 +4445,7 @@ TIFFReadCustomDirectory(TIFF* tif, toff_t diroff,
 	TIFFFreeDirectory(tif);
 	_TIFFmemset(&tif->tif_dir, 0, sizeof(TIFFDirectory));
 	TIFFReadDirectoryCheckOrder(tif,dir,dircount);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (di=0, dp=dir; di<dircount; di++, dp++)
@@ -4477,7 +4477,7 @@ TIFFReadCustomDirectory(TIFF* tif, toff_t diroff,
 			else
 			{
 				/* check data type */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				while ((fip->field_type!=TIFF_ANY)&&(fip->field_type!=dp->tdir_type))
@@ -4573,7 +4573,7 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 		else
 			space=sizeof(TIFFHeaderBig)+8+dircount*20+8;
 		/* calculate amount of space used by indirect values */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (dp = dir, n = dircount; n > 0; n--, dp++)
@@ -4603,7 +4603,7 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 		space = filesize - space;
 		if (td->td_planarconfig == PLANARCONFIG_SEPARATE)
 			space /= td->td_samplesperpixel;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (strip = 0; strip < td->td_nstrips; strip++)
@@ -4621,7 +4621,7 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 	} else if (isTiled(tif)) {
 		uint64 bytespertile = TIFFTileSize64(tif);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (strip = 0; strip < td->td_nstrips; strip++)
@@ -4629,7 +4629,7 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 	} else {
 		uint64 rowbytes = TIFFScanlineSize64(tif);
 		uint32 rowsperstrip = td->td_imagelength/td->td_stripsperimage;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (strip = 0; strip < td->td_nstrips; strip++)
@@ -4665,7 +4665,7 @@ TIFFCheckDirOffset(TIFF* tif, uint64 diroff)
 	if (diroff == 0)			/* no more directories */
 		return 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (n = 0; n < tif->tif_dirnumber && tif->tif_dirlist; n++) {
@@ -4944,7 +4944,7 @@ TIFFFetchDirectory(TIFF* tif, uint64 diroff, TIFFDirEntry** pdir,
 	}
 	ma=(uint8*)origdir;
 	mb=dir;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (n=0; n<dircount16; n++)
@@ -5020,7 +5020,7 @@ TIFFFetchNormalTag(TIFF* tif, TIFFDirEntry* dp, int recover)
 					int n;
 					ma=data;
 					mb=0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 					while (mb<(uint32)dp->tdir_count)
@@ -5830,7 +5830,7 @@ ChopUpSingleUncompressedStrip(TIFF* tif)
 	 * Fill the strip information arrays with new bytecounts and offsets
 	 * that reflect the broken-up format.
 	 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (strip = 0; strip < nstrips32; strip++) {
@@ -5885,7 +5885,7 @@ int _TIFFFillStriles( TIFF *tif )
 		uint32 strip;
 
 		tif->tif_dir.td_stripbytecountsorted = 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (strip = 1; strip < tif->tif_dir.td_nstrips; strip++) {

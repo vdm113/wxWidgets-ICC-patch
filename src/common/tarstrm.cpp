@@ -193,7 +193,7 @@ void wxTarHeaderBlock::check()
 bool wxTarHeaderBlock::IsAllZeros() const
 {
     const char *p = data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < sizeof(data); i++)
@@ -210,13 +210,13 @@ wxUint32 wxTarHeaderBlock::Sum(bool SignedSum /*=false*/)
     wxUint32 n = 0;
 
     if (SignedSum)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = 0; i < sizeof(data); i++)
             n += (signed char)p[i];
     else
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = 0; i < sizeof(data); i++)
@@ -231,7 +231,7 @@ wxUint32 wxTarHeaderBlock::SumField(int id)
     unsigned char *q = p + Len(id);
     wxUint32 n = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (p < q)
@@ -244,7 +244,7 @@ bool wxTarHeaderBlock::Read(wxInputStream& in)
 {
     bool ok = true;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int id = 0; id < TAR_NUMFIELDS && ok; id++)
@@ -257,7 +257,7 @@ bool wxTarHeaderBlock::Write(wxOutputStream& out)
 {
     bool ok = true;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int id = 0; id < TAR_NUMFIELDS && ok; id++)
@@ -275,12 +275,12 @@ wxTarNumber wxTarHeaderBlock::GetOctal(int id)
 {
     wxTarNumber n = 0;
     const char *p = Get(id);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (*p == ' ')
         p++;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (*p >= '0' && *p < '8')
@@ -294,7 +294,7 @@ bool wxTarHeaderBlock::SetOctal(int id, wxTarNumber n)
     char *field = Get(id);
     char *p = field + Len(id);
     *--p = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (p > field) {
@@ -316,7 +316,7 @@ bool wxTarHeaderBlock::SetPath(const wxString& name, wxMBConv& conv)
         badconv = true;
         size_t len = name.length();
         wxCharBuffer approx(len);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = 0; i < len; i++)
@@ -341,7 +341,7 @@ bool wxTarHeaderBlock::SetPath(const wxString& name, wxMBConv& conv)
     size_t i = 0;
     size_t nexti = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;) {
@@ -572,7 +572,7 @@ wxString wxTarEntry::GetName(wxPathFormat format /*=wxPATH_NATIVE*/) const
         case wxPATH_DOS:
         {
             wxString name(isDir ? m_Name + wxT("\\") : m_Name);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (size_t i = 0; i < name.length(); i++)
@@ -627,12 +627,12 @@ wxString wxTarEntry::GetInternalName(const wxString& name,
     if (isDir)
         internal.erase(internal.length() - 1);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (!internal.empty() && *internal.begin() == '/')
         internal.erase(0, 1);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (!internal.empty() && internal.compare(0, 2, wxT("./")) == 0)
@@ -812,7 +812,7 @@ bool wxTarInputStream::CloseEntry()
         const int BUFSIZE = 8192;
         wxCharBuffer buf(BUFSIZE);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (remainder > 0 && m_parent_i_stream->IsOk())
@@ -834,7 +834,7 @@ wxStreamError wxTarInputStream::ReadHeaders()
 
     bool done = false;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (!done) {
@@ -950,12 +950,12 @@ wxTarNumber wxTarInputStream::GetHeaderNumber(int id) const
     if ((value = GetExtendedHeader(m_hdr->Name(id))) != wxEmptyString) {
         wxTarNumber n = 0;
         wxString::const_iterator p = value.begin();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (*p == ' ' && p != value.end())
             p++;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (isdigit(*p))
@@ -1000,7 +1000,7 @@ bool wxTarInputStream::ReadExtendedHeader(wxTarHeaderRecords*& recs)
     size_t recPos, recSize;
     bool ok = true;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (recPos = 0; recPos < len && ok; recPos += recSize) {
@@ -1009,7 +1009,7 @@ bool wxTarInputStream::ReadExtendedHeader(wxTarHeaderRecords*& recs)
 
         // read the record size (byte count in ascii decimal)
         recSize = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (isdigit((unsigned char) *p))
@@ -1030,7 +1030,7 @@ bool wxTarInputStream::ReadExtendedHeader(wxTarHeaderRecords*& recs)
         char *pKey = ++p;
 
         // look forward for the '=', the value follows
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (*p && *p != '=')
@@ -1281,7 +1281,7 @@ bool wxTarOutputStream::Close()
     memset(m_hdr, 0, sizeof(*m_hdr));
     int count = (RoundUpSize(m_tarsize + 2 * TAR_BLOCKSIZE, m_BlockingFactor)
                     - m_tarsize) / TAR_BLOCKSIZE;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (count--)
@@ -1409,7 +1409,7 @@ wxString wxTarOutputStream::PaxHeaderPath(const wxString& format,
     size_t begin = 0;
     size_t end;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;) {

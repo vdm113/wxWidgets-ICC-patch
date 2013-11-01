@@ -536,7 +536,7 @@ private:
 
             // Iterate over all rectangle rectPoints for the first 3 corners.
             unsigned n = pointStart;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( unsigned corner = 0; corner < 3; corner++ )

@@ -58,7 +58,7 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((c = getopt(argc, argv, "c:p:r:")) != -1)
@@ -147,7 +147,7 @@ usage(void)
 	int i;
 
 	setbuf(stderr, buf);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; stuff[i] != NULL; i++)
@@ -164,7 +164,7 @@ svRGBSeparate(TIFF* tif, uint32* ss, int xsize, int ysize)
 	unsigned char *bbuf = gbuf + stripsize;
 	register int y;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (y = 0; y <= ysize; y += rowsperstrip) {
@@ -176,11 +176,11 @@ svRGBSeparate(TIFF* tif, uint32* ss, int xsize, int ysize)
 		if (n > ysize-y+1)
 			n = ysize-y+1;
 		rp = rbuf; gp = gbuf; bp = bbuf;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		do {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (x = 0; x <= xsize; x++) {
@@ -212,7 +212,7 @@ svRGBContig(TIFF* tif, uint32* ss, int xsize, int ysize)
 	tsize_t stripsize = TIFFStripSize(tif);
 	unsigned char *strip = (unsigned char *)_TIFFmalloc(stripsize);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (y = 0; y <= ysize; y += rowsperstrip) {
@@ -222,11 +222,11 @@ svRGBContig(TIFF* tif, uint32* ss, int xsize, int ysize)
 		n = rowsperstrip;
 		if (n > ysize-y+1)
 			n = ysize-y+1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		do {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (x = 0; x <= xsize; x++) {
@@ -259,11 +259,11 @@ svGrey(TIFF* tif, uint32* ss, int xsize, int ysize)
 	register int x, y;
 	unsigned char *buf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(tif));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (y = 0; y <= ysize; y++) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (x = 0; x <= xsize; x++) {

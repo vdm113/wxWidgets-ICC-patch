@@ -97,7 +97,7 @@ bool wxCheckForInterrupt(wxWindow *wnd)
     wxCHECK( wnd, false );
 
     MSG msg;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( ::PeekMessage(&msg, GetHwndOf(wnd), 0, 0, PM_REMOVE) )
@@ -223,7 +223,7 @@ wxString WXDLLEXPORT wxGetWindowClass(WXHWND hWnd)
     {
         int len = 256; // some starting value
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( ;; )

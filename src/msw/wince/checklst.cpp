@@ -105,7 +105,7 @@ bool wxCheckListBox::Create(wxWindow *parent, wxWindowID id,
     ListView_SetItemCount( GetHwnd(), n );
 
     // initialize the contents
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < n; i++ )
@@ -189,7 +189,7 @@ void wxCheckListBox::DoClear()
 {
     unsigned int n = GetCount();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( n > 0 )
@@ -209,7 +209,7 @@ unsigned int wxCheckListBox::GetCount() const
 int wxCheckListBox::GetSelection() const
 {
     int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; (unsigned int)i < GetCount(); i++)
@@ -225,7 +225,7 @@ int wxCheckListBox::GetSelection() const
 int wxCheckListBox::GetSelections(wxArrayInt& aSelections) const
 {
     int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; (unsigned int)i < GetCount(); i++)
@@ -279,7 +279,7 @@ int wxCheckListBox::DoInsertItems(const wxArrayStringsAdapter & items,
 
     int n = wxNOT_FOUND;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( unsigned int i = 0; i < count; i++ )

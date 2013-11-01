@@ -1350,7 +1350,7 @@ void wxTopLevelWindowGTK::SetIcons( const wxIconBundle &icons )
     if (gtk_widget_get_realized(m_widget))
     {
         GList* list = NULL;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = icons.GetIconCount(); i--;)

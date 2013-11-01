@@ -48,7 +48,7 @@ static char CharacterUpper(char chChar) {
 // Convert string to uppercase
 static void StringUpper(char *szString) {
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (*szString) {
@@ -122,7 +122,7 @@ inline bool SetNumericConstantState(StyleContext &scDoc) {
 	// Buffer the current numberic string
 	scDoc.GetCurrent(cNumericString, sizeof(cNumericString));
 	// Loop through the string until end of string (NULL termination)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int iIndex = 0; cNumericString[iIndex] != '\0'; iIndex++) {
@@ -153,7 +153,7 @@ inline bool GetNextWordUpper(Accessor &styler, unsigned int uiStartPos, int iLen
 	unsigned int iIndex = 0;		// Buffer Index
 
 	// Loop through the remaining string from the current position
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int iOffset = uiStartPos; iOffset < iLength; iOffset++) {
@@ -216,7 +216,7 @@ static void ColouriseClarionDoc(unsigned int uiStartPos, int iLength, int iInitS
 	StyleContext scDoc(uiStartPos, iLength, iInitStyle, accStyler);
 
 	// lex source code
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (; scDoc.More(); scDoc.Forward())
@@ -550,7 +550,7 @@ static void FillBuffer(unsigned int uiStart, unsigned int uiEnd, Accessor &accSt
 
 	unsigned int uiPos = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((uiPos < uiEnd - uiStart + 1) && (uiPos < uiLength-1)) {
@@ -626,7 +626,7 @@ static void FoldClarionDoc(unsigned int uiStartPos, int iLength, int iInitStyle,
 	int iVisibleChars = 0;
 	int iLastStart = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int uiPos = uiStartPos; uiPos < uiEndPos; uiPos++) {

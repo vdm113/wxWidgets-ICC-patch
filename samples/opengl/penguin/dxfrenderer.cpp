@@ -345,7 +345,7 @@ void DXFRenderer::Clear()
 {
     m_loaded = false;
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (DXFLayerList::compatibility_iterator node = m_layers.GetFirst(); node; node = node->GetNext())
@@ -356,7 +356,7 @@ void DXFRenderer::Clear()
     }
     m_layers.Clear();
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (DXFEntityList::compatibility_iterator node = m_entities.GetFirst(); node; node = node->GetNext())
@@ -370,7 +370,7 @@ void DXFRenderer::Clear()
 
 int DXFRenderer::GetLayerColour(const wxString& layer) const
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (DXFLayerList::compatibility_iterator node = m_layers.GetFirst(); node; node = node->GetNext())
@@ -394,7 +394,7 @@ bool DXFRenderer::ParseHeader(wxInputStream& stream)
 {
     wxTextInputStream text(stream);
     wxString line1, line2;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (stream.CanRead())
@@ -413,7 +413,7 @@ bool DXFRenderer::ParseTables(wxInputStream& stream)
     wxString line1, line2;
     bool inlayer=false;
     DXFLayer layer;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (stream.CanRead())
@@ -476,7 +476,7 @@ bool DXFRenderer::ParseEntities(wxInputStream& stream)
     DXFVector v[4];
     int colour = -1;
     wxString layer;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (stream.CanRead())
@@ -572,7 +572,7 @@ bool DXFRenderer::Load(wxInputStream& stream)
     wxTextInputStream text(stream);
 
     wxString line1, line2;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (stream.CanRead())
@@ -618,7 +618,7 @@ void DXFRenderer::NormalizeEntities()
     // calculate current min and max boundings of object
     DXFVector minv(10e20f, 10e20f, 10e20f);
     DXFVector maxv(-10e20f, -10e20f, -10e20f);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (DXFEntityList::compatibility_iterator node = m_entities.GetFirst(); node; node = node->GetNext())
@@ -628,7 +628,7 @@ void DXFRenderer::NormalizeEntities()
         {
             DXFLine *line = (DXFLine *)p;
             const DXFVector *v[2] = { &line->v0, &line->v1 };
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i = 0; i < 2; ++i)
@@ -644,7 +644,7 @@ void DXFRenderer::NormalizeEntities()
         {
             DXFFace *face = (DXFFace *)p;
             const DXFVector *v[4] = { &face->v0, &face->v1, &face->v2, &face->v3 };
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i = 0; i < 4; ++i)
@@ -662,7 +662,7 @@ void DXFRenderer::NormalizeEntities()
     // rescale object down to [-5,5]
     DXFVector span(maxv.x - minv.x, maxv.y - minv.y, maxv.z - minv.z);
     float factor = mymin(mymin(10.0f / span.x, 10.0f / span.y), 10.0f / span.z);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (DXFEntityList::compatibility_iterator node2 = m_entities.GetFirst(); node2; node2 = node2->GetNext())
@@ -672,7 +672,7 @@ void DXFRenderer::NormalizeEntities()
         {
             DXFLine *line = (DXFLine *)p;
             DXFVector *v[2] = { &line->v0, &line->v1 };
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i = 0; i < 2; ++i)
@@ -685,7 +685,7 @@ void DXFRenderer::NormalizeEntities()
         {
             DXFFace *face = (DXFFace *)p;
             DXFVector *v[4] = { &face->v0, &face->v1, &face->v2, &face->v3 };
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i = 0; i < 4; ++i)
@@ -704,7 +704,7 @@ void DXFRenderer::Render() const
     if (!m_loaded)
         return;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (DXFEntityList::compatibility_iterator node = m_entities.GetFirst(); node; node = node->GetNext())

@@ -315,7 +315,7 @@ bool wxOSXQuickTimeSoundData::Play(unsigned flags)
         //Play movie until it ends, then exit
         //Note that due to quicktime caching this may not always
         //work 100% correctly
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (!IsMovieDone(m_movie))

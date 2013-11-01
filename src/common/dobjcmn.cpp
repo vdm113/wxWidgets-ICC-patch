@@ -66,7 +66,7 @@ bool wxDataObjectBase::IsSupported(const wxDataFormat& format,
         GetAllFormats( formats, dir );
 
         size_t n;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( n = 0; n < nFormatCount; n++ )
@@ -102,7 +102,7 @@ wxDataObjectComposite::GetObject(const wxDataFormat& format, wxDataObjectBase::D
 {
     wxSimpleDataObjectList::compatibility_iterator node = m_dataObjects.GetFirst();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( node )
@@ -188,7 +188,7 @@ size_t wxDataObjectComposite::GetFormatCount(Direction dir) const
     //       from GetFormatCount(): this is the case of e.g. wxTextDataObject
     //       under wxMac and wxGTK
     wxSimpleDataObjectList::compatibility_iterator node;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( node = m_dataObjects.GetFirst(); node; node = node->GetNext() )
@@ -203,7 +203,7 @@ void wxDataObjectComposite::GetAllFormats(wxDataFormat *formats,
     size_t index(0);
     wxSimpleDataObjectList::compatibility_iterator node;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( node = m_dataObjects.GetFirst(); node; node = node->GetNext() )

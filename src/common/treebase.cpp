@@ -232,7 +232,7 @@ wxGetBestTreeSize(const wxTreeCtrlBase* treeCtrl, wxTreeItemId id, wxSize& size)
     }
 
     wxTreeItemIdValue cookie;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxTreeItemId item = treeCtrl->GetFirstChild(id, cookie);
@@ -253,7 +253,7 @@ wxSize wxTreeCtrlBase::DoGetBestSize() const
 
     if (GetQuickBestSize())
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxTreeItemId item = GetRootItem();
@@ -315,7 +315,7 @@ void wxTreeCtrlBase::ExpandAllChildren(const wxTreeItemId& item)
 
     // then (recursively) expand all the children
     wxTreeItemIdValue cookie;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxTreeItemId idCurr = GetFirstChild(item, cookie);
@@ -340,7 +340,7 @@ void wxTreeCtrlBase::CollapseAllChildren(const wxTreeItemId& item)
     Freeze();
     // first (recursively) collapse all the children
     wxTreeItemIdValue cookie;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxTreeItemId idCurr = GetFirstChild(item, cookie);

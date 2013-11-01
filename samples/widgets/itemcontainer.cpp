@@ -131,7 +131,7 @@ void ItemContainerWidgetsPage::EndTest(const wxArrayString& items)
     }
     else
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned i = 0; i < count; ++i )
@@ -185,7 +185,7 @@ ItemContainerWidgetsPage::DumpContainerData(const wxArrayString& expected) const
     str << wxT("Current content:\n");
 
     unsigned i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < m_container->GetCount(); ++i )
@@ -208,14 +208,14 @@ ItemContainerWidgetsPage::DumpContainerData(const wxArrayString& expected) const
     }
 
     str << wxT("Expected content:\n");
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < expected.GetCount(); ++i )
     {
         const wxString& item = expected[i];
         str << wxT(" - ") << item << wxT("[");
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for( unsigned j = 0; j < m_items.GetCount(); ++j )
@@ -248,7 +248,7 @@ ItemContainerWidgetsPage::MakeArray(const wxSortedArrayString& sorted)
 
     const size_t count = sorted.size();
     a.reserve(count);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -282,7 +282,7 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
     StartTest(wxT("Append some items with data objects"));
     wxClientData **objects = new wxClientData *[m_items.GetCount()];
     unsigned i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < m_items.GetCount(); ++i )
@@ -293,7 +293,7 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
 
     StartTest(wxT("Append some items with data"));
     void **data = new void *[m_items.GetCount()];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < m_items.GetCount(); ++i )
@@ -303,7 +303,7 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
     delete[] data;
 
     StartTest(wxT("Append some items with data, one by one"));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < m_items.GetCount(); ++i )
@@ -311,7 +311,7 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
     EndTest(expected_result);
 
     StartTest(wxT("Append some items with data objects, one by one"));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < m_items.GetCount(); ++i )
@@ -321,7 +321,7 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
     if ( !m_container->IsSorted() )
     {
         StartTest(wxT("Insert in reverse order with data, one by one"));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned i = m_items.GetCount(); i; --i )

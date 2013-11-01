@@ -129,7 +129,7 @@ bool wxAnimation::Load(wxInputStream &stream, wxAnimationType type)
 
     guchar buf[2048];
     bool data_written = false;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (stream.IsOk())

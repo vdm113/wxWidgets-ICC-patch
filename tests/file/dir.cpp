@@ -106,7 +106,7 @@ wxArrayString DirTestCase::DirEnumHelper(wxDir& dir,
 
     wxString filename;
     bool cont = dir.GetFirst(&filename, filespec, flags);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( cont )
@@ -219,7 +219,7 @@ void DirTestCase::DirExists()
         homedrive = "c:";
 #endif // __WINDOWS__
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < WXSIZEOF(testData); n++ )

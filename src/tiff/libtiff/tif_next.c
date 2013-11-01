@@ -59,7 +59,7 @@ NeXTDecode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 	 * white (we assume a PhotometricInterpretation
 	 * of ``min-is-black'').
 	 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (op = (unsigned char*) buf, cc = occ; cc-- > 0;)
@@ -73,7 +73,7 @@ NeXTDecode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 		TIFFErrorExt(tif->tif_clientdata, module, "Fractional scanlines cannot be read");
 		return (0);
 	}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (row = buf; occ > 0; occ -= scanline, row += scanline) {
@@ -115,7 +115,7 @@ NeXTDecode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 			 * <color><npixels> until we've filled the scanline.
 			 */
 			op = row;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (;;) {
@@ -126,7 +126,7 @@ NeXTDecode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 				 * bounds, potentially resulting in a security
 				 * issue.
 				 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				while (n-- > 0 && npixels < imagewidth)

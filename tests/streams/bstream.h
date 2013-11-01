@@ -2,7 +2,7 @@
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#   define MY_MACRO_PRAGMA_IVDEP
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -138,7 +138,7 @@ protected:
         CPPUNIT_ASSERT(!stream_in.Eof());
 
         // Travel to the end of the stream.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while(!stream_in.Eof())
@@ -164,7 +164,7 @@ protected:
         CPPUNIT_ASSERT_MESSAGE("EOF is not EOF?", stream_in.Eof());
 
         // Ok we found the end, let's see if we can go past it.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = 0; i < 100; i++)
@@ -255,7 +255,7 @@ protected:
         TStreamIn &stream_in = CreateInStream();
 
         // Test the full stream
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (stream_in.IsOk())
@@ -302,7 +302,7 @@ protected:
 
         const char *buf = "Some text";
         const wxFileOffset len = strlen(buf);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = 0; i < len; i++ )

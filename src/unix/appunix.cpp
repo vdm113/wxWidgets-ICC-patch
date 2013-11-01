@@ -117,7 +117,7 @@ void wxAppConsole::HandleSignal(int signal)
 
 void wxAppConsole::CheckSignal()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( SignalHandlerHash::iterator it = m_signalHandlerHash.begin();

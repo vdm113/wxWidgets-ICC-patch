@@ -26,7 +26,7 @@ using namespace Scintilla;
 static int classifyWordBullant(unsigned int start, unsigned int end, WordList &keywords, Accessor &styler) {
 	char s[100];
 	s[0] = '\0';
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = 0; i < end - start + 1 && i < 30; i++) {
@@ -81,7 +81,7 @@ static void ColouriseBullantDoc(unsigned int startPos, int length, int initStyle
 	int visibleChars = 0;
 	styler.StartSegment(startPos);
 	int endFoundThisLine = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {

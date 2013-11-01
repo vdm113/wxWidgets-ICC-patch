@@ -98,7 +98,7 @@ main(int argc, char* argv[])
 	extern char* optarg;
 
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((c = getopt(argc, argv, "R:X:o:1234ABLMPUW5678abcflmprsuvwz?")) != -1)
@@ -259,7 +259,7 @@ main(int argc, char* argv[])
 		TIFFSetField(faxTIFF, TIFFTAG_GROUP3OPTIONS, group3options_in);
 	else if (compression_in == COMPRESSION_CCITTFAX4)
 		TIFFSetField(faxTIFF, TIFFTAG_GROUP4OPTIONS, group4options_in);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (pn = 0; optind < argc; pn++, optind++) {
@@ -378,7 +378,7 @@ copyFaxFile(TIFF* tifin, TIFF* tifout)
 	_TIFFmemset(refbuf, 0, linesize);
 	row = 0;
 	badrun = 0;		/* current run of bad lines */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (tifin->tif_rawcc > 0) {
@@ -462,7 +462,7 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; stuff[i] != NULL; i++)

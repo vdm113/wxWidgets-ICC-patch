@@ -181,7 +181,7 @@ format_message (j_common_ptr cinfo, char * buffer)
   /* Check for string parameter, as indicated by %s in the message text */
   isstring = FALSE;
   msgptr = msgtext;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while ((ch = *msgptr++) != '\0') {

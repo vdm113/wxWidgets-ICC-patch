@@ -118,7 +118,7 @@ wxRegion::wxRegion( size_t n, const wxPoint *points,
     int min_y = points[0].y;
     int max_y = min_y;
     size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 1; i < n; i++)
@@ -148,7 +148,7 @@ wxRegion::wxRegion( size_t n, const wxPoint *points,
         cairo_set_fill_rule(cr, CAIRO_FILL_RULE_EVEN_ODD);
     // make path
     cairo_move_to(cr, points[0].x, points[0].y);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 1; i < n; i++)
@@ -162,7 +162,7 @@ wxRegion::wxRegion( size_t n, const wxPoint *points,
     cairo_surface_destroy(surface);
 #else
     GdkPoint *gdkpoints = new GdkPoint[n];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0 ; i < n ; i++ )
@@ -487,7 +487,7 @@ void wxRegionIterator::CreateRects( const wxRegion& region )
     if (m_numRects)
     {
         m_rects = new wxRect[m_numRects];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < m_numRects; i++)
@@ -512,7 +512,7 @@ void wxRegionIterator::CreateRects( const wxRegion& region )
     if (m_numRects)
     {
         m_rects = new wxRect[m_numRects];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < m_numRects; ++i)

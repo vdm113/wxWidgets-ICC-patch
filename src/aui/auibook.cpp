@@ -242,7 +242,7 @@ bool wxAuiTabContainer::MovePage(wxWindow* page,
 bool wxAuiTabContainer::RemovePage(wxWindow* wnd)
 {
     size_t i, page_count = m_pages.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < page_count; ++i)
@@ -270,7 +270,7 @@ bool wxAuiTabContainer::SetActivePage(wxWindow* wnd)
     bool found = false;
 
     size_t i, page_count = m_pages.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < page_count; ++i)
@@ -293,7 +293,7 @@ bool wxAuiTabContainer::SetActivePage(wxWindow* wnd)
 void wxAuiTabContainer::SetNoneActive()
 {
     size_t i, page_count = m_pages.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < page_count; ++i)
@@ -314,7 +314,7 @@ bool wxAuiTabContainer::SetActivePage(size_t page)
 int wxAuiTabContainer::GetActivePage() const
 {
     size_t i, page_count = m_pages.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < page_count; ++i)
@@ -338,7 +338,7 @@ wxWindow* wxAuiTabContainer::GetWindowFromIdx(size_t idx) const
 int wxAuiTabContainer::GetIdxFromWindow(wxWindow* wnd) const
 {
     const size_t page_count = m_pages.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < page_count; ++i )
@@ -393,7 +393,7 @@ void wxAuiTabContainer::RemoveButton(int id)
 {
     size_t i, button_count = m_buttons.GetCount();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < button_count; ++i)
@@ -451,7 +451,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
     // afforded on screen
     int total_width = 0;
     int visible_width = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < page_count; ++i)
@@ -495,7 +495,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
     if (total_width > m_rect.GetWidth() || m_tabOffset != 0)
     {
         // show left/right buttons
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < button_count; ++i)
@@ -511,7 +511,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
     else
     {
         // hide left/right buttons
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < button_count; ++i)
@@ -526,7 +526,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
     }
 
     // determine whether left button should be enabled
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < button_count; ++i)
@@ -559,7 +559,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 
     // draw the buttons on the right side
     int offset = m_rect.x + m_rect.width;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < button_count; ++i)
@@ -593,7 +593,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 
     // draw the buttons on the left side
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < button_count; ++i)
@@ -627,14 +627,14 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 
     // prepare the tab-close-button array
     // make sure tab button entries which aren't used are marked as hidden
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = page_count; i < m_tabCloseButtons.GetCount(); ++i)
         m_tabCloseButtons.Item(i).curState = wxAUI_BUTTON_STATE_HIDDEN;
 
     // make sure there are enough tab button entries to accommodate all tabs
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (m_tabCloseButtons.GetCount() < page_count)
@@ -648,7 +648,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 
 
     // buttons before the tab offset must be set to hidden
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < m_tabOffset; ++i)
@@ -668,7 +668,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
     rect.y = 0;
     rect.height = m_rect.height;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = m_tabOffset; i < page_count; ++i)
@@ -719,7 +719,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 
 
     // make sure to deactivate buttons which are off the screen to the right
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (++i; i < m_tabCloseButtons.GetCount(); ++i)
@@ -769,7 +769,7 @@ bool wxAuiTabContainer::IsTabVisible(int tabPage, int tabOffset, wxDC* dc, wxWin
     // First check if both buttons are disabled - if so, there's no need to
     // check further for visibility.
     int arrowButtonVisibleCount = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < button_count; ++i)
@@ -797,7 +797,7 @@ bool wxAuiTabContainer::IsTabVisible(int tabPage, int tabOffset, wxDC* dc, wxWin
 
     // calculate size of the buttons on the right side
     int offset = m_rect.x + m_rect.width;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < button_count; ++i)
@@ -816,7 +816,7 @@ bool wxAuiTabContainer::IsTabVisible(int tabPage, int tabOffset, wxDC* dc, wxWin
     offset = 0;
 
     // calculate size of the buttons on the left side
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < button_count; ++i)
@@ -844,7 +844,7 @@ bool wxAuiTabContainer::IsTabVisible(int tabPage, int tabOffset, wxDC* dc, wxWin
     rect.height = m_rect.height;
 
     // See if the given page is visible at the given tab offset (effectively scroll position)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = tabOffset; i < page_count; ++i)
@@ -892,7 +892,7 @@ void wxAuiTabContainer::MakeTabVisible(int tabPage, wxWindow* win)
     if (!IsTabVisible(tabPage, GetTabOffset(), & dc, win))
     {
         int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < (int) m_pages.GetCount(); i++)
@@ -924,7 +924,7 @@ bool wxAuiTabContainer::TabHitTest(int x, int y, wxWindow** hit) const
 
     size_t i, page_count = m_pages.GetCount();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = m_tabOffset; i < page_count; ++i)
@@ -953,7 +953,7 @@ bool wxAuiTabContainer::ButtonHitTest(int x, int y,
 
 
     button_count = m_buttons.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < button_count; ++i)
@@ -969,7 +969,7 @@ bool wxAuiTabContainer::ButtonHitTest(int x, int y,
     }
 
     button_count = m_tabCloseButtons.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < button_count; ++i)
@@ -1017,7 +1017,7 @@ void wxAuiTabContainer::DoShowHide()
     size_t i, page_count = pages.GetCount();
 
     // show new active page first
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < page_count; ++i)
@@ -1031,7 +1031,7 @@ void wxAuiTabContainer::DoShowHide()
     }
 
     // hide all other pages
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < page_count; ++i)
@@ -1621,7 +1621,7 @@ public:
         wxAuiNotebookPageArray& pages = m_tabs->GetPages();
         size_t i, page_count = pages.GetCount();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < page_count; ++i)
@@ -1793,7 +1793,7 @@ wxAuiNotebook::~wxAuiNotebook()
     // Indicate we're deleting pages
     SendDestroyEvent();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( GetPageCount() > 0 )
@@ -1813,7 +1813,7 @@ void wxAuiNotebook::SetArtProvider(wxAuiTabArt* art)
     {
         wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
         const size_t pane_count = all_panes.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = 0; i < pane_count; ++i)
@@ -1883,7 +1883,7 @@ bool wxAuiNotebook::UpdateTabCtrlHeight()
 
     wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
     size_t i, pane_count = all_panes.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < pane_count; ++i)
@@ -1923,7 +1923,7 @@ wxSize wxAuiNotebook::CalculateNewSplitSize()
     int tab_ctrl_count = 0;
     wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
     size_t i, pane_count = all_panes.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < pane_count; ++i)
@@ -1989,7 +1989,7 @@ void wxAuiNotebook::SetWindowStyleFlag(long style)
 
         wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
         size_t i, pane_count = all_panes.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < pane_count; ++i)
@@ -2366,7 +2366,7 @@ void wxAuiNotebook::DoSizing()
 {
     wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
     size_t i, pane_count = all_panes.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < pane_count; ++i)
@@ -2399,7 +2399,7 @@ wxAuiTabCtrl* wxAuiNotebook::GetActiveTabCtrl()
     // no current page, just find the first tab ctrl
     wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
     size_t i, pane_count = all_panes.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < pane_count; ++i)
@@ -2436,7 +2436,7 @@ bool wxAuiNotebook::FindTab(wxWindow* page, wxAuiTabCtrl** ctrl, int* idx)
 {
     wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
     size_t i, pane_count = all_panes.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < pane_count; ++i)
@@ -2685,7 +2685,7 @@ void wxAuiNotebook::OnTabDragMotion(wxAuiNotebookEvent& evt)
         // make sure we are not over the hint window
         if (!wxDynamicCast(tab_ctrl, wxFrame))
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while (tab_ctrl)
@@ -2770,7 +2770,7 @@ void wxAuiNotebook::OnTabEndDrag(wxAuiNotebookEvent& evt)
     {
         wxWindow* tab_ctrl = ::wxFindWindowAtPoint(mouse_screen_pt);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (tab_ctrl)
@@ -2810,7 +2810,7 @@ void wxAuiNotebook::OnTabEndDrag(wxAuiNotebookEvent& evt)
 
                 // Check that it's not an impossible parent relationship
                 wxWindow* p = nb;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 while (p && !p->IsTopLevel())
@@ -3000,7 +3000,7 @@ wxAuiTabCtrl* wxAuiNotebook::GetTabCtrlFromPoint(const wxPoint& pt)
     // tab set, the remove the tab control completely
     wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
     size_t i, pane_count = all_panes.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < pane_count; ++i)
@@ -3022,7 +3022,7 @@ wxWindow* wxAuiNotebook::GetTabFrameFromTabCtrl(wxWindow* tab_ctrl)
     // tab set, the remove the tab control completely
     wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
     size_t i, pane_count = all_panes.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < pane_count; ++i)
@@ -3046,7 +3046,7 @@ void wxAuiNotebook::RemoveEmptyTabFrames()
     // tab set, the remove the tab control completely
     wxAuiPaneInfoArray all_panes = m_mgr.GetAllPanes();
     size_t i, pane_count = all_panes.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < pane_count; ++i)
@@ -3077,7 +3077,7 @@ void wxAuiNotebook::RemoveEmptyTabFrames()
     pane_count = panes.GetCount();
     wxWindow* first_good = NULL;
     bool center_found = false;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < pane_count; ++i)
@@ -3111,7 +3111,7 @@ void wxAuiNotebook::OnChildFocusNotebook(wxChildFocusEvent& evt)
 
     wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
     size_t i, pane_count = all_panes.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < pane_count; ++i)
@@ -3127,7 +3127,7 @@ void wxAuiNotebook::OnChildFocusNotebook(wxChildFocusEvent& evt)
 
     // find the page containing the focused child
     wxWindow* win = evt.GetWindow();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( win )
@@ -3467,7 +3467,7 @@ bool wxAuiNotebook::AddPage(wxWindow *page, const wxString &text, bool select,
 bool wxAuiNotebook::DeleteAllPages()
 {
     size_t count = GetPageCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(size_t i = 0; i < count; i++)
@@ -3553,7 +3553,7 @@ int wxAuiNotebook::DoModifySelection(size_t n, bool events)
             // set fonts
             wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
             size_t i, pane_count = all_panes.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < pane_count; ++i)

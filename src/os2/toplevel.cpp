@@ -186,7 +186,7 @@ void wxTopLevelWindowOS2::OnActivate(
         //
         wxWindow*                   pWin = m_pWinLastFocused;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (pWin)

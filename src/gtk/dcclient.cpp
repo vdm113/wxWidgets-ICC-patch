@@ -174,7 +174,7 @@ static void wxInitGCPool()
 
 static void wxCleanUpGCPool()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < wxGCPoolSize; i++)
@@ -193,7 +193,7 @@ static GdkGC* wxGetPoolGC( GdkWindow *window, wxPoolGCType type )
     wxGC *pptr;
 
     // Look for an available GC.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < wxGCPoolSize; i++)
@@ -244,7 +244,7 @@ static GdkGC* wxGetPoolGC( GdkWindow *window, wxPoolGCType type )
 
 static void wxFreePoolGC( GdkGC *gc )
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < wxGCPoolSize; i++)
@@ -622,11 +622,11 @@ void wxWindowDCImpl::DoDrawArc( wxCoord x1, wxCoord y1, wxCoord x2, wxCoord y2,
     }
     wxCoord alpha1 = wxCoord(radius1 * 64.0);
     wxCoord alpha2 = wxCoord((radius2 - radius1) * 64.0);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (alpha2 <= 0) alpha2 += 360*64;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (alpha1 > 360*64) alpha1 -= 360*64;
@@ -732,7 +732,7 @@ void wxWindowDCImpl::DoDrawLines( int n, const wxPoint points[], wxCoord xoffset
         gpts = gpts_alloc;
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < n; i++)
@@ -774,7 +774,7 @@ void wxWindowDCImpl::DoDrawPolygon( int n, const wxPoint points[],
     }
 
     int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0 ; i < n ; i++)
@@ -804,7 +804,7 @@ void wxWindowDCImpl::DoDrawPolygon( int n, const wxPoint points[],
         if ( m_pen.IsNonTransparent() )
         {
 /*
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0 ; i < n ; i++)
@@ -1053,13 +1053,13 @@ ScaleMask(GdkPixmap* mask, int x, int y, int w, int h, int dst_w, int dst_h, dou
     const guchar* row = gdk_pixbuf_get_pixels(pixbuf);
     const int rowstride = gdk_pixbuf_get_rowstride(pixbuf);
     memset(data, 0, data_size);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int j = 0; j < dst_h; j++, row += rowstride, out += out_rowstride)
     {
         const guchar* in = row;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < dst_w; i++, in += 3)
@@ -1672,7 +1672,7 @@ void wxWindowDCImpl::SetPen( const wxPen &pen )
         wxGTKDash *real_req_dash = new wxGTKDash[req_nb_dash];
         if (real_req_dash)
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i = 0; i < req_nb_dash; i++)
@@ -2160,7 +2160,7 @@ void wxDCModule::OnExit()
 {
     wxCleanUpGCPool();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = wxBRUSHSTYLE_LAST_HATCH - wxBRUSHSTYLE_FIRST_HATCH; i--; )

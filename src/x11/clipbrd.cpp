@@ -107,7 +107,7 @@ targets_selection_received( GtkWidget *WXUNUSED(widget),
         // the atoms we received, holding a list of targets (= formats)
         GdkAtom *atoms = (GdkAtom *)selection_data->data;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (unsigned int i=0; i<selection_data->length/sizeof(GdkAtom); i++)
@@ -335,7 +335,7 @@ void wxClipboard::Clear()
             gtk_selection_owner_set( NULL, g_clipboardAtom,
                                      (guint32) GDK_CURRENT_TIME );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while (m_waiting) gtk_main_iteration();
@@ -348,7 +348,7 @@ void wxClipboard::Clear()
             gtk_selection_owner_set( NULL, GDK_SELECTION_PRIMARY,
                                      (guint32) GDK_CURRENT_TIME );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while (m_waiting) gtk_main_iteration();
@@ -411,7 +411,7 @@ bool wxClipboard::AddData( wxDataObject *data )
 #endif // 0
 
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < m_data->GetFormatCount(); i++)
@@ -509,7 +509,7 @@ bool wxClipboard::IsSupported( const wxDataFormat& format )
                            g_targetsAtom,
                            (guint32) GDK_CURRENT_TIME );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (m_waiting) gtk_main_iteration();
@@ -528,7 +528,7 @@ bool wxClipboard::GetData( wxDataObject& data )
     wxDataFormat *array = new wxDataFormat[ data.GetFormatCount() ];
     data.GetAllFormats( array );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < data.GetFormatCount(); i++)
@@ -565,7 +565,7 @@ bool wxClipboard::GetData( wxDataObject& data )
                            g_targetsAtom,
                            (guint32) GDK_CURRENT_TIME );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (m_waiting) gtk_main_iteration();
@@ -605,7 +605,7 @@ bool wxClipboard::GetData( wxDataObject& data )
                                m_targetRequested,
                                (guint32) GDK_CURRENT_TIME );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (m_waiting) gtk_main_iteration();

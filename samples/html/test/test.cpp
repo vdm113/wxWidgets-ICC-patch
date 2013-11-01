@@ -426,7 +426,7 @@ void MyHtmlWindow::OnEraseBgEvent(wxEraseEvent& event)
     dc.Clear();
 
     const wxSize size = GetVirtualSize();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int x = 0; x < size.x; x += 15 )
@@ -434,7 +434,7 @@ void MyHtmlWindow::OnEraseBgEvent(wxEraseEvent& event)
         dc.DrawLine(x, 0, x, size.y);
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int y = 0; y < size.y; y += 15 )

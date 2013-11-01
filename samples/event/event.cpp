@@ -441,7 +441,7 @@ MyFrame::~MyFrame()
 {
     // we must pop any remaining event handlers to avoid memory leaks and
     // crashes!
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( m_nPush-- != 0 )

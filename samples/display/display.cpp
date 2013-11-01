@@ -233,7 +233,7 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size, 
 
     m_book = new wxBookCtrl(panel, wxID_ANY);
     const size_t count = wxDisplay::GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t nDpy = 0; nDpy < count; nDpy++ )
@@ -285,7 +285,7 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size, 
         wxChoice *choiceModes = new wxChoice(page, Display_ChangeMode);
         const wxArrayVideoModes modes = display.GetModes();
         const size_t count = modes.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t nMode = 0; nMode < count; nMode++ )
@@ -421,7 +421,7 @@ void MyFrame::OnLeftClick(wxMouseEvent& event)
 void MyFrame::OnDisplayChanged(wxDisplayChangedEvent& event)
 {
     // update the current mode text
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < m_book->GetPageCount(); n++ )

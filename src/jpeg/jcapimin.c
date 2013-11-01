@@ -63,13 +63,13 @@ jpeg_CreateCompress (j_compress_ptr cinfo, int version, size_t structsize)
 
   cinfo->comp_info = NULL;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < NUM_QUANT_TBLS; i++)
     cinfo->quant_tbl_ptrs[i] = NULL;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
@@ -128,7 +128,7 @@ jpeg_suppress_tables (j_compress_ptr cinfo, wxjpeg_boolean suppress)
   JQUANT_TBL * qtbl;
   JHUFF_TBL * htbl;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < NUM_QUANT_TBLS; i++) {
@@ -136,7 +136,7 @@ jpeg_suppress_tables (j_compress_ptr cinfo, wxjpeg_boolean suppress)
       qtbl->sent_table = suppress;
   }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
@@ -169,12 +169,12 @@ jpeg_finish_compress (j_compress_ptr cinfo)
   } else if (cinfo->global_state != CSTATE_WRCOEFS)
     ERREXIT1(cinfo, JERR_BAD_STATE, cinfo->global_state);
   /* Perform any remaining passes */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (! cinfo->master->is_last_pass) {
     (*cinfo->master->prepare_for_pass) (cinfo);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (iMCU_row = 0; iMCU_row < cinfo->total_iMCU_rows; iMCU_row++) {
@@ -220,7 +220,7 @@ jpeg_write_marker (j_compress_ptr cinfo, int marker,
 
   (*cinfo->marker->write_marker_header) (cinfo, marker, datalen);
   write_marker_byte = cinfo->marker->write_marker_byte;	/* copy for speed */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (datalen--) {

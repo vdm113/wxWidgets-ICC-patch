@@ -246,7 +246,7 @@ bool wxURL::FetchProtocol()
 {
     wxProtoInfo *info = ms_protocols;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (info)

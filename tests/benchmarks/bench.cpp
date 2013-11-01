@@ -210,7 +210,7 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
 
     // construct sorted array for quick verification of benchmark names
     wxSortedArrayString benchmarks;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( Bench::Function *func = Bench::Function::GetFirst();
@@ -220,7 +220,7 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
         benchmarks.push_back(func->GetName());
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -241,7 +241,7 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
 int BenchApp::OnRun()
 {
     int rc = EXIT_SUCCESS;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( Bench::Function *func = Bench::Function::GetFirst();
@@ -267,13 +267,13 @@ int BenchApp::OnRun()
              timeMax = 0,
              timeTotal = 0;
         bool ok = func->Init();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( long a = 0; ok && a < m_avgCount; a++ )
         {
             wxStopWatch sw;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( long n = 0; n < m_numRuns && ok; n++ )
@@ -332,7 +332,7 @@ int BenchApp::OnExit()
 void BenchApp::ListBenchmarks()
 {
     wxPrintf("Available benchmarks:\n");
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( Bench::Function *func = Bench::Function::GetFirst();

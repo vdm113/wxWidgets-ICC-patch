@@ -221,7 +221,7 @@ void wxHtmlHelpFrame::AddGrabIfNeeded()
 
     // Check if there are any modal windows present,
     // in which case we need to add a grab.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxWindowList::iterator it = wxTopLevelWindows.begin();

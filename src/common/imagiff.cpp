@@ -151,7 +151,7 @@ bool wxIFFDecoder::ConvertToImage(wxImage *image) const
     // set transparent colour mask
     if (transparent != -1)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < colors; i++)
@@ -180,7 +180,7 @@ bool wxIFFDecoder::ConvertToImage(wxImage *image) const
         unsigned char* g = new unsigned char[colors];
         unsigned char* b = new unsigned char[colors];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < colors; i++)
@@ -199,7 +199,7 @@ bool wxIFFDecoder::ConvertToImage(wxImage *image) const
 #endif // wxUSE_PALETTE
 
     // copy image data
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < (long)(GetWidth() * GetHeight()); i++, src += 3, dst += 3)
@@ -266,7 +266,7 @@ static void decomprle(const byte *sptr, byte *dptr, long slen, long dlen)
 {
     byte codeByte, dataByte;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ((slen > 0) && (dlen > 0)) {
@@ -278,7 +278,7 @@ static void decomprle(const byte *sptr, byte *dptr, long slen, long dlen)
         if ((slen > (long) codeByte) && (dlen >= (long) codeByte)) {
         slen -= codeByte + 1;
         dlen -= codeByte;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (codeByte > 0) {
@@ -295,7 +295,7 @@ static void decomprle(const byte *sptr, byte *dptr, long slen, long dlen)
         dataByte = *sptr++;
         slen -= 2;
         dlen -= codeByte;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (codeByte > 0) {
@@ -405,7 +405,7 @@ int wxIFFDecoder::ReadIFF()
     byte bmhd_compression = 0;
     long camg_viewmode = 0;
     int colors = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (dataptr + 8 <= dataend) {
@@ -446,7 +446,7 @@ int wxIFFDecoder::ReadIFF()
         }
 
         // copy colors to color map
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i=0; i < colors; i++) {
@@ -545,7 +545,7 @@ int wxIFFDecoder::ReadIFF()
             return wxIFF_MEMERR;
             }
             int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < m_image->colors; i++) {
@@ -553,7 +553,7 @@ int wxIFFDecoder::ReadIFF()
             pal[3*i + 1] = m_image->pal[3*i + 1];
             pal[3*i + 2] = m_image->pal[3*i + 2];
             }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (; i < colors; i++) {
@@ -566,7 +566,7 @@ int wxIFFDecoder::ReadIFF()
             m_image->colors = colors;
         }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i=0; i < colors; i++) {
@@ -595,7 +595,7 @@ int wxIFFDecoder::ReadIFF()
         byte *pic = picptr;
         const byte *workptr = bodyptr;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i=0; i < height; i++) {
@@ -607,14 +607,14 @@ int wxIFFDecoder::ReadIFF()
             byte gval = pal[1];
             byte bval = pal[2];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int j=0; j < bmhd_width; j++) {
             long col = 0;
             long colbit = 1;
             const byte *workptr3 = workptr2;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int k=0; k < bmhd_bitplanes; k++) {
@@ -684,7 +684,7 @@ int wxIFFDecoder::ReadIFF()
         if (fmt == ILBM_EHB) {
             wxLogTrace(wxT("iff"), wxT("Doubling CMAP for EHB mode"));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i=0; i<32; i++) {
@@ -701,13 +701,13 @@ int wxIFFDecoder::ReadIFF()
             height = bmhd_height;
         }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i=0; i < height; i++) {
             byte bitmsk = 0x80;                 // left most bit (mask)
             const byte *workptr2 = workptr;     // work ptr to source
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int j=0; j < bmhd_width; j++) {
@@ -715,7 +715,7 @@ int wxIFFDecoder::ReadIFF()
             long colbit = 1;
             const byte *workptr3 = workptr2;  // 1st byte in 1st pln
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int k=0; k < bmhd_bitplanes; k++) {

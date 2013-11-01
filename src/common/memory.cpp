@@ -266,7 +266,7 @@ int wxMemStruct::CheckAllPrevious ()
 {
     int nFailures = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (wxMemStruct * st = this->m_prev; st != 0; st = st->m_prev) {
@@ -409,7 +409,7 @@ int wxMemStruct::ValidateNode ()
 
 /*
     int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < wxDebugContext::TotSize (requestSize ()); i++)
@@ -563,7 +563,7 @@ void wxDebugContext::TraverseList (PmSFV func, wxMemStruct *from)
     from = wxDebugContext::GetHead ();
 
   wxMemStruct * st = NULL;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (st = from; st != 0; st = st->m_next)
@@ -623,7 +623,7 @@ struct wxDebugStatsStruct
 
 static wxDebugStatsStruct *FindStatsStruct(wxDebugStatsStruct *st, wxChar *name)
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (st)
@@ -672,7 +672,7 @@ bool wxDebugContext::PrintStatistics(bool detailed)
     from = wxDebugContext::GetHead ();
 
   wxMemStruct *st;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (st = from; st != 0; st = st->m_next)
@@ -712,7 +712,7 @@ bool wxDebugContext::PrintStatistics(bool detailed)
 
   if (detailed)
   {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (list)
@@ -753,7 +753,7 @@ bool wxDebugContext::PrintClasses(void)
   int n = 0;
   const wxClassInfo *info;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (wxClassInfo::const_iterator node = wxClassInfo::begin_classinfo(),
@@ -809,7 +809,7 @@ int wxDebugContext::Check(bool checkAll)
   if (!from || checkAll)
     from = wxDebugContext::GetHead ();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (wxMemStruct * st = from; st != 0; st = st->m_next)
@@ -835,7 +835,7 @@ int wxDebugContext::CountObjectsLeft(bool sinceCheckpoint)
   else
     from = wxDebugContext::GetHead () ;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (wxMemStruct * st = from; st != 0; st = st->m_next)

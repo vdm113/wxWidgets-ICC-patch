@@ -53,7 +53,7 @@ static const wxUint16* GetEncTable(wxFontEncoding enc)
             memset( gMacEncodings[i] , 0 , 128 * 2 );
             char s[2] = { 0 , 0 };
             CFRange firstchar = CFRangeMake( 0, 1 );
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for( unsigned char c = 255 ; c >= 128 ; --c )
@@ -68,7 +68,7 @@ static const wxUint16* GetEncTable(wxFontEncoding enc)
     }
 #endif
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; encodings_list[i].table != NULL; i++)
@@ -97,7 +97,7 @@ static CharsetItem* BuildReverseTable(const wxUint16 *tbl)
 {
     CharsetItem *rev = new CharsetItem[128];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < 128; i++)
@@ -137,25 +137,25 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
         if ((out_tbl = GetEncTable(output_enc)) == NULL) return false;
 
         m_Table = new wchar_t[65536];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < 128; i++)  m_Table[i] = (wchar_t)i; // 7bit ASCII
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 128; i < 65536; i++)  m_Table[i] = (wchar_t)0;
 
         if (method == wxCONVERT_SUBSTITUTE)
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < encoding_unicode_fallback_count; i++)
                 m_Table[encoding_unicode_fallback[i].c] = (wchar_t) encoding_unicode_fallback[i].s;
         }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < 128; i++)
@@ -172,14 +172,14 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
         m_UnicodeInput = false;
 
         m_Table = new wchar_t[256];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < 128; i++)  m_Table[i] = (wchar_t)i; // 7bit ASCII
 
         if (output_enc == wxFONTENCODING_UNICODE)
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < 128; i++)  m_Table[128 + i] = (wchar_t)in_tbl[i];
@@ -191,7 +191,7 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
             CharsetItem *item;
             CharsetItem key;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < 128; i++)
@@ -248,7 +248,7 @@ bool wxEncodingConverter::Convert(const char* input, char* output) const
 
     bool replaced = false;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = input, o = output; *i != 0;)
@@ -269,7 +269,7 @@ bool wxEncodingConverter::Convert(const char* input, wchar_t* output) const
 
     if (m_JustCopy)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = input, o = output; *i != 0;)
@@ -283,7 +283,7 @@ bool wxEncodingConverter::Convert(const char* input, wchar_t* output) const
 
     bool replaced = false;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = input, o = output; *i != 0;)
@@ -305,7 +305,7 @@ bool wxEncodingConverter::Convert(const wchar_t* input, char* output) const
 
     if (m_JustCopy)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = input, o = output; *i != 0;)
@@ -319,7 +319,7 @@ bool wxEncodingConverter::Convert(const wchar_t* input, char* output) const
 
     bool replaced = false;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = input, o = output; *i != 0;)
@@ -342,7 +342,7 @@ bool wxEncodingConverter::Convert(const wchar_t* input, wchar_t* output) const
     if (m_JustCopy)
     {
         // wcscpy() is not guaranteed to exist
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = input, o = output; *i != 0;)
@@ -356,7 +356,7 @@ bool wxEncodingConverter::Convert(const wchar_t* input, wchar_t* output) const
 
     bool replaced = false;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = input, o = output; *i != 0;)
@@ -379,7 +379,7 @@ wxString wxEncodingConverter::Convert(const wxString& input) const
 
     if (m_UnicodeInput)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = input.c_str(); *i != 0; i++)
@@ -387,7 +387,7 @@ wxString wxEncodingConverter::Convert(const wxString& input) const
     }
     else
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = input.c_str(); *i != 0; i++)
@@ -490,7 +490,7 @@ static const wxFontEncoding
 
 static bool FindEncoding(const wxFontEncodingArray& arr, wxFontEncoding f)
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (wxFontEncodingArray::const_iterator it = arr.begin(), en = arr.end();
@@ -520,27 +520,27 @@ wxFontEncodingArray wxEncodingConverter::GetPlatformEquivalents(wxFontEncoding e
     wxFontEncodingArray arr;
 
     clas = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (EquivalentEncodings[clas][0][0] != STOP)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < NUM_OF_PLATFORMS; i++)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (e = 0; EquivalentEncodings[clas][i][e] != STOP; e++)
                 if (EquivalentEncodings[clas][i][e] == enc)
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (f = EquivalentEncodings[clas][platform]; *f != STOP; f++)
                         if (*f == enc) arr.push_back(enc);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (f = EquivalentEncodings[clas][platform]; *f != STOP; f++)
@@ -564,26 +564,26 @@ wxFontEncodingArray wxEncodingConverter::GetAllEquivalents(wxFontEncoding enc)
     arr = GetPlatformEquivalents(enc); // we want them to be first items in array
 
     clas = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (EquivalentEncodings[clas][0][0] != STOP)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < NUM_OF_PLATFORMS; i++)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (e = 0; EquivalentEncodings[clas][i][e] != STOP; e++)
                 if (EquivalentEncodings[clas][i][e] == enc)
                 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (j = 0; j < NUM_OF_PLATFORMS; j++)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                         for (f = EquivalentEncodings[clas][j]; *f != STOP; f++)

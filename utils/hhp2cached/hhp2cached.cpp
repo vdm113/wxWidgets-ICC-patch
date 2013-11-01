@@ -30,7 +30,7 @@ IMPLEMENT_APP(MyApp);
 
 bool MyApp::OnInit()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 1; i < argc; i++)

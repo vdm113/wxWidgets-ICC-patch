@@ -59,7 +59,7 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
   JQUANT_TBL * qtbl;
   DCTELEM * dtbl;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -84,7 +84,7 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 				      DCTSIZE2 * SIZEOF(DCTELEM));
       }
       dtbl = fdct->divisors[qtblno];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (i = 0; i < DCTSIZE2; i++) {
@@ -121,7 +121,7 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 					DCTSIZE2 * SIZEOF(DCTELEM));
 	}
 	dtbl = fdct->divisors[qtblno];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < DCTSIZE2; i++) {
@@ -158,11 +158,11 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 	}
 	fdtbl = fdct->float_divisors[qtblno];
 	i = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (row = 0; row < DCTSIZE; row++) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	  for (col = 0; col < DCTSIZE; col++) {
@@ -207,7 +207,7 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
 
   sample_data += start_row;	/* fold in the vertical offset once */
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (bi = 0; bi < num_blocks; bi++, start_col += DCTSIZE) {
@@ -217,7 +217,7 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
       register int elemr;
 
       workspaceptr = workspace;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (elemr = 0; elemr < DCTSIZE; elemr++) {
@@ -233,7 +233,7 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
 	*workspaceptr++ = GETJSAMPLE(*elemptr++) - CENTERJSAMPLE;
 #else
 	{ register int elemc;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	  for (elemc = DCTSIZE; elemc > 0; elemc--) {
@@ -252,7 +252,7 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
       register int i;
       register JCOEFPTR output_ptr = coef_blocks[bi];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (i = 0; i < DCTSIZE2; i++) {
@@ -309,7 +309,7 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
 
   sample_data += start_row;	/* fold in the vertical offset once */
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (bi = 0; bi < num_blocks; bi++, start_col += DCTSIZE) {
@@ -319,7 +319,7 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
       register int elemr;
 
       workspaceptr = workspace;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (elemr = 0; elemr < DCTSIZE; elemr++) {
@@ -335,7 +335,7 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
 	*workspaceptr++ = (FAST_FLOAT)(GETJSAMPLE(*elemptr++) - CENTERJSAMPLE);
 #else
 	{ register int elemc;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	  for (elemc = DCTSIZE; elemc > 0; elemc--) {
@@ -355,7 +355,7 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
       register int i;
       register JCOEFPTR output_ptr = coef_blocks[bi];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (i = 0; i < DCTSIZE2; i++) {
@@ -417,7 +417,7 @@ jinit_forward_dct (j_compress_ptr cinfo)
   }
 
   /* Mark divisor tables unallocated */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < NUM_QUANT_TBLS; i++) {

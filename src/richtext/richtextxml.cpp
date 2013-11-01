@@ -99,7 +99,7 @@ bool wxRichTextXMLHandler::DoLoadFile(wxRichTextBuffer *buffer, wxInputStream& s
         if (xmlDoc->GetRoot() && xmlDoc->GetRoot()->GetType() == wxXML_ELEMENT_NODE && xmlDoc->GetRoot()->GetName() == wxT("richtext"))
         {
             wxXmlNode* child = xmlDoc->GetRoot()->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while (child)
@@ -153,7 +153,7 @@ bool wxRichTextXMLHandler::ImportXML(wxRichTextBuffer* buffer, wxRichTextObject*
     if (recurse && compositeParent)
     {
         wxXmlNode* child = node->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (child)
@@ -212,7 +212,7 @@ bool wxRichTextXMLHandler::DoSaveFile(wxRichTextBuffer *buffer, wxOutputStream& 
             styleSheetNode->AddAttribute(wxT("description"), buffer->GetStyleSheet()->GetDescription());
 
         int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < (int) buffer->GetStyleSheet()->GetCharacterStyleCount(); i++)
@@ -221,7 +221,7 @@ bool wxRichTextXMLHandler::DoSaveFile(wxRichTextBuffer *buffer, wxOutputStream& 
             m_helper.ExportStyleDefinition(styleSheetNode, def);
         }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < (int) buffer->GetStyleSheet()->GetParagraphStyleCount(); i++)
@@ -230,7 +230,7 @@ bool wxRichTextXMLHandler::DoSaveFile(wxRichTextBuffer *buffer, wxOutputStream& 
             m_helper.ExportStyleDefinition(styleSheetNode, def);
         }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < (int) buffer->GetStyleSheet()->GetListStyleCount(); i++)
@@ -239,7 +239,7 @@ bool wxRichTextXMLHandler::DoSaveFile(wxRichTextBuffer *buffer, wxOutputStream& 
             m_helper.ExportStyleDefinition(styleSheetNode, def);
         }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < (int) buffer->GetStyleSheet()->GetBoxStyleCount(); i++)
@@ -294,7 +294,7 @@ bool wxRichTextXMLHandler::DoSaveFile(wxRichTextBuffer *buffer, wxOutputStream& 
 
         int i;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < (int) buffer->GetStyleSheet()->GetCharacterStyleCount(); i++)
@@ -303,7 +303,7 @@ bool wxRichTextXMLHandler::DoSaveFile(wxRichTextBuffer *buffer, wxOutputStream& 
             m_helper.ExportStyleDefinition(stream, def, level + 1);
         }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < (int) buffer->GetStyleSheet()->GetParagraphStyleCount(); i++)
@@ -312,7 +312,7 @@ bool wxRichTextXMLHandler::DoSaveFile(wxRichTextBuffer *buffer, wxOutputStream& 
             m_helper.ExportStyleDefinition(stream, def, level + 1);
         }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < (int) buffer->GetStyleSheet()->GetListStyleCount(); i++)
@@ -321,7 +321,7 @@ bool wxRichTextXMLHandler::DoSaveFile(wxRichTextBuffer *buffer, wxOutputStream& 
             m_helper.ExportStyleDefinition(stream, def, level + 1);
         }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < (int) buffer->GetStyleSheet()->GetBoxStyleCount(); i++)
@@ -410,7 +410,7 @@ bool wxRichTextObject::ExportXML(wxOutputStream& stream, int indent, wxRichTextX
     if (composite)
     {
         size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < composite->GetChildCount(); i++)
@@ -441,7 +441,7 @@ bool wxRichTextObject::ExportXML(wxXmlNode* parent, wxRichTextXMLHandler* handle
     if (composite)
     {
         size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < composite->GetChildCount(); i++)
@@ -463,7 +463,7 @@ bool wxRichTextPlainText::ImportFromXML(wxRichTextBuffer* buffer, wxXmlNode* nod
     {
         wxString text;
         wxXmlNode* textChild = node->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (textChild)
@@ -494,7 +494,7 @@ bool wxRichTextPlainText::ImportFromXML(wxRichTextBuffer* buffer, wxXmlNode* nod
         // This is a symbol that XML can't read in the normal way
         wxString text;
         wxXmlNode* textChild = node->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (textChild)
@@ -746,7 +746,7 @@ bool wxRichTextImage::ImportFromXML(wxRichTextBuffer* buffer, wxXmlNode* node, w
     wxString data;
 
     wxXmlNode* imageChild = node->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (imageChild)
@@ -755,7 +755,7 @@ bool wxRichTextImage::ImportFromXML(wxRichTextBuffer* buffer, wxXmlNode* node, w
         if (childName == wxT("data"))
         {
             wxXmlNode* dataChild = imageChild->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while (dataChild)
@@ -898,7 +898,7 @@ bool wxRichTextParagraphLayoutBox::ImportFromXML(wxRichTextBuffer* buffer, wxXml
         sheet->SetDescription(sheetDescription);
 
         wxXmlNode* child2 = child->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (child2)
@@ -939,7 +939,7 @@ bool wxRichTextParagraphLayoutBox::ExportXML(wxOutputStream& stream, int indent,
     }
 
     size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < GetChildCount(); i++)
@@ -967,7 +967,7 @@ bool wxRichTextParagraphLayoutBox::ExportXML(wxXmlNode* parent, wxRichTextXMLHan
         elementNode->AddAttribute(wxT("partialparagraph"), wxT("true"));
 
     size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < GetChildCount(); i++)
@@ -991,7 +991,7 @@ bool wxRichTextTable::ImportFromXML(wxRichTextBuffer* buffer, wxXmlNode* node, w
     m_colCount = wxAtoi(node->GetAttribute(wxT("cols"), wxEmptyString));
 
     wxXmlNode* child = node->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (child)
@@ -1007,13 +1007,13 @@ bool wxRichTextTable::ImportFromXML(wxRichTextBuffer* buffer, wxXmlNode* node, w
 
     m_cells.Add(wxRichTextObjectPtrArray(), m_rowCount);
     int i, j;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < m_rowCount; i++)
     {
         wxRichTextObjectPtrArray& colArray = m_cells[i];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 0; j < m_colCount; j++)
@@ -1052,12 +1052,12 @@ bool wxRichTextTable::ExportXML(wxOutputStream& stream, int indent, wxRichTextXM
     }
 
     int i, j;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < m_rowCount; i++)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 0; j < m_colCount; j ++)
@@ -1087,12 +1087,12 @@ bool wxRichTextTable::ExportXML(wxXmlNode* parent, wxRichTextXMLHandler* handler
     elementNode->AddAttribute(wxT("cols"), wxString::Format(wxT("%d"), m_colCount));
 
     int i, j;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < m_rowCount; i++)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 0; j < m_colCount; j ++)
@@ -1223,7 +1223,7 @@ wxXmlNode *wxRichTextXMLHelper::GetParamNode(wxXmlNode* node, const wxString& pa
 
     wxXmlNode *n = node->GetChildren();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (n)
@@ -1241,7 +1241,7 @@ wxString wxRichTextXMLHelper::GetNodeContent(wxXmlNode *node)
     if (n == NULL) return wxEmptyString;
     n = n->GetChildren();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (n)
@@ -1277,7 +1277,7 @@ wxXmlNode* wxRichTextXMLHelper::FindNode(wxXmlNode* node, const wxString& name)
         return node;
 
     wxXmlNode* child = node->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (child)
@@ -1297,7 +1297,7 @@ wxString wxRichTextXMLHelper::AttributeToXML(const wxString& str)
 
     len = str.Len();
     last = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < len; i++)
@@ -1443,7 +1443,7 @@ bool wxRichTextXMLHelper::ImportStyle(wxRichTextAttr& attr, wxXmlNode* node, boo
 {
     wxXmlAttribute* xmlAttr = node->GetAttributes();
     bool found;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (xmlAttr)
@@ -1637,7 +1637,7 @@ bool wxRichTextXMLHelper::ImportStyle(wxRichTextAttr& attr, wxXmlNode* node, boo
                 {
                     wxArrayInt tabs;
                     wxStringTokenizer tkz(value, wxT(","));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     while (tkz.HasMoreTokens())
@@ -1847,7 +1847,7 @@ bool wxRichTextXMLHelper::ImportStyleDefinition(wxRichTextStyleSheet* sheet, wxX
         def->SetBaseStyle(baseStyleName);
 
         wxXmlNode* child = node->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (child)
@@ -1874,7 +1874,7 @@ bool wxRichTextXMLHelper::ImportStyleDefinition(wxRichTextStyleSheet* sheet, wxX
         def->SetBaseStyle(baseStyleName);
 
         wxXmlNode* child = node->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (child)
@@ -1899,7 +1899,7 @@ bool wxRichTextXMLHelper::ImportStyleDefinition(wxRichTextStyleSheet* sheet, wxX
         def->SetBaseStyle(baseStyleName);
 
         wxXmlNode* child = node->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (child)
@@ -1926,7 +1926,7 @@ bool wxRichTextXMLHelper::ImportStyleDefinition(wxRichTextStyleSheet* sheet, wxX
         def->SetBaseStyle(baseStyleName);
 
         wxXmlNode* child = node->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (child)
@@ -1964,7 +1964,7 @@ bool wxRichTextXMLHelper::ImportStyleDefinition(wxRichTextStyleSheet* sheet, wxX
 bool wxRichTextXMLHelper::ImportProperties(wxRichTextProperties& properties, wxXmlNode* node)
 {
     wxXmlNode* child = node->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (child)
@@ -1972,7 +1972,7 @@ bool wxRichTextXMLHelper::ImportProperties(wxRichTextProperties& properties, wxX
         if (child->GetName() == wxT("properties"))
         {
             wxXmlNode* propertyChild = child->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while (propertyChild)
@@ -2028,7 +2028,7 @@ void wxRichTextXMLHelper::OutputString(wxOutputStream& stream, const wxString& s
 void wxRichTextXMLHelper::OutputIndentation(wxOutputStream& stream, int indent)
 {
     wxString str = wxT("\n");
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < indent; i++)
@@ -2047,7 +2047,7 @@ void wxRichTextXMLHelper::OutputStringEnt(wxOutputStream& stream, const wxString
 
     len = str.Len();
     last = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < len; i++)
@@ -2278,7 +2278,7 @@ wxString wxRichTextXMLHelper::AddAttributes(const wxRichTextAttr& attr, bool isP
         {
             wxString strTabs;
             size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < attr.GetTabs().GetCount(); i++)
@@ -2371,7 +2371,7 @@ bool wxRichTextXMLHelper::WriteProperties(wxOutputStream& stream, const wxRichTe
         level ++;
 
         size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < properties.GetCount(); i++)
@@ -2463,7 +2463,7 @@ bool wxRichTextXMLHelper::ExportStyleDefinition(wxOutputStream& stream, wxRichTe
         OutputString(stream, wxT("</style>"));
 
         int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < 10; i ++)
@@ -2643,7 +2643,7 @@ bool wxRichTextXMLHelper::ExportStyleDefinition(wxXmlNode* parent, wxRichTextSty
         AddAttributes(styleNode, def->GetStyle(), true);
 
         int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < 10; i ++)
@@ -2770,7 +2770,7 @@ bool wxRichTextXMLHelper::AddAttributes(wxXmlNode* node, wxRichTextAttr& attr, b
         {
             wxString tabs;
             size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < attr.GetTabs().GetCount(); i++)
@@ -2857,7 +2857,7 @@ bool wxRichTextXMLHelper::WriteProperties(wxXmlNode* node, const wxRichTextPrope
         wxXmlNode* propertiesNode = new wxXmlNode(wxXML_ELEMENT_NODE, wxT("properties"));
         node->AddChild(propertiesNode);
         size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < properties.GetCount(); i++)

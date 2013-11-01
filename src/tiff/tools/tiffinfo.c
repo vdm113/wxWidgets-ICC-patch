@@ -74,7 +74,7 @@ main(int argc, char* argv[])
 	uint64 diroff = 0;
 	int chopstrips = 0;		/* disable strip chopping */
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((c = getopt(argc, argv, "f:o:cdDSjilmrsvwz0123456789")) != -1)
@@ -134,7 +134,7 @@ main(int argc, char* argv[])
 	old_error_handler = TIFFSetErrorHandler(PrivateErrorHandler);
 
 	multiplefiles = (argc - optind > 1);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; optind < argc; optind++) {
@@ -149,7 +149,7 @@ main(int argc, char* argv[])
 				if (TIFFSetSubDirectory(tif, diroff))
 					tiffinfo(tif, order, flags, 1);
 			} else {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				do {
@@ -197,7 +197,7 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; stuff[i] != NULL; i++)
@@ -211,11 +211,11 @@ ShowStrip(tstrip_t strip, unsigned char* pp, uint32 nrow, tsize_t scanline)
 	register tsize_t cc;
 
 	printf("Strip %lu:\n", (unsigned long) strip);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (nrow-- > 0) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (cc = 0; cc < scanline; cc++) {
@@ -240,7 +240,7 @@ TIFFReadContigStripData(TIFF* tif)
 
 		TIFFGetField(tif, TIFFTAG_IMAGELENGTH, &h);
 		TIFFGetField(tif, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (row = 0; row < h; row += rowsperstrip) {
@@ -272,11 +272,11 @@ TIFFReadSeparateStripData(TIFF* tif)
 		TIFFGetField(tif, TIFFTAG_IMAGELENGTH, &h);
 		TIFFGetField(tif, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
 		TIFFGetField(tif, TIFFTAG_SAMPLESPERPIXEL, &samplesperpixel);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (row = 0; row < h; row += rowsperstrip) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (s = 0; s < samplesperpixel; s++) {
@@ -304,11 +304,11 @@ ShowTile(uint32 row, uint32 col, tsample_t sample,
 	if (sample != (tsample_t) -1)
 		printf(",%u", sample);
 	printf("):\n");
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (nrow-- > 0) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	  for (cc = 0; cc < (uint32) rowsize; cc++) {
@@ -335,11 +335,11 @@ TIFFReadContigTileData(TIFF* tif)
 		TIFFGetField(tif, TIFFTAG_IMAGELENGTH, &h);
 		TIFFGetField(tif, TIFFTAG_TILEWIDTH, &tw);
 		TIFFGetField(tif, TIFFTAG_TILELENGTH, &th);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (row = 0; row < h; row += th) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (col = 0; col < w; col += tw) {
@@ -371,15 +371,15 @@ TIFFReadSeparateTileData(TIFF* tif)
 		TIFFGetField(tif, TIFFTAG_TILEWIDTH, &tw);
 		TIFFGetField(tif, TIFFTAG_TILELENGTH, &th);
 		TIFFGetField(tif, TIFFTAG_SAMPLESPERPIXEL, &samplesperpixel);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (row = 0; row < h; row += th) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (col = 0; col < w; col += tw) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (s = 0; s < samplesperpixel; s++) {
@@ -419,7 +419,7 @@ ShowRawBytes(unsigned char* pp, uint32 n)
 {
 	uint32 i;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < n; i++) {
@@ -435,7 +435,7 @@ ShowRawWords(uint16* pp, uint32 n)
 {
 	uint32 i;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < n; i++) {
@@ -459,7 +459,7 @@ TIFFReadRawData(TIFF* tif, int bitrev)
 		tdata_t buf = _TIFFmalloc(bufsize);
 		tstrip_t s;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (s = 0; s < nstrips; s++) {

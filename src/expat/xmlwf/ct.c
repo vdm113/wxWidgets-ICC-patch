@@ -6,7 +6,7 @@ getTok(const char **pp)
   enum { inAtom, inString, init, inComment };
   int state = init;
   const char *tokStart = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (;;) {
@@ -77,7 +77,7 @@ matchkey(const char *start, const char *end, const char *key)
 {
   if (!start)
     return 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (; start != end; start++, key++)
@@ -105,7 +105,7 @@ getXMLCharset(const char *buf, char *charset)
   if (matchkey(p, next, "xml"))
     isXml = 1;
   p = getTok(&next);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (p) {
@@ -118,7 +118,7 @@ getXMLCharset(const char *buf, char *charset)
           if (p) {
             char *s = charset;
             if (*p == '"') {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
               while (++p != next - 1) {
@@ -135,7 +135,7 @@ getXMLCharset(const char *buf, char *charset)
             else {
               if (next - p > CHARSET_MAX - 1)
                 break;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
               while (p != next)

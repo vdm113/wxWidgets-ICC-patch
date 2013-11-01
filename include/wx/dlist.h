@@ -2,7 +2,7 @@
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#   define MY_MACRO_PRAGMA_IVDEP
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -199,7 +199,7 @@ public:
         if ( m_destroy )
         {
             iterator it, en;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( it = this->begin(), en = this->end(); it != en; ++it )
@@ -260,7 +260,7 @@ public:
 
             int i;
             Node *prev = m_previous;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for( i = 0; prev; i++ )
@@ -329,7 +329,7 @@ public:
     {
         Init();
         size_t n;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (n = 0; n < count; n++)
@@ -346,7 +346,7 @@ public:
     ~wxDList()
     {
         nodetype *each = m_nodeFirst;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( each != NULL )
@@ -366,7 +366,7 @@ public:
         m_nodeFirst = NULL;
         m_nodeLast = NULL;
         nodetype* node;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (node = list.GetFirst(); node; node = node->GetNext() )
@@ -442,7 +442,7 @@ public:
 
     nodetype *Item(size_t index) const
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( nodetype *current = GetFirst(); current; current = current->GetNext() )
@@ -493,7 +493,7 @@ public:
 
     bool DeleteObject( T *object )
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( nodetype *current = GetFirst(); current; current = current->GetNext() )
@@ -510,7 +510,7 @@ public:
 
     nodetype *Find(const T *object) const
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( nodetype *current = GetFirst(); current; current = current->GetNext() )
@@ -525,7 +525,7 @@ public:
     int IndexOf(const T *object) const
     {
         int n = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( nodetype *current = GetFirst(); current; current = current->GetNext() )
@@ -540,7 +540,7 @@ public:
     void Clear()
     {
         nodetype *current = m_nodeFirst;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( current )
@@ -558,7 +558,7 @@ public:
     {
         nodetype * node = m_nodeFirst;
         nodetype* tmp;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (node)
@@ -577,7 +577,7 @@ public:
     void DeleteNodes(nodetype* first, nodetype* last)
     {
         nodetype * node = first;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (node != last)
@@ -590,7 +590,7 @@ public:
 
     void ForEach(wxListIterateFunction F)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( nodetype *current = GetFirst(); current; current = current->GetNext() )
@@ -599,7 +599,7 @@ public:
 
     T *FirstThat(wxListIterateFunction F)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( nodetype *current = GetFirst(); current; current = current->GetNext() )
@@ -612,7 +612,7 @@ public:
 
     T *LastThat(wxListIterateFunction F)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( nodetype *current = GetLast(); current; current = current->GetPrevious() )
@@ -811,12 +811,12 @@ public:
         { return const_reverse_iterator(NULL, GetFirst()); }
     void resize(size_type n, value_type v = value_type())
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (n < size())
             pop_back();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (n > size())
@@ -838,7 +838,7 @@ public:
     void assign(const_iterator first, const const_iterator& last)
     {
         clear();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(; first != last; ++first)
@@ -847,7 +847,7 @@ public:
     void assign(size_type n, const_reference v = value_type())
     {
         clear();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(size_type i = 0; i < n; ++i)
@@ -864,7 +864,7 @@ public:
     }
     void insert(const iterator& it, size_type n, const_reference v)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(size_type i = 0; i < n; ++i)
@@ -872,7 +872,7 @@ public:
     }
     void insert(const iterator& it, const_iterator first, const const_iterator& last)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(; first != last; ++first)

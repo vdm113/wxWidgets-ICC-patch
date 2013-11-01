@@ -483,12 +483,12 @@ size_t wxRawInputStream::OnSysRead(void *buffer, size_t size)
     char *buf = (char*)buffer;
     size_t count = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (count < size && IsOk())
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (m_parent_i_stream->IsOk() && m_tee->GetCount() == 0)
@@ -792,7 +792,7 @@ wxString wxZipEntry::GetName(wxPathFormat format /*=wxPATH_NATIVE*/) const
         case wxPATH_DOS:
         {
             wxString name(isDir ? m_Name + wxT("\\") : m_Name);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (size_t i = 0; i < name.length(); i++)
@@ -840,12 +840,12 @@ wxString wxZipEntry::GetInternalName(const wxString& name,
     if (isDir)
         internal.erase(internal.length() - 1);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (!internal.empty() && *internal.begin() == '/')
         internal.erase(0, 1);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (!internal.empty() && internal.compare(0, 2, wxT("./")) == 0)
@@ -1356,13 +1356,13 @@ void wxZipInputStream::Init(const wxString& file)
     wxZipEntryPtr_ entry;
 
     if (ffile->IsOk()) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         do {
             entry.reset(GetNextEntry());
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (entry.get() != NULL && entry->GetInternalName() != file);
@@ -1545,7 +1545,7 @@ bool wxZipInputStream::FindEndRecord()
     memcpy(buf.data(), magic, 3);
     wxFileOffset minpos = wxMax(pos - 65535L, 0);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (pos > minpos) {
@@ -1560,7 +1560,7 @@ bool wxZipInputStream::FindEndRecord()
 
         char *p = buf.data() + len;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (p-- > buf.data()) {
@@ -1638,7 +1638,7 @@ wxStreamError wxZipInputStream::ReadLocal(bool readEndRec /*=false*/)
         }
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (m_signature == CENTRAL_MAGIC) {
@@ -1854,7 +1854,7 @@ bool wxZipInputStream::CloseEntry()
 
         const int BUFSIZE = 8192;
         wxCharBuffer buf(BUFSIZE);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (IsOk())
@@ -1978,7 +1978,7 @@ wxFileOffset wxZipInputStream::OnSysSeek(wxFileOffset seek, wxSeekMode mode)
         const int BUFSIZE = 4096;
         size_t sz;
         char buffer[BUFSIZE];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( toskip > 0 )
@@ -2178,7 +2178,7 @@ wxOutputStream *wxZipOutputStream::OpenCompressor(
             entry.SetMethod(wxZIP_METHOD_STORE);
         } else {
             int size = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i = 0; bufs[i].m_data; ++i)
@@ -2353,7 +2353,7 @@ bool wxZipOutputStream::Close()
     wxZipEntryList_::iterator it;
     wxFileOffset size = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (it = m_entries.begin(); it != m_entries.end(); ++it) {

@@ -1063,12 +1063,12 @@ void wxMonoRenderer::DrawScrollbarThumb(wxDC& dc,
     // manually draw stipple pattern (wxDFB doesn't implement the wxSTIPPLE
     // brush style):
     dc.SetPen(m_penFg);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxCoord y = rect.GetTop(); y <= rect.GetBottom(); y++ )
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxCoord x = rect.GetLeft() + (y % 2); x <= rect.GetRight(); x+=2 )

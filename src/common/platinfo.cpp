@@ -106,7 +106,7 @@ static unsigned wxGetIndexFromEnumValue(int value)
     wxCHECK_MSG( value, (unsigned)-1, wxT("invalid enum value") );
 
     int n = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( !(value & 1) )
@@ -302,7 +302,7 @@ wxString wxPlatformInfo::GetEndiannessName(wxEndianness end)
 
 wxOperatingSystemId wxPlatformInfo::GetOperatingSystemId(const wxString &str)
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < WXSIZEOF(wxOperatingSystemIdNames); i++ )
@@ -317,7 +317,7 @@ wxOperatingSystemId wxPlatformInfo::GetOperatingSystemId(const wxString &str)
 wxPortId wxPlatformInfo::GetPortId(const wxString &str)
 {
     // recognize both short and long port names
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < WXSIZEOF(wxPortIdNames); i++ )

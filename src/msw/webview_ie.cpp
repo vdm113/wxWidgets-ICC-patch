@@ -126,7 +126,7 @@ wxWebViewIE::~wxWebViewIE()
             wxFAIL_MSG("Could not retrive internet session");
         }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(unsigned int i = 0; i < m_factories.size(); i++)
@@ -437,7 +437,7 @@ bool wxWebViewIE::CanGoForward() const
 void wxWebViewIE::LoadHistoryItem(wxSharedPtr<wxWebViewHistoryItem> item)
 {
     int pos = -1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(unsigned int i = 0; i < m_historyList.size(); i++)
@@ -458,7 +458,7 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewIE::GetBackwardHistory()
     wxVector<wxSharedPtr<wxWebViewHistoryItem> > backhist;
     //As we don't have std::copy or an iterator constructor in the wxwidgets
     //native vector we construct it by hand
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(int i = 0; i < m_historyPosition; i++)
@@ -473,7 +473,7 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewIE::GetForwardHistory()
     wxVector<wxSharedPtr<wxWebViewHistoryItem> > forwardhist;
     //As we don't have std::copy or an iterator constructor in the wxwidgets
     //native vector we construct it by hand
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(int i = m_historyPosition + 1; i < static_cast<int>(m_historyList.size()); i++)
@@ -962,7 +962,7 @@ bool wxWebViewIE::IsElementVisible(wxCOMPtr<IHTMLElement> elm)
     bool is_visible = true;
     //This method is not perfect but it does discover most of the hidden elements.
     //so if a better solution is found, then please do improve.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while(elm1)
@@ -1041,7 +1041,7 @@ void wxWebViewIE::FindInternal(const wxString& text, int flags, int internal_fla
                m_findPointers.reserve(text.Len() == 1 ? 1000 : 500);
             }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while(ptrBegin->FindText(text_bstr, find_flag, ptrEnd, NULL) == S_OK)
@@ -1169,7 +1169,7 @@ void wxWebViewIE::FindClear()
     //remove elements from m_findPointers without calling release first
     //or you will get a memory leak.
     size_t count = m_findPointers.size();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(size_t i = 0; i < count; i++)

@@ -284,7 +284,7 @@ private:
                 if ( format == wxBMP_8BPP_PALETTE )
                 {
                     unsigned char *cmap = new unsigned char [256];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for ( int i = 0; i < 256; i++ )
@@ -480,13 +480,13 @@ public:
                 return;
             }
             wxAlphaPixelData::Iterator p(data);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( int y = 0; y < SIZE; ++y )
             {
                 wxAlphaPixelData::Iterator rowStart = p;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( int x = 0; x < SIZE; ++x )
@@ -510,7 +510,7 @@ public:
 
         wxAlphaPixelData::Iterator p(data);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int y = 0; y < REAL_SIZE; ++y )
@@ -521,7 +521,7 @@ public:
                 g = (REAL_SIZE/3 <= y) && (y < 2*(REAL_SIZE/3)) ? 255 : 0,
                 b = 2*(REAL_SIZE/3) <= y ? 255 : 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( int x = 0; x < REAL_SIZE; ++x )
@@ -552,7 +552,7 @@ public:
         }
 
         wxNativePixelData::Iterator p(data);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int y = 0; y < SIZE; ++y )
@@ -563,7 +563,7 @@ public:
                 g = (SIZE/3 <= y) && (y < 2*(SIZE/3)) ? 255 : 0,
                 b = 2*(SIZE/3) <= y ? 255 : 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( int x = 0; x < SIZE; ++x )
@@ -853,7 +853,7 @@ public:
         unsigned char* alpha = m_image.GetAlpha();
         unsigned char* data = m_image.GetData();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int y = 0; y < HEIGHT; y++ )
@@ -868,7 +868,7 @@ public:
             else
                 b = 0xff;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( int x = 0; x < WIDTH; x++ )

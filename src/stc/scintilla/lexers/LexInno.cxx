@@ -53,7 +53,7 @@ static void ColouriseInnoDoc(unsigned int startPos, int length, int, WordList *k
 	// using the hand-written state machine shown below
 	styler.StartAt(startPos);
 	styler.StartSegment(startPos);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = startPos; i < lengthDoc; i++) {
@@ -261,7 +261,7 @@ static void FoldInnoDoc(unsigned int startPos, int length, int, WordList *[], Ac
 	int levelPrev = lineCurrent > 0 ? styler.LevelAt(lineCurrent - 1) : SC_FOLDLEVELBASE;
 	int level;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {

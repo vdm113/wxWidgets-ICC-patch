@@ -67,7 +67,7 @@ static void swizzleBitmap(void * data, int rowBytes, int height)
     buffer = malloc(rowBytes);
 
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( top < bottom )

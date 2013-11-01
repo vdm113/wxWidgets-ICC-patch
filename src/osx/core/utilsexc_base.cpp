@@ -125,7 +125,7 @@ bool wxMacLaunch(char **argv)
     // Obtains the number of arguments for determining the size of
     // the CFArray used to hold them
     CFIndex cfiCount = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(char** argvcopy = argv; *argvcopy != NULL ; ++argvcopy)
@@ -200,7 +200,7 @@ bool wxMacLaunch(char **argv)
     // Loop through command line arguments to the bundle,
     // turn them into CFURLs and then put them in cfaFiles
     // For use to launch services call
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( ; *argv != NULL ; ++argv)

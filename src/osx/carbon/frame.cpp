@@ -101,7 +101,7 @@ bool wxFrame::Enable(bool enable)
     if ( m_frameMenuBar /*&& m_frameMenuBar == wxMenuBar::MacGetInstalledMenuBar()*/)
     {
         int iMaxMenu = m_frameMenuBar->GetMenuCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = 0 ; i < iMaxMenu ; ++ i )
@@ -171,7 +171,7 @@ void wxFrame::OnActivate(wxActivateEvent& event)
 
         // so we NULL it out if it's a child from some other frame
         wxWindow *win = m_winLastFocused;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( win )

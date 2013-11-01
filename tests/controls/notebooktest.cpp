@@ -81,7 +81,7 @@ void NotebookTestCase::RowCount()
                                 wxDefaultPosition, wxSize(400, 200),
                                 wxNB_MULTILINE);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( unsigned int i = 0; i < 10; i++ )

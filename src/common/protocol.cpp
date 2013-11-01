@@ -117,7 +117,7 @@ wxProtocolError wxProtocol::ReadLine(wxSocketBase *sock, wxString& result)
 
     wxCharBuffer buf(LINE_BUF);
     char *pBuf = buf.data();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( sock->WaitForRead() )

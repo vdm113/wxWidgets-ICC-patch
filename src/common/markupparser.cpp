@@ -62,7 +62,7 @@ wxString
 ExtractUntil(char ch, wxString::const_iterator& it, wxString::const_iterator end)
 {
     wxString str;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ; it != end; ++it )
@@ -99,7 +99,7 @@ wxMarkupParser::ParseAttrs(wxString attrs, TagAndAttrs& tagAndAttrs)
 
     wxMarkupSpanAttributes& spanAttrs = tagAndAttrs.attrs;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( !attrs.empty() )
@@ -240,7 +240,7 @@ bool wxMarkupParser::OutputTag(const TagAndAttrs& tagAndAttrs, bool start)
                     &wxMarkupParserOutput::OnTeletypeEnd },
         };
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned n = 0; n < WXSIZEOF(tagHandlers); n++ )
@@ -274,7 +274,7 @@ bool wxMarkupParser::Parse(const wxString& text)
     wxString current;
 
     const wxString::const_iterator end = text.end();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxString::const_iterator it = text.begin(); it != end; ++it )
@@ -377,7 +377,7 @@ bool wxMarkupParser::Parse(const wxString& text)
                     const size_t pos = it - text.begin() + 1;
 
                     unsigned n;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for ( n = 0; n < WXSIZEOF(xmlEntities); n++ )
@@ -427,13 +427,13 @@ wxString wxMarkupParser::Quote(const wxString& text)
     wxString quoted;
     quoted.reserve(text.length());
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxString::const_iterator it = text.begin(); it != text.end(); ++it )
     {
         unsigned n;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( n = 0; n < WXSIZEOF(xmlEntities); n++ )

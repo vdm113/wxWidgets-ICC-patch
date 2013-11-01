@@ -40,14 +40,14 @@ Game::Game(int wins, int games, int score) :
     m_pack = new Pack(2, 2 + 4 * (CardHeight + 2));
     srand(time(0));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 5; i++) m_pack->Shuffle();
 
     m_discard = new Discard(2, 2 + 5 * (CardHeight + 2));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 8; i++)
@@ -56,7 +56,7 @@ Game::Game(int wins, int games, int score) :
                     2 + (i % 4) * (CardHeight + 2));
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 10; i++)
@@ -83,7 +83,7 @@ void Game::Layout()
 
     m_discard->SetPos(2, 2 + 5 * (CardHeight + 2));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 8; i++)
@@ -92,7 +92,7 @@ void Game::Layout()
                                          2 + (i % 4) * (CardHeight + 2));
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 10; i++)
@@ -112,14 +112,14 @@ Game::~Game()
 
     delete m_pack;
     delete m_discard;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 8; i++)
     {
         delete m_foundations[i];
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 10; i++)
@@ -244,7 +244,7 @@ void Game::DisplayScore(wxDC& dc)
 
     // count the number of cards in foundations
     m_currentScore = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < 8; i++)
@@ -301,7 +301,7 @@ void Game::Deal()
     // Reset all the piles, the undo buffer and shuffle the m_pack
     m_moveIndex = 0;
     m_pack->ResetPile();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 5; i++)
@@ -309,14 +309,14 @@ void Game::Deal()
         m_pack->Shuffle();
     }
     m_discard->ResetPile();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 10; i++)
     {
         m_bases[i]->ResetPile();
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i <  8; i++)
@@ -325,12 +325,12 @@ void Game::Deal()
     }
 
     // Deal the initial 40 cards onto the bases
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 10; i++)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 1; j <= 4; j++)
@@ -358,14 +358,14 @@ void Game::Redraw(wxDC& dc)
     int i;
     m_pack->Redraw(dc);
     m_discard->Redraw(dc);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 8; i++)
     {
         m_foundations[i]->Redraw(dc);
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 10; i++)
@@ -410,7 +410,7 @@ Pile* Game::WhichPile(int x, int y)
     }
 
     int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 8; i++)
@@ -422,7 +422,7 @@ Pile* Game::WhichPile(int x, int y)
         }
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 10; i++)
@@ -507,7 +507,7 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
             // to an ace of the same suit
             if (card->GetPipValue() == 1)
             {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for(i = 0; i < 4; i++)
@@ -529,7 +529,7 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
             }
 
             // try to place the card on a foundation
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for(i = 0; i < 8; i++)
@@ -543,7 +543,7 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
                 }
             }
             // try to place the card on a populated base
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for(i = 0; i < 10; i++)
@@ -559,7 +559,7 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
                 }
             }
             // try to place the card on any base
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for(i = 0; i < 10; i++)
@@ -583,7 +583,7 @@ bool Game::HaveYouWon()
 {
     if (m_pack->GetTopCard()) return false;
     if (m_discard->GetTopCard()) return false;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(int i = 0; i < 10; i++)
@@ -609,7 +609,7 @@ bool Game::CanYouGo(int x, int y)
         if (card)
         {
             int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for(i = 0; i < 8; i++)
@@ -619,7 +619,7 @@ bool Game::CanYouGo(int x, int y)
                     return true;
                 }
             }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for(i = 0; i < 10; i++)
@@ -654,7 +654,7 @@ void Game::LButtonUp(wxDC& dc, int x, int y)
 
         // find the nearest pile which will accept the card
         int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < 8; i++)
@@ -668,7 +668,7 @@ void Game::LButtonUp(wxDC& dc, int x, int y)
                 }
             }
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < 10; i++)
@@ -815,7 +815,7 @@ void Game::MouseMove(wxDC& dc, int mx, int my)
 //----------------------------------------------//
 Pack::Pack(int x, int y) : Pile(x, y, 0, 0)
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (m_topCard = 0; m_topCard < NumCards; m_topCard++)
@@ -837,20 +837,20 @@ void Pack::Shuffle()
     // Copy the cards into a temporary array. Start by clearing
     // the array and then copy the card into a random position.
     // If the position is occupied then find the next lower position.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i <= m_topCard; i++)
     {
         temp[i] = 0;
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i <= m_topCard; i++)
     {
         int pos = rand() % (m_topCard + 1);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (temp[pos])
@@ -866,13 +866,13 @@ void Pack::Shuffle()
     // Copy each card back into the m_pack in a random
     // position. If position is occupied then find nearest
     // unoccupied position after the random position.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i <= m_topCard; i++)
     {
         int pos = rand() % (m_topCard + 1);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (m_cards[pos])
@@ -915,7 +915,7 @@ void Pack::AddCard(Card* card)
 
 Pack::~Pack()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (m_topCard = 0; m_topCard < NumCards; m_topCard++)
@@ -1004,7 +1004,7 @@ void Discard::Redraw(wxDC& dc)
         {
             int x = m_x;
             int y = m_y;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i = 0; i <= m_topCard; i++)
@@ -1065,7 +1065,7 @@ Card* Discard::RemoveTopCard(wxDC& dc, int m_xOffset, int m_yOffset)
         dc.SetClippingRegion(topX - m_xOffset, topY - m_yOffset,
                      CardWidth, CardHeight);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = m_topCard - 31; i <= m_topCard - 31 + CardWidth / m_dx; i++)

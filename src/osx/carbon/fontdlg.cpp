@@ -173,7 +173,7 @@ wxMacCarbonFontPanelHandler(EventHandlerCallRef WXUNUSED(nextHandler),
                             ByteCount *sizePtr = (ByteCount *)CFDataGetBytePtr(sizesData);
                             UInt32 *bytePtr = (UInt32*)CFDataGetBytePtr(valuesData);
                             ATSUAttributeValuePtr valuesPtr = bytePtr ;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                             for ( ItemCount i = 0 ; i < count ; ++i)
@@ -381,7 +381,7 @@ void wxFontColourSwatchCtrl::OnMouseEvent(wxMouseEvent& event)
     if (event.LeftDown())
     {
         wxWindow* parent = GetParent();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (parent != NULL && !parent->IsKindOf(CLASSINFO(wxDialog)) && !parent->IsKindOf(CLASSINFO(wxFrame)))

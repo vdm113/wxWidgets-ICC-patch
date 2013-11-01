@@ -188,7 +188,7 @@ bool wxTextMeasure::DoGetPartialTextExtents(const wxString& text,
     PangoRectangle pos;
     pango_layout_iter_get_cluster_extents(iter, NULL, &pos);
     size_t i = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (pango_layout_iter_next_cluster(iter))
@@ -199,7 +199,7 @@ bool wxTextMeasure::DoGetPartialTextExtents(const wxString& text,
     }
 
     const size_t len = text.length();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (i < len)

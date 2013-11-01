@@ -279,7 +279,7 @@ void wxInfoBarGeneric::RemoveButton(wxWindowID btnid)
     // button with this id (ids of all buttons should be unique anyhow but if
     // they are repeated removing the last added one probably makes more sense)
     const wxSizerItemList& items = sizer->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxSizerItemList::compatibility_iterator node = items.GetLast();

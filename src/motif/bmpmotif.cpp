@@ -116,7 +116,7 @@ void wxBitmapCache::CreateImageIfNeeded( WXWidget w )
 WXPixmap wxBitmapCache::GetPixmapFromCache(WXWidget w)
 {
     Widget widget = (Widget)w;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while( XmIsGadget( widget ) )

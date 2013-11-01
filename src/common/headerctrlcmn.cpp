@@ -171,7 +171,7 @@ void wxHeaderCtrlBase::SetColumnsOrder(const wxArrayInt& order)
 
     // check the array validity
     wxArrayInt seen(count, 0);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned n = 0; n < count; n++ )
@@ -192,7 +192,7 @@ void wxHeaderCtrlBase::ResetColumnsOrder()
 {
     const unsigned count = GetColumnCount();
     wxArrayInt order(count);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned n = 0; n < count; n++ )
@@ -224,7 +224,7 @@ unsigned int wxHeaderCtrlBase::GetColumnPos(unsigned int idx) const
     wxCHECK_MSG( idx < count, wxNO_COLUMN, "invalid index" );
 
     const wxArrayInt order = GetColumnsOrder();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned n = 0; n < count; n++ )
@@ -247,7 +247,7 @@ void wxHeaderCtrlBase::MoveColumnInOrderArray(wxArrayInt& order,
 
     wxArrayInt orderNew;
     orderNew.reserve(count);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned n = 0; ; n++ )
@@ -281,7 +281,7 @@ wxHeaderCtrlBase::DoResizeColumnIndices(wxArrayInt& colIndices, unsigned int cou
     if ( count > countOld )
     {
         // all new columns have default positions equal to their indices
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned n = countOld; n < count; n++ )
@@ -293,7 +293,7 @@ wxHeaderCtrlBase::DoResizeColumnIndices(wxArrayInt& colIndices, unsigned int cou
         // order of the remaining ones
         wxArrayInt colIndicesNew;
         colIndicesNew.reserve(count);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned n = 0; n < countOld; n++ )
@@ -319,7 +319,7 @@ wxHeaderCtrlBase::DoResizeColumnIndices(wxArrayInt& colIndices, unsigned int cou
 void wxHeaderCtrlBase::AddColumnsItems(wxMenu& menu, int idColumnsBase)
 {
     const unsigned count = GetColumnCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned n = 0; n < count; n++ )
@@ -380,7 +380,7 @@ bool wxHeaderCtrlBase::ShowCustomizeDialog()
     // rearranged according to the display order in the dialog
     wxArrayString titles;
     titles.reserve(count);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned n = 0; n < count; n++ )
@@ -388,7 +388,7 @@ bool wxHeaderCtrlBase::ShowCustomizeDialog()
 
     // this loop is however over positions and not indices
     unsigned pos;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( pos = 0; pos < count; pos++ )
@@ -407,7 +407,7 @@ bool wxHeaderCtrlBase::ShowCustomizeDialog()
     {
         // and apply the changes
         order = dlg.GetOrder();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( pos = 0; pos < count; pos++ )

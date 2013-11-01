@@ -60,7 +60,7 @@ wxObject *wxStatusBarXmlHandler::DoCreateResource()
     {
         int *width = new int[fields];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < fields; ++i)
@@ -78,7 +78,7 @@ wxObject *wxStatusBarXmlHandler::DoCreateResource()
     if (!styles.empty())
     {
         int *style = new int[fields];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < fields; ++i)

@@ -104,12 +104,12 @@ unsigned short FAR *work;
      */
 
     /* accumulate lengths for codes (assumes lens[] all in 0..MAXBITS) */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (len = 0; len <= MAXBITS; len++)
         count[len] = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (sym = 0; sym < codes; sym++)
@@ -117,7 +117,7 @@ unsigned short FAR *work;
 
     /* bound code lengths, force root to be within code lengths */
     root = *bits;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (max = MAXBITS; max >= 1; max--)
@@ -132,7 +132,7 @@ unsigned short FAR *work;
         *bits = 1;
         return 0;     /* no symbols, but wait for decoding to report error */
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (min = 1; min < max; min++)
@@ -141,7 +141,7 @@ unsigned short FAR *work;
 
     /* check for an over-subscribed or incomplete set of lengths */
     left = 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (len = 1; len <= MAXBITS; len++) {
@@ -154,14 +154,14 @@ unsigned short FAR *work;
 
     /* generate offsets into symbol table for each length for sorting */
     offs[1] = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (len = 1; len < MAXBITS; len++)
         offs[len + 1] = offs[len] + count[len];
 
     /* sort symbols by length, by symbol order within each length */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (sym = 0; sym < codes; sym++)
@@ -234,7 +234,7 @@ unsigned short FAR *work;
         return 1;
 
     /* process all codes and make table entries */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;) {
@@ -257,7 +257,7 @@ unsigned short FAR *work;
         incr = 1U << (len - drop);
         fill = 1U << curr;
         min = fill;                 /* save offset to next table */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         do {
@@ -267,7 +267,7 @@ unsigned short FAR *work;
 
         /* backwards increment the len-bit code huff */
         incr = 1U << (len - 1);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (huff & incr)
@@ -298,7 +298,7 @@ unsigned short FAR *work;
             /* determine length of next table */
             curr = len - drop;
             left = (int)(1 << curr);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while (curr + drop < max) {

@@ -68,7 +68,7 @@ wxNonOwnedWindowImpl* wxNonOwnedWindowImpl::FindFromWXWindow (WXWindow window)
 void wxNonOwnedWindowImpl::RemoveAssociations( wxNonOwnedWindowImpl* impl)
 {
     MacWindowMap::iterator it;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( it = wxWinMacWindowList.begin(); it != wxWinMacWindowList.end(); ++it )

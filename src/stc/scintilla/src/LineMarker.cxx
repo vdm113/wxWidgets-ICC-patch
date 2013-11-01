@@ -346,7 +346,7 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 
 	} else if (markType == SC_MARK_DOTDOTDOT) {
 		int right = centreX - 6;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int b=0; b<3; b++) {
@@ -357,7 +357,7 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 	} else if (markType == SC_MARK_ARROWS) {
 		surface->PenColour(fore);
 		int right = centreX - 2;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int b=0; b<3; b++) {

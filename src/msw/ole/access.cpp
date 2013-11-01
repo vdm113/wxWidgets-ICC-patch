@@ -1627,7 +1627,7 @@ IAccessible* wxIAccessible::GetChildStdAccessible(int id)
         this->get_accChildCount(& nChildren);
 
         int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < nChildren; i++)

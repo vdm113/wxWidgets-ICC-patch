@@ -60,7 +60,7 @@ void AutoCaptureMechanism::Delay(int seconds)
 
     // Wait for 3 seconds
     clock_t start = clock();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( clock() - start < (clock_t)CLOCKS_PER_SEC * seconds)
@@ -83,14 +83,14 @@ bool AutoCaptureMechanism::Capture(wxBitmap* bitmap, int x, int y,
     if(delay) Delay(delay);
 
     wxBitmap fullscreen;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do
     {
         fullscreen = wxBitmap(wxT("/tmp/wx_screen_capture.png"), wxBITMAP_TYPE_PNG);
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while(!fullscreen.IsOk());
@@ -153,7 +153,7 @@ void AutoCaptureMechanism::Save(wxBitmap* screenshot, const wxString& fileName)
         "-" + wxPlatformInfo::Get().GetPortIdShortName() + ".png");
 
     // do not overwrite already existing files with this name
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (fullFileName.FileExists())
@@ -169,7 +169,7 @@ void AutoCaptureMechanism::CaptureAll()
     m_notebook->SetSelection(0);
     wxYield();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ControlList::iterator it = m_controlList.begin();
@@ -192,7 +192,7 @@ void AutoCaptureMechanism::CaptureAll()
         if(ctrl.flag & AJ_Union)
         {
             // union screenshots until AJ_UnionEnd
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             do
@@ -205,7 +205,7 @@ void AutoCaptureMechanism::CaptureAll()
                 Union(&screenshot, &screenshot2, &combined);
                 screenshot = combined;
             }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while(!(it->flag & AJ_UnionEnd));
@@ -327,7 +327,7 @@ wxRect AutoCaptureMechanism::GetRect(wxWindow* ctrl, int flag)
 
         wxStaticText* l[4];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < 4; ++i)
@@ -367,7 +367,7 @@ void AutoCaptureMechanism::PutBack(wxWindow * ctrl)
 
     wxSizerItemList children = m_grid->GetChildren();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (wxSizerItemList::iterator it = children.begin(); it != children.end(); ++it)

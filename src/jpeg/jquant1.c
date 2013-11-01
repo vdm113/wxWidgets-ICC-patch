@@ -198,13 +198,13 @@ select_ncolors (j_decompress_ptr cinfo, int Ncolors[])
   /* We can allocate at least the nc'th root of max_colors per component. */
   /* Compute floor(nc'th root of max_colors). */
   iroot = 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   do {
     iroot++;
     temp = iroot;		/* set temp = iroot ** nc */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 1; i < nc; i++)
@@ -218,7 +218,7 @@ select_ncolors (j_decompress_ptr cinfo, int Ncolors[])
 
   /* Initialize to iroot color values for each component */
   total_colors = 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < nc; i++) {
@@ -231,12 +231,12 @@ select_ncolors (j_decompress_ptr cinfo, int Ncolors[])
    * (Example: for 16 colors, we start at 2*2*2, go to 3*2*2, then 4*2*2.)
    * In RGB colorspace, try to increment G first, then R, then B.
    */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   do {
     changed = FALSE;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < nc; i++) {
@@ -315,26 +315,26 @@ create_colormap (j_decompress_ptr cinfo)
   /* blkdist is distance between groups of identical entries for a component */
   blkdist = total_colors;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < cinfo->out_color_components; i++) {
     /* fill in colormap entries for i'th color component */
     nci = cquantize->Ncolors[i]; /* # of distinct values for this color */
     blksize = blkdist / nci;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (j = 0; j < nci; j++) {
       /* Compute j'th output value (out of nci) for component */
       val = output_value(cinfo, i, j, nci-1);
       /* Fill in all colormap entries that have this value of this component */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (ptr = j * blksize; ptr < total_colors; ptr += blkdist) {
 	/* fill in blksize entries beginning at ptr */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (k = 0; k < blksize; k++)
@@ -384,7 +384,7 @@ create_colorindex (j_decompress_ptr cinfo)
   /* blksize is number of adjacent repeated entries for a component */
   blksize = cquantize->sv_actual;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < cinfo->out_color_components; i++) {
@@ -401,11 +401,11 @@ create_colorindex (j_decompress_ptr cinfo)
     indexptr = cquantize->colorindex[i];
     val = 0;
     k = largest_input_value(cinfo, i, 0, nci-1);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (j = 0; j <= MAXJSAMPLE; j++) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       while (j > k)		/* advance val if past boundary */
@@ -415,7 +415,7 @@ create_colorindex (j_decompress_ptr cinfo)
     }
     /* Pad at both ends if necessary */
     if (pad)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (j = 1; j <= MAXJSAMPLE; j++) {
@@ -447,11 +447,11 @@ make_odither_array (j_decompress_ptr cinfo, int ncolors)
    * On 16-bit-int machine, be careful to avoid overflow.
    */
   den = 2 * ODITHER_CELLS * ((JPEG_INT32) (ncolors - 1));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (j = 0; j < ODITHER_SIZE; j++) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (k = 0; k < ODITHER_SIZE; k++) {
@@ -480,13 +480,13 @@ create_odither_tables (j_decompress_ptr cinfo)
   ODITHER_MATRIX_PTR odither;
   int i, j, nci;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < cinfo->out_color_components; i++) {
     nci = cquantize->Ncolors[i]; /* # of distinct values for this color */
     odither = NULL;		/* search for matching prior component */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (j = 0; j < i; j++) {
@@ -520,18 +520,18 @@ color_quantize (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
   JDIMENSION width = cinfo->output_width;
   register int nc = cinfo->out_color_components;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (row = 0; row < num_rows; row++) {
     ptrin = input_buf[row];
     ptrout = output_buf[row];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (col = width; col > 0; col--) {
       pixcode = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (ci = 0; ci < nc; ci++) {
@@ -558,13 +558,13 @@ color_quantize3 (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
   JDIMENSION col;
   JDIMENSION width = cinfo->output_width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (row = 0; row < num_rows; row++) {
     ptrin = input_buf[row];
     ptrout = output_buf[row];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (col = width; col > 0; col--) {
@@ -594,7 +594,7 @@ quantize_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
   JDIMENSION col;
   JDIMENSION width = cinfo->output_width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (row = 0; row < num_rows; row++) {
@@ -602,7 +602,7 @@ quantize_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
     jzero_far((void FAR *) output_buf[row],
 	      (size_t) (width * SIZEOF(JSAMPLE)));
     row_index = cquantize->row_index;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0; ci < nc; ci++) {
@@ -612,7 +612,7 @@ quantize_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
       dither = cquantize->odither[ci][row_index];
       col_index = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (col = width; col > 0; col--) {
@@ -656,7 +656,7 @@ quantize3_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
   JDIMENSION col;
   JDIMENSION width = cinfo->output_width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (row = 0; row < num_rows; row++) {
@@ -668,7 +668,7 @@ quantize3_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
     dither2 = cquantize->odither[2][row_index];
     col_index = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (col = width; col > 0; col--) {
@@ -714,14 +714,14 @@ quantize_fs_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
   JSAMPLE *range_limit = cinfo->sample_range_limit;
   SHIFT_TEMPS
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (row = 0; row < num_rows; row++) {
     /* Initialize output values to 0 so can process components separately */
     jzero_far((void FAR *) output_buf[row],
 	      (size_t) (width * SIZEOF(JSAMPLE)));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0; ci < nc; ci++) {
@@ -747,7 +747,7 @@ quantize_fs_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
       /* and no error propagated to row below yet */
       belowerr = bpreverr = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (col = width; col > 0; col--) {
@@ -816,7 +816,7 @@ alloc_fs_workspace (j_decompress_ptr cinfo)
   int i;
 
   arraysize = (size_t) ((cinfo->output_width + 2) * SIZEOF(FSERROR));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < cinfo->out_color_components; i++) {
@@ -873,7 +873,7 @@ start_pass_1_quant (j_decompress_ptr cinfo, wxjpeg_boolean is_pre_scan)
       alloc_fs_workspace(cinfo);
     /* Initialize the propagated errors to zero. */
     arraysize = (size_t) ((cinfo->output_width + 2) * SIZEOF(FSERROR));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < cinfo->out_color_components; i++)

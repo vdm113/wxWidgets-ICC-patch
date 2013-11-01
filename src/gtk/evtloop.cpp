@@ -60,7 +60,7 @@ int wxGUIEventLoop::DoRun()
     // event loops.  For example, inside this event loop, we may receive
     // Exit() for a different event loop (which we are currently inside of)
     // That Exit() will cause this gtk_main() to exit so we need to re-enter it.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( !m_shouldExit )
@@ -392,7 +392,7 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
     //       In particular in this way we also process input from sources like
     //       GIOChannels (this is needed for e.g. wxGUIAppTraits::WaitForChild).
     gdk_event_handler_set(wxgtk_main_do_event, this, NULL);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (Pending())   // avoid false positives from our idle source
@@ -420,7 +420,7 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
 
     // put all unprocessed GDK events back in the queue
     GdkDisplay* disp = gtk_widget_get_display(wxGetRootWindow());
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i=0; i<m_arrGdkEvents.GetCount(); i++)

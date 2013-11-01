@@ -104,7 +104,7 @@ static void DrawGradientRectangle(wxDC& dc,
     else
         high = rect.GetWidth()-1;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i <= high; ++i)
@@ -139,7 +139,7 @@ wxString wxAuiChopText(wxDC& dc, const wxString& text, int max_size)
 
     size_t i, len = text.Length();
     size_t last_good_length = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < len; ++i)
@@ -484,7 +484,7 @@ void wxAuiDefaultDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _
 
     if (pane.IsToolbar())
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < border_width; ++i)
@@ -512,7 +512,7 @@ void wxAuiDefaultDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _
             art->DrawBorder(dc, window, rect);
         else
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < border_width; ++i)
@@ -640,7 +640,7 @@ void wxAuiDefaultDockArt::DrawGripper(wxDC& dc, wxWindow *WXUNUSED(window),
     if (!pane.HasGripperTop())
     {
         int y = 5;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (1)
@@ -663,7 +663,7 @@ void wxAuiDefaultDockArt::DrawGripper(wxDC& dc, wxWindow *WXUNUSED(window),
     else
     {
         int x = 5;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (1)

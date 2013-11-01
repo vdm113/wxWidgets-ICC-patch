@@ -116,7 +116,7 @@ GetDriveBitmapForVolumeType(const wxFSVolumeKind& volKind, const wxSize& size)
 {
     // get all volumes and try to find one with a matching type
     wxArrayString volumes = wxFSVolume::GetVolumes();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < volumes.Count(); i++ )

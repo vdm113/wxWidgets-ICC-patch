@@ -67,7 +67,7 @@ int main(int argc, char **argv)
         Usage();
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < CMSIZE; i++) {
@@ -106,11 +106,11 @@ int main(int argc, char **argv)
 
     scan_line = (unsigned char *) malloc(WIDTH * 3);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 255; i++) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 0; j < 75; j++) {
@@ -118,7 +118,7 @@ int main(int argc, char **argv)
              scan_line[(j * 3) + 1] = 255 - i;
              scan_line[(j * 3) + 2] = 255 - i;
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 75; j < 150; j++) {
@@ -126,7 +126,7 @@ int main(int argc, char **argv)
              scan_line[(j * 3) + 1] = 255;
              scan_line[(j * 3) + 2] = 255 - i;
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 150; j < 225; j++) {
@@ -134,7 +134,7 @@ int main(int argc, char **argv)
              scan_line[(j * 3) + 1] = 255 - i;
              scan_line[(j * 3) + 2] = 255;
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 225; j < 300; j++) {
@@ -142,7 +142,7 @@ int main(int argc, char **argv)
              scan_line[(j * 3) + 1] = (i - 1) / 2;
              scan_line[(j * 3) + 2] = (i - 1) / 2;
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 300; j < 375; j++) {
@@ -150,7 +150,7 @@ int main(int argc, char **argv)
              scan_line[(j * 3) + 1] = 255;
              scan_line[(j * 3) + 2] = 255;
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 375; j < 450; j++) {
@@ -158,7 +158,7 @@ int main(int argc, char **argv)
              scan_line[(j * 3) + 1] = 255 - i;
              scan_line[(j * 3) + 2] = 255;
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 450; j < 525; j++) {
@@ -168,11 +168,11 @@ int main(int argc, char **argv)
         }
         TIFFWriteScanline(tif, scan_line, i, 0);
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 255; i < 512; i++) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 0; j < 75; j++) {
@@ -180,7 +180,7 @@ int main(int argc, char **argv)
              scan_line[(j * 3) + 1] = 0;
              scan_line[(j * 3) + 2] = 0;
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 75; j < 150; j++) {
@@ -188,7 +188,7 @@ int main(int argc, char **argv)
              scan_line[(j * 3) + 1] = i;
              scan_line[(j * 3) + 2] = 0;
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 150; j < 225; j++) {
@@ -196,7 +196,7 @@ int main(int argc, char **argv)
              scan_line[(j * 3) + 1] = 0;
              scan_line[(j * 3) + 2] = i;
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 225; j < 300; j++) {
@@ -204,7 +204,7 @@ int main(int argc, char **argv)
              scan_line[(j * 3) + 1] = (i - 1) / 2;
              scan_line[(j * 3) + 2] = (i - 1) / 2;
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 300; j < 375; j++) {
@@ -212,7 +212,7 @@ int main(int argc, char **argv)
              scan_line[(j * 3) + 1] = i;
              scan_line[(j * 3) + 2] = i;
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 375; j < 450; j++) {
@@ -220,7 +220,7 @@ int main(int argc, char **argv)
              scan_line[(j * 3) + 1] = 0;
              scan_line[(j * 3) + 2] = i;
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 450; j < 525; j++) {

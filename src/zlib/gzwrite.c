@@ -92,7 +92,7 @@ local int gz_comp(state, flush)
 
     /* run deflate() on provided input until it produces no more output */
     ret = Z_OK;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do {
@@ -147,7 +147,7 @@ local int gz_zero(state, len)
 
     /* compress len zeros (len guaranteed > 0) */
     first = 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (len) {
@@ -212,7 +212,7 @@ int ZEXPORT gzwrite(file, buf, len)
     /* for small len, copy to input buffer, otherwise compress directly */
     if (len < state->size) {
         /* copy to input buffer, compress when full */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         do {
@@ -353,7 +353,7 @@ int ZEXPORTVA gzvprintf(gzFile file, const char *format, va_list va)
 #ifdef NO_vsnprintf
 #  ifdef HAS_vsprintf_void
     (void)vsprintf((char *)(state->in), format, va);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (len = 0; len < size; len++)
@@ -442,7 +442,7 @@ int ZEXPORTVA gzprintf (file, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10,
 #  ifdef HAS_sprintf_void
     sprintf((char *)(state->in), format, a1, a2, a3, a4, a5, a6, a7, a8,
             a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (len = 0; len < size; len++)

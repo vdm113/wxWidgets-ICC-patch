@@ -1001,7 +1001,7 @@ void MyScrolledWindowDumb::OnDraw(wxDC& dc)
     dc.SetTextForeground(s_redrawCount++ % 2 ? *wxRED : *wxBLUE);
 
     int y = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t line = 0; line < m_nLines; line++ )
@@ -1033,7 +1033,7 @@ void MyScrolledWindowSmart::OnDraw(wxDC& dc)
         lineTo = m_nLines - 1;
 
     int y = lineFrom*m_hLine;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t line = lineFrom; line <= lineTo; line++ )
@@ -1247,21 +1247,21 @@ void MyAutoScrollingWindow::OnDraw(wxDC& dc)
 
     // draw the characters
     // 1. for each update region
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (wxRegionIterator upd(GetUpdateRegion()); upd; ++upd) {
         wxRect updRect = upd.GetRect();
         wxRect updRectInGChars(DeviceCoordsToGraphicalChars(updRect));
         // 2. for each row of chars in the update region
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int chY = updRectInGChars.y
                 ; chY <= updRectInGChars.y + updRectInGChars.height; ++chY) {
             // 3. for each character in the row
             bool isFirstX = true;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int chX = updRectInGChars.x

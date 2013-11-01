@@ -332,7 +332,7 @@ bool wxRegExImpl::Compile(const wxString& expr, int flags)
             m_nMatches = 1;
 
             // and some more for bracketed subexperessions
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( const wxChar *cptr = expr.c_str(); *cptr; cptr++ )
@@ -516,7 +516,7 @@ int wxRegExImpl::Replace(wxString *text,
 
     // note that "^" shouldn't match after the first call to Matches() so we
     // use wxRE_NOTBOL to prevent it from happening
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( (!maxMatches || countRepl < maxMatches) &&
@@ -537,7 +537,7 @@ int wxRegExImpl::Replace(wxString *text,
             textNew.clear();
             textNew.reserve(replacement.length());
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( const wxChar *p = replacement.c_str(); *p; p++ )

@@ -800,7 +800,7 @@ wxThreadInternal::WaitForTerminate(wxCriticalSection& cs,
     // (note that even in console applications we might have to process
     // messages if we use wxExecute() or timers or ...)
     DWORD result wxDUMMY_INITIALIZE(0);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -873,7 +873,7 @@ wxThreadInternal::WaitForTerminate(wxCriticalSection& cs,
     // although the thread might be already in the EXITED state it might not
     // have terminated yet and so we are not sure that it has actually
     // terminated if the "if" above hadn't been taken
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )
@@ -1014,7 +1014,7 @@ bool wxThread::SetConcurrency(size_t WXUNUSED_IN_WINCE(level))
     // processor; we want to schedule the process to run on first level
     // CPUs
     DWORD bit = 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( bit )

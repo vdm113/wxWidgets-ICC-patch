@@ -94,13 +94,13 @@ expand_right_edge (JSAMPARRAY image_data, int num_rows,
   int numcols = (int) (output_cols - input_cols);
 
   if (numcols > 0) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (row = 0; row < num_rows; row++) {
       ptr = image_data[row] + input_cols;
       pixval = ptr[-1];		/* don't need GETJSAMPLE() here */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (count = numcols; count > 0; count--)
@@ -126,7 +126,7 @@ sep_downsample (j_compress_ptr cinfo,
   jpeg_component_info * compptr;
   JSAMPARRAY in_ptr, out_ptr;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -168,23 +168,23 @@ int_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
 		    cinfo->image_width, output_cols * h_expand);
 
   inrow = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
     outptr = output_data[outrow];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (outcol = 0, outcol_h = 0; outcol < output_cols;
 	 outcol++, outcol_h += h_expand) {
       outvalue = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (v = 0; v < v_expand; v++) {
 	inptr = input_data[inrow+v] + outcol_h;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (h = 0; h < h_expand; h++) {
@@ -246,14 +246,14 @@ h2v1_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
   expand_right_edge(input_data, cinfo->max_v_samp_factor,
 		    cinfo->image_width, output_cols * 2);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
     outptr = output_data[outrow];
     inptr = input_data[outrow];
     bias = 0;			/* bias = 0,1,0,1,... for successive samples */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (outcol = 0; outcol < output_cols; outcol++) {
@@ -290,7 +290,7 @@ h2v2_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
 		    cinfo->image_width, output_cols * 2);
 
   inrow = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
@@ -298,7 +298,7 @@ h2v2_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
     inptr0 = input_data[inrow];
     inptr1 = input_data[inrow+1];
     bias = 1;			/* bias = 1,2,1,2,... for successive samples */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (outcol = 0; outcol < output_cols; outcol++) {
@@ -355,7 +355,7 @@ h2v2_smooth_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
   neighscale = cinfo->smoothing_factor * 16; /* scaled SF/4 */
 
   inrow = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
@@ -379,7 +379,7 @@ h2v2_smooth_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
     *outptr++ = (JSAMPLE) ((membersum + 32768) >> 16);
     inptr0 += 2; inptr1 += 2; above_ptr += 2; below_ptr += 2;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (colctr = output_cols - 2; colctr > 0; colctr--) {
@@ -454,7 +454,7 @@ fullsize_smooth_downsample (j_compress_ptr cinfo, jpeg_component_info *compptr,
   memberscale = 65536L - cinfo->smoothing_factor * 512L; /* scaled 1-8*SF */
   neighscale = cinfo->smoothing_factor * 64; /* scaled SF */
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
@@ -474,7 +474,7 @@ fullsize_smooth_downsample (j_compress_ptr cinfo, jpeg_component_info *compptr,
     *outptr++ = (JSAMPLE) ((membersum + 32768) >> 16);
     lastcolsum = colsum; colsum = nextcolsum;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (colctr = output_cols - 2; colctr > 0; colctr--) {
@@ -525,7 +525,7 @@ jinit_downsampler (j_compress_ptr cinfo)
     ERREXIT(cinfo, JERR_CCIR601_NOTIMPL);
 
   /* Verify we can handle the sampling factors, and set up method pointers */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;

@@ -415,14 +415,14 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
 
     dc.SetFont( m_font );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int y = 0; y < m_yChars; y++ )
     {
         wxString line;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int x = 0; x < m_xChars; x++ )

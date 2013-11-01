@@ -61,7 +61,7 @@ void SendButtonEvent(int button, bool isDown)
                   &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
     event.xbutton.subwindow = event.xbutton.window;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (event.xbutton.subwindow)

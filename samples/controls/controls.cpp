@@ -718,7 +718,7 @@ MyPanel::MyPanel( wxFrame *frame, int x, int y, int w, int h )
 #endif // wxUSE_GAUGE
     };
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < Image_Max; n++ )
@@ -840,7 +840,7 @@ MyPanel::MyPanel( wxFrame *frame, int x, int y, int w, int h )
     radio_page_sizer->Add( mybox,   wxGBPosition(2,0), wxGBSpan(2,1) );
 
 #if wxUSE_HELP
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int item = 0; item < WXSIZEOF(choices); ++item)
@@ -1142,7 +1142,7 @@ void MyPanel::SetAllToolTips()
     ResetToolTip(FindWindow(ID_RADIOBOX2), "Ever seen a radiobox?");
 
     //ResetToolTip(m_radio, "Tooltip for the entire radiobox");
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int nb = 0; nb < m_radio->GetCount(); nb++ )
@@ -1745,7 +1745,7 @@ void MyPanel::OnShowProgress( wxCommandEvent& WXUNUSED(event) )
 
 
     bool cont = true;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i <= max && cont; i++ )
@@ -2123,7 +2123,7 @@ void MyComboBox::OnKeyUp(wxKeyEvent& event)
 static void SetListboxClientData(const wxChar *name, wxListBox *control)
 {
     size_t count = control->GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -2141,7 +2141,7 @@ static void SetListboxClientData(const wxChar *name, wxListBox *control)
 static void SetChoiceClientData(const wxChar *name, wxChoice *control)
 {
     size_t count = control->GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )

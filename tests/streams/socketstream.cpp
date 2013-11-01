@@ -148,7 +148,7 @@ private:
     static void ReadSocket(wxSocketBase& socket)
     {
         char ch;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( socket.Read(&ch, 1).LastCount() == 1 )

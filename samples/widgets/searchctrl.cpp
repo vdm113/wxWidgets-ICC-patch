@@ -188,7 +188,7 @@ wxMenu* SearchCtrlWidgetsPage::CreateTestMenu()
     const int SEARCH_MENU_SIZE = 5;
     wxMenuItem* menuItem = menu->Append(wxID_ANY, wxT("Recent Searches"), wxT(""), wxITEM_NORMAL);
     menuItem->Enable(false);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < SEARCH_MENU_SIZE; i++ )

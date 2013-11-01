@@ -146,7 +146,7 @@ bool wxSlider::Create(wxWindow *parent,
         m_labels = new wxSubwindows(SliderLabel_Last);
 
         HWND hwndParent = GetHwndOf(parent);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < SliderLabel_Last; n++ )

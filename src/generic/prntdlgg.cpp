@@ -529,7 +529,7 @@ void wxGenericPrintSetupDialog::Init(wxPrintData* data)
     if (res >= 0 && errors.GetCount() == 0)
     {
         size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < output.GetCount(); i++)
@@ -577,7 +577,7 @@ void wxGenericPrintSetupDialog::Init(wxPrintData* data)
                 tmp = tok2.GetNextToken();  // "printer"
                 tmp = tok2.GetNextToken();  // "hp_deskjet930c"
                 tmp = wxEmptyString;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 while (tok2.HasMoreTokens())
@@ -692,7 +692,7 @@ wxGenericPrintSetupDialog::~wxGenericPrintSetupDialog()
 void wxGenericPrintSetupDialog::OnPrinter(wxListEvent& event)
 {
     // Delete check mark
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (long item = 0; item < m_printerListCtrl->GetItemCount(); item++)
@@ -795,7 +795,7 @@ wxComboBox *wxGenericPrintSetupDialog::CreatePaperTypeChoice()
     wxString *choices = new wxString [n];
     size_t sel = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < n; i++)
@@ -856,7 +856,7 @@ wxGenericPageSetupDialog::wxGenericPageSetupDialog( wxWindow *parent,
     size_t      n = wxThePrintPaperDatabase->GetCount();
     wxString   *choices = new wxString [n];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < n; i++)
@@ -1058,7 +1058,7 @@ wxComboBox *wxGenericPageSetupDialog::CreatePaperTypeChoice(int *x, int *y)
     size_t      n = wxThePrintPaperDatabase->GetCount();
     wxString   *choices = new wxString [n];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < n; i++)

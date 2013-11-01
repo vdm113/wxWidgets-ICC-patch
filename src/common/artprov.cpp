@@ -200,7 +200,7 @@ wxArtProvider::~wxArtProvider()
 {
     if ( sm_providers )
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( !sm_providers->empty() )
@@ -229,7 +229,7 @@ wxArtProvider::~wxArtProvider()
     wxBitmap bmp;
     if ( !sm_cache->GetBitmap(hashId, &bmp) )
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (wxArtProvidersList::compatibility_iterator node = sm_providers->GetFirst();
@@ -309,7 +309,7 @@ wxIconBundle wxArtProvider::DoGetIconBundle(const wxArtID& id, const wxArtClient
     wxIconBundle iconbundle;
     if ( !sm_cache->GetIconBundle(hashId, &iconbundle) )
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (wxArtProvidersList::compatibility_iterator node = sm_providers->GetFirst();

@@ -106,7 +106,7 @@ main()
 		goto failure;
 	}
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < NTAGS; i++) {
@@ -145,7 +145,7 @@ main()
 		return 1;
 	}
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < NTAGS; i++) {

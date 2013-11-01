@@ -93,7 +93,7 @@ void WebTestCase::LoadUrl(int times)
 {
     //We alternate between urls as otherwise webkit merges them in the history
     //we use about and about blank to avoid the need for a network connection
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(int i = 0; i < times; i++)

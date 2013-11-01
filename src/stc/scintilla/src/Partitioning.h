@@ -2,7 +2,7 @@
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#   define MY_MACRO_PRAGMA_IVDEP
 #endif
 
 // Scintilla source code edit control
@@ -35,7 +35,7 @@ public:
 		int part1Left = part1Length - start;
 		if (range1Length > part1Left)
 			range1Length = part1Left;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (i < range1Length) {
@@ -43,7 +43,7 @@ public:
 			i++;
 		}
 		start += gapLength;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (i < rangeLength) {
@@ -178,7 +178,7 @@ public:
 			return body->Length() - 1 - 1;
 		int lower = 0;
 		int upper = body->Length()-1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		do {

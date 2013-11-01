@@ -2,7 +2,7 @@
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#   define MY_MACRO_PRAGMA_IVDEP
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -46,7 +46,7 @@ public:
 
         if ( argv )
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while ( *argv )
@@ -62,7 +62,7 @@ public:
         {
             const size_t count = m_args.size();
             m_argsA = new char *[count];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( size_t n = 0; n < count; n++ )
@@ -78,7 +78,7 @@ public:
         {
             const size_t count = m_args.size();
             m_argsW = new wchar_t *[count];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( size_t n = 0; n < count; n++ )
@@ -135,7 +135,7 @@ private:
             return;
 
         const size_t count = m_args.size();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < count; n++ )

@@ -435,7 +435,7 @@ wxGUIAppTraits::GetStandardCmdLineOptions(wxArrayString& names,
         unsigned int n_entries = ((_GOptionGroup*)gtkOpts)->n_entries;
         wxArrayString namesOptions, descOptions;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < n_entries; n++ )

@@ -313,7 +313,7 @@ struct wxMSWCommandLineArguments
 
         // +1 here for the terminating NULL
         argv = new wxChar *[argc + 1];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = 0; i < argc; i++ )
@@ -330,7 +330,7 @@ struct wxMSWCommandLineArguments
         if ( !argc )
             return;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = 0; i < argc; i++ )

@@ -102,7 +102,7 @@ TIFFDefaultTransferFunction(TIFFDirectory* td)
 	if (!(tf[0] = (uint16 *)_TIFFmalloc(nbytes)))
 		return 0;
 	tf[0][0] = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 1; i < n; i++) {
@@ -151,7 +151,7 @@ TIFFDefaultRefBlackWhite(TIFFDirectory* td)
 		/*
 		 * Assume RGB (Class R)
 		 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (i = 0; i < 3; i++) {

@@ -70,7 +70,7 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((c = getopt(argc, argv, "ltz:")) != -1)
@@ -97,7 +97,7 @@ main(int argc, char* argv[])
 	if (tif2 == NULL)
 		return (-2);
 	dirnum = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (tiffcmp(tif1, tif2)) {
@@ -137,7 +137,7 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; stuff[i] != NULL; i++)
@@ -195,13 +195,13 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 #define	pack(a,b)	((a)<<8)|(b)
 	switch (pack(config1, config2)) {
 	case pack(PLANARCONFIG_SEPARATE, PLANARCONFIG_CONTIG):
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (row = 0; row < imagelength; row++) {
 			if (TIFFReadScanline(tif2, buf2, row, 0) < 0)
 				checkEOF(tif2, row, -1)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (s = 0; s < samplesperpixel; s++) {
@@ -213,13 +213,13 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 		}
 		break;
 	case pack(PLANARCONFIG_CONTIG, PLANARCONFIG_SEPARATE):
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (row = 0; row < imagelength; row++) {
 			if (TIFFReadScanline(tif1, buf1, row, 0) < 0)
 				checkEOF(tif1, row, -1)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (s = 0; s < samplesperpixel; s++) {
@@ -231,11 +231,11 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 		}
 		break;
 	case pack(PLANARCONFIG_SEPARATE, PLANARCONFIG_SEPARATE):
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (s = 0; s < samplesperpixel; s++)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (row = 0; row < imagelength; row++) {
@@ -248,7 +248,7 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 			}
 		break;
 	case pack(PLANARCONFIG_CONTIG, PLANARCONFIG_CONTIG):
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (row = 0; row < imagelength; row++) {
@@ -358,13 +358,13 @@ ContigCompare(int sample, uint32 row,
       {
           unsigned char *pix1 = p1, *pix2 = p2;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
           for (pix = 0; pix < imagewidth; pix += ppb) {
               int		s;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
               for(s = 0; s < samples_to_test; s++) {
@@ -385,13 +385,13 @@ ContigCompare(int sample, uint32 row,
       {
           uint16 *pix1 = (uint16 *)p1, *pix2 = (uint16 *)p2;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
           for (pix = 0; pix < imagewidth; pix++) {
               int	s;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
               for(s = 0; s < samples_to_test; s++) {
@@ -409,13 +409,13 @@ ContigCompare(int sample, uint32 row,
 	    || sampleformat == SAMPLEFORMAT_INT) {
 		uint32 *pix1 = (uint32 *)p1, *pix2 = (uint32 *)p2;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (pix = 0; pix < imagewidth; pix++) {
 			int	s;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for(s = 0; s < samples_to_test; s++) {
@@ -431,13 +431,13 @@ ContigCompare(int sample, uint32 row,
 	} else if (sampleformat == SAMPLEFORMAT_IEEEFP) {
 		float *pix1 = (float *)p1, *pix2 = (float *)p2;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (pix = 0; pix < imagewidth; pix++) {
 			int	s;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for(s = 0; s < samples_to_test; s++) {
@@ -479,7 +479,7 @@ PrintIntDiff(uint32 row, int sample, uint32 pix, uint32 w1, uint32 w2)
 		mask1 =  ~((-1) << bitspersample);
 		s = (8 - bitspersample);
 		mask2 = mask1 << s;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (; mask2 && pix < imagewidth;
@@ -549,7 +549,7 @@ SeparateCompare(int reversed, int sample, uint32 row,
 	int pixel;
 
 	cp1 += sample;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (pixel = 0; npixels-- > 0; pixel++, cp1 += samplesperpixel, p2++) {
@@ -643,14 +643,14 @@ CheckShortArrayTag(TIFF* tif1, TIFF* tif2, int tag, char* name)
 				return (1);
 			printf("%s: value mismatch, <%u:", name, n1);
 			sep = "";
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (i = 0; i < n1; i++)
 				printf("%s%u", sep, a1[i]), sep = ",";
 			printf("> and <%u: ", n2);
 			sep = "";
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (i = 0; i < n2; i++)

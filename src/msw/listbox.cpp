@@ -106,7 +106,7 @@ bool wxListBox::Create(wxWindow *parent,
     }
 
     // initialize the contents
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < n; i++ )
@@ -355,7 +355,7 @@ int wxListBox::GetSelections(wxArrayInt& aSelections) const
             else
             {
                 aSelections.Alloc(countSel);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( int n = 0; n < countSel; n++ )
@@ -420,7 +420,7 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
     int n = wxNOT_FOUND;
 
     const unsigned int numItems = items.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int i = 0; i < numItems; i++ )
@@ -527,7 +527,7 @@ void wxListBox::SetHorizontalExtent(const wxString& s)
     if ( s.empty() )
     {
         // set extent to the max length of all strings
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned int i = 0; i < m_noItems; i++ )
@@ -562,7 +562,7 @@ wxSize wxListBox::DoGetBestClientSize() const
     // find the widest string
     int wLine;
     int wListbox = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = 0; i < m_noItems; i++)
@@ -655,7 +655,7 @@ bool wxListBox::SetFont(const wxFont &font)
     if ( HasFlag(wxLB_OWNERDRAW) )
     {
         const unsigned count = m_aItems.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned i = 0; i < count; i++ )

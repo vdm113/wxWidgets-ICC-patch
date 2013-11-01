@@ -612,7 +612,7 @@ wxLogLevel wxLog::GetComponentLevel(wxString component)
     wxCRIT_SECT_LOCKER(lock, GetLevelsCS());
 
     const wxStringToNumHashMap& componentLevels = GetComponentLevels();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( !component.empty() )
@@ -689,7 +689,7 @@ void wxLog::ClearTraceMasks()
     wxCRIT_SECT_LOCKER(lock, GetTraceMaskCS());
 
     const wxArrayString& masks = GetTraceMasks();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxArrayString::const_iterator it = masks.begin(),
@@ -757,7 +757,7 @@ void wxLog::FlushThreadMessages()
 
     if ( !bufferedLogRecords.empty() )
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxLogRecords::const_iterator it = bufferedLogRecords.begin();
@@ -1036,11 +1036,11 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
     fputs(pszPrefix, f);
 
     size_t n;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( *psz != '\0' ) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( n = nStart; (n < nMax) && (*psz != '\0'); n++ )
@@ -1049,14 +1049,14 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
         // wrapped?
         if ( *psz != '\0' ) {
             /*putc('\n', f);*/
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( n = 0; n < nStart; n++ )
                 putc(' ', f);
 
             // as we wrapped, squeeze all white space
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while ( isspace(*psz) )

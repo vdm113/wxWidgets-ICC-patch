@@ -384,7 +384,7 @@ bool wxDebugReportDialog::TransferDataToWindow()
 {
     // all files are included in the report by default
     const size_t count = m_dbgrpt.GetFilesCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -407,7 +407,7 @@ bool wxDebugReportDialog::TransferDataFromWindow()
 {
     // any unchecked files should be removed from the report
     const size_t count = m_checklst->GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )

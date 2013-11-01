@@ -185,7 +185,7 @@ FileConfigTestCase::CheckGroupEntries(const wxFileConfig& fc,
 
     long cookie;
     wxString name;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( bool cont = fc.GetFirstEntry(name, cookie);
@@ -215,7 +215,7 @@ FileConfigTestCase::CheckGroupSubgroups(const wxFileConfig& fc,
 
     long cookie;
     wxString name;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( bool cont = fc.GetFirstGroup(name, cookie);

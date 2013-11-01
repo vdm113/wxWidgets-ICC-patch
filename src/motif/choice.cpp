@@ -88,7 +88,7 @@ bool wxChoice::Create(wxWindow *parent, wxWindowID id,
     if (n > 0)
     {
         int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < n; i++)
@@ -192,7 +192,7 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter& items,
 
     const unsigned int numItems = items.GetCount();
     AllocClientData(numItems);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( unsigned int i = 0; i < numItems; ++i, ++pos )
@@ -259,7 +259,7 @@ void wxChoice::DoClear()
     m_stringArray.Clear();
 
     unsigned int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < m_stringArray.GetCount(); i++)
@@ -292,7 +292,7 @@ int wxChoice::GetSelection() const
 
     if (!s.empty())
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i=0; i<m_stringArray.GetCount(); i++)
@@ -378,7 +378,7 @@ void wxChoice::DoSetSize(int x, int y, int width, int height, int sizeFlags)
     if (width > -1)
     {
         unsigned int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < m_stringArray.GetCount(); i++)
@@ -392,7 +392,7 @@ void wxChoice::DoSetSize(int x, int y, int width, int height, int sizeFlags)
     {
 #if 0
         unsigned int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < m_stringArray.GetCount(); i++)
@@ -461,7 +461,7 @@ void wxChoice::ChangeFont(bool keepOriginalSize)
                        fontTag, m_font.GetFontTypeC(dpy),
                        NULL);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for( unsigned int i = 0; i < m_stringArray.GetCount(); ++i )
@@ -483,7 +483,7 @@ void wxChoice::ChangeBackgroundColour()
     wxDoChangeBackgroundColour(m_buttonWidget, m_backgroundColour);
     wxDoChangeBackgroundColour(m_menuWidget, m_backgroundColour);
     unsigned int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < m_stringArray.GetCount(); i++)
@@ -496,7 +496,7 @@ void wxChoice::ChangeForegroundColour()
     wxDoChangeForegroundColour(m_buttonWidget, m_foregroundColour);
     wxDoChangeForegroundColour(m_menuWidget, m_foregroundColour);
     unsigned int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < m_stringArray.GetCount(); i++)
@@ -520,7 +520,7 @@ wxSize wxChoice::GetItemsSize() const
     // get my
     GetTextExtent( "|", &x, &my );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i=0; i<m_stringArray.GetCount(); i++)

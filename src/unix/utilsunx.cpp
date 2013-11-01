@@ -408,7 +408,7 @@ public:
     {
         Init(args.size());
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = 0; i < m_argc; i++ )
@@ -421,7 +421,7 @@ public:
     ArgsArray(wchar_t **wargv)
     {
         int argc = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( wargv[argc] )
@@ -429,7 +429,7 @@ public:
 
         Init(argc);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = 0; i < m_argc; i++ )
@@ -441,7 +441,7 @@ public:
 
     ~ArgsArray()
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = 0; i < m_argc; i++ )
@@ -561,7 +561,7 @@ int BlockUntilChildExit(wxExecuteData& execData)
 #endif // wxUSE_STREAMS
 
     // And dispatch until the PID is reset from wxExecuteData::OnExit().
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( execData.pid )
@@ -728,7 +728,7 @@ long wxExecute(char **argv, int flags, wxProcess *process,
         //
         //     Application Specific Information:
         //     BUG IN CLIENT OF LIBDISPATCH: Do not close random Unix descriptors
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int fd = 0; fd < (int)FD_SETSIZE; ++fd )
@@ -765,7 +765,7 @@ long wxExecute(char **argv, int flags, wxProcess *process,
 
                 // Remove unwanted variables
                 wxEnvVariableHashMap::const_iterator it;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( it = oldenv.begin(); it != oldenv.end(); ++it )
@@ -775,7 +775,7 @@ long wxExecute(char **argv, int flags, wxProcess *process,
                 }
 
                 // And add the new ones (possibly replacing the old values)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( it = env->env.begin(); it != env->env.end(); ++it )
@@ -786,7 +786,7 @@ long wxExecute(char **argv, int flags, wxProcess *process,
         execvp(*argv, argv);
 
         fprintf(stderr, "execvp(");
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( char **a = argv; *a; a++ )
@@ -974,7 +974,7 @@ wxGetCommandOutput(const wxString &cmd, wxMBConv& conv = wxConvISO8859_1)
 
     wxString s;
     char buf[256];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( !feof(f) )
@@ -1308,7 +1308,7 @@ public:
     virtual bool OnInit() { return true; }
     virtual void OnExit()
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxEnvVars::const_iterator i = gs_envVars.begin();
@@ -1548,7 +1548,7 @@ bool CheckForChildExit(int pid, int* exitcodeOut)
     int status, rc;
 
     // loop while we're getting EINTR
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )
@@ -1613,7 +1613,7 @@ void wxExecuteData::OnSomeChildExited(int WXUNUSED(sig))
     // Make a copy of the list before iterating over it to avoid problems due
     // to deleting entries from it in the process.
     const ChildProcessesData allChildProcesses = ms_childProcesses;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ChildProcessesData::const_iterator it = allChildProcesses.begin();

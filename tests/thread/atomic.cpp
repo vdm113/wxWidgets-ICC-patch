@@ -100,7 +100,7 @@ void AtomicTestCase::TestNoThread()
     wxAtomicInt int1 = 0,
                 int2 = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxInt32 i = 0; i < ITERATIONS_NUM; ++i )
@@ -131,7 +131,7 @@ void AtomicTestCase::TestWithThreads(int count, ETestType testType)
     wxArrayThread  threads;
 
     int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < count; ++i )
@@ -157,7 +157,7 @@ void AtomicTestCase::TestWithThreads(int count, ETestType testType)
             threads.Add(thread);
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < count; ++i )
@@ -166,7 +166,7 @@ void AtomicTestCase::TestWithThreads(int count, ETestType testType)
     }
 
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < count; ++i )
@@ -184,7 +184,7 @@ void *AtomicTestCase::MyThread::Entry()
 {
     wxInt32 negativeValuesSeen = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxInt32 i = 0; i < ITERATIONS_NUM; ++i )

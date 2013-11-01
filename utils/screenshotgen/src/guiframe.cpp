@@ -237,7 +237,7 @@ void GUIFrame::AddPanel_2()
     m_listCtrl1 = new wxListCtrl( m_panel2, wxID_ANY, wxDefaultPosition, wxSize(220,120), wxLC_REPORT|wxSUNKEN_BORDER );
     m_listCtrl1->InsertColumn(0, "Names");
     m_listCtrl1->InsertColumn(1, "Values");
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(long index = 0; index < 5; index++) {

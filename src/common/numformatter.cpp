@@ -245,7 +245,7 @@ void wxNumberFormatter::AddThousandsSeparators(wxString& s)
     // wxLocale level first and then used here in the future (TODO).
     const size_t GROUP_LEN = 3;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( pos > start + GROUP_LEN )

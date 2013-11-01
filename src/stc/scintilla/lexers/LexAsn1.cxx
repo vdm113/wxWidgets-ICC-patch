@@ -57,7 +57,7 @@ static void ColouriseAsn1Doc(unsigned int startPos, int length, int initStyle, W
 
 	// Parse the whole buffer character by character using StyleContext
 	StyleContext sc(startPos, length, initStyle, styler);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward())
@@ -130,7 +130,7 @@ asn1_default:
 			if (sc.ch == '{')
 			{
 				// An OID definition starts here: enter the sub loop
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (; sc.More(); sc.Forward())
@@ -152,7 +152,7 @@ asn1_default:
 			else if (isAsn1Number (sc.ch))
 			{
 				// A trap number definition starts here: enter the sub loop
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (; sc.More(); sc.Forward())

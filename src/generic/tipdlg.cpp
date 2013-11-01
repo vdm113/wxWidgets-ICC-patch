@@ -162,7 +162,7 @@ wxString wxFileTipProvider::GetTip()
     // textfile so that can't go into an eternal loop in the [oddball]
     // case of a comment-only tips file, or the developer has vetoed
     // them all via PreprecessTip().
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i=0; i < count; i++ )

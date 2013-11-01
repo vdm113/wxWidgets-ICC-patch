@@ -98,7 +98,7 @@ void wxHtmlWinAutoScrollTimer::Notify()
             // the mouse event coordinates should be client, not screen as
             // returned by wxGetMousePosition
             wxWindow *parentTop = m_win;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while ( parentTop->GetParent() )
@@ -450,7 +450,7 @@ bool wxHtmlWindow::DoSetPage(const wxString& source)
         //     decreasing priority, we "merge-sort" the lists on-line by
         //     processing that one of the two heads that has higher priority
         //     in every iteration
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (nodeL || nodeG)
@@ -585,7 +585,7 @@ bool wxHtmlWindow::LoadPage(const wxString& location)
 #endif // wxUSE_STATUSBAR
 
             node = m_Filters.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while (node)
@@ -632,7 +632,7 @@ bool wxHtmlWindow::LoadPage(const wxString& location)
             (*m_History)[m_HistoryPos].GetAnchor() != m_OpenedAnchor)
         {
             m_HistoryPos++;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i = 0; i < c; i++)
@@ -678,7 +678,7 @@ bool wxHtmlWindow::ScrollToAnchor(const wxString& anchor)
         // there's better chance of using a suitable cell for upper Y
         // coordinate value. See bug #11406 for additional discussion.
         const wxHtmlCell *c_save = c;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( c && c->IsFormattingCell() )
@@ -688,7 +688,7 @@ bool wxHtmlWindow::ScrollToAnchor(const wxString& anchor)
 
         int y;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (y = 0; c != NULL; c = c->GetParent()) y += c->GetPosY();
@@ -837,7 +837,7 @@ void wxHtmlWindow::ReadCustomization(wxConfigBase *cfg, wxString path)
     m_Borders = cfg->Read(wxT("wxHtmlWindow/Borders"), m_Borders);
     p_fff = cfg->Read(wxT("wxHtmlWindow/FontFaceFixed"), m_Parser->m_FontFaceFixed);
     p_ffn = cfg->Read(wxT("wxHtmlWindow/FontFaceNormal"), m_Parser->m_FontFaceNormal);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < 7; i++)
@@ -867,7 +867,7 @@ void wxHtmlWindow::WriteCustomization(wxConfigBase *cfg, wxString path)
     cfg->Write(wxT("wxHtmlWindow/Borders"), (long) m_Borders);
     cfg->Write(wxT("wxHtmlWindow/FontFaceFixed"), m_Parser->m_FontFaceFixed);
     cfg->Write(wxT("wxHtmlWindow/FontFaceNormal"), m_Parser->m_FontFaceNormal);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < 7; i++)
@@ -960,7 +960,7 @@ void wxHtmlWindow::AddProcessor(wxHtmlProcessor *processor)
     }
     wxHtmlProcessorList::compatibility_iterator node;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (node = m_Processors->GetFirst(); node; node = node->GetNext())
@@ -982,7 +982,7 @@ void wxHtmlWindow::AddProcessor(wxHtmlProcessor *processor)
     }
     wxHtmlProcessorList::compatibility_iterator node;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (node = m_GlobalProcessors->GetFirst(); node; node = node->GetNext())
@@ -1026,7 +1026,7 @@ wxString wxHtmlWindow::DoSelectionToText(wxHtmlSelection *sel)
     wxHtmlTerminalCellsInterator i(sel->GetFromCell(), sel->GetToCell());
     const wxHtmlCell *prev = NULL;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( i )
@@ -1129,12 +1129,12 @@ void wxHtmlWindow::DoEraseBackground(wxDC& dc)
         // draw the background bitmap tiling it over the entire window area
         const wxSize sz = GetVirtualSize();
         const wxSize sizeBmp(m_bmpBg.GetWidth(), m_bmpBg.GetHeight());
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxCoord x = 0; x < sz.x; x += sizeBmp.x )
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( wxCoord y = 0; y < sz.y; y += sizeBmp.y )
@@ -1654,7 +1654,7 @@ void wxHtmlWindow::SelectLine(const wxPoint& pos)
             const wxHtmlCell *after = NULL;
 
             // find last cell of line:
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( c = cell->GetNext(); c; c = c->GetNext())
@@ -1669,7 +1669,7 @@ void wxHtmlWindow::SelectLine(const wxPoint& pos)
                 after = cell;
 
             // find first cell of line:
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( c = cell->GetParent()->GetFirstChild();

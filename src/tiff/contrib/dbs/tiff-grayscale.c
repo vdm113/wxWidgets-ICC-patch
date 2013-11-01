@@ -77,7 +77,7 @@ int main(int argc, char **argv)
     gray = (uint16 *) malloc(cmsize * sizeof(uint16));
 
     gray[0] = 3000;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 1; i < cmsize; i++)
@@ -106,11 +106,11 @@ int main(int argc, char **argv)
 
     scan_line = (unsigned char *) malloc(WIDTH / (8 / bits_per_pixel));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < HEIGHT; i++) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 0, k = 0; j < WIDTH;) {

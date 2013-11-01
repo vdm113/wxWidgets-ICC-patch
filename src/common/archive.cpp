@@ -85,7 +85,7 @@ void wxArchiveClassFactory::Remove()
     {
         wxArchiveClassFactory **pp = &sm_first;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (*pp != this)

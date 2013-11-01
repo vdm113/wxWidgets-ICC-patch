@@ -346,7 +346,7 @@ bool Server::OnInit()
 
 int Server::OnExit()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( TList::compatibility_iterator it = m_threadWorkers.GetFirst();
@@ -357,7 +357,7 @@ int Server::OnExit()
         delete it->GetData();
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( EList::compatibility_iterator it2 = m_eventWorkers.GetFirst();
@@ -435,7 +435,7 @@ void Server::OnSocketEvent(wxSocketEvent& pEvent)
 void  Server::OnWorkerEvent(WorkerEvent& pEvent)
 {
     //wxLogMessage("Got worker event");
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(TList::compatibility_iterator it = m_threadWorkers.GetFirst(); it ; it = it->GetNext())
@@ -454,7 +454,7 @@ void  Server::OnWorkerEvent(WorkerEvent& pEvent)
             break;
         }
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(EList::compatibility_iterator it2 = m_eventWorkers.GetFirst(); it2 ; it2 = it2->GetNext())
@@ -516,7 +516,7 @@ wxThread::ExitCode ThreadWorker::Entry()
         unsigned char signature[2];
         LogWorker("ThreadWorker: reading for data");
         to_process = 2;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         do
@@ -532,7 +532,7 @@ wxThread::ExitCode ThreadWorker::Entry()
             LogWorker(wxString::Format("to_process: %d",to_process));
 
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (!m_socket->Error() && to_process != 0);
@@ -557,7 +557,7 @@ wxThread::ExitCode ThreadWorker::Entry()
         to_process = size;
         LogWorker(wxString::Format("ThreadWorker: reading %d bytes of data",to_process));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         do
@@ -573,14 +573,14 @@ wxThread::ExitCode ThreadWorker::Entry()
             LogWorker(wxString::Format("ThreadWorker: %d bytes readed, %d todo",m_socket->LastCount(),to_process));
 
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while(!m_socket->Error() && to_process != 0);
 
         to_process = size;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         do
@@ -594,7 +594,7 @@ wxThread::ExitCode ThreadWorker::Entry()
            to_process -= m_socket->LastCount();
            LogWorker(wxString::Format("ThreadWorker: %d bytes written, %d todo",m_socket->LastCount(),to_process));
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while(!m_socket->Error() && to_process != 0);
@@ -634,7 +634,7 @@ EventWorker::DoRead()
     if (m_inbuf == NULL)
     {
         //read message header
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         do
@@ -680,7 +680,7 @@ EventWorker::DoRead()
                 }
             }
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while(!m_socket->Error() && (2 - m_infill != 0));
@@ -689,7 +689,7 @@ EventWorker::DoRead()
     if (m_inbuf == NULL)
         return;
     //read message data
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -722,7 +722,7 @@ EventWorker::DoRead()
             DoWrite();
         }
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while(!m_socket->Error());
@@ -758,7 +758,7 @@ void EventWorker::OnSocketEvent(wxSocketEvent& pEvent)
 
 void  EventWorker::DoWrite()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -801,7 +801,7 @@ void  EventWorker::DoWrite()
         LogWorker(wxString::Format("Written %d of %d bytes, todo %d",
                   m_socket->LastCount(),m_size,m_size - m_written));
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (!m_socket->Error());

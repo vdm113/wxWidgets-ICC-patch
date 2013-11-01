@@ -63,7 +63,7 @@ static inline unsigned IsOperator( StyleContext & sc, WordList & op ) {
 	s[0] = sc.ch;
 	s[1] = sc.chNext;
 	s[2] = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for( i = 0; i < op.len; i++ ) {
@@ -73,7 +73,7 @@ static inline unsigned IsOperator( StyleContext & sc, WordList & op ) {
 		}
 	}
 	s[1] = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for( i = 0; i < op.len; i++ ) {
@@ -100,7 +100,7 @@ static inline bool checkStatement(
 	const char *stt, bool spaceAfter = true ) {
 	int len = static_cast<int>(strlen( stt ));
 	int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for( i = 0; i < len; i++ ) {
@@ -124,7 +124,7 @@ static inline bool checkEndSemicolon(
 	const char *stt = "END";
 	int len = static_cast<int>(strlen( stt ));
 	int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for( i = 0; i < len; i++ ) {
@@ -132,7 +132,7 @@ static inline bool checkEndSemicolon(
 			return false;
 		}
 	}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while( isspace( styler.SafeGetCharAt( curPos + i ) ) ) {
@@ -162,7 +162,7 @@ static inline bool checkKeyIdentOper(
 	newPos++;
 	if( newPos >= endPos )
 		return false;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while( isspace( styler.SafeGetCharAt( newPos ) ) ) {
@@ -177,7 +177,7 @@ static inline bool checkKeyIdentOper(
 		return false;
 	char ch;
 	ch = styler.SafeGetCharAt( newPos );
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while( isalpha( ch ) || isdigit( ch ) || ch == '_' ) {
@@ -185,7 +185,7 @@ static inline bool checkKeyIdentOper(
 		if( newPos >= endPos ) return false;
 		ch = styler.SafeGetCharAt( newPos );
 	}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while( isspace( styler.SafeGetCharAt( newPos ) ) ) {
@@ -213,7 +213,7 @@ static void FoldModulaDoc( unsigned int startPos,
 	int visChars = 0;
 	int nextLevel = curLevel;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while( curPos < endPos ) {
@@ -282,7 +282,7 @@ static void FoldModulaDoc( unsigned int startPos,
 				int pos;
 				char ch;
 				int clv_new;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				while( cln > 0 ) {
@@ -290,7 +290,7 @@ static void FoldModulaDoc( unsigned int startPos,
 					if( clv_new < clv_old ) {
 						nextLevel--;
 						pos = styler.LineStart( cln );
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 						while( ( ch = styler.SafeGetCharAt( pos ) ) != '\n' ) {
@@ -316,7 +316,7 @@ static void FoldModulaDoc( unsigned int startPos,
 			if( checkEndSemicolon( styler, curPos, endPos ) )
 				nextLevel--;
 			else {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				while( styler.StyleAt( curPos + 1 ) == SCE_MODULA_KEYWORD )
@@ -351,7 +351,7 @@ static void FoldModulaDoc( unsigned int startPos,
 }
 
 static inline bool skipWhiteSpaces( StyleContext & sc ) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while( isspace( sc.ch ) ) {
@@ -385,7 +385,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 
 	StyleContext sc( startPos, length, initStyle, styler );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while( sc.More() ) 	{
@@ -405,7 +405,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 			else
 			if( isalpha( sc.ch ) ) {
 				if( isupper( sc.ch ) && isupper( sc.chNext ) ) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 					for( i = 0; i < BUFLEN - 1; i++ ) {
@@ -432,7 +432,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 						/** check procedure identifier */
 					}
 				} else {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 					for( i = 0; i < BUFLEN - 1; i++ ) {
@@ -501,7 +501,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 
 			case '@':
 				if( islower( sc.chNext ) ) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 					for( i = 0; i < BUFLEN - 1; i++ ) {
@@ -527,7 +527,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 		case SCE_MODULA_NUMBER:
 			{
 				buf[0] = sc.ch;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for( i = 1; i < BUFLEN - 1; i++ ) {
@@ -548,7 +548,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 							int imax;
 
 							kl++;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 							for( i = 0; i < BUFLEN - 1; i++ ) {
@@ -558,7 +558,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 								}
 							}
 							imax = i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 							for( i = 0; i < imax; i++ ) {
@@ -570,7 +570,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 							kl += imax;
 						}
 						sc.SetState( SCE_MODULA_BASENUM );
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 						for( i = 0; i < kl; i++ ) {
@@ -584,7 +584,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 				case '.':
 					if( sc.GetRelative(kl+1) == '.' ) {
 						kl--;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 						for( i = 0; i < kl; i++ ) {
@@ -600,7 +600,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 
 						buf[0] = sc.GetRelative(kl);
 						if( isdigit( buf[0] ) ) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 							for( i = 0;; i++ ) {
@@ -625,7 +625,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 								}
 								buf[0] = sc.GetRelative(kl);
 								if( isdigit( buf[0] ) ) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 									for( i = 0;; i++ ) {
@@ -670,7 +670,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 						}
 					}
 					sc.SetState( SCE_MODULA_FLOAT );
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 					for( i = 0; i < kl; i++ ) {
@@ -681,7 +681,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 					break;
 
 				default:
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 					for( i = 0; i < kl; i++ ) {
@@ -703,7 +703,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 				if( sc.ch == '\\' ) {
 					i = 1;
 					if( IsDigitOfBase( sc.chNext, 8 ) ) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 						for( i = 1; i < BUFLEN - 1; i++ ) {
@@ -743,7 +743,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 				if( sc.ch == '\\' ) {
 					i = 1;
 					if( IsDigitOfBase( sc.chNext, 8 ) ) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 						for( i = 1; i < BUFLEN - 1; i++ ) {
@@ -788,7 +788,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 			if( isupper( sc.ch ) && isupper( sc.chNext ) ) {
 				buf[0] = sc.ch;
 				buf[1] = sc.chNext;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for( i = 2; i < BUFLEN - 1; i++ ) {

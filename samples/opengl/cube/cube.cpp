@@ -55,7 +55,7 @@ static void CheckGLError()
 {
     GLenum errLast = GL_NO_ERROR;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )
@@ -161,7 +161,7 @@ TestGLContext::TestGLContext(wxGLCanvas *canvas)
     // each texture could take many megabytes)
     glGenTextures(WXSIZEOF(m_textures), m_textures);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned i = 0; i < WXSIZEOF(m_textures); i++ )
@@ -335,7 +335,7 @@ TestGLCanvas::TestGLCanvas(wxWindow *parent, int *attribList)
     if ( attribList )
     {
         int i = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( attribList[i] != 0 )

@@ -456,7 +456,7 @@ bool wxConsoleStderr::DoInit()
     // we decide that a line is empty if first 4 characters are spaces
     DWORD ret;
     char buf[4];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -670,7 +670,7 @@ const wxChar *wxApp::GetRegisteredClassName(const wxChar *name,
                                             int extraStyles)
 {
     const size_t count = gs_regClassesInfo.size();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -721,7 +721,7 @@ const wxChar *wxApp::GetRegisteredClassName(const wxChar *name,
 bool wxApp::IsRegisteredClassName(const wxString& name)
 {
     const size_t count = gs_regClassesInfo.size();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -737,7 +737,7 @@ bool wxApp::IsRegisteredClassName(const wxString& name)
 void wxApp::UnregisterWindowClasses()
 {
     const size_t count = gs_regClassesInfo.size();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )

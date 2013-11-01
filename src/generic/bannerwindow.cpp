@@ -193,7 +193,7 @@ void wxBannerWindow::OnPaint(wxPaintEvent& WXUNUSED(event))
 
         wxArrayString lines = wxSplit(m_message, '\n', '\0');
         const unsigned numLines = lines.size();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned n = 0; n < numLines; n++ )

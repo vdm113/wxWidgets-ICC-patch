@@ -247,7 +247,7 @@ gtk_listbox_button_press_callback( GtkWidget *widget,
             listbox->m_blockEvent = true;
 
             int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < (int)listbox->GetCount(); i++)
@@ -443,7 +443,7 @@ gtk_listbox_realized_callback( GtkWidget *WXUNUSED(widget), wxListBox *win )
         wxapp_install_idle_handler();
 
     GList *child = win->m_list->children;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (child = win->m_list->children; child != NULL; child = child->next)
@@ -597,7 +597,7 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter& items,
 
     const unsigned numItems = items.GetCount();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int n = 0; n < numItems; ++n, ++pos )
@@ -844,7 +844,7 @@ int wxListBox::FindString( const wxString &item, bool bCase ) const
 
     GList *child = m_list->children;
     int count = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (child)
@@ -871,7 +871,7 @@ int wxListBox::GetSelection() const
 
     GList *child = m_list->children;
     int count = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (child)
@@ -890,7 +890,7 @@ int wxListBox::GetSelections( wxArrayInt& aSelections ) const
     // get the number of selected items first
     GList *child = m_list->children;
     int count = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (child = m_list->children; child != NULL; child = child->next)
@@ -906,7 +906,7 @@ int wxListBox::GetSelections( wxArrayInt& aSelections ) const
         // now fill the list
         aSelections.Alloc(count); // optimization attempt
         int i = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (child = m_list->children; child != NULL; child = child->next, i++)
@@ -996,7 +996,7 @@ int wxListBox::GtkGetIndex( GtkWidget *item ) const
     {
         GList *child = m_list->children;
         int count = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (child)
@@ -1013,7 +1013,7 @@ int wxListBox::GtkGetIndex( GtkWidget *item ) const
 void wxListBox::ApplyToolTip( GtkTooltips *tips, const wxChar *tip )
 {
     GList *child = m_list->children;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (child)
@@ -1050,7 +1050,7 @@ void wxListBox::DoApplyWidgetStyle(GtkRcStyle *style)
     }
 
     GList *child = m_list->children;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (child)
@@ -1080,7 +1080,7 @@ void wxListBox::OnInternalIdle()
         gdk_window_set_cursor( GTK_WIDGET(m_list)->window, cursor.GetCursor() );
 
         GList *child = m_list->children;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (child)
@@ -1117,7 +1117,7 @@ wxSize wxListBox::DoGetBestSize() const
     int wLine;
 
     // Find the widest line
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(unsigned int i = 0; i < GetCount(); i++) {

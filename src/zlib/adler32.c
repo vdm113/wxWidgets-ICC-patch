@@ -94,7 +94,7 @@ uLong ZEXPORT adler32(adler, buf, len)
 
     /* in case short lengths are provided, keep it somewhat fast */
     if (len < 16) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (len--) {
@@ -108,13 +108,13 @@ uLong ZEXPORT adler32(adler, buf, len)
     }
 
     /* do length NMAX blocks -- requires just one modulo operation */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (len >= NMAX) {
         len -= NMAX;
         n = NMAX / 16;          /* NMAX is divisible by 16 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         do {
@@ -127,7 +127,7 @@ uLong ZEXPORT adler32(adler, buf, len)
 
     /* do remaining bytes (less than NMAX, still just one modulo) */
     if (len) {                  /* avoid modulos if none remaining */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (len >= 16) {
@@ -135,7 +135,7 @@ uLong ZEXPORT adler32(adler, buf, len)
             DO16(buf);
             buf += 16;
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (len--) {

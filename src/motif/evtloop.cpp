@@ -106,7 +106,7 @@ int wxGUIEventLoop::DoRun()
     m_impl = new wxEventLoopImpl;
     m_impl->SetKeepGoing( true );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( ;; )
@@ -138,7 +138,7 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
     m_isInsideYield = true;
     m_eventsToProcessInsideYield = eventsToProcess;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (wxTheApp && wxTheApp->Pending())
@@ -243,7 +243,7 @@ void ProcessXEvent(XEvent* event)
 
         //  to avoid flicker
         report = * event;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while( XCheckTypedWindowEvent (disp, win, ResizeRequest, &report));
@@ -271,7 +271,7 @@ bool CheckForAccelerator(XEvent* event)
         wxWindow* win = NULL;
 
         // Find the first wxWindow that corresponds to this event window
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
@@ -286,7 +286,7 @@ bool CheckForAccelerator(XEvent* event)
         // Now we have a wxKeyEvent and we have a wxWindow.
         // Go up the hierarchy until we find a matching accelerator,
         // or we get to the top.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (win)
@@ -311,7 +311,7 @@ bool CheckForKeyDown(XEvent* event)
         wxWindow* win = NULL;
 
         // Find the first wxWindow that corresponds to this event window
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
@@ -340,7 +340,7 @@ bool CheckForKeyUp(XEvent* event)
         wxWindow* win = NULL;
 
         // Find the first wxWindow that corresponds to this event window
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
@@ -366,7 +366,7 @@ bool wxDoEventLoopIteration( wxGUIEventLoop& evtLoop )
 {
     bool moreRequested, pendingEvents;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(;;)
@@ -444,7 +444,7 @@ static void wxInputCallback( XtPointer, int* fd, XtInputId* )
     char buffer[128];
 
     // wxWakeUpIdle may have been called more than once
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(;;)

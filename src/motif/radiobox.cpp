@@ -115,7 +115,7 @@ bool wxRadioBox::Create(wxWindow *parent, wxWindowID id, const wxString& title,
     m_radioButtonLabels.reserve(n);
 
     int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < n; i++)
@@ -197,7 +197,7 @@ void wxRadioBox::SetSelection(int n)
 
     XmToggleButtonSetState ((Widget) m_radioButtons[n], True, False);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = 0; i < m_noItems; i++)
@@ -261,7 +261,7 @@ bool wxRadioBox::Enable(bool enable)
     if ( !wxControl::Enable(enable) )
         return false;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = 0; i < m_noItems; i++)
@@ -339,7 +339,7 @@ void wxRadioBox::ChangeFont(bool keepOriginalSize)
 {
     wxWindow::ChangeFont(keepOriginalSize);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = 0; i < m_noItems; i++)
@@ -359,7 +359,7 @@ void wxRadioBox::ChangeBackgroundColour()
     wxColour colour = *wxBLACK;
     WXPixel selectPixel = colour.AllocColour(XtDisplay((Widget)m_mainWidget));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = 0; i < m_noItems; i++)
@@ -378,7 +378,7 @@ void wxRadioBox::ChangeForegroundColour()
 {
     wxWindow::ChangeForegroundColour();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = 0; i < m_noItems; i++)
@@ -399,7 +399,7 @@ void wxRadioBoxCallback (Widget w, XtPointer clientData,
   int sel = -1;
   unsigned int i;
   const wxWidgetArray& buttons = item->GetRadioButtons();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < item->GetCount(); i++)

@@ -67,7 +67,7 @@ jpeg_fdct_float (FAST_FLOAT * data)
   /* Pass 1: process rows. */
 
   dataptr = data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {
@@ -120,7 +120,7 @@ jpeg_fdct_float (FAST_FLOAT * data)
   /* Pass 2: process columns. */
 
   dataptr = data;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {

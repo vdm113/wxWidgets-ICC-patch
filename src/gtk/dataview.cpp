@@ -366,7 +366,7 @@ public:
     {
         size_t count = m_nodes.GetCount();
         size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < count; i++)
@@ -405,7 +405,7 @@ public:
             // same as the order of their corresponding IDs in m_children:
             const unsigned int count = m_nodes.GetCount();
             bool inserted = false;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (unsigned i = 0; i < count; i++)
@@ -447,7 +447,7 @@ public:
 
             unsigned int count = m_nodes.GetCount();
             unsigned int pos;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (pos = 0; pos < count; pos++)
@@ -468,7 +468,7 @@ public:
         const void* itemId = item.GetID();
         const wxGtkTreeModelChildren& nodes = m_children;
         const int len = nodes.size();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = 0; i < len; i++ )
@@ -1696,7 +1696,7 @@ bool wxGtkDataViewModelNotifier::ValueChanged( const wxDataViewItem &item, unsig
 
     // This adds GTK+'s missing MVC logic for ValueChanged
     unsigned int index;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (index = 0; index < ctrl->GetColumnCount(); index++)
@@ -1777,7 +1777,7 @@ bool wxGtkDataViewModelNotifier::Cleared()
     GtkTreePath *path = gtk_tree_path_new_first();  // points to root
 
     int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < count; i++)
@@ -2654,7 +2654,7 @@ wxDataViewChoiceRenderer::wxDataViewChoiceRenderer( const wxArrayString &choices
     m_choices = choices;
     m_renderer = (GtkCellRenderer*) gtk_cell_renderer_combo_new();
     GtkListStore *store = gtk_list_store_new( 1, G_TYPE_STRING );
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t n = 0; n < m_choices.GetCount(); n++)
@@ -3297,7 +3297,7 @@ void wxGtkTreeModelNode::Resort()
     // ptrs points to these
     wxGtkTreeModelChildrenPtr ptrs;
     size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < child_count; i++)
@@ -3310,7 +3310,7 @@ void wxGtkTreeModelNode::Resort()
     void** base_ptr = &(m_children[0]);
     // Transfer positions to new_order array and
     // IDs to temp
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < child_count; i++)
@@ -3329,7 +3329,7 @@ void wxGtkTreeModelNode::Resort()
     // Build up array with IDs and original positions
     wxGtkTreeModelChildWithPos* temp = new wxGtkTreeModelChildWithPos[child_count];
     size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < child_count; i++)
@@ -3343,7 +3343,7 @@ void wxGtkTreeModelNode::Resort()
     // Transfer positions to new_order array and
     // IDs to m_children
     m_children.Clear();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < child_count; i++)
@@ -3365,7 +3365,7 @@ void wxGtkTreeModelNode::Resort()
     m_children.Sort( &wxGtkTreeModelChildCmp );
 
     unsigned int pos;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (pos = 0; pos < child_count; pos++)
@@ -3388,7 +3388,7 @@ void wxGtkTreeModelNode::Resort()
     delete [] new_order;
 
     unsigned int pos;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (pos = 0; pos < node_count; pos++)
@@ -3476,7 +3476,7 @@ void wxDataViewCtrlInternal::BuildBranch( wxGtkTreeModelNode *node )
         unsigned int count = m_wx_model->GetChildren( node->GetItem(), children );
 
         unsigned int pos;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (pos = 0; pos < count; pos++)
@@ -3710,7 +3710,7 @@ bool wxDataViewCtrlInternal::ItemAdded( const wxDataViewItem &parent, const wxDa
             // append to the end if we won't find a better position:
             nodePos = nodeSiblingsSize;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( int nextItemPos = posInModel + 1;
@@ -3817,7 +3817,7 @@ gboolean wxDataViewCtrlInternal::get_iter( GtkTreeIter *iter, GtkTreePath *path 
         wxGtkTreeModelNode *node = m_root;
 
         int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < depth; i++)
@@ -3839,7 +3839,7 @@ gboolean wxDataViewCtrlInternal::get_iter( GtkTreeIter *iter, GtkTreePath *path 
 
             size_t count = node->GetNodes().GetCount();
             size_t pos2;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (pos2 = 0; pos2 < count; pos2++)
@@ -3879,7 +3879,7 @@ GtkTreePath *wxDataViewCtrlInternal::get_path( GtkTreeIter *iter )
         void *id = iter->user_data;
 
         wxGtkTreeModelNode *node = FindParentNode( iter );
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (node)
@@ -4129,7 +4129,7 @@ int wxDataViewCtrlInternal::GetIndexOf( const wxDataViewItem &parent, const wxDa
         wxGtkTreeModelNode *parent_node = FindNode( parent );
         wxGtkTreeModelChildren &children = parent_node->GetChildren();
         size_t j;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 0; j < children.GetCount(); j++)
@@ -4152,7 +4152,7 @@ wxDataViewCtrlInternal_FindNode( wxDataViewModel * model, wxGtkTreeModelNode *tr
     list.DeleteContents( true );
     wxDataViewItem it( item );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while( it.IsOk() )
@@ -4163,7 +4163,7 @@ wxDataViewCtrlInternal_FindNode( wxDataViewModel * model, wxGtkTreeModelNode *tr
     }
 
     wxGtkTreeModelNode * node = treeNode;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( ItemList::compatibility_iterator n = list.GetFirst(); n; n = n->GetNext() )
@@ -4173,7 +4173,7 @@ wxDataViewCtrlInternal_FindNode( wxDataViewModel * model, wxGtkTreeModelNode *tr
             int len = node->GetNodes().GetCount();
             wxGtkTreeModelNodes &nodes = node->GetNodes();
             int j = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for( ; j < len; j ++)
@@ -4253,7 +4253,7 @@ wxDataViewCtrlInternal_FindParentNode( wxDataViewModel * model, wxGtkTreeModelNo
         return NULL;
 
     wxDataViewItem it( model->GetParent( item ) );
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while( it.IsOk() )
@@ -4264,7 +4264,7 @@ wxDataViewCtrlInternal_FindParentNode( wxDataViewModel * model, wxGtkTreeModelNo
     }
 
     wxGtkTreeModelNode * node = treeNode;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( ItemList::compatibility_iterator n = list.GetFirst(); n; n = n->GetNext() )
@@ -4274,7 +4274,7 @@ wxDataViewCtrlInternal_FindParentNode( wxDataViewModel * model, wxGtkTreeModelNo
             int len = node->GetNodes().GetCount();
             wxGtkTreeModelNodes nodes = node->GetNodes();
             int j = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for( ; j < len; j ++)
@@ -4296,7 +4296,7 @@ wxDataViewCtrlInternal_FindParentNode( wxDataViewModel * model, wxGtkTreeModelNo
     }
     //Examine whether the node is item's parent node
     int len = node->GetChildCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( int i = 0; i < len ; i ++ )
@@ -4428,7 +4428,7 @@ void gtk_dataviewctrl_size_callback( GtkWidget *WXUNUSED(widget),
                                      wxDataViewCtrl *win )
 {
     wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -4679,7 +4679,7 @@ void wxDataViewCtrl::OnInternalIdle()
 
     unsigned int cols = GetColumnCount();
     unsigned int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < cols; i++)
@@ -4792,7 +4792,7 @@ wxDataViewColumn* wxDataViewCtrl::FromGTKColumn(GtkTreeViewColumn *gtk_col) cons
         return NULL;
 
     wxDataViewColumnList::const_iterator iter;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (iter = m_cols.begin(); iter != m_cols.end(); ++iter)
@@ -4829,7 +4829,7 @@ bool wxDataViewCtrl::DeleteColumn( wxDataViewColumn *column )
 bool wxDataViewCtrl::ClearColumns()
 {
     wxDataViewColumnList::iterator iter;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (iter = m_cols.begin(); iter != m_cols.end(); ++iter)
@@ -4976,7 +4976,7 @@ int wxDataViewCtrl::GetSelections( wxDataViewItemArray & sel ) const
         GtkTreeModel *model;
         wxGtkTreePathList list(gtk_tree_selection_get_selected_rows(selection, &model));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( GList* current = list; current; current = g_list_next(current) )
@@ -5009,7 +5009,7 @@ void wxDataViewCtrl::SetSelections( const wxDataViewItemArray & sel )
     wxDataViewItem last_parent;
 
     size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < sel.GetCount(); i++)
@@ -5145,7 +5145,7 @@ void wxDataViewCtrl::HitTest(const wxPoint& point,
         if (path)
             item = wxDataViewItem(GTKPathToItem(path));
         // else we got a GTK column but the position is not over an item, e.g. below last item
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned int i=0, cols=GetColumnCount(); i<cols; ++i )  // search the wx column

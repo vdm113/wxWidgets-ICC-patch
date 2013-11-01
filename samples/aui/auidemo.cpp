@@ -429,11 +429,11 @@ private:
     {
         wxImage image;
         image.Create(25,14);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int x = 0; x < 25; ++x)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (int y = 0; y < 14; ++y)
@@ -998,7 +998,7 @@ MyFrame::MyFrame(wxWindow* parent,
 
     int i, count;
     wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0, count = all_panes.GetCount(); i < count; ++i)
@@ -1078,7 +1078,7 @@ void MyFrame::OnToolbarResizing(wxCommandEvent& WXUNUSED(evt))
 {
     wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
     const size_t count = all_panes.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < count; ++i)
@@ -1193,7 +1193,7 @@ void MyFrame::OnNotebookFlag(wxCommandEvent& event)
 
     size_t i, count;
     wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0, count = all_panes.GetCount(); i < count; ++i)
@@ -1243,7 +1243,7 @@ void MyFrame::OnUpdateUI(wxUpdateUIEvent& event)
         {
             wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
             const size_t count = all_panes.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (size_t i = 0; i < count; ++i)
@@ -1531,7 +1531,7 @@ void MyFrame::OnTabAlignment(wxCommandEvent &evt)
 {
     size_t i, count;
     wxAuiPaneInfoArray& all_panes = m_mgr.GetAllPanes();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0, count = all_panes.GetCount(); i < count; ++i)
@@ -1614,7 +1614,7 @@ wxTreeCtrl* MyFrame::CreateTreeCtrl()
 
 
     int i, count;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0, count = items.Count(); i < count; ++i)

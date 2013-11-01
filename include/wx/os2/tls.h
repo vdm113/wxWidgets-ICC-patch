@@ -2,7 +2,7 @@
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#   define MY_MACRO_PRAGMA_IVDEP
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@ public:
         wxCriticalSectionLocker lock(m_csAllValues);
         if ( old )
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( wxVector<void*>::iterator i = m_allValues.begin();
@@ -103,7 +103,7 @@ public:
         //
         // NB: No need to lock m_csAllValues, by the time this code is called,
         //     no other thread can be using this key.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxVector<void*>::iterator i = m_allValues.begin();

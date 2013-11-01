@@ -929,7 +929,7 @@ void MyFrame::OnDeleteSubMenu(wxCommandEvent& WXUNUSED(event))
     wxMenu *menu = menubar->GetMenu(menubar->FindMenu("Test"));
     wxCHECK_RET( menu, wxT("no 'Test' menu?") );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int n = menu->GetMenuItemCount() - 1; n >=0 ; --n )
@@ -1117,7 +1117,7 @@ void MyFrame::OnFindMenuItem(wxCommandEvent& WXUNUSED(event))
         size_t menuindex;
         int index = wxNOT_FOUND;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (menuindex = 0; (menuindex < count) && (index == wxNOT_FOUND); ++menuindex)
@@ -1147,7 +1147,7 @@ void MyFrame::ShowContextMenu(const wxPoint& pos)
         // returning the id of the item selected in the popup menu
         menu.SetTitle("Choose one of:");
         static const char *choices[] = { "Apple", "Banana", "Cherry" };
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < WXSIZEOF(choices); n++ )

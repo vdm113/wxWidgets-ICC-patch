@@ -93,7 +93,7 @@ void wxWakeUpPipe::OnReadWaiting()
     // pipe
 
     char buf[4];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )

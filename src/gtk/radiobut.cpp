@@ -70,7 +70,7 @@ bool wxRadioButton::Create( wxWindow *parent,
     {
         // search backward for last group start
         wxWindowList::compatibility_iterator node = parent->GetChildren().GetLast();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (; node; node = node->GetPrevious())

@@ -250,7 +250,7 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter& items,
     int idx = wxNOT_FOUND;
 
     const unsigned int numItems = items.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int i = 0; i < numItems; ++i )
@@ -369,7 +369,7 @@ void wxListBox::DoDeleteOneItem(unsigned int n)
     // the one being deleted must change and the item itselfm ust be removed
     int index = wxNOT_FOUND;
     unsigned int count = m_selections.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int item = 0; item < count; item++ )
@@ -790,7 +790,7 @@ wxCoord wxListBox::GetMaxWidth() const
         wxListBox *self = wxConstCast(this, wxListBox);
         wxCoord width;
         unsigned int count = GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned int n = 0; n < count; n++ )
@@ -850,7 +850,7 @@ wxSize wxListBox::DoGetBestClientSize() const
             height = 0;
 
     unsigned int count = GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int n = 0; n < count; n++ )
@@ -962,7 +962,7 @@ bool wxListBox::FindItem(const wxString& prefix, bool strictlyAfter)
     size_t len = prefix.length();
 
     // loop over all items in the listbox
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int item = first; item != (int)last; item < (int)(count - 1) ? item++ : item = 0 )
@@ -1067,7 +1067,7 @@ void wxListBox::ExtendSelection(int itemTo)
     // anchor and the specified item and only them
 
     int n;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < itemFrom; n++ )
@@ -1075,7 +1075,7 @@ void wxListBox::ExtendSelection(int itemTo)
         Deselect(n);
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ; n <= itemTo; n++ )
@@ -1084,7 +1084,7 @@ void wxListBox::ExtendSelection(int itemTo)
     }
 
     unsigned int count = GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ; n < (int)count; n++ )

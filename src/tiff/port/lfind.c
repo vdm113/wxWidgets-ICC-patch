@@ -53,7 +53,7 @@ lfind(const void *key, const void *base, size_t *nmemb, size_t size,
 	char *element, *end;
 
 	end = (char *)base + *nmemb * size;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (element = (char *)base; element < end; element += size)

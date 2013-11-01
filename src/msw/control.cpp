@@ -451,7 +451,7 @@ void wxControlWithItems::MSWAllocStorage(const wxArrayStringsAdapter& items,
 {
     const unsigned numItems = items.GetCount();
     unsigned long totalTextLength = numItems; // for trailing '\0' characters
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned i = 0; i < numItems; ++i )

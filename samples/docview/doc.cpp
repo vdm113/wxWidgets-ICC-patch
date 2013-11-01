@@ -57,7 +57,7 @@ DocumentOstream& DrawingDocument::SaveObject(DocumentOstream& ostream)
     const wxInt32 count = m_doodleSegments.size();
     stream << count << '\n';
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int n = 0; n < count; n++ )
@@ -92,7 +92,7 @@ DocumentIstream& DrawingDocument::LoadObject(DocumentIstream& istream)
         return istream;
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int n = 0; n < count; n++ )
@@ -148,7 +148,7 @@ DocumentOstream& DoodleSegment::SaveObject(DocumentOstream& ostream)
     const wxInt32 count = m_lines.size();
     stream << count << '\n';
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int n = 0; n < count; n++ )
@@ -175,7 +175,7 @@ DocumentIstream& DoodleSegment::LoadObject(DocumentIstream& istream)
     wxInt32 count = 0;
     stream >> count;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int n = 0; n < count; n++ )

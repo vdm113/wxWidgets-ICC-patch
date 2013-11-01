@@ -50,12 +50,12 @@ void CopyPixelsAndSwapRGB(unsigned w, unsigned h,
 {
     unsigned src_advance = src_pitch - SrcPixSize * w;
     unsigned dst_advance = dst_pitch - DstPixSize * w;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned y = 0; y < h; y++, src += src_advance, dst += dst_advance )
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned x = 0; x < w; x++, src += SrcPixSize, dst += DstPixSize )
@@ -116,11 +116,11 @@ void CopySurfaceToImage(const wxIDirectFBSurfacePtr& surface, wxImage& image)
         // NB: "+3" is to get pointer to alpha component
         const unsigned char *src = ((unsigned char*)locked.ptr) + 3;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned y = 0; y < height; y++, src += advance )
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( unsigned x = 0; x < width; x++, src += 4 )
@@ -175,11 +175,11 @@ void CopyImageToSurface(const wxImage& image,
         // NB: "+3" is to get pointer to alpha component
         unsigned char *dest = ((unsigned char*)locked.ptr) + 3;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned y = 0; y < height; y++, dest += advance )
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( unsigned x = 0; x < width; x++, dest += 4 )
@@ -295,14 +295,14 @@ CopyBits(int width,
 
     // we operate with sizeof(T), not 1, bytes at once
     T *dst = static_cast<T *>(locked.ptr);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( src < srcEnd )
     {
         unsigned char val = *src++;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int bit = 0; bit < BITS_PER_BYTE; bit++ )

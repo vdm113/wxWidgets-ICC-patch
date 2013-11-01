@@ -361,7 +361,7 @@ void RadioWidgetsPage::CreateRadio()
     wxString *items = new wxString[count];
 
     wxString labelBtn = m_textLabelBtns->GetValue();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )

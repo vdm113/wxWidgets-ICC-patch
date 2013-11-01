@@ -68,7 +68,7 @@ wxAcceleratorTable::wxAcceleratorTable(int n, const wxAcceleratorEntry entries[]
 {
     m_refData = new wxAcceleratorRefData;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < n; i++)
@@ -91,7 +91,7 @@ int wxAcceleratorTable::GetCommand( wxKeyEvent &event )
     if (!IsOk()) return -1;
 
     wxAccelList::compatibility_iterator node = M_ACCELDATA->m_accels.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)

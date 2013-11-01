@@ -76,7 +76,7 @@ clearcvec(cv)
     cv->nmcces = 0;
     cv->nmccechrs = 0;
     cv->nranges = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < cv->mccespace; i++) {
@@ -139,7 +139,7 @@ addmcce(cv, startp, endp)
     assert(cv->nmcces < cv->mccespace);
     d = &cv->chrs[cv->chrspace - cv->nmccechrs - len - 1];
     cv->mcces[cv->nmcces++] = d;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (s = startp, i = len; i > 0; s++, i--) {
@@ -162,7 +162,7 @@ haschr(cv, c)
     int i;
     chr *p;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (p = cv->chrs, i = cv->nchrs; i > 0; p++, i--) {
@@ -170,7 +170,7 @@ haschr(cv, c)
 	    return 1;
 	}
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (p = cv->ranges, i = cv->nranges; i > 0; p += 2, i--) {

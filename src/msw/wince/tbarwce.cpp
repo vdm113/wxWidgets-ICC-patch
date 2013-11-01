@@ -283,7 +283,7 @@ bool wxToolMenuBar::DoDeleteTool(size_t pos, wxToolBarToolBase *tool)
     // different from pos if we use several separators to cover the space used
     // by a control
     wxToolBarToolsList::compatibility_iterator node;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
@@ -324,7 +324,7 @@ bool wxToolMenuBar::DoDeleteTool(size_t pos, wxToolBarToolBase *tool)
 
     // do delete all buttons
     m_nButtons -= nButtonsToDelete;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( nButtonsToDelete-- > 0 )
@@ -341,7 +341,7 @@ bool wxToolMenuBar::DoDeleteTool(size_t pos, wxToolBarToolBase *tool)
 
     // and finally reposition all the controls after this button (the toolbar
     // takes care of all normal items)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( /* node -> first after deleted */ ; node; node = node->GetNext() )
@@ -370,7 +370,7 @@ bool wxToolMenuBar::Realize()
 
 #if 0
     // delete all old buttons, if any
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t pos = 0; pos < m_nButtons; pos++ )
@@ -384,7 +384,7 @@ bool wxToolMenuBar::Realize()
 
     bool lastWasRadio = false;
     wxToolBarToolsList::compatibility_iterator node;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )

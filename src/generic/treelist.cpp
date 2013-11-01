@@ -75,7 +75,7 @@ public:
     // Destroying the node also (recursively) destroys its children.
     ~wxTreeListModelNode()
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxTreeListModelNode* node = m_child; node; )
@@ -148,7 +148,7 @@ public:
 
         // In the loop below n is the index in the new column texts array and m
         // is the index in the old one.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned n = 1, m = 1; n < numColumns - 1; n++, m++ )
@@ -176,7 +176,7 @@ public:
 
         wxScopedArray<wxString> oldTexts(m_columnsTexts);
         m_columnsTexts = new wxString[numColumns - 2];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned n = 1, m = 1; n < numColumns - 1; n++, m++ )
@@ -266,7 +266,7 @@ public:
             return m_next;
 
         // Recurse upwards until we find the next sibling.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxTreeListModelNode* node = m_parent; node; node = node->m_parent )
@@ -621,7 +621,7 @@ void wxTreeListModel::InsertColumn(unsigned col)
         return;
 
     // Update all the items as they may have texts for the old columns.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( Node* node = m_root->GetChild(); node; node = node->NextInTree() )
@@ -637,7 +637,7 @@ void wxTreeListModel::DeleteColumn(unsigned col)
     // Update all the items to remove the text for the non first columns.
     if ( col > 0 )
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( Node* node = m_root->GetChild(); node; node = node->NextInTree() )
@@ -653,7 +653,7 @@ void wxTreeListModel::ClearColumns()
 {
     m_numColumns = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( Node* node = m_root->GetChild(); node; node = node->NextInTree() )
@@ -703,7 +703,7 @@ wxTreeListModel::InsertItem(Node* parent,
             previous = parent->GetChild();
 
             // Find the last child.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( ;; )
@@ -748,7 +748,7 @@ void wxTreeListModel::DeleteItem(Node* item)
     else // Not the first child of its parent.
     {
         // Find the sibling just before it.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( ;; )
@@ -770,7 +770,7 @@ void wxTreeListModel::DeleteItem(Node* item)
 
 void wxTreeListModel::DeleteAllItems()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( m_root->GetChild() )
@@ -980,7 +980,7 @@ wxTreeListModel::GetChildren(const wxDataViewItem& item,
     Node* const node = FromDVI(item);
 
     unsigned numChildren = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( Node* child = node->GetChild(); child; child = child->GetNext() )
@@ -1402,7 +1402,7 @@ unsigned wxTreeListCtrl::GetSelections(wxTreeListItems& selections) const
     wxDataViewItemArray selectionsDV;
     const unsigned numSelected = m_view->GetSelections(selectionsDV);
     selections.resize(numSelected);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned n = 0; n < numSelected; n++ )
@@ -1464,7 +1464,7 @@ wxTreeListCtrl::CheckItemRecursively(wxTreeListItem item, wxCheckBoxState state)
 
     m_model->CheckItem(item, state);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxTreeListItem child = GetFirstChild(item);
@@ -1481,7 +1481,7 @@ void wxTreeListCtrl::UpdateItemParentStateRecursively(wxTreeListItem item)
 
     wxASSERT_MSG( HasFlag(wxTL_3STATE), "Can only be used with wxTL_3STATE" );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )
@@ -1518,7 +1518,7 @@ wxTreeListCtrl::AreAllChildrenInState(wxTreeListItem item,
 {
     wxCHECK_MSG( item.IsOk(), false, "Invalid item" );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxTreeListItem child = GetFirstChild(item);
@@ -1546,7 +1546,7 @@ void wxTreeListCtrl::SetSortColumn(unsigned col, bool ascendingOrder)
 bool wxTreeListCtrl::GetSortColumn(unsigned* col, bool* ascendingOrder)
 {
     const unsigned numColumns = m_view->GetColumnCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned n = 0; n < numColumns; n++ )
@@ -1682,7 +1682,7 @@ void wxTreeListCtrl::OnSize(wxSizeEvent& event)
         // up to the total size, horizontal scrollbar (unnecessarily) appears,
         // so subtract a bit to ensure this doesn't happen.
         int remainingWidth = rect.width - 5;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned n = 1; n < GetColumnCount(); n++ )

@@ -372,7 +372,7 @@ void MyFrame::InitImageList()
         wxART_FOLDER_OPEN
     };
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned n = 0; n < WXSIZEOF(icons); n++ )
@@ -523,7 +523,7 @@ void MyFrame::OnDumpSelection(wxCommandEvent& WXUNUSED(event))
 
             default:
                 wxLogMessage("%u items selected:", numSelected);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( unsigned n = 0; n < numSelected; n++ )

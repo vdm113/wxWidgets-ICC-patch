@@ -132,7 +132,7 @@ bool wxEventLoopImpl::PreProcessMessage(QMSG *pMsg)
     // because the subcontrol is not a wxWindow, but only the control itself
     // is - try to catch this case
     //
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (hWnd && !pWndThis)
@@ -163,7 +163,7 @@ bool wxEventLoopImpl::PreProcessMessage(QMSG *pMsg)
                 CHARMSG(pChmsg)->chr = (USHORT)wxToupper((UCHAR)uSch);
 
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
            for(pWnd = pWndThis; pWnd; pWnd = pWnd->GetParent() )
@@ -256,7 +256,7 @@ int wxGUIEventLoop::Run()
 
     CallEventLoopMethod  callOnExit(this, &wxGUIEventLoop::OnExit);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )
@@ -267,7 +267,7 @@ int wxGUIEventLoop::Run()
 
         // generate and process idle events for as long as we don't have
         // anything else to do
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( !Pending() && m_impl->SendIdleMessage() )
@@ -361,7 +361,7 @@ bool wxGUIEventLoop::Dispatch()
             s_hadGuiLock = true;
 
             size_t count = s_aSavedMessages.Count();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( size_t n = 0; n < count; n++ )
@@ -401,7 +401,7 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
     // We want to go back to the main message loop
     // if we see a WM_QUIT. (?)
     //
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (::WinPeekMsg(vHab, &vMsg, (HWND)NULL, 0, 0, PM_NOREMOVE) && vMsg.msg != WM_QUIT)

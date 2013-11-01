@@ -72,7 +72,7 @@ static bool isNsisLetter(char ch)
 static bool NsisNextLineHasElse(unsigned int start, unsigned int end, Accessor &styler)
 {
   int nNextLine = -1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for( unsigned int i = start; i < end; i++ )
@@ -88,7 +88,7 @@ static bool NsisNextLineHasElse(unsigned int start, unsigned int end, Accessor &
   if( nNextLine == -1 ) // We never found the next line...
     return false;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for( unsigned int firstChar = nNextLine; firstChar < end; firstChar++ )
@@ -149,7 +149,7 @@ static int calculateFoldNsis(unsigned int start, unsigned int end, int foldlevel
 
   char s[20]; // The key word we are looking for has atmost 13 characters
   s[0] = '\0';
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (unsigned int i = 0; i < end - start + 1 && i < 19; i++)
@@ -195,7 +195,7 @@ static int classifyWordNsis(unsigned int start, unsigned int end, WordList *keyw
 	WordList &Lables = *keywordLists[2];
 	WordList &UserDefined = *keywordLists[3];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = 0; i < end - start + 1 && i < 99; i++)
@@ -257,7 +257,7 @@ static int classifyWordNsis(unsigned int start, unsigned int end, WordList *keyw
   if( s[0] == '$' && bUserVars )
   {
     bool bHasSimpleNsisChars = true;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int j = 1; j < end - start + 1 && j < 99; j++)
@@ -277,7 +277,7 @@ static int classifyWordNsis(unsigned int start, unsigned int end, WordList *keyw
   if( isNsisNumber( s[0] ) )
   {
     bool bHasSimpleNsisNumber = true;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int j = 1; j < end - start + 1 && j < 99; j++)
@@ -313,7 +313,7 @@ static void ColouriseNsisDoc(unsigned int startPos, int length, int, WordList *k
   bool bClassicVarInString = false;
 
 	unsigned int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for( i = startPos; i < nLengthDoc; i++ )
@@ -427,7 +427,7 @@ static void ColouriseNsisDoc(unsigned int startPos, int length, int, WordList *k
           // We need to check if the previous line has a \ in it...
           bool bNextLine = false;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
           while( nBack > 0 )
@@ -602,7 +602,7 @@ static void FoldNsisDoc(unsigned int startPos, int length, int, WordList *[], Ac
     blockComment = true;
   }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (unsigned int i = safeStartPos; i < startPos + length; i++)

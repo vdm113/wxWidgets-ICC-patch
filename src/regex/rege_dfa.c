@@ -73,7 +73,7 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 
 	/* main loop */
 	if (v->eflags&REG_FTRACE)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (cp < realstop) {
@@ -91,7 +91,7 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 			css = ss;
 		}
 	else
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (cp < realstop) {
@@ -124,7 +124,7 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 
 	/* find last match, if any */
 	post = d->lastpost;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (ss = d->ssets, i = d->nssused; i > 0; ss++, i--)
@@ -183,7 +183,7 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 
 	/* main loop */
 	if (v->eflags&REG_FTRACE)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (cp < realmax) {
@@ -203,7 +203,7 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 				break;		/* NOTE BREAK OUT */
 		}
 	else
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (cp < realmax) {
@@ -261,7 +261,7 @@ struct dfa *d;
 	nopr = d->lastnopr;
 	if (nopr == NULL)
 		nopr = v->start;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (ss = d->ssets, i = d->nssused; i > 0; ss++, i--)
@@ -390,7 +390,7 @@ int n;
 	unsigned h;
 
 	h = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < n; i++)
@@ -416,7 +416,7 @@ chr *start;
 		ss = &d->ssets[0];
 	else {				/* no, must (re)build it */
 		ss = getvacant(v, d, start, start);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (i = 0; i < d->wordsper; i++)
@@ -428,7 +428,7 @@ chr *start;
 		/* lastseen dealt with below */
 	}
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < d->nssused; i++)
@@ -472,7 +472,7 @@ chr *start;			/* where the attempt got started */
 	FDEBUG(("miss\n"));
 
 	/* first, what set of states would we end up in? */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < d->wordsper; i++)
@@ -480,12 +480,12 @@ chr *start;			/* where the attempt got started */
 	ispost = 0;
 	noprogress = 1;
 	gotstate = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < d->nstates; i++)
 		if (ISBSET(css->states, i))
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (ca = cnfa->states[i]+1; ca->co != COLORLESS; ca++)
@@ -500,17 +500,17 @@ chr *start;			/* where the attempt got started */
 				}
 	dolacons = (gotstate) ? (cnfa->flags&HASLACONS) : 0;
 	sawlacons = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (dolacons) {		/* transitive closure */
 		dolacons = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (i = 0; i < d->nstates; i++)
 			if (ISBSET(d->work, i))
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (ca = cnfa->states[i]+1; ca->co != COLORLESS;
@@ -536,7 +536,7 @@ chr *start;			/* where the attempt got started */
 	h = HASH(d->work, d->wordsper);
 
 	/* next, is that in the cache? */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (p = d->ssets, i = d->nssused; i > 0; p++, i--)
@@ -547,7 +547,7 @@ chr *start;			/* where the attempt got started */
 	if (i == 0) {		/* nope, need a new cache entry */
 		p = getvacant(v, d, cp, start);
 		assert(p != css);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (i = 0; i < d->wordsper; i++)
@@ -626,7 +626,7 @@ chr *start;
 
 	/* clear out its inarcs, including self-referential ones */
 	ap = ss->ins;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((p = ap.ss) != NULL) {
@@ -639,7 +639,7 @@ chr *start;
 	ss->ins.ss = NULL;
 
 	/* take it off the inarc chains of the ssets reached by its outarcs */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < d->ncolors; i++) {
@@ -652,7 +652,7 @@ chr *start;
 			p->ins = ss->inchain[i];
 		else {
 			assert(p->ins.ss != NULL);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (ap = p->ins; ap.ss != NULL &&
@@ -708,7 +708,7 @@ chr *start;
 		ss->ins.co = WHITE;		/* give it some value */
 		ss->outs = &d->outsarea[i * d->ncolors];
 		ss->inchain = &d->incarea[i * d->ncolors];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (i = 0; i < d->ncolors; i++) {
@@ -723,7 +723,7 @@ chr *start;
 		ancient = cp - d->nssets*2/3;
 	else
 		ancient = start;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (ss = d->search, end = &d->ssets[d->nssets]; ss < end; ss++)
@@ -733,7 +733,7 @@ chr *start;
 			FDEBUG(("replacing c%d\n", ss - d->ssets));
 			return ss;
 		}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (ss = d->ssets, end = d->search; ss < end; ss++)

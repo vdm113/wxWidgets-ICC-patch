@@ -2,7 +2,7 @@
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#   define MY_MACRO_PRAGMA_IVDEP
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -113,7 +113,7 @@ default one. Here are the most important differences:
    same semantics as a Node pointer but it is an object and not a pointer, so
    you need to write
         @code
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxWindowList::compatibility_iterator it = list.GetFirst();
@@ -123,7 +123,7 @@ default one. Here are the most important differences:
         @endcode
    instead of the old
         @code
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxWindowList::Node *n = list.GetFirst(); n; n = n->GetNext() )

@@ -72,7 +72,7 @@ protected:
         wxString s(wxT("Server replied:\n"));
 
         const size_t count = reply.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < count; n++ )
@@ -314,7 +314,7 @@ void MyFrame::OnPaint(wxPaintEvent& WXUNUSED(event))
 {
     wxPaintDC dc(this);
     const wxSize size = GetClientSize();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxCoord x = 0; x < size.x; x += size.x/m_numLines )

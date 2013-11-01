@@ -70,7 +70,7 @@ wxFontInstance *wxFontFaceBase::GetFontInstance(float ptSize, bool aa)
 {
     wxASSERT_MSG( m_refCnt > 0, wxT("font library not loaded!") );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxFontInstanceList::const_iterator i = m_instances->begin();
@@ -91,7 +91,7 @@ wxFontInstance *wxFontFaceBase::GetFontInstance(float ptSize, bool aa)
 
 wxFontBundleBase::wxFontBundleBase()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < FaceType_Max; i++)
@@ -100,7 +100,7 @@ wxFontBundleBase::wxFontBundleBase()
 
 wxFontBundleBase::~wxFontBundleBase()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < FaceType_Max; i++)
@@ -143,7 +143,7 @@ wxFontBundleBase::GetFaceForFont(const wxFontMgrFontRefData& font) const
     {
         // if we can't get the exact font requested, substitute it with
         // some other variant:
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < FaceType_Max; i++)

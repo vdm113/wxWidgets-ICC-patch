@@ -45,7 +45,7 @@ jpeg_add_quant_table (j_compress_ptr cinfo, int which_tbl,
   if (*qtblptr == NULL)
     *qtblptr = jpeg_alloc_quant_table((j_common_ptr) cinfo);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < DCTSIZE2; i++) {
@@ -169,7 +169,7 @@ add_huff_table (j_compress_ptr cinfo,
    * the end of memory.  jchuff.c will do a more thorough test later.
    */
   nsymbols = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (len = 1; len <= 16; len++)
@@ -297,7 +297,7 @@ jpeg_set_defaults (j_compress_ptr cinfo)
   std_huff_tables(cinfo);
 
   /* Initialize default arithmetic coding conditioning */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < NUM_ARITH_TBLS; i++) {
@@ -468,7 +468,7 @@ jpeg_set_colorspace (j_compress_ptr cinfo, J_COLOR_SPACE colorspace)
     if (cinfo->num_components < 1 || cinfo->num_components > MAX_COMPONENTS)
       ERREXIT2(cinfo, JERR_COMPONENT_COUNT, cinfo->num_components,
 	       MAX_COMPONENTS);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0; ci < cinfo->num_components; ci++) {
@@ -505,7 +505,7 @@ fill_scans (jpeg_scan_info * scanptr, int ncomps,
 {
   int ci;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0; ci < ncomps; ci++) {
@@ -529,7 +529,7 @@ fill_dc_scans (jpeg_scan_info * scanptr, int ncomps, int Ah, int Al)
   if (ncomps <= MAX_COMPS_IN_SCAN) {
     /* Single interleaved DC scan */
     scanptr->comps_in_scan = ncomps;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0; ci < ncomps; ci++)

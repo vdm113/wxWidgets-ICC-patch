@@ -132,7 +132,7 @@ select_file_name (char * fname)
   FILE * tfile;
 
   /* Keep generating file names till we find one that's not in use */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (;;) {
@@ -145,7 +145,7 @@ select_file_name (char * fname)
     if (*env == '\0')		/* null string means "." */
       env = ".";
     ptr = fname;		/* copy name to fname */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (*env != '\0')

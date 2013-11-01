@@ -61,13 +61,13 @@ jpeg_CreateDecompress (j_decompress_ptr cinfo, int version, size_t structsize)
   cinfo->progress = NULL;
   cinfo->src = NULL;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < NUM_QUANT_TBLS; i++)
     cinfo->quant_tbl_ptrs[i] = NULL;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
@@ -389,7 +389,7 @@ jpeg_finish_decompress (j_decompress_ptr cinfo)
     ERREXIT1(cinfo, JERR_BAD_STATE, cinfo->global_state);
   }
   /* Read until EOI */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (! cinfo->inputctl->eoi_reached) {

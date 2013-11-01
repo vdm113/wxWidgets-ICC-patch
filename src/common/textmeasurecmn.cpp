@@ -111,7 +111,7 @@ void wxTextMeasureBase::GetMultiLineTextExtent(const wxString& text,
             heightTextTotal = 0, heightLineDefault = 0, heightLine = 0;
 
     wxString curLine;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxString::const_iterator pc = text.begin(); ; ++pc )
@@ -175,7 +175,7 @@ wxSize wxTextMeasureBase::GetLargestStringExtent(size_t n,
     MeasuringGuard guard(*this);
 
     wxCoord w, h, widthMax = 0, heightMax = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < n; ++i )
@@ -258,7 +258,7 @@ bool wxTextMeasureBase::DoGetPartialTextExtents(const wxString& text,
     // Calculate the position of each character based on the widths of
     // the previous characters. This is inexact for not fixed fonts.
     int n = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxString::const_iterator it = text.begin();

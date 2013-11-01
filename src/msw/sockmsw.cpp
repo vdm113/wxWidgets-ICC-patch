@@ -130,7 +130,7 @@ DWORD WINAPI SocketThread(LPVOID data)
     HANDLE NetworkEvent = gs_WSACreateEvent();
     gs_WSAEventSelect(d->fd, NetworkEvent, d->lEvent);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while(socketHash[d->fd] == true)
@@ -203,7 +203,7 @@ bool wxSocketMSWManager::OnInit()
       return false;
 
   /* Initialize socket list */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < MAXSOCKETS; i++)
@@ -258,7 +258,7 @@ void wxSocketMSWManager::OnExit()
 {
 #ifdef __WXWINCE__
 /* Delete the threads here */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(unsigned int i=0; i < currSocket; i++)
@@ -282,7 +282,7 @@ wxSocketImplMSW::wxSocketImplMSW(wxSocketBase& wxsocket)
   wxCRIT_SECT_LOCKER(lock, gs_critical);
 
   int i = firstAvailable;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (socketList[i] != NULL)
@@ -311,7 +311,7 @@ wxSocketImplMSW::~wxSocketImplMSW()
       // them sent to a new socket which could reuse the same message number as
       // soon as we destroy this one
       MSG msg;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       while ( ::PeekMessage(&msg, hWin, m_msgnumber, m_msgnumber, PM_REMOVE) )

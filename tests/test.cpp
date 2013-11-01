@@ -583,7 +583,7 @@ bool TestApp::OnCmdLineParsed(wxCmdLineParser& parser)
 {
     if (parser.GetParamCount())
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = 0; i < parser.GetParamCount(); i++)
@@ -663,7 +663,7 @@ int TestApp::RunTests()
     }
     else // run only the selected tests
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = 0; i < m_registries.size(); i++)
@@ -742,7 +742,7 @@ void TestApp::List(Test *test, const string& parent /*=""*/) const
         // drop the 1st component from the display and indent
         if (parent != "") {
             string::size_type j = i = name.find('.', 1);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while ((j = name.find('.', j + 1)) != string::npos)
@@ -755,7 +755,7 @@ void TestApp::List(Test *test, const string& parent /*=""*/) const
 
         const Tests& tests = suite->getTests();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (Iter it = tests.begin(); it != tests.end(); ++it)
@@ -763,7 +763,7 @@ void TestApp::List(Test *test, const string& parent /*=""*/) const
     }
     else if (m_longlist) {
         string::size_type i = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ((i = parent.find('.', i + 1)) != string::npos)

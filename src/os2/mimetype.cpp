@@ -98,7 +98,7 @@ wxString wxFileTypeImpl::GetCommand(const wxChar *WXUNUSED(verb)) const
             //     sure that we return a string with _exactly_ one '%s'!
             bool foundFilename = false;
             size_t len = command.Len();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( size_t n = 0; (n < len) && !foundFilename; n++ ) {
@@ -366,7 +366,7 @@ wxMimeTypesManagerImpl::GetFileTypeFromExtension(const wxString& ext)
     // TODO linear search is potentially slow, perhaps we should use a sorted
     //      array?
     size_t count = m_fallbacks.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ ) {
@@ -416,7 +416,7 @@ wxMimeTypesManagerImpl::GetFileTypeFromMimeType(const wxString& mimeType)
     // TODO linear search is potentially slow, perhaps we should use a sorted
     //      array?
     size_t count = m_fallbacks.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ ) {
@@ -443,7 +443,7 @@ size_t wxMimeTypesManagerImpl::EnumAllFileTypes(wxArrayString& WXUNUSED(mimetype
     wxString type;
     long cookie;
     bool cont = key.GetFirstKey(type, cookie);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( cont )

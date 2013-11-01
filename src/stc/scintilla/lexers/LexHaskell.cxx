@@ -89,7 +89,7 @@ static void ColorizeHaskellDoc(unsigned int startPos, int length, int initStyle,
    int mode  = state & 0xF;
    int xmode = state >> 4;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
    while (sc.More()) {
@@ -328,13 +328,13 @@ void EXT_LEXER_DECL Lex(unsigned int lexer, unsigned int startPos, int length, i
    WindowAccessor wa(window, ps);
 
    int nWL = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
    for (; words[nWL]; nWL++) ;
    WordList** wl = new WordList* [nWL + 1];
    int i = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
    for (; i<nWL; i++)
@@ -346,7 +346,7 @@ void EXT_LEXER_DECL Lex(unsigned int lexer, unsigned int startPos, int length, i
 
    ColorizeHaskellDoc(startPos, length, initStyle, wl, wa);
    wa.Flush();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
    for (i=nWL-1;i>=0;i--)

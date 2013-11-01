@@ -119,7 +119,7 @@ png_do_pack(png_row_infop row_info, png_bytep row, png_uint_32 bit_depth)
             mask = 0x80;
             v = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < row_width; i++)
@@ -159,7 +159,7 @@ png_do_pack(png_row_infop row_info, png_bytep row, png_uint_32 bit_depth)
             shift = 6;
             v = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < row_width; i++)
@@ -201,7 +201,7 @@ png_do_pack(png_row_infop row_info, png_bytep row, png_uint_32 bit_depth)
             shift = 4;
             v = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < row_width; i++)
@@ -308,7 +308,7 @@ png_do_shift(png_row_infop row_info, png_bytep row,
          else
             mask = 0xff;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
          for (i = 0; i < row_bytes; i++, bp++)
@@ -319,7 +319,7 @@ png_do_shift(png_row_infop row_info, png_bytep row,
             v = *bp;
             out = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (j = shift_start[0]; j > -shift_dec[0]; j -= shift_dec[0])
@@ -341,7 +341,7 @@ png_do_shift(png_row_infop row_info, png_bytep row,
          png_uint_32 i;
          png_uint_32 istop = channels * row_info->width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
          for (i = 0; i < istop; i++, bp++)
@@ -354,7 +354,7 @@ png_do_shift(png_row_infop row_info, png_bytep row,
             v = *bp;
             out = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (j = shift_start[c]; j > -shift_dec[c]; j -= shift_dec[c])
@@ -376,7 +376,7 @@ png_do_shift(png_row_infop row_info, png_bytep row,
          png_uint_32 i;
          png_uint_32 istop = channels * row_info->width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
          for (bp = row, i = 0; i < istop; i++)
@@ -388,7 +388,7 @@ png_do_shift(png_row_infop row_info, png_bytep row,
             v = png_get_uint_16(bp);
             value = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (j = shift_start[c]; j > -shift_dec[c]; j -= shift_dec[c])
@@ -423,7 +423,7 @@ png_do_write_swap_alpha(png_row_infop row_info, png_bytep row)
             png_uint_32 i;
             png_uint_32 row_width = row_info->width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0, sp = dp = row; i < row_width; i++)
@@ -444,7 +444,7 @@ png_do_write_swap_alpha(png_row_infop row_info, png_bytep row)
             png_uint_32 i;
             png_uint_32 row_width = row_info->width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0, sp = dp = row; i < row_width; i++)
@@ -474,7 +474,7 @@ png_do_write_swap_alpha(png_row_infop row_info, png_bytep row)
             png_uint_32 i;
             png_uint_32 row_width = row_info->width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0, sp = dp = row; i < row_width; i++)
@@ -493,7 +493,7 @@ png_do_write_swap_alpha(png_row_infop row_info, png_bytep row)
             png_uint_32 i;
             png_uint_32 row_width = row_info->width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0, sp = dp = row; i < row_width; i++)
@@ -529,7 +529,7 @@ png_do_write_invert_alpha(png_row_infop row_info, png_bytep row)
             png_uint_32 i;
             png_uint_32 row_width = row_info->width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0, sp = dp = row; i < row_width; i++)
@@ -552,7 +552,7 @@ png_do_write_invert_alpha(png_row_infop row_info, png_bytep row)
             png_uint_32 i;
             png_uint_32 row_width = row_info->width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0, sp = dp = row; i < row_width; i++)
@@ -582,7 +582,7 @@ png_do_write_invert_alpha(png_row_infop row_info, png_bytep row)
             png_uint_32 i;
             png_uint_32 row_width = row_info->width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0, sp = dp = row; i < row_width; i++)
@@ -600,7 +600,7 @@ png_do_write_invert_alpha(png_row_infop row_info, png_bytep row)
             png_uint_32 i;
             png_uint_32 row_width = row_info->width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0, sp = dp = row; i < row_width; i++)
@@ -646,7 +646,7 @@ png_do_write_intrapixel(png_row_infop row_info, png_bytep row)
          else
             return;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
          for (i = 0, rp = row; i < row_width; i++, rp += bytes_per_pixel)
@@ -671,7 +671,7 @@ png_do_write_intrapixel(png_row_infop row_info, png_bytep row)
          else
             return;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
          for (i = 0, rp = row; i < row_width; i++, rp += bytes_per_pixel)

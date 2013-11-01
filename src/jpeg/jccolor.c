@@ -94,7 +94,7 @@ rgb_ycc_start (j_compress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				(TABLE_SIZE * SIZEOF(JPEG_INT32)));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i <= MAXJSAMPLE; i++) {
@@ -142,7 +142,7 @@ rgb_ycc_convert (j_compress_ptr cinfo,
   register JDIMENSION col;
   JDIMENSION num_cols = cinfo->image_width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (--num_rows >= 0) {
@@ -151,7 +151,7 @@ rgb_ycc_convert (j_compress_ptr cinfo,
     outptr1 = output_buf[1][output_row];
     outptr2 = output_buf[2][output_row];
     output_row++;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (col = 0; col < num_cols; col++) {
@@ -204,14 +204,14 @@ rgb_gray_convert (j_compress_ptr cinfo,
   register JDIMENSION col;
   JDIMENSION num_cols = cinfo->image_width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (--num_rows >= 0) {
     inptr = *input_buf++;
     outptr = output_buf[0][output_row];
     output_row++;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (col = 0; col < num_cols; col++) {
@@ -249,7 +249,7 @@ cmyk_ycck_convert (j_compress_ptr cinfo,
   register JDIMENSION col;
   JDIMENSION num_cols = cinfo->image_width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (--num_rows >= 0) {
@@ -259,7 +259,7 @@ cmyk_ycck_convert (j_compress_ptr cinfo,
     outptr2 = output_buf[2][output_row];
     outptr3 = output_buf[3][output_row];
     output_row++;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (col = 0; col < num_cols; col++) {
@@ -308,14 +308,14 @@ grayscale_convert (j_compress_ptr cinfo,
   JDIMENSION num_cols = cinfo->image_width;
   int instride = cinfo->input_components;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (--num_rows >= 0) {
     inptr = *input_buf++;
     outptr = output_buf[0][output_row];
     output_row++;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (col = 0; col < num_cols; col++) {
@@ -344,18 +344,18 @@ null_convert (j_compress_ptr cinfo,
   int nc = cinfo->num_components;
   JDIMENSION num_cols = cinfo->image_width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (--num_rows >= 0) {
     /* It seems fastest to make a separate pass for each component. */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0; ci < nc; ci++) {
       inptr = *input_buf;
       outptr = output_buf[ci][output_row];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (col = 0; col < num_cols; col++) {

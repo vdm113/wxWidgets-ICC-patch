@@ -63,7 +63,7 @@ makegamtab(float gam)
 {
     int i;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(i=0; i<256; i++) 
@@ -94,7 +94,7 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; stuff[i] != NULL; i++)
@@ -145,7 +145,7 @@ main(int argc, char* argv[])
     extern char *optarg;
     int c, status;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ((c = getopt(argc, argv, "c:r:")) != -1)
@@ -215,7 +215,7 @@ convert(void)
     if (!checksignature())
         return (-1);
     readscreen();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ((ch = getc(infile)) != ';' && ch != EOF) {
@@ -323,7 +323,7 @@ readextension(void)
     char buf[255];
 
     (void) getc(infile);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ((count = getc(infile)))
@@ -353,7 +353,7 @@ readraster(void)
     oldcode = -1;
     codesize = datasize + 1;
     codemask = (1 << codesize) - 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (code = 0; code < clear; code++) {
@@ -361,18 +361,18 @@ readraster(void)
 	suffix[code] = code;
     }
     stackp = stack;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (count = getc(infile); count > 0; count = getc(infile)) {
 	fread(buf,1,count,infile);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (ch=buf; count-- > 0; ch++) {
 	    datum += (unsigned long) *ch << bits;
 	    bits += 8;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	    while (bits >= codesize) {
@@ -438,7 +438,7 @@ process(register int code, unsigned char** fill)
 	*stackp++ = firstchar;
 	code = oldcode;
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (code > clear) {
@@ -456,7 +456,7 @@ process(register int code, unsigned char** fill)
 	codemask += avail;
     }
     oldcode = incode;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do {
@@ -476,7 +476,7 @@ initcolors(unsigned char colormap[COLSIZE][3], int ncolors)
 {
     register int i;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < ncolors; i++) {
@@ -542,7 +542,7 @@ MY_MACRO_PRAGMA_IVDEP \
     TIFFSetField(tif, TIFFTAG_ORIENTATION, ORIENTATION_TOPLEFT);
     strip = 0;
     stripsize = TIFFStripSize(tif);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (row=0; row<height; row += rowsperstrip) {

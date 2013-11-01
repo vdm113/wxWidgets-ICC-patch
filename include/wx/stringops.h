@@ -2,7 +2,7 @@
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#   define MY_MACRO_PRAGMA_IVDEP
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -93,7 +93,7 @@ struct WXDLLIMPEXP_BASE wxStringOperationsUtf8
         // here, because we assume valid UTF-8 input for the purpose of
         // efficient implementation).
         --i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( ((*i) & 0xC0) == 0x80 /* 2 highest bits are '10' */ )
@@ -107,7 +107,7 @@ struct WXDLLIMPEXP_BASE wxStringOperationsUtf8
 
         if ( n > 0 )
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( ptrdiff_t j = 0; j < n; ++j )
@@ -115,7 +115,7 @@ struct WXDLLIMPEXP_BASE wxStringOperationsUtf8
         }
         else if ( n < 0 )
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( ptrdiff_t j = 0; j > n; --j )
@@ -132,7 +132,7 @@ struct WXDLLIMPEXP_BASE wxStringOperationsUtf8
 
         if ( i1 < i2 )
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while ( i1 != i2 )
@@ -143,7 +143,7 @@ struct WXDLLIMPEXP_BASE wxStringOperationsUtf8
         }
         else if ( i2 < i1 )
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while ( i2 != i1 )

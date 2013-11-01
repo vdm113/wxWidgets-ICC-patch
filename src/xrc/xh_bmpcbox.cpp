@@ -78,7 +78,7 @@ wxObject *wxBitmapComboBoxXmlHandler::DoCreateResource()
 
         wxXmlNode *n = children_node;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (n)

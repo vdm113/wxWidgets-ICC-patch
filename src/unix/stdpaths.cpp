@@ -250,7 +250,7 @@ wxString wxStandardPaths::GetDocumentsDir() const
             if (textFile.Open(dirsFile))
             {
                 size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (i = 0; i < textFile.GetLineCount(); i++)

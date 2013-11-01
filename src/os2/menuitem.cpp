@@ -165,7 +165,7 @@ wxString wxMenuItemBase::GetLabelText(
 {
     wxString                        sLabel;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (const wxChar* zPc = rsText.c_str(); *zPc; zPc++)
@@ -301,7 +301,7 @@ void wxMenuItem::Check(
         //
         wxMenuItemList::compatibility_iterator node = rItems.Item(nStart);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int n = nStart; n <= nEnd && node; n++)

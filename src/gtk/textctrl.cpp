@@ -263,7 +263,7 @@ static void wxGtkTextApplyTagsFromAttr(GtkWidget *text,
 
         wxString tagname = wxT("WXTABS");
         g_snprintf(buf, sizeof(buf), "WXTABS");
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = 0; i < tabs.GetCount(); i++)
@@ -281,7 +281,7 @@ static void wxGtkTextApplyTagsFromAttr(GtkWidget *text,
                           gdk_screen_get_width_mm(gtk_widget_get_screen(text)) / 10;
 
             PangoTabArray* tabArray = pango_tab_array_new(tabs.GetCount(), TRUE);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (size_t i = 0; i < tabs.GetCount(); i++)
@@ -411,7 +411,7 @@ au_check_word( GtkTextIter *s, GtkTextIter *e )
     size_t len = strlen(text), prefix_len;
     size_t n;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( n = 0; n < WXSIZEOF(URIPrefixes); ++n )
@@ -450,7 +450,7 @@ au_check_range(GtkTextIter *s,
     if(g_unichar_isspace(gtk_text_iter_get_char(&range_start)))
         gtk_text_iter_forward_find_char(&range_start, pred_non_whitespace, NULL, range_end);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while(!gtk_text_iter_equal(&range_start, range_end))
@@ -649,7 +649,7 @@ wxTextCtrl::~wxTextCtrl()
 
     // this is also done by wxWindowGTK dtor, but has to be done here so our
     // DoThaw() override is called
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (IsFrozen())
@@ -1949,7 +1949,7 @@ void wxTextCtrl::DoFreeze()
         // and Freeze takes longer and longer each time it is called.
         if (m_anonymousMarkList)
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (GSList* item = m_anonymousMarkList; item; item = item->next)

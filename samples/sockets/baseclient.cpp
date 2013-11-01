@@ -260,7 +260,7 @@ Client::OnRun()
             switch(m_workMode)
             {
                 case THREADS:
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (i = 0; i < m_stressWorkers; i++) {
@@ -271,7 +271,7 @@ Client::OnRun()
                     }
                     break;
                 case EVENTS:
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (i = 0; i < m_stressWorkers; i++) {
@@ -282,7 +282,7 @@ Client::OnRun()
                     }
                     break;
                 default:
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (i = 0; i < m_stressWorkers; i++) {
@@ -308,7 +308,7 @@ Client::OnRun()
 int
 Client::OnExit()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(EList::compatibility_iterator it = m_eventWorkers.GetFirst(); it ; it->GetNext()) {
@@ -357,7 +357,7 @@ Client::StartWorker(workMode pMode) {
     char* buf = CreateBuffer(&msgsize);
 
     //fill data part of buffer with random bytes
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 2; i < (msgsize); i++) {
@@ -459,7 +459,7 @@ Client::OnWorkerEvent(WorkerEvent& pEvent) {
 
     if (pEvent.isFailed() || pEvent.m_eventType == WorkerEvent::DONE)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(TList::compatibility_iterator it = m_threadWorkers.GetFirst(); it ; it = it->GetNext()) {
@@ -468,7 +468,7 @@ Client::OnWorkerEvent(WorkerEvent& pEvent) {
                 break;
             }
         }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(EList::compatibility_iterator it2 = m_eventWorkers.GetFirst(); it2 ; it2 = it2->GetNext())
@@ -495,7 +495,7 @@ Client::OnWorkerEvent(WorkerEvent& pEvent) {
 
 void
 Client::RemoveEventWorker(EventWorker* p_worker) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(EList::compatibility_iterator it = m_eventWorkers.GetFirst(); it ; it = it->GetNext()) {
@@ -566,7 +566,7 @@ EventWorker::OnSocketEvent(wxSocketEvent& pEvent) {
     switch(pEvent.GetSocketEvent()) {
         case wxSOCKET_INPUT:
             //wxLogDebug(wxT("EventWorker: INPUT"));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             do {
@@ -605,7 +605,7 @@ EventWorker::OnSocketEvent(wxSocketEvent& pEvent) {
         break;
         case wxSOCKET_OUTPUT:
             //wxLogDebug(wxT("EventWorker: OUTPUT"));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             do {
@@ -710,7 +710,7 @@ wxThread::ExitCode ThreadWorker::Entry()
         WorkerEvent e(this,etype);
         wxGetApp().AddPendingEvent(e);
         int to_process = m_outsize;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         do {
@@ -728,7 +728,7 @@ wxThread::ExitCode ThreadWorker::Entry()
             WorkerEvent e(this,etype);
             wxGetApp().AddPendingEvent(e);
             to_process = m_insize;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             do {

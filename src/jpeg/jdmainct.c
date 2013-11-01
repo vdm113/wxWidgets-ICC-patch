@@ -181,7 +181,7 @@ alloc_funny_pointers (j_decompress_ptr cinfo)
 				cinfo->num_components * 2 * SIZEOF(JSAMPARRAY));
   main->xbuffer[1] = main->xbuffer[0] + cinfo->num_components;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -217,7 +217,7 @@ make_funny_pointers (j_decompress_ptr cinfo)
   jpeg_component_info *compptr;
   JSAMPARRAY buf, xbuf0, xbuf1;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -228,14 +228,14 @@ make_funny_pointers (j_decompress_ptr cinfo)
     xbuf1 = main->xbuffer[1][ci];
     /* First copy the workspace pointers as-is */
     buf = main->buffer[ci];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < rgroup * (M + 2); i++) {
       xbuf0[i] = xbuf1[i] = buf[i];
     }
     /* In the second list, put the last four row groups in swapped order */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < rgroup * 2; i++) {
@@ -247,7 +247,7 @@ make_funny_pointers (j_decompress_ptr cinfo)
      * pointers to duplicate the first actual data line.  This only needs
      * to happen in xbuffer[0].
      */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < rgroup; i++) {
@@ -269,7 +269,7 @@ set_wraparound_pointers (j_decompress_ptr cinfo)
   jpeg_component_info *compptr;
   JSAMPARRAY xbuf0, xbuf1;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -278,7 +278,7 @@ set_wraparound_pointers (j_decompress_ptr cinfo)
       cinfo->min_DCT_scaled_size; /* height of a row group of component */
     xbuf0 = main->xbuffer[0][ci];
     xbuf1 = main->xbuffer[1][ci];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < rgroup; i++) {
@@ -303,7 +303,7 @@ set_bottom_pointers (j_decompress_ptr cinfo)
   jpeg_component_info *compptr;
   JSAMPARRAY xbuf;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -324,7 +324,7 @@ set_bottom_pointers (j_decompress_ptr cinfo)
      * last partial rowgroup and ensures at least one full rowgroup of context.
      */
     xbuf = main->xbuffer[main->whichptr][ci];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < rgroup * 2; i++) {
@@ -535,7 +535,7 @@ jinit_d_main_controller (j_decompress_ptr cinfo, wxjpeg_boolean need_full_buffer
     ngroups = cinfo->min_DCT_scaled_size;
   }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;

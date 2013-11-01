@@ -79,7 +79,7 @@ initial_setup (j_compress_ptr cinfo)
   /* Compute maximum sampling factors; check factor validity */
   cinfo->max_h_samp_factor = 1;
   cinfo->max_v_samp_factor = 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -94,7 +94,7 @@ initial_setup (j_compress_ptr cinfo)
   }
 
   /* Compute dimensions of components */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -159,11 +159,11 @@ validate_script (j_compress_ptr cinfo)
 #ifdef C_PROGRESSIVE_SUPPORTED
     cinfo->progressive_mode = TRUE;
     last_bitpos_ptr = & last_bitpos[0][0];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0; ci < cinfo->num_components; ci++) 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (coefi = 0; coefi < DCTSIZE2; coefi++)
@@ -173,14 +173,14 @@ validate_script (j_compress_ptr cinfo)
 #endif
   } else {
     cinfo->progressive_mode = FALSE;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0; ci < cinfo->num_components; ci++) 
       component_sent[ci] = FALSE;
   }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (scanno = 1; scanno <= cinfo->num_scans; scanptr++, scanno++) {
@@ -188,7 +188,7 @@ validate_script (j_compress_ptr cinfo)
     ncomps = scanptr->comps_in_scan;
     if (ncomps <= 0 || ncomps > MAX_COMPS_IN_SCAN)
       ERREXIT2(cinfo, JERR_COMPONENT_COUNT, ncomps, MAX_COMPS_IN_SCAN);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0; ci < ncomps; ci++) {
@@ -228,14 +228,14 @@ validate_script (j_compress_ptr cinfo)
 	if (ncomps != 1)	/* AC scans must be for only one component */
 	  ERREXIT1(cinfo, JERR_BAD_PROG_SCRIPT, scanno);
       }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (ci = 0; ci < ncomps; ci++) {
 	last_bitpos_ptr = & last_bitpos[scanptr->component_index[ci]][0];
 	if (Ss != 0 && last_bitpos_ptr[0] < 0) /* AC without prior DC scan */
 	  ERREXIT1(cinfo, JERR_BAD_PROG_SCRIPT, scanno);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (coefi = Ss; coefi <= Se; coefi++) {
@@ -257,7 +257,7 @@ validate_script (j_compress_ptr cinfo)
       if (Ss != 0 || Se != DCTSIZE2-1 || Ah != 0 || Al != 0)
 	ERREXIT1(cinfo, JERR_BAD_PROG_SCRIPT, scanno);
       /* Make sure components are not sent twice */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (ci = 0; ci < ncomps; ci++) {
@@ -277,7 +277,7 @@ validate_script (j_compress_ptr cinfo)
      * of all coefficients be transmitted.  Would it be wiser to enforce
      * transmission of all coefficient bits??
      */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0; ci < cinfo->num_components; ci++) {
@@ -286,7 +286,7 @@ validate_script (j_compress_ptr cinfo)
     }
 #endif
   } else {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0; ci < cinfo->num_components; ci++) {
@@ -312,7 +312,7 @@ select_scan_parameters (j_compress_ptr cinfo)
     const jpeg_scan_info * scanptr = cinfo->scan_info + master->scan_number;
 
     cinfo->comps_in_scan = scanptr->comps_in_scan;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0; ci < scanptr->comps_in_scan; ci++) {
@@ -332,7 +332,7 @@ select_scan_parameters (j_compress_ptr cinfo)
       ERREXIT2(cinfo, JERR_COMPONENT_COUNT, cinfo->num_components,
 	       MAX_COMPS_IN_SCAN);
     cinfo->comps_in_scan = cinfo->num_components;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0; ci < cinfo->num_components; ci++) {
@@ -397,7 +397,7 @@ per_scan_setup (j_compress_ptr cinfo)
     
     cinfo->blocks_in_MCU = 0;
     
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
@@ -418,7 +418,7 @@ per_scan_setup (j_compress_ptr cinfo)
       mcublks = compptr->MCU_blocks;
       if (cinfo->blocks_in_MCU + mcublks > C_MAX_BLOCKS_IN_MCU)
 	ERREXIT(cinfo, JERR_BAD_MCU_SIZE);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       while (mcublks-- > 0) {

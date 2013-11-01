@@ -105,7 +105,7 @@ wxUniCharRef& wxUniCharRef::operator=(const wxUniChar& c)
         // same length, we can just replace it:
 
         iterator pos(m_pos);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < lenNew; ++i, ++pos )
@@ -131,7 +131,7 @@ wxUniCharRef& wxUniCharRef::operator=(const wxUniChar& c)
         size_t *indexes = indexes_a;
         size_t iterNum = 0;
         wxStringIteratorNode *it;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( it = m_str.m_iterators.ptr; it; it = it->m_next, ++iterNum )
@@ -143,7 +143,7 @@ wxUniCharRef& wxUniCharRef::operator=(const wxUniChar& c)
                 wxLogTrace( wxT("utf8"), wxT("unexpectedly many iterators") );
 
                 size_t total = iterNum + 1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( wxStringIteratorNode *it2 = it; it2; it2 = it2->m_next )
@@ -172,7 +172,7 @@ wxUniCharRef& wxUniCharRef::operator=(const wxUniChar& c)
         // finally, set the iterators to valid values again (note that this
         // updates m_pos as well):
         size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i = 0, it = m_str.m_iterators.ptr; it; it = it->m_next, ++i )

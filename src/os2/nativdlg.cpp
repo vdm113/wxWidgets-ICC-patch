@@ -83,7 +83,7 @@ bool wxWindow::LoadNativeDialog (
     // Enumerate the children
     //
     hEnum = ::WinBeginEnumWindows(GetHwndOf(pParent));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ((hWndNext = ::WinGetNextWindow(hEnum)) != NULLHANDLE)
@@ -141,7 +141,7 @@ wxWindow* wxWindow::GetWindowChild1 (
 
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)

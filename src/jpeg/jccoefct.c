@@ -151,12 +151,12 @@ compress_data (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
   jpeg_component_info *compptr;
 
   /* Loop to write as much as one whole iMCU row */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (yoffset = coef->MCU_vert_offset; yoffset < coef->MCU_rows_per_iMCU_row;
        yoffset++) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (MCU_col_num = coef->mcu_ctr; MCU_col_num <= last_MCU_col;
@@ -171,7 +171,7 @@ compress_data (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
        * block's DC value.  (Thanks to Thomas Kinsman for this idea.)
        */
       blkn = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
@@ -180,7 +180,7 @@ compress_data (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 						: compptr->last_col_width;
 	xpos = MCU_col_num * compptr->MCU_sample_width;
 	ypos = yoffset * DCTSIZE; /* ypos == (yoffset+yindex) * DCTSIZE */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (yindex = 0; yindex < compptr->MCU_height; yindex++) {
@@ -194,7 +194,7 @@ compress_data (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 	      /* Create some dummy blocks at the right edge of the image. */
 	      jzero_far((void FAR *) coef->MCU_buffer[blkn + blockcnt],
 			(compptr->MCU_width - blockcnt) * SIZEOF(JBLOCK));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	      for (bi = blockcnt; bi < compptr->MCU_width; bi++) {
@@ -205,7 +205,7 @@ compress_data (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 	    /* Create a row of dummy blocks at the bottom of the image. */
 	    jzero_far((void FAR *) coef->MCU_buffer[blkn],
 		      compptr->MCU_width * SIZEOF(JBLOCK));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (bi = 0; bi < compptr->MCU_width; bi++) {
@@ -271,7 +271,7 @@ compress_first_pass (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
   JBLOCKARRAY buffer;
   JBLOCKROW thisblockrow, lastblockrow;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -298,7 +298,7 @@ compress_first_pass (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
     /* Perform DCT for all non-dummy blocks in this iMCU row.  Each call
      * on forward_DCT processes a complete horizontal row of DCT blocks.
      */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (block_row = 0; block_row < block_rows; block_row++) {
@@ -312,7 +312,7 @@ compress_first_pass (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 	thisblockrow += blocks_across; /* => first dummy block */
 	jzero_far((void FAR *) thisblockrow, ndummy * SIZEOF(JBLOCK));
 	lastDC = thisblockrow[-1][0];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (bi = 0; bi < ndummy; bi++) {
@@ -328,7 +328,7 @@ compress_first_pass (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
     if (coef->iMCU_row_num == last_iMCU_row) {
       blocks_across += ndummy;	/* include lower right corner */
       MCUs_across = blocks_across / h_samp_factor;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (block_row = block_rows; block_row < compptr->v_samp_factor;
@@ -337,12 +337,12 @@ compress_first_pass (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 	lastblockrow = buffer[block_row-1];
 	jzero_far((void FAR *) thisblockrow,
 		  (size_t) (blocks_across * SIZEOF(JBLOCK)));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (MCUindex = 0; MCUindex < MCUs_across; MCUindex++) {
 	  lastDC = lastblockrow[h_samp_factor-1][0];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	  for (bi = 0; bi < h_samp_factor; bi++) {
@@ -388,7 +388,7 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
    * NB: during first pass, this is safe only because the buffers will
    * already be aligned properly, so jmemmgr.c won't need to do any I/O.
    */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
@@ -400,30 +400,30 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
   }
 
   /* Loop to process one whole iMCU row */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (yoffset = coef->MCU_vert_offset; yoffset < coef->MCU_rows_per_iMCU_row;
        yoffset++) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (MCU_col_num = coef->mcu_ctr; MCU_col_num < cinfo->MCUs_per_row;
 	 MCU_col_num++) {
       /* Construct list of pointers to DCT blocks belonging to this MCU */
       blkn = 0;			/* index of current DCT block within MCU */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
 	compptr = cinfo->cur_comp_info[ci];
 	start_col = MCU_col_num * compptr->MCU_width;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (yindex = 0; yindex < compptr->MCU_height; yindex++) {
 	  buffer_ptr = buffer[ci][yindex+yoffset] + start_col;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	  for (xindex = 0; xindex < compptr->MCU_width; xindex++) {
@@ -474,7 +474,7 @@ jinit_c_coef_controller (j_compress_ptr cinfo, wxjpeg_boolean need_full_buffer)
     int ci;
     jpeg_component_info *compptr;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -498,7 +498,7 @@ jinit_c_coef_controller (j_compress_ptr cinfo, wxjpeg_boolean need_full_buffer)
     buffer = (JBLOCKROW)
       (*cinfo->mem->alloc_large) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				  C_MAX_BLOCKS_IN_MCU * SIZEOF(JBLOCK));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < C_MAX_BLOCKS_IN_MCU; i++) {

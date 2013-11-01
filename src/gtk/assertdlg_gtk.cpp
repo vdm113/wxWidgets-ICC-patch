@@ -404,7 +404,7 @@ gchar *gtk_assert_dialog_get_backtrace (GtkAssertDialog *dlg)
     if (!gtk_tree_model_get_iter_first (model, &iter))
         return NULL;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     do

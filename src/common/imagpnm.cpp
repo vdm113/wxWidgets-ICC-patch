@@ -97,7 +97,7 @@ bool wxPNMHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbose
     if (c=='2') // Ascii GREY
     {
         wxUint32 value, size=width*height;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (wxUint32 i=0; i<size; ++i)
@@ -121,7 +121,7 @@ bool wxPNMHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbose
     if (c=='3') // Ascii RBG
     {
         wxUint32 value, size=3*width*height;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (wxUint32 i=0; i<size; ++i)
@@ -147,7 +147,7 @@ bool wxPNMHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbose
     {
         wxUint32 size=width*height;
         unsigned char value;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (wxUint32 i=0; i<size; ++i)
@@ -174,7 +174,7 @@ bool wxPNMHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbose
         buf_stream.Read(ptr, 3*width*height);
         if ( maxval != 255 )
         {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( unsigned i = 0; i < 3*width*height; i++ )

@@ -59,7 +59,7 @@ TIFFCleanup(TIFF* tif)
 	/*
          * Clean up client info links.
          */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while( tif->tif_clientinfo )
@@ -82,7 +82,7 @@ TIFFCleanup(TIFF* tif)
 	if (tif->tif_fields && tif->tif_nfields > 0) {
 		uint32 i;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (i = 0; i < tif->tif_nfields; i++) {
@@ -100,7 +100,7 @@ TIFFCleanup(TIFF* tif)
         if (tif->tif_nfieldscompat > 0) {
                 uint32 i;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (i = 0; i < tif->tif_nfieldscompat; i++) {

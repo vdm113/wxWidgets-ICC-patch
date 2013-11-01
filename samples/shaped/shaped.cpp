@@ -508,12 +508,12 @@ void SeeThroughFrame::OnPaint(wxPaintEvent& WXUNUSED(evt))
     int width = GetClientSize().GetWidth();
     int height = GetClientSize().GetHeight();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( float x = 0.; x < 1.; x += xstep )
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( float y = 0.; y < 1.; y += ystep )

@@ -96,7 +96,7 @@ LifeSamplesDialog::LifeSamplesDialog(wxWindow *parent)
         0, NULL,
         wxLB_SINGLE | wxLB_NEEDED_SB | wxLB_HSCROLL );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned i = 0; i < (sizeof(g_patterns) / sizeof(LifePattern)); i++)

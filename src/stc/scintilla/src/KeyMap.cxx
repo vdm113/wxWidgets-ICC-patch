@@ -16,7 +16,7 @@ using namespace Scintilla;
 #endif
 
 KeyMap::KeyMap() : kmap(0), len(0), alloc(0) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 0; MapDefault[i].key; i++) {
@@ -42,7 +42,7 @@ void KeyMap::AssignCmdKey(int key, int modifiers, unsigned int msg) {
 		KeyToCommand *ktcNew = new KeyToCommand[alloc + 5];
 		if (!ktcNew)
 			return;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int k = 0; k < len; k++)
@@ -51,7 +51,7 @@ void KeyMap::AssignCmdKey(int key, int modifiers, unsigned int msg) {
 		delete []kmap;
 		kmap = ktcNew;
 	}
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int keyIndex = 0; keyIndex < len; keyIndex++) {
@@ -67,7 +67,7 @@ void KeyMap::AssignCmdKey(int key, int modifiers, unsigned int msg) {
 }
 
 unsigned int KeyMap::Find(int key, int modifiers) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 0; i < len; i++) {

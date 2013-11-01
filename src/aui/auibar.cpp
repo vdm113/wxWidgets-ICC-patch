@@ -632,7 +632,7 @@ void wxAuiDefaultToolBarArt::DrawGripper(wxDC& dc,
                                     const wxRect& rect)
 {
     int i = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (1)
@@ -731,7 +731,7 @@ int wxAuiDefaultToolBarArt::ShowDropDown(wxWindow* wnd,
     size_t items_added = 0;
 
     size_t i, count = items.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < count; ++i)
@@ -1155,7 +1155,7 @@ wxControl* wxAuiToolBar::FindControl(int id)
 wxAuiToolBarItem* wxAuiToolBar::FindTool(int tool_id) const
 {
     size_t i, count;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
@@ -1171,7 +1171,7 @@ wxAuiToolBarItem* wxAuiToolBar::FindTool(int tool_id) const
 wxAuiToolBarItem* wxAuiToolBar::FindToolByPosition(wxCoord x, wxCoord y) const
 {
     size_t i, count;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
@@ -1198,7 +1198,7 @@ wxAuiToolBarItem* wxAuiToolBar::FindToolByPosition(wxCoord x, wxCoord y) const
 wxAuiToolBarItem* wxAuiToolBar::FindToolByPositionWithPacking(wxCoord x, wxCoord y) const
 {
     size_t i, count;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
@@ -1444,7 +1444,7 @@ void wxAuiToolBar::SetHoverItem(wxAuiToolBarItem* pitem)
     wxAuiToolBarItem* former_hover = NULL;
 
     size_t i, count;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
@@ -1472,7 +1472,7 @@ void wxAuiToolBar::SetPressedItem(wxAuiToolBarItem* pitem)
     wxAuiToolBarItem* former_item = NULL;
 
     size_t i, count;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
@@ -1546,7 +1546,7 @@ void wxAuiToolBar::ToggleTool(int tool_id, bool state)
 
             if (idx >= 0 && idx < count)
             {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (i = idx + 1; i < count; ++i)
@@ -1555,7 +1555,7 @@ void wxAuiToolBar::ToggleTool(int tool_id, bool state)
                         break;
                     m_items[i].m_state &= ~wxAUI_BUTTON_STATE_CHECKED;
                 }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (i = idx - 1; i >= 0; i--)
@@ -1773,7 +1773,7 @@ int wxAuiToolBar::GetToolIndex(int tool_id) const
         return wxNOT_FOUND;
 
     size_t i, count = m_items.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < count; ++i)
@@ -1918,7 +1918,7 @@ bool wxAuiToolBar::RealizeHelper(wxClientDC& dc, bool horizontal)
     }
 
     size_t i, count;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
@@ -2088,7 +2088,7 @@ bool wxAuiToolBar::RealizeHelper(wxClientDC& dc, bool horizontal)
     m_sizer = outside_sizer;
 
     // calculate the rock-bottom minimum size
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
@@ -2101,7 +2101,7 @@ bool wxAuiToolBar::RealizeHelper(wxClientDC& dc, bool horizontal)
     m_absoluteMinSize = m_sizer->GetMinSize();
 
     // reset the min sizes to what they were
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
@@ -2193,7 +2193,7 @@ void wxAuiToolBar::DoIdleUpdate()
     bool need_refresh = false;
 
     size_t i, count;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
@@ -2275,7 +2275,7 @@ void wxAuiToolBar::OnSize(wxSizeEvent& WXUNUSED(evt))
     {
         // hide all flexible items
         size_t i, count;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0, count = m_items.GetCount(); i < count; ++i)
@@ -2292,7 +2292,7 @@ void wxAuiToolBar::OnSize(wxSizeEvent& WXUNUSED(evt))
     {
         // show all flexible items
         size_t i, count;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0, count = m_items.GetCount(); i < count; ++i)
@@ -2457,7 +2457,7 @@ void wxAuiToolBar::OnPaint(wxPaintEvent& WXUNUSED(evt))
 
     // paint each individual tool
     size_t i, count = m_items.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < count; ++i)
@@ -2574,7 +2574,7 @@ void wxAuiToolBar::OnLeftDown(wxMouseEvent& evt)
 
                 // add custom overflow prepend items, if any
                 count = m_customOverflowPrepend.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (i = 0; i < count; ++i)
@@ -2582,7 +2582,7 @@ void wxAuiToolBar::OnLeftDown(wxMouseEvent& evt)
 
                 // only show items that don't fit in the dropdown
                 count = m_items.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (i = 0; i < count; ++i)
@@ -2593,7 +2593,7 @@ void wxAuiToolBar::OnLeftDown(wxMouseEvent& evt)
 
                 // add custom overflow append items, if any
                 count = m_customOverflowAppend.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for (i = 0; i < count; ++i)

@@ -616,7 +616,7 @@ void wxGCDCImpl::DoDrawLines(int n, const wxPoint points[],
         return;
 
     wxPoint2DDouble* pointsD = new wxPoint2DDouble[n];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( int i = 0; i < n; ++i)
@@ -661,13 +661,13 @@ void wxGCDCImpl::DoDrawSpline(const wxPointList *points)
     path.AddLineToPoint( cx1 , cy1 );
 #if !wxUSE_STD_CONTAINERS
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ((node = node->GetNext()) != NULL)
 #else
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ((node = node->GetNext()))
@@ -710,7 +710,7 @@ void wxGCDCImpl::DoDrawPolygon( int n, const wxPoint points[],
         closeIt = true;
 
     wxPoint2DDouble* pointsD = new wxPoint2DDouble[n+(closeIt?1:0)];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( int i = 0; i < n; ++i)
@@ -736,7 +736,7 @@ void wxGCDCImpl::DoDrawPolyPolygon(int n,
     wxGraphicsPath path = m_graphicContext->CreatePath();
 
     int i = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int j = 0; j < n; ++j)
@@ -745,7 +745,7 @@ void wxGCDCImpl::DoDrawPolyPolygon(int n,
         path.MoveToPoint( start.x+ xoffset, start.y+ yoffset);
         ++i;
         int l = count[j];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int k = 1; k < l; ++k)
@@ -1018,7 +1018,7 @@ bool wxGCDCImpl::DoGetPartialTextExtents(const wxString& text, wxArrayInt& width
     wxArrayDouble widthsD;
 
     m_graphicContext->GetPartialTextExtents( text, widthsD );
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < widths.GetCount(); ++i )

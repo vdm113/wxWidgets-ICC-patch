@@ -25,7 +25,7 @@ CharClassify::CharClassify() {
 
 void CharClassify::SetDefaultCharClasses(bool includeWordClass) {
 	// Initialize all char classes to default values
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int ch = 0; ch < 256; ch++) {
@@ -43,7 +43,7 @@ void CharClassify::SetDefaultCharClasses(bool includeWordClass) {
 void CharClassify::SetCharClasses(const unsigned char *chars, cc newCharClass) {
 	// Apply the newCharClass to the specifed chars
 	if (chars) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (*chars) {
@@ -57,7 +57,7 @@ int CharClassify::GetCharsOfClass(cc characterClass, unsigned char *buffer) {
 	// Get characters belonging to the given char class; return the number
 	// of characters (if the buffer is NULL, don't write to it).
 	int count = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int ch = maxChar - 1; ch >= 0; --ch) {

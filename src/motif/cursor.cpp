@@ -79,7 +79,7 @@ wxCursorRefData::wxCursorRefData()
 wxCursorRefData::~wxCursorRefData()
 {
     wxXCursorList::compatibility_iterator node = m_cursors.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -109,7 +109,7 @@ wxCursor::wxCursor(const wxImage & image)
 
     int i, j, i8;
     unsigned char c, cMask;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i=0; i<imagebitcount; i++)
@@ -118,7 +118,7 @@ wxCursor::wxCursor(const wxImage & image)
         i8 = i * 8;
 
         cMask = 0xfe; // 11111110
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j=0; j<8; j++)
@@ -139,7 +139,7 @@ wxCursor::wxCursor(const wxImage & image)
             g = image.GetMaskGreen(),
             b = image.GetMaskBlue();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i=0; i<imagebitcount; i++)
@@ -148,7 +148,7 @@ wxCursor::wxCursor(const wxImage & image)
             i8 = i * 8;
 
             cMask = 0x1;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (j=0; j<8; j++)
@@ -161,7 +161,7 @@ wxCursor::wxCursor(const wxImage & image)
     }
     else // no mask
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i=0; i<imagebitcount; i++)
@@ -340,7 +340,7 @@ WXCursor wxCursor::GetXCursor(WXDisplay* display) const
     if (!M_CURSORDATA)
         return (WXCursor) 0;
     wxXCursorList::compatibility_iterator node = M_CURSORDATA->m_cursors.GetFirst();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -496,7 +496,7 @@ wxXSetBusyCursor (wxWindow * win, const wxCursor * cursor)
 
     XFlush (display);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst (); node;
@@ -513,7 +513,7 @@ void wxBeginBusyCursor(const wxCursor *cursor)
     wxBusyCursorCount++;
     if (wxBusyCursorCount == 1)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst (); node;
@@ -534,7 +534,7 @@ void wxEndBusyCursor()
     wxBusyCursorCount--;
     if (wxBusyCursorCount == 0)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst (); node;

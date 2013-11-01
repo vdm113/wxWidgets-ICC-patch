@@ -71,7 +71,7 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((c = getopt(argc, argv, "c:r:h")) != -1)
@@ -165,12 +165,12 @@ main(int argc, char* argv[])
 			return (-8);
 		}
 		map = red;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (j = 0; j < 3; j++) {
 #define	SCALE(x)	(((x)*((1L<<16)-1))/255)
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (i = h.ras_maplength/3; i-- > 0;)
@@ -218,7 +218,7 @@ main(int argc, char* argv[])
 		buf = (unsigned char *)_TIFFmalloc(linebytes);
 	TIFFSetField(out, TIFFTAG_ROWSPERSTRIP,
 	    TIFFDefaultStripSize(out, rowsperstrip));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (row = 0; row < h.ras_height; row++) {
@@ -231,7 +231,7 @@ main(int argc, char* argv[])
 			tsize_t cc = h.ras_width;
 			unsigned char* cp = buf;
 #define	SWAP(a,b)	{ unsigned char t = (a); (a) = (b); (b) = t; }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			do {
@@ -258,7 +258,7 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
                 compression = COMPRESSION_JPEG;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 while( cp )
@@ -318,7 +318,7 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; stuff[i] != NULL; i++)

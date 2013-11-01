@@ -243,7 +243,7 @@ void SCI_METHOD LexerAsm::Lex(unsigned int startPos, int length, int initStyle, 
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward())
@@ -299,7 +299,7 @@ void SCI_METHOD LexerAsm::Lex(unsigned int startPos, int length, int initStyle, 
 				sc.SetState(SCE_ASM_DEFAULT);
 				if (IsDirective && !strcmp(s, "comment")) {
 					char delimiter = options.delimiter.empty() ? '~' : options.delimiter.c_str()[0];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 					while (IsASpaceOrTab(sc.ch) && !sc.atLineEnd) {
@@ -313,7 +313,7 @@ void SCI_METHOD LexerAsm::Lex(unsigned int startPos, int length, int initStyle, 
 		} else if (sc.state == SCE_ASM_COMMENTDIRECTIVE) {
 			char delimiter = options.delimiter.empty() ? '~' : options.delimiter.c_str()[0];
 			if (sc.ch == delimiter) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				while (!sc.atLineEnd) {
@@ -394,7 +394,7 @@ void SCI_METHOD LexerAsm::Fold(unsigned int startPos, int length, int initStyle,
 	char word[100];
 	int wordlen = 0;
 	const bool userDefinedFoldMarkers = !options.foldExplicitStart.empty() && !options.foldExplicitEnd.empty();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {

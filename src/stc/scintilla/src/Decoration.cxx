@@ -37,7 +37,7 @@ DecorationList::DecorationList() : currentIndicator(0), currentValue(1), current
 
 DecorationList::~DecorationList() {
 	Decoration *deco = root;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (deco) {
@@ -50,7 +50,7 @@ DecorationList::~DecorationList() {
 }
 
 Decoration *DecorationList::DecorationFromIndicator(int indicator) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (Decoration *deco=root; deco; deco = deco->next) {
@@ -69,7 +69,7 @@ Decoration *DecorationList::Create(int indicator, int length) {
 	Decoration *decoPrev = 0;
 	Decoration *deco = root;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (deco && (deco->indicator < indicator)) {
@@ -94,7 +94,7 @@ void DecorationList::Delete(int indicator) {
 			root = root->next;
 		} else {
 			Decoration *deco=root;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			while (deco->next && !decoToDelete) {
@@ -140,7 +140,7 @@ bool DecorationList::FillRange(int &position, int value, int &fillLength) {
 void DecorationList::InsertSpace(int position, int insertLength) {
 	const bool atEnd = position == lengthDocument;
 	lengthDocument += insertLength;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (Decoration *deco=root; deco; deco = deco->next) {
@@ -154,7 +154,7 @@ void DecorationList::InsertSpace(int position, int insertLength) {
 void DecorationList::DeleteRange(int position, int deleteLength) {
 	lengthDocument -= deleteLength;
 	Decoration *deco;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (deco=root; deco; deco = deco->next) {
@@ -165,7 +165,7 @@ void DecorationList::DeleteRange(int position, int deleteLength) {
 
 void DecorationList::DeleteAnyEmpty() {
 	Decoration *deco = root;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (deco) {
@@ -180,7 +180,7 @@ void DecorationList::DeleteAnyEmpty() {
 
 int DecorationList::AllOnFor(int position) {
 	int mask = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (Decoration *deco=root; deco; deco = deco->next) {

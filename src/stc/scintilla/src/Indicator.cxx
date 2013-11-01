@@ -25,7 +25,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		surface->MoveTo(rc.left, rc.top);
 		int x = rc.left + 2;
 		int y = 2;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (x < rc.right) {
@@ -38,7 +38,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		surface->MoveTo(rc.left, rc.top);
 		int x = rc.left + 3;
 		int y = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (x < rc.right) {
@@ -51,7 +51,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 	} else if (style == INDIC_TT) {
 		surface->MoveTo(rc.left, ymid);
 		int x = rc.left + 5;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (x < rc.right) {
@@ -69,7 +69,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		}
 	} else if (style == INDIC_DIAGONAL) {
 		int x = rc.left;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (x < rc.right) {
@@ -109,11 +109,11 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		int width = Platform::Minimum(rcBox.Width(), 4000);
 		RGBAImage image(width, rcBox.Height(), 0);
 		// Draw horizontal lines top and bottom
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int x=0; x<width; x++) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (int y=0; y<rcBox.Height(); y += rcBox.Height()-1) {
@@ -121,11 +121,11 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 			}
 		}
 		// Draw vertical lines left and right
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int y=1; y<rcBox.Height(); y++) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (int x=0; x<width; x += width-1) {
@@ -135,7 +135,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		surface->DrawRGBAImage(rcBox, image.GetWidth(), image.GetHeight(), image.Pixels());
 	} else if (style == INDIC_DASH) {
 		int x = rc.left;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (x < rc.right) {
@@ -145,7 +145,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		}
 	} else if (style == INDIC_DOTS) {
 		int x = rc.left;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (x < rc.right) {

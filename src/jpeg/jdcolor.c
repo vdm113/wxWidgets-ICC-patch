@@ -92,7 +92,7 @@ build_ycc_rgb_table (j_decompress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				(MAXJSAMPLE+1) * SIZEOF(JPEG_INT32));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0, x = -CENTERJSAMPLE; i <= MAXJSAMPLE; i++, x++) {
@@ -143,7 +143,7 @@ ycc_rgb_convert (j_decompress_ptr cinfo,
   register JPEG_INT32 * Cbgtab = cconvert->Cb_g_tab;
   SHIFT_TEMPS
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (--num_rows >= 0) {
@@ -152,7 +152,7 @@ ycc_rgb_convert (j_decompress_ptr cinfo,
     inptr2 = input_buf[2][input_row];
     input_row++;
     outptr = *output_buf++;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (col = 0; col < num_cols; col++) {
@@ -190,17 +190,17 @@ null_convert (j_decompress_ptr cinfo,
   JDIMENSION num_cols = cinfo->output_width;
   int ci;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (--num_rows >= 0) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0; ci < num_components; ci++) {
       inptr = input_buf[ci][input_row];
       outptr = output_buf[0] + ci;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (count = num_cols; count > 0; count--) {
@@ -245,13 +245,13 @@ gray_rgb_convert (j_decompress_ptr cinfo,
   register JDIMENSION col;
   JDIMENSION num_cols = cinfo->output_width;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (--num_rows >= 0) {
     inptr = input_buf[0][input_row++];
     outptr = *output_buf++;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (col = 0; col < num_cols; col++) {
@@ -289,7 +289,7 @@ ycck_cmyk_convert (j_decompress_ptr cinfo,
   register JPEG_INT32 * Cbgtab = cconvert->Cb_g_tab;
   SHIFT_TEMPS
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (--num_rows >= 0) {
@@ -299,7 +299,7 @@ ycck_cmyk_convert (j_decompress_ptr cinfo,
     inptr3 = input_buf[3][input_row];
     input_row++;
     outptr = *output_buf++;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (col = 0; col < num_cols; col++) {
@@ -384,7 +384,7 @@ jinit_color_deconverter (j_decompress_ptr cinfo)
 	cinfo->jpeg_color_space == JCS_YCbCr) {
       cconvert->pub.color_convert = grayscale_convert;
       /* For color->grayscale conversion, only the Y (0) component is needed */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (ci = 1; ci < cinfo->num_components; ci++)

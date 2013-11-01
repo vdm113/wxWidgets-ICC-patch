@@ -358,12 +358,12 @@ setTab(char *tab, struct range *ranges, size_t nRanges)
 {
   size_t i;
   int j;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < nRanges; i++) {
     if (ranges[i].end) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (j = ranges[i].start; j <= ranges[i].end; j++)
@@ -387,12 +387,12 @@ printTabs(char *tab)
 0x00000000, 0x00000000, 0x00000000, 0x00000000,\n\
 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,\n\
 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,\n");
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < 512; i++) {
     int kind = tab[i*256];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (j = 1; j < 256; j++)
@@ -404,12 +404,12 @@ printTabs(char *tab)
       pageIndex[i] = pageIndex[i - 256];
     else if (kind == -1) { 
       pageIndex[i] = nBitmaps++;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (j = 0; j < 8; j++) {
         unsigned val = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (k = 0; k < 32; k++) {
@@ -425,7 +425,7 @@ printTabs(char *tab)
   }
   printf("};\n");
   printf("static const unsigned char nmstrtPages[] = {\n");
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < 512; i++) {

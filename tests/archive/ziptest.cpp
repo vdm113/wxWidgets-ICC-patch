@@ -195,7 +195,7 @@ void ZipPipeTestCase::runTest()
     char buf[64];
     size_t len = zip.Read(buf, sizeof(buf) - 1).LastRead();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (len > 0 && buf[len - 1] <= 32)
@@ -238,7 +238,7 @@ ArchiveTestSuite *ziptest::makeSuite()
 #if 0
     // zip doesn't support this any more so disabled
     if (IsInPath(wxT("zip")))
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int options = 0; options <= PipeIn; options += PipeIn) {

@@ -2,7 +2,7 @@
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
 #   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */
+#   define MY_MACRO_PRAGMA_IVDEP
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -208,7 +208,7 @@ public:
 
         VARIANT* data = static_cast<VARIANT*>(m_array->pvData);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < variant.GetCount(); i++)
@@ -233,7 +233,7 @@ public:
 
         BSTR* data = static_cast<BSTR*>(m_array->pvData);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < strings.size(); i++ )
@@ -317,7 +317,7 @@ public:
         size_t dims = m_array->cDims;
         size_t count = 1;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < dims; i++ )
@@ -327,7 +327,7 @@ public:
         externT element;
 
         variant.ClearList();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i1 = 0; i1 < count; i1++ )
@@ -357,7 +357,7 @@ public:
         size_t dims = m_array->cDims;
         size_t count = 1;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < dims; i++ )
@@ -368,7 +368,7 @@ public:
 
         strings.clear();
         strings.reserve(count);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i1 = 0; i1 < count; i1++ )

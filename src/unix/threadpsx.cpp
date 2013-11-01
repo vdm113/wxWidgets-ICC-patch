@@ -594,7 +594,7 @@ wxSemaError wxSemaphoreInternal::Wait()
 {
     wxMutexLocker locker(m_mutex);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( m_count == 0 )
@@ -634,7 +634,7 @@ wxSemaError wxSemaphoreInternal::WaitTimeout(unsigned long milliseconds)
 
     wxLongLong startTime = wxGetLocalTimeMillis();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( m_count == 0 )
@@ -1819,7 +1819,7 @@ void wxThreadModule::OnExit()
         }
     } // unlock mutex before deleting the threads as they lock it in their dtor
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0u; n < count; n++ )

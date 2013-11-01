@@ -65,7 +65,7 @@ int LexerModule::GetNumWordLists() const {
 	} else {
 		int numWordLists = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		while (wordListDescriptions[numWordLists]) {

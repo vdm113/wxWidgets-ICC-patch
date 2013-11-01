@@ -165,7 +165,7 @@ void wxRichTextObjectPropertiesDialog::OnRichtextParaUpClick( wxCommandEvent& WX
     if (!iter)
         return;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (iter)
@@ -202,7 +202,7 @@ void wxRichTextObjectPropertiesDialog::OnRichtextDownClick( wxCommandEvent& WXUN
     if (!iter)
         return;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (iter)

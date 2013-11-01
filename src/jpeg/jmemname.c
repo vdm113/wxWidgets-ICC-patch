@@ -97,7 +97,7 @@ select_file_name (char * fname)
   FILE * tfile;
 
   /* Keep generating file names till we find one that's not in use */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (;;) {

@@ -264,7 +264,7 @@ void wxListBox::DoSetSelection(int N, bool select)
                            NULL);
 
             int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < n; i++)
@@ -298,7 +298,7 @@ bool wxListBox::IsSelected(int N) const
     else
     {
         int j;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 0; j < count; j++)
@@ -324,7 +324,7 @@ int wxListBox::GetSelections(wxArrayInt& aSelections) const
             aSelections.Alloc(posCnt);
 
             int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < posCnt; i++)
@@ -394,7 +394,7 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
     XmString *text = new XmString[numItems];
     unsigned int i;
 #if XmVersion > 1001
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < numItems; i++)
@@ -407,7 +407,7 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
     AllocClientData(numItems);
 
     unsigned int idx = pos;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < numItems; i++, idx++ )
@@ -417,7 +417,7 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
         InsertNewItemClientData(idx, clientData, i, type);
     }
 #endif
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < numItems; i++)
@@ -595,7 +595,7 @@ wxSize wxDoGetListBoxBestSize( Widget listWidget, const wxWindow* window )
                    XmNshadowThickness, &shadow,
                    NULL );
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for( size_t i = 0; i < (size_t)max; ++i )

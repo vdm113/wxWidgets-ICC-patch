@@ -153,7 +153,7 @@ void UndoHistory::EnsureUndoRoom() {
 		// Run out of undo nodes so extend the array
 		int lenActionsNew = lenActions * 2;
 		Action *actionsNew = new Action[lenActionsNew];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int act = 0; act <= currentAction; act++)
@@ -180,7 +180,7 @@ void UndoHistory::AppendAction(actionType at, int position, char *data, int leng
 			int targetAct = -1;
 			const Action *actPrevious = &(actions[currentAction + targetAct]);
 			// Container actions may forward the coalesce state of Scintilla Actions.
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			while ((actPrevious->at == containerAction) && actPrevious->mayCoalesce) {
@@ -269,7 +269,7 @@ void UndoHistory::DropUndoSequence() {
 }
 
 void UndoHistory::DeleteUndoHistory() {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 1; i < maxAction; i++)
@@ -299,7 +299,7 @@ int UndoHistory::StartUndo() {
 
 	// Count the steps in this action
 	int act = currentAction;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (actions[act].at != startAction && act > 0) {
@@ -327,7 +327,7 @@ int UndoHistory::StartRedo() {
 
 	// Count the steps in this action
 	int act = currentAction;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (actions[act].at != startAction && act < maxAction) {
@@ -407,7 +407,7 @@ const char *CellBuffer::InsertString(int position, const char *s, int insertLeng
 			// Save into the undo/redo stack, but only the characters - not the formatting
 			// This takes up about half load time
 			data = new char[insertLength];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (int i = 0; i < insertLength; i++) {
@@ -436,7 +436,7 @@ bool CellBuffer::SetStyleFor(int position, int lengthStyle, char styleValue, cha
 	bool changed = false;
 	PLATFORM_ASSERT(lengthStyle == 0 ||
 		(lengthStyle > 0 && lengthStyle + position <= style.Length()));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while (lengthStyle--) {
@@ -459,7 +459,7 @@ const char *CellBuffer::DeleteChars(int position, int deleteLength, bool &startS
 		if (collectingUndo) {
 			// Save into the undo/redo stack, but only the characters - not the formatting
 			data = new char[deleteLength];
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 			for (int i = 0; i < deleteLength; i++) {
@@ -545,7 +545,7 @@ void CellBuffer::BasicInsertString(int position, const char *s, int insertLength
 		lineInsert++;
 	}
 	char ch = ' ';
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 0; i < insertLength; i++) {
@@ -599,7 +599,7 @@ void CellBuffer::BasicDeleteChars(int position, int deleteLength) {
 		}
 
 		char ch = chNext;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int i = 0; i < deleteLength; i++) {

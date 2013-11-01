@@ -419,7 +419,7 @@ void MyFrame::OnDeselectAll(wxCommandEvent& WXUNUSED(event))
         return;
 
     int n = m_listCtrl->GetItemCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < n; i++)
@@ -432,7 +432,7 @@ void MyFrame::OnSelectAll(wxCommandEvent& WXUNUSED(event))
         return;
 
     int n = m_listCtrl->GetItemCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < n; i++)
@@ -503,7 +503,7 @@ void MyFrame::OnListView(wxCommandEvent& WXUNUSED(event))
 
 void MyFrame::InitWithListItems()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < m_numListItems; i++ )
@@ -541,7 +541,7 @@ void MyFrame::InitWithReportItems()
 
     wxStopWatch sw;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < m_numListItems; i++ )
@@ -592,7 +592,7 @@ void MyFrame::InitWithIconItems(bool withText, bool sameIcon)
     m_listCtrl->SetImageList(m_imageListNormal, wxIMAGE_LIST_NORMAL);
     m_listCtrl->SetImageList(m_imageListSmall, wxIMAGE_LIST_SMALL);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < NUM_ICONS; i++ )
@@ -710,7 +710,7 @@ void MyFrame::OnFind(wxCommandEvent& WXUNUSED(event))
     wxStopWatch sw;
 
     const int itemCount = m_listCtrl->GetItemCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < itemCount; i++ )
@@ -730,7 +730,7 @@ void MyFrame::OnShowSelInfo(wxCommandEvent& WXUNUSED(event))
 
     long item = m_listCtrl->GetNextItem(-1, wxLIST_NEXT_ALL,
                                         wxLIST_STATE_SELECTED);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( item != -1 )
@@ -766,7 +766,7 @@ static wxString DumpIntArray(const wxArrayInt& a)
 {
     wxString s("{ ");
     const size_t count = a.size();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -805,7 +805,7 @@ void MyFrame::OnGetColOrder(wxCommandEvent& WXUNUSED(event))
 
     // show the results of GetColumnOrder() for each column
     msg += "GetColumnOrder() results:\n";
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < count; n++ )
@@ -816,7 +816,7 @@ void MyFrame::OnGetColOrder(wxCommandEvent& WXUNUSED(event))
 
     // and the results of GetColumnIndexFromOrder() too
     msg += "GetColumnIndexFromOrder() results:\n";
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < count; n++ )
@@ -834,7 +834,7 @@ void MyFrame::OnShowColInfo(wxCommandEvent& WXUNUSED(event))
 {
     int count = m_listCtrl->GetColumnCount();
     wxLogMessage(wxT("%d columns:"), count);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int c = 0; c < count; c++ )
@@ -1266,7 +1266,7 @@ void MyListCtrl::OnListKeyDown(wxListEvent& event)
 
         case 'D': // delete
             item = GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             while ( item != -1 )

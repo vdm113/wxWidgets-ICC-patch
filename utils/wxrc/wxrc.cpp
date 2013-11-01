@@ -62,7 +62,7 @@ private:
         wxString classValue;
         wxString nameValue;
         wxXmlNode* children;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (node)
@@ -138,7 +138,7 @@ public:
         file.Write(wxT("class ") + m_className + wxT(" : public ") + m_parentClassName
                    + wxT(" {\nprotected:\n"));
         size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(i=0;i<m_wdata.GetCount();++i)
@@ -156,7 +156,7 @@ public:
                    +  wxT("\"), wxT(\"")
                    +  m_parentClassName
                    +  wxT("\"));\n"));
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(i=0;i<m_wdata.GetCount();++i)
@@ -196,7 +196,7 @@ public:
                        wxT(" }\n")
                        wxT("};\n"));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( StringSet::const_iterator it = m_ancestorClassNames.begin();
@@ -362,14 +362,14 @@ void XmlResApp::ParseParams(const wxCmdLineParser& cmdline)
     if (!cmdline.Found("n", &parFuncname))
         parFuncname = wxT("InitXmlResource");
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < cmdline.GetParamCount(); i++)
     {
 #ifdef __WINDOWS__
         wxString fn=wxFindFirstFile(cmdline.GetParam(i), wxFILE);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while (!fn.empty())
@@ -423,7 +423,7 @@ wxString XmlResApp::GetInternalFileName(const wxString& name, const wxArrayStrin
 
     if (wxFileExists(s) && flist.Index(s) == wxNOT_FOUND)
     {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0;; i++)
@@ -440,7 +440,7 @@ wxArrayString XmlResApp::PrepareTempFiles()
 {
     wxArrayString flist;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < parFiles.GetCount(); i++)
@@ -465,7 +465,7 @@ wxArrayString XmlResApp::PrepareTempFiles()
         {
             wxXmlNode* node = (doc.GetRoot())->GetChildren();
                 wxString classValue,nameValue;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 while(node){
@@ -544,7 +544,7 @@ void XmlResApp::FindFilesInXML(wxXmlNode *node, wxArrayString& flist, const wxSt
     bool containsFilename = NodeContainsFilename(node);
 
     wxXmlNode *n = node->GetChildren();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (n)
@@ -585,7 +585,7 @@ void XmlResApp::FindFilesInXML(wxXmlNode *node, wxArrayString& flist, const wxSt
 
 void XmlResApp::DeleteTempFiles(const wxArrayString& flist)
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < flist.GetCount(); i++)
@@ -598,7 +598,7 @@ void XmlResApp::MakePackageZIP(const wxArrayString& flist)
 {
     wxString files;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < flist.GetCount(); i++)
@@ -649,7 +649,7 @@ static wxString FileToCppArray(wxString filename, int num)
     unsigned char *buffer = new unsigned char[lng];
     file.Read(buffer, lng);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0, linelng = 0; i < lng; i++)
@@ -706,7 +706,7 @@ void XmlResApp::MakePackageCPP(const wxArrayString& flist)
 "#endif\n"
 "\n");
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < flist.GetCount(); i++)
@@ -728,7 +728,7 @@ void XmlResApp::MakePackageCPP(const wxArrayString& flist)
 "    }\n"
 "\n");
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < flist.GetCount(); i++)
@@ -757,7 +757,7 @@ void XmlResApp::MakePackageCPP(const wxArrayString& flist)
         file.Write(s);
     }
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < parFiles.GetCount(); i++)
@@ -785,7 +785,7 @@ void XmlResApp::GenCPPHeader()
 "#ifndef __"  + headerName.GetName() + "_h__\n"
 "#define __"  + headerName.GetName() + "_h__\n"
 );
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(size_t i=0;i<aXRCWndClassData.GetCount();++i){
@@ -816,7 +816,7 @@ static wxString FileToPythonArray(wxString filename, int num)
     unsigned char *buffer = new unsigned char[lng];
     file.Read(buffer, lng);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0, linelng = 0; i < lng; i++)
@@ -869,7 +869,7 @@ void XmlResApp::MakePackagePython(const wxArrayString& flist)
 
     file.Write("def " + parFuncname + "():\n");
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < flist.GetCount(); i++)
@@ -891,7 +891,7 @@ void XmlResApp::MakePackagePython(const wxArrayString& flist)
         );
 
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < flist.GetCount(); i++)
@@ -901,7 +901,7 @@ void XmlResApp::MakePackagePython(const wxArrayString& flist)
                  "', xml_res_file_%u)\n", i);
         file.Write(s);
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < parFiles.GetCount(); i++)
@@ -925,7 +925,7 @@ void XmlResApp::OutputGettext()
     else
         fout.Open(parOutput, wxT("wt"));
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (ExtractedStrings::const_iterator i = str.begin(); i != str.end(); ++i)
@@ -949,7 +949,7 @@ ExtractedStrings XmlResApp::FindStrings()
 {
     ExtractedStrings arr, a2;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < parFiles.GetCount(); i++)
@@ -979,7 +979,7 @@ static wxString ConvertText(const wxString& str)
     wxString str2;
     const wxChar *dt;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (dt = str.c_str(); *dt; dt++)
@@ -1026,7 +1026,7 @@ XmlResApp::FindStrings(const wxString& filename, wxXmlNode *node)
     if (n == NULL) return arr;
     n = n->GetChildren();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (n)
@@ -1113,7 +1113,7 @@ bool XmlResApp::Validate()
     }
 
     wxString cmdline = wxString::Format("jing -c \"%s\"", schemaURI);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < parFiles.GetCount(); i++ )

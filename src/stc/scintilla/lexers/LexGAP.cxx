@@ -41,7 +41,7 @@ static inline bool IsGAPOperator(char ch) {
 
 static void GetRange(unsigned int start, unsigned int end, Accessor &styler, char *s, unsigned int len) {
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((i < end - start + 1) && (i < len-1)) {
@@ -63,7 +63,7 @@ static void ColouriseGAPDoc(unsigned int startPos, int length, int initStyle, Wo
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward()) {
@@ -215,7 +215,7 @@ static void FoldGAPDoc( unsigned int startPos, int length, int initStyle,   Word
 
 	int lastStart = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {

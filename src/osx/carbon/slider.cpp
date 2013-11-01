@@ -49,7 +49,7 @@ wxWidgetImplType* wxWidgetImpl::CreateSlider( wxWindowMac* wxpeer,
 
     // keep the number of tickmarks from becoming unwieldy, therefore below it is ok to cast
     // it to a UInt16
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (tickMarks > 20)

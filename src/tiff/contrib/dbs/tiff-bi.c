@@ -59,37 +59,37 @@ int main(int argc, char **argv)
 
     scan_line = (unsigned char *) malloc(WIDTH / 8);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < (WIDTH / 8) / 2; i++)
         scan_line[i] = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = (WIDTH / 8) / 2; i < (WIDTH / 8); i++)
         scan_line[i] = 255;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < HEIGHT / 2; i++)
         TIFFWriteScanline(tif, scan_line, i, 0);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < (WIDTH / 8) / 2; i++)
         scan_line[i] = 255;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = (WIDTH / 8) / 2; i < (WIDTH / 8); i++)
         scan_line[i] = 0;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = HEIGHT / 2; i < HEIGHT; i++)

@@ -97,7 +97,7 @@ start_pass_huff_decoder (j_decompress_ptr cinfo)
       cinfo->Ah != 0 || cinfo->Al != 0)
     WARNMS(cinfo, JWRN_NOT_SEQUENTIAL);
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
@@ -115,7 +115,7 @@ start_pass_huff_decoder (j_decompress_ptr cinfo)
   }
 
   /* Precalculate decoding info for each block in an MCU of this scan */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
@@ -186,14 +186,14 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   /* Figure C.1: make table of Huffman code length for each symbol */
 
   p = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (l = 1; l <= 16; l++) {
     i = (int) htbl->bits[l];
     if (i < 0 || p + i > 256)	/* protect against table overrun */
       ERREXIT(cinfo, JERR_BAD_HUFF_TABLE);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (i--)
@@ -208,11 +208,11 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   code = 0;
   si = huffsize[0];
   p = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (huffsize[p]) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (((int) huffsize[p]) == si) {
@@ -231,7 +231,7 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   /* Figure F.15: generate decoding tables for bit-sequential decoding */
 
   p = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (l = 1; l <= 16; l++) {
@@ -258,18 +258,18 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   MEMZERO(dtbl->look_nbits, SIZEOF(dtbl->look_nbits));
 
   p = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (l = 1; l <= HUFF_LOOKAHEAD; l++) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 1; i <= (int) htbl->bits[l]; i++, p++) {
       /* l = current code's length, p = its index in huffcode[] & huffval[]. */
       /* Generate left-justified code followed by all possible bit sequences */
       lookbits = huffcode[p] << (HUFF_LOOKAHEAD-l);
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (ctr = 1 << (HUFF_LOOKAHEAD-l); ctr > 0; ctr--) {
@@ -287,7 +287,7 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
    * but this is sufficient to ensure safe decoding.)
    */
   if (isDC) {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < numsymbols; i++) {
@@ -337,7 +337,7 @@ jpeg_fill_bit_buffer (bitread_working_state * state,
   /* We fail to do so only if we hit a marker or are forced to suspend. */
 
   if (cinfo->unread_marker == 0) {	/* cannot advance past a marker */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while (bits_left < MIN_GET_BITS) {
@@ -360,7 +360,7 @@ jpeg_fill_bit_buffer (bitread_working_state * state,
 	 * accept multiple FF's followed by a 0 as meaning a single FF data
 	 * byte.  This data pattern is not valid according to the standard.
 	 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	do {
@@ -450,7 +450,7 @@ jpeg_huff_decode (bitread_working_state * state,
   /* Collect the rest of the Huffman code one bit at a time. */
   /* This is per Figure F.16 in the JPEG spec. */
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   while (code > htbl->maxcode[l]) {
@@ -522,7 +522,7 @@ process_restart (j_decompress_ptr cinfo)
     return FALSE;
 
   /* Re-initialize DC predictions to 0 */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++)
@@ -584,7 +584,7 @@ decode_mcu (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
     /* Outer loop handles each block in the MCU */
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
@@ -616,7 +616,7 @@ decode_mcu (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
 	/* Section F.2.2.2: decode the AC coefficients */
 	/* Since zeroes are skipped, output area must be cleared beforehand */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (k = 1; k < DCTSIZE2; k++) {
@@ -646,7 +646,7 @@ decode_mcu (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
 	/* Section F.2.2.2: decode the AC coefficients */
 	/* In this path we just discard the values */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 	for (k = 1; k < DCTSIZE2; k++) {
@@ -699,7 +699,7 @@ jinit_huff_decoder (j_decompress_ptr cinfo)
   entropy->pub.decode_mcu = decode_mcu;
 
   /* Mark tables unallocated */
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < NUM_HUFF_TBLS; i++) {

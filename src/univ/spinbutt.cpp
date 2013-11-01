@@ -72,7 +72,7 @@ wxSpinButton::wxSpinButton(wxWindow *parent,
 
 void wxSpinButton::Init()
 {
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < WXSIZEOF(m_arrowsState); n++ )

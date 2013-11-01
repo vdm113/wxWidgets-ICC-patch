@@ -479,7 +479,7 @@ wxRibbonArtProvider* wxRibbonMSWArtProvider::Clone() const
 void wxRibbonMSWArtProvider::CloneTo(wxRibbonMSWArtProvider* copy) const
 {
     int i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(i = 0; i < 4; ++i)
@@ -488,7 +488,7 @@ void wxRibbonMSWArtProvider::CloneTo(wxRibbonMSWArtProvider* copy) const
         copy->m_gallery_down_bitmap[i] = m_gallery_down_bitmap[i];
         copy->m_gallery_extension_bitmap[i] = m_gallery_extension_bitmap[i];
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(i = 0; i < 2; ++i)
@@ -1424,7 +1424,7 @@ void wxRibbonMSWArtProvider::ReallyDrawTabSeparator(wxWindow* wnd, const wxRect&
     double g3 = m_tab_separator_gradient_colour.Green();
     double b3 = m_tab_separator_gradient_colour.Blue();
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(int i = 0; i < rect.height - 1; ++i)
@@ -1812,7 +1812,7 @@ void wxRibbonMSWArtProvider::DrawPanelBackground(
             {
                 // Room for some characters and ...
                 // Display as many characters as possible and append ...
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 for(size_t len = label.Len() - 1; len >= 3; --len)
@@ -2309,7 +2309,7 @@ void wxRibbonMSWArtProvider::DrawPartialPageBackground(
             parent = panel->GetExpandedDummy()->GetParent();
         }
     }
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for(; parent; parent = parent->GetParent())
@@ -2512,7 +2512,7 @@ void wxRibbonMSWArtProvider::DrawButtonBarButtonForeground(
             else
             {
                 size_t breaki = label.Len();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                 do
@@ -2823,7 +2823,7 @@ int wxRibbonMSWArtProvider::GetTabCtrlHeight(
     if(m_flags & wxRIBBON_BAR_SHOW_PAGE_ICONS)
     {
         size_t numpages = pages.GetCount();
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for(size_t i = 0; i < numpages; ++i)
@@ -3096,7 +3096,7 @@ bool wxRibbonMSWArtProvider::GetButtonBarButtonSize(
                 last_line_extra_width += 8;
             }
             size_t i;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for(i = 0; i < label.Len(); ++i)
