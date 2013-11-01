@@ -1732,7 +1732,7 @@ png_write_image_16bit(png_voidp argument)
             reciprocal = ((0xffff<<15)+(alpha>>1))/alpha;
 
          c = channels;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
          do /* always at least one channel */
@@ -1890,7 +1890,7 @@ png_write_image_8bit(png_voidp argument)
                reciprocal = UNP_RECIPROCAL(alpha);
 
             c = channels;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             do /* always at least one channel */

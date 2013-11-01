@@ -369,7 +369,7 @@ int main (int argc, char **argv)
 
    XEvent event;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
    while (!quit)

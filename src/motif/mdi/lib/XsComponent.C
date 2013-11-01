@@ -165,7 +165,7 @@ void XsComponent::_setResources (Widget w, const String *resources)
 // Add the component resources
 
    loop = 0;
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
    while (resources[loop] != 0)

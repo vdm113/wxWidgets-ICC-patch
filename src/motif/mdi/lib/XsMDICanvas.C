@@ -114,7 +114,7 @@ void XsMDICanvas::add (XsMDIWindow *win)
    {
       XsMDIWindow **newList = new XsMDIWindow*[_max + increment];
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
       for (int loop = 0; loop < _num; loop++)
@@ -149,7 +149,7 @@ void XsMDICanvas::remove (XsMDIWindow *win)
 
    int   i, j;
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
    for (i = 0; i < _num; i++)
@@ -159,7 +159,7 @@ void XsMDICanvas::remove (XsMDIWindow *win)
          win->hide ( );
          win->_setWindowParent (0);
          
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
          for (j = i; j < _num - 1; j++)
@@ -195,7 +195,7 @@ void XsMDICanvas::show ( )
 
 // Place all of the child windows
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
    for (int loop = 0; loop < _num; loop++)
