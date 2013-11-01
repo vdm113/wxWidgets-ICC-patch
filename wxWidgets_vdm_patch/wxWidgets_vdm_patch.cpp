@@ -12,6 +12,11 @@
 
 #include "stdafx.h"
 
+// wxWidgets_vdm_patch.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+
 #include <io.h>
 #include <wchar.h>
 #include <string>
@@ -19,7 +24,6 @@
 #include <sstream>
 #include <vector>
 #include <cassert>
-#include <conio.h>
 #include <Windows.h>
 
 using namespace std;
@@ -45,13 +49,13 @@ bool check_return_value(int rc)
 
 unsigned reformat(const string& file, bool do_prologue, bool do_patch)
 {
-    static const char* line1="#if defined(__INTEL_COMPILER)";
-    static const char* line1_disabled="#if defined(__INTEL_COMPILER) && 0";
+    static const char* line1="#if defined(__INTEL_COMPILER) // VDM auto patch";
+    static const char* line1_disabled="#if defined(__INTEL_COMPILER) && 0 // VDM auto patch";
     static const char* line2="#   pragma ivdep";
     static const char* line3="#endif";
 
     static const char* line_prologue_token="/* token_VDM_prologue */";
-    static const char* line_prologue="#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)\n#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)\n#elif !defined(MY_MACRO_PRAGMA_IVDEP)\n#   define MY_MACRO_PRAGMA_IVDEP /* nevermind */\n#endif";
+    static const char* line_prologue="#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)\n#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)\n#elif !defined(MY_MACRO_PRAGMA_IVDEP)\n#   define MY_MACRO_PRAGMA_IVDEP\n#endif";
 
     static const char* inline_pragma="MY_MACRO_PRAGMA_IVDEP \\";
 
@@ -72,9 +76,6 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch)
     bool last_char_was_backslash=false;
     size_t ln=0;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     while(in && !feof(in)) {
 again:
         char buf[length+16];
@@ -88,9 +89,6 @@ again:
         buf[length]='\0';
         {
             size_t len=strlen(buf);
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             while(len>0 && ('\r'==buf[len-1] || '\n'==buf[len-1])) {
                 buf[len-1]='\0';
                 --len;
@@ -105,21 +103,16 @@ again:
 
             // seek for an empty line as ending of the prologue
             char buf2[length+16];
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             do {
                 scrollback.clear();
                 scrollback.push_back(buf);
 
                 buf2[0]='x';
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                 while('\r'!=buf2[0] && '\n'!=buf2[0]) {
                     buf2[0]='x';
                     fgets(buf2,length,in);
                 }
+                scrollback.push_back(buf2);
                 ++cnt;
             } while(strcmp(buf2,line_prologue_token)==0); // might be broken, i.e. twice or more prologue occurence
 
@@ -134,15 +127,13 @@ again:
             }
         }
 
-        if(do_patch && do_prologue && 1==ln) {
+        if(do_patch && do_prologue && 1==ln && strcmp(buf,line_prologue_token)!=0) {
             sprintf(tmp_buf,"%s\n%s\n",line_prologue_token,line_prologue);
             string save=scrollback.back();
             scrollback.clear();
             scrollback.push_back(tmp_buf);
-            if(save.compare(line_prologue_token)) {
-                scrollback.push_back(save);
-                changed=true;
-            }
+            scrollback.push_back(save);
+            changed=true;
         }
 
         if(!do_patch && do_prologue && 1==ln && strcmp(buf,line_prologue_token)==0) {
@@ -151,9 +142,6 @@ again:
         }
 
         string line;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for(size_t i1=0; i1<strlen(buf); ++i1) {
             if('('!=buf[i1] && '{'!=buf[i1]) {
                 if(' '!=buf[i1] && '\t'!=buf[i1])
@@ -162,9 +150,6 @@ again:
                 break;
         }
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         while(line.length()>0 && line.length()-1!=0 && line[line.length()-1]==' ') {
             line.erase(line.length()-1,1);
         }
@@ -175,23 +160,16 @@ again:
 
         {
             string::size_type startpos;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            while((startpos=line.find("/*"))!=string::npos) {
-                const string::size_type endpos=line.find("*/");
-                if(endpos==string::npos) {
+            while((startpos=line.find("//"))!=string::npos || ((startpos=line.find("/* VDM auto patch */"))!=string::npos)) {
+                const string::const_iterator endpos=line.cend();
+                if(endpos==line.cend()) {
                     // multi-line comment, delete until the end
-                    line.erase(startpos);
+                    line.erase();
                     break;
                 }
-                line.erase(startpos,endpos-startpos+2+1); // 2 is length of "*/"
             }
         }
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         while(line.length()>0 && (' '==line[0] || '\t'==line[0] || '\r'==line[0] || '\n'==line[0])) {
             line.erase(line.length()-1,1);
         }
@@ -237,15 +215,9 @@ again:
                     reformat=false;
             }
             int i3=0;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
             for(int i2=0; i2<3; ++i2) {
                 string ln=*i1;
                 ++i1;
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
                 while(ln.length()!=0 && ( ln[ln.length()-1]=='\r' || ln[ln.length()-1]=='\n') )
                     ln.erase(ln.length()-1,1);
                 const char* cmp;
@@ -323,9 +295,6 @@ again:
             return cnt;
         }
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for(vector<string>::const_iterator i1=scrollback.begin(); i1!=scrollback.end(); ++i1) {
             fprintf(in,"%s\n",(*i1).c_str());
         }
@@ -357,9 +326,6 @@ unsigned directory_recurse(const string& base, const string& directory, const st
     if(!check_return_value(errno))
         return cnt;
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
     for(;;) {
         string name=rc.name;
 
@@ -371,9 +337,6 @@ unsigned directory_recurse(const string& base, const string& directory, const st
             sub_dir=true;
         }
 
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
         for(set<string>::iterator i1=ext.begin(); i1!=ext.end(); ++i1) {
             string::size_type pos=name.rfind(*i1);
             if(pos!=string::npos && pos==name.length()-(*i1).length()) {
@@ -414,34 +377,25 @@ next_entry:
 int _tmain(int argc, _TCHAR* argv[])
 {
     bool do_patch;
-    bool do_nowait=false;
 
     {
         bool usage=false;
 
-        if(argc<2) {
+        if(argc!=2) {
             usage=true;
         } else {
-#if defined(__INTEL_COMPILER)
-#   pragma ivdep
-#endif
-            for(size_t i1=1; i1<argc; ++i1) {
-                if(strcmp(argv[i1],"-p")==0) {
-                    do_patch=true;
-                } else if(strcmp(argv[i1],"-u")==0) {
-                    do_patch=false;
-                } else if(strcmp(argv[i1],"--no-wait")==0) {
-                    do_nowait=true;
-                } else {
-                    usage=true;
-                    break;
-                }
+            if(strcmp(argv[1],"-p")==0) {
+                do_patch=true;
+            } else if(strcmp(argv[1],"-u")==0) {
+                do_patch=false;
+            } else {
+                usage=true;
             }
         }
 
         if(usage) {
             fprintf(stderr,"Usage: switch '-p' patches, switch '-u' unpatches.\nPress any key to exit.\n");
-            getch();
+            getchar();
             return 0;
         }
     }
@@ -457,7 +411,6 @@ int _tmain(int argc, _TCHAR* argv[])
     ext.insert(".cc");
     ext.insert(".cpp");
     ext.insert(".cxx");
-    ext.insert(".C");
 
     TCHAR dir[MAX_PATH];
     if(!::GetCurrentDirectory(sizeof(dir) - 1, dir)) {
@@ -467,11 +420,8 @@ int _tmain(int argc, _TCHAR* argv[])
     d.append("\\..\\*");
     unsigned cnt=directory_recurse(".",d,d,do_patch);
 
-    if(!do_nowait) {
-        printf("%u occurences processed. Press any key to exit.\n",cnt);
-        getch();
-    }
+    printf("%u occurences processed. Press any key to exit.\n",cnt);
 
-    return 0;
+    getchar();
 }
 
