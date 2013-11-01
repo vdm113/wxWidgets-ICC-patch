@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wxWidgets_vdm_patch/stdafx.cpp
 // Purpose:     patcher for ICL compiler
@@ -12,11 +19,6 @@
 
 #include "stdafx.h"
 
-// wxWidgets_vdm_patch.cpp : Defines the entry point for the console application.
-//
-
-#include "stdafx.h"
-
 #include <io.h>
 #include <wchar.h>
 #include <string>
@@ -24,6 +26,7 @@
 #include <sstream>
 #include <vector>
 #include <cassert>
+#include <conio.h>
 #include <Windows.h>
 
 using namespace std;
@@ -124,7 +127,6 @@ again:
                     buf2[0]='x';
                     fgets(buf2,length,in);
                 }
-                scrollback.push_back(buf2);
                 ++cnt;
             } while(strcmp(buf2,line_prologue_token)==0); // might be broken, i.e. twice or more prologue occurence
 
@@ -139,13 +141,15 @@ again:
             }
         }
 
-        if(do_patch && do_prologue && 1==ln && strcmp(buf,line_prologue_token)!=0) {
+        if(do_patch && do_prologue && 1==ln) {
             sprintf(tmp_buf,"%s\n%s\n",line_prologue_token,line_prologue);
             string save=scrollback.back();
             scrollback.clear();
             scrollback.push_back(tmp_buf);
-            scrollback.push_back(save);
-            changed=true;
+            if(save.compare(line_prologue_token)) {
+                scrollback.push_back(save);
+                changed=true;
+            }
         }
 
         if(!do_patch && do_prologue && 1==ln && strcmp(buf,line_prologue_token)==0) {
@@ -181,13 +185,14 @@ again:
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
-            while((startpos=line.find("//"))!=string::npos || ((startpos=line.find("/* VDM auto patch */"))!=string::npos)) {
-                const string::const_iterator endpos=line.cend();
-                if(endpos==line.cend()) {
+            while((startpos=line.find("/*"))!=string::npos) {
+                const string::size_type endpos=line.find("*/");
+                if(endpos==string::npos) {
                     // multi-line comment, delete until the end
-                    line.erase();
+                    line.erase(startpos);
                     break;
                 }
+                line.erase(startpos,endpos-startpos+2+1); // 2 is length of "*/"
             }
         }
 
@@ -416,25 +421,34 @@ next_entry:
 int _tmain(int argc, _TCHAR* argv[])
 {
     bool do_patch;
+    bool do_nowait=false;
 
     {
         bool usage=false;
 
-        if(argc!=2) {
+        if(argc<2) {
             usage=true;
         } else {
-            if(strcmp(argv[1],"-p")==0) {
-                do_patch=true;
-            } else if(strcmp(argv[1],"-u")==0) {
-                do_patch=false;
-            } else {
-                usage=true;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
+            for(size_t i1=1; i1<argc; ++i1) {
+                if(strcmp(argv[i1],"-p")==0) {
+                    do_patch=true;
+                } else if(strcmp(argv[i1],"-u")==0) {
+                    do_patch=false;
+                } else if(strcmp(argv[i1],"--no-wait")==0) {
+                    do_nowait=true;
+                } else {
+                    usage=true;
+                    break;
+                }
             }
         }
 
         if(usage) {
             fprintf(stderr,"Usage: switch '-p' patches, switch '-u' unpatches.\nPress any key to exit.\n");
-            getchar();
+            getch();
             return 0;
         }
     }
@@ -450,17 +464,24 @@ int _tmain(int argc, _TCHAR* argv[])
     ext.insert(".cc");
     ext.insert(".cpp");
     ext.insert(".cxx");
+    ext.insert(".C");
 
     TCHAR dir[MAX_PATH];
     if(!::GetCurrentDirectory(sizeof(dir) - 1, dir)) {
         return 1;
     }
     string d=dir;
+    d.append("\\.\\*");
+    unsigned cnt1=directory_recurse(".",d,d,do_patch);
+    d=dir;
     d.append("\\..\\*");
-    unsigned cnt=directory_recurse(".",d,d,do_patch);
+    unsigned cnt2=directory_recurse(".",d,d,do_patch);
 
-    printf("%u occurences processed. Press any key to exit.\n",cnt);
+    if(!do_nowait) {
+        printf("%u occurences processed. Press any key to exit.\n",cnt1+cnt2);
+        getch();
+    }
 
-    getchar();
+    return 0;
 }
 
