@@ -10,6 +10,8 @@ This fork of wxWidgets is as of the official GIT repository:
 
 https://github.com/wxWidgets/wxWidgets
 
+More precisely, fusion of trunk and WX_3_0_BRANCH branch.
+
 *** NB ***
 Set in your project files these preprocessor defines, in other case you might encounter random crashes:
 _HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0
@@ -20,7 +22,7 @@ If you are using 32-bit ICC, or 64-bit one and you don't have enough RAM or time
 
 NB: Please, read file "BuildSVN.txt" in this directory as well. There are instructions for building from SVN, but as this GIT repository is regurarily updated from official SVN repository, and it is its fork, it is relevant to read it.
 
-NB: I only support x64 builds, as Win32 builds are known to be broken. This is due ICC bug.
+NB: I only support x64 builds, as Win32 builds are known to be broken. This is due to the ICC bug.
 
 If you get errors with ICC 14 SP1 Update 1 with MSVS 2013 RTM like "TRACKER : error TRK0002: Failed to execute command [...] The operation identifier is not valid.", follow these two URL's for workaround:
 http://software.intel.com/en-us/forums/topic/486611
