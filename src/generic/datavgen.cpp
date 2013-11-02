@@ -4931,6 +4931,9 @@ int wxDataViewCtrl::GetColumnIndex(const wxDataViewColumn *column) const
 int wxDataViewCtrl::GetModelColumnIndex( unsigned int model_column ) const
 {
     const int count = GetColumnCount();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int index = 0; index < count; index++ )
     {
         wxDataViewColumn* column = GetColumn(index);
