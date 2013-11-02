@@ -26,3 +26,5 @@
 *.mm            text eol=lf
 *.txt           text=auto
 README          text=auto
+WARNING         text=auto
+*.TXT           text=auto
