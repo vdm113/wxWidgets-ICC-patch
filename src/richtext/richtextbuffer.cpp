@@ -1557,83 +1557,88 @@ bool wxRichTextCompositeObject::Defragment(wxRichTextDrawingContext& context, co
         {
             wxRichTextCompositeObject* composite = wxDynamicCast(child, wxRichTextCompositeObject);
             if (composite)
-                composite->Defragment(context);
-
-            // Optimization: if there are no virtual attributes, we won't need to
-            // to split objects in order to paint individually attributed chunks.
-            // So only merge in this case.
-            if (!context.GetVirtualAttributesEnabled())
             {
-                if (node->GetNext())
+                composite->Defragment(context);
+                node = node->GetNext();
+            }
+            else
+            {
+                // Optimization: if there are no virtual attributes, we won't need to
+                // to split objects in order to paint individually attributed chunks.
+                // So only merge in this case.
+                if (!context.GetVirtualAttributesEnabled())
                 {
-                    wxRichTextObject* nextChild = node->GetNext()->GetData();
-                    if (child->CanMerge(nextChild, context) && child->Merge(nextChild, context))
+                    if (node->GetNext())
                     {
-                        nextChild->Dereference();
-                        m_children.Erase(node->GetNext());
+                        wxRichTextObject* nextChild = node->GetNext()->GetData();
+                        if (child->CanMerge(nextChild, context) && child->Merge(nextChild, context))
+                        {
+                            nextChild->Dereference();
+                            m_children.Erase(node->GetNext());
+                        }
+                        else
+                            node = node->GetNext();
                     }
                     else
                         node = node->GetNext();
                 }
                 else
-                    node = node->GetNext();
-            }
-            else
-            {
-                // If we might have virtual attributes, we first see if we have to split
-                // objects so that they may be painted with potential virtual attributes,
-                // since text objects can only draw or measure with a single attributes object
-                // at a time.
-                wxRichTextObject* childAfterSplit = child;
-                if (child->CanSplit(context))
                 {
-                    childAfterSplit = child->Split(context);
-                    node = m_children.Find(childAfterSplit);                        
-                }
-
-                if (node->GetNext())
-                {
-                    wxRichTextObject* nextChild = node->GetNext()->GetData();
-                    
-                    // First split child and nextChild so we have smaller fragments to merge.
-                    // Then Merge only has to test per-object virtual attributes
-                    // because for an object with all the same sub-object attributes,
-                    // then any general virtual attributes should be merged with sub-objects by
-                    // the implementation.
-                    
-                    wxRichTextObject* nextChildAfterSplit = nextChild;
-
-                    if (nextChildAfterSplit->CanSplit(context))
-                        nextChildAfterSplit = nextChild->Split(context);
-
-                    bool splitNextChild = nextChild != nextChildAfterSplit;
-                        
-                    // See if we can merge this new fragment with (perhaps the first part of) the next object.
-                    // Note that we use nextChild because if we had split nextChild, the first object always
-                    // remains (and further parts are appended). However we must use childAfterSplit since
-                    // it's the last part of a possibly split child.
-                    
-                    if (childAfterSplit->CanMerge(nextChild, context) && childAfterSplit->Merge(nextChild, context))
+                    // If we might have virtual attributes, we first see if we have to split
+                    // objects so that they may be painted with potential virtual attributes,
+                    // since text objects can only draw or measure with a single attributes object
+                    // at a time.
+                    wxRichTextObject* childAfterSplit = child;
+                    if (child->CanSplit(context))
                     {
-                        nextChild->Dereference();
-                        m_children.Erase(node->GetNext());
+                        childAfterSplit = child->Split(context);
+                        node = m_children.Find(childAfterSplit);                        
+                    }
 
-                        // Don't set node -- we'll see if we can merge again with the next
-                        // child. UNLESS we split this or the next child, in which case we know we have to
-                        // move on to the end of the next child.
-                        if (splitNextChild)
-                            node = m_children.Find(nextChildAfterSplit);
+                    if (node->GetNext())
+                    {
+                        wxRichTextObject* nextChild = node->GetNext()->GetData();
+                        
+                        // First split child and nextChild so we have smaller fragments to merge.
+                        // Then Merge only has to test per-object virtual attributes
+                        // because for an object with all the same sub-object attributes,
+                        // then any general virtual attributes should be merged with sub-objects by
+                        // the implementation.
+                        
+                        wxRichTextObject* nextChildAfterSplit = nextChild;
+
+                        if (nextChildAfterSplit->CanSplit(context))
+                            nextChildAfterSplit = nextChild->Split(context);
+
+                        bool splitNextChild = nextChild != nextChildAfterSplit;
+                            
+                        // See if we can merge this new fragment with (perhaps the first part of) the next object.
+                        // Note that we use nextChild because if we had split nextChild, the first object always
+                        // remains (and further parts are appended). However we must use childAfterSplit since
+                        // it's the last part of a possibly split child.
+                        
+                        if (childAfterSplit->CanMerge(nextChild, context) && childAfterSplit->Merge(nextChild, context))
+                        {
+                            nextChild->Dereference();
+                            m_children.Erase(node->GetNext());
+
+                            // Don't set node -- we'll see if we can merge again with the next
+                            // child. UNLESS we split this or the next child, in which case we know we have to
+                            // move on to the end of the next child.
+                            if (splitNextChild)
+                                node = m_children.Find(nextChildAfterSplit);
+                        }
+                        else
+                        {
+                            if (splitNextChild)
+                                node = m_children.Find(nextChildAfterSplit); // start from the last object in the split
+                            else
+                                node = node->GetNext();
+                        }
                     }
                     else
-                    {
-                        if (splitNextChild)
-                            node = m_children.Find(nextChildAfterSplit); // start from the last object in the split
-                        else
-                            node = node->GetNext();
-                    }
+                        node = node->GetNext();
                 }
-                else
-                    node = node->GetNext();
             }
         }
         else
@@ -9811,135 +9816,6 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
         table->GetAttributes().GetTextBoxAttr().GetCollapseBorders() == wxTEXT_BOX_ATTR_COLLAPSE_FULL)
     {
         // Collapse borders:
-        // (1) Reset left and top for all cells;
-        // (2) for bottom and right, ignore if at edge of table, otherwise
-        //     use this cell's border if present, otherwise adjacent border if not.
-        // Takes into account spanning by checking if adjacent cells are shown.
-        int row, col;
-        if (table->GetCellRowColumnPosition(GetRange().GetStart(), row, col))
-        {
-            attr.GetTextBoxAttr().GetBorder().GetLeft().Reset();
-            attr.GetTextBoxAttr().GetBorder().GetTop().Reset();
-
-            // Compute right border
-
-            // We need to explicity look at the spans, not just whether
-            // the cell is visible, because that doesn't tell us which
-            // cell to look at for border information.
-            wxRichTextCell* adjacentCellRight = NULL;
-
-            int nextCol = col + GetColSpan();
-            if  (nextCol >= table->GetColumnCount())
-            {
-                // Do nothing - at edge of table
-            }
-            else
-            {
-                wxRichTextCell* nextRightCell = table->GetCell(row, nextCol);
-                if (nextRightCell->IsShown())
-                {
-                    adjacentCellRight = nextRightCell;
-                }
-                else
-                {
-                    // Must be hidden by a rowspan above. Go hunting for it.
-                    int r;
-#if defined(__INTEL_COMPILER) // VDM auto patch
-#   pragma ivdep
-#endif
-                    for (r = row-1; r >= 0; r--)
-                    {
-                        nextRightCell = table->GetCell(r, nextCol);
-                        if (nextRightCell->IsShown())
-                        {
-                            adjacentCellRight = nextRightCell;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            // If no adjacent cell (either because they were hidden or at the edge of the table)
-            // then we must reset the border
-            if (!adjacentCellRight)
-                attr.GetTextBoxAttr().GetBorder().GetRight().Reset();
-            else
-            {
-                if (!attr.GetTextBoxAttr().GetBorder().GetRight().IsValid() ||
-                    attr.GetTextBoxAttr().GetBorder().GetRight().GetWidth().GetValue() == 0)
-                {
-                    attr.GetTextBoxAttr().GetBorder().GetRight() = adjacentCellRight->GetAttributes().GetTextBoxAttr().GetBorder().GetLeft();
-                }
-            }
-
-            // Compute bottom border
-            wxRichTextCell* adjacentCellBelow = NULL;
-
-            int nextRow = row + GetRowSpan();
-            if  (nextRow >= table->GetRowCount())
-            {
-                // Do nothing - at edge of table
-            }
-            else
-            {
-                wxRichTextCell* nextBottomCell = table->GetCell(col, nextRow);
-                if (nextBottomCell->IsShown())
-                {
-                    adjacentCellBelow = nextBottomCell;
-                }
-                else
-                {
-                    // Must be hidden by a colspan to the left. Go hunting for it.
-                    int c;
-#if defined(__INTEL_COMPILER) // VDM auto patch
-#   pragma ivdep
-#endif
-                    for (c = col-1; c >= 0; c--)
-                    {
-                        nextBottomCell = table->GetCell(nextRow, c);
-                        if (nextBottomCell->IsShown())
-                        {
-                            adjacentCellBelow = nextBottomCell;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            // If no adjacent cell (either because they were hidden or at the edge of the table)
-            // then we must reset the border
-            if (!adjacentCellBelow)
-                attr.GetTextBoxAttr().GetBorder().GetBottom().Reset();
-            else
-            {
-                if (!attr.GetTextBoxAttr().GetBorder().GetBottom().IsValid() ||
-                    attr.GetTextBoxAttr().GetBorder().GetBottom().GetWidth().GetValue() == 0)
-                {
-                    attr.GetTextBoxAttr().GetBorder().GetBottom() = adjacentCellBelow->GetAttributes().GetTextBoxAttr().GetBorder().GetTop();
-                }
-            }
-        }
-    }
-
-    return true;
-}
-
-/// Copy
-void wxRichTextCell::Copy(const wxRichTextCell& obj)
-{
-    wxRichTextBox::Copy(obj);
-}
-
-// Edit properties via a GUI
-bool wxRichTextCell::EditProperties(wxWindow* parent, wxRichTextBuffer* buffer)
-{
-    wxRichTextObject::AdjustAttributes(attr, context);
-
-    wxRichTextTable* table = wxDynamicCast(GetParent(), wxRichTextTable);
-    if (IsShown() && table && table->GetAttributes().GetTextBoxAttr().HasCollapseBorders() &&
-        table->GetAttributes().GetTextBoxAttr().GetCollapseBorders() == wxTEXT_BOX_ATTR_COLLAPSE_FULL)
-    {
-        // Collapse borders:
         // (1) Reset left and top for all cells unless there is no table border there;
         // (2) for bottom and right, reset if at edge of table and there are no table borders,
         //     otherwise use this cell's border if present, otherwise adjacent border if not.
@@ -10244,7 +10120,7 @@ bool wxRichTextTable::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
                             wxRect contentRect, borderRect, paddingRect, outlineRect;
 
                             cell->GetBoxRects(dc, GetBuffer(), attr, marginRect, borderRect, contentRect, paddingRect, outlineRect);
-                            cell->DrawBorder(dc, GetBuffer(), attr.GetTextBoxAttr().GetBorder(), borderRect);
+                            cell->DrawBorder(dc, GetBuffer(), attr, attr.GetTextBoxAttr().GetBorder(), borderRect);
                         }
                     }
                 }
@@ -10732,7 +10608,7 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
         }
     }
 
-    // (2) Allocate initial column widths from minimum widths, absolute values and proportions
+    // (2) Allocate initial column widths from absolute values and proportions
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -10746,8 +10622,6 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
         {
             colWidths[i] = percentageColWidths[i];
         }
-        else
-            colWidths[i] = maxUnspecifiedColumnWidths[i];
     }
 
     // (3) Process absolute or proportional widths of spanning columns,
