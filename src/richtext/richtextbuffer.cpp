@@ -7538,6 +7538,9 @@ bool wxRichTextPlainText::CanMerge(wxRichTextObject* object, wxRichTextDrawingCo
         if (!wxTextAttrEq(GetAttributes(), object->GetAttributes()) || !(m_properties == object->GetProperties()))
             return false;
             
+        if (!otherObj->GetId().IsEmpty() && GetId() != otherObj->GetId())
+            return false;
+
         // Check if differing virtual attributes makes it impossible to merge
         // these strings.
         
