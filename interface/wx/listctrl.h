@@ -1385,7 +1385,7 @@ public:
     /**
         The data.
     */
-    long GetData() const;
+    wxUIntPtr GetData() const;
 
     /**
         The image.
