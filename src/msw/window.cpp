@@ -368,24 +368,15 @@ END_EVENT_TABLE()
 // ---------------------------------------------------------------------------
 
 // Find an item given the MS Windows id
-wxWindow *wxWindowMSW::FindItem(long id) const
+wxWindow *wxWindowMSW::FindItem(long id, WXHWND hWnd) const
 {
-#if wxUSE_CONTROLS
-    wxControl *item = wxDynamicCastThis(wxControl);
-    if ( item )
-    {
-        // is it us or one of our "internal" children?
-        if ( item->GetId() == id
-#ifndef __WXUNIVERSAL__
-                || (item->GetSubcontrols().Index(id) != wxNOT_FOUND)
-#endif // __WXUNIVERSAL__
-           )
-        {
-            return item;
-        }
-    }
-#endif // wxUSE_CONTROLS
+    // First check for the control itself and its Windows-level children which
+    // are mapped to the same wxWindow at wx level.
+    wxWindow *wnd = MSWFindItem(id, hWnd);
+    if ( wnd )
+        return wnd;
 
+    // Then check wx level children.
     wxWindowList::compatibility_iterator current = GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
@@ -394,7 +385,7 @@ wxWindow *wxWindowMSW::FindItem(long id) const
     {
         wxWindow *childWin = current->GetData();
 
-        wxWindow *wnd = childWin->FindItem(id);
+        wnd = childWin->FindItem(id, hWnd);
         if ( wnd )
             return wnd;
 
@@ -5399,7 +5390,7 @@ bool wxWindowMSW::HandleCommand(WXWORD id_, WXWORD cmd, WXHWND control)
     // try the id
     if ( !win )
     {
-        win = FindItem(id);
+        win = FindItem(id, control);
     }
 
     if ( win )
