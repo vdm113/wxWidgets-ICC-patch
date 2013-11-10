@@ -15,7 +15,7 @@
 
 /**
 
-@page page_translations Translations
+@page page_translations Translations to Other Languages
 
 @tableofcontents
 

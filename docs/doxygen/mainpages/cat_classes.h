@@ -14,7 +14,7 @@
 
 /**
 
-@page page_class_cat Summarized Class List by Category
+@page page_class_cat Overview of Available Classes
 
 @tableofcontents
 
