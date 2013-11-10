@@ -620,6 +620,7 @@ gtk_wx_tree_model_get_type (void)
             sizeof (GtkWxTreeModel),
             0,
             wxgtk_tree_model_init,
+            NULL
         };
 
         static const GInterfaceInfo tree_model_iface_info =
@@ -1126,6 +1127,7 @@ gtk_wx_cell_renderer_text_get_type (void)
             sizeof (GtkWxCellRendererText),
             0,          /* n_preallocs */
             gtk_wx_cell_renderer_text_init,
+            NULL
         };
 
         cell_wx_type = g_type_register_static( GTK_TYPE_CELL_RENDERER_TEXT,
@@ -1276,6 +1278,7 @@ gtk_wx_cell_renderer_get_type (void)
             sizeof (GtkWxCellRenderer),
             0,          /* n_preallocs */
             gtk_wx_cell_renderer_init,
+            NULL
         };
 
         cell_wx_type = g_type_register_static( GTK_TYPE_CELL_RENDERER,
