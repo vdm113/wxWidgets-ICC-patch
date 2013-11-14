@@ -203,6 +203,11 @@ again:
             reformat=true;
         }
 
+        // for_each (C++0x)
+        if(!line.compare("for_each")) {
+            reformat=true;
+        }
+
         // while
         if(!line.compare("while")) {
             reformat=true;
