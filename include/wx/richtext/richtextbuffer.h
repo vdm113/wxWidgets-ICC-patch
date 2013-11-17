@@ -5679,10 +5679,16 @@ public:
 
 // Accessors
 
+    /**
+        Returns the column span. The default is 1.
+    */
     int GetColSpan() const;
 
     void SetColSpan(long span) { GetProperties().SetProperty(wxT("colspan"), span); }
 
+    /**
+        Returns the row span. The default is 1.
+    */
     int GetRowSpan() const;
 
     void SetRowSpan(long span) { GetProperties().SetProperty(wxT("rowspan"), span); }
