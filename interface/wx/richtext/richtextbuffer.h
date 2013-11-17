@@ -2577,16 +2577,6 @@ public:
     */
     bool IsShown() const;
 
-    /**
-        Returns the object's unique identifier, if any.
-    */
-    const wxString& GetId() const;
-
-    /**
-        Sets the object's unique identifier.
-    */
-    void SetId(const wxString& id);
-
 // Operations
 
     /**

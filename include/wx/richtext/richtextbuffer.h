@@ -2735,16 +2735,6 @@ public:
     */
     bool IsShown() const { return m_show; }
 
-    /**
-        Returns the object's unique identifier, if any.
-    */
-    const wxString& GetId() const { return m_id; }
-
-    /**
-        Sets the object's unique identifier.
-    */
-    void SetId(const wxString& id) { m_id = id; }
-
 // Operations
 
     /**
@@ -2843,7 +2833,6 @@ protected:
     int                     m_descent; // Descent for this object (if any)
     int                     m_refCount;
     bool                    m_show;
-    wxString                m_id;
     wxRichTextObject*       m_parent;
 
     // The range of this object (start position to end position)
@@ -5693,7 +5682,7 @@ public:
     /**
         Returns the column span. The default is 1.
     */
-    int GetColSpan() const { return m_colSpan; }
+    int GetColSpan() const;
 
     /**
         Sets the column span.
@@ -5703,7 +5692,7 @@ public:
     /**
         Returns the row span. The default is 1.
     */
-    int GetRowSpan() const { return m_rowSpan; }
+    int GetRowSpan() const;
 
     /**
         Sets the row span.
@@ -5717,8 +5706,6 @@ public:
     void Copy(const wxRichTextCell& obj);
 
 protected:
-    int m_colSpan;
-    int m_rowSpan;
 };
 
 /**
