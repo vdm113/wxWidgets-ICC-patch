@@ -10181,6 +10181,9 @@ int GetRowspanDisplacement(const wxRichTextTable* table, int row, int col, int p
                         // There is a rowspanning cell above above the hidden one, so we need
                         // to right-shift the index cell by this column's width. Furthermore, 
                         // if the cell also colspans, we need to shift by all affected columns
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                         for (int colSpan = 0; colSpan < cell->GetColSpan(); ++colSpan)
                             deltaX += (colWidths[prevcol+colSpan] + paddingX);
                         break;
@@ -10620,6 +10623,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     }
 
     // (2) Allocate initial column widths from absolute values and proportions
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         if (absoluteColWidths[i] > 0)
@@ -10763,10 +10769,16 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     bool relaxConstraints = false;
 
     size_t phase;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (phase = 0; phase < 2; phase ++)
     {
         widthLeft = tableWidthMinusPadding;
         stretchColCount = 0;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             // Subtract min width from width left, then
@@ -10812,6 +10824,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // up and size columns equally to avoid rendering problems.
     if (colShare < 0)
     {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             int w = colWidths[i];
@@ -10843,6 +10858,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             shareEqually = true;
         }
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             colWidths[i] = 0;
@@ -10852,6 +10870,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // We have to adjust the columns if either we need to shrink the
     // table to fit the parent/table width, or we explicitly set the
     // table width and need to stretch out the table.
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         if (colWidths[i] <= 0) // absolute or proportional width has not been specified
@@ -13693,6 +13714,7 @@ bool wxTextBoxAttr::EqPartial(const wxTextBoxAttr& attr, bool weakTest) const
              (!HasCollapseBorders() && attr.HasCollapseBorders()) ||
              (!HasVerticalAlignment() && attr.HasVerticalAlignment()) ||
              (!HasWhitespaceMode() && attr.HasWhitespaceMode()) ||
+             (!HasCornerRadius() && attr.HasCornerRadius()) ||
              (!HasBoxStyleName() && attr.HasBoxStyleName())))
     {
         return false;
@@ -13710,6 +13732,9 @@ bool wxTextBoxAttr::EqPartial(const wxTextBoxAttr& attr, bool weakTest) const
         return false;
 
     if (attr.HasWhitespaceMode() && HasWhitespaceMode() && (GetWhitespaceMode() != attr.GetWhitespaceMode()))
+        return false;
+
+    if (attr.HasCornerRadius() && HasCornerRadius() && !(attr.GetCornerRadius() == GetCornerRadius()))
         return false;
 
     if (attr.HasBoxStyleName() && HasBoxStyleName() && (attr.GetBoxStyleName() != GetBoxStyleName()))
@@ -13787,6 +13812,11 @@ bool wxTextBoxAttr::Apply(const wxTextBoxAttr& attr, const wxTextBoxAttr* compar
             SetWhitespaceMode(attr.GetWhitespaceMode());
     }
 
+    if (attr.HasCornerRadius())
+    {
+        if (!(compareWith && compareWith->HasCornerRadius() && compareWith->GetCornerRadius() == attr.GetCornerRadius()))
+            SetCornerRadius(attr.GetCornerRadius());
+    }
     if (attr.HasBoxStyleName())
     {
         if (!(compareWith && compareWith->HasBoxStyleName() && compareWith->GetBoxStyleName() == attr.GetBoxStyleName()))
@@ -13824,6 +13854,9 @@ bool wxTextBoxAttr::RemoveStyle(const wxTextBoxAttr& attr)
 
     if (attr.HasWhitespaceMode())
         RemoveFlag(wxTEXT_BOX_ATTR_WHITESPACE);
+
+    if (attr.HasCornerRadius())
+        RemoveFlag(wxTEXT_BOX_ATTR_CORNER_RADIUS);
 
     if (attr.HasBoxStyleName())
     {
@@ -13943,6 +13976,26 @@ void wxTextBoxAttr::CollectCommonAttributes(const wxTextBoxAttr& attr, wxTextBox
     }
     else
         absentAttr.AddFlag(wxTEXT_BOX_ATTR_WHITESPACE);
+
+    if (attr.HasCornerRadius())
+    {
+        if (!clashingAttr.HasCornerRadius() && !absentAttr.HasCornerRadius())
+        {
+            if (HasCornerRadius())
+            {
+                if (!(GetCornerRadius() == attr.GetCornerRadius()))
+                {
+                    clashingAttr.AddFlag(wxTEXT_BOX_ATTR_CORNER_RADIUS);
+                    GetCornerRadius().Reset();
+                    RemoveFlag(wxTEXT_BOX_ATTR_CORNER_RADIUS);
+                }
+            }
+            else
+                SetCornerRadius(attr.GetCornerRadius());
+        }
+    }
+    else
+        absentAttr.AddFlag(wxTEXT_BOX_ATTR_CORNER_RADIUS);
 
     if (attr.HasBoxStyleName())
     {

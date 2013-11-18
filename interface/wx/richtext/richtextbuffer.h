@@ -192,7 +192,8 @@ enum wxTextBoxAttrFlags
     wxTEXT_BOX_ATTR_COLLAPSE_BORDERS        = 0x00000004,
     wxTEXT_BOX_ATTR_VERTICAL_ALIGNMENT      = 0x00000008,
     wxTEXT_BOX_ATTR_BOX_STYLE_NAME          = 0x00000010,
-    wxTEXT_BOX_ATTR_WHITESPACE              = 0x00000020
+    wxTEXT_BOX_ATTR_WHITESPACE              = 0x00000020,
+    wxTEXT_BOX_ATTR_CORNER_RADIUS           = 0x00000040
 };
 
 /**
@@ -1134,6 +1135,22 @@ public:
     bool HasWhitespaceMode() const { return HasFlag(wxTEXT_BOX_ATTR_WHITESPACE); }
 
     /**
+        Returns @true if the corner radius flag is present.
+    */
+    bool HasCornerRadius() const { return HasFlag(wxTEXT_BOX_ATTR_CORNER_RADIUS); }
+
+    /**
+        Returns the corner radius value.
+    */
+    const wxTextAttrDimension& GetCornerRadius() const { return m_cornerRadius; }
+    wxTextAttrDimension& GetCornerRadius() { return m_cornerRadius; }
+
+    /**
+        Sets the corner radius value.
+    */
+    void SetCornerRadius(const wxTextAttrDimension& dim) { m_cornerRadius = dim; m_flags |= wxTEXT_BOX_ATTR_CORNER_RADIUS; }
+
+    /**
         Returns the vertical alignment.
     */
     wxTextBoxAttrVerticalAlignment GetVerticalAlignment() const { return m_verticalAlignment; }
@@ -1380,6 +1397,7 @@ public:
     wxTextBoxAttrCollapseMode       m_collapseMode;
     wxTextBoxAttrVerticalAlignment  m_verticalAlignment;
     wxTextBoxAttrWhitespaceMode     m_whitespaceMode;
+    wxTextAttrDimension             m_cornerRadius;
     wxString                        m_boxStyleName;
 };
 

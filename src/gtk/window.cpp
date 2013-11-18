@@ -1732,6 +1732,9 @@ scroll_event(GtkWidget* widget, GdkEventScroll* gdk_event, wxWindow* win)
 
     if (!win->GTKProcessEvent(event))
     {
+        if (!range)
+            return false;
+
         if (direction == GDK_SCROLL_UP || direction == GDK_SCROLL_LEFT)
             step = -step;
         AdjustRangeValue(range, step);
