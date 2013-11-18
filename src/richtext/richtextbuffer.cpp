@@ -9816,123 +9816,6 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
         table->GetAttributes().GetTextBoxAttr().GetCollapseBorders() == wxTEXT_BOX_ATTR_COLLAPSE_FULL)
     {
         // Collapse borders:
-        // (1) Reset left and top for all cells;
-        // (2) for bottom and right, ignore if at edge of table, otherwise
-        //     use this cell's border if present, otherwise adjacent border if not.
-        // Takes into account spanning by checking if adjacent cells are shown.
-        int row, col;
-        if (table->GetCellRowColumnPosition(GetRange().GetStart(), row, col))
-        {
-            attr.GetTextBoxAttr().GetBorder().GetLeft().Reset();
-            attr.GetTextBoxAttr().GetBorder().GetTop().Reset();
-
-            // Compute right border
-
-            // We need to explicity look at the spans, not just whether
-            // the cell is visible, because that doesn't tell us which
-            // cell to look at for border information.
-            wxRichTextCell* adjacentCellRight = NULL;
-
-            int nextCol = col + GetColSpan();
-            if  (nextCol >= table->GetColumnCount())
-            {
-                // Do nothing - at edge of table
-            }
-            else
-            {
-                wxRichTextCell* nextRightCell = table->GetCell(row, nextCol);
-                if (nextRightCell->IsShown())
-                {
-                    adjacentCellRight = nextRightCell;
-                }
-                else
-                {
-                    // Must be hidden by a rowspan above. Go hunting for it.
-                    int r;
-                    for (r = row-1; r >= 0; r--)
-                    {
-                        nextRightCell = table->GetCell(r, nextCol);
-                        if (nextRightCell->IsShown())
-                        {
-                            adjacentCellRight = nextRightCell;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            // If no adjacent cell (either because they were hidden or at the edge of the table)
-            // then we must reset the border
-            if (!adjacentCellRight)
-                attr.GetTextBoxAttr().GetBorder().GetRight().Reset();
-            else
-            {
-                if (!attr.GetTextBoxAttr().GetBorder().GetRight().IsValid() ||
-                    attr.GetTextBoxAttr().GetBorder().GetRight().GetWidth().GetValue() == 0)
-                {
-                    attr.GetTextBoxAttr().GetBorder().GetRight() = adjacentCellRight->GetAttributes().GetTextBoxAttr().GetBorder().GetLeft();
-                }
-            }
-
-            // Compute bottom border
-            wxRichTextCell* adjacentCellBelow = NULL;
-
-            int nextRow = row + GetRowSpan();
-            if  (nextRow >= table->GetRowCount())
-            {
-                // Do nothing - at edge of table
-            }
-            else
-            {
-                wxRichTextCell* nextBottomCell = table->GetCell(col, nextRow);
-                if (nextBottomCell->IsShown())
-                {
-                    adjacentCellBelow = nextBottomCell;
-                }
-                else
-                {
-                    // Must be hidden by a colspan to the left. Go hunting for it.
-                    int c;
-                    for (c = col-1; c >= 0; c--)
-                    {
-                        nextBottomCell = table->GetCell(nextRow, c);
-                        if (nextBottomCell->IsShown())
-                        {
-                            adjacentCellBelow = nextBottomCell;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            // If no adjacent cell (either because they were hidden or at the edge of the table)
-            // then we must reset the border
-            if (!adjacentCellBelow)
-                attr.GetTextBoxAttr().GetBorder().GetBottom().Reset();
-            else
-            {
-                if (!attr.GetTextBoxAttr().GetBorder().GetBottom().IsValid() ||
-                    attr.GetTextBoxAttr().GetBorder().GetBottom().GetWidth().GetValue() == 0)
-                {
-                    attr.GetTextBoxAttr().GetBorder().GetBottom() = adjacentCellBelow->GetAttributes().GetTextBoxAttr().GetBorder().GetTop();
-                }
-            }
-        }
-    }
-
-    return true;
-}
-
-/// Copy
-void wxRichTextCell::Copy(const wxRichTextCell& obj)
-{
-    wxRichTextObject::AdjustAttributes(attr, context);
-
-    wxRichTextTable* table = wxDynamicCast(GetParent(), wxRichTextTable);
-    if (IsShown() && table && table->GetAttributes().GetTextBoxAttr().HasCollapseBorders() &&
-        table->GetAttributes().GetTextBoxAttr().GetCollapseBorders() == wxTEXT_BOX_ATTR_COLLAPSE_FULL)
-    {
-        // Collapse borders:
         // (1) Reset left and top for all cells unless there is no table border there;
         // (2) for bottom and right, reset if at edge of table and there are no table borders,
         //     otherwise use this cell's border if present, otherwise adjacent border if not.
@@ -10217,8 +10100,14 @@ bool wxRichTextTable::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
         int colCount = GetColumnCount();
         int rowCount = GetRowCount();
         int col, row;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (col = 0; col < colCount; col++)
         {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for (row = 0; row < rowCount; row++)
             {
                 if (row == 0 || row == (rowCount-1) || col == 0 || col == (colCount-1))
@@ -10245,7 +10134,7 @@ bool wxRichTextTable::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
                             wxRect contentRect, borderRect, paddingRect, outlineRect;
 
                             cell->GetBoxRects(dc, GetBuffer(), attr, marginRect, borderRect, contentRect, paddingRect, outlineRect);
-                            cell->DrawBorder(dc, GetBuffer(), attr.GetTextBoxAttr().GetBorder(), borderRect);
+                            cell->DrawBorder(dc, GetBuffer(), attr, attr.GetTextBoxAttr().GetBorder(), borderRect);
                         }
                     }
                 }
@@ -10734,6 +10623,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     }
 
     // (2) Allocate initial column widths from absolute values and proportions
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         if (absoluteColWidths[i] > 0)
@@ -10877,10 +10769,16 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     bool relaxConstraints = false;
 
     size_t phase;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (phase = 0; phase < 2; phase ++)
     {
         widthLeft = tableWidthMinusPadding;
         stretchColCount = 0;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             // Subtract min width from width left, then
@@ -10926,6 +10824,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // up and size columns equally to avoid rendering problems.
     if (colShare < 0)
     {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             int w = colWidths[i];
@@ -10957,6 +10858,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             shareEqually = true;
         }
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             colWidths[i] = 0;
@@ -10966,6 +10870,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // We have to adjust the columns if either we need to shrink the
     // table to fit the parent/table width, or we explicitly set the
     // table width and need to stretch out the table.
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         if (colWidths[i] <= 0) // absolute or proportional width has not been specified
@@ -13807,6 +13714,7 @@ bool wxTextBoxAttr::EqPartial(const wxTextBoxAttr& attr, bool weakTest) const
              (!HasCollapseBorders() && attr.HasCollapseBorders()) ||
              (!HasVerticalAlignment() && attr.HasVerticalAlignment()) ||
              (!HasWhitespaceMode() && attr.HasWhitespaceMode()) ||
+             (!HasCornerRadius() && attr.HasCornerRadius()) ||
              (!HasBoxStyleName() && attr.HasBoxStyleName())))
     {
         return false;
@@ -13824,6 +13732,9 @@ bool wxTextBoxAttr::EqPartial(const wxTextBoxAttr& attr, bool weakTest) const
         return false;
 
     if (attr.HasWhitespaceMode() && HasWhitespaceMode() && (GetWhitespaceMode() != attr.GetWhitespaceMode()))
+        return false;
+
+    if (attr.HasCornerRadius() && HasCornerRadius() && !(attr.GetCornerRadius() == GetCornerRadius()))
         return false;
 
     if (attr.HasBoxStyleName() && HasBoxStyleName() && (attr.GetBoxStyleName() != GetBoxStyleName()))
@@ -13901,6 +13812,11 @@ bool wxTextBoxAttr::Apply(const wxTextBoxAttr& attr, const wxTextBoxAttr* compar
             SetWhitespaceMode(attr.GetWhitespaceMode());
     }
 
+    if (attr.HasCornerRadius())
+    {
+        if (!(compareWith && compareWith->HasCornerRadius() && compareWith->GetCornerRadius() == attr.GetCornerRadius()))
+            SetCornerRadius(attr.GetCornerRadius());
+    }
     if (attr.HasBoxStyleName())
     {
         if (!(compareWith && compareWith->HasBoxStyleName() && compareWith->GetBoxStyleName() == attr.GetBoxStyleName()))
@@ -13938,6 +13854,9 @@ bool wxTextBoxAttr::RemoveStyle(const wxTextBoxAttr& attr)
 
     if (attr.HasWhitespaceMode())
         RemoveFlag(wxTEXT_BOX_ATTR_WHITESPACE);
+
+    if (attr.HasCornerRadius())
+        RemoveFlag(wxTEXT_BOX_ATTR_CORNER_RADIUS);
 
     if (attr.HasBoxStyleName())
     {
@@ -14057,6 +13976,26 @@ void wxTextBoxAttr::CollectCommonAttributes(const wxTextBoxAttr& attr, wxTextBox
     }
     else
         absentAttr.AddFlag(wxTEXT_BOX_ATTR_WHITESPACE);
+
+    if (attr.HasCornerRadius())
+    {
+        if (!clashingAttr.HasCornerRadius() && !absentAttr.HasCornerRadius())
+        {
+            if (HasCornerRadius())
+            {
+                if (!(GetCornerRadius() == attr.GetCornerRadius()))
+                {
+                    clashingAttr.AddFlag(wxTEXT_BOX_ATTR_CORNER_RADIUS);
+                    GetCornerRadius().Reset();
+                    RemoveFlag(wxTEXT_BOX_ATTR_CORNER_RADIUS);
+                }
+            }
+            else
+                SetCornerRadius(attr.GetCornerRadius());
+        }
+    }
+    else
+        absentAttr.AddFlag(wxTEXT_BOX_ATTR_CORNER_RADIUS);
 
     if (attr.HasBoxStyleName())
     {
@@ -14419,7 +14358,7 @@ int wxTextAttrDimensionConverter::GetPixels(const wxTextAttrDimension& dim, int 
         }
 
         // Scaling is used in e.g. printing
-        if (m_scale != 1.0)
+        if (m_scale != 1.0 && dim.GetUnits() != wxTEXT_ATTR_UNITS_PIXELS && dim.GetUnits() != wxTEXT_ATTR_UNITS_PERCENTAGE)
             pixelsDouble /= m_scale;
 
         int pixelsInt = int(pixelsDouble + 0.5);

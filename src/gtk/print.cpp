@@ -1389,9 +1389,6 @@ void wxGtkPrinterDCImpl::DoDrawArc(wxCoord x1,wxCoord y1,wxCoord x2,wxCoord y2,w
     cairo_arc_negative(m_cairo, XLOG2DEV(xc), YLOG2DEV(yc),
                        XLOG2DEVREL(wxRound(radius)), alpha1, alpha2);
 
-    cairo_line_to(m_cairo, XLOG2DEV(xc), YLOG2DEV(yc));
-    cairo_close_path (m_cairo);
-
     if ( m_brush.IsNonTransparent() )
     {
         cairo_line_to(m_cairo, XLOG2DEV(xc), YLOG2DEV(yc));

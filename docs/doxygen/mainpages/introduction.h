@@ -35,12 +35,6 @@ Zeitlin, Stefan Csomor, Robert Roebling, Vaclav Slavik and many others.
 More information about wxWidgets is available on its web site at
 http://www.wxwidgets.org.
 
-wxWidgets was originally developed by Julian Smart at the Artificial
-Intelligence Applications Institute, University of Edinburgh, for internal use,
-and was first made publicly available in 1992, with a vastly improved version 2
-released in 1999. The last major version of the library is 3 and was released
-in 2013. Currently wxWidgets is developed and maintained by Julian Smart, Vadim
-Zeitlin, Stefan Csomor, Robert Roebling, Vaclav Slavik and many others.
 
 
 @section page_introduction_why Why choose wxWidgets?

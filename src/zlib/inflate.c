@@ -1089,6 +1089,9 @@ int flush;
                 break;
             }
             state->back = 0;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for (;;) {
                 here = state->lencode[BITS(state->lenbits)];
                 if ((unsigned)(here.bits) <= bits) break;
@@ -1096,6 +1099,9 @@ int flush;
             }
             if (here.op && (here.op & 0xf0) == 0) {
                 last = here;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for (;;) {
                     here = state->lencode[last.val +
                             (BITS(last.bits + last.op) >> last.bits)];
@@ -1149,6 +1155,9 @@ int flush;
             }
             if ((here.op & 0xf0) == 0) {
                 last = here;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for (;;) {
                     here = state->distcode[last.val +
                             (BITS(last.bits + last.op) >> last.bits)];
@@ -1202,6 +1211,9 @@ int flush;
                     if (copy > left) copy = left;
                     left -= copy;
                     state->length -= copy;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                     do {
                         *put++ = 0;
                     } while (--copy);
