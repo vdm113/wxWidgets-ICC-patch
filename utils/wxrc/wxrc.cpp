@@ -1113,9 +1113,6 @@ bool XmlResApp::Validate()
     }
 
     wxString cmdline = wxString::Format("jing -c \"%s\"", schemaURI);
-#if defined(__INTEL_COMPILER) // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t i = 0; i < parFiles.GetCount(); i++ )
         cmdline << wxString::Format(" \"%s\"", parFiles[i]);
 

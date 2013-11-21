@@ -335,9 +335,6 @@ TestGLCanvas::TestGLCanvas(wxWindow *parent, int *attribList)
     if ( attribList )
     {
         int i = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
-#   pragma ivdep
-#endif
         while ( attribList[i] != 0 )
         {
             if ( attribList[i] == WX_GL_STEREO )
