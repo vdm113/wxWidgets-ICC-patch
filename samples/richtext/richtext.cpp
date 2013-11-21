@@ -2327,6 +2327,9 @@ wxRichTextTable* MyRichTextCtrl::FindTable() const
         return table;
     }
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while (obj)
     {
         obj = obj->GetParent();

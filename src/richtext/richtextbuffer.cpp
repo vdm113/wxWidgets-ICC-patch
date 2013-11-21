@@ -9900,6 +9900,9 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
                 {
                     // Must be hidden by a rowspan above. Go hunting for it.
                     int r;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                     for (r = row-1; r >= 0; r--)
                     {
                         nextRightCell = table->GetCell(r, nextCol);
@@ -9947,6 +9950,9 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
                 {
                     // Must be hidden by a colspan to the left. Go hunting for it.
                     int c;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                     for (c = col-1; c >= 0; c--)
                     {
                         nextBottomCell = table->GetCell(nextRow, c);
@@ -10130,8 +10136,14 @@ bool wxRichTextTable::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
         int colCount = GetColumnCount();
         int rowCount = GetRowCount();
         int col, row;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (col = 0; col < colCount; col++)
         {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for (row = 0; row < rowCount; row++)
             {
                 if (row == 0 || row == (rowCount-1) || col == 0 || col == (colCount-1))
@@ -10205,6 +10217,9 @@ int GetRowspanDisplacement(const wxRichTextTable* table, int row, int col, int p
                         // There is a rowspanning cell above above the hidden one, so we need
                         // to right-shift the index cell by this column's width. Furthermore, 
                         // if the cell also colspans, we need to shift by all affected columns
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                         for (int colSpan = 0; colSpan < cell->GetColSpan(); ++colSpan)
                             deltaX += (colWidths[prevcol+colSpan] + paddingX);
                         break;
@@ -10644,6 +10659,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     }
 
     // (2) Allocate initial column widths from absolute values and proportions
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         if (absoluteColWidths[i] > 0)
@@ -10787,10 +10805,16 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     bool relaxConstraints = false;
 
     size_t phase;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (phase = 0; phase < 2; phase ++)
     {
         widthLeft = tableWidthMinusPadding;
         stretchColCount = 0;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             // Subtract min width from width left, then
@@ -10836,6 +10860,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // up and size columns equally to avoid rendering problems.
     if (colShare < 0)
     {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             int w = colWidths[i];
@@ -10867,6 +10894,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             shareEqually = true;
         }
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             colWidths[i] = 0;
@@ -10876,6 +10906,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // We have to adjust the columns if either we need to shrink the
     // table to fit the parent/table width, or we explicitly set the
     // table width and need to stretch out the table.
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         if (colWidths[i] <= 0) // absolute or proportional width has not been specified
@@ -11416,8 +11449,14 @@ wxPosition wxRichTextTable::GetFocusedCell() const
 
 int wxRichTextTable::HitTest(wxDC& dc, wxRichTextDrawingContext& context, const wxPoint& pt, long& textPosition, wxRichTextObject** obj, wxRichTextObject** contextObj, int flags)
 {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (int row = 0; row < GetRowCount(); ++row)
     {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (int col = 0; col < GetColumnCount(); ++col)
         {
             wxRichTextCell* cell = GetCell(row, col);
@@ -11709,8 +11748,14 @@ bool wxRichTextTableBlock::ComputeBlockForSelection(wxRichTextTable* table, wxRi
         wxRichTextTableBlock selBlock(-1, -1, -1, -1);
         wxRichTextRangeArray ranges = selection.GetRanges();
         int row, col;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (row = 0; row < table->GetRowCount(); row++)
         {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for (col = 0; col < table->GetColumnCount(); col++)
             {
                 if (selection.WithinSelection(table->GetCell(row, col)->GetRange().GetStart()))
@@ -12063,6 +12108,9 @@ bool wxRichTextAction::Do()
             if (m_ctrl)
             {
                 wxRichTextObject* c = m_ctrl->GetFocusObject();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 while (c)
                 {
                     if (c == container)
@@ -12243,6 +12291,9 @@ bool wxRichTextAction::Undo()
             if (m_ctrl)
             {
                 wxRichTextObject* c = m_ctrl->GetFocusObject();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 while (c)
                 {
                     if (c == container)

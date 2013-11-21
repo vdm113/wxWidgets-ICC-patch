@@ -132,6 +132,9 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
         
         CFRelease(cfFontFamilies);
     }
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t i = 0 ; i < fontFamilies.Count() ; ++i )
     {
         if ( OnFacename( fontFamilies[i] ) == false )

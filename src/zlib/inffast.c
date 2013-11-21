@@ -198,17 +198,26 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                         }
 #ifdef INFLATE_ALLOW_INVALID_DISTANCE_TOOFAR_ARRR
                         if (len <= op - whave) {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                             do {
                                 PUP(out) = 0;
                             } while (--len);
                             continue;
                         }
                         len -= op - whave;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                         do {
                             PUP(out) = 0;
                         } while (--op > whave);
                         if (op == 0) {
                             from = out - dist;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                             do {
                                 PUP(out) = PUP(from);
                             } while (--len);

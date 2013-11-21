@@ -1456,6 +1456,9 @@ bool wxMenuBar::Insert(size_t pos, wxMenu *menu, const wxString& title)
                 static_cast<unsigned>(mswCount) != GetMenuCount() - 1 )
         {
             wxMenuList::compatibility_iterator node = m_menus.GetFirst();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for ( size_t n = 0; n < pos; n++ )
             {
                 if ( ::GetSubMenu(GetHmenu(), n) != GetHmenuOf(node->GetData()) )
