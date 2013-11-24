@@ -676,6 +676,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\src\xrc\xh_animatctrl.cpp" />
+    <ClCompile Include="..\..\src\xrc\xh_auitoolb.cpp" />
     <ClCompile Include="..\..\src\xrc\xh_bannerwindow.cpp" />
     <ClCompile Include="..\..\src\xrc\xh_bmp.cpp" />
     <ClCompile Include="..\..\src\xrc\xh_bmpbt.cpp" />
@@ -812,6 +813,7 @@
     </CustomBuild>
     <ClInclude Include="..\..\include\wx\xrc\xh_all.h" />
     <ClInclude Include="..\..\include\wx\xrc\xh_animatctrl.h" />
+    <ClInclude Include="..\..\include\wx\xrc\xh_auitoolb.h" />
     <ClInclude Include="..\..\include\wx\xrc\xh_bannerwindow.h" />
     <ClInclude Include="..\..\include\wx\xrc\xh_bmp.h" />
     <ClInclude Include="..\..\include\wx\xrc\xh_bmpbt.h" />
