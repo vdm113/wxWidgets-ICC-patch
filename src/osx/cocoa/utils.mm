@@ -388,6 +388,20 @@ bool wxApp::DoInitGui()
             }
         }
 
+        if ( OSXIsGUIApplication() )
+        {
+            CFURLRef url = CFBundleCopyBundleURL(CFBundleGetMainBundle() ) ;
+            CFStringRef path = CFURLCopyFileSystemPath ( url , kCFURLPOSIXPathStyle ) ;
+            CFRelease( url ) ;
+            wxString app = wxCFStringRef(path).AsString(wxLocale::GetSystemEncoding());
+            
+            // workaround is only needed for non-bundled apps
+            if ( !app.EndsWith(".app") )
+            {
+                [(wxNSApplication*) [wxNSApplication sharedApplication] transformToForegroundApplication];
+            }
+        }
+
         appcontroller = OSXCreateAppController();
         [NSApp setDelegate:appcontroller];
         [NSColor setIgnoresAlpha:NO];
