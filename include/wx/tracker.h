@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/tracker.h
 // Purpose:     Support class for object lifetime tracking (wxWeakRef<T>)
@@ -45,6 +52,9 @@ public:
 
     void RemoveNode(wxTrackerNode *prn)
     {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( wxTrackerNode **pprn = &m_first; *pprn; pprn = &(*pprn)->m_nxt )
         {
             if ( *pprn == prn )
@@ -76,6 +86,9 @@ protected:
     ~wxTrackable()
     {
         // Notify all registered refs
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         while ( m_first )
         {
             wxTrackerNode * const first = m_first;

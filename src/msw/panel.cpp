@@ -32,6 +32,9 @@
 
 bool wxPanel::HasTransparentBackground()
 {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxWindow *win = GetParent(); win; win = win->GetParent() )
     {
         if ( win->MSWHasInheritableBackground() )

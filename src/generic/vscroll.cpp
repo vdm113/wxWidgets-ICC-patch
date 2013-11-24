@@ -284,6 +284,9 @@ wxCoord wxVarScrollHelperBase::GetUnitsSize(size_t unitMin, size_t unitMax) cons
 
     // sum up their sizes
     wxCoord size = 0;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t unit = unitMin; unit < unitMax; ++unit )
     {
         size += OnGetUnitSize(unit);
@@ -300,6 +303,9 @@ size_t wxVarScrollHelperBase::FindFirstVisibleFromLast(size_t unitLast, bool ful
     // any more when it is shown
     size_t unitFirst = unitLast;
     wxCoord s = 0;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         s += OnGetUnitSize(unitFirst);
@@ -389,6 +395,9 @@ void wxVarScrollHelperBase::UpdateScrollbar()
     // do vertical calculations
     wxCoord s = 0;
     size_t unit;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( unit = m_unitFirst; unit < m_unitMax; ++unit )
     {
         if ( s > sWindow )
@@ -503,6 +512,9 @@ void wxVarScrollHelperBase::RefreshUnit(size_t unit)
     AssignOrient(rect.width, rect.height,
                  GetNonOrientationTargetSize(), OnGetUnitSize(unit));
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = GetVisibleBegin(); n < unit; ++n )
     {
         IncOrient(rect.x, rect.y, OnGetUnitSize(n));
@@ -530,6 +542,9 @@ void wxVarScrollHelperBase::RefreshUnits(size_t from, size_t to)
 
     int nonorient_size = GetNonOrientationTargetSize();
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t nBefore = GetVisibleBegin();
           nBefore < from;
           nBefore++ )
@@ -537,6 +552,9 @@ void wxVarScrollHelperBase::RefreshUnits(size_t from, size_t to)
         orient_pos += OnGetUnitSize(nBefore);
     }
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t nBetween = from; nBetween <= to; nBetween++ )
     {
         orient_size += OnGetUnitSize(nBetween);
@@ -581,6 +599,9 @@ bool wxVarScrollHelperBase::ScrollLayout()
 int wxVarScrollHelperBase::VirtualHitTest(wxCoord coord) const
 {
     const size_t unitMax = GetVisibleEnd();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t unit = GetVisibleBegin(); unit < unitMax; ++unit )
     {
         coord -= OnGetUnitSize(unit);
@@ -684,6 +705,9 @@ bool wxVarScrollHelperBase::DoScrollPages(int pages)
 {
     bool didSomething = false;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while ( pages )
     {
         int unit;
@@ -722,6 +746,9 @@ void wxVarScrollHelperBase::HandleOnSize(wxSizeEvent& event)
         const wxCoord sWindow = GetOrientationTargetSize();
         wxCoord s = 0;
         size_t unit;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( unit = m_unitFirst; unit < m_unitMax; ++unit )
         {
             if ( s > sWindow )
@@ -733,6 +760,9 @@ void wxVarScrollHelperBase::HandleOnSize(wxSizeEvent& event)
 
         // decrement first visible item index as long as there is free space
         size_t idealUnitFirst;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( idealUnitFirst = m_unitFirst;
               idealUnitFirst > 0;
               idealUnitFirst-- )
@@ -855,11 +885,17 @@ void wxVarHVScrollHelper::RefreshRowColumn(size_t row, size_t column)
 
     size_t n;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( n = GetVisibleRowsBegin(); n < row; n++ )
     {
         v_rect.y += OnGetRowHeight(n);
     }
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( n = GetVisibleColumnsBegin(); n < column; n++ )
     {
         h_rect.x += OnGetColumnWidth(n);
@@ -908,6 +944,9 @@ void wxVarHVScrollHelper::RefreshRowsColumns(size_t fromRow, size_t toRow,
     wxRect v_rect, h_rect;
     size_t nBefore, nBetween;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( nBefore = GetVisibleRowsBegin();
           nBefore < fromRow;
           nBefore++ )
@@ -915,11 +954,17 @@ void wxVarHVScrollHelper::RefreshRowsColumns(size_t fromRow, size_t toRow,
         v_rect.y += OnGetRowHeight(nBefore);
     }
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( nBetween = fromRow; nBetween <= toRow; nBetween++ )
     {
         v_rect.height += OnGetRowHeight(nBetween);
     }
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( nBefore = GetVisibleColumnsBegin();
           nBefore < fromColumn;
           nBefore++ )
@@ -927,6 +972,9 @@ void wxVarHVScrollHelper::RefreshRowsColumns(size_t fromRow, size_t toRow,
         h_rect.x += OnGetColumnWidth(nBefore);
     }
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( nBetween = fromColumn; nBetween <= toColumn; nBetween++ )
     {
         h_rect.width += OnGetColumnWidth(nBetween);

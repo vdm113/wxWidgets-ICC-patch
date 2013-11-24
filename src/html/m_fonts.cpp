@@ -71,6 +71,9 @@ TAG_HANDLER_BEGIN(FONT, "FONT" )
             wxStringTokenizer tk(faces, wxT(","));
             int index;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             while (tk.HasMoreTokens())
             {
                 if ((index = m_Faces.Index(tk.GetNextToken(), false)) != wxNOT_FOUND)

@@ -483,8 +483,14 @@ size_t wxRawInputStream::OnSysRead(void *buffer, size_t size)
     char *buf = (char*)buffer;
     size_t count = 0;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while (count < size && IsOk())
     {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         while (m_parent_i_stream->IsOk() && m_tee->GetCount() == 0)
             m_parent_i_stream->Read(m_dummy.data(), BUFSIZE);
 
@@ -786,6 +792,9 @@ wxString wxZipEntry::GetName(wxPathFormat format /*=wxPATH_NATIVE*/) const
         case wxPATH_DOS:
         {
             wxString name(isDir ? m_Name + wxT("\\") : m_Name);
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for (size_t i = 0; i < name.length(); i++)
                 if (name[i] == wxT('/'))
                     name[i] = wxT('\\');
@@ -831,8 +840,14 @@ wxString wxZipEntry::GetInternalName(const wxString& name,
     if (isDir)
         internal.erase(internal.length() - 1);
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while (!internal.empty() && *internal.begin() == '/')
         internal.erase(0, 1);
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while (!internal.empty() && internal.compare(0, 2, wxT("./")) == 0)
         internal.erase(0, 2);
     if (internal == wxT(".") || internal == wxT(".."))
@@ -1341,9 +1356,15 @@ void wxZipInputStream::Init(const wxString& file)
     wxZipEntryPtr_ entry;
 
     if (ffile->IsOk()) {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         do {
             entry.reset(GetNextEntry());
         }
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         while (entry.get() != NULL && entry->GetInternalName() != file);
     }
 
@@ -1524,6 +1545,9 @@ bool wxZipInputStream::FindEndRecord()
     memcpy(buf.data(), magic, 3);
     wxFileOffset minpos = wxMax(pos - 65535L, 0);
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while (pos > minpos) {
         size_t len = wx_truncate_cast(size_t,
                         pos - wxMax(pos - (BUFSIZE - 3), minpos));
@@ -1536,6 +1560,9 @@ bool wxZipInputStream::FindEndRecord()
 
         char *p = buf.data() + len;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         while (p-- > buf.data()) {
             if ((m_signature = CrackUint32(p)) == END_MAGIC) {
                 size_t remainder = buf.data() + len - p;
@@ -1611,6 +1638,9 @@ wxStreamError wxZipInputStream::ReadLocal(bool readEndRec /*=false*/)
         }
     }
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while (m_signature == CENTRAL_MAGIC) {
         if (m_weaklinks->IsEmpty() && m_streamlink == NULL)
             return wxSTREAM_EOF;
@@ -1824,6 +1854,9 @@ bool wxZipInputStream::CloseEntry()
 
         const int BUFSIZE = 8192;
         wxCharBuffer buf(BUFSIZE);
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         while (IsOk())
             Read(buf.data(), BUFSIZE);
 
@@ -1945,6 +1978,9 @@ wxFileOffset wxZipInputStream::OnSysSeek(wxFileOffset seek, wxSeekMode mode)
         const int BUFSIZE = 4096;
         size_t sz;
         char buffer[BUFSIZE];
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         while ( toskip > 0 )
         {
             sz = wx_truncate_cast(size_t, wxMin(toskip, BUFSIZE));
@@ -2142,6 +2178,9 @@ wxOutputStream *wxZipOutputStream::OpenCompressor(
             entry.SetMethod(wxZIP_METHOD_STORE);
         } else {
             int size = 0;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for (int i = 0; bufs[i].m_data; ++i)
                 size += bufs[i].m_size;
             entry.SetMethod(size <= 6 ?
@@ -2314,6 +2353,9 @@ bool wxZipOutputStream::Close()
     wxZipEntryList_::iterator it;
     wxFileOffset size = 0;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (it = m_entries.begin(); it != m_entries.end(); ++it) {
         size += (*it)->WriteCentral(*m_parent_o_stream, GetConv());
         delete *it;

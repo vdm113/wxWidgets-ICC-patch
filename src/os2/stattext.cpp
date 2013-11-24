@@ -114,6 +114,9 @@ wxSize wxStaticText::DoGetBestSize() const
     wxString sCurLine;
     bool     bLastWasTilde = false;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (const wxChar *pc = sText; ; pc++)
     {
         if ( *pc == wxT('\n') || *pc == wxT('\0') )

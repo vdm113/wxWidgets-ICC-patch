@@ -963,6 +963,9 @@ void wxRichTextSizePage::OnRichtextParaUpClick( wxCommandEvent& WXUNUSED(event) 
     if (!iter)
         return;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while (iter)
     {
         if (iter->GetData() == parent)
@@ -1012,6 +1015,9 @@ void wxRichTextSizePage::OnRichtextParaDownClick( wxCommandEvent& WXUNUSED(event
     if (!iter)
         return;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while (iter)
     {
         if (iter->GetData() == parent)

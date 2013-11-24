@@ -284,6 +284,9 @@ private:
 
             case wxTE_HT_ON_TEXT:
                 // Find the field containing this position.
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for ( field = Field_Hour; field <= GetLastField(); )
                 {
                     const CharRange range = GetFieldRange(field);

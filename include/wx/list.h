@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(MY_MACRO_PRAGMA_IVDEP)
+#   define MY_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/list.h
 // Purpose:     wxList, wxStringList classes
@@ -1001,8 +1008,10 @@ private:
             { return const_reverse_iterator(NULL, GetFirst()); }            \
         void resize(size_type n, value_type v = value_type())               \
         {                                                                   \
+MY_MACRO_PRAGMA_IVDEP \
             while (n < size())                                              \
                 pop_back();                                                 \
+MY_MACRO_PRAGMA_IVDEP \
             while (n > size())                                              \
                 push_back(v);                                                \
         }                                                                   \
@@ -1022,12 +1031,14 @@ private:
         void assign(const_iterator first, const const_iterator& last)       \
         {                                                                   \
             clear();                                                        \
+MY_MACRO_PRAGMA_IVDEP \
             for(; first != last; ++first)                                   \
                 Append((const_base_reference)*first);                       \
         }                                                                   \
         void assign(size_type n, const_reference v = value_type())          \
         {                                                                   \
             clear();                                                        \
+MY_MACRO_PRAGMA_IVDEP \
             for(size_type i = 0; i < n; ++i)                                \
                 Append((const_base_reference)v);                            \
         }                                                                   \
@@ -1053,12 +1064,14 @@ private:
         }                                                                   \
         void insert(const iterator& it, size_type n, const_reference v)     \
         {                                                                   \
+MY_MACRO_PRAGMA_IVDEP \
             for(size_type i = 0; i < n; ++i)                                \
                 insert(it, v);                                              \
         }                                                                   \
         void insert(const iterator& it,                                     \
                     const_iterator first, const const_iterator& last)       \
         {                                                                   \
+MY_MACRO_PRAGMA_IVDEP \
             for(; first != last; ++first)                                   \
                 insert(it, *first);                                         \
         }                                                                   \
@@ -1223,6 +1236,9 @@ public:
         wxVector<T> vector(size());
         size_t i = 0;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( const_iterator it = begin(); it != end(); ++it )
         {
             vector[i++] = static_cast<T>(*it);
@@ -1322,6 +1338,7 @@ public:
 #define WX_CLEAR_LIST(type, list)                                            \
     {                                                                        \
         type::iterator it, en;                                               \
+MY_MACRO_PRAGMA_IVDEP \
         for( it = (list).begin(), en = (list).end(); it != en; ++it )        \
             delete *it;                                                      \
         (list).clear();                                                      \
@@ -1331,6 +1348,7 @@ public:
 #define WX_APPEND_LIST(list, other)                                           \
     {                                                                         \
         wxList::compatibility_iterator node = other->GetFirst();              \
+MY_MACRO_PRAGMA_IVDEP \
         while ( node )                                                        \
         {                                                                     \
             (list)->push_back(node->GetData());                               \

@@ -96,6 +96,9 @@ void wxGUIEventLoop::OSXDoRun()
 {
     wxMacAutoreleasePool autoreleasepool;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while (!m_shouldExit)
     {
         RunApplicationEventLoop();
