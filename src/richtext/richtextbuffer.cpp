@@ -8236,42 +8236,6 @@ bool wxRichTextParagraphLayoutBox::SetObjectPropertiesWithUndo(wxRichTextObject&
 /// style.
 wxRichTextAttr wxRichTextParagraphLayoutBox::GetStyleForNewParagraph(wxRichTextBuffer* buffer, long pos, bool caretPosition, bool lookUpNewParaStyle) const
 {
-    wxRichTextBuffer* buffer = GetBuffer();
-    wxCHECK_MSG(buffer, false, wxT("Invalid buffer"));
-    wxRichTextCtrl* rtc = buffer->GetRichTextCtrl();
-    wxCHECK_MSG(rtc, false, wxT("Invalid rtc"));
-
-    wxRichTextAction* action = NULL;
-    wxRichTextObject* clone = NULL;
-
-    // The object on which to set properties will usually be 'obj', but use objToSet if it's valid.
-    // This is necessary e.g. on setting a wxRichTextCell's properties, when obj will be the parent table
-    if (objToSet == NULL)
-        objToSet = &obj;
-
-    if (rtc->SuppressingUndo())
-        objToSet->SetProperties(properties);
-    else
-    {
-        clone = obj.Clone();
-        objToSet->SetProperties(properties);
-
-        // The 'true' parameter in the next line says "Ignore first time"; otherwise the objects are prematurely switched
-        action = new wxRichTextAction(NULL, _("Change Properties"), wxRICHTEXT_CHANGE_OBJECT, buffer, obj.GetParentContainer(), rtc, true);
-        action->SetOldAndNewObjects(& obj, clone);
-        action->SetPosition(obj.GetRange().GetStart());
-        action->SetRange(obj.GetRange());
-        buffer->SubmitAction(action);
-    }
-
-    return true;
-}
-
-/// Get the style that is appropriate for a new paragraph at this position.
-/// If the previous paragraph has a paragraph style name, look up the next-paragraph
-/// style.
-wxRichTextAttr wxRichTextParagraphLayoutBox::GetStyleForNewParagraph(wxRichTextBuffer* buffer, long pos, bool caretPosition, bool lookUpNewParaStyle) const
-{
     wxRichTextParagraph* para = GetParagraphAtPosition(pos, caretPosition);
     if (para)
     {
