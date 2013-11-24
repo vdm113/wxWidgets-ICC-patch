@@ -332,6 +332,9 @@ void wxGenericDirDialog::OnNew( wxCommandEvent& WXUNUSED(event) )
     {
         // try NewName0, NewName1 etc.
         int i = 0;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         do {
             new_name = _("NewName");
             wxString num;

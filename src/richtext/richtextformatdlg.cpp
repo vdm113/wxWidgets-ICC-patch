@@ -265,6 +265,9 @@ void wxRichTextFormattingDialog::SetFormattingDialogFactory(wxRichTextFormatting
 wxWindow* wxRichTextFormattingDialog::FindPage(wxClassInfo* info) const
 {
     size_t i;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < GetBookCtrl()->GetPageCount(); i++)
     {
         wxWindow* w = GetBookCtrl()->GetPage(i);
@@ -288,6 +291,9 @@ bool wxRichTextFormattingDialogFactory::CreatePages(long pages, wxRichTextFormat
     int availablePageCount = GetPageIdCount();
     int i;
     bool selected = false;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < availablePageCount; i ++)
     {
         int pageId = GetPageId(i);
@@ -555,6 +561,9 @@ void wxRichTextFontPreviewCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
 wxRichTextFormattingDialog* wxRichTextFormattingDialog::GetDialog(wxWindow* win)
 {
     wxWindow* p = win->GetParent();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while (p && !wxDynamicCast(p, wxRichTextFormattingDialog))
         p = p->GetParent();
     wxRichTextFormattingDialog* dialog = wxDynamicCast(p, wxRichTextFormattingDialog);
@@ -748,6 +757,9 @@ void wxRichTextColourSwatchCtrl::OnMouseEvent(wxMouseEvent& event)
     if (event.LeftDown())
     {
         wxWindow* parent = GetParent();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         while (parent != NULL && !wxDynamicCast(parent, wxDialog) && !wxDynamicCast(parent, wxFrame))
             parent = parent->GetParent();
 

@@ -658,6 +658,9 @@ wxGridCellAttr *wxGridCellAttrData::GetAttr(int row, int col) const
 void wxGridCellAttrData::UpdateAttrRows( size_t pos, int numRows )
 {
     size_t count = m_attrs.GetCount();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         wxGridCellCoords& coords = m_attrs[n].coords;
@@ -692,6 +695,9 @@ void wxGridCellAttrData::UpdateAttrRows( size_t pos, int numRows )
 void wxGridCellAttrData::UpdateAttrCols( size_t pos, int numCols )
 {
     size_t count = m_attrs.GetCount();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         wxGridCellCoords& coords = m_attrs[n].coords;
@@ -726,6 +732,9 @@ void wxGridCellAttrData::UpdateAttrCols( size_t pos, int numCols )
 int wxGridCellAttrData::FindIndex(int row, int col) const
 {
     size_t count = m_attrs.GetCount();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         const wxGridCellCoords& coords = m_attrs[n].coords;
@@ -745,6 +754,9 @@ int wxGridCellAttrData::FindIndex(int row, int col) const
 wxGridRowOrColAttrData::~wxGridRowOrColAttrData()
 {
     size_t count = m_attrs.GetCount();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         m_attrs[n]->DecRef();
@@ -805,6 +817,9 @@ void wxGridRowOrColAttrData::SetAttr(wxGridCellAttr *attr, int rowOrCol)
 void wxGridRowOrColAttrData::UpdateAttrRowsOrCols( size_t pos, int numRowsOrCols )
 {
     size_t count = m_attrs.GetCount();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         int & rowOrCol = m_rowsOrCols[n];
@@ -1159,6 +1174,9 @@ wxString wxGridTableBase::GetColLabelValue( int col )
 
     wxString s;
     unsigned int i, n;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( n = 1; ; n++ )
     {
         s += (wxChar) (wxT('A') + (wxChar)(col % 26));
@@ -1169,6 +1187,9 @@ wxString wxGridTableBase::GetColLabelValue( int col )
 
     // reverse the string...
     wxString s2;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( i = 0; i < n; i++ )
     {
         s2 += s[n - i - 1];
@@ -1317,8 +1338,14 @@ void wxGridStringTable::Clear()
     {
         numCols = m_data[0].GetCount();
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( row = 0; row < numRows; row++ )
         {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for ( col = 0; col < numCols; col++ )
             {
                 m_data[row][col] = wxEmptyString;
@@ -1447,12 +1474,21 @@ bool wxGridStringTable::InsertCols( size_t pos, size_t numCols )
         m_colLabels.Insert( wxEmptyString, pos, numCols );
 
         size_t i;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( i = pos; i < pos + numCols; i++ )
             m_colLabels[i] = wxGridTableBase::GetColLabelValue( i );
     }
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( row = 0; row < curNumRows; row++ )
     {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( col = pos; col < pos + numCols; col++ )
         {
             m_data[row].Insert( wxEmptyString, col );
@@ -1480,6 +1516,9 @@ bool wxGridStringTable::AppendCols( size_t numCols )
 
     size_t curNumRows = m_data.GetCount();
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( row = 0; row < curNumRows; row++ )
     {
         m_data[row].Add( wxEmptyString, numCols );
@@ -1542,6 +1581,9 @@ bool wxGridStringTable::DeleteCols( size_t pos, size_t numCols )
 
     if ( numCols >= curNumCols )
     {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( row = 0; row < curNumRows; row++ )
         {
             m_data[row].Clear();
@@ -1551,6 +1593,9 @@ bool wxGridStringTable::DeleteCols( size_t pos, size_t numCols )
     }
     else // something will be left
     {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( row = 0; row < curNumRows; row++ )
         {
             m_data[row].RemoveAt( colID, numCols );
@@ -1607,6 +1652,9 @@ void wxGridStringTable::SetRowLabelValue( int row, const wxString& value )
         int n = m_rowLabels.GetCount();
         int i;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( i = n; i <= row; i++ )
         {
             m_rowLabels.Add( wxGridTableBase::GetRowLabelValue(i) );
@@ -1623,6 +1671,9 @@ void wxGridStringTable::SetColLabelValue( int col, const wxString& value )
         int n = m_colLabels.GetCount();
         int i;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( i = n; i <= col; i++ )
         {
             m_colLabels.Add( wxGridTableBase::GetColLabelValue(i) );
@@ -1976,6 +2027,9 @@ void wxGrid::GetRenderSizes( const wxGridCellCoords& topLeft,
     int col, row;
 
     wxGridSizesInfo sizeinfo = GetColSizes();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( col = 0; col <= bottomRight.GetCol(); col++ )
     {
         if ( col < topLeft.GetCol() )
@@ -1984,6 +2038,9 @@ void wxGrid::GetRenderSizes( const wxGridCellCoords& topLeft,
         }
         else
         {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for ( row = topLeft.GetRow(); row <= bottomRight.GetRow(); row++ )
             {
                 renderCells.Add( wxGridCellCoords( row, col ));
@@ -1995,6 +2052,9 @@ void wxGrid::GetRenderSizes( const wxGridCellCoords& topLeft,
     }
 
     sizeinfo = GetRowSizes();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( row = 0; row <= bottomRight.GetRow(); row++ )
     {
         if ( row < topLeft.GetRow() )
@@ -2544,6 +2604,9 @@ void wxGrid::InitRowHeights()
     m_rowHeights.Add( m_defaultRowHeight, m_numRows );
 
     int rowBottom = 0;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int i = 0; i < m_numRows; i++ )
     {
         rowBottom += m_defaultRowHeight;
@@ -2561,6 +2624,9 @@ void wxGrid::InitColWidths()
 
     m_colWidths.Add( m_defaultColWidth, m_numCols );
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int i = 0; i < m_numCols; i++ )
     {
         int colRight = ( GetColPos( i ) + 1 ) * m_defaultColWidth;
@@ -2745,6 +2811,9 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
                 if ( pos > 0 )
                     bottom = m_rowBottoms[pos - 1];
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for ( i = pos; i < m_numRows; i++ )
                 {
                     bottom += m_rowHeights[i];
@@ -2790,6 +2859,9 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
                 if ( oldNumRows > 0 )
                     bottom = m_rowBottoms[oldNumRows - 1];
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for ( i = oldNumRows; i < m_numRows; i++ )
                 {
                     bottom += m_rowHeights[i];
@@ -2826,6 +2898,9 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
                 m_rowBottoms.RemoveAt( pos, numRows );
 
                 int h = 0;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for ( i = 0; i < m_numRows; i++ )
                 {
                     h += m_rowHeights[i];
@@ -2883,6 +2958,9 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
             if ( !m_colAt.IsEmpty() )
             {
                 //Shift the column IDs
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for ( i = 0; i < m_numCols - numCols; i++ )
                 {
                     if ( m_colAt[i] >= (int)pos )
@@ -2892,6 +2970,9 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
                 m_colAt.Insert( pos, pos, numCols );
 
                 //Set the new columns' positions
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for ( i = pos + 1; i < (int)pos + numCols; i++ )
                 {
                     m_colAt[i] = i;
@@ -2908,6 +2989,9 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
                     right = m_colRights[GetColAt( pos - 1 )];
 
                 int colPos;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for ( colPos = pos; colPos < m_numCols; colPos++ )
                 {
                     i = GetColAt( colPos );
@@ -2950,6 +3034,9 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
                 m_colAt.Add( 0, numCols );
 
                 //Set the new columns' positions
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for ( i = oldNumCols; i < m_numCols; i++ )
                 {
                     m_colAt[i] = i;
@@ -2966,6 +3053,9 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
                     right = m_colRights[GetColAt( oldNumCols - 1 )];
 
                 int colPos;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for ( colPos = oldNumCols; colPos < m_numCols; colPos++ )
                 {
                     i = GetColAt( colPos );
@@ -3013,6 +3103,9 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
 
                 //Shift the column IDs
                 int colPos;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for ( colPos = 0; colPos < m_numCols; colPos++ )
                 {
                     if ( m_colAt[colPos] > colID )
@@ -3027,6 +3120,9 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
 
                 int w = 0;
                 int colPos;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for ( colPos = 0; colPos < m_numCols; colPos++ )
                 {
                     i = GetColAt( colPos );
@@ -3091,6 +3187,9 @@ wxArrayInt wxGrid::CalcRowLabelsExposed( const wxRegion& reg ) const
     wxArrayInt  rowlabels;
 
     int top, bottom;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while ( iter )
     {
         r = iter.GetRect();
@@ -3117,6 +3216,9 @@ wxArrayInt wxGrid::CalcRowLabelsExposed( const wxRegion& reg ) const
         // find the row labels within these bounds
         //
         int row;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( row = internalYToRow(top); row < m_numRows; row++ )
         {
             if ( GetRowBottom(row) < top )
@@ -3142,6 +3244,9 @@ wxArrayInt wxGrid::CalcColLabelsExposed( const wxRegion& reg ) const
     wxArrayInt colLabels;
 
     int left, right;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while ( iter )
     {
         r = iter.GetRect();
@@ -3169,6 +3274,9 @@ wxArrayInt wxGrid::CalcColLabelsExposed( const wxRegion& reg ) const
         //
         int col;
         int colPos;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( colPos = GetColPos( internalXToCol(left) ); colPos < m_numCols; colPos++ )
         {
             col = GetColAt( colPos );
@@ -3195,6 +3303,9 @@ wxGridCellCoordsArray wxGrid::CalcCellsExposed( const wxRegion& reg ) const
     wxGridCellCoordsArray  cellsExposed;
 
     int left, top, right, bottom;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxRegionIterator iter(reg); iter; ++iter )
     {
         r = iter.GetRect();
@@ -3225,6 +3336,9 @@ wxGridCellCoordsArray wxGrid::CalcCellsExposed( const wxRegion& reg ) const
 
         // find the cells within these bounds
         wxArrayInt cols;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int row = internalYToRow(top); row < m_numRows; row++ )
         {
             if ( GetRowBottom(row) <= top )
@@ -3239,6 +3353,9 @@ wxGridCellCoordsArray wxGrid::CalcCellsExposed( const wxRegion& reg ) const
             if ( cols.empty() )
             {
                 // do determine the dirty columns
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for ( int pos = XToPos(left); pos <= XToPos(right); pos++ )
                     cols.push_back(GetColAt(pos));
 
@@ -3248,6 +3365,9 @@ wxGridCellCoordsArray wxGrid::CalcCellsExposed( const wxRegion& reg ) const
             }
 
             const size_t count = cols.size();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for ( size_t n = 0; n < count; n++ )
                 cellsExposed.Add(wxGridCellCoords(row, cols[n]));
         }
@@ -4419,6 +4539,9 @@ bool wxGrid::DoEndDragResizeLine(const wxGridOperations& oper)
                 // it by increasing the refresh area to cover it entirely if a
                 // part of it is affected
                 const int lineEnd = doper.PosToLine(this, posLineEnd, true);
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for ( ; line < lineEnd; line++ )
                 {
                     int cellLines = oper.Select(
@@ -4485,6 +4608,9 @@ void wxGrid::RefreshAfterColPosChange()
     if ( !m_colWidths.empty() )
     {
         int colRight = 0;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int colPos = 0; colPos < m_numCols; colPos++ )
         {
             int colID = GetColAt( colPos );
@@ -4522,6 +4648,9 @@ void wxGrid::SetColPos(int idx, int pos)
     if ( m_colAt.empty() )
     {
         m_colAt.reserve(m_numCols);
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int i = 0; i < m_numCols; i++ )
             m_colAt.push_back(i);
     }
@@ -5325,6 +5454,9 @@ wxGrid::UpdateBlockBeingSelected(int topRow, int leftCol,
         }
 
         // various Refresh() calls
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < 4; i++ )
             if ( need_refresh[i] && rect[i] != wxGridNoCellRect )
                 m_gridWin->Refresh( false, &(rect[i]) );
@@ -5366,8 +5498,14 @@ bool wxGrid::SetModelValues()
 
     if ( m_table )
     {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( row = 0; row < m_numRows; row++ )
         {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for ( col = 0; col < m_numCols; col++ )
             {
                 m_table->SetValue( row, col, GetCellValue(row, col) );
@@ -5393,6 +5531,9 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
     int row, col, cell_rows, cell_cols;
     wxGridCellCoordsArray redrawCells;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( i = numCells - 1; i >= 0; i-- )
     {
         row = cells[i].GetRow();
@@ -5404,6 +5545,9 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
         {
             wxGridCellCoords cell( row + cell_rows, col + cell_cols );
             bool marked = false;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for ( int j = 0; j < numCells; j++ )
             {
                 if ( cell == cells[j] )
@@ -5416,6 +5560,9 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
             if (!marked)
             {
                 int count = redrawCells.GetCount();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for (int j = 0; j < count; j++)
                 {
                     if ( cell == redrawCells[j] )
@@ -5436,10 +5583,16 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
         // If this cell is empty, find cell to left that might want to overflow
         if (m_table && m_table->IsEmptyCell(row, col))
         {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for ( int l = 0; l < cell_rows; l++ )
             {
                 // find a cell in this row to leave already marked for repaint
                 int left = col;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for (int k = 0; k < int(redrawCells.GetCount()); k++)
                     if ((redrawCells[k].GetCol() < left) &&
                         (redrawCells[k].GetRow() == row))
@@ -5450,6 +5603,9 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
                 if (left == col)
                     left = 0; // oh well
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for (int j = col - 1; j >= left; j--)
                 {
                     if (!m_table->IsEmptyCell(row + l, j))
@@ -5459,6 +5615,9 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
                             wxGridCellCoords cell(row + l, j);
                             bool marked = false;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                             for (int k = 0; k < numCells; k++)
                             {
                                 if ( cell == cells[k] )
@@ -5471,6 +5630,9 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
                             if (!marked)
                             {
                                 int count = redrawCells.GetCount();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                                 for (int k = 0; k < count; k++)
                                 {
                                     if ( cell == redrawCells[k] )
@@ -5494,6 +5656,9 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
 
     numCells = redrawCells.GetCount();
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( i = numCells - 1; i >= 0; i-- )
     {
         DrawCell( dc, redrawCells[i] );
@@ -5670,6 +5835,9 @@ void wxGrid::DrawHighlight(wxDC& dc, const wxGridCellCoordsArray& cells)
     // if the active cell was repainted, repaint its highlight too because it
     // might have been damaged by the grid lines
     size_t count = cells.GetCount();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         wxGridCellCoords cell = cells[n];
@@ -5725,8 +5893,14 @@ wxGrid::DrawRangeGridLines(wxDC& dc,
 
     // subtract multi cell span area from clipping region for lines
     wxRect rect;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int row = topLeft.GetRow(); row <= bottomRight.GetRow(); row++ )
     {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int col = topLeft.GetCol(); col <= bottomRight.GetCol(); col++ )
         {
             int cell_rows, cell_cols;
@@ -5811,8 +5985,14 @@ void wxGrid::DrawAllGridLines( wxDC& dc, const wxRegion & WXUNUSED(reg) )
     int cell_rows, cell_cols;
     wxRect rect;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int j = topRow; j <= bottomRow; j++ )
     {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int colPos = leftCol; colPos <= rightCol; colPos++ )
         {
             int i = GetColAt( colPos );
@@ -5850,6 +6030,9 @@ wxGrid::DoDrawGridLines(wxDC& dc,
                         int bottomRow, int rightCol)
 {
     // horizontal grid lines
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int i = topRow; i < bottomRow; i++ )
     {
         int bot = GetRowBottom(i) - 1;
@@ -5865,6 +6048,9 @@ wxGrid::DoDrawGridLines(wxDC& dc,
     }
 
     // vertical grid lines
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int colPos = leftCol; colPos < rightCol; colPos++ )
     {
         int i = GetColAt( colPos );
@@ -5892,6 +6078,9 @@ void wxGrid::DrawRowLabels( wxDC& dc, const wxArrayInt& rows)
         return;
 
     const size_t numLabels = rows.GetCount();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < numLabels; i++ )
     {
         DrawRowLabel( dc, rows[i] );
@@ -5961,6 +6150,9 @@ void wxGrid::DrawColLabels( wxDC& dc,const wxArrayInt& cols )
         return;
 
     const size_t numLabels = cols.GetCount();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < numLabels; i++ )
     {
         DrawColLabel( dc, cols[i] );
@@ -6106,6 +6298,9 @@ void wxGrid::DrawTextRectangle(wxDC& dc,
 
     // Align each line of a multi-line label
     size_t nLines = lines.GetCount();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t l = 0; l < nLines; l++ )
     {
         const wxString& line = lines[l];
@@ -6169,6 +6364,9 @@ void wxGrid::StringToLines( const wxString& value, wxArrayString& lines ) const
     wxString eol = wxTextFile::GetEOL( wxTextFileType_Unix );
     wxString tVal = wxTextFile::Translate( value, wxTextFileType_Unix );
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while ( startPos < (int)tVal.length() )
     {
         pos = tVal.Mid(startPos).Find( eol );
@@ -6203,6 +6401,9 @@ void wxGrid::GetTextBoxSize( const wxDC& dc,
     wxCoord lineW = 0, lineH = 0;
 
     size_t i;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( i = 0; i < lines.GetCount(); i++ )
     {
         dc.GetTextExtent( lines[i], &lineW, &lineH );
@@ -6435,6 +6636,9 @@ void wxGrid::ShowCellEditControl()
             {
                 GetCellSize( row, col, &cell_rows, &cell_cols );
                 // may have changed earlier
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for (int i = col + cell_cols; i < m_numCols; i++)
                 {
                     int c_rows, c_cols;
@@ -6615,6 +6819,9 @@ int wxGrid::PosToLinePos(int coord,
 
 
     // finally do perform the binary search
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while ( minPos < maxPos )
     {
         wxCHECK_MSG( lineEnds[oper.GetLineAt(this, minPos)] <= coord &&
@@ -6686,10 +6893,16 @@ int wxGrid::PosToEdgeOfLine(int pos, const wxGridOperations& oper) const
         {
             // We need to find the previous visible line, so skip all the
             // hidden (of size 0) ones.
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             do
             {
                 line = oper.GetLineBefore(this, line);
             }
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             while ( line >= 0 && oper.GetLineSize(this, line) == 0 );
 
             // It can possibly be -1 here.
@@ -6729,8 +6942,14 @@ wxRect wxGrid::CellToRect( int row, int col ) const
 
         rect.x = GetColLeft(col);
         rect.y = GetRowTop(row);
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (i=col; i < col + cell_cols; i++)
             rect.width += GetColWidth(i);
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (i=row; i < row + cell_rows; i++)
             rect.height += GetRowHeight(i);
 
@@ -6806,6 +7025,9 @@ void wxGrid::MakeCellVisible( int row, int col )
         {
             int h = r.GetHeight();
             ypos = r.GetTop();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for ( i = row - 1; i >= 0; i-- )
             {
                 int rowHeight = GetRowHeight(i);
@@ -6960,6 +7182,9 @@ void
 wxGrid::AdvanceToNextNonEmpty(wxGridCellCoords& coords,
                               const wxGridDirectionOperations& diroper)
 {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while ( !diroper.IsAtBoundary(coords) )
     {
         diroper.Advance(coords);
@@ -6996,6 +7221,9 @@ wxGrid::DoMoveCursorByBlock(bool expandSelection,
         {
             // go to the end of it, i.e. find the last cell before the next
             // empty one
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             while ( !diroper.IsAtBoundary(coords) )
             {
                 wxGridCellCoords coordsNext(coords);
@@ -7923,8 +8151,14 @@ void wxGrid::SetCellSize( int row, int col, int num_rows, int num_cols )
         if ((cell_rows > 1) || (cell_cols > 1))
         {
             int i, j;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for (j=row; j < row + cell_rows; j++)
             {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for (i=col; i < col + cell_cols; i++)
                 {
                     if ((i != col) || (j != row))
@@ -7942,8 +8176,14 @@ void wxGrid::SetCellSize( int row, int col, int num_rows, int num_cols )
         if (((num_rows > 1) || (num_cols > 1)) && (num_rows >= 1) && (num_cols >= 1))
         {
             int i, j;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for (j=row; j < row + num_rows; j++)
             {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for (i=col; i < col + num_cols; i++)
                 {
                     if ((i != col) || (j != row))
@@ -8190,6 +8430,9 @@ void wxGrid::DoSetRowSize( int row, int height )
     if ( !diff )
         return;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int i = row; i < m_numRows; i++ )
     {
         m_rowBottoms[i] += diff;
@@ -8275,6 +8518,9 @@ void wxGrid::DoSetColSize( int col, int width )
         GetGridColHeader()->UpdateColumn(col);
     //else: will be refreshed when the header is redrawn
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int colPos = GetColPos(col); colPos < m_numCols; colPos++ )
     {
         m_colRights[GetColAt(colPos)] += diff;
@@ -8394,6 +8640,9 @@ wxGrid::AutoSizeColOrRow(int colOrRow, bool setAsMin, wxGridDirection direction)
 
     wxCoord extent, extentMax = 0;
     int max = column ? m_numRows : m_numCols;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int rowOrCol = 0; rowOrCol < max; rowOrCol++ )
     {
         if ( column )
@@ -8569,6 +8818,9 @@ wxCoord wxGrid::CalcColOrRowLabelAreaMinSize(wxGridDirection direction)
     wxCoord extentMax = 0;
 
     const int numRowsOrCols = calcRows ? m_numRows : m_numCols;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int rowOrCol = 0; rowOrCol < numRowsOrCols; rowOrCol++ )
     {
         lines.Clear();
@@ -8610,6 +8862,9 @@ int wxGrid::SetOrCalcColumnSizes(bool calcOnly, bool setAsMin)
     if(!calcOnly)
         locker.Create(this);
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int col = 0; col < m_numCols; col++ )
     {
         if ( !calcOnly )
@@ -8629,6 +8884,9 @@ int wxGrid::SetOrCalcRowSizes(bool calcOnly, bool setAsMin)
     if(!calcOnly)
         locker.Create(this);
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int row = 0; row < m_numRows; row++ )
     {
         if ( !calcOnly )
@@ -8812,6 +9070,9 @@ void wxGrid::DeselectLine(int line, const wxGridOperations& oper)
     else if ( mode != oper.Dual().GetSelectionMode() )
     {
         const int nOther = oper.Dual().GetNumberOfLines(this);
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int i = 0; i < nOther; i++ )
         {
             const wxGridCellCoords c(oper.MakeCoords(line, i));
@@ -9016,8 +9277,14 @@ wxRect wxGrid::BlockToDeviceRect( const wxGridCellCoords& topLeft,
     const int visibleLeftCol = wxMax(leftCol, onScreenLeftmostCol);
     const int visibleRightCol = wxMin(rightCol, onScreenRightmostCol);
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int j = visibleTopRow; j <= visibleBottomRow; j++ )
     {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int i = visibleLeftCol; i <= visibleRightCol; i++ )
         {
             if ( (j == visibleTopRow) || (j == visibleBottomRow) ||
@@ -9062,6 +9329,9 @@ void wxGrid::DoSetSizes(const wxGridSizesInfo& sizeInfo,
     BeginBatch();
     oper.SetDefaultLineSize(this, sizeInfo.m_sizeDefault, true);
     const int numLines = oper.GetNumberOfLines(this);
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int i = 0; i < numLines; i++ )
     {
         int size = sizeInfo.GetSize(i);
@@ -9084,6 +9354,9 @@ void wxGrid::SetRowSizes(const wxGridSizesInfo& sizeInfo)
 wxGridSizesInfo::wxGridSizesInfo(int defSize, const wxArrayInt& allSizes)
 {
     m_sizeDefault = defSize;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < allSizes.size(); i++ )
     {
         if ( allSizes[i] != defSize )
@@ -9189,6 +9462,9 @@ wxGridEditorCreatedEvent::wxGridEditorCreatedEvent(int id, wxEventType type,
 wxGridTypeRegistry::~wxGridTypeRegistry()
 {
     size_t count = m_typeinfo.GetCount();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < count; i++ )
         delete m_typeinfo[i];
 }
@@ -9215,6 +9491,9 @@ void wxGridTypeRegistry::RegisterDataType(const wxString& typeName,
 int wxGridTypeRegistry::FindRegisteredDataType(const wxString& typeName)
 {
     size_t count = m_typeinfo.GetCount();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < count; i++ )
     {
         if ( typeName == m_typeinfo[i]->m_typeName )

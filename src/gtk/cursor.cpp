@@ -117,9 +117,15 @@ wxCursor::wxCursor(const char bits[], int width, int height,
         const int stride = gdk_pixbuf_get_rowstride(pixbuf);
         const int n_channels = gdk_pixbuf_get_n_channels(pixbuf);
         guchar* data = gdk_pixbuf_get_pixels(pixbuf);
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (int j = 0; j < height; j++, data += stride)
         {
             guchar* p = data;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for (int i = 0; i < width; i++, p += n_channels)
             {
                 if (p[0])
@@ -268,7 +274,13 @@ void wxCursor::InitFromImage( const wxImage & image )
         {
             guchar* d = gdk_pixbuf_get_pixels(pixbuf);
             const int stride = gdk_pixbuf_get_rowstride(pixbuf);
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             for (int j = 0; j < h; j++, d += stride)
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for (int i = 0; i < w; i++, alpha++)
                     if (d[4 * i + 3])
                         d[4 * i + 3] = *alpha;
@@ -328,6 +340,9 @@ const wxCursor wxBusyCursor::GetBusyCursor()
 static void UpdateCursors(GdkDisplay** display)
 {
     wxWindowList::const_iterator i = wxTopLevelWindows.begin();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (size_t n = wxTopLevelWindows.size(); n--; ++i)
     {
         wxWindow* win = *i;

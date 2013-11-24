@@ -66,6 +66,9 @@ wxObject *wxCheckListBoxXmlHandler::DoCreateResource()
         if (n)
             n = n->GetChildren();
         int i = 0;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         while (n)
         {
             if (n->GetType() != wxXML_ELEMENT_NODE ||

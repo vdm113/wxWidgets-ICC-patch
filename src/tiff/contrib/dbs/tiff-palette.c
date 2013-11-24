@@ -86,6 +86,9 @@ int main(int argc, char **argv)
 
     switch (bits_per_pixel) {
     case 8:
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < cmsize; i++) {
             if (i < 32)
                 red[i] = 0;
@@ -235,7 +238,13 @@ int main(int argc, char **argv)
 
     scan_line = (unsigned char *) malloc(WIDTH / (8 / bits_per_pixel));
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < HEIGHT; i++) {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (j = 0, k = 0; j < WIDTH;) {
             cmap_index = (j / chunk_size) + ((i / chunk_size) * nchunks);
 

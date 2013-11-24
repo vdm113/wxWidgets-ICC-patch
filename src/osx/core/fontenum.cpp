@@ -67,6 +67,9 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
                                                  kATSOptionFlagsUnRestrictedScope,
                                                  &theFontFamilyIterator );
             
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             while (status == noErr)
             {
                 // Get the next font in the iteration.
@@ -97,6 +100,9 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
 #endif
         
         CFIndex count = CFArrayGetCount(cfFontFamilies);
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for(CFIndex i = 0; i < count; i++)
         {
             CFStringRef fontName = (CFStringRef)CFArrayGetValueAtIndex(cfFontFamilies, i);
@@ -126,6 +132,9 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
         
         CFRelease(cfFontFamilies);
     }
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t i = 0 ; i < fontFamilies.Count() ; ++i )
     {
         if ( OnFacename( fontFamilies[i] ) == false )
