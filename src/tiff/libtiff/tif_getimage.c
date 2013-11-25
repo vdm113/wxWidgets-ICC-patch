@@ -1101,7 +1101,7 @@ gtStripSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 
 #define	UNROLL8(w, op1, op2) {		\
     uint32 _x;				\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     for (_x = w; _x >= 8; _x -= 8) {	\
 	op1;				\
 	REPEAT8(op2);			\
@@ -1113,7 +1113,7 @@ MY_MACRO_PRAGMA_IVDEP \
 }
 #define	UNROLL4(w, op1, op2) {		\
     uint32 _x;				\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     for (_x = w; _x >= 4; _x -= 4) {	\
 	op1;				\
 	REPEAT4(op2);			\
@@ -1125,7 +1125,7 @@ MY_MACRO_PRAGMA_IVDEP \
 }
 #define	UNROLL2(w, op1, op2) {		\
     uint32 _x;				\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     for (_x = w; _x >= 2; _x -= 2) {	\
 	op1;				\
 	REPEAT2(op2);			\

@@ -51,9 +51,9 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch)
     static const char* line3="#endif";
 
     static const char* line_prologue_token="/* token_VDM_prologue */";
-    static const char* line_prologue="#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)\n#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)\n#elif !defined(MY_MACRO_PRAGMA_IVDEP)\n#   define MY_MACRO_PRAGMA_IVDEP\n#endif";
+    static const char* line_prologue="#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)\n#elif !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP\n#endif";
 
-    static const char* inline_pragma="MY_MACRO_PRAGMA_IVDEP \\";
+    static const char* inline_pragma="VDM_MACRO_PRAGMA_IVDEP \\";
 
     static const size_t length=4096; // ugly limitation to 4096!
     char tmp_buf[length+16];
@@ -95,6 +95,11 @@ again:
                 buf[len-1]='\0';
                 --len;
             }
+        }
+
+        if(!do_patch && !strcmp(buf,inline_pragma)) {
+            changed=true;
+            continue;
         }
 
         ++ln;

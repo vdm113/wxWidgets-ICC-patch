@@ -501,7 +501,7 @@ rasterize(int interleaved, char* mode)
         return;
     }
 #define DRAWSEGMENT(offset, step) {			\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
         for (row = offset; row < height; row += step) {	\
             _TIFFmemcpy(newras + row*width, ras, width);\
             ras += width;                            	\

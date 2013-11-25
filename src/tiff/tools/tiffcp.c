@@ -892,7 +892,7 @@ static void subtract##bits (void *i, void *b, uint32 pixels)\
 {\
    uint##bits *image = i;\
    uint##bits *bias = b;\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
    while (pixels--) {\
      *image = *image > *bias ? *image-*bias : 0;\
      image++, bias++; \

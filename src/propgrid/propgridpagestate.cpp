@@ -538,7 +538,7 @@ void wxPropertyGridPageState::DoSetPropertyName( wxPGProperty* p,
     do \
     { \
         iMax = parent->GetChildCount(); \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
         while ( i < iMax ) \
         {  \
             wxPGProperty* p = parent->Item(i);
@@ -556,7 +556,7 @@ MY_MACRO_PRAGMA_IVDEP \
         i = parent->m_arrIndex + 1; \
         parent = parent->m_parent; \
     } \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     while ( parent != NULL );
 
 bool wxPropertyGridPageState::EnableCategories( bool enable )

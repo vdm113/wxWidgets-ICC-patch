@@ -1208,7 +1208,7 @@ void *wxULongLongWx::asArray(void) const
         bool neg = ll < 0;                                           \
         if ( neg )                                                   \
         {                                                            \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
             while ( ll != 0 )                                        \
             {                                                        \
                 long digit = (ll % 10).ToLong();                     \
@@ -1218,7 +1218,7 @@ MY_MACRO_PRAGMA_IVDEP \
         }                                                            \
         else                                                         \
         {                                                            \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
             while ( ll != 0 )                                        \
             {                                                        \
                 long digit = (ll % 10).ToLong();                     \
@@ -1243,7 +1243,7 @@ MY_MACRO_PRAGMA_IVDEP \
                                                                      \
         name ll = *this;                                             \
                                                                      \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
         while ( ll != 0 )                                            \
         {                                                            \
             result.Prepend((wxChar)(wxT('0') + (ll % 10).ToULong())); \

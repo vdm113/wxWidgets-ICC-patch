@@ -460,7 +460,7 @@ unsigned copy;
 /* check macros for header crc */
 #ifdef GUNZIP
 #  define CRC2(check, word) \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hbuf[0] = (unsigned char)(word); \
         hbuf[1] = (unsigned char)((word) >> 8); \
@@ -468,7 +468,7 @@ MY_MACRO_PRAGMA_IVDEP \
     } while (0)
 
 #  define CRC4(check, word) \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hbuf[0] = (unsigned char)(word); \
         hbuf[1] = (unsigned char)((word) >> 8); \
@@ -480,7 +480,7 @@ MY_MACRO_PRAGMA_IVDEP \
 
 /* Load registers with state in inflate() for speed */
 #define LOAD() \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         put = strm->next_out; \
         left = strm->avail_out; \
@@ -492,7 +492,7 @@ MY_MACRO_PRAGMA_IVDEP \
 
 /* Restore state from registers in inflate() */
 #define RESTORE() \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         strm->next_out = put; \
         strm->avail_out = left; \
@@ -504,7 +504,7 @@ MY_MACRO_PRAGMA_IVDEP \
 
 /* Clear the input bit accumulator */
 #define INITBITS() \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold = 0; \
         bits = 0; \
@@ -513,7 +513,7 @@ MY_MACRO_PRAGMA_IVDEP \
 /* Get a byte of input into the bit accumulator, or return from inflate()
    if there is no input available. */
 #define PULLBYTE() \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         if (have == 0) goto inf_leave; \
         have--; \
@@ -524,9 +524,9 @@ MY_MACRO_PRAGMA_IVDEP \
 /* Assure that there are at least n bits in the bit accumulator.  If there is
    not enough available input to do that, then return from inflate(). */
 #define NEEDBITS(n) \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
         while (bits < (unsigned)(n)) \
             PULLBYTE(); \
     } while (0)
@@ -537,7 +537,7 @@ MY_MACRO_PRAGMA_IVDEP \
 
 /* Remove n bits from the bit accumulator */
 #define DROPBITS(n) \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold >>= (n); \
         bits -= (unsigned)(n); \
@@ -545,7 +545,7 @@ MY_MACRO_PRAGMA_IVDEP \
 
 /* Remove zero to seven bits as needed to go to a byte boundary */
 #define BYTEBITS() \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold >>= bits & 7; \
         bits -= bits & 7; \

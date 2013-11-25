@@ -141,7 +141,7 @@ struct inflate_state FAR *state;
 
 /* Load returned state from inflate_fast() */
 #define LOAD() \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         put = strm->next_out; \
         left = strm->avail_out; \
@@ -153,7 +153,7 @@ MY_MACRO_PRAGMA_IVDEP \
 
 /* Set state from registers for inflate_fast() */
 #define RESTORE() \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         strm->next_out = put; \
         strm->avail_out = left; \
@@ -165,7 +165,7 @@ MY_MACRO_PRAGMA_IVDEP \
 
 /* Clear the input bit accumulator */
 #define INITBITS() \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold = 0; \
         bits = 0; \
@@ -174,7 +174,7 @@ MY_MACRO_PRAGMA_IVDEP \
 /* Assure that some input is available.  If input is requested, but denied,
    then return a Z_BUF_ERROR from inflateBack(). */
 #define PULL() \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         if (have == 0) { \
             have = in(in_desc, &next); \
@@ -189,7 +189,7 @@ MY_MACRO_PRAGMA_IVDEP \
 /* Get a byte of input into the bit accumulator, or return from inflateBack()
    with an error if there is no input available. */
 #define PULLBYTE() \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         PULL(); \
         have--; \
@@ -201,9 +201,9 @@ MY_MACRO_PRAGMA_IVDEP \
    not enough available input to do that, then return from inflateBack() with
    an error. */
 #define NEEDBITS(n) \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
         while (bits < (unsigned)(n)) \
             PULLBYTE(); \
     } while (0)
@@ -214,7 +214,7 @@ MY_MACRO_PRAGMA_IVDEP \
 
 /* Remove n bits from the bit accumulator */
 #define DROPBITS(n) \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold >>= (n); \
         bits -= (unsigned)(n); \
@@ -222,7 +222,7 @@ MY_MACRO_PRAGMA_IVDEP \
 
 /* Remove zero to seven bits as needed to go to a byte boundary */
 #define BYTEBITS() \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold >>= bits & 7; \
         bits -= bits & 7; \
@@ -232,7 +232,7 @@ MY_MACRO_PRAGMA_IVDEP \
    if it's full.  If the write fails, return from inflateBack() with a
    Z_BUF_ERROR. */
 #define ROOM() \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         if (left == 0) { \
             put = state->window; \

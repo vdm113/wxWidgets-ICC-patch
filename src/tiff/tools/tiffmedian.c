@@ -933,7 +933,7 @@ quant(TIFF* in, TIFF* out)
 		bad;						\
 	inptr = inputline;					\
 	nextptr = nextline;					\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
 	for (j = 0; j < imagewidth; ++j) {			\
 		*nextptr++ = *inptr++;				\
 		*nextptr++ = *inptr++;				\

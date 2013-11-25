@@ -1,8 +1,8 @@
 /* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(MY_MACRO_PRAGMA_IVDEP)
-#   define MY_MACRO_PRAGMA_IVDEP
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
 
@@ -204,7 +204,7 @@ static const char* StateNames[] = {
     TabEnt = tab + GetBits(wid);					\
     printf("%08lX/%d: %s%5d\t", (long) BitAcc, BitsAvail,		\
 	   StateNames[TabEnt->State], TabEnt->Param);			\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     for (t = 0; t < TabEnt->Width; t++)					\
 	DEBUG_SHOW;							\
     putchar('\n');							\
@@ -217,7 +217,7 @@ MY_MACRO_PRAGMA_IVDEP \
     TabEnt = tab + GetBits(wid);					\
     printf("%08lX/%d: %s%5d\t", (long) BitAcc, BitsAvail,		\
 	   StateNames[TabEnt->State], TabEnt->Param);			\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     for (t = 0; t < TabEnt->Width; t++)					\
 	DEBUG_SHOW;							\
     putchar('\n');							\
@@ -266,7 +266,7 @@ MY_MACRO_PRAGMA_IVDEP \
  */
 #define	SYNC_EOL(eoflab) do {						\
     if (EOLcnt == 0) {							\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
 	for (;;) {							\
 	    NeedBits16(11,eoflab);					\
 	    if (GetBits(11) == 0)					\
@@ -274,14 +274,14 @@ MY_MACRO_PRAGMA_IVDEP \
 	    ClrBits(1);							\
 	}								\
     }									\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     for (;;) {								\
 	NeedBits8(8,eoflab);						\
 	if (GetBits(8))							\
 	    break;							\
 	ClrBits(8);							\
     }									\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     while (GetBits(1) == 0)						\
 	ClrBits(1);							\
     ClrBits(1);				/* EOL bit */			\
@@ -298,7 +298,7 @@ MY_MACRO_PRAGMA_IVDEP \
 	SETVALUE(0);							\
     if (a0 != lastx) {							\
 	badlength(a0, lastx);						\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
 	while (a0 > lastx && pa > thisrun)				\
 	    a0 -= *--pa;						\
 	if (a0 < lastx) {						\
@@ -327,9 +327,9 @@ MY_MACRO_PRAGMA_IVDEP \
  * insure the decoder recognized an EOL before running out of data.
  */
 #define EXPAND1D(eoflab) do {						\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     for (;;) {								\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
 	for (;;) {							\
 	    LOOKUP16(12, TIFFFaxWhiteTable, eof1d);			\
 	    switch (TabEnt->State) {					\
@@ -352,7 +352,7 @@ MY_MACRO_PRAGMA_IVDEP \
     doneWhite1d:							\
 	if (a0 >= lastx)						\
 	    goto done1d;						\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
 	for (;;) {							\
 	    LOOKUP16(13, TIFFFaxBlackTable, eof1d);			\
 	    switch (TabEnt->State) {					\
@@ -401,7 +401,7 @@ done1d:									\
  * Expand a row of 2D-encoded data.
  */
 #define EXPAND2D(eoflab) do {						\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     while (a0 < lastx) {						\
 	LOOKUP8(7, TIFFFaxMainTable, eof2d);				\
 	switch (TabEnt->State) {					\
@@ -414,7 +414,7 @@ MY_MACRO_PRAGMA_IVDEP \
 	    break;							\
 	case S_Horiz:							\
 	    if ((pa-thisrun)&1) {					\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
 		for (;;) {	/* black first */			\
 		    LOOKUP16(13, TIFFFaxBlackTable, eof2d);		\
 		    switch (TabEnt->State) {				\
@@ -431,7 +431,7 @@ MY_MACRO_PRAGMA_IVDEP \
 		    }							\
 		}							\
 	    doneWhite2da:;						\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
 		for (;;) {	/* then white */			\
 		    LOOKUP16(12, TIFFFaxWhiteTable, eof2d);		\
 		    switch (TabEnt->State) {				\
@@ -449,7 +449,7 @@ MY_MACRO_PRAGMA_IVDEP \
 		}							\
 	    doneBlack2da:;						\
 	    } else {							\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
 		for (;;) {	/* white first */			\
 		    LOOKUP16(12, TIFFFaxWhiteTable, eof2d);		\
 		    switch (TabEnt->State) {				\
@@ -466,7 +466,7 @@ MY_MACRO_PRAGMA_IVDEP \
 		    }							\
 		}							\
 	    doneWhite2db:;						\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
 		for (;;) {	/* then black */			\
 		    LOOKUP16(13, TIFFFaxBlackTable, eof2d);		\
 		    switch (TabEnt->State) {				\

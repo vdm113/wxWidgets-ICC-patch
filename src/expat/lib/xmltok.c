@@ -564,7 +564,7 @@ E ## toUtf8(const ENCODING *enc, \
             char **toP, const char *toLim) \
 { \
   const char *from; \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
   for (from = *fromP; from != fromLim; from += 2) { \
     int plane; \
     unsigned char lo2; \
@@ -631,7 +631,7 @@ E ## toUtf16(const ENCODING *enc, \
   if (fromLim - *fromP > ((toLim - *toP) << 1) \
       && (GET_HI(fromLim - 2) & 0xF8) == 0xD8) \
     fromLim -= 2; \
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
   for (; *fromP != fromLim && *toP != toLim; *fromP += 2) \
     *(*toP)++ = (GET_HI(*fromP) << 8) | GET_LO(*fromP); \
 }

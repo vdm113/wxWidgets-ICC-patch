@@ -601,7 +601,7 @@ Fax3SetupState(TIFF* tif)
 static const int _msbmask[9] =
     { 0x00, 0x01, 0x03, 0x07, 0x0f, 0x1f, 0x3f, 0x7f, 0xff };
 #define	_PutBits(tif, bits, length) {				\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
 	while (length > bit) {					\
 		data |= bits >> (length - bit);			\
 		length -= bit;					\
@@ -642,7 +642,7 @@ Fax3PutBits(TIFF* tif, unsigned int bits, unsigned int length)
 #define	DEBUG_PRINT(what,len) {						\
     int t;								\
     printf("%08X/%-2d: %s%5d\t", data, bit, DEBUG_COLOR(what), len);	\
-MY_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP \
     for (t = length-1; t >= 0; t--)					\
 	putchar(code & (1<<t) ? '1' : '0');				\
     putchar('\n');							\
