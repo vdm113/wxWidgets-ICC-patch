@@ -10,8 +10,6 @@ This fork of wxWidgets is as of the official GIT repository:
 
 https://github.com/wxWidgets/wxWidgets
 
-and branch WX_3_0_BRANCH of that repository.
-
 *** NB ***
 Set in your project files these preprocessor defines, in other case you might encounter random crashes:
 _HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0
