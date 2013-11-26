@@ -177,10 +177,10 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">wxmsw30ud_xrc</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">wxmsw30u_xrc</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">wxmsw30u_xrc</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">wxmsw30ud</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">wxmsw30ud</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">wxmsw30u</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">wxmsw30u</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">wxmsw30ud_xrc</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">wxmsw30ud_xrc</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">wxmsw30u_xrc</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">wxmsw30u_xrc</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
