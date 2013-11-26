@@ -161,14 +161,14 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">true</GenerateManifest>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">wxmsw30ud_core</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">wxmsw30ud_core</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">wxmsw30ud_$(ProjectName)</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">wxmsw30ud_$(ProjectName)</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">wxmsw30u_core</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">wxmsw30u_core</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">wxmsw30u_$(ProjectName)</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">wxmsw30u_$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">wxmsw31ud_$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">wxmsw31ud_$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">wxmsw31ud_$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">wxmsw31ud_$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">wxmsw31u_$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">wxmsw31u_$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">wxmsw31u_$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">wxmsw31u_$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">
     <OutDir>..\..\lib\vc_$(Platform)_dll\</OutDir>
@@ -205,7 +205,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswud\wxprec_corelib.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswud\core\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw30ud_core.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_core.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -231,7 +231,7 @@
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxmsw30ud_core.lib</OutputFile>
+      <OutputFile>$(OutDir)wxmsw31ud_core.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
@@ -259,7 +259,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswud\wxprec_corelib.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswud\core\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw30ud_core.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_core.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -285,7 +285,7 @@
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxmsw30ud_core.lib</OutputFile>
+      <OutputFile>$(OutDir)wxmsw31ud_core.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
@@ -311,7 +311,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswu\wxprec_corelib.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswu\core\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw30u_core.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_core.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -338,7 +338,7 @@
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxmsw30u_core.lib</OutputFile>
+      <OutputFile>$(OutDir)wxmsw31u_core.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
@@ -364,7 +364,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswu\wxprec_corelib.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswu\core\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw30u_core.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_core.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -391,7 +391,7 @@
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxmsw30u_core.lib</OutputFile>
+      <OutputFile>$(OutDir)wxmsw31u_core.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
@@ -419,7 +419,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswuddll\wxprec_coredll.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswuddll\core\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw30ud_core.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_core.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -441,18 +441,18 @@
       <OpenMP>None</OpenMP>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw30ud_core;WXUSINGDLL;WXMAKINGDLL_CORE;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw31ud_core;WXUSINGDLL;WXMAKINGDLL_CORE;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;$(OutDir)wxbase30ud.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)wxmsw30ud_core.dll</OutputFile>
+      <AdditionalDependencies>wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;$(OutDir)wxbase31ud.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)wxmsw31ud_core.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)wxmsw30ud_core.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)wxmsw31ud_core.pdb</ProgramDatabaseFile>
       <TargetMachine>MachineX86</TargetMachine>
       <LargeAddressAware>true</LargeAddressAware>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -485,7 +485,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswuddll\wxprec_coredll.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswuddll\core\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw30ud_core.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_core.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -507,18 +507,18 @@
       <OpenMP>None</OpenMP>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw30ud_core;WXUSINGDLL;WXMAKINGDLL_CORE;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw31ud_core;WXUSINGDLL;WXMAKINGDLL_CORE;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;$(OutDir)wxbase30ud.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)wxmsw30ud_core.dll</OutputFile>
+      <AdditionalDependencies>wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;$(OutDir)wxbase31ud.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)wxmsw31ud_core.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)wxmsw30ud_core.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)wxmsw31ud_core.pdb</ProgramDatabaseFile>
       <LargeAddressAware>true</LargeAddressAware>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <SetChecksum>true</SetChecksum>
@@ -548,7 +548,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswudll\wxprec_coredll.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswudll\core\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw30u_core.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_core.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -571,18 +571,18 @@
       <OpenMP>None</OpenMP>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw30u_core;WXUSINGDLL;WXMAKINGDLL_CORE;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw31u_core;WXUSINGDLL;WXMAKINGDLL_CORE;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;$(OutDir)wxbase30u.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)wxmsw30u_core.dll</OutputFile>
+      <AdditionalDependencies>wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;$(OutDir)wxbase31u.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)wxmsw31u_core.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)wxmsw30u_core.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)wxmsw31u_core.pdb</ProgramDatabaseFile>
       <TargetMachine>MachineX86</TargetMachine>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LargeAddressAware>true</LargeAddressAware>
@@ -613,7 +613,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswudll\wxprec_coredll.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswudll\core\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw30u_core.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_core.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -636,18 +636,18 @@
       <OpenMP>None</OpenMP>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw30u_core;WXUSINGDLL;WXMAKINGDLL_CORE;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw31u_core;WXUSINGDLL;WXMAKINGDLL_CORE;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;$(OutDir)wxbase30u.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)wxmsw30u_core.dll</OutputFile>
+      <AdditionalDependencies>wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;$(OutDir)wxbase31u.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)wxmsw31u_core.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)wxmsw30u_core.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)wxmsw31u_core.pdb</ProgramDatabaseFile>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LargeAddressAware>true</LargeAddressAware>
       <SetChecksum>true</SetChecksum>
