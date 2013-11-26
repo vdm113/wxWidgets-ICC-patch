@@ -102,20 +102,4 @@ protected:
 public:
     // deleting items
     virtual void DoClear();
-    virtual void DoDeleteOneItem(unsigned int n);
-    // accessing strings
-    virtual unsigned int GetCount() const;
-    virtual wxString GetString(unsigned int n) const;
-    virtual void SetString(unsigned int n, const wxString& s);
-    virtual int FindString(const wxString& s, bool bCase = false) const;
-    // selection
-    virtual int GetSelection() const;
-protected:
-    virtual int DoInsertItems(const wxArrayStringsAdapter& items,
-                              unsigned int pos,
-                              void **clientData, wxClientDataType type);
-    virtual void DoSetItemClientData(unsigned int n, void* clientData);
-    virtual void* DoGetItemClientData(unsigned int n) const;
-};
-
-#endif // __WX_COCOA_LISTBOX_H__
+    virtual void DoDeleteOneItem(unsig
