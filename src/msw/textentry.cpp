@@ -925,7 +925,7 @@ void wxTextEntry::SetMaxLength(unsigned long len)
 
 bool wxTextEntry::SetHint(const wxString& hint)
 {
-    if ( wxUxThemeEngine::GetIfActive() )
+    if ( wxGetWinVersion() >= wxWinVersion_Vista && wxUxThemeEngine::GetIfActive() )
     {
         // notice that this message always works with Unicode strings
         //
