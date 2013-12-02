@@ -170,9 +170,7 @@ public:
     virtual bool IsCustomRenderer() const { return false; }
 
 
-protected:
-    // Called from {Cancel,Finish}Editing() to cleanup m_editorCtrl
-    void DestroyEditControl();
+    // Implementation only from now on.
 
     // Return the alignment of this renderer if it's specified (i.e. has value
     // different from the default wxDVR_DEFAULT_ALIGNMENT) or the alignment of
@@ -182,6 +180,10 @@ protected:
     // wxALIGN_XXX flags (although possibly wxALIGN_NOT) and never returns
     // wxDVR_DEFAULT_ALIGNMENT.
     int GetEffectiveAlignment() const;
+
+protected:
+    // Called from {Cancel,Finish}Editing() to cleanup m_editorCtrl
+    void DestroyEditControl();
 
     wxString                m_variantType;
     wxDataViewColumn       *m_owner;
