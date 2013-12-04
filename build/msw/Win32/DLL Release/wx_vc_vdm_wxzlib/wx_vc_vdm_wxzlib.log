@@ -1,0 +1,54 @@
+﻿Build started 11/02/2014 19:26:30.
+     1>Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_wxzlib.vcxproj" on node 3 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\icl.exe /c /Qvc11 /Qlocation,link,"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\\bin" /Zi /nologo /W3 /MP /O3 /Ob2 /Oi /Ot /Qipo /Qftz /Quse-intel-optimized-headers /D __INTEL_COMPILER=1400 /D _HAS_ITERATOR_DEBUGGING=0 /D _ITERATOR_DEBUG_LEVEL=0 /D WIN32 /D _CRT_NONSTDC_NO_WARNINGS=1 /D _LIB /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D NDEBUG /D _CRT_SECURE_NO_WARNINGS /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D NDEBUG /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /GF /EHsc /MD /GS- /fp:fast=2 /QxHost /Zc:wchar_t /Zc:forScope /GR /Qstd=c99 /Qstd=c++0x /Qansi-alias /Fo"Win32\DLL Release\vc_mswudll\wxzlib\\" /Fd"..\..\lib\vc_Win32_dll\wxzlib_vc_vdm.pdb" /Gd /TC /Qdiag-disable:1744,809,650 ..\..\src\zlib\adler32.c ..\..\src\zlib\compress.c ..\..\src\zlib\crc32.c ..\..\src\zlib\deflate.c ..\..\src\zlib\gzclose.c ..\..\src\zlib\gzlib.c ..\..\src\zlib\gzread.c ..\..\src\zlib\gzwrite.c ..\..\src\zlib\infback.c ..\..\src\zlib\inffast.c ..\..\src\zlib\inflate.c ..\..\src\zlib\inftrees.c ..\..\src\zlib\trees.c ..\..\src\zlib\uncompr.c ..\..\src\zlib\zutil.c /Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args 
+     1>icl : warning #10121: overriding '/Qstd=c99' with '/Qstd=c++0x'
+     1>icl : warning #10370: option '/Qstd=c++0x' is not valid for C compilations
+         adler32.c
+         compress.c
+         infback.c
+         crc32.c
+         gzlib.c
+         deflate.c
+         inffast.c
+         trees.c
+         gzread.c
+         gzclose.c
+         inflate.c
+         uncompr.c
+         zutil.c
+         gzwrite.c
+         inftrees.c
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1299,5): warning MSB8012: TargetPath(c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\..\..\lib\vc_Win32_dll\wxzlib.lib) does not match the Library's OutputFile property value (c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\lib\vc_Win32_dll\wxzlib_vc_vdm.lib). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1301,5): warning MSB8012: TargetName(wxzlib) does not match the Library's OutputFile property value (wxzlib_vc_vdm). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+       Lib:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\xilib.exe /OUT:"..\..\lib\vc_Win32_dll\wxzlib_vc_vdm.lib" /NOLOGO "Win32\DLL Release\vc_mswudll\wxzlib\adler32.obj"
+         "Win32\DLL Release\vc_mswudll\wxzlib\compress.obj"
+         "Win32\DLL Release\vc_mswudll\wxzlib\crc32.obj"
+         "Win32\DLL Release\vc_mswudll\wxzlib\deflate.obj"
+         "Win32\DLL Release\vc_mswudll\wxzlib\gzclose.obj"
+         "Win32\DLL Release\vc_mswudll\wxzlib\gzlib.obj"
+         "Win32\DLL Release\vc_mswudll\wxzlib\gzread.obj"
+         "Win32\DLL Release\vc_mswudll\wxzlib\gzwrite.obj"
+         "Win32\DLL Release\vc_mswudll\wxzlib\infback.obj"
+         "Win32\DLL Release\vc_mswudll\wxzlib\inffast.obj"
+         "Win32\DLL Release\vc_mswudll\wxzlib\inflate.obj"
+         "Win32\DLL Release\vc_mswudll\wxzlib\inftrees.obj"
+         "Win32\DLL Release\vc_mswudll\wxzlib\trees.obj"
+         "Win32\DLL Release\vc_mswudll\wxzlib\uncompr.obj"
+         "Win32\DLL Release\vc_mswudll\wxzlib\zutil.obj" /Qvec-report1 
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\gzlib.c(133): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\infback.c(494): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\inffast.c(290): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\inffast.c(307): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\inflate.c(1047): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\inflate.c(1488): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\inftrees.c(117): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\trees.c(803): message : LOOP WAS VECTORIZED
+         xilib: executing 'lib'
+         wx_vc_vdm_wxzlib.vcxproj -> c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\..\..\lib\vc_Win32_dll\wxzlib.lib
+     1>Done Building Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_wxzlib.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:05.73

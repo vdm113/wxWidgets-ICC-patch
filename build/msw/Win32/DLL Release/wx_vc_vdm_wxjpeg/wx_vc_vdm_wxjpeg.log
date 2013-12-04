@@ -1,0 +1,308 @@
+﻿Build started 11/02/2014 19:26:31.
+     1>Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_wxjpeg.vcxproj" on node 7 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\icl.exe /c /Qvc11 /Qlocation,link,"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\\bin" /I..\..\lib\vc_Win32_dll\mswu /Zi /nologo /W3 /MP /O3 /Ob2 /Oi /Ot /Qipo /Qftz /Quse-intel-optimized-headers /D __INTEL_COMPILER=1400 /D _HAS_ITERATOR_DEBUGGING=0 /D _ITERATOR_DEBUG_LEVEL=0 /D WIN32 /D _LIB /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D NDEBUG /D _CRT_SECURE_NO_WARNINGS /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D NDEBUG /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /GF /EHsc /MD /GS- /fp:fast=2 /QxHost /Zc:wchar_t /Zc:forScope /GR /Qstd=c99 /Qstd=c++0x /Qansi-alias /Fo"Win32\DLL Release\vc_mswudll\wxjpeg\\" /Fd"..\..\lib\vc_Win32_dll\wxjpeg_vc_vdm_vc_vdm.pdb" /Gd /TC /Qdiag-disable:1744,809,650 ..\..\src\jpeg\jcapimin.c ..\..\src\jpeg\jcapistd.c ..\..\src\jpeg\jccoefct.c ..\..\src\jpeg\jccolor.c ..\..\src\jpeg\jcdctmgr.c ..\..\src\jpeg\jchuff.c ..\..\src\jpeg\jcinit.c ..\..\src\jpeg\jcmainct.c ..\..\src\jpeg\jcmarker.c ..\..\src\jpeg\jcmaster.c ..\..\src\jpeg\jcomapi.c ..\..\src\jpeg\jcparam.c ..\..\src\jpeg\jcphuff.c ..\..\src\jpeg\jcprepct.c ..\..\src\jpeg\jcsample.c ..\..\src\jpeg\jctrans.c ..\..\src\jpeg\jdapimin.c ..\..\src\jpeg\jdapistd.c ..\..\src\jpeg\jdatadst.c ..\..\src\jpeg\jdatasrc.c ..\..\src\jpeg\jdcoefct.c ..\..\src\jpeg\jdcolor.c ..\..\src\jpeg\jddctmgr.c ..\..\src\jpeg\jdhuff.c ..\..\src\jpeg\jdinput.c ..\..\src\jpeg\jdmainct.c ..\..\src\jpeg\jdmarker.c ..\..\src\jpeg\jdmaster.c ..\..\src\jpeg\jdmerge.c ..\..\src\jpeg\jdphuff.c ..\..\src\jpeg\jdpostct.c ..\..\src\jpeg\jdsample.c ..\..\src\jpeg\jdtrans.c ..\..\src\jpeg\jerror.c ..\..\src\jpeg\jfdctflt.c ..\..\src\jpeg\jfdctfst.c ..\..\src\jpeg\jfdctint.c ..\..\src\jpeg\jidctflt.c ..\..\src\jpeg\jidctfst.c ..\..\src\jpeg\jidctint.c ..\..\src\jpeg\jidctred.c ..\..\src\jpeg\jmemmgr.c ..\..\src\jpeg\jmemnobs.c ..\..\src\jpeg\jquant1.c ..\..\src\jpeg\jquant2.c ..\..\src\jpeg\jutils.c /Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args 
+     1>icl : warning #10121: overriding '/Qstd=c99' with '/Qstd=c++0x'
+     1>icl : warning #10370: option '/Qstd=c++0x' is not valid for C compilations
+         jcapimin.c
+         jcapistd.c
+         jdhuff.c
+         jccoefct.c
+         jcphuff.c
+         jdinput.c
+         jfdctfst.c
+         jccolor.c
+         jcprepct.c
+         jdmainct.c
+         jfdctint.c
+         jcdctmgr.c
+         jcsample.c
+         jdmarker.c
+         jchuff.c
+         jidctflt.c
+         jctrans.c
+         jidctfst.c
+         jcinit.c
+         jdmaster.c
+         jdapimin.c
+         jidctint.c
+         jcmainct.c
+         jdapistd.c
+         jdmerge.c
+         jidctred.c
+         jcmarker.c
+         jdphuff.c
+         jdatadst.c
+         jmemmgr.c
+         jcmaster.c
+         jdpostct.c
+         jdatasrc.c
+         jmemnobs.c
+         jcomapi.c
+         jdsample.c
+         jquant1.c
+         jcparam.c
+         jdcoefct.c
+         jdtrans.c
+         jdcolor.c
+         jquant2.c
+         jddctmgr.c
+         jerror.c
+         jutils.c
+         jfdctflt.c
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1299,5): warning MSB8012: TargetPath(c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\..\..\lib\vc_Win32_dll\wxjpeg.lib) does not match the Library's OutputFile property value (c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\lib\vc_Win32_dll\wxjpeg_vc_vdm.lib). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1301,5): warning MSB8012: TargetName(wxjpeg) does not match the Library's OutputFile property value (wxjpeg_vc_vdm). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+       Lib:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\xilib.exe /OUT:"..\..\lib\vc_Win32_dll\wxjpeg_vc_vdm.lib" /NOLOGO "Win32\DLL Release\vc_mswudll\wxjpeg\jcapimin.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jcapistd.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jccoefct.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jccolor.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jcdctmgr.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jchuff.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jcinit.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jcmainct.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jcmarker.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jcmaster.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jcomapi.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jcparam.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jcphuff.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jcprepct.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jcsample.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jctrans.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jdapimin.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jdapistd.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jdatadst.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jdatasrc.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jdcoefct.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jdcolor.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jddctmgr.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jdhuff.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jdinput.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jdmainct.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jdmarker.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jdmaster.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jdmerge.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jdphuff.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jdpostct.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jdsample.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jdtrans.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jerror.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jfdctflt.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jfdctfst.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jfdctint.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jidctflt.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jidctfst.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jidctint.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jidctred.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jmemmgr.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jmemnobs.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jquant1.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jquant2.obj"
+         "Win32\DLL Release\vc_mswudll\wxjpeg\jutils.obj" /Qvec-report1 
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccoefct.c(369): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccoefct.c(436): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccoefct.c(511): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccolor.c(107): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccolor.c(107): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccolor.c(164): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccolor.c(224): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccolor.c(272): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccolor.c(272): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccolor.c(328): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccolor.c(368): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcdctmgr.c(97): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcdctmgr.c(134): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcdctmgr.c(175): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcdctmgr.c(265): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcdctmgr.c(332): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcdctmgr.c(368): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jchuff.c(162): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jchuff.c(164): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jchuff.c(231): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jchuff.c(505): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jchuff.c(716): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jchuff.c(730): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jchuff.c(786): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmarker.c(564): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmarker.c(166): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmarker.c(220): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(465): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(465): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(465): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(465): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(466): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(466): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(489): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(489): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(489): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(489): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(490): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(490): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(508): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(508): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(508): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(508): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(509): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(509): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(186): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(176): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(58): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(58): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(108): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(108): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(110): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(110): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(153): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(153): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(153): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(153): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(468): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(469): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(470): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(471): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(460): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(461): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(462): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(463): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(453): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(454): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(455): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(444): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(445): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(446): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(439): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(482): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(604): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(604): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(606): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(608): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(609): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(611): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(613): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(615): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(615): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(617): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(618): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(620): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(624): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(624): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(625): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(626): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(628): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(630): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(630): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(631): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(259): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(261): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(263): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(265): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(482): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(468): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(469): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(470): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(471): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(460): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(461): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(462): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(463): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(453): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(454): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(455): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(439): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(302): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(302): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(310): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(337): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcphuff.c(383): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcphuff.c(689): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcprepct.c(375): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcsample.c(174): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcsample.c(197): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcsample.c(222): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcsample.c(253): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcsample.c(296): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcsample.c(345): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcsample.c(392): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcsample.c(452): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jctrans.c(61): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jctrans.c(88): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jctrans.c(356): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdapimin.c(262): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdapimin.c(317): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcoefct.c(136): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcoefct.c(322): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcoefct.c(813): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcolor.c(165): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcolor.c(213): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcolor.c(264): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcolor.c(312): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcolor.c(312): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcolor.c(397): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jddctmgr.c(180): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jddctmgr.c(214): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jddctmgr.c(246): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdhuff.c(128): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdhuff.c(206): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdhuff.c(282): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdhuff.c(282): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdhuff.c(579): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdinput.c(277): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmainct.c(357): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmainct.c(357): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmainct.c(357): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmainct.c(467): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmainct.c(479): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmarker.c(1037): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmarker.c(474): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmarker.c(477): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmarker.c(1352): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmaster.c(577): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmerge.c(262): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmerge.c(328): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdphuff.c(136): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdphuff.c(320): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdphuff.c(393): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdphuff.c(478): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdphuff.c(537): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdphuff.c(713): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdsample.c(231): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdsample.c(306): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdsample.c(358): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jfdctflt.c(80): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jfdctflt.c(133): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jfdctfst.c(136): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jfdctfst.c(189): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jfdctint.c(164): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jfdctint.c(232): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jidctflt.c(193): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jidctfst.c(312): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jidctint.c(307): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jidctred.c(148): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jidctred.c(306): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jmemmgr.c(452): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jmemmgr.c(506): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant1.c(544): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant1.c(577): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant1.c(870): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant1.c(873): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant1.c(303): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant1.c(303): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant1.c(947): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(496): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1006): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1009): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1297): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1297): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1357): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1357): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1357): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1460): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1460): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1460): message : PARTIAL LOOP WAS VECTORIZED
+         xilib: executing 'lib'
+         wx_vc_vdm_wxjpeg.vcxproj -> c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\..\..\lib\vc_Win32_dll\wxjpeg.lib
+     1>Done Building Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_wxjpeg.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:11.43

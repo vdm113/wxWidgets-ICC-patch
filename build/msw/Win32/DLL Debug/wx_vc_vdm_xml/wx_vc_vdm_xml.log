@@ -1,0 +1,106 @@
+﻿Build started 11/02/2014 19:42:45.
+     1>Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_xml.vcxproj" on node 4 (Build target(s)).
+     1>CustomBuild:
+         Creating ..\..\lib\vc_Win32_dll\mswud\wx\setup.h
+         Creating ..\..\lib\vc_Win32_dll\mswud\wx\msw\rcdefs.h
+       ClCompile:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\icl.exe /c /Qvc11 /Qlocation,link,"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\\bin" /I..\..\lib\vc_Win32_dll\mswud /I..\..\include /I..\..\src\tiff\libtiff /I..\..\src\jpeg /I..\..\src\png /I..\..\src\zlib /I..\..\src\regex /I..\..\src\expat\lib /Zi /nologo /W4 /MP /O3 /Ob2 /Oi /Ot /Qipo /Qftz /Quse-intel-optimized-headers /D __INTEL_COMPILER=1400 /D _HAS_ITERATOR_DEBUGGING=0 /D _ITERATOR_DEBUG_LEVEL=0 /D WIN32 /D _USRDLL /D DLL_EXPORTS /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D wxUSE_GUI=0 /D WXUSINGDLL /D WXMAKINGDLL_XML /D _WINDLL /D _UNICODE /D UNICODE /GF /EHsc /MDd /GS- /fp:fast=2 /QxHost /Zc:wchar_t /Zc:forScope /GR /Qstd=c99 /Qstd=c++0x /Qansi-alias /Yc"wx/wxprec.h" /Fp"Win32\DLL Debug\vc_mswuddll\wxprec_xmldllvc_vdm.pch" /Fo"Win32\DLL Debug\vc_mswuddll\xml\\" /Fd"..\..\lib\vc_Win32_dll\wxbase31ud_xml_vc_vdm_vc_vdm.pdb" /Gd /TP /Qdiag-disable:1744,809,650 ..\..\src\common\dummy.cpp /Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args 
+     1>icl : warning #10121: overriding '/Qstd=c99' with '/Qstd=c++0x'
+         dummy.cpp
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\icl.exe /c /Qvc11 /Qlocation,link,"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\\bin" /I..\..\lib\vc_Win32_dll\mswud /I..\..\include /I..\..\src\tiff\libtiff /I..\..\src\jpeg /I..\..\src\png /I..\..\src\zlib /I..\..\src\regex /I..\..\src\expat\lib /Zi /nologo /W4 /MP /O3 /Ob2 /Oi /Ot /Qipo /Qftz /Quse-intel-optimized-headers /D __INTEL_COMPILER=1400 /D _HAS_ITERATOR_DEBUGGING=0 /D _ITERATOR_DEBUG_LEVEL=0 /D WIN32 /D _USRDLL /D DLL_EXPORTS /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D wxUSE_GUI=0 /D WXUSINGDLL /D WXMAKINGDLL_XML /D _WINDLL /D _UNICODE /D UNICODE /GF /EHsc /MDd /GS- /fp:fast=2 /QxHost /Zc:wchar_t /Zc:forScope /GR /Qstd=c99 /Qstd=c++0x /Qansi-alias /Yu"wx/wxprec.h" /Fp"Win32\DLL Debug\vc_mswuddll\wxprec_xmldllvc_vdm.pch" /Fo"Win32\DLL Debug\vc_mswuddll\xml\\" /Fd"..\..\lib\vc_Win32_dll\wxbase31ud_xml_vc_vdm_vc_vdm.pdb" /Gd /TP /Qdiag-disable:1744,809,650 ..\..\src\common\xtixml.cpp ..\..\src\xml\xml.cpp /Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args 
+     1>icl : warning #10121: overriding '/Qstd=c99' with '/Qstd=c++0x'
+         xtixml.cpp
+         xml.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.0\bin\x86\rc.exe /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D WXDLLNAME=wxbase31ud_xml_vc_vdm /D wxUSE_GUI=0 /D WXUSINGDLL /D WXMAKINGDLL_XML /D _UNICODE /D UNICODE /l"0x0409" /I..\..\lib\vc_Win32_dll\mswud /I..\..\include /I..\..\src\tiff\libtiff /I..\..\src\jpeg /I..\..\src\png /I..\..\src\zlib /I..\..\src\regex /I..\..\src\expat\lib /nologo /fo"Win32\DLL Debug\wx_vc_vdm_xml\version.res" ..\..\src\msw\version.rc 
+       Link:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\xilink.exe /OUT:"..\..\lib\vc_Win32_dll\wxbase31ud_xml_vc_vdm.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\lib\vc_Win32_dll\ wxzlibd_vc_vdm.lib wxregexud_vc_vdm.lib wxexpatd_vc_vdm.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib ..\..\lib\vc_Win32_dll\wxbase31ud_vc_vdm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Win32\DLL Debug\wx_vc_vdm_xml\wxbase31ud_xml_vc_vdm.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"..\..\lib\vc_Win32_dll\wxbase31ud_xml_vc_vdm_vc_vdm.pdb" /LARGEADDRESSAWARE /OPT:REF /OPT:ICF /TLBID:1 /WINMD /RELEASE /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\lib\vc_Win32_dll\wxbase31ud_xml_vc_vdm.lib" /MACHINE:X86 /SAFESEH /DLL "Win32\DLL Debug\wx_vc_vdm_xml\version.res"
+         "Win32\DLL Debug\vc_mswuddll\xml\dummy.obj"
+         "Win32\DLL Debug\vc_mswuddll\xml\xtixml.obj"
+         "Win32\DLL Debug\vc_mswuddll\xml\xml.obj" /Qvec-report1 
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\xml\xml.cpp(1064): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\xml\xml.h(111): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\xml\xml.cpp(81): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmlparse.c(3624): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmlparse.c(2980): message : REVERSED LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(965): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(252): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(264): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(899): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(376): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1417): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1292): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1353): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1727): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1811): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1533): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1862): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1467): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok.c(351): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1223): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1171): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1064): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1062): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1098): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(965): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(148): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(163): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(252): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(264): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(899): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(376): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1417): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1292): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1353): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1727): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1811): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1840): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1533): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1627): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1656): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1862): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1467): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1223): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1171): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1064): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1062): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1098): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(965): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(148): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(163): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(252): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(264): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(899): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(376): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1417): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1292): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1353): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1727): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1811): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1840): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1533): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1627): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1656): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1862): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(1467): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(549): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(541): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(541): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(549): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(541): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok_impl.c(541): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok.c(978): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmltok.c(1417): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmlparse.c(3546): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmlparse.c(868): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmlparse.c(886): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmlparse.c(896): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\expat\lib\xmlparse.c(906): message : BLOCK WAS VECTORIZED
+         xilink: executing 'link'
+            Creating library ..\..\lib\vc_Win32_dll\wxbase31ud_xml_vc_vdm.lib and object ..\..\lib\vc_Win32_dll\wxbase31ud_xml_vc_vdm.exp
+         wx_vc_vdm_xml.vcxproj -> c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\..\..\lib\vc_Win32_dll\wxbase31ud_xml_vc_vdm.dll
+     1>Done Building Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_xml.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:10.63

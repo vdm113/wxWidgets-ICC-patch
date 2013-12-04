@@ -1,0 +1,1620 @@
+﻿Build started 11/02/2014 20:00:59.
+     1>Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_core.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\xilink.exe /OUT:"..\..\lib\vc_Win32_dll\wxmsw31ud_core_vc_vdm.dll" /NOLOGO /LIBPATH:..\..\lib\vc_Win32_dll\ wxtiffd_vc_vdm.lib wxjpegd_vc_vdm.lib wxpngd_vc_vdm.lib wxzlibd_vc_vdm.lib wxregexud_vc_vdm.lib wxexpatd_vc_vdm.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib ..\..\lib\vc_Win32_dll\wxbase31ud_vc_vdm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Win32\DLL Debug\wx_vc_vdm_core\wxmsw31ud_core_vc_vdm.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"..\..\lib\vc_Win32_dll\wxmsw31ud_core_vc_vdm_vc_vdm.pdb" /LARGEADDRESSAWARE /OPT:REF /OPT:ICF /TLBID:1 /WINMD /RELEASE /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\lib\vc_Win32_dll\wxmsw31ud_core_vc_vdm.lib" /MACHINE:X86 /SAFESEH /DLL "Win32\DLL Debug\wx_vc_vdm_core\version.res"
+         "Win32\DLL Debug\vc_mswuddll\core\accelcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\accesscmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\affinematrix2d.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\anidecod.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\appcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\artprov.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\artstd.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\arttango.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\bmpbase.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\bmpbtncmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\bookctrl.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\btncmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\cairo.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\checkboxcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\checklstcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\choiccmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\clipcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\clrpickercmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\cmdproc.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\cmndata.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\colourcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\colourdata.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\combocmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\containr.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\cshelp.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\ctrlcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\ctrlsub.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dcbase.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dcbufcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dcgraph.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dcsvg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dirctrlcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dlgcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dndcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dobjcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\docmdi.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\docview.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dpycmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dseldlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dummy.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\effects.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\event.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\fddlgcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\filectrlcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\filehistorycmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\filepickercmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\fldlgcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\fontcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\fontdata.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\fontenumcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\fontmap.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\fontpickercmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\fontutilcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\framecmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\fs_mem.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\gaugecmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\gbsizer.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\gdicmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\geometry.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\gifdecod.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\graphcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\headercolcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\headerctrlcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\helpbase.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\iconbndl.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\imagall.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\imagbmp.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\image.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\imagfill.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\imaggif.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\imagiff.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\imagjpeg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\imagpcx.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\imagpng.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\imagpnm.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\imagtga.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\imagtiff.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\imagxpm.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\layout.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\lboxcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\listctrlcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\markupparser.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\matrix.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\menucmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\modalhook.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\mousemanager.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msgout.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\nbkbase.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\overlaycmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\ownerdrwcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\panelcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\paper.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\persist.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\pickerbase.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\popupcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\preferencescmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\prntbase.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\quantize.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\radiobtncmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\radiocmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\rearrangectrl.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\rendcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\rgncmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\scrolbarcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\settcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\sizer.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\slidercmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\spinbtncmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\spinctrlcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\srchcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\statbar.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\statbmpcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\statboxcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\statlinecmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\stattextcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\stockitem.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\tbarbase.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\textcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\textentrycmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\textmeasurecmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\toplvcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\treebase.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\uiactioncmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\utilscmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\valgen.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\validate.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\valnum.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\valtext.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\wincmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\windowid.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\wrapsizer.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\xpmdecod.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\preferencesg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\access.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\activex.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\anybutton.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\app.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\artmsw.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\automtn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\bitmap.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\brush.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\caret.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\clipbrd.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\colordlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\colour.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\combo.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\cursor.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\data.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dataobj.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dc.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dcclient.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dcmemory.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dcprint.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dcscreen.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dialup.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dib.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dirdlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\display.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dragimag.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dropsrc.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\droptgt.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\enhmeta.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\evtloop.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\filedlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\font.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\fontdlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\fontenum.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\fontutil.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\frame.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\gdiimage.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\gdiobj.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\gdiplus.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\graphics.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\headerctrl.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\helpchm.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\helpwin.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\icon.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\imaglist.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\iniconf.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\main.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\mdi.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\menuitem.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\metafile.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\minifram.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msgdlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\mslu.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\nativdlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\nativewin.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\nonownedwnd.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\oleutils.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\safearray.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\ownerdrw.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\palette.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\panel.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\pen.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\popupwin.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\printdlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\printwin.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\progdlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\region.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\renderer.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\richmsgdlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\settings.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\spinctrl.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\statusbar.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\textentry.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\tooltip.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\toplevel.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\treectrl.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\uiaction.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\utilsgui.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\utilswin.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\uuid.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\uxtheme.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\volume.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\window.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\busyinfo.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\buttonbar.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\choicbkg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\choicdgg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\clrpickerg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\collpaneg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\combog.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dcpsg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dirctrlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\dragimgg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\filectrlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\filepickerg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\fontpickerg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\graphicc.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\headerctrlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\infobar.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\listbkg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\logg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\markuptext.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msgdlgg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\numdlgg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\printps.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\prntdlgg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\progdlgg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\renderg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\richmsgdlgg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\scrlwing.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\selstore.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\spinctlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\splitter.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\srchctlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\statbmpg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\stattextg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\textdlgg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\tipwin.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\toolbkg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\treebkg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\treectlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\vlbox.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\vscroll.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\xmlreshandler.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_accel.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_bmpbuttn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_button.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_checkbox.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_checklst.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_choice.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_combobox.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_control.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_dialog.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_fdrepdlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_gauge.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_listbox.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_listctrl.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_menu.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_notebook.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_radiobox.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_radiobut.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_scrolbar.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_slider.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_spinbutt.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_statbmp.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_statbox.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_statline.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_stattext.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_textctrl.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_textmeasure.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_tglbtn.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\msw_toolbar.obj"
+         "Win32\DLL Debug\vc_mswuddll\core\generic_statusbr.obj" /Qvec-report1 
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\containr.h(194): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(764): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(765): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(393): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(939): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(940): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(626): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(627): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(675): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(675): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(2364): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(2395): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\event.cpp(597): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\event.cpp(571): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\event.h(2130): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\event.h(2117): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\event.h(2553): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\event.h(2541): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\event.h(2691): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\colour.h(27): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\region.h(103): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\accel.h(57): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dpycmn.cpp(163): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dpycmn.cpp(170): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\toplevel.h(31): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\toplevel.h(29): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\toplevel.h(392): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xstring(1863): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(1886): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagbmp.cpp(670): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagbmp.cpp(683): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagbmp.cpp(745): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagbmp.cpp(331): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagbmp.cpp(331): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagbmp.cpp(384): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagbmp.cpp(384): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagbmp.cpp(430): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagbmp.cpp(417): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagbmp.cpp(491): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1696): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1707): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1711): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1711): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1727): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1746): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1775): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1788): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1799): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(1850): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagpng.cpp(628): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagpcx.cpp(430): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagpcx.cpp(249): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagpcx.cpp(260): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagpcx.cpp(273): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagpcx.cpp(317): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagtga.cpp(809): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagtga.cpp(702): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagtga.cpp(613): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagtga.cpp(546): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagtga.cpp(481): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagtga.cpp(394): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagtga.cpp(329): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagtiff.cpp(834): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagtiff.cpp(834): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagtiff.cpp(451): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagtiff.cpp(451): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagtiff.cpp(465): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagtiff.cpp(514): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\xpmdecod.cpp(768): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\xpmdecod.cpp(860): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\geometry.cpp(412): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\geometry.cpp(390): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\affinematrix2d.cpp(42): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\affinematrix2d.cpp(31): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\affinematrix2d.h(31): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dcclient.cpp(276): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dcbase.cpp(892): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dcbase.cpp(618): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dcbase.cpp(660): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dcbase.cpp(664): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dcbase.cpp(595): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dc.h(519): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(408): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(413): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\stack.h(57): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\bitmap.h(315): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dcbase.cpp(333): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dcbase.cpp(333): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dcbase.cpp(333): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dlgcmn.cpp(687): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dlgcmn.cpp(744): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dlgcmn.cpp(746): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dlgcmn.cpp(762): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\sizer.cpp(2848): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\sizer.cpp(2851): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\sizer.cpp(2855): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\sizer.cpp(2859): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\sizer.cpp(2862): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\sizer.cpp(2865): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dobjcmn.cpp(72): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(73): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(73): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(301): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\sizer.cpp(243): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(285): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\sizer.cpp(186): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(270): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\sizer.cpp(162): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1213): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1277): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1183): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\sizer.cpp(2121): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\sizer.cpp(2121): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\sizer.cpp(2721): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\scrolwin.h(395): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\scrolwin.h(394): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\geometry.h(754): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\anidecod.h(31): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\anidecod.h(32): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\appcmn.cpp(180): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vidmode.h(27): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\evtloop.h(30): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\bookctrl.cpp(49): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\clipbrd.h(129): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\clipbrd.cpp(771): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\clipbrd.h(110): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\clipbrd.h(118): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\clipcmn.cpp(73): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\pickerbase.cpp(156): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\pickerbase.cpp(113): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\pickerbase.cpp(123): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(111): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(111): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(139): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(139): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(125): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(125): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(153): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(153): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\cmndata.cpp(328): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\cmndata.cpp(188): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\cmndata.cpp(193): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\cmndata.cpp(214): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\cmndata.cpp(223): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\cmndata.cpp(302): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\paper.h(39): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\paper.h(39): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\colourcmn.cpp(125): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\framecmn.cpp(156): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\wincmn.cpp(2352): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\combocmn.cpp(567): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\combocmn.cpp(743): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\combocmn.cpp(837): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\combocmn.cpp(972): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\event.h(2073): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\combo.h(48): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\combo.h(156): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\combo.h(156): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\combo.h(50): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\cshelp.cpp(288): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dc.cpp(2176): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dc.cpp(2885): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dc.cpp(978): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dc.h(1160): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dc.cpp(437): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\dc.h(178): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\dc.h(347): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dcclient.cpp(173): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dcclient.cpp(216): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dcmemory.cpp(49): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dcmemory.cpp(56): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dcmemory.cpp(64): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dcscreen.cpp(37): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dcgraph.cpp(585): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dcgraph.cpp(687): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dcgraph.cpp(691): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dcgraph.cpp(783): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dcgraph.cpp(787): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dcgraph.cpp(221): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\colour.h(27): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dc.h(269): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dc.h(269): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dc.h(269): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dc.h(269): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dc.h(269): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dc.h(269): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\dragimag.h(138): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\textwrapper.h(115): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\textwrapper.h(122): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dlgcmn.cpp(118): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\scrolwin.h(484): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\display.h(28): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dobjcmn.cpp(228): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dobjcmn.cpp(239): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dobjcmn.cpp(251): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dobjcmn.cpp(168): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dobjcmn.cpp(180): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dobjcmn.cpp(155): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\ole\droptgt.cpp(498): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dobjcmn.cpp(119): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\stockitem.cpp(291): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\docview.h(594): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\docview.h(691): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\docview.h(694): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\docview.h(785): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\docview.h(789): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\docview.h(691): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\docview.h(694): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\docmdi.h(80): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\docmdi.h(82): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\docview.cpp(1285): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\docview.cpp(1285): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\docview.cpp(2208): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\docview.cpp(2208): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\docview.cpp(973): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\docview.cpp(1013): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(2130): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(2130): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(572): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(580): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(351): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(351): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\docview.cpp(2332): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dpycmn.cpp(71): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dpycmn.cpp(88): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dpycmn.cpp(198): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\affinematrix2d.h(28): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\affinematrix2d.h(28): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dc.h(1173): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\region.h(73): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\event.h(2071): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\toplevel.h(393): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\accel.h(65): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\layout.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1177): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1189): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1254): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1265): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1283): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1289): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1295): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1301): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1307): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1201): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1207): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1231): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1237): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1243): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1219): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1225): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\radiobox.h(45): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\radiobox.h(45): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\event.h(2110): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\event.h(2113): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\iconbndl.h(29): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\imaggif.h(34): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\imaggif.h(34): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\imaggif.h(34): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\geometry.h(630): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\geometry.h(632): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\geometry.h(656): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\geometry.h(732): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\geometry.h(734): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\scrolwin.h(483): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(746): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(746): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\event.cpp(558): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\event.cpp(82): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\event.cpp(86): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\listbase.h(502): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\listbase.h(230): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\listbase.h(230): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\listbase.h(491): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\listbase.h(491): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\listbase.h(253): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\listbase.h(259): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\listbase.h(272): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1171): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1165): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\framecmn.cpp(53): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\gbsizer.cpp(217): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\gbsizer.cpp(203): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\gbsizer.cpp(189): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\gbsizer.cpp(40): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\gbsizer.cpp(55): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\gbsizer.cpp(69): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\gbsizer.cpp(82): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\gbsizer.cpp(82): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\gbsizer.cpp(31): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\sizer.cpp(134): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\sizer.cpp(138): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\geometry.cpp(150): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\geometry.cpp(345): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\gifdecod.cpp(191): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\gifdecod.cpp(191): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\gifdecod.cpp(206): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\gifdecod.cpp(206): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\rearrangectrl.cpp(315): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\rearrangectrl.cpp(325): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\rearrangectrl.cpp(327): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\rearrangectrl.cpp(245): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\rearrangectrl.cpp(246): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\rearrangectrl.cpp(249): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\rearrangectrl.cpp(250): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\headerctrlcmn.cpp(85): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(2844): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(1051): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(1051): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(1163): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(1163): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(2425): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(2141): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(1480): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(1763): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(1341): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(1418): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(3309): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imaggif.cpp(543): message : REVERSED LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imaggif.cpp(277): message : REVERSED LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imaggif.cpp(491): message : REVERSED LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imaggif.cpp(434): message : REVERSED LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagpcx.cpp(130): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\layout.cpp(971): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\layout.cpp(971): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\layout.cpp(971): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\layout.cpp(971): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\layout.cpp(971): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\layout.cpp(971): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\layout.cpp(971): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\layout.cpp(971): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\layout.cpp(161): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\layout.cpp(77): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\matrix.cpp(316): message : FUSED LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\matrix.cpp(475): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\matrix.cpp(562): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\mousemanager.cpp(43): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\private\overlay.h(40): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\private\overlay.h(40): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\popupcmn.cpp(114): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\popupcmn.cpp(119): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\popupcmn.cpp(124): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(1963): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\gdicmn.h(706): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(856): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(1222): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(1632): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(1789): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(1789): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(1779): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(1779): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(2139): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(2139): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(572): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(572): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(312): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(312): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(312): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(312): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(351): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(351): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(1250): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dcprint.cpp(149): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dcprint.cpp(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1620): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1637): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(612): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(748): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1138): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1141): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(791): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(791): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1587): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\radiocmn.cpp(289): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\rearrangectrl.cpp(49): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\rearrangectrl.cpp(208): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\rearrangectrl.cpp(342): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\wincmn.cpp(2372): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\tbarbase.cpp(53): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\textctrl.h(855): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\toplvcmn.cpp(45): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\uiactioncmn.cpp(148): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\valgen.cpp(116): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\valgen.cpp(123): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\valnum.cpp(46): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\valtext.cpp(70): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\wincmn.cpp(118): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\wrapsizer.cpp(140): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\preferencesg.cpp(63): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\preferencesg.cpp(69): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\ole\activex.cpp(593): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\app.cpp(622): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\ole\automtn.cpp(137): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\ole\automtn.cpp(137): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\combo.cpp(138): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\combo.cpp(147): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\ole\dataobj.cpp(1529): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\ole\dataobj.cpp(506): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\ole\dataobj.h(47): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\ole\dataobj.cpp(710): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\ole\dataobj.cpp(728): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\ole\dataobj.cpp(925): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dcclient.cpp(168): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dcclient.cpp(211): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dcclient.cpp(271): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dcclient.cpp(380): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\display.cpp(268): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\display.cpp(279): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\display.cpp(309): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dragimag.cpp(80): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\dragimag.h(116): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\dragimag.h(123): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\dragimag.h(130): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\dragimag.h(147): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dragimag.cpp(68): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\ole\droptgt.cpp(545): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\ole\droptgt.cpp(554): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\ole\droptgt.cpp(573): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\enhmeta.cpp(252): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\enhmeta.cpp(261): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\frame.cpp(78): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\cmndata.cpp(241): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\cmndata.cpp(246): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\wincmn.cpp(2474): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\wincmn.cpp(2475): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\wincmn.cpp(2476): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\wincmn.cpp(2477): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\wincmn.cpp(2478): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\wincmn.cpp(2479): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\wincmn.cpp(2480): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\wincmn.cpp(2481): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\wincmn.cpp(315): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dlgcmn.cpp(284): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\dlgcmn.cpp(286): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\cmndata.cpp(278): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\wincmn.cpp(1840): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1159): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\gifdecod.cpp(86): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(870): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(886): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(1478): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(1479): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(1455): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(1471): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\listbase.h(229): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1153): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\sizer.h(1147): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\dcprint.cpp(240): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\valgen.cpp(724): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1396): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1410): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\quantize.cpp(1410): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(515): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imagpng.cpp(261): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\imaggif.cpp(530): message : REVERSED LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\image.cpp(2199): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\listbase.h(365): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\dc.h(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(1718): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\prntbase.cpp(1719): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\textcmn.cpp(177): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\logg.cpp(754): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\logg.cpp(759): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\logg.cpp(795): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\window.cpp(4773): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\collpaneg.h(51): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\collpaneg.h(51): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\region.cpp(371): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\palette.cpp(133): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwrite.c(596): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(1808): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(2328): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(2340): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(2689): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(2108): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(1108): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(1213): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(821): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngread.c(698): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(3960): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(3983): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(3997): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(108): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(108): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(110): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(110): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdapimin.c(317): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(3714): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(1273): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(1317): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2026): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2103): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2070): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2236): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2303): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2271): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2285): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2257): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(1934): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(1902): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(1916): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(1888): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(1489): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(1524): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(1510): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2937): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2611): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2618): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2461): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2429): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2443): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2415): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(1731): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(1698): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2668): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2894): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2737): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2705): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2719): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(2691): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(4616): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(4634): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(4642): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(4980): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirread.c(4982): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_open.c(227): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_read.c(269): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(2897): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(2901): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(571): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(632): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(642): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(772): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(764): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(760): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(2144): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(2388): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(980): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(995): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(1004): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(1013): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(1024): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(1033): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(1042): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(2052): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(1584): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(1262): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(1477): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirwrite.c(1290): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(441): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(2733): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(2738): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(2744): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(2694): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(2635): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(2546): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(2552): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(2887): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(2892): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(2898): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\pen.cpp(398): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\menu.cpp(1632): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\accel.cpp(112): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\accel.cpp(124): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\menu.cpp(180): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\textentry.cpp(380): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\scrlwing.cpp(1216): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\choicdgg.cpp(409): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\choicdgg.cpp(418): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\choicdgg.cpp(426): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\textdlgg.cpp(101): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\textdlgg.cpp(109): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\textdlgg.cpp(118): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\notebook.cpp(510): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printdlg.cpp(710): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printdlg.cpp(710): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printdlg.cpp(940): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\tipwin.cpp(120): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\menu.cpp(896): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\window.cpp(6632): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\filectrlg.cpp(991): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngread.c(698): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwrite.c(596): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\tooltip.cpp(320): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printwin.cpp(84): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printwin.cpp(84): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printwin.cpp(322): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printwin.cpp(322): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printwin.cpp(330): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printwin.cpp(330): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printdlg.cpp(705): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printdlg.cpp(705): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\uiaction.cpp(95): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\ole\safearray.h(392): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\ole\safearray.h(363): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\ole\safearray.h(392): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\ole\safearray.h(392): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\ole\safearray.h(392): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\ole\safearray.h(392): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\imaglist.cpp(407): message : LOOP WAS VECTORIZED
+         remark: loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\stack.h(37): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\graphics.cpp(1890): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\graphics.cpp(1903): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\graphics.cpp(1909): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\graphics.cpp(1506): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\graphics.cpp(1512): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\graphics.cpp(1527): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\graphics.cpp(1533): message : BLOCK WAS VECTORIZED
+         remark: loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\graphics.cpp(1454): message : loop was not vectorized: vectorization possible but seems inefficient
+         remark: loop was not vectorized: vectorization possible but seems inefficient
+         remark: loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\graphics.cpp(715): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\mdi.cpp(129): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\mdi.cpp(142): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\mdi.cpp(146): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\nativewin.h(70): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\nativewin.h(76): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\palette.cpp(54): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printdlg.cpp(934): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printdlg.cpp(805): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printdlg.cpp(834): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printdlg.cpp(845): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printdlg.cpp(910): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printwin.cpp(84): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printwin.cpp(84): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printwin.cpp(73): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\printwin.cpp(73): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\region.cpp(360): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\region.cpp(408): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\region.cpp(438): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\richmsgdlgg.cpp(65): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\richmsgdlgg.cpp(81): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\richmsgdlgg.cpp(84): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\richmsgdlgg.cpp(85): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\msgdlgg.cpp(190): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\msgdlgg.cpp(192): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\msgdlgg.cpp(208): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\msgdlgg.cpp(221): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\msgdlgg.cpp(231): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\spinctrl.cpp(57): message : BLOCK WAS VECTORIZED
+         remark: loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\toplevel.cpp(134): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\window.cpp(362): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\choicbkg.cpp(61): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\choicbkg.cpp(106): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\choicbkg.cpp(109): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\choicbkg.cpp(110): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\choicdgg.cpp(467): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\collpaneg.cpp(63): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\collpaneg.cpp(106): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\collpaneg.cpp(107): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\dcpsg.cpp(2290): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\dcpsg.cpp(2299): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\dcpsg.cpp(1063): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\dirctrlg.cpp(1745): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\dirctrlg.cpp(464): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\dirctrlg.cpp(1449): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\dragimgg.h(104): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\dragimgg.h(104): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\dragimgg.h(110): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\dragimgg.h(117): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\dragimgg.h(124): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\dragimgg.h(132): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\dragimgg.h(141): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\dragimgg.cpp(56): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\filectrlg.cpp(405): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\filectrlg.cpp(925): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\infobar.cpp(287): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\infobar.cpp(330): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\infobar.cpp(49): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\infobar.cpp(99): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\infobar.cpp(100): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\infobar.cpp(101): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\infobar.cpp(102): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\listbkg.cpp(61): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\logg.cpp(171): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\logg.cpp(496): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\msgdlgg.cpp(81): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\numdlgg.cpp(71): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\numdlgg.cpp(127): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\prntdlgg.cpp(147): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\prntdlgg.cpp(147): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\progdlgg.cpp(211): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\progdlgg.cpp(232): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\progdlgg.cpp(415): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\progdlgg.cpp(416): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\printps.cpp(69): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\printps.cpp(69): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\printps.cpp(69): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\printps.cpp(69): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\printps.cpp(58): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\printps.cpp(58): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\printps.cpp(296): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\printps.cpp(296): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\printps.cpp(304): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\printps.cpp(304): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\prntdlgg.cpp(141): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\prntdlgg.cpp(451): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\prntdlgg.cpp(839): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\prntdlgg.cpp(161): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\prntdlgg.cpp(161): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\progdlgg.cpp(79): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dcmirror.h(237): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dcmirror.h(237): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dcmirror.h(249): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dcmirror.h(249): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dcmirror.h(97): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dcmirror.h(101): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\richmsgdlgg.cpp(41): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\scrlwing.cpp(349): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\scrlwing.cpp(1586): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\spinctlg.cpp(123): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\spinctlg.cpp(169): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\spinctlg.cpp(405): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\splitter.cpp(66): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\srchctlg.cpp(160): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\srchctlg.cpp(247): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\srchctlg.cpp(252): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\textdlgg.cpp(68): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\tipwin.cpp(91): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\tipwin.cpp(102): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\toolbkg.cpp(57): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\treebkg.cpp(61): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\treectlg.cpp(2575): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\treectlg.cpp(428): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\treectlg.cpp(928): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\treectlg.h(52): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\treectlg.h(50): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\vlbox.cpp(51): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vscroll.h(74): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vscroll.h(74): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vscroll.h(302): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vscroll.h(302): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vscroll.h(375): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vscroll.h(375): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vscroll.h(458): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vscroll.h(458): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\vlbox.cpp(358): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\vscroll.cpp(316): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\xrc\xmlreshandler.h(138): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\xrc\xmlreshandler.h(138): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\bmpbuttn.cpp(63): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\button.cpp(71): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\checklst.cpp(178): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\combobox.cpp(63): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\listctrl.cpp(235): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\listctrl.cpp(1040): message : BLOCK WAS VECTORIZED
+         remark: loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\notebook.cpp(126): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\msw\subwin.h(156): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\statbmp.cpp(55): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\textctrl.cpp(187): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\toolbar.cpp(133): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\statusbr.cpp(97): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_swab.c(88): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_swab.c(146): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_swab.c(329): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_write.c(271): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_write.c(438): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_write.c(438): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dir.c(295): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dir.c(301): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dir.c(810): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dir.c(1064): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dir.c(921): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dir.c(904): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_read.c(1079): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_read.c(1055): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_read.c(1063): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_read.c(674): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_read.c(627): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1187): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1211): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1231): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1251): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1273): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1299): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1327): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1354): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1374): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1394): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1413): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1435): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1461): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1491): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1645): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1661): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1708): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1737): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1763): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1792): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_getimage.c(1821): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_swab.c(214): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_read.c(674): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_read.c(903): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirinfo.c(636): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dirinfo.c(939): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_lzw.c(251): message : REVERSED LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_lzw.c(863): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_lzw.c(872): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_lzw.c(1009): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_lzw.c(1018): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_lzw.c(1046): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_packbits.c(110): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_packbits.c(116): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_packbits.c(121): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_packbits.c(222): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_packbits.c(222): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_packbits.c(222): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_packbits.c(269): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_thunder.c(195): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_next.c(72): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_jpeg.c(1292): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_jpeg.c(1428): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_jpeg.c(1443): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_jpeg.c(1881): message : LOOP WAS VECTORIZED
+     1>c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_jpeg.c(1888): warning #13211: Immediate parameter to intrinsic call too large
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_jpeg.c(1973): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_jpeg.c(1986): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_jpeg.c(1995): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_fax3.c(423): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_fax3.c(464): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_fax3.c(733): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_fax3.c(739): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_fax3.c(1063): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_fax3.c(1073): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_fax3.c(1077): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_write.c(746): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_fax3.c(682): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_fax3.c(682): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_fax3.c(692): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_fax3.c(699): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_fax3.c(1161): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_fax3.c(1527): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_fax3.c(1528): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\inflate.c(1488): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_zip.c(187): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\inflate.c(1047): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\inffast.c(290): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\inffast.c(307): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\inftrees.c(117): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\inftrees.c(117): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\inftrees.c(117): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_zip.c(294): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_zip.c(325): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_pixarlog.c(864): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_pixarlog.c(886): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_pixarlog.c(906): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_pixarlog.c(906): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_pixarlog.c(906): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_pixarlog.c(921): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_pixarlog.c(921): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_pixarlog.c(252): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_pixarlog.c(259): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_pixarlog.c(1288): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_pixarlog.c(1063): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_pixarlog.c(1069): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_pixarlog.c(1321): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(486): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(530): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(539): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(591): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(651): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(695): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(704): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(824): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(837): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(983): message : REVERSED LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(983): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(986): message : REVERSED LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(986): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(988): message : REVERSED LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(988): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(991): message : REVERSED LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(991): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(1250): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(1265): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(1286): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_luv.c(1320): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(299): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(299): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(317): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(323): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(323): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(344): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(344): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(366): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(366): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(387): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(387): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(415): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(415): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(429): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(543): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(543): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(566): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(566): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(589): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(589): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(639): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(639): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(58): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(58): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(604): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(604): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(606): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(608): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(609): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(611): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(613): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(615): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(615): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(617): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(618): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(620): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(624): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(624): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(625): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(626): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(628): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(630): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(630): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(631): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmarker.c(1037): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmarker.c(474): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmarker.c(477): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jmemmgr.c(452): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jmemmgr.c(506): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmarker.c(549): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmarker.c(564): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmarker.c(622): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmarker.c(624): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmarker.c(628): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmarker.c(629): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmarker.c(676): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmarker.c(685): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmarker.c(687): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdinput.c(326): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdinput.c(277): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmaster.c(162): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(465): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(465): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(465): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(465): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(466): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(466): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(489): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(489): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(489): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(489): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(490): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(490): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(508): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(508): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(508): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(508): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(509): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(509): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcdctmgr.c(97): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcdctmgr.c(134): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcdctmgr.c(175): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcdctmgr.c(265): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcdctmgr.c(332): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcdctmgr.c(368): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jfdctflt.c(80): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jfdctflt.c(133): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jfdctfst.c(136): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jfdctfst.c(189): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jfdctint.c(164): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jfdctint.c(232): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jchuff.c(231): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcphuff.c(183): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcphuff.c(416): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcphuff.c(508): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcphuff.c(622): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcphuff.c(677): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcphuff.c(689): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jchuff.c(162): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jchuff.c(164): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jchuff.c(716): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jchuff.c(730): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jchuff.c(786): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccoefct.c(369): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccoefct.c(436): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccolor.c(107): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccolor.c(107): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccolor.c(164): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccolor.c(224): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccolor.c(272): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccolor.c(272): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccolor.c(328): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccolor.c(368): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcsample.c(174): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcsample.c(197): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcsample.c(222): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcsample.c(253): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcsample.c(296): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcsample.c(345): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcsample.c(392): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcsample.c(452): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant1.c(544): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant1.c(577): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant1.c(870): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant1.c(873): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jddctmgr.c(180): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jddctmgr.c(214): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jddctmgr.c(246): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jidctflt.c(193): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jidctfst.c(312): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jidctint.c(307): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jidctred.c(148): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jidctred.c(306): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdphuff.c(136): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdhuff.c(206): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdhuff.c(282): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdhuff.c(282): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdphuff.c(320): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdphuff.c(393): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdphuff.c(478): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdphuff.c(537): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdhuff.c(128): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdhuff.c(579): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcoefct.c(136): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcoefct.c(322): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(496): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1006): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1009): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1297): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1297): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmainct.c(357): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmainct.c(357): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmainct.c(357): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmainct.c(467): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmainct.c(479): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmerge.c(167): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmerge.c(262): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmerge.c(328): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcolor.c(165): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcolor.c(213): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcolor.c(264): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcolor.c(312): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcolor.c(312): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdsample.c(231): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdsample.c(306): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdsample.c(358): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(55): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(61): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(72): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(88): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(88): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(88): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(88): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(93): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(93): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(98): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(98): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(487): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngtrans.c(816): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwrite.c(635): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwrite.c(840): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(55): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(61): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(72): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(88): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(88): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(88): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(88): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(93): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(93): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(98): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(98): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwutil.c(111): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwutil.c(2466): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwutil.c(2526): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwutil.c(2535): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwutil.c(2595): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwutil.c(2670): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwutil.c(2792): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwutil.c(2801): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwutil.c(2856): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwutil.c(2931): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwutil.c(3015): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwutil.c(3128): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwrite.c(1233): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwrite.c(1261): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwrite.c(1294): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwrite.c(1606): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwrite.c(1745): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwrite.c(1939): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwrite.c(840): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwrite.c(2134): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngtrans.c(282): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngtrans.c(317): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngtrans.c(345): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngtrans.c(490): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngtrans.c(535): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(2997): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(3053): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(3130): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(3146): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(3150): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(2997): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(3053): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngset.c(500): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngset.c(500): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngset.c(500): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngset.c(501): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngset.c(501): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngset.c(501): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngerror.c(164): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(2563): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(2062): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(1284): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(2384): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(3455): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(3515): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\inflate.c(1047): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2273): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2273): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2273): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2371): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2371): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2371): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2378): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2383): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2392): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2398): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2398): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2398): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2425): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2425): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2430): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2430): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2443): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2448): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2448): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2453): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2464): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2475): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(4980): message : REVERSED LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(4002): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(3954): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(4063): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(4209): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(4275): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(4361): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(4574): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(4626): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(4668): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(4687): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(4709): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(4726): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(4739): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(3137): message : REVERSED LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(3159): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(3207): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(3252): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngread.c(596): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngread.c(608): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngread.c(619): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngread.c(1127): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngread.c(1140): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngread.c(2961): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngread.c(2993): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngread.c(3013): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngread.c(3024): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngread.c(3313): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngread.c(3313): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngread.c(3623): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngread.c(3623): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(439): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(461): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(630): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2695): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2717): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2790): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(2854): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(3711): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(4809): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(5304): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(5344): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(5377): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(565): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(595): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(613): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\inflate.c(1047): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(3875): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(3894): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(3914): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(3925): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(3998): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrutil.c(4010): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\inftrees.c(117): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\zlib\trees.c(803): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(186): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(176): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(4031): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(4031): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(4040): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(4040): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(4043): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(4043): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(4119): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(4119): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(4119): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(4129): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(4129): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(4129): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(4136): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(4136): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\png.c(4136): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(468): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(469): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(470): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(471): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(460): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(461): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(462): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(463): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(453): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(454): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(455): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(444): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(445): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(446): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(439): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(482): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngerror.c(281): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngerror.c(297): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(1559): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(1559): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(1582): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(1604): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(1905): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(1978): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(1987): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(1996): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(5417): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngrtran.c(5440): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwrite.c(1148): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwrite.c(1162): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwrite.c(1187): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(659): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\png\pngwtran.c(684): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1265): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1279): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant2.c(1279): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant1.c(946): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant1.c(946): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jquant1.c(947): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcolor.c(397): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdphuff.c(713): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdcoefct.c(813): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jccoefct.c(511): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcprepct.c(375): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcmaster.c(612): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmaster.c(577): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jdmarker.c(1352): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_predict.c(776): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_dumpmode.c(77): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_pixarlog.c(1535): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_pixarlog.c(1535): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_pixarlog.c(1535): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_zip.c(432): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_fax3.c(1542): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_fax3.c(1418): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_jpeg.c(2340): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_color.c(248): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_color.c(148): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_color.c(160): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_color.c(172): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_aux.c(286): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\tiff\libtiff\tif_aux.c(298): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\srchctlg.cpp(291): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\srchctlg.cpp(298): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\splitter.cpp(121): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\menuitem.cpp(445): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\graphics.cpp(880): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\graphics.cpp(894): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\graphics.cpp(880): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\graphics.cpp(894): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\graphics.cpp(928): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\spinctlg.cpp(184): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(304): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(304): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(304): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(304): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(310): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\jpeg\jcparam.c(337): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\treectrl.cpp(743): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\toolbar.cpp(310): message : BLOCK WAS VECTORIZED
+         xilink: executing 'link'
+            Creating library ..\..\lib\vc_Win32_dll\wxmsw31ud_core_vc_vdm.lib and object ..\..\lib\vc_Win32_dll\wxmsw31ud_core_vc_vdm.exp
+         wx_vc_vdm_core.vcxproj -> c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\..\..\lib\vc_Win32_dll\wxmsw31ud_core_vc_vdm.dll
+     1>Done Building Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_core.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:04:24.82

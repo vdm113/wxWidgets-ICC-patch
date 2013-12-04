@@ -1,0 +1,159 @@
+﻿Build started 11/02/2014 19:28:59.
+     1>Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_wxregex.vcxproj" on node 2 (Build target(s)).
+     1>CustomBuild:
+         Creating ..\..\lib\vc_Win32_dll\mswu\wx\msw\rcdefs.h
+         genrcdefs.h
+         Creating ..\..\lib\vc_Win32_dll\mswu\wx\setup.h
+                 1 file(s) copied.
+       ClCompile:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\icl.exe /c /Qvc11 /Qlocation,link,"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\\bin" /I..\..\include /I..\..\lib\vc_Win32_dll\mswu /Zi /nologo /W3 /MP /O3 /Ob2 /Oi /Ot /Qipo /Qftz /Quse-intel-optimized-headers /D __INTEL_COMPILER=1400 /D _HAS_ITERATOR_DEBUGGING=0 /D _ITERATOR_DEBUG_LEVEL=0 /D WIN32 /D _LIB /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D NDEBUG /D _CRT_SECURE_NO_WARNINGS /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D NDEBUG /D _CRT_SECURE_NO_WARNINGS /D __WXMSW__ /D _UNICODE /D _UNICODE /D UNICODE /GF /EHsc /MD /GS- /fp:fast=2 /QxHost /Zc:wchar_t /Zc:forScope /GR /Qstd=c99 /Qstd=c++0x /Qansi-alias /Fo"Win32\DLL Release\vc_mswudll\wxregex\\" /Fd"..\..\lib\vc_Win32_dll\wxregexu_vc_vdm_vc_vdm.pdb" /Gd /TC /Qdiag-disable:1744,809,650 ..\..\src\regex\regcomp.c ..\..\src\regex\regerror.c ..\..\src\regex\regexec.c ..\..\src\regex\regfree.c /Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args 
+     1>icl : warning #10121: overriding '/Qstd=c99' with '/Qstd=c++0x'
+     1>icl : warning #10370: option '/Qstd=c++0x' is not valid for C compilations
+         regcomp.c
+         regerror.c
+         regexec.c
+         regfree.c
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1299,5): warning MSB8012: TargetPath(c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\..\..\lib\vc_Win32_dll\wxregexu.lib) does not match the Library's OutputFile property value (c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\lib\vc_Win32_dll\wxregexu_vc_vdm.lib). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1301,5): warning MSB8012: TargetName(wxregexu) does not match the Library's OutputFile property value (wxregexu_vc_vdm). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+       Lib:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\xilib.exe /OUT:"..\..\lib\vc_Win32_dll\wxregexu_vc_vdm.lib" /NOLOGO "Win32\DLL Release\vc_mswudll\wxregex\regcomp.obj"
+         "Win32\DLL Release\vc_mswudll\wxregex\regerror.obj"
+         "Win32\DLL Release\vc_mswudll\wxregex\regexec.obj"
+         "Win32\DLL Release\vc_mswudll\wxregex\regfree.obj" /Qvec-report1 
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(361): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(2029): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(73): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(74): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(77): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(78): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(83): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(84): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(85): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(86): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(87): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(88): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(701): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(713): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(701): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(713): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(701): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(713): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(844): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(885): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(886): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(906): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(909): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(910): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(977): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(1017): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(1018): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(1038): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(1041): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(1042): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_lex.c(145): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_color.c(636): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(550): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(553): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(554): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(595): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(596): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(603): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(948): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(785): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(787): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1011): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1059): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1060): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1090): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1108): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1116): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1137): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(922): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(923): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(296): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(158): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1159): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1160): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1177): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1271): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1272): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1273): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1263): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1250): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1251): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1243): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1238): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1235): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(674): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(541): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1610): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(1208): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(1211): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1345): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1375): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1377): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1382): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1383): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1384): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1388): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1389): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1398): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_color.c(754): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_color.c(725): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(482): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(751): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(766): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(652): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(653): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(655): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(656): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(723): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(737): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(495): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(822): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(836): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(1017): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(1061): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(1025): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(990): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(1043): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(1079): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(978): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(973): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(968): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(962): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(944): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_locale.c(919): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1663): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1709): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1711): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1717): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1718): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1740): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1742): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regcomp.c(1750): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_color.c(457): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_color.c(473): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_color.c(565): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_color.c(545): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_color.c(551): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(1205): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_nfa.c(1212): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regc_color.c(89): message : REVERSED LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regexec.c(249): message : OUTER LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\rege_dfa.c(485): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\rege_dfa.c(543): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\rege_dfa.c(560): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\rege_dfa.c(631): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\rege_dfa.c(631): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\regexec.c(346): message : OUTER LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\rege_dfa.c(429): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\rege_dfa.c(432): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\regex\rege_dfa.c(441): message : LOOP WAS VECTORIZED
+         xilib: executing 'lib'
+         wx_vc_vdm_wxregex.vcxproj -> c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\..\..\lib\vc_Win32_dll\wxregexu.lib
+     1>Done Building Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_wxregex.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:07.84
