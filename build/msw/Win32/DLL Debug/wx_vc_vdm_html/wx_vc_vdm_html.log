@@ -1,0 +1,131 @@
+﻿Build started 13/02/2014 19:13:01.
+     1>Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_html.vcxproj" on node 7 (Build target(s)).
+     1>CustomBuild:
+         Creating ..\..\lib\vc_Win32_dll\mswud\wx\setup.h
+         Creating ..\..\lib\vc_Win32_dll\mswud\wx\msw\rcdefs.h
+       ClCompile:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\icl.exe /c /Qvc11 /Qlocation,link,"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\\bin" /I..\..\lib\vc_Win32_dll\mswud /I..\..\include /I..\..\src\tiff\libtiff /I..\..\src\jpeg /I..\..\src\png /I..\..\src\zlib /I..\..\src\regex /I..\..\src\expat\lib /Zi /nologo /W4 /MP /O3 /Ob2 /Oi /Ot /Qipo /Qftz /Quse-intel-optimized-headers /D __INTEL_COMPILER=1400 /D _HAS_ITERATOR_DEBUGGING=0 /D _ITERATOR_DEBUG_LEVEL=0 /D WIN32 /D _USRDLL /D DLL_EXPORTS /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D WXUSINGDLL /D WXMAKINGDLL_HTML /D _WINDLL /D _UNICODE /D UNICODE /GF /EHsc /MDd /GS- /fp:fast=2 /QxHost /Zc:wchar_t /Zc:forScope /GR /Qstd=c99 /Qstd=c++0x /Qansi-alias /Yc"wx/wxprec.h" /Fp"Win32\DLL Debug\vc_mswuddll\wxprec_htmldllvc_vdm.pch" /Fo"Win32\DLL Debug\vc_mswuddll\html\\" /Fd"..\..\lib\vc_Win32_dll\wxmsw31ud_html_vc_vdm_vc_vdm.pdb" /Gd /TP /Qdiag-disable:1744,809,650 ..\..\src\common\dummy.cpp /Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args 
+     1>icl : warning #10121: overriding '/Qstd=c99' with '/Qstd=c++0x'
+         dummy.cpp
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\icl.exe /c /Qvc11 /Qlocation,link,"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\\bin" /I..\..\lib\vc_Win32_dll\mswud /I..\..\include /I..\..\src\tiff\libtiff /I..\..\src\jpeg /I..\..\src\png /I..\..\src\zlib /I..\..\src\regex /I..\..\src\expat\lib /Zi /nologo /W4 /MP /O3 /Ob2 /Oi /Ot /Qipo /Qftz /Quse-intel-optimized-headers /D __INTEL_COMPILER=1400 /D _HAS_ITERATOR_DEBUGGING=0 /D _ITERATOR_DEBUG_LEVEL=0 /D WIN32 /D _USRDLL /D DLL_EXPORTS /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D WXUSINGDLL /D WXMAKINGDLL_HTML /D _WINDLL /D _UNICODE /D UNICODE /GF /EHsc /MDd /GS- /fp:fast=2 /QxHost /Zc:wchar_t /Zc:forScope /GR /Qstd=c99 /Qstd=c++0x /Qansi-alias /Yu"wx/wxprec.h" /Fp"Win32\DLL Debug\vc_mswuddll\wxprec_htmldllvc_vdm.pch" /Fo"Win32\DLL Debug\vc_mswuddll\html\\" /Fd"..\..\lib\vc_Win32_dll\wxmsw31ud_html_vc_vdm_vc_vdm.pdb" /Gd /TP /Qdiag-disable:1744,809,650 ..\..\src\msw\helpbest.cpp ..\..\src\generic\htmllbox.cpp ..\..\src\html\helpctrl.cpp ..\..\src\html\helpdata.cpp ..\..\src\html\helpdlg.cpp ..\..\src\html\helpfrm.cpp ..\..\src\html\helpwnd.cpp ..\..\src\html\htmlcell.cpp ..\..\src\html\htmlfilt.cpp ..\..\src\html\htmlpars.cpp ..\..\src\html\htmltag.cpp ..\..\src\html\htmlwin.cpp ..\..\src\html\htmprint.cpp ..\..\src\html\m_dflist.cpp ..\..\src\html\m_fonts.cpp ..\..\src\html\m_hline.cpp ..\..\src\html\m_image.cpp ..\..\src\html\m_layout.cpp ..\..\src\html\m_links.cpp ..\..\src\html\m_list.cpp ..\..\src\html\m_pre.cpp ..\..\src\html\m_span.cpp ..\..\src\html\m_style.cpp ..\..\src\html\m_tables.cpp ..\..\src\html\styleparams.cpp ..\..\src\html\winpars.cpp /Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args 
+     1>icl : warning #10121: overriding '/Qstd=c99' with '/Qstd=c++0x'
+         helpbest.cpp
+         htmllbox.cpp
+         helpctrl.cpp
+         helpdata.cpp
+         helpdlg.cpp
+         helpfrm.cpp
+         helpwnd.cpp
+         htmlcell.cpp
+         htmlfilt.cpp
+         htmlpars.cpp
+         htmltag.cpp
+         htmlwin.cpp
+         m_links.cpp
+         m_list.cpp
+         m_style.cpp
+         htmprint.cpp
+         m_tables.cpp
+         m_pre.cpp
+         styleparams.cpp
+         m_dflist.cpp
+         m_span.cpp
+         winpars.cpp
+         m_fonts.cpp
+         m_hline.cpp
+         m_image.cpp
+         m_layout.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.0\bin\x86\rc.exe /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D WXDLLNAME=wxmsw31ud_html_vc_vdm /D WXUSINGDLL /D WXMAKINGDLL_HTML /D _UNICODE /D UNICODE /l"0x0409" /I..\..\lib\vc_Win32_dll\mswud /I..\..\include /I..\..\src\tiff\libtiff /I..\..\src\jpeg /I..\..\src\png /I..\..\src\zlib /I..\..\src\regex /I..\..\src\expat\lib /nologo /fo"Win32\DLL Debug\wx_vc_vdm_html\version.res" ..\..\src\msw\version.rc 
+       Link:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\xilink.exe /OUT:"..\..\lib\vc_Win32_dll\wxmsw31ud_html_vc_vdm.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\lib\vc_Win32_dll\ wxtiffd_vc_vdm.lib wxjpegd_vc_vdm.lib wxpngd_vc_vdm.lib wxzlibd_vc_vdm.lib wxregexud_vc_vdm.lib wxexpatd_vc_vdm.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib ..\..\lib\vc_Win32_dll\wxmsw31ud_core_vc_vdm.lib ..\..\lib\vc_Win32_dll\wxbase31ud_vc_vdm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Win32\DLL Debug\wx_vc_vdm_html\wxmsw31ud_html_vc_vdm.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"..\..\lib\vc_Win32_dll\wxmsw31ud_html_vc_vdm_vc_vdm.pdb" /LARGEADDRESSAWARE /OPT:REF /OPT:ICF /TLBID:1 /WINMD /RELEASE /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\lib\vc_Win32_dll\wxmsw31ud_html_vc_vdm.lib" /MACHINE:X86 /SAFESEH /DLL "Win32\DLL Debug\wx_vc_vdm_html\version.res"
+         "Win32\DLL Debug\vc_mswuddll\html\dummy.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\helpbest.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\htmllbox.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\helpctrl.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\helpdata.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\helpdlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\helpfrm.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\helpwnd.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\htmlcell.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\htmlfilt.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\htmlpars.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\htmltag.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\htmlwin.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\htmprint.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\m_dflist.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\m_fonts.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\m_hline.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\m_image.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\m_layout.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\m_links.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\m_list.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\m_pre.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\m_span.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\m_style.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\m_tables.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\styleparams.obj"
+         "Win32\DLL Debug\vc_mswuddll\html\winpars.obj" /Qvec-report1 
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmlwin.cpp(426): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmlwin.cpp(511): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\winpars.cpp(96): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\htmllbox.cpp(221): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\htmllbox.cpp(84): message : LOOP WAS VECTORIZED
+       c:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xstring(1863): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\helpwnd.cpp(988): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\helpdlg.cpp(48): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\helpfrm.cpp(67): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmlwin.cpp(159): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\helpwnd.cpp(221): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\helpwnd.cpp(1340): message : BLOCK WAS VECTORIZED
+         remark: loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmlpars.cpp(411): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmltag.cpp(141): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmlpars.cpp(191): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmlpars.cpp(253): message : LOOP WAS VECTORIZED
+         remark: loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmlwin.cpp(1753): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\winpars.cpp(200): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmlwin.cpp(159): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmprint.cpp(335): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmprint.cpp(340): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmprint.cpp(345): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmprint.cpp(350): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmprint.cpp(124): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmprint.cpp(257): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmprint.cpp(564): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmprint.cpp(569): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmprint.cpp(213): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\winpars.cpp(252): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmprint.cpp(132): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\htmprint.cpp(799): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_image.cpp(52): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_tables.cpp(478): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_tables.cpp(528): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_tables.cpp(543): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_tables.cpp(560): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_tables.cpp(590): message : PARTIAL LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_tables.cpp(612): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_tables.cpp(636): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_tables.cpp(686): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_tables.cpp(705): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_tables.cpp(738): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_tables.cpp(296): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_tables.cpp(382): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_tables.cpp(210): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_tables.cpp(218): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_tables.cpp(265): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\m_tables.cpp(447): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\winpars.cpp(515): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\winpars.cpp(563): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\html\helpwnd.cpp(175): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\htmllbox.cpp(262): message : LOOP WAS VECTORIZED
+         xilink: executing 'link'
+            Creating library ..\..\lib\vc_Win32_dll\wxmsw31ud_html_vc_vdm.lib and object ..\..\lib\vc_Win32_dll\wxmsw31ud_html_vc_vdm.exp
+         wx_vc_vdm_html.vcxproj -> c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\..\..\lib\vc_Win32_dll\wxmsw31ud_html_vc_vdm.dll
+     1>Done Building Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_html.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:55.04

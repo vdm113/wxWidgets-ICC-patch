@@ -1,0 +1,106 @@
+﻿Build started 13/02/2014 19:14:16.
+     1>Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_richtext.vcxproj" on node 3 (Build target(s)).
+     1>CustomBuild:
+         Creating ..\..\lib\vc_Win32_dll\mswud\wx\setup.h
+         Creating ..\..\lib\vc_Win32_dll\mswud\wx\msw\rcdefs.h
+       ClCompile:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\icl.exe /c /Qvc11 /Qlocation,link,"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\\bin" /I..\..\lib\vc_Win32_dll\mswud /I..\..\include /I..\..\src\tiff\libtiff /I..\..\src\jpeg /I..\..\src\png /I..\..\src\zlib /I..\..\src\regex /I..\..\src\expat\lib /Zi /nologo /W4 /MP /O3 /Ob2 /Oi /Ot /Qipo /Qftz /Quse-intel-optimized-headers /D __INTEL_COMPILER=1400 /D _HAS_ITERATOR_DEBUGGING=0 /D _ITERATOR_DEBUG_LEVEL=0 /D WIN32 /D _USRDLL /D DLL_EXPORTS /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D WXUSINGDLL /D WXMAKINGDLL_RICHTEXT /D _WINDLL /D _UNICODE /D UNICODE /GF /EHsc /MDd /GS- /fp:fast=2 /QxHost /Zc:wchar_t /Zc:forScope /GR /Qstd=c99 /Qstd=c++0x /Qansi-alias /Yc"wx/wxprec.h" /Fp"Win32\DLL Debug\vc_mswuddll\wxprec_richtextdllvc_vdm.pch" /Fo"Win32\DLL Debug\vc_mswuddll\richtext\\" /Fd"..\..\lib\vc_Win32_dll\wxmsw31ud_richtext_vc_vdm_vc_vdm.pdb" /Gd /TP /Qdiag-disable:1744,809,650 ..\..\src\common\dummy.cpp /Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args 
+     1>icl : warning #10121: overriding '/Qstd=c99' with '/Qstd=c++0x'
+         dummy.cpp
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\icl.exe /c /Qvc11 /Qlocation,link,"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\\bin" /I..\..\lib\vc_Win32_dll\mswud /I..\..\include /I..\..\src\tiff\libtiff /I..\..\src\jpeg /I..\..\src\png /I..\..\src\zlib /I..\..\src\regex /I..\..\src\expat\lib /Zi /nologo /W4 /MP /O3 /Ob2 /Oi /Ot /Qipo /Qftz /Quse-intel-optimized-headers /D __INTEL_COMPILER=1400 /D _HAS_ITERATOR_DEBUGGING=0 /D _ITERATOR_DEBUG_LEVEL=0 /D WIN32 /D _USRDLL /D DLL_EXPORTS /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D WXUSINGDLL /D WXMAKINGDLL_RICHTEXT /D _WINDLL /D _UNICODE /D UNICODE /GF /EHsc /MDd /GS- /fp:fast=2 /QxHost /Zc:wchar_t /Zc:forScope /GR /Qstd=c99 /Qstd=c++0x /Qansi-alias /Yu"wx/wxprec.h" /Fp"Win32\DLL Debug\vc_mswuddll\wxprec_richtextdllvc_vdm.pch" /Fo"Win32\DLL Debug\vc_mswuddll\richtext\\" /Fd"..\..\lib\vc_Win32_dll\wxmsw31ud_richtext_vc_vdm_vc_vdm.pdb" /Gd /TP /Qdiag-disable:1744,809,650 ..\..\src\richtext\richtextbuffer.cpp ..\..\src\richtext\richtextctrl.cpp ..\..\src\richtext\richtextformatdlg.cpp ..\..\src\richtext\richtexthtml.cpp ..\..\src\richtext\richtextimagedlg.cpp ..\..\src\richtext\richtextprint.cpp ..\..\src\richtext\richtextstyledlg.cpp ..\..\src\richtext\richtextstyles.cpp ..\..\src\richtext\richtextsymboldlg.cpp ..\..\src\richtext\richtextxml.cpp /Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args 
+     1>icl : warning #10121: overriding '/Qstd=c99' with '/Qstd=c++0x'
+         richtextbuffer.cpp
+         richtextctrl.cpp
+         richtextformatdlg.cpp
+         richtexthtml.cpp
+         richtextimagedlg.cpp
+         richtextprint.cpp
+         richtextstyledlg.cpp
+         richtextstyles.cpp
+         richtextsymboldlg.cpp
+         richtextxml.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.0\bin\x86\rc.exe /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D WXDLLNAME=wxmsw31ud_richtext_vc_vdm /D WXUSINGDLL /D WXMAKINGDLL_RICHTEXT /D _UNICODE /D UNICODE /l"0x0409" /I..\..\lib\vc_Win32_dll\mswud /I..\..\include /I..\..\src\tiff\libtiff /I..\..\src\jpeg /I..\..\src\png /I..\..\src\zlib /I..\..\src\regex /I..\..\src\expat\lib /nologo /fo"Win32\DLL Debug\wx_vc_vdm_richtext\version.res" ..\..\src\msw\version.rc 
+       Link:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\xilink.exe /OUT:"..\..\lib\vc_Win32_dll\wxmsw31ud_richtext_vc_vdm.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\lib\vc_Win32_dll\ wxtiffd_vc_vdm.lib wxjpegd_vc_vdm.lib wxpngd_vc_vdm.lib wxzlibd_vc_vdm.lib wxregexud_vc_vdm.lib wxexpatd_vc_vdm.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib ..\..\lib\vc_Win32_dll\wxmsw31ud_adv_vc_vdm.lib ..\..\lib\vc_Win32_dll\wxmsw31ud_html_vc_vdm.lib ..\..\lib\vc_Win32_dll\wxbase31ud_xml_vc_vdm.lib ..\..\lib\vc_Win32_dll\wxmsw31ud_core_vc_vdm.lib ..\..\lib\vc_Win32_dll\wxbase31ud_vc_vdm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Win32\DLL Debug\wx_vc_vdm_richtext\wxmsw31ud_richtext_vc_vdm.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"..\..\lib\vc_Win32_dll\wxmsw31ud_richtext_vc_vdm_vc_vdm.pdb" /LARGEADDRESSAWARE /OPT:REF /OPT:ICF /TLBID:1 /WINMD /RELEASE /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\lib\vc_Win32_dll\wxmsw31ud_richtext_vc_vdm.lib" /MACHINE:X86 /SAFESEH /DLL "Win32\DLL Debug\wx_vc_vdm_richtext\version.res"
+         "Win32\DLL Debug\vc_mswuddll\richtext\dummy.obj"
+         "Win32\DLL Debug\vc_mswuddll\richtext\richtextbuffer.obj"
+         "Win32\DLL Debug\vc_mswuddll\richtext\richtextctrl.obj"
+         "Win32\DLL Debug\vc_mswuddll\richtext\richtextformatdlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\richtext\richtexthtml.obj"
+         "Win32\DLL Debug\vc_mswuddll\richtext\richtextimagedlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\richtext\richtextprint.obj"
+         "Win32\DLL Debug\vc_mswuddll\richtext\richtextstyledlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\richtext\richtextstyles.obj"
+         "Win32\DLL Debug\vc_mswuddll\richtext\richtextsymboldlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\richtext\richtextxml.obj" /Qvec-report1 
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextctrl.cpp(322): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextbuffer.cpp(658): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextbuffer.cpp(2000): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\richtext\richtextbuffer.h(1144): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\richtext\richtextbuffer.h(1133): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\richtext\richtextbuffer.h(1650): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\richtext\richtextbuffer.h(1652): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\richtext\richtextbuffer.h(1654): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\richtext\richtextbuffer.h(2031): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextbuffer.cpp(290): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextbuffer.cpp(13375): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\richtext\richtextbuffer.h(5749): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\richtext\richtextbuffer.h(2065): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\richtext\richtextbuffer.h(2088): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\richtext\richtextbuffer.h(5949): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\richtext\richtextbuffer.h(5951): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\richtext\richtextbuffer.h(5952): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\richtext\richtextbuffer.h(5958): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\richtext\richtextbuffer.h(5960): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextctrl.cpp(168): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextfontpage.cpp(30): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextindentspage.cpp(32): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtexttabspage.cpp(32): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextbulletspage.cpp(35): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextmarginspage.cpp(35): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextsizepage.cpp(34): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextborderspage.cpp(37): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextborderspage.cpp(1335): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextbackgroundpage.cpp(37): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextliststylepage.cpp(33): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextstylepage.cpp(32): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextformatdlg.cpp(96): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextformatdlg.cpp(518): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextformatdlg.cpp(754): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextformatdlg.cpp(818): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextimagedlg.cpp(56): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextprint.cpp(460): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextprint.cpp(460): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextstyledlg.cpp(46): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextstyles.cpp(599): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextstyles.cpp(1082): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextstyles.cpp(1293): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextstyles.cpp(1365): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextsymboldlg.cpp(297): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextsymboldlg.cpp(766): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextsymboldlg.cpp(367): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextstyledlg.cpp(102): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextliststylepage.cpp(148): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextborderspage.cpp(164): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextsizepage.cpp(141): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextmarginspage.cpp(132): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextbulletspage.cpp(92): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextbulletspage.cpp(98): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextindentspage.cpp(77): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextfontpage.cpp(87): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextctrl.cpp(371): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\richtext\richtextbuffer.h(5954): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextbuffer.cpp(9671): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextbuffer.cpp(4587): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextbuffer.cpp(4587): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextbuffer.cpp(4587): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\richtext\richtextbuffer.cpp(4696): message : LOOP WAS VECTORIZED
+         xilink: executing 'link'
+            Creating library ..\..\lib\vc_Win32_dll\wxmsw31ud_richtext_vc_vdm.lib and object ..\..\lib\vc_Win32_dll\wxmsw31ud_richtext_vc_vdm.exp
+         wx_vc_vdm_richtext.vcxproj -> c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\..\..\lib\vc_Win32_dll\wxmsw31ud_richtext_vc_vdm.dll
+     1>Done Building Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_richtext.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:01:03.30

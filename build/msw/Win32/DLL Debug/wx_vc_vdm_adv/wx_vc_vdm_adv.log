@@ -1,0 +1,243 @@
+﻿Build started 13/02/2014 19:13:01.
+     1>Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_adv.vcxproj" on node 6 (Build target(s)).
+     1>CustomBuild:
+         Creating ..\..\lib\vc_Win32_dll\mswud\wx\setup.h
+         Creating ..\..\lib\vc_Win32_dll\mswud\wx\msw\rcdefs.h
+       ClCompile:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\icl.exe /c /Qvc11 /Qlocation,link,"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\\bin" /I..\..\lib\vc_Win32_dll\mswud /I..\..\include /I..\..\src\tiff\libtiff /I..\..\src\jpeg /I..\..\src\png /I..\..\src\zlib /I..\..\src\regex /I..\..\src\expat\lib /Zi /nologo /W4 /MP /O3 /Ob2 /Oi /Ot /Qipo /Qftz /Quse-intel-optimized-headers /D __INTEL_COMPILER=1400 /D _HAS_ITERATOR_DEBUGGING=0 /D _ITERATOR_DEBUG_LEVEL=0 /D WIN32 /D _USRDLL /D DLL_EXPORTS /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D WXUSINGDLL /D WXMAKINGDLL_ADV /D _WINDLL /D _UNICODE /D UNICODE /GF /EHsc /MDd /GS- /fp:fast=2 /QxHost /Zc:wchar_t /Zc:forScope /GR /Qstd=c99 /Qstd=c++0x /Qansi-alias /Yc"wx/wxprec.h" /Fp"Win32\DLL Debug\vc_mswuddll\wxprec_advdllvc_vdm.pch" /Fo"Win32\DLL Debug\vc_mswuddll\adv\\" /Fd"..\..\lib\vc_Win32_dll\wxmsw31ud_adv_vc_vdm_vc_vdm.pdb" /Gd /TP /Qdiag-disable:1744,809,650 ..\..\src\common\dummy.cpp /Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args 
+     1>icl : warning #10121: overriding '/Qstd=c99' with '/Qstd=c++0x'
+         dummy.cpp
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\icl.exe /c /Qvc11 /Qlocation,link,"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\\bin" /I..\..\lib\vc_Win32_dll\mswud /I..\..\include /I..\..\src\tiff\libtiff /I..\..\src\jpeg /I..\..\src\png /I..\..\src\zlib /I..\..\src\regex /I..\..\src\expat\lib /Zi /nologo /W4 /MP /O3 /Ob2 /Oi /Ot /Qipo /Qftz /Quse-intel-optimized-headers /D __INTEL_COMPILER=1400 /D _HAS_ITERATOR_DEBUGGING=0 /D _ITERATOR_DEBUG_LEVEL=0 /D WIN32 /D _USRDLL /D DLL_EXPORTS /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D WXUSINGDLL /D WXMAKINGDLL_ADV /D _WINDLL /D _UNICODE /D UNICODE /GF /EHsc /MDd /GS- /fp:fast=2 /QxHost /Zc:wchar_t /Zc:forScope /GR /Qstd=c99 /Qstd=c++0x /Qansi-alias /Yu"wx/wxprec.h" /Fp"Win32\DLL Debug\vc_mswuddll\wxprec_advdllvc_vdm.pch" /Fo"Win32\DLL Debug\vc_mswuddll\adv\\" /Fd"..\..\lib\vc_Win32_dll\wxmsw31ud_adv_vc_vdm_vc_vdm.pdb" /Gd /TP /Qdiag-disable:1744,809,650 ..\..\src\common\animatecmn.cpp ..\..\src\common\bmpcboxcmn.cpp ..\..\src\common\calctrlcmn.cpp ..\..\src\common\datavcmn.cpp ..\..\src\common\gridcmn.cpp ..\..\src\common\hyperlnkcmn.cpp ..\..\src\common\odcombocmn.cpp ..\..\src\common\richtooltipcmn.cpp ..\..\src\common\taskbarcmn.cpp ..\..\src\msw\aboutdlg.cpp ..\..\src\msw\bmpcbox.cpp ..\..\src\msw\calctrl.cpp ..\..\src\msw\commandlinkbutton.cpp ..\..\src\msw\datecontrols.cpp ..\..\src\msw\datectrl.cpp ..\..\src\msw\datetimectrl.cpp ..\..\src\msw\hyperlink.cpp ..\..\src\msw\joystick.cpp ..\..\src\msw\notifmsg.cpp ..\..\src\msw\richtooltip.cpp ..\..\src\msw\sound.cpp ..\..\src\msw\taskbar.cpp ..\..\src\msw\timectrl.cpp ..\..\src\generic\aboutdlgg.cpp ..\..\src\generic\animateg.cpp ..\..\src\generic\bannerwindow.cpp ..\..\src\generic\bmpcboxg.cpp ..\..\src\generic\calctrlg.cpp ..\..\src\generic\commandlinkbuttong.cpp ..\..\src\generic\datavgen.cpp ..\..\src\generic\datectlg.cpp ..\..\src\generic\editlbox.cpp ..\..\src\generic\grid.cpp ..\..\src\generic\gridctrl.cpp ..\..\src\generic\grideditors.cpp ..\..\src\generic\gridsel.cpp ..\..\src\generic\helpext.cpp ..\..\src\generic\hyperlinkg.cpp ..\..\src\generic\laywin.cpp ..\..\src\generic\notifmsgg.cpp ..\..\src\generic\odcombo.cpp ..\..\src\generic\propdlg.cpp ..\..\src\generic\richtooltipg.cpp ..\..\src\generic\sashwin.cpp ..\..\src\generic\splash.cpp ..\..\src\generic\timectrlg.cpp ..\..\src\generic\tipdlg.cpp ..\..\src\generic\treelist.cpp ..\..\src\generic\wizard.cpp /Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args 
+     1>icl : warning #10121: overriding '/Qstd=c99' with '/Qstd=c++0x'
+         animatecmn.cpp
+         bmpcboxcmn.cpp
+         calctrlcmn.cpp
+         datavcmn.cpp
+         gridcmn.cpp
+         bmpcboxg.cpp
+         calctrlg.cpp
+         hyperlnkcmn.cpp
+         odcombocmn.cpp
+         commandlinkbuttong.cpp
+         richtooltipcmn.cpp
+         datavgen.cpp
+         taskbarcmn.cpp
+       ..\..\src\generic\datavgen.cpp(3192): message #3280: declaration hides member "RowToTreeNodeJob::row" (declared at line 3237)
+               RowToTreeNodeJob( unsigned int row , int current, wxDataViewTreeNode * node )
+                                              ^
+         
+       ..\..\src\generic\datavgen.cpp(3192): message #3280: declaration hides member "RowToTreeNodeJob::current" (declared at line 3238)
+               RowToTreeNodeJob( unsigned int row , int current, wxDataViewTreeNode * node )
+                                                        ^
+         
+         aboutdlg.cpp
+         bmpcbox.cpp
+         datectlg.cpp
+         calctrl.cpp
+         editlbox.cpp
+         odcombo.cpp
+         commandlinkbutton.cpp
+         richtooltip.cpp
+         grid.cpp
+         sound.cpp
+         datecontrols.cpp
+         propdlg.cpp
+         datectrl.cpp
+         taskbar.cpp
+         richtooltipg.cpp
+         datetimectrl.cpp
+         timectrl.cpp
+         hyperlink.cpp
+         sashwin.cpp
+         aboutdlgg.cpp
+         joystick.cpp
+         gridctrl.cpp
+         splash.cpp
+         animateg.cpp
+         notifmsg.cpp
+         timectrlg.cpp
+         grideditors.cpp
+         bannerwindow.cpp
+         tipdlg.cpp
+         treelist.cpp
+         gridsel.cpp
+         helpext.cpp
+         wizard.cpp
+         hyperlinkg.cpp
+         laywin.cpp
+         notifmsgg.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.0\bin\x86\rc.exe /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D WXDLLNAME=wxmsw31ud_adv_vc_vdm /D WXUSINGDLL /D WXMAKINGDLL_ADV /D _UNICODE /D UNICODE /l"0x0409" /I..\..\lib\vc_Win32_dll\mswud /I..\..\include /I..\..\src\tiff\libtiff /I..\..\src\jpeg /I..\..\src\png /I..\..\src\zlib /I..\..\src\regex /I..\..\src\expat\lib /nologo /fo"Win32\DLL Debug\wx_vc_vdm_adv\version.res" ..\..\src\msw\version.rc 
+       Link:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\xilink.exe /OUT:"..\..\lib\vc_Win32_dll\wxmsw31ud_adv_vc_vdm.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\lib\vc_Win32_dll\ wxtiffd_vc_vdm.lib wxjpegd_vc_vdm.lib wxpngd_vc_vdm.lib wxzlibd_vc_vdm.lib wxregexud_vc_vdm.lib wxexpatd_vc_vdm.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib ..\..\lib\vc_Win32_dll\wxmsw31ud_core_vc_vdm.lib ..\..\lib\vc_Win32_dll\wxbase31ud_vc_vdm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Win32\DLL Debug\wx_vc_vdm_adv\wxmsw31ud_adv_vc_vdm.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"..\..\lib\vc_Win32_dll\wxmsw31ud_adv_vc_vdm_vc_vdm.pdb" /LARGEADDRESSAWARE /OPT:REF /OPT:ICF /TLBID:1 /WINMD /RELEASE /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\lib\vc_Win32_dll\wxmsw31ud_adv_vc_vdm.lib" /MACHINE:X86 /SAFESEH /DLL "Win32\DLL Debug\wx_vc_vdm_adv\version.res"
+         "Win32\DLL Debug\vc_mswuddll\adv\animatecmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\bmpcboxcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\calctrlcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\datavcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\dummy.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\gridcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\hyperlnkcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\odcombocmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\richtooltipcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\taskbarcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\aboutdlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\bmpcbox.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\calctrl.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\commandlinkbutton.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\datecontrols.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\datectrl.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\datetimectrl.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\hyperlink.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\joystick.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\notifmsg.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\richtooltip.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\sound.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\taskbar.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\timectrl.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\aboutdlgg.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\animateg.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\bannerwindow.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\bmpcboxg.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\calctrlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\commandlinkbuttong.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\datavgen.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\datectlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\editlbox.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\grid.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\gridctrl.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\grideditors.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\gridsel.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\helpext.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\hyperlinkg.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\laywin.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\notifmsgg.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\odcombo.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\propdlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\richtooltipg.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\sashwin.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\splash.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\timectrlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\tipdlg.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\treelist.obj"
+         "Win32\DLL Debug\vc_mswuddll\adv\wizard.obj" /Qvec-report1 
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\ctrlsub.h(422): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\odcombo.h(250): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\odcombo.h(252): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dataview.h(795): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\datavgen.cpp(3696): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\datavgen.cpp(3701): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\datavcmn.cpp(1155): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\datavcmn.cpp(1166): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\datavgen.cpp(5316): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\datavgen.cpp(5317): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dataview.h(1275): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dataview.h(1275): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\dataview.h(1275): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\datavgen.cpp(4796): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\datavgen.cpp(4797): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\datavgen.cpp(4797): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\datavcmn.cpp(1017): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\datavcmn.cpp(1913): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\datavcmn.cpp(2448): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\datavgen.cpp(1547): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\dataview.h(35): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\dataview.h(35): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\datavcmn.cpp(443): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\datavcmn.cpp(1771): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\datavcmn.cpp(1930): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\datavcmn.cpp(1930): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\datavcmn.cpp(1930): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\datavcmn.cpp(1940): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\grid.h(653): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\grid.cpp(5377): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\grid.h(817): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\grid.h(2399): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\grid.h(2392): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\odcombocmn.cpp(50): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\common\taskbarcmn.cpp(51): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\aboutdlgg.cpp(247): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\aboutdlgg.cpp(278): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\aboutdlgg.cpp(282): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\bmpcbox.cpp(57): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\notifmsgg.cpp(130): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\notifmsgg.cpp(139): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\richtooltipg.cpp(88): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\richtooltipg.cpp(136): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\richtooltipg.cpp(139): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\richtooltipg.cpp(156): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\richtooltipg.cpp(162): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\richtooltipg.cpp(534): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\animateg.cpp(284): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\bannerwindow.cpp(46): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\calctrlg.cpp(1218): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\calctrlg.cpp(62): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\calctrlg.cpp(124): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\calctrlg.cpp(124): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\calctrlg.h(37): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\calctrlg.h(37): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\datavgen.cpp(3469): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\datavgen.cpp(387): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\datavgen.cpp(1511): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\datavgen.cpp(4786): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\datavgen.cpp(3019): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\datectlg.cpp(299): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\datectlg.cpp(311): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\datectlg.cpp(346): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\editlbox.cpp(194): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\editlbox.cpp(214): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\vector.h(289): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\grid.cpp(6913): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\grid.h(2155): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\grid.cpp(190): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\grid.cpp(196): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\grid.cpp(1675): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\grid.cpp(1684): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\grid.cpp(1722): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\grid.cpp(1763): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\grid.cpp(1789): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\grid.cpp(2199): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\private\grid.h(83): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\grid.cpp(9308): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\gridsel.cpp(682): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\laywin.cpp(49): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\laywin.h(125): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\laywin.h(125): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\laywin.cpp(37): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\sashwin.h(209): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\include\wx\generic\sashwin.h(209): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\notifmsgg.cpp(101): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\odcombo.cpp(60): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\odcombo.cpp(908): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\odcombo.cpp(927): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\odcombo.cpp(957): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\propdlg.cpp(62): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\sashwin.cpp(713): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\sashwin.cpp(49): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\sashwin.cpp(392): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\sashwin.cpp(47): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\splash.cpp(46): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\splash.cpp(143): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\tipdlg.cpp(218): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\treelist.cpp(1027): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\treelist.cpp(1411): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\treelist.cpp(1411): message : LOOP WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\wizard.cpp(545): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\wizard.cpp(616): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\wizard.cpp(98): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\sashwin.cpp(81): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\generic\grid.cpp(2499): message : BLOCK WAS VECTORIZED
+         xilink: executing 'link'
+            Creating library ..\..\lib\vc_Win32_dll\wxmsw31ud_adv_vc_vdm.lib and object ..\..\lib\vc_Win32_dll\wxmsw31ud_adv_vc_vdm.exp
+         wx_vc_vdm_adv.vcxproj -> c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\..\..\lib\vc_Win32_dll\wxmsw31ud_adv_vc_vdm.dll
+     1>Done Building Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_adv.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:01:15.31

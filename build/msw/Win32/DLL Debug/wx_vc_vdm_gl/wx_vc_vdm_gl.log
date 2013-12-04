@@ -1,0 +1,34 @@
+﻿Build started 13/02/2014 19:13:01.
+     1>Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_gl.vcxproj" on node 4 (Build target(s)).
+     1>CustomBuild:
+         Creating ..\..\lib\vc_Win32_dll\mswud\wx\setup.h
+         Creating ..\..\lib\vc_Win32_dll\mswud\wx\msw\rcdefs.h
+       ClCompile:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\icl.exe /c /Qvc11 /Qlocation,link,"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\\bin" /I..\..\lib\vc_Win32_dll\mswud /I..\..\include /I..\..\src\tiff\libtiff /I..\..\src\jpeg /I..\..\src\png /I..\..\src\zlib /I..\..\src\regex /I..\..\src\expat\lib /Zi /nologo /W4 /MP /O3 /Ob2 /Oi /Ot /Qipo /Qftz /Quse-intel-optimized-headers /D __INTEL_COMPILER=1400 /D _HAS_ITERATOR_DEBUGGING=0 /D _ITERATOR_DEBUG_LEVEL=0 /D WIN32 /D _USRDLL /D DLL_EXPORTS /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D WXUSINGDLL /D WXMAKINGDLL_GL /D _WINDLL /D _UNICODE /D UNICODE /GF /EHsc /MDd /GS- /fp:fast=2 /QxHost /Zc:wchar_t /Zc:forScope /GR /Qstd=c99 /Qstd=c++0x /Qansi-alias /Yc"wx/wxprec.h" /Fp"Win32\DLL Debug\vc_mswuddll\wxprec_gldllvc_vdm.pch" /Fo"Win32\DLL Debug\vc_mswuddll\gl\\" /Fd"..\..\lib\vc_Win32_dll\wxmsw31ud_gl_vc_vdm_vc_vdm.pdb" /Gd /TP /Qdiag-disable:1744,809,650 ..\..\src\common\dummy.cpp /Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args 
+     1>icl : warning #10121: overriding '/Qstd=c99' with '/Qstd=c++0x'
+         dummy.cpp
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\icl.exe /c /Qvc11 /Qlocation,link,"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\\bin" /I..\..\lib\vc_Win32_dll\mswud /I..\..\include /I..\..\src\tiff\libtiff /I..\..\src\jpeg /I..\..\src\png /I..\..\src\zlib /I..\..\src\regex /I..\..\src\expat\lib /Zi /nologo /W4 /MP /O3 /Ob2 /Oi /Ot /Qipo /Qftz /Quse-intel-optimized-headers /D __INTEL_COMPILER=1400 /D _HAS_ITERATOR_DEBUGGING=0 /D _ITERATOR_DEBUG_LEVEL=0 /D WIN32 /D _USRDLL /D DLL_EXPORTS /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D WXUSINGDLL /D WXMAKINGDLL_GL /D _WINDLL /D _UNICODE /D UNICODE /GF /EHsc /MDd /GS- /fp:fast=2 /QxHost /Zc:wchar_t /Zc:forScope /GR /Qstd=c99 /Qstd=c++0x /Qansi-alias /Yu"wx/wxprec.h" /Fp"Win32\DLL Debug\vc_mswuddll\wxprec_gldllvc_vdm.pch" /Fo"Win32\DLL Debug\vc_mswuddll\gl\\" /Fd"..\..\lib\vc_Win32_dll\wxmsw31ud_gl_vc_vdm_vc_vdm.pdb" /Gd /TP /Qdiag-disable:1744,809,650 ..\..\src\common\glcmn.cpp ..\..\src\msw\glcanvas.cpp /Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args 
+     1>icl : warning #10121: overriding '/Qstd=c99' with '/Qstd=c++0x'
+         glcmn.cpp
+         glcanvas.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.0\bin\x86\rc.exe /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D WXBUILDING /D WXDLLNAME=wxmsw31ud_gl_vc_vdm /D WXUSINGDLL /D WXMAKINGDLL_GL /D _UNICODE /D UNICODE /l"0x0409" /I..\..\lib\vc_Win32_dll\mswud /I..\..\include /I..\..\src\tiff\libtiff /I..\..\src\jpeg /I..\..\src\png /I..\..\src\zlib /I..\..\src\regex /I..\..\src\expat\lib /nologo /fo"Win32\DLL Debug\wx_vc_vdm_gl\version.res" ..\..\src\msw\version.rc 
+       Link:
+         C:\Program Files (x86)\Intel\Composer XE 2013 SP1\bin\ia32\xilink.exe /OUT:"..\..\lib\vc_Win32_dll\wxmsw31ud_gl_vc_vdm.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\lib\vc_Win32_dll\ wxtiffd_vc_vdm.lib wxjpegd_vc_vdm.lib wxpngd_vc_vdm.lib wxzlibd_vc_vdm.lib wxregexud_vc_vdm.lib wxexpatd_vc_vdm.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib wxmsw31ud_core_vc_vdm.lib wxbase31ud_vc_vdm.lib opengl32.lib glu32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Win32\DLL Debug\wx_vc_vdm_gl\wxmsw31ud_gl_vc_vdm.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"..\..\lib\vc_Win32_dll\wxmsw31ud_gl_vc_vdm_vc_vdm.pdb" /LARGEADDRESSAWARE /OPT:REF /OPT:ICF /TLBID:1 /WINMD /RELEASE /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\lib\vc_Win32_dll\wxmsw31ud_gl_vc_vdm.lib" /MACHINE:X86 /SAFESEH /DLL "Win32\DLL Debug\wx_vc_vdm_gl\version.res"
+         "Win32\DLL Debug\vc_mswuddll\gl\dummy.obj"
+         "Win32\DLL Debug\vc_mswuddll\gl\glcmn.obj"
+         "Win32\DLL Debug\vc_mswuddll\gl\glcanvas.obj" /Qvec-report1 
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\glcanvas.cpp(154): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\glcanvas.cpp(671): message : loop was not vectorized: vectorization possible but seems inefficient
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\glcanvas.cpp(387): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\glcanvas.cpp(393): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\glcanvas.cpp(414): message : BLOCK WAS VECTORIZED
+       c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\src\msw\glcanvas.cpp(794): message : LOOP WAS VECTORIZED
+         xilink: executing 'link'
+            Creating library ..\..\lib\vc_Win32_dll\wxmsw31ud_gl_vc_vdm.lib and object ..\..\lib\vc_Win32_dll\wxmsw31ud_gl_vc_vdm.exp
+         wx_vc_vdm_gl.vcxproj -> c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\..\..\lib\vc_Win32_dll\wxmsw31ud_gl_vc_vdm.dll
+     1>Done Building Project "c:\Users\vdmn\Documents\develop\wxWidgets-git4\wxWidgets-new998\build\msw\wx_vc_vdm_gl.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:12.92
