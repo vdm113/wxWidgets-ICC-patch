@@ -313,13 +313,24 @@ int wxRichTextFloatCollector::GetFitPosition(const wxRichTextFloatRectMapArray& 
 #endif
     while (i < (int) array.GetCount())
     {
+        // Our object will fit before this object
         if (array[i]->startY - last >= height)
-            return last + 1;
+        {
+            // If we are fitting after another object, add a pixel since last
+            // is the bottom of another object.
+            if (last != start)
+                last ++;
+            return last;
+        }
         last = array[i]->endY;
         i++;
     }
 
-    return last + 1;
+    // If we are fitting after another object, add a pixel since last
+    // is the bottom of another object.
+    if (last != start)
+        last ++;
+    return last;
 }
 
 int wxRichTextFloatCollector::GetFitPosition(int direction, int start, int height) const
@@ -2086,7 +2097,7 @@ bool wxRichTextParagraphLayoutBox::Draw(wxDC& dc, wxRichTextDrawingContext& cont
 /// Lay the item out
 bool wxRichTextParagraphLayoutBox::Layout(wxDC& dc, wxRichTextDrawingContext& context, const wxRect& rect, const wxRect& parentRect, int style)
 {
-    SetPosition(rect.GetPosition());
+    Move(rect.GetPosition());
 
     if (!IsShown())
         return true;
@@ -5160,7 +5171,7 @@ bool wxRichTextParagraph::Layout(wxDC& dc, wxRichTextDrawingContext& context, co
             wxSize oldSize = child->GetCachedSize();
 
             child->Invalidate(wxRICHTEXT_ALL);
-            child->SetPosition(wxPoint(0, 0));
+            //child->SetPosition(wxPoint(0, 0));
 
             // Lays out the object first with a given amount of space, and then if no width was specified in attr,
             // lays out the object again using the minimum size
@@ -6750,10 +6761,10 @@ void wxRichTextParagraph::LayoutFloat(wxDC& dc, wxRichTextDrawingContext& contex
             int newOffsetY = pos - rect.y;
             if (newOffsetY != offsetY)
             {
-                if (anchored->GetAttributes().GetTextBoxAttr().GetTop().GetUnits() == wxTEXT_ATTR_UNITS_PIXELS)
+                if (!anchored->GetAttributes().GetTextBoxAttr().GetTop().IsValid() || anchored->GetAttributes().GetTextBoxAttr().GetTop().GetUnits() == wxTEXT_ATTR_UNITS_PIXELS)
                 {
                     // We unscaled in GetPixels, so apply scale again.
-                    anchored->GetAttributes().GetTextBoxAttr().GetTop().SetValue(int((double(newOffsetY) * converter.GetScale()) + 0.5));
+                    anchored->GetAttributes().GetTextBoxAttr().GetTop().SetValue(int((double(newOffsetY) * converter.GetScale()) + 0.5), wxTEXT_ATTR_UNITS_PIXELS);
                 }
                 else
                 {
