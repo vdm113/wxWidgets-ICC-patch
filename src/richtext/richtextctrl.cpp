@@ -4639,6 +4639,9 @@ bool wxRichTextCtrl::RefreshForSelectionChange(const wxRichTextSelection& oldSel
             wxRichTextObjectList floatingObjects;
             GetFocusObject()->GetFloatingObjects(floatingObjects);
             wxRichTextObjectList::compatibility_iterator node = floatingObjects.GetFirst();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
             while (node)
             {
                 wxRichTextObject* obj = node->GetData();
