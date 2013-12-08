@@ -3,7 +3,7 @@ wxWidgets-ICC-patch
 
 Latest wxWidgets trunk with ICC (a.k.a. ICL, Intel Compiler) pragma's for cutting-edge performance
 
-This is cutting-edge performance preprocessed code of wxWidgets for Intel CPU's fork of wxWidgets, to be compiled with ICL 12.1/13.0.
+This is cutting-edge performance preprocessed code of wxWidgets for Intel CPU's fork of wxWidgets, to be compiled with ICL 12.1/13.0/14.0.
 
 The main preprocessing/modification SW is under directory "wxWidgets_vdm_patch" for MSVC 2010 for ICL 12.1/13.0.
 
@@ -42,5 +42,3 @@ Best regards,
 Marian 'VooDooMan' Meravy
 
 vdm 113 (<-remove the space character) [at sign] gmail (dot character) com
-
-.
