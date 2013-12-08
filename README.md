@@ -7,9 +7,9 @@ This is cutting-edge performance preprocessed code of wxWidgets for Intel CPU's 
 
 The main preprocessing/modification SW is under directory "wxWidgets_vdm_patch" for MSVC 2010 for ICL 12.1/13.0.
 
-The original sources were patched by (see above) SW for ICL 12.1 and 13.0. There was one assertion failure in the compiler (ICC 12.1) compiling this code, so if you encounter this behaviour add to preprocessor directive for ICL " && 0" and (above mentioned), the ICC 12.1 compiler will abide by it.
+The original sources were patched by (see above) SW for ICL 12.1, 13.0 and 14.0. There was one assertion failure in the compiler (ICC 12.1) compiling this code, so if you encounter this behaviour add to preprocessor directive for ICL " && 0" and (above mentioned), the ICC 12.1 compiler will abide by it.
 
-I can do a very limited support... I support only ICC 12.1 and ICC 13.0 (which is beta ATM) under Windows's MSVC 2010 with x64 builds, though x86 (32-bit) builds might be successful, but I have not tried it (I mean x86).
+I can do a very limited support... I support only ICC 14.0 under Windows's MSVC 2010 with x64 builds, though x86 (32-bit) builds might be successful, but I have not tried it (I mean x86).
 
 This fork of wxWidgets is as of the official GIT repository:
 
