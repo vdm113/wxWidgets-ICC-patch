@@ -52,7 +52,7 @@ public:
 
     void RemoveNode(wxTrackerNode *prn)
     {
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxTrackerNode **pprn = &m_first; *pprn; pprn = &(*pprn)->m_nxt )
@@ -86,7 +86,7 @@ protected:
     ~wxTrackable()
     {
         // Notify all registered refs
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         while ( m_first )

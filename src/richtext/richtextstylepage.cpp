@@ -183,7 +183,7 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 if (sheet)
                 {
                     size_t i;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (i = 0; i < sheet->GetListStyleCount(); i++)
@@ -203,7 +203,7 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 if (sheet)
                 {
                     size_t i;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (i = 0; i < sheet->GetParagraphStyleCount(); i++)
@@ -224,7 +224,7 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 if (listDef)
                 {
                     size_t i;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (i = 0; i < sheet->GetListStyleCount(); i++)
@@ -237,7 +237,7 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 else if (paraDef)
                 {
                     size_t i;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (i = 0; i < sheet->GetParagraphStyleCount(); i++)
@@ -250,7 +250,7 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 else if (boxDef)
                 {
                     size_t i;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (i = 0; i < sheet->GetBoxStyleCount(); i++)
@@ -263,7 +263,7 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 else if (charDef)
                 {
                     size_t i;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for (i = 0; i < sheet->GetCharacterStyleCount(); i++)

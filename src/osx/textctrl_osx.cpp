@@ -697,7 +697,7 @@ int wxTextWidgetImpl::GetNumberOfLines() const
     wxString content = GetStringValue() ;
     ItemCount lines = 1;
 
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < content.length() ; i++)
@@ -720,7 +720,7 @@ wxString wxTextWidgetImpl::GetLineText(long lineNo) const
 
     // Find line first
     int count = 0;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < content.length() ; i++)
@@ -730,7 +730,7 @@ wxString wxTextWidgetImpl::GetLineText(long lineNo) const
             // Add chars in line then
             wxString tmp;
 
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (size_t j = i; j < content.length(); j++)
@@ -758,7 +758,7 @@ int wxTextWidgetImpl::GetLineLength(long lineNo) const
 
     // Find line first
     int count = 0;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < content.length() ; i++)
@@ -767,7 +767,7 @@ int wxTextWidgetImpl::GetLineLength(long lineNo) const
         {
             // Count chars in line then
             count = 0;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (size_t j = i; j < content.length(); j++)

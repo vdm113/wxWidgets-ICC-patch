@@ -56,17 +56,17 @@ int name::Index(T lItem, bool bFromEnd) const                               \
   if ( bFromEnd ) {                                                         \
     if ( size() > 0 ) {                                                     \
       size_t n = size();                                                    \
-VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
+VDM_MACRO_PRAGMA_IVDEP \
       do {                                                                  \
         if ( (*this)[--n] == lItem )                                        \
           return n;                                                         \
       }                                                                     \
-VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
+VDM_MACRO_PRAGMA_IVDEP \
       while ( n != 0 );                                                     \
     }                                                                       \
   }                                                                         \
   else {                                                                    \
-VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
+VDM_MACRO_PRAGMA_IVDEP \
     for( size_t n = 0; n < size(); n++ ) {                                  \
       if( (*this)[n] == lItem )                                             \
         return n;                                                           \
@@ -200,7 +200,7 @@ void name::SetCount(size_t count, T defval)                                 \
     }                                                                       \
                                                                             \
     /* add new elements if we extend the array */                           \
-VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
+VDM_MACRO_PRAGMA_IVDEP \
     while ( m_nCount < count )                                              \
     {                                                                       \
         m_pItems[m_nCount++] = defval;                                      \
@@ -249,7 +249,7 @@ void name::Add(T lItem, size_t nInsert)                                     \
   if (nInsert == 0)                                                         \
       return;                                                               \
   Grow(nInsert);                                                            \
-VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
+VDM_MACRO_PRAGMA_IVDEP \
   for (size_t i = 0; i < nInsert; i++)                                      \
       m_pItems[m_nCount++] = lItem;                                         \
 }                                                                           \
@@ -267,7 +267,7 @@ void name::Insert(T lItem, size_t nIndex, size_t nInsert)                   \
                                                                             \
   memmove(&m_pItems[nIndex + nInsert], &m_pItems[nIndex],                   \
           (m_nCount - nIndex)*sizeof(T));                                   \
-VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
+VDM_MACRO_PRAGMA_IVDEP \
   for (size_t i = 0; i < nInsert; i++)                                      \
       m_pItems[nIndex + i] = lItem;                                         \
   m_nCount += nInsert;                                                      \
@@ -281,7 +281,7 @@ size_t name::IndexForInsert(T lItem, CMPFUNC fnCompare) const               \
        hi = m_nCount;                                                       \
   int res;                                                                  \
                                                                             \
-VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
+VDM_MACRO_PRAGMA_IVDEP \
   while ( lo < hi ) {                                                       \
     i = (lo + hi)/2;                                                        \
                                                                             \
@@ -345,7 +345,7 @@ void name::assign(const_iterator first, const_iterator last)                \
 {                                                                           \
   clear();                                                                  \
   reserve(last - first);                                                    \
-VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
+VDM_MACRO_PRAGMA_IVDEP \
   for(; first != last; ++first)                                             \
     push_back(*first);                                                      \
 }                                                                           \
@@ -354,7 +354,7 @@ void name::assign(size_type n, const_reference v)                           \
 {                                                                           \
   clear();                                                                  \
   reserve(n);                                                               \
-VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
+VDM_MACRO_PRAGMA_IVDEP \
   for( size_type i = 0; i < n; ++i )                                        \
     push_back(v);                                                           \
 }                                                                           \
@@ -371,7 +371,7 @@ void name::insert(iterator it, const_iterator first, const_iterator last)   \
                                                                             \
   memmove(&m_pItems[nIndex + nInsert], &m_pItems[nIndex],                   \
           (m_nCount - nIndex)*sizeof(T));                                   \
-VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
+VDM_MACRO_PRAGMA_IVDEP \
   for (size_t i = 0; i < nInsert; ++i, ++it, ++first)                       \
       *it = *first;                                                         \
   m_nCount += nInsert;                                                      \

@@ -34,12 +34,12 @@ protected:
         const wxSize clientSize = win->GetClientSize();
         const wxSize bitmapSize = m_bitmapBg.GetSize();
 
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int x = 0; x < clientSize.x; x += bitmapSize.x )
         {
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( int y = 0; y < clientSize.y; y += bitmapSize.y )

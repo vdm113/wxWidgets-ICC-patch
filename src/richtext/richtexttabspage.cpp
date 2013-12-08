@@ -161,7 +161,7 @@ bool wxRichTextTabsPage::TransferDataFromWindow()
     {
         wxArrayInt tabs;
         size_t i;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < m_tabListCtrl->GetCount(); i++)
@@ -186,7 +186,7 @@ bool wxRichTextTabsPage::TransferDataToWindow()
     {
         m_tabsPresent = true;
         size_t i;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < attr->GetTabs().GetCount(); i++)
@@ -214,7 +214,7 @@ void wxRichTextTabsPage::SortTabs()
 {
     wxArrayInt tabs;
     size_t i;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < m_tabListCtrl->GetCount(); i++)
@@ -224,7 +224,7 @@ void wxRichTextTabsPage::SortTabs()
     tabs.Sort(& wxTabSortFunc);
 
     m_tabListCtrl->Clear();
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < tabs.GetCount(); i++)

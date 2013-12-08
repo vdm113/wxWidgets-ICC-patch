@@ -84,7 +84,7 @@ public:
 	}
 
 	bool Match(int pos, const char *s) {
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int i=0; *s; i++) {
@@ -157,7 +157,7 @@ public:
 				if (chAttr != chWhile)
 					chFlags = 0;
 				chAttr = static_cast<char>(chAttr | chFlags);
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 				for (unsigned int i = startSeg; i <= pos; i++) {

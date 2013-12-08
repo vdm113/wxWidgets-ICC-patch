@@ -215,7 +215,7 @@ enum
 
     // first enum all entries
     bool bCont = config->GetFirstEntry(str, dummy);
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( bCont ) {
@@ -228,7 +228,7 @@ enum
 
     // now all groups...
     bCont = GetConfig()->GetFirstGroup(str, dummy);
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     while ( bCont ) {

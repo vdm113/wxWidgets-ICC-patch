@@ -157,6 +157,9 @@ private:
 #if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int y = 0; y < opts.height; ++y )
         {
             memset(data, n % 256, 3*opts.width);
@@ -180,6 +183,9 @@ private:
 
         wxStopWatch sw;
 #if defined(__INTEL_COMPILER) /* VDM auto patch */
+#   pragma ivdep
+#endif
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int n = 0; n < opts.numIters; n++ )
@@ -279,6 +285,9 @@ private:
 #if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
             int x1 = rand() % opts.width,
@@ -316,6 +325,9 @@ private:
 #if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
             int x = rand() % opts.width,
@@ -345,6 +357,9 @@ private:
 
         wxStopWatch sw;
 #if defined(__INTEL_COMPILER) /* VDM auto patch */
+#   pragma ivdep
+#endif
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int n = 0; n < opts.numIters; n++ )
@@ -378,6 +393,9 @@ private:
 #if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
             UpdateRGB(image.GetData(), n);
@@ -409,6 +427,9 @@ private:
 #if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
             unsigned char c = n % 256;
@@ -417,11 +438,17 @@ private:
 #if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                 for ( int y = 0; y < opts.height; ++y )
                 {
                     wxNativePixelData::Iterator rowStart = p;
 
 #if defined(__INTEL_COMPILER) /* VDM auto patch */
+#   pragma ivdep
+#endif
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
                     for ( int x = 0; x < opts.width; ++x )

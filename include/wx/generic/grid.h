@@ -1431,7 +1431,7 @@ public:
         if ( m_colAt.IsEmpty() )
             return idx;
 
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = 0; i < m_numCols; i++ )

@@ -410,7 +410,7 @@ public:
 
     const wxClass* FindClass(const wxString& classname) const
         {
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (unsigned int i=0; i<m_classes.GetCount(); i++)
@@ -430,7 +430,7 @@ public:
     unsigned int GetMethodCount() const
         {
             unsigned int methods = 0;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for (unsigned i=0; i < m_classes.GetCount(); i++)

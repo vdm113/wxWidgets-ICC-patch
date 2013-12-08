@@ -163,6 +163,9 @@ BENCHMARK_FUNC_WITH_INIT(IPCPokeAdvise, ConnInit, ConnDone)
 #if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     while ( !conn->GotAdvised() )
         loop.Dispatch();
 

@@ -216,6 +216,9 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
 #if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( Bench::Function *func = Bench::Function::GetFirst();
           func;
           func = func->GetNext() )
@@ -224,6 +227,9 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
     }
 
 #if defined(__INTEL_COMPILER) /* VDM auto patch */
+#   pragma ivdep
+#endif
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -245,6 +251,9 @@ int BenchApp::OnRun()
 {
     int rc = EXIT_SUCCESS;
 #if defined(__INTEL_COMPILER) /* VDM auto patch */
+#   pragma ivdep
+#endif
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( Bench::Function *func = Bench::Function::GetFirst();
@@ -274,10 +283,16 @@ int BenchApp::OnRun()
 #if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for ( long a = 0; ok && a < m_avgCount; a++ )
         {
             wxStopWatch sw;
 #if defined(__INTEL_COMPILER) /* VDM auto patch */
+#   pragma ivdep
+#endif
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
             for ( long n = 0; n < m_numRuns && ok; n++ )
@@ -341,6 +356,9 @@ void BenchApp::ListBenchmarks()
     sprintf(tmp,"Available benchmarks:\n");
     wxLogMessage(tmp);
 #if defined(__INTEL_COMPILER) /* VDM auto patch */
+#   pragma ivdep
+#endif
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
     for ( Bench::Function *func = Bench::Function::GetFirst();

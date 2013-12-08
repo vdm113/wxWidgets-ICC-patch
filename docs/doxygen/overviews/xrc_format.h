@@ -2470,7 +2470,7 @@ Whether a range has positive or negative IDs, [start] is always a smaller
 number than [end]; so code like this works as expected:
 
 @code
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
+#if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
 for (int n=XRCID("foo[start]"); n <= XRCID("foo[end]"); ++n)
