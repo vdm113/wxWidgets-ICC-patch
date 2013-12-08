@@ -810,7 +810,7 @@ wxLongLongWx& wxLongLongWx::operator*=(const wxLongLongWx& ll)
 #endif // wxLONGLONG_TEST_MODE
 
     int counter = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     do
@@ -821,7 +821,7 @@ wxLongLongWx& wxLongLongWx::operator*=(const wxLongLongWx& ll)
         t <<= 1;
         counter++;
     }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     while ((counter < 64) && ((q.m_hi != 0) || (q.m_lo != 0)));
@@ -848,7 +848,7 @@ wxULongLongWx& wxULongLongWx::operator*=(const wxULongLongWx& ll)
 #endif // wxLONGLONG_TEST_MODE
 
     int counter = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     do
@@ -859,7 +859,7 @@ wxULongLongWx& wxULongLongWx::operator*=(const wxULongLongWx& ll)
         t <<= 1;
         counter++;
     }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     while ((counter < 64) && ((q.m_hi != 0) || (q.m_lo != 0)));
@@ -948,7 +948,7 @@ void wxLongLongWx::Divide(const wxLongLongWx& divisorIn,
         size_t nBits = 64u;
         wxLongLongWx d;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
         while ( remainder < divisor )
@@ -970,7 +970,7 @@ void wxLongLongWx::Divide(const wxLongLongWx& divisorIn,
         remainder >>= 1;
         nBits++;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < nBits; i++ )
@@ -1054,7 +1054,7 @@ void wxULongLongWx::Divide(const wxULongLongWx& divisorIn,
         size_t nBits = 64u;
         wxULongLongWx d;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
         while ( remainder < divisor )
@@ -1076,7 +1076,7 @@ void wxULongLongWx::Divide(const wxULongLongWx& divisorIn,
         remainder >>= 1;
         nBits++;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < nBits; i++ )
@@ -1208,7 +1208,7 @@ void *wxULongLongWx::asArray(void) const
         bool neg = ll < 0;                                           \
         if ( neg )                                                   \
         {                                                            \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
             while ( ll != 0 )                                        \
             {                                                        \
                 long digit = (ll % 10).ToLong();                     \
@@ -1218,7 +1218,7 @@ VDM_MACRO_PRAGMA_IVDEP \
         }                                                            \
         else                                                         \
         {                                                            \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
             while ( ll != 0 )                                        \
             {                                                        \
                 long digit = (ll % 10).ToLong();                     \
@@ -1243,7 +1243,7 @@ VDM_MACRO_PRAGMA_IVDEP \
                                                                      \
         name ll = *this;                                             \
                                                                      \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
         while ( ll != 0 )                                            \
         {                                                            \
             result.Prepend((wxChar)(wxT('0') + (ll % 10).ToULong())); \
@@ -1318,7 +1318,7 @@ WXDLLIMPEXP_BASE class wxTextInputStream &operator>>(class wxTextInputStream &o,
     wxChar ch = READ_STRING_CHAR(s, idx, length);
 
     // Skip WS
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     while (ch==wxT(' ') || ch==wxT('\t'))
@@ -1326,7 +1326,7 @@ WXDLLIMPEXP_BASE class wxTextInputStream &operator>>(class wxTextInputStream &o,
 
     // Read number
     wxULongLong multiplier(0l, 10l);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     while (ch>=wxT('0') && ch<=wxT('9')) {
@@ -1349,7 +1349,7 @@ WXDLLIMPEXP_BASE class wxTextInputStream &operator>>(class wxTextInputStream &o,
     wxChar ch = READ_STRING_CHAR(s, idx, length);
 
     // Skip WS
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     while (ch==wxT(' ') || ch==wxT('\t'))
@@ -1364,7 +1364,7 @@ WXDLLIMPEXP_BASE class wxTextInputStream &operator>>(class wxTextInputStream &o,
 
     // Read number
     wxLongLong multiplier(0l, 10l);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     while (ch>=wxT('0') && ch<=wxT('9')) {

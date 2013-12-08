@@ -162,7 +162,7 @@ enum wxDirFlags
     wxString filename;
 
     bool cont = dir.GetFirst(&filename, filespec, flags);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     while ( cont )

@@ -51,7 +51,7 @@ public:
 
         wxString expanded;
         const size_t count = book->GetPageCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < count; n++ )
@@ -82,7 +82,7 @@ public:
 
             const size_t pageCount = book->GetPageCount();
             const size_t count = indices.size();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
             for ( size_t n = 0; n < count; n++ )

@@ -358,7 +358,7 @@ void wxRichTextFontPage::CreateControls()
 
     wxString nStr;
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     for (i = 8; i < 40; i++)
@@ -931,7 +931,7 @@ void wxRichTextFontPage::OnFaceTextCtrlUpdated( wxCommandEvent& WXUNUSED(event) 
             // Try to find a partial match
             const wxArrayString& arr = m_faceListBox->GetFaceNames();
             size_t i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
             for (i = 0; i < arr.GetCount(); i++)

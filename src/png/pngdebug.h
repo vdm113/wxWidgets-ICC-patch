@@ -90,7 +90,7 @@
 #        ifdef __STDC__
 #          ifndef png_debug
 #            define png_debug(l,m) \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
        do { \
        int num_tabs=l; \
        fprintf(PNG_DEBUG_FILE,"%s"m PNG_STRING_NEWLINE,(num_tabs==1 ? "\t" : \
@@ -99,7 +99,7 @@ VDM_MACRO_PRAGMA_IVDEP \
 #          endif
 #          ifndef png_debug1
 #            define png_debug1(l,m,p1) \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
        do { \
        int num_tabs=l; \
        fprintf(PNG_DEBUG_FILE,"%s"m PNG_STRING_NEWLINE,(num_tabs==1 ? "\t" : \
@@ -108,7 +108,7 @@ VDM_MACRO_PRAGMA_IVDEP \
 #          endif
 #          ifndef png_debug2
 #            define png_debug2(l,m,p1,p2) \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
        do { \
        int num_tabs=l; \
        fprintf(PNG_DEBUG_FILE,"%s"m PNG_STRING_NEWLINE,(num_tabs==1 ? "\t" : \
@@ -118,7 +118,7 @@ VDM_MACRO_PRAGMA_IVDEP \
 #        else /* __STDC __ */
 #          ifndef png_debug
 #            define png_debug(l,m) \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
        do { \
        int num_tabs=l; \
        char format[256]; \
@@ -130,7 +130,7 @@ VDM_MACRO_PRAGMA_IVDEP \
 #          endif
 #          ifndef png_debug1
 #            define png_debug1(l,m,p1) \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
        do { \
        int num_tabs=l; \
        char format[256]; \
@@ -142,7 +142,7 @@ VDM_MACRO_PRAGMA_IVDEP \
 #          endif
 #          ifndef png_debug2
 #            define png_debug2(l,m,p1,p2) \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
        do { \
        int num_tabs=l; \
        char format[256]; \

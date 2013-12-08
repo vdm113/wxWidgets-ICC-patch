@@ -221,7 +221,7 @@ wxObject *wxToolBarXmlHandler::DoCreateResource()
 
         wxXmlNode *n = children_node;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
         while (n)

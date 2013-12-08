@@ -34,7 +34,7 @@ name::~name()                                                                 \
                                                                               \
 void name::DoCopy(const name& src)                                            \
 {                                                                             \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
   for ( size_t ui = 0; ui < src.size(); ui++ )                                \
     Add(src[ui]);                                                             \
 }                                                                             \
@@ -54,7 +54,7 @@ name::name(const name& src) : wxArrayPtrVoid()                                \
                                                                               \
 void name::DoEmpty()                                                          \
 {                                                                             \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
   for ( size_t ui = 0; ui < size(); ui++ )                                    \
     delete (T*)base_array::operator[](ui);                                    \
 }                                                                             \
@@ -63,7 +63,7 @@ void name::RemoveAt(size_t uiIndex, size_t nRemove)                           \
 {                                                                             \
   wxCHECK_RET( uiIndex < size(), _WX_ERROR_REMOVE2(name) );                   \
                                                                               \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
   for (size_t i = 0; i < nRemove; i++ )                                       \
     delete (T*)base_array::operator[](uiIndex + i);                           \
                                                                               \
@@ -78,7 +78,7 @@ void name::Add(const T& item, size_t nInsert)                                 \
   size_t nOldSize = size();                                                   \
   if ( pItem != NULL )                                                        \
     base_array::insert(end(), nInsert, pItem);                                \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
   for (size_t i = 1; i < nInsert; i++)                                        \
     base_array::operator[](nOldSize + i) = new T(item);                       \
 }                                                                             \
@@ -90,7 +90,7 @@ void name::Insert(const T& item, size_t uiIndex, size_t nInsert)              \
   T* pItem = new T(item);                                                     \
   if ( pItem != NULL )                                                        \
     base_array::insert(begin() + uiIndex, nInsert, pItem);                    \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
   for (size_t i = 1; i < nInsert; i++)                                        \
     base_array::operator[](uiIndex + i) = new T(item);                        \
 }                                                                             \
@@ -100,18 +100,18 @@ int name::Index(const T& item, bool bFromEnd) const                           \
   if ( bFromEnd ) {                                                           \
     if ( size() > 0 ) {                                                       \
       size_t ui = size() - 1;                                                 \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
       do {                                                                    \
         if ( (T*)base_array::operator[](ui) == &item )                        \
           return static_cast<int>(ui);                                     \
         ui--;                                                                 \
       }                                                                       \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
       while ( ui != 0 );                                                      \
     }                                                                         \
   }                                                                           \
   else {                                                                      \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
     for( size_t ui = 0; ui < size(); ui++ ) {                                 \
       if( (T*)base_array::operator[](ui) == &item )                           \
         return static_cast<int>(ui);                                       \

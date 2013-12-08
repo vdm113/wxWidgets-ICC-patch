@@ -292,7 +292,7 @@ void wxRichTextBulletsPage::CreateControls()
         wxRichTextBuffer::GetRenderer()->EnumerateStandardBulletNames(standardBulletNames);
 
     size_t i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     for (i = 0; i < standardBulletNames.GetCount(); i++)

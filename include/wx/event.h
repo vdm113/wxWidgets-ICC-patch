@@ -2631,7 +2631,7 @@ public:
           m_files(NULL)
     {
         m_files = new wxString[m_noFiles];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
         for ( int n = 0; n < m_noFiles; n++ )

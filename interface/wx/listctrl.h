@@ -701,7 +701,7 @@ public:
 
         @code
         long item = -1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
         for ( ;; )
@@ -1024,7 +1024,7 @@ public:
         Example of using it:
         @code
             wxListCtrl *list = new wxListCtrl(...);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
             for ( int i = 0; i < 3; i++ )

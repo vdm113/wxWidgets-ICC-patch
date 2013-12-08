@@ -88,7 +88,7 @@ protected:
             // around (which would result in O(N^2) algorithm)
             m_itemsClientData.Insert(NULL, pos, numItems);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
             for ( unsigned int n = 0; n < numItems; ++n, ++pos )

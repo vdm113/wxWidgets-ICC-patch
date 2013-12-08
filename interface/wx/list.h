@@ -66,7 +66,7 @@
 
     // let's iterate over the list in STL syntax
     MyList::iterator iter;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     for (iter = list.begin(); iter != list.end(); ++iter)
@@ -78,7 +78,7 @@
 
     // the same with the legacy API from the old wxList class
     MyList::compatibility_iterator node = list.GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     while (node)

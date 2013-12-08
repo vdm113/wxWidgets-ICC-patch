@@ -106,7 +106,7 @@ public:
 {\
     wxStopWatch sw; \
     wxEventLoopBase* loop = wxEventLoopBase::GetActive(); \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
     while(eventcounter.GetCount() < count) \
     { \
         if(sw.Time() < 100) \

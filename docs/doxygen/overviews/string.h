@@ -256,7 +256,7 @@ access) like this:
 @code
 wxString s = "hello";
 wxString::const_iterator i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
 for (i = s.begin(); i != s.end(); ++i)
@@ -320,7 +320,7 @@ wxString DeleteAllVowels(const wxString& original)
     wxString vowels( "aeuioAEIOU" );
     wxString result;
     wxString::const_iterator i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     for ( i = original.begin(); i != original.end(); ++i )

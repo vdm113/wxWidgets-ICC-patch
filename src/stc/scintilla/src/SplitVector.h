@@ -50,7 +50,7 @@ protected:
 	/// reallocating if more space needed.
 	void RoomFor(int insertionLength) {
 		if (gapLength <= insertionLength) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
 			while (growSize < size / 6)
@@ -184,7 +184,7 @@ public:
 			}
 			RoomFor(insertLength);
 			GapTo(position);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
 			for (int i = 0; i < insertLength; i++)

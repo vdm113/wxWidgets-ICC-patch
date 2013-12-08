@@ -937,7 +937,7 @@ void wxRichTextCtrl::OnMoveMouse(wxMouseEvent& event)
             if (commonAncestor && commonAncestor->HandlesChildSelections())
             {
                 wxRichTextObject* p = hitObj2;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
                 while (p)
@@ -2455,7 +2455,7 @@ long wxRichTextCtrl::FindNextWordPosition(int direction) const
         long i = m_caretPosition+1+direction; // +1 for conversion to character pos
 
         // First skip current text to space
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
         while (i < endPos && i > -1)
@@ -2474,7 +2474,7 @@ long wxRichTextCtrl::FindNextWordPosition(int direction) const
                 break;
             }
         }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
         while (i < endPos && i > -1)
@@ -2504,7 +2504,7 @@ long wxRichTextCtrl::FindNextWordPosition(int direction) const
         long i = m_caretPosition;
 
         // First skip white space
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
         while (i < endPos && i > -1)
@@ -2521,7 +2521,7 @@ long wxRichTextCtrl::FindNextWordPosition(int direction) const
                 break;
         }
         // Next skip current text to space
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
         while (i < endPos && i > -1)
@@ -2872,7 +2872,7 @@ bool wxRichTextCtrl::SelectWord(long position)
     long positionStart = position;
     long positionEnd = position;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     for (positionStart = position; positionStart >= para->GetRange().GetStart(); positionStart --)
@@ -2887,7 +2887,7 @@ bool wxRichTextCtrl::SelectWord(long position)
     if (positionStart < para->GetRange().GetStart())
         positionStart = para->GetRange().GetStart();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     for (positionEnd = position; positionEnd < para->GetRange().GetEnd(); positionEnd ++)
@@ -3161,12 +3161,12 @@ wxRichTextTable* wxRichTextCtrl::WriteTable(int rows, int cols, const wxRichText
     }
 
     int i, j;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     for (j = 0; j < rows; j++)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
         for (i = 0; i < cols; i++)
@@ -4500,7 +4500,7 @@ wxRichTextRange wxRichTextCtrl::FindRangeForList(long pos, bool& isNumberedList)
         if (initialNode)
         {
             wxRichTextObjectList::compatibility_iterator startNode = initialNode->GetPrevious();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
             while (startNode)
@@ -4519,7 +4519,7 @@ wxRichTextRange wxRichTextCtrl::FindRangeForList(long pos, bool& isNumberedList)
 
             // Search forward
             wxRichTextObjectList::compatibility_iterator endNode = initialNode->GetNext();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
             while (endNode)
@@ -4639,7 +4639,7 @@ bool wxRichTextCtrl::RefreshForSelectionChange(const wxRichTextSelection& oldSel
             wxRichTextObjectList floatingObjects;
             GetFocusObject()->GetFloatingObjects(floatingObjects);
             wxRichTextObjectList::compatibility_iterator node = floatingObjects.GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
             while (node)
@@ -5088,7 +5088,7 @@ int wxRichTextContextMenuPropertiesInfo::AddMenuItems(wxMenu* menu, int startCmd
 
             // Delete the others if necessary
             int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
             for (i = startCmd+1; i < startCmd+3; i++)
@@ -5105,7 +5105,7 @@ int wxRichTextContextMenuPropertiesInfo::AddMenuItems(wxMenu* menu, int startCmd
         int i;
         int pos = -1;
         // Find the position of the first properties item
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
         for (i = 0; i < (int) menu->GetMenuItemCount(); i++)
@@ -5121,7 +5121,7 @@ int wxRichTextContextMenuPropertiesInfo::AddMenuItems(wxMenu* menu, int startCmd
         if (pos != -1)
         {
             int insertBefore = pos+1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
             for (i = startCmd; i < startCmd+GetCount(); i++)
@@ -5141,7 +5141,7 @@ int wxRichTextContextMenuPropertiesInfo::AddMenuItems(wxMenu* menu, int startCmd
             }
 
             // Delete any old items still left on the menu
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
             for (i = startCmd + GetCount(); i < startCmd+3; i++)
@@ -5156,7 +5156,7 @@ int wxRichTextContextMenuPropertiesInfo::AddMenuItems(wxMenu* menu, int startCmd
         {
             // No existing property identifiers were found, so append to the end of the menu.
             menu->AppendSeparator();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
             for (i = startCmd; i < startCmd+GetCount(); i++)

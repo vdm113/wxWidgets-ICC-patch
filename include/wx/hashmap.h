@@ -101,7 +101,7 @@ protected:
     static _wxHashTable_NodeBase* GetFirstNode( size_t buckets,
                                                 _wxHashTable_NodeBase** table )
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
         for( size_t i = 0; i < buckets; ++i )
@@ -203,7 +203,7 @@ public: \
         Node* GetNextNode() \
         { \
             size_type bucket = GetBucketForNode(m_ht,m_node); \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
             for( size_type i = bucket + 1; i < m_ht->m_tableBuckets; ++i ) \
             { \
                 if( m_ht->m_table[i] ) \
@@ -341,7 +341,7 @@ protected: \
         size_t bucket = m_hasher( key ) % m_tableBuckets; \
         Node* node = static_cast<Node*>(m_table[bucket]); \
  \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
         while( node ) \
         { \
             if( m_equals( m_getKey( node->m_value ), key ) ) \
@@ -378,7 +378,7 @@ VDM_MACRO_PRAGMA_IVDEP \
         size_t bucket = m_hasher( key ) % m_tableBuckets; \
         _wxHashTable_NodeBase** node = &m_table[bucket]; \
  \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
         while( *node ) \
         { \
             if (m_equals(m_getKey(static_cast<Node*>(*node)->m_value), key)) \
@@ -396,7 +396,7 @@ VDM_MACRO_PRAGMA_IVDEP \
         size_t bucket = m_hasher( key ) % m_tableBuckets; \
         Node* node = static_cast<Node*>(m_table[bucket]); \
  \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
         while( node ) \
         { \
             if( m_equals( m_getKey( node->m_value ), key ) ) \
@@ -749,7 +749,7 @@ public: \
 #define WX_CLEAR_HASH_MAP(type, hashmap)                                     \
     {                                                                        \
         type::iterator it, en;                                               \
-VDM_MACRO_PRAGMA_IVDEP \
+VDM_MACRO_PRAGMA_IVDEP /* VDM auto patch */ \
         for( it = (hashmap).begin(), en = (hashmap).end(); it != en; ++it )  \
             delete it->second;                                               \
         (hashmap).clear();                                                   \

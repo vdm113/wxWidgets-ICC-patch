@@ -129,7 +129,7 @@ public:
 
 	void DefineWordListSets(const char * const wordListDescriptions[]) {
 		if (wordListDescriptions) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
 			for (size_t wl = 0; wordListDescriptions[wl]; wl++) {

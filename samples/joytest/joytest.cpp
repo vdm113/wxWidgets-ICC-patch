@@ -164,7 +164,7 @@ void MyCanvas::OnJoystickEvent(wxJoystickEvent& event)
         buf.Printf(wxT("Joystick (%ld, %ld)  "), xpos, ypos);
 
 /*
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) /* VDM auto patch */
 #   pragma ivdep
 #endif
     for(int i = 0; i < nButtons; ++i)
