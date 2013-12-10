@@ -1933,7 +1933,7 @@ public:
     /**
         A helper function setting up scrollbars, for example after a resize.
     */
-    virtual void SetupScrollbars(bool atTop = false);
+    virtual void SetupScrollbars(bool atTop = false, bool fromOnPaint = false);
 
     /**
         Helper function implementing keyboard navigation.
@@ -2323,6 +2323,11 @@ protected:
 
     /// An overall scale factor
     double                  m_scale;
+
+    /// Variables for scrollbar hysteresis detection
+    wxSize                  m_lastWindowSize;
+    int                     m_setupScrollbarsCount;
+    int                     m_setupScrollbarsCountInOnSize;
 };
 
 #if wxUSE_DRAG_AND_DROP
