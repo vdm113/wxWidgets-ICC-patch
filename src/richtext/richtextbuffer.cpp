@@ -10757,7 +10757,6 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
                         if (spanningWidth > 0)
                         {
                             // Now share the spanning width between columns within that span
-                            // TODO: take into account min widths of columns within the span
                             int spanningWidthLeft = spanningWidth;
                             int stretchColCount = 0;
 #if defined(__INTEL_COMPILER) // VDM auto patch
@@ -10765,8 +10764,12 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 #endif
                             for (k = i; k < (i+spans); k++)
                             {
+                                int minColWidth = wxMax(minColWidths[k], minColWidthsNoWrap[k]);
+
                                 if (colWidths[k] > 0) // absolute or proportional width has been specified
                                     spanningWidthLeft -= colWidths[k];
+                                else if (minColWidth > 0)
+                                    spanningWidthLeft -= minColWidth;
                                 else
                                     stretchColCount ++;
                             }
@@ -10786,7 +10789,8 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 #endif
                                 for (k = i; k < (i+spans); k++)
                                 {
-                                    if (colWidths[k] <= 0) // absolute or proportional width has not been specified
+                                    int minColWidth = wxMax(minColWidths[k], minColWidthsNoWrap[k]);
+                                    if (colWidths[k] <= 0 && minColWidth <= 0) // absolute or proportional width has not been specified
                                     {
                                         int newWidth = colShare;
                                         if (k == (i+spans-1))
