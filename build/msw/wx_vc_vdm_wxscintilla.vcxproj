@@ -1,17 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DLL Debug|Win32">
+      <Configuration>DLL Debug</Configuration>
+      <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="DLL Debug|x64">
       <Configuration>DLL Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="DLL Release|Win32">
+      <Configuration>DLL Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="DLL Release|x64">
       <Configuration>DLL Release</Configuration>
       <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
@@ -23,56 +39,68 @@
     <ProjectGuid>{74827EBD-93DC-5110-BA95-3F2AB029B6B0}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
-    <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>false</UseIntelIPP>
-    <UseIntelTBB>false</UseIntelTBB>
-    <UseIntelMKL>No</UseIntelMKL>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
-    <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>false</UseIntelIPP>
-    <UseIntelTBB>false</UseIntelTBB>
-    <UseIntelMKL>No</UseIntelMKL>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
-    <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>false</UseIntelIPP>
-    <UseIntelTBB>false</UseIntelTBB>
-    <UseIntelMKL>No</UseIntelMKL>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
-    <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>false</UseIntelIPP>
-    <UseIntelTBB>false</UseIntelTBB>
-    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
@@ -81,69 +109,46 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectName)d_vc_vdm</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(ProjectName)d_vc_vdm</TargetName>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\lib\vc_lib\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\lib\vc_x64_lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\wxscintilla\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_x64_mswud\wxscintilla\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\lib\vc_lib\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\lib\vc_x64_lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\wxscintilla\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_x64_mswu\wxscintilla\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">..\..\lib\vc_dll\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">..\..\lib\vc_x64_dll\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\wxscintilla\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_x64_mswuddll\wxscintilla\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">..\..\lib\vc_dll\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">..\..\lib\vc_x64_dll\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\wxscintilla\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_x64_mswudll\wxscintilla\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)d</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectName)d</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(ProjectName)d</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(ProjectName)d</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">
-    <OutDir>..\..\lib\vc_$(Platform)_dll\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
-    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
-    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">
-    <OutDir>..\..\lib\vc_$(Platform)_dll\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
-    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
-    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\lib\vc_$(Platform)_lib\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
-    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
-    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\..\lib\vc_$(Platform)_lib\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
-    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
-    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
       <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch</AdditionalOptions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;WIN32;WIN64;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;WIN64;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(Platform)\$(Configuration)\vc_mswud\wxscintilla\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxscintillad_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxscintillad.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <StringPooling>true</StringPooling>
-      <FloatingPointModel>Fast2</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <Cpp0xSupport>true</Cpp0xSupport>
-      <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
-      <OpenMP>None</OpenMP>
-      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -151,13 +156,77 @@
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxscintillad_vc_vdm.lib</OutputFile>
+      <OutputFile>$(OutDir)wxscintillad.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
-      <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxscintilla_vc_vdm.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxscintilla.bsc</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <ProgramDataBaseFileName>$(OutDir)wxscintillad.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(OutDir)wxscintillad.lib</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <OutputFile>$(OutDir)wx_vc9_wxscintilla.bsc</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <ProgramDataBaseFileName>$(OutDir)wxscintilla.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(OutDir)wxscintilla.lib</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <OutputFile>$(OutDir)wx_vc9_wxscintilla.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -167,35 +236,17 @@
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch</AdditionalOptions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;WIN32;WIN64;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;WIN64;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(Platform)\$(Configuration)\vc_mswu\wxscintilla\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxscintilla_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxscintilla.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <Cpp0xSupport>true</Cpp0xSupport>
-      <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
-      <OpenMP>None</OpenMP>
-      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -203,13 +254,45 @@
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxscintilla_vc_vdm.lib</OutputFile>
+      <OutputFile>$(OutDir)wxscintilla.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
-      <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxscintilla_vc_vdm.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxscintilla.bsc</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <ProgramDataBaseFileName>$(OutDir)wxscintillad.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(OutDir)wxscintillad.lib</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <OutputFile>$(OutDir)wx_vc9_wxscintilla.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -219,36 +302,19 @@
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch</AdditionalOptions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;WIN32;WIN64;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;WIN64;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(Platform)\$(Configuration)\vc_mswuddll\wxscintilla\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxscintillad_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxscintillad.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <StringPooling>true</StringPooling>
-      <FloatingPointModel>Fast2</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <Cpp0xSupport>true</Cpp0xSupport>
-      <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
-      <OpenMP>None</OpenMP>
-      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -256,13 +322,43 @@
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswud;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxscintillad_vc_vdm.lib</OutputFile>
+      <OutputFile>$(OutDir)wxscintillad.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
-      <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxscintilla_vc_vdm.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxscintilla.bsc</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <ProgramDataBaseFileName>$(OutDir)wxscintilla.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(OutDir)wxscintilla.lib</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <OutputFile>$(OutDir)wx_vc9_wxscintilla.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -272,35 +368,17 @@
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch</AdditionalOptions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;WIN32;WIN64;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;WIN64;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(Platform)\$(Configuration)\vc_mswudll\wxscintilla\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxscintilla_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxscintilla.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <Cpp0xSupport>true</Cpp0xSupport>
-      <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
-      <OpenMP>None</OpenMP>
-      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;WXUSINGDLL;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -308,23 +386,18 @@
       <AdditionalIncludeDirectories>..\..\src\stc\scintilla\include;..\..\src\stc\scintilla\lexlib;..\..\src\stc\scintilla\src;$(OutDir)mswu;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxscintilla_vc_vdm.lib</OutputFile>
+      <OutputFile>$(OutDir)wxscintilla.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
-      <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxscintilla_vc_vdm.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxscintilla.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\stc\scintilla\lexlib\Accessor.cxx" />
-    <ClCompile Include="..\..\src\stc\scintilla\lexlib\CharacterCategory.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\src\AutoComplete.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\src\CallTip.cxx" />
-    <ClCompile Include="..\..\src\stc\scintilla\src\CaseConvert.cxx" />
-    <ClCompile Include="..\..\src\stc\scintilla\src\CaseFolder.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\src\Catalogue.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\src\CellBuffer.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\src\CharClassify.cxx" />
@@ -361,7 +434,6 @@
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexCrontab.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexCsound.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexD.cxx" />
-    <ClCompile Include="..\..\src\stc\scintilla\lexers\LexDMAP.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexECL.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexEScript.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexEiffel.cxx" />
@@ -375,8 +447,6 @@
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexHaskell.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexInno.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexKix.cxx" />
-    <ClCompile Include="..\..\src\stc\scintilla\lexers\LexKVIrc.cxx" />
-    <ClCompile Include="..\..\src\stc\scintilla\lexers\LexLatex.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexLisp.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexLout.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexLua.cxx" />
@@ -396,7 +466,6 @@
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexOthers.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexPB.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexPLM.cxx" />
-    <ClCompile Include="..\..\src\stc\scintilla\lexers\LexPO.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexPOV.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexPS.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexPascal.cxx" />
@@ -408,10 +477,8 @@
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexR.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexRebol.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexRuby.cxx" />
-    <ClCompile Include="..\..\src\stc\scintilla\lexers\LexRust.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexSML.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexSQL.cxx" />
-    <ClCompile Include="..\..\src\stc\scintilla\lexers\LexSTTXT.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexScriptol.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexSmalltalk.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexSorcus.cxx" />
@@ -450,35 +517,63 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\include\wx\msw\genrcdefs.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">Creating $(OutDir)mswud\wx\msw\rcdefs.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">Creating $(OutDir)mswud\wx\msw\rcdefs.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">IF NOT EXIST "$(OutDir)mswud\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "$(OutDir)mswud\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">cl /EP /nologo "%(FullPath)" &gt; "$(OutDir)mswud\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">cl /EP /nologo "%(FullPath)" &gt; "$(OutDir)mswud\wx\msw\rcdefs.h"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(OutDir)mswud\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(OutDir)mswud\wx\msw\rcdefs.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(OutDir)mswud\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(OutDir)mswud\wx\msw;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">Creating $(OutDir)mswu\wx\msw\rcdefs.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">Creating $(OutDir)mswu\wx\msw\rcdefs.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">cl /EP /nologo "%(FullPath)" &gt; "$(OutDir)mswu\wx\msw\rcdefs.h"</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">cl /EP /nologo "%(FullPath)" &gt; "$(OutDir)mswu\wx\msw\rcdefs.h"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(OutDir)mswu\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(OutDir)mswu\wx\msw\rcdefs.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(OutDir)mswu\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(OutDir)mswu\wx\msw;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Creating $(OutDir)mswud\wx\msw\rcdefs.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Creating $(OutDir)mswud\wx\msw\rcdefs.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF NOT EXIST "$(OutDir)mswud\wx\msw\rcdefs.h" cl /EP /nologo "%(FullPath)" &gt; "$(OutDir)mswud\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /EP /nologo "%(FullPath)" &gt; "$(OutDir)mswud\wx\msw\rcdefs.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cl /EP /nologo "%(FullPath)" &gt; "$(OutDir)mswud\wx\msw\rcdefs.h"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)mswud\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)mswud\wx\msw\rcdefs.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)mswud\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)mswud\wx\msw;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Creating $(OutDir)mswu\wx\msw\rcdefs.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Creating $(OutDir)mswu\wx\msw\rcdefs.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /EP /nologo "%(FullPath)" &gt; "$(OutDir)mswu\wx\msw\rcdefs.h"</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cl /EP /nologo "%(FullPath)" &gt; "$(OutDir)mswu\wx\msw\rcdefs.h"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)mswu\wx\msw\rcdefs.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)mswu\wx\msw\rcdefs.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)mswu\wx\msw;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)mswu\wx\msw;%(AdditionalInputs)</AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="..\..\include\wx\msw\setup.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">Creating $(OutDir)mswud\wx\setup.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">Creating $(OutDir)mswud\wx\setup.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">IF NOT EXIST "$(OutDir)mswud\wx\setup.h" copy "%(FullPath)" "$(OutDir)mswud\wx\setup.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">copy "%(FullPath)" $(OutDir)mswud\wx\setup.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">copy "%(FullPath)" $(OutDir)mswud\wx\setup.h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(OutDir)mswud\wx\setup.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(OutDir)mswud\wx\setup.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">Creating $(OutDir)mswu\wx\setup.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">Creating $(OutDir)mswu\wx\setup.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">IF NOT EXIST "$(OutDir)mswu\wx\setup.h" copy "%(FullPath)" "$(OutDir)mswu\wx\setup.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">copy "%(FullPath)" $(OutDir)mswu\wx\setup.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">copy "%(FullPath)" $(OutDir)mswu\wx\setup.h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(OutDir)mswu\wx\setup.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(OutDir)mswu\wx\setup.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Creating $(OutDir)mswud\wx\setup.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Creating $(OutDir)mswud\wx\setup.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF NOT EXIST "$(OutDir)mswud\wx\setup.h" copy "%(FullPath)" "$(OutDir)mswud\wx\setup.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy "%(FullPath)" $(OutDir)mswud\wx\setup.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">copy "%(FullPath)" $(OutDir)mswud\wx\setup.h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)mswud\wx\setup.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)mswud\wx\setup.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Creating $(OutDir)mswu\wx\setup.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Creating $(OutDir)mswu\wx\setup.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF NOT EXIST "$(OutDir)mswu\wx\setup.h" copy "%(FullPath)" "$(OutDir)mswu\wx\setup.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy "%(FullPath)" $(OutDir)mswu\wx\setup.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">copy "%(FullPath)" $(OutDir)mswu\wx\setup.h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)mswu\wx\setup.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)mswu\wx\setup.h;%(Outputs)</Outputs>
     </CustomBuild>
   </ItemGroup>
