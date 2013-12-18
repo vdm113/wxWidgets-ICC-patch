@@ -221,6 +221,9 @@ void TextFileTestCase::ReadCRCRLF()
     CPPUNIT_ASSERT( f.Open(wxString::FromAscii(GetTestFileName())) );
 
     wxString all;
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxString str = f.GetFirstLine(); !f.Eof(); str = f.GetNextLine() )
         all += str;
 
