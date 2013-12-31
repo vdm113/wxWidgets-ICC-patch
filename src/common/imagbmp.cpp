@@ -613,9 +613,6 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
              r(ncolors),
              g(ncolors),
              b(ncolors);
-#if defined(__INTEL_COMPILER) // VDM auto patch
-#   pragma ivdep
-#endif
         for (int j = 0; j < ncolors; j++)
         {
             if (hasPalette)
