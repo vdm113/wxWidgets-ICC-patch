@@ -41,7 +41,6 @@
 #include "wx/quantize.h"
 #include "wx/scopeguard.h"
 #include "wx/scopedarray.h"
-#include "wx/scopedptr.h"
 #include "wx/anidecod.h"
 
 // For memcpy
@@ -626,9 +625,6 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
              r(ncolors),
              g(ncolors),
              b(ncolors);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (int j = 0; j < ncolors; j++)
         {
             if (hasPalette)
