@@ -148,6 +148,7 @@ wxPen::wxPen(
     RealizeResource();
 } // end of wxPen::wxPen
 
+#if WXWIN_COMPATIBILITY_3_0
 wxPen::wxPen(const wxColour& colour, int width, int style)
 {
     m_refData = new wxPenRefData(colour, width, (wxPenStyle)style);
