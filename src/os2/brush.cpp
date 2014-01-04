@@ -123,6 +123,7 @@ wxBrush::wxBrush(
     RealizeResource();
 } // end of wxBrush::wxBrush
 
+#if WXWIN_COMPATIBILITY_3_0
 wxBrush::wxBrush(const wxColour& col, int style)
 {
     m_refData = new wxBrushRefData(col, (wxBrushStyle)style);
