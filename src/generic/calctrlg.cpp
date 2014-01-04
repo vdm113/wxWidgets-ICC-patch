@@ -937,8 +937,8 @@ void wxGenericCalendarCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
     if ( HasFlag( wxCAL_SHOW_WEEK_NUMBERS ) && IsExposed( 0, y, m_calendarWeekWidth, m_heightRow * 6 ))
     {
         dc.SetBackgroundMode(wxTRANSPARENT);
-        dc.SetBrush(wxBrush(m_colHeaderBg, wxSOLID));
-        dc.SetPen(wxPen(m_colHeaderBg, 1, wxSOLID));
+        dc.SetBrush(wxBrush(m_colHeaderBg, wxBRUSHSTYLE_SOLID));
+        dc.SetPen(wxPen(m_colHeaderBg, 1, wxPENSTYLE_SOLID));
         dc.DrawRectangle( 0, y, m_calendarWeekWidth, m_heightRow * 6 );
         wxDateTime date = GetStartDate();
 #if defined(__INTEL_COMPILER) // VDM auto patch

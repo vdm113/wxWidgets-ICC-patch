@@ -468,8 +468,7 @@ static void SwitchSelState(wxDC& dc, wxHtmlRenderingInfo& info,
         dc.SetBackgroundMode(wxSOLID);
         dc.SetTextForeground(info.GetStyle().GetSelectedTextColour(fg));
         dc.SetTextBackground(info.GetStyle().GetSelectedTextBgColour(bg));
-        dc.SetBackground(wxBrush(info.GetStyle().GetSelectedTextBgColour(bg),
-                                 wxBRUSHSTYLE_SOLID));
+        dc.SetBackground(info.GetStyle().GetSelectedTextBgColour(bg));
     }
     else
     {
@@ -478,7 +477,7 @@ static void SwitchSelState(wxDC& dc, wxHtmlRenderingInfo& info,
         dc.SetTextForeground(fg);
         dc.SetTextBackground(bg);
         if ( mode != wxTRANSPARENT )
-            dc.SetBackground(wxBrush(bg, mode));
+            dc.SetBackground(bg);
     }
 }
 
