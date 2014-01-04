@@ -32,7 +32,7 @@ public:
 
     wxFont(const wxFontInfo& info);
 
-#if FUTURE_WXWIN_COMPATIBILITY_3_0
+#if WXWIN_COMPATIBILITY_3_0
     wxFont(int size,
            int family,
            int style,
@@ -68,7 +68,7 @@ public:
                         weight, underlined, face, encoding);
     }
 
-#if FUTURE_WXWIN_COMPATIBILITY_3_0
+#if WXWIN_COMPATIBILITY_3_0
     wxFont(const wxSize& pixelSize,
            int family,
            int style,

@@ -28,8 +28,8 @@ class WXDLLIMPEXP_CORE wxPen : public wxPenBase
 public:
     wxPen();
     wxPen(const wxColour& col, int width = 1, wxPenStyle style = wxPENSTYLE_SOLID);
-#if FUTURE_WXWIN_COMPATIBILITY_3_0
-    wxDEPRECATED_FUTURE( wxPen(const wxColour& col, int width, int style) );
+#if WXWIN_COMPATIBILITY_3_0
+    wxDEPRECATED( wxPen(const wxColour& col, int width, int style) );
 #endif
 
     wxPen(const wxBitmap& stipple, int width);
@@ -59,8 +59,8 @@ public:
 
     wxBitmap *GetStipple() const ;
 
-#if FUTURE_WXWIN_COMPATIBILITY_3_0
-    wxDEPRECATED_FUTURE( void SetStyle(int style) )
+#if WXWIN_COMPATIBILITY_3_0
+    wxDEPRECATED( void SetStyle(int style) )
         { SetStyle((wxPenStyle)style); }
 #endif
 
