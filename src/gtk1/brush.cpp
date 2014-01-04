@@ -69,6 +69,7 @@ wxBrush::wxBrush( const wxColour &colour, wxBrushStyle style )
     M_BRUSHDATA->m_colour = colour;
 }
 
+#if WXWIN_COMPATIBILITY_3_0
 wxBrush::wxBrush(const wxColour& col, int style)
 {
     m_refData = new wxBrushRefData;
