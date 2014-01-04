@@ -120,9 +120,10 @@ public:
                            int width = 1,
                            wxPenStyle style = wxPENSTYLE_SOLID);
 
-    wxDEPRECATED_MSG("use wxPENSTYLE_XXX constants")
+#if WXWIN_COMPATIBILITY_3_0
     wxPen *FindOrCreatePen(const wxColour& colour, int width, int style)
         { return FindOrCreatePen(colour, width, (wxPenStyle)style); }
+#endif
 };
 
 extern WXDLLIMPEXP_DATA_CORE(wxPenList*)   wxThePenList;
@@ -133,6 +134,7 @@ extern WXDLLIMPEXP_DATA_CORE(wxPenList*)   wxThePenList;
 //
 // to compile without warnings which it would otherwise provoke from some
 // compilers as it compares elements of different enums
+#if WXWIN_COMPATIBILITY_3_0
 
 // Unfortunately some compilers have ambiguity issues when enum comparisons are
 // overloaded so we have to disable the overloads in this case, see
@@ -152,5 +154,7 @@ inline bool operator!=(wxPenStyle s, wxDeprecatedGUIConstants t)
 }
 
 #endif // wxCOMPILER_NO_OVERLOAD_ON_ENUM
+
+#endif // WXWIN_COMPATIBILITY_3_0
 
 #endif // _WX_PEN_H_BASE_

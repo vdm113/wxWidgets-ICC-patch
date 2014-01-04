@@ -91,9 +91,10 @@ public:
     wxBrush *FindOrCreateBrush(const wxColour& colour,
                                wxBrushStyle style = wxBRUSHSTYLE_SOLID);
 
-    wxDEPRECATED_MSG("use wxBRUSHSTYLE_XXX constants")
+#if WXWIN_COMPATIBILITY_3_0
     wxBrush *FindOrCreateBrush(const wxColour& colour, int style)
         { return FindOrCreateBrush(colour, (wxBrushStyle)style); }
+#endif
 };
 
 extern WXDLLIMPEXP_DATA_CORE(wxBrushList*)   wxTheBrushList;
@@ -104,6 +105,7 @@ extern WXDLLIMPEXP_DATA_CORE(wxBrushList*)   wxTheBrushList;
 //
 // to compile without warnings which it would otherwise provoke from some
 // compilers as it compares elements of different enums
+#if WXWIN_COMPATIBILITY_3_0
 
 // Unfortunately some compilers have ambiguity issues when enum comparisons are
 // overloaded so we have to disable the overloads in this case, see
@@ -123,5 +125,7 @@ inline bool operator!=(wxBrushStyle s, wxDeprecatedGUIConstants t)
 }
 
 #endif // wxCOMPILER_NO_OVERLOAD_ON_ENUM
+
+#endif // WXWIN_COMPATIBILITY_3_0
 
 #endif // _WX_BRUSH_H_BASE_
