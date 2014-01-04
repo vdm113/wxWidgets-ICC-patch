@@ -32,6 +32,9 @@ class WXDLLIMPEXP_CORE wxPen: public wxGDIObject
 public:
     wxPen();
     wxPen(const wxColour& col, int width = 1, wxPenStyle style = wxPENSTYLE_SOLID);
+#if WXWIN_COMPATIBILITY_3_0
+    wxDEPRECATED( wxPen(const wxColour& col, int width, int style) );
+#endif
     wxPen(const wxBitmap& stipple, int width);
     virtual ~wxPen();
 
@@ -57,12 +60,10 @@ public:
     int GetDashes(wxDash **ptr) const;
     wxBitmap *GetStipple() const;
 
-
-    wxDEPRECATED_MSG("use wxPENSTYLE_XXX constants")
-    wxPen(const wxColour& col, int width, int style);
-
-    wxDEPRECATED_MSG("use wxPENSTYLE_XXX constants")
-    void SetStyle(int style) { SetStyle((wxPenStyle)style); }
+#if WXWIN_COMPATIBILITY_3_0
+    wxDEPRECATED( void SetStyle(int style) )
+        { SetStyle((wxPenStyle)style); }
+#endif
 
     // Cocoa-specific
     WX_NSColor GetNSColor();
