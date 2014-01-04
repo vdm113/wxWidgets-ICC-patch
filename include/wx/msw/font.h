@@ -32,6 +32,19 @@ public:
 
     wxFont(const wxFontInfo& info);
 
+#if WXWIN_COMPATIBILITY_3_0
+    wxFont(int size,
+           int family,
+           int style,
+           int weight,
+           bool underlined = false,
+           const wxString& face = wxEmptyString,
+           wxFontEncoding encoding = wxFONTENCODING_DEFAULT)
+    {
+        (void)Create(size, (wxFontFamily)family, (wxFontStyle)style, (wxFontWeight)weight, underlined, face, encoding);
+    }
+#endif
+
     wxFont(int size,
            wxFontFamily family,
            wxFontStyle style,
@@ -54,6 +67,20 @@ public:
         return DoCreate(size, wxDefaultSize, false, family, style,
                         weight, underlined, face, encoding);
     }
+
+#if WXWIN_COMPATIBILITY_3_0
+    wxFont(const wxSize& pixelSize,
+           int family,
+           int style,
+           int weight,
+           bool underlined = false,
+           const wxString& face = wxEmptyString,
+           wxFontEncoding encoding = wxFONTENCODING_DEFAULT)
+    {
+        (void)Create(pixelSize, (wxFontFamily)family, (wxFontStyle)style, (wxFontWeight)weight,
+                     underlined, face, encoding);
+    }
+#endif
 
     wxFont(const wxSize& pixelSize,
            wxFontFamily family,
