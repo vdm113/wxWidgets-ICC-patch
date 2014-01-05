@@ -1464,21 +1464,12 @@ bool wxGridStringTable::InsertCols( size_t pos, size_t numCols )
     {
         m_colLabels.Insert( wxEmptyString, pos, numCols );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t i = pos; i < pos + numCols; i++ )
             m_colLabels[i] = wxGridTableBase::GetColLabelValue( i );
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t row = 0; row < m_data.size(); row++ )
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t col = pos; col < pos + numCols; col++ )
         {
             m_data[row].Insert( wxEmptyString, col );
@@ -1502,9 +1493,6 @@ bool wxGridStringTable::InsertCols( size_t pos, size_t numCols )
 
 bool wxGridStringTable::AppendCols( size_t numCols )
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t row = 0; row < m_data.size(); row++ )
     {
         m_data[row].Add( wxEmptyString, numCols );
