@@ -43,81 +43,41 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
-    <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>false</UseIntelIPP>
-    <UseIntelTBB>false</UseIntelTBB>
-    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
-    <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>false</UseIntelIPP>
-    <UseIntelTBB>false</UseIntelTBB>
-    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
-    <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>false</UseIntelIPP>
-    <UseIntelTBB>false</UseIntelTBB>
-    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
-    <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>false</UseIntelIPP>
-    <UseIntelTBB>false</UseIntelTBB>
-    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
-    <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>false</UseIntelIPP>
-    <UseIntelTBB>false</UseIntelTBB>
-    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
-    <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>false</UseIntelIPP>
-    <UseIntelTBB>false</UseIntelTBB>
-    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
-    <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>false</UseIntelIPP>
-    <UseIntelTBB>false</UseIntelTBB>
-    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
-    <InterproceduralOptimization>true</InterproceduralOptimization>
-    <UseIntelIPP>false</UseIntelIPP>
-    <UseIntelTBB>false</UseIntelTBB>
-    <UseIntelMKL>No</UseIntelMKL>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -149,70 +109,38 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\lib\vc_$(Platform)_lib\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\lib\vc_$(Platform)_lib\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\lib\vc_$(Platform)_lib\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\lib\vc_$(Platform)_lib\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">..\..\lib\vc_$(Platform)_dll\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">..\..\lib\vc_$(Platform)_dll\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\lib\vc_lib\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\lib\vc_x64_lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">vc_mswud\aui\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vc_x64_mswud\aui\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\lib\vc_lib\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\lib\vc_x64_lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">vc_mswu\aui\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vc_x64_mswu\aui\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">..\..\lib\vc_dll\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">..\..\lib\vc_x64_dll\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">vc_mswuddll\aui\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">vc_x64_mswuddll\aui\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">..\..\lib\vc_$(Platform)_dll\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">..\..\lib\vc_$(Platform)_dll\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">..\..\lib\vc_dll\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">..\..\lib\vc_x64_dll\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">vc_mswudll\aui\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">vc_x64_mswudll\aui\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">true</GenerateManifest>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">wxmsw31ud_$(ProjectName)_vc_vdm</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">wxmsw31ud_$(ProjectName)_vc_vdm</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">wxmsw31u_$(ProjectName)_vc_vdm</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">wxmsw31u_$(ProjectName)_vc_vdm</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">wxmsw31ud_$(ProjectName)_vc_vdm</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">wxmsw31ud_$(ProjectName)_vc_vdm</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">wxmsw31u_$(ProjectName)_vc_vdm</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">wxmsw31u_$(ProjectName)_vc_vdm</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">
-    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
-    <LibraryPath>$(LIB32);$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">
-    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
-    <LibraryPath>$(LIB32);$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
-    <LibraryPath>$(LIB32);$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
-    <LibraryPath>$(LIB32);$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">
-    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
-    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">
-    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
-    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
-    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
-    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">wxmsw31ud_aui</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">wxmsw31ud_aui</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">wxmsw31u_aui</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">wxmsw31u_aui</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">wxmsw310ud_$(ProjectName)_vc_custom</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">wxmsw310ud_$(ProjectName)_vc_x64_custom</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">wxmsw310u_$(ProjectName)_vc_custom</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">wxmsw310u_$(ProjectName)_vc_x64_custom</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
@@ -220,42 +148,22 @@
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch /Qoption,cpp,--gen_move_operations</AdditionalOptions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;WIN32;_LIB;__WXMSW__;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\wxprec_auilibvc_vdm.pch</PrecompiledHeaderOutputFile>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_aui_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>vc_mswud\wxprec_auilib.pch</PrecompiledHeaderOutputFile>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_aui.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <StringPooling>true</StringPooling>
-      <FloatingPointModel>Fast2</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
-      <Parallelization>false</Parallelization>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <UnmaskFloatingPointExceptions>No</UnmaskFloatingPointExceptions>
-      <GenerateAlternateCodePaths>None</GenerateAlternateCodePaths>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <CheckPointers>None</CheckPointers>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
-      <CheckDanglingPointers>None</CheckDanglingPointers>
-      <C99Support>true</C99Support>
-      <Cpp0xSupport>true</Cpp0xSupport>
-      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -263,12 +171,11 @@
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxmsw31ud_aui_vc_vdm.lib</OutputFile>
+      <OutputFile>$(OutDir)wxmsw31ud_aui.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_aui_vc_vdm_vc_vdm.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_aui.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -278,42 +185,22 @@
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch /Qoption,cpp,--gen_move_operations</AdditionalOptions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;WIN32;WIN64;_LIB;__WXMSW__;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\wxprec_auilibvc_vdm.pch</PrecompiledHeaderOutputFile>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_aui_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>vc_mswud\wxprec_auilib.pch</PrecompiledHeaderOutputFile>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_aui.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <StringPooling>true</StringPooling>
-      <FloatingPointModel>Fast2</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
-      <Parallelization>false</Parallelization>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <UnmaskFloatingPointExceptions>No</UnmaskFloatingPointExceptions>
-      <GenerateAlternateCodePaths>None</GenerateAlternateCodePaths>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <CheckPointers>None</CheckPointers>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
-      <CheckDanglingPointers>None</CheckDanglingPointers>
-      <C99Support>true</C99Support>
-      <Cpp0xSupport>true</Cpp0xSupport>
-      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -321,12 +208,11 @@
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxmsw31ud_aui_vc_vdm.lib</OutputFile>
+      <OutputFile>$(OutDir)wxmsw31ud_aui.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_aui_vc_vdm_vc_vdm.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_aui.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -336,41 +222,20 @@
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch /Qoption,cpp,--gen_move_operations</AdditionalOptions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;_LIB;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\wxprec_auilibvc_vdm.pch</PrecompiledHeaderOutputFile>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_aui_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>vc_mswu\wxprec_auilib.pch</PrecompiledHeaderOutputFile>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_aui.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
-      <Parallelization>false</Parallelization>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <UnmaskFloatingPointExceptions>No</UnmaskFloatingPointExceptions>
-      <GenerateAlternateCodePaths>None</GenerateAlternateCodePaths>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <CheckPointers>None</CheckPointers>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
-      <CheckDanglingPointers>None</CheckDanglingPointers>
-      <C99Support>true</C99Support>
-      <Cpp0xSupport>true</Cpp0xSupport>
-      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -378,12 +243,11 @@
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxmsw31u_aui_vc_vdm.lib</OutputFile>
+      <OutputFile>$(OutDir)wxmsw31u_aui.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_aui_vc_vdm_vc_vdm.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_aui.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -393,41 +257,20 @@
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch /Qoption,cpp,--gen_move_operations</AdditionalOptions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;WIN32;WIN64;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;_LIB;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\wxprec_auilibvc_vdm.pch</PrecompiledHeaderOutputFile>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_aui_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>vc_mswu\wxprec_auilib.pch</PrecompiledHeaderOutputFile>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_aui.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
-      <Parallelization>false</Parallelization>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <UnmaskFloatingPointExceptions>No</UnmaskFloatingPointExceptions>
-      <GenerateAlternateCodePaths>None</GenerateAlternateCodePaths>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <CheckPointers>None</CheckPointers>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
-      <CheckDanglingPointers>None</CheckDanglingPointers>
-      <C99Support>true</C99Support>
-      <Cpp0xSupport>true</Cpp0xSupport>
-      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -435,12 +278,11 @@
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxmsw31u_aui_vc_vdm.lib</OutputFile>
+      <OutputFile>$(OutDir)wxmsw31u_aui.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_aui_vc_vdm_vc_vdm.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_aui.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -450,66 +292,41 @@
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch /Qoption,cpp,--gen_move_operations</AdditionalOptions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;WIN32;_USRDLL;DLL_EXPORTS;__WXMSW__;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\wxprec_auidllvc_vdm.pch</PrecompiledHeaderOutputFile>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_aui_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>vc_mswuddll\wxprec_auidll.pch</PrecompiledHeaderOutputFile>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw310ud_aui_vc_custom.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <StringPooling>true</StringPooling>
-      <FloatingPointModel>Fast2</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
-      <Parallelization>false</Parallelization>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <UnmaskFloatingPointExceptions>No</UnmaskFloatingPointExceptions>
-      <GenerateAlternateCodePaths>None</GenerateAlternateCodePaths>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <CheckPointers>None</CheckPointers>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
-      <CheckDanglingPointers>None</CheckDanglingPointers>
-      <C99Support>true</C99Support>
-      <Cpp0xSupport>true</Cpp0xSupport>
-      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw31ud_aui_vc_vdm;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw310ud_aui_vc_custom;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>wxtiffd_vc_vdm.lib;wxjpegd_vc_vdm.lib;wxpngd_vc_vdm.lib;wxzlibd_vc_vdm.lib;wxregexud_vc_vdm.lib;wxexpatd_vc_vdm.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;$(OutDir)wxmsw31ud_adv_vc_vdm.lib;$(OutDir)wxmsw31ud_core_vc_vdm.lib;$(OutDir)wxbase31ud_vc_vdm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)wxmsw31ud_aui_vc_vdm.dll</OutputFile>
-      <ImportLibrary>$(OutDir)wxmsw31ud_aui_vc_vdm.lib</ImportLibrary>
+      <AdditionalDependencies>wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;$(OutDir)wxmsw31ud_adv.lib;$(OutDir)wxmsw31ud_core.lib;$(OutDir)wxbase31ud.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)wxmsw310ud_aui_vc_custom.dll</OutputFile>
+      <ImportLibrary>$(OutDir)wxmsw31ud_aui.lib</ImportLibrary>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)wxmsw31ud_aui_vc_vdm_vc_vdm.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)wxmsw310ud_aui_vc_custom.pdb</ProgramDatabaseFile>
       <TargetMachine>MachineX86</TargetMachine>
-      <LargeAddressAware>true</LargeAddressAware>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <InterproceduralOptimization>true</InterproceduralOptimization>
-      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_aui_vc_vdm_vc_vdm.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_aui.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -519,65 +336,40 @@
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch /Qoption,cpp,--gen_move_operations</AdditionalOptions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;WIN32;WIN64;_USRDLL;DLL_EXPORTS;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\wxprec_auidllvc_vdm.pch</PrecompiledHeaderOutputFile>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_aui_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>vc_mswuddll\wxprec_auidll.pch</PrecompiledHeaderOutputFile>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw310ud_aui_vc_x64_custom.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <StringPooling>true</StringPooling>
-      <FloatingPointModel>Fast2</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
-      <Parallelization>false</Parallelization>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <UnmaskFloatingPointExceptions>No</UnmaskFloatingPointExceptions>
-      <GenerateAlternateCodePaths>None</GenerateAlternateCodePaths>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <CheckPointers>None</CheckPointers>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
-      <CheckDanglingPointers>None</CheckDanglingPointers>
-      <C99Support>true</C99Support>
-      <Cpp0xSupport>true</Cpp0xSupport>
-      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw31ud_aui_vc_vdm;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw310ud_aui_vc_x64_custom;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>wxtiffd_vc_vdm.lib;wxjpegd_vc_vdm.lib;wxpngd_vc_vdm.lib;wxzlibd_vc_vdm.lib;wxregexud_vc_vdm.lib;wxexpatd_vc_vdm.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;$(OutDir)wxmsw31ud_adv_vc_vdm.lib;$(OutDir)wxmsw31ud_core_vc_vdm.lib;$(OutDir)wxbase31ud_vc_vdm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)wxmsw31ud_aui_vc_vdm.dll</OutputFile>
-      <ImportLibrary>$(OutDir)wxmsw31ud_aui_vc_vdm.lib</ImportLibrary>
+      <AdditionalDependencies>wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;$(OutDir)wxmsw31ud_adv.lib;$(OutDir)wxmsw31ud_core.lib;$(OutDir)wxbase31ud.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)wxmsw310ud_aui_vc_x64_custom.dll</OutputFile>
+      <ImportLibrary>$(OutDir)wxmsw31ud_aui.lib</ImportLibrary>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)wxmsw31ud_aui_vc_vdm_vc_vdm.pdb</ProgramDatabaseFile>
-      <LargeAddressAware>true</LargeAddressAware>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <InterproceduralOptimization>true</InterproceduralOptimization>
-      <SetChecksum>true</SetChecksum>
+      <ProgramDatabaseFile>$(OutDir)wxmsw310ud_aui_vc_x64_custom.pdb</ProgramDatabaseFile>
     </Link>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_aui_vc_vdm_vc_vdm.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_aui.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -587,65 +379,41 @@
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch /Qoption,cpp,--gen_move_operations</AdditionalOptions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;_USRDLL;DLL_EXPORTS;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\wxprec_auidllvc_vdm.pch</PrecompiledHeaderOutputFile>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_aui_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>vc_mswudll\wxprec_auidll.pch</PrecompiledHeaderOutputFile>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw310u_aui_vc_custom.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
-      <Parallelization>false</Parallelization>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <UnmaskFloatingPointExceptions>No</UnmaskFloatingPointExceptions>
-      <GenerateAlternateCodePaths>None</GenerateAlternateCodePaths>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <CheckPointers>None</CheckPointers>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
-      <CheckDanglingPointers>None</CheckDanglingPointers>
-      <C99Support>true</C99Support>
-      <Cpp0xSupport>true</Cpp0xSupport>
-      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw31u_aui_vc_vdm;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw310u_aui_vc_custom;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>wxtiff_vc_vdm.lib;wxjpeg_vc_vdm.lib;wxpng_vc_vdm.lib;wxzlib_vc_vdm.lib;wxregexu_vc_vdm.lib;wxexpat_vc_vdm.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;$(OutDir)wxmsw31u_adv_vc_vdm.lib;$(OutDir)wxmsw31u_core_vc_vdm.lib;$(OutDir)wxbase31u_vc_vdm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)wxmsw31u_aui_vc_vdm.dll</OutputFile>
-      <ImportLibrary>$(OutDir)wxmsw31u_aui_vc_vdm.lib</ImportLibrary>
+      <AdditionalDependencies>wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;$(OutDir)wxmsw31u_adv.lib;$(OutDir)wxmsw31u_core.lib;$(OutDir)wxbase31u.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)wxmsw310u_aui_vc_custom.dll</OutputFile>
+      <ImportLibrary>$(OutDir)wxmsw31u_aui.lib</ImportLibrary>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)wxmsw31u_aui_vc_vdm_vc_vdm.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)wxmsw310u_aui_vc_custom.pdb</ProgramDatabaseFile>
       <TargetMachine>MachineX86</TargetMachine>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LargeAddressAware>true</LargeAddressAware>
-      <InterproceduralOptimization>true</InterproceduralOptimization>
-      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_aui_vc_vdm_vc_vdm.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_aui.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -655,64 +423,40 @@
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch /Qoption,cpp,--gen_move_operations</AdditionalOptions>
-      <Optimization>MaxSpeedHighLevel</Optimization>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;WIN32;WIN64;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\wxprec_auidllvc_vdm.pch</PrecompiledHeaderOutputFile>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_aui_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>vc_mswudll\wxprec_auidll.pch</PrecompiledHeaderOutputFile>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw310u_aui_vc_x64_custom.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
-      <Parallelization>false</Parallelization>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <UnmaskFloatingPointExceptions>No</UnmaskFloatingPointExceptions>
-      <GenerateAlternateCodePaths>None</GenerateAlternateCodePaths>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <CheckPointers>None</CheckPointers>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
-      <CheckDanglingPointers>None</CheckDanglingPointers>
-      <C99Support>true</C99Support>
-      <Cpp0xSupport>true</Cpp0xSupport>
-      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw31u_aui_vc_vdm;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw310u_aui_vc_x64_custom;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>wxtiff_vc_vdm.lib;wxjpeg_vc_vdm.lib;wxpng_vc_vdm.lib;wxzlib_vc_vdm.lib;wxregexu_vc_vdm.lib;wxexpat_vc_vdm.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;$(OutDir)wxmsw31u_adv_vc_vdm.lib;$(OutDir)wxmsw31u_core_vc_vdm.lib;$(OutDir)wxbase31u_vc_vdm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)wxmsw31u_aui_vc_vdm.dll</OutputFile>
-      <ImportLibrary>$(OutDir)wxmsw31u_aui_vc_vdm.lib</ImportLibrary>
+      <AdditionalDependencies>wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;$(OutDir)wxmsw31u_adv.lib;$(OutDir)wxmsw31u_core.lib;$(OutDir)wxbase31u.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)wxmsw310u_aui_vc_x64_custom.dll</OutputFile>
+      <ImportLibrary>$(OutDir)wxmsw31u_aui.lib</ImportLibrary>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)wxmsw31u_aui_vc_vdm_vc_vdm.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)wxmsw310u_aui_vc_x64_custom.pdb</ProgramDatabaseFile>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LargeAddressAware>true</LargeAddressAware>
-      <InterproceduralOptimization>true</InterproceduralOptimization>
-      <SetChecksum>true</SetChecksum>
     </Link>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_aui_vc_vdm_vc_vdm.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_aui.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -735,7 +479,6 @@
     <ClCompile Include="..\..\src\aui\tabart.cpp" />
     <ClCompile Include="..\..\src\aui\tabmdi.cpp" />
     <ClCompile Include="..\..\src\xrc\xh_auinotbk.cpp" />
-    <ClCompile Include="..\..\src\xrc\xh_auitoolb.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\src\msw\version.rc">
@@ -749,26 +492,26 @@
     <CustomBuild Include="..\..\include\wx\msw\setup.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">Creating $(OutDir)mswud\wx\setup.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">Creating $(OutDir)mswud\wx\setup.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">IF NOT EXIST "$(OutDir)mswud\wx\setup.h" copy "%(FullPath)" $(OutDir)mswud\wx\setup.h</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">IF NOT EXIST "$(OutDir)mswud\wx\setup.h" copy "%(FullPath)" $(OutDir)mswud\wx\setup.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">copy "%(FullPath)" $(OutDir)mswud\wx\setup.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">copy "%(FullPath)" $(OutDir)mswud\wx\setup.h</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(OutDir)mswud\wx\setup.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(OutDir)mswud\wx\setup.h;%(Outputs)</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">Creating $(OutDir)mswu\wx\setup.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">Creating $(OutDir)mswu\wx\setup.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">IF NOT EXIST "$(OutDir)mswu\wx\setup.h" copy "%(FullPath)" $(OutDir)mswu\wx\setup.h</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">IF NOT EXIST "$(OutDir)mswu\wx\setup.h" copy "%(FullPath)" $(OutDir)mswu\wx\setup.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">copy "%(FullPath)" $(OutDir)mswu\wx\setup.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">copy "%(FullPath)" $(OutDir)mswu\wx\setup.h</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(OutDir)mswu\wx\setup.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">$(OutDir)mswu\wx\setup.h;%(Outputs)</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Creating $(OutDir)mswud\wx\setup.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Creating $(OutDir)mswud\wx\setup.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">IF NOT EXIST "$(OutDir)mswud\wx\setup.h" copy "%(FullPath)" $(OutDir)mswud\wx\setup.h</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF NOT EXIST "$(OutDir)mswud\wx\setup.h" copy "%(FullPath)" $(OutDir)mswud\wx\setup.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy "%(FullPath)" $(OutDir)mswud\wx\setup.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">copy "%(FullPath)" $(OutDir)mswud\wx\setup.h</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)mswud\wx\setup.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)mswud\wx\setup.h;%(Outputs)</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Creating $(OutDir)mswu\wx\setup.h</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Creating $(OutDir)mswu\wx\setup.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF NOT EXIST "$(OutDir)mswu\wx\setup.h" copy "%(FullPath)" $(OutDir)mswu\wx\setup.h</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF NOT EXIST "$(OutDir)mswu\wx\setup.h" copy "%(FullPath)" $(OutDir)mswu\wx\setup.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy "%(FullPath)" $(OutDir)mswu\wx\setup.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">copy "%(FullPath)" $(OutDir)mswu\wx\setup.h</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)mswu\wx\setup.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)mswu\wx\setup.h;%(Outputs)</Outputs>
     </CustomBuild>
@@ -815,7 +558,6 @@
     <ClInclude Include="..\..\include\wx\aui\tabart.h" />
     <ClInclude Include="..\..\include\wx\aui\tabmdi.h" />
     <ClInclude Include="..\..\include\wx\xrc\xh_auinotbk.h" />
-    <ClInclude Include="..\..\include\wx\xrc\xh_auitoolb.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
