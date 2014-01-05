@@ -1575,6 +1575,7 @@ public:
                            wxRect& rect,
                            int flags );
 
+#if WXWIN_COMPATIBILITY_3_0
     /** Standardized double-to-string conversion.
     */
     static const wxString& DoubleToString( wxString& target,
@@ -1582,6 +1583,7 @@ public:
                                            int precision,
                                            bool removeZeroes,
                                            wxString* precTemplate = NULL );
+#endif // WXWIN_COMPATIBILITY_3_0
 
     /**
         Call this from wxPGProperty::OnEvent() to cause property value to be
