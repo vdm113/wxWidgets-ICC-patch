@@ -1551,7 +1551,7 @@ void wxSimpleCheckBox::OnPaint( wxPaintEvent& WXUNUSED(event) )
 
     int state = m_state;
     if ( !(state & wxSCB_STATE_UNSPECIFIED) &&
-         GetFont().GetWeight() == wxBOLD )
+         GetFont().GetWeight() == wxFONTWEIGHT_BOLD )
         state |= wxSCB_STATE_BOLD;
 
     DrawSimpleCheckBox(dc, rect, m_boxHeight, state);
@@ -1651,7 +1651,7 @@ void wxPGCheckBoxEditor::DrawValue( wxDC& dc, const wxRect& rect,
     if ( !property->IsValueUnspecified() )
     {
         state = property->GetChoiceSelection();
-        if ( dc.GetFont().GetWeight() == wxBOLD )
+        if ( dc.GetFont().GetWeight() == wxFONTWEIGHT_BOLD )
             state |= wxSCB_STATE_BOLD;
     }
     else
