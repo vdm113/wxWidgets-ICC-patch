@@ -24,7 +24,6 @@
     <ClCompile Include="htmlparser\htmlpars.cpp" />
     <ClCompile Include="htmlparser\htmltag.cpp" />
     <ClCompile Include="image.cpp" />
-    <ClCompile Include="printfbench.cpp" />
     <ClCompile Include="strings.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -200,7 +199,7 @@
       <AdditionalLibraryDirectories>..\..\lib\vc_dll\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>wxmsw30ud_core.lib;wxbase30ud.lib;wxmsw30ud_html.lib</AdditionalDependencies>
+      <AdditionalDependencies>wxmsw31ud_core_vc_vdm.lib;wxbase31ud_vc_vdm.lib;wxmsw31ud_html_vc_vdm.lib</AdditionalDependencies>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <AdditionalOptions>/Qvec-report1</AdditionalOptions>
@@ -299,7 +298,7 @@ bash version.sh $(AssemblyName)</Command>
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/Qvec-report1</AdditionalOptions>
-      <AdditionalDependencies>wxmsw30ud_core.lib;wxbase30ud.lib;wxmsw30ud_html.lib</AdditionalDependencies>
+      <AdditionalDependencies>wxmsw31ud_core_vc_vdm.lib;wxbase31ud_vc_vdm.lib;wxmsw31ud_html_vc_vdm.lib</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <AdditionalLibraryDirectories>..\..\lib\vc_x64_dll\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
@@ -409,7 +408,7 @@ copy /Y "$(TargetDir)\*.ptx " "$(MSBuildProjectDirectory)\..\src\Recorder7_Proce
       <AdditionalLibraryDirectories>..\..\lib\vc_dll\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>wxmsw30u_core.lib;wxbase30u.lib;wxmsw30u_html.lib</AdditionalDependencies>
+      <AdditionalDependencies>wxmsw31u_core_vc_vdm.lib;wxbase31u_vc_vdm.lib;wxmsw31u_html_vc_vdm.lib</AdditionalDependencies>
       <AdditionalOptions>/Qvec-report1</AdditionalOptions>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -517,7 +516,7 @@ bash version.sh $(AssemblyName)</Command>
     </ProjectReference>
     <Link>
       <AdditionalOptions>/Qvec-report1</AdditionalOptions>
-      <AdditionalDependencies>wxmsw30u_core.lib;wxbase30u.lib;wxmsw30u_html.lib</AdditionalDependencies>
+      <AdditionalDependencies>wxmsw31u_core_vc_vdm.lib;wxbase31u_vc_vdm.lib;wxmsw31u_html_vc_vdm.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib\vc_x64_dll\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>

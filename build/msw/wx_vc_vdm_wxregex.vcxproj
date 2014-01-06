@@ -198,7 +198,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswud\wxregex\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxregexud.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxregexud_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -224,13 +224,13 @@
       <AdditionalIncludeDirectories>..\..\include;$(OutDir)mswud;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxregexud.lib</OutputFile>
+      <OutputFile>$(OutDir)wxregexud_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxregex.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxregex_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -250,7 +250,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswud\wxregex\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxregexud.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxregexud_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -276,13 +276,13 @@
       <AdditionalIncludeDirectories>..\..\include;$(OutDir)mswud;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxregexud.lib</OutputFile>
+      <OutputFile>$(OutDir)wxregexud_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxregex.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxregex_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -300,7 +300,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswu\wxregex\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxregexu.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxregexu_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -327,13 +327,13 @@
       <AdditionalIncludeDirectories>..\..\include;$(OutDir)mswu;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxregexu.lib</OutputFile>
+      <OutputFile>$(OutDir)wxregexu_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxregex.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxregex_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -351,7 +351,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswu\wxregex\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxregexu.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxregexu_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -378,13 +378,13 @@
       <AdditionalIncludeDirectories>..\..\include;$(OutDir)mswu;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxregexu.lib</OutputFile>
+      <OutputFile>$(OutDir)wxregexu_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxregex.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxregex_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -404,7 +404,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswuddll\wxregex\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxregexud.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxregexud_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -430,13 +430,13 @@
       <AdditionalIncludeDirectories>..\..\include;$(OutDir)mswud;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxregexud.lib</OutputFile>
+      <OutputFile>$(OutDir)wxregexud_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxregex.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxregex_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -456,7 +456,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswuddll\wxregex\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxregexud.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxregexud_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -482,13 +482,13 @@
       <AdditionalIncludeDirectories>..\..\include;$(OutDir)mswud;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxregexud.lib</OutputFile>
+      <OutputFile>$(OutDir)wxregexud_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxregex.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxregex_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -506,7 +506,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswudll\wxregex\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxregexu.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxregexu_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -533,13 +533,13 @@
       <AdditionalIncludeDirectories>..\..\include;$(OutDir)mswu;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxregexu.lib</OutputFile>
+      <OutputFile>$(OutDir)wxregexu_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxregex.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxregex_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -557,7 +557,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswudll\wxregex\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxregexu.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxregexu_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -584,13 +584,13 @@
       <AdditionalIncludeDirectories>..\..\include;$(OutDir)mswu;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxregexu.lib</OutputFile>
+      <OutputFile>$(OutDir)wxregexu_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxregex.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxregex_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>

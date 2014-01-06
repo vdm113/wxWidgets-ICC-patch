@@ -157,10 +157,10 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">..\..\lib\vc_$(Platform)_dll\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)d</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectName)d</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(ProjectName)d</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(ProjectName)d</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)d_vc_vdm</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectName)d_vc_vdm</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">$(ProjectName)d_vc_vdm</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">$(ProjectName)d_vc_vdm</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">
     <OutDir>..\..\lib\vc_$(Platform)_dll\</OutDir>
@@ -194,7 +194,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswud\wxtiff\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxtiffd.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxtiffd_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -220,13 +220,13 @@
       <AdditionalIncludeDirectories>..\..\src\zlib;..\..\src\jpeg;..\..\src\tiff\libtiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxtiffd.lib</OutputFile>
+      <OutputFile>$(OutDir)wxtiffd_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxtiff.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxtiff_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -246,7 +246,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswud\wxtiff\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxtiffd.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxtiffd_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -272,13 +272,13 @@
       <AdditionalIncludeDirectories>..\..\src\zlib;..\..\src\jpeg;..\..\src\tiff\libtiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxtiffd.lib</OutputFile>
+      <OutputFile>$(OutDir)wxtiffd_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxtiff.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxtiff_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -296,7 +296,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswu\wxtiff\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxtiff.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxtiff_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -323,13 +323,13 @@
       <AdditionalIncludeDirectories>..\..\src\zlib;..\..\src\jpeg;..\..\src\tiff\libtiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxtiff.lib</OutputFile>
+      <OutputFile>$(OutDir)wxtiff_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxtiff.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxtiff_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -347,7 +347,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswu\wxtiff\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxtiff.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxtiff_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -374,13 +374,13 @@
       <AdditionalIncludeDirectories>..\..\src\zlib;..\..\src\jpeg;..\..\src\tiff\libtiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxtiff.lib</OutputFile>
+      <OutputFile>$(OutDir)wxtiff_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxtiff.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxtiff_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -400,7 +400,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswuddll\wxtiff\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxtiffd.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxtiffd_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -426,13 +426,13 @@
       <AdditionalIncludeDirectories>..\..\src\zlib;..\..\src\jpeg;..\..\src\tiff\libtiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxtiffd.lib</OutputFile>
+      <OutputFile>$(OutDir)wxtiffd_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxtiff.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxtiff_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -452,7 +452,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswuddll\wxtiff\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxtiffd.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxtiffd_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -478,13 +478,13 @@
       <AdditionalIncludeDirectories>..\..\src\zlib;..\..\src\jpeg;..\..\src\tiff\libtiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxtiffd.lib</OutputFile>
+      <OutputFile>$(OutDir)wxtiffd_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxtiff.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxtiff_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -502,7 +502,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswudll\wxtiff\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxtiff.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxtiff_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -529,13 +529,13 @@
       <AdditionalIncludeDirectories>..\..\src\zlib;..\..\src\jpeg;..\..\src\tiff\libtiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxtiff.lib</OutputFile>
+      <OutputFile>$(OutDir)wxtiff_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxtiff.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxtiff_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -553,7 +553,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswudll\wxtiff\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxtiff.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxtiff_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -580,13 +580,13 @@
       <AdditionalIncludeDirectories>..\..\src\zlib;..\..\src\jpeg;..\..\src\tiff\libtiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxtiff.lib</OutputFile>
+      <OutputFile>$(OutDir)wxtiff_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_wxtiff.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_wxtiff_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>

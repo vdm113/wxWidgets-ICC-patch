@@ -160,9 +160,6 @@ BENCHMARK_FUNC_WITH_INIT(IPCPokeAdvise, ConnInit, ConnDone)
     if ( !conn->Poke(IPC_BENCHMARK_ITEM, s) )
         return false;
 
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif

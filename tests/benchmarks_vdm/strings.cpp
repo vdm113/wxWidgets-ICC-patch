@@ -51,9 +51,6 @@ const wxString& GetTestAsciiString()
         if ( !num )
             num = 1;
 
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -202,9 +199,6 @@ BENCHMARK_FUNC(FromAsciiWithLen)
 // baseline
 BENCHMARK_FUNC(ForCString)
 {
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -221,9 +215,6 @@ BENCHMARK_FUNC(ForStringIndex)
 {
     const wxString& s = GetTestAsciiString();
     const size_t len = s.length();
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -240,9 +231,6 @@ BENCHMARK_FUNC(ForStringIter)
 {
     const wxString& s = GetTestAsciiString();
     const wxString::const_iterator end = s.end();
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -259,9 +247,6 @@ BENCHMARK_FUNC(ForStringRIter)
 {
     const wxString& s = GetTestAsciiString();
     const wxString::const_reverse_iterator rend = s.rend();
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -283,9 +268,6 @@ const size_t ASCIISTR_LEN = strlen(asciistr);
 BENCHMARK_FUNC(ReplaceLoop)
 {
     wxString str('x', ASCIISTR_LEN);
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -481,9 +463,6 @@ BENCHMARK_FUNC(ParseHTML)
         if ( !num )
             num = 1;
 
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif

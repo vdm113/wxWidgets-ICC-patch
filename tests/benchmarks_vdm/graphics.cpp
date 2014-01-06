@@ -154,9 +154,6 @@ private:
     // updated on screen.
     void UpdateRGB(unsigned char* data, int n)
     {
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -182,9 +179,6 @@ private:
         fflush(stdout);
 
         wxStopWatch sw;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -282,9 +276,6 @@ private:
         wxStopWatch sw;
         int x = 0,
             y = 0;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -322,9 +313,6 @@ private:
         fflush(stdout);
 
         wxStopWatch sw;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -356,9 +344,6 @@ private:
         fflush(stdout);
 
         wxStopWatch sw;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -390,9 +375,6 @@ private:
         wxImage image(wxSize(opts.width, opts.height), false /* don't clear */);
 
         wxStopWatch sw;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -424,9 +406,6 @@ private:
         wxNativePixelData data(bitmap);
 
         wxStopWatch sw;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -435,9 +414,6 @@ private:
             unsigned char c = n % 256;
             {
                 wxNativePixelData::Iterator p(data);
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -445,9 +421,6 @@ private:
                 {
                     wxNativePixelData::Iterator rowStart = p;
 
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif

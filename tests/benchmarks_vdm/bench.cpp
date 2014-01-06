@@ -15,6 +15,8 @@
 // headers
 // ----------------------------------------------------------------------------
 
+#include <iostream>
+
 #include "wx/app.h"
 #include "wx/cmdline.h"
 #include "wx/stopwatch.h"
@@ -202,7 +204,7 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
     {
         if ( numRunsSpecified )
         {
-            wxFprintf(stderr, "Incompatible options specified.\n");
+            std::cerr << "Incompatible options specified.\n";
 
             return false;
         }
@@ -213,9 +215,6 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
 
     // construct sorted array for quick verification of benchmark names
     wxSortedArrayString benchmarks;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -226,9 +225,6 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
         benchmarks.push_back(func->GetName());
     }
 
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -237,7 +233,7 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
         const wxString name = parser.GetParam(n);
         if ( benchmarks.Index(name) == wxNOT_FOUND )
         {
-            wxFprintf(stderr, "No benchmark named \"%s\".\n", name);
+            std::cerr << "No benchmark named \"%s\".\n" << name.c_str();
             return false;
         }
 
@@ -250,9 +246,6 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
 int BenchApp::OnRun()
 {
     int rc = EXIT_SUCCESS;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -280,18 +273,12 @@ int BenchApp::OnRun()
              timeMax = 0,
              timeTotal = 0;
         bool ok = func->Init();
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
         for ( long a = 0; ok && a < m_avgCount; a++ )
         {
             wxStopWatch sw;
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -355,9 +342,6 @@ void BenchApp::ListBenchmarks()
 {
     sprintf(tmp,"Available benchmarks:\n");
     wxLogMessage(tmp);
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif

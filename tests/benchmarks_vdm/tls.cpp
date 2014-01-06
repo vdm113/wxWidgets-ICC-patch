@@ -42,9 +42,6 @@ BENCHMARK_FUNC(DummyTLS)
 {
     static int s_global = 0;
 
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -65,9 +62,6 @@ BENCHMARK_FUNC(CompilerTLS)
 {
     static wxTHREAD_SPECIFIC int s_global = 0;
 
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -111,9 +105,6 @@ BENCHMARK_FUNC(PosixTLS)
 {
     static PthreadKey s_key;
 
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -157,9 +148,6 @@ BENCHMARK_FUNC(Win32TLS)
 {
     static TlsSlot s_slot;
 
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -184,9 +172,6 @@ BENCHMARK_FUNC(BoostTLS)
     if ( !s_ptr.get() )
         s_ptr.reset(new int(0));
 
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif
@@ -208,9 +193,6 @@ BENCHMARK_FUNC(wxTLS)
     static wxTLS_TYPE(int) s_globalVar;
     #define s_global wxTLS_VALUE(s_globalVar)
 
-#if defined(__INTEL_COMPILER) /* VDM auto patch */
-#   pragma ivdep
-#endif
 #if defined(__INTEL_COMPILER) // VDM auto patch
 #   pragma ivdep
 #endif

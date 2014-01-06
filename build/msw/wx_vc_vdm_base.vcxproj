@@ -161,14 +161,14 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">true</GenerateManifest>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">wx$(ProjectName)31ud</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">wx$(ProjectName)31ud</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">wx$(ProjectName)31ud</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">wx$(ProjectName)31ud</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">wx$(ProjectName)31u</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">wx$(ProjectName)31u</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">wx$(ProjectName)31u</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">wx$(ProjectName)31u</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">wx$(ProjectName)31ud_vc_vdm</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">wx$(ProjectName)31ud_vc_vdm</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">wx$(ProjectName)31ud_vc_vdm</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">wx$(ProjectName)31ud_vc_vdm</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">wx$(ProjectName)31u_vc_vdm</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">wx$(ProjectName)31u_vc_vdm</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">wx$(ProjectName)31u_vc_vdm</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">wx$(ProjectName)31u_vc_vdm</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">
     <OutDir>..\..\lib\vc_$(Platform)_dll\</OutDir>
@@ -203,9 +203,9 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswud\wxprec_baselib.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswud\wxprec_baselibvc_vdm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswud\base\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxbase31ud.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxbase31ud_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -231,12 +231,12 @@
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxbase31ud.lib</OutputFile>
+      <OutputFile>$(OutDir)wxbase31ud_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_base.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_base_vc_vdm_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -257,9 +257,9 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswud\wxprec_baselib.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswud\wxprec_baselibvc_vdm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswud\base\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxbase31ud.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxbase31ud_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -285,12 +285,12 @@
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxbase31ud.lib</OutputFile>
+      <OutputFile>$(OutDir)wxbase31ud_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_base.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_base_vc_vdm_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -309,9 +309,9 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswu\wxprec_baselib.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswu\wxprec_baselibvc_vdm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswu\base\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxbase31u.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxbase31u_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -338,12 +338,12 @@
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxbase31u.lib</OutputFile>
+      <OutputFile>$(OutDir)wxbase31u_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_base.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_base_vc_vdm_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -362,9 +362,9 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswu\wxprec_baselib.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswu\wxprec_baselibvc_vdm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswu\base\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxbase31u.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxbase31u_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -391,12 +391,12 @@
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)wxbase31u.lib</OutputFile>
+      <OutputFile>$(OutDir)wxbase31u_vc_vdm.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_base.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_base_vc_vdm_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -417,9 +417,9 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswuddll\wxprec_basedll.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswuddll\wxprec_basedllvc_vdm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswuddll\base\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxbase31ud.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxbase31ud_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -441,28 +441,28 @@
       <OpenMP>None</OpenMP>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxbase31ud;wxUSE_GUI=0;WXMAKINGDLL_BASE;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxbase31ud_vc_vdm;wxUSE_GUI=0;WXMAKINGDLL_BASE;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)wxbase31ud.dll</OutputFile>
+      <AdditionalDependencies>wxzlibd_vc_vdm.lib;wxregexud_vc_vdm.lib;wxexpatd_vc_vdm.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)wxbase31ud_vc_vdm.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)wxbase31ud.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)wxbase31ud_vc_vdm_vc_vdm.pdb</ProgramDatabaseFile>
       <TargetMachine>MachineX86</TargetMachine>
       <LargeAddressAware>true</LargeAddressAware>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <SetChecksum>true</SetChecksum>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
-      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
+      <MapFileName>$(OutDir)$(TargetName)_vc_vdm_vc_vdm.map</MapFileName>
     </Link>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_base.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_base_vc_vdm_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -483,9 +483,9 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswuddll\wxprec_basedll.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswuddll\wxprec_basedllvc_vdm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswuddll\base\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxbase31ud.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxbase31ud_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -507,27 +507,27 @@
       <OpenMP>None</OpenMP>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxbase31ud;wxUSE_GUI=0;WXMAKINGDLL_BASE;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxbase31ud_vc_vdm;wxUSE_GUI=0;WXMAKINGDLL_BASE;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(OutDir)mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)wxbase31ud.dll</OutputFile>
+      <AdditionalDependencies>wxzlibd_vc_vdm.lib;wxregexud_vc_vdm.lib;wxexpatd_vc_vdm.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)wxbase31ud_vc_vdm.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)wxbase31ud.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)wxbase31ud_vc_vdm_vc_vdm.pdb</ProgramDatabaseFile>
       <LargeAddressAware>true</LargeAddressAware>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <SetChecksum>true</SetChecksum>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
-      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
+      <MapFileName>$(OutDir)$(TargetName)_vc_vdm_vc_vdm.map</MapFileName>
     </Link>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_base.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_base_vc_vdm_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -546,9 +546,9 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswudll\wxprec_basedll.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswudll\wxprec_basedllvc_vdm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswudll\base\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxbase31u.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxbase31u_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -571,28 +571,28 @@
       <OpenMP>None</OpenMP>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxbase31u;wxUSE_GUI=0;WXMAKINGDLL_BASE;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxbase31u_vc_vdm;wxUSE_GUI=0;WXMAKINGDLL_BASE;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)wxbase31u.dll</OutputFile>
+      <AdditionalDependencies>wxzlib_vc_vdm.lib;wxregexu_vc_vdm.lib;wxexpat_vc_vdm.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)wxbase31u_vc_vdm.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)wxbase31u.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)wxbase31u_vc_vdm_vc_vdm.pdb</ProgramDatabaseFile>
       <TargetMachine>MachineX86</TargetMachine>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LargeAddressAware>true</LargeAddressAware>
       <SetChecksum>true</SetChecksum>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
-      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
+      <MapFileName>$(OutDir)$(TargetName)_vc_vdm_vc_vdm.map</MapFileName>
     </Link>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_base.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_base_vc_vdm_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
@@ -611,9 +611,9 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswudll\wxprec_basedll.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswudll\wxprec_basedllvc_vdm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswudll\base\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxbase31u.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxbase31u_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -636,27 +636,27 @@
       <OpenMP>None</OpenMP>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxbase31u;wxUSE_GUI=0;WXMAKINGDLL_BASE;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxbase31u_vc_vdm;wxUSE_GUI=0;WXMAKINGDLL_BASE;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(OutDir)mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/Qvec-report1 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)wxbase31u.dll</OutputFile>
+      <AdditionalDependencies>wxzlib_vc_vdm.lib;wxregexu_vc_vdm.lib;wxexpat_vc_vdm.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)wxbase31u_vc_vdm.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)wxbase31u.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)wxbase31u_vc_vdm_vc_vdm.pdb</ProgramDatabaseFile>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LargeAddressAware>true</LargeAddressAware>
       <SetChecksum>true</SetChecksum>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
-      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
+      <MapFileName>$(OutDir)$(TargetName)_vc_vdm_vc_vdm.map</MapFileName>
     </Link>
     <Bscmake>
-      <OutputFile>$(OutDir)wx_vc9_base.bsc</OutputFile>
+      <OutputFile>$(OutDir)wx_vc9_base_vc_vdm_vc_vdm.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
