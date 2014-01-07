@@ -187,7 +187,7 @@ int wxImageList::Add(const wxBitmap& bitmap, const wxBitmap& mask)
     // Use mask only if we don't have alpha, the bitmap isn't drawn correctly
     // if we use both.
     AutoHBITMAP hbmpMask;
-    if ( useMask )
+    if ( !bitmap.HasAlpha() )
         hbmpMask.Init(GetMaskForImage(bitmap, mask));
 
     int index = ImageList_Add(GetHImageList(), hbmp, hbmpMask);
@@ -385,11 +385,10 @@ wxBitmap wxImageList::GetBitmap(int index) const
     GetSize(index, bmp_width, bmp_height);
 
     wxBitmap bitmap(bmp_width, bmp_height);
-
-#if wxUSE_WXDIB && wxUSE_IMAGE
     wxMemoryDC dc;
     dc.SelectObject(bitmap);
 
+#if wxUSE_WXDIB && wxUSE_IMAGE
     IMAGEINFO ii;
     ImageList_GetImageInfo(GetHImageList(), index, &ii);
     if ( ii.hbmMask )
@@ -433,6 +432,8 @@ wxBitmap wxImageList::GetBitmap(int index) const
         // even if it requires more work (and takes more time).
         bitmap.MSWUpdateAlpha();
     }
+#else
+    wxBitmap bitmap;
 #endif
     return bitmap;
 }
