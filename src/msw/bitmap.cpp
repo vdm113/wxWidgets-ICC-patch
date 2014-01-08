@@ -295,6 +295,9 @@ wxGDIRefData *wxBitmap::CloneGDIRefData(const wxGDIRefData *data) const
 // Premultiply the values of all RGBA pixels in the given range.
 static void PremultiplyPixels(unsigned char* begin, unsigned char* end)
 {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( unsigned char* pixels = begin; pixels < end; pixels += 4 )
     {
         const unsigned char a = pixels[3];
@@ -324,6 +327,9 @@ static bool CheckAlpha(HBITMAP hbmp, HBITMAP* hdib = NULL)
 
     unsigned char* pixels = dib.GetData();
     unsigned char* const end = pixels + 4*dib.GetWidth()*dib.GetHeight();
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( ; pixels < end; pixels += 4 )
     {
         if ( pixels[3] != 0 )
