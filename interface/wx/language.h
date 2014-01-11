@@ -70,7 +70,6 @@ enum wxLanguage
     wxLANGUAGE_BRETON,
     wxLANGUAGE_BULGARIAN,
     wxLANGUAGE_BURMESE,
-    wxLANGUAGE_CAMBODIAN,
     wxLANGUAGE_CATALAN,
     wxLANGUAGE_CHINESE,
     wxLANGUAGE_CHINESE_SIMPLIFIED,
@@ -146,6 +145,7 @@ enum wxLanguage
     wxLANGUAGE_KASHMIRI_INDIA,
     wxLANGUAGE_KAZAKH,
     wxLANGUAGE_KERNEWEK,
+    wxLANGUAGE_KHMER,
     wxLANGUAGE_KINYARWANDA,
     wxLANGUAGE_KIRGHIZ,
     wxLANGUAGE_KIRUNDI,
@@ -261,6 +261,9 @@ enum wxLanguage
     wxLANGUAGE_YORUBA,
     wxLANGUAGE_ZHUANG,
     wxLANGUAGE_ZULU,
+
+    /// Obsolete synonym.
+    wxLANGUAGE_CAMBODIAN = wxLANGUAGE_KHMER,
 
     /// For custom, user-defined languages.
     wxLANGUAGE_USER_DEFINED
