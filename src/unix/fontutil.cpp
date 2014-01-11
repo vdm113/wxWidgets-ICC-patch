@@ -520,9 +520,9 @@ static wxHashTable *g_fontHash = NULL;
 static bool wxTestFontSpec(const wxString& fontspec);
 
 static wxNativeFont wxLoadQueryFont(int pointSize,
-                                    int family,
-                                    int style,
-                                    int weight,
+                                    wxFontFamily family,
+                                    wxFontStyle style,
+                                    wxFontWeight weight,
                                     bool underlined,
                                     const wxString& facename,
                                     const wxString& xregistry,
@@ -1009,9 +1009,9 @@ bool wxTestFontEncoding(const wxNativeEncodingInfo& info)
 // ----------------------------------------------------------------------------
 
 wxNativeFont wxLoadQueryNearestFont(int pointSize,
-                                    int family,
-                                    int style,
-                                    int weight,
+                                    wxFontFamily family,
+                                    wxFontStyle style,
+                                    wxFontWeight weight,
                                     bool underlined,
                                     const wxString &facename,
                                     wxFontEncoding encoding,
@@ -1105,9 +1105,9 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
             // second round: use normal weight
             if ( round == 1 )
             {
-                if ( testweight != wxNORMAL )
+                if ( testweight != wxFONTWEIGHT_NORMAL )
                 {
-                    testweight = wxNORMAL;
+                    testweight = wxFONTWEIGHT_NORMAL;
                 }
                 else
                 {
@@ -1118,9 +1118,9 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
             // third round: ... and use normal style
             if ( round == 2 )
             {
-                if ( teststyle != wxNORMAL )
+                if ( teststyle != wxFONTSTYLE_NORMAL )
                 {
-                    teststyle = wxNORMAL;
+                    teststyle = wxFONTSTYLE_NORMAL;
                 }
                 else
                 {
@@ -1151,9 +1151,9 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
         }
 
         // Try default family
-        if ( !font && family != wxDEFAULT )
+        if ( !font && family != wxFONTFAMILY_DEFAULT )
         {
-            font = wxLoadQueryFont(pointSize, wxDEFAULT, style, weight,
+            font = wxLoadQueryFont(pointSize, wxFONTFAMILY_DEFAULT, style, weight,
                                    underlined, facename,
                                    info.xregistry, info.xencoding,
                                    xFontName );
@@ -1163,7 +1163,8 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
         // given facename and encoding
         if ( !font )
         {
-            font = wxLoadQueryFont(120, wxDEFAULT, wxNORMAL, wxNORMAL,
+            font = wxLoadQueryFont(120, wxFONTFAMILY_DEFAULT,
+                                   wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL,
                                    underlined, facename,
                                    info.xregistry, info.xencoding,
                                    xFontName);
@@ -1171,7 +1172,8 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
             // ignore family as well
             if ( !font )
             {
-                font = wxLoadQueryFont(120, wxDEFAULT, wxNORMAL, wxNORMAL,
+                font = wxLoadQueryFont(120, wxFONTFAMILY_DEFAULT,
+                                       wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL,
                                        underlined, wxEmptyString,
                                        info.xregistry, info.xencoding,
                                        xFontName);
@@ -1182,7 +1184,8 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
                 // different from 120
                 if ( !font )
                 {
-                    font = wxLoadQueryFont(-1, wxDEFAULT, wxNORMAL, wxNORMAL,
+                    font = wxLoadQueryFont(-1, wxFONTFAMILY_DEFAULT,
+                                           wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL,
                                            false, wxEmptyString,
                                            info.xregistry, info.xencoding,
                                            xFontName);
@@ -1194,8 +1197,8 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
                     {
                         wxFAIL_MSG( wxT("this encoding should be available!") );
 
-                        font = wxLoadQueryFont(-1,
-                                               wxDEFAULT, wxNORMAL, wxNORMAL,
+                        font = wxLoadQueryFont(-1, wxFONTFAMILY_DEFAULT,
+                                               wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL,
                                                false, wxEmptyString,
                                                wxT("*"), wxT("*"),
                                                xFontName);
@@ -1244,41 +1247,40 @@ static bool wxTestFontSpec(const wxString& fontspec)
 }
 
 static wxNativeFont wxLoadQueryFont(int pointSize,
-                                    int family,
-                                    int style,
-                                    int weight,
+                                    wxFontFamily family,
+                                    wxFontStyle style,
+                                    wxFontWeight weight,
                                     bool WXUNUSED(underlined),
                                     const wxString& facename,
                                     const wxString& xregistry,
                                     const wxString& xencoding,
                                     wxString* xFontName)
 {
-    wxString xfamily;
+    wxString xfamily("*");
     switch (family)
     {
-        case wxDECORATIVE: xfamily = wxT("lucida"); break;
-        case wxROMAN:      xfamily = wxT("times");  break;
-        case wxMODERN:     xfamily = wxT("courier"); break;
-        case wxSWISS:      xfamily = wxT("helvetica"); break;
-        case wxTELETYPE:   xfamily = wxT("lucidatypewriter"); break;
-        case wxSCRIPT:     xfamily = wxT("utopia"); break;
-        default:           xfamily = wxT("*");
+        case wxFONTFAMILY_DECORATIVE: xfamily = wxT("lucida"); break;
+        case wxFONTFAMILY_ROMAN:      xfamily = wxT("times");  break;
+        case wxFONTFAMILY_MODERN:     xfamily = wxT("courier"); break;
+        case wxFONTFAMILY_SWISS:      xfamily = wxT("helvetica"); break;
+        case wxFONTFAMILY_TELETYPE:   xfamily = wxT("lucidatypewriter"); break;
+        case wxFONTFAMILY_SCRIPT:     xfamily = wxT("utopia"); break;
     }
 #if wxUSE_NANOX
     int xweight;
     switch (weight)
     {
-         case wxBOLD:
+         case wxFONTWEIGHT_BOLD:
              {
                  xweight = MWLF_WEIGHT_BOLD;
                  break;
              }
-        case wxLIGHT:
+        case wxFONTWEIGHT_LIGHT:
              {
                  xweight = MWLF_WEIGHT_LIGHT;
                  break;
              }
-         case wxNORMAL:
+         case wxFONTWEIGHT_NORMAL:
              {
                  xweight = MWLF_WEIGHT_NORMAL;
                  break;
@@ -1313,7 +1315,7 @@ static wxNativeFont wxLoadQueryFont(int pointSize,
     logFont.lfEscapement = 0;
     logFont.lfOrientation = 0;
     logFont.lfWeight = xweight;
-    logFont.lfItalic = (style == wxNORMAL ? 0 : 1) ;
+    logFont.lfItalic = (style == wxFONTSTYLE_ITALIC ? 0 : 1) ;
     logFont.lfUnderline = 0;
     logFont.lfStrikeOut = 0;
     logFont.lfCharSet = MWLF_CHARSET_DEFAULT; // TODO: select appropriate one
@@ -1351,7 +1353,7 @@ static wxNativeFont wxLoadQueryFont(int pointSize,
     wxString xstyle;
     switch (style)
     {
-        case wxSLANT:
+        case wxFONTSTYLE_SLANT:
             fontSpec.Printf(wxT("-*-%s-*-o-*-*-*-*-*-*-*-*-*-*"),
                     xfamily.c_str());
             if ( wxTestFontSpec(fontSpec) )
@@ -1359,18 +1361,18 @@ static wxNativeFont wxLoadQueryFont(int pointSize,
                 xstyle = wxT("o");
                 break;
             }
-            // fall through - try wxITALIC now
+            // fall through - try wxFONTSTYLE_ITALIC now
 
-        case wxITALIC:
+        case wxFONTSTYLE_ITALIC:
             fontSpec.Printf(wxT("-*-%s-*-i-*-*-*-*-*-*-*-*-*-*"),
                     xfamily.c_str());
             if ( wxTestFontSpec(fontSpec) )
             {
                 xstyle = wxT("i");
             }
-            else if ( style == wxITALIC ) // and not wxSLANT
+            else if ( style == wxFONTSTYLE_ITALIC ) // and not wxFONTSTYLE_SLANT
             {
-                // try wxSLANT
+                // try wxFONTSTYLE_SLANT
                 fontSpec.Printf(wxT("-*-%s-*-o-*-*-*-*-*-*-*-*-*-*"),
                         xfamily.c_str());
                 if ( wxTestFontSpec(fontSpec) )
@@ -1389,7 +1391,7 @@ static wxNativeFont wxLoadQueryFont(int pointSize,
             wxFAIL_MSG(wxT("unknown font style"));
             // fall back to normal
 
-        case wxNORMAL:
+        case wxFONTSTYLE_NORMAL:
             xstyle = wxT("r");
             break;
     }
@@ -1397,7 +1399,7 @@ static wxNativeFont wxLoadQueryFont(int pointSize,
     wxString xweight;
     switch (weight)
     {
-         case wxBOLD:
+         case wxFONTWEIGHT_BOLD:
              {
                   fontSpec.Printf(wxT("-*-%s-bold-*-*-*-*-*-*-*-*-*-*-*"),
                          xfamily.c_str());
@@ -1443,7 +1445,7 @@ static wxNativeFont wxLoadQueryFont(int pointSize,
                   }
               }
               break;
-        case wxLIGHT:
+        case wxFONTWEIGHT_LIGHT:
              {
                   fontSpec.Printf(wxT("-*-%s-light-*-*-*-*-*-*-*-*-*-*-*"),
                          xfamily.c_str());
@@ -1461,7 +1463,7 @@ static wxNativeFont wxLoadQueryFont(int pointSize,
                   }
              }
              break;
-         case wxNORMAL:
+         case wxFONTWEIGHT_NORMAL:
              {
                   fontSpec.Printf(wxT("-*-%s-medium-*-*-*-*-*-*-*-*-*-*-*"),
                          xfamily.c_str());
