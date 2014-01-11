@@ -2757,6 +2757,11 @@ static bool AlphaBlt(wxMSWDCImpl* dcDst,
                     }
                 }
 
+                // Using wxAlphaPixelData sets the internal "has alpha" flag
+                // which is usually what we need, but in this particular case
+                // we use it to get rid of alpha, not set it, so reset it back.
+                bmpOld.ResetAlpha();
+
                 dcDst->DoSelect(bmpOld);
             }
 

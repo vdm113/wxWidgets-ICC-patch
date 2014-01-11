@@ -1242,10 +1242,10 @@ wxDC *wxBitmap::GetSelectedInto() const
 #endif
 }
 
-void wxBitmap::UseAlpha()
+void wxBitmap::UseAlpha(bool use)
 {
     if ( GetBitmapData() )
-        GetBitmapData()->m_hasAlpha = true;
+        GetBitmapData()->m_hasAlpha = use;
 }
 
 bool wxBitmap::HasAlpha() const
