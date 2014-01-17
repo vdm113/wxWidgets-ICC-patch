@@ -452,7 +452,7 @@ public:
             void FunctionInAWorkerThread(const wxString& str)
             {
                 wxThreadEvent evt;
-                evt->SetString(str);
+                evt.SetString(str);
 
                 // wxThreadEvent::Clone() makes sure that the internal wxString
                 // member is not shared by other wxString instances:
