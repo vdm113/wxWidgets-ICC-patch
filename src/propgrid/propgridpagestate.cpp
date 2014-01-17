@@ -1556,7 +1556,7 @@ void wxPropertyGridPageState::DoSetPropertyValues( const wxVariantList& list, wx
 
     if ( m_pPropGrid->GetState() == this )
     {
-        origFrozen = m_pPropGrid->m_frozen;
+        origFrozen = m_pPropGrid->IsFrozen();
         if ( !origFrozen ) m_pPropGrid->Freeze();
     }
 

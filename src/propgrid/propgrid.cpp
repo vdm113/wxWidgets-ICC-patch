@@ -379,7 +379,6 @@ void wxPropertyGrid::Init1()
     AddActionTrigger( wxPG_ACTION_PRESS_BUTTON, WXK_F4 );
 
     m_coloursCustomized = 0;
-    m_frozen = 0;
 
     m_doubleBuffer = NULL;
 
@@ -619,7 +618,7 @@ void wxPropertyGrid::SetWindowStyleFlag( long style )
             //
             // Autosort enabled
             //
-            if ( !m_frozen )
+            if ( !IsFrozen() )
                 PrepareAfterItemsAdded();
             else
                 m_pState->m_itemsAdded = 1;
@@ -660,24 +659,11 @@ void wxPropertyGrid::SetWindowStyleFlag( long style )
 
 // -----------------------------------------------------------------------
 
-void wxPropertyGrid::Freeze()
+void wxPropertyGrid::DoThaw()
 {
-    if ( !m_frozen )
+    if ( !IsFrozen() )
     {
-        wxControl::Freeze();
-    }
-    m_frozen++;
-}
-
-// -----------------------------------------------------------------------
-
-void wxPropertyGrid::Thaw()
-{
-    m_frozen--;
-
-    if ( !m_frozen )
-    {
-        wxControl::Thaw();
+        wxControl::DoThaw();
         RecalculateVirtualSize();
         Refresh();
 
@@ -1953,7 +1939,7 @@ void wxPropertyGrid::DrawItems( wxDC& dc,
                                 unsigned int bottomItemY,
                                 const wxRect* itemsRect )
 {
-    if ( m_frozen ||
+    if ( IsFrozen() ||
          m_height < 1 ||
          bottomItemY < topItemY ||
          !m_pState )
@@ -2061,7 +2047,7 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
     if ( !lastItem )
         lastItem = GetLastItem( wxPG_ITERATE_VISIBLE );
 
-    if ( m_frozen || m_height < 1 || firstItem == NULL )
+    if ( IsFrozen() || m_height < 1 || firstItem == NULL )
         return itemsRect->y;
 
     wxCHECK_MSG( !m_pState->m_itemsAdded, itemsRect->y,
@@ -2605,7 +2591,7 @@ wxRect wxPropertyGrid::GetPropertyRect( const wxPGProperty* p1, const wxPGProper
 
 void wxPropertyGrid::DrawItems( const wxPGProperty* p1, const wxPGProperty* p2 )
 {
-    if ( m_frozen )
+    if ( IsFrozen() )
         return;
 
     if ( m_pState->m_itemsAdded )
@@ -2643,7 +2629,7 @@ void wxPropertyGrid::RefreshProperty( wxPGProperty* p )
 
 void wxPropertyGrid::DrawItemAndValueRelated( wxPGProperty* p )
 {
-    if ( m_frozen )
+    if ( IsFrozen() )
         return;
 
     // Draw item, children, and parent too, if it is not category
@@ -2672,7 +2658,7 @@ void wxPropertyGrid::DrawItemAndChildren( wxPGProperty* p )
         return;
 
     // do not draw a single item if multiple pending
-    if ( m_pState->m_itemsAdded || m_frozen )
+    if ( m_pState->m_itemsAdded || IsFrozen() )
         return;
 
     // Update child control.
@@ -2716,7 +2702,7 @@ void wxPropertyGrid::Clear()
     RecalculateVirtualSize();
 
     // Need to clear some area at the end
-    if ( !m_frozen )
+    if ( !IsFrozen() )
         RefreshRect(wxRect(0, 0, m_width, m_height));
 }
 
@@ -2745,7 +2731,7 @@ bool wxPropertyGrid::EnableCategories( bool enable )
     if ( !m_pState->EnableCategories(enable) )
         return false;
 
-    if ( !m_frozen )
+    if ( !IsFrozen() )
     {
         if ( m_windowStyle & wxPG_AUTO_SORT )
         {
@@ -2817,7 +2803,7 @@ void wxPropertyGrid::SwitchState( wxPropertyGridPageState* pNewState )
         // This should refresh as well.
         EnableCategories( orig_mode?false:true );
     }
-    else if ( !m_frozen )
+    else if ( !IsFrozen() )
     {
         // Refresh, if not frozen.
         m_pState->PrepareAfterItemsAdded();
@@ -4098,7 +4084,7 @@ bool wxPropertyGrid::DoSelectProperty( wxPGProperty* p, unsigned int flags )
     wxWindow* primaryCtrl = NULL;
 
     // If we are frozen, then just set the values.
-    if ( m_frozen )
+    if ( IsFrozen() )
     {
         m_iFlags &= ~(wxPG_FL_ABNORMAL_EDITOR);
         m_editorFocused = 0;
@@ -4413,7 +4399,7 @@ bool wxPropertyGrid::UnfocusEditor()
 {
     wxPGProperty* selected = GetSelection();
 
-    if ( !selected || !m_wndEditor || m_frozen )
+    if ( !selected || !m_wndEditor || IsFrozen() )
         return true;
 
     if ( !CommitChangesFromEditor(0) )
@@ -4535,7 +4521,7 @@ bool wxPropertyGrid::DoExpand( wxPGProperty* p, bool sendEvents )
 
 bool wxPropertyGrid::DoHideProperty( wxPGProperty* p, bool hide, int flags )
 {
-    if ( m_frozen )
+    if ( IsFrozen() )
         return m_pState->DoHideProperty(p, hide, flags);
 
     wxArrayPGProperty selection = m_pState->m_selection;  // Must use a copy
@@ -4572,7 +4558,7 @@ void wxPropertyGrid::RecalculateVirtualSize( int forceXPos )
     // Don't check for !HasInternalFlag(wxPG_FL_INITIALIZED) here. Otherwise
     // virtual size calculation may go wrong.
     if ( HasInternalFlag(wxPG_FL_RECALCULATING_VIRTUAL_SIZE) ||
-         m_frozen ||
+         IsFrozen() ||
          !m_pState )
         return;
 
@@ -4689,7 +4675,7 @@ void wxPropertyGrid::OnResize( wxSizeEvent& event )
     m_pState->OnClientWidthChange( width, event.GetSize().x - m_ncWidth, true );
     m_ncWidth = event.GetSize().x;
 
-    if ( !m_frozen )
+    if ( !IsFrozen() )
     {
         if ( m_pState->m_itemsAdded )
             PrepareAfterItemsAdded();
@@ -5634,7 +5620,7 @@ void wxPropertyGrid::HandleKeyEvent( wxKeyEvent &event, bool fromChild )
     // Handles key event when editor control is not focused.
     //
 
-    wxCHECK2(!m_frozen, return);
+    wxCHECK2(!IsFrozen(), return);
 
     // Travelsal between items, collapsing/expanding, etc.
     wxPGProperty* selected = GetSelection();
