@@ -950,9 +950,6 @@ wxTarNumber wxTarInputStream::GetHeaderNumber(int id) const
     if ((value = GetExtendedHeader(m_hdr->Name(id))) != wxEmptyString) {
         wxTarNumber n = 0;
         wxString::const_iterator p = value.begin();
-#if defined(__INTEL_COMPILER) // VDM auto patch
-#   pragma ivdep
-#endif
         while (p != value.end() && *p == ' ')
             p++;
 #if defined(__INTEL_COMPILER) // VDM auto patch
