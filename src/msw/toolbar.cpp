@@ -769,8 +769,7 @@ bool wxToolBar::Realize()
             dcAllButtons.Clear();
         }
 
-        m_hBitmap = bitmap.GetHBITMAP();
-        HBITMAP hBitmap = (HBITMAP)m_hBitmap;
+        HBITMAP hBitmap = GetHbitmapOf(bitmap);
 
 #ifdef wxREMAP_BUTTON_COLOURS
         if ( remapValue == Remap_Bg )
@@ -813,6 +812,12 @@ bool wxToolBar::Realize()
 
                     // notice the last parameter: do use mask
                     dcAllButtons.DrawBitmap(bmp, x + xOffset, yOffset, true);
+
+                    // Handle of the bitmap could have changed inside
+                    // DrawBitmap() call if it had to convert it from DDB to
+                    // DIB internally, as is necessary if the bitmap being
+                    // drawn had alpha channel.
+                    hBitmap = GetHbitmapOf(bitmap);
                 }
                 else
                 {
@@ -890,6 +895,8 @@ bool wxToolBar::Realize()
                                          totalBitmapWidth, totalBitmapHeight);
         }
 #endif // wxREMAP_BUTTON_COLOURS
+
+        m_hBitmap = hBitmap;
 
         bool addBitmap = true;
 
