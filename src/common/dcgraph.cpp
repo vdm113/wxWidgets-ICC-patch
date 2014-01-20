@@ -201,10 +201,16 @@ wxGCDCImpl::wxGCDCImpl( wxDC *owner, const wxMemoryDC& dc ) :
                 if ( data )
                 {
                     wxAlphaPixelData::Iterator p(data);
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                     for ( int y = 0; y < data.GetHeight(); y++ )
                     {
                         wxAlphaPixelData::Iterator rowStart = p;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
                         for ( int x = 0; x < data.GetWidth(); x++ )
                         {
                             p.Alpha() = wxALPHA_OPAQUE;
