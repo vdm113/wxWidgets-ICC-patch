@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /* $Header: /cvs/maptools/cvsroot/libtiff/contrib/pds/tif_pdsdirwrite.c,v 1.4 2010-06-08 18:55:15 bfriesen Exp $ */
 
 /* When writing data to TIFF files, it is often useful to store application-
