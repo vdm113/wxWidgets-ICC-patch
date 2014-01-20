@@ -469,6 +469,8 @@ int _tmain(int argc, _TCHAR* argv[])
     ext.insert(".cxx");
     ext.insert(".C");
 
+    ext_prologue=ext; // use prologue for ALL files
+
     TCHAR dir[MAX_PATH];
     if(!::GetCurrentDirectory(sizeof(dir) - 1, dir)) {
         return 1;
