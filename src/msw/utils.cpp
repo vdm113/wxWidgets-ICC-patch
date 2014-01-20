@@ -221,7 +221,7 @@ bool wxGetFullHostName(wxChar *buf, int maxSize)
 
                         if ( pHostEnt )
                         {
-                            host = wxString::FromAscii(pHostEnt->h_name);
+                            host = pHostEnt->h_name;
                         }
                     }
                 }
