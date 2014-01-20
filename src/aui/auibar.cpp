@@ -787,7 +787,7 @@ int wxAuiDefaultToolBarArt::ShowDropDown(wxWindow* wnd,
 
 
 
-static wxOrientation GetOrientation(long& style)
+static wxOrientation GetOrientation(long style)
 {
     switch (style & wxAUI_ORIENTATION_MASK)
     {
