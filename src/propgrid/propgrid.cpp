@@ -3030,7 +3030,6 @@ bool wxPropertyGrid::PerformValidation( wxPGProperty* p, wxVariant& pendingValue
 
     //
     // Adapt list to child values, if necessary
-    wxVariant listValue = pendingValue;
     wxVariant* pPendingValue = &pendingValue;
     wxVariant* pList = NULL;
 
@@ -3044,7 +3043,7 @@ bool wxPropertyGrid::PerformValidation( wxPGProperty* p, wxVariant& pendingValue
     wxPGProperty* baseChangedProperty = changedProperty;
     wxVariant bcpPendingList;
 
-    listValue = pendingValue;
+    wxVariant listValue = pendingValue;
     listValue.SetName(p->GetBaseName());
 
 #if defined(__INTEL_COMPILER) // VDM auto patch
