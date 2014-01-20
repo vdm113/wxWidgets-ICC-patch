@@ -244,8 +244,8 @@ class WXDLLIMPEXP_WEBVIEW wxWebViewEvent : public wxNotifyEvent
 {
 public:
     wxWebViewEvent() {}
-    wxWebViewEvent(wxEventType type, int id, const wxString url,
-                   const wxString target)
+    wxWebViewEvent(wxEventType type, int id, const wxString& url,
+                   const wxString& target)
         : wxNotifyEvent(type, id), m_url(url), m_target(target)
     {}
 
