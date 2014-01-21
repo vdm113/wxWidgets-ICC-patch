@@ -1398,7 +1398,6 @@ wxSize wxComboCtrlBase::DoGetSizeFromTextSize(int xlen, int ylen) const
     else
     {
         wxComboBox* cb = new wxComboBox;
-        cb->Hide();
         cb->Create(const_cast<wxComboCtrlBase*>(this), wxID_ANY);
         if ( m_font.IsOk() )
             cb->SetFont(m_font);
