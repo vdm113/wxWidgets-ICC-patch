@@ -392,6 +392,40 @@ bool wxIsBusy()
 
 void wxSetCursor( const wxCursor& cursor )
 {
-    g_globalCursor = cursor;
-    UpdateCursors(NULL);
+    GdkDisplay* display = NULL;
+    wxWindowList::const_iterator i = wxTopLevelWindows.begin();
+    for (size_t n = wxTopLevelWindows.size(); n--; ++i)
+    {
+        GtkWidget* widget = (*i)->m_widget;
+        GdkWindow* window;
+        if (widget && (window = gtk_widget_get_window(widget)))
+        {
+            // if setting global cursor
+            if (cursor.IsOk())
+            {
+                delete gs_windowCursorMap;
+                gs_windowCursorMap = new wxGdkWindowGdkCursorMap;
+                // clear all cursors, saving non-default ones for later
+                clearCursors(window);
+                // set global cursor
+                gdk_window_set_cursor(window, cursor.GetCursor());
+            }
+            else
+            {
+                // remove global cursor
+                gdk_window_set_cursor(window, NULL);
+                if (gs_windowCursorMap)
+                {
+                    // restore non-default cursors
+                    restoreCursors(window);
+                    delete gs_windowCursorMap;
+                    gs_windowCursorMap = NULL;
+                }
+            }
+            if (display == NULL)
+                display = gdk_window_get_display(window);
+        }
+    }
+    if (display)
+        gdk_display_flush(display);
 }
