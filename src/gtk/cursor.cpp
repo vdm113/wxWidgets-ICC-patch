@@ -358,9 +358,6 @@ static wxGdkWindowGdkCursorMap* gs_windowCursorMap;
 wxGdkWindowGdkCursorMap::~wxGdkWindowGdkCursorMap()
 {
     const_iterator i = begin();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (size_t n = size(); n--; ++i)
     {
 #ifdef __WXGTK3__
@@ -386,9 +383,6 @@ static void clearCursors(GdkWindow* window)
         (*gs_windowCursorMap)[window] = cursor;
         gdk_window_set_cursor(window, NULL);
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (const GList* p = gdk_window_peek_children(window); p; p = p->next)
         clearCursors(static_cast<GdkWindow*>(p->data));
 }
@@ -399,9 +393,6 @@ static void restoreCursors(GdkWindow* window)
     wxGdkWindowGdkCursorMap::const_iterator i = gs_windowCursorMap->find(window);
     if (i != gs_windowCursorMap->end())
         gdk_window_set_cursor(window, i->second);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (const GList* p = gdk_window_peek_children(window); p; p = p->next)
         restoreCursors(static_cast<GdkWindow*>(p->data));
 }
@@ -410,9 +401,6 @@ void wxSetCursor( const wxCursor& cursor )
 {
     GdkDisplay* display = NULL;
     wxWindowList::const_iterator i = wxTopLevelWindows.begin();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (size_t n = wxTopLevelWindows.size(); n--; ++i)
     {
         GtkWidget* widget = (*i)->m_widget;
@@ -427,6 +415,7 @@ void wxSetCursor( const wxCursor& cursor )
                 // clear all cursors, saving non-default ones for later
                 clearCursors(window);
                 // set global cursor
+                wxASSERT(gdk_window_get_cursor(window) == NULL);
                 gdk_window_set_cursor(window, cursor.GetCursor());
             }
             else
