@@ -339,7 +339,9 @@ public:
     // find the direction of the given scrollbar (must be one of ours)
     ScrollDir ScrollDirFromRange(GtkRange *range) const;
 
-    void GTKUpdateCursor(bool isBusyOrGlobalCursor = false, bool isRealize = false);
+    // set the current cursor for all GdkWindows making part of this widget
+    // (see GTKGetWindow)
+    void GTKUpdateCursor();
 
     // extra (wxGTK-specific) flags
     bool                 m_noExpose:1;          // wxGLCanvas has its own redrawing
