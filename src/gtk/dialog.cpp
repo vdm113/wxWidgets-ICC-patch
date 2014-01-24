@@ -19,7 +19,6 @@
 #include "wx/dialog.h"
 
 #ifndef WX_PRECOMP
-    #include "wx/cursor.h"
 #endif // WX_PRECOMP
 
 #include "wx/evtloop.h"
@@ -154,8 +153,6 @@ int wxDialog::ShowModal()
         gtk_window_set_transient_for( GTK_WINDOW(m_widget),
                                       GTK_WINDOW(parent->m_widget) );
     }
-
-    wxBusyCursorSuspender cs; // temporarily suppress the busy cursor
 
 #if GTK_CHECK_VERSION(2,10,0)
     unsigned sigId = 0;

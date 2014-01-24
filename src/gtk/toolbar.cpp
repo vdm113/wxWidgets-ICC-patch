@@ -31,7 +31,6 @@
 
 // data
 extern bool       g_blockEventsOnDrag;
-extern wxCursor   g_globalCursor;
 
 // ----------------------------------------------------------------------------
 // wxToolBarTool
