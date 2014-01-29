@@ -2101,6 +2101,13 @@ bool wxXmlResourceHandlerImpl::IsOfClass(wxXmlNode *node, const wxString& classn
 }
 
 
+bool wxXmlResourceHandlerImpl::IsObjectNode(const wxXmlNode *node) const
+{
+    return node &&
+            node->GetType() == wxXML_ELEMENT_NODE &&
+                (node->GetName() == wxS("object") ||
+                    node->GetName() == wxS("object_ref"));
+}
 
 wxString wxXmlResourceHandlerImpl::GetNodeContent(const wxXmlNode *node)
 {
@@ -2119,6 +2126,21 @@ wxString wxXmlResourceHandlerImpl::GetNodeContent(const wxXmlNode *node)
         n = n->GetNext();
     }
     return wxEmptyString;
+}
+
+wxXmlNode *wxXmlResourceHandlerImpl::GetNodeParent(const wxXmlNode *node) const
+{
+    return node ? node->GetParent() : NULL;
+}
+
+wxXmlNode *wxXmlResourceHandlerImpl::GetNodeNext(const wxXmlNode *node) const
+{
+    return node ? node->GetNext() : NULL;
+}
+
+wxXmlNode *wxXmlResourceHandlerImpl::GetNodeChildren(const wxXmlNode *node) const
+{
+    return node ? node->GetChildren() : NULL;
 }
 
 

@@ -91,7 +91,7 @@ wxObject *wxAuiToolBarXmlHandler::DoCreateResource()
             // also check for the menu specified inside dropdown (it is
             // optional and may be absent for e.g. dynamically-created
             // menus)
-            wxXmlNode * const nodeMenu = nodeDropdown->GetChildren();
+            wxXmlNode * const nodeMenu = GetNodeChildren(nodeDropdown);
             if ( nodeMenu )
             {
                 wxObject *res = CreateResFromNode(nodeMenu, NULL);
@@ -105,11 +105,11 @@ wxObject *wxAuiToolBarXmlHandler::DoCreateResource()
                     );
                 }
 
-                if ( nodeMenu->GetNext() )
+                if ( GetNodeNext(nodeMenu) )
                 {
                     ReportError
                     (
-                        nodeMenu->GetNext(),
+                        GetNodeNext(nodeMenu),
                         "unexpected extra contents under drop-down tool"
                     );
                 }
@@ -205,8 +205,7 @@ wxObject *wxAuiToolBarXmlHandler::DoCreateResource()
 #endif
         while (n)
         {
-            if ((n->GetType() == wxXML_ELEMENT_NODE) &&
-                (n->GetName() == wxS("object") || n->GetName() == wxS("object_ref")))
+            if (IsObjectNode(n))
             {
                 wxObject *created = CreateResFromNode(n, toolbar, NULL);
                 wxControl *control = wxDynamicCast(created, wxControl);
@@ -216,7 +215,7 @@ wxObject *wxAuiToolBarXmlHandler::DoCreateResource()
                     control != NULL)
                     toolbar->AddControl(control);
             }
-            n = n->GetNext();
+            n = GetNodeNext(n);
         }
 
         m_isInside = false;
