@@ -182,6 +182,38 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">wxmsw31u_$(ProjectName)_vc_vdm</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">wxmsw31u_$(ProjectName)_vc_vdm</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB32);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB32);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB32);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB32);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
       <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -221,6 +253,9 @@
       <CheckPointers>None</CheckPointers>
       <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <CheckDanglingPointers>None</CheckDanglingPointers>
+      <C99Support>true</C99Support>
+      <Cpp0xSupport>true</Cpp0xSupport>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -275,6 +310,9 @@
       <CheckPointers>None</CheckPointers>
       <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <CheckDanglingPointers>None</CheckDanglingPointers>
+      <C99Support>true</C99Support>
+      <Cpp0xSupport>true</Cpp0xSupport>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -328,6 +366,9 @@
       <CheckPointers>None</CheckPointers>
       <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <CheckDanglingPointers>None</CheckDanglingPointers>
+      <C99Support>true</C99Support>
+      <Cpp0xSupport>true</Cpp0xSupport>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -381,6 +422,9 @@
       <CheckPointers>None</CheckPointers>
       <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <CheckDanglingPointers>None</CheckDanglingPointers>
+      <C99Support>true</C99Support>
+      <Cpp0xSupport>true</Cpp0xSupport>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -435,6 +479,9 @@
       <CheckPointers>None</CheckPointers>
       <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <CheckDanglingPointers>None</CheckDanglingPointers>
+      <C99Support>true</C99Support>
+      <Cpp0xSupport>true</Cpp0xSupport>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw31ud_aui_vc_vdm;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -501,6 +548,9 @@
       <CheckPointers>None</CheckPointers>
       <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <CheckDanglingPointers>None</CheckDanglingPointers>
+      <C99Support>true</C99Support>
+      <Cpp0xSupport>true</Cpp0xSupport>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw31ud_aui_vc_vdm;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -565,6 +615,9 @@
       <CheckPointers>None</CheckPointers>
       <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <CheckDanglingPointers>None</CheckDanglingPointers>
+      <C99Support>true</C99Support>
+      <Cpp0xSupport>true</Cpp0xSupport>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw31u_aui_vc_vdm;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -630,6 +683,9 @@
       <CheckPointers>None</CheckPointers>
       <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <CheckDanglingPointers>None</CheckDanglingPointers>
+      <C99Support>true</C99Support>
+      <Cpp0xSupport>true</Cpp0xSupport>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw31u_aui_vc_vdm;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>

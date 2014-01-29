@@ -165,18 +165,42 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">
     <OutDir>..\..\lib\vc_$(Platform)_dll\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">
     <OutDir>..\..\lib\vc_$(Platform)_dll\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>..\..\lib\vc_$(Platform)_lib\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\lib\vc_$(Platform)_lib\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB32);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB32);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB32);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB32);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
@@ -213,6 +237,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -265,6 +290,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -316,6 +342,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -367,6 +394,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -419,6 +447,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -471,6 +500,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -522,6 +552,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -573,6 +604,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP;%(PreprocessorDefinitions)</PreprocessorDefinitions>

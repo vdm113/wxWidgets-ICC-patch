@@ -177,18 +177,42 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">
     <OutDir>..\..\lib\vc_$(Platform)_dll\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">
     <OutDir>..\..\lib\vc_$(Platform)_dll\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>..\..\lib\vc_$(Platform)_lib\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\lib\vc_$(Platform)_lib\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB64);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB32);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB32);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB32);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(INCLUDE);$(IncludePath)</IncludePath>
+    <LibraryPath>$(LIB32);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
@@ -228,6 +252,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;wxUSE_GUI=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -282,6 +307,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;wxUSE_GUI=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -335,6 +361,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;wxUSE_GUI=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -388,6 +415,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;wxUSE_GUI=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -443,6 +471,7 @@
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxbase31ud_net_vc_vdm;wxUSE_GUI=0;WXUSINGDLL;WXMAKINGDLL_NET;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -509,6 +538,7 @@
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxbase31ud_net_vc_vdm;wxUSE_GUI=0;WXUSINGDLL;WXMAKINGDLL_NET;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -573,6 +603,7 @@
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxbase31u_net_vc_vdm;wxUSE_GUI=0;WXUSINGDLL;WXMAKINGDLL_NET;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -638,6 +669,7 @@
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <C99Support>true</C99Support>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxbase31u_net_vc_vdm;wxUSE_GUI=0;WXUSINGDLL;WXMAKINGDLL_NET;%(PreprocessorDefinitions)</PreprocessorDefinitions>
