@@ -169,6 +169,9 @@ struct wxCmdLineEntryDesc
     @code
     wxCmdLineParser parser;
 
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (wxCmdLineArgs::const_iterator itarg=parser.GetArguments().begin();
                                        itarg!=parser.GetArguments().end();
                                        ++itarg)
@@ -215,6 +218,9 @@ struct wxCmdLineEntryDesc
 
     With C++11, the for loop could be written:
     @code
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for (const auto &arg : parser.GetArguments()) {
         // working on arg as with *itarg above
     }
