@@ -1327,6 +1327,14 @@ size_t wxMBConvUTF8::ToWChar(wchar_t *buf, size_t n,
 #endif
                 while (cnt--)
                 {
+                    if (!isNulTerminated && !srcLen)
+                    {
+                        // invalid UTF-8 sequence ending before the end of code
+                        // point.
+                        invalid = true;
+                        break;
+                    }
+
                     cc = *psz;
                     if ((cc & 0xC0) != 0x80)
                     {
@@ -1336,6 +1344,8 @@ size_t wxMBConvUTF8::ToWChar(wchar_t *buf, size_t n,
                     }
 
                     psz++;
+                    if (!isNulTerminated)
+                        srcLen--;
                     res = (res << 6) | (cc & 0x3f);
                 }
 
