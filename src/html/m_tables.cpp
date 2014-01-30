@@ -230,9 +230,6 @@ void wxHtmlTableCell::ReallocCols(int cols)
 void wxHtmlTableCell::ReallocRows(int rows)
 {
     int alloc_rows;
-#if defined(__INTEL_COMPILER) // VDM auto patch
-#   pragma ivdep
-#endif
     for (alloc_rows = m_NumAllocatedRows; alloc_rows < rows;)
     {
         if (alloc_rows < 4)
@@ -249,9 +246,6 @@ void wxHtmlTableCell::ReallocRows(int rows)
         m_NumAllocatedRows = alloc_rows;
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
-#   pragma ivdep
-#endif
     for (int row = m_NumRows; row < rows ; ++row)
     {
         if (m_NumCols == 0)
