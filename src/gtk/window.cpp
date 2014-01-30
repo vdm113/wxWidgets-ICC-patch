@@ -3721,6 +3721,9 @@ void wxWindowGTK::GTKUpdateCursor()
         gdk_window_set_cursor(window, cursor);
     else
     {
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         for (size_t i = windows.size(); i--;)
         {
             window = windows[i];
