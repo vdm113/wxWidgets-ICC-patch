@@ -30,8 +30,8 @@
 extern wxNativeFont
 wxLoadQueryNearestFont(int pointSize,
                        int family,
-                       int style,
-                       int weight,
+                       wxFontStyle style,
+                       wxFontWeight weight,
                        bool underlined,
                        const wxString &facename,
                        wxFontEncoding encoding,
