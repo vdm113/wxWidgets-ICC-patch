@@ -256,7 +256,7 @@ int wxCFEventLoop::DoProcessEvents()
     }
     else
 #endif
-        return DispatchTimeout( 0 );
+        return DispatchTimeout( m_isInsideYield ? 0 : 1000 );
 }
 
 bool wxCFEventLoop::Dispatch()
