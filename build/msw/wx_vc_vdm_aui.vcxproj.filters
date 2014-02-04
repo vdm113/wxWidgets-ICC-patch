@@ -84,10 +84,10 @@
       <Filter>Common Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\xrc\xh_auinotbk.h">
-        <Filter>Common Headers</Filter>
+      <Filter>Common Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\xrc\xh_auitoolb.h">
-        <Filter>Common Headers</Filter>
+      <Filter>Common Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
