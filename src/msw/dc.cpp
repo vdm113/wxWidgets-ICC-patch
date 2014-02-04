@@ -1560,6 +1560,9 @@ void wxMSWDCImpl::DoDrawRotatedText(const wxString& text,
 
     // Draw all text line by line
     const wxArrayString lines = wxSplit(text, '\n', '\0');
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t lineNum = 0; lineNum < lines.size(); lineNum++ )
     {
         // Calculate origin for each line to avoid accumulation of

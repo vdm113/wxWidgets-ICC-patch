@@ -544,6 +544,9 @@ bool wxToolTip::AdjustMaxWidth()
         // find the width of the widest line
         int maxWidth = 0;
         wxStringTokenizer tokenizer(m_text, wxT("\n"));
+#if defined(__INTEL_COMPILER) // VDM auto patch
+#   pragma ivdep
+#endif
         while ( tokenizer.HasMoreTokens() )
         {
             const wxString token = tokenizer.GetNextToken();
