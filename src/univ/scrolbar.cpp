@@ -126,7 +126,7 @@ void wxScrollBar::Init()
 
     m_thumbPosOld = -1;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < WXSIZEOF(m_elementsState); n++ )
@@ -585,7 +585,7 @@ void wxScrollBar::UpdateThumb()
 {
     if ( m_dirty )
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < WXSIZEOF(m_elementsState); n++ )

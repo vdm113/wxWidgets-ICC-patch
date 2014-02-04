@@ -961,7 +961,7 @@ gtk_window_key_press_callback( GtkWidget *WXUNUSED(widget),
         // Next check for accelerators.
 #if wxUSE_ACCEL
         wxWindowGTK *ancestor = win;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (ancestor)
@@ -1103,7 +1103,7 @@ bool wxWindowGTK::GTKDoInsertTextFromIM(const char* str)
         return false;
 
     bool processed = false;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for( wxString::const_iterator pstr = data.begin(); pstr != data.end(); ++pstr )
@@ -1233,7 +1233,7 @@ wxWindowGTK *FindWindowForMouseEvent(wxWindowGTK *win, wxCoord& x, wxCoord& y)
     }
 
     wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -2263,7 +2263,7 @@ void wxWindowGTK::Init()
     m_mouseButtonDown = false;
 
     // initialize scrolling stuff
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int dir = 0; dir < ScrollDir_Max; dir++ )
@@ -2350,7 +2350,7 @@ void wxWindowGTK::GTKCreateScrolledWindowWith(GtkWidget* view)
     gtk_container_add( GTK_CONTAINER(m_widget), view );
 
     // connect various scroll-related events
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int dir = 0; dir < ScrollDir_Max; dir++ )
@@ -2479,7 +2479,7 @@ wxWindowGTK::~wxWindowGTK()
     // avoid problem with GTK+ 2.18 where a frozen window causes the whole
     // TLW to be frozen, and if the window is then destroyed, nothing ever
     // gets painted again
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (IsFrozen())
@@ -2705,7 +2705,7 @@ extern "C" {
 static gboolean queue_resize(void*)
 {
     gdk_threads_enter();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (GSList* p = gs_queueResizeList; p; p = p->next)
@@ -2927,7 +2927,7 @@ void wxWindowGTK::DoGetClientSize( int *width, int *height ) const
                     m_widget, "scrollbar-spacing", &scrollbar_spacing, NULL);
             }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( int i = 0; i < ScrollDir_Max; i++ )
@@ -3611,7 +3611,7 @@ void wxWindowGTK::RealizeTabOrder()
             GList *chain = NULL;
             wxWindowGTK* mnemonicWindow = NULL;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( wxWindowList::const_iterator i = m_children.begin();
@@ -3718,7 +3718,7 @@ void wxWindowGTK::GTKUpdateCursor()
         gdk_window_set_cursor(window, cursor);
     else
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = windows.size(); i--;)
@@ -3764,7 +3764,7 @@ void wxWindowGTK::WarpPointer( int x, int y )
 wxWindowGTK::ScrollDir wxWindowGTK::ScrollDirFromRange(GtkRange *range) const
 {
     // find the scrollbar which generated the event
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int dir = 0; dir < ScrollDir_Max; dir++ )
@@ -3900,7 +3900,7 @@ void wxWindowGTK::GTKSendPaintEvents(const GdkRegion* region)
         const int width = gdk_window_get_width(GTKGetDrawingWindow());
 
         wxRegionIterator upd( m_nativeUpdateRegion );
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (upd)
@@ -4022,7 +4022,7 @@ void wxWindowGTK::GTKSendPaintEvents(const GdkRegion* region)
     { // now composite children which need it
         // Overlay all our composite children on top of the painted area
         wxWindowList::compatibility_iterator node;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( node = m_children.GetFirst(); node ; node = node->GetNext() )
@@ -4440,7 +4440,7 @@ bool wxWindowGTK::DoPopupMenu( wxMenu *menu, int x, int y )
         return false;
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (menu->m_popupShown)

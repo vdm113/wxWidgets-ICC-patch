@@ -93,7 +93,7 @@ jpeg_idct_float (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   inptr = coef_block;
   quantptr = (FLOAT_MULT_TYPE *) compptr->dct_table;
   wsptr = workspace;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (ctr = DCTSIZE; ctr > 0; ctr--) {
@@ -187,7 +187,7 @@ jpeg_idct_float (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   /* Note that we must descale the results by a factor of 8 == 2**3. */
 
   wsptr = workspace;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (ctr = 0; ctr < DCTSIZE; ctr++) {

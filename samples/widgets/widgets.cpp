@@ -543,7 +543,7 @@ void WidgetsFrame::InitBook()
     // as we need the image list first
     //
     // we also construct the pages menu during this first iteration
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( cat = 0; cat < MAX_PAGES; cat++ )
@@ -558,7 +558,7 @@ void WidgetsFrame::InitBook()
                                          wxBK_DEFAULT);
 #endif
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( WidgetsPageInfo *info = WidgetsPage::ms_widgetPages;
@@ -610,7 +610,7 @@ void WidgetsFrame::InitBook()
     m_book->AssignImageList(imageList);
 #endif
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( cat = 0; cat < MAX_PAGES; cat++ )
@@ -626,7 +626,7 @@ void WidgetsFrame::InitBook()
 
         // now do add them
         size_t count = pages[cat].GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < count; n++ )
@@ -746,7 +746,7 @@ void WidgetsFrame::OnPageChanged(WidgetsBookCtrlEvent& event)
 
         WidgetsBookCtrl *book = wxStaticCast(page->GetParent(), WidgetsBookCtrl);
         wxSize size;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < book->GetPageCount(); ++i )
@@ -797,7 +797,7 @@ void WidgetsFrame::OnSetTooltip(wxCommandEvent& WXUNUSED(event))
     WidgetsPage *page = CurrentPage();
 
     const Widgets widgets = page->GetWidgets();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( Widgets::const_iterator it = widgets.begin();
@@ -845,7 +845,7 @@ void WidgetsFrame::OnSetFgCol(wxCommandEvent& WXUNUSED(event))
     m_colFg = col;
 
     const Widgets widgets = page->GetWidgets();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( Widgets::const_iterator it = widgets.begin();
@@ -871,7 +871,7 @@ void WidgetsFrame::OnSetBgCol(wxCommandEvent& WXUNUSED(event))
     m_colBg = col;
 
     const Widgets widgets = page->GetWidgets();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( Widgets::const_iterator it = widgets.begin();
@@ -908,7 +908,7 @@ void WidgetsFrame::OnSetFont(wxCommandEvent& WXUNUSED(event))
     m_font = font;
 
     const Widgets widgets = page->GetWidgets();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( Widgets::const_iterator it = widgets.begin();
@@ -930,7 +930,7 @@ void WidgetsFrame::OnSetFont(wxCommandEvent& WXUNUSED(event))
 void WidgetsFrame::OnEnable(wxCommandEvent& event)
 {
     const Widgets widgets = CurrentPage()->GetWidgets();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( Widgets::const_iterator it = widgets.begin();
@@ -974,7 +974,7 @@ void WidgetsFrame::OnToggleLayoutDirection(wxCommandEvent& event)
                                               : wxLayout_LeftToRight;
 
     const Widgets widgets = CurrentPage()->GetWidgets();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( Widgets::const_iterator it = widgets.begin();
@@ -1000,7 +1000,7 @@ void WidgetsFrame::OnToggleBusyCursor(wxCommandEvent& event)
                                         : wxSTANDARD_CURSOR));
 
     const Widgets widgets = CurrentPage()->GetWidgets();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( Widgets::const_iterator it = widgets.begin();
@@ -1034,7 +1034,7 @@ void WidgetsFrame::OnAutoCompleteFixed(wxCommandEvent& WXUNUSED(event))
     wxArrayString completion_choices;
 
     // add a few strings so a completion occurs on any letter typed
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( char idxc = 'a'; idxc < 'z'; ++idxc )
@@ -1137,11 +1137,11 @@ void WidgetsFrame::OnAutoCompleteCustom(wxCommandEvent& WXUNUSED(event))
 
             if ( prefix.length() == 1 )
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( int i = 0; i < 10; i++ )
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                     for ( int j = 0; j < 10; j++ )
@@ -1154,7 +1154,7 @@ void WidgetsFrame::OnAutoCompleteCustom(wxCommandEvent& WXUNUSED(event))
 
             if ( prefix.length() == 2 )
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( int i = 0; i < 10; i++ )
@@ -1173,11 +1173,11 @@ void WidgetsFrame::OnAutoCompleteCustom(wxCommandEvent& WXUNUSED(event))
 
             if ( prefix2.length() == 4 )
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( char c = 'a'; c <= 'z'; c++ )
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                     for ( char d = 'a'; d <= 'z'; d++ )
@@ -1189,7 +1189,7 @@ void WidgetsFrame::OnAutoCompleteCustom(wxCommandEvent& WXUNUSED(event))
 
             if ( prefix.length() == 5 )
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( char c = 'a'; c <= 'z'; c++ )
@@ -1259,7 +1259,7 @@ WidgetsPageInfo::WidgetsPageInfo(Constructor ctor, const wxChar *label, int cate
         else
         {
             WidgetsPageInfo *node_next;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             do
@@ -1284,7 +1284,7 @@ WidgetsPageInfo::WidgetsPageInfo(Constructor ctor, const wxChar *label, int cate
                 }
                 node_prev = node_next;
             }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while ( node_next );

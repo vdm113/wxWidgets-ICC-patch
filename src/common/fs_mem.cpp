@@ -156,7 +156,7 @@ wxString wxMemoryFSHandlerBase::FindNext()
 {
     // m_findArgument is used to indicate that search is in progress, we reset
     // it to empty string after iterating over all elements
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( !m_findArgument.empty() )

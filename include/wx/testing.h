@@ -204,7 +204,7 @@ public:
     // including messing up the order of errors in some cases.
     void CheckUnmetExpectations()
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while ( !m_expectations.empty() )
@@ -234,7 +234,7 @@ public:
 protected:
     virtual int Enter(wxDialog *dlg)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while ( !m_expectations.empty() )

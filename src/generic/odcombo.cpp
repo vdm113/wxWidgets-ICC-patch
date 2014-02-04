@@ -331,7 +331,7 @@ bool wxVListBoxComboPopup::HandleKey( int keycode, bool saturate, wxChar keychar
         int found = -1;
         unsigned int length=m_partialCompletionString.length();
         int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i=0; i<itemCount; i++)
@@ -453,7 +453,7 @@ void wxVListBoxComboPopup::OnMouseMove(wxMouseEvent& event)
     // partially visible, we might just as well replicate the HitTest
     // loop here.
     const size_t lineMax = GetVisibleEnd();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t line = GetVisibleBegin(); line < lineMax; line++ )
@@ -557,7 +557,7 @@ int wxVListBoxComboPopup::Append(const wxString& item)
         wxArrayString strings = m_strings;
         unsigned int i;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=0; i<strings.GetCount(); i++ )
@@ -598,7 +598,7 @@ void wxVListBoxComboPopup::ClearClientDatas()
     if ( m_clientDataItemsType == wxClientData_Object )
     {
         size_t i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=0; i<m_clientDatas.GetCount(); i++ )
@@ -747,7 +747,7 @@ void wxVListBoxComboPopup::CalcWidths()
             m_useFont = m_combo->GetFont();
         dc.SetFont(m_useFont);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=0; i<n; i++ )
@@ -804,7 +804,7 @@ void wxVListBoxComboPopup::CalcWidths()
         int bestWidth = -1;
         int bestIndex = -1;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=0; i<n; i++ )
@@ -875,7 +875,7 @@ void wxVListBoxComboPopup::Populate( const wxArrayString& choices )
 
     int n = choices.GetCount();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<n; i++ )
@@ -977,7 +977,7 @@ bool wxOwnerDrawnComboBox::Create(wxWindow *parent,
     }
 
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<n; i++ )
@@ -1123,7 +1123,7 @@ int wxOwnerDrawnComboBox::DoInsertItems(const wxArrayStringsAdapter& items,
     {
         int n = pos;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned int i = 0; i < count; ++i )
@@ -1136,7 +1136,7 @@ int wxOwnerDrawnComboBox::DoInsertItems(const wxArrayStringsAdapter& items,
     }
     else
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned int i = 0; i < count; ++i, ++pos )

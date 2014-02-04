@@ -176,7 +176,7 @@ void wxStatusBarMac::OnPaint(wxPaintEvent& WXUNUSED(event))
     // compute char height only once for all panes:
     int textHeight = dc.GetCharHeight();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < m_panes.GetCount(); i ++ )

@@ -171,7 +171,7 @@ void XrcTestCase::ObjectReferences()
 {
     wxXmlResource::Get()->InitAllHandlers();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int n = 0; n < 2; ++n )
@@ -197,7 +197,7 @@ void XrcTestCase::ObjectReferences()
 void XrcTestCase::IDRanges()
 {
     // Tests ID ranges
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int n = 0; n < 2; ++n )

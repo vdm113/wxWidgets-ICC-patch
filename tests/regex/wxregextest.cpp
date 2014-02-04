@@ -113,7 +113,7 @@ void RegExMatchTestCase::runTest()
                               wxT("\t"), wxTOKEN_RET_EMPTY);
         size_t i;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < re.GetMatchCount() && tkz.HasMoreTokens(); i++) {
@@ -319,7 +319,7 @@ wxString wxRegExTestSuite::FlagStr(int flags)
     if (!flags)
         return str;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; (unsigned)flags >> i; i++) {

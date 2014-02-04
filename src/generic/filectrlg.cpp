@@ -500,7 +500,7 @@ long wxFileListCtrl::Add( wxFileData *fd, wxListItem &item )
     if (my_style & wxLC_REPORT)
     {
         ret = InsertItem( item );
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 1; i < wxFileData::FileList_Max; i++)
@@ -525,7 +525,7 @@ void wxFileListCtrl::UpdateItem(const wxListItem &item)
 
     if (GetWindowStyleFlag() & wxLC_REPORT)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 1; i < wxFileData::FileList_Max; i++)
@@ -554,7 +554,7 @@ void wxFileListCtrl::UpdateFiles()
         wxArrayInt icons;
         const size_t count = wxGetAvailableDrives(paths, names, icons);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < count; n++ )
@@ -620,7 +620,7 @@ void wxFileListCtrl::UpdateFiles()
 
             // Get the directories first (not matched against wildcards):
             cont = dir.GetFirst(&f, wxEmptyString, wxDIR_DIRS | hiddenFlag);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (cont)
@@ -637,14 +637,14 @@ void wxFileListCtrl::UpdateFiles()
             // Tokenize the wildcard string, so we can handle more than 1
             // search pattern in a wildcard.
             wxStringTokenizer tokenWild(m_wild, wxT(";"));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while ( tokenWild.HasMoreTokens() )
             {
                 cont = dir.GetFirst(&f, tokenWild.GetNextToken(),
                                         wxDIR_FILES | hiddenFlag);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 while (cont)
@@ -683,7 +683,7 @@ void wxFileListCtrl::MakeDir()
     {
         // try NewName0, NewName1 etc.
         int i = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         do {
@@ -798,7 +798,7 @@ void wxFileListCtrl::FreeAllItemsData()
     item.m_mask = wxLIST_MASK_DATA;
 
     item.m_itemId = GetNextItem( -1, wxLIST_NEXT_ALL );
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( item.m_itemId != -1 )
@@ -1144,7 +1144,7 @@ wxGenericFileCtrl::DoGetFilenames(wxArrayString& filenames, bool fullPath) const
     wxListItem item;
     item.m_mask = wxLIST_MASK_TEXT;
     item.m_itemId = -1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )
@@ -1190,7 +1190,7 @@ bool wxGenericFileCtrl::SetFilename( const wxString& name )
         {
             long itemIndex = -1;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( ;; )
@@ -1254,7 +1254,7 @@ void wxGenericFileCtrl::SetWildcard( const wxString& wildCard )
 
     m_choice->Clear();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -1302,7 +1302,7 @@ void wxGenericFileCtrl::OnTextChange( wxCommandEvent &WXUNUSED( event ) )
         {
             long item = m_list->GetNextItem( -1, wxLIST_NEXT_ALL,
                                              wxLIST_STATE_SELECTED );
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while ( item != -1 )

@@ -228,7 +228,7 @@ void TextFileTestCase::ReadCRCRLF()
     CPPUNIT_ASSERT( f.Open(wxString::FromAscii(GetTestFileName())) );
 
     wxString all;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxString str = f.GetFirstLine(); !f.Eof(); str = f.GetNextLine() )
@@ -286,7 +286,7 @@ void TextFileTestCase::ReadBig()
 
     {
         wxFFile f(GetTestFileName(), "w");
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < NUM_LINES; n++ )

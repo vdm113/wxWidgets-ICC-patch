@@ -116,7 +116,7 @@ wxRegion::wxRegion( GdkRegion *region )
 wxRegion::wxRegion( size_t n, const wxPoint *points, wxPolygonFillMode fillStyle )
 {
     GdkPoint *gdkpoints = new GdkPoint[n];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0 ; i < n ; i++ )
@@ -427,7 +427,7 @@ void wxRIRefData::CreateRects( const wxRegion& region )
         if (m_numRects)
         {
             m_rects = new wxRect[m_numRects];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (size_t i=0; i < m_numRects; ++i)

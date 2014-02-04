@@ -611,7 +611,7 @@ wxDialUpManagerImpl::CheckProcNet()
 
             char output[256];
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (fgets(output, 256, f) != NULL)
@@ -661,7 +661,7 @@ wxDialUpManagerImpl::CheckIfconfig()
             wxT("/etc"),          // AIX 5
         };
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < WXSIZEOF(ifconfigLocations); n++ )

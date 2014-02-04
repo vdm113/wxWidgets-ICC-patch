@@ -127,7 +127,7 @@ bool wxMediaCtrl::Create(wxWindow* parent, wxWindowID id,
 
         const wxClassInfo* classInfo;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while((classInfo = NextBackend(&it)) != NULL)
@@ -192,7 +192,7 @@ bool wxMediaCtrl::Create(wxWindow* parent, wxWindowID id,
 
         const wxClassInfo* classInfo;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while((classInfo = NextBackend(&it)) != NULL)
@@ -256,7 +256,7 @@ bool wxMediaCtrl::DoCreate(const wxClassInfo* classInfo,
 //---------------------------------------------------------------------------
 const wxClassInfo* wxMediaCtrl::NextBackend(wxClassInfo::const_iterator* it)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxClassInfo::const_iterator end = wxClassInfo::end_classinfo();

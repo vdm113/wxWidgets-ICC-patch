@@ -1015,7 +1015,7 @@ void wxGtkPrinter::BeginPrint(wxPrintout *printout, GtkPrintOperation *operation
                 GtkPageRange* range;
                 int i;
                 range = gtk_print_settings_get_page_ranges (settings, &num_ranges);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (i=0; i<num_ranges; i++)
@@ -1464,7 +1464,7 @@ void wxGtkPrinterDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoff
     SetPen (m_pen);
 
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i =0; i<n ; i++ )
@@ -1472,7 +1472,7 @@ void wxGtkPrinterDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoff
 
     cairo_move_to ( m_cairo, XLOG2DEV(points[0].x+xoffset), YLOG2DEV(points[0].y+yoffset) );
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 1; i < n; i++)
@@ -1498,7 +1498,7 @@ void wxGtkPrinterDCImpl::DoDrawPolygon(int n, const wxPoint points[],
     cairo_new_path(m_cairo);
     cairo_move_to( m_cairo, XLOG2DEV(x), YLOG2DEV(y) );
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 1; i < n; i++)
@@ -1648,7 +1648,7 @@ void wxGtkPrinterDCImpl::DoDrawSpline(const wxPointList *points)
     CalcBoundingBox( (wxCoord)x3, (wxCoord)y3 );
 
     node = node->GetNext();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -1903,7 +1903,7 @@ void wxGtkPrinterDCImpl::SetPen( const wxPen& pen )
             int num = m_pen.GetDashes (&wx_dashes);
             gdouble *g_dashes = g_new( gdouble, num );
             int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < num; ++i)

@@ -123,7 +123,7 @@ bool wxRichTextHTMLHandler::DoSaveFile(wxRichTextBuffer *buffer, wxOutputStream&
         m_listTypes.Clear();
 
         wxRichTextObjectList::compatibility_iterator node = buffer->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (node)
@@ -138,7 +138,7 @@ bool wxRichTextHTMLHandler::DoSaveFile(wxRichTextBuffer *buffer, wxOutputStream&
                 BeginParagraphFormatting(currentParaStyle, paraStyle, str);
 
                 wxRichTextObjectList::compatibility_iterator node2 = para->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 while (node2)
@@ -436,7 +436,7 @@ void wxRichTextHTMLHandler::CloseLists(int level, wxTextOutputStream& str)
 {
     // Close levels high than this
     int i = m_indents.GetCount()-1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (i >= 0)
@@ -604,7 +604,7 @@ long wxRichTextHTMLHandler::PtToSize(long size)
 {
     int i;
     int len = m_fontSizeMapping.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < len; i++)
@@ -616,7 +616,7 @@ long wxRichTextHTMLHandler::PtToSize(long size)
 wxString wxRichTextHTMLHandler::SymbolicIndent(long indent)
 {
     wxString in;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for(;indent > 0; indent -= 20)
@@ -654,7 +654,7 @@ wxChar* wxRichTextHTMLHandler::b64enc( unsigned char* input, size_t in_len )
     wxChar* output = new wxChar[4*((in_len+2)/3)+1];
     wxChar* p = output;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while( in_len-- > 0 )
@@ -707,7 +707,7 @@ bool wxRichTextHTMLHandler::DeleteTemporaryImages()
 bool wxRichTextHTMLHandler::DeleteTemporaryImages(int flags, const wxArrayString& imageLocations)
 {
     size_t i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < imageLocations.GetCount(); i++)

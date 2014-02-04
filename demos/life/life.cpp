@@ -443,7 +443,7 @@ void LifeFrame::OnMenu(wxCommandEvent& event)
             m_running = true;
             m_topspeed = true;
             UpdateUI();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (m_running && m_topspeed)
@@ -827,14 +827,14 @@ void LifeCanvas::DrawChanged()
     }
     dc.SetLogicalFunction(wxINVERT);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (!done)
     {
         done = m_life->FindMore(&cells, &ncells);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t m = 0; m < ncells; m++)
@@ -884,12 +884,12 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
         h = CellToY(j1 + 1) - y + 1;
 
         dc.SetPen(*wxLIGHT_GREY_PEN);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (wxInt32 yy = y; yy <= (y + h - m_cellsize); yy += m_cellsize)
             dc.DrawRectangle(x, yy, w, m_cellsize + 1);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (wxInt32 xx = x; xx <= (x + w - m_cellsize); xx += m_cellsize)
@@ -900,12 +900,12 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
     dc.SetPen(*wxBLACK_PEN);
     dc.SetBrush(*wxBLACK_BRUSH);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (!done)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t m = 0; m < ncells; m++)
@@ -915,7 +915,7 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
     }
 
     // last set
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t m = 0; m < ncells; m++)
@@ -990,7 +990,7 @@ void LifeCanvas::OnMouse(wxMouseEvent& event)
             // iterate over i
             d = aj - (ai >> 1);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (ii != i)
@@ -1011,7 +1011,7 @@ void LifeCanvas::OnMouse(wxMouseEvent& event)
             // iterate over j
             d = ai - (aj >> 1);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (jj != j)

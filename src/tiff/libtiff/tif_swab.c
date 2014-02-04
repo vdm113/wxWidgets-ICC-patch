@@ -82,7 +82,7 @@ TIFFSwabArrayOfShort(register uint16* wp, tmsize_t n)
 	register unsigned char t;
 	assert(sizeof(uint16)==2);
 	/* XXX unroll loop some */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (n-- > 0) {
@@ -101,7 +101,7 @@ TIFFSwabArrayOfTriples(register uint8* tp, tmsize_t n)
 	unsigned char t;
 
 	/* XXX unroll loop some */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (n-- > 0) {
@@ -120,7 +120,7 @@ TIFFSwabArrayOfLong(register uint32* lp, tmsize_t n)
 	register unsigned char t;
 	assert(sizeof(uint32)==4);
 	/* XXX unroll loop some */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (n-- > 0) {
@@ -140,7 +140,7 @@ TIFFSwabArrayOfLong8(register uint64* lp, tmsize_t n)
 	register unsigned char t;
 	assert(sizeof(uint64)==8);
 	/* XXX unroll loop some */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (n-- > 0) {
@@ -174,7 +174,7 @@ TIFFSwabArrayOfFloat(register float* fp, tmsize_t n)
 	register unsigned char t;
 	assert(sizeof(float)==4);
 	/* XXX unroll loop some */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (n-- > 0) {
@@ -208,7 +208,7 @@ TIFFSwabArrayOfDouble(double* dp, tmsize_t n)
 	register unsigned char t;
 	assert(sizeof(double)==8);
 	/* XXX unroll loop some */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (n-- > 0) {
@@ -309,7 +309,7 @@ TIFFGetBitRevTable(int reversed)
 void
 TIFFReverseBits(uint8* cp, tmsize_t n)  
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; n > 8; n -= 8) {
@@ -323,7 +323,7 @@ TIFFReverseBits(uint8* cp, tmsize_t n)
 		cp[7] = TIFFBitRevTable[cp[7]];
 		cp += 8;
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (n-- > 0)

@@ -121,7 +121,7 @@ int wxHtmlListCell::ComputeMaxBase(wxHtmlCell *cell)
 
     wxHtmlCell *child = cell->GetFirstChild();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while(child)
@@ -144,7 +144,7 @@ void wxHtmlListCell::Layout(int w)
     int s_width = m_Width - m_IndentLeft;
 
     int vpos = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int r = 0; r < m_NumRows; r++)
@@ -192,7 +192,7 @@ void wxHtmlListCell::ComputeMinMaxWidths()
     m_MaxTotalWidth = 0;
     m_Width = 0;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int r = 0; r < m_NumRows; r++)

@@ -167,7 +167,7 @@ public:
     virtual bool RemoveAll()
     {
         wxFSWatchEntries::iterator it = m_watches.begin();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( ; it != m_watches.end(); ++it )
@@ -185,7 +185,7 @@ public:
                     "Kqueue not initialized or invalid kqueue descriptor" );
 
         // read events
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         do
@@ -206,7 +206,7 @@ public:
             // we have event, so process it
             ProcessNativeEvent(event);
         }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (true);
@@ -236,7 +236,7 @@ protected:
         // iterate over old/curr file lists and compute changes
         wxArrayString::iterator oit = old.files.begin();
         wxArrayString::iterator cit = curr.files.begin();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( ; oit != old.files.end() && cit != curr.files.end(); )
@@ -263,7 +263,7 @@ protected:
         // border conditions
         if ( oit == old.files.end() )
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( ; cit != curr.files.end(); ++cit )
@@ -274,7 +274,7 @@ protected:
         }
         else if ( cit == curr.files.end() )
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( ; oit != old.files.end(); ++oit )
@@ -290,7 +290,7 @@ protected:
         wxLogTrace(wxTRACE_FSWATCHER, "Changed files:");
         wxArrayString::iterator it = changedFiles.begin();
         wxArrayInt::iterator it2 = changedFlags.begin();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( ; it != changedFiles.end(); ++it, ++it2)
@@ -320,7 +320,7 @@ protected:
 
         // TODO ignore events we didn't ask for + refactor this cascade ifs
         // check for events
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while ( nflags )
@@ -341,7 +341,7 @@ protected:
 
                 wxArrayString::iterator it = changedFiles.begin();
                 wxArrayInt::iterator changeType = changedFlags.begin();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( ; it != changedFiles.end(); ++it, ++changeType )

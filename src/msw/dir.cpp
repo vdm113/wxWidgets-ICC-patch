@@ -104,7 +104,7 @@ CheckFoundMatch(const FIND_STRUCT* finddata, const wxString& filter)
 inline bool
 FindNext(FIND_DATA fd, const wxString& filter, FIND_STRUCT *finddata)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )
@@ -283,7 +283,7 @@ bool wxDirData::Read(wxString *filename)
     const wxChar *name;
     FIND_ATTR attr;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )

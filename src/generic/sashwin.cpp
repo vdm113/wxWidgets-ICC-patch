@@ -121,7 +121,7 @@ void wxSashWindow::OnMouseEvent(wxMouseEvent& event)
             // the area to draw on.
             wxWindow* parent = this;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (parent && !wxDynamicCast(parent, wxDialog) &&
@@ -386,7 +386,7 @@ wxSashEdgePosition wxSashWindow::SashHitTest(int x, int y, int WXUNUSED(toleranc
     GetClientSize(& cx, & cy);
 
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 4; i++)
@@ -476,7 +476,7 @@ void wxSashWindow::DrawBorders(wxDC& dc)
 void wxSashWindow::DrawSashes(wxDC& dc)
 {
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 4; i++)

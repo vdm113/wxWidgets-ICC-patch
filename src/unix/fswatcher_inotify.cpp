@@ -155,7 +155,7 @@ public:
     virtual bool RemoveAll()
     {
         wxFSWatchEntries::iterator it = m_watches.begin();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( ; it != m_watches.end(); ++it )
@@ -181,7 +181,7 @@ public:
         // left > 0, we have events
         char* memory = buf;
         int event_count = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (left > 0) // OPT checking 'memory' would suffice
@@ -502,7 +502,7 @@ protected:
         // After all of a batch of events has been processed, this deals with
         // any still-unpaired IN_MOVED_FROM or IN_MOVED_TO events.
         wxInotifyCookies::iterator it = m_cookies.begin();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while ( it != m_cookies.end() )
@@ -613,7 +613,7 @@ protected:
         };
 
         int native_flags = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned int i=0; i < WXSIZEOF(flag_mapping); ++i)
@@ -649,7 +649,7 @@ protected:
         };
 
         unsigned int i=0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( ; i < WXSIZEOF(flag_mapping); ++i) {

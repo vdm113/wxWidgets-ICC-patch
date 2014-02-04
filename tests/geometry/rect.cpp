@@ -123,7 +123,7 @@ void RectTestCase::Operators()
         { 1, 1, 4, 4, 4, 4, 1, 1, 1, 1, 4, 4 }
     };
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < WXSIZEOF(s_rects); n++ )
@@ -170,7 +170,7 @@ void RectTestCase::Union()
         { 1, 1, 4, 4, 4, 4, 1, 1, 1, 1, 4, 4 }
     };
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < WXSIZEOF(s_rects); n++ )

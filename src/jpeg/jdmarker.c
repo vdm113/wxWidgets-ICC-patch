@@ -213,7 +213,7 @@ get_soi (j_decompress_ptr cinfo)
 
   /* Reset all parameters that are defined to be reset by SOI */
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < NUM_ARITH_TBLS; i++) {
@@ -286,7 +286,7 @@ get_sof (j_decompress_ptr cinfo, wxjpeg_boolean is_prog, wxjpeg_boolean is_arith
 			((j_common_ptr) cinfo, JPOOL_IMAGE,
 			 cinfo->num_components * SIZEOF(jpeg_component_info));
   
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -335,14 +335,14 @@ get_sos (j_decompress_ptr cinfo)
 
   /* Collect the component-spec parameters */
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < n; i++) {
     INPUT_BYTE(cinfo, cc, return FALSE);
     INPUT_BYTE(cinfo, c, return FALSE);
     
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -399,7 +399,7 @@ get_dac (j_decompress_ptr cinfo)
   INPUT_2BYTES(cinfo, length, return FALSE);
   length -= 2;
   
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (length > 0) {
@@ -451,7 +451,7 @@ get_dht (j_decompress_ptr cinfo)
   INPUT_2BYTES(cinfo, length, return FALSE);
   length -= 2;
   
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (length > 16) {
@@ -461,7 +461,7 @@ get_dht (j_decompress_ptr cinfo)
       
     bits[0] = 0;
     count = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 1; i <= 16; i++) {
@@ -484,7 +484,7 @@ get_dht (j_decompress_ptr cinfo)
     if (count > 256 || ((JPEG_INT32) count) > length)
       ERREXIT(cinfo, JERR_BAD_HUFF_TABLE);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < count; i++)
@@ -530,7 +530,7 @@ get_dqt (j_decompress_ptr cinfo)
   INPUT_2BYTES(cinfo, length, return FALSE);
   length -= 2;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (length > 0) {
@@ -547,7 +547,7 @@ get_dqt (j_decompress_ptr cinfo)
       cinfo->quant_tbl_ptrs[n] = jpeg_alloc_quant_table((j_common_ptr) cinfo);
     quant_ptr = cinfo->quant_tbl_ptrs[n];
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < DCTSIZE2; i++) {
@@ -560,7 +560,7 @@ get_dqt (j_decompress_ptr cinfo)
     }
 
     if (cinfo->err->trace_level >= 2) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
       for (i = 0; i < DCTSIZE2; i += 8) {
@@ -746,7 +746,7 @@ get_interesting_appn (j_decompress_ptr cinfo)
     numtoread = (unsigned int) length;
   else
     numtoread = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < numtoread; i++)
@@ -828,7 +828,7 @@ save_marker (j_decompress_ptr cinfo)
     data = cur_marker->data + bytes_read;
   }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (bytes_read < data_length) {
@@ -837,7 +837,7 @@ save_marker (j_decompress_ptr cinfo)
     /* If there's not at least one byte in buffer, suspend */
     MAKE_BYTE_AVAIL(cinfo, return FALSE);
     /* Copy bytes with reasonable rapidity */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (bytes_read < data_length && bytes_in_buffer > 0) {
@@ -854,7 +854,7 @@ save_marker (j_decompress_ptr cinfo)
       cinfo->marker_list = cur_marker;
     } else {
       jpeg_saved_marker_ptr prev = cinfo->marker_list;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
       while (prev->next != NULL)
@@ -928,7 +928,7 @@ next_marker (j_decompress_ptr cinfo)
   int c;
   INPUT_VARS(cinfo);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (;;) {
@@ -938,7 +938,7 @@ next_marker (j_decompress_ptr cinfo)
      * We sync after each discarded byte so that a suspending data source
      * can discard the byte from its buffer.
      */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (c != 0xFF) {
@@ -951,7 +951,7 @@ next_marker (j_decompress_ptr cinfo)
      * will not be so many consecutive FF bytes as to overflow a suspending
      * data source's input buffer.
      */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do {
@@ -1013,7 +1013,7 @@ METHODDEF(int)
 read_markers (j_decompress_ptr cinfo)
 {
   /* Outer loop repeats once for each marker. */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (;;) {
@@ -1262,7 +1262,7 @@ jpeg_resync_to_restart (j_decompress_ptr cinfo, int desired)
   WARNMS2(cinfo, JWRN_MUST_RESYNC, marker, desired);
   
   /* Outer loop handles repeated decision after scanning forward. */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (;;) {
@@ -1346,7 +1346,7 @@ jinit_marker_reader (j_decompress_ptr cinfo)
    */
   marker->process_COM = skip_variable;
   marker->length_limit_COM = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < 16; i++) {

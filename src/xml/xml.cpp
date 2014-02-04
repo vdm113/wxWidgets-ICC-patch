@@ -115,7 +115,7 @@ wxXmlNode& wxXmlNode::operator=(const wxXmlNode& node)
 void wxXmlNode::DoFree()
 {
     wxXmlNode *c, *c2;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (c = m_children; c; c = c2)
@@ -125,7 +125,7 @@ void wxXmlNode::DoFree()
     }
 
     wxXmlAttribute *p, *p2;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (p = m_attrs; p; p = p2)
@@ -145,7 +145,7 @@ void wxXmlNode::DoCopy(const wxXmlNode& node)
     m_children = NULL;
 
     wxXmlNode *n = node.m_children;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (n)
@@ -156,7 +156,7 @@ void wxXmlNode::DoCopy(const wxXmlNode& node)
 
     m_attrs = NULL;
     wxXmlAttribute *p = node.m_attrs;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (p)
@@ -170,7 +170,7 @@ bool wxXmlNode::HasAttribute(const wxString& attrName) const
 {
     wxXmlAttribute *attr = GetAttributes();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (attr)
@@ -188,7 +188,7 @@ bool wxXmlNode::GetAttribute(const wxString& attrName, wxString *value) const
 
     wxXmlAttribute *attr = GetAttributes();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (attr)
@@ -220,7 +220,7 @@ void wxXmlNode::AddChild(wxXmlNode *child)
     else
     {
         wxXmlNode *ch = m_children;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (ch->m_next) ch = ch->m_next;
@@ -253,7 +253,7 @@ bool wxXmlNode::InsertChild(wxXmlNode *child, wxXmlNode *followingNode)
     else
     {
         wxXmlNode *ch = m_children;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while ( ch && ch->m_next != followingNode )
@@ -313,7 +313,7 @@ bool wxXmlNode::RemoveChild(wxXmlNode *child)
     else
     {
         wxXmlNode *ch = m_children;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (ch->m_next)
@@ -358,7 +358,7 @@ void wxXmlNode::AddProperty(wxXmlAttribute *attr)
     else
     {
         wxXmlAttribute *p = m_attrs;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (p->GetNext()) p = p->GetNext();
@@ -385,7 +385,7 @@ bool wxXmlNode::DeleteProperty(const wxString& name)
     else
     {
         wxXmlAttribute *p = m_attrs;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (p->GetNext())
@@ -408,7 +408,7 @@ wxString wxXmlNode::GetNodeContent() const
 {
     wxXmlNode *n = GetChildren();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (n)
@@ -426,7 +426,7 @@ int wxXmlNode::GetDepth(wxXmlNode *grandparent) const
     const wxXmlNode *n = this;
     int ret = -1;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -527,7 +527,7 @@ wxXmlNode *wxXmlDocument::GetRoot() const
     if (node)
     {
         node = m_docNode->GetChildren();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (node != NULL && node->GetType() != wxXML_ELEMENT_NODE)
@@ -543,7 +543,7 @@ wxXmlNode *wxXmlDocument::DetachRoot()
     {
         node = m_docNode->GetChildren();
         wxXmlNode *prev = NULL;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (node != NULL && node->GetType() != wxXML_ELEMENT_NODE)
@@ -579,7 +579,7 @@ void wxXmlDocument::SetRoot(wxXmlNode *root)
     {
         node = m_docNode->GetChildren();
         wxXmlNode *prev = NULL;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (node != NULL && node->GetType() != wxXML_ELEMENT_NODE)
@@ -645,7 +645,7 @@ static wxString CharToString(wxMBConv *conv,
 // returns true if the given string contains only whitespaces
 bool wxIsWhiteOnly(const wxString& buf)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxString::const_iterator i = buf.begin(); i != buf.end(); ++i )
@@ -696,7 +696,7 @@ static void StartElementHnd(void *userData, const char *name, const char **atts)
     const char **a = atts;
 
     // add node attributes
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (*a)
@@ -839,7 +839,7 @@ static int UnknownEncodingHnd(void * WXUNUSED(encodingHandlerData),
 
     mbBuf[1] = 0;
     info->map[0] = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 255; i++)
@@ -897,7 +897,7 @@ bool wxXmlDocument::Load(wxInputStream& stream, const wxString& encoding, int fl
     XML_SetUnknownEncodingHandler(parser, UnknownEncodingHnd, NULL);
 
     bool ok = true;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -1005,7 +1005,7 @@ bool OutputEscapedString(wxOutputStream& stream,
     wxString escaped;
     escaped.reserve(str.length());
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxString::const_iterator i = str.begin(); i != str.end(); ++i )
@@ -1099,7 +1099,7 @@ bool OutputNode(wxOutputStream& stream,
 
             if ( rc )
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( wxXmlAttribute *attr = node->GetAttributes();
@@ -1121,7 +1121,7 @@ bool OutputNode(wxOutputStream& stream,
                 rc = OutputString(stream, wxS(">"), convMem, convFile);
 
                 wxXmlNode *prev = NULL;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( wxXmlNode *n = node->GetChildren();
@@ -1213,7 +1213,7 @@ bool wxXmlDocument::Save(wxOutputStream& stream, int indentstep) const
     if ( node )
         node = node->GetChildren();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while( rc && node )

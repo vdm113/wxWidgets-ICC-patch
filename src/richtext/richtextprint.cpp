@@ -83,7 +83,7 @@ void wxRichTextPrintout::OnPreparePrinting()
         wxRichTextLine* lastLine = NULL;
 
         wxRichTextObjectList::compatibility_iterator node = GetRichTextBuffer()->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (node)
@@ -94,7 +94,7 @@ void wxRichTextPrintout::OnPreparePrinting()
             if (child)
             {
                 wxRichTextLineList::compatibility_iterator node2 = child->GetLines().GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 while (node2)
@@ -135,7 +135,7 @@ void wxRichTextPrintout::OnPreparePrinting()
 
                         // Now create page breaks for the rest of the line, if it's larger than the page height
                         int contentLeft = line->GetSize().y - rect.GetHeight();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                         while (contentLeft >= 0)
@@ -686,7 +686,7 @@ IMPLEMENT_CLASS(wxRichTextHeaderFooterData, wxObject)
 void wxRichTextHeaderFooterData::Copy(const wxRichTextHeaderFooterData& data)
 {
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 12; i++)
@@ -757,7 +757,7 @@ wxString wxRichTextHeaderFooterData::GetFooterText(wxRichTextOddEvenPage page, w
 void wxRichTextHeaderFooterData::Clear()
 {
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 12; i++)

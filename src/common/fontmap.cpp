@@ -214,7 +214,7 @@ wxFontMapper::CharsetToEncoding(const wxString& charset, bool interactive)
 
         wxString *encodingNamesTranslated = new wxString[count];
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < count; i++ )
@@ -399,7 +399,7 @@ bool wxFontMapper::GetAltForEncoding(wxFontEncoding encoding,
     wxFontEncoding equivEncoding = wxFONTENCODING_SYSTEM;
     if ( count )
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < count && !foundEquivEncoding; i++ )

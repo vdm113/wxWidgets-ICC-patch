@@ -118,7 +118,7 @@ bool wxRibbonControl::Realize()
 
 wxRibbonBar* wxRibbonControl::GetAncestorRibbonBar()const
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxWindow* win = GetParent(); win; win = win->GetParent() )

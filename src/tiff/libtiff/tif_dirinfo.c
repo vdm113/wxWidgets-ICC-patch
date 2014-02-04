@@ -292,7 +292,7 @@ td_lfind(const void *key, const void *base, size_t *nmemb, size_t size,
     char *element, *end;
 
     end = (char *)base + *nmemb * size;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (element = (char *)base; element < end; element += size)
@@ -320,7 +320,7 @@ _TIFFSetupFields(TIFF* tif, const TIFFFieldArray* fieldarray)
 	if (tif->tif_fields && tif->tif_nfields > 0) {
 		uint32 i;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (i = 0; i < tif->tif_nfields; i++) {
@@ -396,7 +396,7 @@ _TIFFMergeFields(TIFF* tif, const TIFFField info[], uint32 n)
 	}
 
 	/* tp = tif->tif_fields + tif->tif_nfields; */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < n; i++) {
@@ -423,7 +423,7 @@ _TIFFPrintFieldInfo(TIFF* tif, FILE* fd)
 	uint32 i;
 
 	fprintf(fd, "%s: \n", tif->tif_name);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < tif->tif_nfields; i++) {
@@ -933,7 +933,7 @@ TIFFMergeFieldInfo(TIFF* tif, const TIFFFieldInfo info[], uint32 n)
 	}
 
 	tp = tif->tif_fieldscompat[nfields].fields;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < n; i++) {

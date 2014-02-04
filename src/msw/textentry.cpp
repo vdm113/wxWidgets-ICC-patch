@@ -192,7 +192,7 @@ public:
         if ( !RestartIfNeeded() )
             return S_FALSE;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while ( celt-- )
@@ -231,7 +231,7 @@ public:
         if ( !RestartIfNeeded() )
             return S_FALSE;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while ( celt-- )
@@ -303,7 +303,7 @@ private:
     bool RestartIfNeeded()
     {
         bool rc = true;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( ;; )

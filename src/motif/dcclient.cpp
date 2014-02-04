@@ -353,12 +353,12 @@ void wxWindowDCImpl::DoDrawArc( wxCoord x1, wxCoord y1, wxCoord x2, wxCoord y2, 
     radius2 *= 64.0;
     int alpha1 = (int) radius1;
     int alpha2 = (int) (radius2 - radius1);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (alpha2 <= 0)
         alpha2 += 360 * 64;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (alpha2 > 360 * 64)
@@ -462,7 +462,7 @@ void wxWindowDCImpl::DoDrawLines( int n, const wxPoint points[], wxCoord xoffset
         XPoint *xpoints = new XPoint[n];
         int i;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < n; i++)
@@ -474,7 +474,7 @@ void wxWindowDCImpl::DoDrawLines( int n, const wxPoint points[], wxCoord xoffset
 
         if (m_window && m_window->GetBackingPixmap())
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < n; i++)
@@ -496,7 +496,7 @@ void wxWindowDCImpl::DoDrawPolygon( int n, const wxPoint points[],
     XPoint *xpoints1 = new XPoint[n + 1];
     XPoint *xpoints2 = new XPoint[n + 1];
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < n; i++)
@@ -1259,12 +1259,12 @@ void wxWindowDCImpl::DoDrawRotatedText( const wxString &text, wxCoord x, wxCoord
     bool lastFore = false, lastBack = false;
 
     // This rotates counterclockwise around the top left corner.
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int rx = minx; rx < maxx; rx++)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int ry = miny; ry < maxy; ry++)
@@ -1621,7 +1621,7 @@ void wxWindowDCImpl::SetPen( const wxPen &pen )
             if (real_req_dash)
             {
                 int factor = scaled_width == 0 ? 1 : scaled_width;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (int i = 0; i < req_nb_dash; i++)
@@ -2236,11 +2236,11 @@ static void XCopyRemote(Display *src_display, Display *dest_display,
     cache_pos = 0;
     all_cache = False;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < w; i++)
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 0; j < h; j++) {
@@ -2248,7 +2248,7 @@ static void XCopyRemote(Display *src_display, Display *dest_display,
             XColor xcol;
 
             pixel = XGetPixel(image, i, j);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (k = cache_pos; k--; )
@@ -2257,7 +2257,7 @@ static void XCopyRemote(Display *src_display, Display *dest_display,
                     goto install;
                 }
                 if (all_cache)
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                     for (k = CACHE_SIZE; k-- > cache_pos; )

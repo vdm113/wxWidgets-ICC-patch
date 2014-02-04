@@ -88,7 +88,7 @@ wxHtmlImageMapAreaCell::wxHtmlImageMapAreaCell( wxHtmlImageMapAreaCell::celltype
     wxString x = incoords, y;
 
     type = t;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ((i = x.Find( ',' )) != wxNOT_FOUND)
@@ -161,7 +161,7 @@ wxHtmlLinkInfo *wxHtmlImageMapAreaCell::GetLink( int x, int y ) const
                      }
                  }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                  while (pointer < end)
@@ -170,7 +170,7 @@ wxHtmlLinkInfo *wxHtmlImageMapAreaCell::GetLink( int x, int y ) const
                      pointer += 2;
                      if (yval >= wherey)
                      {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                          while ((pointer < end) && (coords[pointer] >= wherey))
@@ -195,7 +195,7 @@ wxHtmlLinkInfo *wxHtmlImageMapAreaCell::GetLink( int x, int y ) const
                      }
                      else
                      {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                          while ((pointer < end) && (coords[pointer] < wherey))
@@ -521,7 +521,7 @@ void wxHtmlImageCell::AdvanceAnimation(wxTimer *timer)
     if ( m_physX == wxDefaultCoord )
     {
         m_physX = m_physY = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (wxHtmlCell *cell = this; cell; cell = cell->GetParent())
@@ -648,7 +648,7 @@ wxHtmlLinkInfo *wxHtmlImageCell::GetLink( int x, int y ) const
     {
         wxHtmlContainerCell *p, *op;
         op = p = GetParent();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (p)

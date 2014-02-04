@@ -126,7 +126,7 @@ main()
 		goto failure;
 	}
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < NSINGLETAGS; i++) {
@@ -138,7 +138,7 @@ main()
 		}
 	}
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < NPAIREDTAGS; i++) {
@@ -187,7 +187,7 @@ main()
 	if (CheckShortField(tif, TIFFTAG_PLANARCONFIG, planarconfig) < 0)
 		goto failure;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < NSINGLETAGS; i++) {
@@ -196,7 +196,7 @@ main()
 			goto failure;
 	}
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < NPAIREDTAGS; i++) {

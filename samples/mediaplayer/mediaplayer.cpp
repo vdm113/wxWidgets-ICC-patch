@@ -330,7 +330,7 @@ public:
     {
         listitem.SetMask(wxLIST_MASK_TEXT |  wxLIST_MASK_DATA);
         int nLast = -1, nLastSelected = -1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while ((nLast = this->GetNextItem(nLast,
@@ -365,7 +365,7 @@ public:
         virtual bool OnDropFiles(wxCoord WXUNUSED(x), wxCoord WXUNUSED(y),
                          const wxArrayString& files)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = 0; i < files.GetCount(); ++i)
@@ -449,7 +449,7 @@ bool wxMediaPlayerApp::OnCmdLineParsed(wxCmdLineParser& parser)
     if ( !wxApp::OnCmdLineParsed(parser) )
         return false;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t paramNr=0; paramNr < parser.GetParamCount(); ++paramNr)
@@ -483,7 +483,7 @@ bool wxMediaPlayerApp::OnInit()
 #if wxUSE_CMDLINE_PARSER
     if ( !m_params.empty() )
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < m_params.size(); n++ )
@@ -758,7 +758,7 @@ wxMediaPlayerFrame::wxMediaPlayerFrame(const wxString& title)
         //
         wxConfig conf;
         wxString key, outstring;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for(int i = 0; ; ++i)
@@ -815,7 +815,7 @@ wxMediaPlayerFrame::~wxMediaPlayerFrame()
     wxConfig conf;
     conf.DeleteAll();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for(int i = 0; i < playlist->GetItemCount(); ++i)
@@ -1266,7 +1266,7 @@ void wxMediaPlayerFrame::OnKeyDown(wxKeyEvent& event)
         wxMediaPlayerNotebookPage* currentpage =
             (wxMediaPlayerNotebookPage*) m_notebook->GetCurrentPage();
        // delete all selected items
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
        while(true)
@@ -1347,7 +1347,7 @@ void wxMediaPlayerFrame::OnPrev(wxCommandEvent& WXUNUSED(event))
         return;
 
     wxInt32 nLastSelectedItem = -1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while(true)
@@ -1403,7 +1403,7 @@ void wxMediaPlayerFrame::OnNext(wxCommandEvent& WXUNUSED(event))
         return;
 
     wxInt32 nLastSelectedItem = -1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while(true)

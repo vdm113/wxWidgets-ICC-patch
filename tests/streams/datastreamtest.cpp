@@ -176,7 +176,7 @@ private:
         }
 
         m_ok = true;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (typename ValueArray::size_type idx=0; idx!=Size; ++idx) {

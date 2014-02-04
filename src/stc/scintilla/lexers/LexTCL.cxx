@@ -94,7 +94,7 @@ static void ColouriseTCLDoc(unsigned int startPos, int length, int , WordList *k
 
 	int previousLevel = currentLevel;
     StyleContext sc(startPos, length, SCE_TCL_DEFAULT, styler);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; ; sc.Forward()) {
@@ -159,7 +159,7 @@ next:
                 sc.GetCurrent(w, sizeof(w));
                 if (w[strlen(w)-1]=='\r')
                     w[strlen(w)-1]=0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 while(*s == ':') // ignore leading : like in ::set a 10

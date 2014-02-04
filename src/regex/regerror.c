@@ -71,7 +71,7 @@ size_t errbuf_size;		/* available space in errbuf, can be 0 */
 
 	switch (rxerrcode) {
 	case REG_ATOI:		/* convert name to number */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (r = rerrs; r->code >= 0; r++)
@@ -82,7 +82,7 @@ size_t errbuf_size;		/* available space in errbuf, can be 0 */
 		break;
 	case REG_ITOA:		/* convert number to name */
 		icode = atoi(errbuf);	/* not our problem if this fails */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (r = rerrs; r->code >= 0; r++)
@@ -96,7 +96,7 @@ size_t errbuf_size;		/* available space in errbuf, can be 0 */
 		}
 		break;
 	default:		/* a real, normal error code */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (r = rerrs; r->code >= 0; r++)

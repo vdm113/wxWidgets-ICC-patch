@@ -712,7 +712,7 @@ void wxWindowX11::ScrollWindow(int dx, int dy, const wxRect *rect)
     wxScrollBar *sbH = ((wxWindow *) this)->GetScrollbar( wxHORIZONTAL );
     wxScrollBar *sbV = ((wxWindow *) this)->GetScrollbar( wxVERTICAL );
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( node )
@@ -1233,7 +1233,7 @@ void wxWindowX11::SendEraseEvents()
         XSetForeground( xdisplay, g_eraseGC, m_backgroundColour.GetPixel() );
 
         wxRegionIterator upd( m_clearRegion );
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (upd)
@@ -1310,7 +1310,7 @@ void wxWindowX11::SendNcPaintEvents()
 void wxWindowX11::OnSysColourChanged(wxSysColourChangedEvent& event)
 {
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( node )

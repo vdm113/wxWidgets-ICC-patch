@@ -90,7 +90,7 @@ int wxImageList::Add( const wxBitmap &bitmap )
     if (m_width > 0 && bitmap.GetScaledWidth() > m_width && bitmap.GetScaledHeight() >= m_height)
     {
         int numImages = bitmap.GetScaledWidth() / m_width;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int subIndex = 0; subIndex < numImages; subIndex++)

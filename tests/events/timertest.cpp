@@ -135,7 +135,7 @@ void TimerEventTestCase::Multiple()
     time_t t;
     time(&t);
     const time_t tEnd = t + 2;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( time(&t) < tEnd )

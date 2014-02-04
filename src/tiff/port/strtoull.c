@@ -62,7 +62,7 @@ strtoull(const char *nptr, char **endptr, int base)
 	 * See strtoq for comments as to the logic used.
 	 */
 	s = nptr;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	do {
@@ -93,7 +93,7 @@ strtoull(const char *nptr, char **endptr, int base)
 
 	cutoff = ULLONG_MAX / base;
 	cutlim = ULLONG_MAX % base;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for ( ; ; c = *s++) {

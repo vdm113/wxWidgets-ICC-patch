@@ -22,7 +22,7 @@ enum { SURROGATE_TRAIL_LAST = 0xDFFF };
 
 unsigned int UTF8Length(const wchar_t *uptr, unsigned int tlen) {
 	unsigned int len = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = 0; i < tlen && uptr[i];) {
@@ -45,7 +45,7 @@ unsigned int UTF8Length(const wchar_t *uptr, unsigned int tlen) {
 
 void UTF8FromUTF16(const wchar_t *uptr, unsigned int tlen, char *putf, unsigned int len) {
 	int k = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = 0; i < tlen && uptr[i];) {
@@ -89,7 +89,7 @@ unsigned int UTF8CharLength(unsigned char ch) {
 unsigned int UTF16Length(const char *s, unsigned int len) {
 	unsigned int ulen = 0;
 	unsigned int charLen;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i=0; i<len;) {
@@ -114,7 +114,7 @@ unsigned int UTF16FromUTF8(const char *s, unsigned int len, wchar_t *tbuf, unsig
 	unsigned int ui=0;
 	const unsigned char *us = reinterpret_cast<const unsigned char *>(s);
 	unsigned int i=0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((i<len) && (ui<tlen)) {
@@ -170,7 +170,7 @@ static int BytesFromLead(int leadByte) {
 
 void UTF8BytesOfLeadInitialise() {
 	if (!initialisedBytesOfLead) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int i=0;i<256;i++) {

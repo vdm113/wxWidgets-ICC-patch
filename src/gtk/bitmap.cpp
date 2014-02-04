@@ -43,11 +43,11 @@ static void PixmapToPixbuf(GdkPixmap* pixmap, GdkPixbuf* pixbuf, int w, int h)
         guchar* p = gdk_pixbuf_get_pixels(pixbuf);
         const int inc = 3 + int(gdk_pixbuf_get_has_alpha(pixbuf) != 0);
         const int rowpad = gdk_pixbuf_get_rowstride(pixbuf) - w * inc;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int y = h; y; y--, p += rowpad)
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int x = w; x; x--, p += inc)
@@ -68,12 +68,12 @@ static void MaskToAlpha(GdkPixmap* mask, GdkPixbuf* pixbuf, int w, int h)
     const guchar* mask_data = gdk_pixbuf_get_pixels(mask_pixbuf);
     const int rowpad = gdk_pixbuf_get_rowstride(pixbuf) - w * 4;
     const int mask_rowpad = gdk_pixbuf_get_rowstride(mask_pixbuf) - w * 3;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int y = h; y; y--, p += rowpad, mask_data += mask_rowpad)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int x = w; x; x--, p += 4, mask_data += 3)
@@ -203,13 +203,13 @@ bool wxMask::InitFromColour(const wxBitmap& bitmap, const wxColour& colour)
     const guchar r = colour.Red();
     const guchar g = colour.Green();
     const guchar b = colour.Blue();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int j = 0; j < h; j++, src += stride_src, dst += stride_dst)
     {
         const guchar* s = src;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < w; i++, s += src_inc)
@@ -238,12 +238,12 @@ bool wxMask::InitFromColour(const wxBitmap& bitmap, const wxColour& colour)
         const wxByte* in = gdk_pixbuf_get_pixels(pixbuf);
         const int inc = 3 + int(gdk_pixbuf_get_has_alpha(pixbuf) != 0);
         const int rowpadding = gdk_pixbuf_get_rowstride(pixbuf) - inc * w;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int y = 0; y < h; y++, in += rowpadding)
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int x = 0; x < w; x++, in += inc, bit_index++)
@@ -267,12 +267,12 @@ bool wxMask::InitFromColour(const wxBitmap& bitmap, const wxColour& colour)
             c.CalcPixel(colormap);
             mask_pixel = c.GetPixel();
         }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int y = 0; y < h; y++)
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int x = 0; x < w; x++, bit_index++)
@@ -323,13 +323,13 @@ wxBitmap wxMask::GetBitmap() const
         guchar* dst = gdk_pixbuf_get_pixels(pixbuf);
         const int stride_src = cairo_image_surface_get_stride(mask);
         const int stride_dst = gdk_pixbuf_get_rowstride(pixbuf);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int j = 0; j < h; j++, src += stride_src, dst += stride_dst)
         {
             guchar* d = dst;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i = 0; i < w; i++, d += 3)
@@ -472,12 +472,12 @@ wxBitmap::wxBitmap(const char bits[], int width, int height, int depth)
         guchar* dst = gdk_pixbuf_get_pixels(pixbuf);
         const int stride_src = (width + 7) / 8;
         const int rowinc_dst = gdk_pixbuf_get_rowstride(pixbuf) - 3 * width;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int j = 0; j < width; j++, src += stride_src, dst += rowinc_dst)
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i = 0; i < height; i++)
@@ -588,7 +588,7 @@ static void CopyImageData(
         else
         {
             const int stride = dstStride < srcStride ? dstStride : srcStride;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int j = 0; j < h; j++, src += srcStride, dst += dstStride)
@@ -597,7 +597,7 @@ static void CopyImageData(
     }
     else
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int j = 0; j < h; j++, src += srcStride, dst += dstStride)
@@ -606,7 +606,7 @@ static void CopyImageData(
             const guchar* s = src;
             if (dstChannels == 4)
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (int i = 0; i < w; i++, d += 4, s += 3)
@@ -619,7 +619,7 @@ static void CopyImageData(
             }
             else
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (int i = 0; i < w; i++, d += 3, s += 4)
@@ -660,11 +660,11 @@ wxBitmap::wxBitmap(const wxImage& image, int depth)
 
     if (depth == 32 && alpha)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int j = 0; j < h; j++, dst += dstStride)
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i = 0; i < w; i++)
@@ -679,11 +679,11 @@ wxBitmap::wxBitmap(const wxImage& image, int depth)
         const int stride = cairo_image_surface_get_stride(surface);
         dst = cairo_image_surface_get_data(surface);
         memset(dst, 0xff, stride * h);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int j = 0; j < h; j++, dst += stride)
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i = 0; i < w; i++, src += 3)
@@ -720,12 +720,12 @@ bool wxBitmap::CreateFromImageAsPixmap(const wxImage& image, int depth)
         memset(out, 0xff, out_size);
         const wxByte* in = image.GetData();
         unsigned bit_index = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int y = 0; y < h; y++)
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int x = 0; x < w; x++, in += 3, bit_index++)
@@ -764,12 +764,12 @@ bool wxBitmap::CreateFromImageAsPixmap(const wxImage& image, int depth)
         unsigned bit_index = 0;
         if (alpha != NULL)
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int y = 0; y < h; y++)
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (int x = 0; x < w; x++, bit_index++)
@@ -784,12 +784,12 @@ bool wxBitmap::CreateFromImageAsPixmap(const wxImage& image, int depth)
             const wxByte g_mask = image.GetMaskGreen();
             const wxByte b_mask = image.GetMaskBlue();
             const wxByte* in = image.GetData();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int y = 0; y < h; y++)
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (int x = 0; x < w; x++, in += 3, bit_index++)
@@ -821,12 +821,12 @@ bool wxBitmap::CreateFromImageAsPixbuf(const wxImage& image)
 
     int rowpad = gdk_pixbuf_get_rowstride(pixbuf) - 4 * width;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int y = 0; y < height; y++, out += rowpad)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int x = 0; x < width; x++, out += 4, in += 3)
@@ -873,13 +873,13 @@ wxImage wxBitmap::ConvertToImage() const
         {
             image.SetAlpha();
             guchar* alpha = image.GetAlpha();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int j = 0; j < h; j++, src += srcStride)
             {
                 const guchar* s = src;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (int i = 0; i < w; i++, s += 4)
@@ -899,12 +899,12 @@ wxImage wxBitmap::ConvertToImage() const
         wxASSERT(cairo_image_surface_get_format(maskSurf) == CAIRO_FORMAT_A8);
         const int stride = cairo_image_surface_get_stride(maskSurf);
         const guchar* src = cairo_image_surface_get_data(maskSurf);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int j = 0; j < h; j++, src += stride)
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i = 0; i < w; i++, dst += 3)
@@ -943,12 +943,12 @@ wxImage wxBitmap::ConvertToImage() const
         const int inc = 3 + int(alpha != NULL);
         const int rowpad = gdk_pixbuf_get_rowstride(pixbuf) - inc * w;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int y = 0; y < h; y++, in += rowpad)
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int x = 0; x < w; x++, in += inc, out += 3)
@@ -999,12 +999,12 @@ wxImage wxBitmap::ConvertToImage() const
         image.SetMaskColour(MASK_RED, MASK_GREEN, MASK_BLUE);
         GdkImage* image_mask = gdk_drawable_get_image(*GetMask(), 0, 0, w, h);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int y = 0; y < h; y++)
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int x = 0; x < w; x++, data += 3)
@@ -1088,7 +1088,7 @@ static cairo_surface_t* GetSubSurface(cairo_surface_t* surface, const wxRect& re
     const int dstStride = cairo_image_surface_get_stride(subSurface);
     const guchar* src = cairo_image_surface_get_data(surface) + rect.y * srcStride + x;
     guchar* dst = cairo_image_surface_get_data(subSurface);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int j = 0; j < rect.height; j++, src += srcStride, dst += dstStride)
@@ -1353,13 +1353,13 @@ static void SetSourceSurface1(const wxBitmapRefData* bmpData, cairo_t* cr, int x
         bg_g = bg->Green();
         bg_b = bg->Blue();
     }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int j = 0; j < h; j++, dst += stride)
     {
         guchar* d = dst;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < w; i++, d += channels)
@@ -1484,11 +1484,11 @@ GdkPixbuf *wxBitmap::GetPixbuf() const
 
     const guchar* src = cairo_image_surface_get_data(mask);
     const int srcStride = cairo_image_surface_get_stride(mask);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int j = 0; j < h; j++, src += srcStride, dst += dstStride)
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < w; i++)

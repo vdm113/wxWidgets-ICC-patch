@@ -824,7 +824,7 @@ wxString wxTextCtrl::GetRange(long from, long to) const
                     // RichEdit 2.0 uses just CR ('\r') for the
                     // newlines which is neither Unix nor Windows
                     // style - convert it to something reasonable
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                     for ( ; *p; p++ )
@@ -909,7 +909,7 @@ wxRichEditStreamIn(DWORD_PTR dwCookie, BYTE *buf, LONG cb, LONG *pcb)
 
     wchar_t *wbuf = (wchar_t *)buf;
     const wchar_t *wpc = *ppws;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( cb && *wpc )
@@ -941,7 +941,7 @@ wxRichEditStreamOut(DWORD_PTR dwCookie, BYTE *buf, LONG cb, LONG *pcb)
 
     const wchar_t *wbuf = (const wchar_t *)buf;
     wchar_t *wpc = data->wpc;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( cb )
@@ -2673,7 +2673,7 @@ bool wxTextCtrl::MSWSetParaFormat(const wxTextAttr& style, long start, long end)
 
         pf.cTabCount = (SHORT)wxMin(tabs.GetCount(), MAX_TAB_STOPS);
         size_t i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < (size_t) pf.cTabCount; i++)
@@ -2905,7 +2905,7 @@ bool wxTextCtrl::GetStyle(long position, wxTextAttr& style)
 
     wxArrayInt tabStops;
     size_t i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < (size_t) pf.cTabCount; i++)
@@ -2936,7 +2936,7 @@ bool wxRichEditModule::OnInit()
 
 void wxRichEditModule::OnExit()
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < WXSIZEOF(ms_hRichEdit); i++ )

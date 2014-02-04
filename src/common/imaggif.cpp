@@ -277,13 +277,13 @@ bool wxGIFHandler::DoSaveFile(const wxImage& image, wxOutputStream *stream,
     SetupCompress(stream, 8);
 
     m_pixelCount = height * width_even;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int y = 0; y < height; y++)
     {
         m_pixelCount -= width_even;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int x = 0; x < width; x++)
@@ -320,7 +320,7 @@ bool wxGIFHandler::SaveAnimation(const wxImageArray& images,
     size_t i;
 
     wxSize size(0,0);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; (i < images.GetCount()) && ok; i++)
@@ -338,7 +338,7 @@ bool wxGIFHandler::SaveAnimation(const wxImageArray& images,
         }
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; (i < images.GetCount()) && ok; i++)
@@ -369,7 +369,7 @@ bool wxGIFHandler::CompressOutput(wxOutputStream *stream, int code)
 {
     if (code == FLUSH_OUTPUT)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (m_crntShiftState > 0)
@@ -393,7 +393,7 @@ bool wxGIFHandler::CompressOutput(wxOutputStream *stream, int code)
     {
         m_crntShiftDWord |= ((long) code) << m_crntShiftState;
         m_crntShiftState += m_runningBits;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (m_crntShiftState >= 8)
@@ -448,7 +448,7 @@ bool wxGIFHandler::CompressLine(wxOutputStream *stream,
     else
         crntCode = m_crntCode;     // Get last code in compression.
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (i < lineLen)
@@ -537,7 +537,7 @@ void wxGIFHandler::ClearHashTable()
     int index = HT_SIZE;
     wxUint32 *HTable = m_hashTable->HTable;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (--index>=0)
@@ -551,7 +551,7 @@ void wxGIFHandler::InsertHashTable(unsigned long key, int code)
     int hKey = wxGIFHandler_KeyItem(key);
     wxUint32 *HTable = m_hashTable->HTable;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (HT_GET_KEY(HTable[hKey]) != 0xFFFFFL)
@@ -567,7 +567,7 @@ int wxGIFHandler::ExistsHashTable(unsigned long key)
     int hKey = wxGIFHandler_KeyItem(key);
     wxUint32 *HTable = m_hashTable->HTable, HTKey;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ((HTKey = HT_GET_KEY(HTable[hKey])) != 0xFFFFFL)
@@ -595,7 +595,7 @@ int wxGIFHandler_KeyItem(unsigned long item)
 int wxGIFHandler_BitSize(int n)
 {
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 1; i <= 8; i++)
@@ -620,7 +620,7 @@ bool wxGIFHandler_GetPalette(const wxImage& image,
     const wxPalette& palette = image.GetPalette();
     int palCount = palette.GetColoursCount();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < palCount; ++i)
@@ -656,7 +656,7 @@ bool wxGIFHandler_GetPalette(const wxImage& image,
 
 int wxGIFHandler_PaletteFind(const wxRGB& clr, const wxRGB *array, int count)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < count; i++)
@@ -741,7 +741,7 @@ bool wxGIFHandler_WritePalette(wxOutputStream *stream,
     const wxRGB *array, size_t count, int bpp)
 {
     wxUint8 buf[3];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; (i < (1 << bpp)); i++)
@@ -806,7 +806,7 @@ bool wxGIFHandler_WriteComment(wxOutputStream *stream, const wxString& comment)
 
     size_t pos = 0, fullLength = text.length();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do

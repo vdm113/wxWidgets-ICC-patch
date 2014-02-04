@@ -181,7 +181,7 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
     // XtOpenDisplay() wants char*, not wchar_t*, so convert
     int i;
     char **argvX11 = new char *[argc + 1];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < argc; i++ )
@@ -208,12 +208,12 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
     if ( argcX11 != argc )
     {
         // we have to drop the parameters which were consumed by X11+
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i = 0; i < argcX11; i++ )
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while ( strcmp(wxConvLibc.cWX2MB(argv_[i]), argvX11[i]) != 0 )
@@ -231,7 +231,7 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
     //else: XtOpenDisplay() didn't modify our parameters
 
     // free our copy
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < argcX11; i++ )
@@ -291,7 +291,7 @@ void wxApp::CleanUp()
 
     delete m_mainLoop;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for( wxPerDisplayDataMap::iterator it  = m_perDisplayData->begin(),

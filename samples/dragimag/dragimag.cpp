@@ -262,7 +262,7 @@ void MyCanvas::OnMouseEvent(wxMouseEvent& event)
 void MyCanvas::DrawShapes(wxDC& dc)
 {
     wxList::compatibility_iterator node = m_displayList.GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -292,7 +292,7 @@ void MyCanvas::EraseShape(DragShape* shape, wxDC& dc)
 void MyCanvas::ClearShapes()
 {
     wxList::compatibility_iterator node = m_displayList.GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -307,7 +307,7 @@ void MyCanvas::ClearShapes()
 DragShape* MyCanvas::FindShape(const wxPoint& pt) const
 {
     wxList::compatibility_iterator node = m_displayList.GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -398,7 +398,7 @@ bool MyApp::OnInit()
 
     wxString rootName(wxT("shape0"));
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 1; i < 4; i++)
@@ -454,12 +454,12 @@ bool MyApp::TileBitmap(const wxRect& rect, wxDC& dc, wxBitmap& bitmap)
     int h = bitmap.GetHeight();
 
     int i, j;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = rect.x; i < rect.x + rect.width; i += w)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = rect.y; j < rect.y + rect.height; j+= h)

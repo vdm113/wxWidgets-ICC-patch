@@ -93,7 +93,7 @@ Boolean XsOutline::go (Boolean drawInitial)
 
 // Process the events locally
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
    while (!done)
@@ -117,7 +117,7 @@ Boolean XsOutline::go (Boolean drawInitial)
             
 // Process only the last motion event
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (XPending (XtDisplay (_w)) > 0)

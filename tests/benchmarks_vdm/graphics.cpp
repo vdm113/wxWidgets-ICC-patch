@@ -161,7 +161,7 @@ private:
     // updated on screen.
     void UpdateRGB(unsigned char* data, int n)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int y = 0; y < opts.height; ++y )
@@ -186,7 +186,7 @@ private:
         fflush(stdout);
 
         wxStopWatch sw;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int n = 0; n < opts.numIters; n++ )
@@ -283,7 +283,7 @@ private:
         wxStopWatch sw;
         int x = 0,
             y = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int n = 0; n < opts.numIters; n++ )
@@ -320,7 +320,7 @@ private:
         fflush(stdout);
 
         wxStopWatch sw;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int n = 0; n < opts.numIters; n++ )
@@ -351,7 +351,7 @@ private:
         fflush(stdout);
 
         wxStopWatch sw;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int n = 0; n < opts.numIters; n++ )
@@ -382,7 +382,7 @@ private:
         wxImage image(wxSize(opts.width, opts.height), false /* don't clear */);
 
         wxStopWatch sw;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int n = 0; n < opts.numIters; n++ )
@@ -413,7 +413,7 @@ private:
         wxNativePixelData data(bitmap);
 
         wxStopWatch sw;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int n = 0; n < opts.numIters; n++ )
@@ -421,14 +421,14 @@ private:
             unsigned char c = n % 256;
             {
                 wxNativePixelData::Iterator p(data);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( int y = 0; y < opts.height; ++y )
                 {
                     wxNativePixelData::Iterator rowStart = p;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                     for ( int x = 0; x < opts.width; ++x )

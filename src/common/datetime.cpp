@@ -412,7 +412,7 @@ void wxDateTime::Tm::ComputeWeekDay()
 void wxDateTime::Tm::AddMonths(int monDiff)
 {
     // normalize the months field
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( monDiff < -mon )
@@ -422,7 +422,7 @@ void wxDateTime::Tm::AddMonths(int monDiff)
         monDiff += MONTHS_IN_YEAR;
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( monDiff + mon >= MONTHS_IN_YEAR )
@@ -443,7 +443,7 @@ void wxDateTime::Tm::AddMonths(int monDiff)
 void wxDateTime::Tm::AddDays(int dayDiff)
 {
     // normalize the days field
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( dayDiff + mday < 1 )
@@ -454,7 +454,7 @@ void wxDateTime::Tm::AddDays(int dayDiff)
     }
 
     mday = (wxDateTime::wxDateTime_t)( mday + dayDiff );
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( mday > GetNumOfDaysInMonth(year, mon) )
@@ -1994,7 +1994,7 @@ wxDateTime& wxDateTime::SetToYearDay(wxDateTime::wxDateTime_t yday)
                       wxT("invalid year day") );
 
     bool isLeap = IsLeapYear(year);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( Month mon = Jan; mon < Inv_Month; wxNextMonth(mon) )
@@ -2119,7 +2119,7 @@ wxHolidayAuthoritiesArray wxDateTimeHolidayAuthority::ms_authorities;
 bool wxDateTimeHolidayAuthority::IsHoliday(const wxDateTime& dt)
 {
     size_t count = ms_authorities.size();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -2144,7 +2144,7 @@ wxDateTimeHolidayAuthority::GetHolidaysInRange(const wxDateTime& dtStart,
     holidays.Clear();
 
     const size_t countAuth = ms_authorities.size();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t nAuth = 0; nAuth < countAuth; nAuth++ )
@@ -2208,7 +2208,7 @@ size_t wxDateTimeWorkDays::DoGetHolidaysInRange(const wxDateTime& dtStart,
                dtSunLast = dtEnd.GetPrevWeekDay(wxDateTime::Sun),
                dt;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( dt = dtSatFirst; dt <= dtSatLast; dt += wxDateSpan::Week() )
@@ -2216,7 +2216,7 @@ size_t wxDateTimeWorkDays::DoGetHolidaysInRange(const wxDateTime& dtStart,
         holidays.Add(dt);
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( dt = dtSunFirst; dt <= dtSunLast; dt += wxDateSpan::Week() )

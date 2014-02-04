@@ -593,7 +593,7 @@ void MyFrame::OnDumpSelected(wxCommandEvent& WXUNUSED(event))
     size_t count = m_treeCtrl->GetSelections(array);
     wxLogMessage(wxT("%u items selected"), unsigned(count));
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -799,7 +799,7 @@ void MyFrame::OnAddManyItems(wxCommandEvent& WXUNUSED(event))
     wxWindowUpdateLocker lockUpdates(this);
 
     const wxTreeItemId root = m_treeCtrl->GetRootItem();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int n = 0; n < 1000; n++ )
@@ -917,7 +917,7 @@ void MyFrame::OnSelectLast(wxCommandEvent& WXUNUSED(event))
 {
     // select the very last item of the tree
     wxTreeItemId item = m_treeCtrl->GetRootItem();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )
@@ -1009,7 +1009,7 @@ void MyTreeCtrl::CreateImageList(int size)
         icons[TreeCtrlIcon_FolderOpened] = wxArtProvider::GetIcon(wxART_FOLDER, wxART_LIST, iconSize);
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
@@ -1054,7 +1054,7 @@ void MyTreeCtrl::CreateStateImageList(bool del)
         // Make an state image list containing small icons
         states = new wxImageList(width, height, true);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
@@ -1072,7 +1072,7 @@ void MyTreeCtrl::CreateStateImageList(bool del)
         // Make an state image list containing small icons
         states = new wxImageList(width, height, true);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
@@ -1115,7 +1115,7 @@ void MyTreeCtrl::CreateButtonsImageList(int size)
         icons[3] = wxArtProvider::GetIcon(wxART_FOLDER_OPEN, wxART_LIST, iconSize);// open, selected
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
    for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
@@ -1162,7 +1162,7 @@ void MyTreeCtrl::AddItemsRecursively(const wxTreeItemId& idParent,
         bool hasChildren = depth > 1;
 
         wxString str;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < numChildren; n++ )
@@ -1286,7 +1286,7 @@ void MyTreeCtrl::DoToggleState(const wxTreeItemId& item)
         int nState;
 
         srand (time(NULL));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         do {

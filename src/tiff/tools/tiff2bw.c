@@ -64,7 +64,7 @@ compresscontig(unsigned char* out, unsigned char* rgb, uint32 n)
 {
 	register int v, red = RED, green = GREEN, blue = BLUE;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (n-- > 0) {
@@ -81,7 +81,7 @@ compresssep(unsigned char* out,
 {
 	register uint32 red = RED, green = GREEN, blue = BLUE;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (n-- > 0)
@@ -92,7 +92,7 @@ compresssep(unsigned char* out,
 static int
 checkcmap(TIFF* tif, int n, uint16* r, uint16* g, uint16* b)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (n-- > 0)
@@ -107,7 +107,7 @@ compresspalette(unsigned char* out, unsigned char* data, uint32 n, uint16* rmap,
 {
 	register int v, red = RED, green = GREEN, blue = BLUE;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (n-- > 0) {
@@ -148,7 +148,7 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char *optarg;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((c = getopt(argc, argv, "c:r:R:G:B:")) != -1)
@@ -245,7 +245,7 @@ main(int argc, char* argv[])
 		if (checkcmap(in, 1<<bitspersample, red, green, blue) == 16) {
 			int i;
 #define	CVT(x)		(((x) * 255L) / ((1L<<16)-1))
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			for (i = (1<<bitspersample)-1; i >= 0; i--) {
@@ -256,7 +256,7 @@ main(int argc, char* argv[])
 #undef CVT
 		}
 		inbuf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(in));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (row = 0; row < h; row++) {
@@ -269,7 +269,7 @@ main(int argc, char* argv[])
 		break;
 	case pack(PHOTOMETRIC_RGB, PLANARCONFIG_CONTIG):
 		inbuf = (unsigned char *)_TIFFmalloc(TIFFScanlineSize(in));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (row = 0; row < h; row++) {
@@ -283,11 +283,11 @@ main(int argc, char* argv[])
 	case pack(PHOTOMETRIC_RGB, PLANARCONFIG_SEPARATE):
 		rowsize = TIFFScanlineSize(in);
 		inbuf = (unsigned char *)_TIFFmalloc(3*rowsize);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (row = 0; row < h; row++) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			for (s = 0; s < 3; s++)
@@ -317,7 +317,7 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
                 compression = COMPRESSION_JPEG;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 while( cp )
@@ -460,7 +460,7 @@ static void
 cpTags(TIFF* in, TIFF* out)
 {
     struct cpTag *p;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (p = tags; p < &tags[NTAGS]; p++)
@@ -498,7 +498,7 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; stuff[i] != NULL; i++)

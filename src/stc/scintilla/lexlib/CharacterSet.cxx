@@ -30,7 +30,7 @@ namespace Scintilla {
 #endif
 
 int CompareCaseInsensitive(const char *a, const char *b) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (*a && *b) {
@@ -48,7 +48,7 @@ int CompareCaseInsensitive(const char *a, const char *b) {
 }
 
 int CompareNCaseInsensitive(const char *a, const char *b, size_t len) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (*a && *b && len) {

@@ -182,7 +182,7 @@ wxRegKey::StdKey wxRegKey::ExtractKeyName(wxString& strKey)
   wxString strRoot = strKey.BeforeFirst(REG_SEPARATOR);
 
   size_t ui;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for ( ui = 0; ui < nStdKeys; ui++ ) {
@@ -208,7 +208,7 @@ wxRegKey::StdKey wxRegKey::ExtractKeyName(wxString& strKey)
 
 wxRegKey::StdKey wxRegKey::GetStdKeyFromHkey(WXHKEY hkey)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for ( size_t ui = 0; ui < nStdKeys; ui++ ) {
@@ -679,7 +679,7 @@ bool wxRegKey::Copy(wxRegKey& keyDst)
     wxString strKey;
     long lIndex;
     bool bCont = GetFirstKey(strKey, lIndex);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( ok && bCont ) {
@@ -699,7 +699,7 @@ bool wxRegKey::Copy(wxRegKey& keyDst)
     // copy all values
     wxString strVal;
     bCont = GetFirstValue(strVal, lIndex);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( ok && bCont ) {
@@ -755,7 +755,7 @@ bool wxRegKey::DeleteSelf()
   wxString strKey;
   long lIndex;
   bool bCont = GetFirstKey(strKey, lIndex);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while ( bCont ) {
@@ -765,7 +765,7 @@ bool wxRegKey::DeleteSelf()
   }
 
   size_t nKeyCount = astrSubkeys.Count();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for ( size_t nKey = 0; nKey < nKeyCount; nKey++ ) {
@@ -1294,7 +1294,7 @@ FormatAsHex(const void *data,
     // write all the rest as comma-separated bytes
     value.reserve(3*size + 10);
     const char * const p = static_cast<const char *>(data);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < size; n++ )
@@ -1336,7 +1336,7 @@ wxString wxRegKey::FormatValue(const wxString& name) const
 
                 // there can be no NULs here
                 bool useHex = false;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( wxString::const_iterator p = value.begin();
@@ -1468,7 +1468,7 @@ bool wxRegKey::DoExport(wxOutputStream& ostr) const
     wxString name;
     wxRegKey& self = const_cast<wxRegKey&>(*this);
     bool cont = self.GetFirstValue(name, dummy);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( cont )
@@ -1485,7 +1485,7 @@ bool wxRegKey::DoExport(wxOutputStream& ostr) const
 
     // recurse to subkeys
     cont = self.GetFirstKey(name, dummy);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( cont )

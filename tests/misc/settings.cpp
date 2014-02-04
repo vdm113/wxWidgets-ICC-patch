@@ -68,7 +68,7 @@ CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( SettingsTestCase, "SettingsTestCase" );
 
 void SettingsTestCase::GetColour()
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i=wxSYS_COLOUR_SCROLLBAR; i < wxSYS_COLOUR_MAX; i++)
@@ -88,7 +88,7 @@ void SettingsTestCase::GetFont()
         wxSYS_DEFAULT_GUI_FONT
     };
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i=0; i < WXSIZEOF(ids); i++)
@@ -112,7 +112,7 @@ void SettingsTestCase::GlobalColours()
         *wxWHITE
     };
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i=0; i < WXSIZEOF(col); i++)
@@ -129,7 +129,7 @@ void SettingsTestCase::GlobalFonts()
         *wxSWISS_FONT
     };
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i=0; i < WXSIZEOF(font); i++)
@@ -163,7 +163,7 @@ void SettingsTestCase::GlobalBrushes()
         *wxWHITE_BRUSH
     };
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i=0; i < WXSIZEOF(brush); i++)
@@ -187,7 +187,7 @@ void SettingsTestCase::GlobalPens()
         *wxWHITE_PEN
     };
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i=0; i < WXSIZEOF(pen); i++)

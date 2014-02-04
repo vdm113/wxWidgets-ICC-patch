@@ -58,7 +58,7 @@ static void classifyWordLisp(unsigned int start, unsigned int end, WordList &key
 	char s[100];
 	unsigned int i;
 	bool digit_flag = true;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; (i < end - start + 1) && (i < 99); i++) {
@@ -96,7 +96,7 @@ static void ColouriseLispDoc(unsigned int startPos, int length, int initStyle, W
 	char chNext = styler[startPos];
 	unsigned int lengthDoc = startPos + length;
 	styler.StartSegment(startPos);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
@@ -255,7 +255,7 @@ static void FoldLispDoc(unsigned int startPos, int length, int /* initStyle */, 
 	int levelCurrent = levelPrev;
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {

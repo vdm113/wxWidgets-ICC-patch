@@ -628,7 +628,7 @@ void MyFrame::OnSetStatusFields(wxCommandEvent& WXUNUSED(event))
         sb->SetFieldsCount(nFields, widths);
 
         wxString s;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( long n = 0; n < nFields; n++ )
@@ -665,7 +665,7 @@ void MyFrame::OnResetFieldsWidth(wxCommandEvent& WXUNUSED(event))
 
     const int n = pStat->GetFieldsCount();
     pStat->SetStatusWidths(n, NULL);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < n; i++ )
@@ -683,7 +683,7 @@ void MyFrame::OnShowFieldsRect(wxCommandEvent& WXUNUSED(event))
     dc.SetBrush(*wxTRANSPARENT_BRUSH);
 
     const int n = pStat->GetFieldsCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < n; i++ )
@@ -781,7 +781,7 @@ void MyFrame::ApplyPaneStyle()
     int fields = sb->GetFieldsCount();
     int *styles = new int[fields];
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 1; i < fields; i++)

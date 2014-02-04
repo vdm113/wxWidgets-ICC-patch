@@ -57,7 +57,7 @@ PlayerSelectionDialog::PlayerSelectionDialog(
 
     wxArrayString players;
     m_scoreFile->GetPlayerList(players);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = 0; i < players.Count(); i++)

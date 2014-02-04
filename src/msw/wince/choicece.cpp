@@ -256,7 +256,7 @@ bool wxChoice::CreateAndInit(wxWindow *parent,
     ms_allChoiceSpins.Add(this);
 
     // initialize the controls contents
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < n; i++ )
@@ -350,7 +350,7 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter& items,
     int n = wxNOT_FOUND;
 
     const unsigned int numItems = items.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int i = 0; i < numItems; ++i )

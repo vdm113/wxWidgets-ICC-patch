@@ -101,19 +101,19 @@ struct inflate_state FAR *state;
 
         /* literal/length table */
         sym = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (sym < 144) state->lens[sym++] = 8;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (sym < 256) state->lens[sym++] = 9;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (sym < 280) state->lens[sym++] = 7;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (sym < 288) state->lens[sym++] = 8;
@@ -124,7 +124,7 @@ struct inflate_state FAR *state;
 
         /* distance table */
         sym = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (sym < 32) state->lens[sym++] = 5;
@@ -319,7 +319,7 @@ void FAR *out_desc;
     left = state->wsize;
 
     /* Inflate until end of block marked as last */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;)
@@ -373,7 +373,7 @@ void FAR *out_desc;
             INITBITS();
 
             /* copy stored block from input to output */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (state->length != 0) {
@@ -413,7 +413,7 @@ void FAR *out_desc;
 
             /* get code length code lengths (not a typo) */
             state->have = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (state->have < state->ncode) {
@@ -421,7 +421,7 @@ void FAR *out_desc;
                 state->lens[order[state->have++]] = (unsigned short)BITS(3);
                 DROPBITS(3);
             }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (state->have < 19)
@@ -440,11 +440,11 @@ void FAR *out_desc;
 
             /* get length and distance code code lengths */
             state->have = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (state->have < state->nlen + state->ndist) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (;;) {
@@ -488,7 +488,7 @@ void FAR *out_desc;
                         state->mode = BAD;
                         break;
                     }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                     while (copy--)
@@ -543,7 +543,7 @@ void FAR *out_desc;
             }
 
             /* get a literal, length, or end-of-block code */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (;;) {
@@ -553,7 +553,7 @@ void FAR *out_desc;
             }
             if (here.op && (here.op & 0xf0) == 0) {
                 last = here;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (;;) {
@@ -603,7 +603,7 @@ void FAR *out_desc;
             Tracevv((stderr, "inflate:         length %u\n", state->length));
 
             /* get distance code */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (;;) {
@@ -613,7 +613,7 @@ void FAR *out_desc;
             }
             if ((here.op & 0xf0) == 0) {
                 last = here;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (;;) {
@@ -648,7 +648,7 @@ void FAR *out_desc;
             Tracevv((stderr, "inflate:         distance %u\n", state->offset));
 
             /* copy match from window to output */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             do {
@@ -665,7 +665,7 @@ void FAR *out_desc;
                 if (copy > state->length) copy = state->length;
                 state->length -= copy;
                 left -= copy;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 do {

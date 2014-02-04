@@ -61,7 +61,7 @@ void RLEencode(unsigned char *p, unsigned int size, wxOutputStream& s)
     cont = 1;
     size--;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (size-- > 0)
@@ -102,7 +102,7 @@ void RLEdecode(unsigned char *p, unsigned int size, wxInputStream& s)
     // to read one or more _complete_ scanlines. Else, more than
     // 'size' bytes might be read and the buffer might overflow.
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (size != 0)
@@ -124,7 +124,7 @@ void RLEdecode(unsigned char *p, unsigned int size, wxInputStream& s)
             if (cont > size) // can happen only if the file is malformed
                 break;
             data = (unsigned char)s.GetC();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (unsigned int i = 1; i <= cont; i++)
@@ -240,7 +240,7 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
 
     dst = image->GetData();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (j = height; j; j--)
@@ -254,7 +254,7 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
         {
             case wxPCX_8BIT:
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (i = 0; i < width; i++)
@@ -267,7 +267,7 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
             }
             case wxPCX_24BIT:
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (i = 0; i < width; i++)
@@ -296,7 +296,7 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
         stream.Read(pal, 768);
 
         p = image->GetData();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (unsigned long k = height * width; k; k--)
@@ -311,7 +311,7 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
         unsigned char r[256];
         unsigned char g[256];
         unsigned char b[256];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < 256; i++)
@@ -397,7 +397,7 @@ int SavePCX(wxImage *image, wxOutputStream& stream)
 
     src = image->GetData();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (; height; height--)
@@ -408,7 +408,7 @@ int SavePCX(wxImage *image, wxOutputStream& stream)
             {
                 unsigned char r, g, b;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (i = 0; i < width; i++)
@@ -424,7 +424,7 @@ int SavePCX(wxImage *image, wxOutputStream& stream)
             }
             case wxPCX_24BIT:
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (i = 0; i < width; i++)
@@ -450,7 +450,7 @@ int SavePCX(wxImage *image, wxOutputStream& stream)
 
         unsigned long index;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (wxImageHistogram::iterator entry = histogram.begin();

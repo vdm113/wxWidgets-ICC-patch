@@ -280,19 +280,19 @@ struct inflate_state FAR *state;
 
         /* literal/length table */
         sym = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (sym < 144) state->lens[sym++] = 8;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (sym < 256) state->lens[sym++] = 9;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (sym < 280) state->lens[sym++] = 7;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (sym < 288) state->lens[sym++] = 8;
@@ -303,7 +303,7 @@ struct inflate_state FAR *state;
 
         /* distance table */
         sym = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (sym < 32) state->lens[sym++] = 5;
@@ -362,7 +362,7 @@ void makefixed()
     size = 1U << 9;
     printf("    static const code lenfix[%u] = {", size);
     low = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;) {
@@ -376,7 +376,7 @@ void makefixed()
     size = 1U << 5;
     printf("\n    static const code distfix[%u] = {", size);
     low = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;) {
@@ -563,7 +563,7 @@ VDM_MACRO_PRAGMA_IVDEP \
    much output data as possible before returning.  The state machine is
    structured roughly as follows:
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;) switch (state) {
@@ -608,7 +608,7 @@ VDM_MACRO_PRAGMA_IVDEP \
    returns:
 
     case STATEw:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (want < need) {
@@ -679,7 +679,7 @@ int flush;
     in = have;
     out = left;
     ret = Z_OK;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;)
@@ -803,7 +803,7 @@ int flush;
             if (state->flags & 0x0800) {
                 if (have == 0) goto inf_leave;
                 copy = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 do {
@@ -827,7 +827,7 @@ int flush;
             if (state->flags & 0x1000) {
                 if (have == 0) goto inf_leave;
                 copy = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 do {
@@ -966,7 +966,7 @@ int flush;
             state->have = 0;
             state->mode = LENLENS;
         case LENLENS:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (state->have < state->ncode) {
@@ -974,7 +974,7 @@ int flush;
                 state->lens[order[state->have++]] = (unsigned short)BITS(3);
                 DROPBITS(3);
             }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (state->have < 19)
@@ -993,11 +993,11 @@ int flush;
             state->have = 0;
             state->mode = CODELENS;
         case CODELENS:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (state->have < state->nlen + state->ndist) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (;;) {
@@ -1041,7 +1041,7 @@ int flush;
                         state->mode = BAD;
                         break;
                     }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                     while (copy--)
@@ -1096,7 +1096,7 @@ int flush;
                 break;
             }
             state->back = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (;;) {
@@ -1106,7 +1106,7 @@ int flush;
             }
             if (here.op && (here.op & 0xf0) == 0) {
                 last = here;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (;;) {
@@ -1152,7 +1152,7 @@ int flush;
             state->was = state->length;
             state->mode = DIST;
         case DIST:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (;;) {
@@ -1162,7 +1162,7 @@ int flush;
             }
             if ((here.op & 0xf0) == 0) {
                 last = here;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (;;) {
@@ -1218,7 +1218,7 @@ int flush;
                     if (copy > left) copy = left;
                     left -= copy;
                     state->length -= copy;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                     do {
@@ -1243,7 +1243,7 @@ int flush;
             if (copy > left) copy = left;
             left -= copy;
             state->length -= copy;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             do {
@@ -1447,7 +1447,7 @@ unsigned len;
 
     got = *have;
     next = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (next < len && got < 4) {
@@ -1482,7 +1482,7 @@ z_streamp strm;
         state->hold <<= state->bits & 7;
         state->bits -= state->bits & 7;
         len = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (state->bits >= 8) {

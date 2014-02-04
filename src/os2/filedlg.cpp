@@ -103,7 +103,7 @@ void wxFileDialog::GetPaths (
     if (m_dir.Last() != wxT('\\'))
         sDir += wxT('\\');
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < nCount; n++ )
@@ -159,7 +159,7 @@ int wxFileDialog::ShowModal()
     // as it doesn't like two backslashes in a row neither
     //
     sDir.reserve(nLen);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < nLen; i++ )
@@ -178,7 +178,7 @@ int wxFileDialog::ShowModal()
                 // Fall through
                 //
             case wxT('\\'):
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 while (i < nLen - 1)
@@ -213,7 +213,7 @@ int wxFileDialog::ShowModal()
         sTheFilter = m_wildCard;
 
     wxStrtok(sTheFilter.wchar_str(), wxT("|"), &pzFilterBuffer);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while(pzFilterBuffer != NULL)
@@ -243,7 +243,7 @@ int wxFileDialog::ShowModal()
         m_fileNames.Empty();
         if ((m_windowStyle & wxFD_MULTIPLE ) && vFileDlg.ulFQFCount > 1)
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int i = 0; i < (int)vFileDlg.ulFQFCount; i++)
@@ -293,7 +293,7 @@ int wxFileDialog::ShowModal()
                 //
                 pzExtension = sFilterBuffer.c_str();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for( int i = 0; i < (int)sFilterBuffer.length(); i++ )

@@ -465,7 +465,7 @@ bool wxToolBar::Realize()
     // Enable(): this works under MSW, where the toolbar items are only created
     // in Realize() which uses the internal state to determine the initial
     // button state, so make it work under GTK too
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxToolBarToolsList::const_iterator i = m_tools.begin();

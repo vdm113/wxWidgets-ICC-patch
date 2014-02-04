@@ -265,7 +265,7 @@ void wxPropertyGridPageState::InitNonCatMode()
         // Prepare m_abcArray
         wxPropertyGridIterator it( this, wxPG_ITERATE_PROPERTIES );
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( ; !it.AtEnd(); it.Next() )
@@ -321,7 +321,7 @@ void wxPropertyGridPageState::CalculateFontAndBitmapStuff( int WXUNUSED(vspacing
     // Recalculate caption text extents.
     unsigned int i;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0;i<m_regularArray.GetChildCount();i++ )
@@ -407,7 +407,7 @@ wxPGProperty* wxPropertyGridPageState::GetLastItem( int flags )
 
     // First, get last child of last parent
     wxPGProperty* pwc = (wxPGProperty*)m_properties->Last();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( pwc->GetChildCount() &&
@@ -418,7 +418,7 @@ wxPGProperty* wxPropertyGridPageState::GetLastItem( int flags )
     if ( pwc->GetFlags() & itemExMask )
     {
         wxPropertyGridIterator it( this, flags, pwc );
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( ; !it.AtEnd(); it.Prev() )
@@ -433,7 +433,7 @@ wxPropertyCategory* wxPropertyGridPageState::GetPropertyCategory( const wxPGProp
 {
     const wxPGProperty* parent = (const wxPGProperty*)p;
     const wxPGProperty* grandparent = (const wxPGProperty*)parent->GetParent();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -459,7 +459,7 @@ wxPGProperty* wxPropertyGridPageState::GetPropertyByLabel( const wxString& label
 
     if ( !parent ) parent = (wxPGProperty*) &m_regularArray;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<parent->GetChildCount(); i++ )
@@ -722,7 +722,7 @@ void wxPropertyGridPageState::DoSortChildren( wxPGProperty* p,
     if ( flags & wxPG_RECURSE )
     {
         // Apply sort recursively
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned int i=0; i<p->GetChildCount(); i++ )
@@ -796,7 +796,7 @@ int wxPropertyGridPageState::GetColumnFitWidth(wxClientDC& dc,
     int maxW = 0;
     int w, h;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<pwc->GetChildCount(); i++ )
@@ -860,7 +860,7 @@ int wxPropertyGridPageState::DoGetSplitterPosition( int splitterColumn ) const
 {
     int n = GetGrid()->m_marginWidth;
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<=splitterColumn; i++ )
@@ -974,7 +974,7 @@ wxSize wxPropertyGridPageState::DoFitColumns( bool WXUNUSED(allowGridResize) )
     int accWid = marginWidth;
     int maxColWidth = 500;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int col=0; col < GetColumnCount(); col++ )
@@ -1035,7 +1035,7 @@ void wxPropertyGridPageState::CheckColumnWidths( int widthChange )
 
     //
     // Check min sizes
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<m_colWidths.size(); i++ )
@@ -1054,7 +1054,7 @@ void wxPropertyGridPageState::CheckColumnWidths( int widthChange )
     }
 
     int colsWidth = pg->m_marginWidth;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<m_colWidths.size(); i++ )
@@ -1108,7 +1108,7 @@ void wxPropertyGridPageState::CheckColumnWidths( int widthChange )
             pg->RecalculateVirtualSize();
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<m_colWidths.size(); i++ )
@@ -1184,7 +1184,7 @@ void wxPropertyGridPageState::ResetColumnSizes( int setSplitterFlags )
     unsigned int i;
     // Calculate sum of proportions
     int psum = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<m_colWidths.size(); i++ )
@@ -1193,7 +1193,7 @@ void wxPropertyGridPageState::ResetColumnSizes( int setSplitterFlags )
     int cpos = 0;
 
     // Convert proportion to splitter positions
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<(m_colWidths.size() - 1); i++ )
@@ -1229,7 +1229,7 @@ void wxPropertyGridPageState::DoSetColumnProportion( unsigned int column,
     if ( proportion < 1 )
         proportion = 1;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( m_columnProportions.size() <= column )
@@ -1245,7 +1245,7 @@ int wxPropertyGridPageState::HitTestH( int x, int* pSplitterHit, int* pSplitterH
     int col = -1;
     int prevSplitter = -1;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( x > cx )
@@ -1389,7 +1389,7 @@ bool wxPropertyGridPageState::DoIsPropertySelected( wxPGProperty* prop ) const
 
 void wxPropertyGridPageState::DoRemoveFromSelection( wxPGProperty* prop )
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int i=0; i<m_selection.size(); i++ )
@@ -1507,7 +1507,7 @@ wxVariant wxPropertyGridPageState::DoGetPropertyValues( const wxString& listname
             wxASSERT( !pwc->HasFlag(wxPG_PROP_AGGREGATE) );
 
             size_t i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i=0; i<pwc->GetChildCount(); i++ )
@@ -1532,7 +1532,7 @@ wxVariant wxPropertyGridPageState::DoGetPropertyValues( const wxString& listname
             wxPropertyGridConstIterator it( this, wxPG_ITERATE_DEFAULT, pwc->Item(0) );
             it.SetBaseParent( pwc );
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( ; !it.AtEnd(); it.Next() )
@@ -1578,7 +1578,7 @@ void wxPropertyGridPageState::DoSetPropertyValues( const wxVariantList& list, wx
 
     //
     // Second pass for special entries
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( node = list.begin(); node != list.end(); ++node )
@@ -1644,7 +1644,7 @@ void wxPropertyGridPageState::DoSetPropertyValues( const wxVariantList& list, wx
 
     if ( numSpecialEntries )
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( node = list.begin(); node != list.end(); ++node )
@@ -1678,7 +1678,7 @@ void wxPropertyGridPageState::DoSetPropertyValues( const wxVariantList& list, wx
                                 wxVariantList& list2 = current->GetList();
                                 wxVariantList::const_iterator node2;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                                 for ( node2 = list2.begin(); node2 != list2.end(); ++node2 )
@@ -1990,7 +1990,7 @@ void wxPropertyGridPageState::DoDelete( wxPGProperty* item, bool doDelete )
         wxPGProperty* cat_parent = &m_regularArray;
         int cat_index = m_regularArray.GetChildCount();
         size_t i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i = 0; i < m_regularArray.GetChildCount(); i++ )

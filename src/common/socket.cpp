@@ -980,7 +980,7 @@ wxUint32 wxSocketBase::DoRead(void* buffer_, wxUint32 nbytes)
     nbytes -= total;
     buffer += total;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( nbytes )
@@ -1100,7 +1100,7 @@ wxSocketBase& wxSocketBase::ReadMsg(void* buffer, wxUint32 nbytes)
                 long discard_len;
 
                 // NOTE: discarded bytes don't add to m_lcount.
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 do
@@ -1111,7 +1111,7 @@ wxSocketBase& wxSocketBase::ReadMsg(void* buffer, wxUint32 nbytes)
                     discard_len = DoRead(discard_buffer, (wxUint32)discard_len);
                     len2 -= (wxUint32)discard_len;
                 }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 while ((discard_len > 0) && len2);
@@ -1171,7 +1171,7 @@ wxUint32 wxSocketBase::DoWrite(const void *buffer_, wxUint32 nbytes)
     wxCHECK_MSG( buffer, 0, "NULL buffer" );
 
     wxUint32 total = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( nbytes )
@@ -1288,7 +1288,7 @@ wxSocketBase& wxSocketBase::Discard()
 
     wxSocketWaitModeChanger changeFlags(this, wxSOCKET_NOWAIT);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -1296,7 +1296,7 @@ wxSocketBase& wxSocketBase::Discard()
         ret = DoRead(buffer, MAX_DISCARD_SIZE);
         total += ret;
     }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (ret == MAX_DISCARD_SIZE);
@@ -1491,7 +1491,7 @@ wxSocketBase::DoWait(long timeout, wxSocketEventFlags flags)
     // (but note that we always execute the loop at least once, even if timeout
     // is 0 as this is used for polling)
     int rc = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( bool firstTime = true; !m_interrupt; firstTime = false )

@@ -86,7 +86,7 @@ public:
 
         // Not found, handle pre-registrations
         size_t i = m_anyToVariantRegs.size();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while ( i > 0 )
@@ -111,7 +111,7 @@ public:
             return it->second;
 
         // Finally, attempt to find a compatible type
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( it = anyToVariant.begin(); it != anyToVariant.end(); it++ )

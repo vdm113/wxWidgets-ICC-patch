@@ -55,7 +55,7 @@ wxPaletteRefData::wxPaletteRefData(const wxPaletteRefData& palette)
 {
     m_count = palette.m_count;
     m_entries = new wxPaletteEntry[m_count];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < m_count; i++ )
@@ -107,7 +107,7 @@ bool wxPalette::Create(int n,
     M_PALETTEDATA->m_entries = new wxPaletteEntry[n];
 
     wxPaletteEntry *e = M_PALETTEDATA->m_entries;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < n; i++, e++)
@@ -130,7 +130,7 @@ int wxPalette::GetPixel( unsigned char red,
     double d,distance = 1000.0; // max. dist is 256
 
     wxPaletteEntry *e = M_PALETTEDATA->m_entries;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < M_PALETTEDATA->m_count; i++, e++)

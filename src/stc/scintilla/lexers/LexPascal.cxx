@@ -144,7 +144,7 @@ static void GetRangeLowered(unsigned int start,
 		char *s,
 		unsigned int len) {
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((i < end - start + 1) && (i < len-1)) {
@@ -160,7 +160,7 @@ static void GetForwardRangeLowered(unsigned int start,
 		char *s,
 		unsigned int len) {
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((i < len-1) && charSet.Contains(styler.SafeGetCharAt(start + i))) {
@@ -241,7 +241,7 @@ static void ColourisePascalDoc(unsigned int startPos, int length, int initStyle,
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward()) {
@@ -365,7 +365,7 @@ static bool IsStreamCommentStyle(int style) {
 static bool IsCommentLine(int line, Accessor &styler) {
 	int pos = styler.LineStart(line);
 	int eolPos = styler.LineStart(line + 1) - 1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = pos; i < eolPos; i++) {
@@ -428,7 +428,7 @@ static unsigned int SkipWhiteSpace(unsigned int currentPos, unsigned int endPos,
 	CharacterSet setWord(CharacterSet::setAlphaNum, "_");
 	unsigned int j = currentPos + 1;
 	char ch = styler.SafeGetCharAt(j);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((j < endPos) && (IsASpaceOrTab(ch) || ch == '\r' || ch == '\n' ||
@@ -499,7 +499,7 @@ static void ClassifyPascalWordFoldPoint(int &levelCurrent, int &lineFoldStateCur
 		bool ignoreKeyword = true;
 		int j = lastStart - 1;
 		char ch = styler.SafeGetCharAt(j);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while ((j >= startPos) && (IsASpaceOrTab(ch) || ch == '\r' || ch == '\n' ||
@@ -558,7 +558,7 @@ static void FoldPascalDoc(unsigned int startPos, int length, int initStyle, Word
 	int lastStart = 0;
 	CharacterSet setWord(CharacterSet::setAlphaNum, "_", 0x80, true);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {

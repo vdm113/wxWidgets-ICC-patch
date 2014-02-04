@@ -77,7 +77,7 @@ bool wxControlContainerBase::UpdateCanFocusChildren()
 bool wxControlContainerBase::HasAnyFocusableChildren() const
 {
     const wxWindowList& children = m_winParent->GetChildren();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxWindowList::const_iterator i = children.begin(),
@@ -102,7 +102,7 @@ bool wxControlContainerBase::HasAnyFocusableChildren() const
 bool wxControlContainerBase::HasAnyChildrenAcceptingFocus() const
 {
     const wxWindowList& children = m_winParent->GetChildren();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxWindowList::const_iterator i = children.begin(),
@@ -137,7 +137,7 @@ bool wxControlContainerBase::DoSetFocus()
     // focus had been already set to some other child
 
     wxWindow *win = wxWindow::FindFocus();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( win )
@@ -201,7 +201,7 @@ void wxControlContainer::SetLastFocus(wxWindow *win)
         {
             // find the last _immediate_ child which got focus
             wxWindow *winParent = win;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while ( winParent != m_winParent )
@@ -253,7 +253,7 @@ wxRadioButton* wxGetPreviousButtonInGroup(wxRadioButton *btn)
     // Iterate over all previous siblings until we find the next radio button
     wxWindowList::compatibility_iterator nodeBefore = nodeThis->GetPrevious();
     wxRadioButton *prevBtn = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (nodeBefore)
@@ -286,7 +286,7 @@ wxRadioButton* wxGetNextButtonInGroup(wxRadioButton *btn)
     // Iterate over all previous siblings until we find the next radio button
     wxWindowList::compatibility_iterator nodeNext = nodeThis->GetNext();
     wxRadioButton *nextBtn = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (nodeNext)
@@ -309,7 +309,7 @@ wxRadioButton* wxGetNextButtonInGroup(wxRadioButton *btn)
 
 wxRadioButton* wxGetFirstButtonInGroup(wxRadioButton *btn)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (true)
@@ -324,7 +324,7 @@ wxRadioButton* wxGetFirstButtonInGroup(wxRadioButton *btn)
 
 wxRadioButton* wxGetLastButtonInGroup(wxRadioButton *btn)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (true)
@@ -349,7 +349,7 @@ wxRadioButton* wxGetSelectedButtonInGroup(wxRadioButton *btn)
     wxRadioButton *selBtn;
 
     // First check all previous buttons
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (selBtn = wxGetPreviousButtonInGroup(btn); selBtn; selBtn = wxGetPreviousButtonInGroup(selBtn))
@@ -357,7 +357,7 @@ wxRadioButton* wxGetSelectedButtonInGroup(wxRadioButton *btn)
             return selBtn;
 
     // Now all following buttons
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (selBtn = wxGetNextButtonInGroup(btn); selBtn; selBtn = wxGetNextButtonInGroup(selBtn))
@@ -400,7 +400,7 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
     {
         // check if we have a unique notebook-like child
         wxWindow *bookctrl = NULL;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxWindowList::const_iterator i = children.begin(),
@@ -515,7 +515,7 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
     }
 
     // we want to cycle over all elements passing by NULL
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )
@@ -542,7 +542,7 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
                 // the next/previous item after this panel in the parent
                 // panel).
                 wxWindow *focusedParent = m_winParent;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 while ( parent )
@@ -729,7 +729,7 @@ bool wxSetFocusToChild(wxWindow *win, wxWindow **childLastFocused)
             // We want to focus on the deepest widget visible
             wxWindow *deepestVisibleWindow = NULL;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while ( *childLastFocused )
@@ -768,7 +768,7 @@ bool wxSetFocusToChild(wxWindow *win, wxWindow **childLastFocused)
 
     // set the focus to the first child who wants it
     wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( node )

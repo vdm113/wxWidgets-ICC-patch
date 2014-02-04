@@ -407,7 +407,7 @@ wxPaintDCInfo* wxPaintDCImpl::FindInCache(
     wxPaintDCInfo*                  pInfo = NULL;
     size_t                          nCache = ms_cache.GetCount();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t n = 0; n < nCache; n++)
@@ -431,7 +431,7 @@ WXHDC wxPaintDCImpl::FindDCInCache(
     wxPaintDCInfo*                  pInfo = NULL;
     size_t                          nCache = ms_cache.GetCount();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t n = 0; n < nCache; n++)

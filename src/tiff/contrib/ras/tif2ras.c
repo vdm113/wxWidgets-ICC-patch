@@ -113,7 +113,7 @@ main(argc, argv)
     setbuf(stderr, NULL);
     pname = argv[0];
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (--argc) {
@@ -200,7 +200,7 @@ main(argc, argv)
 	    if (Verbose)
 		fprintf(stderr, "%d graylevels (min=black), ", numcolors);
 	    Map = (u_char *) malloc(numcolors * sizeof(u_char));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i = 0; i < numcolors; i++)
@@ -213,7 +213,7 @@ main(argc, argv)
 	    if (Verbose)
 		fprintf(stderr, "%d graylevels (min=white), ", numcolors);
 	    Map = (u_char *) malloc(numcolors * sizeof(u_char));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i = 0; i < numcolors; i++)
@@ -239,7 +239,7 @@ main(argc, argv)
 	    memset(blue, 0, sizeof(blue));
 	    TIFFGetField(tif, TIFFTAG_COLORMAP,
 		&redcolormap, &greencolormap, &bluecolormap);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i = 0; i < numcolors; i++) {
@@ -266,7 +266,7 @@ main(argc, argv)
     if (buf == NULL)
 	error("%s: can't allocate memory for scanline buffer...\n", NULL);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (row = 0; row < height; row++) {
@@ -277,7 +277,7 @@ main(argc, argv)
 	switch (photometric) {
 	case PHOTOMETRIC_RGB:
 	    if (samplesperpixel == 4)
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (col = 0; col < width; col++) {
@@ -287,7 +287,7 @@ main(argc, argv)
 		    inp++;	/* skip alpha channel */
 		}
 	    else
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (col = 0; col < width; col++) {
@@ -300,14 +300,14 @@ main(argc, argv)
 	case PHOTOMETRIC_MINISBLACK:
 	    switch (bitspersample) {
 	    case 1:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (col = 0; col < ((width + 7) / 8); col++)
 		    *outp++ = *inp++;
 		break;
 	    case 2:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (col = 0; col < ((width + 3) / 4); col++) {
@@ -318,7 +318,7 @@ main(argc, argv)
 		}
 		break;
 	    case 4:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (col = 0; col < width / 2; col++) {
@@ -327,7 +327,7 @@ main(argc, argv)
 		}
 		break;
 	    case 8:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (col = 0; col < width; col++)

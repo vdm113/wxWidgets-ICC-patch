@@ -403,7 +403,7 @@ static int ChoosePixelFormatARB(HDC hdc, const int *attribList)
         #define ADD_ATTR_VALUE(attr) ADD_ATTR(attr, attribList[src++])
 
         int src = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while ( attribList[src] )
@@ -541,7 +541,7 @@ AdjustPFDForAttributes(PIXELFORMATDESCRIPTOR& pfd, const int *attribList)
     pfd.iPixelType = PFD_TYPE_COLORINDEX;
 
     bool requestFSAA = false;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int arg = 0; attribList[arg]; )
@@ -788,7 +788,7 @@ wxPalette wxGLCanvas::CreateDefaultPalette()
     int greenMask = (1 << pfd.cGreenBits) - 1;
     int blueMask = (1 << pfd.cBlueBits) - 1;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i=0; i<paletteSize; ++i)

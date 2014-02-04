@@ -103,7 +103,7 @@ wxImageFloodFill(wxImage *image,
         //temporary x and y locations
         int xt, yt;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i=0; i < qSz; i++)
@@ -119,7 +119,7 @@ wxImageFloodFill(wxImage *image,
         image->SetRGB(xt,yt,r,g,b);
 
         //Main queue loop
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while(qr!=qs)
@@ -204,7 +204,7 @@ wxImageFloodFill(wxImage *image,
         //temporary x and y locations
         int xt, yt;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i=0; i < qSz; i++)
@@ -220,7 +220,7 @@ wxImageFloodFill(wxImage *image,
         image->SetRGB(xt,yt,r,g,b);
 
         //Main queue loop
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (qr!=qs)

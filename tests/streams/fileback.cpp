@@ -78,7 +78,7 @@ private:
 
 backStream::backStream()
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned i = 0; i < TESTSIZE; i++)
@@ -192,7 +192,7 @@ void backStream::Seek(wxInputStream& in)
     CPPUNIT_ASSERT_EQUAL(size_t(0), in.LastRead());
     CPPUNIT_ASSERT(in.Eof());
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (wxFileOffset i = TESTSIZE - 1; i >= 0; i--) {

@@ -327,7 +327,7 @@ FillTable(TIFFFaxTabEnt *T, int Size, struct proto *P, int State)
 {
     int limit = 1 << Size;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (P->val) {
@@ -335,7 +335,7 @@ FillTable(TIFFFaxTabEnt *T, int Size, struct proto *P, int State)
 	int param = P->val >> 4;
 	int incr = 1 << width;
 	int code;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (code = P->code; code < limit; code += incr) {
@@ -364,7 +364,7 @@ WriteTable(FILE* fd, const TIFFFaxTabEnt* T, int Size, const char* name)
 	storage_class, const_class, name, Size);
     if (packoutput) {
 	sep = "\n";
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < Size; i++) {
@@ -378,7 +378,7 @@ WriteTable(FILE* fd, const TIFFFaxTabEnt* T, int Size, const char* name)
 	}
     } else {
 	sep = "\n ";
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; i < Size; i++) {
@@ -404,7 +404,7 @@ main(int argc, char* argv[])
     extern int optind;
     extern char* optarg;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ((c = getopt(argc, argv, "c:s:bp")) != -1)

@@ -279,7 +279,7 @@ void wxFromStringConverter( const wxString &s, wxAny &v)
 template<typename iter, typename collection_t > void wxListCollectionToAnyList( 
                                                                                const collection_t& coll, wxAnyList &value )
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( iter current = coll.GetFirst(); current; 
@@ -292,7 +292,7 @@ template<typename iter, typename collection_t > void wxListCollectionToAnyList(
 template<typename collection_t> void wxArrayCollectionToVariantArray( 
                                                                      const collection_t& coll, wxAnyList &value )
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for( size_t i = 0; i < coll.GetCount(); i++ )

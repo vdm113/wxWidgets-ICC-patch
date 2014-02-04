@@ -313,7 +313,7 @@ void SCI_METHOD LexerBasic::Lex(unsigned int startPos, int length, int initStyle
 	StyleContext sc(startPos, length, initStyle, styler);
 
 	// Can't use sc.More() here else we miss the last character
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; ; sc.Forward()) {
@@ -332,7 +332,7 @@ void SCI_METHOD LexerBasic::Lex(unsigned int startPos, int length, int initStyle
 						SCE_B_KEYWORD4,
 					};
 					sc.GetCurrentLowered(s, sizeof(s));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 					for (int i = 0; i < 4; i++) {
@@ -446,7 +446,7 @@ void SCI_METHOD LexerBasic::Fold(unsigned int startPos, int length, int /* initS
 
 	// Scan for tokens at the start of the line (they may include
 	// whitespace, for tokens like "End Function"
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = startPos; i < endPos; i++) {

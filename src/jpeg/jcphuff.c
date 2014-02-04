@@ -150,7 +150,7 @@ start_pass_phuff (j_compress_ptr cinfo, wxjpeg_boolean gather_statistics)
   /* Only DC coefficients may be interleaved, so cinfo->comps_in_scan = 1
    * for AC coefficients.
    */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
@@ -257,7 +257,7 @@ emit_bits (phuff_entropy_ptr entropy, unsigned int code, int size)
 
   put_buffer |= entropy->put_buffer; /* and merge with old buffer contents */
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (put_bits >= 8) {
@@ -313,7 +313,7 @@ emit_buffered_bits (phuff_entropy_ptr entropy, char * bufstart,
   if (entropy->gather_statistics)
     return;			/* no real work */
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (nbits > 0) {
@@ -336,7 +336,7 @@ emit_eobrun (phuff_entropy_ptr entropy)
   if (entropy->EOBRUN > 0) {	/* if there is any pending EOBRUN */
     temp = entropy->EOBRUN;
     nbits = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ((temp >>= 1))
@@ -377,7 +377,7 @@ emit_restart (phuff_entropy_ptr entropy, int restart_num)
 
   if (entropy->cinfo->Ss == 0) {
     /* Re-initialize DC predictions to 0 */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0; ci < entropy->cinfo->comps_in_scan; ci++)
@@ -416,7 +416,7 @@ encode_mcu_DC_first (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
       emit_restart(entropy, entropy->next_restart_num);
 
   /* Encode the MCU data blocks */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
@@ -444,7 +444,7 @@ encode_mcu_DC_first (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
     
     /* Find the number of bits needed for the magnitude of the coefficient */
     nbits = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (temp) {
@@ -514,7 +514,7 @@ encode_mcu_AC_first (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
   
   r = 0;			/* r = run length of zeros */
    
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (k = cinfo->Ss; k <= Se; k++) {
@@ -546,7 +546,7 @@ encode_mcu_AC_first (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
     if (entropy->EOBRUN > 0)
       emit_eobrun(entropy);
     /* if run length > 15, must emit special run-length-16 codes (0xF0) */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (r > 15) {
@@ -556,7 +556,7 @@ encode_mcu_AC_first (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
 
     /* Find the number of bits needed for the magnitude of the coefficient */
     nbits = 1;			/* there must be at least one 1 bit */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ((temp >>= 1))
@@ -622,7 +622,7 @@ encode_mcu_DC_refine (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
       emit_restart(entropy, entropy->next_restart_num);
 
   /* Encode the MCU data blocks */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
@@ -683,7 +683,7 @@ encode_mcu_AC_refine (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
    * coefficients' absolute values and the EOB position.
    */
   EOB = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (k = cinfo->Ss; k <= Se; k++) {
@@ -706,7 +706,7 @@ encode_mcu_AC_refine (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
   BR = 0;			/* BR = count of buffered bits added now */
   BR_buffer = entropy->bit_buffer + entropy->BE; /* Append bits to buffer */
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (k = cinfo->Ss; k <= Se; k++) {
@@ -716,7 +716,7 @@ encode_mcu_AC_refine (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
     }
 
     /* Emit any required ZRLs, but not if they can be folded into EOB */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (r > 15 && k <= EOB) {
@@ -832,7 +832,7 @@ finish_pass_gather_phuff (j_compress_ptr cinfo)
    */
   MEMZERO(did, SIZEOF(did));
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
@@ -875,7 +875,7 @@ jinit_phuff_encoder (j_compress_ptr cinfo)
   entropy->pub.start_pass = start_pass_phuff;
 
   /* Mark tables unallocated */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < NUM_HUFF_TBLS; i++) {

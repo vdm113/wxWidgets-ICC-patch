@@ -33,7 +33,7 @@ local int gz_load(state, buf, len, have)
     int ret;
 
     *have = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do {
@@ -71,7 +71,7 @@ local int gz_avail(state)
             unsigned char *p = state->in;
             unsigned const char *q = strm->next_in;
             unsigned n = strm->avail_in;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             do {
@@ -191,7 +191,7 @@ local int gz_decomp(state)
 
     /* fill output buffer up to end of deflate stream */
     had = strm->avail_out;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do {
@@ -244,7 +244,7 @@ local int gz_fetch(state)
 {
     z_streamp strm = &(state->strm);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do {
@@ -279,7 +279,7 @@ local int gz_skip(state, len)
     unsigned n;
 
     /* skip over len bytes or reach end-of-file, whichever comes first */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (len)
@@ -347,7 +347,7 @@ int ZEXPORT gzread(file, buf, len)
 
     /* get len bytes to buf, or less than len if at the end */
     got = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do {
@@ -492,7 +492,7 @@ int ZEXPORT gzungetc(c, file)
     if (state->x.next == state->out) {
         unsigned char *src = state->out + state->x.have;
         unsigned char *dest = state->out + (state->size << 1);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (src > state->out)

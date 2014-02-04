@@ -527,7 +527,7 @@ bool wxSymbolPickerDialog::TransferDataToWindow()
     {
         // Insert items into subset combo
         int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < (int) WXSIZEOF(g_UnicodeSubsetTable); i++)
@@ -642,7 +642,7 @@ void wxSymbolPickerDialog::OnSymbolSelected( wxCommandEvent& event )
     {
         // Need to make the subset selection reflect the current symbol
         int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < (int) WXSIZEOF(g_UnicodeSubsetTable); i++)
@@ -870,7 +870,7 @@ bool wxSymbolListCtrl::DoSetCurrent(int current)
         {
             // it is, indeed, only partly visible, so scroll it into view to
             // make it entirely visible
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while ( (unsigned)lineNo + 1 == GetVisibleEnd() &&
@@ -939,7 +939,7 @@ void wxSymbolListCtrl::OnDrawItem(wxDC& dc, const wxRect& rect, size_t n) const
     int startSymbol = n*m_symbolsPerLine;
 
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < m_symbolsPerLine; i++)
@@ -1020,7 +1020,7 @@ void wxSymbolListCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
 
     // iterate over all visible lines
     const size_t lineMax = GetVisibleEnd();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t line = GetVisibleBegin(); line < lineMax; line++ )

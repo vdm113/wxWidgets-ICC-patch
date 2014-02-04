@@ -134,7 +134,7 @@ void FormMain::OnDumpList( wxCommandEvent& WXUNUSED(event) )
         wxDefaultPosition,wxDefaultSize,wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER);
 
     unsigned int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < (unsigned int)values.GetCount(); i++ )
@@ -152,7 +152,7 @@ void FormMain::OnDumpList( wxCommandEvent& WXUNUSED(event) )
             text += wxString::Format(wxT("Attributes:\n"));
 
             unsigned int n;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( n = 0; n < (unsigned int)v.GetCount(); n++ )
@@ -309,7 +309,7 @@ wxArrayPGProperty GetPropertiesInRandomOrder( wxPropertyGridInterface* props, in
 
     wxPropertyGridIterator it;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( it = props->GetIterator(iterationFlags);
@@ -389,7 +389,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         int count;
 
         count = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( it = pgman->GetVIterator(wxPG_ITERATE_PROPERTIES);
@@ -407,7 +407,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         RT_MSG(wxString::Format(wxT("GetVIterator(wxPG_ITERATE_PROPERTIES) -> %i entries"), count));
 
         count = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( it = pgman->GetVIterator(wxPG_ITERATE_CATEGORIES);
@@ -423,7 +423,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         RT_MSG(wxString::Format(wxT("GetVIterator(wxPG_ITERATE_CATEGORIES) -> %i entries"), count));
 
         count = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( it = pgman->GetVIterator(wxPG_ITERATE_PROPERTIES|wxPG_ITERATE_CATEGORIES);
@@ -439,7 +439,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         RT_MSG(wxString::Format(wxT("GetVIterator(wxPG_ITERATE_PROPERTIES|wxPG_ITERATE_CATEGORIES) -> %i entries"), count));
 
         count = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( it = pgman->GetVIterator(wxPG_ITERATE_VISIBLE);
@@ -465,7 +465,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         wxPropertyGridIterator it;
         size_t ind;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( ind=0; ind<pgman->GetPageCount(); ind++ )
@@ -473,7 +473,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
             wxPropertyGridPage* page = pgman->GetPage(ind);
             pgman->SelectPage(page);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( it = page->GetIterator(wxPG_ITERATE_VISIBLE);
@@ -497,7 +497,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         wxPGVIterator it;
         wxArrayPGProperty array;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( it = pgman->GetVIterator(wxPG_ITERATE_ALL&~(wxPG_IT_CHILDREN(wxPG_PROP_AGGREGATE)));
@@ -507,7 +507,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
         wxArrayPGProperty::reverse_iterator it2;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( it2 = array.rbegin(); it2 != array.rend(); it2++ )
@@ -529,7 +529,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
         wxPGVIterator it;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( it = pgman->GetVIterator(wxPG_ITERATE_PROPERTIES);
@@ -601,7 +601,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
     {
         RT_START_TEST(GetPropertyValues)
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=0; i<3; i++ )
@@ -613,7 +613,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
             wxVariant values = page->GetPropertyValues();
 
             unsigned int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i = 0; i < (unsigned int)values.GetCount(); i++ )
@@ -993,7 +993,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
     {
         RT_START_TEST(Collapse_and_GetFirstCategory_and_GetNextCategory)
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=0; i<3; i++ )
@@ -1002,7 +1002,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
             wxPropertyGridIterator it;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( it = page->GetIterator( wxPG_ITERATE_CATEGORIES );
@@ -1025,7 +1025,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
     {
         RT_START_TEST(Save_And_RestoreEditableState)
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=0; i<3; i++ )
@@ -1043,7 +1043,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
     {
         RT_START_TEST(Expand_and_GetFirstCategory_and_GetNextCategory)
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=0; i<3; i++ )
@@ -1052,7 +1052,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
             wxPropertyGridIterator it;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( it = page->GetIterator( wxPG_ITERATE_CATEGORIES );
@@ -1097,7 +1097,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         // Select the most error prone page as visible.
         pgman->SelectPage(1);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=0; i<3; i++ )
@@ -1108,7 +1108,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
             wxPropertyGridIterator it;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( it = page->GetIterator( wxPG_ITERATE_CATEGORIES );
@@ -1124,7 +1124,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
                 pgman->Collapse( (wxPGProperty*)arr.Item(0) );
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( n=arr.GetCount()-1; n>0; n-- )
@@ -1297,7 +1297,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
         if ( !_failed_ )
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i=0; i<arr1.size(); i++ )
@@ -1316,7 +1316,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         {
             wxArrayPGProperty arr2 = GetPropertiesInRandomOrder(page);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i=0; i<arr2.size(); i++ )
@@ -1337,7 +1337,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
         if ( !_failed_ )
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i=0; i<arr1.size(); i++ )
@@ -1356,7 +1356,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         {
             wxArrayPGProperty arr2 = GetPropertiesInRandomOrder(page);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i=0; i<arr2.size(); i++ )
@@ -1378,7 +1378,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
         if ( !_failed_ )
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i=0; i<arr1.size(); i++ )
@@ -1397,7 +1397,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         {
             wxArrayPGProperty arr2 = GetPropertiesInRandomOrder(page);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i=0; i<arr2.size(); i++ )
@@ -1423,7 +1423,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
         // Test with multiple columns
         // FIXME: Does not display changes.
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=3; i<12; i+=2 )
@@ -1445,7 +1445,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         // Recreate grid with all possible (single) flags
         wxASSERT(wxPG_AUTO_SORT == 0x000000010);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=4; i<16; i++ )
@@ -1460,7 +1460,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
         wxASSERT(wxPG_EX_INIT_NOCAT == 0x00001000);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=12; i<27; i++ )
@@ -1496,7 +1496,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
             s = wxString::Format(wxT("All tests were successful, but there were %i warnings!"), wxPGGlobalVars->m_warnings);
 #endif
         RT_MSG(s)
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=0; i<errorMessages.size(); i++ )

@@ -116,14 +116,14 @@ Document::Document() {
 }
 
 Document::~Document() {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 0; i < lenWatchers; i++) {
 		watchers[i].watcher->NotifyDeleted(this, watchers[i].userData);
 	}
 	delete []watchers;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int j=0; j<ldSize; j++) {
@@ -139,7 +139,7 @@ Document::~Document() {
 }
 
 void Document::Init() {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int j=0; j<ldSize; j++) {
@@ -149,7 +149,7 @@ void Document::Init() {
 }
 
 void Document::InsertLine(int line) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int j=0; j<ldSize; j++) {
@@ -159,7 +159,7 @@ void Document::InsertLine(int line) {
 }
 
 void Document::RemoveLine(int line) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int j=0; j<ldSize; j++) {
@@ -212,7 +212,7 @@ void Document::AddMarkSet(int line, int valueSet) {
 		return;
 	}
 	unsigned int m = valueSet;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 0; m; i++, m >>= 1)
@@ -238,7 +238,7 @@ void Document::DeleteMarkFromHandle(int markerHandle) {
 
 void Document::DeleteAllMarks(int markerNum) {
 	bool someChanges = false;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int line = 0; line < LinesTotal(); line++) {
@@ -275,7 +275,7 @@ int Document::LineEnd(int line) const {
 
 void SCI_METHOD Document::SetErrorStatus(int status) {
 	// Tell the watchers the lexer has changed.
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 0; i < lenWatchers; i++) {
@@ -300,7 +300,7 @@ int Document::VCHomePosition(int position) const {
 	int startPosition = LineStart(line);
 	int endLine = LineEnd(line);
 	int startText = startPosition;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (startText < endLine && (cb.CharAt(startText) == ' ' || cb.CharAt(startText) == '\t'))
@@ -344,7 +344,7 @@ int Document::GetLastChild(int lineParent, int level, int lastLine) {
 	int maxLine = LinesTotal();
 	int lookLastLine = (lastLine != -1) ? Platform::Minimum(LinesTotal() - 1, lastLine) : -1;
 	int lineMaxSubord = lineParent;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (lineMaxSubord < maxLine - 1) {
@@ -369,7 +369,7 @@ int Document::GetLastChild(int lineParent, int level, int lastLine) {
 int Document::GetFoldParent(int line) {
 	int level = GetLevel(line) & SC_FOLDLEVELNUMBERMASK;
 	int lineLook = line - 1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((lineLook > 0) && (
@@ -393,7 +393,7 @@ void Document::GetHighlightDelimiters(HighlightDelimiter &highlightDelimiter, in
 	int lookLine = line;
 	int lookLineLevel = level;
 	int lookLineLevelNum = lookLineLevel & SC_FOLDLEVELNUMBERMASK;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((lookLine > 0) && ((lookLineLevel & SC_FOLDLEVELWHITEFLAG) || 
@@ -414,7 +414,7 @@ void Document::GetHighlightDelimiters(HighlightDelimiter &highlightDelimiter, in
 		lookLine = beginFoldBlock - 1;
 		lookLineLevel = GetLevel(lookLine);
 		lookLineLevelNum = lookLineLevel & SC_FOLDLEVELNUMBERMASK;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while ((lookLine >= 0) && (lookLineLevelNum >= SC_FOLDLEVELBASE)) {
@@ -432,7 +432,7 @@ void Document::GetHighlightDelimiters(HighlightDelimiter &highlightDelimiter, in
 		}
 	}
 	if (firstChangeableLineBefore == -1) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (lookLine = line - 1, lookLineLevel = GetLevel(lookLine), lookLineLevelNum = lookLineLevel & SC_FOLDLEVELNUMBERMASK; 
@@ -448,7 +448,7 @@ void Document::GetHighlightDelimiters(HighlightDelimiter &highlightDelimiter, in
 		firstChangeableLineBefore = beginFoldBlock - 1;
 
 	int firstChangeableLineAfter = -1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (lookLine = line + 1, lookLineLevel = GetLevel(lookLine), lookLineLevelNum = lookLineLevel & SC_FOLDLEVELNUMBERMASK; 
@@ -502,7 +502,7 @@ int Document::LenChar(int pos) {
 
 bool Document::InGoodUTF8(int pos, int &start, int &end) const {
 	int trail = pos;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((trail>0) && (pos-trail < UTF8MaxBytes) && UTF8IsTrailByte(static_cast<unsigned char>(cb.CharAt(trail-1))))
@@ -520,7 +520,7 @@ bool Document::InGoodUTF8(int pos, int &start, int &end) const {
 			// pos too far from lead
 			return false;
 		char charBytes[UTF8MaxBytes] = {static_cast<char>(leadByte),0,0,0};
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int b=1; b<widthCharBytes && ((start+b) < Length()); b++)
@@ -579,14 +579,14 @@ int Document::MovePositionOutsideChar(int pos, int moveDir, bool checkLineEnd) {
 
 			// Step back until a non-lead-byte is found.
 			int posCheck = pos;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			while ((posCheck > posStartLine) && IsDBCSLeadByte(cb.CharAt(posCheck-1)))
 				posCheck--;
 
 			// Check from known start of character.
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			while (posCheck < pos) {
@@ -630,7 +630,7 @@ int Document::NextPosition(int pos, int moveDir) const {
 				} else {
 					const int widthCharBytes = UTF8BytesOfLead[leadByte];
 					char charBytes[UTF8MaxBytes] = {static_cast<char>(leadByte),0,0,0};
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 					for (int b=1; b<widthCharBytes; b++)
@@ -676,7 +676,7 @@ int Document::NextPosition(int pos, int moveDir) const {
 				} else {
 					// Otherwise, step back until a non-lead-byte is found.
 					int posTemp = pos - 1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 					while (posStartLine <= --posTemp && IsDBCSLeadByte(cb.CharAt(posTemp)))
@@ -759,7 +759,7 @@ int Document::SafeSegment(const char *text, int length, int lengthSegment) {
 	int lastSpaceBreak = -1;
 	int lastPunctuationBreak = -1;
 	int lastEncodingAllowedBreak = -1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int j=0; j < lengthSegment;) {
@@ -909,7 +909,7 @@ int Document::Undo() {
 			int coalescedRemoveLen = 0;
 			int prevRemoveActionPos = -1;
 			int prevRemoveActionLen = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			for (int step = 0; step < steps; step++) {
@@ -992,7 +992,7 @@ int Document::Redo() {
 			bool startSavePoint = cb.IsSavePoint();
 			bool multiLine = false;
 			int steps = cb.StartRedo();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			for (int step = 0; step < steps; step++) {
@@ -1091,7 +1091,7 @@ static int NextTab(int pos, int tabSize) {
 static std::string CreateIndentation(int indent, int tabSize, bool insertSpaces) {
 	std::string indentation;
 	if (!insertSpaces) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (indent >= tabSize) {
@@ -1099,7 +1099,7 @@ static std::string CreateIndentation(int indent, int tabSize, bool insertSpaces)
 			indent -= tabSize;
 		}
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (indent > 0) {
@@ -1114,7 +1114,7 @@ int SCI_METHOD Document::GetLineIndentation(int line) {
 	if ((line >= 0) && (line < LinesTotal())) {
 		int lineStart = LineStart(line);
 		int length = Length();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int i = lineStart; i < length; i++) {
@@ -1149,7 +1149,7 @@ int Document::GetLineIndentPosition(int line) const {
 		return 0;
 	int pos = LineStart(line);
 	int length = Length();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((pos < length) && IsSpaceOrTab(cb.CharAt(pos))) {
@@ -1162,7 +1162,7 @@ int Document::GetColumn(int pos) {
 	int column = 0;
 	int line = LineFromPosition(pos);
 	if ((line >= 0) && (line < LinesTotal())) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int i = LineStart(line); i < pos;) {
@@ -1190,7 +1190,7 @@ int Document::CountCharacters(int startPos, int endPos) {
 	endPos = MovePositionOutsideChar(endPos, -1, false);
 	int count = 0;
 	int i = startPos;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (i < endPos) {
@@ -1206,7 +1206,7 @@ int Document::FindColumn(int line, int column) {
 	int position = LineStart(line);
 	if ((line >= 0) && (line < LinesTotal())) {
 		int columnCurrent = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while ((columnCurrent < column) && (position < Length())) {
@@ -1231,7 +1231,7 @@ int Document::FindColumn(int line, int column) {
 
 void Document::Indent(bool forwards, int lineBottom, int lineTop) {
 	// Dedent - suck white space off the front of the line to dedent by equivalent of a tab
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int line = lineBottom; line >= lineTop; line--) {
@@ -1253,7 +1253,7 @@ char *Document::TransformLineEnds(int *pLenOut, const char *s, size_t len, int e
 	char *dest = new char[2 * len + 1];
 	const char *sptr = s;
 	char *dptr = dest;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (size_t i = 0; (i < len) && (*sptr != '\0'); i++) {
@@ -1283,7 +1283,7 @@ char *Document::TransformLineEnds(int *pLenOut, const char *s, size_t len, int e
 void Document::ConvertLineEnds(int eolModeSet) {
 	UndoGroup ug(this);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int pos = 0; pos < Length(); pos++) {
@@ -1324,7 +1324,7 @@ void Document::ConvertLineEnds(int eolModeSet) {
 bool Document::IsWhiteLine(int line) const {
 	int currentChar = LineStart(line);
 	int endLine = LineEnd(line);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (currentChar < endLine) {
@@ -1339,13 +1339,13 @@ bool Document::IsWhiteLine(int line) const {
 int Document::ParaUp(int pos) {
 	int line = LineFromPosition(pos);
 	line--;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (line >= 0 && IsWhiteLine(line)) { // skip empty lines
 		line--;
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (line >= 0 && !IsWhiteLine(line)) { // skip non-empty lines
@@ -1357,13 +1357,13 @@ int Document::ParaUp(int pos) {
 
 int Document::ParaDown(int pos) {
 	int line = LineFromPosition(pos);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (line < LinesTotal() && !IsWhiteLine(line)) { // skip non-empty lines
 		line++;
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (line < LinesTotal() && IsWhiteLine(line)) { // skip empty lines
@@ -1390,7 +1390,7 @@ int Document::ExtendWordSelect(int pos, int delta, bool onlyWordCharacters) {
 	if (delta < 0) {
 		if (!onlyWordCharacters)
 			ccStart = WordCharClass(cb.CharAt(pos-1));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (pos > 0 && (WordCharClass(cb.CharAt(pos - 1)) == ccStart))
@@ -1398,7 +1398,7 @@ int Document::ExtendWordSelect(int pos, int delta, bool onlyWordCharacters) {
 	} else {
 		if (!onlyWordCharacters && pos < Length())
 			ccStart = WordCharClass(cb.CharAt(pos));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (pos < (Length()) && (WordCharClass(cb.CharAt(pos)) == ccStart))
@@ -1416,14 +1416,14 @@ int Document::ExtendWordSelect(int pos, int delta, bool onlyWordCharacters) {
  */
 int Document::NextWordStart(int pos, int delta) {
 	if (delta < 0) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (pos > 0 && (WordCharClass(cb.CharAt(pos - 1)) == CharClassify::ccSpace))
 			pos--;
 		if (pos > 0) {
 			CharClassify::cc ccStart = WordCharClass(cb.CharAt(pos-1));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			while (pos > 0 && (WordCharClass(cb.CharAt(pos - 1)) == ccStart)) {
@@ -1432,12 +1432,12 @@ int Document::NextWordStart(int pos, int delta) {
 		}
 	} else {
 		CharClassify::cc ccStart = WordCharClass(cb.CharAt(pos));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (pos < (Length()) && (WordCharClass(cb.CharAt(pos)) == ccStart))
 			pos++;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (pos < (Length()) && (WordCharClass(cb.CharAt(pos)) == CharClassify::ccSpace))
@@ -1458,14 +1458,14 @@ int Document::NextWordEnd(int pos, int delta) {
 		if (pos > 0) {
 			CharClassify::cc ccStart = WordCharClass(cb.CharAt(pos-1));
 			if (ccStart != CharClassify::ccSpace) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				while (pos > 0 && WordCharClass(cb.CharAt(pos - 1)) == ccStart) {
 					pos--;
 				}
 			}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			while (pos > 0 && WordCharClass(cb.CharAt(pos - 1)) == CharClassify::ccSpace) {
@@ -1473,7 +1473,7 @@ int Document::NextWordEnd(int pos, int delta) {
 			}
 		}
 	} else {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (pos < Length() && WordCharClass(cb.CharAt(pos)) == CharClassify::ccSpace) {
@@ -1481,7 +1481,7 @@ int Document::NextWordEnd(int pos, int delta) {
 		}
 		if (pos < Length()) {
 			CharClassify::cc ccStart = WordCharClass(cb.CharAt(pos));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			while (pos < Length() && WordCharClass(cb.CharAt(pos)) == ccStart) {
@@ -1534,7 +1534,7 @@ static inline char MakeLowerCase(char ch) {
 }
 
 CaseFolderTable::CaseFolderTable() {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (size_t iChar=0; iChar<sizeof(mapping); iChar++) {
@@ -1549,7 +1549,7 @@ size_t CaseFolderTable::Fold(char *folded, size_t sizeFolded, const char *mixed,
 	if (lenMixed > sizeFolded) {
 		return 0;
 	} else {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (size_t i=0; i<lenMixed; i++) {
@@ -1564,7 +1564,7 @@ void CaseFolderTable::SetTranslation(char ch, char chTranslation) {
 }
 
 void CaseFolderTable::StandardASCII() {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (size_t iChar=0; iChar<sizeof(mapping); iChar++) {
@@ -1618,13 +1618,13 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 		if (caseSensitive) {
 			const int endSearch = (startPos <= endPos) ? endPos - lengthFind + 1 : endPos;
 			const char charStartSearch =  search[0];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			while (forward ? (pos < endSearch) : (pos >= endSearch)) {
 				if (CharAt(pos) == charStartSearch) {
 					bool found = (pos + lengthFind) <= limitPos;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 					for (int indexSearch = 1; (indexSearch < lengthFind) && found; indexSearch++) {
@@ -1644,7 +1644,7 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 				pcf->Fold(&searchThing[0], searchThing.size(), search, lengthFind));
 			char bytes[UTF8MaxBytes + 1];
 			char folded[UTF8MaxBytes * maxFoldingExpansion + 1];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			while (forward ? (pos < endPos) : (pos >= endPos)) {
@@ -1652,7 +1652,7 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 				int posIndexDocument = pos;
 				int indexSearch = 0;
 				bool characterMatches = true;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				for (;;) {
@@ -1661,7 +1661,7 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 					int widthChar = 1;
 					if (!UTF8IsAscii(leadByte)) {
 						const int widthCharBytes = UTF8BytesOfLead[leadByte];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 						for (int b=1; b<widthCharBytes; b++) {
@@ -1703,14 +1703,14 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 			std::vector<char> searchThing(lengthFind * maxBytesCharacter * maxFoldingExpansion + 1);
 			const int lenSearch = static_cast<int>(
 				pcf->Fold(&searchThing[0], searchThing.size(), search, lengthFind));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			while (forward ? (pos < endPos) : (pos >= endPos)) {
 				int indexDocument = 0;
 				int indexSearch = 0;
 				bool characterMatches = true;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				while (characterMatches &&
@@ -1744,12 +1744,12 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 			const int endSearch = (startPos <= endPos) ? endPos - lengthFind + 1 : endPos;
 			std::vector<char> searchThing(lengthFind + 1);
 			pcf->Fold(&searchThing[0], searchThing.size(), search, lengthFind);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			while (forward ? (pos < endSearch) : (pos >= endSearch)) {
 				bool found = (pos + lengthFind) <= limitPos;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				for (int indexSearch = 0; (indexSearch < lengthFind) && found; indexSearch++) {
@@ -1782,7 +1782,7 @@ int Document::LinesTotal() const {
 }
 
 void Document::ChangeCase(Range r, bool makeUpperCase) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int pos = r.start; pos < r.end;) {
@@ -1851,7 +1851,7 @@ bool SCI_METHOD Document::SetStyles(int length, const char *styles) {
 		bool didChange = false;
 		int startMod = 0;
 		int endMod = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int iPos = 0; iPos < length; iPos++, endStyled++) {
@@ -1883,7 +1883,7 @@ void Document::EnsureStyledTo(int pos) {
 			pli->Colourise(endStyledTo, pos);
 		} else {
 			// Ask the watchers to style, and stop as soon as one responds.
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			for (int i = 0; pos > GetEndStyled() && i < lenWatchers; i++) {
@@ -1895,7 +1895,7 @@ void Document::EnsureStyledTo(int pos) {
 
 void Document::LexerChanged() {
 	// Tell the watchers the lexer has changed.
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 0; i < lenWatchers; i++) {
@@ -1953,7 +1953,7 @@ int Document::MarginLength(int line) const {
 
 void Document::MarginClearAll() {
 	int maxEditorLine = LinesTotal();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int l=0; l<maxEditorLine; l++)
@@ -2005,7 +2005,7 @@ int Document::AnnotationLines(int line) const {
 
 void Document::AnnotationClearAll() {
 	int maxEditorLine = LinesTotal();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int l=0; l<maxEditorLine; l++)
@@ -2027,7 +2027,7 @@ void SCI_METHOD Document::DecorationFillRange(int position, int value, int fillL
 }
 
 bool Document::AddWatcher(DocWatcher *watcher, void *userData) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 0; i < lenWatchers; i++) {
@@ -2036,7 +2036,7 @@ bool Document::AddWatcher(DocWatcher *watcher, void *userData) {
 			return false;
 	}
 	WatcherWithUserData *pwNew = new WatcherWithUserData[lenWatchers + 1];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int j = 0; j < lenWatchers; j++)
@@ -2050,7 +2050,7 @@ bool Document::AddWatcher(DocWatcher *watcher, void *userData) {
 }
 
 bool Document::RemoveWatcher(DocWatcher *watcher, void *userData) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 0; i < lenWatchers; i++) {
@@ -2062,7 +2062,7 @@ bool Document::RemoveWatcher(DocWatcher *watcher, void *userData) {
 				lenWatchers = 0;
 			} else {
 				WatcherWithUserData *pwNew = new WatcherWithUserData[lenWatchers];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				for (int j = 0; j < lenWatchers - 1; j++) {
@@ -2079,7 +2079,7 @@ bool Document::RemoveWatcher(DocWatcher *watcher, void *userData) {
 }
 
 void Document::NotifyModifyAttempt() {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 0; i < lenWatchers; i++) {
@@ -2088,7 +2088,7 @@ void Document::NotifyModifyAttempt() {
 }
 
 void Document::NotifySavePoint(bool atSavePoint) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 0; i < lenWatchers; i++) {
@@ -2102,7 +2102,7 @@ void Document::NotifyModified(DocModification mh) {
 	} else if (mh.modificationType & SC_MOD_DELETETEXT) {
 		decorations.DeleteRange(mh.position, mh.length);
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 0; i < lenWatchers; i++) {
@@ -2119,7 +2119,7 @@ int Document::WordPartLeft(int pos) {
 		--pos;
 		char startChar = cb.CharAt(pos);
 		if (IsWordPartSeparator(startChar)) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			while (pos > 0 && IsWordPartSeparator(cb.CharAt(pos))) {
@@ -2130,7 +2130,7 @@ int Document::WordPartLeft(int pos) {
 			startChar = cb.CharAt(pos);
 			--pos;
 			if (IsLowerCase(startChar)) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				while (pos > 0 && IsLowerCase(cb.CharAt(pos)))
@@ -2138,7 +2138,7 @@ int Document::WordPartLeft(int pos) {
 				if (!IsUpperCase(cb.CharAt(pos)) && !IsLowerCase(cb.CharAt(pos)))
 					++pos;
 			} else if (IsUpperCase(startChar)) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				while (pos > 0 && IsUpperCase(cb.CharAt(pos)))
@@ -2146,7 +2146,7 @@ int Document::WordPartLeft(int pos) {
 				if (!IsUpperCase(cb.CharAt(pos)))
 					++pos;
 			} else if (IsADigit(startChar)) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				while (pos > 0 && IsADigit(cb.CharAt(pos)))
@@ -2154,7 +2154,7 @@ int Document::WordPartLeft(int pos) {
 				if (!IsADigit(cb.CharAt(pos)))
 					++pos;
 			} else if (IsPunctuation(startChar)) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				while (pos > 0 && IsPunctuation(cb.CharAt(pos)))
@@ -2162,7 +2162,7 @@ int Document::WordPartLeft(int pos) {
 				if (!IsPunctuation(cb.CharAt(pos)))
 					++pos;
 			} else if (isspacechar(startChar)) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				while (pos > 0 && isspacechar(cb.CharAt(pos)))
@@ -2170,7 +2170,7 @@ int Document::WordPartLeft(int pos) {
 				if (!isspacechar(cb.CharAt(pos)))
 					++pos;
 			} else if (!isascii(startChar)) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				while (pos > 0 && !isascii(cb.CharAt(pos)))
@@ -2189,7 +2189,7 @@ int Document::WordPartRight(int pos) {
 	char startChar = cb.CharAt(pos);
 	int length = Length();
 	if (IsWordPartSeparator(startChar)) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (pos < length && IsWordPartSeparator(cb.CharAt(pos)))
@@ -2197,13 +2197,13 @@ int Document::WordPartRight(int pos) {
 		startChar = cb.CharAt(pos);
 	}
 	if (!isascii(startChar)) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (pos < length && !isascii(cb.CharAt(pos)))
 			++pos;
 	} else if (IsLowerCase(startChar)) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (pos < length && IsLowerCase(cb.CharAt(pos)))
@@ -2211,13 +2211,13 @@ int Document::WordPartRight(int pos) {
 	} else if (IsUpperCase(startChar)) {
 		if (IsLowerCase(cb.CharAt(pos + 1))) {
 			++pos;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			while (pos < length && IsLowerCase(cb.CharAt(pos)))
 				++pos;
 		} else {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			while (pos < length && IsUpperCase(cb.CharAt(pos)))
@@ -2226,19 +2226,19 @@ int Document::WordPartRight(int pos) {
 		if (IsLowerCase(cb.CharAt(pos)) && IsUpperCase(cb.CharAt(pos - 1)))
 			--pos;
 	} else if (IsADigit(startChar)) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (pos < length && IsADigit(cb.CharAt(pos)))
 			++pos;
 	} else if (IsPunctuation(startChar)) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (pos < length && IsPunctuation(cb.CharAt(pos)))
 			++pos;
 	} else if (isspacechar(startChar)) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (pos < length && isspacechar(cb.CharAt(pos)))
@@ -2256,14 +2256,14 @@ bool IsLineEndChar(char c) {
 int Document::ExtendStyleRange(int pos, int delta, bool singleLine) {
 	int sStart = cb.StyleAt(pos);
 	if (delta < 0) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (pos > 0 && (cb.StyleAt(pos) == sStart) && (!singleLine || !IsLineEndChar(cb.CharAt(pos))))
 			pos--;
 		pos++;
 	} else {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (pos < (Length()) && (cb.StyleAt(pos) == sStart) && (!singleLine || !IsLineEndChar(cb.CharAt(pos))))
@@ -2307,7 +2307,7 @@ int Document::BraceMatch(int position, int /*maxReStyle*/) {
 		direction = 1;
 	int depth = 1;
 	position = NextPosition(position, direction);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((position >= 0) && (position < Length())) {
@@ -2412,7 +2412,7 @@ long BuiltinRegex::FindText(Document *doc, int minPos, int maxPos, const char *s
 	char searchEnd = s[*length - 1];
 	char searchEndPrev = (*length > 1) ? s[*length - 2] : '\0';
 	int lineRangeBreak = lineRangeEnd + increment;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int line = lineRangeStart; line != lineRangeBreak; line += increment) {
@@ -2451,7 +2451,7 @@ long BuiltinRegex::FindText(Document *doc, int minPos, int maxPos, const char *s
 			if ((increment == -1) && (s[0] != '^')) {
 				// Check for the last match on this line.
 				int repetitions = 1000;	// Break out of infinite loop
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				while (success && (search.eopat[0] <= endOfLine) && (repetitions--)) {
@@ -2480,7 +2480,7 @@ const char *BuiltinRegex::SubstituteByPosition(Document *doc, const char *text, 
 	if (!search.GrabMatches(di))
 		return 0;
 	unsigned int lenResult = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 0; i < *length; i++) {
@@ -2509,7 +2509,7 @@ const char *BuiltinRegex::SubstituteByPosition(Document *doc, const char *text, 
 	}
 	substituted = new char[lenResult + 1];
 	char *o = substituted;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int j = 0; j < *length; j++) {

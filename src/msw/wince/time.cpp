@@ -160,7 +160,7 @@ static const struct lc_time_T   C_time_locale = {
 static char *
 _add(const char * str, char * pt, const char * const ptlim)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (pt < ptlim && (*pt = *str++) != '\0')
@@ -182,7 +182,7 @@ _conv(const int n, const char * const format, char * const pt, const char * cons
 static char *
 _fmt(const char * format, const struct tm * const t, char * pt, const char * const ptlim, int * warnp)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ; *format; ++format) {
@@ -384,7 +384,7 @@ label:
                     year = t->tm_year + TM_YEAR_BASE;
                     yday = t->tm_yday;
                     wday = t->tm_wday;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                     for ( ; ; ) {
@@ -681,7 +681,7 @@ static time_t __cdecl common_tm_to_time(int day, int month, int year, int hour, 
     time_t prog = 0 ;
     static int mdays[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 } ;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (--month)

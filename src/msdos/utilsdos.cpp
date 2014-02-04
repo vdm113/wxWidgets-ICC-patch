@@ -64,7 +64,7 @@ void wxMilliSleep(unsigned long milliseconds)
     delay(milliseconds);
 #else
     clock_t start = clock();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ((clock() - start) * 1000 / CLOCKS_PER_SEC < (clock_t)milliseconds)
@@ -332,7 +332,7 @@ long wxExecute(const wxString& command, int flags, wxProcess *process,
     wxChar **argv = new wxChar*[n + 1];
 
     argv[n] = NULL;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (n-- > 0)

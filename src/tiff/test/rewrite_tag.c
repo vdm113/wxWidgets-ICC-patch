@@ -97,7 +97,7 @@ int test_packbits()
         goto failure;
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < length; i++ )
@@ -198,7 +198,7 @@ int rewrite_test( const char *filename, int length, int bigtiff,
         goto failure;
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < length; i++ )
@@ -232,7 +232,7 @@ int rewrite_test( const char *filename, int length, int bigtiff,
     }
 
     upd_rowoffset = (uint64 *) _TIFFmalloc(sizeof(uint64) * length);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for( i = 0; i < length; i++ )
@@ -248,7 +248,7 @@ int rewrite_test( const char *filename, int length, int bigtiff,
     _TIFFfree( upd_rowoffset );
 
     upd_bytecount = (uint64 *) _TIFFmalloc(sizeof(uint64) * length);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for( i = 0; i < length; i++ )
@@ -279,7 +279,7 @@ int rewrite_test( const char *filename, int length, int bigtiff,
         goto failure;
     }
         
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for( i = 0; i < length; i++ )
@@ -305,7 +305,7 @@ int rewrite_test( const char *filename, int length, int bigtiff,
         goto failure;
     }
         
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for( i = 0; i < length; i++ )

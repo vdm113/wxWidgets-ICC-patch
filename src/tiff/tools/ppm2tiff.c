@@ -100,7 +100,7 @@ main(int argc, char* argv[])
 	    fprintf(stderr, "%s: Too few arguments\n", argv[0]);
 	    usage();
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((c = getopt(argc, argv, "c:r:R:")) != -1)
@@ -170,7 +170,7 @@ main(int argc, char* argv[])
 	}
 
 	/* Parse header */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while(1) {
@@ -183,7 +183,7 @@ main(int argc, char* argv[])
 
 		/* Check for comment line */
 		if (c == '#') {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			do {
@@ -259,7 +259,7 @@ main(int argc, char* argv[])
 		TIFFSetField(out, TIFFTAG_YRESOLUTION, resolution);
 		TIFFSetField(out, TIFFTAG_RESOLUTIONUNIT, RESUNIT_INCH);
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (row = 0; row < h; row++) {
@@ -282,7 +282,7 @@ processG3Options(char* cp)
 {
 	g3opts = 0;
         if( (cp = strchr(cp, ':')) ) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 do {
@@ -310,7 +310,7 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
                 compression = COMPRESSION_JPEG;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 while (cp)
@@ -375,7 +375,7 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; stuff[i] != NULL; i++)

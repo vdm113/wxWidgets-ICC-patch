@@ -141,7 +141,7 @@ void wxAppBase::CleanUp()
 
     // and any remaining TLWs (they remove themselves from wxTopLevelWindows
     // when destroyed, so iterate until none are left)
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( !wxTopLevelWindows.empty() )
@@ -376,7 +376,7 @@ bool wxAppBase::ProcessIdle()
     bool needMore = wxAppConsoleBase::ProcessIdle();
     wxIdleEvent event;
     wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)

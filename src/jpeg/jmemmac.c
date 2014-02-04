@@ -241,7 +241,7 @@ jpeg_open_backing_store (j_common_ptr cinfo, backing_store_ptr info,
   /* TO DO: Try putting the temp files somewhere else. */
 
   /* Keep generating file names till we find one that's not in use */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (;;) {

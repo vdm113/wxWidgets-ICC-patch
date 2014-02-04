@@ -710,7 +710,7 @@ element(v, startp, endp)
     NOTE(REG_ULOCALE);
 
     /* search table */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (cn=cnames; cn->name!=NULL; cn++) {
@@ -766,7 +766,7 @@ range(v, a, b, cases)
     cv = getcvec(v, nchrs, 0, 0);
     NOERRN();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (c=a; c<=b; c++) {
@@ -895,7 +895,7 @@ cclass(v, startp, endp, cases)
      */
 
     index = -1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (namePtr=classNames,i=0 ; *namePtr!=NULL ; namePtr++,i++) {
@@ -918,20 +918,20 @@ cclass(v, startp, endp, cases)
     case CC_ALNUM:
 	cv = getcvec(v, NUM_ALPHA_CHAR, NUM_DIGIT_RANGE + NUM_ALPHA_RANGE, 0);
 	if (cv) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i=0 ; i<NUM_ALPHA_CHAR ; i++) {
 		addchr(cv, alphaCharTable[i]);
 	    }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i=0 ; i<NUM_ALPHA_RANGE ; i++) {
 		addrange(cv, alphaRangeTable[i].start,
 			alphaRangeTable[i].end);
 	    }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i=0 ; i<NUM_DIGIT_RANGE ; i++) {
@@ -943,14 +943,14 @@ cclass(v, startp, endp, cases)
     case CC_ALPHA:
 	cv = getcvec(v, NUM_ALPHA_CHAR, NUM_ALPHA_RANGE, 0);
 	if (cv) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i=0 ; i<NUM_ALPHA_RANGE ; i++) {
 		addrange(cv, alphaRangeTable[i].start,
 			alphaRangeTable[i].end);
 	    }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i=0 ; i<NUM_ALPHA_CHAR ; i++) {
@@ -977,7 +977,7 @@ cclass(v, startp, endp, cases)
     case CC_DIGIT:
 	cv = getcvec(v, 0, NUM_DIGIT_RANGE, 0);
 	if (cv) {	
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i=0 ; i<NUM_DIGIT_RANGE ; i++) {
@@ -989,14 +989,14 @@ cclass(v, startp, endp, cases)
     case CC_PUNCT:
 	cv = getcvec(v, NUM_PUNCT_CHAR, NUM_PUNCT_RANGE, 0);
 	if (cv) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i=0 ; i<NUM_PUNCT_RANGE ; i++) {
 		addrange(cv, punctRangeTable[i].start,
 			punctRangeTable[i].end);
 	    }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i=0 ; i<NUM_PUNCT_CHAR ; i++) {
@@ -1024,14 +1024,14 @@ cclass(v, startp, endp, cases)
     case CC_SPACE:
 	cv = getcvec(v, NUM_SPACE_CHAR, NUM_SPACE_RANGE, 0);
 	if (cv) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i=0 ; i<NUM_SPACE_RANGE ; i++) {
 		addrange(cv, spaceRangeTable[i].start,
 			spaceRangeTable[i].end);
 	    }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i=0 ; i<NUM_SPACE_CHAR ; i++) {
@@ -1042,14 +1042,14 @@ cclass(v, startp, endp, cases)
     case CC_LOWER:
 	cv  = getcvec(v, NUM_LOWER_CHAR, NUM_LOWER_RANGE, 0);
 	if (cv) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i=0 ; i<NUM_LOWER_RANGE ; i++) {
 		addrange(cv, lowerRangeTable[i].start,
 			lowerRangeTable[i].end);
 	    }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i=0 ; i<NUM_LOWER_CHAR ; i++) {
@@ -1060,14 +1060,14 @@ cclass(v, startp, endp, cases)
     case CC_UPPER:
 	cv  = getcvec(v, NUM_UPPER_CHAR, NUM_UPPER_RANGE, 0);
 	if (cv) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i=0 ; i<NUM_UPPER_RANGE ; i++) {
 		addrange(cv, upperRangeTable[i].start,
 			upperRangeTable[i].end);
 	    }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i=0 ; i<NUM_UPPER_CHAR ; i++) {
@@ -1078,14 +1078,14 @@ cclass(v, startp, endp, cases)
     case CC_GRAPH:
 	cv  = getcvec(v, NUM_GRAPH_CHAR, NUM_GRAPH_RANGE, 0);
 	if (cv) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i=0 ; i<NUM_GRAPH_RANGE ; i++) {
 		addrange(cv, graphRangeTable[i].start,
 			graphRangeTable[i].end);
 	    }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	    for (i=0 ; i<NUM_GRAPH_CHAR ; i++) {
@@ -1125,7 +1125,7 @@ int cases;                      /* case-independent? */
     if (cases && len == 5 && (wxCRT_StrncmpNative(wxT("lower"), np, 5) == 0 ||
                                     wxCRT_StrncmpNative(wxT("upper"), np, 5) == 0))
             np = wxT("alpha");
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (cc = cclasses; cc->name != NULL; cc++)
@@ -1148,7 +1148,7 @@ int cases;                      /* case-independent? */
         }
 
         /* fill it in */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (p = cc->chars; *p != '\0'; p++)
@@ -1157,7 +1157,7 @@ int cases;                      /* case-independent? */
     else
     {
         count = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < 256; i++)
@@ -1172,7 +1172,7 @@ int cases;                      /* case-independent? */
         }
 
         /* fill it in */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < count; i++)
@@ -1246,7 +1246,7 @@ casecmp(x, y, len)
     CONST chr *x, *y;			/* strings to compare */
     size_t len;				/* exact length of comparison */
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (; len > 0; len--, x++, y++) {

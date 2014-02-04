@@ -539,7 +539,7 @@ int wxComboBox::DoInsertItems(const wxArrayStringsAdapter& items,
 {
 #if USE_HICOMBOBOX
     const unsigned int count = items.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int i = 0; i < count; ++i, ++pos )
@@ -597,7 +597,7 @@ void wxComboBox::DoDeleteOneItem(unsigned int n)
 void wxComboBox::DoClear()
 {
 #if USE_HICOMBOBOX
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( CFIndex i = GetCount() - 1; i >= 0; ++ i )
@@ -634,7 +634,7 @@ void wxComboBox::SetSelection(int n)
 int wxComboBox::FindString(const wxString& s, bool bCase) const
 {
 #if USE_HICOMBOBOX
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for( unsigned int i = 0 ; i < GetCount() ; i++ )

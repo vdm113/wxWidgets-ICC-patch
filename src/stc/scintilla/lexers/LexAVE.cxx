@@ -86,7 +86,7 @@ static void ColouriseAveDoc(
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward()) {
@@ -179,7 +179,7 @@ static void FoldAveDoc(unsigned int startPos, int length, int /* initStyle */, W
 	int styleNext = styler.StyleAt(startPos);
 	char s[10];
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
@@ -190,7 +190,7 @@ static void FoldAveDoc(unsigned int startPos, int length, int /* initStyle */, W
 		bool atEOL = (ch == '\r' && chNext != '\n') || (ch == '\n');
 		if (style == SCE_AVE_WORD) {
 			if (ch == 't' || ch == 'f' || ch == 'w' || ch == 'e') {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				for (unsigned int j = 0; j < 6; j++) {

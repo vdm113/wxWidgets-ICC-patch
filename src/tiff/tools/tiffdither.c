@@ -91,12 +91,12 @@ fsdither(TIFF* in, TIFF* out)
 
 	inptr = inputline;
 	nextptr = nextline;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (j = 0; j < imagewidth; ++j)
 		*nextptr++ = *inptr++;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 1; i < imagelength; ++i) {
@@ -108,7 +108,7 @@ fsdither(TIFF* in, TIFF* out)
 			break;
 		inptr = inputline;
 		nextptr = nextline;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (j = 0; j < imagewidth; ++j)
@@ -117,7 +117,7 @@ fsdither(TIFF* in, TIFF* out)
 		nextptr = nextline;
 		_TIFFmemset(outptr = outline, 0, outlinesize);
 		bit = 0x80;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (j = 0; j < imagewidth; ++j) {
@@ -166,7 +166,7 @@ static void
 processG3Options(char* cp)
 {
 	if ((cp = strchr(cp, ':'))) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		do {
@@ -223,7 +223,7 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char *optarg;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((c = getopt(argc, argv, "c:f:r:t:")) != -1)
@@ -342,7 +342,7 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; stuff[i] != NULL; i++)

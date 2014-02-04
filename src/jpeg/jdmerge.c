@@ -107,7 +107,7 @@ build_ycc_rgb_table (j_decompress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				(MAXJSAMPLE+1) * SIZEOF(JPEG_INT32));
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0, x = -CENTERJSAMPLE; i <= MAXJSAMPLE; i++, x++) {
@@ -256,7 +256,7 @@ h2v1_merged_upsample (j_decompress_ptr cinfo,
   inptr2 = input_buf[2][in_row_group_ctr];
   outptr = output_buf[0];
   /* Loop for each pair of output pixels */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (col = cinfo->output_width >> 1; col > 0; col--) {
@@ -322,7 +322,7 @@ h2v2_merged_upsample (j_decompress_ptr cinfo,
   outptr0 = output_buf[0];
   outptr1 = output_buf[1];
   /* Loop for each group of output pixels */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (col = cinfo->output_width >> 1; col > 0; col--) {

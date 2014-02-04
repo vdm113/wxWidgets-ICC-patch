@@ -205,7 +205,7 @@ wxRadioBox::~wxRadioBox()
     // to disappear now and not some time later when they will be deleted by
     // our (common) parent
     unsigned int count = m_buttons.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int n = 0; n < count; n++ )
@@ -227,7 +227,7 @@ void wxRadioBox::Append(int count, const wxString *choices)
 
     wxWindow *parent = GetParent();
     m_buttons.Alloc(count);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int n = 0; n < count; n++ )
@@ -349,7 +349,7 @@ bool wxRadioBox::Enable(bool enable)
 
     // also enable/disable the buttons
     const unsigned int count = m_buttons.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int n = 0; n < count; n++ )
@@ -367,7 +367,7 @@ bool wxRadioBox::Show(bool show)
 
     // also show/hide the buttons
     const unsigned int count = m_buttons.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int n = 0; n < count; n++ )
@@ -395,7 +395,7 @@ void wxRadioBox::DoSetToolTip(wxToolTip *tooltip)
 
     // Also set them for all Radio Buttons
     const unsigned int count = m_buttons.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int n = 0; n < count; n++ )
@@ -418,7 +418,7 @@ wxSize wxRadioBox::GetMaxButtonSize() const
     widthMax = heightMax = 0;
 
     const unsigned int count = GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int n = 0; n < count; n++ )
@@ -468,7 +468,7 @@ void wxRadioBox::DoMoveWindow(int x0, int y0, int width, int height)
         y = y0;
 
     const unsigned int count = GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int n = 0; n < count; n++ )

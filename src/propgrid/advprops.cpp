@@ -102,7 +102,7 @@ bool operator == (const wxArrayInt& array1, const wxArrayInt& array2)
     if ( array1.size() != array2.size() )
         return false;
     size_t i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<array1.size(); i++ )
@@ -1056,7 +1056,7 @@ int wxSystemColourProperty::ColToInd( const wxColour& colour ) const
     if ( !(m_flags & wxPG_PROP_HIDE_CUSTOM_COLOUR) )
         i_max -= 1;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i=0; i<i_max; i++ )
@@ -1245,7 +1245,7 @@ bool wxSystemColourProperty::QueryColourFromUser( wxVariant& variant ) const
     data.SetChooseFull(true);
     data.SetColour(val.m_colour);
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < 16; i++)
@@ -1791,7 +1791,7 @@ const wxString& wxPGGetDefaultImageWildcard()
 
         // Let's iterate over the image handler list.
         //for ( wxList::Node *node = handlers.GetFirst(); node; node = node->GetNext() )
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( node = handlers.begin(); node != handlers.end(); ++node )
@@ -1973,7 +1973,7 @@ void wxMultiChoiceProperty::GenerateValueAsString( wxVariant& value,
     if ( itemCount )
         tempStr.append( wxT("\"") );
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < itemCount; i++ )
@@ -1996,7 +1996,7 @@ wxArrayInt wxMultiChoiceProperty::GetValueAsIndices() const
 
     if ( !m_choices.IsOk() || !m_choices.GetCount() || !(&valueArr) )
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=0; i<valueArr.size(); i++ )
@@ -2004,7 +2004,7 @@ wxArrayInt wxMultiChoiceProperty::GetValueAsIndices() const
     }
     else
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( i=0; i<valueArr.size(); i++ )
@@ -2066,7 +2066,7 @@ bool wxMultiChoiceProperty::OnEvent( wxPropertyGrid* propgrid,
             unsigned int n;
             if ( userStringMode == 1 )
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (n=0;n<extraStrings.size();n++)
@@ -2074,7 +2074,7 @@ bool wxMultiChoiceProperty::OnEvent( wxPropertyGrid* propgrid,
             }
 
             unsigned int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i=0; i<arrInt.size(); i++ )
@@ -2082,7 +2082,7 @@ bool wxMultiChoiceProperty::OnEvent( wxPropertyGrid* propgrid,
 
             if ( userStringMode == 2 )
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (n=0;n<extraStrings.size();n++)
@@ -2237,7 +2237,7 @@ wxString wxDateProperty::DetermineDefaultDateFormat( bool showCentury )
     wxString str(dt.Format(wxT("%x")));
 
     const wxChar *p = str.c_str();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( *p )

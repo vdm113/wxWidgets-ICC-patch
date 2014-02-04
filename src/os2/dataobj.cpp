@@ -230,7 +230,7 @@ bool wxFileDataObject::GetDataHere( void* pBuf ) const
 {
     wxString                        sFilenames;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
@@ -247,7 +247,7 @@ size_t wxFileDataObject::GetDataSize() const
 {
     size_t                          nRes = 0;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)

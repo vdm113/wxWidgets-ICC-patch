@@ -257,7 +257,7 @@ MyProportionsFrame::MyProportionsFrame(wxFrame *parent)
 
     // create the controls
     wxPanel *panel = new wxPanel(this, wxID_ANY);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < WXSIZEOF(m_spins); n++ )
@@ -269,7 +269,7 @@ MyProportionsFrame::MyProportionsFrame(wxFrame *parent)
     // lay them out
     m_sizer = new wxStaticBoxSizer(wxHORIZONTAL, panel,
                 wxT("Try changing elements proportions and resizing the window"));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < WXSIZEOF(m_spins); n++ )
@@ -291,7 +291,7 @@ MyProportionsFrame::MyProportionsFrame(wxFrame *parent)
 
 void MyProportionsFrame::UpdateProportions()
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < WXSIZEOF(m_spins); n++ )
@@ -318,12 +318,12 @@ void MyProportionsFrame::OnProportionChanged(wxSpinEvent& WXUNUSED(event))
 
 void MyFlexSizerFrame::InitFlexSizer(wxFlexGridSizer *sizer, wxWindow* parent)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < 3; i++ )
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int j = 0; j < 3; j++ )
@@ -722,7 +722,7 @@ MyWrapSizerFrame::MyWrapSizerFrame(wxFrame* parent)
     m_wrapSizer = new wxWrapSizer(wxHORIZONTAL);
 
     // A number of checkboxes inside a wrap sizer
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for( int i = 0; i < 6; i++ )

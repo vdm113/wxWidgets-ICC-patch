@@ -195,7 +195,7 @@ wxSizerItem *wxWizardSizer::Insert(size_t index, wxSizerItem *item)
 
 void wxWizardSizer::HidePages()
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxSizerItemList::compatibility_iterator node = GetChildren().GetFirst();
@@ -227,7 +227,7 @@ wxSize wxWizardSizer::GetMaxChildSize()
 {
     wxSize maxOfMin;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxSizerItemList::compatibility_iterator childNode = m_children.GetFirst();
@@ -261,7 +261,7 @@ wxSize wxWizardSizer::SiblingSize(wxSizerItem *child)
         wxWizardPage *page = wxDynamicCast(child->GetWindow(), wxWizardPage);
         if ( page )
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( wxWizardPage *sibling = page->GetNext();
@@ -518,7 +518,7 @@ void wxWizard::FitToPage(const wxWizardPage *page)
 {
     wxCHECK_RET(!m_started, wxT("wxWizard::FitToPage after RunWizard"));
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( page )
@@ -905,7 +905,7 @@ bool wxWizard::DoLayoutAdaptation()
     wxWindowList pages;
 
     // Make all the pages (that use sizers) scrollable
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxSizerItemList::compatibility_iterator node = m_sizerPage->GetChildren().GetFirst(); node; node = node->GetNext() )
@@ -916,7 +916,7 @@ bool wxWizard::DoLayoutAdaptation()
             wxWizardPage* page = wxDynamicCast(item->GetWindow(), wxWizardPage);
             if (page)
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 while (page)
@@ -1021,12 +1021,12 @@ bool wxWizard::TileBitmap(const wxRect& rect, wxDC& dc, const wxBitmap& bitmap)
     dcMem.SelectObjectAsSource(bitmap);
 
     int i, j;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = rect.x; i < rect.x + rect.width; i += w)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = rect.y; j < rect.y + rect.height; j+= h)

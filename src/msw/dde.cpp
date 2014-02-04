@@ -200,7 +200,7 @@ static wxDDEConnection *DDEFindConnection(HCONV hConv)
 {
     wxDDEServerList::compatibility_iterator serverNode = wxDDEServerObjects.GetFirst();
     wxDDEConnection *found = NULL;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (serverNode && !found)
@@ -216,7 +216,7 @@ static wxDDEConnection *DDEFindConnection(HCONV hConv)
     }
 
     wxDDEClientList::compatibility_iterator clientNode = wxDDEClientObjects.GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (clientNode && !found)
@@ -233,7 +233,7 @@ static void DDEDeleteConnection(HCONV hConv)
 {
     wxDDEServerList::compatibility_iterator serverNode = wxDDEServerObjects.GetFirst();
     bool found = false;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (serverNode && !found)
@@ -248,7 +248,7 @@ static void DDEDeleteConnection(HCONV hConv)
     }
 
     wxDDEClientList::compatibility_iterator clientNode = wxDDEClientObjects.GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (clientNode && !found)
@@ -264,7 +264,7 @@ static wxDDEServer *DDEFindServer(const wxString& s)
 {
     wxDDEServerList::compatibility_iterator node = wxDDEServerObjects.GetFirst();
     wxDDEServer *found = NULL;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (node && !found)
@@ -344,7 +344,7 @@ wxDDEServer::~wxDDEServer()
     wxDDEServerObjects.DeleteObject(this);
 
     wxDDEConnectionList::compatibility_iterator node = m_connections.GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -357,7 +357,7 @@ wxDDEServer::~wxDDEServer()
 
     // If any left after this, delete them
     node = m_connections.GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -378,7 +378,7 @@ wxDDEConnection *wxDDEServer::FindConnection(WXHCONV conv)
 {
     wxDDEConnectionList::compatibility_iterator node = m_connections.GetFirst();
     wxDDEConnection *found = NULL;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (node && !found)
@@ -395,7 +395,7 @@ wxDDEConnection *wxDDEServer::FindConnection(WXHCONV conv)
 bool wxDDEServer::DeleteConnection(WXHCONV conv)
 {
     wxDDEConnectionList::compatibility_iterator node = m_connections.GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -429,7 +429,7 @@ wxDDEClient::~wxDDEClient()
 {
     wxDDEClientObjects.DeleteObject(this);
     wxDDEConnectionList::compatibility_iterator node = m_connections.GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)
@@ -504,7 +504,7 @@ wxDDEConnection *wxDDEClient::FindConnection(WXHCONV conv)
 {
     wxDDEConnectionList::compatibility_iterator node = m_connections.GetFirst();
     wxDDEConnection *found = NULL;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (node && !found)
@@ -521,7 +521,7 @@ wxDDEConnection *wxDDEClient::FindConnection(WXHCONV conv)
 bool wxDDEClient::DeleteConnection(WXHCONV conv)
 {
     wxDDEConnectionList::compatibility_iterator node = m_connections.GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)

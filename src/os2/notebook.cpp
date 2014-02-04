@@ -463,7 +463,7 @@ bool wxNotebook::DeleteAllPages()
     int                             nPageCount = GetPageCount();
     int                             nPage;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (nPage = 0; nPage < nPageCount; nPage++)
@@ -685,7 +685,7 @@ void wxNotebook::OnSelChange (
         ULONG ulOS2Sel = (ULONG)rEvent.GetOldSelection();
         bool  bFound = false;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (nSel = 0; nSel < nPageCount; nSel++)
@@ -706,7 +706,7 @@ void wxNotebook::OnSelChange (
 
         bFound = false;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (nSel = 0; nSel < nPageCount; nSel++)

@@ -31,7 +31,7 @@ using namespace Scintilla;
 int RunStyles::RunFromPosition(int position) const {
 	int run = starts->PartitionFromPosition(position);
 	// Go to first element with this position
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((run > 0) && (position == starts->PositionFromPartition(run-1))) {
@@ -151,7 +151,7 @@ bool RunStyles::FillRange(int &position, int value, int &fillLength) {
 	if (runStart < runEnd) {
 		styles->SetValueAt(runStart, value);
 		// Remove each old run over the range
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int run=runStart+1; run<runEnd; run++) {
@@ -223,7 +223,7 @@ void RunStyles::DeleteRange(int position, int deleteLength) {
 		runEnd = SplitRun(end);
 		starts->InsertText(runStart, -deleteLength);
 		// Remove each old run over the range
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int run=runStart; run<runEnd; run++) {
@@ -239,7 +239,7 @@ int RunStyles::Runs() const {
 }
 
 bool RunStyles::AllSame() const {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int run = 1; run < starts->Partitions(); run++) {
@@ -259,7 +259,7 @@ int RunStyles::Find(int value, int start) const {
 		if (styles->ValueAt(run) == value)
 			return start;
 		run++;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (run < starts->Partitions()) {

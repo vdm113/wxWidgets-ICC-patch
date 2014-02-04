@@ -74,7 +74,7 @@ static inline int translateBashDigit(int ch) {
 static inline int getBashNumberBase(char *s) {
 	int i = 0;
 	int base = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (*s) {
@@ -173,7 +173,7 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 	// Always backtracks to the start of a line that is not a continuation
 	// of the previous line (i.e. start of a bash command segment)
 	int ln = styler.GetLine(startPos);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (;;) {
@@ -186,7 +186,7 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 
 	StyleContext sc(startPos, endPos - startPos, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward()) {
@@ -406,7 +406,7 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 				if (sc.atLineStart) {
 					sc.SetState(SCE_SH_HERE_Q);
 					int prefixws = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 					while (IsASpace(sc.ch) && !sc.atLineEnd) {	// whitespace prefix
@@ -415,7 +415,7 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 					}
 					if (prefixws > 0)
 						sc.SetState(SCE_SH_HERE_Q);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 					while (!sc.atLineEnd) {
@@ -624,7 +624,7 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 static bool IsCommentLine(int line, Accessor &styler) {
 	int pos = styler.LineStart(line);
 	int eol_pos = styler.LineStart(line + 1) - 1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = pos; i < eol_pos; i++) {
@@ -648,7 +648,7 @@ static void FoldBashDoc(unsigned int startPos, int length, int, WordList *[],
 	int levelCurrent = levelPrev;
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {

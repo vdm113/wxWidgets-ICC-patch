@@ -373,7 +373,7 @@ bool wxSizerXmlHandler::ValidateGridSizerChildren()
     {
         // fixed number of cells, need to verify children count
         int children = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxXmlNode *n = m_node->GetChildren(); n; n = n->GetNext() )
@@ -461,7 +461,7 @@ void wxSizerXmlHandler::SetGrowables(wxFlexGridSizer* sizer,
     wxStringTokenizer tkn;
     tkn.SetString(GetParamValue(param), wxT(","));
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (tkn.HasMoreTokens())

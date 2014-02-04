@@ -59,7 +59,7 @@ static bool IsSpaceEquiv(int state) {
 // fixes this, and is highly recommended for readability anyway.
 static bool FollowsPostfixOperator(StyleContext &sc, Accessor &styler) {
 	int pos = (int) sc.currentPos;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (--pos > 0) {
@@ -77,7 +77,7 @@ static bool followsReturnKeyword(StyleContext &sc, Accessor &styler) {
 	int currentLine = styler.GetLine(pos);
 	int lineStartPos = styler.LineStart(currentLine);
 	char ch;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (--pos > lineStartPos) {
@@ -88,7 +88,7 @@ static bool followsReturnKeyword(StyleContext &sc, Accessor &styler) {
 	}
 	const char *retBack = "nruter";
 	const char *s = retBack;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (*s
@@ -156,7 +156,7 @@ static void ColouriseCoffeeScriptDoc(unsigned int startPos, int length, int init
 	if (startPos > 0) {
 		unsigned int back = startPos;
 		styler.Flush();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (back > 0 && IsSpaceEquiv(styler.StyleAt(--back)))
@@ -172,7 +172,7 @@ static void ColouriseCoffeeScriptDoc(unsigned int startPos, int length, int init
 
 	StyleContext sc(startPos, endPos - startPos, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward()) {
@@ -312,7 +312,7 @@ static void ColouriseCoffeeScriptDoc(unsigned int startPos, int length, int init
 					sc.SetState(SCE_C_DEFAULT);
 				} else if (sc.ch == '/') {
 					sc.Forward();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 					while ((sc.ch < 0x80) && islower(sc.ch))
@@ -451,7 +451,7 @@ static void ColouriseCoffeeScriptDoc(unsigned int startPos, int length, int init
 static bool IsCommentLine(int line, Accessor &styler) {
 	int pos = styler.LineStart(line);
 	int eol_pos = styler.LineStart(line + 1) - 1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = pos; i < eol_pos; i++) {
@@ -487,7 +487,7 @@ static void FoldCoffeeScriptDoc(unsigned int startPos, int length, int,
 	int spaceFlags = 0;
 	int lineCurrent = styler.GetLine(startPos);
 	int indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, NULL);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (lineCurrent > 0) {
@@ -507,7 +507,7 @@ static void FoldCoffeeScriptDoc(unsigned int startPos, int length, int,
 	// Process all characters to end of requested range
 	// or comment that hangs over the end of the range.  Cap processing in all cases
 	// to end of document (in case of comment at end).
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) || prevComment)) {
@@ -542,7 +542,7 @@ static void FoldCoffeeScriptDoc(unsigned int startPos, int length, int,
 		// which effectively folds them into surrounding code rather
 		// than screwing up folding.
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while ((lineNext < docLines) &&
@@ -564,7 +564,7 @@ static void FoldCoffeeScriptDoc(unsigned int startPos, int length, int,
 		int skipLine = lineNext;
 		int skipLevel = levelAfterComments;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (--skipLine > lineCurrent) {

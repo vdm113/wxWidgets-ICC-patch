@@ -137,7 +137,7 @@ static int CheckMETAPOSTInterface(
 	// some day we can make something lexer.metapost.mapping=(none,0)(metapost,1)(mp,1)(metafun,2)...
 
     if (styler.SafeGetCharAt(0) == '%') {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (unsigned int i = 0; i < startPos + length; i++) {
@@ -202,7 +202,7 @@ static void ColouriseMETAPOSTDoc(
 
 	bool going = sc.More() ; // needed because of a fuzzy end of file state
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; going; sc.Forward()) {
@@ -355,7 +355,7 @@ static int ParseMetapostWord(unsigned int pos, Accessor &styler, char *word)
   char ch=styler.SafeGetCharAt(pos);
   *word=0;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while(isMETAPOSTidentifier(ch) && isalpha(ch) && length<100){
@@ -379,7 +379,7 @@ static void FoldMetapostDoc(unsigned int startPos, int length, int, WordList *ke
 
 	char buffer[100]="";
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i=startPos; i < endPos; i++) {

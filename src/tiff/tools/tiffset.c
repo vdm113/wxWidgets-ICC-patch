@@ -56,7 +56,7 @@ static void
 usage(void)
 {
 	int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; usageMsg[i]; i++)
@@ -95,7 +95,7 @@ main(int argc, char* argv[])
     if (tiff == NULL)
         return 2;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for( arg_index = 1; arg_index < argc-1; arg_index++ ) {
@@ -199,35 +199,35 @@ main(int argc, char* argv[])
 
                         switch (TIFFFieldDataType(fip)) {
                             case TIFF_BYTE:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                                 for (i = 0; i < wc; i++)
                                     ((uint8 *)array)[i] = atoi(argv[arg_index+i]);
                                 break;
                             case TIFF_SHORT:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                                 for (i = 0; i < wc; i++)
                                     ((uint16 *)array)[i] = atoi(argv[arg_index+i]);
                                 break;
                             case TIFF_SBYTE:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                                 for (i = 0; i < wc; i++)
                                     ((int8 *)array)[i] = atoi(argv[arg_index+i]);
                                 break;
                             case TIFF_SSHORT:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                                 for (i = 0; i < wc; i++)
                                     ((int16 *)array)[i] = atoi(argv[arg_index+i]);
                                 break;
                             case TIFF_LONG:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                                 for (i = 0; i < wc; i++)
@@ -235,14 +235,14 @@ main(int argc, char* argv[])
                                 break;
                             case TIFF_SLONG:
                             case TIFF_IFD:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                                 for (i = 0; i < wc; i++)
                                     ((uint32 *)array)[i] = atol(argv[arg_index+i]);
                                 break;
                             case TIFF_DOUBLE:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                                 for (i = 0; i < wc; i++)
@@ -251,7 +251,7 @@ main(int argc, char* argv[])
                             case TIFF_RATIONAL:
                             case TIFF_SRATIONAL:
                             case TIFF_FLOAT:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                                 for (i = 0; i < wc; i++)

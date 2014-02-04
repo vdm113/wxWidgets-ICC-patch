@@ -83,7 +83,7 @@ PackBitsEncode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 	ep = tif->tif_rawdata + tif->tif_rawdatasize;
 	state = BASE;
 	lastliteral = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (cc > 0) {
@@ -91,7 +91,7 @@ PackBitsEncode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 		 * Find the longest string of identical bytes.
 		 */
 		b = *bp++, cc--, n = 1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (; cc > 0 && b == *bp; cc--, bp++)
@@ -110,7 +110,7 @@ PackBitsEncode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 				if (!TIFFFlushData1(tif))
 					return (-1);
 				op = tif->tif_rawcp;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				while (slop-- > 0)
@@ -210,7 +210,7 @@ PackBitsEncodeChunk(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 {
 	tmsize_t rowsize = *(tmsize_t*)tif->tif_data;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (cc > 0) {
@@ -239,7 +239,7 @@ PackBitsDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 	(void) s;
 	bp = (char*) tif->tif_rawcp;
 	cc = tif->tif_rawcc;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (cc > 0 && occ > 0) {
@@ -263,7 +263,7 @@ PackBitsDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 			}
 			occ -= n;
 			b = *bp++, cc--;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			while (n-- > 0)

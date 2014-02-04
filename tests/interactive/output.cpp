@@ -110,7 +110,7 @@ void InteractiveOutputTestCase::TestDllListLoaded()
     wxPuts("Loaded modules:");
     wxDynamicLibraryDetailsArray dlls = wxDynamicLibrary::ListLoaded();
     const size_t count = dlls.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; ++n )
@@ -154,7 +154,7 @@ void InteractiveOutputTestCase::TestMimeEnum()
     wxArrayString exts;
     wxString desc;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -174,7 +174,7 @@ void InteractiveOutputTestCase::TestMimeEnum()
         filetype->GetIcon(NULL);
 
         wxString extsAll;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t e = 0; e < exts.GetCount(); e++ )
@@ -205,7 +205,7 @@ void InteractiveOutputTestCase::TestMimeFilename()
         wxT("picture.jpeg"),
     };
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < WXSIZEOF(filenames); n++ )
@@ -375,7 +375,7 @@ protected:
         puts("");
 
         wxString type, val;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; frame.GetParam(n, &type, &name, &val); n++ )
@@ -482,7 +482,7 @@ void InteractiveOutputTestCase::TestFSVolume()
 
     wxPrintf(wxT("%u mounted volumes found:\n"), count);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )

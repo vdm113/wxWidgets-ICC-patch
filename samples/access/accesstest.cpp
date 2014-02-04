@@ -442,7 +442,7 @@ void MyFrame::OnQuery(wxCommandEvent& WXUNUSED(event))
         long obtained = 0;
         VARIANT *var = new VARIANT[childCount];
         int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < childCount; i++)
@@ -453,7 +453,7 @@ void MyFrame::OnQuery(wxCommandEvent& WXUNUSED(event))
 
         if (S_OK == AccessibleChildren(accessibleFrame, 0, childCount, var, &obtained))
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < childCount; i++)
@@ -528,7 +528,7 @@ void MyFrame::LogObject(int indent, IAccessible* obj)
     }
 
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 1; i <= childCount; i++)

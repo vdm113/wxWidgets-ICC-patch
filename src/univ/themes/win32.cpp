@@ -1401,7 +1401,7 @@ wxWin32Renderer::wxWin32Renderer(const wxColourScheme *scheme)
     wxMemoryDC dcNormal,
                dcDisabled,
                dcInverse;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < Arrow_Max; n++ )
@@ -1455,7 +1455,7 @@ wxWin32Renderer::wxWin32Renderer(const wxColourScheme *scheme)
         else
             y2++;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < ARROW_LENGTH; i++ )
@@ -2295,7 +2295,7 @@ void wxWin32Renderer::DrawSliderTicks(wxDC& dc,
     dc.SetPen(m_penBlack);
 
     int range = end - start;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int n = 0; n < range; n += step )
@@ -2520,7 +2520,7 @@ wxMenuGeometryInfo *wxWin32Renderer::GetMenuGeometry(wxWindow *win,
             widthAccelMax = 0,
             widthBmpMax = MENU_LEFT_MARGIN;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxMenuItemList::compatibility_iterator node = menu.GetMenuItems().GetFirst();
@@ -2632,7 +2632,7 @@ void wxWin32Renderer::DrawStatusField(wxDC& dc,
         // draw the grey stripes of the grip
         size_t n;
         wxCoord ofs = WIDTH_STATUSBAR_GRIP_BAND - 1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( n = 0; n < NUM_STATUSBAR_GRIP_BANDS; n++, ofs += WIDTH_STATUSBAR_GRIP_BAND )
@@ -2644,7 +2644,7 @@ void wxWin32Renderer::DrawStatusField(wxDC& dc,
         // draw the white stripes
         dc.SetPen(m_penHighlight);
         ofs = WIDTH_STATUSBAR_GRIP_BAND + 1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( n = 0; n < NUM_STATUSBAR_GRIP_BANDS; n++, ofs += WIDTH_STATUSBAR_GRIP_BAND )

@@ -221,7 +221,7 @@ TIFFClientOpen(
 	 * option permits applications that only want to look at the tags,
 	 * for example, to get the unadulterated TIFF tag information.
 	 */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (cp = mode; *cp; cp++)

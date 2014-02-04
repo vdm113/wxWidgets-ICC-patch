@@ -28,19 +28,19 @@ using namespace Scintilla;
 
 static const char *NextField(const char *s) {
 	// In case there are leading spaces in the string
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (*s && *s == ' ') {
 		s++;
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (*s && *s != ' ') {
 		s++;
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (*s && *s == ' ') {
@@ -52,7 +52,7 @@ static const char *NextField(const char *s) {
 // Data lines in XPM can be terminated either with NUL or "
 static size_t MeasureLength(const char *s) {
 	size_t i = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (s[i] && (s[i] != '\"'))
@@ -136,7 +136,7 @@ void XPM::Init(const char *const *linesForm) {
 	int strings = 1+height+nColours;
 	lines = new char *[strings];
 	size_t allocation = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i=0; i<strings; i++) {
@@ -144,7 +144,7 @@ void XPM::Init(const char *const *linesForm) {
 	}
 	data = new char[allocation];
 	char *nextBit = data;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int j=0; j<strings; j++) {
@@ -155,14 +155,14 @@ void XPM::Init(const char *const *linesForm) {
 		*nextBit++ = '\0';
 	}
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int code=0; code<256; code++) {
 		colourCodeTable[code] = 0;
 	}
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int c=0; c<nColours; c++) {
@@ -197,13 +197,13 @@ void XPM::Draw(Surface *surface, PRectangle &rc) {
 	// Centre the pixmap
 	int startY = rc.top + (rc.Height() - height) / 2;
 	int startX = rc.left + (rc.Width() - width) / 2;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int y=0; y<height; y++) {
 		int prevCode = 0;
 		int xStartRun = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int x=0; x<width; x++) {
@@ -239,7 +239,7 @@ const char **XPM::LinesFormFromTextForm(const char *textForm) {
 	int countQuotes = 0;
 	int strings=1;
 	int j=0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; countQuotes < (2*strings) && textForm[j] != '\0'; j++) {
@@ -286,7 +286,7 @@ XPMSet::~XPMSet() {
 }
 
 void XPMSet::Clear() {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 0; i < len; i++) {
@@ -306,7 +306,7 @@ void XPMSet::Add(int ident, const char *textForm) {
 	width = -1;
 
 	// Replace if this id already present
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 0; i < len; i++) {
@@ -323,7 +323,7 @@ void XPMSet::Add(int ident, const char *textForm) {
 		if (len == maximum) {
 			maximum += 64;
 			XPM **setNew = new XPM *[maximum];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			for (int i = 0; i < len; i++) {
@@ -338,7 +338,7 @@ void XPMSet::Add(int ident, const char *textForm) {
 }
 
 XPM *XPMSet::Get(int ident) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = 0; i < len; i++) {
@@ -351,7 +351,7 @@ XPM *XPMSet::Get(int ident) {
 
 int XPMSet::GetHeight() {
 	if (height < 0) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int i = 0; i < len; i++) {
@@ -365,7 +365,7 @@ int XPMSet::GetHeight() {
 
 int XPMSet::GetWidth() {
 	if (width < 0) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int i = 0; i < len; i++) {
@@ -390,11 +390,11 @@ RGBAImage::RGBAImage(const XPM &xpm) {
 	height = xpm.GetHeight();
 	width = xpm.GetWidth();
 	pixelBytes.resize(CountBytes());
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int y=0; y<height; y++) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int x=0; x<width; x++) {
@@ -435,7 +435,7 @@ RGBAImageSet::~RGBAImageSet() {
 
 /// Remove all images.
 void RGBAImageSet::Clear() {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (ImageMap::iterator it=images.begin(); it != images.end(); ++it) {
@@ -472,7 +472,7 @@ RGBAImage *RGBAImageSet::Get(int ident) {
 /// Give the largest height of the set.
 int RGBAImageSet::GetHeight() const {
 	if (height < 0) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (ImageMap::const_iterator it=images.begin(); it != images.end(); ++it) {
@@ -487,7 +487,7 @@ int RGBAImageSet::GetHeight() const {
 /// Give the largest width of the set.
 int RGBAImageSet::GetWidth() const {
 	if (width < 0) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (ImageMap::const_iterator it=images.begin(); it != images.end(); ++it) {

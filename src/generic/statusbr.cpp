@@ -358,7 +358,7 @@ bool wxStatusBarGeneric::GetFieldRect(int n, wxRect& rect) const
         return false;
 
     rect.x = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < n; i++ )
@@ -384,7 +384,7 @@ int wxStatusBarGeneric::GetFieldFromPoint(const wxPoint& pt) const
         return wxNOT_FOUND;
 
     int x = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < m_panes.GetCount(); i++ )
@@ -487,7 +487,7 @@ void wxStatusBarGeneric::OnPaint(wxPaintEvent& WXUNUSED(event) )
     int textHeight = dc.GetCharHeight();
 
     dc.SetBackgroundMode(wxBRUSHSTYLE_TRANSPARENT);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < m_panes.GetCount(); i ++)

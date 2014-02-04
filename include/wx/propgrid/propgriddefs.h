@@ -327,7 +327,7 @@ WX_DECLARE_HASH_MAP_WITH_DECL(wxInt32,
 template<typename CONTAINER, typename T>
 int wxPGFindInVector( CONTAINER vector, const T& item )
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int i=0; i<vector.size(); i++ )

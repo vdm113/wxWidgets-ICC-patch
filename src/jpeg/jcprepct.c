@@ -115,7 +115,7 @@ expand_bottom_edge (JSAMPARRAY image_data, JDIMENSION num_cols,
 {
   register int row;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (row = input_rows; row < output_rows; row++) {
@@ -146,7 +146,7 @@ pre_process_data (j_compress_ptr cinfo,
   JDIMENSION inrows;
   jpeg_component_info * compptr;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (*in_row_ctr < in_rows_avail &&
@@ -165,7 +165,7 @@ pre_process_data (j_compress_ptr cinfo,
     /* If at bottom of image, pad to fill the conversion buffer. */
     if (prep->rows_to_go == 0 &&
 	prep->next_buf_row < cinfo->max_v_samp_factor) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
       for (ci = 0; ci < cinfo->num_components; ci++) {
@@ -187,7 +187,7 @@ pre_process_data (j_compress_ptr cinfo,
      */
     if (prep->rows_to_go == 0 &&
 	*out_row_group_ctr < out_row_groups_avail) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
       for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -222,7 +222,7 @@ pre_process_context (j_compress_ptr cinfo,
   int buf_height = cinfo->max_v_samp_factor * 3;
   JDIMENSION inrows;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (*out_row_group_ctr < out_row_groups_avail) {
@@ -237,12 +237,12 @@ pre_process_context (j_compress_ptr cinfo,
 					 numrows);
       /* Pad at top of image, if first time through */
       if (prep->rows_to_go == cinfo->image_height) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (ci = 0; ci < cinfo->num_components; ci++) {
 	  int row;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	  for (row = 1; row <= cinfo->max_v_samp_factor; row++) {
@@ -261,7 +261,7 @@ pre_process_context (j_compress_ptr cinfo,
 	break;
       /* When at bottom of image, pad to fill the conversion buffer. */
       if (prep->next_buf_row < prep->next_buf_stop) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (ci = 0; ci < cinfo->num_components; ci++) {
@@ -311,7 +311,7 @@ create_context_buffer (j_compress_ptr cinfo)
 				(cinfo->num_components * 5 * rgroup_height) *
 				SIZEOF(JSAMPROW));
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -329,7 +329,7 @@ create_context_buffer (j_compress_ptr cinfo)
     MEMCOPY(fake_buffer + rgroup_height, true_buffer,
 	    3 * rgroup_height * SIZEOF(JSAMPROW));
     /* Fill in the above and below wraparound pointers */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < rgroup_height; i++) {
@@ -379,7 +379,7 @@ jinit_c_prep_controller (j_compress_ptr cinfo, wxjpeg_boolean need_full_buffer)
   } else {
     /* No context, just make it tall enough for one row group */
     prep->pub.pre_process_data = pre_process_data;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;

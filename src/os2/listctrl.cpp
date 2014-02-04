@@ -214,7 +214,7 @@ PFIELDINFO FindOS2ListFieldByColNum (
                       ,(MPARAM)(USHORT)sizeof(CNRINFO)
                      ))
         return NULL;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < vCnrInfo.cFields; i++)
@@ -272,7 +272,7 @@ PMYRECORD FindOS2ListRecordByID (
                       ,(MPARAM)(USHORT)sizeof(CNRINFO)
                      ))
         return NULL;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < vCnrInfo.cRecords; i++)
@@ -318,7 +318,7 @@ void BumpRecordIds (
 , PMYRECORD                         pRecord
 )
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while(pRecord)
@@ -959,7 +959,7 @@ void wxListCtrl::FreeAllInternalData ()
         int n = GetItemCount();
         int i = 0;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < n; i++)
@@ -1704,7 +1704,7 @@ int wxListCtrl::GetSelectedItemCount () const
         nCount++;
     else
         return 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (pRecord)
@@ -1949,7 +1949,7 @@ bool wxListCtrl::DeleteAllItems ()
 // Deletes all items
 bool wxListCtrl::DeleteAllColumns ()
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (m_nColCount > 0)
@@ -2110,7 +2110,7 @@ long wxListCtrl::FindItem (
     long                            lIdx = lStart + 1;
     long                            lCount = GetItemCount();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (lIdx < lCount)
@@ -2163,7 +2163,7 @@ long wxListCtrl::FindItem (
     if (vLibRect.Contains(rPoint))
         return pRecord->m_ulItemId;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = lStart + 1; i < vCnrInfo.cRecords; i++)
@@ -2525,7 +2525,7 @@ void wxListCtrl::OnPaint ( wxPaintEvent& rEvent )
     {
         long                        lTop = GetTopItem();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = lTop; i < lTop + GetCountPerPage() + 1; i++)
@@ -2571,7 +2571,7 @@ void wxListCtrl::OnPaint ( wxPaintEvent& rEvent )
             int                     nCol;
             int                     nX = vItemRect.GetX();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (nCol = 0; nCol < GetColumnCount(); nCol++)

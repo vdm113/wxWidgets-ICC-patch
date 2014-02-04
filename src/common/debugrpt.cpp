@@ -155,7 +155,7 @@ void XmlStackWalker::OnStackFrame(const wxStackFrame& frame)
         wxXmlNode *nodeParams = new wxXmlNode(wxXML_ELEMENT_NODE, wxT("parameters"));
         nodeFrame->AddChild(nodeParams);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < nParams; n++ )
@@ -230,7 +230,7 @@ wxDebugReport::~wxDebugReport()
         // remove all files in this directory
         wxDir dir(m_dir);
         wxString file;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( bool cont = dir.GetFirst(&file); cont; cont = dir.GetNext(&file) )
@@ -384,7 +384,7 @@ bool wxDebugReport::DoAddLoadedModules(wxXmlNode *nodeModules)
     if ( !count )
         return false;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -598,7 +598,7 @@ bool wxDebugReport::DoProcess()
 
     wxString name, desc;
     const size_t count = GetFilesCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -674,7 +674,7 @@ bool wxDebugReportCompress::DoProcess()
 
     // add all files to the ZIP one
     wxString name, desc;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -751,7 +751,7 @@ bool wxDebugReportUpload::DoProcess()
         const size_t count = errors.GetCount();
         if ( count )
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( size_t n = 0; n < count; n++ )

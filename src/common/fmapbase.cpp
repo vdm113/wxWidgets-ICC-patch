@@ -647,12 +647,12 @@ wxFontMapperBase::NonInteractiveCharsetToEncoding(const wxString& charset)
             }
         }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < WXSIZEOF(gs_encodingNames); ++i )
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( const wxChar* const* encName = gs_encodingNames[i]; *encName; ++encName )
@@ -811,7 +811,7 @@ wxString wxFontMapperBase::GetEncodingDescription(wxFontEncoding encoding)
 
     const size_t count = WXSIZEOF(gs_encodingDescs);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < count; i++ )
@@ -838,7 +838,7 @@ wxString wxFontMapperBase::GetEncodingName(wxFontEncoding encoding)
 
     const size_t count = WXSIZEOF(gs_encodingNames);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < count; i++ )
@@ -860,7 +860,7 @@ const wxChar** wxFontMapperBase::GetAllEncodingNames(wxFontEncoding encoding)
 {
     static const wxChar* const dummy[] = { NULL };
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < WXSIZEOF(gs_encodingNames); i++ )
@@ -879,12 +879,12 @@ wxFontEncoding wxFontMapperBase::GetEncodingFromName(const wxString& name)
 {
     const size_t count = WXSIZEOF(gs_encodingNames);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < count; i++ )
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( const wxChar* const* encName = gs_encodingNames[i]; *encName; ++encName )

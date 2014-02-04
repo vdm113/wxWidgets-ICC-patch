@@ -522,7 +522,7 @@ HRASCONN wxDialUpManagerMSW::FindActiveConnection()
     DWORD nConnections = 0;
     DWORD dwRet = ERROR_BUFFER_TOO_SMALL;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( dwRet == ERROR_BUFFER_TOO_SMALL )
@@ -698,7 +698,7 @@ size_t wxDialUpManagerMSW::GetISPNames(wxArrayString& names) const
 
     DWORD nEntries;
     DWORD dwRet;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -734,14 +734,14 @@ size_t wxDialUpManagerMSW::GetISPNames(wxArrayString& names) const
             return 0u;
         }
     }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( dwRet != 0 );
 
     // process them
     names.Empty();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < (size_t)nEntries; n++ )
@@ -793,7 +793,7 @@ bool wxDialUpManagerMSW::Dial(const wxString& nameOfISP,
                 // several ISPs, let the user choose
                 {
                     wxString *strings = new wxString[count];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                     for ( size_t i = 0; i < count; i++ )
@@ -1268,7 +1268,7 @@ static DWORD wxRasMonitorThread(wxRasThreadData *data)
     handles[1] = data->hEventQuit;
 
     bool cont = true;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( cont )

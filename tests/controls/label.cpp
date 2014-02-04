@@ -113,7 +113,7 @@ void LabelTestCase::GetLabel()
 
     // test calls to SetLabel() and then to GetLabel()
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int s = 0; s < WXSIZEOF(testLabelArray); s++ )
@@ -187,7 +187,7 @@ void LabelTestCase::GetLabelText()
 
     // test calls to SetLabelText() and then to GetLabelText()
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int s = 0; s < WXSIZEOF(testLabelArray); s++ )

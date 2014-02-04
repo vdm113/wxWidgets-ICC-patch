@@ -70,7 +70,7 @@ bool wxComboBox::Create(wxWindow *parent, wxWindowID id,
         NULL);
 
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < n; i++)
@@ -166,7 +166,7 @@ int wxComboBox::DoInsertItems(const wxArrayStringsAdapter& items,
     const unsigned int numItems = items.GetCount();
 
     AllocClientData(numItems);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for( unsigned int i = 0; i < numItems; ++i, ++pos )

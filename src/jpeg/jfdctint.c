@@ -158,7 +158,7 @@ jpeg_fdct_islow (DCTELEM * data)
   /* furthermore, we scale the results by 2**PASS1_BITS. */
 
   dataptr = data;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {
@@ -226,7 +226,7 @@ jpeg_fdct_islow (DCTELEM * data)
    */
 
   dataptr = data;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {

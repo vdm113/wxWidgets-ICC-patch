@@ -346,7 +346,7 @@ private:
 
         text->Clear();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = 0; i < 100; i++ )
@@ -1643,13 +1643,13 @@ RichTextFrame::RichTextFrame(wxWindow* parent, const wxString& title):
 
     wxString value;
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 10; i++)
     {
         int j;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 0; j < 10; j++)
@@ -1768,7 +1768,7 @@ void RichTextFrame::OnChangeTextColour(wxCommandEvent& WXUNUSED(event))
     wxColourData data;
     data.SetColour(* wxBLACK);
     data.SetChooseFull(true);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < 16; i++)
@@ -1800,7 +1800,7 @@ void RichTextFrame::OnChangeBackgroundColour(wxCommandEvent& WXUNUSED(event))
     wxColourData data;
     data.SetColour(* wxWHITE);
     data.SetChooseFull(true);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < 16; i++)
@@ -1888,7 +1888,7 @@ void RichTextFrame::OnTabStops(wxCommandEvent& WXUNUSED(event))
     wxArrayInt tabs;
 
     wxStringTokenizer tokens(tabsStr, wxT(" "));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (tokens.HasMoreTokens())

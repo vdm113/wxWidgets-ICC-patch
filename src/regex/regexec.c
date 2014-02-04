@@ -309,7 +309,7 @@ struct colormap *cm;
 	d = newdfa(v, cnfa, cm, &v->dfa1);
 	assert(!(ISERR() && d != NULL));
 	NOERR();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (begin = open; begin <= close; begin++) {
@@ -415,7 +415,7 @@ chr **coldp;			/* where to put coldstart pointer */
 	assert(d != NULL && s != NULL);
 	cold = NULL;
 	close = v->start;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	do {
@@ -427,14 +427,14 @@ chr **coldp;			/* where to put coldstart pointer */
 		open = cold;
 		cold = NULL;
 		MDEBUG(("cbetween %ld and %ld\n", LOFF(open), LOFF(close)));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (begin = open; begin <= close; begin++) {
 			MDEBUG(("\ncfind trying at %ld\n", LOFF(begin)));
 			estart = begin;
 			estop = v->stop;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			for (;;) {
@@ -493,7 +493,7 @@ size_t n;
 {
 	size_t i;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = n-1; i > 0; i--) {
@@ -637,7 +637,7 @@ chr *end;			/* end of same */
 	MDEBUG(("tentative midpoint %ld\n", LOFF(mid)));
 
 	/* iterate until satisfaction or failure */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (longest(v, d2, mid, end, (int *)NULL) != end) {
@@ -691,7 +691,7 @@ chr *end;			/* end of same */
 	assert(t != NULL);
 	assert(t->op == '|');
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; t != NULL; t = t->right, i++) {
@@ -810,7 +810,7 @@ chr *end;			/* end of same */
 	}
 
 	/* iterate until satisfaction or failure */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (;;) {
@@ -906,7 +906,7 @@ chr *end;			/* end of same */
 	}
 
 	/* iterate until satisfaction or failure */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (;;) {
@@ -1004,7 +1004,7 @@ chr *end;			/* end of same */
 
 	/* count occurrences */
 	i = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (p = begin; p <= stop && (i < max || max == INFINITY); p += len) {

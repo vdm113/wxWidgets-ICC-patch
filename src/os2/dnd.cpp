@@ -166,7 +166,7 @@ MRESULT CIDropTarget::DragOver ()
     }
     uIndicator = DOR_DROP;
     ulItems = (ULONG)::DrgQueryDragitemCount(m_pDragInfo);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < ulItems; i++)
@@ -239,7 +239,7 @@ MRESULT CIDropTarget::Drop ()
     }
     uIndicator = DOR_DROP;
     ulItems = (ULONG)::DrgQueryDragitemCount(m_pDragInfo);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < ulItems; i++)
@@ -334,7 +334,7 @@ wxDataFormat wxDropTarget::GetSupportedFormat (
                                 ,wxDataObject::Set
                                );
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (n = 0; n < ulFormats; n++)
@@ -399,7 +399,7 @@ wxDataFormat wxDropTarget::GetSupportedFormat (
                 sFormat    = wxT("DRF_UNKNOWN");
                 break;
         }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < ulItems; i++)
@@ -585,7 +585,7 @@ void wxDropSource::Init ()
     hStrContainer = ::DrgAddStrHandle((PSZ)zContainer);
 
     m_pDragItem = new DRAGITEM[m_ulItems];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (ULONG i = 0; i < m_ulItems; i++)

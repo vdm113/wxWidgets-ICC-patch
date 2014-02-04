@@ -164,7 +164,7 @@ public:
         @code
         wxTextFile file;
         ...
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( str = file.GetFirstLine(); !file.Eof(); str = file.GetNextLine() )
@@ -185,7 +185,7 @@ public:
         @code
         wxTextFile file;
         ...
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( str = file.GetLastLine();

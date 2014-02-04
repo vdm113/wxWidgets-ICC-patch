@@ -91,7 +91,7 @@ static void ColourisePovDoc(
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward()) {
@@ -148,7 +148,7 @@ static void ColourisePovDoc(
 				sc.GetCurrent(s, sizeof(s));
 				p = s;
 				// Skip # and whitespace between # and directive word
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				do {
@@ -224,7 +224,7 @@ static void ColourisePovDoc(
 			} else if (sc.ch == '#') {
 				sc.SetState(SCE_POV_DIRECTIVE);
 				// Skip whitespace between # and directive word
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				do {
@@ -259,7 +259,7 @@ static void FoldPovDoc(
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
 	int style = initStyle;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
@@ -290,7 +290,7 @@ static void FoldPovDoc(
 		if (foldDirective && (style == SCE_POV_DIRECTIVE)) {
 			if (ch == '#') {
 				unsigned int j=i+1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				while ((j<endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {

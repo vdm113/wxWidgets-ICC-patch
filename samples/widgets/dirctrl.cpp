@@ -268,7 +268,7 @@ void DirCtrlWidgetsPage::CreateDirCtrl()
     );
 
     wxString filter;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < 3; ++i)

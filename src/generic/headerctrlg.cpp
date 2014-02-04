@@ -152,7 +152,7 @@ wxSize wxHeaderCtrl::DoGetBestSize() const
 int wxHeaderCtrl::GetColStart(unsigned int idx) const
 {
     int pos = m_scrollOffset;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned n = 0; ; n++ )
@@ -180,7 +180,7 @@ unsigned int wxHeaderCtrl::FindColumnAtPoint(int x, bool *onSeparator) const
 {
     int pos = 0;
     const unsigned count = GetColumnCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned n = 0; n < count; n++ )
@@ -508,7 +508,7 @@ void wxHeaderCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
 
     const unsigned int count = m_numColumns;
     int xpos = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int i = 0; i < count; i++ )

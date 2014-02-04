@@ -294,7 +294,7 @@ void wxNotebook::OnSize(wxSizeEvent& event)
     unsigned int nCount = m_pages.Count();
     wxRect rect = GetPageRect() ;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int nPage = 0; nPage < nCount; nPage++ )

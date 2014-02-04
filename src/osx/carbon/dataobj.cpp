@@ -251,7 +251,7 @@ bool wxDataObject::IsSupportedFormat( const wxDataFormat& rFormat, Direction vDi
         wxDataFormat *pFormats = new wxDataFormat[nFormatCount];
         GetAllFormats( pFormats, vDir );
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t n = 0; n < nFormatCount; n++)
@@ -276,7 +276,7 @@ void wxDataObject::AddToPasteboard( void * pb, wxIntPtr itemID )
     wxDataFormat *array = new wxDataFormat[ GetFormatCount() ];
     GetAllFormats( array );
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < GetFormatCount(); i++)
@@ -294,7 +294,7 @@ void wxDataObject::AddToPasteboard( void * pb, wxIntPtr itemID )
             // if wxDF_UNICODETEXT is already on the 'todo' list, skip this iteration
             // otherwise force it
             size_t j = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (j = 0; j < GetFormatCount(); j++)
@@ -322,7 +322,7 @@ void wxDataObject::AddToPasteboard( void * pb, wxIntPtr itemID )
                 {
                     // the data is D-normalized UTF8 strings of filenames delimited with \n
                     char *fname = strtok((char*) buf,"\n");
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                     while (fname != NULL)
@@ -373,7 +373,7 @@ bool wxDataObject::IsFormatInPasteboard( void * pb, const wxDataFormat &dataForm
     err = PasteboardGetItemCount( pasteboard, &itemCount );
     if ( err == noErr )
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for( UInt32 itemIndex = 1; itemIndex <= itemCount && hasData == false ; itemIndex++ )
@@ -392,7 +392,7 @@ bool wxDataObject::IsFormatInPasteboard( void * pb, const wxDataFormat &dataForm
 
             flavorCount = CFArrayGetCount( flavorTypeArray );
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for( CFIndex flavorIndex = 0; flavorIndex < flavorCount && hasData == false ; flavorIndex++ )
@@ -434,7 +434,7 @@ bool wxDataObject::GetFromPasteboard( void * pb )
     OSStatus err = PasteboardGetItemCount( pasteboard, &itemCount );
     if ( err == noErr )
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = 0; !transferred && i < formatcount; i++)
@@ -442,7 +442,7 @@ bool wxDataObject::GetFromPasteboard( void * pb )
             // go through the data in our order of preference
             wxDataFormat dataFormat = array[ i ];
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for( UInt32 itemIndex = 1; itemIndex <= itemCount && transferred == false ; itemIndex++ )
@@ -461,7 +461,7 @@ bool wxDataObject::GetFromPasteboard( void * pb )
 
                 flavorCount = CFArrayGetCount( flavorTypeArray );
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for( CFIndex flavorIndex = 0; !transferred && flavorIndex < flavorCount ; flavorIndex++ )
@@ -584,7 +584,7 @@ bool wxDataObject::HasDataInPasteboard( void * pb )
     OSStatus err = PasteboardGetItemCount( pasteboard, &itemCount );
     if ( err == noErr )
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (size_t i = 0; !hasData && i < formatcount; i++)
@@ -592,7 +592,7 @@ bool wxDataObject::HasDataInPasteboard( void * pb )
             // go through the data in our order of preference
             wxDataFormat dataFormat = array[ i ];
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for( UInt32 itemIndex = 1; itemIndex <= itemCount && hasData == false ; itemIndex++ )
@@ -611,7 +611,7 @@ bool wxDataObject::HasDataInPasteboard( void * pb )
 
                 flavorCount = CFArrayGetCount( flavorTypeArray );
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for( CFIndex flavorIndex = 0; !hasData && flavorIndex < flavorCount ; flavorIndex++ )
@@ -644,7 +644,7 @@ void wxDataObject::AddSupportedTypes( void* cfarray)
     wxDataFormat *array = new wxDataFormat[nFormats];
     GetAllFormats(array, wxDataObject::Set);
     
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < nFormats; i++)
@@ -705,7 +705,7 @@ void wxFileDataObject::GetFileNames( wxCharBuffer &buf ) const
 {
     wxString filenames;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)

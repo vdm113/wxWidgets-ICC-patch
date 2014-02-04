@@ -137,7 +137,7 @@ wxWindow *wxButton::SetDefault()
     // resource for all wxButton in this parent (but not sub panels)
 
     wxWindow *parent = GetParent();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (wxWindowList::compatibility_iterator node = parent->GetChildren().GetFirst ();

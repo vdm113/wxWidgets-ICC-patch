@@ -147,7 +147,7 @@ bool wxSoundBackendOSS::Play(wxSoundData *data, unsigned flags,
 
     ioctl(dev, SNDCTL_DSP_SYNC, 0);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -157,7 +157,7 @@ bool wxSoundBackendOSS::Play(wxSoundData *data, unsigned flags,
         unsigned l = 0;
         size_t datasize = data->m_dataBytes;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         do

@@ -114,7 +114,7 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((c = getopt(argc, argv, "c:r:H:w:l:b:d:LMp:si:o:h")) != -1) {
@@ -291,13 +291,13 @@ main(int argc, char* argv[])
 	TIFFSetField(out, TIFFTAG_ROWSPERSTRIP, rowsperstrip );
 
 	lseek(fd, hdr_size, SEEK_SET);		/* Skip the file header */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (row = 0; row < length; row++) {
 		switch(interleaving) {
 		case BAND:			/* band interleaved data */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			for (band = 0; band < nbands; band++) {
@@ -313,7 +313,7 @@ main(int argc, char* argv[])
 				}
 				if (swab)	/* Swap bytes if needed */
 					swapBytesInScanline(buf, width, dtype);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				for (col = 0; col < width; col++)
@@ -414,7 +414,7 @@ guessSize(int fd, TIFFDataType dtype, off_t hdr_size, uint32 nbands,
 	} else if (*width == 0 && *length == 0) {
 		fprintf(stderr,	"Image width and height are not specified.\n");
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (w = (uint32) sqrt(imagesize / longt);
@@ -470,7 +470,7 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 	switch (dtype) {
 		case TIFF_BYTE:
 		default:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                         for (i = 0; i < n_elem; i++) {
@@ -482,7 +482,7 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
                         }
 			break;
 		case TIFF_SBYTE:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                         for (i = 0; i < n_elem; i++) {
@@ -494,7 +494,7 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
                         }
 			break;
 		case TIFF_SHORT:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                         for (i = 0; i < n_elem; i++) {
@@ -506,7 +506,7 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
                         }
 			break;
 		case TIFF_SSHORT:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                         for (i = 0; i < n_elem; i++) {
@@ -518,7 +518,7 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
                         }
 			break;
 		case TIFF_LONG:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                         for (i = 0; i < n_elem; i++) {
@@ -530,7 +530,7 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
                         }
 			break;
 		case TIFF_SLONG:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                         for (i = 0; i < n_elem; i++) {
@@ -542,7 +542,7 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
                         }
 			break;
 		case TIFF_FLOAT:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                         for (i = 0; i < n_elem; i++) {
@@ -554,7 +554,7 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
                         }
 			break;
 		case TIFF_DOUBLE:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                         for (i = 0; i < n_elem; i++) {
@@ -587,7 +587,7 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
                 compression = COMPRESSION_JPEG;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 while( cp )
@@ -684,7 +684,7 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = 0; stuff[i] != NULL; i++)

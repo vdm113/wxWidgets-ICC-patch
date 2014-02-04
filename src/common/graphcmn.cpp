@@ -501,7 +501,7 @@ void wxGraphicsPathData::AddArcToPoint( wxDouble x1, wxDouble y1 , wxDouble x2, 
 
 void wxGraphicsGradientStops::Add(const wxGraphicsGradientStop& stop)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxVector<wxGraphicsGradientStop>::iterator it = m_stops.begin();
@@ -751,7 +751,7 @@ void wxGraphicsContext::StrokeLines( size_t n, const wxPoint2DDouble *points)
     wxASSERT(n > 1);
     wxGraphicsPath path = CreatePath();
     path.MoveToPoint(points[0].m_x, points[0].m_y);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 1; i < n; ++i)
@@ -764,7 +764,7 @@ void wxGraphicsContext::DrawLines( size_t n, const wxPoint2DDouble *points, wxPo
     wxASSERT(n > 1);
     wxGraphicsPath path = CreatePath();
     path.MoveToPoint(points[0].m_x, points[0].m_y);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 1; i < n; ++i)
@@ -776,7 +776,7 @@ void wxGraphicsContext::StrokeLines( size_t n, const wxPoint2DDouble *beginPoint
 {
     wxASSERT(n > 0);
     wxGraphicsPath path = CreatePath();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < n; ++i)

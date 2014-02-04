@@ -35,7 +35,7 @@ public:
 		int part1Left = part1Length - start;
 		if (range1Length > part1Left)
 			range1Length = part1Left;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (i < range1Length) {
@@ -43,7 +43,7 @@ public:
 			i++;
 		}
 		start += gapLength;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (i < rangeLength) {
@@ -178,7 +178,7 @@ public:
 			return body->Length() - 1 - 1;
 		int lower = 0;
 		int upper = body->Length()-1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		do {

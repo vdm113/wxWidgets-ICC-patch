@@ -96,7 +96,7 @@ bool wxChoice::Create(
     SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
 
     // initialize the controls contents
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < n; i++)
@@ -148,7 +148,7 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter& items
     }
 
     const unsigned int count = items.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for( unsigned int i = 0; i < count; ++i )
@@ -318,7 +318,7 @@ wxSize wxChoice::DoGetBestSize() const
 
     const unsigned int nItems = GetCount();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = 0; i < nItems; i++)

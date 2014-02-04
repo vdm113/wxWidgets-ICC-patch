@@ -105,7 +105,7 @@ void wxTimerScheduler::QueueTimer(wxTimerDesc *desc, wxTimerTick_t when)
     if ( m_timers )
     {
         wxTimerDesc *d = m_timers;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while ( d->next && d->next->shotTime < when ) d = d->next;
@@ -142,7 +142,7 @@ void wxTimerScheduler::NotifyTimers()
         volatile bool timerDeleted;
         wxTimerTick_t now = GetMillisecondsTime();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxTimerDesc *desc = m_timers; desc; desc = desc->next )

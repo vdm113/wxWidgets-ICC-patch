@@ -203,7 +203,7 @@ print_mem_stats (j_common_ptr cinfo, int pool_id)
   fprintf(stderr, "Freeing pool %d, total space = %ld\n",
 	  pool_id, mem->total_space_allocated);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (lhdr_ptr = mem->large_list[pool_id]; lhdr_ptr != NULL;
@@ -212,7 +212,7 @@ print_mem_stats (j_common_ptr cinfo, int pool_id)
 	    (long) lhdr_ptr->hdr.bytes_used);
   }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (shdr_ptr = mem->small_list[pool_id]; shdr_ptr != NULL;
@@ -289,7 +289,7 @@ alloc_small (j_common_ptr cinfo, int pool_id, size_t sizeofobject)
     ERREXIT1(cinfo, JERR_BAD_POOL_ID, pool_id);	/* safety check */
   prev_hdr_ptr = NULL;
   hdr_ptr = mem->small_list[pool_id];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (hdr_ptr != NULL) {
@@ -311,7 +311,7 @@ alloc_small (j_common_ptr cinfo, int pool_id, size_t sizeofobject)
     if (slop > (size_t) (MAX_ALLOC_CHUNK-min_request))
       slop = (size_t) (MAX_ALLOC_CHUNK-min_request);
     /* Try to get space, if fail reduce slop and try again */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;) {
@@ -438,7 +438,7 @@ alloc_sarray (j_common_ptr cinfo, int pool_id,
 
   /* Get the rows themselves (large objects) */
   currow = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (currow < numrows) {
@@ -446,7 +446,7 @@ alloc_sarray (j_common_ptr cinfo, int pool_id,
     workspace = (JSAMPROW) alloc_large(cinfo, pool_id,
 	(size_t) ((size_t) rowsperchunk * (size_t) samplesperrow
 		  * SIZEOF(JSAMPLE)));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = rowsperchunk; i > 0; i--) {
@@ -492,7 +492,7 @@ alloc_barray (j_common_ptr cinfo, int pool_id,
 
   /* Get the rows themselves (large objects) */
   currow = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (currow < numrows) {
@@ -500,7 +500,7 @@ alloc_barray (j_common_ptr cinfo, int pool_id,
     workspace = (JBLOCKROW) alloc_large(cinfo, pool_id,
 	(size_t) ((size_t) rowsperchunk * (size_t) blocksperrow
 		  * SIZEOF(JBLOCK)));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = rowsperchunk; i > 0; i--) {
@@ -626,7 +626,7 @@ realize_virt_arrays (j_common_ptr cinfo)
    */
   space_per_minheight = 0;
   maximum_space = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (sptr = mem->virt_sarray_list; sptr != NULL; sptr = sptr->next) {
@@ -637,7 +637,7 @@ realize_virt_arrays (j_common_ptr cinfo)
 		       (long) sptr->samplesperrow * SIZEOF(JSAMPLE);
     }
   }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (bptr = mem->virt_barray_list; bptr != NULL; bptr = bptr->next) {
@@ -673,7 +673,7 @@ realize_virt_arrays (j_common_ptr cinfo)
 
   /* Allocate the in-memory buffers and initialize backing store as needed. */
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (sptr = mem->virt_sarray_list; sptr != NULL; sptr = sptr->next) {
@@ -700,7 +700,7 @@ realize_virt_arrays (j_common_ptr cinfo)
     }
   }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (bptr = mem->virt_barray_list; bptr != NULL; bptr = bptr->next) {
@@ -738,7 +738,7 @@ do_sarray_io (j_common_ptr cinfo, jvirt_sarray_ptr ptr, wxjpeg_boolean writing)
   bytesperrow = (long) ptr->samplesperrow * SIZEOF(JSAMPLE);
   file_offset = ptr->cur_start_row * bytesperrow;
   /* Loop to read or write each allocation chunk in mem_buffer */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < (long) ptr->rows_in_mem; i += ptr->rowsperchunk) {
@@ -774,7 +774,7 @@ do_barray_io (j_common_ptr cinfo, jvirt_barray_ptr ptr, wxjpeg_boolean writing)
   bytesperrow = (long) ptr->blocksperrow * SIZEOF(JBLOCK);
   file_offset = ptr->cur_start_row * bytesperrow;
   /* Loop to read or write each allocation chunk in mem_buffer */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < (long) ptr->rows_in_mem; i += ptr->rowsperchunk) {
@@ -869,7 +869,7 @@ access_virt_sarray (j_common_ptr cinfo, jvirt_sarray_ptr ptr,
       size_t bytesperrow = (size_t) ptr->samplesperrow * SIZEOF(JSAMPLE);
       undef_row -= ptr->cur_start_row; /* make indexes relative to buffer */
       end_row -= ptr->cur_start_row;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
       while (undef_row < end_row) {
@@ -957,7 +957,7 @@ access_virt_barray (j_common_ptr cinfo, jvirt_barray_ptr ptr,
       size_t bytesperrow = (size_t) ptr->blocksperrow * SIZEOF(JBLOCK);
       undef_row -= ptr->cur_start_row; /* make indexes relative to buffer */
       end_row -= ptr->cur_start_row;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
       while (undef_row < end_row) {
@@ -1002,7 +1002,7 @@ free_pool (j_common_ptr cinfo, int pool_id)
     jvirt_sarray_ptr sptr;
     jvirt_barray_ptr bptr;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (sptr = mem->virt_sarray_list; sptr != NULL; sptr = sptr->next) {
@@ -1012,7 +1012,7 @@ free_pool (j_common_ptr cinfo, int pool_id)
       }
     }
     mem->virt_sarray_list = NULL;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (bptr = mem->virt_barray_list; bptr != NULL; bptr = bptr->next) {
@@ -1028,7 +1028,7 @@ free_pool (j_common_ptr cinfo, int pool_id)
   lhdr_ptr = mem->large_list[pool_id];
   mem->large_list[pool_id] = NULL;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (lhdr_ptr != NULL) {
@@ -1045,7 +1045,7 @@ free_pool (j_common_ptr cinfo, int pool_id)
   shdr_ptr = mem->small_list[pool_id];
   mem->small_list[pool_id] = NULL;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (shdr_ptr != NULL) {
@@ -1074,7 +1074,7 @@ self_destruct (j_common_ptr cinfo)
    * Releasing pools in reverse order might help avoid fragmentation
    * with some (brain-damaged) malloc libraries.
    */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (pool = JPOOL_NUMPOOLS-1; pool >= JPOOL_PERMANENT; pool--) {
@@ -1152,7 +1152,7 @@ jinit_memory_mgr (j_common_ptr cinfo)
   /* Initialize working state */
   mem->pub.max_memory_to_use = max_to_use;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (pool = JPOOL_NUMPOOLS-1; pool >= JPOOL_PERMANENT; pool--) {

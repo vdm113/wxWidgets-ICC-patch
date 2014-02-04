@@ -174,7 +174,7 @@ wxHtmlTableCell::~wxHtmlTableCell()
     if (m_ColsInfo) free(m_ColsInfo);
     if (m_CellInfo)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < m_NumRows; i++)
@@ -198,13 +198,13 @@ void wxHtmlTableCell::ReallocCols(int cols)
 {
     int i,j;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < m_NumRows; i++)
     {
         m_CellInfo[i] = (cellStruct*) realloc(m_CellInfo[i], sizeof(cellStruct) * cols);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = m_NumCols; j < cols; j++)
@@ -212,7 +212,7 @@ void wxHtmlTableCell::ReallocCols(int cols)
     }
 
     m_ColsInfo = (colStruct*) realloc(m_ColsInfo, sizeof(colStruct) * cols);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (j = m_NumCols; j < cols; j++)
@@ -230,7 +230,7 @@ void wxHtmlTableCell::ReallocCols(int cols)
 void wxHtmlTableCell::ReallocRows(int rows)
 {
     int alloc_rows;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (alloc_rows = m_NumAllocatedRows; alloc_rows < rows;)
@@ -249,7 +249,7 @@ void wxHtmlTableCell::ReallocRows(int rows)
         m_NumAllocatedRows = alloc_rows;
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int row = m_NumRows; row < rows ; ++row)
@@ -259,7 +259,7 @@ void wxHtmlTableCell::ReallocRows(int rows)
         else
         {
             m_CellInfo[row] = (cellStruct*) malloc(sizeof(cellStruct) * m_NumCols);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int col = 0; col < m_NumCols; col++)
@@ -298,7 +298,7 @@ void wxHtmlTableCell::AddCell(wxHtmlContainerCell *cell, const wxHtmlTag& tag)
     }
 
     // cells & columns:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -372,11 +372,11 @@ void wxHtmlTableCell::AddCell(wxHtmlContainerCell *cell, const wxHtmlTag& tag)
                 ReallocRows(r + m_CellInfo[r][c].rowspan);
             if (c + m_CellInfo[r][c].colspan > m_NumCols)
                 ReallocCols(c + m_CellInfo[r][c].colspan);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = r; i < r + m_CellInfo[r][c].rowspan; i++)
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (j = c; j < c + m_CellInfo[r][c].colspan; j++)
@@ -420,12 +420,12 @@ void wxHtmlTableCell::ComputeMinMaxWidths()
 
     m_MaxTotalWidth = 0;
     int percentage = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int c = 0; c < m_NumCols; c++)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int r = 0; r < m_NumRows; r++)
@@ -441,7 +441,7 @@ void wxHtmlTableCell::ComputeMinMaxWidths()
                 // HTML 4.0 says it is acceptable to distribute min/max
                 width /= cell.colspan;
                 maxWidth /= cell.colspan;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (int j = 0; j < cell.colspan; j++) {
@@ -522,7 +522,7 @@ void wxHtmlTableCell::Layout(int w)
         int i, j;
 
         // 1a. setup fixed-width columns:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < m_NumCols; i++)
@@ -537,7 +537,7 @@ void wxHtmlTableCell::Layout(int w)
         // Recalculate total width if m_WidthFloat is zero to keep tables as small
         // as possible.
         int maxWidth = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < m_NumCols; i++)
@@ -554,7 +554,7 @@ void wxHtmlTableCell::Layout(int w)
             // Make sure that floating-width columns will have the right size.
             // Calculate sum of all floating-width columns
             int percentage = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (i = 0; i < m_NumCols; i++)
@@ -574,7 +574,7 @@ void wxHtmlTableCell::Layout(int w)
 
         // 1c. setup floating-width columns:
         int wtemp = wpix;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < m_NumCols; i++)
@@ -584,7 +584,7 @@ void wxHtmlTableCell::Layout(int w)
 
                 // Make sure to leave enough space for the other columns
                 int minRequired = m_Border;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (j = 0; j < m_NumCols; j++)
@@ -606,7 +606,7 @@ void wxHtmlTableCell::Layout(int w)
         // FIXME: I'm not sure if this algorithm is conform to HTML standard,
         //        though it seems to be much better than the old one
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = j = 0; i < m_NumCols; i++)
@@ -615,7 +615,7 @@ void wxHtmlTableCell::Layout(int w)
             wpix = m_Border;
 
         // Assign widths
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < m_NumCols; i++)
@@ -630,7 +630,7 @@ void wxHtmlTableCell::Layout(int w)
                 // Make sure to leave enough space for the other columns
                 int minRequired = 0;
                 int r;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (r = i + 1; r < m_NumCols; r++)
@@ -657,7 +657,7 @@ void wxHtmlTableCell::Layout(int w)
     /* 2.  compute positions of columns: */
     {
         int wpos = m_Spacing + m_Border;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < m_NumCols; i++)
@@ -680,11 +680,11 @@ void wxHtmlTableCell::Layout(int w)
         wxHtmlContainerCell *actcell;
 
         ypos[0] = m_Spacing + m_Border;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (actrow = 1; actrow <= m_NumRows; actrow++) ypos[actrow] = -1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (actrow = 0; actrow < m_NumRows; actrow++)
@@ -692,14 +692,14 @@ void wxHtmlTableCell::Layout(int w)
             if (ypos[actrow] == -1) ypos[actrow] = ypos[actrow-1];
             // 3a. sub-layout and detect max height:
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (actcol = 0; actcol < m_NumCols; actcol++) {
                 if (m_CellInfo[actrow][actcol].flag != cellUsed) continue;
                 actcell = m_CellInfo[actrow][actcol].cont;
                 fullwid = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (int i = actcol; i < m_CellInfo[actrow][actcol].colspan + actcol; i++)
@@ -714,14 +714,14 @@ void wxHtmlTableCell::Layout(int w)
             }
         }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (actrow = 0; actrow < m_NumRows; actrow++)
         {
             // 3b. place cells in row & let'em all have same height:
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (actcol = 0; actcol < m_NumCols; actcol++)
@@ -732,7 +732,7 @@ void wxHtmlTableCell::Layout(int w)
                                  ypos[actrow + m_CellInfo[actrow][actcol].rowspan] - ypos[actrow] -  m_Spacing,
                                  m_CellInfo[actrow][actcol].valign);
                 fullwid = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (int i = actcol; i < m_CellInfo[actrow][actcol].colspan + actcol; i++)

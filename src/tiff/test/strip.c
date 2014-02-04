@@ -53,7 +53,7 @@ write_strips(TIFF *tif, const tdata_t array, const tsize_t size)
 	}
 
 	nstrips = TIFFNumberOfStrips(tif);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (offset = 0, strip = 0;
@@ -97,7 +97,7 @@ read_strips(TIFF *tif, const tdata_t array, const tsize_t size)
 	}
 
 	nstrips = TIFFNumberOfStrips(tif);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (offset = 0, strip = 0;
@@ -288,7 +288,7 @@ write_scanlines(TIFF *tif, const tdata_t array, const tsize_t size)
 		return -1;
 	}
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (offset = 0, row = 0; row < length; offset+=scanlinesize, row++) {

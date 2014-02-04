@@ -86,7 +86,7 @@ enum wxStringTokenizerMode
 
     @code
     wxStringTokenizer tokenizer("first:second:third:fourth", ":");
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( tokenizer.HasMoreTokens() )

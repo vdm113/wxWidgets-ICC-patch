@@ -88,7 +88,7 @@ wxRadioBox::~wxRadioBox()
         wxRemoveHandleAssociation(this);
     if (m_ahRadioButtons)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (unsigned int i = 0; i < m_nNoItems; i++)
@@ -117,7 +117,7 @@ bool wxRadioBox::ContainsHWND( WXHWND hWnd ) const
     unsigned int nCount = GetCount();
     unsigned int i;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < nCount; i++)
@@ -197,7 +197,7 @@ bool wxRadioBox::Create( wxWindow* pParent,
     m_pnRadioWidth   = new int[nNum];
     m_pnRadioHeight  = new int[nNum];
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < nNum; i++)
@@ -421,7 +421,7 @@ void wxRadioBox::DoSetSize(
     nStartX = nXOffset;
     nStartY = nYOffset;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = 0; i < m_nNoItems; i++)
@@ -541,7 +541,7 @@ bool wxRadioBox::Enable(bool bEnable)
 {
     if ( !wxControl::Enable(bEnable) )
         return false;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = 0; i < m_nNoItems; i++)
@@ -566,7 +566,7 @@ wxSize wxRadioBox::GetMaxButtonSize() const
     int nWidthMax = 0;
     int nHeightMax = 0;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = 0 ; i < m_nNoItems; i++)
@@ -621,7 +621,7 @@ void wxRadioBox::GetSize( int* pnWidth, int* pnHeight ) const
     if (m_hWnd)
         wxFindMaxSize( m_hWnd, &vRect );
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = 0; i < m_nNoItems; i++)
@@ -717,7 +717,7 @@ bool wxRadioBox::OS2Command( WXUINT uCmd,
         if (wId == GetId())
             return true;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (unsigned int i = 0; i < m_nNoItems; i++)
@@ -782,7 +782,7 @@ bool wxRadioBox::SetFont(const wxFont& rFont)
     //
     // Also set the font of our radio buttons
     //
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int n = 0; n < m_nNoItems; n++)
@@ -835,7 +835,7 @@ bool wxRadioBox::Show(bool bShow)
     if (!wxControl::Show(bShow))
         return false;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = 0; i < m_nNoItems; i++)

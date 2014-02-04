@@ -102,7 +102,7 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
     bool syncDisplay = false;
 
     int argCOrig = argC;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < argCOrig; i++ )
@@ -159,12 +159,12 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
     if ( argC != argCOrig )
     {
         // remove the arguments we consumed
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = 0; i < argC; i++ )
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while ( !argV[i] )
@@ -315,7 +315,7 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
                 wxExposeInfo info;
                 info.window = event->xexpose.window;
                 info.found_non_matching = false;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 while (XCheckIfEvent( wxGlobalDisplay(), &tmp_event, wxX11ExposePredicate, (XPointer) &info ))
@@ -337,7 +337,7 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
                 wxExposeInfo info;
                 info.window = event->xexpose.window;
                 info.found_non_matching = false;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 while (XCheckIfEvent( wxGlobalDisplay(), &tmp_event, wxX11ExposePredicate, (XPointer) &info ))
@@ -512,7 +512,7 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
 
             //  to avoid flicker
             report = * event;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while( XCheckTypedWindowEvent (disp, actualWindow, ResizeRequest, &report));
@@ -549,7 +549,7 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
             // Here we check if the top level window is
             // disabled, which is one aspect of modality.
             wxWindow *tlw = win;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (tlw && !tlw->IsTopLevel())

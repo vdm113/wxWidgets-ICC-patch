@@ -338,7 +338,7 @@ bool MyApp::OnInit()
                             NULL,
                             m_startupProgressStyle
                          );
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int i = 0; i <= PROGRESS_COUNT; i++ )
@@ -609,7 +609,7 @@ MyFrame::MyFrame(const wxString& title)
 
 #if wxUSE_COLOURDLG
     m_clrData.SetChooseFull(true);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < wxColourData::NUM_CUSTOM; i++)
@@ -744,7 +744,7 @@ void MyFrame::ChooseColourGeneric(wxCommandEvent& WXUNUSED(event))
     //FIXME:TODO:This has no effect...
     m_clrData.SetChooseFull(true);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < 16; i++)
@@ -1101,7 +1101,7 @@ void MyFrame::MultiChoice(wxCommandEvent& WXUNUSED(event) )
         else
         {
             msg.Printf(wxT("You selected %u items:\n"), (unsigned)count);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( int n = 0; n < count; n++ )
@@ -1223,7 +1223,7 @@ private:
         // do this but here we just go ahead and reset all columns labels and
         // their order without confirmation
         const unsigned count = m_order.size();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned n = 0; n < count; n++ )
@@ -1311,7 +1311,7 @@ void MyFrame::Rearrange(wxCommandEvent& WXUNUSED(event))
         s_order.reserve(WXSIZEOF(items));
         s_labels.reserve(WXSIZEOF(items));
         s_labelsOrig.reserve(WXSIZEOF(items));
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned n = 0; n < WXSIZEOF(items); n++ )
@@ -1328,7 +1328,7 @@ void MyFrame::Rearrange(wxCommandEvent& WXUNUSED(event))
         return;
 
     wxString columns;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned n = 0; n < s_order.size(); n++ )
@@ -1512,7 +1512,7 @@ void MyFrame::FilesOpen(wxCommandEvent& WXUNUSED(event) )
 
         wxString msg, s;
         size_t count = paths.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < count; n++ )
@@ -1598,7 +1598,7 @@ void MyFrame::FilesOpenGeneric(wxCommandEvent& WXUNUSED(event) )
 
         wxString msg, s;
         size_t count = paths.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < count; n++ )
@@ -2225,7 +2225,7 @@ void MyFrame::ShowProgress( wxCommandEvent& WXUNUSED(event) )
                             );
 
     bool cont = true;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i <= max; i++ )
@@ -2423,7 +2423,7 @@ void MyFrame::ShowBusyInfo(wxCommandEvent& WXUNUSED(event))
 
     wxBusyInfo info(wxT("Working, please wait..."), this);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int i = 0; i < 18; i++ )
@@ -3075,7 +3075,7 @@ bool TestMessageBoxDialog::Create()
     sizerBtns->Add(new wxStaticText(this, wxID_ANY, "Button(s)"));
     sizerBtns->Add(new wxStaticText(this, wxID_ANY, "Custom label"));
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int n = 0; n < Btn_Max; n++ )
@@ -3153,7 +3153,7 @@ bool TestMessageBoxDialog::Create()
 
 void TestMessageBoxDialog::OnUpdateLabelUI(wxUpdateUIEvent& event)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int n = 0; n < Btn_Max; n++ )
@@ -3177,7 +3177,7 @@ long TestMessageBoxDialog::GetStyle()
 {
     long style = 0;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int n = 0; n < Btn_Max; n++ )

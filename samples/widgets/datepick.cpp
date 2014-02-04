@@ -244,7 +244,7 @@ void DatePickerWidgetsPage::CreateDatePicker()
     const wxDateTime value = m_datePicker->GetValue();
 
     size_t count = m_sizerDatePicker->GetChildren().GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )

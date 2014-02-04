@@ -32,7 +32,7 @@ MarkerHandleSet::MarkerHandleSet() {
 
 MarkerHandleSet::~MarkerHandleSet() {
 	MarkerHandleNumber *mhn = root;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (mhn) {
@@ -46,7 +46,7 @@ MarkerHandleSet::~MarkerHandleSet() {
 int MarkerHandleSet::Length() const {
 	int c = 0;
 	MarkerHandleNumber *mhn = root;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (mhn) {
@@ -58,7 +58,7 @@ int MarkerHandleSet::Length() const {
 
 int MarkerHandleSet::NumberFromHandle(int handle) const {
 	MarkerHandleNumber *mhn = root;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (mhn) {
@@ -73,7 +73,7 @@ int MarkerHandleSet::NumberFromHandle(int handle) const {
 int MarkerHandleSet::MarkValue() const {
 	unsigned int m = 0;
 	MarkerHandleNumber *mhn = root;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (mhn) {
@@ -85,7 +85,7 @@ int MarkerHandleSet::MarkValue() const {
 
 bool MarkerHandleSet::Contains(int handle) const {
 	MarkerHandleNumber *mhn = root;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (mhn) {
@@ -110,7 +110,7 @@ bool MarkerHandleSet::InsertHandle(int handle, int markerNum) {
 
 void MarkerHandleSet::RemoveHandle(int handle) {
 	MarkerHandleNumber **pmhn = &root;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (*pmhn) {
@@ -127,7 +127,7 @@ void MarkerHandleSet::RemoveHandle(int handle) {
 bool MarkerHandleSet::RemoveNumber(int markerNum, bool all) {
 	bool performedDeletion = false;
 	MarkerHandleNumber **pmhn = &root;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (*pmhn) {
@@ -147,7 +147,7 @@ bool MarkerHandleSet::RemoveNumber(int markerNum, bool all) {
 
 void MarkerHandleSet::CombineWith(MarkerHandleSet *other) {
 	MarkerHandleNumber **pmhn = &root;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (*pmhn) {
@@ -162,7 +162,7 @@ LineMarkers::~LineMarkers() {
 }
 
 void LineMarkers::Init() {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int line = 0; line < markers.Length(); line++) {
@@ -190,7 +190,7 @@ void LineMarkers::RemoveLine(int line) {
 
 int LineMarkers::LineFromHandle(int markerHandle) {
 	if (markers.Length()) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (int line = 0; line < markers.Length(); line++) {
@@ -225,7 +225,7 @@ int LineMarkers::MarkerNext(int lineStart, int mask) const {
 	if (lineStart < 0)
 		lineStart = 0;
 	int length = markers.Length();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int iLine = lineStart; iLine < length; iLine++) {
@@ -385,7 +385,7 @@ int LineState::GetMaxLineState() {
 static int NumberLines(const char *text) {
 	if (text) {
 		int newLines = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (*text) {
@@ -493,7 +493,7 @@ void LineAnnotation::SetText(int line, const char *text) {
 }
 
 void LineAnnotation::ClearAll() {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int line = 0; line < annotations.Length(); line++) {

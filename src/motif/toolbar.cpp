@@ -280,7 +280,7 @@ bool wxToolBar::Realize()
     wxBitmap bmp, insensBmp;
 
     wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( node )
@@ -507,7 +507,7 @@ bool wxToolBar::DoDeleteTool(size_t WXUNUSED(pos), wxToolBarToolBase *tool)
     int packing = GetToolPacking();
     int offset = 0;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
@@ -652,7 +652,7 @@ void wxToolBar::DoSetSize(int x, int y, int width, int height, int sizeFlags)
 wxToolBarToolBase *wxToolBar::FindToolByWidget(WXWidget w) const
 {
     wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( node )

@@ -42,7 +42,7 @@ static inline bool IsAWordChar(int ch) {
 
 static int tillEndOfTripleQuote(Accessor &styler, int pos, int max) {
   /* search for """ */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (;;) {
@@ -63,7 +63,7 @@ static bool inline isNewLine(int ch) {
 }
 
 static int scanString(Accessor &styler, int pos, int max, bool rawMode) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (;;) {
@@ -80,7 +80,7 @@ static int scanString(Accessor &styler, int pos, int max, bool rawMode) {
 }
 
 static int scanChar(Accessor &styler, int pos, int max) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (;;) {
@@ -101,7 +101,7 @@ static int scanIdent(Accessor &styler, int pos, WordList &keywords) {
   char buf[100]; /* copy to lowercase and ignore underscores */
   int i = 0;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (;;) {
@@ -130,7 +130,7 @@ static int scanNumber(Accessor &styler, int pos) {
   if (ch == '0' && (ch2 == 'b' || ch2 == 'B')) {
     /* binary number: */
     pos += 2;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;) {
@@ -142,7 +142,7 @@ static int scanNumber(Accessor &styler, int pos) {
             (ch2 == 'o' || ch2 == 'O' || ch2 == 'c' || ch2 == 'C')) {
     /* octal number: */
     pos += 2;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;) {
@@ -153,7 +153,7 @@ static int scanNumber(Accessor &styler, int pos) {
   } else if (ch == '0' && (ch2 == 'x' || ch2 == 'X')) {
     /* hexadecimal number: */
     pos += 2;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;) {
@@ -165,7 +165,7 @@ static int scanNumber(Accessor &styler, int pos) {
     }
   } else {
     // skip decimal part:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;) {
@@ -176,7 +176,7 @@ static int scanNumber(Accessor &styler, int pos) {
     ch2 = styler.SafeGetCharAt(pos+1, '\0');
     if (ch == '.' && ch2 >= '0' && ch2 <= '9') {
       ++pos; // skip '.'
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
       for (;;) {
@@ -189,7 +189,7 @@ static int scanNumber(Accessor &styler, int pos) {
       ++pos;
       ch = styler.SafeGetCharAt(pos, '\0');
       if (ch == '-' || ch == '+') ++pos;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
       for (;;) {
@@ -202,7 +202,7 @@ static int scanNumber(Accessor &styler, int pos) {
   if (ch == '\'') {
     /* a type suffix: */
     pos++;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;) {
@@ -239,7 +239,7 @@ static void ColouriseNimrodDoc(unsigned int startPos, int length, int initStyle,
     default: /* nothing to do: */
     break;
   }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (pos < max) {
@@ -248,7 +248,7 @@ static void ColouriseNimrodDoc(unsigned int startPos, int length, int initStyle,
       case '\0': return;
       case '#': {
         bool doccomment = (styler.SafeGetCharAt(pos+1) == '#');
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (pos < max && !isNewLine(styler.SafeGetCharAt(pos, LF))) pos++;
@@ -288,7 +288,7 @@ static void ColouriseNimrodDoc(unsigned int startPos, int length, int initStyle,
           pos = scanIdent(styler, pos, keywords);
         } else if (ch == '`') {
           pos++;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
           while (pos < max) {
@@ -316,7 +316,7 @@ static void ColouriseNimrodDoc(unsigned int startPos, int length, int initStyle,
 static bool IsCommentLine(int line, Accessor &styler) {
 	int pos = styler.LineStart(line);
 	int eol_pos = styler.LineStart(line + 1) - 1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = pos; i < eol_pos; i++) {
@@ -351,7 +351,7 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 	int spaceFlags = 0;
 	int lineCurrent = styler.GetLine(startPos);
 	int indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, NULL);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (lineCurrent > 0) {
@@ -378,7 +378,7 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 	// Process all characters to end of requested range or end of any triple quote
 	// or comment that hangs over the end of the range.  Cap processing in all cases
 	// to end of document (in case of unclosed quote or comment at end).
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) ||
@@ -428,7 +428,7 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 		// which effectively folds them into surrounding code rather
 		// than screwing up folding.
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (!quote &&
@@ -452,7 +452,7 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 		int skipLine = lineNext;
 		int skipLevel = levelAfterComments;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while (--skipLine > lineCurrent) {

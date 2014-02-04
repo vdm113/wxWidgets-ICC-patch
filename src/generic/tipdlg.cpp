@@ -168,7 +168,7 @@ wxString wxFileTipProvider::GetTip()
     // The max number of loop executions is the number of lines in the
     // textfile so that can't go into an infinite loop in the [oddball]
     // case of a comment-only tips file.
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i=0; i < count; i++ )

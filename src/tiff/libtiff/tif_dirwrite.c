@@ -252,7 +252,7 @@ TIFFRewriteDirectory( TIFF *tif )
 		{
 			uint32 nextdir;
 			nextdir = tif->tif_header.classic.tiff_diroff;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			while(1) {
@@ -313,7 +313,7 @@ TIFFRewriteDirectory( TIFF *tif )
 		{
 			uint64 nextdir;
 			nextdir = tif->tif_header.big.tiff_diroff;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			while(1) {
@@ -434,7 +434,7 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 	dir=NULL;
 	dirmem=NULL;
 	dirsize=0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (1)
@@ -644,7 +644,7 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 			}
 			{
 				uint32 n;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				for (n=0; n<tif->tif_nfields; n++) {
@@ -709,7 +709,7 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 				}
 			}
 		}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (m=0; m<(uint32)(tif->tif_dir.td_customValueCount); m++)
@@ -825,7 +825,7 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 		{
 			uint32 na;
 			TIFFDirEntry* nb;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 			for (na=0, nb=dir; ; na++, nb++)
@@ -857,7 +857,7 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 			TIFFSwabShort((uint16*)n);
 		n+=2;
 		o=dir;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (m=0; m<ndir; m++)
@@ -896,7 +896,7 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 			TIFFSwabLong8((uint64*)n);
 		n+=8;
 		o=dir;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (m=0; m<ndir; m++)
@@ -974,7 +974,7 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 		case SAMPLEFORMAT_IEEEFP:
 			if (tif->tif_dir.td_bitspersample<=32)
 			{
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				for (i = 0; i < count; ++i)
@@ -989,7 +989,7 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 		case SAMPLEFORMAT_INT:
 			if (tif->tif_dir.td_bitspersample<=8)
 			{
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				for (i = 0; i < count; ++i)
@@ -998,7 +998,7 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 			}
 			else if (tif->tif_dir.td_bitspersample<=16)
 			{
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				for (i = 0; i < count; ++i)
@@ -1007,7 +1007,7 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 			}
 			else
 			{
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				for (i = 0; i < count; ++i)
@@ -1018,7 +1018,7 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 		case SAMPLEFORMAT_UINT:
 			if (tif->tif_dir.td_bitspersample<=8)
 			{
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				for (i = 0; i < count; ++i)
@@ -1027,7 +1027,7 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 			}
 			else if (tif->tif_dir.td_bitspersample<=16)
 			{
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				for (i = 0; i < count; ++i)
@@ -1036,7 +1036,7 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 			}
 			else
 			{
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				for (i = 0; i < count; ++i)
@@ -1149,7 +1149,7 @@ TIFFWriteDirectoryTagBytePerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, u
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
@@ -1204,7 +1204,7 @@ TIFFWriteDirectoryTagSbytePerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, 
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
@@ -1256,7 +1256,7 @@ TIFFWriteDirectoryTagShortPerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, 
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
@@ -1310,7 +1310,7 @@ TIFFWriteDirectoryTagSshortPerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir,
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
@@ -1363,7 +1363,7 @@ TIFFWriteDirectoryTagLongPerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, u
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
@@ -1418,7 +1418,7 @@ TIFFWriteDirectoryTagSlongPerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, 
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
@@ -1551,7 +1551,7 @@ static int TIFFWriteDirectoryTagFloatPerSample(TIFF* tif, uint32* ndir, TIFFDirE
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
@@ -1603,7 +1603,7 @@ static int TIFFWriteDirectoryTagDoublePerSample(TIFF* tif, uint32* ndir, TIFFDir
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
@@ -1693,7 +1693,7 @@ TIFFWriteDirectoryTagLongLong8Array(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, 
         return(0);
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (q=p, ma=value, mb=0; mb<count; ma++, mb++, q++)
@@ -1754,7 +1754,7 @@ TIFFWriteDirectoryTagIfdIfd8Array(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, ui
         return(0);
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (q=p, ma=value, mb=0; mb<count; ma++, mb++, q++)
@@ -1790,7 +1790,7 @@ TIFFWriteDirectoryTagShortLongLong8Array(TIFF* tif, uint32* ndir, TIFFDirEntry* 
 		return(1);
 	}
 	n=0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (ma=value, mb=0; mb<count; ma++, mb++)
@@ -1813,7 +1813,7 @@ TIFFWriteDirectoryTagShortLongLong8Array(TIFF* tif, uint32* ndir, TIFFDirEntry* 
 			TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 			return(0);
 		}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (ma=value, mb=0, q=p; mb<count; ma++, mb++, q++)
@@ -1831,7 +1831,7 @@ TIFFWriteDirectoryTagShortLongLong8Array(TIFF* tif, uint32* ndir, TIFFDirEntry* 
 			TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 			return(0);
 		}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (ma=value, mb=0, q=p; mb<count; ma++, mb++, q++)
@@ -1953,7 +1953,7 @@ TIFFWriteDirectoryTagSubifd(TIFF* tif, uint32* ndir, TIFFDirEntry* dir)
 		}
 		pa=tif->tif_dir.td_subifd;
 		pb=o;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (p=0; p < tif->tif_dir.td_nsubifd; p++)
@@ -2220,7 +2220,7 @@ TIFFWriteDirectoryTagCheckedRationalArray(TIFF* tif, uint32* ndir, TIFFDirEntry*
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (na=value, nb=m, nc=0; nc<count; na++, nb+=2, nc++)
@@ -2269,7 +2269,7 @@ TIFFWriteDirectoryTagCheckedSrationalArray(TIFF* tif, uint32* ndir, TIFFDirEntry
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (na=value, nb=m, nc=0; nc<count; na++, nb+=2, nc++)
@@ -2395,7 +2395,7 @@ TIFFWriteDirectoryTagData(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, uint16 tag
 	static const char module[] = "TIFFWriteDirectoryTagData";
 	uint32 m;
 	m=0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (m<(*ndir))
@@ -2408,7 +2408,7 @@ TIFFWriteDirectoryTagData(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, uint16 tag
 	if (m<(*ndir))
 	{
 		uint32 n;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		for (n=*ndir; n>m; n--)
@@ -2552,7 +2552,7 @@ TIFFLinkDirectory(TIFF* tif)
 		 * Not the first directory, search to the last and append.
 		 */
 		nextdir = tif->tif_header.classic.tiff_diroff;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while(1) {
@@ -2614,7 +2614,7 @@ TIFFLinkDirectory(TIFF* tif)
 		 * Not the first directory, search to the last and append.
 		 */
 		nextdir = tif->tif_header.big.tiff_diroff;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 		while(1) {
@@ -2758,7 +2758,7 @@ _TIFFRewriteField(TIFF* tif, uint16 tag, TIFFDataType in_datatype,
 /* -------------------------------------------------------------------- */
 /*      Read through directory to find target tag.                      */
 /* -------------------------------------------------------------------- */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while( dircount > 0 )
@@ -2853,7 +2853,7 @@ _TIFFRewriteField(TIFF* tif, uint16 tag, TIFFDataType in_datatype,
     {
 	tmsize_t i;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for( i = 0; i < count; i++ )
@@ -2874,7 +2874,7 @@ _TIFFRewriteField(TIFF* tif, uint16 tag, TIFFDataType in_datatype,
     {
 	tmsize_t i;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for( i = 0; i < count; i++ )

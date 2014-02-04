@@ -78,7 +78,7 @@ private:
 public:
     wxHtmlListBoxCache()
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < SIZE; n++ )
@@ -92,7 +92,7 @@ public:
 
     ~wxHtmlListBoxCache()
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < SIZE; n++ )
@@ -104,7 +104,7 @@ public:
     // completely invalidate the cache
     void Clear()
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < SIZE; n++ )
@@ -116,7 +116,7 @@ public:
     // return the cached cell for this index or NULL if none
     wxHtmlCell *Get(size_t item) const
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < SIZE; n++ )
@@ -146,7 +146,7 @@ public:
     // forget the cached value of the item(s) between the given ones (inclusive)
     void InvalidateRange(size_t from, size_t to)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < SIZE; n++ )
@@ -702,7 +702,7 @@ int wxSimpleHtmlListBox::DoInsertItems(const wxArrayStringsAdapter& items,
     m_items.Insert(wxEmptyString, pos, count);
     m_HTMLclientData.Insert(NULL, pos, count);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int i = 0; i < count; ++i, ++pos )

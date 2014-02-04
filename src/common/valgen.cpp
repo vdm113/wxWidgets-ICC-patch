@@ -378,7 +378,7 @@ bool wxGenericValidator::TransferToWindow(void)
             // clear all selections
             size_t i,
                    count = pControl->GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i = 0 ; i < count; i++ )
@@ -386,7 +386,7 @@ bool wxGenericValidator::TransferToWindow(void)
 
             // select each item in our array
             count = m_pArrayInt->GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i = 0 ; i < count; i++ )
@@ -407,7 +407,7 @@ bool wxGenericValidator::TransferToWindow(void)
             // clear all selections
             size_t i,
                    count = pControl->GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i = 0 ; i < count; i++ )
@@ -415,7 +415,7 @@ bool wxGenericValidator::TransferToWindow(void)
 
             // select each item in our array
             count = m_pArrayInt->GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i = 0 ; i < count; i++ )
@@ -669,7 +669,7 @@ bool wxGenericValidator::TransferFromWindow(void)
             // add each selected item to our array
             size_t i,
                    count = pControl->GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i = 0; i < count; i++ )
@@ -696,7 +696,7 @@ bool wxGenericValidator::TransferFromWindow(void)
             // add each selected item to our array
             size_t i,
                    count = pControl->GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i = 0; i < count; i++ )

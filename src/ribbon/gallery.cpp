@@ -179,7 +179,7 @@ void wxRibbonGallery::OnMouseMove(wxMouseEvent& evt)
 
         size_t item_count = m_items.Count();
         size_t item_i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for(item_i = 0; item_i < item_count; ++item_i)
@@ -280,7 +280,7 @@ void wxRibbonGallery::OnMouseDown(wxMouseEvent& evt)
             pos.y += m_scroll_amount;
         size_t item_count = m_items.Count();
         size_t item_i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for(item_i = 0; item_i < item_count; ++item_i)
@@ -526,7 +526,7 @@ void wxRibbonGallery::OnPaint(wxPaintEvent& WXUNUSED(evt))
         offset_vertical = false;
     size_t item_count = m_items.Count();
     size_t item_i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for(item_i = 0; item_i < item_count; ++item_i)
@@ -592,7 +592,7 @@ void wxRibbonGallery::Clear()
 {
     size_t item_count = m_items.Count();
     size_t item_i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for(item_i = 0; item_i < item_count; ++item_i)
@@ -657,7 +657,7 @@ bool wxRibbonGallery::Layout()
     size_t item_count = m_items.Count();
     size_t item_i;
     long art_flags = m_art->GetFlags();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for(item_i = 0; item_i < item_count; ++item_i)
@@ -691,7 +691,7 @@ bool wxRibbonGallery::Layout()
             x_cursor += m_bitmap_padded_size.x;
         }
     }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for(; item_i < item_count; ++item_i)

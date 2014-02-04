@@ -70,7 +70,7 @@ safe_read(png_structp png_ptr, int fd, void *buffer_in, size_t nbytes)
    size_t ntotal = 0;
    char *buffer = png_voidcast(char*, buffer_in);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
    while (nbytes > 0)
@@ -138,7 +138,7 @@ png_have_neon(png_structp png_ptr)
       return 0;
    }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
    while (safe_read(png_ptr, fd, &aux, sizeof aux) == sizeof aux)

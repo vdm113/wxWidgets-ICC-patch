@@ -64,7 +64,7 @@ public:
 
     void Clear()
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( unsigned n = 0; n < WXSIZEOF(m_logs); n++ )

@@ -76,7 +76,7 @@ static int wxCopyStrWithPercents(
         return 0;
 
     size_t i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < maxIn-1 && written < maxOut; source++, i++)
@@ -129,7 +129,7 @@ static int wxDoVsnprintf(CharType *buf, size_t lenMax,
     wxVaCopy(ap, argptr);
 
     // now load arguments from stack
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i=0; i < parser.nargs && ok; i++)
@@ -152,7 +152,7 @@ static int wxDoVsnprintf(CharType *buf, size_t lenMax,
 
     // finally, process each conversion specifier with its own argument
     const CharType *toparse = format;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i=0; i < parser.nargs; i++)

@@ -65,7 +65,7 @@ initial_setup (j_decompress_ptr cinfo)
   /* Compute maximum sampling factors; check factor validity */
   cinfo->max_h_samp_factor = 1;
   cinfo->max_v_samp_factor = 1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -86,7 +86,7 @@ initial_setup (j_decompress_ptr cinfo)
   cinfo->min_DCT_scaled_size = DCTSIZE;
 
   /* Compute dimensions of components */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -180,7 +180,7 @@ per_scan_setup (j_decompress_ptr cinfo)
 
     cinfo->blocks_in_MCU = 0;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
@@ -201,7 +201,7 @@ per_scan_setup (j_decompress_ptr cinfo)
       mcublks = compptr->MCU_blocks;
       if (cinfo->blocks_in_MCU + mcublks > D_MAX_BLOCKS_IN_MCU)
 	ERREXIT(cinfo, JERR_BAD_MCU_SIZE);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
       while (mcublks-- > 0) {
@@ -241,7 +241,7 @@ latch_quant_tables (j_decompress_ptr cinfo)
   jpeg_component_info *compptr;
   JQUANT_TBL * qtbl;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {

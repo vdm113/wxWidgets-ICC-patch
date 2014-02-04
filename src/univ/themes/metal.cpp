@@ -200,7 +200,7 @@ wxMetalRenderer::wxMetalRenderer(wxRenderer *renderer, wxColourScheme *scheme)
     wxMemoryDC dcNormal,
                dcDisabled,
                dcInverse;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < Arrow_Max; n++ )
@@ -254,7 +254,7 @@ wxMetalRenderer::wxMetalRenderer(wxRenderer *renderer, wxColourScheme *scheme)
         else
             y2++;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < ARROW_LENGTH; i++ )
@@ -549,7 +549,7 @@ void wxMetalRenderer::DrawArrow(wxDC& dc,
 void wxMetalRenderer::DrawMetal(wxDC &dc, const wxRect &rect )
 {
     dc.SetPen(*wxTRANSPARENT_PEN);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int y = rect.y; y < rect.height+rect.y; y++)

@@ -124,7 +124,7 @@ void FontTestCase::GetSet()
 {
     unsigned numFonts;
     const wxFont *pf = GetTestFonts(numFonts);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned n = 0; n < numFonts; n++ )
@@ -234,7 +234,7 @@ void FontTestCase::NativeFontInfo()
 {
     unsigned numFonts;
     const wxFont *pf = GetTestFonts(numFonts);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < numFonts; n++ )
@@ -291,7 +291,7 @@ void FontTestCase::NativeFontInfoUserDesc()
 {
     unsigned numFonts;
     const wxFont *pf = GetTestFonts(numFonts);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < numFonts; n++ )

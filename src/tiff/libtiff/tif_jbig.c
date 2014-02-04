@@ -123,7 +123,7 @@ static int JBIGSetupEncode(TIFF* tif)
 static int JBIGCopyEncodedData(TIFF* tif, unsigned char* pp, size_t cc, uint16 s)
 {
 	(void) s;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (cc > 0)

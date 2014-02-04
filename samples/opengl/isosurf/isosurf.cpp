@@ -218,7 +218,7 @@ void TestGLCanvas::LoadSurface(const wxString& filename)
         wxTextInputStream inFile(*stream);
         m_numverts = 0;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (!stream->Eof() && m_numverts < MAXVERTS)// && m_numverts<MAXVERTS)
@@ -267,7 +267,7 @@ void TestGLCanvas::OnPaint( wxPaintEvent& WXUNUSED(event) )
     {
         glBegin( GL_TRIANGLE_STRIP );
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i=0;i<m_numverts;i++)

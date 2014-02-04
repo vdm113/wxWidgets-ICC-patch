@@ -169,14 +169,14 @@ bool wxMask::Create( const wxBitmap& bitmap,
 
     int width = image.GetWidth();
     int height = image.GetHeight();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int j = 0; j < height; j++)
     {
         int start_x = -1;
         int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < width; i++)
@@ -534,12 +534,12 @@ bool wxBitmap::CreateFromImage( const wxImage& image, int depth )
     GR_COLOR lastMaskColour = 0;
 
     int i, j;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < w; i++)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 0; j < h; j++)
@@ -688,12 +688,12 @@ bool wxBitmap::CreateFromImage( const wxImage& image, int depth )
             wxTheApp->GetVisualInfo(M_BMPDATA->m_display)->m_colorCube;
 
         int index = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int y = 0; y < height; y++)
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (int x = 0; x < width; x++)
@@ -905,12 +905,12 @@ wxImage wxBitmap::ConvertToImage() const
     int width = GetWidth();
     int height = GetHeight();
     long pos = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int j = 0; j < height; j++)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < width; i++)
@@ -1234,7 +1234,7 @@ bool wxGetImageFromDrawable(GR_DRAW_ID drawable, int srcX, int srcY, int width, 
             pixels);
 
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for(x = 0; x < sinfo.cols; x++) {

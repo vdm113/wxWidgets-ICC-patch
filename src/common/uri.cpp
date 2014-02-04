@@ -127,7 +127,7 @@ wxString wxURI::Unescape(const wxString& uri)
     wxCharBuffer buf(uri.length());
     char *p = buf.data();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxString::const_iterator i = uri.begin(); i != uri.end(); ++i, ++p )
@@ -358,7 +358,7 @@ const char* wxURI::ParseScheme(const char *uri)
         m_scheme += *uri++;
 
         //scheme        = ALPHA *( ALPHA / DIGIT / "+" / "-" / "." )
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (IsAlpha(*uri) || IsDigit(*uri) ||
@@ -416,7 +416,7 @@ const char* wxURI::ParseUserInfo(const char* uri)
     const char * const start = uri;
 
     // userinfo      = *( unreserved / pct-encoded / sub-delims / ":" )
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( *uri && *uri != '@' && *uri != '/' && *uri != '#' && *uri != '?' )
@@ -492,7 +492,7 @@ const char* wxURI::ParseServer(const char* uri)
     {
         uri = start;
         // reg-name      = *( unreserved / pct-encoded / sub-delims )
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while ( *uri && *uri != '/' && *uri != ':' && *uri != '#' && *uri != '?' )
@@ -516,7 +516,7 @@ const char* wxURI::ParsePort(const char* uri)
     if( *uri == ':' )
     {
         ++uri;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while ( IsDigit(*uri) )
@@ -564,7 +564,7 @@ const char* wxURI::ParsePath(const char* uri)
 
     wxArrayString segments;
     wxString segment;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )
@@ -619,7 +619,7 @@ const char* wxURI::ParseQuery(const char* uri)
     if ( *uri == '?' )
     {
         ++uri;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while ( *uri && *uri != '#' )
@@ -644,7 +644,7 @@ const char* wxURI::ParseFragment(const char* uri)
     if ( *uri == '#' )
     {
         ++uri;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while ( *uri )
@@ -782,7 +782,7 @@ void wxURI::Resolve(const wxURI& base, int flags)
         }
 
         const wxArrayString::const_iterator end = our.end();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxArrayString::const_iterator i = our.begin(); i != end; ++i )
@@ -886,7 +886,7 @@ bool wxURI::ParseIPv4address(const char*& uri)
         if(IsDigit(*uri))++uri;
 
         //compilers should unroll this loop
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for(; iIPv4 < 4; ++iIPv4)
@@ -930,7 +930,7 @@ bool wxURI::ParseIPv6address(const char*& uri)
 
     bool bEndHex = false;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for( ; numPrefix < 6; ++numPrefix)
@@ -972,7 +972,7 @@ bool wxURI::ParseIPv6address(const char*& uri)
             if (numPrefix != 6)
                 return false;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (*--uri != ':') {}
@@ -1004,7 +1004,7 @@ bool wxURI::ParseIPv6address(const char*& uri)
 
     bool bAllowAltEnding = maxPostfix == 0;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for(; maxPostfix != 0; --maxPostfix)
@@ -1044,7 +1044,7 @@ bool wxURI::ParseIPvFuture(const char*& uri)
     if (*++uri != 'v' || !IsHex(*++uri))
         return false;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (IsHex(*++uri))
@@ -1053,7 +1053,7 @@ bool wxURI::ParseIPvFuture(const char*& uri)
     if (*uri != '.' || !(IsUnreserved(*++uri) || IsSubDelim(*uri) || *uri == ':'))
         return false;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while(IsUnreserved(*++uri) || IsSubDelim(*uri) || *uri == ':') {}

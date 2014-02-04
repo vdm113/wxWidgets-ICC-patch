@@ -119,7 +119,7 @@ void* wxJoystickThread::Entry()
     struct timeval time_out = {0, 0};
 
     wxFD_ZERO(&read_fds);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (true)
@@ -337,7 +337,7 @@ int wxJoystick::GetNumberJoysticks()
     wxString dev_name;
     int fd, j;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (j=0; j<4; j++) {
@@ -349,7 +349,7 @@ int wxJoystick::GetNumberJoysticks()
     }
 
     if (j == 0) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (j=0; j<4; j++) {

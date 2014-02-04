@@ -57,7 +57,7 @@ static void ColouriseBaanDoc(unsigned int startPos, int length, int initStyle, W
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward()) {
@@ -95,7 +95,7 @@ static void ColouriseBaanDoc(unsigned int startPos, int length, int initStyle, W
 			}
 		} else if (sc.state == SCE_BAAN_COMMENTDOC) {
 			if (sc.MatchIgnoreCase("enddllusage")) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				for (unsigned int i = 0; i < 10; i++){
@@ -118,7 +118,7 @@ static void ColouriseBaanDoc(unsigned int startPos, int length, int initStyle, W
 				sc.SetState(SCE_BAAN_NUMBER);
 			} else if (sc.MatchIgnoreCase("dllusage")){
 					sc.SetState(SCE_BAAN_COMMENTDOC);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 					do {
@@ -134,7 +134,7 @@ static void ColouriseBaanDoc(unsigned int startPos, int length, int initStyle, W
 				// Preprocessor commands are alone on their line
 				sc.SetState(SCE_BAAN_PREPROCESSOR);
 				// Skip whitespace between # and preprocessor word
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				do {
@@ -168,7 +168,7 @@ static void FoldBaanDoc(unsigned int startPos, int length, int initStyle, WordLi
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
 	int style = initStyle;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {

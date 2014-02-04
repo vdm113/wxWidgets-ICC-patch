@@ -958,7 +958,7 @@ void GridFrame::DeleteSelectedRows( wxCommandEvent& WXUNUSED(ev) )
     if ( grid->IsSelection() )
     {
         wxGridUpdateLocker locker(grid);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int n = 0; n < grid->GetNumberRows(); )
@@ -976,7 +976,7 @@ void GridFrame::AutoSizeRow(wxCommandEvent& WXUNUSED(event))
 {
     wxGridUpdateLocker locker(grid);
     const wxArrayInt sels  = grid->GetSelectedRows();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0, count = sels.size(); n < count; n++ )
@@ -989,7 +989,7 @@ void GridFrame::AutoSizeCol(wxCommandEvent& WXUNUSED(event))
 {
     wxGridUpdateLocker locker(grid);
     const wxArrayInt sels  = grid->GetSelectedCols();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0, count = sels.size(); n < count; n++ )
@@ -1002,7 +1002,7 @@ void GridFrame::AutoSizeRowLabel(wxCommandEvent& WXUNUSED(event))
 {
     wxGridUpdateLocker locker(grid);
     const wxArrayInt sels  = grid->GetSelectedRows();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0, count = sels.size(); n < count; n++ )
@@ -1015,7 +1015,7 @@ void GridFrame::AutoSizeColLabel(wxCommandEvent& WXUNUSED(event))
 {
     wxGridUpdateLocker locker(grid);
     const wxArrayInt sels  = grid->GetSelectedCols();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0, count = sels.size(); n < count; n++ )
@@ -1046,7 +1046,7 @@ void GridFrame::DeleteSelectedCols( wxCommandEvent& WXUNUSED(ev) )
     if ( grid->IsSelection() )
     {
         wxGridUpdateLocker locker(grid);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int n = 0; n < grid->GetNumberCols(); )
@@ -1639,7 +1639,7 @@ void BugsGridTable::SetValue( int row, int col, const wxString& value )
         case Col_Severity:
             {
                 size_t n;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for ( n = 0; n < WXSIZEOF(severities); n++ )
@@ -2061,7 +2061,7 @@ private:
     void UpdateOrderAndVisibility()
     {
         wxString s;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( int pos = 0; pos < TabularGridTable::COL_MAX; pos++ )
@@ -2287,7 +2287,7 @@ void GridFrame::OnGridRender( wxCommandEvent& event )
     // sum col widths
     wxSize sizeRender( 0, 0 );
     wxGridSizesInfo sizeinfo = grid->GetColSizes();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = topLeft.GetCol(); i <= bottomRight.GetCol(); i++ )
@@ -2297,7 +2297,7 @@ void GridFrame::OnGridRender( wxCommandEvent& event )
 
     // sum row heights
     sizeinfo = grid->GetRowSizes();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = topLeft.GetRow(); i <= bottomRight.GetRow(); i++ )

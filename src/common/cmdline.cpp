@@ -434,7 +434,7 @@ void wxCmdLineParserData::SetArguments(int argc, char **argv)
     char * const locOld = SetAllLocaleFacets("");
     wxON_BLOCK_EXIT1( SetAllLocaleFacets, locOld );
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int n = 0; n < argc; n++ )
@@ -457,7 +457,7 @@ void wxCmdLineParserData::SetArguments(int argc, wxChar **argv)
 {
     m_arguments.clear();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( int n = 0; n < argc; n++ )
@@ -493,7 +493,7 @@ int wxCmdLineParserData::FindOption(const wxString& name)
     if ( !name.empty() )
     {
         size_t count = m_options.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < count; n++ )
@@ -512,7 +512,7 @@ int wxCmdLineParserData::FindOption(const wxString& name)
 int wxCmdLineParserData::FindOptionByLongName(const wxString& name)
 {
     size_t count = m_options.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < count; n++ )
@@ -595,7 +595,7 @@ void wxCmdLineParser::SetLogo(const wxString& logo)
 
 void wxCmdLineParser::SetDesc(const wxCmdLineEntryDesc *desc)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; desc++ )
@@ -819,7 +819,7 @@ wxString wxCmdLineParser::GetParam(size_t n) const
 // Resets switches and options
 void wxCmdLineParser::Reset()
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < m_data->m_options.GetCount(); i++ )
@@ -852,7 +852,7 @@ int wxCmdLineParser::Parse(bool showUsage)
     // parse everything
     wxString arg;
     size_t count = m_data->m_arguments.size();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 1; ok && (n < count); n++ )    // 0 is program name
@@ -964,7 +964,7 @@ int wxCmdLineParser::Parse(bool showUsage)
                 name = GetShortOptionName(p, arg.end());
 
                 size_t len = name.length();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 do
@@ -986,7 +986,7 @@ int wxCmdLineParser::Parse(bool showUsage)
                         len--;
                     }
                 }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 while ( optInd == wxNOT_FOUND );
@@ -1232,7 +1232,7 @@ int wxCmdLineParser::Parse(bool showUsage)
     if ( ok )
     {
         size_t countOpt = m_data->m_options.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; ok && (n < countOpt); n++ )
@@ -1268,7 +1268,7 @@ int wxCmdLineParser::Parse(bool showUsage)
             }
         }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( ; ok && (currentParam < countParam); currentParam++ )
@@ -1366,7 +1366,7 @@ wxString wxCmdLineParser::GetUsageString() const
 
     bool areLongOptionsEnabled = AreLongOptionsEnabled();
     size_t n, count = m_data->m_options.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < count; n++ )
@@ -1436,7 +1436,7 @@ wxString wxCmdLineParser::GetUsageString() const
     }
 
     count = m_data->m_paramDesc.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < count; n++ )
@@ -1475,7 +1475,7 @@ wxString wxCmdLineParser::GetUsageString() const
 
     // now construct the detailed help message
     size_t len, lenMax = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < namesOptions.size(); n++ )
@@ -1485,7 +1485,7 @@ wxString wxCmdLineParser::GetUsageString() const
             lenMax = len;
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( n = 0; n < namesOptions.size(); n++ )
@@ -1559,7 +1559,7 @@ static wxString GetOptionName(wxString::const_iterator p,
 {
     wxString argName;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( p != end && (wxIsalnum(*p) || wxStrchr(allowedChars, *p)) )
@@ -1636,13 +1636,13 @@ wxCmdLineParser::ConvertStringToArgs(const wxString& cmdline,
     const wxString::const_iterator end = cmdline.end();
     wxString::const_iterator p = cmdline.begin();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ;; )
     {
         // skip white space
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while ( p != end && (*p == ' ' || *p == '\t') )
@@ -1656,7 +1656,7 @@ wxCmdLineParser::ConvertStringToArgs(const wxString& cmdline,
         bool lastBS = false,
              isInsideQuotes = false;
         wxChar chDelim = '\0';
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( arg.clear(); p != end; ++p )

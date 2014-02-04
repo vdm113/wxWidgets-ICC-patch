@@ -107,11 +107,11 @@ bool MyApp::OnInit(void)
     wxImage image( wxT("test.jpg") );
     image.SetAlpha();
     int i,j;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < image.GetWidth(); i++)
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
        for (j = 0; j < image.GetHeight(); j++)
@@ -714,7 +714,7 @@ void MyPrintout::DrawPageTwo()
 
         dc->SetFont(wxFontInfo(15).Family(wxFONTFAMILY_SWISS));
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < 7; i++)

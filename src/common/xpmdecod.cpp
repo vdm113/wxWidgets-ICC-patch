@@ -150,7 +150,7 @@ wxImage wxXPMDecoder::ReadFile(wxInputStream& stream)
      *  Remove comments from the file:
      */
     char *p, *q;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (p = xpm_buffer; *p != '\0'; p++)
@@ -159,7 +159,7 @@ wxImage wxXPMDecoder::ReadFile(wxInputStream& stream)
         {
             if (*p == '"')
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
               for (p++; *p != '\0'; p++)
@@ -168,7 +168,7 @@ wxImage wxXPMDecoder::ReadFile(wxInputStream& stream)
             }
             else // *p == '\''
             {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (p++; *p != '\0'; p++)
@@ -181,7 +181,7 @@ wxImage wxXPMDecoder::ReadFile(wxInputStream& stream)
         }
         if ( (*p != '/') || (*(p + 1) != '*') )
             continue;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (q = p + 2; *q != '\0'; q++)
@@ -199,14 +199,14 @@ wxImage wxXPMDecoder::ReadFile(wxInputStream& stream)
      *  Remove unquoted characters:
      */
     size_t i = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (p = xpm_buffer; *p != '\0'; p++)
     {
         if ( *p != '"' )
             continue;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (q = p + 1; *q != '\0'; q++)
@@ -226,7 +226,7 @@ wxImage wxXPMDecoder::ReadFile(wxInputStream& stream)
     size_t lines_cnt = 0;
     size_t line;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (p = xpm_buffer; *p != '\0'; p++)
@@ -244,7 +244,7 @@ wxImage wxXPMDecoder::ReadFile(wxInputStream& stream)
     xpm_lines = new const char*[lines_cnt + 1];
     xpm_lines[0] = xpm_buffer;
     line = 1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (p = xpm_buffer; (*p != '\0') && (line < lines_cnt); p++)
@@ -581,12 +581,12 @@ static bool GetRGBFromName(const char *inname, bool *isNone,
     // lot of gray...
 
     // so first extract ' '
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ((p = strchr(name, ' ')) != NULL)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (*(p))            // till eof of string
@@ -597,7 +597,7 @@ static bool GetRGBFromName(const char *inname, bool *isNone,
     }
     // fold to lower case
     p = name;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (*p)
@@ -625,7 +625,7 @@ static bool GetRGBFromName(const char *inname, bool *isNone,
         // binary search:
         left = 0;
         right = numTheRGBRecords - 1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         do
@@ -667,13 +667,13 @@ static const char *ParseColor(const char *data)
     const char *q;
     int i;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; targets[i] != NULL; i++)
     {
         r = data;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (q = targets[i]; *r != '\0'; r++)
@@ -683,7 +683,7 @@ static const char *ParseColor(const char *data)
             if ( !isspace((int) (*(r - 1))) )
                 continue;
             p = r;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (;;)
@@ -747,7 +747,7 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
      *  Create colour map:
      */
     wxXPMColourMapData clr_data;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < colors_cnt; i++)
@@ -762,7 +762,7 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
             return wxNullImage;
         }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i_key = 0; i_key < chars_per_pixel; i_key++)
@@ -800,7 +800,7 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
         long rgb;
         const size_t n = clr_tbl.size();
         wxXPMColourMap::const_iterator iter = clr_tbl.begin();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < n; ++i, ++iter)
@@ -809,7 +809,7 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
             rgb = (data.R << 16) + (data.G << 8) + data.B;
             rgb_table[rgb];
         }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (rgb = 0; rgb <= 0xffffff && rgb_table.count(rgb); ++rgb)
@@ -836,12 +836,12 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
     wxXPMColourMap::iterator entry;
     wxXPMColourMap::iterator end = clr_tbl.end();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (j = 0; j < height; j++)
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < width; i++, img_data += 3)
@@ -854,7 +854,7 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
                 return wxNullImage;
             }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for (i_key = 0; i_key < chars_per_pixel; i_key++)
@@ -885,7 +885,7 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
     unsigned char* g = new unsigned char[colors_cnt];
     unsigned char* b = new unsigned char[colors_cnt];
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (it = clr_tbl.begin(), i = 0; it != clr_tbl.end(); it++, i++)

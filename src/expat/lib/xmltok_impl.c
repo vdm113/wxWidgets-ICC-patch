@@ -106,7 +106,7 @@ PREFIX(scanComment)(const ENCODING *enc, const char *ptr,
       return XML_TOK_INVALID;
     }
     ptr += MINBPC(enc);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (ptr != end) {
@@ -157,7 +157,7 @@ PREFIX(scanDecl)(const ENCODING *enc, const char *ptr,
     *nextTokPtr = ptr;
     return XML_TOK_INVALID;
   }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (ptr != end) {
@@ -246,7 +246,7 @@ PREFIX(scanPi)(const ENCODING *enc, const char *ptr,
     *nextTokPtr = ptr;
     return XML_TOK_INVALID;
   }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (ptr != end) {
@@ -258,7 +258,7 @@ PREFIX(scanPi)(const ENCODING *enc, const char *ptr,
         return XML_TOK_INVALID;
       }
       ptr += MINBPC(enc);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
       while (ptr != end) {
@@ -310,7 +310,7 @@ PREFIX(scanCdataSection)(const ENCODING *enc, const char *ptr,
   /* CDATA[ */
   if (end - ptr < 6 * MINBPC(enc))
     return XML_TOK_PARTIAL;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < 6; i++, ptr += MINBPC(enc)) {
@@ -370,7 +370,7 @@ PREFIX(cdataSectionTok)(const ENCODING *enc, const char *ptr,
     ptr += MINBPC(enc);
     break;
   }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (ptr != end) {
@@ -416,14 +416,14 @@ PREFIX(scanEndTag)(const ENCODING *enc, const char *ptr,
     *nextTokPtr = ptr;
     return XML_TOK_INVALID;
   }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
     CHECK_NAME_CASES(enc, ptr, end, nextTokPtr)
     case BT_S: case BT_CR: case BT_LF:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
       for (ptr += MINBPC(enc); ptr != end; ptr += MINBPC(enc)) {
@@ -472,7 +472,7 @@ PREFIX(scanHexCharRef)(const ENCODING *enc, const char *ptr,
       *nextTokPtr = ptr;
       return XML_TOK_INVALID;
     }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (ptr += MINBPC(enc); ptr != end; ptr += MINBPC(enc)) {
@@ -508,7 +508,7 @@ PREFIX(scanCharRef)(const ENCODING *enc, const char *ptr,
       *nextTokPtr = ptr;
       return XML_TOK_INVALID;
     }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (ptr += MINBPC(enc); ptr != end; ptr += MINBPC(enc)) {
@@ -543,7 +543,7 @@ PREFIX(scanRef)(const ENCODING *enc, const char *ptr, const char *end,
     *nextTokPtr = ptr;
     return XML_TOK_INVALID;
   }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (ptr != end) {
@@ -569,7 +569,7 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #ifdef XML_NS
   int hadColon = 0;
 #endif
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (ptr != end) {
@@ -594,7 +594,7 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
       break;
 #endif
     case BT_S: case BT_CR: case BT_LF:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
       for (;;) {
@@ -623,7 +623,7 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #ifdef XML_NS
         hadColon = 0;
 #endif
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (;;) {
@@ -645,7 +645,7 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
         }
         ptr += MINBPC(enc);
         /* in attribute value */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (;;) {
@@ -692,7 +692,7 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
           return XML_TOK_INVALID;
         }
         /* ptr points to closing quote */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (;;) {
@@ -771,7 +771,7 @@ PREFIX(scanLt)(const ENCODING *enc, const char *ptr, const char *end,
   hadColon = 0;
 #endif
   /* we have a start-tag */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (ptr != end) {
@@ -798,7 +798,7 @@ PREFIX(scanLt)(const ENCODING *enc, const char *ptr, const char *end,
     case BT_S: case BT_CR: case BT_LF:
       {
         ptr += MINBPC(enc);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (ptr != end) {
@@ -893,7 +893,7 @@ PREFIX(contentTok)(const ENCODING *enc, const char *ptr, const char *end,
     ptr += MINBPC(enc);
     break;
   }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (ptr != end) {
@@ -959,7 +959,7 @@ PREFIX(scanPercent)(const ENCODING *enc, const char *ptr, const char *end,
     *nextTokPtr = ptr;
     return XML_TOK_INVALID;
   }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (ptr != end) {
@@ -988,7 +988,7 @@ PREFIX(scanPoundName)(const ENCODING *enc, const char *ptr, const char *end,
     *nextTokPtr = ptr;
     return XML_TOK_INVALID;
   }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (ptr != end) {
@@ -1011,7 +1011,7 @@ PREFIX(scanLit)(int open, const ENCODING *enc,
                 const char *ptr, const char *end,
                 const char **nextTokPtr)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (ptr != end) {
@@ -1092,7 +1092,7 @@ PREFIX(prologTok)(const ENCODING *enc, const char *ptr, const char *end,
     }
     /* fall through */
   case BT_S: case BT_LF:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (;;) {
@@ -1217,7 +1217,7 @@ PREFIX(prologTok)(const ENCODING *enc, const char *ptr, const char *end,
     *nextTokPtr = ptr;
     return XML_TOK_INVALID;
   }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (ptr != end) {
@@ -1286,7 +1286,7 @@ PREFIX(attributeValueTok)(const ENCODING *enc, const char *ptr,
   if (ptr == end)
     return XML_TOK_NONE;
   start = ptr;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (ptr != end) {
@@ -1347,7 +1347,7 @@ PREFIX(entityValueTok)(const ENCODING *enc, const char *ptr,
   if (ptr == end)
     return XML_TOK_NONE;
   start = ptr;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (ptr != end) {
@@ -1411,7 +1411,7 @@ PREFIX(ignoreSectionTok)(const ENCODING *enc, const char *ptr,
       end = ptr + n;
     }
   }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (ptr != end) {
@@ -1461,7 +1461,7 @@ PREFIX(isPublicId)(const ENCODING *enc, const char *ptr, const char *end,
 {
   ptr += MINBPC(enc);
   end -= MINBPC(enc);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (; ptr != end; ptr += MINBPC(enc)) {
@@ -1527,7 +1527,7 @@ PREFIX(getAtts)(const ENCODING *enc, const char *ptr,
   int open = 0; /* defined when state == inValue;
                    initialization just to shut up compilers */
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (ptr += MINBPC(enc);; ptr += MINBPC(enc)) {
@@ -1621,7 +1621,7 @@ PREFIX(charRefNumber)(const ENCODING *enc, const char *ptr)
   /* skip &# */
   ptr += 2*MINBPC(enc);
   if (CHAR_MATCHES(enc, ptr, ASCII_x)) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (ptr += MINBPC(enc);
@@ -1650,7 +1650,7 @@ PREFIX(charRefNumber)(const ENCODING *enc, const char *ptr)
     }
   }
   else {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (; !CHAR_MATCHES(enc, ptr, ASCII_SEMI); ptr += MINBPC(enc)) {
@@ -1721,7 +1721,7 @@ PREFIX(predefinedEntityName)(const ENCODING *enc, const char *ptr,
 static int PTRCALL
 PREFIX(sameName)(const ENCODING *enc, const char *ptr1, const char *ptr2)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (;;) {
@@ -1789,7 +1789,7 @@ static int PTRCALL
 PREFIX(nameMatchesAscii)(const ENCODING *enc, const char *ptr1,
                          const char *end1, const char *ptr2)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (; *ptr2; ptr1 += MINBPC(enc), ptr2++) {
@@ -1805,7 +1805,7 @@ static int PTRFASTCALL
 PREFIX(nameLength)(const ENCODING *enc, const char *ptr)
 {
   const char *start = ptr;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (;;) {
@@ -1834,7 +1834,7 @@ PREFIX(nameLength)(const ENCODING *enc, const char *ptr)
 static const char * PTRFASTCALL
 PREFIX(skipS)(const ENCODING *enc, const char *ptr)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (;;) {
@@ -1856,7 +1856,7 @@ PREFIX(updatePosition)(const ENCODING *enc,
                        const char *end,
                        POSITION *pos)
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   while (ptr < end) {

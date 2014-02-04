@@ -495,7 +495,7 @@ void MyFrame::OnTest3(wxCommandEvent& WXUNUSED(event))
   wxCharBuffer buf1(len * 1024),
                buf2(len * 1024);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (size_t i = 0; i < len * 1024; i ++)

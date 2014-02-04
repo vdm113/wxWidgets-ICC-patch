@@ -53,7 +53,7 @@ static bool isCmakeLetter(char ch)
 static bool CmakeNextLineHasElse(unsigned int start, unsigned int end, Accessor &styler)
 {
     int nNextLine = -1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int i = start; i < end; i++ ) {
@@ -67,7 +67,7 @@ static bool CmakeNextLineHasElse(unsigned int start, unsigned int end, Accessor 
     if ( nNextLine == -1 ) // We never foudn the next line...
         return false;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int firstChar = nNextLine; firstChar < end; firstChar++ ) {
@@ -93,7 +93,7 @@ static int calculateFoldCmake(unsigned int start, unsigned int end, int foldleve
     int newFoldlevel = foldlevel;
 
     char s[20]; // The key word we are looking for has atmost 13 characters
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = 0; i < end - start + 1 && i < 19; i++) {
@@ -125,7 +125,7 @@ static int classifyWordCmake(unsigned int start, unsigned int end, WordList *key
     WordList &Parameters = *keywordLists[1];
     WordList &UserDefined = *keywordLists[2];
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = 0; i < end - start + 1 && i < 99; i++) {
@@ -167,7 +167,7 @@ static int classifyWordCmake(unsigned int start, unsigned int end, WordList *key
     // To check for numbers
     if ( isCmakeNumber( word[0] ) ) {
         bool bHasSimpleCmakeNumber = true;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (unsigned int j = 1; j < end - start + 1 && j < 99; j++) {
@@ -201,7 +201,7 @@ static void ColouriseCmakeDoc(unsigned int startPos, int length, int, WordList *
     bool bClassicVarInString = false;
 
     unsigned int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = startPos; i < nLengthDoc; i++ ) {
@@ -294,7 +294,7 @@ static void ColouriseCmakeDoc(unsigned int startPos, int length, int, WordList *
                 // We need to check if the previous line has a \ in it...
                 bool bNextLine = false;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 while ( nBack > 0 ) {
@@ -428,7 +428,7 @@ static void FoldCmakeDoc(unsigned int startPos, int length, int, WordList *[], A
         levelCurrent = styler.LevelAt(lineCurrent-1) >> 16;
     int levelNext = levelCurrent;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i = safeStartPos; i < startPos + length; i++) {

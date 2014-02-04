@@ -497,7 +497,7 @@ void wxWindow::Refresh(bool eraseBackground, const wxRect *rect)
 
     // Refresh all sub controls if any.
     wxWindowList& children = GetChildren();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxWindowList::iterator i = children.begin(); i != children.end(); ++i )
@@ -1100,7 +1100,7 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
     // scroll children accordingly:
     wxPoint offset(dx, dy);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -1329,7 +1329,7 @@ void wxWindow::OnKeyDown(wxKeyEvent& event)
 #endif // wxUSE_MENUS
 
 #if wxUSE_ACCEL
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxWindow *win = this; win; win = win->GetParent() )
@@ -1394,7 +1394,7 @@ void wxWindow::OnKeyDown(wxKeyEvent& event)
 
 wxMenuBar *wxWindow::GetParentFrameMenuBar() const
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( const wxWindow *win = this; win; win = win->GetParent() )

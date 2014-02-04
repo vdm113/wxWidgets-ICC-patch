@@ -29,7 +29,7 @@
    checked deleters are used to make sure that the type being deleted is really
    a complete type.: otherwise sizeof() would result in a compile-time error
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
    do { ... } while ( 0 ) construct is used to have an anonymous scope

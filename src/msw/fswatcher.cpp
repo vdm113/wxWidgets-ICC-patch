@@ -217,7 +217,7 @@ wxThread::ExitCode wxIOCPThread::Entry()
     wxLogTrace(wxTRACE_FSWATCHER, "[iocp] Started IOCP thread");
 
     // read events in a loop until we get false, which means we should exit
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( ReadEvents() );
@@ -280,7 +280,7 @@ bool wxIOCPThread::ReadEvents()
     wxVector<wxEventProcessingData> events;
     const char* memory = static_cast<const char*>(watch->GetBuffer());
     int offset = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do
@@ -293,7 +293,7 @@ bool wxIOCPThread::ReadEvents()
         offset = e->NextEntryOffset;
         memory += offset;
     }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (offset);
@@ -310,7 +310,7 @@ bool wxIOCPThread::ReadEvents()
 void wxIOCPThread::ProcessNativeEvents(wxVector<wxEventProcessingData>& events)
 {
     wxVector<wxEventProcessingData>::iterator it = events.begin();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ; it != events.end(); ++it )
@@ -389,7 +389,7 @@ int wxIOCPThread::Native2WatcherFlags(int flags)
         { FILE_ACTION_RENAMED_NEW_NAME, 0 },
     };
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned int i=0; i < WXSIZEOF(flag_mapping); ++i) {

@@ -68,7 +68,7 @@ static bool IsContinuationLine(unsigned int szLine, Accessor &styler)
 {
 	int startPos = styler.LineStart(szLine);
 	int endPos = styler.LineStart(szLine + 1) - 2;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (startPos < endPos)
@@ -94,7 +94,7 @@ static int GetStyleFirstWord(int szLine, Accessor &styler)
 	int endPos = styler.LineStart(szLine + 1) - 1;
 	char ch = styler.SafeGetCharAt(startPos);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while (ch > 0 && isspacechar(ch) && startPos < endPos)
@@ -118,7 +118,7 @@ static bool IsFunction(Accessor &styler, unsigned int currentPos) {
 
 	//compare each character with the letters in the function array
 	//return false if ALL don't match
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = 0; i < numberOfCharacters; i++) {
@@ -130,7 +130,7 @@ static bool IsFunction(Accessor &styler, unsigned int currentPos) {
 	//make sure that there are only spaces (or tabs) between the beginning
 	//of the line and the function declaration
 	position = currentPos - numberOfCharacters - 1; 		//-1 to move to char before 'function'
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int j = 0; j < 16; j++) {					//check up to 16 preceeding characters
@@ -165,7 +165,7 @@ static void ColourisePowerProDoc(unsigned int startPos, int length, int initStyl
 	//are there only spaces between the first letter of the line and the beginning of the line
 	bool onlySpaces = true;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward()) {
@@ -413,7 +413,7 @@ static void FoldPowerProDoc(unsigned int startPos, int length, int, WordList *[]
 	int stylePrev = 0;
 
 	// find the first previous line without continuation character at the end
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	while ((lineCurrent > 0 && IsContinuationLine(lineCurrent, styler))
@@ -452,7 +452,7 @@ static void FoldPowerProDoc(unsigned int startPos, int length, int, WordList *[]
 	char chPrevPrev = '\0';
 	char chPrevPrevPrev = '\0';
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (int i = startPos; i < endPos; i++) {
@@ -616,7 +616,7 @@ static void FoldPowerProDoc(unsigned int startPos, int length, int, WordList *[]
 				isDoLastWord = false;
 
 				//blank out first word
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				for (unsigned int i = 0; i < FIRST_WORD_MAX_LEN; i++)

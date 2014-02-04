@@ -312,7 +312,7 @@ void wxGenericColourDialog::InitializeColours(void)
 {
     size_t i;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < WXSIZEOF(wxColourDialogNames); i++)
@@ -324,7 +324,7 @@ void wxGenericColourDialog::InitializeColours(void)
             m_standardColours[i].Set(0, 0, 0);
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < WXSIZEOF(m_customColours); i++)
@@ -341,7 +341,7 @@ void wxGenericColourDialog::InitializeColours(void)
     {
         bool m_initColourFound = false;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (i = 0; i < WXSIZEOF(wxColourDialogNames); i++)
@@ -356,7 +356,7 @@ void wxGenericColourDialog::InitializeColours(void)
         }
         if ( !m_initColourFound )
         {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i = 0; i < WXSIZEOF(m_customColours); i++ )
@@ -382,13 +382,13 @@ void wxGenericColourDialog::InitializeColours(void)
 void wxGenericColourDialog::PaintBasicColours(wxDC& dc)
 {
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < 6; i++)
     {
         int j;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (j = 0; j < 8; j++)
@@ -410,13 +410,13 @@ void wxGenericColourDialog::PaintBasicColours(wxDC& dc)
 void wxGenericColourDialog::PaintCustomColours(wxDC& dc)
 {
   int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
   for (i = 0; i < 2; i++)
   {
     int j;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (j = 0; j < 8; j++)

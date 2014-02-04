@@ -262,12 +262,12 @@ local void tr_static_init()
 
     /* Initialize the mapping length (0..255) -> length code (0..28) */
     length = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (code = 0; code < LENGTH_CODES-1; code++) {
         base_length[code] = length;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (n = 0; n < (1<<extra_lbits[code]); n++) {
@@ -283,12 +283,12 @@ local void tr_static_init()
 
     /* Initialize the mapping dist (0..32K) -> dist code (0..29) */
     dist = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (code = 0 ; code < 16; code++) {
         base_dist[code] = dist;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (n = 0; n < (1<<extra_dbits[code]); n++) {
@@ -297,12 +297,12 @@ local void tr_static_init()
     }
     Assert (dist == 256, "tr_static_init: dist != 256");
     dist >>= 7; /* from now on, all distances are divided by 128 */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( ; code < D_CODES; code++) {
         base_dist[code] = dist << 7;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (n = 0; n < (1<<(extra_dbits[code]-7)); n++) {
@@ -312,24 +312,24 @@ local void tr_static_init()
     Assert (dist == 256, "tr_static_init: 256+dist != 512");
 
     /* Construct the codes of the static literal tree */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (bits = 0; bits <= MAX_BITS; bits++) bl_count[bits] = 0;
     n = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (n <= 143) static_ltree[n++].Len = 8, bl_count[8]++;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (n <= 255) static_ltree[n++].Len = 9, bl_count[9]++;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (n <= 279) static_ltree[n++].Len = 7, bl_count[7]++;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (n <= 287) static_ltree[n++].Len = 8, bl_count[8]++;
@@ -340,7 +340,7 @@ local void tr_static_init()
     gen_codes((ct_data *)static_ltree, L_CODES+1, bl_count);
 
     /* The static distance tree is trivial: */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (n = 0; n < D_CODES; n++) {
@@ -377,7 +377,7 @@ void gen_trees_header()
             "/* header created automatically with -DGEN_TREES_H */\n\n");
 
     fprintf(header, "local const ct_data static_ltree[L_CODES+2] = {\n");
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < L_CODES+2; i++) {
@@ -386,7 +386,7 @@ void gen_trees_header()
     }
 
     fprintf(header, "local const ct_data static_dtree[D_CODES] = {\n");
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < D_CODES; i++) {
@@ -395,7 +395,7 @@ void gen_trees_header()
     }
 
     fprintf(header, "const uch ZLIB_INTERNAL _dist_code[DIST_CODE_LEN] = {\n");
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < DIST_CODE_LEN; i++) {
@@ -405,7 +405,7 @@ void gen_trees_header()
 
     fprintf(header,
         "const uch ZLIB_INTERNAL _length_code[MAX_MATCH-MIN_MATCH+1]= {\n");
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < MAX_MATCH-MIN_MATCH+1; i++) {
@@ -414,7 +414,7 @@ void gen_trees_header()
     }
 
     fprintf(header, "local const int base_length[LENGTH_CODES] = {\n");
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < LENGTH_CODES; i++) {
@@ -423,7 +423,7 @@ void gen_trees_header()
     }
 
     fprintf(header, "local const int base_dist[D_CODES] = {\n");
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < D_CODES; i++) {
@@ -472,15 +472,15 @@ local void init_block(s)
     int n; /* iterates over tree elements */
 
     /* Initialize the trees. */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (n = 0; n < L_CODES;  n++) s->dyn_ltree[n].Freq = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (n = 0; n < D_CODES;  n++) s->dyn_dtree[n].Freq = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (n = 0; n < BL_CODES; n++) s->bl_tree[n].Freq = 0;
@@ -526,7 +526,7 @@ local void pqdownheap(s, tree, k)
 {
     int v = s->heap[k];
     int j = k << 1;  /* left son of k */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (j <= s->heap_len) {
@@ -574,7 +574,7 @@ local void gen_bitlen(s, desc)
     ush f;              /* frequency */
     int overflow = 0;   /* number of elements with bit length too large */
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (bits = 0; bits <= MAX_BITS; bits++) s->bl_count[bits] = 0;
@@ -584,7 +584,7 @@ local void gen_bitlen(s, desc)
      */
     tree[s->heap[s->heap_max]].Len = 0; /* root of the heap */
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (h = s->heap_max+1; h < HEAP_SIZE; h++) {
@@ -609,12 +609,12 @@ local void gen_bitlen(s, desc)
     /* This happens for example on obj2 and pic of the Calgary corpus */
 
     /* Find the first bit length which could increase: */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do {
         bits = max_length-1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (s->bl_count[bits] == 0) bits--;
@@ -632,12 +632,12 @@ local void gen_bitlen(s, desc)
      * lengths instead of fixing only the wrong ones. This idea is taken
      * from 'ar' written by Haruhiko Okumura.)
      */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (bits = max_length; bits != 0; bits--) {
         n = s->bl_count[bits];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (n != 0) {
@@ -675,7 +675,7 @@ local void gen_codes (tree, max_code, bl_count)
     /* The distribution counts are first used to generate the code values
      * without bit reversal.
      */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (bits = 1; bits <= MAX_BITS; bits++) {
@@ -688,7 +688,7 @@ local void gen_codes (tree, max_code, bl_count)
             "inconsistent bit counts");
     Tracev((stderr,"\ngen_codes: max_code %d ", max_code));
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (n = 0;  n <= max_code; n++) {
@@ -727,7 +727,7 @@ local void build_tree(s, desc)
      */
     s->heap_len = 0, s->heap_max = HEAP_SIZE;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (n = 0; n < elems; n++) {
@@ -744,7 +744,7 @@ local void build_tree(s, desc)
      * possible code. So to avoid special checks later on we force at least
      * two codes of non zero frequency.
      */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (s->heap_len < 2) {
@@ -759,7 +759,7 @@ local void build_tree(s, desc)
     /* The elements heap[heap_len/2+1 .. heap_len] are leaves of the tree,
      * establish sub-heaps of increasing lengths:
      */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (n = s->heap_len/2; n >= 1; n--) pqdownheap(s, tree, n);
@@ -768,7 +768,7 @@ local void build_tree(s, desc)
      * frequent nodes.
      */
     node = elems;              /* next internal node of the tree */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do {
@@ -826,7 +826,7 @@ local void scan_tree (s, tree, max_code)
     if (nextlen == 0) max_count = 138, min_count = 3;
     tree[max_code+1].Len = (ush)0xffff; /* guard */
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (n = 0; n <= max_code; n++) {
@@ -874,7 +874,7 @@ local void send_tree (s, tree, max_code)
     /* tree[max_code+1].Len = -1; */  /* guard already set */
     if (nextlen == 0) max_count = 138, min_count = 3;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (n = 0; n <= max_code; n++) {
@@ -882,7 +882,7 @@ local void send_tree (s, tree, max_code)
         if (++count < max_count && curlen == nextlen) {
             continue;
         } else if (count < min_count) {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             do { send_code(s, curlen, s->bl_tree); } while (--count != 0);
@@ -934,7 +934,7 @@ local int build_bl_tree(s)
      * requires that at least 4 bit length codes be sent. (appnote.txt says
      * 3 but the actual value used is 4.)
      */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (max_blindex = BL_CODES-1; max_blindex >= 3; max_blindex--) {
@@ -966,7 +966,7 @@ local void send_all_trees(s, lcodes, dcodes, blcodes)
     send_bits(s, lcodes-257, 5); /* not +255 as stated in appnote.txt */
     send_bits(s, dcodes-1,   5);
     send_bits(s, blcodes-4,  4); /* not -3 as stated in appnote.txt */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (rank = 0; rank < blcodes; rank++) {
@@ -1159,7 +1159,7 @@ int ZLIB_INTERNAL _tr_tally (s, dist, lc)
         ulg out_length = (ulg)s->last_lit*8L;
         ulg in_length = (ulg)((long)s->strstart - s->block_start);
         int dcode;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (dcode = 0; dcode < D_CODES; dcode++) {
@@ -1254,7 +1254,7 @@ local int detect_data_type(s)
     int n;
 
     /* Check for non-textual ("black-listed") bytes. */
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (n = 0; n <= 31; n++, black_mask >>= 1)
@@ -1265,7 +1265,7 @@ local int detect_data_type(s)
     if (s->dyn_ltree[9].Freq != 0 || s->dyn_ltree[10].Freq != 0
             || s->dyn_ltree[13].Freq != 0)
         return Z_TEXT;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (n = 32; n < LITERALS; n++)
@@ -1288,7 +1288,7 @@ local unsigned bi_reverse(code, len)
     int len;       /* its bit length */
 {
     register unsigned res = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do {
@@ -1355,7 +1355,7 @@ local void copy_block(s, buf, len, header)
 #ifdef DEBUG
     s->bits_sent += (ulg)len<<3;
 #endif
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (len--) {

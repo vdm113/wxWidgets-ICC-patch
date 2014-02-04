@@ -66,7 +66,7 @@ static void ColouriseAPDLDoc(unsigned int startPos, int length, int initStyle, W
 	initStyle = SCE_APDL_DEFAULT;
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward()) {
@@ -207,7 +207,7 @@ static void FoldAPDLDoc(unsigned int startPos, int length, int,
     bool foldCompact = styler.GetPropertyInt("fold.compact", 1) != 0;
 	// Scan for tokens at the start of the line (they may include
 	// whitespace, for tokens like "End Function"
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (i = startPos; i < endPos; i++) {

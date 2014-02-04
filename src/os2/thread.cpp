@@ -264,7 +264,7 @@ wxSemaphoreInternal::~wxSemaphoreInternal()
 wxSemaError wxSemaphoreInternal::WaitTimeout(unsigned long ulMilliseconds)
 {
     APIRET ulrc;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do {
@@ -752,7 +752,7 @@ wxThreadError wxThread::Delete(ExitCode *pRc, wxThreadWait WXUNUSED(waitMode))
         // calling some GUI functions and so it will never terminate before we
         // process the Windows messages that result from these functions
         DWORD result = 0;       // suppress warnings from broken compilers
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         do
@@ -825,7 +825,7 @@ wxThreadError wxThread::Delete(ExitCode *pRc, wxThreadWait WXUNUSED(waitMode))
     // although the thread might be already in the EXITED state it might not
     // have terminated yet and so we are not sure that it has actually
     // terminated if the "if" above hadn't been taken
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     do

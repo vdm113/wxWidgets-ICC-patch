@@ -119,7 +119,7 @@ CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( StdStreamTestCase,
 
 StdStreamTestCase::StdStreamTestCase()
 {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < TEST_SIZE; ++i)
@@ -177,7 +177,7 @@ void StdStreamTestCase::InputBuffer_pubseekpos()
     wxMemoryInputStream stream(testData, 10);
     wxStdInputStreamBuffer buffer(stream);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 9; i >= 0; --i)
@@ -229,7 +229,7 @@ void StdStreamTestCase::InputBuffer_snextc()
 
     data[0] = buffer.sgetc();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 1; i < TEST_SIZE; ++i)
@@ -251,7 +251,7 @@ void StdStreamTestCase::InputBuffer_sbumpc()
 
     char data[TEST_SIZE];
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < TEST_SIZE; ++i)
@@ -271,7 +271,7 @@ void StdStreamTestCase::InputBuffer_sgetc()
 
     char data[TEST_SIZE];
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < TEST_SIZE; ++i) {
@@ -394,7 +394,7 @@ void StdStreamTestCase::OutputBuffer_pubseekpos()
     wxMemoryOutputStream stream(testData, 10);
     wxStdOutputStreamBuffer buffer(stream);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 9; i >= 0; --i)
@@ -434,7 +434,7 @@ void StdStreamTestCase::OutputBuffer_sputc()
     wxMemoryOutputStream stream;
     wxStdOutputStreamBuffer buffer(stream);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < TEST_SIZE; ++i)

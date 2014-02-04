@@ -193,7 +193,7 @@ wxFontFamily wxNativeFontInfo::GetFamily() const
 #endif
                 &families, &n_families);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < n_families; ++i)
@@ -657,7 +657,7 @@ bool wxNativeFontInfo::FromXFontName(const wxString& fontname)
 
     (void)tokenizer.GetNextToken();
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t n = 0; n < WXSIZEOF(fontElements); n++ )
@@ -689,7 +689,7 @@ wxString wxNativeFontInfo::GetXFontName() const
 {
     if ( xFontName.empty() )
     {
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t n = 0; n < WXSIZEOF(fontElements); n++ )
@@ -1069,7 +1069,7 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
         wxStringTokenizer tokenizer(*xFontName, wxT("-"), wxTOKEN_RET_DELIMS);
         wxString newFontName;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for(int i = 0; i < 8; i++)
@@ -1079,7 +1079,7 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
 
         newFontName += wxString::Format(wxT("%d-"), pointSize);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while(tokenizer.HasMoreTokens())
@@ -1104,7 +1104,7 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
         wxFontWeight testweight = weight;
         wxFontStyle teststyle = style;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( round = 0; round < 3; round++ )
@@ -1135,7 +1135,7 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
                 }
             }
             // Search for equal or smaller size (approx.)
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i = pointSize; !font && i >= 10 && i >= min_size; i -= 10 )
@@ -1146,7 +1146,7 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
             }
 
             // Search for larger size (approx.)
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i = pointSize + 10; !font && i <= max_size; i += 10 )

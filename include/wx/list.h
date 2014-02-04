@@ -1236,7 +1236,7 @@ public:
         wxVector<T> vector(size());
         size_t i = 0;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( const_iterator it = begin(); it != end(); ++it )

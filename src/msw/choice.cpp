@@ -249,7 +249,7 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter& items,
 
     int n = wxNOT_FOUND;
     const unsigned numItems = items.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned i = 0; i < numItems; ++i )
@@ -336,7 +336,7 @@ int wxChoice::FindString(const wxString& s, bool bCase) const
     // For some reason, Watcom in WIN386 mode crashes in the CB_FINDSTRINGEXACT message.
     // wxChoice::Do it the long way instead.
     unsigned int count = GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( unsigned int i = 0; i < count; i++ )
@@ -353,7 +353,7 @@ int wxChoice::FindString(const wxString& s, bool bCase) const
    if ( s.empty() )
    {
        unsigned int count = GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
        for ( unsigned int i = 0; i < count; i++ )

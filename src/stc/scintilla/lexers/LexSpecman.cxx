@@ -63,7 +63,7 @@ static void ColouriseSpecmanDoc(unsigned int startPos, int length, int initStyle
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward()) {
@@ -184,7 +184,7 @@ static void ColouriseSpecmanDoc(unsigned int startPos, int length, int initStyle
 				// Preprocessor commands are alone on their line
 				sc.SetState(SCE_SN_PREPROCESSOR);
 				// Skip whitespace between # and preprocessor word
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 				do {
@@ -229,7 +229,7 @@ static void FoldNoBoxSpecmanDoc(unsigned int startPos, int length, int,
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
 	int style;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {

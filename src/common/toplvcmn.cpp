@@ -78,7 +78,7 @@ wxTopLevelWindowBase::~wxTopLevelWindowBase()
     // on the stack) immediately afterwards and before the child TLW was really
     // destroyed -- not destroying it now would leave it alive with a dangling
     // parent pointer and result in a crash later
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxObjectList::iterator i = wxPendingDelete.begin();
@@ -132,7 +132,7 @@ bool wxTopLevelWindowBase::Destroy()
     // any more as no events will be sent to the hidden window and without idle
     // events we won't prune wxPendingDelete list and the application won't
     // terminate
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( wxWindowList::const_iterator i = wxTopLevelWindows.begin(),
@@ -173,7 +173,7 @@ bool wxTopLevelWindowBase::IsLastBeforeExit() const
     const wxWindowList::const_iterator end = wxTopLevelWindows.end();
 
     // then decide whether we should exit at all
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = wxTopLevelWindows.begin(); i != end; ++i )
@@ -187,7 +187,7 @@ bool wxTopLevelWindowBase::IsLastBeforeExit() const
     }
 
     // if yes, close all the other windows: this could still fail
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = wxTopLevelWindows.begin(); i != end; ++i )
@@ -414,7 +414,7 @@ void wxTopLevelWindowBase::DoLayout()
     {
         // do we have _exactly_ one child?
         wxWindow *child = NULL;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();

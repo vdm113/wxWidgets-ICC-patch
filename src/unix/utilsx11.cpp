@@ -127,7 +127,7 @@ wxSetIconsX11(WXDisplay* display, WXWindow window, const wxIconBundle& ib)
     size_t size = 0;
 
     const size_t numIcons = ib.GetIconCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < numIcons; ++i )
@@ -144,7 +144,7 @@ wxSetIconsX11(WXDisplay* display, WXWindow window, const wxIconBundle& ib)
         unsigned long* data = new unsigned long[size];
         unsigned long* ptr = data;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for ( size_t i = 0; i < numIcons; ++i )
@@ -174,7 +174,7 @@ wxSetIconsX11(WXDisplay* display, WXWindow window, const wxIconBundle& ib)
             *ptr++ = width;
             *ptr++ = height;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while ( imageData < imageDataEnd )
@@ -340,7 +340,7 @@ static bool wxQueryWMspecSupport(Display *display, Window rootWnd, Atom feature)
         return false;
 
     // Lookup the feature we want:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (unsigned i = 0; i < natoms; i++)
@@ -848,7 +848,7 @@ bool wxGetKeyState(wxKeyCode key)
         XModifierKeymap *map = XGetModifierMapping(pDisplay);
         wxCHECK_MSG( map, false, wxT("failed to get X11 modifiers map") );
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for (int i = 0; i < 8; ++i)

@@ -109,7 +109,7 @@ void QueueTestCase::TestReceive()
     ArrayThread threads;
 
     int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < threadCount; ++i )
@@ -122,7 +122,7 @@ void QueueTestCase::TestReceive()
         threads.Add(thread);
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < threadCount; ++i )
@@ -132,7 +132,7 @@ void QueueTestCase::TestReceive()
 
     MyThread* lastThread = threads[threadCount - 1];
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < msgCount; ++i )
@@ -140,7 +140,7 @@ void QueueTestCase::TestReceive()
         lastThread->GetQueue().Post(i);
     }
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( i = 0; i < threadCount; ++i )
@@ -189,7 +189,7 @@ void QueueTestCase::TestReceiveTimeout()
 void *QueueTestCase::MyThread::Entry()
 {
     int messagesReceived = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ( messagesReceived < m_maxMsgCount )

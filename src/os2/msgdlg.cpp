@@ -56,7 +56,7 @@ int wxMessageDialog::ShowModal()
         // will never be shown - just try putting 2 calls to wxMessageBox() in
         // OnInit() to see it
         //
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (wxTheApp->Pending())

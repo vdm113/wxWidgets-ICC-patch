@@ -69,7 +69,7 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
     m_CachePos = 0;
 
     int pos = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (pos < lng)
@@ -83,7 +83,7 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
             m_Cache[tg].Key = stpos;
 
             int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             for ( i = 0;
@@ -98,7 +98,7 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
             m_Cache[tg].Name = new wxChar[i+1];
             memcpy(m_Cache[tg].Name, tagBuffer, (i+1)*sizeof(wxChar));
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
             while (pos < lng && src[pos] != wxT('>')) pos++;
@@ -107,7 +107,7 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
             {
                 m_Cache[tg].End1 = m_Cache[tg].End2 = -2;
                 // find matching begin tag:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                 for (i = tg; i >= 0; i--)
@@ -131,13 +131,13 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 
                     // find next matching tag
                     int tag_len = wxStrlen(tagBuffer);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                     while (pos < lng)
                     {
                         // find the ending tag
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                         while (pos + 1 < lng &&
@@ -148,7 +148,7 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 
                         // see if it matches
                         int match_pos = 0;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
                         while (pos < lng && match_pos < tag_len && src[pos] != '>' && src[pos] != '<') {
@@ -195,7 +195,7 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
     }
 
     // ok, we're done, now we'll free .Name members of cache - we don't need it anymore:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (int i = 0; i < m_CacheSize; i++)
@@ -211,7 +211,7 @@ void wx28HtmlTagsCache::QueryTag(int at, int* end1, int* end2)
     if (m_Cache[m_CachePos].Key != at)
     {
         int delta = (at < m_Cache[m_CachePos].Key) ? -1 : 1;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         do
@@ -228,7 +228,7 @@ void wx28HtmlTagsCache::QueryTag(int at, int* end1, int* end2)
 
             m_CachePos += delta;
         }
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (m_Cache[m_CachePos].Key != at);
@@ -277,7 +277,7 @@ wx28HtmlTag::wx28HtmlTag(wx28HtmlTag *parent,
     i = pos+1;
 
     // find tag's name and convert it to uppercase:
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while ((i < end_pos) &&
@@ -310,7 +310,7 @@ wx28HtmlTag::wx28HtmlTag(wx28HtmlTag *parent,
 
         quote = 0;
         state = ST_BEFORE_NAME;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (i < end_pos)
@@ -408,7 +408,7 @@ wx28HtmlTag::~wx28HtmlTag()
 {
     wx28HtmlTag *t1, *t2;
     t1 = m_FirstChild;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (t1)
@@ -467,7 +467,7 @@ wxString wx28HtmlTag::GetAllParams() const
     //     never used by wxHTML
     wxString s;
     size_t cnt = m_ParamNames.GetCount();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (size_t i = 0; i < cnt; i++)
@@ -489,7 +489,7 @@ wx28HtmlTag *wx28HtmlTag::GetFirstSibling() const
     else
     {
         wx28HtmlTag *cur = (wx28HtmlTag*)this;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (cur->m_Prev)
@@ -505,7 +505,7 @@ wx28HtmlTag *wx28HtmlTag::GetLastSibling() const
     else
     {
         wx28HtmlTag *cur = (wx28HtmlTag*)this;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (cur->m_Next)
@@ -520,7 +520,7 @@ wx28HtmlTag *wx28HtmlTag::GetNextTag() const
     if (m_Next) return m_Next;
     wx28HtmlTag *cur = m_Parent;
     if (!cur) return NULL;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (cur->m_Parent && !cur->m_Next)

@@ -871,7 +871,7 @@ void WebFrame::OnToolsClicked(wxCommandEvent& WXUNUSED(evt))
 
     //Firstly we clear the existing menu items, then we add the current ones
     wxMenuHistoryMap::const_iterator it;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for( it = m_histMenuItems.begin(); it != m_histMenuItems.end(); ++it )
@@ -886,7 +886,7 @@ void WebFrame::OnToolsClicked(wxCommandEvent& WXUNUSED(evt))
     wxMenuItem* item;
 
     unsigned int i;
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for(i = 0; i < back.size(); i++)
@@ -906,7 +906,7 @@ void WebFrame::OnToolsClicked(wxCommandEvent& WXUNUSED(evt))
     //No need to connect the current item
     m_histMenuItems[item->GetId()] = wxSharedPtr<wxWebViewHistoryItem>(new wxWebViewHistoryItem(m_browser->GetCurrentURL(), m_browser->GetCurrentTitle()));
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for(i = 0; i < forward.size(); i++)

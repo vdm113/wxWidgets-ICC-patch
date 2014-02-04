@@ -125,7 +125,7 @@ void wxCommandProcessor::Store(wxCommand *command)
     else
     {
         wxList::compatibility_iterator node = m_currentCommand->GetNext();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         while (node)
@@ -325,7 +325,7 @@ wxString wxCommandProcessor::GetRedoMenuLabel() const
 void wxCommandProcessor::ClearCommands()
 {
     wxList::compatibility_iterator node = m_commands.GetFirst();
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     while (node)

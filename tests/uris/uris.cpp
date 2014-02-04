@@ -409,7 +409,7 @@ void URITestCase::URLCompat()
                                        "http://www.163.com",
                                        "http://www.sina.com.cn" };
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for ( size_t i = 0; i < WXSIZEOF(pszProblemUrls); ++i )
@@ -424,7 +424,7 @@ void URITestCase::URLCompat()
         wxASSERT(fOut.IsOpened());
 
         char buf[1001];
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
         for( ;; )

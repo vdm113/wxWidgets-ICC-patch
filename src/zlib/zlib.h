@@ -1586,7 +1586,7 @@ ZEXTERN uLong ZEXPORT adler32 OF((uLong adler, const Bytef *buf, uInt len));
 
      uLong adler = adler32(0L, Z_NULL, 0);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
      while (read_buffer(buffer, length) != EOF) {
@@ -1618,7 +1618,7 @@ ZEXTERN uLong ZEXPORT crc32   OF((uLong crc, const Bytef *buf, uInt len));
 
      uLong crc = crc32(0L, Z_NULL, 0);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
      while (read_buffer(buffer, length) != EOF) {

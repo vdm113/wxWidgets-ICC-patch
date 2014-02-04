@@ -552,7 +552,7 @@ void VsnprintfTestCase::DoMisc(
 
     wxASSERT(max <= BUFSIZE);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = 0; i < BUFSIZE; i++)
@@ -583,7 +583,7 @@ void VsnprintfTestCase::DoMisc(
 
     CPPUNIT_ASSERT_MESSAGE(errMsg, expectedString == buf);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
     for (i = max; i < BUFSIZE; i++)

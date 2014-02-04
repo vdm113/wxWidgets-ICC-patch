@@ -102,7 +102,7 @@ static void ColouriseErlangDoc(unsigned int startPos, int length, int initStyle,
 
 	styler.StartAt(startPos);
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (; sc.More(); sc.Forward()) {
@@ -169,7 +169,7 @@ static void ColouriseErlangDoc(unsigned int startPos, int length, int initStyle,
 						if (parse_state == COMMENT_DOC_MACRO
 							&& erlangDocMacro.InList(cur)) {
 								sc.ChangeState(SCE_ERLANG_COMMENT_DOC_MACRO);
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 								while (sc.ch != '}' && !sc.atLineEnd)
@@ -550,7 +550,7 @@ static void FoldErlangDoc(
 	char chNext = styler.SafeGetCharAt(startPos);
 	bool atEOL;
 
-#if defined(__INTEL_COMPILER) // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
