@@ -2632,4 +2632,8 @@ rcdefs.h
 *.sdf
 *.opensdf
 *.suo
+
+# for internal purposes only
+x_vdm.cmd
+
 #end vdm

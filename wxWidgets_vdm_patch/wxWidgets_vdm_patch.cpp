@@ -52,7 +52,7 @@ bool check_return_value(int rc)
 
 unsigned reformat(const string& file, bool do_prologue, bool do_patch)
 {
-    static const char* line1="#if defined(__INTEL_COMPILER) // VDM auto patch";
+    static const char* line1="#if defined(__INTEL_COMPILER) && 1 // VDM auto patch";
     static const char* line1_disabled="#if defined(__INTEL_COMPILER) && 0 // VDM auto patch";
     static const char* line2="#   pragma ivdep";
     static const char* line3="#endif";
