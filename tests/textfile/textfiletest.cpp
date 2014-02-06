@@ -226,9 +226,6 @@ void TextFileTestCase::ReadMixed()
 
 void TextFileTestCase::ReadMixedWithFuzzing()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int iteration = 0; iteration < 100; iteration++)
     {
         // Create a random buffer with lots of newlines. This is intended to catch
@@ -241,9 +238,6 @@ void TextFileTestCase::ReadMixedWithFuzzing()
         data[0] = 'X';
         data[BUF_LEN] = '\0';
         unsigned linesCnt = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t i = 1; i < BUF_LEN; i++ )
         {
             char ch = CHOICES[rand() % WXSIZEOF(CHOICES)];
