@@ -1550,6 +1550,9 @@ static void SendSetCursorEvent(wxWindow* win, int x, int y)
 {
     wxSetCursorEvent event(x, y);
     wxWindow* w = win;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     do {
         if (w->GTKProcessEvent(event))
         {
