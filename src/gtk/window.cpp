@@ -2083,7 +2083,8 @@ void wxWindowGTK::GTKHandleRealized()
     event.SetEventObject( this );
     GTKProcessEvent( event );
 
-    GTKUpdateCursor();
+    if (m_cursor.IsOk())
+        GTKUpdateCursor();
 
     if (m_wxwindow && IsTopLevel())
     {
@@ -3704,12 +3705,8 @@ bool wxWindowGTK::SetCursor( const wxCursor &cursor )
 
 void wxWindowGTK::GTKUpdateCursor()
 {
-    if (m_widget == NULL ||
-        !gtk_widget_get_realized(m_widget) ||
-        (m_wxwindow == NULL && !gtk_widget_get_has_window(m_widget)))
-    {
+    if (m_widget == NULL || !gtk_widget_get_realized(m_widget))
         return;
-    }
 
     GdkCursor* cursor = NULL;
     if (m_cursor.IsOk())
@@ -3721,11 +3718,25 @@ void wxWindowGTK::GTKUpdateCursor()
         gdk_window_set_cursor(window, cursor);
     else
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (size_t i = windows.size(); i--;)
         {
             window = windows[i];
             if (window)
                 gdk_window_set_cursor(window, cursor);
+        }
+    }
+    if (window && cursor == NULL && m_wxwindow == NULL)
+    {
+        void* data;
+        gdk_window_get_user_data(window, &data);
+        if (data)
+        {
+            // encourage native widget to restore any non-default cursors
+            GtkStateType state = gtk_widget_get_state(GTK_WIDGET(data));
+            g_signal_emit_by_name(data, "state-changed", state);
         }
     }
 }

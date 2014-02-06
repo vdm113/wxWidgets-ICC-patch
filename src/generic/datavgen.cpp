@@ -5403,6 +5403,9 @@ wxVector<wxDataViewColumn *> wxDataViewCtrl::GetSortingColumns() const
 {
     wxVector<wxDataViewColumn *> out;
     
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxVector<int>::const_iterator it = m_sortingColumnIdxs.begin(),
                                        end = m_sortingColumnIdxs.end();
           it != end;
@@ -5644,6 +5647,9 @@ void wxDataViewCtrl::ResetAllSortColumns()
 {
     // Must make copy, because unsorting will remove it from original vector
     wxVector<int> const copy(m_sortingColumnIdxs);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxVector<int>::const_iterator it = copy.begin(),
                                        end = copy.end();
           it != end;
@@ -5677,6 +5683,9 @@ bool wxDataViewCtrl::AllowMultiColumnSort(bool allow)
 
 bool wxDataViewCtrl::IsColumnSorted(int idx) const
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxVector<int>::const_iterator it = m_sortingColumnIdxs.begin(),
                                        end = m_sortingColumnIdxs.end();
           it != end;
@@ -5696,6 +5705,9 @@ void wxDataViewCtrl::UseColumnForSorting(int idx )
 
 void wxDataViewCtrl::DontUseColumnForSorting(int idx)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxVector<int>::iterator it = m_sortingColumnIdxs.begin(),
                                  end = m_sortingColumnIdxs.end();
           it != end;

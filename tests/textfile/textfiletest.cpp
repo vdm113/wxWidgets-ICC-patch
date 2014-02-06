@@ -236,6 +236,9 @@ void TextFileTestCase::ReadMixedWithFuzzing()
     char data[BUF_LEN + 1];
     data[0] = 'X';
     data[BUF_LEN] = '\0';
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t i = 1; i < BUF_LEN; i++ )
     {
         char ch = CHOICES[rand() % WXSIZEOF(CHOICES)];
