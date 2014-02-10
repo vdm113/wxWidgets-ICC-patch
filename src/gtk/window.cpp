@@ -3716,14 +3716,12 @@ bool wxWindowGTK::SetCursor( const wxCursor &cursor )
     return true;
 }
 
-void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize)
+void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize, const wxCursor* overrideCursor)
 {
-    if (m_widget == NULL ||
-        !gtk_widget_get_realized(m_widget) ||
-        (m_wxwindow == NULL && !gtk_widget_get_has_window(m_widget)))
-    {
+    m_needCursorReset = false;
+
+    if (m_widget == NULL || !gtk_widget_get_realized(m_widget))
         return;
-    }
 
     // if we don't already know there is a busy/global cursor, we have to check for one
     if (!isBusyOrGlobalCursor)
@@ -3739,7 +3737,7 @@ void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize)
     }
     GdkCursor* cursor = NULL;
     if (!isBusyOrGlobalCursor)
-        cursor = m_cursor.GetCursor();
+        cursor = (overrideCursor ? *overrideCursor : m_cursor).GetCursor();
 
     GdkWindow* window = NULL;
     if (cursor || isBusyOrGlobalCursor || !isRealize)
