@@ -3750,6 +3750,9 @@ void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize)
             gdk_window_set_cursor(window, cursor);
         else
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (size_t i = windows.size(); i--;)
             {
                 window = windows[i];
@@ -4410,6 +4413,9 @@ bool wxWindowGTK::IsTransparentBackgroundSupported(wxString* reason) const
 GdkWindow* wxWindowGTK::GTKFindWindow(GtkWidget* widget)
 {
     GdkWindow* window = gtk_widget_get_window(widget);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (const GList* p = gdk_window_peek_children(window); p; p = p->next)
     {
         window = GDK_WINDOW(p->data);
@@ -4424,6 +4430,9 @@ GdkWindow* wxWindowGTK::GTKFindWindow(GtkWidget* widget)
 void wxWindowGTK::GTKFindWindow(GtkWidget* widget, wxArrayGdkWindows& windows)
 {
     GdkWindow* window = gtk_widget_get_window(widget);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (const GList* p = gdk_window_peek_children(window); p; p = p->next)
     {
         window = GDK_WINDOW(p->data);
