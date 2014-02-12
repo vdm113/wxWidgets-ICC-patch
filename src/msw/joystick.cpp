@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/joystick.cpp
 // Purpose:     wxJoystick class
@@ -56,6 +63,9 @@ wxJoystick::wxJoystick(int joystick)
     int i, maxsticks;
 
     maxsticks = joyGetNumDevs();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for( i=0; i<maxsticks; i++ )
     {
         if( joyGetPos(i, & joyInfo) == JOYERR_NOERROR )
@@ -284,6 +294,9 @@ int wxJoystick::GetNumberJoysticks()
     int i, maxsticks, actualsticks;
     maxsticks = joyGetNumDevs();
     actualsticks = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for( i=0; i<maxsticks; i++ )
     {
         if( joyGetPos( i, & joyInfo ) == JOYERR_NOERROR )

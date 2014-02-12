@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/joystick.cpp
 // Purpose:     wxJoystick class
@@ -112,6 +119,9 @@ void* wxJoystickThread::Entry()
     struct timeval time_out = {0, 0};
 
     wxFD_ZERO(&read_fds);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (true)
     {
         if (TestDestroy())
@@ -327,6 +337,9 @@ int wxJoystick::GetNumberJoysticks()
     wxString dev_name;
     int fd, j;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (j=0; j<4; j++) {
         dev_name.Printf(wxT("/dev/js%d"), j);
         fd = open(dev_name.fn_str(), O_RDONLY);
@@ -336,6 +349,9 @@ int wxJoystick::GetNumberJoysticks()
     }
 
     if (j == 0) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (j=0; j<4; j++) {
             dev_name.Printf(wxT("/dev/input/js%d"), j);
             fd = open(dev_name.fn_str(), O_RDONLY);

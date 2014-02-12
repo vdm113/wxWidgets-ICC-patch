@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /******************************************************************
  *    LexHaskell.cxx
  *
@@ -89,6 +96,9 @@ static void ColorizeHaskellDoc(unsigned int startPos, int length, int initStyle,
    int mode  = state & 0xF;
    int xmode = state >> 4;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
    while (sc.More()) {
       // Check for state end
 
@@ -325,9 +335,15 @@ void EXT_LEXER_DECL Lex(unsigned int lexer, unsigned int startPos, int length, i
    WindowAccessor wa(window, ps);
 
    int nWL = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
    for (; words[nWL]; nWL++) ;
    WordList** wl = new WordList* [nWL + 1];
    int i = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
    for (; i<nWL; i++)
    {
       wl[i] = new WordList();
@@ -337,6 +353,9 @@ void EXT_LEXER_DECL Lex(unsigned int lexer, unsigned int startPos, int length, i
 
    ColorizeHaskellDoc(startPos, length, initStyle, wl, wa);
    wa.Flush();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
    for (i=nWL-1;i>=0;i--)
       delete wl[i];
    delete [] wl;

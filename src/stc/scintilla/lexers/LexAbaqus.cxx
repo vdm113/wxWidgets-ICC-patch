@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexABAQUS.cxx
  ** Lexer for ABAQUS. Based on the lexer for APDL by Hadar Raz.
@@ -73,6 +80,9 @@ static void ColouriseABAQUSDoc(unsigned int startPos, int length, int initStyle,
 	// *word,[ paramname[=paramvalue]]*
 	// if the line ends with a , the keyword line continues onto the new line
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 		switch ( state ) {
         case KW_LINE_KW :
@@ -353,6 +363,9 @@ static int LineType(int line, Accessor &styler) {
     char ch = ' ';
 
     int i = pos ;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( i < eol_pos ) {
         c = styler.SafeGetCharAt(i);
         ch = static_cast<char>(LowerCase(c));
@@ -398,6 +411,9 @@ static int LineType(int line, Accessor &styler) {
 	wlen++ ;
 
     i++ ;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( (i < eol_pos) && (wlen < 255) ) {
         c = styler.SafeGetCharAt(i);
         ch = static_cast<char>(LowerCase(c));
@@ -464,6 +480,9 @@ WordList *[], Accessor &styler) {
 
     // Scan until we find the previous keyword line
     // this will give us the level reference that we need
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( prvKeyLine > 0 ) {
         prvKeyLine-- ;
         prvKeyLineTp = LineType(prvKeyLine, styler) ;
@@ -482,6 +501,9 @@ WordList *[], Accessor &styler) {
     prvKeyLine = -1 ;
 
     // Now start scanning over the lines.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int line = startLine; line <= endLine; line++ ) {
         int lineType = LineType(line, styler) ;
 
@@ -531,6 +553,9 @@ WordList *[], Accessor &styler) {
 				datLevel = level ;
 			}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for ( int ll = beginData; ll < beginComment; ll++ )
                 SafeSetLevel(ll, datLevel, styler) ;
 
@@ -547,6 +572,9 @@ WordList *[], Accessor &styler) {
 				}
             }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for ( int lll = beginComment; lll < line; lll++ )
                 SafeSetLevel(lll, level, styler) ;
 
@@ -566,6 +594,9 @@ WordList *[], Accessor &styler) {
         // a data line or a keyword line
         const int docLines = styler.GetLine(styler.Length() - 1);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int line = endLine + 1; line <= docLines; line++ ) {
             int lineType = LineType(line, styler) ;
 
@@ -593,6 +624,9 @@ WordList *[], Accessor &styler) {
 		datLevel = level ;
 	}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int ll = beginData; ll < beginComment; ll++ )
         SafeSetLevel(ll, datLevel, styler) ;
 
@@ -603,6 +637,9 @@ WordList *[], Accessor &styler) {
 	if ( prvKeyLineTp == 6 ) {
 		level -= 1 ;
 	}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for ( int m = beginComment; m <= endLine; m++ )
         SafeSetLevel(m, level, styler) ;
 }

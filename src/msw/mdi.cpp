@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/mdi.cpp
 // Purpose:     MDI classes for wxMSW
@@ -261,6 +268,9 @@ wxMDIChildFrame *wxMDIParentFrame::GetActiveChild() const
 int wxMDIParentFrame::GetChildFramesCount() const
 {
     int count = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxWindowList::const_iterator i = GetChildren().begin();
           i != GetChildren().end();
           ++i )
@@ -418,6 +428,9 @@ void wxMDIParentFrame::DoMenuUpdates(wxMenu* menu)
             if ( bar != NULL )
             {
                 int nCount = bar->GetMenuCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 for (int n = 0; n < nCount; n++)
                     bar->GetMenu(n)->UpdateUI(source);
             }
@@ -635,6 +648,9 @@ bool wxMDIParentFrame::HandleActivate(int state, bool minimized, WXHWND activate
 void wxMDIParentFrame::OnMDIChild(wxCommandEvent& event)
 {
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( node )
     {
         wxWindow *child = node->GetData();
@@ -1375,6 +1391,9 @@ void wxMDIClientWindow::DoSetSize(int x, int y, int width, int height, int sizeF
         if (GetParent())
         {
             wxWindowList::compatibility_iterator node = GetParent()->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             while (node)
             {
                 wxWindow *child = node->GetData();
@@ -1461,6 +1480,9 @@ void MDIInsertWindowMenu(wxWindow *win, WXHMENU hMenu, HMENU menuWin)
         // Try to insert Window menu in front of Help, otherwise append it.
         int N = GetMenuItemCount(hmenu);
         bool inserted = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int i = 0; i < N; i++ )
         {
             wxChar buf[256];
@@ -1502,6 +1524,9 @@ void MDIRemoveWindowMenu(wxWindow *win, WXHMENU hMenu)
         wxChar buf[1024];
 
         int N = ::GetMenuItemCount(hmenu);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int i = 0; i < N; i++ )
         {
             if ( !::GetMenuString(hmenu, i, buf, WXSIZEOF(buf), MF_BYPOSITION) )

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file ContractionState.cxx
  ** Manages visibility of lines for folding and wrapping.
@@ -107,6 +114,9 @@ void ContractionState::InsertLine(int lineDoc) {
 }
 
 void ContractionState::InsertLines(int lineDoc, int lineCount) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int l = 0; l < lineCount; l++) {
 		InsertLine(lineDoc + l);
 	}
@@ -128,6 +138,9 @@ void ContractionState::DeleteLine(int lineDoc) {
 }
 
 void ContractionState::DeleteLines(int lineDoc, int lineCount) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int l = 0; l < lineCount; l++) {
 		DeleteLine(lineDoc);
 	}
@@ -152,6 +165,9 @@ bool ContractionState::SetVisible(int lineDocStart, int lineDocEnd, bool visible
 		int delta = 0;
 		Check();
 		if ((lineDocStart <= lineDocEnd) && (lineDocStart >= 0) && (lineDocEnd < LinesInDoc())) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (int line = lineDocStart; line <= lineDocEnd; line++) {
 				if (GetVisible(line) != visible_) {
 					int difference = visible_ ? heights->ValueAt(line) : -heights->ValueAt(line);
@@ -259,10 +275,16 @@ void ContractionState::ShowAll() {
 
 void ContractionState::Check() const {
 #ifdef CHECK_CORRECTNESS
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int vline = 0; vline < LinesDisplayed(); vline++) {
 		const int lineDoc = DocFromDisplay(vline);
 		PLATFORM_ASSERT(GetVisible(lineDoc));
 	}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int lineDoc = 0; lineDoc < LinesInDoc(); lineDoc++) {
 		const int displayThis = DisplayFromDoc(lineDoc);
 		const int displayNext = DisplayFromDoc(lineDoc + 1);

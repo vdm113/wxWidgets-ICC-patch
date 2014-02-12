@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/valgen.cpp
 // Purpose:     wxGenericValidator class
@@ -371,11 +378,17 @@ bool wxGenericValidator::TransferToWindow(void)
             // clear all selections
             size_t i,
                    count = pControl->GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for ( i = 0 ; i < count; i++ )
                 pControl->Check(i, false);
 
             // select each item in our array
             count = m_pArrayInt->GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for ( i = 0 ; i < count; i++ )
                 pControl->Check(m_pArrayInt->Item(i));
 
@@ -394,11 +407,17 @@ bool wxGenericValidator::TransferToWindow(void)
             // clear all selections
             size_t i,
                    count = pControl->GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for ( i = 0 ; i < count; i++ )
                 pControl->Deselect(i);
 
             // select each item in our array
             count = m_pArrayInt->GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for ( i = 0 ; i < count; i++ )
                 pControl->SetSelection(m_pArrayInt->Item(i));
 
@@ -650,6 +669,9 @@ bool wxGenericValidator::TransferFromWindow(void)
             // add each selected item to our array
             size_t i,
                    count = pControl->GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for ( i = 0; i < count; i++ )
             {
                 if (pControl->IsChecked(i))
@@ -674,6 +696,9 @@ bool wxGenericValidator::TransferFromWindow(void)
             // add each selected item to our array
             size_t i,
                    count = pControl->GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for ( i = 0; i < count; i++ )
             {
                 if (pControl->IsSelected(i))

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla\ source code edit control
 /** @file LexTCMD.cxx
  ** Lexer for Take Command / TCC batch scripts (.bat, .btm, .cmd).
@@ -65,6 +72,9 @@ static unsigned int GetBatchVarLen( char *wordBuffer )
 		else
 			return 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for ( ; ( wordBuffer[nLength] ); nLength++ ) {
 
 			switch ( toupper(wordBuffer[nLength]) ) {
@@ -116,6 +126,9 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 	bool sKeywordFound;		// Exit Special Keyword for-loop if found
 
 	// Skip leading whitespace
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while ((offset < lengthLine) && (isspacechar(lineBuffer[offset]))) {
 		offset++;
 	}
@@ -158,11 +171,17 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 		offset++;
 	}
 	// Skip whitespace
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while ((offset < lengthLine) && (isspacechar(lineBuffer[offset]))) {
 		offset++;
 	}
 
 	// Read remainder of line word-at-a-time or remainder-of-word-at-a-time
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (offset < lengthLine) {
 		if (offset > startLine) {
 			// Colorize Default Text
@@ -170,6 +189,9 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 		}
 		// Copy word from Line Buffer into Word Buffer
 		wbl = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (; offset < lengthLine && ( wbl < 260 ) && !isspacechar(lineBuffer[offset]); wbl++, offset++) {
 			wordBuffer[wbl] = static_cast<char>(tolower(lineBuffer[offset]));
 		}
@@ -207,6 +229,9 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 			styler.ColourTo(startLine + offset - 1 - wbl, SCE_TCMD_DEFAULT);
 			wbo++;
 			// Search to end of word for second !
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			while ((wbo < wbl) && (wordBuffer[wbo] != '!') && (!IsBOperator(wordBuffer[wbo])) && (!IsBSeparator(wordBuffer[wbo]))) {
 				wbo++;
 			}
@@ -269,6 +294,9 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 			if (!sKeywordFound) {
 				wbo = 0;
 				// Read up to %, Operator or Separator
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				while ((wbo < wbl) && (wordBuffer[wbo] != '%') && (!isDelayedExpansion || wordBuffer[wbo] != '!') && (!IsBOperator(wordBuffer[wbo])) &&	(!IsBSeparator(wordBuffer[wbo]))) {
 					wbo++;
 				}
@@ -289,6 +317,9 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 			// check for %[nn] syntax
 			if ( wordBuffer[1] == '[' ) {
 				n++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				while ((n < wbl) && (wordBuffer[n] != ']')) {
 					n++;
 				}
@@ -298,12 +329,18 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 			}
 
 			// Search to end of word for second % or to the first terminator (can be a long path)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			while ((wbo < wbl) && (wordBuffer[wbo] != '%') && (!IsBOperator(wordBuffer[wbo])) && (!IsBSeparator(wordBuffer[wbo]))) {
 				wbo++;
 			}
 
 			// Check for Argument (%n) or (%*)
 			if (((isdigit(wordBuffer[1])) || (wordBuffer[1] == '*')) && (wordBuffer[wbo] != '%')) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				while (( wordBuffer[n] ) && ( strchr( "%0123456789*#$", wordBuffer[n] ) != NULL ))
 					n++;
 ColorizeArg:
@@ -334,6 +371,9 @@ ColorizeArg:
 			} else if (	(wbl > 2) && (wordBuffer[1] == '%') && (wordBuffer[2] != '%') && (!IsBOperator(wordBuffer[2])) && (!IsBSeparator(wordBuffer[2]))) {
 
 				n = 2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				while (( wordBuffer[n] ) && (!IsBOperator(wordBuffer[n])) && (!IsBSeparator(wordBuffer[n])))
 					n++;
 
@@ -388,6 +428,9 @@ ColorizeArg:
 		// Check for Default Text
 		} else {
 			// Read up to %, Operator or Separator
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			while ((wbo < wbl) && (wordBuffer[wbo] != '%') && (!isDelayedExpansion || wordBuffer[wbo] != '!') && (!IsBOperator(wordBuffer[wbo])) &&	(!IsBSeparator(wordBuffer[wbo]))) {
 				wbo++;
 			}
@@ -398,6 +441,9 @@ ColorizeArg:
 		}
 
 		// Skip whitespace - nothing happens if Offset was Reset
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while ((offset < lengthLine) && (isspacechar(lineBuffer[offset]))) {
 			offset++;
 		}
@@ -414,6 +460,9 @@ static void ColouriseTCMDDoc( unsigned int startPos, int length, int /*initStyle
 	styler.StartSegment(startPos);
 	unsigned int linePos = 0;
 	unsigned int startLine = startPos;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < startPos + length; i++) {
 		lineBuffer[linePos++] = styler[i];
 		if (AtEOL(styler, i) || (linePos >= sizeof(lineBuffer) - 1)) {
@@ -432,6 +481,9 @@ static void ColouriseTCMDDoc( unsigned int startPos, int length, int /*initStyle
 
 // Convert string to upper case
 static void StrUpr(char *s) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (*s) {
 		*s = MakeUpperCase(*s);
 		s++;
@@ -450,6 +502,9 @@ static void FoldTCMDDoc(unsigned int startPos, int length, int, WordList *[], Ac
     char chPrev = styler.SafeGetCharAt(startPos - 1);
 
 	// Scan for ( and )
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 
 		int c = styler.SafeGetCharAt(i, '\n');
@@ -466,6 +521,9 @@ static void FoldTCMDDoc(unsigned int startPos, int length, int, WordList *[], Ac
 		}
 
         if (( bLineStart ) && ( style == SCE_TCMD_WORD )) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (unsigned int j = 0; j < 10; j++) {
                 if (!iswordchar(styler[i + j])) {
                     break;

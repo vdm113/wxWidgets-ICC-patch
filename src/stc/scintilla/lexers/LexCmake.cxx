@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexCmake.cxx
  ** Lexer for Cmake
@@ -46,6 +53,9 @@ static bool isCmakeLetter(char ch)
 static bool CmakeNextLineHasElse(unsigned int start, unsigned int end, Accessor &styler)
 {
     int nNextLine = -1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( unsigned int i = start; i < end; i++ ) {
         char cNext = styler.SafeGetCharAt( i );
         if ( cNext == '\n' ) {
@@ -57,6 +67,9 @@ static bool CmakeNextLineHasElse(unsigned int start, unsigned int end, Accessor 
     if ( nNextLine == -1 ) // We never foudn the next line...
         return false;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( unsigned int firstChar = nNextLine; firstChar < end; firstChar++ ) {
         char cNext = styler.SafeGetCharAt( firstChar );
         if ( cNext == ' ' )
@@ -80,6 +93,9 @@ static int calculateFoldCmake(unsigned int start, unsigned int end, int foldleve
     int newFoldlevel = foldlevel;
 
     char s[20]; // The key word we are looking for has atmost 13 characters
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (unsigned int i = 0; i < end - start + 1 && i < 19; i++) {
         s[i] = static_cast<char>( styler[ start + i ] );
         s[i + 1] = '\0';
@@ -109,6 +125,9 @@ static int classifyWordCmake(unsigned int start, unsigned int end, WordList *key
     WordList &Parameters = *keywordLists[1];
     WordList &UserDefined = *keywordLists[2];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (unsigned int i = 0; i < end - start + 1 && i < 99; i++) {
         word[i] = static_cast<char>( styler[ start + i ] );
         lowercaseWord[i] = static_cast<char>(tolower(word[i]));
@@ -148,6 +167,9 @@ static int classifyWordCmake(unsigned int start, unsigned int end, WordList *key
     // To check for numbers
     if ( isCmakeNumber( word[0] ) ) {
         bool bHasSimpleCmakeNumber = true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (unsigned int j = 1; j < end - start + 1 && j < 99; j++) {
             if ( !isCmakeNumber( word[j] ) ) {
                 bHasSimpleCmakeNumber = false;
@@ -179,6 +201,9 @@ static void ColouriseCmakeDoc(unsigned int startPos, int length, int, WordList *
     bool bClassicVarInString = false;
 
     unsigned int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( i = startPos; i < nLengthDoc; i++ ) {
         cCurrChar = styler.SafeGetCharAt( i );
         char cNextChar = styler.SafeGetCharAt(i+1);
@@ -269,6 +294,9 @@ static void ColouriseCmakeDoc(unsigned int startPos, int length, int, WordList *
                 // We need to check if the previous line has a \ in it...
                 bool bNextLine = false;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 while ( nBack > 0 ) {
                     if ( styler.GetLine(nBack) != nCurLine )
                         break;
@@ -400,6 +428,9 @@ static void FoldCmakeDoc(unsigned int startPos, int length, int, WordList *[], A
         levelCurrent = styler.LevelAt(lineCurrent-1) >> 16;
     int levelNext = levelCurrent;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (unsigned int i = safeStartPos; i < startPos + length; i++) {
         char chCurr = styler.SafeGetCharAt(i);
 

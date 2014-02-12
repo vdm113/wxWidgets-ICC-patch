@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/button.cpp
 // Purpose:
@@ -255,6 +262,9 @@ GtkLabel *wxButton::GTKGetLabel() const
         GtkWidget* box = gtk_bin_get_child(GTK_BIN(child));
         GtkLabel* label = NULL;
         wxGtkList list(gtk_container_get_children(GTK_CONTAINER(box)));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (GList* item = list; item; item = item->next)
         {
             if (GTK_IS_LABEL(item->data))
@@ -282,6 +292,9 @@ void wxButton::DoApplyWidgetStyle(GtkRcStyle *style)
         if ( GTK_IS_BOX(box) )
         {
             wxGtkList list(gtk_container_get_children(GTK_CONTAINER(box)));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (GList* item = list; item; item = item->next)
             {
                 GTKApplyStyle(GTK_WIDGET(item->data), style);

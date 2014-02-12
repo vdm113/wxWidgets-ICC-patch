@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/controls/listbasetest.cpp
 // Purpose:     Base class for wxListCtrl and wxListView tests
@@ -53,6 +60,9 @@ void ListBaseTestCase::ColumnsOrder()
 
     // check that the order is natural in the beginning
     const wxArrayInt orderOrig = list->GetColumnsOrder();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( n = 0; n < NUM_COLS; n++ )
         CPPUNIT_ASSERT_EQUAL( n, orderOrig[n] );
 
@@ -66,10 +76,16 @@ void ListBaseTestCase::ColumnsOrder()
 
     // check that we get back the same order as we set
     const wxArrayInt orderNew = list->GetColumnsOrder();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( n = 0; n < NUM_COLS; n++ )
         CPPUNIT_ASSERT_EQUAL( order[n], orderNew[n] );
 
     // and the order -> index mappings for individual columns
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( n = 0; n < NUM_COLS; n++ )
         CPPUNIT_ASSERT_EQUAL( order[n], list->GetColumnIndexFromOrder(n) );
 
@@ -361,6 +377,9 @@ void ListBaseTestCase::Visible()
 
     int count = list->GetCountPerPage();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for( int i = 0; i < count + 10; i++ )
     {
         list->InsertItem(i, wxString::Format("string %d", i));

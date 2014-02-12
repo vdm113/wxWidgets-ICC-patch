@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/evtloop.cpp
 // Purpose:     implements wxEventLoop for GTK+
@@ -83,6 +90,9 @@ int wxGUIEventLoop::DoRun()
    // gtk_main_quit is called when closing the dialog????)
    // So for the moment this code is disabled and nested event loops
    // probably fail for wxGTK1
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
    while ( !m_shouldExit )
     {
 #endif
@@ -174,6 +184,9 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
 #endif
 
     // TODO: implement event filtering using the eventsToProcess mask
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (gtk_events_pending())
         gtk_main_iteration();
 

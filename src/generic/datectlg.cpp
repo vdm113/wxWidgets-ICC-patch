@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/datectlg.cpp
 // Purpose:     generic wxDatePickerCtrlGeneric implementation
@@ -226,10 +233,16 @@ private:
         if ( m_combo )
         {
             wxArrayString allowedChars;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for ( wxChar c = wxT('0'); c <= wxT('9'); c++ )
                 allowedChars.Add(wxString(c, 1));
 
             const wxChar *p2 = m_format.c_str();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             while ( *p2 )
             {
                 if ( *p2 == '%')

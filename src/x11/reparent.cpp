@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/x11/reparent.cpp
 // Purpose:     wxWindow
@@ -114,6 +121,9 @@ bool wxReparenter::Reparent(wxWindow* newParent, wxAdoptedWindow* toReparent)
         /* Stacking order is preserved since XQueryTree returns its children in
            bottommost to topmost order
          */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (each=0; each<numchildren; each++)
         {
             XGetWindowAttributes( wxGlobalDisplay(),
@@ -154,6 +164,9 @@ bool wxReparenter::WaitAndReparent(wxWindow* newParent, wxAdoptedWindow* toRepar
     sm_done = false;
 
     wxEventLoop eventLoop;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (!sm_done)
     {
         if (eventLoop.Pending())
@@ -276,6 +289,9 @@ WXWindow wxReparenter::FindAClientWindow(WXWindow window, const wxString& name)
     XSetErrorHandler(old);
 
     result = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i=0; i<(int)numchildren && !result ;i++) {
         result = (Window) FindAClientWindow((WXWindow) children[i], name);
     }

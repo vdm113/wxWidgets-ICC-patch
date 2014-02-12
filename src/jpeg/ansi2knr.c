@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /* ansi2knr.c */
 /* Convert ANSI C function definitions to K&R ("traditional C") syntax */
 
@@ -369,6 +376,9 @@ main(argc, argv)
 	fprintf(out, "#line 1 \"%s\"\n", argv[1]);
 	buf = malloc(bufsize);
 	line = buf;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while ( fgets(line, (unsigned)(buf + bufsize - line), in) != NULL )
 	   {
 test:		line += strlen(line);
@@ -434,6 +444,9 @@ skipspace(p, dir)
 		if ( !(*p == '/' && p[dir] == '*') )
 		  break;
 		p += dir;  p += dir;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while ( !(*p == '*' && p[dir] == '/') )
 		   {	if ( *p == 0 )
 			  return p;	/* multi-line comment?? */
@@ -453,6 +466,9 @@ writeblanks(start, end)
     char *start;
     char *end;
 {	char *p;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for ( p = start; p < end; p++ )
 	  if ( *p != '\r' && *p != '\n' )
 	    *p = ' ';
@@ -491,6 +507,9 @@ test1(buf)
 	   case '}': return 0;		/* not a function */
 	   default: contin = -1;
 	   }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while ( isidchar(*p) )
 	  p++;
 	endfn = p;
@@ -514,6 +533,9 @@ test1(buf)
 		char *kp;
 		int len = endfn - buf;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while ( (kp = *key) != 0 )
 		   {	if ( strlen(kp) == len && !strncmp(kp, buf, len) )
 			  return 0;	/* name is a keyword */
@@ -541,6 +563,9 @@ convert1(buf, out, header, convert_varargs)
 
 	/* Pre-ANSI implementations don't agree on whether strchr */
 	/* is called strchr or index, so we open-code it here. */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for ( endfn = buf; *(endfn++) != '('; )
 	  ;
 top:	p = endfn;
@@ -554,6 +579,9 @@ top:	p = endfn;
 	btop = breaks + num_breaks * 2 - 2;
 	bp = breaks;
 	/* Parse the argument list */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	do
 	   {	int level = 0;
 		char *lp = NULL;
@@ -569,6 +597,9 @@ top:	p = endfn;
 		   }
 		*bp++ = p;
 		/* Find the end of the argument */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for ( ; end == NULL; p++ )
 		   {	switch(*p)
 			   {
@@ -597,6 +628,9 @@ top:	p = endfn;
 		/* Find the name being declared. */
 		/* This is complicated because of procedure and */
 		/* array modifiers. */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for ( ; ; )
 		   {	p = skipspace(p - 1, -1);
 			switch ( *p )
@@ -604,6 +638,9 @@ top:	p = endfn;
 			   case ']':	/* skip array dimension(s) */
 			   case ')':	/* skip procedure args OR name */
 			   {	int level = 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				while ( level )
 				 switch ( *--p )
 				   {
@@ -615,6 +652,9 @@ top:	p = endfn;
 			   }
 				if ( *p == '(' && *skipspace(p + 1, 1) == '*' )
 				   {	/* We found the name being declared */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 					while ( !isidfirstchar(*p) )
 					  p = skipspace(p, 1) + 1;
 					goto found;
@@ -644,6 +684,9 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 		   }
 		p = end;
 	   }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while ( *p++ == ',' );
 	*bp = p;
 	/* Make a special check for 'void' arglist */
@@ -659,10 +702,16 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 	   }
 	/* Put out the function name and left parenthesis. */
 	p = buf;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while ( p != endfn ) putc(*p, out), p++;
 	/* Put out the declaration. */
 	if ( header )
 	  {	fputs(");", out);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for ( p = breaks[0]; *p; p++ )
 		  if ( *p == '\r' || *p == '\n' )
 		    putc(*p, out);
@@ -670,6 +719,9 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 	else
 	  {	for ( ap = breaks+1; ap < bp; ap += 2 )
 		  {	p = *ap;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			while ( isidchar(*p) )
 			  putc(*p, out), p++;
 			if ( ap < bp - 1 )
@@ -677,6 +729,9 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 		  }
 		fputs(")  ", out);
 		/* Put out the argument declarations */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for ( ap = breaks+2; ap <= bp; ap += 2 )
 		  (*ap)[-1] = ';';
 		if ( vararg != 0 )

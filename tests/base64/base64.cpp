@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/base64/base64.cpp
 // Purpose:     wxBase64Encode/Decode unit test
@@ -40,6 +47,9 @@ generatePatternedData(void* buff, size_t len, unsigned char startVal,
 {
     unsigned char *cbuff = (unsigned char *)buff;
     unsigned char curval = startVal;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while(len--)
     {
         *(cbuff++) = curval;
@@ -50,6 +60,9 @@ generatePatternedData(void* buff, size_t len, unsigned char startVal,
 static void generateRandomData(void* buff, size_t len)
 {
     unsigned char *cbuff = (unsigned char *)buff;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while(len--)
     {
         *(cbuff++) = (unsigned char)(((rand() * 255) / RAND_MAX));
@@ -62,6 +75,9 @@ static void generateGibberish(void* buff, size_t len)
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
     unsigned char *cbuff = (unsigned char *)buff;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while(len--)
     {
         *(cbuff++) = cb64[((rand() * 64) / RAND_MAX)];

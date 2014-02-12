@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/archive/archive.cpp
 // Purpose:     Test the archive classes
@@ -69,6 +76,9 @@ TestEntry::TestEntry(const wxDateTime& dt, int len, const char *data)
     m_data = new char[len];
     memcpy(m_data, data, len);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (int i = 0; i < len && m_isText; i++)
         m_isText = (signed char)m_data[i] > 0;
 }
@@ -135,6 +145,9 @@ size_t TestOutputStream::OnSysWrite(const void *buffer, size_t size)
     if (m_capacity < newsize) {
         size_t capacity = m_capacity ? m_capacity : INITIAL_SIZE;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while (capacity < newsize) {
             capacity <<= 1;
             wxCHECK(capacity > m_capacity, 0);
@@ -377,9 +390,15 @@ void TempDir::RemoveDir(wxString& path)
     wxString tmp = m_tmp + wxFileName::GetPathSeparator();
     size_t i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < WXSIZEOF(files); i++)
         wxRemoveFile(tmp + wxFileName(files[i], wxPATH_UNIX).GetFullPath());
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < WXSIZEOF(dirs); i++)
         wxRmdir(tmp + wxFileName(dirs[i], wxPATH_UNIX).GetFullPath());
 
@@ -458,6 +477,9 @@ template <class ClassFactoryT>
 ArchiveTestCase<ClassFactoryT>::~ArchiveTestCase()
 {
     TestEntries::iterator it;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (it = m_testEntries.begin(); it != m_testEntries.end(); ++it)
         delete it->second;
 }
@@ -549,6 +571,9 @@ TestEntry& ArchiveTestCase<ClassFactoryT>::Add(const char *name,
                                                int value /*=EOF*/)
 {
     wxCharBuffer buf(len);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (int i = 0; i < len; i++)
         buf.data()[i] = (char)(value == EOF ? rand() : value);
     return Add(name, buf, len);
@@ -568,6 +593,9 @@ void ArchiveTestCase<ClassFactoryT>::CreateArchive(wxOutputStream& out)
     // is just a number used to select between all the various possibilities.
     int choices = m_id;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (it = m_testEntries.begin(); it != m_testEntries.end(); ++it) {
         choices += 5;
         TestEntry& testEntry = *it->second;
@@ -640,6 +668,9 @@ void ArchiveTestCase<ClassFactoryT>::CreateArchive(wxOutputStream& out,
 
     // write the files
     TestEntries::iterator i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = m_testEntries.begin(); i != m_testEntries.end(); ++i) {
         wxFileName fn(i->first, wxPATH_UNIX);
         TestEntry& entry = *i->second;
@@ -653,6 +684,9 @@ void ArchiveTestCase<ClassFactoryT>::CreateArchive(wxOutputStream& out,
         }
     }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = m_testEntries.begin(); i != m_testEntries.end(); ++i) {
         wxFileName fn(i->first, wxPATH_UNIX);
         TestEntry& entry = *i->second;
@@ -713,6 +747,9 @@ void ArchiveTestCase<ClassFactoryT>::ModifyArchive(wxInputStream& in,
 
     arcOut->CopyArchiveMetaData(*arcIn);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ((pEntry = arcIn->GetNextEntry()) != NULL) {
         auto_ptr<EntryT> entry(pEntry);
         OnSetNotifier(*entry);
@@ -790,6 +827,9 @@ void ArchiveTestCase<ClassFactoryT>::ExtractArchive(wxInputStream& in)
     if ((m_options & PipeIn) == 0)
         OnArchiveExtracted(*arc, expectedTotal);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (entry = EntryPtr(arc->GetNextEntry()), entry.get() != NULL) {
         wxString name = entry->GetName(wxPATH_UNIX);
 
@@ -861,6 +901,9 @@ void ArchiveTestCase<ClassFactoryT>::ExtractArchive(wxInputStream& in)
     // for non-seekable streams these data are only guaranteed to be
     // available once the end of the archive has been reached
     if (m_options & PipeIn) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (EntryIter i = entries.begin(); i != entries.end(); ++i) {
             wxString name = (*i)->GetName(wxPATH_UNIX);
             TestEntries::iterator j = m_testEntries.find(name);
@@ -931,6 +974,9 @@ void ArchiveTestCase<ClassFactoryT>::VerifyDir(wxString& path,
         rootlen = pos;
 
     if (dir.Open(path) && dir.GetFirst(&name)) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         do {
             path.replace(pos, wxString::npos, name);
             name = m_factory->GetInternalName(
@@ -979,6 +1025,9 @@ void ArchiveTestCase<ClassFactoryT>::VerifyDir(wxString& path,
             delete it->second;
             m_testEntries.erase(it);
         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while (dir.GetNext(&name));
     }
 }
@@ -998,10 +1047,16 @@ void ArchiveTestCase<ClassFactoryT>::TestIterator(wxInputStream& in)
     ArchiveCatalog cat((IterT)*arc, IterT());
 #else
     ArchiveCatalog cat;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (IterT i(*arc); i != IterT(); ++i)
         cat.push_back(*i);
 #endif
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (CatalogIter it = cat.begin(); it != cat.end(); ++it) {
         auto_ptr<EntryT> entry(*it);
         count += m_testEntries.count(entry->GetName(wxPATH_UNIX));
@@ -1027,10 +1082,16 @@ void ArchiveTestCase<ClassFactoryT>::TestPairIterator(wxInputStream& in)
     ArchiveCatalog cat((PairIterT)*arc, PairIterT());
 #else
     ArchiveCatalog cat;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (PairIterT i(*arc); i != PairIterT(); ++i)
         cat.insert(*i);
 #endif
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (CatalogIter it = cat.begin(); it != cat.end(); ++it) {
         auto_ptr<EntryT> entry(it->second);
         count += m_testEntries.count(entry->GetName(wxPATH_UNIX));
@@ -1055,12 +1116,18 @@ void ArchiveTestCase<ClassFactoryT>::TestSmartIterator(wxInputStream& in)
     ArchiveCatalog cat((Iter)*arc, Iter());
 #else
     ArchiveCatalog cat;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (Iter i(*arc); i != Iter(); ++i)
         cat.push_back(*i);
 #endif
 
     CPPUNIT_ASSERT(m_testEntries.size() == cat.size());
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (CatalogIter it = cat.begin(); it != cat.end(); ++it)
         CPPUNIT_ASSERT(m_testEntries.count((*it)->GetName(wxPATH_UNIX)));
 }
@@ -1086,12 +1153,18 @@ void ArchiveTestCase<ClassFactoryT>::TestSmartPairIterator(wxInputStream& in)
     ArchiveCatalog cat((PairIter)*arc, PairIter());
 #else
     ArchiveCatalog cat;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (PairIter i(*arc); i != PairIter(); ++i)
         cat.insert(*i);
 #endif
 
     CPPUNIT_ASSERT(m_testEntries.size() == cat.size());
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (CatalogIter it = cat.begin(); it != cat.end(); ++it)
         CPPUNIT_ASSERT(m_testEntries.count(it->second->GetName(wxPATH_UNIX)));
 #endif
@@ -1116,6 +1189,9 @@ void ArchiveTestCase<ClassFactoryT>::ReadSimultaneous(TestInputStream& in)
     ArchiveCatalog cat((PairIter)*arc, PairIter());
 #else
     ArchiveCatalog cat;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (PairIter i(*arc); i != PairIter(); ++i)
         cat.insert(*i);
 #endif
@@ -1143,6 +1219,9 @@ void ArchiveTestCase<ClassFactoryT>::ReadSimultaneous(TestInputStream& in)
     const char *data = entry->GetData(), *data2 = entry2->GetData();
 
     // read and check the two entries in parallel, character by character
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (arc->IsOk() || arc2->IsOk()) {
         char ch = arc->GetC();
         if (arc->LastRead() == 1) {
@@ -1214,6 +1293,9 @@ void CorruptionTestCase::runTest()
 
     // try flipping one byte in the archive
     int pos;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (pos = 0; pos < len; pos++) {
         char n = in[pos];
         in[pos] = ~n;
@@ -1223,6 +1305,9 @@ void CorruptionTestCase::runTest()
     }
 
     // try zeroing one byte in the archive
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (pos = 0; pos < len; pos++) {
         char n = in[pos];
         in[pos] = 0;
@@ -1232,6 +1317,9 @@ void CorruptionTestCase::runTest()
     }
 
     // try chopping the archive off
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (int size = 1; size <= len; size++) {
         in.Chop(size);
         ExtractArchive(in);
@@ -1253,9 +1341,15 @@ void CorruptionTestCase::ExtractArchive(wxInputStream& in)
     auto_ptr<wxArchiveInputStream> arc(m_factory->NewStream(in));
     auto_ptr<wxArchiveEntry> entry(arc->GetNextEntry());
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (entry.get() != NULL) {
         char buf[1024];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while (arc->IsOk())
             arc->Read(buf, sizeof(buf));
 
@@ -1315,9 +1409,21 @@ ArchiveTestSuite *ArchiveTestSuite::makeSuite()
 {
     typedef wxArrayString::iterator Iter;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (int generic = 0; generic < 2; generic++)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (Iter i = m_unarchivers.begin(); i != m_unarchivers.end(); ++i)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (Iter j = m_archivers.begin(); j != m_archivers.end(); ++j)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 for (int options = 0; options <= AllOptions; options++)
                 {
 #ifdef WXARC_NO_POPEN
@@ -1337,6 +1443,9 @@ ArchiveTestSuite *ArchiveTestSuite::makeSuite()
                         addTest(test);
                 }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (int options = 0; options <= PipeIn; options += PipeIn)
     {
         wxObject *pObj = wxCreateDynamicObject(m_name + wxT("ClassFactory"));

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/events/stopwatch.cpp
 // Purpose:     Test wxStopWatch class
@@ -120,10 +127,16 @@ void StopWatchTestCase::BackwardsClockBug()
     wxStopWatch sw;
     wxStopWatch sw2;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < 10; n++ )
     {
         sw2.Start();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( size_t m = 0; m < 10000; m++ )
         {
             CPPUNIT_ASSERT ( sw.Time() >= 0 && sw2.Time() >= 0 );

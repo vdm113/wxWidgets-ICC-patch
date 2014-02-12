@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/propgrid/propgridiface.cpp
 // Purpose:     wxPropertyGridInterface class
@@ -302,6 +309,9 @@ bool wxPropertyGridInterface::ExpandAll( bool doExpand )
 
     wxPGVIterator it;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( it = GetVIterator( wxPG_ITERATE_ALL ); !it.AtEnd(); it.Next() )
     {
         wxPGProperty* p = (wxPGProperty*) it.GetProperty();
@@ -337,6 +347,9 @@ void wxPropertyGridInterface::ClearModifiedStatus()
 {
     unsigned int pageIndex = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (;;)
     {
         wxPropertyGridPageState* page = GetPageState(pageIndex);
@@ -425,6 +438,9 @@ wxPGProperty* wxPropertyGridInterface::GetPropertyByLabel( const wxString& label
 {
     wxPGVIterator it;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( it = GetVIterator( wxPG_ITERATE_PROPERTIES ); !it.AtEnd(); it.Next() )
     {
         if ( it.GetProperty()->GetLabel() == label )
@@ -446,6 +462,9 @@ void wxPropertyGridInterface::DoSetPropertyAttribute( wxPGPropArg id, const wxSt
     if ( argFlags & wxPG_RECURSE )
     {
         unsigned int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( i = 0; i < p->GetChildCount(); i++ )
             DoSetPropertyAttribute(p->Item(i), name, value, argFlags);
     }
@@ -458,6 +477,9 @@ void wxPropertyGridInterface::SetPropertyAttributeAll( const wxString& attrName,
 {
     unsigned int pageIndex = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (;;)
     {
         wxPropertyGridPageState* page = GetPageState(pageIndex);
@@ -479,6 +501,9 @@ void wxPropertyGridInterface::GetPropertiesWithFlag( wxArrayPGProperty* targetAr
     wxASSERT( targetArr );
     wxPGVIterator it = GetVIterator( iterFlags );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( ;
           !it.AtEnd();
           it.Next() )
@@ -593,6 +618,9 @@ void wxPropertyGridInterface::Sort( int flags )
 
     unsigned int pageIndex = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (;;)
     {
         wxPropertyGridPageState* page = GetPageState(pageIndex);
@@ -826,6 +854,9 @@ static wxString EscapeDelimiters(const wxString& s)
     wxString result;
     result.Alloc(s.length());
     const wxChar* ch = s.c_str();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (*ch)
     {
         if (*ch == wxT(';') || *ch == wxT('|') || *ch == wxT(','))
@@ -845,6 +876,9 @@ wxString wxPropertyGridInterface::SaveEditableState( int includedStates ) const
     unsigned int pageIndex = 0;
     wxArrayPtrVoid pageStates;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (;;)
     {
         wxPropertyGridPageState* page = GetPageState(pageIndex);
@@ -855,6 +889,9 @@ wxString wxPropertyGridInterface::SaveEditableState( int includedStates ) const
         pageIndex++;
     }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( pageIndex=0; pageIndex < pageStates.size(); pageIndex++ )
     {
         wxPropertyGridPageState* pageState = (wxPropertyGridPageState*) pageStates[pageIndex];
@@ -878,6 +915,9 @@ wxString wxPropertyGridInterface::SaveEditableState( int includedStates ) const
 
             result += wxS("expanded=");
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for ( ;
                   !it.AtEnd();
                   it.Next() )
@@ -905,6 +945,9 @@ wxString wxPropertyGridInterface::SaveEditableState( int includedStates ) const
         {
             result += wxS("splitterpos=");
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for ( size_t i=0; i<pageState->GetColumnCount(); i++ )
                 result += wxString::Format(wxS("%i,"), pageState->DoGetSplitterPosition(i));
 
@@ -951,6 +994,9 @@ bool wxPropertyGridInterface::RestoreEditableState( const wxString& src, int res
     pg->Freeze();
     wxArrayString pageStrings = ::wxSplit(src, wxS('|'), wxS('\\'));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( pageIndex=0; pageIndex<pageStrings.size(); pageIndex++ )
     {
         wxPropertyGridPageState* pageState = GetPageState(pageIndex);
@@ -959,6 +1005,9 @@ bool wxPropertyGridInterface::RestoreEditableState( const wxString& src, int res
 
         wxArrayString kvpairStrings = ::wxSplit(pageStrings[pageIndex], wxS(';'), wxS('\\'));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( size_t i=0; i<kvpairStrings.size(); i++ )
         {
             const wxString& kvs = kvpairStrings[i];
@@ -981,6 +1030,9 @@ bool wxPropertyGridInterface::RestoreEditableState( const wxString& src, int res
                                                     wxNullProperty );
 
                         // First collapse all
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                         for ( ; !it.AtEnd(); it.Next() )
                         {
                             wxPGProperty* p = it.GetProperty();
@@ -988,6 +1040,9 @@ bool wxPropertyGridInterface::RestoreEditableState( const wxString& src, int res
                         }
 
                         // Then expand those which names are in values
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                         for ( size_t n=0; n<values.size(); n++ )
                         {
                             const wxString& name = values[n];
@@ -1016,6 +1071,9 @@ bool wxPropertyGridInterface::RestoreEditableState( const wxString& src, int res
                 {
                     if ( restoreStates & SplitterPosState )
                     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                         for ( size_t n=1; n<values.size(); n++ )
                         {
                             long pos = 0;
@@ -1091,6 +1149,9 @@ bool wxPropertyGridInterface::RestoreEditableState( const wxString& src, int res
     // (may be needed on unclean source string).
     pageIndex = 0;
     wxPropertyGridPageState* pageState = GetPageState(pageIndex);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( pageState )
     {
         pageState->VirtualHeightChanged();

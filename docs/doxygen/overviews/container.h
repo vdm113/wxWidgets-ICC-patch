@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        container.h
 // Purpose:     topic overview
@@ -106,6 +113,9 @@ default one. Here are the most important differences:
    same semantics as a Node pointer but it is an object and not a pointer, so
    you need to write
         @code
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( wxWindowList::compatibility_iterator it = list.GetFirst();
               it;
               it = it->GetNext() )
@@ -113,6 +123,9 @@ default one. Here are the most important differences:
         @endcode
    instead of the old
         @code
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( wxWindowList::Node *n = list.GetFirst(); n; n = n->GetNext() )
             ...
         @endcode

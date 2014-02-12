@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 // @file LexAU3.cxx
 // Lexer for AutoIt3  http://www.hiddensoft.com/autoit3
@@ -114,6 +121,9 @@ static int GetSendKey(const char *szLine, char *szKey)
 	char	szSpecial[100];
 
 	// split the portion of the sendkey in the part before and after the spaces
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while ( ( (cTemp = szLine[nPos]) != '\0'))
 	{
 		// skip leading Ctrl/Shift/Alt state
@@ -175,6 +185,9 @@ static bool IsContinuationLine(unsigned int szLine, Accessor &styler)
 	int nsPos = styler.LineStart(szLine);
 	int nePos = styler.LineStart(szLine+1) - 2;
 	//int stylech = styler.StyleAt(nsPos);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (nsPos < nePos)
 	{
 		//stylech = styler.StyleAt(nePos);
@@ -213,6 +226,9 @@ static void ColouriseAU3Doc(unsigned int startPos,
 	int s_startPos = startPos;
 	// When not inside a Block comment: find First line without _
 	if (!(initStyle==SCE_AU3_COMMENTBLOCK)) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while ((lineCurrent > 0 && IsContinuationLine(lineCurrent,styler)) ||
 			   (lineCurrent > 1 && IsContinuationLine(lineCurrent-1,styler))) {
 			lineCurrent--;
@@ -233,6 +249,9 @@ static void ColouriseAU3Doc(unsigned int startPos,
 	ni=0;
 	ci=0;
 	//$$$
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (; sc.More(); sc.Forward()) {
 		char s[100];
 		sc.GetCurrentLowered(s, sizeof(s));
@@ -495,6 +514,9 @@ static void ColouriseAU3Doc(unsigned int startPos,
 					int		nPos	= 0;
 					int		nState	= 1;
 					char	cTemp;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 					while (!(nState == 2) && ((cTemp = s[nPos]) != '\0'))
 					{
 						if (cTemp == '{' && nState == 1)
@@ -663,6 +685,9 @@ static int GetStyleFirstWord(unsigned int szLine, Accessor &styler)
 {
 	int nsPos = styler.LineStart(szLine);
 	int nePos = styler.LineStart(szLine+1) - 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (isspacechar(styler.SafeGetCharAt(nsPos)) && nsPos < nePos)
 	{
 		nsPos++; // skip to next char
@@ -694,6 +719,9 @@ static void FoldAU3Doc(unsigned int startPos, int length, int, WordList *[], Acc
 	int style = GetStyleFirstWord(lineCurrent,styler);
 	int stylePrev = 0;
 	// find the first previous line without continuation character at the end
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while ((lineCurrent > 0 && IsContinuationLine(lineCurrent,styler)) ||
 	       (lineCurrent > 1 && IsContinuationLine(lineCurrent-1,styler))) {
 		lineCurrent--;
@@ -720,6 +748,9 @@ static void FoldAU3Doc(unsigned int startPos, int length, int, WordList *[], Acc
 	char chNext = styler.SafeGetCharAt(startPos);
 	char chPrev = ' ';
 	//
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

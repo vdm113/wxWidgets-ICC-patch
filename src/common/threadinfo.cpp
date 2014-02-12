@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/threadinfo.cpp
 // Purpose:     declaration of wxThreadSpecificInfo: thread-specific information
@@ -72,6 +79,9 @@ void wxThreadSpecificInfo::ThreadCleanUp()
 
     // find this thread's instance in GetAllThreadInfos() and destroy it
     wxCriticalSectionLocker lock(GetAllThreadInfosCS());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxAllThreadInfos::iterator i = GetAllThreadInfos().begin();
           i != GetAllThreadInfos().end();
           ++i )

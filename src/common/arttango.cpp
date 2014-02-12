@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/arttango.cpp
 // Purpose:     art provider using embedded PNG versions of Tango icons
@@ -204,6 +211,9 @@ wxTangoArtProvider::CreateBitmap(const wxArtID& id,
     #undef BITMAP_DATA_FOR_SIZE
     #undef BITMAP_DATA
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < WXSIZEOF(s_allBitmaps); n++ )
     {
         const BitmapEntry& entry = s_allBitmaps[n];

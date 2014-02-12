@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/controls/notebooktest.cpp
 // Purpose:     wxNotebook unit test
@@ -81,6 +88,9 @@ void NotebookTestCase::RowCount()
                                 wxDefaultPosition, wxSize(400, 200),
                                 wxNB_MULTILINE);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for( unsigned int i = 0; i < 10; i++ )
     {
         m_notebook->AddPage(new wxPanel(m_notebook), "Panel", false, 0);

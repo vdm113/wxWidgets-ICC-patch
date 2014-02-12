@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /*
  * xtif_dir.c
  *
@@ -67,6 +74,9 @@ _XTIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 	
 			num = xd->xd_num_multi;
 			fprintf(fd,"(");
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (i=0;i<num;i++) fprintf(fd, " %lg", *value++);
 			fprintf(fd,")\n");
 		} else

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /* pngrtran.c - transforms the data in a row for PNG readers
  *
@@ -426,6 +433,9 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 
       png_ptr->quantize_index = (png_bytep)png_malloc(png_ptr,
           (png_uint_32)(num_palette * (sizeof (png_byte))));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
       for (i = 0; i < num_palette; i++)
          png_ptr->quantize_index[i] = (png_byte)i;
    }
@@ -445,6 +455,9 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
              (png_uint_32)(num_palette * (sizeof (png_byte))));
 
          /* Initialize the quantize_sort array */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
          for (i = 0; i < num_palette; i++)
             png_ptr->quantize_sort[i] = (png_byte)i;
 
@@ -455,12 +468,18 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
           * least used.
           */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
          for (i = num_palette - 1; i >= maximum_colors; i--)
          {
             int done; /* To stop early if the list is pre-sorted */
             int j;
 
             done = 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (j = 0; j < i; j++)
             {
                if (histogram[png_ptr->quantize_sort[j]]
@@ -487,12 +506,21 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
             /* Put all the useful colors within the max, but don't
              * move the others.
              */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < maximum_colors; i++)
             {
                if ((int)png_ptr->quantize_sort[i] >= maximum_colors)
                {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   do
                      j--;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   while ((int)png_ptr->quantize_sort[j] >= maximum_colors);
 
                   palette[i] = palette[j];
@@ -506,6 +534,9 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
             /* Move all the used colors inside the max limit, and
              * develop a translation table.
              */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < maximum_colors; i++)
             {
                /* Only move the colors we need to */
@@ -513,8 +544,14 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
                {
                   png_color tmp_color;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   do
                      j--;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   while ((int)png_ptr->quantize_sort[j] >= maximum_colors);
 
                   tmp_color = palette[j];
@@ -527,6 +564,9 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
             }
 
             /* Find closest color for those colors we are not using */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < num_palette; i++)
             {
                if ((int)png_ptr->quantize_index[i] >= maximum_colors)
@@ -536,6 +576,9 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
                   /* Find the closest color to one we threw out */
                   d_index = png_ptr->quantize_index[i];
                   min_d = PNG_COLOR_DIST(palette[d_index], palette[0]);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (k = 1, min_k = 0; k < maximum_colors; k++)
                   {
                      int d;
@@ -581,6 +624,9 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
              (png_uint_32)(num_palette * (sizeof (png_byte))));
 
          /* Initialize the sort array */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
          for (i = 0; i < num_palette; i++)
          {
             png_ptr->index_to_palette[i] = (png_byte)i;
@@ -602,12 +648,21 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
           */
          max_d = 96;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
          while (num_new_palette > maximum_colors)
          {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < num_new_palette - 1; i++)
             {
                int j;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (j = i + 1; j < num_new_palette; j++)
                {
                   int d;
@@ -634,12 +689,18 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
             }
 
             if (t != NULL)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i <= max_d; i++)
             {
                if (hash[i] != NULL)
                {
                   png_dsortp p;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (p = hash[i]; p; p = p->next)
                   {
                      if ((int)png_ptr->index_to_palette[p->left]
@@ -667,6 +728,9 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
                         {
                            int k;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                            for (k = 0; k < num_palette; k++)
                            {
                               if (png_ptr->quantize_index[k] ==
@@ -701,11 +765,17 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
                }
             }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < 769; i++)
             {
                if (hash[i] != NULL)
                {
                   png_dsortp p = hash[i];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   while (p)
                   {
                      t = p->next;
@@ -750,6 +820,9 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 
       memset(distance, 0xff, num_entries * (sizeof (png_byte)));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
       for (i = 0; i < num_palette; i++)
       {
          int ir, ig, ib;
@@ -757,6 +830,9 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
          int g = (palette[i].green >> (8 - PNG_QUANTIZE_GREEN_BITS));
          int b = (palette[i].blue >> (8 - PNG_QUANTIZE_BLUE_BITS));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
          for (ir = 0; ir < num_red; ir++)
          {
             /* int dr = abs(ir - r); */
@@ -764,6 +840,9 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
             int index_r = (ir << (PNG_QUANTIZE_BLUE_BITS +
                 PNG_QUANTIZE_GREEN_BITS));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (ig = 0; ig < num_green; ig++)
             {
                /* int dg = abs(ig - g); */
@@ -772,6 +851,9 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
                int dm = ((dr > dg) ? dr : dg);
                int index_g = index_r | (ig << PNG_QUANTIZE_BLUE_BITS);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (ib = 0; ib < num_blue; ib++)
                {
                   int d_index = index_g | ib;
@@ -1115,6 +1197,9 @@ png_init_palette_transformations(png_structrp png_ptr)
       int i;
 
       /* Ignore if all the entries are opaque (unlikely!) */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
       for (i=0; i<png_ptr->num_trans; ++i)
          if (png_ptr->trans_alpha[i] == 255)
             continue;
@@ -1168,6 +1253,9 @@ png_init_palette_transformations(png_structrp png_ptr)
                */
               int i, istop = png_ptr->num_trans;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
               for (i=0; i<istop; i++)
                  png_ptr->trans_alpha[i] = (png_byte)(255 -
                     png_ptr->trans_alpha[i]);
@@ -1661,6 +1749,9 @@ png_init_read_transformations(png_structrp png_ptr)
                }
             }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < num_palette; i++)
             {
                if (i < (int)png_ptr->num_trans &&
@@ -1808,6 +1899,9 @@ png_init_read_transformations(png_structrp png_ptr)
          /* NOTE: there are other transformations that should probably be in
           * here too.
           */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
          for (i = 0; i < num_palette; i++)
          {
             palette[i].red = png_ptr->gamma_table[palette[i].red];
@@ -1838,6 +1932,9 @@ png_init_read_transformations(png_structrp png_ptr)
       back.green = (png_byte)png_ptr->background.green;
       back.blue  = (png_byte)png_ptr->background.blue;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
       for (i = 0; i < istop; i++)
       {
          if (png_ptr->trans_alpha[i] == 0)
@@ -2432,6 +2529,9 @@ png_do_unpack(png_row_infop row_info, png_bytep row)
             png_bytep sp = row + (png_size_t)((row_width - 1) >> 3);
             png_bytep dp = row + (png_size_t)row_width - 1;
             png_uint_32 shift = 7 - (int)((row_width + 7) & 0x07);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                *dp = (png_byte)((*sp >> shift) & 0x01);
@@ -2456,6 +2556,9 @@ png_do_unpack(png_row_infop row_info, png_bytep row)
             png_bytep sp = row + (png_size_t)((row_width - 1) >> 2);
             png_bytep dp = row + (png_size_t)row_width - 1;
             png_uint_32 shift = (int)((3 - ((row_width + 3) & 0x03)) << 1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                *dp = (png_byte)((*sp >> shift) & 0x03);
@@ -2479,6 +2582,9 @@ png_do_unpack(png_row_infop row_info, png_bytep row)
             png_bytep sp = row + (png_size_t)((row_width - 1) >> 1);
             png_bytep dp = row + (png_size_t)row_width - 1;
             png_uint_32 shift = (int)((1 - ((row_width + 1) & 0x01)) << 2);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                *dp = (png_byte)((*sp >> shift) & 0x0f);
@@ -2550,6 +2656,9 @@ png_do_unshift(png_row_infop row_info, png_bytep row,
       {
          int c, have_shift;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
          for (c = have_shift = 0; c < channels; ++c)
          {
             /* A shift of more than the bit depth is an error condition but it
@@ -2580,6 +2689,9 @@ png_do_unshift(png_row_infop row_info, png_bytep row,
             png_bytep bp = row;
             png_bytep bp_end = bp + row_info->rowbytes;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             while (bp < bp_end)
             {
                int b = (*bp >> 1) & 0x55;
@@ -2599,6 +2711,9 @@ png_do_unshift(png_row_infop row_info, png_bytep row,
 
             mask |= mask << 4;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             while (bp < bp_end)
             {
                int b = (*bp >> gray_shift) & mask;
@@ -2614,6 +2729,9 @@ png_do_unshift(png_row_infop row_info, png_bytep row,
             png_bytep bp_end = bp + row_info->rowbytes;
             int channel = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             while (bp < bp_end)
             {
                int b = *bp >> shift[channel];
@@ -2632,6 +2750,9 @@ png_do_unshift(png_row_infop row_info, png_bytep row,
             png_bytep bp_end = bp + row_info->rowbytes;
             int channel = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             while (bp < bp_end)
             {
                int value = (bp[0] << 8) + bp[1];
@@ -2663,6 +2784,9 @@ png_do_scale_16_to_8(png_row_infop row_info, png_bytep row)
       png_bytep dp = row; /* destination */
       png_bytep ep = sp + row_info->rowbytes; /* end+1 */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
       while (sp < ep)
       {
          /* The input is an array of 16 bit components, these must be scaled to
@@ -2724,6 +2848,9 @@ png_do_chop(png_row_infop row_info, png_bytep row)
       png_bytep dp = row; /* destination */
       png_bytep ep = sp + row_info->rowbytes; /* end+1 */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
       while (sp < ep)
       {
          *dp++ = *sp;
@@ -2755,6 +2882,9 @@ png_do_read_swap_alpha(png_row_infop row_info, png_bytep row)
             png_byte save;
             png_uint_32 i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                save = *(--sp);
@@ -2774,6 +2904,9 @@ png_do_read_swap_alpha(png_row_infop row_info, png_bytep row)
             png_byte save[2];
             png_uint_32 i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                save[0] = *(--sp);
@@ -2801,6 +2934,9 @@ png_do_read_swap_alpha(png_row_infop row_info, png_bytep row)
             png_byte save;
             png_uint_32 i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                save = *(--sp);
@@ -2818,6 +2954,9 @@ png_do_read_swap_alpha(png_row_infop row_info, png_bytep row)
             png_byte save[2];
             png_uint_32 i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                save[0] = *(--sp);
@@ -2851,6 +2990,9 @@ png_do_read_invert_alpha(png_row_infop row_info, png_bytep row)
          png_bytep dp = sp;
          png_uint_32 i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
          for (i = 0; i < row_width; i++)
          {
             *(--dp) = (png_byte)(255 - *(--sp));
@@ -2874,6 +3016,9 @@ png_do_read_invert_alpha(png_row_infop row_info, png_bytep row)
          png_bytep dp = sp;
          png_uint_32 i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
          for (i = 0; i < row_width; i++)
          {
             *(--dp) = (png_byte)(255 - *(--sp));
@@ -2903,6 +3048,9 @@ png_do_read_invert_alpha(png_row_infop row_info, png_bytep row)
          png_bytep dp = sp;
          png_uint_32 i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
          for (i = 0; i < row_width; i++)
          {
             *(--dp) = (png_byte)(255 - *(--sp));
@@ -2918,6 +3066,9 @@ png_do_read_invert_alpha(png_row_infop row_info, png_bytep row)
          png_bytep dp = sp;
          png_uint_32 i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
          for (i = 0; i < row_width; i++)
          {
             *(--dp) = (png_byte)(255 - *(--sp));
@@ -2961,6 +3112,9 @@ png_do_read_filler(png_row_infop row_info, png_bytep row,
             /* This changes the data from G to GX */
             png_bytep sp = row + (png_size_t)row_width;
             png_bytep dp =  sp + (png_size_t)row_width;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 1; i < row_width; i++)
             {
                *(--dp) = lo_filler;
@@ -2977,6 +3131,9 @@ png_do_read_filler(png_row_infop row_info, png_bytep row,
             /* This changes the data from G to XG */
             png_bytep sp = row + (png_size_t)row_width;
             png_bytep dp = sp  + (png_size_t)row_width;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                *(--dp) = *(--sp);
@@ -2996,6 +3153,9 @@ png_do_read_filler(png_row_infop row_info, png_bytep row,
             /* This changes the data from GG to GGXX */
             png_bytep sp = row + (png_size_t)row_width * 2;
             png_bytep dp = sp  + (png_size_t)row_width * 2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 1; i < row_width; i++)
             {
                *(--dp) = hi_filler;
@@ -3015,6 +3175,9 @@ png_do_read_filler(png_row_infop row_info, png_bytep row,
             /* This changes the data from GG to XXGG */
             png_bytep sp = row + (png_size_t)row_width * 2;
             png_bytep dp = sp  + (png_size_t)row_width * 2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                *(--dp) = *(--sp);
@@ -3038,6 +3201,9 @@ png_do_read_filler(png_row_infop row_info, png_bytep row,
             /* This changes the data from RGB to RGBX */
             png_bytep sp = row + (png_size_t)row_width * 3;
             png_bytep dp = sp  + (png_size_t)row_width;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 1; i < row_width; i++)
             {
                *(--dp) = lo_filler;
@@ -3056,6 +3222,9 @@ png_do_read_filler(png_row_infop row_info, png_bytep row,
             /* This changes the data from RGB to XRGB */
             png_bytep sp = row + (png_size_t)row_width * 3;
             png_bytep dp = sp + (png_size_t)row_width;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                *(--dp) = *(--sp);
@@ -3077,6 +3246,9 @@ png_do_read_filler(png_row_infop row_info, png_bytep row,
             /* This changes the data from RRGGBB to RRGGBBXX */
             png_bytep sp = row + (png_size_t)row_width * 6;
             png_bytep dp = sp  + (png_size_t)row_width * 2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 1; i < row_width; i++)
             {
                *(--dp) = hi_filler;
@@ -3100,6 +3272,9 @@ png_do_read_filler(png_row_infop row_info, png_bytep row,
             /* This changes the data from RRGGBB to XXRRGGBB */
             png_bytep sp = row + (png_size_t)row_width * 6;
             png_bytep dp = sp  + (png_size_t)row_width * 2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                *(--dp) = *(--sp);
@@ -3142,6 +3317,9 @@ png_do_gray_to_rgb(png_row_infop row_info, png_bytep row)
             /* This changes G to RGB */
             png_bytep sp = row + (png_size_t)row_width - 1;
             png_bytep dp = sp  + (png_size_t)row_width * 2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                *(dp--) = *sp;
@@ -3155,6 +3333,9 @@ png_do_gray_to_rgb(png_row_infop row_info, png_bytep row)
             /* This changes GG to RRGGBB */
             png_bytep sp = row + (png_size_t)row_width * 2 - 1;
             png_bytep dp = sp  + (png_size_t)row_width * 4;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                *(dp--) = *sp;
@@ -3174,6 +3355,9 @@ png_do_gray_to_rgb(png_row_infop row_info, png_bytep row)
             /* This changes GA to RGBA */
             png_bytep sp = row + (png_size_t)row_width * 2 - 1;
             png_bytep dp = sp  + (png_size_t)row_width * 2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                *(dp--) = *(sp--);
@@ -3188,6 +3372,9 @@ png_do_gray_to_rgb(png_row_infop row_info, png_bytep row)
             /* This changes GGAA to RRGGBBAA */
             png_bytep sp = row + (png_size_t)row_width * 4 - 1;
             png_bytep dp = sp  + (png_size_t)row_width * 4;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                *(dp--) = *(sp--);
@@ -3295,6 +3482,9 @@ png_do_rgb_to_gray(png_structrp png_ptr, png_row_infop row_info, png_bytep row)
             png_bytep dp = row;
             png_uint_32 i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                png_byte red   = *(sp++);
@@ -3334,6 +3524,9 @@ png_do_rgb_to_gray(png_structrp png_ptr, png_row_infop row_info, png_bytep row)
             png_bytep dp = row;
             png_uint_32 i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                png_byte red   = *(sp++);
@@ -3367,6 +3560,9 @@ png_do_rgb_to_gray(png_structrp png_ptr, png_row_infop row_info, png_bytep row)
             png_bytep dp = row;
             png_uint_32 i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                png_uint_16 red, green, blue, w;
@@ -3418,6 +3614,9 @@ png_do_rgb_to_gray(png_structrp png_ptr, png_row_infop row_info, png_bytep row)
             png_bytep dp = row;
             png_uint_32 i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                png_uint_16 red, green, blue, gray16;
@@ -3506,6 +3705,9 @@ png_build_grayscale_palette(int bit_depth, png_colorp palette)
          break;
    }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
    for (i = 0, v = 0; i < num_palette; i++, v += color_inc)
    {
       palette[i].red = (png_byte)v;
@@ -3555,6 +3757,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
                {
                   sp = row;
                   shift = 7;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (i = 0; i < row_width; i++)
                   {
                      if ((png_uint_16)((*sp >> shift) & 0x01)
@@ -3584,6 +3789,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
                   {
                      sp = row;
                      shift = 6;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                      for (i = 0; i < row_width; i++)
                      {
                         if ((png_uint_16)((*sp >> shift) & 0x03)
@@ -3620,6 +3828,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
                   {
                      sp = row;
                      shift = 6;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                      for (i = 0; i < row_width; i++)
                      {
                         if ((png_uint_16)((*sp >> shift) & 0x03)
@@ -3650,6 +3861,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
                   {
                      sp = row;
                      shift = 4;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                      for (i = 0; i < row_width; i++)
                      {
                         if ((png_uint_16)((*sp >> shift) & 0x0f)
@@ -3686,6 +3900,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
                   {
                      sp = row;
                      shift = 4;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                      for (i = 0; i < row_width; i++)
                      {
                         if ((png_uint_16)((*sp >> shift) & 0x0f)
@@ -3715,6 +3932,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
                   if (gamma_table != NULL)
                   {
                      sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                      for (i = 0; i < row_width; i++, sp++)
                      {
                         if (*sp == png_ptr->trans_color.gray)
@@ -3728,6 +3948,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #endif
                   {
                      sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                      for (i = 0; i < row_width; i++, sp++)
                      {
                         if (*sp == png_ptr->trans_color.gray)
@@ -3743,6 +3966,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
                   if (gamma_16 != NULL)
                   {
                      sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                      for (i = 0; i < row_width; i++, sp += 2)
                      {
                         png_uint_16 v;
@@ -3770,6 +3996,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #endif
                   {
                      sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                      for (i = 0; i < row_width; i++, sp += 2)
                      {
                         png_uint_16 v;
@@ -3802,6 +4031,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
                if (gamma_table != NULL)
                {
                   sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (i = 0; i < row_width; i++, sp += 3)
                   {
                      if (*sp == png_ptr->trans_color.red &&
@@ -3825,6 +4057,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #endif
                {
                   sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (i = 0; i < row_width; i++, sp += 3)
                   {
                      if (*sp == png_ptr->trans_color.red &&
@@ -3844,6 +4079,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
                if (gamma_16 != NULL)
                {
                   sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (i = 0; i < row_width; i++, sp += 6)
                   {
                      png_uint_16 r = (png_uint_16)(((*sp) << 8) + *(sp + 1));
@@ -3891,6 +4129,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #endif
                {
                   sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (i = 0; i < row_width; i++, sp += 6)
                   {
                      png_uint_16 r = (png_uint_16)(((*sp) << 8) + *(sp + 1));
@@ -3930,6 +4171,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
                    gamma_table != NULL)
                {
                   sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (i = 0; i < row_width; i++, sp += 2)
                   {
                      png_uint_16 a = *(sp + 1);
@@ -3959,6 +4203,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #endif
                {
                   sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (i = 0; i < row_width; i++, sp += 2)
                   {
                      png_byte a = *(sp + 1);
@@ -3978,6 +4225,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
                    gamma_16_to_1 != NULL)
                {
                   sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (i = 0; i < row_width; i++, sp += 4)
                   {
                      png_uint_16 a = (png_uint_16)(((*(sp + 2)) << 8)
@@ -4019,6 +4269,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #endif
                {
                   sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (i = 0; i < row_width; i++, sp += 4)
                   {
                      png_uint_16 a = (png_uint_16)(((*(sp + 2)) << 8)
@@ -4055,6 +4308,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
                    gamma_table != NULL)
                {
                   sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (i = 0; i < row_width; i++, sp += 4)
                   {
                      png_byte a = *(sp + 3);
@@ -4099,6 +4355,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #endif
                {
                   sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (i = 0; i < row_width; i++, sp += 4)
                   {
                      png_byte a = *(sp + 3);
@@ -4130,6 +4389,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
                    gamma_16_to_1 != NULL)
                {
                   sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (i = 0; i < row_width; i++, sp += 8)
                   {
                      png_uint_16 a = (png_uint_16)(((png_uint_16)(*(sp + 6))
@@ -4203,6 +4465,9 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #endif
                {
                   sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (i = 0; i < row_width; i++, sp += 8)
                   {
                      png_uint_16 a = (png_uint_16)(((png_uint_16)(*(sp + 6))
@@ -4286,6 +4551,9 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
             if (row_info->bit_depth == 8)
             {
                sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i++)
                {
                   *sp = gamma_table[*sp];
@@ -4300,6 +4568,9 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
             else /* if (row_info->bit_depth == 16) */
             {
                sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i++)
                {
                   png_uint_16 v;
@@ -4328,6 +4599,9 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
             if (row_info->bit_depth == 8)
             {
                sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i++)
                {
                   *sp = gamma_table[*sp];
@@ -4346,6 +4620,9 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
             else /* if (row_info->bit_depth == 16) */
             {
                sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i++)
                {
                   png_uint_16 v = gamma_16_table[*(sp + 1) >> gamma_shift][*sp];
@@ -4372,6 +4649,9 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
             if (row_info->bit_depth == 8)
             {
                sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i++)
                {
                   *sp = gamma_table[*sp];
@@ -4382,6 +4662,9 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
             else /* if (row_info->bit_depth == 16) */
             {
                sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i++)
                {
                   png_uint_16 v = gamma_16_table[*(sp + 1) >> gamma_shift][*sp];
@@ -4398,6 +4681,9 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
             if (row_info->bit_depth == 2)
             {
                sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i += 4)
                {
                   int a = *sp & 0xc0;
@@ -4417,6 +4703,9 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
             if (row_info->bit_depth == 4)
             {
                sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i += 2)
                {
                   int msb = *sp & 0xf0;
@@ -4431,6 +4720,9 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
             else if (row_info->bit_depth == 8)
             {
                sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i++)
                {
                   *sp = gamma_table[*sp];
@@ -4441,6 +4733,9 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
             else if (row_info->bit_depth == 16)
             {
                sp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i++)
                {
                   png_uint_16 v = gamma_16_table[*(sp + 1) >> gamma_shift][*sp];
@@ -4485,6 +4780,9 @@ png_do_encode_alpha(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
             /* The alpha channel is the last component: */
             row += step - 1;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (; row_width > 0; --row_width, row += step)
                *row = table[*row];
 
@@ -4505,6 +4803,9 @@ png_do_encode_alpha(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
             /* The alpha channel is the last component: */
             row += step - 2;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (; row_width > 0; --row_width, row += step)
             {
                png_uint_16 v;
@@ -4552,6 +4853,9 @@ png_do_expand_palette(png_row_infop row_info, png_bytep row,
                sp = row + (png_size_t)((row_width - 1) >> 3);
                dp = row + (png_size_t)row_width - 1;
                shift = 7 - (int)((row_width + 7) & 0x07);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i++)
                {
                   if ((*sp >> shift) & 0x01)
@@ -4579,6 +4883,9 @@ png_do_expand_palette(png_row_infop row_info, png_bytep row,
                sp = row + (png_size_t)((row_width - 1) >> 2);
                dp = row + (png_size_t)row_width - 1;
                shift = (int)((3 - ((row_width + 3) & 0x03)) << 1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i++)
                {
                   value = (*sp >> shift) & 0x03;
@@ -4602,6 +4909,9 @@ png_do_expand_palette(png_row_infop row_info, png_bytep row,
                sp = row + (png_size_t)((row_width - 1) >> 1);
                dp = row + (png_size_t)row_width - 1;
                shift = (int)((row_width & 0x01) << 2);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i++)
                {
                   value = (*sp >> shift) & 0x0f;
@@ -4636,6 +4946,9 @@ png_do_expand_palette(png_row_infop row_info, png_bytep row,
                sp = row + (png_size_t)row_width - 1;
                dp = row + (png_size_t)(row_width << 2) - 1;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i++)
                {
                   if ((int)(*sp) >= num_trans)
@@ -4661,6 +4974,9 @@ png_do_expand_palette(png_row_infop row_info, png_bytep row,
                sp = row + (png_size_t)row_width - 1;
                dp = row + (png_size_t)(row_width * 3) - 1;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i++)
                {
                   *dp-- = palette[*sp].blue;
@@ -4709,6 +5025,9 @@ png_do_expand(png_row_infop row_info, png_bytep row,
                   sp = row + (png_size_t)((row_width - 1) >> 3);
                   dp = row + (png_size_t)row_width - 1;
                   shift = 7 - (int)((row_width + 7) & 0x07);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (i = 0; i < row_width; i++)
                   {
                      if ((*sp >> shift) & 0x01)
@@ -4737,6 +5056,9 @@ png_do_expand(png_row_infop row_info, png_bytep row,
                   sp = row + (png_size_t)((row_width - 1) >> 2);
                   dp = row + (png_size_t)row_width - 1;
                   shift = (int)((3 - ((row_width + 3) & 0x03)) << 1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (i = 0; i < row_width; i++)
                   {
                      value = (*sp >> shift) & 0x03;
@@ -4762,6 +5084,9 @@ png_do_expand(png_row_infop row_info, png_bytep row,
                   sp = row + (png_size_t)((row_width - 1) >> 1);
                   dp = row + (png_size_t)row_width - 1;
                   shift = (int)((1 - ((row_width + 1) & 0x01)) << 2);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                   for (i = 0; i < row_width; i++)
                   {
                      value = (*sp >> shift) & 0x0f;
@@ -4797,6 +5122,9 @@ png_do_expand(png_row_infop row_info, png_bytep row,
                sp = row + (png_size_t)row_width - 1;
                dp = row + (png_size_t)(row_width << 1) - 1;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i++)
                {
                   if (*sp == gray)
@@ -4815,6 +5143,9 @@ png_do_expand(png_row_infop row_info, png_bytep row,
                unsigned int gray_low = gray & 0xff;
                sp = row + row_info->rowbytes - 1;
                dp = row + (row_info->rowbytes << 1) - 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (i = 0; i < row_width; i++)
                {
                   if (*(sp - 1) == gray_high && *(sp) == gray_low)
@@ -4850,6 +5181,9 @@ png_do_expand(png_row_infop row_info, png_bytep row,
             png_byte blue = (png_byte)(trans_color->blue & 0xff);
             sp = row + (png_size_t)row_info->rowbytes - 1;
             dp = row + (png_size_t)(row_width << 2) - 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                if (*(sp - 2) == red && *(sp - 1) == green && *(sp) == blue)
@@ -4873,6 +5207,9 @@ png_do_expand(png_row_infop row_info, png_bytep row,
             png_byte blue_low = (png_byte)(trans_color->blue & 0xff);
             sp = row + row_info->rowbytes - 1;
             dp = row + (png_size_t)(row_width << 3) - 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < row_width; i++)
             {
                if (*(sp - 5) == red_high &&
@@ -4930,6 +5267,9 @@ png_do_expand_16(png_row_infop row_info, png_bytep row)
        */
       png_byte *sp = row + row_info->rowbytes; /* source, last byte + 1 */
       png_byte *dp = sp + row_info->rowbytes;  /* destination, end + 1 */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
       while (dp > sp)
          dp[-2] = dp[-1] = *--sp, dp -= 2;
 
@@ -4958,6 +5298,9 @@ png_do_quantize(png_row_infop row_info, png_bytep row,
          int r, g, b, p;
          sp = row;
          dp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
          for (i = 0; i < row_width; i++)
          {
             r = *sp++;
@@ -4995,6 +5338,9 @@ png_do_quantize(png_row_infop row_info, png_bytep row,
          int r, g, b, p;
          sp = row;
          dp = row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
          for (i = 0; i < row_width; i++)
          {
             r = *sp++;
@@ -5025,6 +5371,9 @@ png_do_quantize(png_row_infop row_info, png_bytep row,
       {
          sp = row;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
          for (i = 0; i < row_width; i++, sp++)
          {
             *sp = quantize_lookup[*sp];
@@ -5062,6 +5411,9 @@ png_do_read_intrapixel(png_row_infop row_info, png_bytep row)
          else
             return;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
          for (i = 0, rp = row; i < row_width; i++, rp += bytes_per_pixel)
          {
             *(rp) = (png_byte)((256 + *rp + *(rp + 1)) & 0xff);
@@ -5082,6 +5434,9 @@ png_do_read_intrapixel(png_row_infop row_info, png_bytep row)
          else
             return;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
          for (i = 0, rp = row; i < row_width; i++, rp += bytes_per_pixel)
          {
             png_uint_32 s0   = (*(rp    ) << 8) | *(rp + 1);

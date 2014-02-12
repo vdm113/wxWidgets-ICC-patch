@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/evtloop.cpp
 // Purpose:     implements wxGUIEventLoop for PM
@@ -132,6 +139,9 @@ bool wxEventLoopImpl::PreProcessMessage(QMSG *pMsg)
     // because the subcontrol is not a wxWindow, but only the control itself
     // is - try to catch this case
     //
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (hWnd && !pWndThis)
     {
         hWnd = ::WinQueryWindow(hWnd, QW_PARENT);
@@ -160,6 +170,9 @@ bool wxEventLoopImpl::PreProcessMessage(QMSG *pMsg)
                 CHARMSG(pChmsg)->chr = (USHORT)wxToupper((UCHAR)uSch);
 
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
            for(pWnd = pWndThis; pWnd; pWnd = pWnd->GetParent() )
            {
                if((bRc = pWnd->OS2TranslateMessage((WXMSG*)pMsg)) == TRUE)
@@ -250,6 +263,9 @@ int wxGUIEventLoop::Run()
 
     CallEventLoopMethod  callOnExit(this, &wxGUIEventLoop::OnExit);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( ;; )
     {
 #if wxUSE_THREADS
@@ -258,6 +274,9 @@ int wxGUIEventLoop::Run()
 
         // generate and process idle events for as long as we don't have
         // anything else to do
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while ( !Pending() && m_impl->SendIdleMessage() )
         {
             wxTheApp->HandleSockets();
@@ -349,6 +368,9 @@ bool wxGUIEventLoop::Dispatch()
             s_hadGuiLock = true;
 
             size_t count = s_aSavedMessages.Count();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for ( size_t n = 0; n < count; n++ )
             {
                 QMSG& msg = s_aSavedMessages[n];
@@ -386,6 +408,9 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
     // We want to go back to the main message loop
     // if we see a WM_QUIT. (?)
     //
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (::WinPeekMsg(vHab, &vMsg, (HWND)NULL, 0, 0, PM_NOREMOVE) && vMsg.msg != WM_QUIT)
     {
         // TODO: implement event filtering using the eventsToProcess mask
