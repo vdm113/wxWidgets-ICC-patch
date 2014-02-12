@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/wizard.cpp
 // Purpose:     generic implementation of wxWizard class
@@ -195,9 +188,6 @@ wxSizerItem *wxWizardSizer::Insert(size_t index, wxSizerItem *item)
 
 void wxWizardSizer::HidePages()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxSizerItemList::compatibility_iterator node = GetChildren().GetFirst();
           node;
           node = node->GetNext() )
@@ -227,9 +217,6 @@ wxSize wxWizardSizer::GetMaxChildSize()
 {
     wxSize maxOfMin;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxSizerItemList::compatibility_iterator childNode = m_children.GetFirst();
           childNode;
           childNode = childNode->GetNext() )
@@ -261,9 +248,6 @@ wxSize wxWizardSizer::SiblingSize(wxSizerItem *child)
         wxWizardPage *page = wxDynamicCast(child->GetWindow(), wxWizardPage);
         if ( page )
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( wxWizardPage *sibling = page->GetNext();
                   sibling;
                   sibling = sibling->GetNext() )
@@ -518,9 +502,6 @@ void wxWizard::FitToPage(const wxWizardPage *page)
 {
     wxCHECK_RET(!m_started, wxT("wxWizard::FitToPage after RunWizard"));
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( page )
     {
         wxSize size = page->GetBestSize();
@@ -905,9 +886,6 @@ bool wxWizard::DoLayoutAdaptation()
     wxWindowList pages;
 
     // Make all the pages (that use sizers) scrollable
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxSizerItemList::compatibility_iterator node = m_sizerPage->GetChildren().GetFirst(); node; node = node->GetNext() )
     {
         wxSizerItem * const item = node->GetData();
@@ -916,9 +894,6 @@ bool wxWizard::DoLayoutAdaptation()
             wxWizardPage* page = wxDynamicCast(item->GetWindow(), wxWizardPage);
             if (page)
             {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 while (page)
                 {
                     if (!pages.Find(page) && page->GetSizer())
@@ -1021,14 +996,8 @@ bool wxWizard::TileBitmap(const wxRect& rect, wxDC& dc, const wxBitmap& bitmap)
     dcMem.SelectObjectAsSource(bitmap);
 
     int i, j;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = rect.x; i < rect.x + rect.width; i += w)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (j = rect.y; j < rect.y + rect.height; j+= h)
             dc.Blit(i, j, bitmap.GetWidth(), bitmap.GetHeight(), & dcMem, 0, 0);
     }

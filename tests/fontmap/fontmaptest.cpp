@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/fontmap/fontmap.cpp
 // Purpose:     wxFontMapper unit test
@@ -115,9 +108,6 @@ void FontMapperTestCase::NamesAndDesc()
     };
 
     wxFontMapperBase& fmap = *wxFontMapperBase::Get();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; n < WXSIZEOF(charsets); n++ )
     {
         wxFontEncoding enc = fmap.CharsetToEncoding(charsets[n]);

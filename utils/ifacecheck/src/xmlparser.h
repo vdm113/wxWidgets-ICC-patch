@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        xmlparser.h
 // Purpose:     Parser of the API/interface XML files
@@ -410,9 +403,6 @@ public:
 
     const wxClass* FindClass(const wxString& classname) const
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (unsigned int i=0; i<m_classes.GetCount(); i++)
                 if (m_classes[i].GetName() == classname)
                     return &m_classes[i];
@@ -430,9 +420,6 @@ public:
     unsigned int GetMethodCount() const
         {
             unsigned int methods = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (unsigned i=0; i < m_classes.GetCount(); i++)
                 methods += m_classes[i].GetMethodCount();
             return methods;

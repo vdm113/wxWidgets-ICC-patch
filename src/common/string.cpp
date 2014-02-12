@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/string.cpp
 // Purpose:     wxString class
@@ -132,9 +125,6 @@ struct wxStrCacheDumper
     static void ShowAll()
     {
         puts("*** wxString cache dump:");
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( unsigned n = 0; n < wxString::Cache::SIZE; n++ )
         {
             const wxString::Cache::Element&
@@ -282,9 +272,6 @@ void wxString::PosLenToImpl(size_t pos, size_t len,
             // going beyond the end of the string, just as std::string does
             const const_iterator e(end());
             const_iterator i(b);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while ( len && i <= e )
             {
                 ++i;
@@ -931,9 +918,6 @@ size_t wxString::find_first_of(const wxChar* sz, size_t nStart, size_t n) const
     wxASSERT_MSG( nStart <= length(),  wxT("invalid index") );
 
     size_t idx = nStart;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const_iterator i = begin() + nStart; i != end(); ++idx, ++i )
     {
         if ( wxTmemchr(sz, *i, n) )
@@ -948,9 +932,6 @@ size_t wxString::find_first_not_of(const wxChar* sz, size_t nStart, size_t n) co
     wxASSERT_MSG( nStart <= length(),  wxT("invalid index") );
 
     size_t idx = nStart;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const_iterator i = begin() + nStart; i != end(); ++idx, ++i )
     {
         if ( !wxTmemchr(sz, *i, n) )
@@ -985,9 +966,6 @@ size_t wxString::find_last_of(const wxChar* sz, size_t nStart, size_t n) const
     }
 
     size_t idx = nStart;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const_reverse_iterator i = rbegin() + (len - nStart - 1);
           i != rend(); --idx, ++i )
     {
@@ -1012,9 +990,6 @@ size_t wxString::find_last_not_of(const wxChar* sz, size_t nStart, size_t n) con
     }
 
     size_t idx = nStart;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const_reverse_iterator i = rbegin() + (len - nStart - 1);
           i != rend(); --idx, ++i )
     {
@@ -1030,9 +1005,6 @@ size_t wxString::find_first_not_of(wxUniChar ch, size_t nStart) const
     wxASSERT_MSG( nStart <= length(),  wxT("invalid index") );
 
     size_t idx = nStart;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const_iterator i = begin() + nStart; i != end(); ++idx, ++i )
     {
         if ( *i != ch )
@@ -1056,9 +1028,6 @@ size_t wxString::find_last_not_of(wxUniChar ch, size_t nStart) const
     }
 
     size_t idx = nStart;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const_reverse_iterator i = rbegin() + (len - nStart - 1);
           i != rend(); --idx, ++i )
     {
@@ -1129,9 +1098,6 @@ int wxString::CmpNoCase(const wxString& s) const
     pchar_type thatCur = thatBegin;
 
     int rc;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ;; )
     {
         // Compare until the next NUL, if the strings differ this is the final
@@ -1145,9 +1111,6 @@ int wxString::CmpNoCase(const wxString& s) const
         thatCur += lenChunk;
 
         // Skip all the NULs as wxStricmp() doesn't handle them.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( ; !*thisCur; thisCur++, thatCur++ )
         {
             // Check if we exhausted either of the strings.
@@ -1183,9 +1146,6 @@ int wxString::CmpNoCase(const wxString& s) const
     const_iterator i2 = s.begin();
     const_iterator end2 = s.end();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ; i1 != end1 && i2 != end2; ++i1, ++i2 )
     {
         wxUniChar lower1 = (wxChar)wxTolower(*i1);
@@ -1219,9 +1179,6 @@ wxString wxString::FromAscii(const char *ascii, size_t len)
         wxStringInternalBuffer buf(res, len);
         wxStringCharType *dest = buf;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( ; len > 0; --len )
         {
             unsigned char c = (unsigned char)*ascii++;
@@ -1258,9 +1215,6 @@ const wxScopedCharBuffer wxString::ToAscii() const
     wxCharBuffer buffer(length());
     char *dest = buffer.data();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const_iterator i = begin(); i != end(); ++i )
     {
         wxUniChar c(*i);
@@ -1465,9 +1419,6 @@ size_t wxString::Replace(const wxString& strOld,
                                chNew = strNew.m_impl[0];
 
         // this loop is the simplified version of the one below
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t pos = 0; ; )
         {
             pos = m_impl.find(chOld, pos);
@@ -1501,9 +1452,6 @@ size_t wxString::Replace(const wxString& strOld,
         wxVector<size_t> replacePositions;
 
         size_t pos;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( pos = m_impl.find(strOld.m_impl, 0);
               pos != npos;
               pos = m_impl.find(strOld.m_impl, pos + uiOldLen))
@@ -1521,9 +1469,6 @@ size_t wxString::Replace(const wxString& strOld,
 
         // copy this string to tmp doing replacements on the fly
         size_t replNum = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( pos = 0; replNum < uiCount; replNum++ )
         {
             const size_t nextReplPos = replacePositions[replNum];
@@ -1551,9 +1496,6 @@ size_t wxString::Replace(const wxString& strOld,
 
 bool wxString::IsAscii() const
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const_iterator i = begin(); i != end(); ++i )
     {
         if ( !(*i).IsAscii() )
@@ -1565,9 +1507,6 @@ bool wxString::IsAscii() const
 
 bool wxString::IsWord() const
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const_iterator i = begin(); i != end(); ++i )
     {
         if ( !wxIsalpha(*i) )
@@ -1587,9 +1526,6 @@ bool wxString::IsNumber() const
     if ( *i == wxT('-') || *i == wxT('+') )
         ++i;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ; i != end(); ++i )
     {
         if ( !wxIsdigit(*i) )
@@ -1613,9 +1549,6 @@ wxString wxString::Strip(stripType w) const
 
 wxString& wxString::MakeUpper()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for ( iterator it = begin(), en = end(); it != en; ++it )
     *it = (wxChar)wxToupper(*it);
 
@@ -1624,9 +1557,6 @@ wxString& wxString::MakeUpper()
 
 wxString& wxString::MakeLower()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for ( iterator it = begin(), en = end(); it != en; ++it )
     *it = (wxChar)wxTolower(*it);
 
@@ -1640,9 +1570,6 @@ wxString& wxString::MakeCapitalized()
     if ( it != en )
     {
         *it = (wxChar)wxToupper(*it);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( ++it; it != en; ++it )
             *it = (wxChar)wxTolower(*it);
     }
@@ -1677,9 +1604,6 @@ wxString& wxString::Trim(bool bFromRight)
         {
             // find last non-space character
             reverse_iterator psz = rbegin();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while ( (psz != rend()) && wxSafeIsspace(*psz) )
                 ++psz;
 
@@ -1690,9 +1614,6 @@ wxString& wxString::Trim(bool bFromRight)
         {
             // find first non-space character
             iterator psz = begin();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while ( (psz != end()) && wxSafeIsspace(*psz) )
                 ++psz;
 
@@ -2118,9 +2039,6 @@ static int DoStringPrintfV(wxString& str,
 {
     int size = 1024;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ;; )
     {
 #if wxUSE_UNICODE_UTF8
@@ -2261,9 +2179,6 @@ bool wxString::Matches(const wxString& mask) const
     pattern.reserve(wxStrlen(pszMask));
 
     pattern += wxT('^');
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( *pszMask )
     {
         switch ( *pszMask )
@@ -2320,9 +2235,6 @@ bool wxString::Matches(const wxString& mask) const
   const wxChar *pszLastStarInMask = NULL;
 
 match:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for ( ; *pszMask != wxT('\0'); pszMask++, pszTxt++ ) {
     switch ( *pszMask ) {
       case wxT('?'):
@@ -2341,9 +2253,6 @@ match:
 
           // ignore special chars immediately following this one
           // (should this be an error?)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
           while ( *pszMask == wxT('*') || *pszMask == wxT('?') )
             pszMask++;
 
@@ -2406,9 +2315,6 @@ match:
 int wxString::Freq(wxUniChar ch) const
 {
     int count = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const_iterator i = begin(); i != end(); ++i )
     {
         if ( *i == ch )

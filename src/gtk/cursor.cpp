@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/cursor.cpp
 // Purpose:     wxCursor implementation
@@ -124,15 +117,9 @@ wxCursor::wxCursor(const char bits[], int width, int height,
         const int stride = gdk_pixbuf_get_rowstride(pixbuf);
         const int n_channels = gdk_pixbuf_get_n_channels(pixbuf);
         guchar* data = gdk_pixbuf_get_pixels(pixbuf);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (int j = 0; j < height; j++, data += stride)
         {
             guchar* p = data;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (int i = 0; i < width; i++, p += n_channels)
             {
                 if (p[0])
@@ -281,13 +268,7 @@ void wxCursor::InitFromImage( const wxImage & image )
         {
             guchar* d = gdk_pixbuf_get_pixels(pixbuf);
             const int stride = gdk_pixbuf_get_rowstride(pixbuf);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (int j = 0; j < h; j++, d += stride)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for (int i = 0; i < w; i++, alpha++)
                     if (d[4 * i + 3])
                         d[4 * i + 3] = *alpha;

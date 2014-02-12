@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
 ** Copyright (c) 2001-2009 Expat maintainers.
 **
@@ -48,9 +41,6 @@ static uint32 VARARGS68K call_68k_code (struct ExecIFace *IExec, void *code, int
 	if (stack) {
 		uint32 *sp = (uint32 *)(stack + 4096);
 		args += num_args;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		while (num_args--) {
 			*--sp = *--args;
 		}

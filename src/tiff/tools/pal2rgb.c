@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler
@@ -56,9 +49,6 @@ static	void cpTags(TIFF* in, TIFF* out);
 static int
 checkcmap(int n, uint16* r, uint16* g, uint16* b)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while (n-- > 0)
 	    if (*r++ >= 256 || *g++ >= 256 || *b++ >= 256)
 		return (16);
@@ -93,9 +83,6 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while ((c = getopt(argc, argv, "C:c:p:r:")) != -1)
 		switch (c) {
 		case 'C':		/* force colormap interpretation */
@@ -183,9 +170,6 @@ main(int argc, char* argv[])
 		 */
 		int i;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (i = (1<<bitspersample)-1; i >= 0; i--) {
 #define	CVT(x)		(((x) * 255) / ((1L<<16)-1))
 			rmap[i] = CVT(rmap[i]);
@@ -200,16 +184,10 @@ main(int argc, char* argv[])
 	  obuf = (unsigned char*)_TIFFmalloc(TIFFScanlineSize(out));
 	  switch (config) {
 	  case PLANARCONFIG_CONTIG:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (row = 0; row < imagelength; row++) {
 			if (!TIFFReadScanline(in, ibuf, row, 0))
 				goto done;
 			pp = obuf;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			for (x = 0; x < imagewidth; x++) {
 				*pp++ = (unsigned char) rmap[ibuf[x]];
 				*pp++ = (unsigned char) gmap[ibuf[x]];
@@ -220,29 +198,17 @@ main(int argc, char* argv[])
 		}
 		break;
 	  case PLANARCONFIG_SEPARATE:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (row = 0; row < imagelength; row++) {
 			if (!TIFFReadScanline(in, ibuf, row, 0))
 				goto done;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			for (pp = obuf, x = 0; x < imagewidth; x++)
 				*pp++ = (unsigned char) rmap[ibuf[x]];
 			if (!TIFFWriteScanline(out, obuf, row, 0))
 				goto done;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			for (pp = obuf, x = 0; x < imagewidth; x++)
 				*pp++ = (unsigned char) gmap[ibuf[x]];
 			if (!TIFFWriteScanline(out, obuf, row, 0))
 				goto done;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			for (pp = obuf, x = 0; x < imagewidth; x++)
 				*pp++ = (unsigned char) bmap[ibuf[x]];
 			if (!TIFFWriteScanline(out, obuf, row, 0))
@@ -270,9 +236,6 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
                 compression = COMPRESSION_JPEG;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 while( cp )
                 {
                     if (isdigit((int)cp[1]))
@@ -423,9 +386,6 @@ static void
 cpTags(TIFF* in, TIFF* out)
 {
     struct cpTag *p;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (p = tags; p < &tags[NTAGS]; p++)
 	cpTag(in, out, p->tag, p->count, p->type);
 }
@@ -459,9 +419,6 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);

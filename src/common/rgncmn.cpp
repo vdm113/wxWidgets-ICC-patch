@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/rgncmn.cpp
 // Purpose:     Methods of wxRegion that have a generic implementation
@@ -97,25 +90,16 @@ static bool DoRegionUnion(wxRegionBase& region,
     // rectangles to add to the region.
     int width = image.GetWidth();
     int height = image.GetHeight();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (int y=0; y < height; y++)
     {
         wxRect rect;
         rect.y = y;
         rect.height = 1;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (int x=0; x < width; x++)
         {
             // search for a continuous range of non-transparent pixels
             int x0 = x;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while ( x < width)
             {
                 unsigned char R = image.GetRed(x,y);

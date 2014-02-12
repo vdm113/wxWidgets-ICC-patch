@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexBash.cxx
  ** Lexer for Bash.
@@ -74,9 +67,6 @@ static inline int translateBashDigit(int ch) {
 static inline int getBashNumberBase(char *s) {
 	int i = 0;
 	int base = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while (*s) {
 		base = base * 10 + (*s++ - '0');
 		i++;
@@ -173,9 +163,6 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 	// Always backtracks to the start of a line that is not a continuation
 	// of the previous line (i.e. start of a bash command segment)
 	int ln = styler.GetLine(startPos);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (;;) {
 		startPos = styler.LineStart(ln);
 		if (ln == 0 || styler.GetLineState(ln) == BASH_CMD_START)
@@ -186,9 +173,6 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 
 	StyleContext sc(startPos, endPos - startPos, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (; sc.More(); sc.Forward()) {
 
 		// handle line continuation, updates per-line stored state
@@ -406,18 +390,12 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 				if (sc.atLineStart) {
 					sc.SetState(SCE_SH_HERE_Q);
 					int prefixws = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 					while (IsASpace(sc.ch) && !sc.atLineEnd) {	// whitespace prefix
 						sc.Forward();
 						prefixws++;
 					}
 					if (prefixws > 0)
 						sc.SetState(SCE_SH_HERE_Q);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 					while (!sc.atLineEnd) {
 						sc.Forward();
 					}
@@ -624,9 +602,6 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 static bool IsCommentLine(int line, Accessor &styler) {
 	int pos = styler.LineStart(line);
 	int eol_pos = styler.LineStart(line + 1) - 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
 		if (ch == '#')
@@ -648,9 +623,6 @@ static void FoldBashDoc(unsigned int startPos, int length, int, WordList *[],
 	int levelCurrent = levelPrev;
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

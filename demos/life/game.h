@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        game.h
 // Purpose:     Life! game logic
@@ -54,16 +47,10 @@ public:
 #ifndef __WXMAC__
         m_shape.Add( wxString::Format(wxT("%i %i"), -width/2, -height/2) );
 #endif
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for(int j = 0; j < height; j++)
         {
             wxString tmp;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for(int i = 0; i < width; i++)
             {
                 tmp += wxChar(shape[j * width + i]);

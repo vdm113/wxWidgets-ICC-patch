@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        socket.h
 // Purpose:     interface of wxIP*address, wxSocket* classes
@@ -398,9 +391,6 @@ public:
 
             // Wait until the request completes or until we decide to give up
             bool waitmore = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while ( !client->WaitOnConnect(seconds, millis) && waitmore )
             {
                 // possibly give some feedback to the user,

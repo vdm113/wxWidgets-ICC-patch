@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/glcanvas.cpp
 // Purpose:     wxGLCanvas, for using OpenGL with wxWidgets under Macintosh
@@ -133,9 +126,6 @@ WXGLPixelFormat WXGLChoosePixelFormat(const int *attribList)
         unsigned p = 0;
         data[p++] = AGL_MINIMUM_POLICY; // make _SIZE tags behave more like GLX
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( unsigned arg = 0; attribList[arg] !=0 && p < WXSIZEOF(data); )
         {
             switch ( attribList[arg++] )

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/fontutil.cpp
 // Purpose:     Font helper functions for wxX11, wxGTK, wxMotif
@@ -193,9 +186,6 @@ wxFontFamily wxNativeFontInfo::GetFamily() const
 #endif
                 &families, &n_families);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (int i = 0; i < n_families; ++i)
         {
             if (g_ascii_strcasecmp(pango_font_family_get_name( families[i] ),
@@ -657,9 +647,6 @@ bool wxNativeFontInfo::FromXFontName(const wxString& fontname)
 
     (void)tokenizer.GetNextToken();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; n < WXSIZEOF(fontElements); n++ )
     {
         if ( !tokenizer.HasMoreTokens() )
@@ -689,9 +676,6 @@ wxString wxNativeFontInfo::GetXFontName() const
 {
     if ( xFontName.empty() )
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < WXSIZEOF(fontElements); n++ )
         {
             // replace the non specified elements with '*' except for the
@@ -1069,9 +1053,6 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
         wxStringTokenizer tokenizer(*xFontName, wxT("-"), wxTOKEN_RET_DELIMS);
         wxString newFontName;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for(int i = 0; i < 8; i++)
           newFontName += tokenizer.NextToken();
 
@@ -1079,9 +1060,6 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
 
         newFontName += wxString::Format(wxT("%d-"), pointSize);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while(tokenizer.HasMoreTokens())
           newFontName += tokenizer.GetNextToken();
 
@@ -1104,9 +1082,6 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
         wxFontWeight testweight = weight;
         wxFontStyle teststyle = style;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( round = 0; round < 3; round++ )
         {
             // second round: use normal weight
@@ -1135,9 +1110,6 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
                 }
             }
             // Search for equal or smaller size (approx.)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( i = pointSize; !font && i >= 10 && i >= min_size; i -= 10 )
             {
                 font = wxLoadQueryFont(i, family, teststyle, testweight, underlined,
@@ -1146,9 +1118,6 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
             }
 
             // Search for larger size (approx.)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( i = pointSize + 10; !font && i <= max_size; i += 10 )
             {
                 font = wxLoadQueryFont(i, family, teststyle, testweight, underlined,

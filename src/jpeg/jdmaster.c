@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  * jdmaster.c
  *
@@ -134,15 +127,9 @@ jpeg_calc_output_dimensions (j_decompress_ptr cinfo)
    * This saves time if the upsampler gets to use 1:1 scaling.
    * Note this code assumes that the supported DCT scalings are powers of 2.
    */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
     int ssize = cinfo->min_DCT_scaled_size;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (ssize < DCTSIZE &&
 	   (compptr->h_samp_factor * ssize * 2 <=
 	    cinfo->max_h_samp_factor * cinfo->min_DCT_scaled_size) &&
@@ -156,9 +143,6 @@ jpeg_calc_output_dimensions (j_decompress_ptr cinfo)
   /* Recompute downsampled dimensions of components;
    * application needs to know these if using raw downsampled data.
    */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
     /* Size in samples, after IDCT scaling */
@@ -274,16 +258,10 @@ prepare_range_limit_table (j_decompress_ptr cinfo)
   /* First segment of "simple" table: limit[x] = 0 for x < 0 */
   MEMZERO(table - (MAXJSAMPLE+1), (MAXJSAMPLE+1) * SIZEOF(JSAMPLE));
   /* Main part of "simple" table: limit[x] = x */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for (i = 0; i <= MAXJSAMPLE; i++)
     table[i] = (JSAMPLE) i;
   table += CENTERJSAMPLE;	/* Point to where post-IDCT table starts */
   /* End of simple table, rest of first half of post-IDCT table */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for (i = CENTERJSAMPLE; i < 2*(MAXJSAMPLE+1); i++)
     table[i] = MAXJSAMPLE;
   /* Second half of post-IDCT table */

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/xrc/xh_toolb.cpp
 // Purpose:     XRC resource for wxAuiToolBar
@@ -200,9 +193,6 @@ wxObject *wxAuiToolBarXmlHandler::DoCreateResource()
 
         wxXmlNode *n = children_node;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (n)
         {
             if (IsObjectNode(n))

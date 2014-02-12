@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/xrc/xh_radbx.cpp
 // Purpose:     XRC resource for wxRadioBox
@@ -73,9 +66,6 @@ wxObject *wxRadioBoxXmlHandler::DoCreateResource()
         SetupWindow(control);
 
         const unsigned count = m_labels.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for( unsigned i = 0; i < count; i++ )
         {
 #if wxUSE_TOOLTIPS

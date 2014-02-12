@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler
@@ -93,9 +86,6 @@ main(int argc, char* argv[])
 
         oerror = TIFFSetErrorHandler(NULL);
         owarning = TIFFSetWarningHandler(NULL);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while ((c = getopt(argc, argv, "d:o:p:eflmsvw?")) != -1)
             switch (c) {
             case 'd':
@@ -397,9 +387,6 @@ raster_special(int key, int x, int y)
                 break;
                 case GLUT_KEY_END:              /* last image in current file */
                         TIFFRGBAImageEnd(&img);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                         while (!TIFFLastDirectory(tif))
                                 TIFFReadDirectory(tif);
                         initImage();
@@ -436,9 +423,6 @@ usage(void)
 
         setbuf(stderr, buf);
                 fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; stuff[i] != NULL; i++)
                 fprintf(stderr, "%s\n", stuff[i]);
         exit(-1);

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/slider.cpp
 // Purpose:     wxSlider, using the Win95 (and later) trackbar control
@@ -153,9 +146,6 @@ bool wxSlider::Create(wxWindow *parent,
         m_labels = new wxSubwindows(SliderLabel_Last);
 
         HWND hwndParent = GetHwndOf(parent);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < SliderLabel_Last; n++ )
         {
             wxWindowIDRef lblid = NewControlId();

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/bitmap.cpp
 // Purpose:     wxBitmap
@@ -547,22 +540,13 @@ wxBitmap::wxBitmap(const char bits[], int width, int height, int depth)
         const char *src = bits;
         char *dst = data;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( int rows = 0; rows < height; rows++ )
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( size_t cols = 0; cols < bytesPerLine; cols++ )
             {
                 unsigned char val = *src++;
                 unsigned char reversed = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for ( int bits = 0; bits < 8; bits++)
                 {
                     reversed <<= 1;
@@ -773,14 +757,8 @@ bool wxBitmap::CreateFromImage(const wxImage& image, int depth, const wxDC& dc)
     }
 
     int i, j;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < image.GetWidth(); i++)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (j = 0; j < image.GetHeight(); j++)
         {
             unsigned char red = image.GetRed(i, j);
@@ -862,14 +840,8 @@ wxImage wxBitmap::ConvertToImage() const
     HBITMAP hOldBitmap = ::SelectObject(hMemDC, hBitmap);
 
     int i, j;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < GetWidth(); i++)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (j = 0; j < GetHeight(); j++)
         {
             COLORREF color = ::GetPixel(hMemDC, i, j);
@@ -982,16 +954,10 @@ bool wxBitmap::CreateFromImage(const wxImage& image, int depth, WXHDC hdc)
              g = image.GetMaskGreen(),
              b = image.GetMaskBlue();
         BYTE *dst = data;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( int y = 0; y < h; y++, dst += len )
         {
             BYTE *dstLine = dst;
             BYTE mask = 0x80;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( int x = 0; x < w; x++, src += 3 )
             {
                 if (src[0] != r || src[1] != g || src[2] != b)
@@ -1067,16 +1033,10 @@ wxImage wxBitmap::ConvertToImage() const
             unsigned char *
                 maskLineStart = dibMask.GetData() + ((h - 1) * maskBytesPerLine);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( int y = 0; y < h; y++, maskLineStart -= maskBytesPerLine )
             {
                 // traverse one mask DIB line
                 unsigned char *mask = maskLineStart;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for ( int x = 0; x < w; x++, mask += maskBytesPerPixel )
                 {
                     // should this pixel be transparent?

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/mimecmn.cpp
 // Purpose:     classes and functions to manage MIME types
@@ -129,9 +122,6 @@ void wxFileTypeInfo::DoVarArgInit(const wxString& mimeType,
     m_printCmd = printCmd;
     m_desc = desc;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ;; )
     {
         // icc gives this warning in its own va_arg() macro, argh
@@ -178,9 +168,6 @@ wxFileTypeInfo::wxFileTypeInfo(const wxArrayString& sArray)
     m_desc     = sArray [3u];
 
     size_t count = sArray.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t i = 4; i < count; i++ )
     {
         m_exts.Add(sArray[i]);
@@ -212,9 +199,6 @@ wxString wxFileType::ExpandCommand(const wxString& command,
                                         != wxString::npos;
 
     wxString str;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const wxChar *pc = command.c_str(); *pc != wxT('\0'); pc++ ) {
         if ( *pc == wxT('%') ) {
             switch ( *++pc ) {
@@ -657,9 +641,6 @@ wxMimeTypesManager::GetFileTypeFromExtension(const wxString& ext)
         // TODO linear search is potentially slow, perhaps we should use a
         //       sorted array?
         size_t count = m_fallbacks.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < count; n++ ) {
             if ( m_fallbacks[n].GetExtensions().Index(ext) != wxNOT_FOUND ) {
                 ft = new wxFileType(m_fallbacks[n]);
@@ -684,9 +665,6 @@ wxMimeTypesManager::GetFileTypeFromMimeType(const wxString& mimeType)
         // TODO linear search is potentially slow, perhaps we should use a
         //      sorted array?
         size_t count = m_fallbacks.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < count; n++ ) {
             if ( wxMimeTypesManager::IsOfType(mimeType,
                                               m_fallbacks[n].GetMimeType()) ) {
@@ -703,9 +681,6 @@ wxMimeTypesManager::GetFileTypeFromMimeType(const wxString& mimeType)
 void wxMimeTypesManager::AddFallbacks(const wxFileTypeInfo *filetypes)
 {
     EnsureImpl();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const wxFileTypeInfo *ft = filetypes; ft && ft->IsValid(); ft++ ) {
         AddFallback(*ft);
     }
@@ -718,9 +693,6 @@ size_t wxMimeTypesManager::EnumAllFileTypes(wxArrayString& mimetypes)
 
     // add the fallback filetypes
     size_t count = m_fallbacks.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; n < count; n++ ) {
         if ( mimetypes.Index(m_fallbacks[n].GetMimeType()) == wxNOT_FOUND ) {
             mimetypes.Add(m_fallbacks[n].GetMimeType());

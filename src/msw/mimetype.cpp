@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/mimetype.cpp
 // Purpose:     classes and functions to manage MIME types
@@ -90,9 +83,6 @@ static bool CanonicalizeParams(wxString& command)
     //     return a string with _exactly_ one '%s'!
     bool foundFilename = false;
     size_t len = command.length();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; (n < len) && !foundFilename; n++ )
     {
         if ( command[n] == wxT('%') &&
@@ -167,9 +157,6 @@ size_t wxFileTypeImpl::GetAllCommands(wxArrayString *verbs,
     long dummy;
     wxString verb;
     bool ok = rkey.GetFirstKey(verb, dummy);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( ok )
     {
         wxString command = wxFileType::ExpandCommand(GetCommand(verb), params);
@@ -542,9 +529,6 @@ size_t wxMimeTypesManagerImpl::EnumAllFileTypes(wxArrayString& mimetypes)
     wxString type;
     long cookie;
     bool cont = key.GetFirstKey(type, cookie);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( cont )
     {
         mimetypes.Add(type);
@@ -644,9 +628,6 @@ wxFileType *wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
 
     // now make other extensions have the same filetype
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (iExtCount=1; iExtCount < ftInfo.GetExtensionsCount(); iExtCount++ )
     {
         ext = ftInfo.GetExtensions()[iExtCount];

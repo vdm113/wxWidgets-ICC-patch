@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/ole/access.cpp
 // Purpose:     implementation of wxIAccessible and wxAccessible
@@ -1634,9 +1627,6 @@ IAccessible* wxIAccessible::GetChildStdAccessible(int id)
         this->get_accChildCount(& nChildren);
 
         int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < nChildren; i++)
         {
             long obtained = 0;

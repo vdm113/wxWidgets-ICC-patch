@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file KeyMap.cxx
  ** Defines a mapping between keystrokes and commands.
@@ -23,9 +16,6 @@ using namespace Scintilla;
 #endif
 
 KeyMap::KeyMap() : kmap(0), len(0), alloc(0) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (int i = 0; MapDefault[i].key; i++) {
 		AssignCmdKey(MapDefault[i].key,
 			MapDefault[i].modifiers,
@@ -49,18 +39,12 @@ void KeyMap::AssignCmdKey(int key, int modifiers, unsigned int msg) {
 		KeyToCommand *ktcNew = new KeyToCommand[alloc + 5];
 		if (!ktcNew)
 			return;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (int k = 0; k < len; k++)
 			ktcNew[k] = kmap[k];
 		alloc += 5;
 		delete []kmap;
 		kmap = ktcNew;
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (int keyIndex = 0; keyIndex < len; keyIndex++) {
 		if ((key == kmap[keyIndex].key) && (modifiers == kmap[keyIndex].modifiers)) {
 			kmap[keyIndex].msg = msg;
@@ -74,9 +58,6 @@ void KeyMap::AssignCmdKey(int key, int modifiers, unsigned int msg) {
 }
 
 unsigned int KeyMap::Find(int key, int modifiers) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (int i = 0; i < len; i++) {
 		if ((key == kmap[i].key) && (modifiers == kmap[i].modifiers)) {
 			return kmap[i].msg;

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        event.cpp
 // Purpose:     wxWidgets sample demonstrating different event usage
@@ -448,9 +441,6 @@ MyFrame::~MyFrame()
 {
     // we must pop any remaining event handlers to avoid memory leaks and
     // crashes!
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( m_nPush-- != 0 )
     {
         PopEventHandler(true /* delete handler */);

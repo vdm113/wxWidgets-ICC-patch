@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/window.cpp
 // Purpose:     wxWindowGTK implementation
@@ -962,9 +955,6 @@ gtk_window_key_press_callback( GtkWidget *WXUNUSED(widget),
         // Next check for accelerators.
 #if wxUSE_ACCEL
         wxWindowGTK *ancestor = win;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (ancestor)
         {
             int command = ancestor->GetAcceleratorTable()->GetCommand( event );
@@ -1104,9 +1094,6 @@ bool wxWindowGTK::GTKDoInsertTextFromIM(const char* str)
         return false;
 
     bool processed = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for( wxString::const_iterator pstr = data.begin(); pstr != data.end(); ++pstr )
     {
 #if wxUSE_UNICODE
@@ -1234,9 +1221,6 @@ wxWindowGTK *FindWindowForMouseEvent(wxWindowGTK *win, wxCoord& x, wxCoord& y)
     }
 
     wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (node)
     {
         wxWindow* child = static_cast<wxWindow*>(node->GetData());
@@ -1550,9 +1534,6 @@ static void SendSetCursorEvent(wxWindow* win, int x, int y)
 {
     wxSetCursorEvent event(x, y);
     wxWindow* w = win;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     do {
         if (w->GTKProcessEvent(event))
         {
@@ -2276,9 +2257,6 @@ void wxWindowGTK::Init()
     m_mouseButtonDown = false;
 
     // initialize scrolling stuff
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int dir = 0; dir < ScrollDir_Max; dir++ )
     {
         m_scrollBar[dir] = NULL;
@@ -2363,9 +2341,6 @@ void wxWindowGTK::GTKCreateScrolledWindowWith(GtkWidget* view)
     gtk_container_add( GTK_CONTAINER(m_widget), view );
 
     // connect various scroll-related events
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int dir = 0; dir < ScrollDir_Max; dir++ )
     {
         // these handlers block mouse events to any window during scrolling
@@ -2492,9 +2467,6 @@ wxWindowGTK::~wxWindowGTK()
     // avoid problem with GTK+ 2.18 where a frozen window causes the whole
     // TLW to be frozen, and if the window is then destroyed, nothing ever
     // gets painted again
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (IsFrozen())
         Thaw();
 
@@ -2718,9 +2690,6 @@ extern "C" {
 static gboolean queue_resize(void*)
 {
     gdk_threads_enter();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (GSList* p = gs_queueResizeList; p; p = p->next)
     {
         if (p->data)
@@ -2940,9 +2909,6 @@ void wxWindowGTK::DoGetClientSize( int *width, int *height ) const
                     m_widget, "scrollbar-spacing", &scrollbar_spacing, NULL);
             }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( int i = 0; i < ScrollDir_Max; i++ )
             {
                 // don't account for the scrollbars we don't have
@@ -3624,9 +3590,6 @@ void wxWindowGTK::RealizeTabOrder()
             GList *chain = NULL;
             wxWindowGTK* mnemonicWindow = NULL;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( wxWindowList::const_iterator i = m_children.begin();
                   i != m_children.end();
                   ++i )
@@ -3716,14 +3679,12 @@ bool wxWindowGTK::SetCursor( const wxCursor &cursor )
     return true;
 }
 
-void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize)
+void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize, const wxCursor* overrideCursor)
 {
-    if (m_widget == NULL ||
-        !gtk_widget_get_realized(m_widget) ||
-        (m_wxwindow == NULL && !gtk_widget_get_has_window(m_widget)))
-    {
+    m_needCursorReset = false;
+
+    if (m_widget == NULL || !gtk_widget_get_realized(m_widget))
         return;
-    }
 
     // if we don't already know there is a busy/global cursor, we have to check for one
     if (!isBusyOrGlobalCursor)
@@ -3739,7 +3700,7 @@ void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize)
     }
     GdkCursor* cursor = NULL;
     if (!isBusyOrGlobalCursor)
-        cursor = m_cursor.GetCursor();
+        cursor = (overrideCursor ? *overrideCursor : m_cursor).GetCursor();
 
     GdkWindow* window = NULL;
     if (cursor || isBusyOrGlobalCursor || !isRealize)
@@ -3764,9 +3725,17 @@ void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize)
         gdk_window_get_user_data(window, &data);
         if (data)
         {
-            // encourage native widget to restore any non-default cursors
+#ifdef __WXGTK3__
+            const char sig_name[] = "state-flags-changed";
+            GtkStateFlags state = gtk_widget_get_state_flags(GTK_WIDGET(data));
+#else
+            const char sig_name[] = "state-changed";
             GtkStateType state = gtk_widget_get_state(GTK_WIDGET(data));
-            g_signal_emit_by_name(data, "state-changed", state);
+#endif
+            static unsigned sig_id = g_signal_lookup(sig_name, GTK_TYPE_WIDGET);
+
+            // encourage native widget to restore any non-default cursors
+            g_signal_emit(data, sig_id, 0, state);
         }
     }
 }
@@ -3794,9 +3763,6 @@ void wxWindowGTK::WarpPointer( int x, int y )
 wxWindowGTK::ScrollDir wxWindowGTK::ScrollDirFromRange(GtkRange *range) const
 {
     // find the scrollbar which generated the event
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int dir = 0; dir < ScrollDir_Max; dir++ )
     {
         if ( range == m_scrollBar[dir] )
@@ -3930,9 +3896,6 @@ void wxWindowGTK::GTKSendPaintEvents(const GdkRegion* region)
         const int width = gdk_window_get_width(GTKGetDrawingWindow());
 
         wxRegionIterator upd( m_nativeUpdateRegion );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (upd)
         {
             wxRect rect;
@@ -4052,9 +4015,6 @@ void wxWindowGTK::GTKSendPaintEvents(const GdkRegion* region)
     { // now composite children which need it
         // Overlay all our composite children on top of the painted area
         wxWindowList::compatibility_iterator node;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( node = m_children.GetFirst(); node ; node = node->GetNext() )
         {
             wxWindow *compositeChild = node->GetData();
@@ -4402,9 +4362,6 @@ bool wxWindowGTK::IsTransparentBackgroundSupported(wxString* reason) const
 GdkWindow* wxWindowGTK::GTKFindWindow(GtkWidget* widget)
 {
     GdkWindow* window = gtk_widget_get_window(widget);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (const GList* p = gdk_window_peek_children(window); p; p = p->next)
     {
         window = GDK_WINDOW(p->data);
@@ -4419,9 +4376,6 @@ GdkWindow* wxWindowGTK::GTKFindWindow(GtkWidget* widget)
 void wxWindowGTK::GTKFindWindow(GtkWidget* widget, wxArrayGdkWindows& windows)
 {
     GdkWindow* window = gtk_widget_get_window(widget);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (const GList* p = gdk_window_peek_children(window); p; p = p->next)
     {
         window = GDK_WINDOW(p->data);
@@ -4505,9 +4459,6 @@ bool wxWindowGTK::DoPopupMenu( wxMenu *menu, int x, int y )
         return false;
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (menu->m_popupShown)
     {
         gtk_main_iteration();

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/hashset.h
 // Purpose:     wxHashSet class
@@ -197,7 +190,6 @@ public:                                                                      \
 #define WX_CLEAR_HASH_SET(type, hashset)                                     \
     {                                                                        \
         type::iterator it, en;                                               \
-VDM_MACRO_PRAGMA_IVDEP \
         for( it = (hashset).begin(), en = (hashset).end(); it != en; ++it )  \
             delete *it;                                                      \
         (hashset).clear();                                                   \

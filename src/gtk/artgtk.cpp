@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/artgtk.cpp
 // Purpose:     stock wxArtProvider instance with native GTK+ stock icons
@@ -172,9 +165,6 @@ GtkIconSize FindClosestIconSize(const wxSize& size)
         s_sizes[3].icon = GTK_ICON_SIZE_BUTTON;
         s_sizes[4].icon = GTK_ICON_SIZE_DND;
         s_sizes[5].icon = GTK_ICON_SIZE_DIALOG;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (size_t i = 0; i < NUM_SIZES; i++)
         {
             gtk_icon_size_lookup(s_sizes[i].icon,
@@ -185,9 +175,6 @@ GtkIconSize FindClosestIconSize(const wxSize& size)
 
     GtkIconSize best = GTK_ICON_SIZE_DIALOG; // presumably largest
     unsigned distance = INT_MAX;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (size_t i = 0; i < NUM_SIZES; i++)
     {
         // only use larger bitmaps, scaling down looks better than scaling up:
@@ -276,9 +263,6 @@ wxIconBundle DoCreateIconBundle(const char *stockid,
 {
     wxIconBundle bundle;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const SizeType *i = sizes_from; i != sizes_to; ++i )
     {
         GdkPixbuf *pixbuf = get_icon(stockid, *i);
@@ -367,9 +351,6 @@ wxGTK2ArtProvider::CreateIconBundle(const wxArtID& id,
         return bundle;
 
     gint *last = sizes;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( *last )
         last++;
 

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/wince/filedlgwce.cpp
 // Purpose:     wxFileDialog implementation for smart phones driven by WinCE
@@ -100,9 +93,6 @@ void wxFileDialog::GetPaths(wxArrayString& paths) const
         dir += wxT('\\');
 
     size_t count = m_fileNames.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; n < count; n++ )
     {
         if (wxFileName(m_fileNames[n]).IsAbsolute())

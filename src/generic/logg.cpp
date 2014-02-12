@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/logg.cpp
 // Purpose:     wxLog-derived classes which need GUI support (the rest is in
@@ -282,9 +275,6 @@ wxLogGui::DoShowMultipleLogMessages(const wxArrayString& messages,
     wxString message;
     const size_t nMsgCount = messages.size();
     message.reserve(nMsgCount*100);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = nMsgCount; n > 0; n-- ) {
         message << m_aMessages[n - 1] << wxT("\n");
     }
@@ -577,9 +567,6 @@ void wxLogFrame::OnSave(wxCommandEvent& WXUNUSED(event))
     // retrieve text and save it
     // -------------------------
     int nLines = m_pTextCtrl->GetNumberOfLines();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int nLine = 0; bOk && nLine < nLines; nLine++ ) {
         bOk = file.Write(m_pTextCtrl->GetLineText(nLine) +
                          wxTextFile::GetEOL());
@@ -715,9 +702,6 @@ wxLogDialog::wxLogDialog(wxWindow *parent,
     m_severity.Alloc(count);
     m_times.Alloc(count);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; n < count; n++ )
     {
         m_messages.Add(messages[n]);
@@ -853,9 +837,6 @@ void wxLogDialog::CreateDetailsControls(wxWindow *parent)
 
     bool loadedIcons = true;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t icon = 0; icon < WXSIZEOF(icons); icon++ )
     {
         wxBitmap bmp = wxArtProvider::GetBitmap(icons[icon], wxART_MESSAGE_BOX,
@@ -877,9 +858,6 @@ void wxLogDialog::CreateDetailsControls(wxWindow *parent)
 
     // fill the listctrl
     size_t count = m_messages.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; n < count; n++ )
     {
         int image;
@@ -974,9 +952,6 @@ wxString wxLogDialog::GetLogMessages() const
 
     wxString text;
     text.reserve(count*m_messages[0].length());
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; n < count; n++ )
     {
         text << TimeStamp(fmt, (time_t)m_times[n])

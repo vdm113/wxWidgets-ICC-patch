@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/imaglist.cpp
 // Purpose:     wxImageList implementation for Win32
@@ -187,7 +180,7 @@ int wxImageList::Add(const wxBitmap& bitmap, const wxBitmap& mask)
     // Use mask only if we don't have alpha, the bitmap isn't drawn correctly
     // if we use both.
     AutoHBITMAP hbmpMask;
-    if ( !bitmap.HasAlpha() )
+    if ( useMask )
         hbmpMask.Init(GetMaskForImage(bitmap, mask));
 
     int index = ImageList_Add(GetHImageList(), hbmp, hbmpMask);

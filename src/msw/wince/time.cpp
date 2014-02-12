@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/wince/time.cpp
 // Purpose:     Implements missing time functionality for WinCE
@@ -160,9 +153,6 @@ static const struct lc_time_T   C_time_locale = {
 static char *
 _add(const char * str, char * pt, const char * const ptlim)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (pt < ptlim && (*pt = *str++) != '\0')
         ++pt;
     return pt;
@@ -182,9 +172,6 @@ _conv(const int n, const char * const format, char * const pt, const char * cons
 static char *
 _fmt(const char * format, const struct tm * const t, char * pt, const char * const ptlim, int * warnp)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ; *format; ++format) {
         if (*format == '%') {
 label:
@@ -384,9 +371,6 @@ label:
                     year = t->tm_year + TM_YEAR_BASE;
                     yday = t->tm_yday;
                     wday = t->tm_wday;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                     for ( ; ; ) {
                         int    len;
                         int    bot;
@@ -681,9 +665,6 @@ static time_t __cdecl common_tm_to_time(int day, int month, int year, int hour, 
     time_t prog = 0 ;
     static int mdays[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 } ;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (--month)
     {
         prog += mdays[month - 1] ;

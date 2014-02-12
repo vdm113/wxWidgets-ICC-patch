@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/toolbar.cpp
 // Purpose:     wxToolBar
@@ -395,9 +388,6 @@ void wxToolBar::Recreate()
     }
 
     // reparent all our children under the new toolbar
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxWindowList::compatibility_iterator node = m_children.GetFirst();
           node;
           node = node->GetNext() )
@@ -560,9 +550,6 @@ bool wxToolBar::DoDeleteTool(size_t pos, wxToolBarToolBase *tool)
     // different from pos if we use several separators to cover the space used
     // by a control
     wxToolBarToolsList::compatibility_iterator node;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarToolBase *tool2 = node->GetData();
@@ -598,9 +585,6 @@ bool wxToolBar::DoDeleteTool(size_t pos, wxToolBarToolBase *tool)
 
     // do delete all buttons
     m_nButtons -= nButtonsToDelete;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( nButtonsToDelete-- > 0 )
     {
         if ( !::SendMessage(GetHwnd(), TB_DELETEBUTTON, pos, 0) )
@@ -615,9 +599,6 @@ bool wxToolBar::DoDeleteTool(size_t pos, wxToolBarToolBase *tool)
 
     // search for any stretch spacers before the removed tool
     bool hasPrecedingStrechables = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxToolBarToolsList::compatibility_iterator nodeStch = m_tools.GetFirst();
                                  nodeStch != node; nodeStch = nodeStch->GetNext() )
     {
@@ -638,9 +619,6 @@ bool wxToolBar::DoDeleteTool(size_t pos, wxToolBarToolBase *tool)
     {
         // reposition all the controls after this button but before any
         // stretch spacer (the toolbar takes care of all normal items)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( /* node -> first after deleted */ ; node; node = node->GetNext() )
         {
             wxToolBarTool *tool2 = (wxToolBarTool*)node->GetData();
@@ -673,9 +651,6 @@ void wxToolBar::CreateDisabledImageList()
     if ( wxApp::GetComCtl32Version() >= 470 )
     {
         // search for the first disabled button img in the toolbar, if any
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( wxToolBarToolsList::compatibility_iterator
                 node = m_tools.GetFirst(); node; node = node->GetNext() )
         {
@@ -732,9 +707,6 @@ bool wxToolBar::Realize()
 #endif // wxREMAP_BUTTON_COLOURS
 
     // delete all old buttons, if any
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t pos = 0; pos < m_nButtons; pos++ )
     {
         if ( !::SendMessage(GetHwnd(), TB_DELETEBUTTON, 0, 0) )
@@ -802,9 +774,6 @@ bool wxToolBar::Realize()
         int nButtons = 0;
 
         CreateDisabledImageList();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
         {
             wxToolBarToolBase *tool = node->GetData();
@@ -858,14 +827,8 @@ bool wxToolBar::Realize()
                         {
                             // we need to have light grey background colour for
                             // MapBitmap() to work correctly
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                             for ( int y = 0; y < h; y++ )
                             {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                                 for ( int x = 0; x < w; x++ )
                                 {
                                     if ( imgGreyed.IsTransparent(x, y) )
@@ -991,9 +954,6 @@ bool wxToolBar::Realize()
 
     bool lastWasRadio = false;
     int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarTool *tool = static_cast<wxToolBarTool *>(node->GetData());
@@ -1081,9 +1041,6 @@ bool wxToolBar::Realize()
                         {
                             wxToolBarToolsList::compatibility_iterator nodePrev = node->GetPrevious();
                             int prevIndex = i - 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                             while ( nodePrev )
                             {
                                 TBBUTTON& prevButton = buttons[prevIndex];
@@ -1151,9 +1108,6 @@ bool wxToolBar::Realize()
     // total size while doing it
     m_totalFixedSize = 0;
     int toolIndex = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext(), toolIndex++ )
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
@@ -1222,9 +1176,6 @@ bool wxToolBar::Realize()
             tbb.fsStyle = TBSTYLE_SEP;
 
             size_t nSeparators = size.x / widthSep;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( size_t nSep = 0; nSep < nSeparators; nSep++ )
             {
                 if ( !::SendMessage(GetHwnd(), TB_INSERTBUTTON,
@@ -1319,9 +1270,6 @@ void wxToolBar::UpdateStretchableSpacersSize()
     // check if we have any stretchable spacers in the first place
     unsigned numSpaces = 0;
     wxToolBarToolsList::compatibility_iterator node;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
@@ -1350,9 +1298,6 @@ void wxToolBar::UpdateStretchableSpacersSize()
     // correct place
     int offset = 0;
     int toolIndex = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext(), toolIndex++ )
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
@@ -1587,9 +1532,6 @@ wxToolBarToolBase *GetItemSkippingDummySpacers(const wxToolBarToolsList& tools,
 {
     wxToolBarToolsList::compatibility_iterator current = tools.GetFirst();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ; current ; current = current->GetNext() )
     {
         if ( index == 0 )
@@ -1853,9 +1795,6 @@ bool wxToolBar::HandlePaint(WXWPARAM wParam, WXLPARAM lParam)
     wxRegion rgnDummySeps;
     const wxRect rectTotal = GetClientRect();
     int toolIndex = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
           node;
           node = node->GetNext() )
@@ -1866,9 +1805,6 @@ bool wxToolBar::HandlePaint(WXWPARAM wParam, WXLPARAM lParam)
         if ( tool->IsControl() || tool->IsStretchableSpace() )
         {
             const size_t numSeps = tool->GetSeparatorsCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( size_t n = 0; n < numSeps; n++, toolIndex++ )
             {
                 // for some reason TB_GETITEMRECT returns a rectangle 1 pixel
@@ -2081,21 +2017,12 @@ WXHBITMAP wxToolBar::MapBitmap(WXHBITMAP bitmap, int width, int height)
 
     wxCOLORMAP *cmap = wxGetStdColourMap();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int i = 0; i < width; i++ )
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( int j = 0; j < height; j++ )
         {
             COLORREF pixel = ::GetPixel(hdcMem, i, j);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( size_t k = 0; k < wxSTD_COL_MAX; k++ )
             {
                 COLORREF col = cmap[k].from;

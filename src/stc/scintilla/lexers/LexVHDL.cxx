@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexVHDL.cxx
  ** Lexer for VHDL
@@ -80,9 +73,6 @@ static void ColouriseVHDLDoc(
 
   StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for (; sc.More(); sc.Forward())
   {
 
@@ -155,9 +145,6 @@ static void ColouriseVHDLDoc(
 static bool IsCommentLine(int line, Accessor &styler) {
 	int pos = styler.LineStart(line);
 	int eol_pos = styler.LineStart(line + 1) - 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
 		char chNext = styler[i+1];
@@ -214,9 +201,6 @@ static void FoldNoBoxVHDLDoc(
   // This code could be cleaned up.
   int end = 0;
   unsigned int j;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for(j = startPos; j>0; j--)
   {
     char ch       = styler.SafeGetCharAt(j);
@@ -236,9 +220,6 @@ static void FoldNoBoxVHDLDoc(
       {
         char s[32];
         unsigned int k;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for(k=0; (k<31 ) && (k<end-j+1 ); k++) {
           s[k] = static_cast<char>(tolower(styler[j+k]));
         }
@@ -251,9 +232,6 @@ static void FoldNoBoxVHDLDoc(
       }
     }
   }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for(j=j+static_cast<unsigned int>(strlen(prevWord)); j<endPos; j++)
   {
     char ch       = styler.SafeGetCharAt(j);
@@ -274,9 +252,6 @@ static void FoldNoBoxVHDLDoc(
   //Platform::DebugPrintf("Line[%04d] Prev[%20s] ************************* Level[%x]\n", lineCurrent+1, prevWord, levelCurrent);
 
   /***************************************/
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for (unsigned int i = startPos; i < endPos; i++)
   {
     char ch         = chNext;
@@ -284,9 +259,6 @@ static void FoldNoBoxVHDLDoc(
     chPrev          = styler.SafeGetCharAt(i - 1);
     chNextNonBlank  = chNext;
     unsigned int j  = i+1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while(IsABlank(chNextNonBlank) && j<endPos)
     {
       j ++ ;
@@ -332,9 +304,6 @@ static void FoldNoBoxVHDLDoc(
       if(iswordchar(ch) && !iswordchar(chNext)) {
         char s[32];
         unsigned int k;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for(k=0; (k<31 ) && (k<i-lastStart+1 ); k++) {
           s[k] = static_cast<char>(tolower(styler[lastStart+k]));
         }
@@ -369,9 +338,6 @@ static void FoldNoBoxVHDLDoc(
             { // This code checks to see if the procedure / function is a definition within a "package"
               // rather than the actual code in the body.
               int BracketLevel = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
               for(int j=i+1; j<styler.Length(); j++)
               {
                 int LocalStyle = styler.StyleAt(j);

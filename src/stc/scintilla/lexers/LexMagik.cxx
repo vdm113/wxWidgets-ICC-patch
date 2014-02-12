@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /**
  * @file LexMagik.cxx
@@ -107,9 +100,6 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 	StyleContext sc(startPos, length, initStyle, styler);
 
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (; sc.More(); sc.Forward()) {
 
     repeat:
@@ -117,9 +107,6 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
         if(sc.ch == '#') {
             if (sc.chNext == '#') sc.SetState(SCE_MAGIK_HYPER_COMMENT);
             else sc.SetState(SCE_MAGIK_COMMENT);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for(; sc.More() && !(sc.atLineEnd); sc.Forward());
             sc.SetState(SCE_MAGIK_DEFAULT);
             goto repeat;
@@ -131,9 +118,6 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
             if(sc.More())
             {
                 sc.Forward();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for(; sc.More() && sc.ch != '"'; sc.Forward());
             }
 
@@ -150,9 +134,6 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 	            char keyword[50];
 	            memset(keyword, '\0', 50);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	            for(
                     int scanPosition = 0;
                     scanPosition < 50;
@@ -198,16 +179,10 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 	        else if(sc.ch == ':' && !IsAlNum(sc.chPrev)) {
 	            sc.SetState(SCE_MAGIK_SYMBOL);
 	            bool firstTrip = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	            for(sc.Forward(); sc.More(); sc.Forward()) {
 	                if(firstTrip && IsAlphaSym(sc.ch));
 	                else if(!firstTrip && IsAlNumSym(sc.ch));
 	                else if(sc.ch == '|') {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	                    for(sc.Forward();
                             sc.More() && sc.ch != '|';
                             sc.Forward());
@@ -224,9 +199,6 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 	        else if(sc.ch == '@') {
 	            sc.SetState(SCE_MAGIK_IDENTIFIER);
 	            bool firstTrip = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	            for(sc.Forward(); sc.More(); sc.Forward()) {
 	                if(firstTrip && IsAlphaCore(sc.ch)) {
 	                    firstTrip = false;
@@ -245,9 +217,6 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
                 char keyword[50];
 	            memset(keyword, '\0', 50);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	            for(
                     int scanPosition = 0;
                     scanPosition < 50;
@@ -401,9 +370,6 @@ static void FoldMagikDoc(unsigned int startPos, int length, int,
     int level = styler.LevelAt(line) & SC_FOLDLEVELNUMBERMASK;
     int flags = styler.LevelAt(line) & ~SC_FOLDLEVELNUMBERMASK;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for(
         int currentPos = startPos;
         currentPos < endPos;
@@ -429,9 +395,6 @@ static void FoldMagikDoc(unsigned int startPos, int length, int,
                 char keyword[50];
                 memset(keyword, '\0', 50);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for(
                     int scanPosition = 0;
                     scanPosition < 50;

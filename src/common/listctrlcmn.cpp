@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ////////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/listctrlcmn.cpp
 // Purpose:     Common defines for wxListCtrl and wxListCtrl-based classes.
@@ -212,9 +205,6 @@ wxSize wxListCtrlBase::DoGetBestClientSize() const
     else // We do have columns, use them to determine the best width.
     {
         totalWidth = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( int col = 0; col < columns; col++ )
         {
             totalWidth += GetColumnWidth(col);

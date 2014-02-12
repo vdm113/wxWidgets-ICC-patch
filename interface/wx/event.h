@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        event.h
 // Purpose:     interface of wxEvtHandler, wxEventBlocker and many
@@ -299,9 +292,6 @@ protected:
             // we do the 1000 FunctionWhichSendsEvents() calls
             wxEventBlocker blocker(this);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( int i = 0; i  1000; i++ )
                 FunctionWhichSendsEvents(i);
 
@@ -2198,9 +2188,6 @@ public:
         int vX,vY,vW,vH;                 // Dimensions of client area in pixels
         wxRegionIterator upd(GetUpdateRegion()); // get the update rect list
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (upd)
         {
             vX = upd.GetX();

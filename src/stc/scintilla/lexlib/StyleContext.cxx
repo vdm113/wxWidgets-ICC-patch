@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file StyleContext.cxx
  ** Lexer infrastructure.
@@ -34,9 +27,6 @@ static void getRange(unsigned int start,
 		char *s,
 		unsigned int len) {
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while ((i < end - start + 1) && (i < len-1)) {
 		s[i] = styler[start + i];
 		i++;
@@ -54,9 +44,6 @@ static void getRangeLowered(unsigned int start,
 		char *s,
 		unsigned int len) {
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while ((i < end - start + 1) && (i < len-1)) {
 		s[i] = static_cast<char>(tolower(styler[start + i]));
 		i++;

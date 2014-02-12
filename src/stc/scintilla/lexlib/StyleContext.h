@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file StyleContext.cxx
  ** Lexer infrastructure.
@@ -104,9 +97,6 @@ public:
 		}
 	}
 	void Forward(int nb) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (int i = 0; i < nb; i++) {
 			Forward();
 		}
@@ -144,9 +134,6 @@ public:
 		if (chNext != static_cast<unsigned char>(*s))
 			return false;
 		s++;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (int n=2; *s; n++) {
 			if (*s != styler.SafeGetCharAt(currentPos+n))
 				return false;
@@ -161,9 +148,6 @@ public:
 		if (MakeLowerCase(chNext) != static_cast<unsigned char>(*s))
 			return false;
 		s++;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (int n=2; *s; n++) {
 			if (static_cast<unsigned char>(*s) !=
 				MakeLowerCase(static_cast<unsigned char>(styler.SafeGetCharAt(currentPos+n))))

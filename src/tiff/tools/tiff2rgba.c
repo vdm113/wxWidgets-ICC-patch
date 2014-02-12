@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 /*
  * Copyright (c) 1991-1997 Sam Leffler
@@ -74,9 +67,6 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char *optarg;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while ((c = getopt(argc, argv, "c:r:t:bn8")) != -1)
 		switch (c) {
 			case 'b':
@@ -126,15 +116,9 @@ main(int argc, char* argv[])
 	if (out == NULL)
 		return (-2);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (; optind < argc-1; optind++) {
 		in = TIFFOpen(argv[optind], "r");
 		if (in != NULL) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			do {
 				if (!tiffcvt(in, out) ||
 				    !TIFFWriteDirectory(out)) {
@@ -195,14 +179,8 @@ cvt_by_tile( TIFF *in, TIFF *out )
     /*
      * Loop over the tiles.
      */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for( row = 0; ok && row < height; row += tile_height )
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for( col = 0; ok && col < width; col += tile_width )
         {
             uint32 i_row;
@@ -226,9 +204,6 @@ cvt_by_tile( TIFF *in, TIFF *out )
              * For some reason the TIFFReadRGBATile() function chooses the
              * lower left corner as the origin.  Vertically mirror scanlines.
              */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for( i_row = 0; i_row < tile_height / 2; i_row++ )
             {
                 uint32	*top_line, *bottom_line;
@@ -304,9 +279,6 @@ cvt_by_strip( TIFF *in, TIFF *out )
     /*
      * Loop over the strips.
      */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for( row = 0; ok && row < height; row += rowsperstrip )
     {
         int	rows_to_write, i_row;
@@ -338,9 +310,6 @@ cvt_by_strip( TIFF *in, TIFF *out )
          * lower left corner as the origin.  Vertically mirror scanlines.
          */
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for( i_row = 0; i_row < rows_to_write / 2; i_row++ )
         {
             uint32	*top_line, *bottom_line;
@@ -434,9 +403,6 @@ cvt_whole_image( TIFF *in, TIFF *out )
         unsigned char *src, *dst;
 
 	src = dst = (unsigned char *) raster;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (count > 0)
         {
 	    *(dst++) = *(src++);
@@ -450,9 +416,6 @@ cvt_whole_image( TIFF *in, TIFF *out )
     /*
      * Write out the result in strips
      */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (row = 0; row < height; row += rowsperstrip)
     {
         unsigned char * raster_strip;
@@ -562,9 +525,6 @@ usage(int code)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(code);
