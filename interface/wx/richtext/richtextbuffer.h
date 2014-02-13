@@ -2118,7 +2118,21 @@ public:
 
     bool GetVirtualAttributesEnabled() const;
 
+    /**
+        Enable or disable images
+    */
+
+    void EnableImages(bool b) { m_enableImages = b; }
+
+    /**
+        Returns @true if images are enabled.
+    */
+
+    bool GetImagesEnabled() const { return m_enableImages; }
+
     wxRichTextBuffer*   m_buffer;
+    bool                m_enableVirtualAttributes;
+    bool                m_enableImages;
 };
 
 /**
@@ -4649,7 +4663,7 @@ public:
     /**
         Creates a cached image at the required size.
     */
-    virtual bool LoadImageCache(wxDC& dc, bool resetCache = false, const wxSize& parentSize = wxDefaultSize);
+    virtual bool LoadImageCache(wxDC& dc, wxRichTextDrawingContext& context, bool resetCache = false, const wxSize& parentSize = wxDefaultSize);
 
 protected:
     wxRichTextImageBlock    m_imageBlock;
