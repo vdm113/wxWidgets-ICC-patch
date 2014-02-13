@@ -818,6 +818,18 @@ bool wxRichTextObject::DrawBorder(wxDC& dc, wxRichTextBuffer* buffer, const wxRi
         if (cornerRadius > 0)
         {
             borderLeft = converter.GetPixels(borders.GetLeft().GetWidth());
+
+            // Compensate for border thickness, since the rectangle borders are centred on the rect
+            wxRect rect2(rect);
+            if (borderLeft > 1)
+            {
+                int inc = (int) ((double(borderLeft) / 2.0) + 0.5);
+                rect2.x += inc;
+                rect2.y += inc;
+                rect2.width -= (2*inc - 1);
+                rect2.height -= (2*inc - 1);
+            }
+
             wxColour col(borders.GetLeft().GetColour());
             wxPenStyle penStyle = wxPENSTYLE_SOLID;
             if (borders.GetLeft().GetStyle() == wxTEXT_BOX_ATTR_BORDER_DOTTED)
@@ -832,11 +844,26 @@ bool wxRichTextObject::DrawBorder(wxDC& dc, wxRichTextBuffer* buffer, const wxRi
         }
     }
 
+    // Don't do this, since it can mess up cell drawing in tables when
+    // there are inconsistencies between rectangle and line drawing.
+#if 0
     // Draw the border in one go if all the borders are the same
     if (borders.GetLeft().IsValid() && (borders.GetLeft().GetWidth().GetValue() > 0) && borders.GetTop().IsValid() && borders.GetRight().IsValid() &&borders.GetBottom().IsValid() &&
         (borders.GetLeft() == borders.GetTop()) && (borders.GetLeft() == borders.GetRight()) && (borders.GetLeft() == borders.GetBottom()))
     {
         borderLeft = converter.GetPixels(borders.GetLeft().GetWidth());
+
+        // Compensate for border thickness, since the rectangle borders are centred on the rect
+        wxRect rect2(rect);
+        if (borderLeft > 1)
+        {
+            int inc = (int) ((double(borderLeft) / 2.0) + 0.5);
+            rect2.x += inc;
+            rect2.y += inc;
+            rect2.width -= (2*inc - 1);
+            rect2.height -= (2*inc - 1);
+        }
+
         wxColour col(borders.GetLeft().GetColour());
         wxPenStyle penStyle = wxPENSTYLE_SOLID;
         if (borders.GetLeft().GetStyle() == wxTEXT_BOX_ATTR_BORDER_DOTTED)
@@ -850,6 +877,7 @@ bool wxRichTextObject::DrawBorder(wxDC& dc, wxRichTextBuffer* buffer, const wxRi
         dc.DrawRectangle(rect);
         return true;
     }
+#endif
 
     if (borders.GetLeft().IsValid() && (borders.GetLeft().GetWidth().GetValue() > 0) && (borders.GetLeft().GetStyle() != wxTEXT_BOX_ATTR_BORDER_NONE))
     {
@@ -865,8 +893,14 @@ bool wxRichTextObject::DrawBorder(wxDC& dc, wxRichTextBuffer* buffer, const wxRi
         {
             wxPen pen(col, borderLeft, penStyle);
             dc.SetPen(pen);
-            // Note that the last point is not drawn.
-            dc.DrawLine(rect.x, rect.y, rect.x, rect.y + rect.height);
+
+            // Note that the last point is not drawn, at least on GTK+ and Windows.
+            // On Mac, we must compensate.
+            int inc = 0;
+#ifdef __WXMAC__
+            inc = 1;
+#endif
+            dc.DrawLine(rect.x, rect.y, rect.x, rect.y + rect.height - inc);
         }
         else
         {
@@ -894,8 +928,12 @@ bool wxRichTextObject::DrawBorder(wxDC& dc, wxRichTextBuffer* buffer, const wxRi
         {
             wxPen pen(col, borderRight, penStyle);
             dc.SetPen(pen);
-            // Note that the last point is not drawn.
-            dc.DrawLine(rect.x + rect.width - 1, rect.y, rect.x + rect.width - 1, rect.y + rect.height);
+            // See note above.
+            int inc = 0;
+#ifdef __WXMAC__
+            inc = 1;
+#endif
+            dc.DrawLine(rect.x + rect.width - 1, rect.y, rect.x + rect.width - 1, rect.y + rect.height - inc);
         }
         else
         {
@@ -928,7 +966,12 @@ bool wxRichTextObject::DrawBorder(wxDC& dc, wxRichTextBuffer* buffer, const wxRi
                 penStyle = wxPENSTYLE_LONG_DASH;
             wxPen pen(col, borderTop, penStyle);
             dc.SetPen(pen);
-            dc.DrawLine(rect.x, rect.y, rect.x + rect.width, rect.y);
+            // See note above.
+            int inc = 0;
+#ifdef __WXMAC__
+            inc = 1;
+#endif
+            dc.DrawLine(rect.x, rect.y, rect.x + rect.width - inc, rect.y);
         }
         else
         {
@@ -955,7 +998,12 @@ bool wxRichTextObject::DrawBorder(wxDC& dc, wxRichTextBuffer* buffer, const wxRi
         {
             wxPen pen(col, borderBottom, penStyle);
             dc.SetPen(pen);
-            dc.DrawLine(rect.x, rect.y + rect.height - 1, rect.x + rect.width, rect.y + rect.height - 1);
+            // See note above.
+            int inc = 0;
+#ifdef __WXMAC__
+            inc = 1;
+#endif
+            dc.DrawLine(rect.x, rect.y + rect.height - 1, rect.x + rect.width - inc, rect.y + rect.height - 1);
         }
         else
         {
