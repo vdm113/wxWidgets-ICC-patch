@@ -2331,9 +2331,6 @@ bool wxRichTextParagraphLayoutBox::Layout(wxDC& dc, wxRichTextDrawingContext& co
                 // by floating objects from above the paragraphs.
                 if (wxRichTextBuffer::GetFloatingLayoutMode())
                 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                     while (node)
                     {
                         child = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -2352,6 +2349,25 @@ bool wxRichTextParagraphLayoutBox::Layout(wxDC& dc, wxRichTextDrawingContext& co
                             maxMaxWidth = wxMax(maxMaxWidth, child->GetMaxSize().x);
 
                             int newImpactedByFloats = child->GetImpactedByFloatingObjects();
+
+                            // We can stop laying out if this paragraph is unaffected by floating
+                            // objects, and was previously too.
+                            if (oldImpactedByFloats == 0 && newImpactedByFloats == 0)
+                            {
+                                node = node->GetNext();
+                                break;
+                            }
+                        }
+                        node = node->GetNext();
+                    }
+                }
+
+                int inc = 0;
+                if (node)
+                {
+                    child = wxDynamicCast(node->GetData(), wxRichTextParagraph);
+                    inc = availableSpace.y - child->GetPosition().y;
+                }
 
                             // We can stop laying out if this paragraph is unaffected by floating
                             // objects, and was previously too.
@@ -12115,9 +12131,6 @@ void wxRichTextAction::CalculateRefreshOptimizations(wxArrayInt& optimizationLin
         wxRichTextParagraph* para = container->GetParagraphAtPosition(GetRange().GetStart());
         wxRichTextObjectList::compatibility_iterator firstNode = container->GetChildren().Find(para);
         wxRichTextObjectList::compatibility_iterator node = firstNode;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (node)
         {
             wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
@@ -12156,9 +12169,6 @@ void wxRichTextAction::CalculateRefreshOptimizations(wxArrayInt& optimizationLin
             // modification point are affected by floats in other paragraphs,
             // then we will simply update the rest of the screen.
             wxRichTextObjectList::compatibility_iterator node = firstNode;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while (node)
             {
                 wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
@@ -12606,10 +12616,7 @@ void wxRichTextAction::UpdateAppearance(long caretPosition, bool sendUpdateEvent
 
                 wxRichTextObjectList::compatibility_iterator firstNode = container->GetChildren().Find(para);
                 wxRichTextObjectList::compatibility_iterator node = firstNode;
-                wxRichTextObjectList::compatibility_iterator lastNode = wxRichTextObjectList::compatibility_iterator();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
+                wxRichTextObjectList::compatibility_iterator lastNode = NULL;
                 while (node)
                 {
                     wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
@@ -12696,9 +12703,6 @@ void wxRichTextAction::UpdateAppearance(long caretPosition, bool sendUpdateEvent
                     if (lastNode && (container->GetFloatingObjectCount() > 0) && (lastY < lastPossibleY))
                     {
                         wxRichTextObjectList::compatibility_iterator node = lastNode;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                         while (node)
                         {
                             wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
@@ -12889,6 +12893,8 @@ bool wxRichTextImage::LoadImageCache(wxDC& dc, wxRichTextDrawingContext& context
     {
         if (buffer)
         {
+            // Surely margins will already be accounted for?
+#if 0
             // Find the actual space available when margin is taken into account
             wxRect marginRect, borderRect, contentRect, paddingRect, outlineRect;
             marginRect = wxRect(0, 0, sz.x, sz.y);
@@ -12897,7 +12903,7 @@ bool wxRichTextImage::LoadImageCache(wxDC& dc, wxRichTextDrawingContext& context
                 buffer->GetBoxRects(dc, buffer, GetParent()->GetParent()->GetAttributes(), marginRect, borderRect, contentRect, paddingRect, outlineRect);
                 sz = contentRect.GetSize();
             }
-
+#endif
             // Use a minimum size to stop images becoming very small
             parentWidth = wxMax(100, sz.GetWidth());
             parentHeight = wxMax(100, sz.GetHeight());
