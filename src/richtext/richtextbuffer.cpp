@@ -2369,6 +2369,35 @@ bool wxRichTextParagraphLayoutBox::Layout(wxDC& dc, wxRichTextDrawingContext& co
                     inc = availableSpace.y - child->GetPosition().y;
                 }
 
+                            child->LayoutToBestSize(dc, context, GetBuffer(),
+                                attr, child->GetAttributes(), availableSpace, rect, style&~wxRICHTEXT_LAYOUT_SPECIFIED_RECT);
+                            
+                            availableSpace.y += child->GetCachedSize().y;
+                            maxWidth = wxMax(maxWidth, child->GetCachedSize().x);
+                            maxMinWidth = wxMax(maxMinWidth, child->GetMinSize().x);
+                            maxMaxWidth = wxMax(maxMaxWidth, child->GetMaxSize().x);
+
+                            int newImpactedByFloats = child->GetImpactedByFloatingObjects();
+
+                            // We can stop laying out if this paragraph is unaffected by floating
+                            // objects, and was previously too.
+                            if (oldImpactedByFloats == 0 && newImpactedByFloats == 0)
+                            {
+                                node = node->GetNext();
+                                break;
+                            }
+                        }
+                        node = node->GetNext();
+                    }
+                }
+
+                int inc = 0;
+                if (node)
+                {
+                    child = wxDynamicCast(node->GetData(), wxRichTextParagraph);
+                    inc = availableSpace.y - child->GetPosition().y;
+                }
+
                             int newImpactedByFloats = child->GetImpactedByFloatingObjects();
 
                             // We can stop laying out if this paragraph is unaffected by floating
