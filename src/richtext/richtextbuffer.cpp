@@ -12597,7 +12597,7 @@ void wxRichTextAction::UpdateAppearance(long caretPosition, bool sendUpdateEvent
 
                 wxRichTextObjectList::compatibility_iterator firstNode = container->GetChildren().Find(para);
                 wxRichTextObjectList::compatibility_iterator node = firstNode;
-                wxRichTextObjectList::compatibility_iterator lastNode = NULL;
+                wxRichTextObjectList::compatibility_iterator lastNode = wxRichTextObjectList::compatibility_iterator();
                 while (node)
                 {
                     wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
