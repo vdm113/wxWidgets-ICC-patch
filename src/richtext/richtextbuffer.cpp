@@ -2331,6 +2331,9 @@ bool wxRichTextParagraphLayoutBox::Layout(wxDC& dc, wxRichTextDrawingContext& co
                 // by floating objects from above the paragraphs.
                 if (wxRichTextBuffer::GetFloatingLayoutMode())
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                     while (node)
                     {
                         child = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -12112,6 +12115,9 @@ void wxRichTextAction::CalculateRefreshOptimizations(wxArrayInt& optimizationLin
         wxRichTextParagraph* para = container->GetParagraphAtPosition(GetRange().GetStart());
         wxRichTextObjectList::compatibility_iterator firstNode = container->GetChildren().Find(para);
         wxRichTextObjectList::compatibility_iterator node = firstNode;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while (node)
         {
             wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
@@ -12150,6 +12156,9 @@ void wxRichTextAction::CalculateRefreshOptimizations(wxArrayInt& optimizationLin
             // modification point are affected by floats in other paragraphs,
             // then we will simply update the rest of the screen.
             wxRichTextObjectList::compatibility_iterator node = firstNode;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             while (node)
             {
                 wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
@@ -12598,6 +12607,9 @@ void wxRichTextAction::UpdateAppearance(long caretPosition, bool sendUpdateEvent
                 wxRichTextObjectList::compatibility_iterator firstNode = container->GetChildren().Find(para);
                 wxRichTextObjectList::compatibility_iterator node = firstNode;
                 wxRichTextObjectList::compatibility_iterator lastNode = wxRichTextObjectList::compatibility_iterator();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 while (node)
                 {
                     wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
@@ -12684,6 +12696,9 @@ void wxRichTextAction::UpdateAppearance(long caretPosition, bool sendUpdateEvent
                     if (lastNode && (container->GetFloatingObjectCount() > 0) && (lastY < lastPossibleY))
                     {
                         wxRichTextObjectList::compatibility_iterator node = lastNode;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                         while (node)
                         {
                             wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
