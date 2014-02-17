@@ -1379,14 +1379,8 @@ void wxHtmlHelpWindow::OptionsDialog()
         wxWindowUpdateLocker lockNormalFont(dlg.NormalFont);
         wxWindowUpdateLocker lockFixedFont(dlg.FixedFont);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < m_NormalFonts->GetCount(); i++)
             dlg.NormalFont->Append((*m_NormalFonts)[i]);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < m_FixedFonts->GetCount(); i++)
             dlg.FixedFont->Append((*m_FixedFonts)[i]);
         if (!m_NormalFace.empty())
