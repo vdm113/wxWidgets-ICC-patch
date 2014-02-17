@@ -5524,7 +5524,7 @@ bool wxRichTextParagraph::Layout(wxDC& dc, wxRichTextDrawingContext& context, co
             currentPosition.y += lineSpacing;
             maxDescent = 0;
             maxAscent = 0;
-            maxWidth = wxMax(maxWidth, currentWidth+startOffset);
+            maxWidth = wxMax(maxWidth, currentWidth+currentPosition.x);
             currentWidth = 0;
 
             lineCount ++;
@@ -5571,7 +5571,7 @@ bool wxRichTextParagraph::Layout(wxDC& dc, wxRichTextDrawingContext& context, co
 
             lineHeight = wxMax(lineHeight, (maxDescent + maxAscent));
 
-            maxWidth = wxMax(maxWidth, currentWidth+startOffset);
+            maxWidth = wxMax(maxWidth, currentWidth+currentPosition.x);
             lastEndPos = child->GetRange().GetEnd();
 
             node = node->GetNext();
@@ -5651,7 +5651,7 @@ bool wxRichTextParagraph::Layout(wxDC& dc, wxRichTextDrawingContext& context, co
         wxRect marginRect, borderRect, contentRect, paddingRect, outlineRect;
         contentRect = wxRect(wxPoint(0, 0), wxSize(paraSize.x + wxMax(leftIndent, leftIndent + leftSubIndent) + rightIndent, currentPosition.y + spaceAfterPara));
         GetBoxRects(dc, buffer, attr, marginRect, borderRect, contentRect, paddingRect, outlineRect);
-        SetMaxSize(marginRect.GetSize());
+        SetMaxSize(wxSize(wxMax(GetCachedSize().x, marginRect.GetSize().x), wxMax(GetCachedSize().y, marginRect.y)));
     }
 
     // Find the greatest minimum size. Currently we only look at non-text objects,
@@ -6889,6 +6889,9 @@ void wxRichTextParagraph::LayoutFloat(wxDC& dc, wxRichTextDrawingContext& contex
 
             int pos = floatCollector->GetFitPosition(anchored->GetAttributes().GetTextBoxAttr().GetFloatMode(), rect.y + offsetY, size.y);
 
+            // I can't remember why we tried to update the top offset here, but anyhow it results in
+            // a wrong position being computed, so don't.
+#if 0
             /* Update the offset */
             int newOffsetY = pos - rect.y;
             if (newOffsetY != offsetY)
@@ -6904,7 +6907,7 @@ void wxRichTextParagraph::LayoutFloat(wxDC& dc, wxRichTextDrawingContext& contex
                     anchored->GetAttributes().GetTextBoxAttr().GetTop().SetValue(newOffsetY, wxTEXT_ATTR_UNITS_TENTHS_MM);
                 }
             }
-
+#endif
             if (anchored->GetAttributes().GetTextBoxAttr().GetFloatMode() == wxTEXT_BOX_ATTR_FLOAT_LEFT)
                 x = rect.x;
             else if (anchored->GetAttributes().GetTextBoxAttr().GetFloatMode() == wxTEXT_BOX_ATTR_FLOAT_RIGHT)
