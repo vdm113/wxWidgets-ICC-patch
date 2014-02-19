@@ -879,6 +879,9 @@ void DrawButtonText(HDC hdc,
 
         const wxArrayString lines = wxSplit(text, '\n', '\0');
         const int hLine = h / lines.size();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( size_t lineNum = 0; lineNum < lines.size(); lineNum++ )
         {
             // Each line must be aligned in horizontal direction individually.

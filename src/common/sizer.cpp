@@ -2610,6 +2610,9 @@ wxStaticBoxSizer::~wxStaticBoxSizer()
         // Reparent() calls in the loop.
         const wxWindowList children = m_staticBox->GetChildren();
         wxWindow* const parent = m_staticBox->GetParent();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( wxWindowList::const_iterator i = children.begin();
               i != children.end();
               ++i )

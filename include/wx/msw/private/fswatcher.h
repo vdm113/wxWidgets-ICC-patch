@@ -192,6 +192,9 @@ public:
     // this case we'll just return false and do nothing.
     bool CompleteRemoval(wxFSWatchEntryMSW* watch)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( Watches::iterator it = m_removedWatches.begin();
               it != m_removedWatches.end();
               ++it )

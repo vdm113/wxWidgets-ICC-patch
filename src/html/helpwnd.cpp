@@ -62,6 +62,7 @@
 #include "wx/fontenum.h"
 #include "wx/artprov.h"
 #include "wx/spinctrl.h"
+#include "wx/wupdlock.h"
 
 // what is considered "small index"?
 #define INDEX_IS_SMALL 1000
@@ -1377,24 +1378,32 @@ void wxHtmlHelpWindow::OptionsDialog()
         m_FixedFace = fnt.GetFaceName();
     }
 
+    // Lock updates to the choice controls before inserting potentially many
+    // items into them until the end of this block.
+    {
+        wxWindowUpdateLocker lockNormalFont(dlg.NormalFont);
+        wxWindowUpdateLocker lockFixedFont(dlg.FixedFont);
+
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-    for (i = 0; i < m_NormalFonts->GetCount(); i++)
-        dlg.NormalFont->Append((*m_NormalFonts)[i]);
+        for (i = 0; i < m_NormalFonts->GetCount(); i++)
+            dlg.NormalFont->Append((*m_NormalFonts)[i]);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-    for (i = 0; i < m_FixedFonts->GetCount(); i++)
-        dlg.FixedFont->Append((*m_FixedFonts)[i]);
-    if (!m_NormalFace.empty())
-        dlg.NormalFont->SetStringSelection(m_NormalFace);
-    else
-        dlg.NormalFont->SetSelection(0);
-    if (!m_FixedFace.empty())
-        dlg.FixedFont->SetStringSelection(m_FixedFace);
-    else
-        dlg.FixedFont->SetSelection(0);
+        for (i = 0; i < m_FixedFonts->GetCount(); i++)
+            dlg.FixedFont->Append((*m_FixedFonts)[i]);
+        if (!m_NormalFace.empty())
+            dlg.NormalFont->SetStringSelection(m_NormalFace);
+        else
+            dlg.NormalFont->SetSelection(0);
+        if (!m_FixedFace.empty())
+            dlg.FixedFont->SetStringSelection(m_FixedFace);
+        else
+            dlg.FixedFont->SetSelection(0);
+    }
+
     dlg.FontSize->SetValue(m_FontSize);
     dlg.UpdateTestWin();
 
