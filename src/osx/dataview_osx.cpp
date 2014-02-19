@@ -139,6 +139,7 @@ bool wxOSXDataViewModelNotifier::ItemChanged(wxDataViewItem const& item)
     wxDataViewEvent dataViewEvent(wxEVT_DATAVIEW_ITEM_VALUE_CHANGED,m_DataViewCtrlPtr->GetId());
 
     dataViewEvent.SetEventObject(m_DataViewCtrlPtr);
+    dataViewEvent.SetModel(m_DataViewCtrlPtr->GetModel());
     dataViewEvent.SetItem(item);
    // sent the equivalent wxWidget event:
     m_DataViewCtrlPtr->HandleWindowEvent(dataViewEvent);
@@ -160,9 +161,7 @@ bool wxOSXDataViewModelNotifier::ItemsChanged(wxDataViewItemArray const& items)
 
 
   dataViewEvent.SetEventObject(m_DataViewCtrlPtr);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
+  dataViewEvent.SetModel(m_DataViewCtrlPtr->GetModel());
   for (size_t indexItem=0; indexItem<noOfItems; ++indexItem)
     if (m_DataViewCtrlPtr->GetDataViewPeer()->Update(GetOwner()->GetParent(items[indexItem]),items[indexItem]))
     {
@@ -228,6 +227,7 @@ bool wxOSXDataViewModelNotifier::ValueChanged(wxDataViewItem const& item, unsign
     wxDataViewEvent dataViewEvent(wxEVT_DATAVIEW_ITEM_VALUE_CHANGED,m_DataViewCtrlPtr->GetId());
 
     dataViewEvent.SetEventObject(m_DataViewCtrlPtr);
+    dataViewEvent.SetModel(m_DataViewCtrlPtr->GetModel());
     dataViewEvent.SetColumn(col);
     dataViewEvent.SetItem(item);
    // send the equivalent wxWidget event:
