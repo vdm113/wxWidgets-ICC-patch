@@ -51,6 +51,7 @@
 
 #ifdef wxHAS_COMPILER_TLS
     #define wxTLS_TYPE(T) wxTHREAD_SPECIFIC_DECL T
+    #define wxTLS_TYPE_REF(T) T&
     #define wxTLS_PTR(var) (&(var))
     #define wxTLS_VALUE(var) (var)
 #else // !wxHAS_COMPILER_TLS
@@ -142,6 +143,7 @@
     };
 
     #define wxTLS_TYPE(T) wxTlsValue<T>
+    #define wxTLS_TYPE_REF(T) wxTLS_TYPE(T)&
     #define wxTLS_PTR(var) ((var).Get())
     #define wxTLS_VALUE(var) (*(var))
 #endif // wxHAS_COMPILER_TLS/!wxHAS_COMPILER_TLS
