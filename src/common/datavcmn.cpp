@@ -2006,9 +2006,7 @@ wxDataViewColumn *wxDataViewListCtrl::AppendToggleColumn( const wxString &label,
         new wxDataViewToggleRenderer( wxT("bool"), mode ),
         GetStore()->GetColumnCount()-1, width, align, flags );
 
-    wxDataViewCtrl::AppendColumn( ret );
-
-    return ret;
+    return wxDataViewCtrl::AppendColumn( ret ) ? ret : NULL;
 }
 
 wxDataViewColumn *wxDataViewListCtrl::AppendProgressColumn( const wxString &label,
@@ -2020,9 +2018,7 @@ wxDataViewColumn *wxDataViewListCtrl::AppendProgressColumn( const wxString &labe
         new wxDataViewProgressRenderer( wxEmptyString, wxT("long"), mode ),
         GetStore()->GetColumnCount()-1, width, align, flags );
 
-    wxDataViewCtrl::AppendColumn( ret );
-
-    return ret;
+    return wxDataViewCtrl::AppendColumn( ret ) ? ret : NULL;
 }
 
 wxDataViewColumn *wxDataViewListCtrl::AppendIconTextColumn( const wxString &label,
@@ -2034,9 +2030,7 @@ wxDataViewColumn *wxDataViewListCtrl::AppendIconTextColumn( const wxString &labe
         new wxDataViewIconTextRenderer( wxT("wxDataViewIconText"), mode ),
         GetStore()->GetColumnCount()-1, width, align, flags );
 
-    wxDataViewCtrl::AppendColumn( ret );
-
-    return ret;
+    return wxDataViewCtrl::AppendColumn( ret ) ? ret : NULL;
 }
 
 void wxDataViewListCtrl::OnSize( wxSizeEvent &event )
