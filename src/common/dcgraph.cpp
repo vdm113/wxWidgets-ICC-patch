@@ -1100,7 +1100,7 @@ bool wxGCDCImpl::DoGetPartialTextExtents(const wxString& text, wxArrayInt& width
 
 wxCoord wxGCDCImpl::GetCharWidth(void) const
 {
-    wxCoord width;
+    wxCoord width = 0;
     DoGetTextExtent( wxT("g") , &width , NULL , NULL , NULL , NULL );
 
     return width;
@@ -1108,7 +1108,7 @@ wxCoord wxGCDCImpl::GetCharWidth(void) const
 
 wxCoord wxGCDCImpl::GetCharHeight(void) const
 {
-    wxCoord height;
+    wxCoord height = 0;
     DoGetTextExtent( wxT("g") , NULL , &height , NULL , NULL , NULL );
 
     return height;
