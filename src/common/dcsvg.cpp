@@ -149,9 +149,6 @@ wxSVGBitmapEmbedHandler::ProcessBitmap(const wxBitmap& bmp,
 
     // Wrap Base64 encoded data on 76 columns boundary (same as Inkscape).
     const unsigned WRAP = 76;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t i = 0; i < data.size(); i += WRAP )
     {
         if (i < data.size() - WRAP)
@@ -183,16 +180,10 @@ wxSVGBitmapFileHandler::ProcessBitmap(const wxBitmap& bmp,
 
     // find a suitable file name
     wxString sPNG;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     do
     {
         sPNG = wxString::Format("image%d.png", sub_images++);
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (wxFile::Exists(sPNG));
 
     if ( !bmp.SaveFile(sPNG, wxBITMAP_TYPE_PNG) )
