@@ -768,7 +768,12 @@ void MyFrame::OnCollapseAndReset(wxCommandEvent& WXUNUSED(event))
 
 void MyFrame::OnEnsureVisible(wxCommandEvent& WXUNUSED(event))
 {
-    m_treeCtrl->DoEnsureVisible();
+    const wxTreeItemId
+        idLast = m_treeCtrl->GetLastChild(m_treeCtrl->GetRootItem());
+    if ( idLast.IsOk() )
+        m_treeCtrl->EnsureVisible(idLast);
+    else
+        wxLogMessage("No last item");
 }
 
 void MyFrame::OnSetFocus(wxCommandEvent& WXUNUSED(event))
@@ -1198,12 +1203,6 @@ void MyTreeCtrl::AddItemsRecursively(const wxTreeItemId& idParent,
                              wxTreeItemIcon_Expanded);
             }
 
-            // remember the last child for OnEnsureVisible()
-            if ( !hasChildren && n == numChildren - 1 )
-            {
-                m_lastItem = id;
-            }
-
             AddItemsRecursively(id, numChildren, depth - 1, n + 1);
         }
     }
@@ -1341,7 +1340,6 @@ void MyTreeCtrl::LogEvent(const wxChar *name, const wxTreeEvent& event)
 void MyTreeCtrl::name(wxTreeEvent& event)                        \
 {                                                                \
     LogEvent(wxT(#name), event);                                  \
-    SetLastItem(wxTreeItemId());                                 \
     event.Skip();                                                \
 }
 
