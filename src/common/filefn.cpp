@@ -44,6 +44,7 @@
 #include "wx/filename.h"
 #include "wx/dir.h"
 
+#include "wx/scopedptr.h"
 #include "wx/tokenzr.h"
 
 // there are just too many of those...
@@ -1379,7 +1380,7 @@ bool wxGetTempFileName(const wxString& prefix, wxString& buf)
 
 // Get first file name matching given wild card.
 
-static wxDir *gs_dir = NULL;
+static wxScopedPtr<wxDir> gs_dir;
 static wxString gs_dirPath;
 
 wxString wxFindFirstFile(const wxString& spec, int flags)
@@ -1390,8 +1391,7 @@ wxString wxFindFirstFile(const wxString& spec, int flags)
     if ( !wxEndsWithPathSeparator(gs_dirPath ) )
         gs_dirPath << wxFILE_SEP_PATH;
 
-    delete gs_dir; // can be NULL, this is ok
-    gs_dir = new wxDir(gs_dirPath);
+    gs_dir.reset(new wxDir(gs_dirPath));
 
     if ( !gs_dir->IsOpened() )
     {
@@ -1410,10 +1410,7 @@ wxString wxFindFirstFile(const wxString& spec, int flags)
     wxString result;
     gs_dir->GetFirst(&result, wxFileNameFromPath(spec), dirFlags);
     if ( result.empty() )
-    {
-        wxDELETE(gs_dir);
         return result;
-    }
 
     return gs_dirPath + result;
 }
@@ -1424,10 +1421,7 @@ wxString wxFindNextFile()
 
     wxString result;
     if ( !gs_dir->GetNext(&result) || result.empty() )
-    {
-        wxDELETE(gs_dir);
         return result;
-    }
 
     return gs_dirPath + result;
 }
