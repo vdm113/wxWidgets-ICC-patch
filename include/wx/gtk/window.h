@@ -339,7 +339,10 @@ public:
     // find the direction of the given scrollbar (must be one of ours)
     ScrollDir ScrollDirFromRange(GtkRange *range) const;
 
-    void GTKUpdateCursor(bool isBusyOrGlobalCursor = false, bool isRealize = false);
+    void GTKUpdateCursor(
+        bool isBusyOrGlobalCursor = false,
+        bool isRealize = false,
+        const wxCursor* overrideCursor = NULL);
 
     // extra (wxGTK-specific) flags
     bool                 m_noExpose:1;          // wxGLCanvas has its own redrawing
