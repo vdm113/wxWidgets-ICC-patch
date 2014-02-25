@@ -438,7 +438,7 @@ void MyFrame::OnIdle(wxIdleEvent& event)
         wxString status;
         if (idRoot.IsOk())
         {
-            wxTreeItemId idLast = m_treeCtrl->GetLastChild(idRoot);
+            wxTreeItemId idLast = m_treeCtrl->GetLastTreeITem();
             status = wxString::Format(
                 wxT("Root/last item is %svisible/%svisible"),
                 m_treeCtrl->IsVisible(idRoot) ? wxT("") : wxT("not "),
@@ -769,7 +769,7 @@ void MyFrame::OnCollapseAndReset(wxCommandEvent& WXUNUSED(event))
 void MyFrame::OnEnsureVisible(wxCommandEvent& WXUNUSED(event))
 {
     const wxTreeItemId
-        idLast = m_treeCtrl->GetLastChild(m_treeCtrl->GetRootItem());
+        idLast = m_treeCtrl->GetLastTreeITem();
     if ( idLast.IsOk() )
         m_treeCtrl->EnsureVisible(idLast);
     else
@@ -920,19 +920,7 @@ void MyFrame::OnScrollTo(wxCommandEvent& WXUNUSED(event))
 
 void MyFrame::OnSelectLast(wxCommandEvent& WXUNUSED(event))
 {
-    // select the very last item of the tree
-    wxTreeItemId item = m_treeCtrl->GetRootItem();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-    for ( ;; )
-    {
-        wxTreeItemId itemChild = m_treeCtrl->GetLastChild(item);
-        if ( !itemChild.IsOk() )
-            break;
-
-        item = itemChild;
-    }
+    wxTreeItemId item = m_treeCtrl->GetLastTreeITem();
 
     CHECK_ITEM( item );
 
@@ -1239,6 +1227,24 @@ void MyTreeCtrl::AddTestItemsToTree(size_t numChildren,
         SetItemTextColour(id, *wxRED);
         SetItemBackgroundColour(id, *wxLIGHT_GREY);
     }
+}
+
+wxTreeItemId MyTreeCtrl::GetLastTreeITem() const
+{
+    wxTreeItemId item = GetRootItem();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
+    for ( ;; )
+    {
+        wxTreeItemId itemChild = GetLastChild(item);
+        if ( !itemChild.IsOk() )
+            break;
+
+        item = itemChild;
+    }
+
+    return item;
 }
 
 void MyTreeCtrl::GetItemsRecursively(const wxTreeItemId& idParent,
