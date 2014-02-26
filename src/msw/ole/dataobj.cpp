@@ -240,19 +240,19 @@ private:
     {
     public:
         // Ctor takes ownership of the pointers.
-        SystemDataEntry(FORMATETC *pformatetc, STGMEDIUM *pmedium)
-            : pformatetc(pformatetc), pmedium(pmedium)
+        SystemDataEntry(FORMATETC *pformatetc_, STGMEDIUM *pmedium_)
+            : pformatetc(pformatetc_), pmedium(pmedium_)
         {
         }
 
         ~SystemDataEntry()
         {
-            delete pformatetc;
-            delete pmedium;
+            delete pformatetc_;
+            delete pmedium_;
         }
 
-        FORMATETC *pformatetc;
-        STGMEDIUM *pmedium;
+        FORMATETC *pformatetc_;
+        STGMEDIUM *pmedium_;
     };
     typedef wxVector<SystemDataEntry*> SystemData;
 
