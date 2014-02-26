@@ -247,12 +247,12 @@ private:
 
         ~SystemDataEntry()
         {
-            delete pformatetc_;
-            delete pmedium_;
+            delete pformatetc;
+            delete pmedium;
         }
 
-        FORMATETC *pformatetc_;
-        STGMEDIUM *pmedium_;
+        FORMATETC *pformatetc;
+        STGMEDIUM *pmedium;
     };
     typedef wxVector<SystemDataEntry*> SystemData;
 
