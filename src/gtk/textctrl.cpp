@@ -857,6 +857,10 @@ bool wxTextCtrl::Create( wxWindow *parent,
 
     GTKConnectClipboardSignals(m_text);
 
+#ifdef __WXGTK3__
+    g_signal_connect(m_text, "state_flags_changed", G_CALLBACK(state_flags_changed), this);
+#endif
+
     return true;
 }
 
