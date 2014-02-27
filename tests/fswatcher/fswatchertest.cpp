@@ -27,6 +27,8 @@
     #include "wx/timer.h"
 #endif
 
+#if wxUSE_FSWATCHER
+
 #include "wx/evtloop.h"
 #include "wx/filename.h"
 #include "wx/filefn.h"
@@ -1024,3 +1026,5 @@ void FileSystemWatcherTestCase::TestNoEventsAfterRemove()
     NoEventsAfterRemoveEventTester tester;
     tester.Run();
 }
+
+#endif // wxUSE_FSWATCHER
