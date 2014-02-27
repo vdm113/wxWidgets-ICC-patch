@@ -3189,10 +3189,10 @@ int wxDataViewMainWindow::GetLineHeight( unsigned int row ) const
 class RowToTreeNodeJob: public DoJob
 {
 public:
-    RowToTreeNodeJob( unsigned int row_ , int current, wxDataViewTreeNode * node )
+    RowToTreeNodeJob( unsigned int row_ , int current_, wxDataViewTreeNode * node )
     {
         this->row = row_;
-        this->current = current;
+        this->current = current_;
         ret = NULL;
         parent = node;
     }
