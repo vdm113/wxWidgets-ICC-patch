@@ -161,6 +161,9 @@ public:
 
     void Free();
     void EnsureValid();
+    
+    static void UpdateNamesMap(const wxString& familyname, CTFontDescriptorRef descr);
+    static void UpdateNamesMap(const wxString& familyname, CTFontRef font);
 
     bool m_descriptorValid;
 
