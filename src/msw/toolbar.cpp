@@ -1801,6 +1801,9 @@ bool wxToolBar::HandleSize(WXWPARAM WXUNUSED(wParam), WXLPARAM lParam)
     // Find bounding box for any toolbar item.
     RECT r;
     ::SetRectEmpty(&r);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for( int i = 0; i < toolsCount; i++ )
     {
         RECT ritem = wxGetTBItemRect(GetHwnd(), i);
