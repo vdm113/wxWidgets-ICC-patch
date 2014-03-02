@@ -40,15 +40,15 @@ public:
     virtual ~wxConsoleEventLoop();
 
     // implement base class pure virtuals
-    virtual bool Pending() const wxOVERRIDE;
-    virtual bool Dispatch() wxOVERRIDE;
-    virtual int DispatchTimeout(unsigned long timeout) wxOVERRIDE;
-    virtual void WakeUp() wxOVERRIDE;
-    virtual bool IsOk() const wxOVERRIDE { return m_dispatcher != NULL; }
+    virtual bool Pending() const;
+    virtual bool Dispatch();
+    virtual int DispatchTimeout(unsigned long timeout);
+    virtual void WakeUp();
+    virtual bool IsOk() const { return m_dispatcher != NULL; }
 
 protected:
-    virtual void OnNextIteration() wxOVERRIDE;
-    virtual void DoYieldFor(long eventsToProcess) wxOVERRIDE;
+    virtual void OnNextIteration();
+    virtual void DoYieldFor(long eventsToProcess);
 
 private:
     // pipe used for wake up messages: when a child thread wants to wake up
