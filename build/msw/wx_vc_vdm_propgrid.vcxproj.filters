@@ -25,28 +25,31 @@
     <ClCompile Include="..\..\src\common\dummy.cpp">
       <Filter>Common Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\propgrid\advprops.cpp">
+    <ClCompile Include="..\..\src\aui\auibar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\propgrid\editors.cpp">
+    <ClCompile Include="..\..\src\aui\auibook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\propgrid\manager.cpp">
+    <ClCompile Include="..\..\src\aui\dockart.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\propgrid\property.cpp">
+    <ClCompile Include="..\..\src\aui\floatpane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\propgrid\propgrid.cpp">
+    <ClCompile Include="..\..\src\aui\framemanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\propgrid\propgridiface.cpp">
+    <ClCompile Include="..\..\src\aui\tabart.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\propgrid\propgridpagestate.cpp">
+    <ClCompile Include="..\..\src\aui\tabmdi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\propgrid\props.cpp">
+    <ClCompile Include="..\..\src\xrc\xh_auinotbk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\xrc\xh_auitoolb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,31 +59,34 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\wx\propgrid\advprops.h">
+    <ClInclude Include="..\..\include\wx\aui\aui.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\propgrid\editors.h">
+    <ClInclude Include="..\..\include\wx\aui\auibar.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\propgrid\manager.h">
+    <ClInclude Include="..\..\include\wx\aui\auibook.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\propgrid\property.h">
+    <ClInclude Include="..\..\include\wx\aui\dockart.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\propgrid\propgrid.h">
+    <ClInclude Include="..\..\include\wx\aui\floatpane.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\propgrid\propgriddefs.h">
+    <ClInclude Include="..\..\include\wx\aui\framemanager.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\propgrid\propgridiface.h">
+    <ClInclude Include="..\..\include\wx\aui\tabart.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\propgrid\propgridpagestate.h">
+    <ClInclude Include="..\..\include\wx\aui\tabmdi.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\propgrid\props.h">
+    <ClInclude Include="..\..\include\wx\xrc\xh_auinotbk.h">
+      <Filter>Common Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx\xrc\xh_auitoolb.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
   </ItemGroup>
