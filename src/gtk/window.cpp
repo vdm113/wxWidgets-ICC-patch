@@ -3719,7 +3719,7 @@ bool wxWindowGTK::SetCursor( const wxCursor &cursor )
     return true;
 }
 
-void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize)
+void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize, const wxCursor* overrideCursor)
 {
     m_needCursorReset = false;
 
@@ -3740,7 +3740,7 @@ void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize)
     }
     GdkCursor* cursor = NULL;
     if (!isBusyOrGlobalCursor)
-        cursor = m_cursor.GetCursor();
+        cursor = (overrideCursor ? *overrideCursor : m_cursor).GetCursor();
 
     GdkWindow* window = NULL;
     if (cursor || isBusyOrGlobalCursor || !isRealize)
@@ -3751,6 +3751,9 @@ void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize)
             gdk_window_set_cursor(window, cursor);
         else
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (size_t i = windows.size(); i--;)
             {
                 window = windows[i];

@@ -2159,6 +2159,8 @@ bool wxRichTextParagraphLayoutBox::Draw(wxDC& dc, wxRichTextDrawingContext& cont
 /// Lay the item out
 bool wxRichTextParagraphLayoutBox::Layout(wxDC& dc, wxRichTextDrawingContext& context, const wxRect& rect, const wxRect& parentRect, int style)
 {
+    context.SetLayingOut(true);
+
     Move(rect.GetPosition());
 
     if (!IsShown())

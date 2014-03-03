@@ -217,6 +217,10 @@ void wxConsoleEventLoop::OnNextIteration()
     wxTheApp->CheckSignal();
 }
 
+void wxConsoleEventLoop::DoYieldFor(long eventsToProcess)
+{
+    wxEventLoopBase::DoYieldFor(eventsToProcess);
+}
 
 wxEventLoopBase *wxConsoleAppTraits::CreateEventLoop()
 {

@@ -140,11 +140,8 @@ void wxGUIEventLoop::ScheduleExit(int rc)
     ::wxBreakDispatch();
 }
 
-bool wxGUIEventLoop::YieldFor(long eventsToProcess)
+void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 {
-    m_isInsideYield = true;
-    m_eventsToProcessInsideYield = eventsToProcess;
-
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
@@ -152,9 +149,7 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
         // TODO: implement event filtering using the eventsToProcess mask
         wxTheApp->Dispatch();
 
-    m_isInsideYield = false;
-
-    return true;
+    wxEventLoopBase::DoYieldFor(eventsToProcess);
 }
 
 // ----------------------------------------------------------------------------

@@ -255,7 +255,7 @@ bool wxGUIEventLoop::Dispatch()
     return true;
 }
 
-bool wxGUIEventLoop::YieldFor(long eventsToProcess)
+void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 {
     // Sometimes only 2 yields seem
     // to do the trick, e.g. in the
@@ -266,9 +266,6 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
 #endif
     for (i = 0; i < 2; i++)
     {
-        m_isInsideYield = true;
-        m_eventsToProcessInsideYield = eventsToProcess;
-
         // Call dispatch at least once so that sockets
         // can be tested
         wxTheApp->Dispatch();
@@ -285,8 +282,6 @@ bool wxGUIEventLoop::YieldFor(long eventsToProcess)
 #endif
         ProcessIdle();
 
-        m_isInsideYield = false;
+        wxEventLoopBase::DoYieldFor(eventsToProcess);
     }
-
-    return true;
 }
