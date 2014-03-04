@@ -1868,9 +1868,6 @@ bool wxToolBar::HandleSize(WXWPARAM WXUNUSED(wParam), WXLPARAM lParam)
     ::SetRectEmpty(&r);
     wxToolBarToolsList::compatibility_iterator node;
     int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext(), i++)
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
