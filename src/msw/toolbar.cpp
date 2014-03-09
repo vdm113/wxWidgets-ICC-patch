@@ -1333,10 +1333,7 @@ void wxToolBar::UpdateStretchableSpacersSize()
     unsigned numSpaces = 0;
     wxToolBarToolsList::compatibility_iterator node;
     int toolIndex = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-    for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
+    for ( node = m_tools.GetFirst(); node; node = node->GetNext(), toolIndex++ )
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
 
@@ -1350,8 +1347,6 @@ void wxToolBar::UpdateStretchableSpacersSize()
             if ( !::IsRectEmpty(&rcItem) )
                 numSpaces++;
         }
-
-        toolIndex++;
     }
 
     if ( !numSpaces )
@@ -1375,10 +1370,7 @@ void wxToolBar::UpdateStretchableSpacersSize()
     // correct place
     int offset = 0;
     toolIndex = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-    for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
+    for ( node = m_tools.GetFirst(); node; node = node->GetNext(), toolIndex++ )
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
 
@@ -1613,9 +1605,6 @@ void wxToolBar::SetRows(int nRows)
 
     const LPARAM state = MAKELONG(enable ? TBSTATE_ENABLED : TBSTATE_HIDDEN, 0);
     wxToolBarToolsList::compatibility_iterator node;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
