@@ -54,7 +54,7 @@ private:
 
 #if wxUSE_LONGLONG
         CPPUNIT_TEST( TestLongLong );
-        CPPUNIT_TEST( TestLongLong );
+        CPPUNIT_TEST( TestULongLong );
 #endif // wxUSE_LONGLONG
 
 #if wxUSE_UNICODE
