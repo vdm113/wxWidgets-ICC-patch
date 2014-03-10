@@ -12893,12 +12893,13 @@ bool wxRichTextImage::LoadImageCache(wxDC& dc, wxRichTextDrawingContext& context
         m_imageCache = wxNullBitmap;
         m_imageState = ImageState_Unloaded;
 
-        m_imageBlock.Load(image);
-        if (!image.IsOk())
+        if (!m_imageBlock.Load(image) || !image.IsOk())
         {
             wxBitmap bitmap(image_placeholder24x24_xpm);
             m_imageCache = bitmap;
             m_originalImageSize = wxSize(bitmap.GetWidth(), bitmap.GetHeight());
+            m_imageState = ImageState_Bad;
+            retImageSize = wxSize(m_imageCache.GetWidth(), m_imageCache.GetHeight());
             return false;
         }
 
@@ -13041,12 +13042,12 @@ bool wxRichTextImage::LoadAndScaleImageCache(wxImage& image, const wxSize& sz, b
 
         if (!image.IsOk())
         {
-            m_imageBlock.Load(image);
-            if (!image.IsOk())
+            if (!m_imageBlock.Load(image) || !image.IsOk())
             {
                 wxBitmap bitmap(image_placeholder24x24_xpm);
                 m_imageCache = bitmap;
                 m_originalImageSize = wxSize(bitmap.GetWidth(), bitmap.GetHeight());
+                m_imageState = ImageState_Bad;
                 return false;
             }
         }
@@ -13087,9 +13088,6 @@ bool wxRichTextImage::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
     if (!IsShown())
         return true;
 
-    if (!m_imageCache.IsOk())
-        return false;
-
     wxRichTextAttr attr(GetAttributes());
     AdjustAttributes(attr, context);
 
@@ -13124,7 +13122,8 @@ bool wxRichTextImage::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
 /// Lay the item out
 bool wxRichTextImage::Layout(wxDC& dc, wxRichTextDrawingContext& context, const wxRect& rect, const wxRect& parentRect, int WXUNUSED(style))
 {
-    if (!LoadImageCache(dc, context, false, parentRect.GetSize()))
+    wxSize imageSize;
+    if (!LoadImageCache(dc, context, imageSize, false, parentRect.GetSize()))
         return false;
 
     wxRect marginRect, borderRect, contentRect, paddingRect, outlineRect;
