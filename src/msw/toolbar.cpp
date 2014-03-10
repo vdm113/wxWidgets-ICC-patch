@@ -1369,14 +1369,20 @@ void wxToolBar::UpdateStretchableSpacersSize()
     // check if we have any stretchable spacers in the first place
     unsigned numSpaces = 0;
     wxToolBarToolsList::compatibility_iterator node;
+    int toolIndex = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-    for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
+    for ( node = m_tools.GetFirst(); node; node = node->GetNext(), toolIndex++ )
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
         if ( tool->IsStretchableSpace() )
-            numSpaces++;
+        {
+            // Count only enabled items
+            const RECT rcItem = wxGetTBItemRect(GetHwnd(), toolIndex);
+            if ( !::IsRectEmpty(&rcItem) )
+                numSpaces++;
+        }
     }
 
     if ( !numSpaces )
@@ -1399,7 +1405,7 @@ void wxToolBar::UpdateStretchableSpacersSize()
     // move the controls manually ourselves to ensure they remain at the
     // correct place
     int offset = 0;
-    int toolIndex = 0;
+    toolIndex = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
@@ -1621,6 +1627,29 @@ void wxToolBar::SetRows(int nRows)
                   (LPARAM) &rect);
 
     m_maxRows = nRows;
+
+    // Enable stretchable spacers only for single-row horizontal toobar or
+    // single-column vertical toolbar, they don't work correctly when the extra
+    // space can be redistributed among multiple columns or rows at any moment.
+    const bool enable = (!IsVertical() && m_maxRows == 1) ||
+                           (IsVertical() && (size_t)m_maxRows == m_nButtons);
+
+    const LPARAM state = MAKELONG(enable ? TBSTATE_ENABLED : TBSTATE_HIDDEN, 0);
+    wxToolBarToolsList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
+    for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
+    {
+        wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
+        if ( tool->IsStretchableSpace() )
+        {
+            if ( !::SendMessage(GetHwnd(), TB_SETSTATE, tool->GetId(), state) )
+            {
+                wxLogLastError(wxT("TB_SETSTATE (stretchable spacer)"));
+            }
+        }
+    }
 
     UpdateSize();
 }
@@ -1872,6 +1901,9 @@ bool wxToolBar::HandleSize(WXWPARAM WXUNUSED(wParam), WXLPARAM lParam)
     int rowPosX = INT_MIN;
     wxToolBarToolsList::compatibility_iterator node;
     int i = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext(), i++)
     {
         // Skip hidden buttons
@@ -1984,6 +2016,11 @@ bool wxToolBar::HandlePaint(WXWPARAM wParam, WXLPARAM lParam)
                 // shorter than the full window size (at least under Windows 7)
                 // but we need to erase the full width/height below
                 RECT rcItem = wxGetTBItemRect(GetHwnd(), toolIndex);
+
+                // Skip hidden buttons
+                if ( ::IsRectEmpty(&rcItem) )
+                    continue;
+
                 if ( IsVertical() )
                 {
                     rcItem.left = 0;
