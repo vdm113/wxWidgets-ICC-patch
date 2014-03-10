@@ -5019,9 +5019,6 @@ bool wxRichTextCtrl::ProcessDelayedImageLoading(const wxRect& screenRect, wxRich
         return true;
 
     wxRichTextObjectList::compatibility_iterator node = box->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (node)
     {
         // Could be a cell or a paragraph
@@ -5031,9 +5028,6 @@ bool wxRichTextCtrl::ProcessDelayedImageLoading(const wxRect& screenRect, wxRich
         else // assume a paragraph
         {
             wxRichTextObjectList::compatibility_iterator node2 = composite->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while (node2)
             {
                 wxRichTextObject* obj = node2->GetData();
