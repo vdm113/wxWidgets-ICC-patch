@@ -24,6 +24,7 @@ Changes in behaviour not resulting in compilation errors
 All:
 
 - Add wxScopedArray ctor taking the number of elements to allocate.
+- Add wxDynamicLibrary::GetModuleFromAddress() (Luca Bacci).
 
 All (GUI):
 
