@@ -20,6 +20,7 @@ Changes in behaviour not resulting in compilation errors
 
 All:
 
+- Allow iterating over wxCmdLineParser arguments in order (Armel Asselin).
 - Add wxScopedArray ctor taking the number of elements to allocate.
 - Add wxDynamicLibrary::GetModuleFromAddress() (Luca Bacci).
 - Implement wxThread::SetPriority() for pthreads (Luca Bacci).
@@ -27,6 +28,7 @@ All:
 All (GUI):
 
 - XRC handler for wxAuiToolBar added (Kinaou Hervé, David Hart).
+- Add wxFD_NO_FOLLOW style for wxFileDialog (Luca Bacci).
 - Add support for embedding bitmaps in generated SVG in wxSVGFileDC (iwbnwif).
 - Add support for sorting wxDataViewCtrl by multiple columns (Trigve).
 - Add wxHtmlWindow::SetDefaultHTMLCursor() (Jeff A. Marr).

@@ -96,6 +96,9 @@ static void DoCommonMenuCallbackCode(wxMenu *menu, wxMenuEvent& event)
 // Return the top level menu containing this menu (possibly this menu itself).
 static wxMenu* GetRootParentMenu(wxMenu* menu)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( menu->GetParent() )
         menu = menu->GetParent();
 
@@ -110,6 +113,9 @@ static void UpdateSubMenuItemLabels(wxMenuItem* itemMenu)
     wxCHECK_RET( menu, "should only be called for sub menus" );
 
     const wxMenuItemList& items = menu->GetMenuItems();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxMenuItemList::const_iterator
             it = items.begin(); it != items.end(); ++it )
     {
