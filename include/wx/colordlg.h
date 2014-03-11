@@ -8,7 +8,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/colordlg.h
 // Purpose:     wxColourDialog
-// Author:      Vadim Zeitiln
+// Author:      Vadim Zeitlin
 // Modified by:
 // Created:     01/02/97
 // Copyright:   (c) wxWidgets team
