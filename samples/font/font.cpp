@@ -103,6 +103,8 @@ public:
     void OnQuit(wxCommandEvent& event);
     void OnAbout(wxCommandEvent& event);
 
+    void OnGetBaseFont(wxCommandEvent& WXUNUSED(event))
+        { DoChangeFont(m_canvas->GetTextFont().GetBaseFont()); }
     void OnIncFont(wxCommandEvent& WXUNUSED(event)) { DoResizeFont(+2); }
     void OnDecFont(wxCommandEvent& WXUNUSED(event)) { DoResizeFont(-2); }
 
@@ -178,6 +180,8 @@ enum
     Font_IncSize,
     Font_DecSize,
 
+    Font_GetBaseFont,
+
     Font_Bold,
     Font_Light,
 
@@ -229,6 +233,7 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_MENU(Font_ViewMsg, MyFrame::OnViewMsg)
     EVT_MENU(Font_About, MyFrame::OnAbout)
 
+    EVT_MENU(Font_GetBaseFont, MyFrame::OnGetBaseFont)
     EVT_MENU(Font_IncSize, MyFrame::OnIncFont)
     EVT_MENU(Font_DecSize, MyFrame::OnDecFont)
 
@@ -327,6 +332,7 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     wxMenu *menuFont = new wxMenu;
     menuFont->Append(Font_IncSize, wxT("&Increase font size by 2 points\tCtrl-I"));
     menuFont->Append(Font_DecSize, wxT("&Decrease font size by 2 points\tCtrl-D"));
+    menuFont->Append(Font_GetBaseFont, wxT("Use &base version of the font\tCtrl-0"));
     menuFont->AppendSeparator();
     menuFont->AppendCheckItem(Font_Bold, wxT("&Bold\tCtrl-B"), wxT("Toggle bold state"));
     menuFont->AppendCheckItem(Font_Light, wxT("&Light\tCtrl-L"), wxT("Toggle light state"));
