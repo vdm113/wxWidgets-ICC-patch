@@ -41,6 +41,7 @@
 #include "wx/quantize.h"
 #include "wx/scopeguard.h"
 #include "wx/scopedarray.h"
+#include "wx/scopedptr.h"
 #include "wx/anidecod.h"
 
 // For memcpy
@@ -277,9 +278,7 @@ bool wxBMPHandler::SaveDib(wxImage *image,
         }
     }
 
-#if wxUSE_PALETTE
     wxScopedPtr<wxPalette> palette; // entries for quantized images
-#endif // wxUSE_PALETTE
     wxScopedArray<wxUint8> rgbquad; // for the RGBQUAD bytes for the colormap
     wxScopedPtr<wxImage> q_image;   // destination for quantized image
 
@@ -295,15 +294,10 @@ bool wxBMPHandler::SaveDib(wxImage *image,
             // I get a delete error using Quantize when desired colors > 236
             int quantize = ((palette_size > 236) ? 236 : palette_size);
             // fill the destination too, it gives much nicer 4bpp images
-#if wxUSE_PALETTE
             wxPalette* paletteTmp;
             wxQuantize::Quantize( *image, *q_image, &paletteTmp, quantize, 0,
                                   wxQUANTIZE_FILL_DESTINATION_IMAGE );
             palette.reset(paletteTmp);
-#else // !wxUSE_PALETTE
-            wxQuantize::Quantize( *image, *q_image, NULL, quantize, 0,
-                                  wxQUANTIZE_FILL_DESTINATION_IMAGE );
-#endif // wxUSE_PALETTE/!wxUSE_PALETTE
         }
         else
         {
