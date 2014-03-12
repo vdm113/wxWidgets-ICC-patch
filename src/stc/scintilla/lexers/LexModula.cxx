@@ -41,7 +41,7 @@ using namespace Scintilla;
 
 #ifdef DEBUG_LEX_MODULA
 #define DEBUG_STATE( p, c )\
-		fprintf( stderr, "Unknown state: currentPos = %d, char = '%c'\n", p, c );
+		fprintf( stderr, "Unknown state: currentPos = %ud, char = '%c'\n", p, c );
 #else
 #define DEBUG_STATE( p, c )
 #endif
@@ -73,9 +73,9 @@ static inline unsigned IsOperator( StyleContext & sc, WordList & op ) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-	for( i = 0; i < op.len; i++ ) {
-		if( ( strlen( op.words[i] ) == 2 ) &&
-			( s[0] == op.words[i][0] && s[1] == op.words[i][1] ) ) {
+	for( i = 0; i < op.Length(); i++ ) {
+		if( ( strlen( op.WordAt(i) ) == 2 ) &&
+			( s[0] == op.WordAt(i)[0] && s[1] == op.WordAt(i)[1] ) ) {
 			return 2;
 		}
 	}
@@ -83,9 +83,9 @@ static inline unsigned IsOperator( StyleContext & sc, WordList & op ) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-	for( i = 0; i < op.len; i++ ) {
-		if( ( strlen( op.words[i] ) == 1 ) &&
-			( s[0] == op.words[i][0] ) ) {
+	for( i = 0; i < op.Length(); i++ ) {
+		if( ( strlen( op.WordAt(i) ) == 1 ) &&
+			( s[0] == op.WordAt(i)[0] ) ) {
 			return 1;
 		}
 	}

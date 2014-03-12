@@ -34,7 +34,7 @@ using namespace Scintilla;
 
 static void ClassifyWordSol(unsigned int start, unsigned int end, WordList &keywords, Accessor &styler, char *prevWord)
 {
-    char s[100];
+    char s[100] = "";
     bool wordIsNumber = isdigit(styler[start]) != 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep

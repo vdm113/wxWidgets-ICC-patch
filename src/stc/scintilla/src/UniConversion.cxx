@@ -16,6 +16,14 @@
 
 #include "UniConversion.h"
 
+#ifdef SCI_NAMESPACE
+using namespace Scintilla;
+#endif
+
+#ifdef SCI_NAMESPACE
+namespace Scintilla {
+#endif
+
 enum { SURROGATE_LEAD_FIRST = 0xD800 };
 enum { SURROGATE_TRAIL_FIRST = 0xDC00 };
 enum { SURROGATE_TRAIL_LAST = 0xDFFF };
@@ -173,7 +181,7 @@ void UTF8BytesOfLeadInitialise() {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-		for (int i=0;i<256;i++) {
+		for (int i=0; i<256; i++) {
 			UTF8BytesOfLead[i] = BytesFromLead(i);
 		}
 		initialisedBytesOfLead = true;
@@ -268,3 +276,12 @@ int UTF8Classify(const unsigned char *us, int len) {
 		return UTF8MaskInvalid | 1;
 	}
 }
+
+int UTF8DrawBytes(const unsigned char *us, int len) {
+	int utf8StatusNext = UTF8Classify(us, len);
+	return (utf8StatusNext & UTF8MaskInvalid) ? 1 : (utf8StatusNext & UTF8MaskWidth);
+}
+
+#ifdef SCI_NAMESPACE
+}
+#endif

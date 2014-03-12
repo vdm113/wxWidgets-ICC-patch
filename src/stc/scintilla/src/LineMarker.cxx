@@ -7,12 +7,13 @@
 
 // Scintilla source code edit control
 /** @file LineMarker.cxx
- ** Defines the look of a line marker in the margin .
+ ** Defines the look of a line marker in the margin.
  **/
 // Copyright 1998-2011 by Neil Hodgson <neilh@scintilla.org>
 // The License.txt file describes the conditions under which this software may be distributed.
 
 #include <string.h>
+#include <math.h>
 
 #include <vector>
 #include <map>
@@ -20,6 +21,8 @@
 #include "Platform.h"
 
 #include "Scintilla.h"
+
+#include "StringCopy.h"
 #include "XPM.h"
 #include "LineMarker.h"
 
@@ -39,9 +42,9 @@ void LineMarker::SetXPM(const char *const *linesForm) {
 	markType = SC_MARK_PIXMAP;
 }
 
-void LineMarker::SetRGBAImage(Point sizeRGBAImage, const unsigned char *pixelsRGBAImage) {
+void LineMarker::SetRGBAImage(Point sizeRGBAImage, float scale, const unsigned char *pixelsRGBAImage) {
 	delete image;
-	image = new RGBAImage(sizeRGBAImage.x, sizeRGBAImage.y, pixelsRGBAImage);
+	image = new RGBAImage(sizeRGBAImage.x, sizeRGBAImage.y, scale, pixelsRGBAImage);
 	markType = SC_MARK_RGBAIMAGE;
 }
 
@@ -106,10 +109,10 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 	if ((markType == SC_MARK_RGBAIMAGE) && (image)) {
 		// Make rectangle just large enough to fit image centred on centre of rcWhole
 		PRectangle rcImage;
-		rcImage.top = static_cast<int>(((rcWhole.top + rcWhole.bottom) - image->GetHeight()) / 2);
-		rcImage.bottom = rcImage.top + image->GetHeight();
-		rcImage.left = static_cast<int>(((rcWhole.left + rcWhole.right) - image->GetWidth()) / 2);
-		rcImage.right = rcImage.left + image->GetWidth();
+		rcImage.top = static_cast<int>(((rcWhole.top + rcWhole.bottom) - image->GetScaledHeight()) / 2);
+		rcImage.bottom = rcImage.top + image->GetScaledHeight();
+		rcImage.left = static_cast<int>(((rcWhole.left + rcWhole.right) - image->GetScaledWidth()) / 2);
+		rcImage.right = rcImage.left + image->GetScaledWidth();
 		surface->DrawRGBAImage(rcImage, image->GetWidth(), image->GetHeight(), image->Pixels());
 		return;
 	}
@@ -119,8 +122,8 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 	rc.bottom--;
 	int minDim = Platform::Minimum(rc.Width(), rc.Height());
 	minDim--;	// Ensure does not go beyond edge
-	int centreX = (rc.right + rc.left) / 2;
-	int centreY = (rc.bottom + rc.top) / 2;
+	int centreX = floor((rc.right + rc.left) / 2.0);
+	int centreY = floor((rc.bottom + rc.top) / 2.0);
 	int dimOn2 = minDim / 2;
 	int dimOn4 = minDim / 4;
 	int blobSize = dimOn2-1;
@@ -147,8 +150,7 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
     		Point(centreX - dimOn4, centreY + dimOn2),
     		Point(centreX + dimOn2 - dimOn4, centreY),
 		};
-		surface->Polygon(pts, sizeof(pts) / sizeof(pts[0]),
-                 		fore, back);
+		surface->Polygon(pts, ELEMENTS(pts), fore, back);
 
 	} else if (markType == SC_MARK_ARROWDOWN) {
 		Point pts[] = {
@@ -156,8 +158,7 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
     		Point(centreX + dimOn2, centreY - dimOn4),
     		Point(centreX, centreY + dimOn2 - dimOn4),
 		};
-		surface->Polygon(pts, sizeof(pts) / sizeof(pts[0]),
-                 		fore, back);
+		surface->Polygon(pts, ELEMENTS(pts), fore, back);
 
 	} else if (markType == SC_MARK_PLUS) {
 		Point pts[] = {
@@ -174,8 +175,7 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
     		Point(centreX - 1, centreY + 1),
     		Point(centreX - armSize, centreY + 1),
 		};
-		surface->Polygon(pts, sizeof(pts) / sizeof(pts[0]),
-                 		fore, back);
+		surface->Polygon(pts, ELEMENTS(pts), fore, back);
 
 	} else if (markType == SC_MARK_MINUS) {
 		Point pts[] = {
@@ -184,8 +184,7 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
     		Point(centreX + armSize, centreY +1),
     		Point(centreX - armSize, centreY + 1),
 		};
-		surface->Polygon(pts, sizeof(pts) / sizeof(pts[0]),
-                 		fore, back);
+		surface->Polygon(pts, ELEMENTS(pts), fore, back);
 
 	} else if (markType == SC_MARK_SMALLRECT) {
 		PRectangle rcSmall;
@@ -323,17 +322,14 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 		DrawPlus(surface, centreX, centreY, blobSize, tail);
 
 	} else if (markType == SC_MARK_CIRCLEMINUS) {
-		DrawCircle(surface, centreX, centreY, blobSize, fore, head);
-		DrawMinus(surface, centreX, centreY, blobSize, tail);
-
 		surface->PenColour(head);
 		surface->MoveTo(centreX, centreY + blobSize);
 		surface->LineTo(centreX, rcWhole.bottom);
 
-	} else if (markType == SC_MARK_CIRCLEMINUSCONNECTED) {
 		DrawCircle(surface, centreX, centreY, blobSize, fore, head);
 		DrawMinus(surface, centreX, centreY, blobSize, tail);
 
+	} else if (markType == SC_MARK_CIRCLEMINUSCONNECTED) {
 		surface->PenColour(head);
 		surface->MoveTo(centreX, centreY + blobSize);
 		surface->LineTo(centreX, rcWhole.bottom);
@@ -341,6 +337,9 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 		surface->PenColour(body);
 		surface->MoveTo(centreX, rcWhole.top);
 		surface->LineTo(centreX, centreY - blobSize);
+
+		DrawCircle(surface, centreX, centreY, blobSize, fore, head);
+		DrawMinus(surface, centreX, centreY, blobSize, tail);
 
 	} else if (markType >= SC_MARK_CHARACTER) {
 		char character[1];
@@ -364,13 +363,15 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 	} else if (markType == SC_MARK_ARROWS) {
 		surface->PenColour(fore);
 		int right = centreX - 2;
+		const int armLength = dimOn2 - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-		for (int b=0; b<3; b++) {
-			surface->MoveTo(right - 4, centreY - 4);
-			surface->LineTo(right, centreY);
-			surface->LineTo(right - 5, centreY + 5);
+		for (int b = 0; b<3; b++) {
+			surface->MoveTo(right, centreY);
+			surface->LineTo(right - armLength, centreY - armLength);
+			surface->MoveTo(right, centreY);
+			surface->LineTo(right - armLength, centreY + armLength);
 			right += 4;
 		}
 	} else if (markType == SC_MARK_SHORTARROW) {
@@ -384,12 +385,21 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 			Point(centreX, centreY + dimOn4),
 			Point(centreX, centreY + dimOn2),
 		};
-		surface->Polygon(pts, sizeof(pts) / sizeof(pts[0]),
-				fore, back);
+		surface->Polygon(pts, ELEMENTS(pts), fore, back);
 	} else if (markType == SC_MARK_LEFTRECT) {
 		PRectangle rcLeft = rcWhole;
 		rcLeft.right = rcLeft.left + 4;
 		surface->FillRectangle(rcLeft, back);
+	} else if (markType == SC_MARK_BOOKMARK) {
+		int halfHeight = minDim / 3;
+		Point pts[] = {
+			Point(rc.left, centreY-halfHeight),
+			Point(rc.right-3, centreY-halfHeight),
+			Point(rc.right-3-halfHeight, centreY),
+			Point(rc.right-3, centreY+halfHeight),
+			Point(rc.left, centreY+halfHeight),
+		};
+		surface->Polygon(pts, ELEMENTS(pts), fore, back);
 	} else { // SC_MARK_FULLRECT
 		surface->FillRectangle(rcWhole, back);
 	}

@@ -6,7 +6,7 @@
 #endif
 
 // Scintilla source code edit control
-/** @file LexerSimple.cxx
+/** @file LexerBase.cxx
  ** A simple lexer with no state.
  **/
 // Copyright 1998-2010 by Neil Hodgson <neilh@scintilla.org>
@@ -15,9 +15,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <ctype.h>
 #include <stdarg.h>
 #include <assert.h>
-#include <ctype.h>
 
 #include "ILexer.h"
 #include "Scintilla.h"

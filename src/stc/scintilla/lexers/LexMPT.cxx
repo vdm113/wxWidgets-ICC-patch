@@ -47,7 +47,7 @@ static int GetLotLineState(std::string &line) {
 #   pragma ivdep
 #endif
 		for (i = 0; i < line.length(); ++i) {
-			if (!(isascii(line[i]) && isspace(line[i])))
+			if (!(IsASCII(line[i]) && isspace(line[i])))
 				break;
 		}
 

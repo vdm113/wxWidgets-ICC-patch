@@ -45,7 +45,7 @@ class SparseState {
 	}
 
 public:
-	SparseState(int positionFirst_=-1) {
+	explicit SparseState(int positionFirst_=-1) {
 		positionFirst = positionFirst_;
 	}
 	void Set(int position, T value) {

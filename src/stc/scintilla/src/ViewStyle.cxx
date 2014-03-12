@@ -13,6 +13,7 @@
 // The License.txt file describes the conditions under which this software may be distributed.
 
 #include <string.h>
+#include <assert.h>
 
 #include <vector>
 #include <map>
@@ -39,115 +40,62 @@ MarginStyle::MarginStyle() :
 
 // A list of the fontnames - avoids wasting space in each style
 FontNames::FontNames() {
-	size = 8;
-	names = new char *[size];
-	max = 0;
 }
 
 FontNames::~FontNames() {
 	Clear();
-	delete []names;
-	names = 0;
 }
 
 void FontNames::Clear() {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-	for (int i=0; i<max; i++) {
-		delete []names[i];
+	for (std::vector<char *>::const_iterator it=names.begin(); it != names.end(); ++it) {
+		delete []*it;
 	}
-	max = 0;
+	names.clear();
 }
 
 const char *FontNames::Save(const char *name) {
 	if (!name)
 		return 0;
+
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-	for (int i=0; i<max; i++) {
-		if (strcmp(names[i], name) == 0) {
-			return names[i];
+	for (std::vector<char *>::const_iterator it=names.begin(); it != names.end(); ++it) {
+		if (strcmp(*it, name) == 0) {
+			return *it;
 		}
 	}
-	if (max >= size) {
-		// Grow array
-		int sizeNew = size * 2;
-		char **namesNew = new char *[sizeNew];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-		for (int j=0; j<max; j++) {
-			namesNew[j] = names[j];
-		}
-		delete []names;
-		names = namesNew;
-		size = sizeNew;
-	}
-	names[max] = new char[strlen(name) + 1];
-	strcpy(names[max], name);
-	max++;
-	return names[max-1];
+	const size_t lenName = strlen(name) + 1;
+	char *nameSave = new char[lenName];
+	memcpy(nameSave, name, lenName);
+	names.push_back(nameSave);
+	return nameSave;
 }
 
-FontRealised::FontRealised(const FontSpecification &fs) {
-	frNext = NULL;
-	(FontSpecification &)(*this) = fs;
+FontRealised::FontRealised() {
 }
 
 FontRealised::~FontRealised() {
 	font.Release();
-	delete frNext;
-	frNext = 0;
 }
 
-void FontRealised::Realise(Surface &surface, int zoomLevel, int technology) {
-	PLATFORM_ASSERT(fontName);
-	sizeZoomed = size + zoomLevel * SC_FONT_SIZE_MULTIPLIER;
+void FontRealised::Realise(Surface &surface, int zoomLevel, int technology, const FontSpecification &fs) {
+	PLATFORM_ASSERT(fs.fontName);
+	sizeZoomed = fs.size + zoomLevel * SC_FONT_SIZE_MULTIPLIER;
 	if (sizeZoomed <= 2 * SC_FONT_SIZE_MULTIPLIER)	// Hangs if sizeZoomed <= 1
 		sizeZoomed = 2 * SC_FONT_SIZE_MULTIPLIER;
 
 	float deviceHeight = surface.DeviceHeightFont(sizeZoomed);
-	FontParameters fp(fontName, deviceHeight / SC_FONT_SIZE_MULTIPLIER, weight, italic, extraFontFlag, technology, characterSet);
+	FontParameters fp(fs.fontName, deviceHeight / SC_FONT_SIZE_MULTIPLIER, fs.weight, fs.italic, fs.extraFontFlag, technology, fs.characterSet);
 	font.Create(fp);
 
 	ascent = surface.Ascent(font);
 	descent = surface.Descent(font);
 	aveCharWidth = surface.AverageCharWidth(font);
 	spaceWidth = surface.WidthChar(font, ' ');
-	if (frNext) {
-		frNext->Realise(surface, zoomLevel, technology);
-	}
-}
-
-FontRealised *FontRealised::Find(const FontSpecification &fs) {
-	if (!fs.fontName)
-		return this;
-	FontRealised *fr = this;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-	while (fr) {
-		if (fr->EqualTo(fs))
-			return fr;
-		fr = fr->frNext;
-	}
-	return 0;
-}
-
-void FontRealised::FindMaxAscentDescent(unsigned int &maxAscent, unsigned int &maxDescent) {
-	FontRealised *fr = this;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-	while (fr) {
-		if (maxAscent < fr->ascent)
-			maxAscent = fr->ascent;
-		if (maxDescent < fr->descent)
-			maxDescent = fr->descent;
-		fr = fr->frNext;
-	}
 }
 
 ViewStyle::ViewStyle() {
@@ -155,16 +103,16 @@ ViewStyle::ViewStyle() {
 }
 
 ViewStyle::ViewStyle(const ViewStyle &source) {
-	frFirst = NULL;
-	Init(source.stylesSize);
+	Init(source.styles.size());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-	for (unsigned int sty=0; sty<source.stylesSize; sty++) {
+	for (unsigned int sty=0; sty<source.styles.size(); sty++) {
 		styles[sty] = source.styles[sty];
 		// Can't just copy fontname as its lifetime is relative to its owning ViewStyle
 		styles[sty].fontName = fontNames.Save(source.styles[sty].fontName);
 	}
+	nextExtendedStyle = source.nextExtendedStyle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
@@ -179,38 +127,30 @@ ViewStyle::ViewStyle(const ViewStyle &source) {
 		indicators[ind] = source.indicators[ind];
 	}
 
-	selforeset = source.selforeset;
-	selforeground = source.selforeground;
+	selColours = source.selColours;
 	selAdditionalForeground = source.selAdditionalForeground;
-	selbackset = source.selbackset;
-	selbackground = source.selbackground;
 	selAdditionalBackground = source.selAdditionalBackground;
-	selbackground2 = source.selbackground2;
+	selBackground2 = source.selBackground2;
 	selAlpha = source.selAlpha;
 	selAdditionalAlpha = source.selAdditionalAlpha;
 	selEOLFilled = source.selEOLFilled;
 
-	foldmarginColourSet = source.foldmarginColourSet;
 	foldmarginColour = source.foldmarginColour;
-	foldmarginHighlightColourSet = source.foldmarginHighlightColourSet;
 	foldmarginHighlightColour = source.foldmarginHighlightColour;
 
-	hotspotForegroundSet = source.hotspotForegroundSet;
-	hotspotForeground = source.hotspotForeground;
-	hotspotBackgroundSet = source.hotspotBackgroundSet;
-	hotspotBackground = source.hotspotBackground;
+	hotspotColours = source.hotspotColours;
 	hotspotUnderline = source.hotspotUnderline;
 	hotspotSingleLine = source.hotspotSingleLine;
 
-	whitespaceForegroundSet = source.whitespaceForegroundSet;
-	whitespaceForeground = source.whitespaceForeground;
-	whitespaceBackgroundSet = source.whitespaceBackgroundSet;
-	whitespaceBackground = source.whitespaceBackground;
+	whitespaceColours = source.whitespaceColours;
+	controlCharSymbol = source.controlCharSymbol;
+	controlCharWidth = source.controlCharWidth;
 	selbar = source.selbar;
 	selbarlight = source.selbarlight;
 	caretcolour = source.caretcolour;
 	additionalCaretColour = source.additionalCaretColour;
 	showCaretLineBackground = source.showCaretLineBackground;
+	alwaysShowCaretLineBackground = source.alwaysShowCaretLineBackground;
 	caretLineBackground = source.caretLineBackground;
 	caretLineAlpha = source.caretLineAlpha;
 	edgecolour = source.edgecolour;
@@ -224,11 +164,13 @@ ViewStyle::ViewStyle(const ViewStyle &source) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-	for (int i=0; i < margins; i++) {
-		ms[i] = source.ms[i];
+	for (int margin=0; margin <= SC_MAX_MARGIN; margin++) {
+		ms[margin] = source.ms[margin];
 	}
 	maskInLine = source.maskInLine;
 	fixedColumnWidth = source.fixedColumnWidth;
+	marginInside = source.marginInside;
+	textStart = source.textStart;
 	zoomLevel = source.zoomLevel;
 	viewWhitespace = source.viewWhitespace;
 	whitespaceSize = source.whitespaceSize;
@@ -244,20 +186,34 @@ ViewStyle::ViewStyle(const ViewStyle &source) {
 	braceHighlightIndicator = source.braceHighlightIndicator;
 	braceBadLightIndicatorSet = source.braceBadLightIndicatorSet;
 	braceBadLightIndicator = source.braceBadLightIndicator;
+
+	theEdge = source.theEdge;
+
+	marginNumberPadding = source.marginNumberPadding;
+	ctrlCharPadding = source.ctrlCharPadding;
+	lastSegItalicsOffset = source.lastSegItalicsOffset;
+
+	wrapState = source.wrapState;
+	wrapVisualFlags = source.wrapVisualFlags;
+	wrapVisualFlagsLocation = source.wrapVisualFlagsLocation;
+	wrapVisualStartIndent = source.wrapVisualStartIndent;
+	wrapIndentMode = source.wrapIndentMode;
 }
 
 ViewStyle::~ViewStyle() {
-	delete []styles;
-	styles = NULL;
-	delete frFirst;
-	frFirst = NULL;
+	styles.clear();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
+	for (FontMap::iterator it = fonts.begin(); it != fonts.end(); ++it) {
+		delete it->second;
+	}
+	fonts.clear();
 }
 
 void ViewStyle::Init(size_t stylesSize_) {
-	frFirst = NULL;
-	stylesSize = 0;
-	styles = NULL;
 	AllocStyles(stylesSize_);
+	nextExtendedStyle = 256;
 	fontNames.Clear();
 	ResetDefaultStyle();
 
@@ -280,27 +236,24 @@ void ViewStyle::Init(size_t stylesSize_) {
 	maxDescent = 1;
 	aveCharWidth = 8;
 	spaceWidth = 8;
+	tabWidth = spaceWidth * 8;
 
-	selforeset = false;
-	selforeground = ColourDesired(0xff, 0, 0);
+	selColours.fore = ColourOptional(ColourDesired(0xff, 0, 0));
+	selColours.back = ColourOptional(ColourDesired(0xc0, 0xc0, 0xc0), true);
 	selAdditionalForeground = ColourDesired(0xff, 0, 0);
-	selbackset = true;
-	selbackground = ColourDesired(0xc0, 0xc0, 0xc0);
 	selAdditionalBackground = ColourDesired(0xd7, 0xd7, 0xd7);
-	selbackground2 = ColourDesired(0xb0, 0xb0, 0xb0);
+	selBackground2 = ColourDesired(0xb0, 0xb0, 0xb0);
 	selAlpha = SC_ALPHA_NOALPHA;
 	selAdditionalAlpha = SC_ALPHA_NOALPHA;
 	selEOLFilled = false;
 
-	foldmarginColourSet = false;
-	foldmarginColour = ColourDesired(0xff, 0, 0);
-	foldmarginHighlightColourSet = false;
-	foldmarginHighlightColour = ColourDesired(0xc0, 0xc0, 0xc0);
+	foldmarginColour = ColourOptional(ColourDesired(0xff, 0, 0));
+	foldmarginHighlightColour = ColourOptional(ColourDesired(0xc0, 0xc0, 0xc0));
 
-	whitespaceForegroundSet = false;
-	whitespaceForeground = ColourDesired(0, 0, 0);
-	whitespaceBackgroundSet = false;
-	whitespaceBackground = ColourDesired(0xff, 0xff, 0xff);
+	whitespaceColours.fore = ColourOptional();
+	whitespaceColours.back = ColourOptional(ColourDesired(0xff, 0xff, 0xff));
+	controlCharSymbol = 0;	/* Draw the control characters */
+	controlCharWidth = 0;
 	selbar = Platform::Chrome();
 	selbarlight = Platform::ChromeHighlight();
 	styles[STYLE_LINENUMBER].fore = ColourDesired(0, 0, 0);
@@ -308,6 +261,7 @@ void ViewStyle::Init(size_t stylesSize_) {
 	caretcolour = ColourDesired(0, 0, 0);
 	additionalCaretColour = ColourDesired(0x7f, 0x7f, 0x7f);
 	showCaretLineBackground = false;
+	alwaysShowCaretLineBackground = false;
 	caretLineBackground = ColourDesired(0xff, 0xff, 0);
 	caretLineAlpha = SC_ALPHA_NOALPHA;
 	edgecolour = ColourDesired(0xc0, 0xc0, 0xc0);
@@ -317,10 +271,8 @@ void ViewStyle::Init(size_t stylesSize_) {
 	someStylesProtected = false;
 	someStylesForceCase = false;
 
-	hotspotForegroundSet = false;
-	hotspotForeground = ColourDesired(0, 0, 0xff);
-	hotspotBackgroundSet = false;
-	hotspotBackground = ColourDesired(0xff, 0xff, 0xff);
+	hotspotColours.fore = ColourOptional(ColourDesired(0, 0, 0xff));
+	hotspotColours.back = ColourOptional(ColourDesired(0xff, 0xff, 0xff));
 	hotspotUnderline = true;
 	hotspotSingleLine = true;
 
@@ -335,16 +287,18 @@ void ViewStyle::Init(size_t stylesSize_) {
 	ms[2].style = SC_MARGIN_SYMBOL;
 	ms[2].width = 0;
 	ms[2].mask = 0;
-	fixedColumnWidth = leftMarginWidth;
+	marginInside = true;
+	fixedColumnWidth = marginInside ? leftMarginWidth : 0;
 	maskInLine = 0xffffffff;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-	for (int margin=0; margin < margins; margin++) {
+	for (int margin=0; margin <= SC_MAX_MARGIN; margin++) {
 		fixedColumnWidth += ms[margin].width;
 		if (ms[margin].width > 0)
 			maskInLine &= ~ms[margin].mask;
 	}
+	textStart = marginInside ? fixedColumnWidth : leftMarginWidth;
 	zoomLevel = 0;
 	viewWhitespace = wsInvisible;
 	whitespaceSize = 1;
@@ -360,35 +314,36 @@ void ViewStyle::Init(size_t stylesSize_) {
 	braceHighlightIndicator = 0;
 	braceBadLightIndicatorSet = false;
 	braceBadLightIndicator = 0;
+
+	theEdge = 0;
+
+	marginNumberPadding = 3;
+	ctrlCharPadding = 3; // +3 For a blank on front and rounded edge each side
+	lastSegItalicsOffset = 2;
+
+	wrapState = eWrapNone;
+	wrapVisualFlags = 0;
+	wrapVisualFlagsLocation = 0;
+	wrapVisualStartIndent = 0;
+	wrapIndentMode = SC_WRAPINDENT_FIXED;
 }
 
-void ViewStyle::CreateFont(const FontSpecification &fs) {
-	if (fs.fontName) {
+void ViewStyle::Refresh(Surface &surface, int tabInChars) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-		for (FontRealised *cur=frFirst; cur; cur=cur->frNext) {
-			if (cur->EqualTo(fs))
-				return;
-			if (!cur->frNext) {
-				cur->frNext = new FontRealised(fs);
-				return;
-			}
-		}
-		frFirst = new FontRealised(fs);
+	for (FontMap::iterator it = fonts.begin(); it != fonts.end(); ++it) {
+		delete it->second;
 	}
-}
+	fonts.clear();
 
-void ViewStyle::Refresh(Surface &surface) {
-	delete frFirst;
-	frFirst = NULL;
 	selbar = Platform::Chrome();
 	selbarlight = Platform::ChromeHighlight();
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-	for (unsigned int i=0; i<stylesSize; i++) {
+	for (unsigned int i=0; i<styles.size(); i++) {
 		styles[i].extraFontFlag = extraFontFlag;
 	}
 
@@ -396,22 +351,27 @@ void ViewStyle::Refresh(Surface &surface) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-	for (unsigned int j=0; j<stylesSize; j++) {
+	for (unsigned int j=0; j<styles.size(); j++) {
 		CreateFont(styles[j]);
 	}
-
-	frFirst->Realise(surface, zoomLevel, technology);
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-	for (unsigned int k=0; k<stylesSize; k++) {
-		FontRealised *fr = frFirst->Find(styles[k]);
+	for (FontMap::iterator it = fonts.begin(); it != fonts.end(); ++it) {
+		it->second->Realise(surface, zoomLevel, technology, it->first);
+	}
+
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
+	for (unsigned int k=0; k<styles.size(); k++) {
+		FontRealised *fr = Find(styles[k]);
 		styles[k].Copy(fr->font, *fr);
 	}
 	maxAscent = 1;
 	maxDescent = 1;
-	frFirst->FindMaxAscentDescent(maxAscent, maxDescent);
+	FindMaxAscentDescent();
 	maxAscent += extraAscent;
 	maxDescent += extraDescent;
 	lineHeight = maxAscent + maxDescent;
@@ -421,7 +381,7 @@ void ViewStyle::Refresh(Surface &surface) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-	for (unsigned int l=0; l<stylesSize; l++) {
+	for (unsigned int l=0; l<styles.size(); l++) {
 		if (styles[l].IsProtected()) {
 			someStylesProtected = true;
 		}
@@ -432,53 +392,46 @@ void ViewStyle::Refresh(Surface &surface) {
 
 	aveCharWidth = styles[STYLE_DEFAULT].aveCharWidth;
 	spaceWidth = styles[STYLE_DEFAULT].spaceWidth;
+	tabWidth = spaceWidth * tabInChars;
 
-	fixedColumnWidth = leftMarginWidth;
+	controlCharWidth = 0.0;
+	if (controlCharSymbol >= 32) {
+		controlCharWidth = surface.WidthChar(styles[STYLE_CONTROLCHAR].font, controlCharSymbol);
+	}
+
+	fixedColumnWidth = marginInside ? leftMarginWidth : 0;
 	maskInLine = 0xffffffff;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-	for (int margin=0; margin < margins; margin++) {
+	for (int margin=0; margin <= SC_MAX_MARGIN; margin++) {
 		fixedColumnWidth += ms[margin].width;
 		if (ms[margin].width > 0)
 			maskInLine &= ~ms[margin].mask;
 	}
+	textStart = marginInside ? fixedColumnWidth : leftMarginWidth;
 }
 
-void ViewStyle::AllocStyles(size_t sizeNew) {
-	Style *stylesNew = new Style[sizeNew];
-	size_t i=0;
+void ViewStyle::ReleaseAllExtendedStyles() {
+	nextExtendedStyle = 256;
+}
+
+int ViewStyle::AllocateExtendedStyles(int numberStyles) {
+	int startRange = static_cast<int>(nextExtendedStyle);
+	nextExtendedStyle += numberStyles;
+	EnsureStyle(nextExtendedStyle);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-	for (; i<stylesSize; i++) {
-		stylesNew[i] = styles[i];
-		stylesNew[i].fontName = styles[i].fontName;
+	for (size_t i=startRange; i<nextExtendedStyle; i++) {
+		styles[i].ClearTo(styles[STYLE_DEFAULT]);
 	}
-	if (stylesSize > STYLE_DEFAULT) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-		for (; i<sizeNew; i++) {
-			if (i != STYLE_DEFAULT) {
-				stylesNew[i].ClearTo(styles[STYLE_DEFAULT]);
-			}
-		}
-	}
-	delete []styles;
-	styles = stylesNew;
-	stylesSize = sizeNew;
+	return startRange;
 }
 
 void ViewStyle::EnsureStyle(size_t index) {
-	if (index >= stylesSize) {
-		size_t sizeNew = stylesSize * 2;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-		while (sizeNew <= index)
-			sizeNew *= 2;
-		AllocStyles(sizeNew);
+	if (index >= styles.size()) {
+		AllocStyles(index+1);
 	}
 }
 
@@ -495,7 +448,7 @@ void ViewStyle::ClearStyles() {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-	for (unsigned int i=0; i<stylesSize; i++) {
+	for (unsigned int i=0; i<styles.size(); i++) {
 		if (i != STYLE_DEFAULT) {
 			styles[i].ClearTo(styles[STYLE_DEFAULT]);
 		}
@@ -515,8 +468,12 @@ bool ViewStyle::ProtectionActive() const {
 	return someStylesProtected;
 }
 
+int ViewStyle::ExternalMarginWidth() const {
+	return marginInside ? 0 : fixedColumnWidth;
+}
+
 bool ViewStyle::ValidStyle(size_t styleIndex) const {
-	return styleIndex < stylesSize;
+	return styleIndex < styles.size();
 }
 
 void ViewStyle::CalcLargestMarkerHeight() {
@@ -527,14 +484,109 @@ void ViewStyle::CalcLargestMarkerHeight() {
 	for (int m = 0; m <= MARKER_MAX; ++m) {
 		switch (markers[m].markType) {
 		case SC_MARK_PIXMAP:
-			if (markers[m].pxpm->GetHeight() > largestMarkerHeight)
+			if (markers[m].pxpm && markers[m].pxpm->GetHeight() > largestMarkerHeight)
 				largestMarkerHeight = markers[m].pxpm->GetHeight();
 			break;
 		case SC_MARK_RGBAIMAGE:
-			if (markers[m].image->GetHeight() > largestMarkerHeight)
+			if (markers[m].image && markers[m].image->GetHeight() > largestMarkerHeight)
 				largestMarkerHeight = markers[m].image->GetHeight();
 			break;
 		}
 	}
 }
 
+ColourDesired ViewStyle::WrapColour() const {
+	if (whitespaceColours.fore.isSet)
+		return whitespaceColours.fore;
+	else
+		return styles[STYLE_DEFAULT].fore;
+}
+
+bool ViewStyle::SetWrapState(int wrapState_) {
+	WrapMode wrapStateWanted;
+	switch (wrapState_) {
+	case SC_WRAP_WORD:
+		wrapStateWanted = eWrapWord;
+		break;
+	case SC_WRAP_CHAR:
+		wrapStateWanted = eWrapChar;
+		break;
+	default:
+		wrapStateWanted = eWrapNone;
+		break;
+	}
+	bool changed = wrapState != wrapStateWanted;
+	wrapState = wrapStateWanted;
+	return changed;
+}
+
+bool ViewStyle::SetWrapVisualFlags(int wrapVisualFlags_) {
+	bool changed = wrapVisualFlags != wrapVisualFlags_;
+	wrapVisualFlags = wrapVisualFlags_;
+	return changed;
+}
+
+bool ViewStyle::SetWrapVisualFlagsLocation(int wrapVisualFlagsLocation_) {
+	bool changed = wrapVisualFlagsLocation != wrapVisualFlagsLocation_;
+	wrapVisualFlagsLocation = wrapVisualFlagsLocation_;
+	return changed;
+}
+
+bool ViewStyle::SetWrapVisualStartIndent(int wrapVisualStartIndent_) {
+	bool changed = wrapVisualStartIndent != wrapVisualStartIndent_;
+	wrapVisualStartIndent = wrapVisualStartIndent_;
+	return changed;
+}
+
+bool ViewStyle::SetWrapIndentMode(int wrapIndentMode_) {
+	bool changed = wrapIndentMode != wrapIndentMode_;
+	wrapIndentMode = wrapIndentMode_;
+	return changed;
+}
+
+void ViewStyle::AllocStyles(size_t sizeNew) {
+	size_t i=styles.size();
+	styles.resize(sizeNew);
+	if (styles.size() > STYLE_DEFAULT) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
+		for (; i<sizeNew; i++) {
+			if (i != STYLE_DEFAULT) {
+				styles[i].ClearTo(styles[STYLE_DEFAULT]);
+			}
+		}
+	}
+}
+
+void ViewStyle::CreateFont(const FontSpecification &fs) {
+	if (fs.fontName) {
+		FontMap::iterator it = fonts.find(fs);
+		if (it == fonts.end()) {
+			fonts[fs] = new FontRealised();
+		}
+	}
+}
+
+FontRealised *ViewStyle::Find(const FontSpecification &fs) {
+	if (!fs.fontName)	// Invalid specification so return arbitrary object
+		return fonts.begin()->second;
+	FontMap::iterator it = fonts.find(fs);
+	if (it != fonts.end()) {
+		// Should always reach here since map was just set for all styles
+		return it->second;
+	}
+	return 0;
+}
+
+void ViewStyle::FindMaxAscentDescent() {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
+	for (FontMap::const_iterator it = fonts.begin(); it != fonts.end(); ++it) {
+		if (maxAscent < it->second->ascent)
+			maxAscent = it->second->ascent;
+		if (maxDescent < it->second->descent)
+			maxDescent = it->second->descent;
+	}
+}

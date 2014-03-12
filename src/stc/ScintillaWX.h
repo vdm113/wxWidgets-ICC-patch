@@ -32,6 +32,7 @@
 #include <string.h>
 #include <vector>
 #include <map>
+#include <algorithm>
 
 // These are all Scintilla headers
 #include "Platform.h"
@@ -50,7 +51,6 @@
 #include "WordList.h"
 #endif
 #include "ContractionState.h"
-#include "SVector.h"
 #include "CellBuffer.h"
 #include "CallTip.h"
 #include "KeyMap.h"
@@ -62,6 +62,7 @@
 #include "ViewStyle.h"
 #include "CharClassify.h"
 #include "Decoration.h"
+#include "CaseFolder.h"
 #include "Document.h"
 #include "Selection.h"
 #include "PositionCache.h"
