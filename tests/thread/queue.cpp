@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/thread/queue.cpp
 // Purpose:     Unit test for wxMessageQueue
@@ -102,6 +109,9 @@ void QueueTestCase::TestReceive()
     ArrayThread threads;
 
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( i = 0; i < threadCount; ++i )
     {
         MyThread *previousThread = i == 0 ? NULL : threads[i-1];
@@ -112,6 +122,9 @@ void QueueTestCase::TestReceive()
         threads.Add(thread);
     }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( i = 0; i < threadCount; ++i )
     {
         threads[i]->Run();
@@ -119,11 +132,17 @@ void QueueTestCase::TestReceive()
 
     MyThread* lastThread = threads[threadCount - 1];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( i = 0; i < msgCount; ++i )
     {
         lastThread->GetQueue().Post(i);
     }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( i = 0; i < threadCount; ++i )
     {
         // each thread should return the number of messages received.
@@ -170,6 +189,9 @@ void QueueTestCase::TestReceiveTimeout()
 void *QueueTestCase::MyThread::Entry()
 {
     int messagesReceived = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( messagesReceived < m_maxMsgCount )
     {
         wxMessageQueueError result;

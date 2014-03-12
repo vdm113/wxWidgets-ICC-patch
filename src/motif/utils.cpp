@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/utils.cpp
 // Purpose:     Various utilities
@@ -70,6 +77,9 @@ void wxFlushEvents(WXDisplay* wxdisplay)
 
     XSync (display, False);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (evtLoop.Pending())
     {
         XFlush (display);
@@ -388,6 +398,9 @@ void wxAllocNearestColor(Display *d,Colormap cmp,XColor *xc)
     int num_colors = DisplayCells(d,screen);
 
     XColor *color_defs = new XColor[num_colors];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for(llp = 0;llp < num_colors;llp++) color_defs[llp].pixel = llp;
     XQueryColors(d,cmp,color_defs,num_colors);
 
@@ -396,6 +409,9 @@ void wxAllocNearestColor(Display *d,Colormap cmp,XColor *xc)
 
     int diff, min_diff = 0, pixel = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for(llp = 0;llp < num_colors;llp++)
     {
         wxXColorToHSV(&hsv_defs,&color_defs[llp]);
@@ -467,6 +483,9 @@ char wxFindMnemonic (const char *s)
     int len = strlen (s);
     int i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < len; i++)
     {
         if (s[i] == '&')
@@ -516,6 +535,9 @@ char* wxFindAccelerator( const char *s )
     wxString tmp = s + 1; // skip TAB
     size_t index = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while( index < tmp.length() )
     {
         size_t plus  = tmp.find( '+', index );

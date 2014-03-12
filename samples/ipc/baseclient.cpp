@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        samples/ipc/baseclient.cpp
 // Purpose:     IPC sample: console client
@@ -243,6 +250,9 @@ void MyClient::Notify()
 
 void MyClient::StartNextTestIfNecessary()
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( !m_tests.empty() )
     {
         MyClientTestFunc testfunc = m_tests.front();

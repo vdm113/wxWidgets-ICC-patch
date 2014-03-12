@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 float	ycbcrCoeffs[3] = { .299, .587, .114 };
 /* default coding range is CCIR Rec 601-1 with no headroom/footroom */
 unsigned long refBlackWhite[6] = { 0, 255, 128, 255, 128, 255 };
@@ -49,8 +56,17 @@ main(int argc, char** argv)
     D5 = D3*LumaRed / LumaGreen;
     D6 = D4*LumaBlue / LumaGreen;
     setupLumaTables();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (R = 0; R < 256; R++) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (G = 0; G < 256; G++)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	    for (B = 0; B < 256; B++)
 		check(R, G, B);
 	printf("[%3u] c %u/%u b %u/%u (R %u/%d/%u G %u/%d/%u B %u/%d/%u)\n"
@@ -87,6 +103,9 @@ setupLuma(float c)
 {
     float *v = (float *)_TIFFmalloc(256 * sizeof (float));
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < 256; i++)
 	v[i] = c * i;
     return (v);

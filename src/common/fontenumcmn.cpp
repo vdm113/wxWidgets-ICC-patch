@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/fontenumcmn.cpp
 // Purpose:     wxFontEnumerator class
@@ -122,6 +129,9 @@ bool wxFontEnumerator::EnumerateEncodingsUTF8(const wxString& facename)
     if ( !count )
         return false;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         OnFontEncoding(facenames[n], utf8);

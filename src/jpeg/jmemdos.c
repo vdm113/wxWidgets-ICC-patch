@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /*
  * jmemdos.c
  *
@@ -132,6 +139,9 @@ select_file_name (char * fname)
   FILE * tfile;
 
   /* Keep generating file names till we find one that's not in use */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
   for (;;) {
     /* Get temp directory name from environment TMP or TEMP variable;
      * if none, use "."
@@ -142,6 +152,9 @@ select_file_name (char * fname)
     if (*env == '\0')		/* null string means "." */
       env = ".";
     ptr = fname;		/* copy name to fname */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (*env != '\0')
       *ptr++ = *env++;
     if (ptr[-1] != '\\' && ptr[-1] != '/')

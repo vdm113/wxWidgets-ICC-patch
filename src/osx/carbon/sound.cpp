@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/sound.cpp
 // Purpose:     wxSound class implementation: optional
@@ -315,6 +322,9 @@ bool wxOSXQuickTimeSoundData::Play(unsigned flags)
         //Play movie until it ends, then exit
         //Note that due to quicktime caching this may not always
         //work 100% correctly
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while (!IsMovieDone(m_movie))
             MoviesTask(m_movie, 1);
 

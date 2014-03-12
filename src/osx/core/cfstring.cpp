@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/core/cfstring.cpp
 // Purpose:     wxCFStringHolder and other string functions
@@ -27,6 +34,9 @@
 void wxMacConvertNewlines13To10( char * data )
 {
     char * buf = data ;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while( (buf=strchr(buf,0x0d)) != NULL )
     {
         *buf = 0x0a ;
@@ -37,6 +47,9 @@ void wxMacConvertNewlines13To10( char * data )
 void wxMacConvertNewlines10To13( char * data )
 {
     char * buf = data ;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while( (buf=strchr(buf,0x0a)) != NULL )
     {
         *buf = 0x0d ;

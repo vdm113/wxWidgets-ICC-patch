@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/mediactrlcmn.cpp
 // Purpose:     wxMediaCtrl common code
@@ -120,6 +127,9 @@ bool wxMediaCtrl::Create(wxWindow* parent, wxWindowID id,
 
         const wxClassInfo* classInfo;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while((classInfo = NextBackend(&it)) != NULL)
         {
             if(!DoCreate(classInfo, parent, id,
@@ -182,6 +192,9 @@ bool wxMediaCtrl::Create(wxWindow* parent, wxWindowID id,
 
         const wxClassInfo* classInfo;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while((classInfo = NextBackend(&it)) != NULL)
         {
             if(!DoCreate(classInfo, parent, id,
@@ -243,6 +256,9 @@ bool wxMediaCtrl::DoCreate(const wxClassInfo* classInfo,
 //---------------------------------------------------------------------------
 const wxClassInfo* wxMediaCtrl::NextBackend(wxClassInfo::const_iterator* it)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxClassInfo::const_iterator end = wxClassInfo::end_classinfo();
           *it != end; ++(*it) )
     {

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /* gzread.c -- zlib functions for reading gzip files
  * Copyright (C) 2004, 2005, 2010, 2011, 2012, 2013 Mark Adler
  * For conditions of distribution and use, see copyright notice in zlib.h
@@ -26,6 +33,9 @@ local int gz_load(state, buf, len, have)
     int ret;
 
     *have = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     do {
         ret = read(state->fd, buf + *have, len - *have);
         if (ret <= 0)
@@ -61,6 +71,9 @@ local int gz_avail(state)
             unsigned char *p = state->in;
             unsigned const char *q = strm->next_in;
             unsigned n = strm->avail_in;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             do {
                 *p++ = *q++;
             } while (--n);
@@ -178,6 +191,9 @@ local int gz_decomp(state)
 
     /* fill output buffer up to end of deflate stream */
     had = strm->avail_out;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     do {
         /* get more input for inflate() */
         if (strm->avail_in == 0 && gz_avail(state) == -1)
@@ -228,6 +244,9 @@ local int gz_fetch(state)
 {
     z_streamp strm = &(state->strm);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     do {
         switch(state->how) {
         case LOOK:      /* -> LOOK, COPY (only if never GZIP), or GZIP */
@@ -260,6 +279,9 @@ local int gz_skip(state, len)
     unsigned n;
 
     /* skip over len bytes or reach end-of-file, whichever comes first */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (len)
         /* skip over whatever is in output buffer */
         if (state->x.have) {
@@ -325,6 +347,9 @@ int ZEXPORT gzread(file, buf, len)
 
     /* get len bytes to buf, or less than len if at the end */
     got = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     do {
         /* first just try copying data from the output buffer */
         if (state->x.have) {
@@ -467,6 +492,9 @@ int ZEXPORT gzungetc(c, file)
     if (state->x.next == state->out) {
         unsigned char *src = state->out + state->x.have;
         unsigned char *dest = state->out + (state->size << 1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while (src > state->out)
             *--dest = *--src;
         state->x.next = dest;

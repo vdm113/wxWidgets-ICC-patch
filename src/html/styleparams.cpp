@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/styleparams.cpp
 // Purpose:     wxHtml helper code for extracting style parameters
@@ -50,6 +57,9 @@ wxHtmlStyleParams::wxHtmlStyleParams(const wxHtmlTag& tag)
     // Each option is a name and a value separated by a colon
     // Split the list into names and values
     wxStringTokenizer tkz(wd, wxT(";"), wxTOKEN_STRTOK);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( tkz.HasMoreTokens() )
     {
         wxString token = tkz.GetNextToken();

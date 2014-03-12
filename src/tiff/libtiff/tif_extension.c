@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /* $Header: /cvs/maptools/cvsroot/libtiff/libtiff/tif_extension.c,v 1.7 2010-03-10 18:56:48 bfriesen Exp $ */
 
 /*
@@ -68,6 +75,9 @@ void *TIFFGetClientInfo( TIFF *tif, const char *name )
 {
     TIFFClientInfoLink *link = tif->tif_clientinfo;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while( link != NULL && strcmp(link->name,name) != 0 )
         link = link->next;
 
@@ -86,6 +96,9 @@ void TIFFSetClientInfo( TIFF *tif, void *data, const char *name )
     ** Do we have an existing link with this name?  If so, just
     ** set it.
     */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while( link != NULL && strcmp(link->name,name) != 0 )
         link = link->next;
 

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /*
 --------------------------------------------------------------------------------
 -   Module      :   mem_file.c
@@ -131,6 +138,9 @@ int mfs_open (void *buffer, int size, char *mode)
 
     /* Find a free fd */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < MAX_BUFFS; i++)
     {
         if (fds[i] == -1)
@@ -568,6 +578,9 @@ static void mem_init ()
 {
     int i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < MAX_BUFFS; i++)
     {
         fds[i] = -1;

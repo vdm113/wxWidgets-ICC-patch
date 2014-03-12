@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/regex/regex.cpp
 // Purpose:     Test the built-in regex lib and wxRegEx
@@ -136,6 +143,9 @@ RegExTestCase::RegExTestCase(
     //RN:  Removing the std:: here will break MSVC6 compilation
     std::vector<const char *>::const_iterator it;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (it = expected.begin(); it != expected.end(); ++it) {
         m_expected.push_back(Conv(*it));
         badconv = badconv || *m_expected.rbegin() == convError();
@@ -179,6 +189,9 @@ wxString RegExTestCase::Conv(const char *str)
 //
 void RegExTestCase::parseFlags(const wxString& flags)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator p = flags.begin(); p != flags.end(); ++p )
     {
         switch ( (*p).GetValue() ) {
@@ -263,6 +276,9 @@ void RegExTestCase::doTest(int flavor)
         << wxT(", expected ") << m_expected.size();
     failIf(m_expected.size() != re.GetMatchCount(), msg);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < m_expected.size(); i++) {
         wxString result;
         size_t start, len;
@@ -308,6 +324,9 @@ void RegExTestCase::fail(const wxString& msg) const
     str << (wxChar)m_mode << wxT(" ") << m_id << wxT(" ") << m_flags << wxT(" ")
         << quote(m_pattern) << wxT(" ") << quote(m_data);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (it = m_expected.begin(); it != m_expected.end(); ++it)
         str << wxT(" ") << quote(*it);
 
@@ -328,6 +347,9 @@ wxString RegExTestCase::quote(const wxString& arg)
     const wxChar *escapes = wxT("abtnvfr\"\\");
     wxString str;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < arg.length(); i++) {
         wxChar ch = (wxChar)arg[i];
         const wxChar *p = wxStrchr(needEscape, ch);
@@ -371,6 +393,9 @@ void RegExTestSuite::add(
     vector<const char *> expected_results;
     va_list ap;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (va_start(ap, expected); expected; expected = va_arg(ap, const char *))
         expected_results.push_back(expected);
 

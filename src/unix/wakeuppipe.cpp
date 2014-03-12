@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/wakeuppipe.cpp
 // Purpose:     Implementation of wxWakeUpPipe class.
@@ -93,6 +100,9 @@ void wxWakeUpPipe::OnReadWaiting()
     // pipe
 
     char buf[4];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         const int size = read(GetReadFd(), buf, WXSIZEOF(buf));

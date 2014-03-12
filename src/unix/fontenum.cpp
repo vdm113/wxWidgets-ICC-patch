@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/fontenum.cpp
 // Purpose:     wxFontEnumerator class for X11/GDK
@@ -81,6 +88,9 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
         &families, &n_families );
     qsort (families, n_families, sizeof (PangoFontFamily *), wxCompareFamilies);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int i = 0; i < n_families; i++ )
     {
 #if defined(__WXGTK20__) || defined(HAVE_PANGO_FONT_FAMILY_IS_MONOSPACE)
@@ -177,6 +187,9 @@ static bool ProcessFamiliesFromFontList(wxFontEnumerator *This,
 
     // extract the list of (unique) font families
     wxSortedArrayString families;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int n = 0; n < nFonts; n++ )
     {
         char *font = fonts[n];
@@ -295,6 +308,9 @@ bool wxFontEnumerator::EnumerateEncodings(const wxString& family)
 
     // extract the list of (unique) encodings
     wxSortedArrayString encodings;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int n = 0; n < nFonts; n++ )
     {
         char *font = fonts[n];

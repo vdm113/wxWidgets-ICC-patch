@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/streams/sstream.cpp
 // Purpose:     Test wxStringInputStream/wxStringOutputStream
@@ -77,6 +84,9 @@ strStream::strStream()
 {
     static const size_t LEN = 256;
     m_str.reserve(LEN);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < LEN; n++ )
     {
         m_str += wxChar(wxT('A') + n % (wxT('Z') - wxT('A') + 1));

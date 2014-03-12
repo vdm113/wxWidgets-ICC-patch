@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/x11/dataobj.cpp
 // Purpose:     wxDataObject class
@@ -164,6 +171,9 @@ bool wxDataObject::IsSupportedFormat(const wxDataFormat& format, Direction dir) 
         GetAllFormats(formats,dir);
 
         size_t n;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( n = 0; n < nFormatCount; n++ )
         {
             if ( formats[n] == format )
@@ -185,6 +195,9 @@ bool wxFileDataObject::GetDataHere(void *buf) const
 {
     wxString filenames;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
     {
         filenames += m_filenames[i];
@@ -200,6 +213,9 @@ size_t wxFileDataObject::GetDataSize() const
 {
     size_t res = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
     {
         res += m_filenames[i].length();
@@ -216,6 +232,9 @@ bool wxFileDataObject::SetData(size_t WXUNUSED(size), const void *buf)
     // filenames are stores as a string with #0 as deliminators
     const char *filenames = (const char*) buf;
     size_t pos = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for(;;)
     {
         if (filenames[0] == 0)
@@ -234,6 +253,9 @@ bool wxFileDataObject::SetData(size_t WXUNUSED(size), const void *buf)
     // "file:" as far as I see) delimited by "\r\n" of total length size
     // (I wonder what happens if the file has '\n' in its filename??)
     wxString filename;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( const char *p = (const char *)buf; ; p++ )
     {
         // some broken programs (testdnd GTK+ sample!) omit the trailing

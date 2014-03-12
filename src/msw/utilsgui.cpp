@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/utilsgui.cpp
 // Purpose:     Various utility functions only available in wxMSW GUI
@@ -97,6 +104,9 @@ bool wxCheckForInterrupt(wxWindow *wnd)
     wxCHECK( wnd, false );
 
     MSG msg;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( ::PeekMessage(&msg, GetHwndOf(wnd), 0, 0, PM_REMOVE) )
     {
         ::TranslateMessage(&msg);
@@ -220,6 +230,9 @@ wxString WXDLLEXPORT wxGetWindowClass(WXHWND hWnd)
     {
         int len = 256; // some starting value
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( ;; )
         {
             int count = ::GetClassName((HWND)hWnd, wxStringBuffer(str, len), len);

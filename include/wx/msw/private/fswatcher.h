@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/private/fswatcher.h
 // Purpose:     File system watcher impl classes
@@ -185,6 +192,9 @@ public:
     // this case we'll just return false and do nothing.
     bool CompleteRemoval(wxFSWatchEntryMSW* watch)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( Watches::iterator it = m_removedWatches.begin();
               it != m_removedWatches.end();
               ++it )

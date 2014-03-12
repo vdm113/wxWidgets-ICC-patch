@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/toolbar.cpp
 // Purpose:     GTK toolbar
@@ -458,6 +465,9 @@ bool wxToolBar::Realize()
     // Enable(): this works under MSW, where the toolbar items are only created
     // in Realize() which uses the internal state to determine the initial
     // button state, so make it work under GTK too
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxToolBarToolsList::const_iterator i = m_tools.begin();
           i != m_tools.end();
           ++i )

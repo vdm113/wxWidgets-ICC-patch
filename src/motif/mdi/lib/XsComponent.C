@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /*
    Copyright (C) 1996 Scott W. Sadler
    All rights reserved.
@@ -165,6 +172,9 @@ void XsComponent::_setResources (Widget w, const String *resources)
 // Add the component resources
 
    loop = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
    while (resources[loop] != 0)
    {
       sprintf (buffer, "*%s%s\n", _name, resources[loop++]);

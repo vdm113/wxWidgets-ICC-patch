@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/textmeasurecmn.cpp
 // Purpose:     wxTextMeasureBase implementation
@@ -111,6 +118,9 @@ void wxTextMeasureBase::GetMultiLineTextExtent(const wxString& text,
             heightTextTotal = 0, heightLineDefault = 0, heightLine = 0;
 
     wxString curLine;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator pc = text.begin(); ; ++pc )
     {
         if ( pc == text.end() || *pc == wxS('\n') )
@@ -172,6 +182,9 @@ wxSize wxTextMeasureBase::GetLargestStringExtent(size_t n,
     MeasuringGuard guard(*this);
 
     wxCoord w, h, widthMax = 0, heightMax = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < n; ++i )
     {
         CallGetTextExtent(strings[i], &w, &h);
@@ -252,6 +265,9 @@ bool wxTextMeasureBase::DoGetPartialTextExtents(const wxString& text,
     // Calculate the position of each character based on the widths of
     // the previous characters. This is inexact for not fixed fonts.
     int n = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator it = text.begin();
           it != text.end();
           ++it )

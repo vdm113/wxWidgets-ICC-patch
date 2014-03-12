@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        guiframe.cpp
 // Purpose:     Implement the Application Frame
@@ -237,6 +244,9 @@ void GUIFrame::AddPanel_2()
     m_listCtrl1 = new wxListCtrl( m_panel2, wxID_ANY, wxDefaultPosition, wxSize(220,120), wxLC_REPORT|wxSUNKEN_BORDER );
     m_listCtrl1->InsertColumn(0, "Names");
     m_listCtrl1->InsertColumn(1, "Values");
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for(long index = 0; index < 5; index++) {
         m_listCtrl1->InsertItem( index, wxString::Format(_("Item%d"),index));
         m_listCtrl1->SetItem(index, 1, wxString::Format("%d", index));

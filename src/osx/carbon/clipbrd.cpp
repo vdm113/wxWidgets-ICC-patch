@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/clipbrd.cpp
 // Purpose:     Clipboard functionality
@@ -165,6 +172,9 @@ bool wxClipboard::GetData( wxDataObject& data )
 
     if ( m_data )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (size_t i = 0; !transferred && i < formatcount; i++)
         {
             wxDataFormat format = array[ i ];

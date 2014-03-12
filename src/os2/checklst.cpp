@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/checklst.cpp
 // Purpose:     implementation of wxCheckListBox class
@@ -294,6 +301,9 @@ void wxCheckListBox::Delete(unsigned int n)
 
 bool wxCheckListBox::SetFont ( const wxFont& rFont )
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (unsigned int i = 0; i < m_aItems.GetCount(); i++)
         m_aItems[i]->SetFont(rFont);
     wxListBox::SetFont(rFont);

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        bombs1.cpp
 // Purpose:     Implementation of the class BombsGame
@@ -60,8 +67,14 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
     m_width = aWidth;
     m_height = aHeight;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for(x=0; x<m_width; x++)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for(y=0; y<m_height; y++)
         {
             m_field[x+y*m_width] = ((float)rand()/RAND_MAX <PROB)
@@ -80,14 +93,26 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
     }
 
     m_numBombCells = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for(x=0; x<m_width; x++)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for(y=0; y<m_height; y++)
             if (m_field[x+y*m_width] & BG_BOMB)
             {
                 m_numBombCells++;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 for(xx=x-1; xx<=x+1; xx++)
                     if (xx>=0 && xx<m_width)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                         for(yy=y-1; yy<=y+1; yy++)
                             if (yy>=0 && yy<m_height && (yy!=y || xx!=x))
                                 m_field[xx+yy*m_width]++;

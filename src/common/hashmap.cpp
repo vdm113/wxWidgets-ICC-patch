@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/hashmap.cpp
 // Purpose:     wxHashMap implementation
@@ -26,6 +33,9 @@ static unsigned long DoStringHash(T *k)
 {
     unsigned long hash = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while( *k )
     {
         hash += *k++;
@@ -62,6 +72,9 @@ const unsigned long _wxHashTableBase2::ms_primes[prime_count] =
 unsigned long _wxHashTableBase2::GetNextPrime( unsigned long n )
 {
     const unsigned long* ptr = &ms_primes[0];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for( size_t i = 0; i < prime_count; ++i, ++ptr )
     {
         if( n < *ptr )
@@ -79,6 +92,9 @@ unsigned long _wxHashTableBase2::GetPreviousPrime( unsigned long n )
 {
     const unsigned long* ptr = &ms_primes[prime_count - 1];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for( size_t i = 0; i < prime_count; ++i, --ptr )
     {
         if( n > *ptr )
@@ -95,11 +111,17 @@ void _wxHashTableBase2::DeleteNodes( size_t buckets,
 {
     size_t i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for( i = 0; i < buckets; ++i )
     {
         _wxHashTable_NodeBase* node = table[i];
         _wxHashTable_NodeBase* tmp;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while( node )
         {
             tmp = node->m_next;
@@ -117,10 +139,16 @@ void _wxHashTableBase2::CopyHashTable( _wxHashTable_NodeBase** srcTable,
                                        _wxHashTable_NodeBase** dstTable,
                                        BucketFromNode func, ProcessNode proc )
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for( size_t i = 0; i < srcBuckets; ++i )
     {
         _wxHashTable_NodeBase* nextnode;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for( _wxHashTable_NodeBase* node = srcTable[i]; node; node = nextnode )
         {
             size_t bucket = func( dst, node );

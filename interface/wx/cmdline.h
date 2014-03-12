@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        cmdline.h
 // Purpose:     interface of wxCmdLineParser
@@ -162,6 +169,9 @@ struct wxCmdLineEntryDesc
     @code
     wxCmdLineParser parser;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (wxCmdLineArgs::const_iterator itarg=parser.GetArguments().begin();
                                        itarg!=parser.GetArguments().end();
                                        ++itarg)
@@ -208,6 +218,9 @@ struct wxCmdLineEntryDesc
 
     With C++11, the for loop could be written:
     @code
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (const auto &arg : parser.GetArguments()) {
         // working on arg as with *itarg above
     }

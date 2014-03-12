@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/streams/datastreamtest.cpp
 // Purpose:     wxDataXXXStream Unit Test
@@ -169,6 +176,9 @@ private:
         }
 
         m_ok = true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (typename ValueArray::size_type idx=0; idx!=Size; ++idx) {
             if (InValues[idx]!=Values[idx]) {
                 m_ok = false;

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file ViewStyle.cxx
  ** Store information on how the document is to be viewed.
@@ -40,6 +47,9 @@ FontNames::~FontNames() {
 }
 
 void FontNames::Clear() {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (std::vector<char *>::const_iterator it=names.begin(); it != names.end(); ++it) {
 		delete []*it;
 	}
@@ -50,6 +60,9 @@ const char *FontNames::Save(const char *name) {
 	if (!name)
 		return 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (std::vector<char *>::const_iterator it=names.begin(); it != names.end(); ++it) {
 		if (strcmp(*it, name) == 0) {
 			return *it;
@@ -91,16 +104,25 @@ ViewStyle::ViewStyle() {
 
 ViewStyle::ViewStyle(const ViewStyle &source) {
 	Init(source.styles.size());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (unsigned int sty=0; sty<source.styles.size(); sty++) {
 		styles[sty] = source.styles[sty];
 		// Can't just copy fontname as its lifetime is relative to its owning ViewStyle
 		styles[sty].fontName = fontNames.Save(source.styles[sty].fontName);
 	}
 	nextExtendedStyle = source.nextExtendedStyle;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int mrk=0; mrk<=MARKER_MAX; mrk++) {
 		markers[mrk] = source.markers[mrk];
 	}
 	CalcLargestMarkerHeight();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int ind=0; ind<=INDIC_MAX; ind++) {
 		indicators[ind] = source.indicators[ind];
 	}
@@ -139,6 +161,9 @@ ViewStyle::ViewStyle(const ViewStyle &source) {
 	someStylesForceCase = false;
 	leftMarginWidth = source.leftMarginWidth;
 	rightMarginWidth = source.rightMarginWidth;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int margin=0; margin <= SC_MAX_MARGIN; margin++) {
 		ms[margin] = source.ms[margin];
 	}
@@ -177,6 +202,9 @@ ViewStyle::ViewStyle(const ViewStyle &source) {
 
 ViewStyle::~ViewStyle() {
 	styles.clear();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (FontMap::iterator it = fonts.begin(); it != fonts.end(); ++it) {
 		delete it->second;
 	}
@@ -262,6 +290,9 @@ void ViewStyle::Init(size_t stylesSize_) {
 	marginInside = true;
 	fixedColumnWidth = marginInside ? leftMarginWidth : 0;
 	maskInLine = 0xffffffff;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int margin=0; margin <= SC_MAX_MARGIN; margin++) {
 		fixedColumnWidth += ms[margin].width;
 		if (ms[margin].width > 0)
@@ -298,6 +329,9 @@ void ViewStyle::Init(size_t stylesSize_) {
 }
 
 void ViewStyle::Refresh(Surface &surface, int tabInChars) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (FontMap::iterator it = fonts.begin(); it != fonts.end(); ++it) {
 		delete it->second;
 	}
@@ -306,19 +340,31 @@ void ViewStyle::Refresh(Surface &surface, int tabInChars) {
 	selbar = Platform::Chrome();
 	selbarlight = Platform::ChromeHighlight();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (unsigned int i=0; i<styles.size(); i++) {
 		styles[i].extraFontFlag = extraFontFlag;
 	}
 
 	CreateFont(styles[STYLE_DEFAULT]);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (unsigned int j=0; j<styles.size(); j++) {
 		CreateFont(styles[j]);
 	}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (FontMap::iterator it = fonts.begin(); it != fonts.end(); ++it) {
 		it->second->Realise(surface, zoomLevel, technology, it->first);
 	}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (unsigned int k=0; k<styles.size(); k++) {
 		FontRealised *fr = Find(styles[k]);
 		styles[k].Copy(fr->font, *fr);
@@ -332,6 +378,9 @@ void ViewStyle::Refresh(Surface &surface, int tabInChars) {
 
 	someStylesProtected = false;
 	someStylesForceCase = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (unsigned int l=0; l<styles.size(); l++) {
 		if (styles[l].IsProtected()) {
 			someStylesProtected = true;
@@ -352,6 +401,9 @@ void ViewStyle::Refresh(Surface &surface, int tabInChars) {
 
 	fixedColumnWidth = marginInside ? leftMarginWidth : 0;
 	maskInLine = 0xffffffff;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int margin=0; margin <= SC_MAX_MARGIN; margin++) {
 		fixedColumnWidth += ms[margin].width;
 		if (ms[margin].width > 0)
@@ -368,6 +420,9 @@ int ViewStyle::AllocateExtendedStyles(int numberStyles) {
 	int startRange = static_cast<int>(nextExtendedStyle);
 	nextExtendedStyle += numberStyles;
 	EnsureStyle(nextExtendedStyle);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (size_t i=startRange; i<nextExtendedStyle; i++) {
 		styles[i].ClearTo(styles[STYLE_DEFAULT]);
 	}
@@ -390,6 +445,9 @@ void ViewStyle::ResetDefaultStyle() {
 
 void ViewStyle::ClearStyles() {
 	// Reset all styles to be like the default style
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (unsigned int i=0; i<styles.size(); i++) {
 		if (i != STYLE_DEFAULT) {
 			styles[i].ClearTo(styles[STYLE_DEFAULT]);
@@ -420,6 +478,9 @@ bool ViewStyle::ValidStyle(size_t styleIndex) const {
 
 void ViewStyle::CalcLargestMarkerHeight() {
 	largestMarkerHeight = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int m = 0; m <= MARKER_MAX; ++m) {
 		switch (markers[m].markType) {
 		case SC_MARK_PIXMAP:
@@ -487,6 +548,9 @@ void ViewStyle::AllocStyles(size_t sizeNew) {
 	size_t i=styles.size();
 	styles.resize(sizeNew);
 	if (styles.size() > STYLE_DEFAULT) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (; i<sizeNew; i++) {
 			if (i != STYLE_DEFAULT) {
 				styles[i].ClearTo(styles[STYLE_DEFAULT]);
@@ -516,6 +580,9 @@ FontRealised *ViewStyle::Find(const FontSpecification &fs) {
 }
 
 void ViewStyle::FindMaxAscentDescent() {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (FontMap::const_iterator it = fonts.begin(); it != fonts.end(); ++it) {
 		if (maxAscent < it->second->ascent)
 			maxAscent = it->second->ascent;

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /*
  * jdatasrc.c
  *
@@ -134,6 +141,9 @@ skip_input_data (j_decompress_ptr cinfo, long num_bytes)
    * any trouble anyway --- large skips are infrequent.
    */
   if (num_bytes > 0) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (num_bytes > (long) src->pub.bytes_in_buffer) {
       num_bytes -= (long) src->pub.bytes_in_buffer;
       (void) fill_input_buffer(cinfo);

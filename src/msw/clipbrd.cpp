@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/clipbrd.cpp
 // Purpose:     Clipboard functionality
@@ -786,6 +793,9 @@ bool wxClipboard::GetData( wxDataObject& data )
     else
     {
         // ask for the supported formats and see if there are any we support
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( ;; )
         {
             ULONG nCount;
@@ -811,6 +821,9 @@ bool wxClipboard::GetData( wxDataObject& data )
 
     STGMEDIUM medium;
     // stop at the first valid format found on the clipboard
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; !result && (n < nFormats); n++ )
     {
         // convert to NativeFormat Id

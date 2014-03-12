@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/checklst.cpp
 // Purpose:     implementation of wxCheckListBox class
@@ -172,6 +179,9 @@ int wxCheckListBox::DoInsertItems(const wxArrayStringsAdapter& items,
 {
     wxArrayString copy;
     copy.reserve(pos);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t i = 0; i < items.GetCount(); ++i )
         copy.push_back( Prefix(false) + items[i] );
 

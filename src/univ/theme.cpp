@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/univ/theme.cpp
 // Purpose:     implementation of wxTheme
@@ -59,6 +66,9 @@ wxThemeInfo::wxThemeInfo(Constructor c,
 {
     // find the theme in the list by name
     wxThemeInfo *info = ms_allThemes;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( info )
     {
         if ( name.CmpNoCase(info->name) == 0 )

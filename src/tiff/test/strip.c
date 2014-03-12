@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /*
  * Copyright (c) 2004, Andrey Kiselev  <dron@ak4719.spb.edu>
@@ -46,6 +53,9 @@ write_strips(TIFF *tif, const tdata_t array, const tsize_t size)
 	}
 
 	nstrips = TIFFNumberOfStrips(tif);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (offset = 0, strip = 0;
 	     offset < size && strip < nstrips;
 	     offset+=stripsize, strip++) {
@@ -87,6 +97,9 @@ read_strips(TIFF *tif, const tdata_t array, const tsize_t size)
 	}
 
 	nstrips = TIFFNumberOfStrips(tif);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (offset = 0, strip = 0;
 	     offset < size && strip < nstrips;
 	     offset+=stripsize, strip++) {
@@ -275,6 +288,9 @@ write_scanlines(TIFF *tif, const tdata_t array, const tsize_t size)
 		return -1;
 	}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (offset = 0, row = 0; row < length; offset+=scanlinesize, row++) {
 		if (TIFFWriteScanline(tif, (char *)array + offset, row, 0) < 0) {
 			fprintf (stderr,

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/combobox_osx.cpp
 // Purpose:     wxComboBox class using HIView ComboBox
@@ -92,6 +99,9 @@ int wxComboBox::DoInsertItems(const wxArrayStringsAdapter& items,
                               void **clientData, wxClientDataType type)
 {
     const unsigned int numItems = items.GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for( unsigned int i = 0; i < numItems; ++i, ++pos )
     {
         unsigned int idx;
@@ -164,6 +174,9 @@ int wxComboBox::FindString(const wxString& s, bool bCase) const
 {
     if (!bCase)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (unsigned i = 0; i < GetCount(); i++)
         {
             if (s.IsSameAs(GetString(i), false))

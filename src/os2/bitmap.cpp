@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/bitmap.cpp
 // Purpose:     wxBitmap
@@ -215,14 +222,23 @@ wxBitmap::wxBitmap(
 
         char*                       pzDst = pzData;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (nRows = 0; nRows < nHeight; nRows++)
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (nCols = 0; nCols < nBytesPerLine; nCols++)
             {
                 unsigned char ucVal = *pzSrc++;
                 unsigned char ucReversed = 0;
                 int nBits;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 for (nBits = 0; nBits < 8; nBits++)
                 {
                     ucReversed <<= 1;
@@ -648,6 +664,9 @@ bool wxBitmap::CreateFromImage (
         vError = ::WinGetLastError(vHabmain);
         sError = wxPMErrorToStr(vError);
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (n = 0; n < nNumDIB; n++)
     {
         if (nNumDIB > 1 && n == nNumDIB - 1 && nHRemain > 0)
@@ -661,8 +680,14 @@ bool wxBitmap::CreateFromImage (
             vHeader.cbImage = nBytePerLine * nHeight;
         }
         ptbits = pucBits;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (j = 0; j < nHeight; j++)
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < nWidth; i++)
             {
                 *(ptbits++) = *(ptdata + 2);
@@ -670,6 +695,9 @@ bool wxBitmap::CreateFromImage (
                 *(ptbits++) = *(ptdata);
                 ptdata += 3;
             }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i = 0; i < nPadding; i++)
                 *(ptbits++) = 0;
         }
@@ -750,6 +778,9 @@ bool wxBitmap::CreateFromImage (
         unsigned char               cOne = 255;
 
         ptdata = pData;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (n = 0; n < nNumDIB; n++)
         {
             if (nNumDIB > 1 && n == nNumDIB - 1 && nHRemain > 0)
@@ -763,8 +794,14 @@ bool wxBitmap::CreateFromImage (
                 vHeader.cbImage = nBytePerLine * nHeight;
             }
             ptbits = pucBits;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (int j = 0; j < nHeight; j++)
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 for (i = 0; i < nWidth; i++)
                 {
                     unsigned char cRedImage   = (*(ptdata++)) ;
@@ -784,6 +821,9 @@ bool wxBitmap::CreateFromImage (
                         *(ptbits++) = cZero;
                     }
                 }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 for (i = 0; i < nPadding; i++)
                     *(ptbits++) = cZero;
             }
@@ -967,8 +1007,14 @@ wxImage wxBitmap::ConvertToImage() const
     unsigned char*                  ptdata = pData;
     unsigned char*                  ptbits = lpBits;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < nHeight; i++)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (j = 0; j < nWidth; j++)
         {
             *(ptdata++) = *(ptbits+2);
@@ -1029,8 +1075,14 @@ wxImage wxBitmap::ConvertToImage() const
 
         ptdata = pData;
         ptbits = lpBits;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < nHeight; i++)
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (j = 0; j < nWidth; j++)
             {
                 if (*ptbits != 0)
@@ -1397,8 +1449,14 @@ bool wxMask::Create(
     // This is not very efficient, but I can't think
     // of a better way of doing it
     //
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (int w = 0; w < rBitmap.GetWidth(); w++)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (int h = 0; h < rBitmap.GetHeight(); h++)
         {
             POINTL                  vPt = {w, h};

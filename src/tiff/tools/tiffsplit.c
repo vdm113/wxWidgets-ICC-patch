@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /*
  * Copyright (c) 1992-1997 Sam Leffler
@@ -69,6 +76,9 @@ main(int argc, char* argv[])
 	}
 	in = TIFFOpen(argv[1], "r");
 	if (in != NULL) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		do {
 			size_t path_len;
 			char *path;
@@ -240,6 +250,9 @@ cpStrips(TIFF* in, TIFF* out)
 			fprintf(stderr, "tiffsplit: strip byte counts are missing\n");
 			return (0);
 		}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (s = 0; s < ns; s++) {
 			if (bytecounts[s] > (uint64)bufsize) {
 				buf = (unsigned char *)_TIFFrealloc(buf, (tmsize_t)bytecounts[s]);
@@ -273,6 +286,9 @@ cpTiles(TIFF* in, TIFF* out)
 			fprintf(stderr, "tiffsplit: tile byte counts are missing\n");
 			return (0);
 		}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (t = 0; t < nt; t++) {
 			if (bytecounts[t] > (uint64) bufsize) {
 				buf = (unsigned char *)_TIFFrealloc(buf, (tmsize_t)bytecounts[t]);

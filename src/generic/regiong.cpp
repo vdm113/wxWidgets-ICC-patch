@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/regiong.cpp
 // Purpose:     generic wxRegion class
@@ -685,6 +692,9 @@ miSetExtents (Region pReg)
     pExtents->y2 = pBoxEnd->y2;
 
     wxASSERT_LEVEL_2(pExtents->y1 < pExtents->y2);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (pBox <= pBoxEnd)
     {
         if (pBox->x1 < pExtents->x1)
@@ -726,6 +736,9 @@ XOffsetRegion(
     pbox = pRegion->rects;
     nbox = pRegion->numRects;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while(nbox--)
     {
         pbox->x1 += x;
@@ -774,6 +787,9 @@ miIntersectO (
 
     pNextRect = &pReg->rects[pReg->numRects];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ((r1 != r1End) && (r2 != r2End))
     {
         x1 = wxMax(r1->x1,r2->x1);
@@ -932,6 +948,9 @@ miCoalesce(
      */
     pCurBox = &pReg->rects[curStart];
     bandY1 = pCurBox->y1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (curNumRects = 0;
          (pCurBox != pRegEnd) && (pCurBox->y1 == bandY1);
          curNumRects++)
@@ -948,6 +967,9 @@ miCoalesce(
          * this may be pointless -- see above).
          */
         pRegEnd--;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while (pRegEnd[-1].y1 == pRegEnd->y1)
         {
             pRegEnd--;
@@ -971,6 +993,9 @@ miCoalesce(
          * cover the most area possible. I.e. two boxes in a band must
          * have some horizontal space between them.
          */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             do
             {
                 if ((pPrevBox->x1 != pCurBox->x1) ||
@@ -995,6 +1020,9 @@ miCoalesce(
              * in the previous band to that of the corresponding box in
              * the current band.
              */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             do
             {
                 pPrevBox->y2 = pCurBox->y2;
@@ -1019,6 +1047,9 @@ miCoalesce(
             }
             else
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 do
                 {
                     *pPrevBox++ = *pCurBox++;
@@ -1168,6 +1199,9 @@ miRegionOp(
      */
     prevBand = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     do
     {
         curBand = newReg->numRects;
@@ -1180,12 +1214,18 @@ miRegionOp(
          * respective regions.
          */
         r1BandEnd = r1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while ((r1BandEnd != r1End) && (r1BandEnd->y1 == r1->y1))
         {
             r1BandEnd++;
         }
 
         r2BandEnd = r2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while ((r2BandEnd != r2End) && (r2BandEnd->y1 == r2->y1))
         {
             r2BandEnd++;
@@ -1278,9 +1318,15 @@ miRegionOp(
     {
         if (nonOverlap1Func != NULL)
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             do
             {
                 r1BandEnd = r1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 while ((r1BandEnd < r1End) && (r1BandEnd->y1 == r1->y1))
                 {
                     r1BandEnd++;
@@ -1293,9 +1339,15 @@ miRegionOp(
     }
     else if ((r2 != r2End) && (nonOverlap2Func != NULL))
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         do
         {
             r2BandEnd = r2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             while ((r2BandEnd < r2End) && (r2BandEnd->y1 == r2->y1))
             {
                  r2BandEnd++;
@@ -1380,6 +1432,9 @@ miUnionNonO (
 
     wxASSERT_LEVEL_2(y1 < y2);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (r != rEnd)
     {
         wxASSERT_LEVEL_2(r->x1 < r->x2);
@@ -1455,6 +1510,9 @@ miUnionO (
     r++;
 
     wxASSERT_LEVEL_2 (y1<y2);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ((r1 != r1End) && (r2 != r2End))
     {
         if (r1->x1 < r2->x1)
@@ -1469,6 +1527,9 @@ miUnionO (
 
     if (r1 != r1End)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         do
         {
             MERGERECT(r1);
@@ -1581,6 +1642,9 @@ miSubtractNonO1 (
 
     wxASSERT_LEVEL_2(y1<y2);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (r != rEnd)
     {
         wxASSERT_LEVEL_2(r->x1<r->x2);
@@ -1632,6 +1696,9 @@ miSubtractO (
     wxASSERT_LEVEL_2(y1<y2);
     pNextRect = &pReg->rects[pReg->numRects];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ((r1 != r1End) && (r2 != r2End))
     {
         if (r2->x2 <= x1)
@@ -1726,6 +1793,9 @@ miSubtractO (
     /*
      * Add remaining minuend rectangles to region.
      */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (r1 != r1End)
     {
         wxASSERT_LEVEL_2(x1<r1->x2);
@@ -1845,6 +1915,9 @@ bool REGION::XPointInRegion(Region pRegion, int x, int y)
         return false;
     if (!INBOX(pRegion->extents, x, y))
         return false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i=0; i<pRegion->numRects; i++)
     {
         if (INBOX (pRegion->rects[i], x, y))
@@ -1877,6 +1950,9 @@ wxRegionContain REGION::XRectInRegion(register Region region,
     partIn = false;
 
     /* can stop when both partOut and partIn are true, or we reach prect->y2 */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (pbox = region->rects, pboxEnd = pbox + region->numRects;
          pbox < pboxEnd;
          pbox++)

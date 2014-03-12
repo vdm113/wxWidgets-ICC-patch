@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/frame.cpp
 // Purpose:     wxFrame
@@ -101,6 +108,9 @@ bool wxFrame::Enable(bool enable)
     if ( m_frameMenuBar /*&& m_frameMenuBar == wxMenuBar::MacGetInstalledMenuBar()*/)
     {
         int iMaxMenu = m_frameMenuBar->GetMenuCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int i = 0 ; i < iMaxMenu ; ++ i )
         {
             m_frameMenuBar->EnableTop( i , enable ) ;
@@ -168,6 +178,9 @@ void wxFrame::OnActivate(wxActivateEvent& event)
 
         // so we NULL it out if it's a child from some other frame
         wxWindow *win = m_winLastFocused;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while ( win )
         {
             if ( win->IsTopLevel() )

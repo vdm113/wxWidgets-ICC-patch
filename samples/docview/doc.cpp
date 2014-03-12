@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/docview/doc.cpp
 // Purpose:     Implements document functionality
@@ -57,6 +64,9 @@ DocumentOstream& DrawingDocument::SaveObject(DocumentOstream& ostream)
     const wxInt32 count = m_doodleSegments.size();
     stream << count << '\n';
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int n = 0; n < count; n++ )
     {
         m_doodleSegments[n].SaveObject(ostream);
@@ -89,6 +99,9 @@ DocumentIstream& DrawingDocument::LoadObject(DocumentIstream& istream)
         return istream;
     }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int n = 0; n < count; n++ )
     {
         DoodleSegment segment;
@@ -142,6 +155,9 @@ DocumentOstream& DoodleSegment::SaveObject(DocumentOstream& ostream)
     const wxInt32 count = m_lines.size();
     stream << count << '\n';
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int n = 0; n < count; n++ )
     {
         const DoodleLine& line = m_lines[n];
@@ -166,6 +182,9 @@ DocumentIstream& DoodleSegment::LoadObject(DocumentIstream& istream)
     wxInt32 count = 0;
     stream >> count;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int n = 0; n < count; n++ )
     {
         DoodleLine line;

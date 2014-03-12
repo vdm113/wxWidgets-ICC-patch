@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file SplitVector.h
  ** Main data structure for holding arrays that handle insertions
@@ -47,6 +54,9 @@ protected:
 	/// reallocating if more space needed.
 	void RoomFor(int insertionLength) {
 		if (gapLength <= insertionLength) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			while (growSize < size / 6)
 				growSize *= 2;
 			ReAllocate(size + insertionLength + growSize);

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        bombs1.cpp
 // Purpose:     Bombs game
@@ -46,8 +53,14 @@ void BombsCanvas::DrawField(wxDC *dc, int xc1, int yc1, int xc2, int yc2)
     int x, y;
     int xMax = this->GetGridSizeInPixels().GetWidth();
     int yMax = this->GetGridSizeInPixels().GetHeight();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for(x=xc1; x<=xc2; x++)
         dc->DrawLine(x*m_cellWidth*X_UNIT, 0, x*m_cellWidth*X_UNIT, yMax);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for(y=xc1; y<=yc2; y++)
         dc->DrawLine(0, y*m_cellHeight*Y_UNIT, xMax, y*m_cellHeight*Y_UNIT);
 
@@ -55,7 +68,13 @@ void BombsCanvas::DrawField(wxDC *dc, int xc1, int yc1, int xc2, int yc2)
     wxFont font= BOMBS_FONT;
     dc->SetFont(font);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for(x=xc1; x<=xc2; x++)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for(y=yc1; y<=yc2; y++)
         {
             if (m_game->IsMarked(x,y))
@@ -211,7 +230,13 @@ void BombsCanvas::Uncover(int x, int y)
             m_game->Explode(x, y);
         }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for(x=0; x<gridWidth; x++)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for(y=0; y<gridHeight; y++)
                 m_game->Unhide(x,y,false);
 
@@ -229,7 +254,13 @@ void BombsCanvas::Uncover(int x, int y)
             : gridHeight - 1;
 
         int i, j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (j=top; j<=bottom; j++)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (i=left; i<=right; i++)
                 if ( (i != x || j != y) && m_game->IsHidden(i, j)
                     && !m_game->IsMarked(i, j) )

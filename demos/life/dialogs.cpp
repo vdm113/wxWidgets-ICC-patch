@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        life/dialogs.cpp
 // Purpose:     Life! dialogs
@@ -96,6 +103,9 @@ LifeSamplesDialog::LifeSamplesDialog(wxWindow *parent)
         0, NULL,
         wxLB_SINGLE | wxLB_NEEDED_SB | wxLB_HSCROLL );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (unsigned i = 0; i < (sizeof(g_patterns) / sizeof(LifePattern)); i++)
         m_list->Append(g_patterns[i].m_name);
 

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/m_layout.cpp
 // Purpose:     wxHtml module for basic paragraphs/layout handling
@@ -106,6 +113,9 @@ wxHtmlPageBreakCell::AdjustPagebreak(int* pagebreak,
     // required here is the total page offset, so m_PosY must be added
     // to the parent's offset and height.
     int total_height = m_PosY;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxHtmlCell *parent = GetParent(); parent; parent = parent->GetParent() )
     {
         total_height += parent->GetPosY();

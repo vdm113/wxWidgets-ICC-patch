@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/dircmn.cpp
 // Purpose:     wxDir methods common to all implementations
@@ -114,6 +121,9 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
     if ( flags & wxDIR_DIRS )
     {
         wxString dirname;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( bool cont = GetFirst(&dirname, wxEmptyString,
                                    (flags & ~(wxDIR_FILES | wxDIR_DOTDOT))
                                    | wxDIR_DIRS);
@@ -142,6 +152,9 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
                         // this shouldn't be treated as an error -- instead
                         // let the user code decide what to do
                         bool ok;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                         do
                         {
                             wxLogNull noLog;
@@ -172,6 +185,9 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
                                     break;
                             }
                         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                         while ( !ok );
 
                         if ( ok )
@@ -195,6 +211,9 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
 
         wxString filename;
         bool cont = GetFirst(&filename, filespec, flags);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while ( cont )
         {
             wxDirTraverseResult res = sink.OnFile(prefix + filename);

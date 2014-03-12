@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /*
  * maketif.c -- creates a little TIFF file, with
  *   the XTIFF extended tiff example tags.
@@ -60,6 +67,9 @@ void WriteImage(TIFF *tif)
 	char buffer[WIDTH];
 	
 	memset(buffer,0,sizeof(buffer));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (i=0;i<HEIGHT;i++)
 		if (!TIFFWriteScanline(tif, buffer, i, 0))
 			TIFFErrorExt(tif->tif_clientdata, "WriteImage","failure in WriteScanline\n");

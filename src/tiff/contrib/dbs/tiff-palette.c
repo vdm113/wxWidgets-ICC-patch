@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /*
  * tiff-palette.c -- create a Class P (palette) TIFF file
@@ -86,6 +93,9 @@ int main(int argc, char **argv)
 
     switch (bits_per_pixel) {
     case 8:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < cmsize; i++) {
             if (i < 32)
                 red[i] = 0;
@@ -235,7 +245,13 @@ int main(int argc, char **argv)
 
     scan_line = (unsigned char *) malloc(WIDTH / (8 / bits_per_pixel));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < HEIGHT; i++) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (j = 0, k = 0; j < WIDTH;) {
             cmap_index = (j / chunk_size) + ((i / chunk_size) * nchunks);
 

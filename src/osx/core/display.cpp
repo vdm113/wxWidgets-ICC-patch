@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/core/display.cpp
 // Purpose:     Mac implementation of wxDisplay class
@@ -104,6 +111,9 @@ static CGDisplayErr wxOSXGetDisplayList(CGDisplayCount maxDisplays,
             error = CGGetOnlineDisplayList(onlineCount,onlineDisplays,&onlineCount);
             if ( error == kCGErrorSuccess )
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 for ( CGDisplayCount i = 0; i < onlineCount; ++i )
                 {
                     if ( CGDisplayMirrorsDisplay(onlineDisplays[i]) != kCGNullDirectDisplay )
@@ -155,6 +165,9 @@ int wxDisplayFactoryMacOSX::GetFromPoint(const wxPoint& p)
         err = wxOSXGetDisplayList(theCount, theIDs, &theCount);
         wxASSERT(err == CGDisplayNoErr);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (nWhich = 0; nWhich < (int) theCount; ++nWhich)
         {
             if (theIDs[nWhich] == theID)
@@ -233,6 +246,9 @@ wxArrayVideoModes wxDisplayImplMacOSX::GetModes(const wxVideoMode& mode) const
 
     CFArrayRef theArray = CGDisplayAvailableModes( m_id );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (CFIndex i = 0; i < CFArrayGetCount(theArray); ++i)
     {
         CFDictionaryRef theValue = (CFDictionaryRef) CFArrayGetValueAtIndex( theArray, i );
