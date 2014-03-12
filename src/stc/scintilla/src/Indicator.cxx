@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file Indicator.cxx
  ** Defines the style of indicators which are text decorations such as underlining.
@@ -38,9 +31,6 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		int xLast = int(rc.right+0.5);
 		int y = 0;
 		surface->MoveTo(x, rc.top + y);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		while (x < xLast) {
 			if ((x + 2) > xLast) {
 				if (xLast > x)
@@ -58,9 +48,6 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		int width = Platform::Minimum(4000, rcSquiggle.Width());
 		RGBAImage image(width, 3, 1.0, 0);
 		enum { alphaFull = 0xff, alphaSide = 0x2f, alphaSide2=0x5f };
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (int x = 0; x < width; x++) {
 			if (x%2) {
 				// Two halfway columns have a full pixel in middle flanked by light pixels
@@ -78,9 +65,6 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		surface->MoveTo(rc.left, rc.top);
 		int x = rc.left + 3;
 		int y = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		while (x < rc.right) {
 			surface->LineTo(x-1, rc.top + y);
 			y = 1 - y;
@@ -91,9 +75,6 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 	} else if (style == INDIC_TT) {
 		surface->MoveTo(rc.left, ymid);
 		int x = rc.left + 5;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		while (x < rc.right) {
 			surface->LineTo(x, ymid);
 			surface->MoveTo(x-3, ymid);
@@ -109,9 +90,6 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		}
 	} else if (style == INDIC_DIAGONAL) {
 		int x = rc.left;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		while (x < rc.right) {
 			surface->MoveTo(x, rc.top+2);
 			int endX = x+3;
@@ -148,25 +126,13 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		int width = Platform::Minimum(rcBox.Width(), 4000);
 		RGBAImage image(width, rcBox.Height(), 1.0, 0);
 		// Draw horizontal lines top and bottom
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (int x=0; x<width; x++) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			for (int y=0; y<rcBox.Height(); y += rcBox.Height()-1) {
 				image.SetPixel(x, y, fore, ((x + y) % 2) ? outlineAlpha : fillAlpha);
 			}
 		}
 		// Draw vertical lines left and right
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (int y=1; y<rcBox.Height(); y++) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			for (int x=0; x<width; x += width-1) {
 				image.SetPixel(x, y, fore, ((x + y) % 2) ? outlineAlpha : fillAlpha);
 			}
@@ -174,9 +140,6 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		surface->DrawRGBAImage(rcBox, image.GetWidth(), image.GetHeight(), image.Pixels());
 	} else if (style == INDIC_DASH) {
 		int x = rc.left;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		while (x < rc.right) {
 			surface->MoveTo(x, ymid);
 			surface->LineTo(Platform::Minimum(x + 4, rc.right), ymid);
@@ -184,9 +147,6 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		}
 	} else if (style == INDIC_DOTS) {
 		int x = rc.left;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		while (x < rc.right) {
 			PRectangle rcDot(x, ymid, x+1, ymid+1);
 			surface->FillRectangle(rcDot, fore);

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/univ/statusbr.cpp
 // Purpose:     wxStatusBar implementation
@@ -121,9 +114,6 @@ void wxStatusBarUniv::DoDraw(wxControlRenderer *renderer)
 
     // do draw the fields
     int flags = IsEnabled() ? 0 : (int)wxCONTROL_DISABLED;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int n = 0; n < (int)m_panes.GetCount(); n++ )
     {
         rect.width = m_widthsAbs[n];
@@ -193,9 +183,6 @@ void wxStatusBarUniv::OnSize(wxSizeEvent& event)
     }
     else
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( field = 0; field < m_panes.GetCount(); field++ )
         {
             if ( m_panes[field].GetWidth() < 0 )
@@ -253,9 +240,6 @@ wxRect wxStatusBarUniv::DoGetFieldRect(int n) const
     wxCHECK_MSG( !m_widthsAbs.IsEmpty(), rect,
                  wxT("can't be called if we don't have the widths") );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int i = 0; i <= n; i++ )
     {
         rect.width = m_widthsAbs[i];

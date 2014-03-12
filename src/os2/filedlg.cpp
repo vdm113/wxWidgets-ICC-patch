@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/filedlg.cpp
 // Purpose:     wxFileDialog
@@ -103,9 +96,6 @@ void wxFileDialog::GetPaths (
     if (m_dir.Last() != wxT('\\'))
         sDir += wxT('\\');
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; n < nCount; n++ )
     {
         rasPaths.Add(sDir + m_fileNames[n]);
@@ -159,9 +149,6 @@ int wxFileDialog::ShowModal()
     // as it doesn't like two backslashes in a row neither
     //
     sDir.reserve(nLen);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( i = 0; i < nLen; i++ )
     {
         wxChar                      ch = m_dir[i];
@@ -178,9 +165,6 @@ int wxFileDialog::ShowModal()
                 // Fall through
                 //
             case wxT('\\'):
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 while (i < nLen - 1)
                 {
                     wxChar          chNext = m_dir[i + 1];
@@ -213,9 +197,6 @@ int wxFileDialog::ShowModal()
         sTheFilter = m_wildCard;
 
     wxStrtok(sTheFilter.wchar_str(), wxT("|"), &pzFilterBuffer);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while(pzFilterBuffer != NULL)
     {
         if (nCount > 0 && !(nCount % 2))
@@ -243,9 +224,6 @@ int wxFileDialog::ShowModal()
         m_fileNames.Empty();
         if ((m_windowStyle & wxFD_MULTIPLE ) && vFileDlg.ulFQFCount > 1)
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (int i = 0; i < (int)vFileDlg.ulFQFCount; i++)
             {
                 if (i == 0)
@@ -293,9 +271,6 @@ int wxFileDialog::ShowModal()
                 //
                 pzExtension = sFilterBuffer.c_str();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for( int i = 0; i < (int)sFilterBuffer.length(); i++ )
                 {
                     //

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /**
  * Scintilla source code edit control
  * @file LexMySQL.cxx
@@ -118,9 +111,6 @@ static void ColouriseMySQLDoc(unsigned int startPos, int length, int initStyle, 
 	StyleContext sc(startPos, length, initStyle, styler, 127);
   int activeState = (initStyle == SCE_MYSQL_HIDDENCOMMAND) ? HIDDENCOMMAND_STATE : initStyle & HIDDENCOMMAND_STATE;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (; sc.More(); sc.Forward())
   {
 		// Determine if the current state should terminate.
@@ -340,9 +330,6 @@ static bool IsStreamCommentStyle(int style)
  */
 bool MatchIgnoreCase(Accessor &styler, int currentPos, const char *s)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for (int n = 0; *s; n++)
   {
     if (*s != tolower(styler.SafeGetCharAt(currentPos + n)))
@@ -378,9 +365,6 @@ static void FoldMySQLDoc(unsigned int startPos, int length, int initStyle, WordL
 	bool elseIfPending = false;
 
   char nextChar = styler.SafeGetCharAt(startPos);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for (unsigned int i = startPos; length > 0; i++, length--)
   {
 		int stylePrev = style;

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        helpview.h
 // Purpose:     HelpView application
@@ -96,9 +89,6 @@ bool hvApp::OnInit()
     //     such argument as service, second (if present) as window name,
     //     start service, open any books
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for( i=1; i<argc; i++ )
     {
         argStr = argv[i];
@@ -222,9 +212,6 @@ bool hvApp::OnInit()
 
     m_helpController->SetTitleFormat( titleFormat );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for( i=0; i<bookCount; i++ )
     {
         wxFileName fileName(book[i]);
@@ -245,9 +232,6 @@ int hvApp::OnExit()
 {
 #if wxUSE_IPC
     wxObjectList::compatibility_iterator node = m_connections.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (node)
     {
         wxObjectList::compatibility_iterator next = node->GetNext();

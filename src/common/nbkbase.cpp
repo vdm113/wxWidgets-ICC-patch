@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/nbkbase.cpp
 // Purpose:     common wxNotebook methods
@@ -132,9 +125,6 @@ const wxNotebookPageInfoList& wxNotebookBase::GetPageInfos() const
 {
     wxNotebookPageInfoList* list = const_cast< wxNotebookPageInfoList* >( &m_pageInfos );
     WX_CLEAR_LIST( wxNotebookPageInfoList, *list );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for( size_t i = 0; i < GetPageCount(); ++i )
     {
         wxNotebookPageInfo *info = new wxNotebookPageInfo();

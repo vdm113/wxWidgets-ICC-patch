@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:       src/common/socket.cpp
 // Purpose:    Socket handler classes
@@ -646,11 +639,9 @@ const wxSockAddressImpl& wxSocketImpl::GetLocal()
 // is EINTR
 #ifdef __UNIX__
     #define DO_WHILE_EINTR( rc, syscall ) \
-VDM_MACRO_PRAGMA_IVDEP \
         do { \
             rc = (syscall); \
         } \
-VDM_MACRO_PRAGMA_IVDEP \
         while ( rc == -1 && errno == EINTR )
 #else
     #define DO_WHILE_EINTR( rc, syscall ) rc = (syscall)
@@ -985,9 +976,6 @@ wxUint32 wxSocketBase::DoRead(void* buffer_, wxUint32 nbytes)
     nbytes -= total;
     buffer += total;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( nbytes )
     {
         // our socket is non-blocking so Read() will return immediately if
@@ -1105,9 +1093,6 @@ wxSocketBase& wxSocketBase::ReadMsg(void* buffer, wxUint32 nbytes)
                 long discard_len;
 
                 // NOTE: discarded bytes don't add to m_lcount.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 do
                 {
                     discard_len = len2 > MAX_DISCARD_SIZE
@@ -1116,9 +1101,6 @@ wxSocketBase& wxSocketBase::ReadMsg(void* buffer, wxUint32 nbytes)
                     discard_len = DoRead(discard_buffer, (wxUint32)discard_len);
                     len2 -= (wxUint32)discard_len;
                 }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 while ((discard_len > 0) && len2);
             }
 
@@ -1176,9 +1158,6 @@ wxUint32 wxSocketBase::DoWrite(const void *buffer_, wxUint32 nbytes)
     wxCHECK_MSG( buffer, 0, "NULL buffer" );
 
     wxUint32 total = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( nbytes )
     {
         if ( m_impl->m_stream && !m_connected )
@@ -1293,17 +1272,11 @@ wxSocketBase& wxSocketBase::Discard()
 
     wxSocketWaitModeChanger changeFlags(this, wxSOCKET_NOWAIT);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     do
     {
         ret = DoRead(buffer, MAX_DISCARD_SIZE);
         total += ret;
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (ret == MAX_DISCARD_SIZE);
 
     delete[] buffer;
@@ -1496,9 +1469,6 @@ wxSocketBase::DoWait(long timeout, wxSocketEventFlags flags)
     // (but note that we always execute the loop at least once, even if timeout
     // is 0 as this is used for polling)
     int rc = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( bool firstTime = true; !m_interrupt; firstTime = false )
     {
         long timeLeft = wxMilliClockToLong(timeEnd - wxGetLocalTimeMillis());

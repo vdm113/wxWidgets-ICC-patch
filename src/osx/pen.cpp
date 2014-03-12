@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/pen.cpp
 // Purpose:     wxPen
@@ -118,7 +111,6 @@ wxPen::wxPen(const wxColour& col, int Width, wxPenStyle Style)
     RealizeResource();
 }
 
-#if WXWIN_COMPATIBILITY_3_0
 wxPen::wxPen(const wxColour& col, int Width, int Style)
 {
     m_refData = new wxPenRefData;

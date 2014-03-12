@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        debugrpt.cpp
 // Purpose:     minimal sample showing wxDebugReport and related classes
@@ -79,9 +72,6 @@ protected:
         wxString s(wxT("Server replied:\n"));
 
         const size_t count = reply.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < count; n++ )
         {
             s << wxT('\t') << reply[n] << wxT('\n');
@@ -321,9 +311,6 @@ void MyFrame::OnPaint(wxPaintEvent& WXUNUSED(event))
 {
     wxPaintDC dc(this);
     const wxSize size = GetClientSize();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxCoord x = 0; x < size.x; x += size.x/m_numLines )
         dc.DrawLine(x, 0, x, size.y);
 }

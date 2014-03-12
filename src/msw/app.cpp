@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/app.cpp
 // Purpose:     wxApp
@@ -463,9 +456,6 @@ bool wxConsoleStderr::DoInit()
     // we decide that a line is empty if first 4 characters are spaces
     DWORD ret;
     char buf[4];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     do
     {
         pos.Y--;
@@ -677,9 +667,6 @@ const wxChar *wxApp::GetRegisteredClassName(const wxChar *name,
                                             int extraStyles)
 {
     const size_t count = gs_regClassesInfo.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; n < count; n++ )
     {
         if ( gs_regClassesInfo[n].regname == name )
@@ -728,9 +715,6 @@ const wxChar *wxApp::GetRegisteredClassName(const wxChar *name,
 bool wxApp::IsRegisteredClassName(const wxString& name)
 {
     const size_t count = gs_regClassesInfo.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; n < count; n++ )
     {
         if ( gs_regClassesInfo[n].regname == name ||
@@ -744,9 +728,6 @@ bool wxApp::IsRegisteredClassName(const wxString& name)
 void wxApp::UnregisterWindowClasses()
 {
     const size_t count = gs_regClassesInfo.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; n < count; n++ )
     {
         const ClassRegInfo& regClass = gs_regClassesInfo[n];

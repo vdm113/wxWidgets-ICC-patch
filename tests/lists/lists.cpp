@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/lists/lists.cpp
 // Purpose:     wxList unit test
@@ -92,9 +85,6 @@ void ListsTestCase::wxListTest()
     int dummy[5];
     size_t i;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( i = 0; i < WXSIZEOF(dummy); ++i )
         list1.Append(dummy + i);
 
@@ -103,9 +93,6 @@ void ListsTestCase::wxListTest()
     CPPUNIT_ASSERT( list1.Find(dummy + 4) );
 
     wxListInt::compatibility_iterator node;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( i = 0, node = list1.GetFirst(); node; ++i, node = node->GetNext() )
     {
         CPPUNIT_ASSERT_EQUAL( dummy + i, node->GetData() );
@@ -117,9 +104,6 @@ void ListsTestCase::wxListTest()
     list1.Insert(1, dummy + 1);
     list1.Insert(list1.GetFirst()->GetNext()->GetNext(), dummy + 2);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( i = 0, node = list1.GetFirst(); i < 3; ++i, node = node->GetNext() )
     {
         int* t = node->GetData();
@@ -133,24 +117,15 @@ void ListsTestCase::wxStdListTest()
     wxListInt::iterator it, en;
     wxListInt::reverse_iterator rit, ren;
     int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( i = 0; i < 5; ++i )
         list1.push_back(i + &i);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( it = list1.begin(), en = list1.end(), i = 0;
           it != en; ++it, ++i )
     {
         CPPUNIT_ASSERT( *it == i + &i );
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( rit = list1.rbegin(), ren = list1.rend(), i = 4;
           rit != ren; ++rit, --i )
     {
@@ -167,9 +142,6 @@ void ListsTestCase::wxStdListTest()
     list1.erase(list1.begin());
     list1.erase(--list1.end());
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( it = list1.begin(), en = list1.end(), i = 1;
           it != en; ++it, ++i )
     {

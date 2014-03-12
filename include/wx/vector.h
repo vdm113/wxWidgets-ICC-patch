@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/vector.h
 // Purpose:     STL vector clone
@@ -86,9 +79,6 @@ struct wxVectorMemOpsGeneric
     static T* Realloc(T* old, size_t newCapacity, size_t occupiedSize)
     {
         T *mem = (T*)::operator new(newCapacity * sizeof(T));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t i = 0; i < occupiedSize; i++ )
         {
             ::new(mem + i) T(old[i]);
@@ -103,9 +93,6 @@ struct wxVectorMemOpsGeneric
         wxASSERT( dest < source );
         T* destptr = dest;
         T* sourceptr = source;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t i = count; i > 0; --i, ++destptr, ++sourceptr )
         {
             ::new(destptr) T(*sourceptr);
@@ -118,9 +105,6 @@ struct wxVectorMemOpsGeneric
         wxASSERT( dest > source );
         T* destptr = dest + count - 1;
         T* sourceptr = source + count - 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t i = count; i > 0; --i, --destptr, --sourceptr )
         {
             ::new(destptr) T(*sourceptr);
@@ -254,9 +238,6 @@ public:
         : m_size(0), m_capacity(0), m_values(NULL)
     {
         reserve(p_size);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < p_size; n++ )
             push_back(value_type());
     }
@@ -265,9 +246,6 @@ public:
         : m_size(0), m_capacity(0), m_values(NULL)
     {
         reserve(p_size);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < p_size; n++ )
             push_back(v);
     }
@@ -293,9 +271,6 @@ public:
     {
         clear();
         reserve(p_size);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < p_size; n++ )
             push_back(v);
     }
@@ -309,9 +284,6 @@ public:
         // it for arbitrary input iterators, we should have a dispatch on
         // iterator type and call it if possible.
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( InputIterator it = first; it != last; ++it )
             push_back(*it);
     }
@@ -326,9 +298,6 @@ public:
     void clear()
     {
         // call destructors of stored objects:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_type i = 0; i < m_size; i++ )
         {
             m_values[i].~T();
@@ -506,9 +475,6 @@ public:
         const size_type after = end() - last;
 
         // erase elements by calling their destructors:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( iterator i = first; i < last; ++i )
             i->~T();
 
@@ -536,9 +502,6 @@ private:
     {
         reserve(vb.size());
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( const_iterator i = vb.begin(); i != vb.end(); ++i )
             push_back(*i);
     }
@@ -546,9 +509,6 @@ private:
 private:
     void Shrink(size_type n)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_type i = n; i < m_size; i++ )
             m_values[i].~T();
         m_size = n;
@@ -557,9 +517,6 @@ private:
     void Extend(size_type n, const value_type& v)
     {
         reserve(n);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_type i = m_size; i < n; i++ )
             push_back(v);
     }

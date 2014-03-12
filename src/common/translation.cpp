@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/translation.cpp
 // Purpose:     Internationalization and localisation for wxWidgets
@@ -111,9 +104,6 @@ void LogTraceArray(const char *prefix, const wxArrayString& arr)
 void LogTraceLargeArray(const wxString& prefix, const wxArrayString& arr)
 {
     wxLogTrace(TRACE_I18N, "%s:", prefix);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxArrayString::const_iterator i = arr.begin(); i != arr.end(); ++i )
         wxLogTrace(TRACE_I18N, "    %s", *i);
 }
@@ -158,9 +148,6 @@ wxString GetPreferredUILanguage(const wxArrayString& available)
                 wxArrayString preferred;
 
                 WCHAR *buf = langs.get();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for ( unsigned i = 0; i < numLangs; i++ )
                 {
                     const wxString lang(buf);
@@ -169,9 +156,6 @@ wxString GetPreferredUILanguage(const wxArrayString& available)
                 }
                 LogTraceArray(" - system preferred languages", preferred);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for ( wxArrayString::const_iterator j = preferred.begin();
                       j != preferred.end();
                       ++j )
@@ -204,9 +188,6 @@ void LogTraceArray(const char *prefix, CFArrayRef arr)
     if ( count )
     {
         s += wxCFStringRef::AsString((CFStringRef)CFArrayGetValueAtIndex(arr, 0));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( unsigned i = 1 ; i < count; i++ )
             s += "," + wxCFStringRef::AsString((CFStringRef)CFArrayGetValueAtIndex(arr, i));
     }
@@ -219,9 +200,6 @@ wxString GetPreferredUILanguage(const wxArrayString& available)
     wxCFRef<CFMutableArrayRef> availableArr(
         CFArrayCreateMutable(kCFAllocatorDefault, 0, &kCFTypeArrayCallBacks));
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxArrayString::const_iterator i = available.begin();
           i != available.end();
           ++i )
@@ -348,9 +326,6 @@ wxPluralFormsScanner::wxPluralFormsScanner(const char* s) : m_s(s)
 bool wxPluralFormsScanner::nextToken()
 {
     wxPluralFormsToken::Type type = wxPluralFormsToken::T_ERROR;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (isspace((unsigned char) *m_s))
     {
         ++m_s;
@@ -362,9 +337,6 @@ bool wxPluralFormsScanner::nextToken()
     else if (isdigit((unsigned char) *m_s))
     {
         wxPluralFormsToken::Number number = *m_s++ - '0';
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (isdigit((unsigned char) *m_s))
         {
             number = number * 10 + (*m_s++ - '0');
@@ -375,9 +347,6 @@ bool wxPluralFormsScanner::nextToken()
     else if (isalpha((unsigned char) *m_s))
     {
         const char* begin = m_s++;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (isalnum((unsigned char) *m_s))
         {
             ++m_s;
@@ -1258,9 +1227,6 @@ bool wxMsgCatalogFile::FillHash(wxStringToStringHashMap& hash,
         sourceConv.reset(new wxCSConv(msgIdCharset));
 #endif // !wxUSE_UNICODE
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (size_t32 i = 0; i < m_numStrings; i++)
     {
         const char *data = StringAtOfs(m_pOrigTable, i);
@@ -1284,9 +1250,6 @@ bool wxMsgCatalogFile::FillHash(wxStringToStringHashMap& hash,
         size_t length = Swap(m_pTransTable[i].nLen);
         size_t offset = 0;
         size_t index = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (offset < length)
         {
             const char * const str = data + offset;
@@ -1453,9 +1416,6 @@ wxTranslations::~wxTranslations()
 
     // free catalogs memory
     wxMsgCatalog *pTmpCat;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( m_pMsgCat != NULL )
     {
         pTmpCat = m_pMsgCat;
@@ -1688,9 +1648,6 @@ const wxString *wxTranslations::GetTranslatedString(const wxString& origString,
     else
     {
         // search in all domains
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( pMsgCat = m_pMsgCat; pMsgCat != NULL; pMsgCat = pMsgCat->m_pNext )
         {
             trans = pMsgCat->GetString(origString, n);
@@ -1738,9 +1695,6 @@ wxString wxTranslations::GetHeaderValue(const wxString& header,
     else
     {
         // search in all domains
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( pMsgCat = m_pMsgCat; pMsgCat != NULL; pMsgCat = pMsgCat->m_pNext )
         {
             trans = pMsgCat->GetString(wxEmptyString, UINT_MAX);
@@ -1773,9 +1727,6 @@ wxMsgCatalog *wxTranslations::FindCatalog(const wxString& domain) const
 {
     // linear search in the linked list
     wxMsgCatalog *pMsgCat;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( pMsgCat = m_pMsgCat; pMsgCat != NULL; pMsgCat = pMsgCat->m_pNext )
     {
         if ( pMsgCat->GetDomain() == domain )
@@ -1883,9 +1834,6 @@ wxString GetFullSearchPath(const wxString& lang)
 
     const wxArrayString prefixes = GetSearchPrefixes();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxArrayString::const_iterator i = prefixes.begin();
           i != prefixes.end();
           ++i )
@@ -1950,9 +1898,6 @@ wxArrayString wxFileTranslationsLoader::GetAvailableTranslations(const wxString&
         prefixes
     );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxArrayString::const_iterator i = prefixes.begin();
           i != prefixes.end();
           ++i )
@@ -1964,9 +1909,6 @@ wxArrayString wxFileTranslationsLoader::GetAvailableTranslations(const wxString&
             continue;
 
         wxString lang;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( bool ok = dir.GetFirst(&lang, "", wxDIR_DIRS);
               ok;
               ok = dir.GetNext(&lang) )

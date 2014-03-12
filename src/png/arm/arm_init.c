@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 /* arm_init.c - NEON optimised filter functions
  *
@@ -70,9 +63,6 @@ safe_read(png_structp png_ptr, int fd, void *buffer_in, size_t nbytes)
    size_t ntotal = 0;
    char *buffer = png_voidcast(char*, buffer_in);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
    while (nbytes > 0)
    {
       unsigned int nread;
@@ -138,9 +128,6 @@ png_have_neon(png_structp png_ptr)
       return 0;
    }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
    while (safe_read(png_ptr, fd, &aux, sizeof aux) == sizeof aux)
    {
       if (aux.a_type == AT_HWCAP && (aux.a_un.a_val & HWCAP_NEON) != 0)

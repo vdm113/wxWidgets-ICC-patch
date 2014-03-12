@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file KeyWords.cxx
  ** Colourise for particular languages.
@@ -53,9 +46,6 @@ int Accessor::IndentAmount(int line, int *flags, PFNIsCommentLeader pfnIsComment
 	int indent = 0;
 	bool inPrevPrefix = line > 0;
 	int posPrev = inPrevPrefix ? LineStart(line-1) : 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while ((ch == ' ' || ch == '\t') && (pos < end)) {
 		if (inPrevPrefix) {
 			char chPrev = (*this)[posPrev++];

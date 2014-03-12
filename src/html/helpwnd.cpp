@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/helpwnd.cpp
 // Purpose:     wxHtmlHelpWindow
@@ -186,9 +179,6 @@ void wxHtmlHelpWindow::UpdateMergedIndex()
 
     wxHtmlHelpMergedIndexItem *history[128] = {NULL};
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (size_t i = 0; i < len; i++)
     {
         const wxHtmlHelpDataItem& item = items[i];
@@ -435,9 +425,6 @@ bool wxHtmlHelpWindow::Create(wxWindow* parent, wxWindowID id,
                                          wxDefaultPosition, wxDefaultSize,
                                          0, NULL, comboStyle);
             m_Bookmarks->Append(_("(bookmarks)"));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (unsigned i = 0; i < m_BookmarksNames.GetCount(); i++)
                 m_Bookmarks->Append(m_BookmarksNames[i]);
             m_Bookmarks->SetSelection(0);
@@ -806,18 +793,12 @@ void wxHtmlHelpWindow::DisplayIndexItem(const wxHtmlHelpMergedIndexItem *it)
         // which one she/he wants from a list:
         wxArrayString arr;
         size_t len = it->items.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (size_t i = 0; i < len; i++)
         {
             wxString page = it->items[i]->page;
             // try to find page's title in contents:
             const wxHtmlHelpDataItems& contents = m_Data->GetContentsArray();
             size_t clen = contents.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (size_t j = 0; j < clen; j++)
             {
                 if (contents[j].page == page)
@@ -894,9 +875,6 @@ bool wxHtmlHelpWindow::KeywordSearch(const wxString& keyword,
 #endif
 
         int curi;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (status.IsActive())
         {
             curi = status.GetCurIndex();
@@ -999,9 +977,6 @@ void wxHtmlHelpWindow::CreateContents()
     roots[0] = m_ContentsBox->AddRoot(_("(Help)"));
     imaged[0] = true;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (size_t i = 0; i < cnt; i++)
     {
         wxHtmlHelpDataItem *it = &contents[i];
@@ -1074,9 +1049,6 @@ void wxHtmlHelpWindow::CreateIndex()
     if (cnt > INDEX_IS_SMALL)
         return;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (size_t i = 0; i < cnt; i++)
         m_IndexList->Append((*m_mergedIndex)[i].name,
                             (char*)(&(*m_mergedIndex)[i]));
@@ -1094,9 +1066,6 @@ void wxHtmlHelpWindow::CreateSearch()
     m_SearchChoice->Append(_("Search in all books"));
     const wxHtmlBookRecArray& bookrec = m_Data->GetBookRecArray();
     int i, cnt = bookrec.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < cnt; i++)
         m_SearchChoice->Append(bookrec[i].GetTitle());
     m_SearchChoice->SetSelection(0);
@@ -1151,9 +1120,6 @@ void wxHtmlHelpWindow::ReadCustomization(wxConfigBase *cfg, const wxString& path
                 m_Bookmarks->Append(_("(bookmarks)"));
             }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (i = 0; i < cnt; i++)
             {
                 val.Printf(wxT("hcBookmark_%i"), i);
@@ -1206,9 +1172,6 @@ void wxHtmlHelpWindow::WriteCustomization(wxConfigBase *cfg, const wxString& pat
         wxString val;
 
         cfg->Write(wxT("hcBookmarksCnt"), (long)cnt);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < cnt; i++)
         {
             val.Printf(wxT("hcBookmark_%i"), i);
@@ -1480,9 +1443,6 @@ void wxHtmlHelpWindow::OnToolbar(wxCommandEvent& event)
 
                     const wxHtmlHelpDataItem *it =
                         &m_Data->GetContentsArray()[ind];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                     while (ind >= 0 && it->level != level)
                     {
                         ind--;
@@ -1510,9 +1470,6 @@ void wxHtmlHelpWindow::OnToolbar(wxCommandEvent& event)
                 {
                     size_t idx = ha->m_Index + 1;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                     while (contents[idx].GetFullPath() == page) idx++;
 
                     if (!contents[idx].page.empty())
@@ -1682,9 +1639,6 @@ void wxHtmlHelpWindow::DoIndexFind()
         size_t cnt = index.size();
 
         int displ = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (size_t i = 0; i < cnt; i++)
         {
             if (index[i].name.Lower().find(sr) != wxString::npos)
@@ -1707,9 +1661,6 @@ void wxHtmlHelpWindow::DoIndexFind()
                 // as well, otherwise it would not be clear what entry is
                 // shown:
                 wxHtmlHelpMergedIndexItem *parent = index[i].parent;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 while (parent)
                 {
                     if (pos == 0 ||
@@ -1728,9 +1679,6 @@ void wxHtmlHelpWindow::DoIndexFind()
                 // in them: "foo" with parent "bar" reads as "bar, foo"):
                 int level = index[i].items[0]->level;
                 i++;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 while (i < cnt && index[i].items[0]->level > level)
                 {
                     m_IndexList->Append(index[i].name, (char*)(&index[i]));
@@ -1763,9 +1711,6 @@ void wxHtmlHelpWindow::DoIndexAll()
     size_t cnt = index.size();
     bool first = true;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (size_t i = 0; i < cnt; i++)
     {
         m_IndexList->Append(index[i].name, (char*)(&index[i]));

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/dfb/pen.cpp
 // Purpose:     wxPen class implementation
@@ -74,7 +67,6 @@ wxPen::wxPen(const wxColour &colour, int width, wxPenStyle style)
     m_refData = new wxPenRefData(colour, style);
 }
 
-#if WXWIN_COMPATIBILITY_3_0
 wxPen::wxPen(const wxColour& col, int width, int style)
 {
     m_refData = new wxPenRefData(col, (wxPenStyle)style);

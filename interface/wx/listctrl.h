@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/listctrl.h
 // Purpose:     interface of wxListCtrl
@@ -701,9 +694,6 @@ public:
 
         @code
         long item = -1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( ;; )
         {
             item = listctrl->GetNextItem(item,
@@ -1024,9 +1014,6 @@ public:
         Example of using it:
         @code
             wxListCtrl *list = new wxListCtrl(...);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( int i = 0; i < 3; i++ )
                 list->InsertColumn(i, wxString::Format("Column %d", i));
 

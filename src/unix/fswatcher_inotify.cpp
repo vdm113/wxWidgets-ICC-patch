@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/fswatcher_inotify.cpp
 // Purpose:     inotify-based wxFileSystemWatcher implementation
@@ -155,9 +148,6 @@ public:
     virtual bool RemoveAll()
     {
         wxFSWatchEntries::iterator it = m_watches.begin();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( ; it != m_watches.end(); ++it )
         {
             (void) DoRemove(it->second);
@@ -181,9 +171,6 @@ public:
         // left > 0, we have events
         char* memory = buf;
         int event_count = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (left > 0) // OPT checking 'memory' would suffice
         {
             event_count++;
@@ -502,9 +489,6 @@ protected:
         // After all of a batch of events has been processed, this deals with
         // any still-unpaired IN_MOVED_FROM or IN_MOVED_TO events.
         wxInotifyCookies::iterator it = m_cookies.begin();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while ( it != m_cookies.end() )
         {
             inotify_event& inevt = *(it->second);
@@ -613,9 +597,6 @@ protected:
         };
 
         int native_flags = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( unsigned int i=0; i < WXSIZEOF(flag_mapping); ++i)
         {
             if (flags & flag_mapping[i][0])
@@ -649,9 +630,6 @@ protected:
         };
 
         unsigned int i=0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( ; i < WXSIZEOF(flag_mapping); ++i) {
             // in this mapping multiple flags at once don't happen
             if (flags & flag_mapping[i][0])

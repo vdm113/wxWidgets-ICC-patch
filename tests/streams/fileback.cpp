@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/streams/backfile.cpp
 // Purpose:     Test wxBackingFile
@@ -78,9 +71,6 @@ private:
 
 backStream::backStream()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (unsigned i = 0; i < TESTSIZE; i++)
         m_testdata[i] = i;
 }
@@ -192,9 +182,6 @@ void backStream::Seek(wxInputStream& in)
     CPPUNIT_ASSERT_EQUAL(size_t(0), in.LastRead());
     CPPUNIT_ASSERT(in.Eof());
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (wxFileOffset i = TESTSIZE - 1; i >= 0; i--) {
         CPPUNIT_ASSERT_EQUAL(i, in.SeekI(i));
         CPPUNIT_ASSERT_EQUAL(i, in.TellI());

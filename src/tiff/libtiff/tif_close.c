@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler
@@ -66,9 +59,6 @@ TIFFCleanup(TIFF* tif)
 	/*
          * Clean up client info links.
          */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while( tif->tif_clientinfo )
 	{
 		TIFFClientInfoLink *link = tif->tif_clientinfo;
@@ -89,9 +79,6 @@ TIFFCleanup(TIFF* tif)
 	if (tif->tif_fields && tif->tif_nfields > 0) {
 		uint32 i;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (i = 0; i < tif->tif_nfields; i++) {
 			TIFFField *fld = tif->tif_fields[i];
 			if (fld->field_bit == FIELD_CUSTOM &&
@@ -107,9 +94,6 @@ TIFFCleanup(TIFF* tif)
         if (tif->tif_nfieldscompat > 0) {
                 uint32 i;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for (i = 0; i < tif->tif_nfieldscompat; i++) {
                         if (tif->tif_fieldscompat[i].allocated_size)
                                 _TIFFfree(tif->tif_fieldscompat[i].fields);

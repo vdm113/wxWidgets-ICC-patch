@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/arrays/arrays.cpp
 // Purpose:     wxArray unit test
@@ -251,9 +244,6 @@ void ArraysTestCase::wxStringArrayTest()
     CPPUNIT_ASSERT( COMPARE_COUNT( a3 , 8 ) );
 
     wxSortedArrayString a4;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (wxArrayString::iterator it = a1.begin(), en = a1.end(); it != en; ++it)
         a4.Add(*it);
 
@@ -494,9 +484,6 @@ void ArraysTestCase::wxStringArraySplitJoinTest()
                    wxT("</meta></head></html>");
 
     size_t i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < WXSIZEOF(separators); i++)
     {
         wxArrayString arr = wxSplit(str, separators[i]);
@@ -514,9 +501,6 @@ void ArraysTestCase::wxStringArraySplitJoinTest()
         };
     wxArrayString theArr(WXSIZEOF(arr), arr);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < WXSIZEOF(separators); i++)
     {
         wxString string = wxJoin(theArr, separators[i]);
@@ -683,18 +667,12 @@ void ArraysTestCase::TestSTL()
     int i;
     static const int COUNT = 5;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( i = 0; i < COUNT; ++i )
         list1.push_back(i);
 
     CPPUNIT_ASSERT( list1.capacity() >= (size_t)COUNT );
     CPPUNIT_ASSERT_EQUAL( COUNT, list1.size() );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( it = list1.begin(), en = list1.end(), i = 0;
           it != en; ++it, ++i )
     {
@@ -703,9 +681,6 @@ void ArraysTestCase::TestSTL()
 
     CPPUNIT_ASSERT_EQUAL( COUNT, i );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( rit = list1.rbegin(), ren = list1.rend(), i = COUNT;
           rit != ren; ++rit, --i )
     {
@@ -727,9 +702,6 @@ void ArraysTestCase::TestSTL()
     list1.erase(list1.begin());
     list1.erase(list1.end()-1);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( it = list1.begin(), en = list1.end(), i = 1;
           it != en; ++it, ++i )
     {

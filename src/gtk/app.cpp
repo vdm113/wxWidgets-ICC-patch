@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/app.cpp
 // Purpose:
@@ -139,9 +132,6 @@ bool wxApp::DoIdle()
 
     gdk_threads_enter();
     bool needMore;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     do {
         ProcessPendingEvents();
 
@@ -358,9 +348,6 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
 #if wxUSE_UNICODE
     // gtk_init() wants UTF-8, not wchar_t, so convert
     char **argvGTK = new char *[argc_ + 1];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( i = 0; i < argc_; i++ )
     {
         argvGTK[i] = wxStrdupA(wxConvUTF8.cWX2MB(argv_[i]));
@@ -385,14 +372,8 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
     if ( argcGTK != argc_ )
     {
         // we have to drop the parameters which were consumed by GTK+
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( i = 0; i < argcGTK; i++ )
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while ( strcmp(wxConvUTF8.cWX2MB(argv_[i]), argvGTK[i]) != 0 )
             {
                 memmove(argv_ + i, argv_ + i + 1, (argc_ - i)*sizeof(*argv_));
@@ -405,9 +386,6 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
     //else: gtk_init() didn't modify our parameters
 
     // free our copy
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( i = 0; i < argcGTK; i++ )
     {
         free(argvGTK[i]);
@@ -433,17 +411,11 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
         wxArrayString opt, desc;
         m_traits->GetStandardCmdLineOptions(opt, desc);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( i = 0; i < argc_; i++ )
         {
             // leave just the names of the options with values
             const wxString str = wxString(argv_[i]).BeforeFirst('=');
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( size_t j = 0; j < opt.size(); j++ )
             {
                 // remove the leading spaces from the option string as it does

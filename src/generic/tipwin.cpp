@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/tipwin.cpp
 // Purpose:     implementation of wxTipWindow
@@ -275,9 +268,6 @@ void wxTipWindowView::Adjust(const wxString& text, wxCoord maxLength)
     m_parent->m_heightLine = 0;
 
     bool breakLine = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const wxChar *p = text.c_str(); ; p++ )
     {
         if ( *p == wxT('\n') || *p == wxT('\0') )
@@ -352,9 +342,6 @@ void wxTipWindowView::OnPaint(wxPaintEvent& WXUNUSED(event))
     pt.x = TEXT_MARGIN_X;
     pt.y = TEXT_MARGIN_Y;
     size_t count = m_parent->m_textLines.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; n < count; n++ )
     {
         dc.DrawText(m_parent->m_textLines[n], pt);

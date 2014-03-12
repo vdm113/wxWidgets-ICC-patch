@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/xrc/xh_sizer.cpp
 // Purpose:     XRC resource for wxBoxSizer
@@ -373,9 +366,6 @@ bool wxSizerXmlHandler::ValidateGridSizerChildren()
     {
         // fixed number of cells, need to verify children count
         int children = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( wxXmlNode *n = m_node->GetChildren(); n; n = n->GetNext() )
         {
             if ( n->GetType() == wxXML_ELEMENT_NODE &&
@@ -461,9 +451,6 @@ void wxSizerXmlHandler::SetGrowables(wxFlexGridSizer* sizer,
     wxStringTokenizer tkn;
     tkn.SetString(GetParamValue(param), wxT(","));
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (tkn.HasMoreTokens())
     {
         wxString propStr;

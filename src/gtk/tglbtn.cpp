@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/tglbtn.cpp
 // Purpose:     Definition of the wxToggleButton class, which implements a
@@ -232,9 +225,6 @@ void wxToggleButton::DoApplyWidgetStyle(GtkRcStyle *style)
         if ( GTK_IS_BOX(box) )
         {
             wxGtkList list(gtk_container_get_children(GTK_CONTAINER(box)));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (GList* item = list; item; item = item->next)
             {
                 GTKApplyStyle(GTK_WIDGET(item->data), style);

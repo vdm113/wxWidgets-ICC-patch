@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/preferencesg.cpp
 // Purpose:     Implementation of wxPreferencesEditor.
@@ -126,9 +119,6 @@ protected:
         //       can determine its best size. We'll need to extend
         //       wxPreferencesPage with a GetBestSize() virtual method to make
         //       it possible to defer the creation.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( Pages::const_iterator i = m_pages.begin();
               i != m_pages.end();
               ++i )

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/rearrangectrl.h
 // Purpose:     interface of wxRearrangeList
@@ -260,9 +253,6 @@ public:
                               order, items);
         if ( dlg.ShowModal() == wxID_OK ) {
             order = dlg.GetOrder();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( size_t n = 0; n < order.size(); n++ ) {
                 if ( order[n] >= 0 ) {
                     wxLogMessage("Your most preferred item is \"%s\"",

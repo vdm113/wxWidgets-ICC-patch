@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        tokenzr.h
 // Purpose:     interface of wxStringTokenizer
@@ -86,9 +79,6 @@ enum wxStringTokenizerMode
 
     @code
     wxStringTokenizer tokenizer("first:second:third:fourth", ":");
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( tokenizer.HasMoreTokens() )
     {
         wxString token = tokenizer.GetNextToken();

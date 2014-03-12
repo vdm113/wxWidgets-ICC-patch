@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/aboutdlg.cpp
 // Purpose:     native GTK+ wxAboutBox() implementation
@@ -59,9 +52,6 @@ public:
         m_count = a.size();
         m_strings = new const gchar *[m_count + 1];
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < m_count; n++ )
         {
 #if wxUSE_UNICODE
@@ -88,9 +78,6 @@ public:
     ~GtkArray()
     {
 #if !wxUSE_UNICODE
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < m_count; n++ )
             free(const_cast<gchar *>(m_strings[n]));
 #endif
@@ -220,9 +207,6 @@ void wxAboutBox(const wxAboutDialogInfo& info, wxWindow* WXUNUSED(parent))
     {
         const wxArrayString& translators = info.GetTranslators();
         const size_t count = translators.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < count; n++ )
         {
             transCredits << translators[n] << wxT('\n');

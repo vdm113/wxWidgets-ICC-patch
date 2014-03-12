@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtexttabspage.cpp
 // Purpose:     Implements the rich text formatting dialog tabs page.
@@ -168,9 +161,6 @@ bool wxRichTextTabsPage::TransferDataFromWindow()
     {
         wxArrayInt tabs;
         size_t i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < m_tabListCtrl->GetCount(); i++)
         {
             tabs.Add(wxAtoi(m_tabListCtrl->GetString(i)));
@@ -193,9 +183,6 @@ bool wxRichTextTabsPage::TransferDataToWindow()
     {
         m_tabsPresent = true;
         size_t i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < attr->GetTabs().GetCount(); i++)
         {
             wxString s(wxString::Format(wxT("%d"), attr->GetTabs()[i]));
@@ -221,9 +208,6 @@ void wxRichTextTabsPage::SortTabs()
 {
     wxArrayInt tabs;
     size_t i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < m_tabListCtrl->GetCount(); i++)
     {
         tabs.Add(wxAtoi(m_tabListCtrl->GetString(i)));
@@ -231,9 +215,6 @@ void wxRichTextTabsPage::SortTabs()
     tabs.Sort(& wxTabSortFunc);
 
     m_tabListCtrl->Clear();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < tabs.GetCount(); i++)
     {
         wxString s(wxString::Format(wxT("%d"), tabs[i]));

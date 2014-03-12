@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
   Converts hhp (HTML Help Workshop) files into cached
   version for faster reading
@@ -37,9 +30,6 @@ IMPLEMENT_APP(MyApp);
 
 bool MyApp::OnInit()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (int i = 1; i < argc; i++)
     {
         wxHtmlHelpData data;

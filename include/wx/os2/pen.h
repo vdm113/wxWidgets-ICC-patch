@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/os2/pen.h
 // Purpose:     wxPen class
@@ -35,9 +28,6 @@ public:
           ,int             nWidth = 1
           ,wxPenStyle      nStyle = wxPENSTYLE_SOLID
          );
-#if WXWIN_COMPATIBILITY_3_0
-    wxDEPRECATED( wxPen(const wxColour& col, int width, int style) );
-#endif
 
     wxPen( const wxBitmap& rStipple
           ,int             nWidth
@@ -75,10 +65,12 @@ public:
     int       GetDashCount() const;
     wxBitmap* GetStipple(void) const;
 
-#if WXWIN_COMPATIBILITY_3_0
-    wxDEPRECATED( void SetStyle(int style) )
-        { SetStyle((wxPenStyle)style); }
-#endif
+
+    wxDEPRECATED_MSG("use wxPENSTYLE_XXX constants")
+    wxPen(const wxColour& col, int width, int style);
+
+    wxDEPRECATED_MSG("use wxPENSTYLE_XXX constants")
+    void SetStyle(int style) { SetStyle((wxPenStyle)style); }
 
     //
     // Implementation

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        reader.cpp
 // Purpose:     Life! pattern reader (writer coming soon)
@@ -62,9 +55,6 @@ LifeReader::LifeReader(wxInputStream& is)
     // read description
     m_description = wxEmptyString;
     line = text_is.ReadLine();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (buff_is.IsOk() && line.StartsWith(wxT("#D"), &rest))
     {
         m_description += rest.Trim(false);
@@ -80,9 +70,6 @@ LifeReader::LifeReader(wxInputStream& is)
     LIFE_CHECKVAL(_("Sorry, non-conway rules not supported yet"));
 
     // read shape
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (buff_is.IsOk())
     {
         line = ( text_is.ReadLine() ).Trim();

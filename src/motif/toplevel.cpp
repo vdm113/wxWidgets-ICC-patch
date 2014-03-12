@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/toplevel.cpp
 // Purpose:     wxTopLevelWindow Motif implementation
@@ -201,9 +194,6 @@ void wxTopLevelWindowMotif::DoGetPosition(int *x, int *y) const
 
     // search for the parent that is child of ROOT, because the WM may
     // reparent twice and notify only the next parent (like FVWM)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (next_parent != root) {
         Window *theChildren; unsigned int n;
         parent_window = next_parent;
@@ -226,9 +216,6 @@ void wxTopLevelWindowMotif::Raise()
         root          = RootWindowOfScreen( XtScreen( top ) );
     // search for the parent that is child of ROOT, because the WM may
     // reparent twice and notify only the next parent (like FVWM)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while( next_parent != root )
     {
         Window *theChildren;
@@ -250,9 +237,6 @@ void wxTopLevelWindowMotif::Lower()
         root          = RootWindowOfScreen( XtScreen( top ) );
     // search for the parent that is child of ROOT, because the WM may
     // reparent twice and notify only the next parent (like FVWM)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while( next_parent != root )
     {
         Window *theChildren;

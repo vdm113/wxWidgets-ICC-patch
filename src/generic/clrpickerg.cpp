@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/clrpickerg.cpp
 // Purpose:     wxGenericColourButton class implementation
@@ -79,9 +72,6 @@ void wxGenericColourButton::InitColourData()
 {
     ms_data.SetChooseFull(true);
     unsigned char grey = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (int i = 0; i < 16; i++, grey += 16)
     {
         // fill with grey tones the custom colors palette

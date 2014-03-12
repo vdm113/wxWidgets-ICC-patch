@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 /*
  * Copyright (c) 2010, Andrey Kiselev <dron@ak4719.spb.edu>
@@ -188,9 +181,6 @@ LZMADecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 		return 0;
 	}
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	do {
 		/*
 		 * Save the current stream state to properly recover from the
@@ -294,9 +284,6 @@ LZMAEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 			     "Liblzma cannot deal with buffers this size");
 		return 0;
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	do {
 		lzma_ret ret = lzma_code(&sp->stream, LZMA_RUN);
 		if (ret != LZMA_OK) {
@@ -327,9 +314,6 @@ LZMAPostEncode(TIFF* tif)
 	lzma_ret ret;
 
 	sp->stream.avail_in = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	do {
 		ret = lzma_code(&sp->stream, LZMA_FINISH);
 		switch (ret) {

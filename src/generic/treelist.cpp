@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/treelist.cpp
 // Purpose:     Generic wxTreeListCtrl implementation.
@@ -82,9 +75,6 @@ public:
     // Destroying the node also (recursively) destroys its children.
     ~wxTreeListModelNode()
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( wxTreeListModelNode* node = m_child; node; )
         {
             wxTreeListModelNode* child = node;
@@ -155,9 +145,6 @@ public:
 
         // In the loop below n is the index in the new column texts array and m
         // is the index in the old one.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( unsigned n = 1, m = 1; n < numColumns - 1; n++, m++ )
         {
             if ( n == col )
@@ -183,9 +170,6 @@ public:
 
         wxScopedArray<wxString> oldTexts(m_columnsTexts);
         m_columnsTexts = new wxString[numColumns - 2];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( unsigned n = 1, m = 1; n < numColumns - 1; n++, m++ )
         {
             if ( n == col )
@@ -273,9 +257,6 @@ public:
             return m_next;
 
         // Recurse upwards until we find the next sibling.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( wxTreeListModelNode* node = m_parent; node; node = node->m_parent )
         {
             if ( node->m_next )
@@ -628,9 +609,6 @@ void wxTreeListModel::InsertColumn(unsigned col)
         return;
 
     // Update all the items as they may have texts for the old columns.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( Node* node = m_root->GetChild(); node; node = node->NextInTree() )
     {
         node->OnInsertColumn(col, m_numColumns);
@@ -644,9 +622,6 @@ void wxTreeListModel::DeleteColumn(unsigned col)
     // Update all the items to remove the text for the non first columns.
     if ( col > 0 )
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( Node* node = m_root->GetChild(); node; node = node->NextInTree() )
         {
             node->OnDeleteColumn(col, m_numColumns);
@@ -660,9 +635,6 @@ void wxTreeListModel::ClearColumns()
 {
     m_numColumns = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( Node* node = m_root->GetChild(); node; node = node->NextInTree() )
     {
         node->OnClearColumns();
@@ -710,9 +682,6 @@ wxTreeListModel::InsertItem(Node* parent,
             previous = parent->GetChild();
 
             // Find the last child.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( ;; )
             {
                 Node* const next = previous->GetNext();
@@ -755,9 +724,6 @@ void wxTreeListModel::DeleteItem(Node* item)
     else // Not the first child of its parent.
     {
         // Find the sibling just before it.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( ;; )
         {
             Node* const next = previous->GetNext();
@@ -777,9 +743,6 @@ void wxTreeListModel::DeleteItem(Node* item)
 
 void wxTreeListModel::DeleteAllItems()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( m_root->GetChild() )
     {
         m_root->DeleteChild();
@@ -987,9 +950,6 @@ wxTreeListModel::GetChildren(const wxDataViewItem& item,
     Node* const node = FromDVI(item);
 
     unsigned numChildren = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( Node* child = node->GetChild(); child; child = child->GetNext() )
     {
         children.push_back(ToDVI(child));
@@ -1409,9 +1369,6 @@ unsigned wxTreeListCtrl::GetSelections(wxTreeListItems& selections) const
     wxDataViewItemArray selectionsDV;
     const unsigned numSelected = m_view->GetSelections(selectionsDV);
     selections.resize(numSelected);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( unsigned n = 0; n < numSelected; n++ )
         selections[n] = m_model->FromNonRootDVI(selectionsDV[n]);
 
@@ -1471,9 +1428,6 @@ wxTreeListCtrl::CheckItemRecursively(wxTreeListItem item, wxCheckBoxState state)
 
     m_model->CheckItem(item, state);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxTreeListItem child = GetFirstChild(item);
           child.IsOk();
           child = GetNextSibling(child) )
@@ -1488,9 +1442,6 @@ void wxTreeListCtrl::UpdateItemParentStateRecursively(wxTreeListItem item)
 
     wxASSERT_MSG( HasFlag(wxTL_3STATE), "Can only be used with wxTL_3STATE" );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ;; )
     {
         wxTreeListItem parent = GetItemParent(item);
@@ -1525,9 +1476,6 @@ wxTreeListCtrl::AreAllChildrenInState(wxTreeListItem item,
 {
     wxCHECK_MSG( item.IsOk(), false, "Invalid item" );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxTreeListItem child = GetFirstChild(item);
           child.IsOk();
           child = GetNextSibling(child) )
@@ -1553,9 +1501,6 @@ void wxTreeListCtrl::SetSortColumn(unsigned col, bool ascendingOrder)
 bool wxTreeListCtrl::GetSortColumn(unsigned* col, bool* ascendingOrder)
 {
     const unsigned numColumns = m_view->GetColumnCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( unsigned n = 0; n < numColumns; n++ )
     {
         wxDataViewColumn* const column = m_view->GetColumn(n);
@@ -1689,9 +1634,6 @@ void wxTreeListCtrl::OnSize(wxSizeEvent& event)
         // up to the total size, horizontal scrollbar (unnecessarily) appears,
         // so subtract a bit to ensure this doesn't happen.
         int remainingWidth = rect.width - 5;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( unsigned n = 1; n < GetColumnCount(); n++ )
         {
             remainingWidth -= GetColumnWidth(n);

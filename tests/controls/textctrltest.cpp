@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/controls/textctrltest.cpp
 // Purpose:     wxTextCtrl unit test
@@ -541,9 +534,6 @@ void TextCtrlTestCase::LongText()
 
     // Pattern for the line.
     wxChar linePattern[lenPattern+1];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < lenPattern - 1; i++)
     {
         linePattern[i] = wxChar('0' + i % 10);
@@ -552,18 +542,12 @@ void TextCtrlTestCase::LongText()
 
     // Fill the control.
     m_text->SetMaxLength(15000);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < numLines; i++)
     {
         m_text->AppendText(wxString::Format(wxT("[%3d] %s\n"), i, linePattern));
     }
 
     // Check the content.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < numLines; i++)
     {
         wxString pattern = wxString::Format(wxT("[%3d] %s"), i, linePattern);

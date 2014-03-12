@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  *  Name:        wx/defs.h
  *  Purpose:     Declarations/definitions common to all wx source files
@@ -2429,8 +2422,6 @@ enum wxHatchStyle
              wxFontFamily, wxFontStyle, wxFontWeight, wxBrushStyle,
              wxPenStyle, wxPenCap, wxPenJoin enum values instead!
 */
-
-#if WXWIN_COMPATIBILITY_3_0
 
 /* don't use any elements of this enum in the new code */
 enum wxDeprecatedGUIConstants

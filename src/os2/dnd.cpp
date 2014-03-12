@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/dnd.cpp
 // Purpose:     wxDropTarget, wxDropSource, wxDataObject implementation
@@ -166,9 +159,6 @@ MRESULT CIDropTarget::DragOver ()
     }
     uIndicator = DOR_DROP;
     ulItems = (ULONG)::DrgQueryDragitemCount(m_pDragInfo);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < ulItems; i++)
     {
         m_pDragItem = ::DrgQueryDragitemPtr(m_pDragInfo, i);
@@ -239,9 +229,6 @@ MRESULT CIDropTarget::Drop ()
     }
     uIndicator = DOR_DROP;
     ulItems = (ULONG)::DrgQueryDragitemCount(m_pDragInfo);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < ulItems; i++)
     {
         m_pDragItem = ::DrgQueryDragitemPtr(m_pDragInfo, i);
@@ -334,9 +321,6 @@ wxDataFormat wxDropTarget::GetSupportedFormat (
                                 ,wxDataObject::Set
                                );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (n = 0; n < ulFormats; n++)
     {
         switch(pFormats[n].GetType())
@@ -399,9 +383,6 @@ wxDataFormat wxDropTarget::GetSupportedFormat (
                 sFormat    = wxT("DRF_UNKNOWN");
                 break;
         }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < ulItems; i++)
         {
             pDragItem = ::DrgQueryDragitemPtr(pDataSource, i);
@@ -585,9 +566,6 @@ void wxDropSource::Init ()
     hStrContainer = ::DrgAddStrHandle((PSZ)zContainer);
 
     m_pDragItem = new DRAGITEM[m_ulItems];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (ULONG i = 0; i < m_ulItems; i++)
     {
         m_pDragItem[i].hwndItem          = m_pWindow->GetHWND();

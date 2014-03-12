@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/artmsw.cpp
 // Purpose:     stock wxArtProvider instance with native MSW stock icons
@@ -123,9 +116,6 @@ GetDriveBitmapForVolumeType(const wxFSVolumeKind& volKind, const wxSize& size)
 {
     // get all volumes and try to find one with a matching type
     wxArrayString volumes = wxFSVolume::GetVolumes();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t i = 0; i < volumes.Count(); i++ )
     {
         wxFSVolume vol( volumes[i] );
