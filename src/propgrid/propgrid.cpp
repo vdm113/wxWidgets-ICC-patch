@@ -218,8 +218,6 @@ wxPGGlobalVarsClass::wxPGGlobalVarsClass()
 
 wxPGGlobalVarsClass::~wxPGGlobalVarsClass()
 {
-    size_t i;
-
     delete m_defaultRenderer;
 
     // This will always have one ref
@@ -229,7 +227,7 @@ wxPGGlobalVarsClass::~wxPGGlobalVarsClass()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-    for ( i=0; i<m_arrValidators.size(); i++ )
+    for ( size_t i = 0; i < m_arrValidators.size(); i++ )
         delete ((wxValidator*)m_arrValidators[i]);
 #endif
 
