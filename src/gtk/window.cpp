@@ -1554,9 +1554,6 @@ static void SendSetCursorEvent(wxWindowGTK* win, int x, int y)
 {
     wxSetCursorEvent event(x, y);
     wxWindowGTK* w = win;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     do {
         if (w->GTKProcessEvent(event))
         {
@@ -3769,7 +3766,7 @@ void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize)
             isBusyOrGlobalCursor = true;
         else if (wxIsBusy())
         {
-            wxWindow* win = wxGetTopLevelParent(this);
+            wxWindow* win = wxGetTopLevelParent(static_cast<wxWindow*>(this));
             if (win && win->m_widget && !gtk_window_get_modal(GTK_WINDOW(win->m_widget)))
                 isBusyOrGlobalCursor = true;
         }
