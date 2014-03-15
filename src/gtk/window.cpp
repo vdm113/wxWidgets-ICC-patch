@@ -3776,7 +3776,14 @@ void wxWindowGTK::GTKUpdateCursor()
         !gtk_widget_get_realized(m_widget) ||
         (m_wxwindow == NULL && !gtk_widget_get_has_window(m_widget)))
     {
-        return;
+        if (g_globalCursor.IsOk())
+            isBusyOrGlobalCursor = true;
+        else if (wxIsBusy())
+        {
+            wxWindow* win = wxGetTopLevelParent(static_cast<wxWindow*>(this));
+            if (win && win->m_widget && !gtk_window_get_modal(GTK_WINDOW(win->m_widget)))
+                isBusyOrGlobalCursor = true;
+        }
     }
 
     GdkCursor* cursor = NULL;
