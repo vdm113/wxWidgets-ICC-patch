@@ -1045,6 +1045,10 @@ bool wxTopLevelWindowGTK::Show( bool show )
         wxSizeEvent event(GetSize(), GetId());
         event.SetEventObject(this);
         HandleWindowEvent(event);
+
+#ifdef __WXGTK3__
+        GTKSizeRevalidate();
+#endif
     }
 
     bool change = base_type::Show(show);
@@ -1298,6 +1302,9 @@ void wxTopLevelWindowGTK::GTKUpdateDecorSize(const DecorSize& decorSize)
         sizeEvent.SetEventObject(this);
         HandleWindowEvent(sizeEvent);
 
+#ifdef __WXGTK3__
+        GTKSizeRevalidate();
+#endif
         gtk_widget_show(m_widget);
 
         wxShowEvent showEvent(GetId(), true);
