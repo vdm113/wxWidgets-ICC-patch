@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/drawing/testimagefile.h
 // Purpose:     Functions to test whether the content of files or images files
@@ -30,9 +23,6 @@ bool AreFilesContentsEqual(const wxString &filename, const wxString &refFilename
     wxUint8 buffer[1024], refBuffer[sizeof(buffer)];
 
     wxFileOffset remainingLength = refLength;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (remainingLength != 0)
     {
         input.Read (buffer, wxMin(remainingLength, sizeof(buffer)));
@@ -55,7 +45,7 @@ bool AreFilesContentsEqual(const wxString &filename, const wxString &refFilename
     WX_ASSERT_MESSAGE(\
         ("Files \"%s\" and \"%s\" differ.",\
             filename1, filename2),\
-        AreFilesContentsEqual(filename1, filename2))
+        AreImagesFilesContentsEqual(filename1, filename2))
 
 bool AreImagesFilesContentsEqual(const wxString &filename,
                                  const wxString &refFilename)
