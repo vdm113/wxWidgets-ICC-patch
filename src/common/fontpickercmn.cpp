@@ -56,8 +56,6 @@ IMPLEMENT_DYNAMIC_CLASS(wxFontPickerEvent, wxCommandEvent)
 // wxFontPickerCtrl
 // ----------------------------------------------------------------------------
 
-#define M_PICKER     ((wxFontPickerWidget*)m_picker)
-
 bool wxFontPickerCtrl::Create( wxWindow *parent, wxWindowID id,
                         const wxFont &initial,
                         const wxPoint &pos, const wxSize &size,
@@ -123,7 +121,7 @@ wxFont wxFontPickerCtrl::String2Font(const wxString &s)
 
 void wxFontPickerCtrl::SetSelectedFont(const wxFont &f)
 {
-    M_PICKER->SetSelectedFont(f);
+    GetPickerWidget()->SetSelectedFont(f);
     UpdateTextCtrlFromPicker();
 }
 
@@ -139,9 +137,9 @@ void wxFontPickerCtrl::UpdatePickerFromTextCtrl()
     if (!f.IsOk())
         return;     // invalid user input
 
-    if (M_PICKER->GetSelectedFont() != f)
+    if (GetPickerWidget()->GetSelectedFont() != f)
     {
-        M_PICKER->SetSelectedFont(f);
+        GetPickerWidget()->SetSelectedFont(f);
 
         // fire an event
         wxFontPickerEvent event(this, GetId(), f);
@@ -156,7 +154,7 @@ void wxFontPickerCtrl::UpdateTextCtrlFromPicker()
 
     // Take care to use ChangeValue() here and not SetValue() to avoid
     // infinite recursion.
-    m_text->ChangeValue(Font2String(M_PICKER->GetSelectedFont()));
+    m_text->ChangeValue(Font2String(GetPickerWidget()->GetSelectedFont()));
 }
 
 
