@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/drawing/basictest.cpp
 // Purpose:     Basic tests for wxGraphicsContext
@@ -25,7 +18,7 @@
 #ifndef WX_PRECOMP
     #include "wx/app.h"
     #include "wx/font.h"
-//    #include "wx/window.h"
+    #include "wx/window.h"
 #endif // WX_PRECOMP
 
 #define _WX_CURSOR_H_BASE_
