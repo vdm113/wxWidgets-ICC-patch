@@ -16,13 +16,18 @@
 #endif
 
 #ifndef WX_PRECOMP
-    #include "wx/log.h"
+    #include "wx/app.h"
+    #include "wx/font.h"
+    #include "wx/window.h"
 #endif // WX_PRECOMP
+
+#define _WX_CURSOR_H_BASE_
+
 
 #include "drawing.h"
 
 #if wxUSE_TEST_GC_DRAWING
-#include "wx/dynlib.h"
+#include <wx/dynlib.h>
 
 void GraphicsContextDrawingTestCase::RunPluginsDrawingCase (
     const DrawingTestCase & testCase)
