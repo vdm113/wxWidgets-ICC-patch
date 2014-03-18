@@ -76,15 +76,13 @@ __LIB_PNG_IF_MONO_p =
 !ifeq MONOLITHIC 1
 __LIB_PNG_IF_MONO_p = $(__LIB_PNG_p)
 !endif
-__test_drawing___depname =
-!ifeq USE_GUI 1
-__test_drawing___depname = $(OBJS)\test_drawing.exe
+__LIB_PNG_IF_MONO_p_1 =
+!ifeq MONOLITHIC 1
+__LIB_PNG_IF_MONO_p_1 = $(__LIB_PNG_p)
 !endif
-__test_drawingplugin___depname =
-!ifeq SHARED 1
-!ifeq USE_GUI 1
-__test_drawingplugin___depname = $(OBJS)\test_drawingplugin.dll
-!endif
+__LIB_PNG_IF_MONO_p_2 =
+!ifeq MONOLITHIC 1
+__LIB_PNG_IF_MONO_p_2 = $(__LIB_PNG_p)
 !endif
 __test_gui___depname =
 !ifeq USE_GUI 1
@@ -124,6 +122,20 @@ __WXLIB_HTML_p =
 __WXLIB_HTML_p = &
 	wx$(PORTNAME)$(WXUNIVNAME)$(WX_RELEASE_NODOT)$(WXUNICODEFLAG)$(WXDEBUGFLAG)$(WX_LIB_FLAVOUR)_html.lib
 !endif
+__LIB_SCINTILLA_IF_MONO_p =
+!ifeq MONOLITHIC 1
+!ifeq USE_STC 1
+__LIB_SCINTILLA_IF_MONO_p = wxscintilla$(WXDEBUGFLAG).lib
+!endif
+!endif
+__LIB_TIFF_p =
+!ifeq USE_GUI 1
+__LIB_TIFF_p = wxtiff$(WXDEBUGFLAG).lib
+!endif
+__LIB_JPEG_p =
+!ifeq USE_GUI 1
+__LIB_JPEG_p = wxjpeg$(WXDEBUGFLAG).lib
+!endif
 __WXLIB_XML_p =
 !ifeq MONOLITHIC 0
 __WXLIB_XML_p = &
@@ -159,11 +171,11 @@ __DEBUGINFO_3 = debug all
 !endif
 !ifeq BUILD release
 !ifeq DEBUG_INFO default
-__DEBUGINFO_3 = 
+__DEBUGINFO_3 =
 !endif
 !endif
 !ifeq DEBUG_INFO 0
-__DEBUGINFO_3 = 
+__DEBUGINFO_3 =
 !endif
 !ifeq DEBUG_INFO 1
 __DEBUGINFO_3 = debug all
@@ -217,20 +229,6 @@ __WXLIB_MONO_p =
 !ifeq MONOLITHIC 1
 __WXLIB_MONO_p = &
 	wx$(PORTNAME)$(WXUNIVNAME)$(WX_RELEASE_NODOT)$(WXUNICODEFLAG)$(WXDEBUGFLAG)$(WX_LIB_FLAVOUR).lib
-!endif
-__LIB_SCINTILLA_IF_MONO_p =
-!ifeq MONOLITHIC 1
-!ifeq USE_STC 1
-__LIB_SCINTILLA_IF_MONO_p = wxscintilla$(WXDEBUGFLAG).lib
-!endif
-!endif
-__LIB_TIFF_p =
-!ifeq USE_GUI 1
-__LIB_TIFF_p = wxtiff$(WXDEBUGFLAG).lib
-!endif
-__LIB_JPEG_p =
-!ifeq USE_GUI 1
-__LIB_JPEG_p = wxjpeg$(WXDEBUGFLAG).lib
 !endif
 __LIB_PNG_p =
 !ifeq USE_GUI 1
@@ -516,7 +514,7 @@ $(OBJS) :
 
 ### Targets: ###
 
-all : .SYMBOLIC $(OBJS)\test.exe $(__test_drawing___depname) $(__test_drawingplugin___depname) $(__test_gui___depname) data data-images fr
+all : .SYMBOLIC $(OBJS)\test.exe $(OBJS)\test_drawing.exe $(OBJS)\test_drawingplugin.dll $(__test_gui___depname) data data-images fr
 
 clean : .SYMBOLIC 
 	-if exist $(OBJS)\*.obj del $(OBJS)\*.obj
@@ -536,12 +534,11 @@ $(OBJS)\test.exe :  $(TEST_OBJECTS)
 	@%append $(OBJS)\test.lbc option caseexact
 	@%append $(OBJS)\test.lbc  $(__DEBUGINFO_3)  libpath $(LIBDIRNAME) system nt ref 'main_' $(CPPUNIT_LIBS) $(____CAIRO_LIBDIR_FILENAMES) $(LDFLAGS)
 	@for %i in ($(TEST_OBJECTS)) do @%append $(OBJS)\test.lbc file %i
-	@for %i in ( $(__WXLIB_NET_p)  $(__WXLIB_XML_p)  $(__WXLIB_BASE_p)  $(__WXLIB_MONO_p) $(__LIB_PNG_IF_MONO_p) wxzlib$(WXDEBUGFLAG).lib wxregex$(WXUNICODEFLAG)$(WXDEBUGFLAG).lib wxexpat$(WXDEBUGFLAG).lib $(EXTRALIBS_FOR_BASE) $(__CAIRO_LIB_p) kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib) do @%append $(OBJS)\test.lbc library %i
+	@for %i in ( $(__WXLIB_NET_p)  $(__WXLIB_XML_p)  $(__WXLIB_BASE_p)  $(__WXLIB_MONO_p) $(__LIB_PNG_IF_MONO_p) wxzlib$(WXDEBUGFLAG).lib wxregex$(WXUNICODEFLAG)$(WXDEBUGFLAG).lib wxexpat$(WXDEBUGFLAG).lib $(EXTRALIBS_FOR_BASE)  $(__CAIRO_LIB_p) kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib) do @%append $(OBJS)\test.lbc library %i
 	@%append $(OBJS)\test.lbc
 	@for %i in () do @%append $(OBJS)\test.lbc option stack=%i
 	wlink @$(OBJS)\test.lbc
 
-!ifeq USE_GUI 1
 $(OBJS)\test_drawing.exe :  $(TEST_DRAWING_OBJECTS)
 	@%create $(OBJS)\test_drawing.lbc
 	@%append $(OBJS)\test_drawing.lbc option quiet
@@ -549,14 +546,11 @@ $(OBJS)\test_drawing.exe :  $(TEST_DRAWING_OBJECTS)
 	@%append $(OBJS)\test_drawing.lbc option caseexact
 	@%append $(OBJS)\test_drawing.lbc  $(__DEBUGINFO_3)  libpath $(LIBDIRNAME) system nt ref 'main_' $(CPPUNIT_LIBS) $(____CAIRO_LIBDIR_FILENAMES) $(LDFLAGS)
 	@for %i in ($(TEST_DRAWING_OBJECTS)) do @%append $(OBJS)\test_drawing.lbc file %i
-	@for %i in ( $(__WXLIB_CORE_p)  $(__WXLIB_NET_p)  $(__WXLIB_BASE_p)  $(__WXLIB_MONO_p) $(__LIB_SCINTILLA_IF_MONO_p) $(__LIB_TIFF_p) $(__LIB_JPEG_p) $(__LIB_PNG_p)   wxzlib$(WXDEBUGFLAG).lib wxregex$(WXUNICODEFLAG)$(WXDEBUGFLAG).lib wxexpat$(WXDEBUGFLAG).lib $(EXTRALIBS_FOR_BASE) $(__CAIRO_LIB_p) kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib) do @%append $(OBJS)\test_drawing.lbc library %i
+	@for %i in ( $(__WXLIB_CORE_p)  $(__WXLIB_NET_p)  $(__WXLIB_BASE_p)  $(__WXLIB_MONO_p) $(__LIB_PNG_IF_MONO_p_1) wxzlib$(WXDEBUGFLAG).lib wxregex$(WXUNICODEFLAG)$(WXDEBUGFLAG).lib wxexpat$(WXDEBUGFLAG).lib $(EXTRALIBS_FOR_BASE)  $(__CAIRO_LIB_p) kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib) do @%append $(OBJS)\test_drawing.lbc library %i
 	@%append $(OBJS)\test_drawing.lbc
 	@for %i in () do @%append $(OBJS)\test_drawing.lbc option stack=%i
 	wlink @$(OBJS)\test_drawing.lbc
-!endif
 
-!ifeq SHARED 1
-!ifeq USE_GUI 1
 $(OBJS)\test_drawingplugin.dll :  $(TEST_DRAWINGPLUGIN_OBJECTS)
 	@%create $(OBJS)\test_drawingplugin.lbc
 	@%append $(OBJS)\test_drawingplugin.lbc option quiet
@@ -564,12 +558,10 @@ $(OBJS)\test_drawingplugin.dll :  $(TEST_DRAWINGPLUGIN_OBJECTS)
 	@%append $(OBJS)\test_drawingplugin.lbc option caseexact
 	@%append $(OBJS)\test_drawingplugin.lbc  $(__DEBUGINFO_3)  libpath $(LIBDIRNAME) $(____CAIRO_LIBDIR_FILENAMES) $(LDFLAGS)
 	@for %i in ($(TEST_DRAWINGPLUGIN_OBJECTS)) do @%append $(OBJS)\test_drawingplugin.lbc file %i
-	@for %i in ( $(__WXLIB_CORE_p)  $(__WXLIB_BASE_p)  $(__WXLIB_MONO_p) $(__LIB_SCINTILLA_IF_MONO_p) $(__LIB_TIFF_p) $(__LIB_JPEG_p) $(__LIB_PNG_p)   wxzlib$(WXDEBUGFLAG).lib wxregex$(WXUNICODEFLAG)$(WXDEBUGFLAG).lib wxexpat$(WXDEBUGFLAG).lib $(EXTRALIBS_FOR_BASE) $(__CAIRO_LIB_p) kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib) do @%append $(OBJS)\test_drawingplugin.lbc library %i
+	@for %i in ( $(__WXLIB_CORE_p)  $(__WXLIB_BASE_p)  $(__WXLIB_MONO_p) $(__LIB_PNG_IF_MONO_p_2) wxzlib$(WXDEBUGFLAG).lib wxregex$(WXUNICODEFLAG)$(WXDEBUGFLAG).lib wxexpat$(WXDEBUGFLAG).lib $(EXTRALIBS_FOR_BASE)  $(__CAIRO_LIB_p) kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib) do @%append $(OBJS)\test_drawingplugin.lbc library %i
 	@%append $(OBJS)\test_drawingplugin.lbc
 	@%append $(OBJS)\test_drawingplugin.lbc system nt_dll
 	wlink @$(OBJS)\test_drawingplugin.lbc
-!endif
-!endif
 
 !ifeq USE_GUI 1
 $(OBJS)\test_gui.exe :  $(TEST_GUI_OBJECTS) $(OBJS)\test_gui_sample.res
@@ -579,7 +571,7 @@ $(OBJS)\test_gui.exe :  $(TEST_GUI_OBJECTS) $(OBJS)\test_gui_sample.res
 	@%append $(OBJS)\test_gui.lbc option caseexact
 	@%append $(OBJS)\test_gui.lbc  $(__DEBUGINFO_3)  libpath $(LIBDIRNAME) $(CPPUNIT_LIBS) system nt ref 'main_' $(____CAIRO_LIBDIR_FILENAMES) $(LDFLAGS)
 	@for %i in ($(TEST_GUI_OBJECTS)) do @%append $(OBJS)\test_gui.lbc file %i
-	@for %i in ( $(__WXLIB_WEBVIEW_p) $(__WXLIB_RICHTEXT_p)  $(__WXLIB_MEDIA_p)  $(__WXLIB_XRC_p)  $(__WXLIB_XML_p)  $(__WXLIB_ADV_p)  $(__WXLIB_HTML_p)  $(__WXLIB_CORE_p)  $(__WXLIB_NET_p)  $(__WXLIB_BASE_p)  $(__WXLIB_MONO_p) $(__LIB_SCINTILLA_IF_MONO_p) $(__LIB_TIFF_p) $(__LIB_JPEG_p) $(__LIB_PNG_p)   wxzlib$(WXDEBUGFLAG).lib wxregex$(WXUNICODEFLAG)$(WXDEBUGFLAG).lib wxexpat$(WXDEBUGFLAG).lib $(EXTRALIBS_FOR_BASE) $(__CAIRO_LIB_p) kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib) do @%append $(OBJS)\test_gui.lbc library %i
+	@for %i in ( $(__WXLIB_WEBVIEW_p) $(__WXLIB_RICHTEXT_p)  $(__WXLIB_MEDIA_p)  $(__WXLIB_XRC_p)  $(__WXLIB_XML_p)  $(__WXLIB_ADV_p)  $(__WXLIB_HTML_p)  $(__WXLIB_CORE_p)  $(__WXLIB_NET_p)  $(__WXLIB_BASE_p)  $(__WXLIB_MONO_p) $(__LIB_SCINTILLA_IF_MONO_p) $(__LIB_TIFF_p) $(__LIB_JPEG_p) $(__LIB_PNG_p)   wxzlib$(WXDEBUGFLAG).lib wxregex$(WXUNICODEFLAG)$(WXDEBUGFLAG).lib wxexpat$(WXDEBUGFLAG).lib $(EXTRALIBS_FOR_BASE)  $(__CAIRO_LIB_p) kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib) do @%append $(OBJS)\test_gui.lbc library %i
 	@%append $(OBJS)\test_gui.lbc option resource=$(OBJS)\test_gui_sample.res
 	@for %i in () do @%append $(OBJS)\test_gui.lbc option stack=%i
 	wlink @$(OBJS)\test_gui.lbc
@@ -871,7 +863,7 @@ $(OBJS)\test_drawingplugin_pluginsample.obj :  .AUTODEPEND .\drawing\pluginsampl
 	$(CXX) -bt=nt -zq -fo=$^@ $(TEST_DRAWINGPLUGIN_CXXFLAGS) $<
 
 $(OBJS)\test_gui_sample.res :  .AUTODEPEND .\..\samples\sample.rc
-	wrc -q -ad -bt=nt -r -fo=$^@    -d__WXMSW__ $(__WXUNIV_DEFINE_p) $(__DEBUG_DEFINE_p) $(__NDEBUG_DEFINE_p) $(__EXCEPTIONS_DEFINE_p) $(__RTTI_DEFINE_p) $(__THREAD_DEFINE_p) $(__UNICODE_DEFINE_p) -i=$(SETUPHDIR) -i=.\..\include $(____CAIRO_INCLUDEDIR_FILENAMES) -i=. $(__DLLFLAG_p) -i=.\..\samples -dNOPCH $<
+	wrc -q -ad -bt=nt -r -fo=$^@    -d__WXMSW__ $(__WXUNIV_DEFINE_p) $(__DEBUG_DEFINE_p) $(__NDEBUG_DEFINE_p) $(__EXCEPTIONS_DEFINE_p) $(__RTTI_DEFINE_p) $(__THREAD_DEFINE_p) $(__UNICODE_DEFINE_p)  -i=$(SETUPHDIR) -i=.\..\include $(____CAIRO_INCLUDEDIR_FILENAMES) -i=. $(__DLLFLAG_p) -i=.\..\samples -dNOPCH $<
 
 $(OBJS)\test_gui_dummy.obj :  .AUTODEPEND .\dummy.cpp
 	$(CXX) -bt=nt -zq -fo=$^@ $(TEST_GUI_CXXFLAGS) $<
