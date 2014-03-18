@@ -28,7 +28,7 @@ class WXDLLIMPEXP_CORE wxFontButton : public wxButton,
                                       public wxFontPickerWidgetBase
 {
 public:
-    wxFontButton() {}
+    wxFontButton() { Init(); }
     wxFontButton(wxWindow *parent,
                  wxWindowID id,
                  const wxFont& initial = wxNullFont,
@@ -38,7 +38,9 @@ public:
                  const wxValidator& validator = wxDefaultValidator,
                  const wxString& name = wxFontPickerWidgetNameStr)
     {
-       Create(parent, id, initial, pos, size, style, validator, name);
+        Init();
+
+        Create(parent, id, initial, pos, size, style, validator, name);
     }
 
     bool Create(wxWindow *parent,
@@ -49,6 +51,12 @@ public:
                 long style = wxFONTBTN_DEFAULT_STYLE,
                 const wxValidator& validator = wxDefaultValidator,
                 const wxString& name = wxFontPickerWidgetNameStr);
+
+    virtual wxColour GetSelectedColour() const
+        { return m_selectedColour; }
+
+    void SetSelectedColour(const wxColour &colour)
+        { m_selectedColour = colour; }
 
     virtual ~wxFontButton();
 
@@ -62,6 +70,16 @@ public:     // used by the GTK callback only
         { m_selectedFont.SetNativeFontInfo(wxString::FromAscii(gtkdescription)); }
 
 private:
+    // Common part of both ctors.
+    void Init()
+    {
+        m_selectedColour = *wxBLACK;
+    }
+
+    // This can't be changed by the user, but is provided to
+    // satisfy the wxFontPickerWidgetBase interface.
+    wxColour m_selectedColour;
+
     DECLARE_DYNAMIC_CLASS(wxFontButton)
 };
 
