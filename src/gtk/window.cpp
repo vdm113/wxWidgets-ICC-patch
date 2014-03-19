@@ -1554,6 +1554,9 @@ static void SendSetCursorEvent(wxWindowGTK* win, int x, int y)
 {
     wxSetCursorEvent event(x, y);
     wxWindowGTK* w = win;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     do {
         if (w->GTKProcessEvent(event))
         {
@@ -4608,6 +4611,9 @@ GdkWindow *wxWindowGTK::GTKGetWindow(wxArrayGdkWindows& WXUNUSED(windows)) const
 void wxWindowGTK::GTKSizeRevalidate()
 {
     GList* next;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (GList* p = gs_sizeRevalidateList; p; p = next)
     {
         next = p->next;
