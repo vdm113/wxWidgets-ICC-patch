@@ -57,8 +57,8 @@ public:
                             wxDataViewCellMode mode = wxDATAVIEW_CELL_INERT,
                             int align = wxDVR_DEFAULT_ALIGNMENT );
 
-    bool SetValue( const wxVariant &value );
-    bool GetValue( wxVariant &value ) const;
+    virtual bool SetValue( const wxVariant &value );
+    virtual bool GetValue( wxVariant &value ) const;
 
     virtual bool Render(wxRect cell, wxDC *dc, int state);
     virtual wxSize GetSize() const;
@@ -87,11 +87,11 @@ public:
                               wxDataViewCellMode mode = wxDATAVIEW_CELL_INERT,
                               int align = wxDVR_DEFAULT_ALIGNMENT );
 
-    bool SetValue( const wxVariant &value );
-    bool GetValue( wxVariant &value ) const;
+    virtual bool SetValue( const wxVariant &value );
+    virtual bool GetValue( wxVariant &value ) const;
 
-    bool Render( wxRect cell, wxDC *dc, int state );
-    wxSize GetSize() const;
+    virtual bool Render( wxRect cell, wxDC *dc, int state );
+    virtual wxSize GetSize() const;
 
 private:
     wxIcon m_icon;
@@ -112,11 +112,11 @@ public:
                               wxDataViewCellMode mode = wxDATAVIEW_CELL_INERT,
                               int align = wxDVR_DEFAULT_ALIGNMENT );
 
-    bool SetValue( const wxVariant &value );
-    bool GetValue( wxVariant &value ) const;
+    virtual bool SetValue( const wxVariant &value );
+    virtual bool GetValue( wxVariant &value ) const;
 
-    bool Render( wxRect cell, wxDC *dc, int state );
-    wxSize GetSize() const;
+    virtual bool Render( wxRect cell, wxDC *dc, int state );
+    virtual wxSize GetSize() const;
 
     // Implementation only, don't use nor override
     virtual bool WXActivateCell(const wxRect& cell,
@@ -143,8 +143,8 @@ public:
                                 wxDataViewCellMode mode = wxDATAVIEW_CELL_INERT,
                                 int align = wxDVR_DEFAULT_ALIGNMENT );
 
-    bool SetValue( const wxVariant &value );
-    bool GetValue( wxVariant& value ) const;
+    virtual bool SetValue( const wxVariant &value );
+    virtual bool GetValue( wxVariant& value ) const;
 
     virtual bool Render(wxRect cell, wxDC *dc, int state);
     virtual wxSize GetSize() const;
@@ -168,8 +168,8 @@ public:
                                 wxDataViewCellMode mode = wxDATAVIEW_CELL_INERT,
                                 int align = wxDVR_DEFAULT_ALIGNMENT );
 
-    bool SetValue( const wxVariant &value );
-    bool GetValue( wxVariant &value ) const;
+    virtual bool SetValue( const wxVariant &value );
+    virtual bool GetValue( wxVariant &value ) const;
 
     virtual bool Render(wxRect cell, wxDC *dc, int state);
     virtual wxSize GetSize() const;
