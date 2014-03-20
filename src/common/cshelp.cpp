@@ -59,7 +59,7 @@ public:
         m_contextHelp = contextHelp;
     }
 
-    virtual bool ProcessEvent(wxEvent& event);
+    virtual bool ProcessEvent(wxEvent& event) wxOVERRIDE;
 
 //// Data
     wxContextHelp* m_contextHelp;
@@ -493,8 +493,8 @@ wxString wxContextId(int id)
 class wxHelpProviderModule : public wxModule
 {
 public:
-    bool OnInit();
-    void OnExit();
+    bool OnInit() wxOVERRIDE;
+    void OnExit() wxOVERRIDE;
 
 private:
     DECLARE_DYNAMIC_CLASS(wxHelpProviderModule)

@@ -661,11 +661,11 @@ class wxHIDModule : public wxModule
 
     public:
         static wxArrayPtrVoid sm_keyboards;
-        virtual bool OnInit()
+        virtual bool OnInit() wxOVERRIDE
         {
             return true;
         }
-        virtual void OnExit()
+        virtual void OnExit() wxOVERRIDE
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep

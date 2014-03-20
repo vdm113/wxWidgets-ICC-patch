@@ -434,7 +434,7 @@ class wxPrintfFormatConverterWchar : public wxFormatConverterBase<wchar_t>
 {
     virtual void HandleString(CharType WXUNUSED(conv),
                               SizeModifier WXUNUSED(size),
-                              CharType& outConv, SizeModifier& outSize)
+                              CharType& outConv, SizeModifier& outSize) wxOVERRIDE
     {
         outConv = 's';
         outSize = Size_Long;
@@ -442,7 +442,7 @@ class wxPrintfFormatConverterWchar : public wxFormatConverterBase<wchar_t>
 
     virtual void HandleChar(CharType WXUNUSED(conv),
                             SizeModifier WXUNUSED(size),
-                            CharType& outConv, SizeModifier& outSize)
+                            CharType& outConv, SizeModifier& outSize) wxOVERRIDE
     {
         outConv = 'c';
         outSize = Size_Long;
@@ -515,14 +515,14 @@ class wxPrintfFormatConverterANSI : public wxFormatConverterBase<char>
 class wxScanfFormatConverterWchar : public wxFormatConverterBase<wchar_t>
 {
     virtual void HandleString(CharType conv, SizeModifier size,
-                              CharType& outConv, SizeModifier& outSize)
+                              CharType& outConv, SizeModifier& outSize) wxOVERRIDE
     {
         outConv = 's';
         outSize = GetOutSize(conv == 'S', size);
     }
 
     virtual void HandleChar(CharType conv, SizeModifier size,
-                            CharType& outConv, SizeModifier& outSize)
+                            CharType& outConv, SizeModifier& outSize) wxOVERRIDE
     {
         outConv = 'c';
         outSize = GetOutSize(conv == 'C', size);

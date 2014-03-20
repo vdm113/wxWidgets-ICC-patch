@@ -73,7 +73,7 @@ public:
 
     virtual ~wxBitmapRefData();
 
-    virtual bool IsOk() const { return m_ok; }
+    virtual bool IsOk() const wxOVERRIDE { return m_ok; }
 
     void Free();
     void SetOk( bool isOk) { m_ok = isOk; }
@@ -1907,7 +1907,7 @@ public:
                           const wxString& name,
                           wxBitmapType type,
                           int desiredWidth,
-                          int desiredHeight);
+                          int desiredHeight) wxOVERRIDE;
 };
 
 IMPLEMENT_ABSTRACT_CLASS(wxBundleResourceHandler, wxBitmapHandler);

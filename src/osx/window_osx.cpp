@@ -163,7 +163,7 @@ public:
 
     virtual ~wxBlindPlateWindow();
 
-    virtual bool AcceptsFocus() const
+    virtual bool AcceptsFocus() const wxOVERRIDE
     {
         return false;
     }

@@ -64,7 +64,7 @@ public:
     }
 
 protected:
-    virtual wxWindow *OnCreateLine(const wxString& s)
+    virtual wxWindow *OnCreateLine(const wxString& s) wxOVERRIDE
     {
         wxWindow * const win = wxTextSizerWrapper::OnCreateLine(s);
 

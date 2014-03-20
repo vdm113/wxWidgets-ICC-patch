@@ -2090,12 +2090,12 @@ class wxTranslationsModule: public wxModule
     public:
         wxTranslationsModule() {}
 
-        bool OnInit()
+        bool OnInit() wxOVERRIDE
         {
             return true;
         }
 
-        void OnExit()
+        void OnExit() wxOVERRIDE
         {
             if ( gs_translationsOwned )
                 delete gs_translations;

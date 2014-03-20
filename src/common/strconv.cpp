@@ -2244,16 +2244,16 @@ public:
 
     // implement base class virtual methods
     virtual size_t ToWChar(wchar_t *dst, size_t dstLen,
-                           const char *src, size_t srcLen = wxNO_LEN) const;
+                           const char *src, size_t srcLen = wxNO_LEN) const wxOVERRIDE;
     virtual size_t FromWChar(char *dst, size_t dstLen,
-                             const wchar_t *src, size_t srcLen = wxNO_LEN) const;
-    virtual size_t GetMBNulLen() const;
+                             const wchar_t *src, size_t srcLen = wxNO_LEN) const wxOVERRIDE;
+    virtual size_t GetMBNulLen() const wxOVERRIDE;
 
 #if wxUSE_UNICODE_UTF8
     virtual bool IsUTF8() const;
 #endif
 
-    virtual wxMBConv *Clone() const
+    virtual wxMBConv *Clone() const wxOVERRIDE
     {
         wxMBConv_iconv *p = new wxMBConv_iconv(m_name);
         p->m_minMBCharWidth = m_minMBCharWidth;
@@ -3033,7 +3033,7 @@ public:
         Init();
     }
 
-    size_t MB2WC(wchar_t *buf, const char *psz, size_t WXUNUSED(n)) const
+    size_t MB2WC(wchar_t *buf, const char *psz, size_t WXUNUSED(n)) const wxOVERRIDE
     {
         size_t inbuf = strlen(psz);
         if (buf)
@@ -3044,7 +3044,7 @@ public:
         return inbuf;
     }
 
-    size_t WC2MB(char *buf, const wchar_t *psz, size_t WXUNUSED(n)) const
+    size_t WC2MB(char *buf, const wchar_t *psz, size_t WXUNUSED(n)) const wxOVERRIDE
     {
         const size_t inbuf = wxWcslen(psz);
         if (buf)
@@ -3056,7 +3056,7 @@ public:
         return inbuf;
     }
 
-    virtual size_t GetMBNulLen() const
+    virtual size_t GetMBNulLen() const wxOVERRIDE
     {
         switch ( m_enc )
         {
@@ -3073,7 +3073,7 @@ public:
         }
     }
 
-    virtual wxMBConv *Clone() const { return new wxMBConv_wxwin(m_enc); }
+    virtual wxMBConv *Clone() const wxOVERRIDE { return new wxMBConv_wxwin(m_enc); }
 
     bool IsOk() const { return m_ok; }
 

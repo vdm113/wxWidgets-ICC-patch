@@ -52,9 +52,9 @@ public:
         m_service(service)
     {  }
 
-    virtual void OnReadWaiting();
-    virtual void OnWriteWaiting();
-    virtual void OnExceptionWaiting();
+    virtual void OnReadWaiting() wxOVERRIDE;
+    virtual void OnWriteWaiting() wxOVERRIDE;
+    virtual void OnExceptionWaiting() wxOVERRIDE;
 
 protected:
     wxFSWatcherImplKqueue* m_service;
@@ -89,7 +89,7 @@ public:
         delete m_handler;
     }
 
-    bool Init()
+    bool Init() wxOVERRIDE
     {
         wxCHECK_MSG( !IsOk(), false,
                      "Kqueue appears to be already initialized" );
@@ -124,7 +124,7 @@ public:
         wxDELETE(m_source);
     }
 
-    virtual bool DoAdd(wxSharedPtr<wxFSWatchEntryKq> watch)
+    virtual bool DoAdd(wxSharedPtr<wxFSWatchEntryKq> watch) wxOVERRIDE
     {
         wxCHECK_MSG( IsOk(), false,
                     "Kqueue not initialized or invalid kqueue descriptor" );
@@ -147,7 +147,7 @@ public:
         return true;
     }
 
-    virtual bool DoRemove(wxSharedPtr<wxFSWatchEntryKq> watch)
+    virtual bool DoRemove(wxSharedPtr<wxFSWatchEntryKq> watch) wxOVERRIDE
     {
         wxCHECK_MSG( IsOk(), false,
                     "Kqueue not initialized or invalid kqueue descriptor" );
@@ -164,7 +164,7 @@ public:
         return true;
     }
 
-    virtual bool RemoveAll()
+    virtual bool RemoveAll() wxOVERRIDE
     {
         wxFSWatchEntries::iterator it = m_watches.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch

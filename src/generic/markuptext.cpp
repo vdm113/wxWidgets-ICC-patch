@@ -66,7 +66,7 @@ public:
     const wxSize& GetSize() const { return m_size; }
 
 
-    virtual void OnText(const wxString& text_)
+    virtual void OnText(const wxString& text_) wxOVERRIDE
     {
         const wxString text(wxControl::RemoveMnemonics(text_));
 
@@ -86,12 +86,12 @@ public:
         }
     }
 
-    virtual void OnAttrStart(const Attr& attr)
+    virtual void OnAttrStart(const Attr& attr) wxOVERRIDE
     {
         m_dc.SetFont(attr.font);
     }
 
-    virtual void OnAttrEnd(const Attr& WXUNUSED(attr))
+    virtual void OnAttrEnd(const Attr& WXUNUSED(attr)) wxOVERRIDE
     {
         m_dc.SetFont(GetFont());
     }
@@ -139,7 +139,7 @@ public:
         m_origTextBackground = dc.GetTextBackground();
     }
 
-    virtual void OnText(const wxString& text_)
+    virtual void OnText(const wxString& text_) wxOVERRIDE
     {
         wxString text;
         int indexAccel = wxControl::FindAccelIndex(text_, &text);
@@ -168,7 +168,7 @@ public:
         m_pos += bounds.width;
     }
 
-    virtual void OnAttrStart(const Attr& attr)
+    virtual void OnAttrStart(const Attr& attr) wxOVERRIDE
     {
         m_dc.SetFont(attr.font);
         if ( attr.foreground.IsOk() )
@@ -183,7 +183,7 @@ public:
         }
     }
 
-    virtual void OnAttrEnd(const Attr& attr)
+    virtual void OnAttrEnd(const Attr& attr) wxOVERRIDE
     {
         // We always restore the font because we always change it...
         m_dc.SetFont(GetFont());

@@ -1465,7 +1465,7 @@ class wxXmlSubclassFactoryCXX : public wxXmlSubclassFactory
 public:
     ~wxXmlSubclassFactoryCXX() {}
 
-    wxObject *Create(const wxString& className)
+    wxObject *Create(const wxString& className) wxOVERRIDE
     {
         wxClassInfo* classInfo = wxClassInfo::FindClass(className);
 
@@ -2983,12 +2983,12 @@ class wxXmlResourceModule: public wxModule
 DECLARE_DYNAMIC_CLASS(wxXmlResourceModule)
 public:
     wxXmlResourceModule() {}
-    bool OnInit()
+    bool OnInit() wxOVERRIDE
     {
         wxXmlResource::AddSubclassFactory(new wxXmlSubclassFactoryCXX);
         return true;
     }
-    void OnExit()
+    void OnExit() wxOVERRIDE
     {
         delete wxXmlResource::Set(NULL);
         delete wxIdRangeManager::Set(NULL);

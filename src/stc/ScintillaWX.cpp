@@ -66,7 +66,7 @@ public:
         m_swx = swx;
     }
 
-    void Notify() {
+    void Notify() wxOVERRIDE {
         m_swx->DoTick();
     }
 
@@ -133,7 +133,7 @@ public:
 #endif
     }
 
-    bool AcceptsFocus() const { return false; }
+    bool AcceptsFocus() const wxOVERRIDE { return false; }
 
     void OnPaint(wxPaintEvent& WXUNUSED(evt))
     {
@@ -161,7 +161,7 @@ public:
 
     virtual void DoSetSize(int x, int y,
                            int width, int height,
-                           int sizeFlags = wxSIZE_AUTO)
+                           int sizeFlags = wxSIZE_AUTO) wxOVERRIDE
     {
         // convert coords to screen coords since we're a top-level window
         if (x != wxDefaultCoord) {
