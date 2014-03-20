@@ -2673,10 +2673,6 @@ public :
 
     // create a native bitmap representation
     virtual wxGraphicsBitmap CreateSubBitmap( const wxGraphicsBitmap &bitmap, wxDouble x, wxDouble y, wxDouble w, wxDouble h  ) wxOVERRIDE ;
-
-    virtual wxString GetName() const wxOVERRIDE;
-    virtual void GetVersion(int *major, int *minor, int *micro) const wxOVERRIDE;
-
 private :
     DECLARE_DYNAMIC_CLASS_NO_COPY(wxMacCoreGraphicsRenderer)
 } ;
