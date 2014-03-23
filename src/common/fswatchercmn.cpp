@@ -312,9 +312,9 @@ bool wxFileSystemWatcherBase::RemoveTree(const wxFileName& path)
 
 bool wxFileSystemWatcherBase::RemoveAll()
 {
-    m_service->RemoveAll();
+    const bool ret = m_service->RemoveAll();
     m_watches.clear();
-    return true;
+    return ret;
 }
 
 int wxFileSystemWatcherBase::GetWatchedPathsCount() const
