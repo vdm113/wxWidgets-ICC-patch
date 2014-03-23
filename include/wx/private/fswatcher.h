@@ -92,6 +92,9 @@ public:
     virtual bool RemoveAll()
     {
         bool ret = true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( wxFSWatchEntries::iterator it = m_watches.begin();
               it != m_watches.end();
               ++it )
