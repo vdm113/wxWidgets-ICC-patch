@@ -180,6 +180,7 @@ public:
             m_staticText = NULL;
         }
 
+        m_nSepCount = 1;
         m_toBeDeleted  = false;
     }
 
@@ -580,15 +581,17 @@ bool wxToolBar::DoDeleteTool(size_t pos, wxToolBarToolBase *tool)
 
     m_totalFixedSize -= delta;
 
-    // do delete the button
-    m_nButtons--;
-    if ( !::SendMessage(GetHwnd(), TB_DELETEBUTTON, pos, 0) )
+    // do delete all buttons
+    m_nButtons -= nButtonsToDelete;
+    while ( nButtonsToDelete-- > 0 )
     {
-        wxLogLastError(wxT("TB_DELETEBUTTON"));
+        if ( !::SendMessage(GetHwnd(), TB_DELETEBUTTON, pos, 0) )
+        {
+            wxLogLastError(wxT("TB_DELETEBUTTON"));
 
-        return false;
+            return false;
+        }
     }
-
     static_cast<wxToolBarTool*>(tool)->ToBeDeleted();
 
     // and finally rearrange the tools
@@ -1231,9 +1234,6 @@ void wxToolBar::UpdateStretchableSpacersSize()
     unsigned numSpaces = 0;
     wxToolBarToolsList::compatibility_iterator node;
     int toolIndex = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
@@ -1273,9 +1273,6 @@ void wxToolBar::UpdateStretchableSpacersSize()
     // correct place
     int offset = 0;
     toolIndex = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
@@ -1735,9 +1732,35 @@ bool wxToolBar::HandleSize(WXWPARAM WXUNUSED(wParam), WXLPARAM lParam)
     ::SetRectEmpty(&r);
     wxToolBarToolsList::compatibility_iterator node;
     int i = 0;
-    for ( node = m_tools.GetFirst(); node; node = node->GetNext(), i++)
+    for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
-        wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
+        wxToolBarTool * const
+            tool = static_cast<wxToolBarTool *>(node->GetData());
+        if ( tool->IsToBeDeleted() )
+            continue;
+
+        // Skip hidden buttons
+        const RECT rcItem = wxGetTBItemRect(GetHwnd(), i);
+        if ( ::IsRectEmpty(&rcItem) )
+        {
+            i++;
+            continue;
+        }
+
+        if ( rcItem.top > rowPosX )
+        {
+            // We have the next row.
+            rowPosX = rcItem.top;
+
+            // Shift origin to (0, 0) to make it the same as for the total rect.
+            ::OffsetRect(&rcRow, -rcRow.left, -rcRow.top);
+
+            // And update the bounding box for all rows.
+            ::UnionRect(&r, &r, &rcRow);
+
+            // Reset the current row bounding box for the next row.
+            ::SetRectEmpty(&rcRow);
+        }
 
         // Separators shouldn't be taken into account as they are sometimes
         // reported to have the width of the entire client area by the toolbar.
@@ -1749,6 +1772,8 @@ bool wxToolBar::HandleSize(WXWPARAM WXUNUSED(wParam), WXLPARAM lParam)
             ::OffsetRect(&ritem, -ritem.left, -ritem.top); // Shift origin to (0,0)
             ::UnionRect(&r, &r, &ritem);
         }
+
+        i++;
     }
 
     if ( !r.right )
