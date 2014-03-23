@@ -180,6 +180,7 @@ public:
             m_staticText = NULL;
         }
 
+        m_nSepCount = 1;
         m_toBeDeleted  = false;
     }
 
@@ -584,11 +585,13 @@ bool wxToolBar::DoDeleteTool(size_t pos, wxToolBarToolBase *tool)
     m_nButtons--;
     if ( !::SendMessage(GetHwnd(), TB_DELETEBUTTON, pos, 0) )
     {
-        wxLogLastError(wxT("TB_DELETEBUTTON"));
+        if ( !::SendMessage(GetHwnd(), TB_DELETEBUTTON, pos, 0) )
+        {
+            wxLogLastError(wxT("TB_DELETEBUTTON"));
 
-        return false;
+            return false;
+        }
     }
-
     static_cast<wxToolBarTool*>(tool)->ToBeDeleted();
 
     // and finally rearrange the tools
@@ -1231,7 +1234,7 @@ void wxToolBar::UpdateStretchableSpacersSize()
     unsigned numSpaces = 0;
     wxToolBarToolsList::compatibility_iterator node;
     int toolIndex = 0;
-    for ( node = m_tools.GetFirst(); node; node = node->GetNext(), toolIndex++ )
+    for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
 
@@ -1245,6 +1248,8 @@ void wxToolBar::UpdateStretchableSpacersSize()
             if ( !::IsRectEmpty(&rcItem) )
                 numSpaces++;
         }
+
+        toolIndex++;
     }
 
     if ( !numSpaces )
@@ -1268,7 +1273,7 @@ void wxToolBar::UpdateStretchableSpacersSize()
     // correct place
     int offset = 0;
     toolIndex = 0;
-    for ( node = m_tools.GetFirst(); node; node = node->GetNext(), toolIndex++ )
+    for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
 
@@ -1728,9 +1733,6 @@ bool wxToolBar::HandleSize(WXWPARAM WXUNUSED(wParam), WXLPARAM lParam)
     int rowPosX = INT_MIN;
     wxToolBarToolsList::compatibility_iterator node;
     int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarTool * const
