@@ -383,6 +383,9 @@ LRESULT APIENTRY _EXPORT wxExecuteWindowCbk(HWND hWnd, UINT message,
         else
         {
             // asynchronous execution - we should do the clean up
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for ( wxVector<HANDLE>::iterator it = gs_asyncThreads.begin();
                   it != gs_asyncThreads.end();
                   ++it )
