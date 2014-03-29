@@ -180,7 +180,6 @@ public:
             m_staticText = NULL;
         }
 
-        m_nSepCount = 1;
         m_toBeDeleted  = false;
     }
 
@@ -581,17 +580,15 @@ bool wxToolBar::DoDeleteTool(size_t pos, wxToolBarToolBase *tool)
 
     m_totalFixedSize -= delta;
 
-    // do delete all buttons
-    m_nButtons -= nButtonsToDelete;
-    while ( nButtonsToDelete-- > 0 )
+    // do delete the button
+    m_nButtons--;
+    if ( !::SendMessage(GetHwnd(), TB_DELETEBUTTON, pos, 0) )
     {
-        if ( !::SendMessage(GetHwnd(), TB_DELETEBUTTON, pos, 0) )
-        {
-            wxLogLastError(wxT("TB_DELETEBUTTON"));
+        wxLogLastError(wxT("TB_DELETEBUTTON"));
 
-            return false;
-        }
+        return false;
     }
+
     static_cast<wxToolBarTool*>(tool)->ToBeDeleted();
 
     // and finally rearrange the tools
