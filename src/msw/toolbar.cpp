@@ -1844,28 +1844,10 @@ bool wxToolBar::HandlePaint(WXWPARAM wParam, WXLPARAM lParam)
 
         if ( tool->IsControl() || tool->IsStretchableSpace() )
         {
-            const size_t numSeps = tool->GetSeparatorsCount();
-            for ( size_t n = 0; n < numSeps; n++, toolIndex++ )
-            {
-                // for some reason TB_GETITEMRECT returns a rectangle 1 pixel
-                // shorter than the full window size (at least under Windows 7)
-                // but we need to erase the full width/height below
-                RECT rcItem = wxGetTBItemRect(GetHwnd(), toolIndex);
-
-                // Skip hidden buttons
-                if ( ::IsRectEmpty(&rcItem) )
-                    continue;
-
-                if ( IsVertical() )
-                {
-                    rcItem.left = 0;
-                    rcItem.right = rectTotal.width;
-                }
-                else
-                {
-                    rcItem.top = 0;
-                    rcItem.bottom = rectTotal.height;
-                }
+            // for some reason TB_GETITEMRECT returns a rectangle 1 pixel
+            // shorter than the full window size (at least under Windows 7)
+            // but we need to erase the full width/height below
+            RECT rcItem = wxGetTBItemRect(GetHwnd(), toolIndex);
 
             // Skip hidden buttons
             if ( ::IsRectEmpty(&rcItem) )
