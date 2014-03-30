@@ -56,7 +56,7 @@ class WXDLLIMPEXP_CORE wxSVGBitmapFileHandler : public wxSVGBitmapHandler
 public:
     virtual bool ProcessBitmap(const wxBitmap& bitmap,
                                wxCoord x, wxCoord y,
-                               wxOutputStream& stream) const;
+                               wxOutputStream& stream) const wxOVERRIDE;
 };
 
 // Predefined handler which embeds the bitmap (base64-encoding it) inside the
@@ -66,7 +66,7 @@ class WXDLLIMPEXP_CORE wxSVGBitmapEmbedHandler : public wxSVGBitmapHandler
 public:
     virtual bool ProcessBitmap(const wxBitmap& bitmap,
                                wxCoord x, wxCoord y,
-                               wxOutputStream& stream) const;
+                               wxOutputStream& stream) const wxOVERRIDE;
 };
 
 class WXDLLIMPEXP_CORE wxSVGFileDCImpl : public wxDCImpl
@@ -133,8 +133,6 @@ public:
     virtual void SetPen(const wxPen& pen) wxOVERRIDE;
 
     virtual void* GetHandle() const wxOVERRIDE { return NULL; }
-
-    void SetBitmapHandler(wxSVGBitmapHandler* handler);
 
     void SetBitmapHandler(wxSVGBitmapHandler* handler);
 
