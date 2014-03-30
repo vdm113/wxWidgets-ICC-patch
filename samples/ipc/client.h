@@ -82,7 +82,7 @@ protected:
     void OnRequest(wxCommandEvent& event);
 
 protected:
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 class MyConnection : public MyConnectionBase

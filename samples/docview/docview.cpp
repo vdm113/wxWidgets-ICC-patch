@@ -79,9 +79,9 @@
 
 IMPLEMENT_APP(MyApp)
 
-BEGIN_EVENT_TABLE(MyApp, wxApp)
+wxBEGIN_EVENT_TABLE(MyApp, wxApp)
     EVT_MENU(wxID_ABOUT, MyApp::OnAbout)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 MyApp::MyApp()
 {

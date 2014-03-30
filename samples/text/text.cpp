@@ -110,7 +110,7 @@ private:
 
     bool m_hasCapture;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 class MyPanel: public wxPanel
@@ -362,7 +362,7 @@ private:
 
     MyPanel *m_panel;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 /*
@@ -393,7 +393,7 @@ private:
     wxTextCtrl *m_textCtrl;
     long m_currentPosition;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 //----------------------------------------------------------------------
@@ -569,7 +569,7 @@ bool MyApp::OnInit()
 // MyTextCtrl
 //----------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(MyTextCtrl, wxTextCtrl)
+wxBEGIN_EVENT_TABLE(MyTextCtrl, wxTextCtrl)
     EVT_KEY_DOWN(MyTextCtrl::OnKeyDown)
     EVT_KEY_UP(MyTextCtrl::OnKeyUp)
     EVT_CHAR(MyTextCtrl::OnChar)
@@ -586,7 +586,7 @@ BEGIN_EVENT_TABLE(MyTextCtrl, wxTextCtrl)
 
     EVT_SET_FOCUS(MyTextCtrl::OnSetFocus)
     EVT_KILL_FOCUS(MyTextCtrl::OnKillFocus)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 bool MyTextCtrl::ms_logKey = false;
 bool MyTextCtrl::ms_logChar = false;
@@ -1378,7 +1378,7 @@ void MyPanel::DoSelectText()
 // MyFrame
 //----------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(MyFrame, wxFrame)
+wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_MENU(TEXT_QUIT,   MyFrame::OnQuit)
     EVT_MENU(TEXT_ABOUT,  MyFrame::OnAbout)
     EVT_MENU(TEXT_SAVE,   MyFrame::OnFileSave)
@@ -1433,7 +1433,7 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_MENU(TEXT_CHANGE,             MyFrame::OnChangeText)
 
     EVT_IDLE(MyFrame::OnIdle)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 MyFrame::MyFrame(wxFrame *frame, const wxChar *title, int x, int y, int w, int h)
        : wxFrame(frame, wxID_ANY, title, wxPoint(x, y), wxSize(w, h) )
@@ -1619,7 +1619,7 @@ enum
     RICHTEXT_TAB_STOPS
 };
 
-BEGIN_EVENT_TABLE(RichTextFrame, wxFrame)
+wxBEGIN_EVENT_TABLE(RichTextFrame, wxFrame)
     EVT_IDLE(RichTextFrame::OnIdle)
     EVT_MENU(RICHTEXT_CLOSE, RichTextFrame::OnClose)
     EVT_MENU(RICHTEXT_LEFT_ALIGN, RichTextFrame::OnLeftAlign)
@@ -1632,7 +1632,7 @@ BEGIN_EVENT_TABLE(RichTextFrame, wxFrame)
     EVT_MENU(RICHTEXT_LEFT_INDENT, RichTextFrame::OnLeftIndent)
     EVT_MENU(RICHTEXT_RIGHT_INDENT, RichTextFrame::OnRightIndent)
     EVT_MENU(RICHTEXT_TAB_STOPS, RichTextFrame::OnTabStops)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 RichTextFrame::RichTextFrame(wxWindow* parent, const wxString& title):
     wxFrame(parent, wxID_ANY, title, wxDefaultPosition, wxSize(300, 400))

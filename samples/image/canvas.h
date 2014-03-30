@@ -75,5 +75,5 @@ private:
     wxBitmap m_bmpSmileXpm;
     wxIcon   m_iconSmileXpm;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };

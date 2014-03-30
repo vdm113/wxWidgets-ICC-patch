@@ -140,7 +140,7 @@ private:
 
     wxImageList *m_imageList;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 enum ID_COMMANDS

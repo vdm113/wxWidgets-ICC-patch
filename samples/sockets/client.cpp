@@ -108,7 +108,7 @@ private:
   bool            m_busy;
 
   // any class wishing to process wxWidgets events must use this macro
-  DECLARE_EVENT_TABLE()
+  wxDECLARE_EVENT_TABLE();
 };
 
 // simple helper class to log start and end of each test
@@ -160,7 +160,7 @@ enum
 // event tables and other macros for wxWidgets
 // --------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(MyFrame, wxFrame)
+wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
   EVT_MENU(CLIENT_QUIT,     MyFrame::OnQuit)
   EVT_MENU(CLIENT_ABOUT,    MyFrame::OnAbout)
   EVT_MENU(CLIENT_OPEN,     MyFrame::OnOpenConnection)
@@ -176,7 +176,7 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
   EVT_MENU(CLIENT_TESTURL,  MyFrame::OnTestURL)
 #endif
   EVT_SOCKET(SOCKET_ID,     MyFrame::OnSocketEvent)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 IMPLEMENT_APP(MyApp)
 

@@ -115,7 +115,7 @@ public:
     MyCanvas(wxWindow *parent, const wxPoint& pos, const wxSize& size);
     void OnPaint(wxPaintEvent& event);
     void OnMouseEvent(wxMouseEvent& event);
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 class MyChild: public wxFrame
@@ -130,7 +130,7 @@ public:
 
     MyCanvas *canvas;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // ID for the menu quit command
@@ -327,10 +327,10 @@ wxFrame *MyApp::CreateFrame()
     return subframe;
 }
 
-BEGIN_EVENT_TABLE(MyCanvas, wxScrolledWindow)
+wxBEGIN_EVENT_TABLE(MyCanvas, wxScrolledWindow)
     EVT_PAINT(MyCanvas::OnPaint)
     EVT_MOUSE_EVENTS(MyCanvas::OnMouseEvent)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 // Define a constructor for my canvas
 MyCanvas::MyCanvas(wxWindow *parent, const wxPoint& pos, const wxSize& size)
@@ -377,11 +377,11 @@ void MyCanvas::OnMouseEvent(wxMouseEvent& event)
     s_ypos = pos.y;
 }
 
-BEGIN_EVENT_TABLE(MyChild, wxFrame)
+wxBEGIN_EVENT_TABLE(MyChild, wxFrame)
     EVT_MENU(HELLO_QUIT, MyChild::OnQuit)
     EVT_MENU(HELLO_NEW, MyChild::OnNew)
     EVT_ACTIVATE(MyChild::OnActivate)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 MyChild::MyChild(wxFrame *frame, const wxString& title, const wxPoint& pos, const wxSize& size, const long style)
        : wxFrame(frame, -1, title, pos, size, style)

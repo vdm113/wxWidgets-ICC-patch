@@ -168,14 +168,14 @@ protected:
 #endif // USE_ICONS_IN_BOOK
 
 private:
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // ----------------------------------------------------------------------------
 // event tables
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(BookWidgetsPage, WidgetsPage)
+wxBEGIN_EVENT_TABLE(BookWidgetsPage, WidgetsPage)
     EVT_BUTTON(BookPage_Reset, BookWidgetsPage::OnButtonReset)
     EVT_BUTTON(BookPage_SelectPage, BookWidgetsPage::OnButtonSelectPage)
     EVT_BUTTON(BookPage_AddPage, BookWidgetsPage::OnButtonAddPage)
@@ -192,7 +192,7 @@ BEGIN_EVENT_TABLE(BookWidgetsPage, WidgetsPage)
 
     EVT_CHECKBOX(wxID_ANY, BookWidgetsPage::OnCheckOrRadioBox)
     EVT_RADIOBOX(wxID_ANY, BookWidgetsPage::OnCheckOrRadioBox)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 // ============================================================================
 // implementation
@@ -578,7 +578,7 @@ protected:
     }
 
 private:
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     DECLARE_WIDGETS_PAGE(NotebookWidgetsPage)
 };
 
@@ -586,10 +586,10 @@ private:
 // event table
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(NotebookWidgetsPage, BookWidgetsPage)
+wxBEGIN_EVENT_TABLE(NotebookWidgetsPage, BookWidgetsPage)
     EVT_NOTEBOOK_PAGE_CHANGING(wxID_ANY, NotebookWidgetsPage::OnPageChanging)
     EVT_NOTEBOOK_PAGE_CHANGED(wxID_ANY, NotebookWidgetsPage::OnPageChanged)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 #if defined(__WXUNIVERSAL__)
     #define FAMILY_CTRLS UNIVERSAL_CTRLS
@@ -659,7 +659,7 @@ protected:
     }
 
 private:
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     DECLARE_WIDGETS_PAGE(ListbookWidgetsPage)
 };
 
@@ -667,10 +667,10 @@ private:
 // event table
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(ListbookWidgetsPage, BookWidgetsPage)
+wxBEGIN_EVENT_TABLE(ListbookWidgetsPage, BookWidgetsPage)
     EVT_LISTBOOK_PAGE_CHANGING(wxID_ANY, ListbookWidgetsPage::OnPageChanging)
     EVT_LISTBOOK_PAGE_CHANGED(wxID_ANY, ListbookWidgetsPage::OnPageChanged)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 IMPLEMENT_WIDGETS_PAGE(ListbookWidgetsPage, wxT("Listbook"),
                        GENERIC_CTRLS | BOOK_CTRLS
@@ -732,7 +732,7 @@ protected:
     }
 
 private:
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     DECLARE_WIDGETS_PAGE(ChoicebookWidgetsPage)
 };
 
@@ -740,10 +740,10 @@ private:
 // event table
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(ChoicebookWidgetsPage, BookWidgetsPage)
+wxBEGIN_EVENT_TABLE(ChoicebookWidgetsPage, BookWidgetsPage)
     EVT_CHOICEBOOK_PAGE_CHANGING(wxID_ANY, ChoicebookWidgetsPage::OnPageChanging)
     EVT_CHOICEBOOK_PAGE_CHANGED(wxID_ANY, ChoicebookWidgetsPage::OnPageChanged)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 IMPLEMENT_WIDGETS_PAGE(ChoicebookWidgetsPage, wxT("Choicebook"),
                        GENERIC_CTRLS | BOOK_CTRLS

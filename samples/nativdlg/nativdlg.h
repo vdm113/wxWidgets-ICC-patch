@@ -31,7 +31,7 @@ class MyFrame: public wxFrame
     void OnQuit(wxCommandEvent& event);
     void OnTest1(wxCommandEvent& event);
 
- DECLARE_EVENT_TABLE()
+ wxDECLARE_EVENT_TABLE();
 };
 
 class MyDialog : public wxDialog
@@ -40,7 +40,7 @@ class MyDialog : public wxDialog
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
 
- DECLARE_EVENT_TABLE()
+ wxDECLARE_EVENT_TABLE();
 };
 
 #define RESOURCE_QUIT       4

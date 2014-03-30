@@ -97,7 +97,7 @@ private:
 
 
     wxDECLARE_NO_COPY_CLASS(MyListCtrl);
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // Define a new frame type
@@ -193,7 +193,7 @@ private:
 
 
     wxDECLARE_NO_COPY_CLASS(MyFrame);
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 

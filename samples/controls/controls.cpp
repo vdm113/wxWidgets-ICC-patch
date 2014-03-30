@@ -185,7 +185,7 @@ public:
 private:
     wxLog *m_logTargetOld;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 class MyFrame: public wxFrame
@@ -239,7 +239,7 @@ private:
 
     MyPanel *m_panel;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // a button which intercepts double clicks (for testing...)
@@ -263,7 +263,7 @@ public:
     }
 
 private:
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // a combo which intercepts chars (to test Windows behaviour)
@@ -293,7 +293,7 @@ protected:
     }
 
 private:
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // a radiobox which handles focus set/kill (for testing)
@@ -331,7 +331,7 @@ protected:
     }
 
 private:
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // a choice which handles focus set/kill (for testing)
@@ -365,7 +365,7 @@ protected:
     }
 
 private:
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 
@@ -510,7 +510,7 @@ const int  ID_SIZER_CHECKBIG    = 206;
 
 const int  ID_HYPERLINK         = 300;
 
-BEGIN_EVENT_TABLE(MyPanel, wxPanel)
+wxBEGIN_EVENT_TABLE(MyPanel, wxPanel)
 EVT_IDLE      (                         MyPanel::OnIdle)
 EVT_BOOKCTRL_PAGE_CHANGING(ID_BOOK,     MyPanel::OnPageChanging)
 EVT_BOOKCTRL_PAGE_CHANGED(ID_BOOK,      MyPanel::OnPageChanged)
@@ -588,29 +588,29 @@ EVT_CHECKBOX  (ID_SIZER_CHECK4,         MyPanel::OnSizerCheck)
 EVT_CHECKBOX  (ID_SIZER_CHECK14,        MyPanel::OnSizerCheck)
 EVT_CHECKBOX  (ID_SIZER_CHECKBIG,       MyPanel::OnSizerCheck)
 
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
-BEGIN_EVENT_TABLE(MyButton, wxButton)
+wxBEGIN_EVENT_TABLE(MyButton, wxButton)
     EVT_LEFT_DCLICK(MyButton::OnDClick)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
-BEGIN_EVENT_TABLE(MyComboBox, wxComboBox)
+wxBEGIN_EVENT_TABLE(MyComboBox, wxComboBox)
     EVT_CHAR(MyComboBox::OnChar)
     EVT_KEY_DOWN(MyComboBox::OnKeyDown)
     EVT_KEY_UP(MyComboBox::OnKeyUp)
 
     EVT_SET_FOCUS(MyComboBox::OnFocusGot)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
-BEGIN_EVENT_TABLE(MyRadioBox, wxRadioBox)
+wxBEGIN_EVENT_TABLE(MyRadioBox, wxRadioBox)
     EVT_SET_FOCUS(MyRadioBox::OnFocusGot)
     EVT_KILL_FOCUS(MyRadioBox::OnFocusLost)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
-BEGIN_EVENT_TABLE(MyChoice, wxChoice)
+wxBEGIN_EVENT_TABLE(MyChoice, wxChoice)
     EVT_SET_FOCUS(MyChoice::OnFocusGot)
     EVT_KILL_FOCUS(MyChoice::OnFocusLost)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 // ============================================================================
 // implementation
@@ -1828,7 +1828,7 @@ MyPanel::~MyPanel()
 // MyFrame
 //----------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(MyFrame, wxFrame)
+wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_MENU(CONTROLS_QUIT,   MyFrame::OnQuit)
     EVT_MENU(CONTROLS_ABOUT,  MyFrame::OnAbout)
     EVT_MENU(CONTROLS_CLEAR_LOG,  MyFrame::OnClearLog)
@@ -1851,7 +1851,7 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_MOVE(MyFrame::OnMove)
 
     EVT_IDLE(MyFrame::OnIdle)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 MyFrame::MyFrame(const wxChar *title, int x, int y)
        : wxFrame(NULL, wxID_ANY, title, wxPoint(x, y), wxSize(700, 450))

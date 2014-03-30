@@ -41,7 +41,7 @@ private:
 
     bool m_dirty;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // Define a new frame
@@ -67,7 +67,7 @@ private:
 
     wxTextCtrl *m_textWindow;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 class MyChild : public wxMDIChildFrame
@@ -115,12 +115,12 @@ private:
 
         const unsigned m_numChild;
 
-        DECLARE_EVENT_TABLE()
+        wxDECLARE_EVENT_TABLE();
 
         wxDECLARE_NO_COPY_CLASS(EventHandler);
     };
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // menu items ids

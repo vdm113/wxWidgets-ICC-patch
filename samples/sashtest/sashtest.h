@@ -31,7 +31,7 @@ class MyCanvas: public wxScrolledWindow
     virtual void OnDraw(wxDC& dc) wxOVERRIDE;
     void OnEvent(wxMouseEvent& event);
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // Define a new frame

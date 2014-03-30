@@ -42,7 +42,7 @@ public:
     void OnJoystickEvent(wxJoystickEvent& event);
 
     wxJoystick* m_stick;
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 class MyFrame: public wxFrame

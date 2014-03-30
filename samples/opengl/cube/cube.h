@@ -66,7 +66,7 @@ private:
     void OnNewWindow(wxCommandEvent& event);
     void OnNewStereoWindow(wxCommandEvent& event);
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 class TestGLCanvas : public wxGLCanvas
@@ -88,7 +88,7 @@ private:
     bool m_useStereo,
          m_stereoWarningAlreadyDisplayed;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 enum

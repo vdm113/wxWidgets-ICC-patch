@@ -179,7 +179,7 @@ private:
     int m_numLines;
 
     wxDECLARE_NO_COPY_CLASS(MyFrame);
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // ----------------------------------------------------------------------------
@@ -226,7 +226,7 @@ IMPLEMENT_APP(MyApp)
 // MyFrame
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(MyFrame, wxFrame)
+wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_MENU(DebugRpt_Quit, MyFrame::OnQuit)
     EVT_MENU(DebugRpt_Crash, MyFrame::OnReportForCrash)
     EVT_MENU(DebugRpt_Current, MyFrame::OnReportForCurrent)
@@ -235,7 +235,7 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_MENU(DebugRpt_About, MyFrame::OnAbout)
 
     EVT_PAINT(MyFrame::OnPaint)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 MyFrame::MyFrame()
        : wxFrame(NULL, wxID_ANY, wxT("wxWidgets Debug Report Sample"),

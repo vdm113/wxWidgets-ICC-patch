@@ -77,7 +77,7 @@ private:
     GLfloat m_yrot;
 
     wxDECLARE_NO_COPY_CLASS(TestGLCanvas);
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 
@@ -98,7 +98,7 @@ public:
 private :
     void OnExit(wxCommandEvent& event);
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 

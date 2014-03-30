@@ -35,7 +35,7 @@ public:
     void OnMenuSub(wxCommandEvent&);
     virtual wxMenu *CreatePopupMenu() wxOVERRIDE;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 
@@ -63,5 +63,5 @@ protected:
     MyTaskBarIcon   *m_dockIcon;
 #endif
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };

@@ -169,7 +169,7 @@ private:
 #endif
 
     // any class wishing to process wxWidgets events must use this macro
-   DECLARE_EVENT_TABLE()
+   wxDECLARE_EVENT_TABLE();
 };
 
 // A custom modal dialog
@@ -180,7 +180,7 @@ public:
 
 private:
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // ----------------------------------------------------------------------------
@@ -239,7 +239,7 @@ enum
 // the event tables connect the wxWidgets events with the functions (event
 // handlers) which process them. It can be also done at run-time, but for the
 // simple menu events like this the static method is much simpler.
-BEGIN_EVENT_TABLE(MyFrame, wxFrame)
+wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_MENU(HelpDemo_Quit,  MyFrame::OnQuit)
     EVT_MENU(HelpDemo_Help_Index, MyFrame::OnHelp)
     EVT_MENU(HelpDemo_Help_Classes, MyFrame::OnHelp)
@@ -273,7 +273,7 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_MENU(HelpDemo_Help_KDE, MyFrame::OnHelp)
     EVT_MENU(HelpDemo_Help_GNOME, MyFrame::OnHelp)
     EVT_MENU(HelpDemo_Help_Netscape, MyFrame::OnHelp)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 // Create a new application object: this macro will allow wxWidgets to create
 // the application object during program execution (it's better than using a
@@ -681,8 +681,8 @@ void MyFrame::ShowHelp(int commandId, wxHelpControllerBase& helpController)
 // Demonstrates context-sensitive help
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(MyModalDialog, wxDialog)
-END_EVENT_TABLE()
+wxBEGIN_EVENT_TABLE(MyModalDialog, wxDialog)
+wxEND_EVENT_TABLE()
 
 MyModalDialog::MyModalDialog(wxWindow *parent)
              : wxDialog(parent, wxID_ANY, wxString(wxT("Modal dialog")))

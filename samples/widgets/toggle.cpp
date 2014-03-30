@@ -157,7 +157,7 @@ protected:
     wxTextCtrl *m_textLabel;
 
 private:
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     DECLARE_WIDGETS_PAGE(ToggleWidgetsPage)
 };
 
@@ -165,13 +165,13 @@ private:
 // event tables
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(ToggleWidgetsPage, WidgetsPage)
+wxBEGIN_EVENT_TABLE(ToggleWidgetsPage, WidgetsPage)
     EVT_BUTTON(TogglePage_Reset, ToggleWidgetsPage::OnButtonReset)
     EVT_BUTTON(TogglePage_ChangeLabel, ToggleWidgetsPage::OnButtonChangeLabel)
 
     EVT_CHECKBOX(wxID_ANY, ToggleWidgetsPage::OnCheckOrRadioBox)
     EVT_RADIOBOX(wxID_ANY, ToggleWidgetsPage::OnCheckOrRadioBox)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 // ============================================================================
 // implementation

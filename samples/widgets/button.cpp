@@ -176,7 +176,7 @@ protected:
 #endif // wxUSE_COMMANDLINKBUTTON
 
 private:
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     DECLARE_WIDGETS_PAGE(ButtonWidgetsPage)
 };
 
@@ -184,7 +184,7 @@ private:
 // event tables
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(ButtonWidgetsPage, WidgetsPage)
+wxBEGIN_EVENT_TABLE(ButtonWidgetsPage, WidgetsPage)
     EVT_BUTTON(ButtonPage_Button, ButtonWidgetsPage::OnButton)
 
     EVT_BUTTON(ButtonPage_Reset, ButtonWidgetsPage::OnButtonReset)
@@ -193,7 +193,7 @@ BEGIN_EVENT_TABLE(ButtonWidgetsPage, WidgetsPage)
 
     EVT_CHECKBOX(wxID_ANY, ButtonWidgetsPage::OnCheckOrRadioBox)
     EVT_RADIOBOX(wxID_ANY, ButtonWidgetsPage::OnCheckOrRadioBox)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 // ============================================================================
 // implementation

@@ -58,7 +58,7 @@ public:
 
     void OnRunDLL(wxCommandEvent& event);
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 
@@ -78,9 +78,9 @@ public:
 // MainFrame
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(MainFrame, wxFrame)
+wxBEGIN_EVENT_TABLE(MainFrame, wxFrame)
     EVT_BUTTON(ID_RUN_DLL, MainFrame::OnRunDLL)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 MainFrame::MainFrame()
     : wxFrame(NULL, wxID_ANY, "Main wx app",

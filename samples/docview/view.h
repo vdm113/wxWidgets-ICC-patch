@@ -66,7 +66,7 @@ private:
     // the last mouse press position
     wxPoint m_lastMousePos;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // The view using MyCanvas to show its contents
@@ -87,8 +87,8 @@ private:
 
     MyCanvas *m_canvas;
 
-    DECLARE_EVENT_TABLE()
-    DECLARE_DYNAMIC_CLASS(DrawingView)
+    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_DYNAMIC_CLASS(DrawingView);
 };
 
 // ----------------------------------------------------------------------------
@@ -114,8 +114,8 @@ private:
 
     wxTextCtrl *m_text;
 
-    DECLARE_EVENT_TABLE()
-    DECLARE_DYNAMIC_CLASS(TextEditView)
+    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_DYNAMIC_CLASS(TextEditView);
 };
 
 // ----------------------------------------------------------------------------
@@ -151,7 +151,7 @@ public:
 private:
     ImageCanvas* m_canvas;
 
-    DECLARE_DYNAMIC_CLASS(ImageView)
+    wxDECLARE_DYNAMIC_CLASS(ImageView);
 };
 
 // ----------------------------------------------------------------------------

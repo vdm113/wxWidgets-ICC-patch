@@ -122,7 +122,7 @@ private:
     wxSplitterWindow* m_splitter;
     wxWindow *m_replacewindow;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(MyFrame);
 };
 
@@ -140,7 +140,7 @@ public:
 private:
     wxFrame *m_frame;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(MySplitterWindow);
 };
 
@@ -185,7 +185,7 @@ bool MyApp::OnInit()
 // MyFrame
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(MyFrame, wxFrame)
+wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_MENU(SPLIT_VERTICAL, MyFrame::OnSplitVertical)
     EVT_MENU(SPLIT_HORIZONTAL, MyFrame::OnSplitHorizontal)
     EVT_MENU(SPLIT_UNSPLIT, MyFrame::OnUnsplit)
@@ -204,7 +204,7 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_UPDATE_UI(SPLIT_HORIZONTAL, MyFrame::OnUpdateUIHorizontal)
     EVT_UPDATE_UI(SPLIT_UNSPLIT, MyFrame::OnUpdateUIUnsplit)
     EVT_UPDATE_UI(SPLIT_INVISIBLE, MyFrame::OnUpdateUIInvisible)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 // My frame constructor
 MyFrame::MyFrame()
@@ -480,14 +480,14 @@ void MyFrame::OnUpdateUIInvisible(wxUpdateUIEvent& event)
 // MySplitterWindow
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(MySplitterWindow, wxSplitterWindow)
+wxBEGIN_EVENT_TABLE(MySplitterWindow, wxSplitterWindow)
     EVT_SPLITTER_SASH_POS_CHANGED(wxID_ANY, MySplitterWindow::OnPositionChanged)
     EVT_SPLITTER_SASH_POS_CHANGING(wxID_ANY, MySplitterWindow::OnPositionChanging)
 
     EVT_SPLITTER_DCLICK(wxID_ANY, MySplitterWindow::OnDClick)
 
     EVT_SPLITTER_UNSPLIT(wxID_ANY, MySplitterWindow::OnUnsplitEvent)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 MySplitterWindow::MySplitterWindow(wxFrame *parent)
                 : wxSplitterWindow(parent, wxID_ANY,

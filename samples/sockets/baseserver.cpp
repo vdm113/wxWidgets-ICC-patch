@@ -107,7 +107,7 @@ WX_DECLARE_LIST(EventWorker, EList);
 //and list of two type worker classes that serve clients
 class Server : public wxApp
 {
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 public:
     Server() : m_maxConnections(-1) {}
     ~Server() {}
@@ -204,7 +204,7 @@ private:
     void DoWrite();
     void DoRead();
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 /******************* Implementation ******************/
@@ -492,11 +492,11 @@ void Server::OnTimerEvent(wxTimerEvent&)
 }
 
 
-BEGIN_EVENT_TABLE(Server,wxEvtHandler)
+wxBEGIN_EVENT_TABLE(Server,wxEvtHandler)
   EVT_SOCKET(wxID_ANY,Server::OnSocketEvent)
   EVT_WORKER(Server::OnWorkerEvent)
   EVT_TIMER(wxID_ANY,Server::OnTimerEvent)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 
 ThreadWorker::ThreadWorker(wxSocketBase* pSocket) : wxThread(wxTHREAD_JOINABLE)
@@ -814,6 +814,6 @@ void  EventWorker::DoWrite()
     while (!m_socket->Error());
 }
 
-BEGIN_EVENT_TABLE(EventWorker,wxEvtHandler)
+wxBEGIN_EVENT_TABLE(EventWorker,wxEvtHandler)
     EVT_SOCKET(wxID_ANY,EventWorker::OnSocketEvent)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()

@@ -142,7 +142,7 @@ protected:
     wxTimer *m_timer;
 
 private:
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     DECLARE_WIDGETS_PAGE(GaugeWidgetsPage)
 };
 
@@ -150,7 +150,7 @@ private:
 // event tables
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(GaugeWidgetsPage, WidgetsPage)
+wxBEGIN_EVENT_TABLE(GaugeWidgetsPage, WidgetsPage)
     EVT_BUTTON(GaugePage_Reset, GaugeWidgetsPage::OnButtonReset)
     EVT_BUTTON(GaugePage_Progress, GaugeWidgetsPage::OnButtonProgress)
     EVT_BUTTON(GaugePage_IndeterminateProgress, GaugeWidgetsPage::OnButtonIndeterminateProgress)
@@ -169,7 +169,7 @@ BEGIN_EVENT_TABLE(GaugeWidgetsPage, WidgetsPage)
 
     EVT_TIMER(GaugePage_Timer, GaugeWidgetsPage::OnProgressTimer)
     EVT_TIMER(GaugePage_IndeterminateTimer, GaugeWidgetsPage::OnIndeterminateProgressTimer)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 // ============================================================================
 // implementation
