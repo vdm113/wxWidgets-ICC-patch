@@ -66,7 +66,7 @@ public:
                            const wxRect& rect,
                            int horizAlign,
                            int vertAlign,
-                           int WXUNUSED(textOrientation)) const
+                           int WXUNUSED(textOrientation)) const wxOVERRIDE
     {
         dc.SetTextForeground(m_colFg);
         dc.SetFont(wxITALIC_FONT->Bold());
@@ -75,7 +75,7 @@ public:
 
     virtual void DrawBorder(const wxGrid& WXUNUSED(grid),
                             wxDC& dc,
-                            wxRect& rect) const
+                            wxRect& rect) const wxOVERRIDE
     {
         dc.SetPen(*wxTRANSPARENT_PEN);
         dc.SetBrush(wxBrush(m_colBg));
@@ -106,7 +106,7 @@ public:
     void UseCustomColHeaders(bool use = true) { m_useCustom = use; }
 
 protected:
-    virtual const wxGridColumnHeaderRenderer& GetColumnHeaderRenderer(int col)
+    virtual const wxGridColumnHeaderRenderer& GetColumnHeaderRenderer(int col) wxOVERRIDE
     {
         // if enabled, use custom renderers
         if ( m_useCustom )
@@ -1817,10 +1817,10 @@ public:
 
     TabularGridTable() { m_sortOrder = NULL; }
 
-    virtual int GetNumberRows() { return ROW_MAX; }
-    virtual int GetNumberCols() { return COL_MAX; }
+    virtual int GetNumberRows() wxOVERRIDE { return ROW_MAX; }
+    virtual int GetNumberCols() wxOVERRIDE { return COL_MAX; }
 
-    virtual wxString GetValue(int row, int col)
+    virtual wxString GetValue(int row, int col) wxOVERRIDE
     {
         if ( m_sortOrder )
             row = m_sortOrder[row];
@@ -1845,12 +1845,12 @@ public:
         return wxString();
     }
 
-    virtual void SetValue(int, int, const wxString&)
+    virtual void SetValue(int, int, const wxString&) wxOVERRIDE
     {
         wxFAIL_MSG( "shouldn't be called" );
     }
 
-    virtual wxString GetColLabelValue(int col)
+    virtual wxString GetColLabelValue(int col) wxOVERRIDE
     {
         // notice that column parameter here always refers to the internal
         // column index, independently of its position on the screen
@@ -1860,7 +1860,7 @@ public:
         return labels[col];
     }
 
-    virtual void SetColLabelValue(int, const wxString&)
+    virtual void SetColLabelValue(int, const wxString&) wxOVERRIDE
     {
         wxFAIL_MSG( "shouldn't be called" );
     }
@@ -1937,7 +1937,7 @@ public:
     }
 
 protected:
-    virtual wxSize DoGetBestSize() const
+    virtual wxSize DoGetBestSize() const wxOVERRIDE
     {
         wxSize size = wxTextCtrl::DoGetBestSize();
         size.x = 3*GetCharWidth();

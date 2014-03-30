@@ -75,7 +75,7 @@ public:
     MyApp();
     virtual ~MyApp(){};
 
-    virtual bool OnInit();
+    virtual bool OnInit() wxOVERRIDE;
 
     // critical section protects access to all of the fields below
     wxCriticalSection m_critsect;
@@ -109,7 +109,7 @@ public:
 protected:
     virtual void DoLogRecord(wxLogLevel level,
                              const wxString& msg,
-                             const wxLogRecordInfo& info);
+                             const wxLogRecordInfo& info) wxOVERRIDE;
 
 private:
     // event handlers
@@ -220,7 +220,7 @@ public:
     virtual ~MyThread();
 
     // thread execution starts here
-    virtual void *Entry();
+    virtual void *Entry() wxOVERRIDE;
 
 public:
     unsigned m_count;
@@ -236,11 +236,11 @@ public:
     MyWorkerThread(MyFrame *frame);
 
     // thread execution starts here
-    virtual void *Entry();
+    virtual void *Entry() wxOVERRIDE;
 
     // called when the thread exits - whether it terminates normally or is
     // stopped with Delete() (but not when it is Kill()ed!)
-    virtual void OnExit();
+    virtual void OnExit() wxOVERRIDE;
 
 public:
     MyFrame *m_frame;
@@ -263,7 +263,7 @@ public:
         m_dlg = dlg;
     }
 
-    virtual ExitCode Entry();
+    virtual ExitCode Entry() wxOVERRIDE;
 
 private:
     MyImageDialog *m_dlg;

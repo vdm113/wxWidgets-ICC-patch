@@ -27,7 +27,7 @@
 class MyApp : public wxApp
 {
 public:
-    bool OnInit();
+    bool OnInit() wxOVERRIDE;
 };
 
 // Define a new frame type
@@ -55,7 +55,7 @@ public:
             const wxSize& size = wxDefaultSize,
             const long style = wxDEFAULT_DIALOG_STYLE);
 
-    bool TransferDataToWindow();
+    bool TransferDataToWindow() wxOVERRIDE;
     wxTextCtrl *m_text;
     wxComboBox *m_combobox;
 
@@ -95,14 +95,14 @@ public:
     MyComboBoxValidator(const MyComboBoxValidator& tocopy) { m_var=tocopy.m_var; }
     MyComboBoxValidator(wxString* var) { m_var=var; }
 
-    virtual bool Validate(wxWindow* parent);
-    virtual wxObject* Clone() const { return new MyComboBoxValidator(*this); }
+    virtual bool Validate(wxWindow* parent) wxOVERRIDE;
+    virtual wxObject* Clone() const wxOVERRIDE { return new MyComboBoxValidator(*this); }
 
     // Called to transfer data to the window
-    virtual bool TransferToWindow();
+    virtual bool TransferToWindow() wxOVERRIDE;
 
     // Called to transfer data from the window
-    virtual bool TransferFromWindow();
+    virtual bool TransferFromWindow() wxOVERRIDE;
 
 protected:
     wxString* m_var;

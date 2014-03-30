@@ -19,7 +19,7 @@
 class MyApp: public wxApp
 {
 public:
-    bool OnInit();
+    bool OnInit() wxOVERRIDE;
 
     // Joystick max values
     int     m_minX;

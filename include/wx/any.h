@@ -295,13 +295,13 @@ public:
     wxAnyValueTypeImplBase() : wxAnyValueType() { }
     virtual ~wxAnyValueTypeImplBase() { }
 
-    virtual void DeleteValue(wxAnyValueBuffer& buf) const
+    virtual void DeleteValue(wxAnyValueBuffer& buf) const wxOVERRIDE
     {
         Ops::DeleteValue(buf);
     }
 
     virtual void CopyBuffer(const wxAnyValueBuffer& src,
-                            wxAnyValueBuffer& dst) const
+                            wxAnyValueBuffer& dst) const wxOVERRIDE
     {
         Ops::SetValue(Ops::GetValue(src), dst);
     }
@@ -425,7 +425,7 @@ public:
 
     virtual bool ConvertValue(const wxAnyValueBuffer& src,
                               wxAnyValueType* dstType,
-                              wxAnyValueBuffer& dst) const;
+                              wxAnyValueBuffer& dst) const wxOVERRIDE;
 };
 
 
@@ -440,7 +440,7 @@ public:
 
     virtual bool ConvertValue(const wxAnyValueBuffer& src,
                               wxAnyValueType* dstType,
-                              wxAnyValueBuffer& dst) const;
+                              wxAnyValueBuffer& dst) const wxOVERRIDE;
 };
 
 
@@ -527,7 +527,7 @@ public:
 
     virtual bool ConvertValue(const wxAnyValueBuffer& src,
                               wxAnyValueType* dstType,
-                              wxAnyValueBuffer& dst) const;
+                              wxAnyValueBuffer& dst) const wxOVERRIDE;
 };
 
 //
@@ -544,7 +544,7 @@ public:
 
     virtual bool ConvertValue(const wxAnyValueBuffer& src,
                               wxAnyValueType* dstType,
-                              wxAnyValueBuffer& dst) const;
+                              wxAnyValueBuffer& dst) const wxOVERRIDE;
 };
 
 // WX_ANY_DEFINE_SUB_TYPE requires this
@@ -621,7 +621,7 @@ public:
         wxAnyValueTypeImplBase<wxVariantData*>() { }
     virtual ~wxAnyValueTypeImplVariantData() { }
 
-    virtual void DeleteValue(wxAnyValueBuffer& buf) const
+    virtual void DeleteValue(wxAnyValueBuffer& buf) const wxOVERRIDE
     {
         wxVariantData* data = static_cast<wxVariantData*>(buf.m_ptr);
         if ( data )
@@ -629,7 +629,7 @@ public:
     }
 
     virtual void CopyBuffer(const wxAnyValueBuffer& src,
-                            wxAnyValueBuffer& dst) const
+                            wxAnyValueBuffer& dst) const wxOVERRIDE
     {
         wxVariantData* data = static_cast<wxVariantData*>(src.m_ptr);
         if ( data )
@@ -651,7 +651,7 @@ public:
 
     virtual bool ConvertValue(const wxAnyValueBuffer& src,
                               wxAnyValueType* dstType,
-                              wxAnyValueBuffer& dst) const
+                              wxAnyValueBuffer& dst) const wxOVERRIDE
     {
         wxUnusedVar(src);
         wxUnusedVar(dstType);

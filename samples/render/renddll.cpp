@@ -38,7 +38,7 @@ public:
                                  const wxRect& rect,
                                  int WXUNUSED(flags) = 0,
                                  wxHeaderSortIconType WXUNUSED(sortArrow) = wxHDR_SORT_ICON_NONE,
-                                 wxHeaderButtonParams* WXUNUSED(params) = NULL)
+                                 wxHeaderButtonParams* WXUNUSED(params) = NULL) wxOVERRIDE
     {
         dc.SetBrush(*wxCYAN_BRUSH);
         dc.SetTextForeground(*wxRED);
@@ -48,7 +48,7 @@ public:
         return dc.GetTextExtent("MyDllRenderer").x;
     }
 
-    virtual wxRendererVersion GetVersion() const
+    virtual wxRendererVersion GetVersion() const wxOVERRIDE
     {
         return wxRendererVersion(wxRendererVersion::Current_Version,
                                  wxRendererVersion::Current_Age);

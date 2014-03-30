@@ -604,10 +604,10 @@ public:
     // -------------------------------
 
     // Do the toolbar button updates (check for EVT_UPDATE_UI handlers)
-    virtual void UpdateWindowUI(long flags = wxUPDATE_UI_NONE) ;
+    virtual void UpdateWindowUI(long flags = wxUPDATE_UI_NONE) wxOVERRIDE ;
 
     // don't want toolbars to accept the focus
-    virtual bool AcceptsFocus() const { return false; }
+    virtual bool AcceptsFocus() const wxOVERRIDE { return false; }
 
 #if wxUSE_MENUS
     // Set dropdown menu
@@ -616,7 +616,7 @@ public:
 
 protected:
     // choose the default border for this window
-    virtual wxBorder GetDefaultBorder() const { return wxBORDER_NONE; }
+    virtual wxBorder GetDefaultBorder() const wxOVERRIDE { return wxBORDER_NONE; }
 
     // to implement in derived classes
     // -------------------------------

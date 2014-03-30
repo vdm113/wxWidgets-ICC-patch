@@ -266,7 +266,7 @@ public:
     StackDump(GtkAssertDialog *dlg) { m_dlg=dlg; }
 
 protected:
-    virtual void OnStackFrame(const wxStackFrame& frame)
+    virtual void OnStackFrame(const wxStackFrame& frame) wxOVERRIDE
     {
         wxString fncname = frame.GetName();
 

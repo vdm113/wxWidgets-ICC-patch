@@ -94,7 +94,7 @@ public:
     void SetGradient(const wxColour& start, const wxColour& end);
 
 protected:
-    virtual wxSize DoGetBestClientSize() const;
+    virtual wxSize DoGetBestClientSize() const wxOVERRIDE;
 
 private:
     // Common part of all constructors.

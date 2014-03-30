@@ -54,7 +54,7 @@ class DnDText : public wxTextDropTarget
 public:
     DnDText(wxListBox *pOwner) { m_pOwner = pOwner; }
 
-    virtual bool OnDropText(wxCoord x, wxCoord y, const wxString& text);
+    virtual bool OnDropText(wxCoord x, wxCoord y, const wxString& text) wxOVERRIDE;
 
 private:
     wxListBox *m_pOwner;
@@ -66,7 +66,7 @@ public:
     DnDFile(wxListBox *pOwner = NULL) { m_pOwner = pOwner; }
 
     virtual bool OnDropFiles(wxCoord x, wxCoord y,
-                             const wxArrayString& filenames);
+                             const wxArrayString& filenames) wxOVERRIDE;
 
 private:
     wxListBox *m_pOwner;
@@ -90,14 +90,14 @@ public:
 
     // URLs can't be moved, only copied
     virtual wxDragResult OnDragOver(wxCoord WXUNUSED(x), wxCoord WXUNUSED(y),
-                                    wxDragResult WXUNUSED(def))
+                                    wxDragResult WXUNUSED(def)) wxOVERRIDE
         {
             return wxDragLink;  // At least IE 5.x needs wxDragLink, the
                                 // other browsers on MSW seem okay with it too.
         }
 
     // translate this to calls to OnDropURL() just for convenience
-    virtual wxDragResult OnData(wxCoord x, wxCoord y, wxDragResult def)
+    virtual wxDragResult OnData(wxCoord x, wxCoord y, wxDragResult def) wxOVERRIDE
     {
         if ( !GetData() )
             return wxDragNone;
@@ -117,7 +117,7 @@ public:
 class DnDApp : public wxApp
 {
 public:
-    virtual bool OnInit();
+    virtual bool OnInit() wxOVERRIDE;
 };
 
 IMPLEMENT_APP(DnDApp)
@@ -385,8 +385,8 @@ public:
         wxLogMessage(wxT("DnDTriangularShape is being deleted"));
     }
 
-    virtual Kind GetKind() const { return Triangle; }
-    virtual void Draw(wxDC& dc)
+    virtual Kind GetKind() const wxOVERRIDE { return Triangle; }
+    virtual void Draw(wxDC& dc) wxOVERRIDE
     {
         DnDShape::Draw(dc);
 
@@ -422,8 +422,8 @@ public:
         wxLogMessage(wxT("DnDRectangularShape is being deleted"));
     }
 
-    virtual Kind GetKind() const { return Rectangle; }
-    virtual void Draw(wxDC& dc)
+    virtual Kind GetKind() const wxOVERRIDE { return Rectangle; }
+    virtual void Draw(wxDC& dc) wxOVERRIDE
     {
         DnDShape::Draw(dc);
 
@@ -458,8 +458,8 @@ public:
         wxLogMessage(wxT("DnDEllipticShape is being deleted"));
     }
 
-    virtual Kind GetKind() const { return Ellipse; }
-    virtual void Draw(wxDC& dc)
+    virtual Kind GetKind() const wxOVERRIDE { return Ellipse; }
+    virtual void Draw(wxDC& dc) wxOVERRIDE
     {
         DnDShape::Draw(dc);
 
@@ -536,12 +536,12 @@ public:
     // implement base class pure virtuals
     // ----------------------------------
 
-    virtual wxDataFormat GetPreferredFormat(Direction WXUNUSED(dir)) const
+    virtual wxDataFormat GetPreferredFormat(Direction WXUNUSED(dir)) const wxOVERRIDE
     {
         return m_formatShape;
     }
 
-    virtual size_t GetFormatCount(Direction dir) const
+    virtual size_t GetFormatCount(Direction dir) const wxOVERRIDE
     {
         // our custom format is supported by both GetData() and SetData()
         size_t nFormats = 1;
@@ -558,7 +558,7 @@ public:
         return nFormats;
     }
 
-    virtual void GetAllFormats(wxDataFormat *formats, Direction dir) const
+    virtual void GetAllFormats(wxDataFormat *formats, Direction dir) const wxOVERRIDE
     {
         formats[0] = m_formatShape;
         if ( dir == Get )
@@ -575,7 +575,7 @@ public:
         }
     }
 
-    virtual size_t GetDataSize(const wxDataFormat& format) const
+    virtual size_t GetDataSize(const wxDataFormat& format) const wxOVERRIDE
     {
         if ( format == m_formatShape )
         {
@@ -602,7 +602,7 @@ public:
         }
     }
 
-    virtual bool GetDataHere(const wxDataFormat& format, void *pBuf) const
+    virtual bool GetDataHere(const wxDataFormat& format, void *pBuf) const wxOVERRIDE
     {
         if ( format == m_formatShape )
         {
@@ -632,7 +632,7 @@ public:
     }
 
     virtual bool SetData(const wxDataFormat& format,
-                         size_t WXUNUSED(len), const void *buf)
+                         size_t WXUNUSED(len), const void *buf) wxOVERRIDE
     {
         wxCHECK_MSG( format == m_formatShape, false,
                      wxT( "unsupported format") );
@@ -681,8 +681,8 @@ public:
 
     DnDShape *GetShape() const;
 
-    virtual bool TransferDataToWindow();
-    virtual bool TransferDataFromWindow();
+    virtual bool TransferDataToWindow() wxOVERRIDE;
+    virtual bool TransferDataFromWindow() wxOVERRIDE;
 
     void OnColour(wxCommandEvent& event);
 
@@ -759,20 +759,20 @@ public:
     }
 
     // override base class (pure) virtuals
-    virtual wxDragResult OnEnter(wxCoord x, wxCoord y, wxDragResult def)
+    virtual wxDragResult OnEnter(wxCoord x, wxCoord y, wxDragResult def) wxOVERRIDE
     {
 #if wxUSE_STATUSBAR
         m_frame->SetStatusText(wxT("Mouse entered the frame"));
 #endif // wxUSE_STATUSBAR
         return OnDragOver(x, y, def);
     }
-    virtual void OnLeave()
+    virtual void OnLeave() wxOVERRIDE
     {
 #if wxUSE_STATUSBAR
         m_frame->SetStatusText(wxT("Mouse left the frame"));
 #endif // wxUSE_STATUSBAR
     }
-    virtual wxDragResult OnData(wxCoord x, wxCoord y, wxDragResult def)
+    virtual wxDragResult OnData(wxCoord x, wxCoord y, wxDragResult def) wxOVERRIDE
     {
         if ( !GetData() )
         {

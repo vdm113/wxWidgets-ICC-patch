@@ -301,7 +301,7 @@ public:
 
     // override the base class function so that when this window is scrolled,
     // the labels are scrolled in sync
-    virtual void ScrollWindow(int dx, int dy, const wxRect *rect)
+    virtual void ScrollWindow(int dx, int dy, const wxRect *rect) wxOVERRIDE
     {
         wxPanel::ScrollWindow( dx, dy, rect );
         m_colLabels->ScrollWindow( dx, 0, rect );
@@ -409,7 +409,7 @@ public:
 protected:
     // scrolled windows which use scroll target different from the window
     // itself must override this virtual method
-    virtual wxSize GetSizeAvailableForScrollTarget(const wxSize& size)
+    virtual wxSize GetSizeAvailableForScrollTarget(const wxSize& size) wxOVERRIDE
     {
         // decrease the total size by the size of the non-scrollable parts
         // above/to the left of the canvas
@@ -480,7 +480,7 @@ public:
         DoSyncIfNecessary();
     }
 
-    virtual void ScrollWindow(int dx, int dy, const wxRect *rect = NULL)
+    virtual void ScrollWindow(int dx, int dy, const wxRect *rect = NULL) wxOVERRIDE
     {
         wxScrolled<wxWindow>::ScrollWindow(dx, dy, rect);
 
@@ -530,7 +530,7 @@ public:
         SetScrollbars(0, m_hLine, 0, m_nLines + 1, 0, 0, true /* no refresh */);
     }
 
-    virtual void OnDraw(wxDC& dc);
+    virtual void OnDraw(wxDC& dc) wxOVERRIDE;
 };
 
 // this class does "smart" redrawing - only redraws the lines which must be
@@ -549,7 +549,7 @@ public:
         SetVirtualSize( wxDefaultCoord, ( m_nLines + 1 ) * m_hLine );
     }
 
-    virtual void OnDraw(wxDC& dc);
+    virtual void OnDraw(wxDC& dc) wxOVERRIDE;
 };
 
 // ----------------------------------------------------------------------------
@@ -574,7 +574,7 @@ public:
 
 private:
     // event handlers
-    void OnDraw(wxDC& dc);
+    void OnDraw(wxDC& dc) wxOVERRIDE;
     void OnMouseLeftDown(wxMouseEvent& event);
     void OnMouseLeftUp(wxMouseEvent& event);
     void OnMouseMove(wxMouseEvent& event);
@@ -646,7 +646,7 @@ private:
 class MyApp : public wxApp
 {
 public:
-    virtual bool OnInit();
+    virtual bool OnInit() wxOVERRIDE;
 };
 
 

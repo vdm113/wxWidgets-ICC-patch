@@ -38,7 +38,7 @@
 class MyApp : public wxApp
 {
 public:
-    virtual bool OnInit();
+    virtual bool OnInit() wxOVERRIDE;
 };
 
 #if USE_ASYNCHRONOUS_CLIPBOARD_REQUEST

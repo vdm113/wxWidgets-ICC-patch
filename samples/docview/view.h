@@ -34,7 +34,7 @@ public:
     MyCanvas(wxView *view, wxWindow *parent = NULL);
     virtual ~MyCanvas();
 
-    virtual void OnDraw(wxDC& dc);
+    virtual void OnDraw(wxDC& dc) wxOVERRIDE;
 
     // in a normal multiple document application a canvas is associated with
     // one view from the beginning until the end, but to support the single
@@ -75,10 +75,10 @@ class DrawingView : public wxView
 public:
     DrawingView() : wxView(), m_canvas(NULL) {}
 
-    virtual bool OnCreate(wxDocument *doc, long flags);
-    virtual void OnDraw(wxDC *dc);
-    virtual void OnUpdate(wxView *sender, wxObject *hint = NULL);
-    virtual bool OnClose(bool deleteWindow = true);
+    virtual bool OnCreate(wxDocument *doc, long flags) wxOVERRIDE;
+    virtual void OnDraw(wxDC *dc) wxOVERRIDE;
+    virtual void OnUpdate(wxView *sender, wxObject *hint = NULL) wxOVERRIDE;
+    virtual bool OnClose(bool deleteWindow = true) wxOVERRIDE;
 
     DrawingDocument* GetDocument();
 
@@ -101,9 +101,9 @@ class TextEditView : public wxView
 public:
     TextEditView() : wxView(), m_text(NULL) {}
 
-    virtual bool OnCreate(wxDocument *doc, long flags);
-    virtual void OnDraw(wxDC *dc);
-    virtual bool OnClose(bool deleteWindow = true);
+    virtual bool OnCreate(wxDocument *doc, long flags) wxOVERRIDE;
+    virtual void OnDraw(wxDC *dc) wxOVERRIDE;
+    virtual bool OnClose(bool deleteWindow = true) wxOVERRIDE;
 
     wxTextCtrl *GetText() const { return m_text; }
 
@@ -127,7 +127,7 @@ class ImageCanvas : public wxScrolledWindow
 public:
     ImageCanvas(wxView*);
 
-    virtual void OnDraw(wxDC& dc);
+    virtual void OnDraw(wxDC& dc) wxOVERRIDE;
 private:
     wxView *m_view;
 };
@@ -141,10 +141,10 @@ class ImageView : public wxView
 public:
     ImageView() : wxView() {}
 
-    virtual bool OnCreate(wxDocument*, long flags);
-    virtual void OnDraw(wxDC*);
-    virtual bool OnClose(bool deleteWindow = true);
-    virtual void OnUpdate(wxView *sender, wxObject *hint = NULL);
+    virtual bool OnCreate(wxDocument*, long flags) wxOVERRIDE;
+    virtual void OnDraw(wxDC*) wxOVERRIDE;
+    virtual bool OnClose(bool deleteWindow = true) wxOVERRIDE;
+    virtual void OnUpdate(wxView *sender, wxObject *hint = NULL) wxOVERRIDE;
 
     ImageDocument* GetDocument();
 
@@ -163,8 +163,8 @@ class ImageDetailsView : public wxView
 public:
     ImageDetailsView(ImageDetailsDocument *doc);
 
-    virtual void OnDraw(wxDC *dc);
-    virtual bool OnClose(bool deleteWindow);
+    virtual void OnDraw(wxDC *dc) wxOVERRIDE;
+    virtual bool OnClose(bool deleteWindow) wxOVERRIDE;
 
 private:
     wxFrame *m_frame;

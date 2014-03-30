@@ -233,13 +233,13 @@ public:
 
 
     // we do have multiple pages
-    virtual bool HasMultiplePages() const { return true; }
+    virtual bool HasMultiplePages() const wxOVERRIDE { return true; }
 
     // we don't want focus for ourselves
-    virtual bool AcceptsFocus() const { return false; }
+    virtual bool AcceptsFocus() const wxOVERRIDE { return false; }
 
     // returns true if the platform should explicitly apply a theme border
-    virtual bool CanApplyThemeBorder() const { return false; }
+    virtual bool CanApplyThemeBorder() const wxOVERRIDE { return false; }
 
 protected:
     // flags for DoSetSelection()
@@ -249,7 +249,7 @@ protected:
     };
 
     // choose the default border for this window
-    virtual wxBorder GetDefaultBorder() const { return wxBORDER_NONE; }
+    virtual wxBorder GetDefaultBorder() const wxOVERRIDE { return wxBORDER_NONE; }
 
     // After the insertion of the page in the method InsertPage, calling this
     // method sets the selection to the given page or the first one if there is
@@ -310,7 +310,7 @@ protected:
     virtual wxWindow *DoRemovePage(size_t page) = 0;
 
     // our best size is the size which fits all our pages
-    virtual wxSize DoGetBestSize() const;
+    virtual wxSize DoGetBestSize() const wxOVERRIDE;
 
     // helper: get the next page wrapping if we reached the end
     int GetNextPage(bool forward) const;
@@ -391,7 +391,7 @@ public:
         m_nOldSel = event.m_nOldSel;
     }
 
-    virtual wxEvent *Clone() const { return new wxBookCtrlEvent(*this); }
+    virtual wxEvent *Clone() const wxOVERRIDE { return new wxBookCtrlEvent(*this); }
 
     // accessors
         // the currently selected page (wxNOT_FOUND if none)

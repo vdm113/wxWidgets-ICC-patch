@@ -60,7 +60,7 @@
 class MyApp: public wxApp
 {
 public:
-    virtual bool OnInit();
+    virtual bool OnInit() wxOVERRIDE;
 };
 
 // ----------------------------------------------------------------------------
@@ -183,7 +183,7 @@ public:
                                    wxALIGN_CENTER)
        { }
 
-    virtual bool Render( wxRect rect, wxDC *dc, int state )
+    virtual bool Render( wxRect rect, wxDC *dc, int state ) wxOVERRIDE
     {
         dc->SetBrush( *wxLIGHT_GREY_BRUSH );
         dc->SetPen( *wxTRANSPARENT_PEN );
@@ -203,7 +203,7 @@ public:
                               wxDataViewModel *WXUNUSED(model),
                               const wxDataViewItem &WXUNUSED(item),
                               unsigned int WXUNUSED(col),
-                              const wxMouseEvent *mouseEvent)
+                              const wxMouseEvent *mouseEvent) wxOVERRIDE
     {
         wxString position;
         if ( mouseEvent )
@@ -214,18 +214,18 @@ public:
         return false;
     }
 
-    virtual wxSize GetSize() const
+    virtual wxSize GetSize() const wxOVERRIDE
     {
         return wxSize(60,20);
     }
 
-    virtual bool SetValue( const wxVariant &value )
+    virtual bool SetValue( const wxVariant &value ) wxOVERRIDE
     {
         m_value = value.GetString();
         return true;
     }
 
-    virtual bool GetValue( wxVariant &WXUNUSED(value) ) const { return true; }
+    virtual bool GetValue( wxVariant &WXUNUSED(value) ) const wxOVERRIDE { return true; }
 
 private:
     wxString m_value;

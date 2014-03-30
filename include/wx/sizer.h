@@ -755,8 +755,8 @@ public:
     wxGridSizer( int rows, int cols, int vgap, int hgap );
     wxGridSizer( int rows, int cols, const wxSize& gap );
 
-    virtual void RecalcSizes();
-    virtual wxSize CalcMin();
+    virtual void RecalcSizes() wxOVERRIDE;
+    virtual wxSize CalcMin() wxOVERRIDE;
 
     void SetCols( int cols )
     {
@@ -794,7 +794,7 @@ protected:
     int    m_vgap;
     int    m_hgap;
 
-    virtual wxSizerItem *DoInsert(size_t index, wxSizerItem *item);
+    virtual wxSizerItem *DoInsert(size_t index, wxSizerItem *item) wxOVERRIDE;
 
     void SetItemBounds( wxSizerItem *item, int x, int y, int w, int h );
 
@@ -886,8 +886,8 @@ public:
     const wxArrayInt& GetColWidths() const  { return m_colWidths; }
 
     // implementation
-    virtual void RecalcSizes();
-    virtual wxSize CalcMin();
+    virtual void RecalcSizes() wxOVERRIDE;
+    virtual wxSize CalcMin() wxOVERRIDE;
 
 protected:
     void AdjustForFlexDirection();
@@ -935,7 +935,7 @@ public:
                       wxT("invalid value for wxBoxSizer orientation") );
     }
 
-    virtual wxSizerItem *AddSpacer(int size);
+    virtual wxSizerItem *AddSpacer(int size) wxOVERRIDE;
 
     int GetOrientation() const { return m_orient; }
 
@@ -944,8 +944,8 @@ public:
     void SetOrientation(int orient) { m_orient = orient; }
 
     // implementation of our resizing logic
-    virtual wxSize CalcMin();
-    virtual void RecalcSizes();
+    virtual wxSize CalcMin() wxOVERRIDE;
+    virtual void RecalcSizes() wxOVERRIDE;
 
 protected:
     // helpers for our code: this returns the component of the given wxSize in
@@ -1023,19 +1023,19 @@ public:
     wxStaticBoxSizer(int orient, wxWindow *win, const wxString& label = wxEmptyString);
     virtual ~wxStaticBoxSizer();
 
-    void RecalcSizes();
-    wxSize CalcMin();
+    void RecalcSizes() wxOVERRIDE;
+    wxSize CalcMin() wxOVERRIDE;
 
     wxStaticBox *GetStaticBox() const
         { return m_staticBox; }
 
     // override to hide/show the static box as well
-    virtual void ShowItems (bool show);
-    virtual bool AreAnyItemsShown() const;
+    virtual void ShowItems (bool show) wxOVERRIDE;
+    virtual bool AreAnyItemsShown() const wxOVERRIDE;
 
-    virtual bool Detach( wxWindow *window );
-    virtual bool Detach( wxSizer *sizer ) { return wxBoxSizer::Detach(sizer); }
-    virtual bool Detach( int index ) { return wxBoxSizer::Detach(index); }
+    virtual bool Detach( wxWindow *window ) wxOVERRIDE;
+    virtual bool Detach( wxSizer *sizer ) wxOVERRIDE { return wxBoxSizer::Detach(sizer); }
+    virtual bool Detach( int index ) wxOVERRIDE { return wxBoxSizer::Detach(index); }
 
 protected:
     wxStaticBox   *m_staticBox;

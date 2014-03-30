@@ -30,13 +30,13 @@ public:
                             const wxString& value = wxEmptyString );
     virtual ~wxAdvImageFileProperty ();
 
-    virtual void OnSetValue();  // Override to allow image loading.
+    virtual void OnSetValue() wxOVERRIDE;  // Override to allow image loading.
 
-    virtual bool IntToValue( wxVariant& variant, int number, int argFlags = 0 ) const;
-    virtual bool OnEvent( wxPropertyGrid* propgrid, wxWindow* primary, wxEvent& event );
-    virtual wxSize OnMeasureImage( int item ) const;
+    virtual bool IntToValue( wxVariant& variant, int number, int argFlags = 0 ) const wxOVERRIDE;
+    virtual bool OnEvent( wxPropertyGrid* propgrid, wxWindow* primary, wxEvent& event ) wxOVERRIDE;
+    virtual wxSize OnMeasureImage( int item ) const wxOVERRIDE;
     virtual void OnCustomPaint( wxDC& dc,
-                                const wxRect& rect, wxPGPaintData& paintdata );
+                                const wxRect& rect, wxPGPaintData& paintdata ) wxOVERRIDE;
 
     void LoadThumbnails( size_t n );
 
@@ -84,8 +84,8 @@ public:
 
     virtual wxVariant ChildChanged( wxVariant& thisValue,
                                     int childIndex,
-                                    wxVariant& childValue ) const;
-    virtual void RefreshChildren();
+                                    wxVariant& childValue ) const wxOVERRIDE;
+    virtual void RefreshChildren() wxOVERRIDE;
 
 protected:
 };
@@ -117,8 +117,8 @@ public:
 
     virtual wxVariant ChildChanged( wxVariant& thisValue,
                                     int childIndex,
-                                    wxVariant& childValue ) const;
-    virtual void RefreshChildren();
+                                    wxVariant& childValue ) const wxOVERRIDE;
+    virtual void RefreshChildren() wxOVERRIDE;
 
 protected:
 };
@@ -276,7 +276,7 @@ class cxApplication : public wxApp
 {
 public:
 
-    virtual bool OnInit();
+    virtual bool OnInit() wxOVERRIDE;
 
 private:
     FormMain    *Form1;

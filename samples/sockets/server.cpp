@@ -63,7 +63,7 @@
 class MyApp : public wxApp
 {
 public:
-  virtual bool OnInit();
+  virtual bool OnInit() wxOVERRIDE;
 };
 
 // Define a new frame type: this is going to be our main frame

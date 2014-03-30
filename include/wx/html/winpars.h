@@ -49,11 +49,11 @@ public:
 
     virtual ~wxHtmlWinParser();
 
-    virtual void InitParser(const wxString& source);
-    virtual void DoneParser();
-    virtual wxObject* GetProduct();
+    virtual void InitParser(const wxString& source) wxOVERRIDE;
+    virtual void DoneParser() wxOVERRIDE;
+    virtual wxObject* GetProduct() wxOVERRIDE;
 
-    virtual wxFSFile *OpenURL(wxHtmlURLType type, const wxString& url) const;
+    virtual wxFSFile *OpenURL(wxHtmlURLType type, const wxString& url) const wxOVERRIDE;
 
     // Set's the DC used for parsing. If SetDC() is not called,
     // parsing won't proceed
@@ -170,7 +170,7 @@ public:
     WhitespaceMode GetWhitespaceMode() const { return m_whitespaceMode; }
 
 protected:
-    virtual void AddText(const wxString& txt);
+    virtual void AddText(const wxString& txt) wxOVERRIDE;
 
 private:
     void FlushWordBuf(wxChar *temp, int& len);
@@ -270,7 +270,7 @@ class WXDLLIMPEXP_HTML wxHtmlWinTagHandler : public wxHtmlTagHandler
 public:
     wxHtmlWinTagHandler() : wxHtmlTagHandler() {}
 
-    virtual void SetParser(wxHtmlParser *parser) {wxHtmlTagHandler::SetParser(parser); m_WParser = (wxHtmlWinParser*) parser;}
+    virtual void SetParser(wxHtmlParser *parser) wxOVERRIDE {wxHtmlTagHandler::SetParser(parser); m_WParser = (wxHtmlWinParser*) parser;}
 
 protected:
     wxHtmlWinParser *m_WParser; // same as m_Parser, but overcasted
@@ -300,8 +300,8 @@ class WXDLLIMPEXP_HTML wxHtmlTagsModule : public wxModule
 public:
     wxHtmlTagsModule() : wxModule() {}
 
-    virtual bool OnInit();
-    virtual void OnExit();
+    virtual bool OnInit() wxOVERRIDE;
+    virtual void OnExit() wxOVERRIDE;
 
     // This is called by wxHtmlWinParser.
     // The method must simply call parser->AddTagHandler(new

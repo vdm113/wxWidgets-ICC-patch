@@ -46,8 +46,8 @@ public:
     void Wrap(int width);
 
     // overridden base virtuals
-    virtual bool AcceptsFocus() const { return false; }
-    virtual bool HasTransparentBackground() { return true; }
+    virtual bool AcceptsFocus() const wxOVERRIDE { return false; }
+    virtual bool HasTransparentBackground() wxOVERRIDE { return true; }
 
     bool IsEllipsized() const
     {
@@ -59,7 +59,7 @@ public:
 protected:      // functions required for wxST_ELLIPSIZE_* support
 
     // choose the default border for this window
-    virtual wxBorder GetDefaultBorder() const { return wxBORDER_NONE; }
+    virtual wxBorder GetDefaultBorder() const wxOVERRIDE { return wxBORDER_NONE; }
 
     // Calls Ellipsize() on the real label if necessary. Unlike GetLabelText(),
     // keeps the mnemonics instead of removing them.

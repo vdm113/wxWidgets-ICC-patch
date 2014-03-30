@@ -80,7 +80,7 @@ class WrapSizerApp : public wxApp
 public:
     WrapSizerApp() {}
 
-    virtual bool OnInit()
+    virtual bool OnInit() wxOVERRIDE
     {
         new WrapSizerFrame;
         return true;

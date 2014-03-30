@@ -40,7 +40,7 @@ class WXDLLIMPEXP_CORE wxComboBoxBase : public wxItemContainer,
 {
 public:
     // override these methods to disambiguate between two base classes versions
-    virtual void Clear()
+    virtual void Clear() wxOVERRIDE
     {
         wxTextEntry::Clear();
         wxItemContainer::Clear();

@@ -63,7 +63,7 @@ public:
     // this one is called on application startup and is a good place for the app
     // initialization (doing it here and not in the ctor allows to have an error
     // return: if OnInit() returns false, the application terminates)
-    virtual bool OnInit();
+    virtual bool OnInit() wxOVERRIDE;
 };
 
 // MyCanvas is a canvas on which we show the font sample
@@ -435,7 +435,7 @@ public:
 
 protected:
     virtual bool OnFontEncoding(const wxString& facename,
-                                const wxString& encoding)
+                                const wxString& encoding) wxOVERRIDE
     {
         wxString text;
         text.Printf(wxT("Encoding %u: %s (available in facename '%s')\n"),
@@ -471,7 +471,7 @@ public:
         { return m_facenames; }
 
 protected:
-    virtual bool OnFacename(const wxString& facename)
+    virtual bool OnFacename(const wxString& facename) wxOVERRIDE
     {
         m_facenames.Add(facename);
         return true;

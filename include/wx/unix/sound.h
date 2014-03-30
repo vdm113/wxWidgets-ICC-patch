@@ -86,7 +86,7 @@ public:
     static void UnloadBackend();
 
 protected:
-    bool DoPlay(unsigned flags) const;
+    bool DoPlay(unsigned flags) const wxOVERRIDE;
 
     static void EnsureBackend();
     void Free();

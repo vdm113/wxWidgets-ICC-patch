@@ -96,10 +96,10 @@ public:
     {
     }
 
-    virtual bool CanBeDeleted() const { return true; }
+    virtual bool CanBeDeleted() const wxOVERRIDE { return true; }
 
 private:
-    virtual bool DoSetShape(GdkWindow* window)
+    virtual bool DoSetShape(GdkWindow* window) wxOVERRIDE
     {
         gdk_window_shape_combine_region(window, NULL, 0, 0);
 
@@ -117,10 +117,10 @@ public:
     {
     }
 
-    virtual bool CanBeDeleted() const { return true; }
+    virtual bool CanBeDeleted() const wxOVERRIDE { return true; }
 
 private:
-    virtual bool DoSetShape(GdkWindow* window)
+    virtual bool DoSetShape(GdkWindow* window) wxOVERRIDE
     {
         gdk_window_shape_combine_region(window, m_region.GetRegion(), 0, 0);
 
@@ -164,7 +164,7 @@ public:
 
     // Currently we always return false from here, if drawing the border
     // becomes optional, we could return true if we don't need to draw it.
-    virtual bool CanBeDeleted() const { return false; }
+    virtual bool CanBeDeleted() const wxOVERRIDE { return false; }
 
 private:
     wxBitmap CreateShapeBitmap(const wxGraphicsPath& path)
@@ -192,7 +192,7 @@ private:
         return bmp;
     }
 
-    virtual bool DoSetShape(GdkWindow *window)
+    virtual bool DoSetShape(GdkWindow *window) wxOVERRIDE
     {
         if (!m_mask)
             return false;
