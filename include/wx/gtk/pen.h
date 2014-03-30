@@ -56,6 +56,10 @@ public:
     wxDash* GetDash() const;
     wxBitmap *GetStipple() const wxOVERRIDE;
 
+
+    wxDEPRECATED_MSG("use wxPENSTYLE_XXX constants")
+    wxPen(const wxColour& col, int width, int style);
+
 #if WXWIN_COMPATIBILITY_3_0
     wxDEPRECATED( void SetStyle(int style) )
         { SetStyle((wxPenStyle)style); }

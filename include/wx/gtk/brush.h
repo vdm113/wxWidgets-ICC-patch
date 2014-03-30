@@ -47,6 +47,11 @@ public:
     void SetStyle( wxBrushStyle style ) wxOVERRIDE;
     void SetStipple( const wxBitmap& stipple ) wxOVERRIDE;
 
+    void SetColour( const wxColour& col ) wxOVERRIDE;
+    void SetColour( unsigned char r, unsigned char g, unsigned char b ) wxOVERRIDE;
+    void SetStyle( wxBrushStyle style ) wxOVERRIDE;
+    void SetStipple( const wxBitmap& stipple ) wxOVERRIDE;
+
 #if WXWIN_COMPATIBILITY_3_0
     wxDEPRECATED( void SetStyle(int style) )
         { SetStyle((wxBrushStyle)style); }

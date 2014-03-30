@@ -150,7 +150,7 @@ public:
     void RefreshItem(long item);
     void RefreshItems(long itemFrom, long itemTo);
 
-    virtual void EnableBellOnNoMatch(bool on = true);
+    virtual void EnableBellOnNoMatch(bool on = true) wxOVERRIDE;
 
     // overridden base class virtuals
     // ------------------------------

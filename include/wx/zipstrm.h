@@ -382,8 +382,8 @@ public:
     virtual wxFileOffset GetLength() const wxOVERRIDE { return m_entry.GetSize(); }
 
 protected:
-    size_t WXZIPFIX OnSysRead(void *buffer, size_t size);
-    wxFileOffset OnSysTell() const { return m_decomp ? m_decomp->TellI() : 0; }
+    size_t WXZIPFIX OnSysRead(void *buffer, size_t size) wxOVERRIDE;
+    wxFileOffset OnSysTell() const wxOVERRIDE { return m_decomp ? m_decomp->TellI() : 0; }
 
     // this protected interface isn't yet finalised
     virtual wxInputStream* WXZIPFIX OpenDecompressor(wxInputStream& stream);
