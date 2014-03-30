@@ -180,7 +180,7 @@ public:
     // show help text for the currently selected menu or toolbar item
     // (typically in the status bar) or hide it and restore the status bar text
     // originally shown before the menu was opened if show == false
-    virtual void DoGiveHelp(const wxString& text, bool show);
+    virtual void DoGiveHelp(const wxString& text, bool show) wxOVERRIDE;
 #endif
 
     virtual bool IsClientAreaChild(const wxWindow *child) const wxOVERRIDE
