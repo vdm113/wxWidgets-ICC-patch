@@ -57,7 +57,35 @@ protected:
     void DoPrintfWchar(const wxChar *format, ...);
 #endif
 #if wxUSE_UNICODE_UTF8
-    void DoPrintfUtf8(const char *format, ...);
+    virtual void DoPrintfUtf8(const char *format, ...) = 0;
+#endif
+};
+
+#ifdef __VISUALC__
+    // "non dll-interface class 'wxStringPrintfMixin' used as base interface
+    // for dll-interface class 'wxString'" -- this is OK in our case
+    #pragma warning (push)
+    #pragma warning (disable:4275)
+#endif
+
+class WXDLLIMPEXP_BASE wxMessageOutput : public wxMessageOutputBase
+{
+public:
+    virtual ~wxMessageOutput() { }
+
+    // gets the current wxMessageOutput object (may be NULL during
+    // initialization or shutdown)
+    static wxMessageOutput* Get();
+
+    // sets the global wxMessageOutput instance; returns the previous one
+    static wxMessageOutput* Set(wxMessageOutput* msgout);
+
+protected:
+#if !wxUSE_UTF8_LOCALE_ONLY
+    virtual void DoPrintfWchar(const wxChar *format, ...) wxOVERRIDE;
+#endif
+#if wxUSE_UNICODE_UTF8
+    virtual void DoPrintfUtf8(const char *format, ...) wxOVERRIDE;
 #endif
 
 private:
