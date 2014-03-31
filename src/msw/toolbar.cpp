@@ -155,7 +155,6 @@ public:
         : wxToolBarToolBase(tbar, id, label, bmpNormal, bmpDisabled, kind,
                             clientData, shortHelp, longHelp)
     {
-        m_nSepCount = 0;
         m_staticText = NULL;
         m_toBeDeleted  = false;
     }
@@ -181,7 +180,6 @@ public:
             m_staticText = NULL;
         }
 
-        m_nSepCount = 1;
         m_toBeDeleted  = false;
     }
 
@@ -214,11 +212,6 @@ public:
         return m_staticText;
     }
 
-    // set/get the number of separators which we use to cover the space used by
-    // a control in the toolbar
-    void SetSeparatorsCount(size_t count) { m_nSepCount = count; }
-    size_t GetSeparatorsCount() const { return m_nSepCount; }
-
     // we need ids for the spacers which we want to modify later on, this
     // function will allocate a valid/unique id for a spacer if not done yet
     void AllocSpacerId()
@@ -246,7 +239,6 @@ public:
     bool IsToBeDeleted() const { return m_toBeDeleted; }
 
 private:
-    size_t m_nSepCount;
     wxStaticText *m_staticText;
     bool m_toBeDeleted;
 
@@ -581,64 +573,22 @@ bool wxToolBar::DoInsertTool(size_t WXUNUSED(pos),
 
 bool wxToolBar::DoDeleteTool(size_t pos, wxToolBarToolBase *tool)
 {
-    // the main difficulty we have here is with the controls in the toolbars:
-    // as we (sometimes) use several separators to cover up the space used by
-    // them, the indices are not the same for us and the toolbar
-
-    // first determine the position of the first button to delete: it may be
-    // different from pos if we use several separators to cover the space used
-    // by a control
-    wxToolBarToolsList::compatibility_iterator node;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-    for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
-    {
-        wxToolBarToolBase *tool2 = node->GetData();
-        if ( tool2 == tool )
-        {
-            // let node point to the next node in the list
-            node = node->GetNext();
-
-            break;
-        }
-
-        if ( tool2->IsControl() )
-            pos += ((wxToolBarTool *)tool2)->GetSeparatorsCount() - 1;
-    }
-
-    // now determine the number of buttons to delete and the area taken by them
-    size_t nButtonsToDelete = 1;
-
     // get the size of the button we're going to delete
     const RECT r = wxGetTBItemRect(GetHwnd(), pos);
 
     int delta = IsVertical() ? r.bottom - r.top : r.right - r.left;
 
-    if ( tool->IsControl() )
-    {
-        nButtonsToDelete = ((wxToolBarTool *)tool)->GetSeparatorsCount();
-
-        if ( !IsVertical() )
-            delta *= nButtonsToDelete;
-    }
-
     m_totalFixedSize -= delta;
 
-    // do delete all buttons
-    m_nButtons -= nButtonsToDelete;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-    while ( nButtonsToDelete-- > 0 )
+    // do delete the button
+    m_nButtons--;
+    if ( !::SendMessage(GetHwnd(), TB_DELETEBUTTON, pos, 0) )
     {
-        if ( !::SendMessage(GetHwnd(), TB_DELETEBUTTON, pos, 0) )
-        {
-            wxLogLastError(wxT("TB_DELETEBUTTON"));
+        wxLogLastError(wxT("TB_DELETEBUTTON"));
 
-            return false;
-        }
+        return false;
     }
+
     static_cast<wxToolBarTool*>(tool)->ToBeDeleted();
 
     // and finally rearrange the tools
@@ -1008,6 +958,14 @@ bool wxToolBar::Realize()
                     staticText->
                         Show(HasFlag(wxTB_TEXT) && !HasFlag(wxTB_NOICONS));
                 }
+
+                // Set separator width/height to fit the control width/height
+                // (height is not used but it is set for the sake of consistency).
+                {
+                    const wxSize sizeControl = tool->GetControl()->GetSize();
+                    button.iBitmap = IsVertical() ? sizeControl.y : sizeControl.x;
+                }
+
                 // Fall through
 
             case wxTOOL_STYLE_SEPARATOR:
@@ -1017,10 +975,6 @@ bool wxToolBar::Realize()
                     // so we need a valid id for it and not wxID_SEPARATOR
                     // which is used by spacers by default
                     tool->AllocSpacerId();
-
-                    // also set the number of separators so that the logic in
-                    // HandlePaint() works correctly
-                    tool->SetSeparatorsCount(1);
                 }
 
                 button.idCommand = tool->GetId();
@@ -1184,62 +1138,6 @@ bool wxToolBar::Realize()
             staticTextSize.y += 3; // margin between control and its label
         }
 
-        // TB_SETBUTTONINFO message is only supported by comctl32.dll 4.71+
-#ifdef TB_SETBUTTONINFO
-        // available in headers, now check whether it is available now
-        // (during run-time)
-        if ( wxApp::GetComCtl32Version() >= 471 )
-        {
-            // set the (underlying) separators width to be that of the
-            // control
-            TBBUTTONINFO tbbi;
-            tbbi.cbSize = sizeof(tbbi);
-            tbbi.dwMask = TBIF_SIZE;
-            tbbi.cx = (WORD)size.x;
-            if ( !::SendMessage(GetHwnd(), TB_SETBUTTONINFO,
-                                tool->GetId(), (LPARAM)&tbbi) )
-            {
-                // the id is probably invalid?
-                wxLogLastError(wxT("TB_SETBUTTONINFO"));
-            }
-        }
-        else
-#endif // comctl32.dll 4.71
-        // TB_SETBUTTONINFO unavailable
-        {
-            // try adding several separators to fit the controls width
-            int widthSep = r.right - r.left;
-
-            TBBUTTON tbb;
-            wxZeroMemory(tbb);
-            tbb.idCommand = 0;
-            tbb.fsState = TBSTATE_ENABLED;
-            tbb.fsStyle = TBSTYLE_SEP;
-
-            size_t nSeparators = size.x / widthSep;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-            for ( size_t nSep = 0; nSep < nSeparators; nSep++ )
-            {
-                if ( !::SendMessage(GetHwnd(), TB_INSERTBUTTON,
-                                    toolIndex, (LPARAM)&tbb) )
-                {
-                    wxLogLastError(wxT("TB_INSERTBUTTON"));
-                }
-
-                toolIndex++;
-            }
-
-            // remember the number of separators we used - we'd have to
-            // delete all of them later
-            tool->SetSeparatorsCount(nSeparators);
-
-            // adjust the controls width to exactly cover the separators
-            size.x = (nSeparators + 1)*widthSep;
-            control->SetSize(size.x, wxDefaultCoord);
-        }
-
         // position the control itself correctly vertically centering it on the
         // icon area of the toolbar
         int height = r.bottom - r.top - staticTextSize.y;
@@ -1333,6 +1231,9 @@ void wxToolBar::UpdateStretchableSpacersSize()
     unsigned numSpaces = 0;
     wxToolBarToolsList::compatibility_iterator node;
     int toolIndex = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
@@ -1372,6 +1273,9 @@ void wxToolBar::UpdateStretchableSpacersSize()
     // correct place
     int offset = 0;
     toolIndex = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
@@ -1607,6 +1511,9 @@ void wxToolBar::SetRows(int nRows)
 
     const LPARAM state = MAKELONG(enable ? TBSTATE_ENABLED : TBSTATE_HIDDEN, 0);
     wxToolBarToolsList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
@@ -1643,32 +1550,6 @@ wxSize wxToolBar::GetToolSize() const
     }
 }
 
-static
-wxToolBarToolBase *GetItemSkippingDummySpacers(const wxToolBarToolsList& tools,
-                                               size_t index )
-{
-    wxToolBarToolsList::compatibility_iterator current = tools.GetFirst();
-
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-    for ( ; current ; current = current->GetNext() )
-    {
-        if ( index == 0 )
-            return current->GetData();
-
-        wxToolBarTool *tool = (wxToolBarTool *)current->GetData();
-        size_t separators = tool->GetSeparatorsCount();
-
-        // if it is a normal button, sepcount == 0, so skip 1 item (the button)
-        // otherwise, skip as many items as the separator count, plus the
-        // control itself
-        index -= separators ? separators + 1 : 1;
-    }
-
-    return 0;
-}
-
 wxToolBarToolBase *wxToolBar::FindToolForPosition(wxCoord x, wxCoord y) const
 {
     POINT pt;
@@ -1682,18 +1563,7 @@ wxToolBarToolBase *wxToolBar::FindToolForPosition(wxCoord x, wxCoord y) const
         // it's a separator or there is no tool at all there
         return NULL;
 
-    // when TB_SETBUTTONINFO is available (both during compile- and run-time),
-    // we don't use the dummy separators hack
-#ifdef TB_SETBUTTONINFO
-    if ( wxApp::GetComCtl32Version() >= 471 )
-    {
         return m_tools.Item((size_t)index)->GetData();
-    }
-    else
-#endif // TB_SETBUTTONINFO
-    {
-        return GetItemSkippingDummySpacers( m_tools, (size_t) index );
-    }
 }
 
 void wxToolBar::UpdateSize()
@@ -1869,6 +1739,9 @@ bool wxToolBar::HandleSize(WXWPARAM WXUNUSED(wParam), WXLPARAM lParam)
     int rowPosX = INT_MIN;
     wxToolBarToolsList::compatibility_iterator node;
     int i = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarTool * const
@@ -1972,7 +1845,7 @@ bool wxToolBar::HandlePaint(WXWPARAM wParam, WXLPARAM lParam)
 #endif
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
           node;
-          node = node->GetNext() )
+          node = node->GetNext(), toolIndex++ )
     {
         wxToolBarTool * const
             tool = static_cast<wxToolBarTool *>(node->GetData());
@@ -1982,43 +1855,31 @@ bool wxToolBar::HandlePaint(WXWPARAM wParam, WXLPARAM lParam)
 
         if ( tool->IsControl() || tool->IsStretchableSpace() )
         {
-            const size_t numSeps = tool->GetSeparatorsCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-            for ( size_t n = 0; n < numSeps; n++, toolIndex++ )
+            // for some reason TB_GETITEMRECT returns a rectangle 1 pixel
+            // shorter than the full window size (at least under Windows 7)
+            // but we need to erase the full width/height below
+            RECT rcItem = wxGetTBItemRect(GetHwnd(), toolIndex);
+
+            // Skip hidden buttons
+            if ( ::IsRectEmpty(&rcItem) )
+                continue;
+
+            if ( IsVertical() )
             {
-                // for some reason TB_GETITEMRECT returns a rectangle 1 pixel
-                // shorter than the full window size (at least under Windows 7)
-                // but we need to erase the full width/height below
-                RECT rcItem = wxGetTBItemRect(GetHwnd(), toolIndex);
-
-                // Skip hidden buttons
-                if ( ::IsRectEmpty(&rcItem) )
-                    continue;
-
-                if ( IsVertical() )
-                {
-                    rcItem.left = 0;
-                    rcItem.right = rectTotal.width;
-                }
-                else
-                {
-                    rcItem.bottom = rcItem.top + rectTotal.height / m_maxRows;
-                }
-
-                // Apparently, regions of height < 3 are not taken into account
-                // in clipping so we need to extend them for this purpose.
-                if ( rcItem.bottom - rcItem.top > 0 && rcItem.bottom - rcItem.top < 3 )
-                    rcItem.bottom = rcItem.top + 3;
-
-                rgnDummySeps.Union(wxRectFromRECT(rcItem));
+                rcItem.left = 0;
+                rcItem.right = rectTotal.width;
             }
-        }
-        else
-        {
-            // normal tools never correspond to more than one native button
-            toolIndex++;
+            else
+            {
+                rcItem.bottom = rcItem.top + rectTotal.height / m_maxRows;
+            }
+
+            // Apparently, regions of height < 3 are not taken into account
+            // in clipping so we need to extend them for this purpose.
+            if ( rcItem.bottom - rcItem.top > 0 && rcItem.bottom - rcItem.top < 3 )
+                rcItem.bottom = rcItem.top + 3;
+
+            rgnDummySeps.Union(wxRectFromRECT(rcItem));
         }
     }
 

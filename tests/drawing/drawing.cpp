@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/graphics/drawing.cpp
 // Purpose:     Tests for wxGraphicsContent general drawing
@@ -14,12 +21,6 @@
 #ifdef __BORLANDC__
     #pragma hdrstop
 #endif
-
-#ifndef WX_PRECOMP
-    #include "wx/app.h"
-    #include "wx/font.h"
-    #include "wx/window.h"
-#endif // WX_PRECOMP
 
 #include "drawing.h"
 
