@@ -46,12 +46,12 @@ public:
     {
         m_primary = a;
         m_secondary = NULL;
-    };
+    }
     wxPGWindowList( wxWindow* a, wxWindow* b )
     {
         m_primary = a;
         m_secondary = b;
-    };
+    }
 };
 
 // -----------------------------------------------------------------------
