@@ -22,10 +22,14 @@
     #pragma hdrstop
 #endif
 
+#ifndef WX_PRECOMP
+    #include "wx/log.h"
+#endif // WX_PRECOMP
+
 #include "drawing.h"
 
 #if wxUSE_TEST_GC_DRAWING
-#include <wx/dynlib.h>
+#include "wx/dynlib.h"
 
 void GraphicsContextDrawingTestCase::RunPluginsDrawingCase (
     const DrawingTestCase & testCase)
