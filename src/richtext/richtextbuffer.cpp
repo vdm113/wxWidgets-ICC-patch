@@ -2335,6 +2335,9 @@ bool wxRichTextParagraphLayoutBox::Layout(wxDC& dc, wxRichTextDrawingContext& co
                 // by floating objects from above the paragraphs.
                 if (wxRichTextBuffer::GetFloatingLayoutMode())
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                     while (node)
                     {
                         child = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -10869,6 +10872,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
                             // Now share the spanning width between columns within that span
                             int spanningWidthLeft = spanningWidth;
                             int stretchColCount = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                             for (k = i; k < (i+spans); k++)
                             {
                                 int minColWidth = wxMax(minColWidths[k], minColWidthsNoWrap[k]);
@@ -10910,6 +10916,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
                             if (spanningWidthLeft > 0)
                             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                                 for (k = i; k < (i+spans); k++)
                                 {
                                     int minColWidth = wxMax(minColWidths[k], minColWidthsNoWrap[k]);
@@ -12130,6 +12139,9 @@ void wxRichTextAction::CalculateRefreshOptimizations(wxArrayInt& optimizationLin
         wxRichTextParagraph* para = container->GetParagraphAtPosition(GetRange().GetStart());
         wxRichTextObjectList::compatibility_iterator firstNode = container->GetChildren().Find(para);
         wxRichTextObjectList::compatibility_iterator node = firstNode;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while (node)
         {
             wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
@@ -12168,6 +12180,9 @@ void wxRichTextAction::CalculateRefreshOptimizations(wxArrayInt& optimizationLin
             // modification point are affected by floats in other paragraphs,
             // then we will simply update the rest of the screen.
             wxRichTextObjectList::compatibility_iterator node = firstNode;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             while (node)
             {
                 wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
@@ -12616,6 +12631,9 @@ void wxRichTextAction::UpdateAppearance(long caretPosition, bool sendUpdateEvent
                 wxRichTextObjectList::compatibility_iterator firstNode = container->GetChildren().Find(para);
                 wxRichTextObjectList::compatibility_iterator node = firstNode;
                 wxRichTextObjectList::compatibility_iterator lastNode = NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 while (node)
                 {
                     wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
@@ -12702,6 +12720,9 @@ void wxRichTextAction::UpdateAppearance(long caretPosition, bool sendUpdateEvent
                     if (lastNode && (container->GetFloatingObjectCount() > 0) && (lastY < lastPossibleY))
                     {
                         wxRichTextObjectList::compatibility_iterator node = lastNode;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                         while (node)
                         {
                             wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();

@@ -1554,6 +1554,9 @@ static void SendSetCursorEvent(wxWindowGTK* win, int x, int y)
 {
     wxSetCursorEvent event(x, y);
     wxWindowGTK* w = win;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     do {
         if (w->GTKProcessEvent(event))
         {
@@ -3787,6 +3790,9 @@ void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize)
             gdk_window_set_cursor(window, cursor);
         else
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (size_t i = windows.size(); i--;)
             {
                 window = windows[i];
