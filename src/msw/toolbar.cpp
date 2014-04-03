@@ -1234,7 +1234,7 @@ void wxToolBar::UpdateStretchableSpacersSize()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-    for ( node = m_tools.GetFirst(); node; node = node->GetNext(), toolIndex++ )
+    for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
 
@@ -1248,6 +1248,8 @@ void wxToolBar::UpdateStretchableSpacersSize()
             if ( !::IsRectEmpty(&rcItem) )
                 numSpaces++;
         }
+
+        toolIndex++;
     }
 
     if ( !numSpaces )
@@ -1274,7 +1276,7 @@ void wxToolBar::UpdateStretchableSpacersSize()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-    for ( node = m_tools.GetFirst(); node; node = node->GetNext(), toolIndex++ )
+    for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
 
@@ -1731,11 +1733,44 @@ bool wxToolBar::HandleSize(WXWPARAM WXUNUSED(wParam), WXLPARAM lParam)
     // Find bounding box for all rows.
     RECT r;
     ::SetRectEmpty(&r);
+    // Bounding box for single (current) row
+    RECT rcRow;
+    ::SetRectEmpty(&rcRow);
+    int rowPosX = INT_MIN;
     wxToolBarToolsList::compatibility_iterator node;
     int i = 0;
-    for ( node = m_tools.GetFirst(); node; node = node->GetNext(), i++)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
+    for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
-        wxToolBarTool * const tool = (wxToolBarTool*)node->GetData();
+        wxToolBarTool * const
+            tool = static_cast<wxToolBarTool *>(node->GetData());
+        if ( tool->IsToBeDeleted() )
+            continue;
+
+        // Skip hidden buttons
+        const RECT rcItem = wxGetTBItemRect(GetHwnd(), i);
+        if ( ::IsRectEmpty(&rcItem) )
+        {
+            i++;
+            continue;
+        }
+
+        if ( rcItem.top > rowPosX )
+        {
+            // We have the next row.
+            rowPosX = rcItem.top;
+
+            // Shift origin to (0, 0) to make it the same as for the total rect.
+            ::OffsetRect(&rcRow, -rcRow.left, -rcRow.top);
+
+            // And update the bounding box for all rows.
+            ::UnionRect(&r, &r, &rcRow);
+
+            // Reset the current row bounding box for the next row.
+            ::SetRectEmpty(&rcRow);
+        }
 
         // Separators shouldn't be taken into account as they are sometimes
         // reported to have the width of the entire client area by the toolbar.
@@ -1743,11 +1778,16 @@ bool wxToolBar::HandleSize(WXWPARAM WXUNUSED(wParam), WXLPARAM lParam)
         // any case, so just skip them.
         if( !tool->IsSeparator() )
         {
-            RECT ritem = wxGetTBItemRect(GetHwnd(), i);
-            ::OffsetRect(&ritem, -ritem.left, -ritem.top); // Shift origin to (0,0)
-            ::UnionRect(&r, &r, &ritem);
+            // Update bounding box of current row
+            ::UnionRect(&rcRow, &rcRow, &rcItem);
         }
+
+        i++;
     }
+
+    // Take into account the last row rectangle too.
+    ::OffsetRect(&rcRow, -rcRow.left, -rcRow.top);
+    ::UnionRect(&r, &r, &rcRow);
 
     if ( !r.right )
         return false;

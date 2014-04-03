@@ -278,27 +278,45 @@ typedef short int WXTYPE;
     #define wxEXPLICIT
 #endif /*  HAVE_EXPLICIT/!HAVE_EXPLICIT */
 
-/*  check for override keyword support */
+/* check for override keyword support */
 #ifndef HAVE_OVERRIDE
-    #if defined(__VISUALC__) && (__VISUALC__ >= 1400)
-        /*
-           VC++ 8.0+ support C++/CLI's override, sealed, and abstract in native
-           code as a nonstandard extension, and C++/CLI's override fortunately
-           matches C++11's
-         */
+    #if __cplusplus >= 201103L
+        /* All C++11 compilers should have it. */
         #define HAVE_OVERRIDE
-    #elif wxCHECK_GCC_VERSION(4, 7) && __cplusplus >= 201103L
+    #elif wxCHECK_VISUALC_VERSION(11)
+        /*
+           VC++ supports override keyword since version 8 but doesn't define
+           __cplusplus as indicating C++11 support (at least up to and
+           including 12), so handle its case specially.
+
+           Also note that while the keyword is supported, using it with
+           versions 8, 9 and 10 results in C4481 compiler warning ("nonstandard
+           extension used") and so we avoid using it there, you could disable
+           this warning and predefine HAVE_OVERRIDE if you don't care about it.
+         */
         #define HAVE_OVERRIDE
     #elif WX_HAS_CLANG_FEATURE(cxx_override_control)
         #define HAVE_OVERRIDE
     #endif
-#endif /*  !HAVE_OVERRIDE */
+#endif /* !HAVE_OVERRIDE */
 
 #ifdef HAVE_OVERRIDE
     #define wxOVERRIDE override
 #else /*  !HAVE_OVERRIDE */
     #define wxOVERRIDE
 #endif /*  HAVE_OVERRIDE/!HAVE_EXPLICIT */
+
+/* wxFALLTHROUGH is used to notate explicit fallthroughs in switch statements */
+
+#if __cplusplus >= 201103L && defined(__has_warning)
+    #if WX_HAS_CLANG_FEATURE(cxx_attributes)
+        #define wxFALLTHROUGH [[clang::fallthrough]]
+    #endif
+#endif
+
+#ifndef wxFALLTHROUGH
+    #define wxFALLTHROUGH ((void)0)
+#endif
 
 /* these macros are obsolete, use the standard C++ casts directly now */
 #define wx_static_cast(t, x) static_cast<t>(x)
@@ -2455,8 +2473,6 @@ enum wxHatchStyle
              wxFontFamily, wxFontStyle, wxFontWeight, wxBrushStyle,
              wxPenStyle, wxPenCap, wxPenJoin enum values instead!
 */
-
-#if WXWIN_COMPATIBILITY_3_0
 
 /* don't use any elements of this enum in the new code */
 enum wxDeprecatedGUIConstants

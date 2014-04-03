@@ -10869,22 +10869,12 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
                         if (spanningWidth > 0)
                         {
-                            // Now share the spanning width between columns within that span
-                            int spanningWidthLeft = spanningWidth;
-                            int stretchColCount = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-                            for (k = i; k < (i+spans); k++)
+                            if (spanningWidth > spanningWidths[i])
                             {
-                                int minColWidth = wxMax(minColWidths[k], minColWidthsNoWrap[k]);
-
-                                if (colWidths[k] > 0) // absolute or proportional width has been specified
-                                    spanningWidthLeft -= colWidths[k];
-                                else if (minColWidth > 0)
-                                    spanningWidthLeft -= minColWidth;
-                                else
-                                    stretchColCount ++;
+                                // Remember the largest spanning cell for this column,
+                                // so we can adjust the spanned columns in the next step.
+                                spanningWidths[i] = spanningWidth;
+                                spanningWidthsSpanLengths[i] = spans;
                             }
                         }
                     }
@@ -10914,24 +10904,43 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             {
                 int minColWidth = wxMax(minColWidths[k], minColWidthsNoWrap[k]);
 
-                            if (spanningWidthLeft > 0)
-                            {
+                if (colWidths[k] > 0) // absolute or proportional width has been specified
+                    spanningWidthLeft -= colWidths[k];
+                else if (minColWidth > 0)
+                {
+                    spanningWidthLeft -= minColWidth;
+                    // Allow this to stretch, otherwise we're likely to not allow
+                    // any stretching and the spanned column will end up tiny.
+                    stretchColCount ++;
+                }
+                else
+                    stretchColCount ++;
+            }
+            // Now divide what's left between the remaining columns
+            int colShare = 0;
+            if (stretchColCount > 0)
+                colShare = spanningWidthLeft / stretchColCount;
+            int colShareRemainder = spanningWidthLeft - (colShare * stretchColCount);
+
+            // If fixed-width columns are currently too big, then we'll later
+            // stretch the spanned cell to fit.
+            if (spanningWidthLeft > 0)
+            {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-                                for (k = i; k < (i+spans); k++)
-                                {
-                                    int minColWidth = wxMax(minColWidths[k], minColWidthsNoWrap[k]);
-                                    if (colWidths[k] <= 0 && minColWidth <= 0) // absolute or proportional width has not been specified
-                                    {
-                                        int newWidth = colShare;
-                                        if (k == (i+spans-1))
-                                            newWidth += colShareRemainder; // ensure all pixels are filled
-                                        colWidths[k] = newWidth;
-                                    }
-                                }
-                            }
-                        }
+                for (k = i; k < (i+spans); k++)
+                {
+                    int minColWidth = wxMax(minColWidths[k], minColWidthsNoWrap[k]);
+                    if (colWidths[k] <= 0) // absolute or proportional width has not been specified
+                    {
+                        int newWidth = colShare;
+                        if (minColWidth > 0)
+                            newWidth += minColWidth;
+
+                        if (k == (i+spans-1))
+                            newWidth += colShareRemainder; // ensure all pixels are filled
+                        minColWidths[k] = newWidth;
                     }
                 }
             }
@@ -12630,7 +12639,7 @@ void wxRichTextAction::UpdateAppearance(long caretPosition, bool sendUpdateEvent
 
                 wxRichTextObjectList::compatibility_iterator firstNode = container->GetChildren().Find(para);
                 wxRichTextObjectList::compatibility_iterator node = firstNode;
-                wxRichTextObjectList::compatibility_iterator lastNode = NULL;
+                wxRichTextObjectList::compatibility_iterator lastNode = wxRichTextObjectList::compatibility_iterator();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
@@ -12928,8 +12937,6 @@ bool wxRichTextImage::LoadImageCache(wxDC& dc, wxRichTextDrawingContext& context
     {
         if (buffer)
         {
-            // Surely margins will already be accounted for?
-#if 0
             // Find the actual space available when margin is taken into account
             wxRect marginRect, borderRect, contentRect, paddingRect, outlineRect;
             marginRect = wxRect(0, 0, sz.x, sz.y);
@@ -12938,7 +12945,7 @@ bool wxRichTextImage::LoadImageCache(wxDC& dc, wxRichTextDrawingContext& context
                 buffer->GetBoxRects(dc, buffer, GetParent()->GetParent()->GetAttributes(), marginRect, borderRect, contentRect, paddingRect, outlineRect);
                 sz = contentRect.GetSize();
             }
-#endif
+
             // Use a minimum size to stop images becoming very small
             parentWidth = wxMax(100, sz.GetWidth());
             parentHeight = wxMax(100, sz.GetHeight());
