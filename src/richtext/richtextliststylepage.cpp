@@ -556,7 +556,6 @@ iaculis malesuada. Donec bibendum ipsum ut ante porta fringilla.\n");
     m_previewCtrl->EndStyle();
 
     m_previewCtrl->BeginStyle(attr);
-    long listStart = m_previewCtrl->GetInsertionPoint() + 1;
 
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -571,7 +570,6 @@ iaculis malesuada. Donec bibendum ipsum ut ante porta fringilla.\n");
         m_previewCtrl->EndStyle();
     }
     m_previewCtrl->EndStyle();
-    long listEnd = m_previewCtrl->GetInsertionPoint();
 
     m_previewCtrl->BeginStyle(normalParaAttr);
     m_previewCtrl->WriteText(s_para3);
