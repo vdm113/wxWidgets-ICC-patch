@@ -160,7 +160,6 @@ wxCONSTRUCTOR_5( wxComboBox, wxWindow*, Parent, wxWindowID, Id, \
 //     seemed to eliminate the position change).
 
 #include "wx/dialog.h"
-#define wxCC_GENERIC_TLW_IS_DIALOG
 #define wxComboCtrlGenericTLW   wxDialog
 
 #if defined(__WXGTK20__)
@@ -201,7 +200,6 @@ wxCONSTRUCTOR_5( wxComboBox, wxWindow*, Parent, wxWindowID, Id, \
 #else
 
 #include "wx/dialog.h"
-#define wxCC_GENERIC_TLW_IS_DIALOG
 #define wxComboCtrlGenericTLW   wxDialog
 
 #define USE_TRANSIENT_POPUP           0 // Use wxPopupWindowTransient (preferred, if it works properly on platform)
