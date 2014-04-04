@@ -587,7 +587,10 @@ GtkPageSetup* wxGtkPrintNativeData::GetPageSetupFromSettings(GtkPrintSettings* s
 
     GtkPaperSize *paper_size = gtk_print_settings_get_paper_size (settings);
     if (paper_size != NULL)
+    {
         gtk_page_setup_set_paper_size_and_default_margins (page_setup, paper_size);
+        gtk_paper_size_free(paper_size);
+    }
 
     return page_setup;
 }
@@ -658,11 +661,10 @@ int wxGtkPrintDialog::ShowModal()
         gtk_print_settings_set_print_pages(settings, GTK_PRINT_PAGES_ALL);
     else {
         gtk_print_settings_set_print_pages(settings, GTK_PRINT_PAGES_RANGES);
-        GtkPageRange *range;
-        range = g_new (GtkPageRange, 1);
-        range[0].start = fromPage-1;
-        range[0].end = (toPage >= fromPage) ? toPage-1 : fromPage-1;
-        gtk_print_settings_set_page_ranges (settings, range, 1);
+        GtkPageRange range;
+        range.start = fromPage - 1;
+        range.end = (toPage >= fromPage) ? toPage - 1 : fromPage - 1;
+        gtk_print_settings_set_page_ranges(settings, &range, 1);
     }
 
     GtkPrintOperation * const printOp = native->GetPrintJob();
@@ -726,6 +728,7 @@ int wxGtkPrintDialog::ShowModal()
             {
                 m_printDialogData.SetFromPage( range[0].start );
                 m_printDialogData.SetToPage( range[0].end );
+                g_free(range);
             }
             else {
                 m_printDialogData.SetAllPages( true );
@@ -1044,7 +1047,11 @@ void wxGtkPrinter::BeginPrint(wxPrintout *printout, GtkPrintOperation *operation
                     if (range[i].start > maxPage-1) range[i].start = maxPage-1;
                     numPages += range[i].end - range[i].start + 1;
                 }
-                gtk_print_settings_set_page_ranges (settings, range, 1);
+                if (range)
+                {
+                    gtk_print_settings_set_page_ranges(settings, range, 1);
+                    g_free(range);
+                }
                 break;}
             case GTK_PRINT_PAGES_ALL:
             default:
@@ -1085,6 +1092,7 @@ void wxGtkPrinter::DrawPage(wxPrintout *printout,
             {
                 startPage = range[0].start + 1;
                 endPage = range[0].end + 1;
+                g_free(range);
             }
             else {
                 startPage = minPage;
