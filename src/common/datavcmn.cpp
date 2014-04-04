@@ -55,7 +55,6 @@ public:
         m_finished = false;
     }
 
-    void AcceptChangesAndFinish();
     void SetFocusOnIdle( bool focus = true ) { m_focusOnIdle = focus; }
 
 protected:
