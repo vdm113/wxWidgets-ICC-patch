@@ -1688,9 +1688,6 @@ void wxHtmlHelpWindow::DoIndexFind()
         const unsigned cnt = index.size();
 
         int displ = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (unsigned i = 0; i < cnt; i++)
         {
             if (index[i].name.Lower().find(sr) != wxString::npos)
@@ -1769,9 +1766,6 @@ void wxHtmlHelpWindow::DoIndexAll()
     const unsigned cnt = index.size();
     bool first = true;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (unsigned i = 0; i < cnt; i++)
     {
         m_IndexList->Append(index[i].name, (char*)(&index[i]));
