@@ -202,6 +202,9 @@ static GtkPaperSize* wxGetGtkPaperSize(wxPaperSize paperId, const wxSize& size)
         const double h = size.y;
         GtkPaperSize* paperSize = NULL;
         GList* list = gtk_paper_size_get_paper_sizes(true);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (GList* p = list; p; p = p->next)
         {
             GtkPaperSize* paperSize2 = static_cast<GtkPaperSize*>(p->data);
@@ -479,6 +482,9 @@ bool wxGtkPrintNativeData::TransferTo( wxPrintData &data )
     if (paper_size)
     {
         const char* name = gtk_paper_size_get_name(paper_size);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (size_t i = 1; i < WXSIZEOF(gs_paperList); i++)
         {
             if (strcmp(name, gs_paperList[i]) == 0)
