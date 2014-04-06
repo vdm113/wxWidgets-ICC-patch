@@ -1495,10 +1495,7 @@ bool wxGStreamerMediaBackend::SetPosition(wxLongLong where)
 
 #   endif // GST_VERSION_MAJOR > 0 || GST_VERSION_MINOR >= 10
 
-    {
-        m_llPausedPos = where;
-        return true;
-    }
+    m_llPausedPos = where;
     return true;
 #endif //== 0.8.0
 }
