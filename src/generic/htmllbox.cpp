@@ -628,7 +628,7 @@ bool wxSimpleHtmlListBox::Create(wxWindow *parent, wxWindowID id,
                                  const wxSize& size,
                                  int n, const wxString choices[],
                                  long style,
-                                 const wxValidator& validator,
+                                 const wxValidator& wxVALIDATOR_PARAM(validator),
                                  const wxString& name)
 {
     if (!wxHtmlListBox::Create(parent, id, pos, size, style, name))
@@ -648,7 +648,7 @@ bool wxSimpleHtmlListBox::Create(wxWindow *parent, wxWindowID id,
                                  const wxSize& size,
                                  const wxArrayString& choices,
                                  long style,
-                                 const wxValidator& validator,
+                                 const wxValidator& wxVALIDATOR_PARAM(validator),
                                  const wxString& name)
 {
     if (!wxHtmlListBox::Create(parent, id, pos, size, style, name))
