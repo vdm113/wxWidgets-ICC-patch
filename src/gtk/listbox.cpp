@@ -656,7 +656,7 @@ void wxListBox::GTKOnSelectionChanged()
     else // single selection
     {
         const int item = GetSelection();
-        if ( DoChangeSingleSelection(item) )
+        if (item >= 0 && DoChangeSingleSelection(item))
             SendEvent(wxEVT_LISTBOX, item, true);
     }
 }
