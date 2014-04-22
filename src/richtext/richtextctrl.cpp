@@ -475,7 +475,11 @@ void wxRichTextCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
         {
             dc.SetUserScale(GetScale(), GetScale());
 
-            GetBuffer().Layout(dc, context, availableSpace, availableSpace, wxRICHTEXT_FIXED_WIDTH|wxRICHTEXT_VARIABLE_HEIGHT);
+            GetBuffer().Defragment(context);
+            GetBuffer().UpdateRanges();     // If items were deleted, ranges need recalculation
+
+            DoLayoutBuffer(GetBuffer(), dc, context, availableSpace, availableSpace, wxRICHTEXT_FIXED_WIDTH|wxRICHTEXT_VARIABLE_HEIGHT);
+
             GetBuffer().Invalidate(wxRICHTEXT_NONE);
 
             dc.SetUserScale(1.0, 1.0);
@@ -4092,7 +4096,7 @@ bool wxRichTextCtrl::LayoutContent(bool onlyVisibleRect)
         wxRichTextDrawingContext context(& GetBuffer());
         GetBuffer().Defragment(context);
         GetBuffer().UpdateRanges();     // If items were deleted, ranges need recalculation
-        GetBuffer().Layout(dc, context, availableSpace, availableSpace, flags);
+        DoLayoutBuffer(GetBuffer(), dc, context, availableSpace, availableSpace, flags);
         GetBuffer().Invalidate(wxRICHTEXT_NONE);
 
         dc.SetUserScale(1.0, 1.0);
@@ -4105,6 +4109,11 @@ bool wxRichTextCtrl::LayoutContent(bool onlyVisibleRect)
     }
 
     return true;
+}
+
+void wxRichTextCtrl::DoLayoutBuffer(wxRichTextBuffer& buffer, wxDC& dc, wxRichTextDrawingContext& context, const wxRect& rect, const wxRect& parentRect, int flags)
+{
+    buffer.Layout(dc, context, rect, parentRect, flags);
 }
 
 /// Is all of the selection, or the current caret position, bold?
