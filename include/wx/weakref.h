@@ -47,7 +47,10 @@ public:
         this->Assign(pobj);
     }
 
-    virtual void OnObjectDestroy() wxOVERRIDE
+    // When we have the full type here, static_cast<> will always work
+    // (or give a straight compiler error).
+    template <class TDerived>
+    wxWeakRef(TDerived* pobj) : m_pobj(NULL), m_ptbase(NULL)
     {
         this->Assign(pobj);
     }
