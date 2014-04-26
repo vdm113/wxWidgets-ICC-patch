@@ -271,7 +271,7 @@ void wxItemContainer::AssignNewItemClientData(unsigned int pos,
 
         default:
             wxFAIL_MSG( wxT("unknown client data type") );
-            // fall through
+            wxFALLTHROUGH;
 
         case wxClientData_None:
             // nothing to do

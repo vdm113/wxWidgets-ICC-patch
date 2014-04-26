@@ -188,7 +188,7 @@ void wxSocketImplUnix::OnReadWaiting()
 
             default:
                 wxFAIL_MSG( "unexpected CheckForInput() return value" );
-                // fall through
+                wxFALLTHROUGH;
 
             case -1:
                 if ( GetLastError() == wxSOCKET_WOULDBLOCK )

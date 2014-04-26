@@ -224,7 +224,7 @@ public:
                             format++;
                             break;
                         }
-                        //else: fall through
+                        wxFALLTHROUGH;
 
                     default:
                         size = Size_Default;

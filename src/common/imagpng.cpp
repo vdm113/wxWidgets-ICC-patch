@@ -415,12 +415,12 @@ void CopyDataFromPNG(wxImage *image,
                         // using the mask at all
                         wxASSERT_MSG( IsOpaque(a), wxT("logic error") );
 
-                        // fall through
+                        wxFALLTHROUGH;
 
                     case Transparency_Alpha:
                         if ( alpha )
                             *alpha++ = a;
-                        // fall through
+                        wxFALLTHROUGH;
 
                     case Transparency_None:
                         *ptrDst++ = g;
@@ -500,12 +500,12 @@ void CopyDataFromPNG(wxImage *image,
                             }
                         }
 
-                        // fall through
+                        wxFALLTHROUGH;
 
                     case Transparency_Alpha:
                         if ( alpha )
                             *alpha++ = a;
-                        // fall through
+                        wxFALLTHROUGH;
 
                     case Transparency_None:
                         *ptrDst++ = r;
@@ -652,7 +652,7 @@ wxPNGHandler::LoadFile(wxImage *image,
         {
             default:
                 wxLogWarning(_("Unknown PNG resolution unit %d"), unitType);
-                // fall through
+                wxFALLTHROUGH;
 
             case PNG_RESOLUTION_UNKNOWN:
                 image->SetOption(wxIMAGE_OPTION_RESOLUTIONX, resX);
@@ -1062,7 +1062,7 @@ bool wxPNGHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbos
             {
                 default:
                     wxFAIL_MSG( wxT("unknown wxPNG_TYPE_XXX") );
-                    // fall through
+                    wxFALLTHROUGH;
 
                 case wxPNG_TYPE_COLOUR:
                     *pData++ = clr.red;

@@ -2286,7 +2286,7 @@ bool wxString::Matches(const wxString& mask) const
                 // (however note that we don't quote '[' and ']' to allow
                 // using them for Unix shell like matching)
                 pattern += wxT('\\');
-                // fall through
+                wxFALLTHROUGH;
 
             default:
                 pattern += *pszMask;

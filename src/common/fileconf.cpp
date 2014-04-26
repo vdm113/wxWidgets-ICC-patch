@@ -2153,7 +2153,7 @@ static wxString FilterOutValue(const wxString& str)
           c = wxT('"');
           break;
         }
-        //else: fall through
+        wxFALLTHROUGH;
 
       default:
         strResult += str[n];
