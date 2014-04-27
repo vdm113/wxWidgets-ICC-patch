@@ -1396,23 +1396,6 @@ void wxTextCtrl::DoSetSelection(long from, long to, int flags)
 }
 
 // ----------------------------------------------------------------------------
-// Working with files
-// ----------------------------------------------------------------------------
-
-bool wxTextCtrl::DoLoadFile(const wxString& file, int fileType)
-{
-    if ( wxTextCtrlBase::DoLoadFile(file, fileType) )
-    {
-        // update the size limit if needed
-        AdjustSpaceLimit();
-
-        return true;
-    }
-
-    return false;
-}
-
-// ----------------------------------------------------------------------------
 // dirty status
 // ----------------------------------------------------------------------------
 
