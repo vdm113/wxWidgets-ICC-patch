@@ -2801,14 +2801,14 @@ static bool AlphaBlt(wxMSWDCImpl* dcDst,
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-                        for ( int y = 0; y < bmpOld.GetHeight(); y++ )
+                        for ( int y = 0; y < data.GetHeight(); y++ )
                         {
                             wxAlphaPixelData::Iterator rowStart = p;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-                            for ( int x = 0; x < bmpOld.GetWidth(); x++ )
+                            for ( int x = 0; x < data.GetWidth(); x++ )
                             {
                                 // We choose to use wxALPHA_TRANSPARENT instead
                                 // of perhaps more logical wxALPHA_OPAQUE here

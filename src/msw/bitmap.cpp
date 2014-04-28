@@ -391,6 +391,9 @@ wxGDIRefData *wxBitmap::CloneGDIRefData(const wxGDIRefData *data) const
 // Premultiply the values of all RGBA pixels in the given range.
 static void PremultiplyPixels(unsigned char* begin, unsigned char* end)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( unsigned char* pixels = begin; pixels < end; pixels += 4 )
     {
         const unsigned char a = pixels[3];
@@ -420,6 +423,9 @@ static bool CheckAlpha(HBITMAP hbmp, HBITMAP* hdib = NULL)
 
     unsigned char* pixels = dib.GetData();
     unsigned char* const end = pixels + 4*dib.GetWidth()*dib.GetHeight();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( ; pixels < end; pixels += 4 )
     {
         if ( pixels[3] != 0 )
@@ -468,6 +474,9 @@ static HBITMAP CreatePremultipliedDIBIfNeeded(HBITMAP hbmp)
 
     unsigned char* pixels = dib.GetData();
     unsigned char* const end = pixels + 4*dib.GetWidth()*dib.GetHeight();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( ; pixels < end; pixels += 4 )
     {
         const unsigned char a = pixels[3];
@@ -529,11 +538,7 @@ bool wxBitmap::CopyFromIconOrCursor(const wxGDIImage& icon,
             {
                 HBITMAP hdib = 0;
                 if ( CheckAlpha(iconInfo.hbmColor, &hdib) )
-                {
-                    refData->m_hasAlpha = true;
-                    ::DeleteObject(refData->m_hBitmap);
-                    refData->m_hBitmap = hdib;
-                }
+                    refData->Set32bppHDIB(hdib);
             }
             break;
 #endif // wxUSE_WXDIB
