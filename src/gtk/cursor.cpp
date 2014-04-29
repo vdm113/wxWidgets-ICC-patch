@@ -350,6 +350,9 @@ static void UpdateCursors(wxWindow* win, bool isBusyOrGlobalCursor)
     win->GTKUpdateCursor(isBusyOrGlobalCursor);
     const wxWindowList& children = win->GetChildren(); 
     wxWindowList::const_iterator i = children.begin();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (size_t n = children.size(); n--; ++i)
         UpdateCursors(*i, isBusyOrGlobalCursor);
 }
@@ -359,6 +362,9 @@ static void SetGlobalCursor(const wxCursor& cursor)
     GdkCursor* gdk_cursor = cursor.GetCursor();
     GdkDisplay* display = NULL;
     wxWindowList::const_iterator i = wxTopLevelWindows.begin();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (size_t n = wxTopLevelWindows.size(); n--; ++i)
     {
         wxWindow* win = *i;
