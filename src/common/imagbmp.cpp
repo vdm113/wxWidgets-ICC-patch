@@ -41,6 +41,7 @@
 #include "wx/quantize.h"
 #include "wx/scopeguard.h"
 #include "wx/scopedarray.h"
+#include "wx/scopedptr.h"
 #include "wx/anidecod.h"
 
 // For memcpy
@@ -372,9 +373,10 @@ bool wxBMPHandler::SaveDib(wxImage *image,
     }
 
     // pointer to the image data, use quantized if available
-    wxUint8 *data = (wxUint8*) image->GetData();
+    const unsigned char* const data = q_image && q_image->IsOk()
+                                        ? q_image->GetData()
+                                        : image->GetData();
     const unsigned char* const alpha = saveAlpha ? image->GetAlpha() : NULL;
-    if (q_image) if (q_image->IsOk()) data = (wxUint8*) q_image->GetData();
 
     wxScopedArray<wxUint8> buffer(row_width);
     memset(buffer.get(), 0, row_width);
@@ -624,6 +626,9 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
              r(ncolors),
              g(ncolors),
              b(ncolors);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (int j = 0; j < ncolors; j++)
         {
             if (hasPalette)

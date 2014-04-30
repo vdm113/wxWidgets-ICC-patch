@@ -1030,6 +1030,9 @@ void wxGCDCImpl::DoDrawRotatedText(const wxString& text, wxCoord x, wxCoord y,
     
     // Draw all text line by line
     const wxArrayString lines = wxSplit(text, '\n', '\0');
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t lineNum = 0; lineNum < lines.size(); lineNum++ )
     {
         // Calculate origin for each line to avoid accumulation of

@@ -2335,6 +2335,9 @@ bool wxRichTextParagraphLayoutBox::Layout(wxDC& dc, wxRichTextDrawingContext& co
                 // by floating objects from above the paragraphs.
                 if (wxRichTextBuffer::GetFloatingLayoutMode())
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                     while (node)
                     {
                         child = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -2353,25 +2356,6 @@ bool wxRichTextParagraphLayoutBox::Layout(wxDC& dc, wxRichTextDrawingContext& co
                             maxMaxWidth = wxMax(maxMaxWidth, child->GetMaxSize().x);
 
                             int newImpactedByFloats = child->GetImpactedByFloatingObjects();
-
-                            // We can stop laying out if this paragraph is unaffected by floating
-                            // objects, and was previously too.
-                            if (oldImpactedByFloats == 0 && newImpactedByFloats == 0)
-                            {
-                                node = node->GetNext();
-                                break;
-                            }
-                        }
-                        node = node->GetNext();
-                    }
-                }
-
-                int inc = 0;
-                if (node)
-                {
-                    child = wxDynamicCast(node->GetData(), wxRichTextParagraph);
-                    inc = availableSpace.y - child->GetPosition().y;
-                }
 
                             // We can stop laying out if this paragraph is unaffected by floating
                             // objects, and was previously too.
@@ -10894,19 +10878,12 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
                         if (spanningWidth > 0)
                         {
-                            // Now share the spanning width between columns within that span
-                            int spanningWidthLeft = spanningWidth;
-                            int stretchColCount = 0;
-                            for (k = i; k < (i+spans); k++)
+                            if (spanningWidth > spanningWidths[i])
                             {
-                                int minColWidth = wxMax(minColWidths[k], minColWidthsNoWrap[k]);
-
-                                if (colWidths[k] > 0) // absolute or proportional width has been specified
-                                    spanningWidthLeft -= colWidths[k];
-                                else if (minColWidth > 0)
-                                    spanningWidthLeft -= minColWidth;
-                                else
-                                    stretchColCount ++;
+                                // Remember the largest spanning cell for this column,
+                                // so we can adjust the spanned columns in the next step.
+                                spanningWidths[i] = spanningWidth;
+                                spanningWidthsSpanLengths[i] = spans;
                             }
                         }
                     }
@@ -10936,21 +10913,43 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             {
                 int minColWidth = wxMax(minColWidths[k], minColWidthsNoWrap[k]);
 
-                            if (spanningWidthLeft > 0)
-                            {
-                                for (k = i; k < (i+spans); k++)
-                                {
-                                    int minColWidth = wxMax(minColWidths[k], minColWidthsNoWrap[k]);
-                                    if (colWidths[k] <= 0 && minColWidth <= 0) // absolute or proportional width has not been specified
-                                    {
-                                        int newWidth = colShare;
-                                        if (k == (i+spans-1))
-                                            newWidth += colShareRemainder; // ensure all pixels are filled
-                                        colWidths[k] = newWidth;
-                                    }
-                                }
-                            }
-                        }
+                if (colWidths[k] > 0) // absolute or proportional width has been specified
+                    spanningWidthLeft -= colWidths[k];
+                else if (minColWidth > 0)
+                {
+                    spanningWidthLeft -= minColWidth;
+                    // Allow this to stretch, otherwise we're likely to not allow
+                    // any stretching and the spanned column will end up tiny.
+                    stretchColCount ++;
+                }
+                else
+                    stretchColCount ++;
+            }
+            // Now divide what's left between the remaining columns
+            int colShare = 0;
+            if (stretchColCount > 0)
+                colShare = spanningWidthLeft / stretchColCount;
+            int colShareRemainder = spanningWidthLeft - (colShare * stretchColCount);
+
+            // If fixed-width columns are currently too big, then we'll later
+            // stretch the spanned cell to fit.
+            if (spanningWidthLeft > 0)
+            {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
+                for (k = i; k < (i+spans); k++)
+                {
+                    int minColWidth = wxMax(minColWidths[k], minColWidthsNoWrap[k]);
+                    if (colWidths[k] <= 0) // absolute or proportional width has not been specified
+                    {
+                        int newWidth = colShare;
+                        if (minColWidth > 0)
+                            newWidth += minColWidth;
+
+                        if (k == (i+spans-1))
+                            newWidth += colShareRemainder; // ensure all pixels are filled
+                        minColWidths[k] = newWidth;
                     }
                 }
             }
@@ -12158,6 +12157,9 @@ void wxRichTextAction::CalculateRefreshOptimizations(wxArrayInt& optimizationLin
         wxRichTextParagraph* para = container->GetParagraphAtPosition(GetRange().GetStart());
         wxRichTextObjectList::compatibility_iterator firstNode = container->GetChildren().Find(para);
         wxRichTextObjectList::compatibility_iterator node = firstNode;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while (node)
         {
             wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
@@ -12196,6 +12198,9 @@ void wxRichTextAction::CalculateRefreshOptimizations(wxArrayInt& optimizationLin
             // modification point are affected by floats in other paragraphs,
             // then we will simply update the rest of the screen.
             wxRichTextObjectList::compatibility_iterator node = firstNode;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             while (node)
             {
                 wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
@@ -12643,7 +12648,10 @@ void wxRichTextAction::UpdateAppearance(long caretPosition, bool sendUpdateEvent
 
                 wxRichTextObjectList::compatibility_iterator firstNode = container->GetChildren().Find(para);
                 wxRichTextObjectList::compatibility_iterator node = firstNode;
-                wxRichTextObjectList::compatibility_iterator lastNode = NULL;
+                wxRichTextObjectList::compatibility_iterator lastNode = wxRichTextObjectList::compatibility_iterator();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 while (node)
                 {
                     wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
@@ -12730,6 +12738,9 @@ void wxRichTextAction::UpdateAppearance(long caretPosition, bool sendUpdateEvent
                     if (lastNode && (container->GetFloatingObjectCount() > 0) && (lastY < lastPossibleY))
                     {
                         wxRichTextObjectList::compatibility_iterator node = lastNode;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                         while (node)
                         {
                             wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
@@ -12900,12 +12911,13 @@ bool wxRichTextImage::LoadImageCache(wxDC& dc, wxRichTextDrawingContext& context
         m_imageCache = wxNullBitmap;
         m_imageState = ImageState_Unloaded;
 
-        m_imageBlock.Load(image);
-        if (!image.IsOk())
+        if (!m_imageBlock.Load(image) || !image.IsOk())
         {
             wxBitmap bitmap(image_placeholder24x24_xpm);
             m_imageCache = bitmap;
             m_originalImageSize = wxSize(bitmap.GetWidth(), bitmap.GetHeight());
+            m_imageState = ImageState_Bad;
+            retImageSize = wxSize(m_imageCache.GetWidth(), m_imageCache.GetHeight());
             return false;
         }
 
@@ -12934,8 +12946,6 @@ bool wxRichTextImage::LoadImageCache(wxDC& dc, wxRichTextDrawingContext& context
     {
         if (buffer)
         {
-            // Surely margins will already be accounted for?
-#if 0
             // Find the actual space available when margin is taken into account
             wxRect marginRect, borderRect, contentRect, paddingRect, outlineRect;
             marginRect = wxRect(0, 0, sz.x, sz.y);
@@ -12944,7 +12954,7 @@ bool wxRichTextImage::LoadImageCache(wxDC& dc, wxRichTextDrawingContext& context
                 buffer->GetBoxRects(dc, buffer, GetParent()->GetParent()->GetAttributes(), marginRect, borderRect, contentRect, paddingRect, outlineRect);
                 sz = contentRect.GetSize();
             }
-#endif
+
             // Use a minimum size to stop images becoming very small
             parentWidth = wxMax(100, sz.GetWidth());
             parentHeight = wxMax(100, sz.GetHeight());
@@ -13048,12 +13058,12 @@ bool wxRichTextImage::LoadAndScaleImageCache(wxImage& image, const wxSize& sz, b
 
         if (!image.IsOk())
         {
-            m_imageBlock.Load(image);
-            if (!image.IsOk())
+            if (!m_imageBlock.Load(image) || !image.IsOk())
             {
                 wxBitmap bitmap(image_placeholder24x24_xpm);
                 m_imageCache = bitmap;
                 m_originalImageSize = wxSize(bitmap.GetWidth(), bitmap.GetHeight());
+                m_imageState = ImageState_Bad;
                 return false;
             }
         }
@@ -13094,9 +13104,6 @@ bool wxRichTextImage::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
     if (!IsShown())
         return true;
 
-    if (!m_imageCache.IsOk())
-        return false;
-
     wxRichTextAttr attr(GetAttributes());
     AdjustAttributes(attr, context);
 
@@ -13131,7 +13138,8 @@ bool wxRichTextImage::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
 /// Lay the item out
 bool wxRichTextImage::Layout(wxDC& dc, wxRichTextDrawingContext& context, const wxRect& rect, const wxRect& parentRect, int WXUNUSED(style))
 {
-    if (!LoadImageCache(dc, context, false, parentRect.GetSize()))
+    wxSize imageSize;
+    if (!LoadImageCache(dc, context, imageSize, false, parentRect.GetSize()))
         return false;
 
     wxRect marginRect, borderRect, contentRect, paddingRect, outlineRect;

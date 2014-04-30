@@ -42,6 +42,10 @@ All (GUI):
 - Send events when toggling wxPropertyGrid nodes from keyboard (Armel Asselin).
 - Fix wxRearrangeList::Check() which asserted and misbehaved before.
 - Optimized wxRTC insertion and deletion when floating objects are present.
+- Added on-demand image loading option to wxRTC.
+- Add wxFont::GetBaseFont() (Melroy Tellis).
+- Update included Scintilla to version 3.3.9 (Christian Walther).
+- Add support for loading old V1 BMP files to wxImage (Artur Wieczorek).
 
 wxGTK:
 
@@ -60,6 +64,8 @@ wxMSW:
 - Add font colour support to wxFontPickerCtrl (Pana Alexandru).
 - Add wxEnhMetaFile::Detach() (Luca Bacci).
 - Add support for saving 256*256 32bpp ICOs in PNG format (Artur Wieczorek).
+- Keep menu item icon after removing and adding it back (Artur Wieczorek).
+- Add wxThread::MSWGetHandle() (troelsk).
 
 wxOSX/Cocoa:
 

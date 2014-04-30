@@ -387,9 +387,13 @@ wxGDIRefData *wxBitmap::CloneGDIRefData(const wxGDIRefData *data) const
     return new wxBitmapRefData(*static_cast<const wxBitmapRefData *>(data));
 }
 
+#if wxUSE_WXDIB
 // Premultiply the values of all RGBA pixels in the given range.
 static void PremultiplyPixels(unsigned char* begin, unsigned char* end)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( unsigned char* pixels = begin; pixels < end; pixels += 4 )
     {
         const unsigned char a = pixels[3];
@@ -419,6 +423,9 @@ static bool CheckAlpha(HBITMAP hbmp, HBITMAP* hdib = NULL)
 
     unsigned char* pixels = dib.GetData();
     unsigned char* const end = pixels + 4*dib.GetWidth()*dib.GetHeight();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( ; pixels < end; pixels += 4 )
     {
         if ( pixels[3] != 0 )
@@ -440,6 +447,52 @@ static bool CheckAlpha(HBITMAP hbmp, HBITMAP* hdib = NULL)
 
     return false;
 }
+
+// Return HDIB containing premultiplied bitmap data if the original bitmap is
+// not premultiplied, otherwise return NULL.
+//
+// Semantics is a bit weird here again because we want to avoid throwing the
+// wxDIB we create here away if possible.
+//
+// Also notice that this function uses a heuristics for determining whether the
+// original bitmap uses premultiplied alpha or not and can return NULL for some
+// bitmaps not using premultiplied alpha. And while this should be relatively
+// rare in practice, we really ought to allow the user to specify this
+// explicitly.
+static HBITMAP CreatePremultipliedDIBIfNeeded(HBITMAP hbmp)
+{
+    // Check if 32-bit bitmap realy has premultiplied RGB data
+    // and premuliply it if necessary.
+
+    BITMAP bm;
+    if ( !::GetObject(hbmp, sizeof(bm), &bm) || (bm.bmBitsPixel != 32) )
+        return NULL;
+
+    wxDIB dib(hbmp);
+    if ( !dib.IsOk() )
+        return NULL;
+
+    unsigned char* pixels = dib.GetData();
+    unsigned char* const end = pixels + 4*dib.GetWidth()*dib.GetHeight();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
+    for ( ; pixels < end; pixels += 4 )
+    {
+        const unsigned char a = pixels[3];
+        if ( a > 0 && (pixels[0] > a || pixels[1] > a || pixels[2] > a) )
+        {
+            // Data is certainly not premultiplied by alpha if any of the
+            // values is smaller than the value of alpha itself.
+            PremultiplyPixels(dib.GetData(), end);
+
+            return dib.Detach();
+        }
+    }
+
+    return NULL;
+}
+#endif // wxUSE_WXDIB
 
 bool wxBitmap::CopyFromIconOrCursor(const wxGDIImage& icon,
                                     wxBitmapTransparency transp)
@@ -485,11 +538,7 @@ bool wxBitmap::CopyFromIconOrCursor(const wxGDIImage& icon,
             {
                 HBITMAP hdib = 0;
                 if ( CheckAlpha(iconInfo.hbmColor, &hdib) )
-                {
-                    refData->m_hasAlpha = true;
-                    ::DeleteObject(refData->m_hBitmap);
-                    refData->m_hBitmap = hdib;
-                }
+                    refData->Set32bppHDIB(hdib);
             }
             break;
 #endif // wxUSE_WXDIB
@@ -1376,8 +1425,12 @@ bool wxBitmap::HasAlpha() const
 
 void wxBitmap::MSWUpdateAlpha()
 {
+#if wxUSE_WXDIB
     if ( CheckAlpha(GetHbitmap()) )
         GetBitmapData()->m_hasAlpha = true;
+#else // !wxUSE_WXDIB
+        GetBitmapData()->m_hasAlpha = false;
+#endif // wxUSE_WXDIB/!wxUSE_WXDIB
 }
 
 // ----------------------------------------------------------------------------
