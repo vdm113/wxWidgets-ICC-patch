@@ -142,6 +142,9 @@ void wxGUIEventLoop::ScheduleExit(int rc)
 
 void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (wxTheApp && wxTheApp->Pending())
         // TODO: implement event filtering using the eventsToProcess mask
         wxTheApp->Dispatch();
