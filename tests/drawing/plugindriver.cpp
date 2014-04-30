@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/drawing/plugindriver.cpp
 // Purpose:     Plugin management for the drawing tests
@@ -16,18 +23,13 @@
 #endif
 
 #ifndef WX_PRECOMP
-    #include "wx/app.h"
-    #include "wx/font.h"
-    #include "wx/window.h"
+    #include "wx/log.h"
 #endif // WX_PRECOMP
-
-#define _WX_CURSOR_H_BASE_
-
 
 #include "drawing.h"
 
 #if wxUSE_TEST_GC_DRAWING
-#include <wx/dynlib.h>
+#include "wx/dynlib.h"
 
 void GraphicsContextDrawingTestCase::RunPluginsDrawingCase (
     const DrawingTestCase & testCase)
@@ -43,6 +45,9 @@ void GraphicsContextDrawingTestCase::RunPluginsDrawingCase (
         wxArrayString pluginsNameArray = wxSplit (pluginsListStr, ',', '\0');
         m_drawingPlugins.resize (pluginsNameArray.size());
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (size_t idx=0; idx<pluginsNameArray.size(); ++idx)
         {
             PluginInfo &pluginBeingLoaded = m_drawingPlugins[idx];
@@ -80,6 +85,9 @@ void GraphicsContextDrawingTestCase::RunPluginsDrawingCase (
     }
 
     // now execute the test case for each plugin
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (size_t idxp=0; idxp<m_drawingPlugins.size(); ++idxp)
     {
         RunIndividualDrawingCase (*m_drawingPlugins[idxp].gcFactory, testCase);
