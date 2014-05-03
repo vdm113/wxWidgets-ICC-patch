@@ -2387,8 +2387,14 @@ bool wxRichTextCtrl::ExtendCellSelection(wxRichTextTable* table, int noRowSteps,
     int thisRow = -1;
     int thisCol = -1;
     int r, c;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (r = 0; r < table->GetRowCount(); r ++)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (c = 0; c < table->GetColumnCount(); c++)
         {
             wxRichTextCell* cell = table->GetCell(r, c);
@@ -2415,6 +2421,9 @@ bool wxRichTextCtrl::ExtendCellSelection(wxRichTextTable* table, int noRowSteps,
             bool visibleCol = false;
             if (noRowSteps != 0)
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 while (r >= 0 && r < table->GetRowCount())
                 {
                     wxRichTextCell* cell = table->GetCell(r, newCol);
@@ -2436,6 +2445,9 @@ bool wxRichTextCtrl::ExtendCellSelection(wxRichTextTable* table, int noRowSteps,
 
             if (noColSteps != 0)
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 while (c >= 0 && c < table->GetColumnCount())
                 {
                     wxRichTextCell* cell = table->GetCell(newRow, c);
@@ -5223,6 +5235,9 @@ bool wxRichTextCtrl::ProcessDelayedImageLoading(const wxRect& screenRect, wxRich
         return true;
 
     wxRichTextObjectList::compatibility_iterator node = box->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (node)
     {
         // Could be a cell or a paragraph
@@ -5232,6 +5247,9 @@ bool wxRichTextCtrl::ProcessDelayedImageLoading(const wxRect& screenRect, wxRich
         else // assume a paragraph
         {
             wxRichTextObjectList::compatibility_iterator node2 = composite->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             while (node2)
             {
                 wxRichTextObject* obj = node2->GetData();
