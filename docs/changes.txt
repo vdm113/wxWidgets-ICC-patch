@@ -27,10 +27,13 @@ All:
 - Add wxScopedArray ctor taking the number of elements to allocate.
 - Add wxDynamicLibrary::GetModuleFromAddress() (Luca Bacci).
 - Implement wxThread::SetPriority() for pthreads (Luca Bacci).
+- Add wxInt64 support to wxText{Input,Output}Stream (Alexander Bezzubikov).
+- Define wxOVERRIDE as override for supporting compilers (Thomas Goyne).
 
 All (GUI):
 
 - XRC handler for wxAuiToolBar added (Kinaou Hervé, David Hart).
+- Add wxFD_NO_FOLLOW style for wxFileDialog (Luca Bacci).
 - Add support for embedding bitmaps in generated SVG in wxSVGFileDC (iwbnwif).
 - Add support for sorting wxDataViewCtrl by multiple columns (Trigve).
 - Allow dropping data on wxDataViewCtrl background (Laurent Poujoulat).
@@ -40,6 +43,9 @@ All (GUI):
 - Fix wxRearrangeList::Check() which asserted and misbehaved before.
 - Optimized wxRTC insertion and deletion when floating objects are present.
 - Added on-demand image loading option to wxRTC.
+- Add wxFont::GetBaseFont() (Melroy Tellis).
+- Update included Scintilla to version 3.3.9 (Christian Walther).
+- Add support for loading old V1 BMP files to wxImage (Artur Wieczorek).
 
 wxGTK:
 
