@@ -1431,18 +1431,10 @@ public:
         if ( m_colAt.IsEmpty() )
             return idx;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-        for ( int i = 0; i < m_numCols; i++ )
-        {
-            if ( m_colAt[i] == idx )
-                return i;
-        }
+        int pos = m_colAt.Index(idx);
+        wxASSERT_MSG( pos != wxNOT_FOUND, "invalid column index" );
 
-        wxFAIL_MSG( "invalid column index" );
-
-        return wxNOT_FOUND;
+        return pos;
     }
 
     // reset the columns positions to the default order
