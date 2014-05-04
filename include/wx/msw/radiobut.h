@@ -67,6 +67,7 @@ protected:
 
     // Implement wxMSWOwnerDrawnButtonBase methods.
     virtual int MSWGetButtonStyle() const wxOVERRIDE;
+    virtual void MSWOnButtonResetOwnerDrawn() wxOVERRIDE;
     virtual int MSWGetButtonCheckedFlag() const wxOVERRIDE;
     virtual void
         MSWDrawButtonBitmap(wxDC& dc, const wxRect& rect, int flags) wxOVERRIDE;
