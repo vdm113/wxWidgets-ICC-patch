@@ -77,6 +77,12 @@
 #include "wx/timer.h"
 #endif
 
+// Define this if there is a standard clipboard format for rectangular
+// text selection under the current platform.
+#if defined(__WXMSW__) || defined(__WXGTK__)
+    #define wxHAVE_STC_RECT_FORMAT
+#endif
+
 //----------------------------------------------------------------------
 
 
@@ -212,7 +218,13 @@ private:
     int sysCaretWidth;
     int sysCaretHeight;
 #endif
-   
+
+#ifdef wxHAVE_STC_RECT_FORMAT
+    // The presence of this format on the clipboard indicates that the text is
+    // a rectangular (and not the default linear) selection.
+    wxDataFormat m_clipRectTextFormat;
+#endif
+
     friend class wxSTCCallTip;
 };
 
