@@ -10818,6 +10818,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // now that we know what our fixed column widths are going to be.
     // Spanned cells will try to adjust columns so the span will fit.
     // Currently fixed columns widths aren't adjusted.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (j = 0; j < m_rowCount; j++)
     {
         int visibleCellCount = 0;
@@ -10891,6 +10894,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
     // Complete the spanning width calculation, now we have the maximum spanning size
     // for each spanning cell
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         int spanningWidth = spanningWidths[i];
@@ -10900,6 +10906,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             // Now share the spanning width between columns within that span
             int spanningWidthLeft = spanningWidth;
             int stretchColCount = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for (k = i; k < (i+spans); k++)
             {
                 int minColWidth = wxMax(minColWidths[k], minColWidthsNoWrap[k]);
@@ -10926,6 +10935,9 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             // stretch the spanned cell to fit.
             if (spanningWidthLeft > 0)
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 for (k = i; k < (i+spans); k++)
                 {
                     int minColWidth = wxMax(minColWidths[k], minColWidthsNoWrap[k]);
