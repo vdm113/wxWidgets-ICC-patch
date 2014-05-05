@@ -14,19 +14,10 @@
     <ClCompile Include="..\..\src\stc\scintilla\lexlib\Accessor.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\stc\scintilla\lexlib\CharacterCategory.cxx">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\stc\scintilla\src\AutoComplete.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\stc\scintilla\src\CallTip.cxx">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stc\scintilla\src\CaseConvert.cxx">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stc\scintilla\src\CaseFolder.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\stc\scintilla\src\Catalogue.cxx">
@@ -137,9 +128,6 @@
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexD.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\stc\scintilla\lexers\LexDMAP.cxx">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexECL.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -177,12 +165,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexKix.cxx">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stc\scintilla\lexers\LexKVIrc.cxx">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stc\scintilla\lexers\LexLatex.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexLisp.cxx">
@@ -242,9 +224,6 @@
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexPLM.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\stc\scintilla\lexers\LexPO.cxx">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexPOV.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -282,9 +261,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexSQL.cxx">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stc\scintilla\lexers\LexSTTXT.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexScriptol.cxx">
@@ -392,7 +368,31 @@
     <ClCompile Include="..\..\src\stc\scintilla\src\XPM.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\stc\scintilla\lexlib\CharacterCategory.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stc\scintilla\src\CaseConvert.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stc\scintilla\src\CaseFolder.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stc\scintilla\lexers\LexDMAP.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stc\scintilla\lexers\LexKVIrc.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stc\scintilla\lexers\LexLatex.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stc\scintilla\lexers\LexPO.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\stc\scintilla\lexers\LexRust.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stc\scintilla\lexers\LexSTTXT.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
