@@ -26,7 +26,7 @@
 //
 // Notice that it is intentionally not exported, it is internal implementation
 // detail only.
-class wxMSWOwnerDrawnButtonBase
+class WXDLLIMPEXP_CORE wxMSWOwnerDrawnButtonBase
 {
 protected:
     // Ctor takes the back pointer to the real window, must be non-NULL.
