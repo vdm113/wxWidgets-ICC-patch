@@ -708,6 +708,12 @@ PangoContext* wxApp::GetPangoContext()
     return s_pangoContext;
 }
 
+PangoContext* wxGetPangoContext()
+{
+    PangoContext* context = wxTheApp->GetPangoContext();
+    g_object_ref(context);
+    return context;
+}
 #endif // wxUSE_UNICODE
 
 WXColormap wxApp::GetMainColormap(WXDisplay* display)

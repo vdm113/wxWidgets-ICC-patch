@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/display.cpp
 // Author:      Paul Cornett
@@ -18,8 +25,9 @@
 #ifdef GDK_WINDOWING_X11
     #include <gdk/gdkx.h>
 #endif
+#include "wx/gtk/private/gtk2-compat.h"
 
-GtkWidget* wxGetRootWindow();
+GdkWindow* wxGetTopLevelGDK();
 
 //-----------------------------------------------------------------------------
 
@@ -55,11 +63,12 @@ wx_gdk_screen_get_monitor_workarea(GdkScreen* screen, int monitor, GdkRectangle*
         if (GDK_IS_X11_SCREEN(screen))
 #endif
         {
-            GdkRectangle rect;
+            GdkRectangle rect = { 0 };
             wxGetWorkAreaX11(GDK_SCREEN_XSCREEN(screen),
                 rect.x, rect.y, rect.width, rect.height);
             // in case _NET_WORKAREA result is too large
-            gdk_rectangle_intersect(dest, &rect, dest);
+            if (rect.width && rect.height)
+                gdk_rectangle_intersect(dest, &rect, dest);
         }
 #endif // GDK_WINDOWING_X11
     }
@@ -74,7 +83,7 @@ void wxClientDisplayRect(int* x, int* y, int* width, int* height)
     GdkRectangle rect = { 0, 0, 672, 396 };
 #else
     GdkRectangle rect;
-    GdkWindow* window = gtk_widget_get_window(wxGetRootWindow());
+    GdkWindow* window = wxGetTopLevelGDK();
     GdkScreen* screen = gdk_window_get_screen(window);
     int monitor = gdk_screen_get_monitor_at_window(screen, window);
     gdk_screen_get_monitor_workarea(screen, monitor, &rect);
@@ -117,7 +126,7 @@ public:
 
 static inline GdkScreen* GetScreen()
 {
-    return gtk_widget_get_screen(wxGetRootWindow());
+    return gdk_window_get_screen(wxGetTopLevelGDK());
 }
 //-----------------------------------------------------------------------------
 
