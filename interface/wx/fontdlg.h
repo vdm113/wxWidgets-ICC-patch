@@ -20,7 +20,7 @@
     @library{wxcore}
     @category{cmndlg}
 
-    @see overview_cmndlg_font, wxFontData, wxGetFontFromUser()
+    @see @ref overview_cmndlg_font, wxFontData, wxGetFontFromUser()
 */
 class wxFontDialog : public wxDialog
 {
