@@ -308,6 +308,7 @@ namespace std
 {
 
 template <>
+inline
 void swap<wxUniCharRef>(wxUniCharRef& lhs, wxUniCharRef& rhs)
 {
     if ( &lhs != &rhs )
