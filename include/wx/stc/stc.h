@@ -5051,7 +5051,8 @@ public:
     void SetKey(int k)                    { m_key = k; }
     void SetModifiers(int m)              { m_modifiers = m; }
     void SetModificationType(int t)       { m_modificationType = t; }
-    void SetText(const wxString& t)       { m_text = t; }
+    // Kept for backwards compatibility, use SetString().
+    void SetText(const wxString& t)       { SetString(t); }
     void SetLength(int len)               { m_length = len; }
     void SetLinesAdded(int num)           { m_linesAdded = num; }
     void SetLine(int val)                 { m_line = val; }
@@ -5068,7 +5069,8 @@ public:
     void SetAnnotationLinesAdded(int val) { m_annotationLinesAdded = val; }
     void SetUpdated(int val)              { m_updated = val; }
 #ifdef  STC_USE_DND
-    void SetDragText(const wxString& val) { m_dragText = val; }
+    // Kept for backwards compatibility, use SetString().
+    void SetDragText(const wxString& val) { SetString(val); }
     void SetDragFlags(int flags)          { m_dragFlags = flags; }
     void SetDragResult(wxDragResult val)  { m_dragResult = val; }
 
@@ -5087,7 +5089,8 @@ public:
     int  GetKey()  const             { return m_key; }
     int  GetModifiers() const        { return m_modifiers; }
     int  GetModificationType() const { return m_modificationType; }
-    wxString GetText() const         { return m_text; }
+    // Kept for backwards compatibility, use GetString().
+    wxString GetText() const         { return GetString(); }
     int  GetLength() const           { return m_length; }
     int  GetLinesAdded() const       { return m_linesAdded; }
     int  GetLine() const             { return m_line; }
@@ -5105,7 +5108,8 @@ public:
     int  GetUpdated() const               { return m_updated; }
     
 #ifdef STC_USE_DND
-    wxString GetDragText()           { return m_dragText; }
+    // Kept for backwards compatibility, use GetString().
+    wxString GetDragText()           { return GetString(); }
     int GetDragFlags()               { return m_dragFlags; }
     wxDragResult GetDragResult()     { return m_dragResult; }
 
@@ -5127,7 +5131,6 @@ private:
     int  m_modifiers;
 
     int  m_modificationType;    // wxEVT_STC_MODIFIED
-    wxString m_text;
     int  m_length;
     int  m_linesAdded;
     int  m_line;
@@ -5148,9 +5151,7 @@ private:
     int m_annotationLinesAdded; // wxEVT_STC_MODIFIED with SC_MOD_CHANGEANNOTATION 
     int m_updated;              // wxEVT_STC_UPDATEUI
 
-
 #if wxUSE_DRAG_AND_DROP
-    wxString m_dragText;        // wxEVT_STC_START_DRAG, wxEVT_STC_DO_DROP
     int      m_dragFlags;       // wxEVT_STC_START_DRAG
     wxDragResult m_dragResult;  // wxEVT_STC_DRAG_OVER,wxEVT_STC_DO_DROP
 #endif

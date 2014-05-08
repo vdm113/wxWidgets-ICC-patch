@@ -6179,6 +6179,9 @@ public:
     int  GetKey()  const;
     int  GetModifiers() const;
     int  GetModificationType() const;
+    /**
+        @deprecated Use GetString() instead.
+     */
     wxString GetText() const;
     int  GetLength() const;
     int  GetLinesAdded() const;
@@ -6196,6 +6199,9 @@ public:
     int  GetAnnotationsLinesAdded() const;
     int  GetUpdated() const;
     
+    /**
+        @deprecated Use GetString() instead.
+     */
     wxString GetDragText();
     int GetDragFlags();
     wxDragResult GetDragResult();
