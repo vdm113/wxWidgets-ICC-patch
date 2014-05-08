@@ -42,6 +42,7 @@
     #include "wx/log.h"
     #include "wx/settings.h"
     #include "wx/ctrlsub.h"
+    #include "wx/msw/ownerdrawnbutton.h"
 #endif
 
 #if wxUSE_LISTCTRL
