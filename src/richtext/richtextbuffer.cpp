@@ -11983,6 +11983,7 @@ public:
         wxRichTextBuffer::InitStandardHandlers();
         wxRichTextParagraph::InitDefaultTabs();
 
+#if wxUSE_XML
         wxRichTextXMLHandler::RegisterNodeName(wxT("text"), wxT("wxRichTextPlainText"));
         wxRichTextXMLHandler::RegisterNodeName(wxT("symbol"), wxT("wxRichTextPlainText"));
         wxRichTextXMLHandler::RegisterNodeName(wxT("image"), wxT("wxRichTextImage"));
@@ -11992,6 +11993,7 @@ public:
         wxRichTextXMLHandler::RegisterNodeName(wxT("cell"), wxT("wxRichTextCell"));
         wxRichTextXMLHandler::RegisterNodeName(wxT("table"), wxT("wxRichTextTable"));
         wxRichTextXMLHandler::RegisterNodeName(wxT("field"), wxT("wxRichTextField"));
+#endif // wxUSE_XML
 
         return true;
     }
@@ -12000,7 +12002,9 @@ public:
         wxRichTextBuffer::CleanUpHandlers();
         wxRichTextBuffer::CleanUpDrawingHandlers();
         wxRichTextBuffer::CleanUpFieldTypes();
+#if wxUSE_XML
         wxRichTextXMLHandler::ClearNodeToClassMap();
+#endif // wxUSE_XML
         wxRichTextDecimalToRoman(-1);
         wxRichTextParagraph::ClearDefaultTabs();
         wxRichTextCtrl::ClearAvailableFontNames();
