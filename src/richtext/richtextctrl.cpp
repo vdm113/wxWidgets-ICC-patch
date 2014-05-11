@@ -2080,7 +2080,7 @@ void wxRichTextCtrl::MoveCaretBack(long oldPosition)
 bool wxRichTextCtrl::MoveRight(int noPositions, int flags)
 {
     // Test for continuing table selection
-    if (flags && wxRICHTEXT_SHIFT_DOWN)
+    if (flags & wxRICHTEXT_SHIFT_DOWN)
     {
         if (m_selection.GetContainer() && m_selection.GetContainer()->IsKindOf(CLASSINFO(wxRichTextTable)))
         {
@@ -2130,7 +2130,7 @@ bool wxRichTextCtrl::MoveRight(int noPositions, int flags)
             wxRichTextParagraphLayoutBox* actualContainer = wxDynamicCast(contextObj, wxRichTextParagraphLayoutBox);
             if (actualContainer && actualContainer != GetFocusObject() && actualContainer->AcceptsFocus() && actualContainer->IsShown())
             {
-                if ((flags && wxRICHTEXT_SHIFT_DOWN) &&
+                if ((flags & wxRICHTEXT_SHIFT_DOWN) &&
                     GetFocusObject()->IsKindOf(CLASSINFO(wxRichTextCell)) &&
                     actualContainer->IsKindOf(CLASSINFO(wxRichTextCell)) &&
                     GetFocusObject()->GetParent() == actualContainer->GetParent())
@@ -2243,7 +2243,7 @@ bool wxRichTextCtrl::MoveDown(int noLines, int flags)
         return false;
 
     // Test for continuing table selection
-    if (flags && wxRICHTEXT_SHIFT_DOWN)
+    if (flags & wxRICHTEXT_SHIFT_DOWN)
     {
         if (m_selection.GetContainer() && m_selection.GetContainer()->IsKindOf(CLASSINFO(wxRichTextTable)))
         {
@@ -2329,7 +2329,7 @@ bool wxRichTextCtrl::MoveDown(int noLines, int flags)
             wxRichTextParagraphLayoutBox* actualContainer = wxDynamicCast(contextObj, wxRichTextParagraphLayoutBox);
             if (actualContainer && actualContainer != GetFocusObject() && actualContainer->AcceptsFocus())
             {
-                if ((flags && wxRICHTEXT_SHIFT_DOWN) &&
+                if ((flags & wxRICHTEXT_SHIFT_DOWN) &&
                     GetFocusObject()->IsKindOf(CLASSINFO(wxRichTextCell)) &&
                     actualContainer->IsKindOf(CLASSINFO(wxRichTextCell)) &&
                     GetFocusObject()->GetParent() == actualContainer->GetParent())
