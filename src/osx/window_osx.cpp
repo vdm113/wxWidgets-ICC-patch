@@ -2207,7 +2207,7 @@ WXWindow wxWindowMac::MacGetTopLevelWindowRef() const
 
 bool wxWindowMac::MacHasScrollBarCorner() const
 {
-#if wxUSE_SCROLLBAR
+#if wxUSE_SCROLLBAR && !wxOSX_USE_IPHONE
     /* Returns whether the scroll bars in a wxScrolledWindow should be
      * shortened. Scroll bars should be shortened if either:
      *
