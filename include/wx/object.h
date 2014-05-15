@@ -189,6 +189,16 @@ inline T *wxCheckCast(const void *ptr)
 #define _WX_WANT_NEW_SIZET_WXCHAR_INT
 #define _WX_WANT_DELETE_VOID
 
+// Everyone except Visage gets the next one
+#ifndef __VISAGECPP__
+    #define _WX_WANT_DELETE_VOID
+#endif
+
+// Only visage gets this one under the correct circumstances
+#if defined(__VISAGECPP__) && __DEBUG_ALLOC__
+    #define _WX_WANT_DELETE_VOID_CONSTCHAR_SIZET
+#endif
+
 #if defined(__VISUALC__)
     #define _WX_WANT_DELETE_VOID_WXCHAR_INT
 #endif
