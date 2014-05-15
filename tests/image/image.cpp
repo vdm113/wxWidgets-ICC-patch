@@ -1021,9 +1021,6 @@ void ImageTestCase::CompareSavedImage()
 
 #if wxUSE_PALETTE
     unsigned char greys[256];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (int i = 0; i < 256; ++i)
     {
         greys[i] = i;
@@ -1198,9 +1195,6 @@ void ImageTestCase::SaveAnimatedGIF()
 
     wxImageArray images;
     images.Add(image);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (int i = 0; i < 4-1; ++i)
     {
         images.Add( images[i].Rotate90() );
@@ -1217,9 +1211,6 @@ void ImageTestCase::SaveAnimatedGIF()
     const int imageCount = handler.GetImageCount(memIn);
     CPPUNIT_ASSERT_EQUAL(4, imageCount);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (int i = 0; i < imageCount; ++i)
     {
         wxFileOffset pos = memIn.TellI();
