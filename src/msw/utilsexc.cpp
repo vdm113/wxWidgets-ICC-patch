@@ -82,7 +82,6 @@
 #endif // wxUSE_IPC
 
 #include "wx/msw/private/hiddenwin.h"
-#include "wx/msw/private/event.h"
 
 // ----------------------------------------------------------------------------
 // constants
