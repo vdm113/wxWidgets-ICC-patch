@@ -304,7 +304,7 @@ public:
     { return DoWriteDouble(key, value); }
 
   // Causes ambiguities in under OpenVMS
-#if !defined( __VMS )
+#if !defined( __VMS ) && !defined (__DMC__)
   // for other types, use wxToString()
   template <typename T>
   bool Write(const wxString& key, T const& value)
