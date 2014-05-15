@@ -111,21 +111,9 @@ private:
 
 #else // if !wxUSE_STD_CONTAINERS
 
-// this shouldn't be defined for compilers not supporting template methods or
-// without std::distance()
-//
-// FIXME-VC6: currently it's only not defined for VC6 in DLL build as it
-//            doesn't export template methods from DLL correctly so even though
-//            it compiles them fine, we get link errors when using wxArrayString
-#if !defined(__VISUALC6__) || !(defined(WXMAKINGDLL) || defined(WXUSINGDLL))
-    #define wxHAS_VECTOR_TEMPLATE_ASSIGN
-#endif
-
-#ifdef wxHAS_VECTOR_TEMPLATE_ASSIGN
-    #include "wx/beforestd.h"
-    #include <iterator>
-    #include "wx/afterstd.h"
-#endif // wxHAS_VECTOR_TEMPLATE_ASSIGN
+#include "wx/beforestd.h"
+#include <iterator>
+#include "wx/afterstd.h"
 
 class WXDLLIMPEXP_BASE wxArrayString
 {
@@ -305,7 +293,6 @@ public:
     { Init(false); assign(first, last); }
   wxArrayString(size_type n, const_reference v) { Init(false); assign(n, v); }
 
-#ifdef wxHAS_VECTOR_TEMPLATE_ASSIGN
   template <class Iterator>
   void assign(Iterator first, Iterator last)
   {
@@ -317,18 +304,6 @@ public:
       for(; first != last; ++first)
           push_back(*first);
   }
-#else // !wxHAS_VECTOR_TEMPLATE_ASSIGN
-  void assign(const_iterator first, const_iterator last)
-  {
-      clear();
-      reserve(last - first);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-      for(; first != last; ++first)
-          push_back(*first);
-  }
-#endif // wxHAS_VECTOR_TEMPLATE_ASSIGN/!wxHAS_VECTOR_TEMPLATE_ASSIGN
 
   void assign(size_type n, const_reference v)
     { clear(); Add(v, n); }

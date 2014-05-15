@@ -1013,11 +1013,6 @@ static void SetAlpha(wxImage *image)
 
 void ImageTestCase::CompareSavedImage()
 {
-    // FIXME-VC6: Pre-declare the loop variables for compatibility with
-    // pre-standard compilers such as MSVC6 that don't implement proper scope
-    // for the variables declared in the for loops.
-    int i;
-
     wxImage expected24("horse.png");
     CPPUNIT_ASSERT( expected24.IsOk() );
     CPPUNIT_ASSERT( !expected24.HasAlpha() );
@@ -1026,10 +1021,7 @@ void ImageTestCase::CompareSavedImage()
 
 #if wxUSE_PALETTE
     unsigned char greys[256];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-    for (i = 0; i < 256; ++i)
+    for (int i = 0; i < 256; ++i)
     {
         greys[i] = i;
     }
@@ -1203,11 +1195,7 @@ void ImageTestCase::SaveAnimatedGIF()
 
     wxImageArray images;
     images.Add(image);
-    int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-    for (i = 0; i < 4-1; ++i)
+    for (int i = 0; i < 4-1; ++i)
     {
         images.Add( images[i].Rotate90() );
 
@@ -1223,10 +1211,7 @@ void ImageTestCase::SaveAnimatedGIF()
     const int imageCount = handler.GetImageCount(memIn);
     CPPUNIT_ASSERT_EQUAL(4, imageCount);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-    for (i = 0; i < imageCount; ++i)
+    for (int i = 0; i < imageCount; ++i)
     {
         wxFileOffset pos = memIn.TellI();
         CPPUNIT_ASSERT( handler.LoadFile(&image, memIn, true, i) );
