@@ -610,9 +610,6 @@
 #if defined(_MSC_VER) && (_MSC_VER >= 1310)
 #    undef wxUSE_IOSTREAMH
 #    define wxUSE_IOSTREAMH 0
-#elif defined(__DMC__) || defined(__WATCOMC__)
-#    undef wxUSE_IOSTREAMH
-#    define wxUSE_IOSTREAMH 1
 #elif defined(__MINGW32__)
 #    undef wxUSE_IOSTREAMH
 #    define wxUSE_IOSTREAMH 0

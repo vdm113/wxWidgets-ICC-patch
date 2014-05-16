@@ -1255,8 +1255,6 @@ bool wxRemoveFile(const wxString& file)
 {
 #if defined(__VISUALC__) \
  || defined(__BORLANDC__) \
- || defined(__WATCOMC__) \
- || defined(__DMC__) \
  || defined(__GNUWIN32__)
     int res = wxRemove(file);
 #elif defined(__WXMAC__)

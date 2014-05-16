@@ -72,10 +72,7 @@
 #include "richtextsizepage.cpp"
 #include "richtextborderspage.cpp"
 #include "richtextbackgroundpage.cpp"
-// Digital Mars can't cope with this much code
-#ifndef __DMC__
-  #include "richtextliststylepage.cpp"
-#endif
+#include "richtextliststylepage.cpp"
 #include "richtextstylepage.cpp"
 #endif
 
@@ -376,14 +373,12 @@ wxPanel* wxRichTextFormattingDialogFactory::CreatePage(int page, wxString& title
         title = _("Bullets");
         return page;
     }
-#ifndef __DMC__
     else if (page == wxRICHTEXT_FORMAT_LIST_STYLE)
     {
         wxRichTextListStylePage* page = new wxRichTextListStylePage(dialog->GetBookCtrl(), wxID_ANY);
         title = _("List Style");
         return page;
     }
-#endif
     else if (page == wxRICHTEXT_FORMAT_SIZE)
     {
         wxRichTextSizePage* page = new wxRichTextSizePage(dialog->GetBookCtrl(), wxID_ANY);
@@ -437,11 +432,7 @@ int wxRichTextFormattingDialogFactory::GetPageId(int i) const
 /// Get the number of available page identifiers
 int wxRichTextFormattingDialogFactory::GetPageIdCount() const
 {
-#ifdef __DMC__
-    return 9;
-#else
     return 10;
-#endif
 }
 
 /// Set the sheet style, called at the start of wxRichTextFormattingDialog::Create

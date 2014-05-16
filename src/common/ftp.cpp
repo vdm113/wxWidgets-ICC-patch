@@ -478,10 +478,7 @@ wxString wxFTP::Pwd()
         }
         else
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-            for ( ++p; (bool)*p; ++p ) // FIXME-DMARS
+            for ( ++p; *p; ++p )
             {
                 if ( *p == wxT('"') )
                 {
