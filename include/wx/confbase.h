@@ -51,7 +51,8 @@ class WXDLLIMPEXP_FWD_BASE wxArrayString;
 
 // not all compilers can deal with template Read/Write() methods, define this
 // symbol if the template functions are available
-#if !defined( __VMS ) && \
+#if (!defined(__VISUALC__) || __VISUALC__ > 1200) && \
+    !defined( __VMS ) && \
     !(defined(__HP_aCC) && defined(__hppa))
     #define wxHAS_CONFIG_TEMPLATE_RW
 #endif
@@ -304,7 +305,7 @@ public:
     { return DoWriteDouble(key, value); }
 
   // Causes ambiguities in under OpenVMS
-#if !defined( __VMS ) && !defined (__DMC__)
+#if !defined( __VMS )
   // for other types, use wxToString()
   template <typename T>
   bool Write(const wxString& key, T const& value)
