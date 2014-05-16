@@ -70,6 +70,10 @@
     #endif
 #endif
 
+#ifdef __WATCOMC__
+    #include <direct.h>
+#endif
+
 #ifndef __WXWINCE__
 #include <time.h>
 #endif
