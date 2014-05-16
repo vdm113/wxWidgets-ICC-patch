@@ -56,9 +56,7 @@ wxDEFINE_EVENT( wxEVT_DIALUP_DISCONNECTED, wxDialUpEvent );
 // Wine: no wininet.h
 #if (!defined(__BORLANDC__) || (__BORLANDC__>=0x550)) && \
     (!defined(__GNUWIN32__) || wxCHECK_W32API_VERSION(0, 5)) && \
-    !defined(__GNUWIN32_OLD__) && \
-    !defined(__WINE__) && \
-    (!defined(__VISUALC__) || (__VISUALC__ >= 1020))
+    !defined(__WINE__)
 
 #include <ras.h>
 #include <raserror.h>
