@@ -148,8 +148,8 @@
       wxGraphicsContext interface, building the appropriate DrawingTestGCFactory
       -->
     <module id="test_drawingplugin" template="wx"
-                 template_append="wx_append_base"
-            cond="USE_GUI=='1'">
+                                    template_append="wx_append"
+            cond="USE_GUI=='1' and SHARED=='1'">
         <define>$(DLLFLAG)</define>
         <sources>
             drawing/pluginsample.cpp
