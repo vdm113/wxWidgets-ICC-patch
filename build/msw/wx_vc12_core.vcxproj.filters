@@ -615,9 +615,6 @@
     <ClCompile Include="..\..\src\msw\msgdlg.cpp">
       <Filter>MSW Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\msw\mslu.cpp">
-      <Filter>MSW Sources</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\msw\nativdlg.cpp">
       <Filter>MSW Sources</Filter>
     </ClCompile>
@@ -1979,9 +1976,6 @@
       <Filter>Common Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\ownerdrw.h">
-      <Filter>Common Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\wx\ownerdrawnbutton.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\ribbon\page.h">
