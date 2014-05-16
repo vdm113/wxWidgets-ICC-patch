@@ -77,10 +77,6 @@
     #endif
 #endif
 
-#ifdef __WINDOWS__
-    #include "wx/msw/mslu.h"
-#endif
-
 #ifdef __WATCOMC__
     #include <direct.h>
 #endif
