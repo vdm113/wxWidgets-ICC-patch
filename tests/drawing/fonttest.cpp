@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/drawing/basictest.cpp
 // Purpose:     Basic tests for wxGraphicsContext
@@ -70,9 +63,6 @@ void GraphicsContextDrawingTestCase::DoFontDrawings (wxGraphicsContext *gc)
 
     wxString text;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int n = -180; n < 180; n += 30 )
     {
         text.Printf(wxT("     %d rotated text"), n);
