@@ -406,7 +406,7 @@ public:
     // Special constructor for caching choices (used by derived class)
     wxEnumProperty( const wxString& label,
                     const wxString& name,
-                    const wxChar* const* labels,
+                    const char* const* untranslatedLabels,
                     const long* values,
                     wxPGChoices* choicesCache,
                     int value = 0 );
@@ -509,7 +509,7 @@ public:
     // Special constructor for caching choices (used by derived class)
     wxEditEnumProperty( const wxString& label,
                         const wxString& name,
-                        const wxChar* const* labels,
+                        const char* const* untranslatedLabels,
                         const long* values,
                         wxPGChoices* choicesCache,
                         const wxString& value );

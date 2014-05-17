@@ -1130,7 +1130,8 @@ wxEnumProperty::wxEnumProperty( const wxString& label, const wxString& name, con
     }
 }
 
-wxEnumProperty::wxEnumProperty( const wxString& label, const wxString& name, const wxChar* const* labels,
+wxEnumProperty::wxEnumProperty( const wxString& label, const wxString& name,
+    const char* const* untranslatedLabels,
     const long* values, wxPGChoices* choicesCache, int value )
     : wxPGProperty(label,name)
 {
@@ -1143,9 +1144,12 @@ wxEnumProperty::wxEnumProperty( const wxString& label, const wxString& name, con
         m_choices.Assign( *choicesCache );
         m_value = wxPGVariant_Zero;
     }
-    else if ( labels )
+    else
     {
-        m_choices.Add(labels,values);
+        for ( ; untranslatedLabels; untranslatedLabels++, values++ )
+        {
+            m_choices.Add(wxGetTranslation(*untranslatedLabels), *values);
+        }
 
         if ( GetItemCount() )
             SetValue( (long)value );
@@ -1395,7 +1399,7 @@ wxEditEnumProperty::wxEditEnumProperty( const wxString& label, const wxString& n
     SetValue( value );
 }
 
-wxEditEnumProperty::wxEditEnumProperty( const wxString& label, const wxString& name, const wxChar* const* labels,
+wxEditEnumProperty::wxEditEnumProperty( const wxString& label, const wxString& name, const char* const* labels,
     const long* values, wxPGChoices* choicesCache, const wxString& value )
     : wxEnumProperty(label,name,labels,values,choicesCache,0)
 {
