@@ -25,7 +25,9 @@ GtkWidget* wxGetRootWindow();
 
 #if !(wxUSE_LIBHILDON || wxUSE_LIBHILDON2)
 
+#ifdef GDK_WINDOWING_X11
 void wxGetWorkAreaX11(Screen* screen, int& x, int& y, int& width, int& height);
+#endif
 
 #ifndef __WXGTK3__
 static inline int wx_gdk_screen_get_primary_monitor(GdkScreen* screen)
@@ -173,10 +175,12 @@ bool wxDisplayImplGTK::IsPrimary() const
     return gdk_screen_get_primary_monitor(m_screen) == int(m_index);
 }
 
+#ifdef GDK_WINDOWING_X11
 wxArrayVideoModes wxXF86VidMode_GetModes(const wxVideoMode& mode, Display* pDisplay, int nScreen);
 wxVideoMode wxXF86VidMode_GetCurrentMode(Display* display, int nScreen);
 bool wxXF86VidMode_ChangeMode(const wxVideoMode& mode, Display* display, int nScreen);
 wxArrayVideoModes wxX11_GetModes(const wxDisplayImpl* impl, const wxVideoMode& modeMatch, Display* display);
+#endif
 
 wxArrayVideoModes wxDisplayImplGTK::GetModes(const wxVideoMode& mode) const
 {
@@ -194,7 +198,9 @@ wxArrayVideoModes wxDisplayImplGTK::GetModes(const wxVideoMode& mode) const
         modes = wxX11_GetModes(this, mode, display);
 #endif
     }
-#endif // GDK_WINDOWING_X11
+#else
+    wxUnusedVar(mode);
+#endif
     return modes;
 }
 
