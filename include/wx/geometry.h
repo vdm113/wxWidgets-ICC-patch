@@ -254,7 +254,8 @@ inline wxPoint2DInt operator*(wxInt32 n , const wxPoint2DInt& pt)
 
 inline wxPoint2DInt operator*(wxDouble n , const wxPoint2DInt& pt)
 {
-    return wxPoint2DInt( (int) (pt.m_x * n) , (int) (pt.m_y * n) );
+    return wxPoint2DInt( static_cast<wxInt32>(pt.m_x * n) ,
+        static_cast<wxInt32>(pt.m_y * n) );
 }
 
 inline wxPoint2DInt operator*(const wxPoint2DInt& pt , wxInt32 n)
@@ -264,7 +265,8 @@ inline wxPoint2DInt operator*(const wxPoint2DInt& pt , wxInt32 n)
 
 inline wxPoint2DInt operator*(const wxPoint2DInt& pt , wxDouble n)
 {
-    return wxPoint2DInt( (int) (pt.m_x * n) , (int) (pt.m_y * n) );
+    return wxPoint2DInt( static_cast<wxInt32>(pt.m_x * n) ,
+        static_cast<wxInt32>(pt.m_y * n) );
 }
 
 inline wxPoint2DInt operator/(const wxPoint2DInt& pt1 , const wxPoint2DInt& pt2)
@@ -279,7 +281,8 @@ inline wxPoint2DInt operator/(const wxPoint2DInt& pt , wxInt32 n)
 
 inline wxPoint2DInt operator/(const wxPoint2DInt& pt , wxDouble n)
 {
-    return wxPoint2DInt( (int) (pt.m_x / n) , (int) (pt.m_y / n) );
+    return wxPoint2DInt( static_cast<wxInt32>(pt.m_x / n) ,
+        static_cast<wxInt32>(pt.m_y / n) );
 }
 
 // wxPoint2Ds represent a point or a vector in a 2d coordinate system
