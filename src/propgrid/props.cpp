@@ -1146,9 +1146,10 @@ wxEnumProperty::wxEnumProperty( const wxString& label, const wxString& name,
     }
     else
     {
-        for ( ; untranslatedLabels; untranslatedLabels++, values++ )
+        for ( int i = 0; *untranslatedLabels; untranslatedLabels++ )
         {
-            m_choices.Add(wxGetTranslation(*untranslatedLabels), *values);
+            const long val = values ? *values++ : i++;
+            m_choices.Add(wxGetTranslation(*untranslatedLabels), val);
         }
 
         if ( GetItemCount() )
