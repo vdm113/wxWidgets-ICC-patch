@@ -2930,6 +2930,7 @@ wxWidgetImpl::wxWidgetImpl()
 
 wxWidgetImpl::~wxWidgetImpl()
 {
+    m_wxPeer = NULL;
 }
 
 void wxWidgetImpl::Init()
