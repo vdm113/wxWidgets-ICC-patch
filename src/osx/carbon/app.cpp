@@ -72,9 +72,6 @@ BEGIN_EVENT_TABLE(wxApp, wxEvtHandler)
 END_EVENT_TABLE()
 
 
-// platform specific static variables
-static const short kwxMacAppleMenuId = 1 ;
-
 wxWindow* wxApp::s_captureWindow = NULL ;
 long      wxApp::s_lastModifiers = 0 ;
 
@@ -470,6 +467,9 @@ bool wxApp::OSXOnShouldTerminate()
 // if no native match they just return the passed-in id
 
 #if wxOSX_USE_CARBON
+
+// platform specific static variables
+static const short kwxMacAppleMenuId = 1 ;
 
 struct IdPair
 {
