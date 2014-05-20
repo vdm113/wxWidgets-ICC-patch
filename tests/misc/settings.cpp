@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/misc/settings.cpp
 // Purpose:     test wxSettings
@@ -61,6 +68,9 @@ CPPUNIT_TEST_SUITE_NAMED_REGISTRATION( SettingsTestCase, "SettingsTestCase" );
 
 void SettingsTestCase::GetColour()
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (unsigned int i=wxSYS_COLOUR_SCROLLBAR; i < wxSYS_COLOUR_MAX; i++)
         CPPUNIT_ASSERT( wxSystemSettings::GetColour((wxSystemColour)i).IsOk() );
 }
@@ -78,6 +88,9 @@ void SettingsTestCase::GetFont()
         wxSYS_DEFAULT_GUI_FONT
     };
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (unsigned int i=0; i < WXSIZEOF(ids); i++)
     {
         const wxFont& font = wxSystemSettings::GetFont(ids[i]);
@@ -99,6 +112,9 @@ void SettingsTestCase::GlobalColours()
         *wxWHITE
     };
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (unsigned int i=0; i < WXSIZEOF(col); i++)
         CPPUNIT_ASSERT( col[i].IsOk() );
 }
@@ -113,6 +129,9 @@ void SettingsTestCase::GlobalFonts()
         *wxSWISS_FONT
     };
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (unsigned int i=0; i < WXSIZEOF(font); i++)
     {
         CPPUNIT_ASSERT( font[i].IsOk() );
@@ -144,6 +163,9 @@ void SettingsTestCase::GlobalBrushes()
         *wxWHITE_BRUSH
     };
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (unsigned int i=0; i < WXSIZEOF(brush); i++)
         CPPUNIT_ASSERT( brush[i].IsOk() );
 }
@@ -165,6 +187,9 @@ void SettingsTestCase::GlobalPens()
         *wxWHITE_PEN
     };
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (unsigned int i=0; i < WXSIZEOF(pen); i++)
         CPPUNIT_ASSERT( pen[i].IsOk() );
 }

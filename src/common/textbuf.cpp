@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/textbuf.cpp
 // Purpose:     implementation of wxTextBuffer class
@@ -77,6 +84,9 @@ wxString wxTextBuffer::Translate(const wxString& text, wxTextFileType type)
     result.Alloc(text.Len());
 
     wxChar chLast = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxString::const_iterator i = text.begin(); i != text.end(); ++i )
     {
         wxChar ch = *i;
@@ -222,10 +232,19 @@ wxTextFileType wxTextBuffer::GuessType() const
         }
 
     size_t n;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( n = 0; n < nScan; n++ )     // the beginning
         AnalyseLine(n);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( n = (nCount - nScan)/2; n < (nCount + nScan)/2; n++ )
         AnalyseLine(n);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( n = nCount - nScan; n < nCount; n++ )
         AnalyseLine(n);
 

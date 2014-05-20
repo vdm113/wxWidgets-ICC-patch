@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler
@@ -84,8 +91,14 @@ fsdither(TIFF* in, TIFF* out)
 
 	inptr = inputline;
 	nextptr = nextline;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (j = 0; j < imagewidth; ++j)
 		*nextptr++ = *inptr++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (i = 1; i < imagelength; ++i) {
 		tmpptr = thisline;
 		thisline = nextline;
@@ -95,12 +108,18 @@ fsdither(TIFF* in, TIFF* out)
 			break;
 		inptr = inputline;
 		nextptr = nextline;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (j = 0; j < imagewidth; ++j)
 			*nextptr++ = *inptr++;
 		thisptr = thisline;
 		nextptr = nextline;
 		_TIFFmemset(outptr = outline, 0, outlinesize);
 		bit = 0x80;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (j = 0; j < imagewidth; ++j) {
 			register int v;
 
@@ -147,6 +166,9 @@ static void
 processG3Options(char* cp)
 {
 	if ((cp = strchr(cp, ':'))) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		do {
 			cp++;
 			if (strneq(cp, "1d", 2))
@@ -201,6 +223,9 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char *optarg;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while ((c = getopt(argc, argv, "c:f:r:t:")) != -1)
 		switch (c) {
 		case 'c':		/* compression scheme */
@@ -317,6 +342,9 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);

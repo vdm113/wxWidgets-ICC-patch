@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/univ/themes/win32.cpp
 // Purpose:     wxUniversal theme implementing Win32-like LNF
@@ -1394,6 +1401,9 @@ wxWin32Renderer::wxWin32Renderer(const wxColourScheme *scheme)
     wxMemoryDC dcNormal,
                dcDisabled,
                dcInverse;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < Arrow_Max; n++ )
     {
         bool isVertical = n > Arrow_Right;
@@ -1445,6 +1455,9 @@ wxWin32Renderer::wxWin32Renderer(const wxColourScheme *scheme)
         else
             y2++;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( size_t i = 0; i < ARROW_LENGTH; i++ )
         {
             dcNormal.DrawLine(x1, y1, x2, y2);
@@ -2282,6 +2295,9 @@ void wxWin32Renderer::DrawSliderTicks(wxDC& dc,
     dc.SetPen(m_penBlack);
 
     int range = end - start;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int n = 0; n < range; n += step )
     {
         wxCoord x = x1 + (len*n) / range;
@@ -2504,6 +2520,9 @@ wxMenuGeometryInfo *wxWin32Renderer::GetMenuGeometry(wxWindow *win,
             widthAccelMax = 0,
             widthBmpMax = MENU_LEFT_MARGIN;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxMenuItemList::compatibility_iterator node = menu.GetMenuItems().GetFirst();
           node;
           node = node->GetNext() )
@@ -2613,6 +2632,9 @@ void wxWin32Renderer::DrawStatusField(wxDC& dc,
         // draw the grey stripes of the grip
         size_t n;
         wxCoord ofs = WIDTH_STATUSBAR_GRIP_BAND - 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( n = 0; n < NUM_STATUSBAR_GRIP_BANDS; n++, ofs += WIDTH_STATUSBAR_GRIP_BAND )
         {
             dc.DrawLine(x2 - ofs + 1, y2 - 1, x2, y2 - ofs);
@@ -2622,6 +2644,9 @@ void wxWin32Renderer::DrawStatusField(wxDC& dc,
         // draw the white stripes
         dc.SetPen(m_penHighlight);
         ofs = WIDTH_STATUSBAR_GRIP_BAND + 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( n = 0; n < NUM_STATUSBAR_GRIP_BANDS; n++, ofs += WIDTH_STATUSBAR_GRIP_BAND )
         {
             dc.DrawLine(x2 - ofs + 1, y2 - 1, x2, y2 - ofs);

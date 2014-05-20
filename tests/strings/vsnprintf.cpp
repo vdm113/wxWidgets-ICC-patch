@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/strings/vsnprintf.cpp
 // Purpose:     wxVsnprintf unit test
@@ -542,6 +549,9 @@ void VsnprintfTestCase::DoMisc(
 
     wxASSERT(max <= BUFSIZE);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < BUFSIZE; i++)
         buf[i] = '*';
     buf[BUFSIZE] = 0;
@@ -570,6 +580,9 @@ void VsnprintfTestCase::DoMisc(
 
     CPPUNIT_ASSERT_MESSAGE(errMsg, expectedString == buf);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = max; i < BUFSIZE; i++)
         CPPUNIT_ASSERT_MESSAGE(overflowMsg, buf[i] == '*');
 }

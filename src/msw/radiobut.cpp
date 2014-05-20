@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/radiobut.cpp
 // Purpose:     wxRadioButton
@@ -125,6 +132,9 @@ void wxRadioButton::SetValue(bool value)
     if ( !HasFlag(wxRB_GROUP) )
     {
         // ... turn off all radio buttons before it
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( wxWindowList::compatibility_iterator nodeBefore = nodeThis->GetPrevious();
               nodeBefore;
               nodeBefore = nodeBefore->GetPrevious() )
@@ -161,6 +171,9 @@ void wxRadioButton::SetValue(bool value)
     }
 
     // ... and also turn off all buttons after this one
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxWindowList::compatibility_iterator nodeAfter = nodeThis->GetNext();
           nodeAfter;
           nodeAfter = nodeAfter->GetNext() )

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/statbox.cpp
 // Purpose:     wxStaticBox
@@ -291,6 +298,9 @@ WXHRGN wxStaticBox::MSWGetRegionWithoutChildren()
     // Also notice that we must iterate over all windows, not just all
     // wxWindows, as there may be composite windows etc.
     HWND child;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( child = ::GetWindow(GetHwndOf(GetParent()), GW_CHILD);
           child;
           child = ::GetWindow(child, GW_HWNDNEXT) )
@@ -345,6 +355,9 @@ WXHRGN wxStaticBox::MSWGetRegionWithoutChildren()
 
     // Also iterate over all children of the static box, we need to clip them
     // out as well.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( child = ::GetWindow(GetHwnd(), GW_CHILD);
           child;
           child = ::GetWindow(child, GW_HWNDNEXT) )

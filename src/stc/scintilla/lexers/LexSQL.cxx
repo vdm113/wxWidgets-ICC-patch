@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 //-*- coding: utf-8 -*-
 // Scintilla source code edit control
 /** @file LexSQL.cxx
@@ -375,6 +382,9 @@ private:
 	bool IsCommentLine (int line, LexAccessor &styler) {
 		int pos = styler.LineStart(line);
 		int eol_pos = styler.LineStart(line + 1) - 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int i = pos; i + 1 < eol_pos; i++) {
 			int style = styler.StyleAt(i);
 			// MySQL needs -- comments to be followed by space or control char
@@ -444,6 +454,9 @@ void SCI_METHOD LexerSQL::Lex(unsigned int startPos, int length, int initStyle, 
 	StyleContext sc(startPos, length, initStyle, styler);
 	int styleBeforeDCKeyword = SCE_SQL_DEFAULT;
 	int offset = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward(), offset++) {
 		// Determine if the current state should terminate.
 		switch (sc.state) {
@@ -607,6 +620,9 @@ void SCI_METHOD LexerSQL::Fold(unsigned int startPos, int length, int initStyle,
 		int lastNLPos = -1;
 		// And keep going back until we find an operator ';' followed
 		// by white-space and/or comments. This will improve folding.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while (--startPos > 0) {
 			char ch = styler[startPos];
 			if (ch == '\n' || (ch == '\r' && styler[startPos + 1] != '\n')) {
@@ -614,6 +630,9 @@ void SCI_METHOD LexerSQL::Fold(unsigned int startPos, int length, int initStyle,
 			} else if (ch == ';' &&
 				   styler.StyleAt(startPos) == SCE_SQL_OPERATOR) {
 				bool isAllClear = true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				for (int tempPos = startPos + 1;
 				     tempPos < lastNLPos;
 				     ++tempPos) {
@@ -638,6 +657,9 @@ void SCI_METHOD LexerSQL::Fold(unsigned int startPos, int length, int initStyle,
 	// Otherwise if create ... view ... as is split over multiple
 	// lines the folding won't always update immediately.
 	unsigned int docLength = styler.Length();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (; endPos < docLength; ++endPos) {
 		if (styler.SafeGetCharAt(endPos) == ';') {
 			break;
@@ -657,6 +679,9 @@ void SCI_METHOD LexerSQL::Fold(unsigned int startPos, int length, int initStyle,
 	if (!options.foldOnlyBegin) {
 		sqlStatesCurrentLine = sqlStates.ForLine(lineCurrent);
 	}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -740,6 +765,9 @@ void SCI_METHOD LexerSQL::Fold(unsigned int startPos, int length, int initStyle,
 			const int MAX_KW_LEN = 9;	// Maximum length of folding keywords
 			char s[MAX_KW_LEN + 2];
 			unsigned int j = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (; j < MAX_KW_LEN + 1; j++) {
 				if (!iswordchar(styler[i + j])) {
 					break;

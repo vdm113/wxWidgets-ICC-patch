@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /** @file Decoration.cxx
  ** Visual elements added over text.
  **/
@@ -39,6 +46,9 @@ DecorationList::DecorationList() : currentIndicator(0), currentValue(1), current
 
 DecorationList::~DecorationList() {
 	Decoration *deco = root;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (deco) {
 		Decoration *decoNext = deco->next;
 		delete deco;
@@ -49,6 +59,9 @@ DecorationList::~DecorationList() {
 }
 
 Decoration *DecorationList::DecorationFromIndicator(int indicator) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (Decoration *deco=root; deco; deco = deco->next) {
 		if (deco->indicator == indicator) {
 			return deco;
@@ -65,6 +78,9 @@ Decoration *DecorationList::Create(int indicator, int length) {
 	Decoration *decoPrev = 0;
 	Decoration *deco = root;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (deco && (deco->indicator < indicator)) {
 		decoPrev = deco;
 		deco = deco->next;
@@ -87,6 +103,9 @@ void DecorationList::Delete(int indicator) {
 			root = root->next;
 		} else {
 			Decoration *deco=root;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			while (deco->next && !decoToDelete) {
 				if (deco->next && deco->next->indicator == indicator) {
 					decoToDelete = deco->next;
@@ -130,6 +149,9 @@ bool DecorationList::FillRange(int &position, int value, int &fillLength) {
 void DecorationList::InsertSpace(int position, int insertLength) {
 	const bool atEnd = position == lengthDocument;
 	lengthDocument += insertLength;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (Decoration *deco=root; deco; deco = deco->next) {
 		deco->rs.InsertSpace(position, insertLength);
 		if (atEnd) {
@@ -141,6 +163,9 @@ void DecorationList::InsertSpace(int position, int insertLength) {
 void DecorationList::DeleteRange(int position, int deleteLength) {
 	lengthDocument -= deleteLength;
 	Decoration *deco;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (deco=root; deco; deco = deco->next) {
 		deco->rs.DeleteRange(position, deleteLength);
 	}
@@ -149,6 +174,9 @@ void DecorationList::DeleteRange(int position, int deleteLength) {
 
 void DecorationList::DeleteAnyEmpty() {
 	Decoration *deco = root;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (deco) {
 		if ((lengthDocument == 0) || deco->Empty()) {
 			Delete(deco->indicator);
@@ -161,6 +189,9 @@ void DecorationList::DeleteAnyEmpty() {
 
 int DecorationList::AllOnFor(int position) const {
 	int mask = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (Decoration *deco=root; deco; deco = deco->next) {
 		if (deco->rs.ValueAt(position)) {
 			mask |= 1 << deco->indicator;

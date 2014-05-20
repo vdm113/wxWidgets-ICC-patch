@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/dbgrptg.cpp
 // Purpose:     implementation of wxDebugReportPreviewStd
@@ -384,6 +391,9 @@ bool wxDebugReportDialog::TransferDataToWindow()
 {
     // all files are included in the report by default
     const size_t count = m_dbgrpt.GetFilesCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         wxString name,
@@ -404,6 +414,9 @@ bool wxDebugReportDialog::TransferDataFromWindow()
 {
     // any unchecked files should be removed from the report
     const size_t count = m_checklst->GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         if ( !m_checklst->IsChecked(n) )

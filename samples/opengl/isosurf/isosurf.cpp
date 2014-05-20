@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        isosurf.cpp
 // Purpose:     wxGLCanvas demo program
@@ -211,6 +218,9 @@ void TestGLCanvas::LoadSurface(const wxString& filename)
         wxTextInputStream inFile(*stream);
         m_numverts = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while (!stream->Eof() && m_numverts < MAXVERTS)// && m_numverts<MAXVERTS)
         {
             inFile >> m_verts[m_numverts][0] >> m_verts[m_numverts][1] >> m_verts[m_numverts][2];
@@ -257,6 +267,9 @@ void TestGLCanvas::OnPaint( wxPaintEvent& WXUNUSED(event) )
     {
         glBegin( GL_TRIANGLE_STRIP );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (int i=0;i<m_numverts;i++)
         {
             glNormal3fv( m_norms[i] );

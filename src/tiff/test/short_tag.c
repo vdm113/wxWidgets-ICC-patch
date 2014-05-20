@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /*
  * Copyright (c) 2004, Andrey Kiselev  <dron@ak4719.spb.edu>
@@ -119,6 +126,9 @@ main()
 		goto failure;
 	}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (i = 0; i < NSINGLETAGS; i++) {
 		if (!TIFFSetField(tif, short_single_tags[i].tag,
 				  short_single_tags[i].value)) {
@@ -128,6 +138,9 @@ main()
 		}
 	}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (i = 0; i < NPAIREDTAGS; i++) {
 		if (!TIFFSetField(tif, short_paired_tags[i].tag,
 				  short_paired_tags[i].values[0],
@@ -174,12 +187,18 @@ main()
 	if (CheckShortField(tif, TIFFTAG_PLANARCONFIG, planarconfig) < 0)
 		goto failure;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (i = 0; i < NSINGLETAGS; i++) {
 		if (CheckShortField(tif, short_single_tags[i].tag,
 				    short_single_tags[i].value) < 0)
 			goto failure;
 	}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (i = 0; i < NPAIREDTAGS; i++) {
 		if (CheckShortPairedField(tif, short_paired_tags[i].tag,
 					  short_paired_tags[i].values) < 0)

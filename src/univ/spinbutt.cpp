@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/univ/spinbutt.cpp
 // Purpose:     implementation of the universal version of wxSpinButton
@@ -72,6 +79,9 @@ wxSpinButton::wxSpinButton(wxWindow *parent,
 
 void wxSpinButton::Init()
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(m_arrowsState); n++ )
     {
         m_arrowsState[n] = 0;

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/matrix.cpp
 // Purpose:     wxTransformMatrix class
@@ -59,8 +66,14 @@ void wxTransformMatrix::SetValue(int col, int row, double value)
 void wxTransformMatrix::operator = (const wxTransformMatrix& mat)
 {
     int i, j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < 3; i++)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (j = 0; j < 3; j++)
         {
             m_matrix[i][j] = mat.m_matrix[i][j];
@@ -75,8 +88,14 @@ bool wxTransformMatrix::operator == (const wxTransformMatrix& mat) const
         return true;
 
     int i, j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < 3; i++)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (j = 0; j < 3; j++)
         {
             if ( !wxIsSameDouble(m_matrix[i][j], mat.m_matrix[i][j]) )
@@ -134,8 +153,14 @@ bool wxTransformMatrix::Invert(void)
     inverseMatrix[0][1] /= det; inverseMatrix[1][1] /= det; inverseMatrix[2][1] /= det;
     inverseMatrix[0][2] /= det; inverseMatrix[1][2] /= det; inverseMatrix[2][2] /= det;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (int i = 0; i < 3; i++)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (int j = 0; j < 3; j++)
         {
             m_matrix[i][j] = inverseMatrix[i][j];
@@ -163,8 +188,14 @@ bool wxTransformMatrix::Identity(void)
 bool wxTransformMatrix::Scale(double scale)
 {
     int i, j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < 3; i++)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (j = 0; j < 3; j++)
         {
             m_matrix[i][j] *= scale;
@@ -279,8 +310,14 @@ wxTransformMatrix&  wxTransformMatrix::Mirror(bool x, bool y)
 bool wxTransformMatrix::Translate(double dx, double dy)
 {
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < 3; i++)
         m_matrix[i][0] += dx * m_matrix[i][2];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < 3; i++)
         m_matrix[i][1] += dy * m_matrix[i][2];
 
@@ -413,7 +450,13 @@ bool wxTransformMatrix::InverseTransformPoint(double x, double y, double& tx, do
 
 wxTransformMatrix& wxTransformMatrix::operator*=(const double& t)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (int i = 0; i < 3; i++)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (int j = 0; j < 3; j++)
             m_matrix[i][j]*= t;
     m_isIdentity = IsIdentity1();
@@ -422,7 +465,13 @@ wxTransformMatrix& wxTransformMatrix::operator*=(const double& t)
 
 wxTransformMatrix& wxTransformMatrix::operator/=(const double& t)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (int i = 0; i < 3; i++)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (int j = 0; j < 3; j++)
             m_matrix[i][j]/= t;
     m_isIdentity = IsIdentity1();
@@ -431,7 +480,13 @@ wxTransformMatrix& wxTransformMatrix::operator/=(const double& t)
 
 wxTransformMatrix& wxTransformMatrix::operator+=(const wxTransformMatrix& mat)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (int i = 0; i < 3; i++)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (int j = 0; j < 3; j++)
             m_matrix[i][j] += mat.m_matrix[i][j];
     m_isIdentity = IsIdentity1();
@@ -440,7 +495,13 @@ wxTransformMatrix& wxTransformMatrix::operator+=(const wxTransformMatrix& mat)
 
 wxTransformMatrix& wxTransformMatrix::operator-=(const wxTransformMatrix& mat)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (int i = 0; i < 3; i++)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (int j = 0; j < 3; j++)
             m_matrix[i][j] -= mat.m_matrix[i][j];
     m_isIdentity = IsIdentity1();
@@ -460,11 +521,20 @@ wxTransformMatrix& wxTransformMatrix::operator*=(const wxTransformMatrix& mat)
     else
     {
         wxTransformMatrix  result;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (int i = 0; i < 3; i++)
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
            for (int j = 0; j < 3; j++)
            {
                double sum = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                for (int k = 0; k < 3; k++)
                    sum += m_matrix[k][i] * mat.m_matrix[j][k];
                result.m_matrix[j][i] = sum;
@@ -525,7 +595,13 @@ wxTransformMatrix  wxTransformMatrix::operator*(const wxTransformMatrix& m) cons
 wxTransformMatrix  wxTransformMatrix::operator-() const
 {
     wxTransformMatrix result = *this;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (int i = 0; i < 3; i++)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (int j = 0; j < 3; j++)
             result.m_matrix[i][j] = -(this->m_matrix[i][j]);
     result.m_isIdentity = result.IsIdentity1();

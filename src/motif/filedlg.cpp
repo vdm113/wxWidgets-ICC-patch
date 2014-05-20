@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/filedlg.cpp
 // Purpose:     wxFileDialog
@@ -313,6 +320,9 @@ int wxFileDialog::ShowModal()
     XtAddGrab(XtParent(fileSel), True, False);
     XtAppContext context = (XtAppContext) wxTheApp->GetAppContext();
     XEvent event;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (!m_fileSelectorReturned)
     {
         XtAppNextEvent(context, &event);

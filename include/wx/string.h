@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/string.h
 // Purpose:     wxString class
@@ -525,6 +532,9 @@ private:
         return NULL;
 #endif
       Cache::Element * const cacheEnd = GetCacheEnd();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
       for ( Cache::Element *c = cacheBegin; c != cacheEnd; c++ )
       {
           if ( c->str == this )
@@ -608,6 +618,9 @@ private:
 
 
       wxStringImpl::const_iterator i(m_impl.begin() + cache->impl);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
       for ( size_t n = cache->pos; n < pos; n++ )
           wxStringOperations::IncIter(i);
 
@@ -4131,6 +4144,9 @@ void wxStringIteratorNode::clear()
 template<bool (T)(const wxUniChar& c)>
     inline bool wxStringCheck(const wxString& val)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( wxString::const_iterator i = val.begin();
               i != val.end();
               ++i )

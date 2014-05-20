@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/log.h
 // Purpose:     Assorted wxLogXXX functions, and wxLog (sink for logs)
@@ -1253,6 +1260,7 @@ WXDLLIMPEXP_BASE const wxChar* wxSysErrorMsg(unsigned long nErrCode = 0);
 //       See also #11829 for the problems with other simpler approaches,
 //       notably the need for two macros due to buggy __LINE__ in MSVC.
 #define wxDO_LOG_IF_ENABLED_HELPER(level, loopvar)                            \
+VDM_MACRO_PRAGMA_IVDEP \
     for ( bool loopvar = false;                                               \
           !loopvar && wxLog::IsLevelEnabled(wxLOG_##level, wxLOG_COMPONENT);  \
           loopvar = true )                                                    \

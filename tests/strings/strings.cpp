@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/strings/strings.cpp
 // Purpose:     wxString unit test
@@ -120,6 +127,9 @@ void StringTestCase::String()
     b.reserve (128);
     c.reserve (128);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (int i = 0; i < 2; ++i)
     {
         a = wxT("Hello");
@@ -138,6 +148,9 @@ void StringTestCase::PChar()
     wxChar b [128];
     wxChar c [128];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (int i = 0; i < 2; ++i)
     {
         wxStrcpy (a, wxT("Hello"));
@@ -159,6 +172,9 @@ void StringTestCase::Format()
     CPPUNIT_ASSERT( s2 == wxString::Format(wxT("Number 18: %s\n"), s1.c_str()) );
 
     static const size_t lengths[] = { 1, 512, 1024, 1025, 2048, 4096, 4097 };
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(lengths); n++ )
     {
         const size_t len = lengths[n];
@@ -571,6 +587,9 @@ void StringTestCase::Contains()
         { wxT("foo"),    wxT("fooo"),     false },
     };
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(containsData); n++ )
     {
         const ContainsData& cd = containsData[n];
@@ -650,6 +669,9 @@ static const struct ToLongData
 void StringTestCase::ToLong()
 {
     long l;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(longData); n++ )
     {
         const ToLongData& ld = longData[n];
@@ -686,6 +708,9 @@ void StringTestCase::ToLong()
 void StringTestCase::ToULong()
 {
     unsigned long ul;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(longData); n++ )
     {
         const ToLongData& ld = longData[n];
@@ -713,6 +738,9 @@ void StringTestCase::ToULong()
 void StringTestCase::ToLongLong()
 {
     wxLongLong_t l;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(longData); n++ )
     {
         const ToLongData& ld = longData[n];
@@ -730,6 +758,9 @@ void StringTestCase::ToLongLong()
 void StringTestCase::ToULongLong()
 {
     wxULongLong_t ul;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < WXSIZEOF(longData); n++ )
     {
         const ToLongData& ld = longData[n];
@@ -773,6 +804,9 @@ void StringTestCase::ToDouble()
     // test ToCDouble() first:
 
     size_t n;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( n = 0; n < WXSIZEOF(doubleData); n++ )
     {
         const ToDoubleData& ld = doubleData[n];
@@ -810,6 +844,9 @@ void StringTestCase::ToDouble()
         { wxT("-3E-abcde5"), 0, false },
     };
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( n = 0; n < WXSIZEOF(doubleData2); n++ )
     {
         const ToDoubleData& ld = doubleData2[n];
@@ -844,6 +881,9 @@ void StringTestCase::FromDouble()
         { 1.2345678,         3, "1.235" },
     };
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < WXSIZEOF(testData); n++ )
     {
         const FromDoubleTestData& td = testData[n];
@@ -856,6 +896,9 @@ void StringTestCase::FromDouble()
     wxLocale locale;
     CPPUNIT_ASSERT( locale.Init(wxLANGUAGE_FRENCH, wxLOCALE_DONT_LOAD_DEFAULT) );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( unsigned m = 0; m < WXSIZEOF(testData); m++ )
     {
         const FromDoubleTestData& td = testData[m];

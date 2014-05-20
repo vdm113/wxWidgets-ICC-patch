@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/dialup.cpp
 // Purpose:     MSW implementation of network/dialup classes and functions
@@ -513,6 +520,9 @@ HRASCONN wxDialUpManagerMSW::FindActiveConnection()
     DWORD nConnections = 0;
     DWORD dwRet = ERROR_BUFFER_TOO_SMALL;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( dwRet == ERROR_BUFFER_TOO_SMALL )
     {
         dwRet = ms_pfnRasEnumConnections(lpRasConn, &cbBuf, &nConnections);
@@ -686,6 +696,9 @@ size_t wxDialUpManagerMSW::GetISPNames(wxArrayString& names) const
 
     DWORD nEntries;
     DWORD dwRet;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     do
     {
         dwRet = ms_pfnRasEnumEntries
@@ -719,10 +732,16 @@ size_t wxDialUpManagerMSW::GetISPNames(wxArrayString& names) const
             return 0u;
         }
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( dwRet != 0 );
 
     // process them
     names.Empty();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( size_t n = 0; n < (size_t)nEntries; n++ )
     {
         names.Add(rasEntries[n].szEntryName);
@@ -772,6 +791,9 @@ bool wxDialUpManagerMSW::Dial(const wxString& nameOfISP,
                 // several ISPs, let the user choose
                 {
                     wxString *strings = new wxString[count];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                     for ( size_t i = 0; i < count; i++ )
                     {
                         strings[i] = names[i];
@@ -1244,6 +1266,9 @@ static DWORD wxRasMonitorThread(wxRasThreadData *data)
     handles[1] = data->hEventQuit;
 
     bool cont = true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( cont )
     {
         DWORD dwRet = ::WaitForMultipleObjects(2, handles, FALSE, INFINITE);

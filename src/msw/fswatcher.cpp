@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/fswatcher.cpp
 // Purpose:     wxMSWFileSystemWatcher
@@ -210,6 +217,9 @@ wxThread::ExitCode wxIOCPThread::Entry()
     wxLogTrace(wxTRACE_FSWATCHER, "[iocp] Started IOCP thread");
 
     // read events in a loop until we get false, which means we should exit
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( ReadEvents() );
 
     wxLogTrace(wxTRACE_FSWATCHER, "[iocp] Ended IOCP thread");
@@ -290,6 +300,9 @@ bool wxIOCPThread::ReadEvents()
     wxVector<wxEventProcessingData> events;
     const char* memory = static_cast<const char*>(watch->GetBuffer());
     int offset = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     do
     {
         const FILE_NOTIFY_INFORMATION* e =
@@ -300,6 +313,9 @@ bool wxIOCPThread::ReadEvents()
         offset = e->NextEntryOffset;
         memory += offset;
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (offset);
 
     // process events
@@ -314,6 +330,9 @@ bool wxIOCPThread::ReadEvents()
 void wxIOCPThread::ProcessNativeEvents(wxVector<wxEventProcessingData>& events)
 {
     wxVector<wxEventProcessingData>::iterator it = events.begin();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( ; it != events.end(); ++it )
     {
         const FILE_NOTIFY_INFORMATION& e = *(it->nativeEvent);
@@ -390,6 +409,9 @@ int wxIOCPThread::Native2WatcherFlags(int flags)
         { FILE_ACTION_RENAMED_NEW_NAME, 0 },
     };
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (unsigned int i=0; i < WXSIZEOF(flag_mapping); ++i) {
         if (flags == flag_mapping[i][0])
             return flag_mapping[i][1];

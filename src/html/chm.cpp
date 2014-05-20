@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/chm.cpp
 // Purpose:     CHM (Help) support for wxHTML
@@ -131,6 +138,9 @@ wxChmTools::wxChmTools(const wxFileName &archive)
         m_fileNames = new wxArrayString;
 
         // Store Filenames in array
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (file = chmh->files; file; file = file->next)
         {
             m_fileNames->Add(wxString::FromAscii(file->filename));
@@ -185,6 +195,9 @@ bool wxChmTools::Contains(const wxString& pattern)
     // loop through filearay
     if ( m_fileNames && (count = m_fileNames->GetCount()) > 0 )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (int i = 0; i < count; i++)
         {
             wxString tmp = m_fileNames->Item(i).MakeLower();
@@ -220,6 +233,9 @@ const wxString wxChmTools::Find(const wxString& pattern,
 
     if ( m_fileNames && (count = m_fileNames->GetCount()) > 0 )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (int i = 0; i < count; i++)
         {
             tmp = m_fileNames->Item(i).MakeLower();
@@ -258,6 +274,9 @@ size_t wxChmTools::Extract(const wxString& pattern, const wxString& filename)
     wxString tmp;
     wxString pattern_tmp = (wxString(pattern)).MakeLower();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (f = h->files; f; f = f->next)
     {
         tmp = wxString::FromAscii(f->filename).MakeLower();
@@ -301,6 +320,9 @@ struct mschmd_file *wxChmTools::GetMschmdFile(const wxString& pattern_orig)
     wxString tmp;
     wxString pattern = wxString(pattern_orig).MakeLower();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (f = h->files; f; f = f->next)
     {
         tmp = wxString::FromAscii(f->filename).MakeLower();
@@ -603,6 +625,9 @@ wxChmInputStream::CreateHHPStream()
         // First 4 Bytes are Version information, skip
         i->SeekI(4);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while (!i->Eof())
         {
             // Read #SYSTEM-Code and length

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 #if 0 /* in case someone actually tries to compile this */
 
@@ -547,9 +554,15 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
    png_bytep row_pointers[height];
 
    /* Clear the pointer array */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
    for (row = 0; row < height; row++)
       row_pointers[row] = NULL;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
    for (row = 0; row < height; row++)
       row_pointers[row] = png_malloc(png_ptr, png_get_rowbytes(png_ptr,
          info_ptr));
@@ -561,15 +574,24 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
 #else no_entire /* Read the image one or more scanlines at a time */
    /* The other way to read images - deal with interlacing: */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
    for (pass = 0; pass < number_passes; pass++)
    {
 #ifdef single /* Read the image a single row at a time */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
       for (y = 0; y < height; y++)
       {
          png_read_rows(png_ptr, &row_pointers[y], NULL, 1);
       }
 
 #else no_single /* Read the image several rows at a time */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
       for (y = 0; y < height; y += number_of_rows)
       {
 #ifdef sparkle /* Read the image using the "sparkle" effect. */
@@ -991,6 +1013,9 @@ void write_png(char *file_name /* , ... other image information ... */)
      png_error (png_ptr, "Image is too tall to process in memory");
 
    /* Set up pointers into your "image" byte array */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
    for (k = 0; k < height; k++)
      row_pointers[k] = image + k*width*bytes_per_pixel;
 
@@ -1006,12 +1031,18 @@ void write_png(char *file_name /* , ... other image information ... */)
    /* The number of passes is either 1 for non-interlaced images,
     * or 7 for interlaced images.
     */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
    for (pass = 0; pass < number_passes; pass++)
    {
       /* Write a few rows at a time. */
       png_write_rows(png_ptr, &row_pointers[first_row], number_of_rows);
 
       /* If you are only writing one row at a time, this works */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
       for (y = 0; y < height; y++)
          png_write_rows(png_ptr, &row_pointers[y], 1);
    }

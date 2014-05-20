@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/msgdlg.cpp
 // Purpose:     wxMessageDialog
@@ -255,6 +262,9 @@ void wxMessageDialog::ReplaceStaticWithEdit()
     // ignored by the static control but result in extra lines and hence extra
     // scrollbar position in the edit one
     wxString text(wxGetWindowText(hwndStatic));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( wxString::reverse_iterator i = text.rbegin(); i != text.rend(); ++i )
     {
         if ( *i != '\n' )
@@ -307,6 +317,9 @@ void wxMessageDialog::ReplaceStaticWithEdit()
     SetWindowRect(GetHwnd(), rcBox);
 
     // and adjust all the buttons positions
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( unsigned n = 0; n < WXSIZEOF(ms_buttons); n++ )
     {
         const HWND hwndBtn = ::GetDlgItem(GetHwnd(), ms_buttons[n].id);
@@ -342,6 +355,9 @@ void wxMessageDialog::AdjustButtonLabels()
     RECT rcBtn;                 // stores the button height and y positions
     unsigned numButtons = 0;    // total number of buttons in the message box
     unsigned n;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( n = 0; n < WXSIZEOF(ms_buttons); n++ )
     {
         const HWND hwndBtn = ::GetDlgItem(GetHwnd(), ms_buttons[n].id);
@@ -419,6 +435,9 @@ void wxMessageDialog::AdjustButtonLabels()
                   wBoxNew - wAllButtons) / 2;
     rcBtn.right = rcBtn.left + wBtnNew;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( n = 0; n < WXSIZEOF(ms_buttons); n++ )
     {
         const HWND hwndBtn = ::GetDlgItem(GetHwnd(), ms_buttons[n].id);
@@ -449,6 +468,9 @@ int wxMessageDialog::ShowMessageBox()
         // message loop is entered), this must be done or the next message box
         // will never be shown - just try putting 2 calls to wxMessageBox() in
         // OnInit() to see it
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while ( wxTheApp->Pending() )
             wxTheApp->Dispatch();
     }

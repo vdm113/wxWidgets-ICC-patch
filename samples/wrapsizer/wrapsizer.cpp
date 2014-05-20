@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wrapsizer.cpp
 // Purpose:     wxWidgets sample demonstrating wxWrapSizer use
@@ -110,6 +117,9 @@ WrapSizerFrame::WrapSizerFrame()
     wxSizer *sizerMid = new wxStaticBoxSizer(wxVERTICAL, m_panel,
                                                 "With check-boxes");
     wxSizer * const sizerMidWrap = new wxWrapSizer(wxHORIZONTAL);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int nCheck = 0; nCheck < 6; nCheck++ )
     {
         wxCheckBox *chk = new wxCheckBox

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/toolbar.cpp
 // Purpose:     wxToolBar
@@ -273,6 +280,9 @@ bool wxToolBar::Realize()
     wxBitmap bmp, insensBmp;
 
     wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( node )
     {
         wxToolBarTool *tool = (wxToolBarTool *)node->GetData();
@@ -497,6 +507,9 @@ bool wxToolBar::DoDeleteTool(size_t WXUNUSED(pos), wxToolBarToolBase *tool)
     int packing = GetToolPacking();
     int offset = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
          node; node = node->GetNext() )
     {
@@ -639,6 +652,9 @@ void wxToolBar::DoSetSize(int x, int y, int width, int height, int sizeFlags)
 wxToolBarToolBase *wxToolBar::FindToolByWidget(WXWidget w) const
 {
     wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( node )
     {
         wxToolBarTool *tool = (wxToolBarTool *)node->GetData();

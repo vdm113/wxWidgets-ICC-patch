@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexProgress.cxx
  **  Lexer for Progress 4GL.
@@ -57,6 +64,9 @@ static void Colourise4glDoc(unsigned int startPos, int length, int initStyle, Wo
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.atLineStart) {
@@ -75,6 +85,9 @@ static void Colourise4glDoc(unsigned int startPos, int length, int initStyle, Wo
 			}
 			else {
 				// Skip whitespace between ~ and EOL
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				while (sc.More() && (sc.chNext == ' ' || sc.chNext == '\t') ) {
 					sc.Forward();
 				}
@@ -174,6 +187,9 @@ static void Colourise4glDoc(unsigned int startPos, int length, int initStyle, Wo
 			} else if (sc.ch == '&' && visibleChars == 0 && ((sc.state & 0x10) == 0)) {
 				sc.SetState(SCE_4GL_PREPROCESSOR | ResetSentenceStart);
 				// Skip whitespace between & and preprocessor word
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				do {
 					sc.Forward();
 				} while ((sc.ch == ' ' || sc.ch == '\t') && sc.More());
@@ -221,6 +237,9 @@ static void FoldNoBox4glDoc(unsigned int startPos, int length, int initStyle,
 	char chNext = static_cast<char>(tolower(styler[startPos]));
 	int styleNext = styler.StyleAt(startPos);
 	int style = initStyle;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = static_cast<char>(tolower(styler.SafeGetCharAt(i + 1)));

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/colordlg.cpp
 // Purpose:     Native wxColourDialog for GTK+
@@ -142,6 +149,9 @@ void wxColourDialog::ColourDataToDialog()
 
     GdkColor colors[wxColourData::NUM_CUSTOM];
     gint n_colors = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (unsigned i = 0; i < WXSIZEOF(colors); i++)
     {
         wxColour c = m_data.GetCustomColour(i);
@@ -208,6 +218,9 @@ void wxColourDialog::DialogToColourData()
     gint n_colors;
     if (gtk_color_selection_palette_from_string(pal, &colors, &n_colors))
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (int i = 0; i < n_colors && i < wxColourData::NUM_CUSTOM; i++)
         {
             m_data.SetCustomColour(i, wxColour(colors[i]));

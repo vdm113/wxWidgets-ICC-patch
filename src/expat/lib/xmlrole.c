@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /* Copyright (c) 1998, 1999 Thai Open Source Software Center Ltd
    See the file COPYING for copying permission.
 */
@@ -816,6 +823,9 @@ attlist2(PROLOG_STATE *state,
         KW_NMTOKENS,
       };
       int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
       for (i = 0; i < (int)(sizeof(types)/sizeof(types[0])); i++)
         if (XmlNameMatchesAscii(enc, ptr, end, types[i])) {
           state->handler = attlist8;

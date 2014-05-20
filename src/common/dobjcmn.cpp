@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/dobjcmn.cpp
 // Purpose:     implementation of data object methods common to all platforms
@@ -66,6 +73,9 @@ bool wxDataObjectBase::IsSupported(const wxDataFormat& format,
         GetAllFormats( formats, dir );
 
         size_t n;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( n = 0; n < nFormatCount; n++ )
         {
             if ( formats[n] == format )
@@ -99,6 +109,9 @@ wxDataObjectComposite::GetObject(const wxDataFormat& format, wxDataObjectBase::D
 {
     wxSimpleDataObjectList::compatibility_iterator node = m_dataObjects.GetFirst();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( node )
     {
         wxDataObjectSimple *dataObj = node->GetData();
@@ -182,6 +195,9 @@ size_t wxDataObjectComposite::GetFormatCount(Direction dir) const
     //       from GetFormatCount(): this is the case of e.g. wxTextDataObject
     //       under wxMac and wxGTK
     wxSimpleDataObjectList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( node = m_dataObjects.GetFirst(); node; node = node->GetNext() )
         n += node->GetData()->GetFormatCount(dir);
 
@@ -194,6 +210,9 @@ void wxDataObjectComposite::GetAllFormats(wxDataFormat *formats,
     size_t index(0);
     wxSimpleDataObjectList::compatibility_iterator node;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( node = m_dataObjects.GetFirst(); node; node = node->GetNext() )
     {
         // NOTE: some wxDataObjectSimple objects may return more than 1 format

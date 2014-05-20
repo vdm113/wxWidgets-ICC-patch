@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler
@@ -172,6 +179,9 @@ main(int argc, char* argv[])
 
 	*mp++ = 'w';
 	*mp = '\0';
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while ((c = getopt(argc, argv, ",:b:c:f:l:o:z:p:r:w:aistBLMC8x")) != -1)
 		switch (c) {
 		case ',':
@@ -274,6 +284,9 @@ main(int argc, char* argv[])
 		return (-2);
 	if ((argc - optind) == 2)
 		pageNum = -1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (; optind < argc-1 ; optind++) {
 		char *imageCursor = argv[optind];
 		in = openSrcImage (&imageCursor);
@@ -288,6 +301,9 @@ main(int argc, char* argv[])
 			(void) TIFFClose(out);
 			return (1);
 		}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (;;) {
 			config = defconfig;
 			compression = defcompression;
@@ -319,6 +335,9 @@ static void
 processZIPOptions(char* cp)
 {
 	if ( (cp = strchr(cp, ':')) ) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		do {
 			cp++;
 			if (isdigit((int)*cp))
@@ -337,6 +356,9 @@ processG3Options(char* cp)
 	if( (cp = strchr(cp, ':')) ) {
 		if (defg3opts == (uint32) -1)
 			defg3opts = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		do {
 			cp++;
 			if (strneq(cp, "1d", 2))
@@ -362,6 +384,9 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
 		defcompression = COMPRESSION_JPEG;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while( cp )
 		{
 			if (isdigit((int)cp[1]))
@@ -464,6 +489,9 @@ usage(void)
 
 	setbuf(stderr, buf);
 	fprintf(stderr, "%s\n\n", TIFFGetVersion());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);
@@ -765,6 +793,9 @@ tiffcp(TIFF* in, TIFF* out)
 			if (TIFFGetField(in, TIFFTAG_INKNAMES, &inknames)) {
 				int inknameslen = strlen(inknames) + 1;
 				const char* cp = inknames;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				while (ninks > 1) {
 					cp = strchr(cp, '\0');
                                         cp++;
@@ -795,6 +826,9 @@ tiffcp(TIFF* in, TIFF* out)
 		}
 	}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (p = tags; p < &tags[NTAGS]; p++)
 		CopyTag(p->tag, p->count, p->type);
 
@@ -833,6 +867,9 @@ DECLAREcpFunc(cpContig2ContigByRow)
 		return 0;
 	_TIFFmemset(buf, 0, scanlinesize);
 	(void) imagewidth; (void) spp;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (row = 0; row < imagelength; row++) {
 		if (TIFFReadScanline(in, buf, row, 0) < 0 && !ignore) {
 			TIFFError(TIFFFileName(in),
@@ -862,6 +899,7 @@ static void subtract##bits (void *i, void *b, uint32 pixels)\
 {\
    uint##bits *image = i;\
    uint##bits *bias = b;\
+VDM_MACRO_PRAGMA_IVDEP \
    while (pixels--) {\
      *image = *image > *bias ? *image-*bias : 0;\
      image++, bias++; \
@@ -904,6 +942,9 @@ DECLAREcpFunc(cpBiasedContig2Contig)
 				uint32 row;
 				buf = _TIFFmalloc(bufSize);
 				biasBuf = _TIFFmalloc(bufSize);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				for (row = 0; row < imagelength; row++) {
 					if (TIFFReadScanline(in, buf, row, 0) < 0
 					    && !ignore) {
@@ -972,6 +1013,9 @@ DECLAREcpFunc(cpDecodedStrips)
 		tstrip_t s, ns = TIFFNumberOfStrips(in);
 		uint32 row = 0;
 		_TIFFmemset(buf, 0, stripsize);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (s = 0; s < ns; s++) {
 			tsize_t cc = (row + rowsperstrip > imagelength) ?
 			    TIFFVStripSize(in, imagelength - row) : stripsize;
@@ -1019,7 +1063,13 @@ DECLAREcpFunc(cpSeparate2SeparateByRow)
 	if (!buf)
 		return 0;
 	_TIFFmemset(buf, 0, scanlinesize);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (s = 0; s < spp; s++) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (row = 0; row < imagelength; row++) {
 			if (TIFFReadScanline(in, buf, row, s) < 0 && !ignore) {
 				TIFFError(TIFFFileName(in),
@@ -1063,7 +1113,13 @@ DECLAREcpFunc(cpContig2SeparateByRow)
 	_TIFFmemset(inbuf, 0, scanlinesizein);
 	_TIFFmemset(outbuf, 0, scanlinesizeout);
 	/* unpack channels */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (s = 0; s < spp; s++) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (row = 0; row < imagelength; row++) {
 			if (TIFFReadScanline(in, inbuf, row, 0) < 0
 			    && !ignore) {
@@ -1074,6 +1130,9 @@ DECLAREcpFunc(cpContig2SeparateByRow)
 			}
 			inp = ((uint8*)inbuf) + s;
 			outp = (uint8*)outbuf;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (n = imagewidth; n-- > 0;) {
 				*outp++ = *inp;
 				inp += spp;
@@ -1115,8 +1174,14 @@ DECLAREcpFunc(cpSeparate2ContigByRow)
 		return 0;
 	_TIFFmemset(inbuf, 0, scanlinesizein);
 	_TIFFmemset(outbuf, 0, scanlinesizeout);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (row = 0; row < imagelength; row++) {
 		/* merge channels */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (s = 0; s < spp; s++) {
 			if (TIFFReadScanline(in, inbuf, row, s) < 0
 			    && !ignore) {
@@ -1127,6 +1192,9 @@ DECLAREcpFunc(cpSeparate2ContigByRow)
 			}
 			inp = (uint8*)inbuf;
 			outp = ((uint8*)outbuf) + s;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (n = imagewidth; n-- > 0;) {
 				*outp = *inp++;
 				outp += spp;
@@ -1152,8 +1220,14 @@ static void
 cpStripToTile(uint8* out, uint8* in,
     uint32 rows, uint32 cols, int outskew, int inskew)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (rows-- > 0) {
 		uint32 j = cols;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while (j-- > 0)
 			*out++ = *in++;
 		out += outskew;
@@ -1166,12 +1240,21 @@ cpContigBufToSeparateBuf(uint8* out, uint8* in,
     uint32 rows, uint32 cols, int outskew, int inskew, tsample_t spp,
     int bytes_per_sample )
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (rows-- > 0) {
 		uint32 j = cols;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while (j-- > 0)
 		{
 			int n = bytes_per_sample;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			while( n-- ) {
 				*out++ = *in++;
 			}
@@ -1187,11 +1270,20 @@ cpSeparateBufToContigBuf(uint8* out, uint8* in,
     uint32 rows, uint32 cols, int outskew, int inskew, tsample_t spp,
     int bytes_per_sample)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (rows-- > 0) {
 		uint32 j = cols;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while (j-- > 0) {
 			int n = bytes_per_sample;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			while( n-- ) {
 				*out++ = *in++;
 			}
@@ -1242,6 +1334,9 @@ DECLAREreadFunc(readContigStripsIntoBuffer)
 	uint32 row;
 
 	(void) imagewidth; (void) spp;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (row = 0; row < imagelength; row++) {
 		if (TIFFReadScanline(in, (tdata_t) bufp, row, 0) < 0
 		    && !ignore) {
@@ -1273,8 +1368,14 @@ DECLAREreadFunc(readSeparateStripsIntoBuffer)
 		uint8* bufp = (uint8*) buf;
 		uint32 row;
 		tsample_t s;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (row = 0; row < imagelength; row++) {
 			/* merge channels */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (s = 0; s < spp; s++) {
 				uint8* bp = bufp + s;
 				tsize_t n = scanlinesize;
@@ -1288,6 +1389,9 @@ DECLAREreadFunc(readSeparateStripsIntoBuffer)
 					    status = 0;
 					goto done;
 				}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				while (n-- > 0)
 					*bp = *sbuf++, bp += spp;
 			}
@@ -1320,11 +1424,17 @@ DECLAREreadFunc(readContigTilesIntoBuffer)
 	(void) TIFFGetField(in, TIFFTAG_TILEWIDTH, &tw);
 	(void) TIFFGetField(in, TIFFTAG_TILELENGTH, &tl);
         
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (row = 0; row < imagelength; row += tl) {
 		uint32 nrow = (row+tl > imagelength) ? imagelength-row : tl;
 		uint32 colb = 0;
 		uint32 col;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (col = 0; col < imagewidth; col += tw) {
 			if (TIFFReadTile(in, tilebuf, col, row, 0, 0) < 0
 			    && !ignore) {
@@ -1377,14 +1487,23 @@ DECLAREreadFunc(readSeparateTilesIntoBuffer)
 	assert( bps % 8 == 0 );
 	bytes_per_sample = bps/8;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (row = 0; row < imagelength; row += tl) {
 		uint32 nrow = (row+tl > imagelength) ? imagelength-row : tl;
 		uint32 colb = 0;
 		uint32 col;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (col = 0; col < imagewidth; col += tw) {
 			tsample_t s;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (s = 0; s < spp; s++) {
 				if (TIFFReadTile(in, tilebuf, col, row, 0, s) < 0
 				    && !ignore) {
@@ -1434,6 +1553,9 @@ DECLAREwriteFunc(writeBufferToContigStrips)
 
 	(void) imagewidth; (void) spp;
 	(void) TIFFGetFieldDefaulted(out, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (row = 0; row < imagelength; row += rowsperstrip) {
 		uint32 nrows = (row+rowsperstrip > imagelength) ?
 		    imagelength-row : rowsperstrip;
@@ -1462,8 +1584,14 @@ DECLAREwriteFunc(writeBufferToSeparateStrips)
 		return (0);
 	_TIFFmemset(obuf, 0, stripsize);
 	(void) TIFFGetFieldDefaulted(out, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (s = 0; s < spp; s++) {
 		uint32 row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (row = 0; row < imagelength; row += rowsperstrip) {
 			uint32 nrows = (row+rowsperstrip > imagelength) ?
 			    imagelength-row : rowsperstrip;
@@ -1505,11 +1633,17 @@ DECLAREwriteFunc(writeBufferToContigTiles)
 	_TIFFmemset(obuf, 0, tilesize);
 	(void) TIFFGetField(out, TIFFTAG_TILELENGTH, &tl);
 	(void) TIFFGetField(out, TIFFTAG_TILEWIDTH, &tw);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (row = 0; row < imagelength; row += tilelength) {
 		uint32 nrow = (row+tl > imagelength) ? imagelength-row : tl;
 		uint32 colb = 0;
 		uint32 col;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (col = 0; col < imagewidth; col += tw) {
 			/*
 			 * Tile is clipped horizontally.  Calculate
@@ -1562,13 +1696,22 @@ DECLAREwriteFunc(writeBufferToSeparateTiles)
 	assert( bps % 8 == 0 );
 	bytes_per_sample = bps/8;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (row = 0; row < imagelength; row += tl) {
 		uint32 nrow = (row+tl > imagelength) ? imagelength-row : tl;
 		uint32 colb = 0;
 		uint32 col;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (col = 0; col < imagewidth; col += tw) {
 			tsample_t s;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (s = 0; s < spp; s++) {
 				/*
 				 * Tile is clipped horizontally.  Calculate

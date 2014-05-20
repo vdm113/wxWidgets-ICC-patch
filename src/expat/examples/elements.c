@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /* This is simple demonstration of how to use expat. This program
    reads an XML document from standard input and writes a line with
    the name of each element to standard output indenting child
@@ -27,6 +34,9 @@ startElement(void *userData, const char *name, const char **atts)
 {
   int i;
   int *depthPtr = (int *)userData;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
   for (i = 0; i < *depthPtr; i++)
     putchar('\t');
   puts(name);
@@ -49,6 +59,9 @@ main(int argc, char *argv[])
   int depth = 0;
   XML_SetUserData(parser, &depth);
   XML_SetElementHandler(parser, startElement, endElement);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
   do {
     int len = (int)fread(buf, 1, sizeof(buf), stdin);
     done = len < sizeof(buf);

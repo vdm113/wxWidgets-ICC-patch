@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file StringCopy.h
  ** Safe string copy function which always NUL terminates.
@@ -19,6 +26,9 @@ namespace Scintilla {
 
 template <typename T, size_t count>
 void StringCopy(T (&dest)[count], const T* source) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (size_t i=0; i<count; i++) {
 		dest[i] = source[i];
 		if (!source[i])

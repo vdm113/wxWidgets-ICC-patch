@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file Editor.cxx
  ** Main code for the edit control.
@@ -94,6 +101,9 @@ static inline bool IsControlCharacter(int ch) {
 }
 
 static inline bool IsAllSpacesOrTabs(char *s, unsigned int len) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (unsigned int i = 0; i < len; i++) {
 		// This is safe because IsSpaceOrTab() will return false for null terminators
 		if (!IsSpaceOrTab(s[i]))
@@ -251,6 +261,9 @@ void Editor::SetRepresentations() {
 		"DLE", "DC1", "DC2", "DC3", "DC4", "NAK", "SYN", "ETB",
 		"CAN", "EM", "SUB", "ESC", "FS", "GS", "RS", "US"
 	};
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (size_t j=0; j < ELEMENTS(reps); j++) {
 		char c[2] = { static_cast<char>(j), 0 };
 		reprs.SetRepresentation(c, reps[j]);
@@ -265,6 +278,9 @@ void Editor::SetRepresentations() {
 			"DCS", "PU1", "PU2", "STS", "CCH", "MW", "SPA", "EPA",
 			"SOS", "SGCI", "SCI", "CSI", "ST", "OSC", "PM", "APC"
 		};
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (size_t j=0; j < ELEMENTS(repsC1); j++) {
 			char c1[3] = { '\xc2',  static_cast<char>(0x80+j), 0 };
 			reprs.SetRepresentation(c1, repsC1[j]);
@@ -273,6 +289,9 @@ void Editor::SetRepresentations() {
 
 	// UTF-8 invalid bytes
 	if (IsUnicodeMode()) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int k=0x80; k < 0x100; k++) {
 			char hiByte[2] = {  static_cast<char>(k), 0 };
 			char hexits[4];
@@ -494,6 +513,9 @@ Point Editor::LocationFromPosition(SelectionPosition pos) {
 			pt.x = ll->positions[ll->maxLineLength] - ll->positions[ll->LineStart(ll->lines)];
 		}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int subLine = 0; subLine < ll->lines; subLine++) {
 			if ((posInLine >= ll->LineStart(subLine)) && (posInLine <= ll->LineStart(subLine + 1))) {
 				pt.x = ll->positions[posInLine] - ll->positions[ll->LineStart(subLine)];
@@ -581,6 +603,9 @@ SelectionPosition Editor::SPositionFromLocation(Point pt, bool canReturnInvalid,
 					pt.x -= ll->wrapIndent;
 			}
 			int i = ll->FindBefore(pt.x + subLineStart, lineStart, lineEnd);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			while (i < lineEnd) {
 				if (charPosition) {
 					if ((pt.x + subLineStart) < (ll->positions[i + 1])) {
@@ -642,6 +667,9 @@ SelectionPosition Editor::SPositionFromLineX(int lineDoc, int x) {
 				newX -= ll->wrapIndent;
 		}
 		int i = ll->FindBefore(newX + subLineStart, lineStart, lineEnd);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while (i < lineEnd) {
 			if ((newX + subLineStart) < ((ll->positions[i] + ll->positions[i + 1]) / 2)) {
 				retVal = pdoc->MovePositionOutsideChar(i + posLineStart, 1);
@@ -791,6 +819,9 @@ void Editor::SetRectangularRange() {
 		int lineAnchorRect = pdoc->LineFromPosition(sel.Rectangular().anchor.Position());
 		int lineCaret = pdoc->LineFromPosition(sel.Rectangular().caret.Position());
 		int increment = (lineCaret > lineAnchorRect) ? 1 : -1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int line=lineAnchorRect; line != lineCaret+increment; line += increment) {
 			SelectionRange range(SPositionFromLineX(line, xCaret), SPositionFromLineX(line, xAnchor));
 			if ((virtualSpaceOptions & SCVS_RECTANGULARSELECTION) == 0)
@@ -824,6 +855,9 @@ void Editor::InvalidateSelection(SelectionRange newMain, bool invalidateWholeSel
 	int lastAffected = Platform::Maximum(newMain.caret.Position()+1, newMain.anchor.Position());
 	lastAffected = Platform::Maximum(lastAffected, sel.RangeMain().End().Position());
 	if (invalidateWholeSelection) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (size_t r=0; r<sel.Count(); r++) {
 			firstAffected = Platform::Minimum(firstAffected, sel.Range(r).caret.Position());
 			firstAffected = Platform::Minimum(firstAffected, sel.Range(r).anchor.Position());
@@ -924,6 +958,9 @@ bool Editor::RangeContainsProtected(int start, int end) const {
 			end = t;
 		}
 		int mask = pdoc->stylingBitsMask;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int pos = start; pos < end; pos++) {
 			if (vs.styles[pdoc->StyleAt(pos) & mask].IsProtected())
 				return true;
@@ -933,6 +970,9 @@ bool Editor::RangeContainsProtected(int start, int end) const {
 }
 
 bool Editor::SelectionContainsProtected() {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (size_t r=0; r<sel.Count(); r++) {
 		if (RangeContainsProtected(sel.Range(r).Start().Position(),
 			sel.Range(r).End().Position())) {
@@ -957,12 +997,18 @@ SelectionPosition Editor::MovePositionOutsideChar(SelectionPosition pos, int mov
 		int mask = pdoc->stylingBitsMask;
 		if (moveDir > 0) {
 			if ((pos.Position() > 0) && vs.styles[pdoc->StyleAt(pos.Position() - 1) & mask].IsProtected()) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				while ((pos.Position() < pdoc->Length()) &&
 				        (vs.styles[pdoc->StyleAt(pos.Position()) & mask].IsProtected()))
 					pos.Add(1);
 			}
 		} else if (moveDir < 0) {
 			if (vs.styles[pdoc->StyleAt(pos.Position()) & mask].IsProtected()) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				while ((pos.Position() > 0) &&
 				        (vs.styles[pdoc->StyleAt(pos.Position() - 1) & mask].IsProtected()))
 					pos.Add(-1);
@@ -1224,6 +1270,9 @@ int Editor::DisplayFromPosition(int pos) {
 		unsigned int posLineStart = pdoc->LineStart(lineDoc);
 		int posInLine = pos - posLineStart;
 		lineDisplay--; // To make up for first increment ahead.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int subLine = 0; subLine < ll->lines; subLine++) {
 			if (posInLine >= ll->LineStart(subLine)) {
 				lineDisplay++;
@@ -1574,6 +1623,9 @@ void Editor::InvalidateCaret() {
 	if (posDrag.IsValid()) {
 		InvalidateRange(posDrag.Position(), posDrag.Position() + 1);
 	} else {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (size_t r=0; r<sel.Count(); r++) {
 			InvalidateRange(sel.Range(r).caret.Position(), sel.Range(r).caret.Position() + 1);
 		}
@@ -1621,6 +1673,9 @@ bool Editor::WrapLines(enum wrapScope ws) {
 	if (!Wrapping()) {
 		if (wrapWidth != LineLayout::wrapWidthInfinite) {
 			wrapWidth = LineLayout::wrapWidthInfinite;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (int lineDoc = 0; lineDoc < pdoc->LinesTotal(); lineDoc++) {
 				cs.SetHeight(lineDoc, 1 +
 					(vs.annotationVisible ? pdoc->AnnotationLines(lineDoc) : 0));
@@ -1647,6 +1702,9 @@ bool Editor::WrapLines(enum wrapScope ws) {
 			// as taking only one display line.
 			lineToWrapEnd = lineDocTop;
 			int lines = LinesOnScreen() + 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			while ((lineToWrapEnd < cs.LinesInDoc()) && (lines>0)) {
 				if (cs.GetVisible(lineToWrapEnd))
 					lines--;
@@ -1677,6 +1735,9 @@ bool Editor::WrapLines(enum wrapScope ws) {
 			if (surface) {
 //Platform::DebugPrintf("Wraplines: scope=%0d need=%0d..%0d perform=%0d..%0d\n", ws, wrapPending.start, wrapPending.end, lineToWrap, lineToWrapEnd);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				while (lineToWrap < lineToWrapEnd) {
 					if (WrapOneLine(surface, lineToWrap)) {
 						wrapOccurred = true;
@@ -1708,6 +1769,9 @@ void Editor::LinesJoin() {
 	if (!RangeContainsProtected(targetStart, targetEnd)) {
 		UndoGroup ug(pdoc);
 		bool prevNonWS = true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int pos = targetStart; pos < targetEnd; pos++) {
 			if (pdoc->IsPositionInLineEnd(pos)) {
 				targetEnd -= pdoc->LenChar(pos);
@@ -1744,12 +1808,18 @@ void Editor::LinesSplit(int pixelWidth) {
 		int lineEnd = pdoc->LineFromPosition(targetEnd);
 		const char *eol = StringFromEOLMode(pdoc->eolMode);
 		UndoGroup ug(pdoc);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int line = lineStart; line <= lineEnd; line++) {
 			AutoSurface surface(this);
 			AutoLineLayout ll(llc, RetrieveLineLayout(line));
 			if (surface && ll) {
 				unsigned int posLineStart = pdoc->LineStart(line);
 				LayoutLine(line, surface, vs, ll, pixelWidth);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				for (int subLine = 1; subLine < ll->lines; subLine++) {
 					pdoc->InsertCString(
 						static_cast<int>(posLineStart + (subLine - 1) * strlen(eol) +
@@ -1771,6 +1841,9 @@ int Editor::SubstituteMarkerIfEmpty(int markerCheck, int markerDefault) const {
 
 bool ValidStyledText(ViewStyle &vs, size_t styleOffset, const StyledText &st) {
 	if (st.multipleStyles) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (size_t iStyle=0; iStyle<st.length; iStyle++) {
 			if (!vs.ValidStyle(styleOffset + st.styles[iStyle]))
 				return false;
@@ -1786,9 +1859,15 @@ static int WidthStyledText(Surface *surface, ViewStyle &vs, int styleOffset,
 	const char *text, const unsigned char *styles, size_t len) {
 	int width = 0;
 	size_t start = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (start < len) {
 		size_t style = styles[start];
 		size_t endSegment = start;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while ((endSegment+1 < len) && (static_cast<size_t>(styles[endSegment+1]) == style))
 			endSegment++;
 		width += surface->WidthText(vs.styles[style+styleOffset].font, text + start,
@@ -1801,6 +1880,9 @@ static int WidthStyledText(Surface *surface, ViewStyle &vs, int styleOffset,
 static int WidestLineWidth(Surface *surface, ViewStyle &vs, int styleOffset, const StyledText &st) {
 	int widthMax = 0;
 	size_t start = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (start < st.length) {
 		size_t lenLine = st.LineLength(start);
 		int widthSubLine;
@@ -1823,9 +1905,15 @@ void DrawStyledText(Surface *surface, ViewStyle &vs, int styleOffset, PRectangle
 	if (st.multipleStyles) {
 		int x = rcText.left;
 		size_t i = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while (i < length) {
 			size_t end = i;
 			int style = st.styles[i + start];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			while (end < length-1 && st.styles[start+end+1] == style)
 				end++;
 			style += styleOffset;
@@ -1887,6 +1975,9 @@ void Editor::PaintSelMargin(Surface *surfWindow, PRectangle &rc) {
 	if (rcSelMargin.bottom < rc.bottom)
 		rcSelMargin.bottom = rc.bottom;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
 		if (vs.ms[margin].width > 0) {
 
@@ -1932,6 +2023,9 @@ void Editor::PaintSelMargin(Surface *surfWindow, PRectangle &rc) {
 				if (level & SC_FOLDLEVELWHITEFLAG) {
 					int lineBack = cs.DocFromDisplay(visibleLine);
 					int levelPrev = level;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 					while ((lineBack > 0) && (levelPrev & SC_FOLDLEVELWHITEFLAG)) {
 						lineBack--;
 						levelPrev = pdoc->GetLevel(lineBack);
@@ -1953,6 +2047,9 @@ void Editor::PaintSelMargin(Surface *surfWindow, PRectangle &rc) {
 			int folderEnd = SubstituteMarkerIfEmpty(SC_MARKNUM_FOLDEREND,
 			        SC_MARKNUM_FOLDER);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			while ((visibleLine < cs.LinesDisplayed()) && yposScreen < rc.bottom) {
 
 				PLATFORM_ASSERT(visibleLine < cs.LinesDisplayed());
@@ -2107,6 +2204,9 @@ void Editor::PaintSelMargin(Surface *surfWindow, PRectangle &rc) {
 				}
 
 				if (marks) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 					for (int markBit = 0; (markBit < 32) && marks; markBit++) {
 						if (marks & 1) {
 							LineMarker::typeOfFold tFold = LineMarker::undefined;
@@ -2205,6 +2305,9 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 			// Check base line layout
 			char styleByte = 0;
 			int numCharsInLine = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			while (numCharsInLine < lineLength) {
 				int charInDoc = numCharsInLine + posLineStart;
 				char chDoc = pdoc->CharAt(charInDoc);
@@ -2255,6 +2358,9 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 		pdoc->GetStyleRange(ll->styles, posLineStart, lineLength);
 		int numCharsBeforeEOL = pdoc->LineEnd(line) - posLineStart;
 		const int numCharsInLine = (vstyle.viewEOL) ? lineLength : numCharsBeforeEOL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int styleInLine = 0; styleInLine < numCharsInLine; styleInLine++) {
 			styleByte = ll->styles[styleInLine];
 			ll->styleBitsSet |= styleByte;
@@ -2263,6 +2369,9 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 		}
 		styleByte = static_cast<char>(((lineLength > 0) ? ll->styles[lineLength-1] : 0) & styleMask);
 		if (vstyle.someStylesForceCase) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (int charInLine = 0; charInLine<lineLength; charInLine++) {
 				char chDoc = ll->chars[charInLine];
 				if (vstyle.styles[ll->styles[charInLine]].caseForce == Style::caseUpper)
@@ -2283,6 +2392,9 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 		bool lastSegItalics = false;
 
 		BreakFinder bfLayout(ll, 0, numCharsInLine, posLineStart, 0, false, pdoc, &reprs);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while (bfLayout.More()) {
 
 			const TextSegment ts = bfLayout.Next();
@@ -2303,6 +2415,9 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 							representationWidth = positionsRepr[ts.representation->stringRep.length()-1] + vstyle.ctrlCharPadding;
 						}
 					}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 					for (int ii=0; ii < ts.length; ii++)
 						ll->positions[ts.start + 1 + ii] = representationWidth;
 				} else {
@@ -2317,6 +2432,9 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 				lastSegItalics = (!ts.representation) && ((ll->chars[ts.end()-1] != ' ') && vstyle.styles[ll->styles[ts.start]].italic);
 			}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (int posToIncrease = ts.start+1; posToIncrease <= ts.end(); posToIncrease++) {
 				ll->positions[posToIncrease] += ll->positions[ts.start];
 			}
@@ -2353,6 +2471,9 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 			}
 			ll->wrapIndent = wrapAddIndent;
 			if (vstyle.wrapIndentMode != SC_WRAPINDENT_FIXED)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				for (int i = 0; i < ll->numCharsInLine; i++) {
 					if (!IsSpaceOrTab(ll->chars[i])) {
 						ll->wrapIndent += ll->positions[i]; // Add line indent
@@ -2371,6 +2492,9 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 			int lastLineStart = 0;
 			XYACCUMULATOR startOffset = 0;
 			int p = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			while (p < ll->numCharsInLine) {
 				if ((ll->positions[p + 1] - startOffset) >= width) {
 					if (lastGoodBreak == lastLineStart) {
@@ -2550,6 +2674,9 @@ void Editor::DrawEOL(Surface *surface, ViewStyle &vsDraw, PRectangle rcLine, Lin
 		surface->FillRectangle(rcSegment, overrideBackground ? background : vsDraw.styles[ll->styles[ll->numCharsInLine] & styleMask].back);
 		if (!hideSelection && ((vsDraw.selAlpha == SC_ALPHA_NOALPHA) || (vsDraw.selAdditionalAlpha == SC_ALPHA_NOALPHA))) {
 			SelectionSegment virtualSpaceRange(SelectionPosition(pdoc->LineEnd(line)), SelectionPosition(pdoc->LineEnd(line), sel.VirtualSpaceFor(pdoc->LineEnd(line))));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (size_t r=0; r<sel.Count(); r++) {
 				int alpha = (r == sel.Main()) ? vsDraw.selAlpha : vsDraw.selAdditionalAlpha;
 				if (alpha == SC_ALPHA_NOALPHA) {
@@ -2578,6 +2705,9 @@ void Editor::DrawEOL(Surface *surface, ViewStyle &vsDraw, PRectangle rcLine, Lin
 	// Draw the [CR], [LF], or [CR][LF] blobs if visible line ends are on
 	XYPOSITION blobsWidth = 0;
 	if (lastSubLine) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int eolPos=ll->numCharsBeforeEOL; eolPos<ll->numCharsInLine; eolPos++) {
 			rcSegment.left = xStart + ll->positions[eolPos] - subLineStart + virtualSpace;
 			rcSegment.right = xStart + ll->positions[eolPos+1] - subLineStart + virtualSpace;
@@ -2691,6 +2821,9 @@ void Editor::DrawIndicators(Surface *surface, ViewStyle &vsDraw, int line, int x
 	if (!under) {
 		// Draw indicators
 		// foreach indicator...
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int indicnum = 0, mask = 1 << pdoc->stylingBits; mask < 0x100; indicnum++) {
 			if (!(mask & ll->styleBitsSet)) {
 				mask <<= 1;
@@ -2698,6 +2831,9 @@ void Editor::DrawIndicators(Surface *surface, ViewStyle &vsDraw, int line, int x
 			}
 			int startPos = -1;
 			// foreach style pos in line...
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (int indicPos = lineStart; indicPos <= lineEnd; indicPos++) {
 				// look for starts...
 				if (startPos < 0) {
@@ -2720,12 +2856,18 @@ void Editor::DrawIndicators(Surface *surface, ViewStyle &vsDraw, int line, int x
 		}
 	}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (Decoration *deco = pdoc->decorations.root; deco; deco = deco->next) {
 		if (under == vsDraw.indicators[deco->indicator].under) {
 			int startPos = posLineStart + lineStart;
 			if (!deco->rs.ValueAt(startPos)) {
 				startPos = deco->rs.EndRun(startPos);
 			}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			while ((startPos < posLineEnd) && (deco->rs.ValueAt(startPos))) {
 				int endPos = deco->rs.EndRun(startPos);
 				if (endPos > posLineEnd)
@@ -2788,6 +2930,9 @@ void Editor::DrawAnnotation(Surface *surface, ViewStyle &vsDraw, int line, int x
 		size_t start = 0;
 		size_t lengthAnnotation = stAnnotation.LineLength(start);
 		int lineInAnnotation = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while ((lineInAnnotation < annotationLine) && (start < stAnnotation.length)) {
 			start += lengthAnnotation + 1;
 			lengthAnnotation = stAnnotation.LineLength(start);
@@ -2848,6 +2993,9 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 	}
 	if (!overrideBackground) {
 		int marks = pdoc->GetMark(line);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int markBit = 0; (markBit < 32) && marks; markBit++) {
 			if ((marks & 1) && (vsDraw.markers[markBit].markType == SC_MARK_BACKGROUND) &&
 			        (vsDraw.markers[markBit].alpha == SC_ALPHA_NOALPHA)) {
@@ -2861,6 +3009,9 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 		if (vsDraw.maskInLine) {
 			int marksMasked = pdoc->GetMark(line) & vsDraw.maskInLine;
 			if (marksMasked) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				for (int markBit = 0; (markBit < 32) && marksMasked; markBit++) {
 					if ((marksMasked & 1) && (vsDraw.markers[markBit].markType != SC_MARK_EMPTY) &&
 					        (vsDraw.markers[markBit].alpha == SC_ALPHA_NOALPHA)) {
@@ -2953,6 +3104,9 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 		BreakFinder bfBack(ll, lineStart, lineEnd, posLineStart, xStartVisible, selBackDrawn, pdoc, &reprs);
 
 		// Background drawing loop
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while (bfBack.More()) {
 
 			const TextSegment ts = bfBack.Next();
@@ -2990,6 +3144,9 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 					surface->FillRectangle(rcSegment, textBack);
 					if (vsDraw.viewWhitespace != wsInvisible ||
 							(inIndentation && vsDraw.viewIndentationGuides == ivReal)) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 						for (int cpos = 0; cpos <= i - ts.start; cpos++) {
 							if (ll->chars[cpos + ts.start] == ' ') {
 								if (drawWhitespaceBackground &&
@@ -3030,6 +3187,9 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 	// Draw underline mark as part of background if not transparent
 	int marks = pdoc->GetMark(line);
 	int markBit;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (markBit = 0; (markBit < 32) && marks; markBit++) {
 		if ((marks & 1) && (vsDraw.markers[markBit].markType == SC_MARK_UNDERLINE) &&
 		    (vsDraw.markers[markBit].alpha == SC_ALPHA_NOALPHA)) {
@@ -3045,6 +3205,9 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 	BreakFinder bfFore(ll, lineStart, lineEnd, posLineStart, xStartVisible,
 		((!twoPhaseDraw && selBackDrawn) || vsDraw.selColours.fore.isSet), pdoc, &reprs);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (bfFore.More()) {
 
 		const TextSegment ts = bfFore.Next();
@@ -3080,6 +3243,9 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 						surface->FillRectangle(rcSegment, textBack);
 					}
 					if (inIndentation && vsDraw.viewIndentationGuides == ivReal) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 						for (int indentCount = (ll->positions[i] + epsilon) / indentWidth;
 							indentCount <= (ll->positions[i + 1] - epsilon) / indentWidth;
 							indentCount++) {
@@ -3126,6 +3292,9 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 				}
 				if (vsDraw.viewWhitespace != wsInvisible ||
 				        (inIndentation && vsDraw.viewIndentationGuides != ivNone)) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 					for (int cpos = 0; cpos <= i - ts.start; cpos++) {
 						if (ll->chars[cpos + ts.start] == ' ') {
 							if (vsDraw.viewWhitespace != wsInvisible) {
@@ -3149,6 +3318,9 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 								}
 							}
 							if (inIndentation && vsDraw.viewIndentationGuides == ivReal) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 								for (int indentCount = (ll->positions[cpos + ts.start] + epsilon) / indentWidth;
 									indentCount <= (ll->positions[cpos + ts.start + 1] - epsilon) / indentWidth;
 									indentCount++) {
@@ -3191,6 +3363,9 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 		// Find the most recent line with some text
 
 		int lineLastWithText = line;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while (lineLastWithText > Platform::Maximum(line-20, 0) && pdoc->IsWhiteLine(lineLastWithText)) {
 			lineLastWithText--;
 		}
@@ -3214,6 +3389,9 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 		}
 
 		int lineNextWithText = line;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while (lineNextWithText < Platform::Minimum(line+20, pdoc->LinesTotal()) && pdoc->IsWhiteLine(lineNextWithText)) {
 			lineNextWithText++;
 		}
@@ -3224,6 +3402,9 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 			        pdoc->GetLineIndentation(lineNextWithText));
 		}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int indentPos = pdoc->IndentSize(); indentPos < indentSpace; indentPos += pdoc->IndentSize()) {
 			int xIndent = indentPos * vsDraw.spaceWidth;
 			if (xIndent < xStartText) {
@@ -3250,6 +3431,9 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 		SelectionPosition posStart(posLineStart + lineStart);
 		SelectionPosition posEnd(posLineStart + lineEnd, virtualSpaces);
 		SelectionSegment virtualSpaceRange(posStart, posEnd);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (size_t r=0; r<sel.Count(); r++) {
 			int alpha = (r == sel.Main()) ? vsDraw.selAlpha : vsDraw.selAdditionalAlpha;
 			if (alpha != SC_ALPHA_NOALPHA) {
@@ -3277,6 +3461,9 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 		SimpleAlphaRectangle(surface, rcSegment, vsDraw.caretLineBackground, vsDraw.caretLineAlpha);
 	}
 	marks = pdoc->GetMark(line);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (markBit = 0; (markBit < 32) && marks; markBit++) {
 		if ((marks & 1) && (vsDraw.markers[markBit].markType == SC_MARK_BACKGROUND)) {
 			SimpleAlphaRectangle(surface, rcSegment, vsDraw.markers[markBit].back, vsDraw.markers[markBit].alpha);
@@ -3290,6 +3477,9 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 	if (vsDraw.maskInLine) {
 		int marksMasked = pdoc->GetMark(line) & vsDraw.maskInLine;
 		if (marksMasked) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (markBit = 0; (markBit < 32) && marksMasked; markBit++) {
 				if ((marksMasked & 1) && (vsDraw.markers[markBit].markType != SC_MARK_EMPTY)) {
 					SimpleAlphaRectangle(surface, rcSegment, vsDraw.markers[markBit].back, vsDraw.markers[markBit].alpha);
@@ -3313,6 +3503,9 @@ void Editor::DrawBlockCaret(Surface *surface, ViewStyle &vsDraw, LineLayout *ll,
 	// glyph / combining character. If so we'll need to draw that too.
 	int offsetFirstChar = offset;
 	int offsetLastChar = offset + (posAfter - posCaret);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while ((posBefore > 0) && ((offsetLastChar - numCharsToDraw) >= lineStart)) {
 		if ((ll->positions[offsetLastChar] - ll->positions[offsetLastChar - numCharsToDraw]) > 0) {
 			// The char does not share horizontal space
@@ -3330,6 +3523,9 @@ void Editor::DrawBlockCaret(Surface *surface, ViewStyle &vsDraw, LineLayout *ll,
 	if (offsetFirstChar < 0)
 		offsetFirstChar = 0;
 	numCharsToDraw = offsetLastChar - offsetFirstChar;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while ((offsetLastChar < ll->LineStart(subLine + 1)) && (offsetLastChar <= ll->numCharsInLine)) {
 		// Update posAfter to point to the 2nd next char, this is where
 		// the next character ends, and 2nd next begins. We'll need
@@ -3397,7 +3593,13 @@ void Editor::RefreshPixMaps(Surface *surfaceWindow) {
 
 		pixmapSelPattern->FillRectangle(rcPattern, colourFMFill);
 		pixmapSelPatternOffset1->FillRectangle(rcPattern, colourFMStripes);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int y = 0; y < patternSize; y++) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (int x = y % 2; x < patternSize; x+=2) {
 				PRectangle rcPixel(x, y, x+1, y+1);
 				pixmapSelPattern->FillRectangle(rcPixel, colourFMStripes);
@@ -3415,6 +3617,9 @@ void Editor::RefreshPixMaps(Surface *surfaceWindow) {
 		pixmapIndentGuide->PenColour(vs.styles[STYLE_INDENTGUIDE].fore);
 		pixmapIndentGuideHighlight->FillRectangle(rcIG, vs.styles[STYLE_BRACELIGHT].back);
 		pixmapIndentGuideHighlight->PenColour(vs.styles[STYLE_BRACELIGHT].fore);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int stripe = 1; stripe < vs.lineHeight + 1; stripe += 2) {
 			PRectangle rcPixel(0, stripe, 1, stripe+1);
 			pixmapIndentGuide->FillRectangle(rcPixel, vs.styles[STYLE_INDENTGUIDE].fore);
@@ -3441,6 +3646,9 @@ void Editor::DrawCarets(Surface *surface, ViewStyle &vsDraw, int lineDoc, int xS
 		return;
 	const int posLineStart = pdoc->LineStart(lineDoc);
 	// For each selection draw
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (size_t r=0; (r<sel.Count()) || drawDrag; r++) {
 		const bool mainCaret = r == sel.Main();
 		const SelectionPosition posCaret = (drawDrag ? posDrag : sel.Range(r).caret);
@@ -3640,6 +3848,9 @@ void Editor::Paint(Surface *surfaceWindow, PRectangle rcArea) {
 		//ElapsedTime etWhole;
 		int lineDocPrevious = -1;	// Used to avoid laying out one document line multiple times
 		AutoLineLayout ll(llc, 0);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while (visibleLine < cs.LinesDisplayed() && yposScreen < rcArea.bottom) {
 
 			int lineDoc = cs.DocFromDisplay(visibleLine);
@@ -3807,6 +4018,9 @@ long Editor::FormatRange(bool draw, Sci_RangeToFormat *pfr) {
 	// Modify the view style for printing as do not normally want any of the transient features to be printed
 	// Printing supports only the line number margin.
 	int lineNumberIndex = -1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
 		if ((vsPrint.ms[margin].style == SC_MARGIN_NUMBER) && (vsPrint.ms[margin].width > 0)) {
 			lineNumberIndex = margin;
@@ -3833,6 +4047,9 @@ long Editor::FormatRange(bool draw, Sci_RangeToFormat *pfr) {
 	vsPrint.braceBadLightIndicatorSet = false;
 
 	// Set colours for printing according to users settings
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (size_t sty = 0; sty < vsPrint.styles.size(); sty++) {
 		if (printParameters.colourMode == SC_PRINT_INVERTLIGHT) {
 			vsPrint.styles[sty].fore = InvertedLight(vsPrint.styles[sty].fore);
@@ -3893,6 +4110,9 @@ long Editor::FormatRange(bool draw, Sci_RangeToFormat *pfr) {
 	if (printParameters.wrapState == eWrapNone)
 		widthPrint = LineLayout::wrapWidthInfinite;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (lineDoc <= linePrintLast && ypos < pfr->rc.bottom) {
 
 		// When printing, the hdc and hdcTarget may be the same, so
@@ -3919,6 +4139,9 @@ long Editor::FormatRange(bool draw, Sci_RangeToFormat *pfr) {
 		// line of the page.
 		if (visibleLine == 0) {
 			int startWithinLine = nPrintPos - pdoc->LineStart(lineDoc);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (int iwl = 0; iwl < ll.lines - 1; iwl++) {
 				if (ll.LineStart(iwl) <= startWithinLine && ll.LineStart(iwl + 1) >= startWithinLine) {
 					visibleLine = -iwl;
@@ -3950,6 +4173,9 @@ long Editor::FormatRange(bool draw, Sci_RangeToFormat *pfr) {
 		// Draw the line
 		surface->FlushCachedState();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int iwl = 0; iwl < ll.lines; iwl++) {
 			if (ypos + vsPrint.lineHeight <= pfr->rc.bottom) {
 				if (visibleLine >= 0) {
@@ -4063,11 +4289,17 @@ void Editor::AddCharUTF(char *s, unsigned int len, bool treatAsDBCS) {
 		UndoGroup ug(pdoc, (sel.Count() > 1) || !sel.Empty() || inOverstrike);
 
 		std::vector<SelectionRange *> selPtrs;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (size_t r = 0; r < sel.Count(); r++) {
 			selPtrs.push_back(&sel.Range(r));
 		}
 		std::sort(selPtrs.begin(), selPtrs.end(), cmpSelPtrs);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (std::vector<SelectionRange *>::reverse_iterator rit = selPtrs.rbegin();
 			rit != selPtrs.rend(); ++rit) {
 			SelectionRange *currentSel = *rit;
@@ -4173,6 +4405,9 @@ void Editor::InsertPaste(SelectionPosition selStart, const char *text, int len) 
 		}
 	} else {
 		// SC_MULTIPASTE_EACH
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (size_t r=0; r<sel.Count(); r++) {
 			if (!RangeContainsProtected(sel.Range(r).Start().Position(),
 				sel.Range(r).End().Position())) {
@@ -4201,6 +4436,9 @@ void Editor::ClearSelection(bool retainMultipleSelections) {
 	if (!sel.IsRectangular() && !retainMultipleSelections)
 		FilterSelections();
 	UndoGroup ug(pdoc);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (size_t r=0; r<sel.Count(); r++) {
 		if (!sel.Range(r).Empty()) {
 			if (!RangeContainsProtected(sel.Range(r).Start().Position(),
@@ -4236,6 +4474,9 @@ void Editor::ClearAll() {
 
 void Editor::ClearDocumentStyle() {
 	Decoration *deco = pdoc->decorations.root;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (deco) {
 		// Save next in case deco deleted
 		Decoration *decoNext = deco->next;
@@ -4277,8 +4518,14 @@ void Editor::PasteRectangular(SelectionPosition pos, const char *ptr, int len) {
 		InsertSpace(sel.RangeMain().caret.Position(), sel.RangeMain().caret.VirtualSpace()));
 	int xInsert = XFromPosition(sel.RangeMain().caret);
 	bool prevCr = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while ((len > 0) && IsEOLChar(ptr[len-1]))
 		len--;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int i = 0; i < len; i++) {
 		if (IsEOLChar(ptr[i])) {
 			if ((ptr[i] == '\r') || (!prevCr))
@@ -4292,6 +4539,9 @@ void Editor::PasteRectangular(SelectionPosition pos, const char *ptr, int len) {
 			// Pad the end of lines with spaces if required
 			sel.RangeMain().caret.SetPosition(PositionFromLineX(line, xInsert));
 			if ((XFromPosition(sel.MainCaret()) < xInsert) && (i + 1 < len)) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				while (XFromPosition(sel.MainCaret()) < xInsert) {
 					pdoc->InsertChar(sel.MainCaret(), ' ');
 					sel.RangeMain().caret.Add(1);
@@ -4321,6 +4571,9 @@ void Editor::Clear() {
 			singleVirtual = true;
 		}
 		UndoGroup ug(pdoc, (sel.Count() > 1) || singleVirtual);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (size_t r=0; r<sel.Count(); r++) {
 			if (!RangeContainsProtected(sel.Range(r).caret.Position(), sel.Range(r).caret.Position() + 1)) {
 				if (sel.Range(r).Start().VirtualSpace()) {
@@ -4383,6 +4636,9 @@ void Editor::DelCharBack(bool allowLineStartDeletion) {
 		allowLineStartDeletion = false;
 	UndoGroup ug(pdoc, (sel.Count() > 1) || !sel.Empty());
 	if (sel.Empty()) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (size_t r=0; r<sel.Count(); r++) {
 			if (!RangeContainsProtected(sel.Range(r).caret.Position() - 1, sel.Range(r).caret.Position())) {
 				if (sel.Range(r).caret.VirtualSpace()) {
@@ -4568,6 +4824,9 @@ void Editor::NotifyIndicatorClick(bool click, int position, bool shift, bool ctr
 bool Editor::NotifyMarginClick(Point pt, int modifiers) {
 	int marginClicked = -1;
 	int x = vs.textStart - vs.fixedColumnWidth;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
 		if ((pt.x >= x) && (pt.x < x + vs.ms[margin].width))
 			marginClicked = margin;
@@ -4738,6 +4997,9 @@ void Editor::NotifyModified(Document *, DocModification mh, void *) {
 			if (mh.modificationType & SC_MOD_BEFOREINSERT) {
 				int lineOfPos = pdoc->LineFromPosition(mh.position);
 				bool insertingNewLine = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				for (int i=0; i < mh.length; i++) {
 					if ((mh.text[i] == '\n') || (mh.text[i] == '\r'))
 						insertingNewLine = true;
@@ -5027,6 +5289,9 @@ void Editor::PageMove(int direction, Selection::selTypes selt, bool stuttered) {
 
 void Editor::ChangeCaseOfSelection(int caseMapping) {
 	UndoGroup ug(pdoc);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (size_t r=0; r<sel.Count(); r++) {
 		SelectionRange current = sel.Range(r);
 		SelectionRange currentNoVS = current;
@@ -5039,10 +5304,16 @@ void Editor::ChangeCaseOfSelection(int caseMapping) {
 
 			if (sMapped != sText) {
 				size_t firstDifference = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				while (sMapped[firstDifference] == sText[firstDifference])
 					firstDifference++;
 				size_t lastDifferenceText = sText.size() - 1;
 				size_t lastDifferenceMapped = sMapped.size() - 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				while (sMapped[lastDifferenceMapped] == sText[lastDifferenceText]) {
 					lastDifferenceText--;
 					lastDifferenceMapped--;
@@ -5100,6 +5371,9 @@ void Editor::Duplicate(bool forLine) {
 		eol = StringFromEOLMode(pdoc->eolMode);
 		eolLen = istrlen(eol);
 	}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (size_t r=0; r<sel.Count(); r++) {
 		SelectionPosition start = sel.Range(r).Start();
 		SelectionPosition end = sel.Range(r).End();
@@ -5155,6 +5429,9 @@ void Editor::NewLine() {
 		pdoc->EndUndoAction();
 	if (inserted) {
 		SetEmptySelection(sel.MainCaret() + istrlen(eol));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while (*eol) {
 			NotifyChar(*eol);
 			if (recordingMacro) {
@@ -5209,6 +5486,9 @@ void Editor::CursorUpOrDown(int direction, Selection::selTypes selt) {
 		// Line wrapping may lead to a location on the same line, so
 		// seek back if that is the case.
 		Point ptNew = LocationFromPosition(posNew.Position());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while ((posNew.Position() > 0) && (pt.y == ptNew.y)) {
 			posNew.Add(-1);
 			posNew.SetVirtualSpace(0);
@@ -5218,6 +5498,9 @@ void Editor::CursorUpOrDown(int direction, Selection::selTypes selt) {
 		// There is an equivalent case when moving down which skips
 		// over a line.
 		Point ptNew = LocationFromPosition(posNew.Position());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while ((posNew.Position() > caretToUse.Position()) && (ptNew.y > newY)) {
 			posNew.Add(-1);
 			posNew.SetVirtualSpace(0);
@@ -5230,6 +5513,9 @@ void Editor::CursorUpOrDown(int direction, Selection::selTypes selt) {
 
 void Editor::ParaUpOrDown(int direction, Selection::selTypes selt) {
 	int lineDoc, savedPos = sel.MainCaret();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	do {
 		MovePositionTo(SelectionPosition(direction > 0 ? pdoc->ParaDown(sel.MainCaret()) : pdoc->ParaUp(sel.MainCaret())), selt);
 		lineDoc = pdoc->LineFromPosition(sel.MainCaret());
@@ -5255,6 +5541,9 @@ int Editor::StartEndDisplayLine(int pos, bool start) {
 		LayoutLine(line, surface, vs, ll, wrapWidth);
 		int posInLine = pos - posLineStart;
 		if (posInLine <= ll->maxLineLength) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (int subLine = 0; subLine < ll->lines; subLine++) {
 				if ((posInLine >= ll->LineStart(subLine)) && (posInLine <= ll->LineStart(subLine + 1))) {
 					if (start) {
@@ -5790,6 +6079,9 @@ int Editor::KeyDown(int key, bool shift, bool ctrl, bool alt, bool *consumed) {
 
 void Editor::Indent(bool forwards) {
 	UndoGroup ug(pdoc);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (size_t r=0; r<sel.Count(); r++) {
 		int lineOfAnchor = pdoc->LineFromPosition(sel.Range(r).anchor.Position());
 		int caretPosition = sel.Range(r).caret.Position();
@@ -5813,6 +6105,9 @@ void Editor::Indent(bool forwards) {
 								(pdoc->GetColumn(caretPosition) % (pdoc->tabInChars));
 						if (numSpaces < 1)
 							numSpaces = pdoc->tabInChars;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 						for (int i = 0; i < numSpaces; i++) {
 							pdoc->InsertChar(caretPosition + i, ' ');
 						}
@@ -5832,6 +6127,9 @@ void Editor::Indent(bool forwards) {
 					if (newColumn < 0)
 						newColumn = 0;
 					int newPos = caretPosition;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 					while (pdoc->GetColumn(newPos) > newColumn)
 						newPos--;
 					sel.Range(r) = SelectionRange(newPos);
@@ -5961,6 +6259,9 @@ long Editor::SearchText(
 
 std::string Editor::CaseMapString(const std::string &s, int caseMapping) {
 	std::string ret(s);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (size_t i=0; i<ret.size(); i++) {
 		switch (caseMapping) {
 			case cmUpper:
@@ -6021,6 +6322,9 @@ std::string Editor::RangeText(int start, int end) const {
 	if (start < end) {
 		int len = end - start;
 		std::string ret(len, '\0');
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int i = 0; i < len; i++) {
 			ret[i] = pdoc->CharAt(start + i);
 		}
@@ -6049,6 +6353,9 @@ void Editor::CopySelectionRange(SelectionText *ss, bool allowLineCopy) {
 		std::vector<SelectionRange> rangesInOrder = sel.RangesCopy();
 		if (sel.selType == Selection::selRectangle)
 			std::sort(rangesInOrder.begin(), rangesInOrder.end());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (size_t r=0; r<rangesInOrder.size(); r++) {
 			SelectionRange current = rangesInOrder[r];
 			text.append(RangeText(current.Start().Position(), current.End().Position()));
@@ -6137,6 +6444,9 @@ void Editor::DropAt(SelectionPosition position, const char *value, size_t length
 		if ((inDragDrop == ddDragging) && moving) {
 			// Remove dragged out text
 			if (rectangular || sel.selType == Selection::selLines) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 				for (size_t r=0; r<sel.Count(); r++) {
 					if (position >= sel.Range(r).Start()) {
 						if (position > sel.Range(r).End()) {
@@ -6182,6 +6492,9 @@ void Editor::DropAt(SelectionPosition position, const char *value, bool moving, 
  */
 bool Editor::PositionInSelection(int pos) {
 	pos = MovePositionOutsideChar(pos, sel.MainCaret() - pos);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (size_t r=0; r<sel.Count(); r++) {
 		if (sel.Range(r).Contains(pos))
 			return true;
@@ -6192,6 +6505,9 @@ bool Editor::PositionInSelection(int pos) {
 bool Editor::PointInSelection(Point pt) {
 	SelectionPosition pos = SPositionFromLocation(pt, false, true);
 	Point ptPos = LocationFromPosition(pos);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (size_t r=0; r<sel.Count(); r++) {
 		SelectionRange range = sel.Range(r);
 		if (range.Contains(pos)) {
@@ -6229,6 +6545,9 @@ bool Editor::PointInSelMargin(Point pt) {
 
 Window::Cursor Editor::GetMarginCursor(Point pt) const {
 	int x = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
 		if ((pt.x >= x) && (pt.x < x + vs.ms[margin].width))
 			return static_cast<Window::Cursor>(vs.ms[margin].cursor);
@@ -6919,6 +7238,9 @@ void Editor::SetBraceHighlight(Position pos0, Position pos1, int matchStyle) {
 void Editor::SetAnnotationHeights(int start, int end) {
 	if (vs.annotationVisible) {
 		bool changedHeight = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int line=start; line<end && line<pdoc->LinesTotal(); line++) {
 			int linesWrapped = 1;
 			if (Wrapping()) {
@@ -6979,6 +7301,9 @@ void Editor::SetAnnotationVisible(int visible) {
 		vs.annotationVisible = visible;
 		if (changedFromOrToHidden) {
 			int dir = vs.annotationVisible ? 1 : -1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (int line=0; line<pdoc->LinesTotal(); line++) {
 				int annotationLines = pdoc->AnnotationLines(line);
 				if (annotationLines > 0) {
@@ -6996,6 +7321,9 @@ void Editor::SetAnnotationVisible(int visible) {
 int Editor::ExpandLine(int line) {
 	int lineMaxSubord = pdoc->GetLastChild(line);
 	line++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (line <= lineMaxSubord) {
 		cs.SetVisible(line, line, true);
 		int level = pdoc->GetLevel(line);
@@ -7067,6 +7395,9 @@ void Editor::FoldExpand(int line, int action, int level) {
 	int lineMaxSubord = pdoc->GetLastChild(line, level & SC_FOLDLEVELNUMBERMASK);
 	line++;
 	cs.SetVisible(line, lineMaxSubord, expanding);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	while (line <= lineMaxSubord) {
 		int levelLine = pdoc->GetLevel(line);
 		if (levelLine & SC_FOLDLEVELHEADERFLAG) {
@@ -7079,6 +7410,9 @@ void Editor::FoldExpand(int line, int action, int level) {
 }
 
 int Editor::ContractedFoldNext(int lineStart) const {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (int line = lineStart; line<pdoc->LinesTotal();) {
 		if (!cs.GetExpanded(line) && (pdoc->GetLevel(line) & SC_FOLDLEVELHEADERFLAG))
 			return line;
@@ -7104,6 +7438,9 @@ void Editor::EnsureLineVisible(int lineDoc, bool enforcePolicy) {
 		// Back up to find a non-blank line
 		int lookLine = lineDoc;
 		int lookLineLevel = pdoc->GetLevel(lookLine);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		while ((lookLine > 0) && (lookLineLevel & SC_FOLDLEVELWHITEFLAG)) {
 			lookLineLevel = pdoc->GetLevel(--lookLine);
 		}
@@ -7152,6 +7489,9 @@ void Editor::FoldAll(int action) {
 	bool expanding = action == SC_FOLDACTION_EXPAND;
 	if (action == SC_FOLDACTION_TOGGLE) {
 		// Discover current state
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int lineSeek = 0; lineSeek < maxLine; lineSeek++) {
 			if (pdoc->GetLevel(lineSeek) & SC_FOLDLEVELHEADERFLAG) {
 				expanding = !cs.GetExpanded(lineSeek);
@@ -7161,6 +7501,9 @@ void Editor::FoldAll(int action) {
 	}
 	if (expanding) {
 		cs.SetVisible(0, maxLine-1, true);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int line = 0; line < maxLine; line++) {
 			int levelLine = pdoc->GetLevel(line);
 			if (levelLine & SC_FOLDLEVELHEADERFLAG) {
@@ -7168,6 +7511,9 @@ void Editor::FoldAll(int action) {
 			}
 		}
 	} else {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int line = 0; line < maxLine; line++) {
 			int level = pdoc->GetLevel(line);
 			if ((level & SC_FOLDLEVELHEADERFLAG) &&
@@ -7221,6 +7567,9 @@ void Editor::NeedShown(int pos, int len) {
 	if (foldAutomatic & SC_AUTOMATICFOLD_SHOW) {
 		int lineStart = pdoc->LineFromPosition(pos);
 		int lineEnd = pdoc->LineFromPosition(pos+len);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 		for (int line = lineStart; line <= lineEnd; line++) {
 			EnsureLineVisible(line, false);
 		}
@@ -7293,10 +7642,16 @@ void Editor::AddStyledText(char *buffer, int appendLength) {
 	int textLength = appendLength / 2;
 	std::string text(textLength, '\0');
 	int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (i = 0; i < textLength; i++) {
 		text[i] = buffer[i*2];
 	}
 	pdoc->InsertString(CurrentPosition(), text.c_str(), textLength);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for (i = 0; i < textLength; i++) {
 		text[i] = buffer[i*2+1];
 	}
@@ -7445,6 +7800,9 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 				return 0;
 			char *ptr = CharPtrFromSPtr(lParam);
 			unsigned int iChar = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (; iChar < wParam - 1; iChar++)
 				ptr[iChar] = pdoc->CharAt(iChar);
 			ptr[iChar] = '\0';
@@ -7538,6 +7896,9 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 			}
 			char *ptr = CharPtrFromSPtr(lParam);
 			int iPlace = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (int iChar = lineStart; iChar < lineEnd; iChar++) {
 				ptr[iPlace++] = pdoc->CharAt(iChar);
 			}
@@ -7577,6 +7938,9 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 				char *ptr = CharPtrFromSPtr(lParam);
 				unsigned int iChar = 0;
 				if (selectedText.Length()) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 					for (; iChar < selectedText.LengthWithTerminator(); iChar++)
 						ptr[iChar] = selectedText.Data()[iChar];
 				} else {
@@ -7970,6 +8334,9 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 				return 0;
 			Sci_TextRange *tr = reinterpret_cast<Sci_TextRange *>(lParam);
 			int iPlace = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (int iChar = tr->chrg.cpMin; iChar < tr->chrg.cpMax; iChar++) {
 				tr->lpstrText[iPlace++] = pdoc->CharAt(iChar);
 				tr->lpstrText[iPlace++] = pdoc->StyleAt(iChar);
@@ -8040,6 +8407,9 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 			PLATFORM_ASSERT(wParam > 0);
 			char *ptr = CharPtrFromSPtr(lParam);
 			unsigned int iPlace = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (unsigned int iChar = lineStart; iChar < lineEnd && iPlace < wParam - 1; iChar++) {
 				ptr[iPlace++] = pdoc->CharAt(iChar);
 			}
@@ -8447,6 +8817,9 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 		return pdoc->MarkerNext(wParam, lParam);
 
 	case SCI_MARKERPREVIOUS: {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (int iLine = wParam; iLine >= 0; iLine--) {
 				if ((pdoc->GetMark(iLine) & lParam) != 0)
 					return iLine;
@@ -9184,6 +9557,9 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 	case SCI_GETLINESELENDPOSITION: {
 			SelectionSegment segmentLine(SelectionPosition(pdoc->LineStart(wParam)),
 				SelectionPosition(pdoc->LineEnd(wParam)));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for (size_t r=0; r<sel.Count(); r++) {
 				SelectionSegment portion = sel.Range(r).Intersect(segmentLine);
 				if (portion.start.IsValid()) {

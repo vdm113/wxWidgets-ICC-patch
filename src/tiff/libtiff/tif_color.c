@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler
@@ -135,6 +142,9 @@ TIFFCIELabToRGBInit(TIFFCIELabToRGB* cielab,
 	gamma = 1.0 / cielab->display.d_gammaR ;
 	cielab->rstep =
 		(cielab->display.d_YCR - cielab->display.d_Y0R)	/ cielab->range;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for(i = 0; i <= cielab->range; i++) {
 		cielab->Yr2r[i] = cielab->display.d_Vrwr
 		    * ((float)pow((double)i / cielab->range, gamma));
@@ -144,6 +154,9 @@ TIFFCIELabToRGBInit(TIFFCIELabToRGB* cielab,
 	gamma = 1.0 / cielab->display.d_gammaG ;
 	cielab->gstep =
 	    (cielab->display.d_YCR - cielab->display.d_Y0R) / cielab->range;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for(i = 0; i <= cielab->range; i++) {
 		cielab->Yg2g[i] = cielab->display.d_Vrwg
 		    * ((float)pow((double)i / cielab->range, gamma));
@@ -153,6 +166,9 @@ TIFFCIELabToRGBInit(TIFFCIELabToRGB* cielab,
 	gamma = 1.0 / cielab->display.d_gammaB ;
 	cielab->bstep =
 	    (cielab->display.d_YCR - cielab->display.d_Y0R) / cielab->range;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 	for(i = 0; i <= cielab->range; i++) {
 		cielab->Yb2b[i] = cielab->display.d_Vrwb
 		    * ((float)pow((double)i / cielab->range, gamma));
@@ -226,6 +242,9 @@ TIFFYCbCrToRGBInit(TIFFYCbCrToRGB* ycbcr, float *luma, float *refBlackWhite)
 	(uint8*) ycbcr+TIFFroundup_32(sizeof (TIFFYCbCrToRGB), sizeof (long)));  
     _TIFFmemset(clamptab, 0, 256);		/* v < 0 => 0 */
     ycbcr->clamptab = (clamptab += 256);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < 256; i++)
 	clamptab[i] = (TIFFRGBValue) i;
     _TIFFmemset(clamptab+256, 255, 2*256);	/* v > 255 => 255 */
@@ -252,6 +271,9 @@ TIFFYCbCrToRGBInit(TIFFYCbCrToRGB* ycbcr, float *luma, float *refBlackWhite)
        * tag) so there is some range shifting to do here when
        * constructing tables indexed by the raw pixel data.
        */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
       for (i = 0, x = -128; i < 256; i++, x++) {
 	    int32 Cr = (int32)Code2V(x, refBlackWhite[4] - 128.0F,
 			    refBlackWhite[5] - 128.0F, 127);

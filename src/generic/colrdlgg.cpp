@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/colrdlgg.cpp
 // Purpose:     Choice dialogs
@@ -294,6 +301,9 @@ void wxGenericColourDialog::InitializeColours(void)
 {
     size_t i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < WXSIZEOF(wxColourDialogNames); i++)
     {
         wxColour col = wxTheColourDatabase->Find(wxColourDialogNames[i]);
@@ -303,6 +313,9 @@ void wxGenericColourDialog::InitializeColours(void)
             m_standardColours[i].Set(0, 0, 0);
     }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < WXSIZEOF(m_customColours); i++)
     {
         wxColour c = m_colourData.GetCustomColour(i);
@@ -317,6 +330,9 @@ void wxGenericColourDialog::InitializeColours(void)
     {
         bool m_initColourFound = false;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < WXSIZEOF(wxColourDialogNames); i++)
         {
             if ( m_standardColours[i] == curr && !m_initColourFound )
@@ -329,6 +345,9 @@ void wxGenericColourDialog::InitializeColours(void)
         }
         if ( !m_initColourFound )
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             for ( i = 0; i < WXSIZEOF(m_customColours); i++ )
             {
                 if ( m_customColours[i] == curr )
@@ -352,9 +371,15 @@ void wxGenericColourDialog::InitializeColours(void)
 void wxGenericColourDialog::PaintBasicColours(wxDC& dc)
 {
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (i = 0; i < 6; i++)
     {
         int j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (j = 0; j < 8; j++)
         {
             int ptr = i*8 + j;
@@ -374,9 +399,15 @@ void wxGenericColourDialog::PaintBasicColours(wxDC& dc)
 void wxGenericColourDialog::PaintCustomColours(wxDC& dc)
 {
   int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
   for (i = 0; i < 2; i++)
   {
     int j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (j = 0; j < 8; j++)
     {
       int ptr = i*8 + j;

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /* Miniature re-implementation of the "check" library.
  *
  * This is intended to support just enough of check to run the Expat
@@ -115,8 +122,14 @@ srunner_run_all(SRunner *runner, int verbosity)
     assert(runner != NULL);
     suite = runner->suite;
     tc = suite->tests;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (tc != NULL) {
         int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < tc->ntests; ++i) {
             runner->nchecks++;
 

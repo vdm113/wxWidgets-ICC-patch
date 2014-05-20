@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        thread.h
 // Purpose:     interface of all thread-related wxWidgets classes
@@ -177,6 +184,9 @@ public:
 
         Equivalent to
         @code
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while ( !predicate() )
         {
             wxCondError e = Wait();
@@ -368,6 +378,9 @@ public:
             int offset = 0;
 
             // here we do our long task, periodically calling TestDestroy():
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             while (!GetThread()->TestDestroy())
             {
                 // since this Entry() is implemented in MyFrame context we don't
@@ -455,6 +468,9 @@ public:
         @code
             wxThread::ExitCode Entry()
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
                 while (!GetThread()->TestDestroy())
                 {
                     // ... do some work ...
@@ -813,6 +829,9 @@ enum wxThreadError
 
     wxThread::ExitCode MyThread::Entry()
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while (!TestDestroy())
         {
             // ... do a bit of work...
@@ -882,6 +901,9 @@ enum wxThreadError
                 // the possibility to enter its destructor
                 // (which is guarded with m_pThreadCS critical section!)
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while (1)
         {
             { // was the ~MyThread() function executed?
@@ -1611,6 +1633,9 @@ enum wxMutexError
         wxMutexLocker lock(s_mutexProtectingTheGlobalData);
 
         size_t count = s_data.Count();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( size_t n = 0; n < count; n++ )
         {
             if ( s_data[n] > num )

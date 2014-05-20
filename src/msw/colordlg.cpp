@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/colordlg.cpp
 // Purpose:     wxColourDialog class
@@ -124,6 +131,9 @@ int wxColourDialog::ShowModal()
 
     // and transfer data from m_colourData to it
     COLORREF custColours[16];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( i = 0; i < WXSIZEOF(custColours); i++ )
     {
         if ( m_colourData.GetCustomColour(i).IsOk() )
@@ -161,6 +171,9 @@ int wxColourDialog::ShowModal()
 
 
     // transfer the values chosen by user back into m_colourData
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( i = 0; i < WXSIZEOF(custColours); i++ )
     {
       wxRGBToColour(m_colourData.m_custColours[i], custColours[i]);

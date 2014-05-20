@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/renderg.cpp
 // Purpose:     generic implementation of wxRendererNative (for any platform)
@@ -733,18 +740,30 @@ wxRendererGeneric::DrawFocusRect(wxWindow* WXUNUSED(win), wxDC& dc, const wxRect
 #endif
 
     wxCoord z;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( z = x1 + 1; z < x2; z += 2 )
         dc.DrawPoint(z, rect.GetTop());
 
     wxCoord shift = z == x2 ? 0 : 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( z = y1 + shift; z < y2; z += 2 )
         dc.DrawPoint(x2, z);
 
     shift = z == y2 ? 0 : 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( z = x2 - shift; z > x1; z -= 2 )
         dc.DrawPoint(z, y2);
 
     shift = z == x1 ? 0 : 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( z = y2 - shift; z > y1; z -= 2 )
         dc.DrawPoint(x1, z);
 

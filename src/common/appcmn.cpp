@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/appcmn.cpp
 // Purpose:     wxAppBase methods common to all platforms
@@ -134,6 +141,9 @@ void wxAppBase::CleanUp()
 
     // and any remaining TLWs (they remove themselves from wxTopLevelWindows
     // when destroyed, so iterate until none are left)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( !wxTopLevelWindows.empty() )
     {
         // do not use Destroy() here as it only puts the TLW in pending list
@@ -370,6 +380,9 @@ bool wxAppBase::ProcessIdle()
     bool needMore = wxAppConsoleBase::ProcessIdle();
     wxIdleEvent event;
     wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (node)
     {
         wxWindow* win = node->GetData();

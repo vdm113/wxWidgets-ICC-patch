@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /*
  * Copyright (c) 1988-1996 Sam Leffler
@@ -236,6 +243,9 @@ _tiffosSeekProc(thandle_t fd, uint64 off, int whence)
 			// extend the stream to the expected size
 			os->seekp(0, ios::end);
 			num_fill = (static_cast<uint64>(origin)) + off - os->tellp();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
 			for( uint64 i = 0; i < num_fill; i++ )
 				os->put('\0');
 

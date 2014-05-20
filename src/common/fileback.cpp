@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/fileback.cpp
 // Purpose:     Back an input stream with memory or a file
@@ -141,10 +148,16 @@ wxStreamError wxBackingFileImpl::ReadAt(wxFileOffset pos,
     // read from the buffer or parent stream
     if (size2)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while (*size < reqestedSize)
         {
             // if pos is further ahead than the parent has been read so far,
             // then read forward in the parent stream
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
             while (pos - m_filelen + size_t(0) >= m_buflen)
             {
                 // if the parent is small enough, don't use a backing file

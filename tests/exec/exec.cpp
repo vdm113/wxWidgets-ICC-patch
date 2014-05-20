@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/exec/exec.cpp
 // Purpose:     test wxExecute()
@@ -194,6 +201,9 @@ void ExecTestCase::TestExecute()
     // Test the sync execution case with/without wxEXEC_NOEVENTS flag
     // because we use either an event loop or wxSelectDispatcher
     // depending on this flag, and we want to test both cases.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (useNoeventsFlag = 0; useNoeventsFlag <=1 ; ++useNoeventsFlag )
     {
         int execFlags = wxEXEC_SYNC;

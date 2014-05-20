@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexVisualProlog.cxx
 ** Lexer for Visual Prolog.
@@ -210,11 +217,17 @@ static bool isOpenStringVerbatim(int next, int &closingQuote){
 // Look ahead to see which colour "end" should have (takes colour after the following keyword)
 static void endLookAhead(char s[], LexAccessor &styler, int start) {
     char ch = styler.SafeGetCharAt(start, '\n');
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (' ' == ch) {
         start++;
         ch = styler.SafeGetCharAt(start, '\n');
     }
     int i = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while (i < 100 && isLowerLetter(ch)){
         s[i] = ch;
         i++;
@@ -264,6 +277,9 @@ void SCI_METHOD LexerVisualProlog::Lex(unsigned int startPos, int length, int in
 
     // Truncate ppDefineHistory before current line
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (; sc.More(); sc.Forward()) {
 
         // Determine if the current state should terminate.
@@ -461,6 +477,9 @@ void SCI_METHOD LexerVisualProlog::Fold(unsigned int startPos, int length, int i
     char chNext = styler[startPos];
     int styleNext = styler.StyleAt(startPos);
     int style = initStyle;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (unsigned int i = startPos; i < endPos; i++) {
         char ch = chNext;
         chNext = styler.SafeGetCharAt(i + 1);

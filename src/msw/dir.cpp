@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/dir.cpp
 // Purpose:     wxDir implementation for Win32
@@ -97,6 +104,9 @@ CheckFoundMatch(const FIND_STRUCT* finddata, const wxString& filter)
 inline bool
 FindNext(FIND_DATA fd, const wxString& filter, FIND_STRUCT *finddata)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         if ( !::FindNextFile(fd, finddata) )
@@ -273,6 +283,9 @@ bool wxDirData::Read(wxString *filename)
     const wxChar *name;
     FIND_ATTR attr;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         if ( first )
