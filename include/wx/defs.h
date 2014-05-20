@@ -2371,8 +2371,6 @@ enum wxHatchStyle
              wxPenStyle, wxPenCap, wxPenJoin enum values instead!
 */
 
-#if WXWIN_COMPATIBILITY_3_0
-
 /* don't use any elements of this enum in the new code */
 enum wxDeprecatedGUIConstants
 {

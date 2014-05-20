@@ -2056,6 +2056,8 @@ bool wxRichTextParagraphLayoutBox::Draw(wxDC& dc, wxRichTextDrawingContext& cont
 /// Lay the item out
 bool wxRichTextParagraphLayoutBox::Layout(wxDC& dc, wxRichTextDrawingContext& context, const wxRect& rect, const wxRect& parentRect, int style)
 {
+    context.SetLayingOut(true);
+
     Move(rect.GetPosition());
 
     if (!IsShown())
@@ -12040,7 +12042,7 @@ void wxRichTextAction::UpdateAppearance(long caretPosition, bool sendUpdateEvent
 
                 wxRichTextObjectList::compatibility_iterator firstNode = container->GetChildren().Find(para);
                 wxRichTextObjectList::compatibility_iterator node = firstNode;
-                wxRichTextObjectList::compatibility_iterator lastNode = NULL;
+                wxRichTextObjectList::compatibility_iterator lastNode = wxRichTextObjectList::compatibility_iterator();
                 while (node)
                 {
                     wxRichTextParagraph* child = (wxRichTextParagraph*) node->GetData();
@@ -12323,8 +12325,6 @@ bool wxRichTextImage::LoadImageCache(wxDC& dc, wxRichTextDrawingContext& context
     {
         if (buffer)
         {
-            // Surely margins will already be accounted for?
-#if 0
             // Find the actual space available when margin is taken into account
             wxRect marginRect, borderRect, contentRect, paddingRect, outlineRect;
             marginRect = wxRect(0, 0, sz.x, sz.y);
@@ -12333,7 +12333,7 @@ bool wxRichTextImage::LoadImageCache(wxDC& dc, wxRichTextDrawingContext& context
                 buffer->GetBoxRects(dc, buffer, GetParent()->GetParent()->GetAttributes(), marginRect, borderRect, contentRect, paddingRect, outlineRect);
                 sz = contentRect.GetSize();
             }
-#endif
+
             // Use a minimum size to stop images becoming very small
             parentWidth = wxMax(100, sz.GetWidth());
             parentHeight = wxMax(100, sz.GetHeight());

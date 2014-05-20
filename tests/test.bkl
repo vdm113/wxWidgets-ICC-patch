@@ -126,13 +126,14 @@
       be ran in such configuration and doesn't require an X server connection.
       -->
     <exe id="test_drawing" template="wx_sample_console,wx_test"
-                 template_append="wx_append_base"
+                           template_append="wx_append"
          cond="USE_GUI=='1'">
         <sources>
             test.cpp
             drawing/drawing.cpp
             drawing/plugindriver.cpp
             drawing/basictest.cpp
+            drawing/fonttest.cpp
         </sources>
         <wx-lib>core</wx-lib>
         <wx-lib>net</wx-lib>

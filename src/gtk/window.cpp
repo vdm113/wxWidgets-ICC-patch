@@ -197,6 +197,7 @@ typedef guint KeySym;
 bool g_blockEventsOnDrag;
 // Don't allow mouse event propagation during scroll
 bool g_blockEventsOnScroll;
+extern wxCursor g_globalCursor;
 
 // mouse capture state: the window which has it and if the mouse is currently
 // inside it
@@ -284,7 +285,26 @@ PangoContext* wxGetPangoContext()
         g_object_ref(context);
     }
     else
-        context = gdk_pango_context_get_for_screen(gdk_screen_get_default());
+    {
+        if ( GdkScreen *screen = gdk_screen_get_default() )
+        {
+            context = gdk_pango_context_get_for_screen(screen);
+        }
+#if PANGO_VERSION_CHECK(1,22,0)
+        else // No default screen.
+        {
+            // This may happen in console applications which didn't open the
+            // display, use the default font map for them -- it's better than
+            // nothing.
+            if (wx_pango_version_check(1,22,0) == 0)
+            {
+                context = pango_font_map_create_context(
+                                pango_cairo_font_map_get_default ());
+            }
+            //else: pango_font_map_create_context() not available
+        }
+#endif // Pango 1.22+
+    }
 
     return context;
 }
@@ -2163,7 +2183,7 @@ void wxWindowGTK::GTKHandleRealized()
     event.SetEventObject( this );
     GTKProcessEvent( event );
 
-    GTKUpdateCursor();
+    GTKUpdateCursor(false, true);
 
     if (m_wxwindow && isTopLevel)
     {
@@ -3751,11 +3771,15 @@ bool wxWindowGTK::SetCursor( const wxCursor &cursor )
     return true;
 }
 
-void wxWindowGTK::GTKUpdateCursor()
+void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize, const wxCursor* overrideCursor)
 {
-    if (m_widget == NULL ||
-        !gtk_widget_get_realized(m_widget) ||
-        (m_wxwindow == NULL && !gtk_widget_get_has_window(m_widget)))
+    m_needCursorReset = false;
+
+    if (m_widget == NULL || !gtk_widget_get_realized(m_widget))
+        return;
+
+    // if we don't already know there is a busy/global cursor, we have to check for one
+    if (!isBusyOrGlobalCursor)
     {
         if (g_globalCursor.IsOk())
             isBusyOrGlobalCursor = true;
@@ -3766,22 +3790,44 @@ void wxWindowGTK::GTKUpdateCursor()
                 isBusyOrGlobalCursor = true;
         }
     }
-
     GdkCursor* cursor = NULL;
-    if (m_cursor.IsOk())
-        cursor = m_cursor.GetCursor();
+    if (!isBusyOrGlobalCursor)
+        cursor = (overrideCursor ? *overrideCursor : m_cursor).GetCursor();
 
-    wxArrayGdkWindows windows;
-    GdkWindow* window = GTKGetWindow(windows);
-    if (window)
-        gdk_window_set_cursor(window, cursor);
-    else
+    GdkWindow* window = NULL;
+    if (cursor || isBusyOrGlobalCursor || !isRealize)
     {
-        for (size_t i = windows.size(); i--;)
+        wxArrayGdkWindows windows;
+        window = GTKGetWindow(windows);
+        if (window)
+            gdk_window_set_cursor(window, cursor);
+        else
         {
-            window = windows[i];
-            if (window)
-                gdk_window_set_cursor(window, cursor);
+            for (size_t i = windows.size(); i--;)
+            {
+                window = windows[i];
+                if (window)
+                    gdk_window_set_cursor(window, cursor);
+            }
+        }
+    }
+    if (window && cursor == NULL && m_wxwindow == NULL && !isBusyOrGlobalCursor && !isRealize)
+    {
+        void* data;
+        gdk_window_get_user_data(window, &data);
+        if (data)
+        {
+#ifdef __WXGTK3__
+            const char sig_name[] = "state-flags-changed";
+            GtkStateFlags state = gtk_widget_get_state_flags(GTK_WIDGET(data));
+#else
+            const char sig_name[] = "state-changed";
+            GtkStateType state = gtk_widget_get_state(GTK_WIDGET(data));
+#endif
+            static unsigned sig_id = g_signal_lookup(sig_name, GTK_TYPE_WIDGET);
+
+            // encourage native widget to restore any non-default cursors
+            g_signal_emit(data, sig_id, 0, state);
         }
     }
 }

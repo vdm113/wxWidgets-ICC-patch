@@ -886,12 +886,6 @@ public:
     // add a new colour to the database
     void AddColour(const wxString& name, const wxColour& colour);
 
-#ifdef __WXPM__
-    // PM keeps its own type of colour table
-    long*                           m_palTable;
-    size_t                          m_nSize;
-#endif
-
 private:
     // load the database with the built in colour values when called for the
     // first time, do nothing after this
