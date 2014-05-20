@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        event.h
 // Purpose:     interface of wxEvtHandler, wxEventBlocker and many
@@ -299,9 +292,6 @@ protected:
             // we do the 1000 FunctionWhichSendsEvents() calls
             wxEventBlocker blocker(this);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( int i = 0; i  1000; i++ )
                 FunctionWhichSendsEvents(i);
 
@@ -2204,9 +2194,6 @@ public:
         int vX,vY,vW,vH;                 // Dimensions of client area in pixels
         wxRegionIterator upd(GetUpdateRegion()); // get the update rect list
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (upd)
         {
             vX = upd.GetX();
@@ -2260,7 +2247,7 @@ public:
     not sent when the window is restored to its original size after it had been
     maximized, only a normal wxSizeEvent is generated in this case.
 
-    Currently this event is only generated in wxMSW, wxGTK, wxOSX/Cocoa and wxOS2
+    Currently this event is only generated in wxMSW, wxGTK and wxOSX/Cocoa
     ports so portable programs should only rely on receiving @c wxEVT_SIZE and
     not necessarily this event when the window is maximized.
 
@@ -4185,7 +4172,7 @@ public:
     Notice that the event is not triggered when the application is iconized
     (minimized) or restored under wxMSW.
 
-    @onlyfor{wxmsw,wxgtk,wxos2}
+    @onlyfor{wxmsw,wxgtk}
 
     @beginEventTable{wxShowEvent}
     @event{EVT_SHOW(func)}

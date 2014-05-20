@@ -167,7 +167,6 @@ TEST_GUI_CXXFLAGS = $(__test_gui_PCH_INC) -D__WX$(TOOLKIT)__ \
 	$(CXXFLAGS)
 TEST_GUI_OBJECTS =  \
 	$(__test_gui___win32rc) \
-	$(__test_gui_os2_lib_res) \
 	test_gui_asserthelper.o \
 	test_gui_test.o \
 	test_gui_testableframe.o \
@@ -282,6 +281,7 @@ TEST_GUI_ODEP =  $(_____pch_testprec_test_gui_testprec_h_gch___depname)
 @COND_USE_PCH_1@_____pch_testprec_test_testprec_h_gch___depname \
 @COND_USE_PCH_1@	= ./.pch/testprec_test/testprec.h.gch
 @COND_MONOLITHIC_1@__LIB_PNG_IF_MONO_p = $(__LIB_PNG_p)
+@COND_USE_GUI_1@__test_drawing___depname = test_drawing$(EXEEXT)
 @COND_PLATFORM_MAC_0@__test_drawing___mac_setfilecmd = @true
 @COND_PLATFORM_MAC_1@__test_drawing___mac_setfilecmd = \
 @COND_PLATFORM_MAC_1@	$(SETFILE) -t APPL test_drawing$(EXEEXT)
@@ -307,8 +307,6 @@ TEST_GUI_ODEP =  $(_____pch_testprec_test_gui_testprec_h_gch___depname)
 @COND_TOOLKIT_MSW@__RCDEFDIR_p_1 = --include-dir \
 @COND_TOOLKIT_MSW@	$(LIBDIRNAME)/wx/include/$(TOOLCHAIN_FULLNAME)
 @COND_PLATFORM_WIN32_1@__test_gui___win32rc = test_gui_sample_rc.o
-@COND_PLATFORM_OS2_1@__test_gui_os2_lib_res = \
-@COND_PLATFORM_OS2_1@	$(top_srcdir)/include/wx/os2/wx.res
 @COND_PLATFORM_MACOSX_1_USE_GUI_1@__test_gui_app_Contents_PkgInfo___depname \
 @COND_PLATFORM_MACOSX_1_USE_GUI_1@	= test_gui.app/Contents/PkgInfo
 @COND_PLATFORM_MACOSX_1_USE_GUI_1@__test_gui_bundle___depname \
@@ -346,15 +344,6 @@ COND_MONOLITHIC_0___WXLIB_ADV_p = \
 COND_MONOLITHIC_0___WXLIB_HTML_p = \
 	-lwx_$(PORTNAME)$(WXUNIVNAME)$(WXUNICODEFLAG)$(WXDEBUGFLAG)$(WX_LIB_FLAVOUR)_html-$(WX_RELEASE)$(HOST_SUFFIX)
 @COND_MONOLITHIC_0@__WXLIB_HTML_p = $(COND_MONOLITHIC_0___WXLIB_HTML_p)
-@COND_MONOLITHIC_1_USE_STC_1@__LIB_SCINTILLA_IF_MONO_p \
-@COND_MONOLITHIC_1_USE_STC_1@	= \
-@COND_MONOLITHIC_1_USE_STC_1@	-lwxscintilla$(WXDEBUGFLAG)$(WX_LIB_FLAVOUR)-$(WX_RELEASE)$(HOST_SUFFIX)
-@COND_USE_GUI_1_wxUSE_LIBTIFF_builtin@__LIB_TIFF_p \
-@COND_USE_GUI_1_wxUSE_LIBTIFF_builtin@	= \
-@COND_USE_GUI_1_wxUSE_LIBTIFF_builtin@	-lwxtiff$(WXDEBUGFLAG)$(WX_LIB_FLAVOUR)-$(WX_RELEASE)$(HOST_SUFFIX)
-@COND_USE_GUI_1_wxUSE_LIBJPEG_builtin@__LIB_JPEG_p \
-@COND_USE_GUI_1_wxUSE_LIBJPEG_builtin@	= \
-@COND_USE_GUI_1_wxUSE_LIBJPEG_builtin@	-lwxjpeg$(WXDEBUGFLAG)$(WX_LIB_FLAVOUR)-$(WX_RELEASE)$(HOST_SUFFIX)
 COND_MONOLITHIC_0___WXLIB_XML_p = \
 	-lwx_base$(WXBASEPORT)$(WXUNICODEFLAG)$(WXDEBUGFLAG)$(WX_LIB_FLAVOUR)_xml-$(WX_RELEASE)$(HOST_SUFFIX)
 @COND_MONOLITHIC_0@__WXLIB_XML_p = $(COND_MONOLITHIC_0___WXLIB_XML_p)
@@ -376,6 +365,15 @@ COND_MONOLITHIC_0___WXLIB_BASE_p = \
 COND_MONOLITHIC_1___WXLIB_MONO_p = \
 	-lwx_$(PORTNAME)$(WXUNIVNAME)$(WXUNICODEFLAG)$(WXDEBUGFLAG)$(WX_LIB_FLAVOUR)-$(WX_RELEASE)$(HOST_SUFFIX)
 @COND_MONOLITHIC_1@__WXLIB_MONO_p = $(COND_MONOLITHIC_1___WXLIB_MONO_p)
+@COND_MONOLITHIC_1_USE_STC_1@__LIB_SCINTILLA_IF_MONO_p \
+@COND_MONOLITHIC_1_USE_STC_1@	= \
+@COND_MONOLITHIC_1_USE_STC_1@	-lwxscintilla$(WXDEBUGFLAG)$(WX_LIB_FLAVOUR)-$(WX_RELEASE)$(HOST_SUFFIX)
+@COND_USE_GUI_1_wxUSE_LIBTIFF_builtin@__LIB_TIFF_p \
+@COND_USE_GUI_1_wxUSE_LIBTIFF_builtin@	= \
+@COND_USE_GUI_1_wxUSE_LIBTIFF_builtin@	-lwxtiff$(WXDEBUGFLAG)$(WX_LIB_FLAVOUR)-$(WX_RELEASE)$(HOST_SUFFIX)
+@COND_USE_GUI_1_wxUSE_LIBJPEG_builtin@__LIB_JPEG_p \
+@COND_USE_GUI_1_wxUSE_LIBJPEG_builtin@	= \
+@COND_USE_GUI_1_wxUSE_LIBJPEG_builtin@	-lwxjpeg$(WXDEBUGFLAG)$(WX_LIB_FLAVOUR)-$(WX_RELEASE)$(HOST_SUFFIX)
 @COND_USE_GUI_1_wxUSE_LIBPNG_builtin@__LIB_PNG_p \
 @COND_USE_GUI_1_wxUSE_LIBPNG_builtin@	= \
 @COND_USE_GUI_1_wxUSE_LIBPNG_builtin@	-lwxpng$(WXDEBUGFLAG)$(WX_LIB_FLAVOUR)-$(WX_RELEASE)$(HOST_SUFFIX)
@@ -389,7 +387,7 @@ COND_wxUSE_REGEX_builtin___LIB_REGEX_p = \
 
 ### Targets: ###
 
-all: test$(EXEEXT) test_drawing$(EXEEXT) $(DLLPREFIX_MODULE)test_drawingplugin.$(SO_SUFFIX_MODULE) $(__test_gui___depname) $(__test_gui_bundle___depname) data data-images fr
+all: test$(EXEEXT) $(__test_drawing___depname) $(__test_drawingplugin___depname) $(__test_gui___depname) $(__test_gui_bundle___depname) data data-images fr
 
 install: 
 
@@ -417,12 +415,12 @@ test$(EXEEXT): $(TEST_OBJECTS)
 @COND_USE_PCH_1@./.pch/testprec_test/testprec.h.gch: 
 @COND_USE_PCH_1@	$(BK_MAKE_PCH) ./.pch/testprec_test/testprec.h.gch testprec.h $(CXX) $(TEST_CXXFLAGS)
 
-test_drawing$(EXEEXT): $(TEST_DRAWING_OBJECTS)
-	$(CXX) -o $@ $(TEST_DRAWING_OBJECTS)    -L$(LIBDIRNAME)  $(SAMPLES_RPATH_FLAG) $(CPPUNIT_LIBS) $(LDFLAGS)  $(__WXLIB_CORE_p)  $(__WXLIB_NET_p)  $(__WXLIB_BASE_p)  $(__WXLIB_MONO_p) $(__LIB_PNG_IF_MONO_p_1) $(__LIB_ZLIB_p) $(__LIB_REGEX_p) $(__LIB_EXPAT_p) $(EXTRALIBS_FOR_BASE) $(LIBS)
+@COND_USE_GUI_1@test_drawing$(EXEEXT): $(TEST_DRAWING_OBJECTS)
+@COND_USE_GUI_1@	$(CXX) -o $@ $(TEST_DRAWING_OBJECTS)    -L$(LIBDIRNAME)  $(SAMPLES_RPATH_FLAG) $(CPPUNIT_LIBS) $(LDFLAGS)  $(__WXLIB_CORE_p)  $(__WXLIB_NET_p)  $(__WXLIB_BASE_p)  $(__WXLIB_MONO_p) $(__LIB_SCINTILLA_IF_MONO_p) $(__LIB_TIFF_p) $(__LIB_JPEG_p) $(__LIB_PNG_p)  $(EXTRALIBS_FOR_GUI) $(__LIB_ZLIB_p) $(__LIB_REGEX_p) $(__LIB_EXPAT_p) $(EXTRALIBS_FOR_BASE) $(LIBS)
+@COND_USE_GUI_1@	
+@COND_USE_GUI_1@	$(__test_drawing___mac_setfilecmd)
 
-	$(__test_drawing___mac_setfilecmd)
-
-@COND_USE_PCH_1@./.pch/testprec_test_drawing/testprec.h.gch:
+@COND_USE_PCH_1@./.pch/testprec_test_drawing/testprec.h.gch: 
 @COND_USE_PCH_1@	$(BK_MAKE_PCH) ./.pch/testprec_test_drawing/testprec.h.gch testprec.h $(CXX) $(TEST_DRAWING_CXXFLAGS)
 
 @COND_SHARED_1_USE_GUI_1@$(DLLPREFIX_MODULE)test_drawingplugin.$(SO_SUFFIX_MODULE): $(TEST_DRAWINGPLUGIN_OBJECTS)

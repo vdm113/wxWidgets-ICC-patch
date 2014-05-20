@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/mimetype.h
 // Purpose:     classes and functions to manage MIME types
@@ -182,49 +175,6 @@ public:
                                    const CtorString&,
                                    const CtorString&),
                                VarArgInit, VarArgInit)
-#ifdef __WATCOMC__
-    // workaround for http://bugzilla.openwatcom.org/show_bug.cgi?id=351
-    WX_VARARG_WATCOM_WORKAROUND_CTOR(
-                                wxFileTypeInfo,
-                                4, (const wxString&,
-                                    const wxString&,
-                                    const wxString&,
-                                    const wxString&),
-                                (CtorString(f1),
-                                 CtorString(f2),
-                                 CtorString(f3),
-                                 CtorString(f4)));
-    WX_VARARG_WATCOM_WORKAROUND_CTOR(
-                                wxFileTypeInfo,
-                                4, (const wxCStrData&,
-                                    const wxCStrData&,
-                                    const wxCStrData&,
-                                    const wxCStrData&),
-                                (CtorString(f1),
-                                 CtorString(f2),
-                                 CtorString(f3),
-                                 CtorString(f4)));
-    WX_VARARG_WATCOM_WORKAROUND_CTOR(
-                                wxFileTypeInfo,
-                                4, (const char*,
-                                    const char*,
-                                    const char*,
-                                    const char*),
-                                (CtorString(f1),
-                                 CtorString(f2),
-                                 CtorString(f3),
-                                 CtorString(f4)));
-    WX_VARARG_WATCOM_WORKAROUND_CTOR(
-                                wxFileTypeInfo,
-                                4, (const wchar_t*,
-                                    const wchar_t*,
-                                    const wchar_t*,
-                                    const wchar_t*),
-                                (CtorString(f1),
-                                 CtorString(f2),
-                                 CtorString(f3),
-                                 CtorString(f4)));
-#endif
 
         // the array elements correspond to the parameters of the ctor above in
         // the same order

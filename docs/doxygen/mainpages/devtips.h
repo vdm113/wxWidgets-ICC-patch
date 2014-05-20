@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        devtips.h
 // Purpose:     Cross-platform development page of the Doxygen manual
@@ -117,9 +110,9 @@ and this must not be changed.
 On Microsoft Windows, wxWidgets has a different set of makefiles for each
 compiler, because each compiler's @c 'make' tool is slightly different. Popular
 Windows compilers that we cater for, and the corresponding makefile extensions,
-include: Microsoft Visual C++ (.vc), Borland C++ (.bcc), OpenWatcom C++ (.wat)
-and MinGW/Cygwin (.gcc). Makefiles are provided for the wxWidgets library
-itself, samples, demos, and utilities.
+include: Microsoft Visual C++ (.vc), Borland C++ (.bcc) and MinGW/Cygwin
+(.gcc). Makefiles are provided for the wxWidgets library itself, samples,
+demos, and utilities.
 
 On Linux, Mac and OS/2, you use the @c 'configure' command to generate the
 necessary makefiles. You should also use this method when building with

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/rawbmp.h
 // Purpose:     macros for fast, raw bitmap data access
@@ -66,16 +59,10 @@
     // we draw a (10, 10)-(20, 20) rect manually using the given r, g, b
     p.Offset(data, 10, 10);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int y = 0; y < 10; ++y )
     {
         PixelData::Iterator rowStart = p;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( int x = 0; x < 10; ++x, ++p )
         {
             p.Red() = r;
@@ -179,11 +166,6 @@ typedef wxPixelFormat<unsigned char, 24, 0, 1, 2> wxImagePixelFormat;
     #define wxPIXEL_FORMAT_ALPHA 3
 #elif defined(__WXGTK__)
     // Under GTK+ 2.X we use GdkPixbuf, which is standard RGB or RGBA
-    typedef wxPixelFormat<unsigned char, 24, 0, 1, 2> wxNativePixelFormat;
-
-    #define wxPIXEL_FORMAT_ALPHA 3
-#elif defined(__WXPM__)
-    // Under PM, we can use standard RGB or RGBA
     typedef wxPixelFormat<unsigned char, 24, 0, 1, 2> wxNativePixelFormat;
 
     #define wxPIXEL_FORMAT_ALPHA 3

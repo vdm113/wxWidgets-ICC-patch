@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/dirctrlg.cpp
 // Purpose:     wxGenericDirCtrl
@@ -77,18 +70,6 @@
 
 #endif // __WINDOWS__
 
-#if defined(__OS2__) || defined(__DOS__)
-    #ifdef __OS2__
-        #define INCL_BASE
-        #include <os2.h>
-        #ifndef __EMX__
-            #include <direct.h>
-        #endif
-        #include <stdlib.h>
-        #include <ctype.h>
-    #endif
-#endif // __OS2__
-
 #if defined(__WXMAC__)
 //    #include "MoreFilesX.h"
 #endif
@@ -114,7 +95,7 @@ wxDEFINE_EVENT( wxEVT_DIRCTRL_SELECTIONCHANGED, wxTreeEvent );
 wxDEFINE_EVENT( wxEVT_DIRCTRL_FILEACTIVATED, wxTreeEvent );
 
 // ----------------------------------------------------------------------------
-// wxGetAvailableDrives, for WINDOWS, DOS, OS2, MAC, UNIX (returns "/")
+// wxGetAvailableDrives, for WINDOWS, DOS, MAC, UNIX (returns "/")
 // ----------------------------------------------------------------------------
 
 size_t wxGetAvailableDrives(wxArrayString &paths, wxArrayString &names, wxArrayInt &icon_ids)
@@ -131,9 +112,6 @@ size_t wxGetAvailableDrives(wxArrayString &paths, wxArrayString &names, wxArrayI
     //       but unfortunately wxFSVolumeBase is not implemented everywhere
     const wxArrayString as = wxFSVolumeBase::GetVolumes();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (size_t i = 0; i < as.GetCount(); i++)
     {
         wxString path = as[i];
@@ -166,63 +144,8 @@ size_t wxGetAvailableDrives(wxArrayString &paths, wxArrayString &names, wxArrayI
         names.Add(vol.GetDisplayName());
         icon_ids.Add(imageId);
     }
-#elif defined(__OS2__)
-    APIRET rc;
-    ULONG ulDriveNum = 0;
-    ULONG ulDriveMap = 0;
-    rc = ::DosQueryCurrentDisk(&ulDriveNum, &ulDriveMap);
-    if ( rc == 0)
-    {
-        size_t i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-        while (i < 26)
-        {
-            if (ulDriveMap & ( 1 << i ))
-            {
-                const wxString path = wxFileName::GetVolumeString(
-                                        'A' + i, wxPATH_GET_SEPARATOR);
-                const wxString name = wxFileName::GetVolumeString(
-                                        'A' + i, wxPATH_NO_SEPARATOR);
-
-                // Note: If _filesys is unsupported by some compilers,
-                //       we can always replace it by DosQueryFSAttach
-                char filesysname[20];
-#ifdef __WATCOMC__
-                ULONG cbBuffer = sizeof(filesysname);
-                PFSQBUFFER2 pfsqBuffer = (PFSQBUFFER2)filesysname;
-                APIRET rc = ::DosQueryFSAttach(name.fn_str(),0,FSAIL_QUERYNAME,pfsqBuffer,&cbBuffer);
-                if (rc != NO_ERROR)
-                {
-                    filesysname[0] = '\0';
-                }
-#else
-                _filesys(name.fn_str(), filesysname, sizeof(filesysname));
-#endif
-                /* FAT, LAN, HPFS, CDFS, NFS */
-                int imageId;
-                if (path == wxT("A:\\") || path == wxT("B:\\"))
-                    imageId = wxFileIconsTable::floppy;
-                else if (!strcmp(filesysname, "CDFS"))
-                    imageId = wxFileIconsTable::cdrom;
-                else if (!strcmp(filesysname, "LAN") ||
-                         !strcmp(filesysname, "NFS"))
-                    imageId = wxFileIconsTable::drive;
-                else
-                    imageId = wxFileIconsTable::drive;
-                paths.Add(path);
-                names.Add(name);
-                icon_ids.Add(imageId);
-            }
-            i ++;
-        }
-    }
-#else // !__WIN32__, !__OS2__
+#else // !__WIN32__
     /* If we can switch to the drive, it exists. */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( char drive = 'A'; drive <= 'Z'; drive++ )
     {
         const wxString
@@ -243,9 +166,6 @@ size_t wxGetAvailableDrives(wxArrayString &paths, wxArrayString &names, wxArrayI
     ItemCount volumeIndex = 1;
     OSErr err = noErr ;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while( noErr == err )
     {
         HFSUniStr255 volumeName ;
@@ -293,10 +213,6 @@ size_t wxGetAvailableDrives(wxArrayString &paths, wxArrayString &names, wxArrayI
 
 bool wxIsDriveAvailable(const wxString& dirName)
 {
-    // FIXME: this method leads to hang up under Watcom for some reason
-#ifdef __WATCOMC__
-    wxUnusedVar(dirName);
-#else
     if ( dirName.length() == 3 && dirName[1u] == wxT(':') )
     {
         wxString dirNameLower(dirName.Lower());
@@ -307,11 +223,10 @@ bool wxIsDriveAvailable(const wxString& dirName)
                 wxDirExists(dirNameLower));
     }
     else
-#endif
         return true;
 }
 
-#elif defined(__WINDOWS__) || defined(__OS2__)
+#elif defined(__WINDOWS__)
 
 int setdrive(int WXUNUSED_IN_WINCE(drive))
 {
@@ -326,12 +241,7 @@ int setdrive(int WXUNUSED_IN_WINCE(drive))
         return -1;
     newdrive[0] = (wxChar)(wxT('A') + drive - 1);
     newdrive[1] = wxT(':');
-#ifdef __OS2__
-    newdrive[2] = wxT('\\');
-    newdrive[3] = wxT('\0');
-#else
     newdrive[2] = wxT('\0');
-#endif
 #if defined(__WINDOWS__)
     if (::SetCurrentDirectory(newdrive))
 #else
@@ -362,11 +272,6 @@ bool wxIsDriveAvailable(const wxString& WXUNUSED_IN_WINCE(dirName))
 #ifndef wxHAS_DRIVE_FUNCTIONS
         success = wxDirExists(dirNameLower);
 #else
-        #if defined(__OS2__)
-        // Avoid changing to drive since no media may be inserted.
-        if (dirNameLower[(size_t)0] == 'a' || dirNameLower[(size_t)0] == 'b')
-            return success;
-        #endif
         int currentDrive = _getdrive();
         int thisDrive = (int) (dirNameLower[(size_t)0] - 'a' + 1) ;
         int err = setdrive( thisDrive ) ;
@@ -385,7 +290,7 @@ bool wxIsDriveAvailable(const wxString& WXUNUSED_IN_WINCE(dirName))
     return success;
 #endif
 }
-#endif // __WINDOWS__ || __OS2__
+#endif // __WINDOWS__
 
 #endif // wxUSE_DIRDLG || wxUSE_FILEDLG
 
@@ -556,7 +461,7 @@ bool wxGenericDirCtrl::Create(wxWindow *parent,
 
     wxString rootName;
 
-#if defined(__WINDOWS__) || defined(__OS2__) || defined(__DOS__)
+#if defined(__WINDOWS__) || defined(__DOS__)
     rootName = _("Computer");
 #else
     rootName = _("Sections");
@@ -603,9 +508,6 @@ void wxGenericDirCtrl::ShowHidden( bool show )
         wxArrayString paths;
         GetPaths(paths);
         ReCreateTree();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( unsigned n = 0; n < paths.size(); n++ )
         {
             ExpandPath(paths[n]);
@@ -645,9 +547,6 @@ void wxGenericDirCtrl::SetupSections()
     AddSection( home, _("Desktop"), 1);
 #endif
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (n = 0; n < count; n++)
         AddSection(paths[n], names[n], icons[n]);
 }
@@ -820,7 +719,7 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
 
     wxString dirName(data->m_path);
 
-#if (defined(__WINDOWS__) && !defined(__WXWINCE__)) || defined(__DOS__) || defined(__OS2__)
+#if (defined(__WINDOWS__) && !defined(__WXWINCE__)) || defined(__DOS__)
     // Check if this is a root directory and if so,
     // whether the drive is available.
     if (!wxIsDriveAvailable(dirName))
@@ -834,7 +733,7 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
     // This may take a longish time. Go to busy cursor
     wxBusyCursor busy;
 
-#if defined(__WINDOWS__) || defined(__DOS__) || defined(__OS2__)
+#if defined(__WINDOWS__) || defined(__DOS__)
     if (dirName.Last() == ':')
         dirName += wxString(wxFILE_SEP_PATH);
 #endif
@@ -854,9 +753,6 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
         if (m_showHidden) style |= wxDIR_HIDDEN;
         if (d.GetFirst(& eachFilename, wxEmptyString, style))
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             do
             {
                 if ((eachFilename != wxT(".")) && (eachFilename != wxT("..")))
@@ -864,9 +760,6 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
                     dirs.Add(eachFilename);
                 }
             }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while (d.GetNext(&eachFilename));
         }
     }
@@ -885,17 +778,11 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
             wxStringTokenizer strTok;
             wxString curFilter;
             strTok.SetString(m_currentFilterStr,wxT(";"));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while(strTok.HasMoreTokens())
             {
                 curFilter = strTok.GetNextToken();
                 if (d.GetFirst(& eachFilename, curFilter, style))
                 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                     do
                     {
                         if ((eachFilename != wxT(".")) && (eachFilename != wxT("..")))
@@ -903,9 +790,6 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
                             filenames.Add(eachFilename);
                         }
                     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                     while (d.GetNext(& eachFilename));
                 }
             }
@@ -919,9 +803,6 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
 
     // Add the sorted dirs
     size_t i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < dirs.GetCount(); i++)
     {
         eachFilename = dirs[i];
@@ -947,9 +828,6 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
     // Add the sorted filenames
     if (!HasFlag(wxDIRCTRL_DIR_ONLY))
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < filenames.GetCount(); i++)
         {
             eachFilename = filenames[i];
@@ -983,9 +861,6 @@ void wxGenericDirCtrl::CollapseTree()
 {
     wxTreeItemIdValue cookie;
     wxTreeItemId child = m_treeCtrl->GetFirstChild(m_rootId, cookie);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (child.IsOk())
     {
         CollapseDir(child);
@@ -1007,16 +882,13 @@ wxTreeItemId wxGenericDirCtrl::FindChild(wxTreeItemId parentId, const wxString& 
     // Append a separator to foil bogus substring matching
     path2 += wxString(wxFILE_SEP_PATH);
 
-    // In MSW or PM, case is not significant
-#if defined(__WINDOWS__) || defined(__DOS__) || defined(__OS2__)
+    // In MSW case is not significant
+#if defined(__WINDOWS__) || defined(__DOS__)
     path2.MakeLower();
 #endif
 
     wxTreeItemIdValue cookie;
     wxTreeItemId childId = m_treeCtrl->GetFirstChild(parentId, cookie);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (childId.IsOk())
     {
         wxDirItemData* data = GetItemData(childId);
@@ -1027,8 +899,8 @@ wxTreeItemId wxGenericDirCtrl::FindChild(wxTreeItemId parentId, const wxString& 
             if (!wxEndsWithPathSeparator(childPath))
                 childPath += wxString(wxFILE_SEP_PATH);
 
-            // In MSW and PM, case is not significant
-#if defined(__WINDOWS__) || defined(__DOS__) || defined(__OS2__)
+            // In MSW case is not significant
+#if defined(__WINDOWS__) || defined(__DOS__)
             childPath.MakeLower();
 #endif
 
@@ -1059,9 +931,6 @@ bool wxGenericDirCtrl::ExpandPath(const wxString& path)
     bool done = false;
     wxTreeItemId treeid = FindChild(m_rootId, path, done);
     wxTreeItemId lastId = treeid; // The last non-zero treeid
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (treeid.IsOk() && !done)
     {
         ExpandDir(treeid);
@@ -1084,9 +953,6 @@ bool wxGenericDirCtrl::ExpandPath(const wxString& path)
         wxTreeItemIdValue cookie;
         wxTreeItemId childId = m_treeCtrl->GetFirstChild(lastId, cookie);
         bool selectedChild = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (childId.IsOk())
         {
             data = GetItemData(childId);
@@ -1122,9 +988,6 @@ bool wxGenericDirCtrl::CollapsePath(const wxString& path)
     wxTreeItemId treeid     = FindChild(m_rootId, path, done);
     wxTreeItemId lastId = treeid; // The last non-zero treeid
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( treeid.IsOk() && !done )
     {
         CollapseDir(treeid);
@@ -1189,9 +1052,6 @@ void wxGenericDirCtrl::GetPaths(wxArrayString& paths) const
 
     wxArrayTreeItemIds items;
     m_treeCtrl->GetSelections(items);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( unsigned n = 0; n < items.size(); n++ )
     {
         wxTreeItemId treeid = items[n];
@@ -1220,9 +1080,6 @@ void wxGenericDirCtrl::GetFilePaths(wxArrayString& paths) const
 
     wxArrayTreeItemIds items;
     m_treeCtrl->GetSelections(items);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( unsigned n = 0; n < items.size(); n++ )
     {
         wxTreeItemId treeid = items[n];
@@ -1244,9 +1101,6 @@ void wxGenericDirCtrl::SelectPath(const wxString& path, bool select)
     bool done = false;
     wxTreeItemId treeid = FindChild(m_rootId, path, done);
     wxTreeItemId lastId = treeid; // The last non-zero treeid
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( treeid.IsOk() && !done )
     {
         treeid = FindChild(treeid, path, done);
@@ -1267,9 +1121,6 @@ void wxGenericDirCtrl::SelectPaths(const wxArrayString& paths)
     if ( HasFlag(wxDIRCTRL_MULTIPLE) )
     {
         UnselectAll();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( unsigned n = 0; n < paths.size(); n++ )
         {
             SelectPath(paths[n]);
@@ -1297,7 +1148,7 @@ void wxGenericDirCtrl::FindChildFiles(wxTreeItemId treeid, int dirFlags, wxArray
 
     wxString dirName(data->m_path);
 
-#if defined(__WINDOWS__) || defined(__OS2__)
+#if defined(__WINDOWS__)
     if (dirName.Last() == ':')
         dirName += wxString(wxFILE_SEP_PATH);
 #endif
@@ -1312,9 +1163,6 @@ void wxGenericDirCtrl::FindChildFiles(wxTreeItemId treeid, int dirFlags, wxArray
     {
         if (d.GetFirst(& eachFilename, m_currentFilterStr, dirFlags))
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             do
             {
                 if ((eachFilename != wxT(".")) && (eachFilename != wxT("..")))
@@ -1322,9 +1170,6 @@ void wxGenericDirCtrl::FindChildFiles(wxTreeItemId treeid, int dirFlags, wxArray
                     filenames.Add(eachFilename);
                 }
             }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while (d.GetNext(& eachFilename)) ;
         }
     }
@@ -1486,9 +1331,6 @@ void wxDirFilterListCtrl::OnSelFilter(wxCommandEvent& WXUNUSED(event))
         m_dirCtrl->ReCreateTree();
 
         // Expand and select the previously selected paths
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (unsigned int i = 0; i < paths.GetCount(); i++)
         {
             m_dirCtrl->ExpandPath(paths.Item(i));
@@ -1514,9 +1356,6 @@ void wxDirFilterListCtrl::FillFilterList(const wxString& filter, int defaultFilt
 
     if (n > 0 && defaultFilter < (int) n)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (size_t i = 0; i < n; i++)
             Append(descriptions[i]);
         SetSelection(defaultFilter);
@@ -1731,14 +1570,8 @@ static wxBitmap CreateAntialiasedBitmap(const wxImage& img)
     p1 = img.GetData(), p2 = img.GetData() + 3 * size*2, ps = smallimg.GetData();
     smallimg.SetMaskColour(mr, mr, mr);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (y = 0; y < size; y++)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (x = 0; x < size; x++)
         {
             sr = sg = sb = smask = 0;
@@ -1792,51 +1625,27 @@ static wxImage CutEmptyBorders(const wxImage& img)
 #define MK_DTTMP(x,y)      dttmp = dt + ((x + y * w) * 3)
 #define NOEMPTY_PIX(empt)  if (dttmp[0] != mr || dttmp[1] != mg || dttmp[2] != mb) {empt = false; break;}
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (empt = true, top = 0; empt && top < h; top++)
     {
         MK_DTTMP(0, top);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < w; i++, dttmp+=3)
             NOEMPTY_PIX(empt)
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (empt = true, bottom = h-1; empt && bottom > top; bottom--)
     {
         MK_DTTMP(0, bottom);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < w; i++, dttmp+=3)
             NOEMPTY_PIX(empt)
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (empt = true, left = 0; empt && left < w; left++)
     {
         MK_DTTMP(left, 0);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < h; i++, dttmp+=3*w)
             NOEMPTY_PIX(empt)
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (empt = true, right = w-1; empt && right > left; right--)
     {
         MK_DTTMP(right, 0);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < h; i++, dttmp+=3*w)
             NOEMPTY_PIX(empt)
     }

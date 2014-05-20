@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/window.h
 // Purpose:     wxWindowBase class - the interface of wxWindow
@@ -61,7 +54,7 @@
 // Otherwise wx itself must ensure that when the parent is disabled its
 // children are disabled too, and their initial state is restored when the
 // parent is enabled back.
-#if defined(__WXMSW__) || defined(__WXPM__)
+#if defined(__WXMSW__)
     // must do everything ourselves
     #undef wxHAS_NATIVE_ENABLED_MANAGEMENT
 #elif defined(__WXOSX__)
@@ -893,9 +886,6 @@ public:
     virtual void SetPreviousHandler(wxEvtHandler *handler) wxOVERRIDE;
 
 
-    // Watcom doesn't allow reducing access with using access declaration, see
-    // #10749
-#ifndef __WATCOMC__
 protected:
 
     // NOTE: we change the access specifier of the following wxEvtHandler functions
@@ -916,7 +906,6 @@ protected:
     using wxEvtHandler::ProcessPendingEvents;
     using wxEvtHandler::AddPendingEvent;
     using wxEvtHandler::QueueEvent;
-#endif // __WATCOMC__
 
 public:
 
@@ -1933,13 +1922,6 @@ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
         #define wxWindowCocoa wxWindow
     #endif // wxUniv
     #include "wx/cocoa/window.h"
-#elif defined(__WXPM__)
-    #ifdef __WXUNIVERSAL__
-        #define wxWindowNative wxWindowOS2
-    #else // !wxUniv
-        #define wxWindowOS2 wxWindow
-    #endif // wxUniv/!wxUniv
-    #include "wx/os2/window.h"
 #endif
 
 // for wxUniversal, we now derive the real wxWindow from wxWindow<platform>,

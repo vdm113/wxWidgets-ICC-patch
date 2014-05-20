@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  * Name:        wx/chkconf.h
  * Purpose:     check the config settings for consistency
@@ -1236,8 +1229,6 @@
 #  include "wx/cocoa/chkconf.h"
 #elif defined(__WXMAC__)
 #  include "wx/osx/chkconf.h"
-#elif defined(__OS2__)
-#  include "wx/os2/chkconf.h"
 #elif defined(__WXDFB__)
 #  include "wx/dfb/chkconf.h"
 #elif defined(__WXMOTIF__)

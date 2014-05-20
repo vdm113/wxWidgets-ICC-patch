@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/object.h
 // Purpose:     wxObject class, plus run-time type information macros
@@ -177,7 +170,6 @@ inline T *wxCheckCast(const void *ptr)
 
     _WX_WANT_NEW_SIZET_WXCHAR_INT             = void *operator new (size_t size, wxChar *fileName = 0, int lineNum = 0)
     _WX_WANT_DELETE_VOID                      = void operator delete (void * buf)
-    _WX_WANT_DELETE_VOID_CONSTCHAR_SIZET      = void operator delete (void *buf, const char *_fname, size_t _line)
     _WX_WANT_DELETE_VOID_WXCHAR_INT           = void operator delete(void *buf, wxChar*, int)
     _WX_WANT_ARRAY_NEW_SIZET_WXCHAR_INT       = void *operator new[] (size_t size, wxChar *fileName , int lineNum = 0)
     _WX_WANT_ARRAY_DELETE_VOID                = void operator delete[] (void *buf)
@@ -186,18 +178,9 @@ inline T *wxCheckCast(const void *ptr)
 
 #if wxUSE_MEMORY_TRACING
 
-// All compilers get this one
+// All compilers get these ones
 #define _WX_WANT_NEW_SIZET_WXCHAR_INT
-
-// Everyone except Visage gets the next one
-#ifndef __VISAGECPP__
-    #define _WX_WANT_DELETE_VOID
-#endif
-
-// Only visage gets this one under the correct circumstances
-#if defined(__VISAGECPP__) && __DEBUG_ALLOC__
-    #define _WX_WANT_DELETE_VOID_CONSTCHAR_SIZET
-#endif
+#define _WX_WANT_DELETE_VOID
 
 #if defined(__VISUALC__)
     #define _WX_WANT_DELETE_VOID_WXCHAR_INT
@@ -391,10 +374,6 @@ public:
 
 #ifdef _WX_WANT_DELETE_VOID
     void operator delete ( void * buf );
-#endif
-
-#ifdef _WX_WANT_DELETE_VOID_CONSTCHAR_SIZET
-    void operator delete ( void *buf, const char *_fname, size_t _line );
 #endif
 
 #ifdef _WX_WANT_DELETE_VOID_WXCHAR_INT

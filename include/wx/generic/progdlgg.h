@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/generic/progdlgg.h
 // Purpose:     wxGenericProgressDialog class
@@ -141,7 +134,7 @@ protected:
     // the maximum value
     int m_maximum;
 
-#if defined(__WXMSW__ ) || defined(__WXPM__)
+#if defined(__WXMSW__)
     // the factor we use to always keep the value in 16 bit range as the native
     // control only supports ranges from 0 to 65,535
     size_t m_factor;

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/gridctrl.cpp
 // Purpose:     wxGrid controls
@@ -257,9 +250,6 @@ void wxGridCellEnumRenderer::SetParameters(const wxString& params)
     m_choices.Empty();
 
     wxStringTokenizer tk(params, wxT(','));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( tk.HasMoreTokens() )
     {
         m_choices.Add(tk.GetNextToken());
@@ -317,9 +307,6 @@ wxGridCellAutoWrapStringRenderer::GetTextLines(wxGrid& grid,
         return logicalLines;
 
     wxArrayString physicalLines;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxArrayString::const_iterator it = logicalLines.begin();
           it != logicalLines.end();
           ++it )
@@ -351,9 +338,6 @@ wxGridCellAutoWrapStringRenderer::BreakLine(wxDC& dc,
 
     // For each word
     wxStringTokenizer wordTokenizer(logicalLine, wxS(" \t"), wxTOKEN_RET_DELIMS);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( wordTokenizer.HasMoreTokens() )
     {
         const wxString word = wordTokenizer.GetNextToken();
@@ -409,9 +393,6 @@ wxGridCellAutoWrapStringRenderer::BreakWord(wxDC& dc,
     // TODO: Use binary search to find the first element > maxWidth.
     const unsigned count = widths.size();
     unsigned n;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( n = 0; n < count; n++ )
     {
         if ( widths[n] > maxWidth )
@@ -501,9 +482,6 @@ wxGridCellAutoWrapStringRenderer::GetBestWidth(wxGrid& grid,
     // TODO: this is not the most efficient to do it for the long strings.
     const int charWidth = dc.GetCharWidth();
     int width = 2*charWidth;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( GetTextLines(grid, dc, attr, wxSize(width, height),
                          row, col).size() > maxLines )
         width += charWidth;
@@ -559,9 +537,6 @@ wxSize wxGridCellStringRenderer::DoGetBestSize(const wxGridCellAttr& attr,
     wxCoord x = 0, y = 0, max_x = 0;
     dc.SetFont(attr.GetFont());
     wxStringTokenizer tk(text, wxT('\n'));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( tk.HasMoreTokens() )
     {
         dc.GetTextExtent(tk.GetNextToken(), &x, &y);
@@ -608,15 +583,9 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
         if ((best_width > rectCell.width) && (col < cols) && grid.GetTable())
         {
             int i, c_cols, c_rows;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (i = col+cell_cols; i < cols; i++)
             {
                 bool is_empty = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for (int j=row; j < row + cell_rows; j++)
                 {
                     // check w/ anchor cell for multicell block
@@ -658,9 +627,6 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
             int col_end = col + cell_cols + overflowCols;
             if (col_end >= grid.GetNumberCols())
                 col_end = grid.GetNumberCols() - 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (int i = col + cell_cols; i <= col_end; i++)
             {
                 clip.width = grid.GetColSize(i) - 1;

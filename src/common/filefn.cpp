@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/filefn.cpp
 // Purpose:     File- and directory-related functions
@@ -56,11 +49,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#if !wxONLY_WATCOM_EARLIER_THAN(1,4)
-    #if !(defined(_MSC_VER) && (_MSC_VER > 800))
-        #include <errno.h>
-    #endif
-#endif
+#include <errno.h>
 
 #if defined(__WXMAC__)
     #include  "wx/osx/private.h"  // includes mac headers
@@ -111,14 +100,6 @@
 
 #if WXWIN_COMPATIBILITY_2_8
 static wxChar wxFileFunctionsBuffer[4*_MAXPATHLEN];
-#endif
-
-#if defined(__VISAGECPP__) && __IBMCPP__ >= 400
-//
-// VisualAge C++ V4.0 cannot have any external linkage const decs
-// in headers included by more than one primary source
-//
-const int wxInvalidOffset = -1;
 #endif
 
 // ============================================================================
@@ -194,9 +175,6 @@ bool wxPathList::Add(const wxString& path)
 
 void wxPathList::Add(const wxArrayString &arr)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (size_t j=0; j < arr.GetCount(); j++)
         Add(arr[j]);
 }
@@ -212,7 +190,7 @@ void wxPathList::AddEnvList (const wxString& WXUNUSED_IN_WINCE(envVariable))
     // "C:\Program" and "Files"; this is true for both Windows and Unix.
 
     static const wxChar PATH_TOKS[] =
-#if defined(__WINDOWS__) || defined(__OS2__)
+#if defined(__WINDOWS__)
         wxT(";"); // Don't separate with colon in DOS (used for drive)
 #else
         wxT(":;");
@@ -257,9 +235,6 @@ wxString wxPathList::FindValidPath (const wxString& file) const
     else
         strend = fn.GetFullPath();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (size_t i=0; i<GetCount(); i++)
     {
         wxString strstart = Item(i);
@@ -328,7 +303,7 @@ wxIsAbsolutePath (const wxString& filename)
         if ((filename[0] == wxT('[') && filename[1] != wxT('.')))
             return true;
 #endif
-#if defined(__WINDOWS__) || defined(__OS2__)
+#if defined(__WINDOWS__)
         // MSDOS like
         if (filename[0] == wxT('\\') || (wxIsalpha (filename[0]) && filename[1] == wxT(':')))
             return true;
@@ -349,9 +324,6 @@ static void wxDoStripExtension(T *buffer)
 {
     int len = wxStrlen(buffer);
     int i = len-1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (i > 0)
     {
         if (buffer[i] == wxT('.'))
@@ -386,9 +358,6 @@ static CharType *wxDoRealPath (CharType *path)
       p = &path[0];
     else
       p = &path[2];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (; *p; p++)
       {
         if (*p == SEP)
@@ -396,9 +365,6 @@ static CharType *wxDoRealPath (CharType *path)
             if (p[1] == wxT('.') && p[2] == wxT('.') && (p[3] == SEP || p[3] == wxT('\0')))
               {
                 CharType *q;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for (q = p - 1; q >= path && *q != SEP; q--)
                 {
                     // Empty
@@ -413,7 +379,7 @@ static CharType *wxDoRealPath (CharType *path)
                         path[0] = SEP;
                         path[1] = wxT('\0');
                       }
-#if defined(__WINDOWS__) || defined(__OS2__)
+#if defined(__WINDOWS__)
                     /* Check that path[2] is NULL! */
                     else if (path[1] == wxT(':') && !path[2])
                       {
@@ -502,7 +468,7 @@ wxChar *wxCopyAbsolutePath(const wxString& filename)
 template<typename CharType>
 static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
 {
-    register CharType *d, *s, *nm;
+    CharType *d, *s, *nm;
     CharType        lnm[_MAXPATHLEN];
     int             q;
 
@@ -527,16 +493,10 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
     CharType *nm_tmp = nm;
 
     /* Skip leading whitespace and cr */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (wxStrchr(trimchars, *nm) != NULL)
         nm++;
     /* And strip off trailing whitespace and cr */
     s = nm + (q = wxStrlen(nm)) - 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (q-- && wxStrchr(trimchars, *s) != NULL)
         *s = wxT('\0');
 
@@ -549,29 +509,6 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
 #endif
 
     /* Expand inline environment variables */
-#ifdef __VISAGECPP__
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-    while (*d)
-    {
-      *d++ = *s;
-      if(*s == wxT('\\'))
-      {
-        *(d - 1) = *++s;
-        if (*d)
-        {
-          s++;
-          continue;
-        }
-        else
-           break;
-      }
-      else
-#else
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ((*d++ = *s) != 0) {
 #  ifndef __WINDOWS__
         if (*s == wxT('\\')) {
@@ -582,7 +519,6 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
                 break;
         } else
 #  endif
-#endif
             // No env variables on WinCE
 #ifndef __WXWINCE__
 #ifdef __WINDOWS__
@@ -591,12 +527,9 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
         if (*s++ == wxT('$'))
 #endif
         {
-            register CharType  *start = d;
-            register int     braces = (*s == wxT('{') || *s == wxT('('));
-            register CharType  *value;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
+            CharType  *start = d;
+            int     braces = (*s == wxT('{') || *s == wxT('('));
+            CharType  *value;
             while ((*d++ = *s) != 0)
                 if (braces ? (*s == wxT('}') || *s == wxT(')')) : !(wxIsalnum(*s) || *s == wxT('_')) )
                     break;
@@ -605,9 +538,6 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
             *--d = 0;
             value = wxGetenv(braces ? start + 1 : start);
             if (value) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for ((d = start - 1); (*d++ = *value++) != 0;)
                 {
                     // Empty
@@ -638,10 +568,7 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
             }
         } else
         {                /* ~user/filename */
-            register CharType  *nnm;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
+            CharType  *nnm;
             for (s = nm; *s && *s != SEP; s++)
             {
                 // Empty
@@ -668,9 +595,6 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
     d = buf;
     if (s && *s) { /* MATTHEW: s could be NULL if user '~' didn't exist */
         /* Copy home dir */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (wxT('\0') != (*d++ = *s++))
           /* loop */;
         // Handle root home
@@ -678,9 +602,6 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
           *(d - 1) = SEP;
     }
     s = nm;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ((*d++ = *s++) != 0)
     {
         // Empty
@@ -793,9 +714,6 @@ wxPathOnly (wxChar *path)
         wxStrcpy (buf, path);
 
         // Search backward for a backward or forward slash
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (i > -1)
         {
             // Unix like or Windows
@@ -814,7 +732,7 @@ wxPathOnly (wxChar *path)
             i --;
         }
 
-#if defined(__WINDOWS__) || defined(__OS2__)
+#if defined(__WINDOWS__)
         // Try Drive specifier
         if (wxIsalpha (buf[0]) && buf[1] == wxT(':'))
         {
@@ -845,9 +763,6 @@ wxString wxPathOnly (const wxString& path)
         wxStrcpy(buf, path);
 
         // Search backward for a backward or forward slash
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (i > -1)
         {
             // Unix like or Windows
@@ -869,7 +784,7 @@ wxString wxPathOnly (const wxString& path)
             i --;
         }
 
-#if defined(__WINDOWS__) || defined(__OS2__)
+#if defined(__WINDOWS__)
         // Try Drive specifier
         if (wxIsalpha (buf[0]) && buf[1] == wxT(':'))
         {
@@ -970,9 +885,6 @@ template<typename T>
 static void wxDoDos2UnixFilename(T *s)
 {
   if (s)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (*s)
       {
         if (*s == wxT('\\'))
@@ -990,18 +902,15 @@ void wxDos2UnixFilename(wchar_t *s) { wxDoDos2UnixFilename(s); }
 
 template<typename T>
 static void
-#if defined(__WINDOWS__) || defined(__OS2__)
+#if defined(__WINDOWS__)
 wxDoUnix2DosFilename(T *s)
 #else
 wxDoUnix2DosFilename(T *WXUNUSED(s) )
 #endif
 {
 // Yes, I really mean this to happen under DOS only! JACS
-#if defined(__WINDOWS__) || defined(__OS2__)
+#if defined(__WINDOWS__)
   if (s)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (*s)
       {
         if (*s == wxT('/'))
@@ -1031,15 +940,9 @@ wxConcatFiles (const wxString& file1, const wxString& file2, const wxString& fil
     ssize_t ofs;
     unsigned char buf[1024];
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for( int i=0; i<2; i++)
     {
         wxFile *in = i==0 ? &in1 : &in2;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         do{
             if ( (ofs = in->Read(buf,WXSIZEOF(buf))) == wxInvalidOffset ) return false;
             if ( ofs > 0 )
@@ -1061,7 +964,7 @@ wxConcatFiles (const wxString& file1, const wxString& file2, const wxString& fil
 }
 
 // helper of generic implementation of wxCopyFile()
-#if !(defined(__WIN32__) || defined(__OS2__)) && wxUSE_FILE
+#if !defined(__WIN32__) && wxUSE_FILE
 
 static bool
 wxDoCopyFile(wxFile& fileIn,
@@ -1082,9 +985,6 @@ wxDoCopyFile(wxFile& fileIn,
 
     // copy contents of file1 to file2
     char buf[4096];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ;; )
     {
         ssize_t count = fileIn.Read(buf, WXSIZEOF(buf));
@@ -1123,9 +1023,6 @@ wxCopyFile (const wxString& file1, const wxString& file2, bool overwrite)
 
         return false;
     }
-#elif defined(__OS2__)
-    if ( ::DosCopy(file1.c_str(), file2.c_str(), overwrite ? DCPY_EXISTING : 0) != 0 )
-        return false;
 #elif wxUSE_FILE // !Win32
 
     wxStructStat fbuf;
@@ -1197,16 +1094,12 @@ wxCopyFile (const wxString& file1, const wxString& file2, bool overwrite)
     }
 #endif // wxMac || wxCocoa
 
-#if !defined(__VISAGECPP__) && !defined(__WXMAC__) || defined(__UNIX__)
-    // no chmod in VA.  Should be some permission API for HPFS386 partitions
-    // however
     if ( chmod(file2.fn_str(), fbuf.st_mode) != 0 )
     {
         wxLogSysError(_("Impossible to set permissions for the file '%s'"),
                       file2.c_str());
         return false;
     }
-#endif // OS/2 || Mac
 
 #else // !Win32 && ! wxUSE_FILE
 
@@ -1276,7 +1169,7 @@ bool wxMkdir(const wxString& dir, int perm)
 
     // assume mkdir() has 2 args on non Windows-OS/2 platforms and on Windows too
     // for the GNU compiler
-#elif (!(defined(__WINDOWS__) || defined(__OS2__) || defined(__DOS__))) || \
+#elif (!(defined(__WINDOWS__) || defined(__DOS__))) || \
       (defined(__GNUWIN32__) && !defined(__MINGW32__)) ||                \
       defined(__WINE__) || defined(__WXMICROWIN__)
     const wxChar *dirname = dir.c_str();
@@ -1286,15 +1179,9 @@ bool wxMkdir(const wxString& dir, int perm)
   #else
     if ( mkdir(wxFNCONV(dirname), perm) != 0 )
   #endif
-#elif defined(__OS2__)
-    wxUnusedVar(perm);
-    if (::DosCreateDir(dir.c_str(), NULL) != 0) // enhance for EAB's??
 #elif defined(__DOS__)
     const wxChar *dirname = dir.c_str();
-  #if defined(__WATCOMC__)
-    (void)perm;
-    if ( wxMkDir(wxFNSTRINGCAST wxFNCONV(dirname)) != 0 )
-  #elif defined(__DJGPP__)
+  #if defined(__DJGPP__)
     if ( mkdir(wxFNCONV(dirname), perm) != 0 )
   #else
     #error "Unsupported DOS compiler!"
@@ -1320,9 +1207,7 @@ bool wxRmdir(const wxString& dir, int WXUNUSED(flags))
 #if defined(__VMS__)
     return false; //to be changed since rmdir exists in VMS7.x
 #else
-  #if defined(__OS2__)
-    if ( ::DosDeleteDir(dir.c_str()) != 0 )
-  #elif defined(__WXWINCE__)
+  #if defined(__WXWINCE__)
     if ( RemoveDirectory(dir.fn_str()) == 0 )
   #else
     if ( wxRmDir(dir.fn_str()) != 0 )
@@ -1469,25 +1354,7 @@ wxChar *wxDoGetCwd(wxChar *buf, int sz)
     {
     #if defined(_MSC_VER) || defined(__MINGW32__)
         ok = _getcwd(cbuf, sz) != NULL;
-    #elif defined(__OS2__)
-        APIRET rc;
-        ULONG ulDriveNum = 0;
-        ULONG ulDriveMap = 0;
-        rc = ::DosQueryCurrentDisk(&ulDriveNum, &ulDriveMap);
-        ok = rc == 0;
-        if (ok)
-        {
-            sz -= 3;
-            rc = ::DosQueryCurrentDir( 0 // current drive
-                                      ,(PBYTE)cbuf + 3
-                                      ,(PULONG)&sz
-                                     );
-            cbuf[0] = char('A' + (ulDriveNum - 1));
-            cbuf[1] = ':';
-            cbuf[2] = '\\';
-            ok = rc == 0;
-        }
-    #else // !Win32/VC++ !Mac !OS2
+    #else // !Win32/VC++ !Mac
         ok = getcwd(cbuf, sz) != NULL;
     #endif // platform
 
@@ -1512,9 +1379,6 @@ wxChar *wxDoGetCwd(wxChar *buf, int sz)
 #ifdef __DJGPP__
         // VS: DJGPP is a strange mix of DOS and UNIX API and returns paths
         //     with / deliminers. We don't like that.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (wxChar *ch = buf; *ch; ch++)
         {
             if (*ch == wxT('/'))
@@ -1565,17 +1429,7 @@ wxString wxGetCwd()
 bool wxSetWorkingDirectory(const wxString& d)
 {
     bool success = false;
-#if defined(__OS2__)
-    if (d[1] == ':')
-    {
-        ::DosSetDefaultDisk(wxToupper(d[0]) - wxT('A') + 1);
-    // do not call DosSetCurrentDir when just changing drive,
-    // since it requires e.g. "d:." instead of "d:"!
-    if (d.length() == 2)
-        return true;
-    }
-    success = (::DosSetCurrentDir(d.c_str()) == 0);
-#elif defined(__UNIX__) || defined(__WXMAC__) || defined(__DOS__)
+#if defined(__UNIX__) || defined(__WXMAC__) || defined(__DOS__)
     success = (chdir(wxFNSTRINGCAST d.fn_str()) == 0);
 #elif defined(__WINDOWS__)
 
@@ -1658,9 +1512,6 @@ bool wxFindFileInPath(wxString *pStr, const wxString& szPath, const wxString& sz
 
     wxStringTokenizer tkn(szPath, wxPATH_SEP);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( tkn.HasMoreTokens() )
     {
         wxString strFile = tkn.GetNextToken();
@@ -1717,9 +1568,6 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
 
     wxString description, filter;
     int pos = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while( pos != wxNOT_FOUND )
     {
         pos = str.Find(wxT('|'));
@@ -1759,9 +1607,6 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
 
 #if defined(__WXMOTIF__)
     // split it so there is one wildcard per entry
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for( size_t i = 0 ; i < descriptions.GetCount() ; i++ )
     {
         pos = filters[i].Find(wxT(';'));
@@ -1781,9 +1626,6 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
             //     C/C++ Files(*.cpp)|*.cpp
             //     C/C++ Files(*.c)|*.c
             //     C/C++ Files(*.h)|*.h
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( size_t k=i;k<i+2;k++ )
             {
                 pos = descriptions[k].Find(filters[k]);
@@ -1811,9 +1653,6 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
 #endif
 
     // autocompletion
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for( size_t j = 0 ; j < descriptions.GetCount() ; j++ )
     {
         if ( descriptions[j].empty() && !filters[j].empty() )
@@ -1825,7 +1664,7 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
     return filters.GetCount();
 }
 
-#if defined(__WINDOWS__) && !(defined(__UNIX__) || defined(__OS2__))
+#if defined(__WINDOWS__) && !defined(__UNIX__)
 static bool wxCheckWin32Permission(const wxString& path, DWORD access)
 {
     // quoting the MSDN: "To obtain a handle to a directory, call the
@@ -1868,7 +1707,7 @@ static bool wxCheckWin32Permission(const wxString& path, DWORD access)
 
 bool wxIsWritable(const wxString &path)
 {
-#if defined( __UNIX__ ) || defined(__OS2__)
+#if defined( __UNIX__ )
     // access() will take in count also symbolic links
     return wxAccess(path.c_str(), W_OK) == 0;
 #elif defined( __WINDOWS__ )
@@ -1882,7 +1721,7 @@ bool wxIsWritable(const wxString &path)
 
 bool wxIsReadable(const wxString &path)
 {
-#if defined( __UNIX__ ) || defined(__OS2__)
+#if defined( __UNIX__ )
     // access() will take in count also symbolic links
     return wxAccess(path.c_str(), R_OK) == 0;
 #elif defined( __WINDOWS__ )
@@ -1896,7 +1735,7 @@ bool wxIsReadable(const wxString &path)
 
 bool wxIsExecutable(const wxString &path)
 {
-#if defined( __UNIX__ ) || defined(__OS2__)
+#if defined( __UNIX__ )
     // access() will take in count also symbolic links
     return wxAccess(path.c_str(), X_OK) == 0;
 #elif defined( __WINDOWS__ )
@@ -1969,12 +1808,10 @@ wxFileKind wxGetFileKind(int fd)
 
 wxFileKind wxGetFileKind(FILE *fp)
 {
-    // Note: The watcom rtl dll doesn't have fileno (the static lib does).
-    //       Should be fixed in version 1.4.
-#if defined(wxFILEKIND_STUB) || wxONLY_WATCOM_EARLIER_THAN(1,4)
+#if defined(wxFILEKIND_STUB)
     (void)fp;
     return wxFILE_KIND_DISK;
-#elif defined(__WINDOWS__) && !defined(__CYGWIN__) && !defined(__WATCOMC__) && !defined(__WINE__)
+#elif defined(__WINDOWS__) && !defined(__CYGWIN__) && !defined(__WINE__)
     return fp ? wxGetFileKind(_fileno(fp)) : wxFILE_KIND_UNKNOWN;
 #else
     return fp ? wxGetFileKind(fileno(fp)) : wxFILE_KIND_UNKNOWN;
@@ -1988,9 +1825,6 @@ wxFileKind wxGetFileKind(FILE *fp)
 
 bool wxIsWild( const wxString& pattern )
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxString::const_iterator p = pattern.begin(); p != pattern.end(); ++p )
     {
         switch ( (*p).GetValue() )
@@ -2039,9 +1873,6 @@ bool wxMatchWild( const wxString& pat, const wxString& text, bool dot_special )
         return false;
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (;;)
     {
         if (*m == wxT('*'))

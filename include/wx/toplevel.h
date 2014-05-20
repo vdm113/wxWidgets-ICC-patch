@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/toplevel.h
 // Purpose:     declares wxTopLevelWindow class, the base class for all
@@ -379,9 +372,6 @@ protected:
 #elif defined(__WXCOCOA__)
     #include "wx/cocoa/toplevel.h"
     #define wxTopLevelWindowNative wxTopLevelWindowCocoa
-#elif defined(__WXPM__)
-    #include "wx/os2/toplevel.h"
-    #define wxTopLevelWindowNative wxTopLevelWindowOS2
 #elif defined(__WXMOTIF__)
     #include "wx/motif/toplevel.h"
     #define wxTopLevelWindowNative wxTopLevelWindowMotif

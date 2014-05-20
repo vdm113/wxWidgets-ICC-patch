@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/sockunix.cpp
 // Purpose:     wxSocketImpl implementation for Unix systems
@@ -27,18 +20,10 @@
 
 #include <errno.h>
 
-#if defined(__WATCOMC__)
-    #include <nerrno.h>
-#endif
-
 #include <sys/types.h>
 
 #ifdef HAVE_SYS_SELECT_H
 #   include <sys/select.h>
-#endif
-
-#ifdef __EMX__
-    #include <sys/select.h>
 #endif
 
 #ifndef WX_SOCKLEN_T
@@ -129,9 +114,6 @@ int wxSocketImplUnix::CheckForInput()
 {
     char c;
     int rc;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     do
     {
         rc = recv(m_fd, &c, 1, MSG_PEEK);

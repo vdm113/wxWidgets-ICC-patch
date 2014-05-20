@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/icon.h
 // Purpose:     wxIcon base header
@@ -62,9 +55,6 @@
 #elif defined(__WXCOCOA__)
   #define wxICON_DEFAULT_TYPE   wxBITMAP_TYPE_ICON_RESOURCE
   #include "wx/cocoa/icon.h"
-#elif defined(__WXPM__)
-  #define wxICON_DEFAULT_TYPE   wxBITMAP_TYPE_ICO_RESOURCE
-  #include "wx/os2/icon.h"
 #endif
 
 //-----------------------------------------------------------------------------

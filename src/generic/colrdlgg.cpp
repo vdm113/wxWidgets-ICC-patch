@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/colrdlgg.cpp
 // Purpose:     Choice dialogs
@@ -176,13 +169,6 @@ void wxGenericColourDialog::OnMouseEvent(wxMouseEvent& event)
     int x = (int)event.GetX();
     int y = (int)event.GetY();
 
-#ifdef __WXPM__
-    // Handle OS/2's reverse coordinate system and account for the dialog title
-    int                             nClientHeight;
-
-    GetClientSize(NULL, &nClientHeight);
-    y = (nClientHeight - y) + 20;
-#endif
     if ((x >= m_standardColoursRect.x && x <= (m_standardColoursRect.x + m_standardColoursRect.width)) &&
         (y >= m_standardColoursRect.y && y <= (m_standardColoursRect.y + m_standardColoursRect.height)))
     {
@@ -227,11 +213,7 @@ void wxGenericColourDialog::CalculateMeasurements()
     m_sectionSpacing = 15;
 
     m_standardColoursRect.x = 10;
-#ifdef __WXPM__
-    m_standardColoursRect.y = 15 + 20; /* OS/2 needs to account for dialog titlebar */
-#else
     m_standardColoursRect.y = 15;
-#endif
     m_standardColoursRect.width = (8*m_smallRectangleSize.x) + (7*m_gridSpacing);
     m_standardColoursRect.height = (6*m_smallRectangleSize.y) + (5*m_gridSpacing);
 
@@ -312,9 +294,6 @@ void wxGenericColourDialog::InitializeColours(void)
 {
     size_t i;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < WXSIZEOF(wxColourDialogNames); i++)
     {
         wxColour col = wxTheColourDatabase->Find(wxColourDialogNames[i]);
@@ -324,9 +303,6 @@ void wxGenericColourDialog::InitializeColours(void)
             m_standardColours[i].Set(0, 0, 0);
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < WXSIZEOF(m_customColours); i++)
     {
         wxColour c = m_colourData.GetCustomColour(i);
@@ -341,9 +317,6 @@ void wxGenericColourDialog::InitializeColours(void)
     {
         bool m_initColourFound = false;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < WXSIZEOF(wxColourDialogNames); i++)
         {
             if ( m_standardColours[i] == curr && !m_initColourFound )
@@ -356,9 +329,6 @@ void wxGenericColourDialog::InitializeColours(void)
         }
         if ( !m_initColourFound )
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( i = 0; i < WXSIZEOF(m_customColours); i++ )
             {
                 if ( m_customColours[i] == curr )
@@ -382,15 +352,9 @@ void wxGenericColourDialog::InitializeColours(void)
 void wxGenericColourDialog::PaintBasicColours(wxDC& dc)
 {
     int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < 6; i++)
     {
         int j;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (j = 0; j < 8; j++)
         {
             int ptr = i*8 + j;
@@ -410,15 +374,9 @@ void wxGenericColourDialog::PaintBasicColours(wxDC& dc)
 void wxGenericColourDialog::PaintCustomColours(wxDC& dc)
 {
   int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for (i = 0; i < 2; i++)
   {
     int j;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (j = 0; j < 8; j++)
     {
       int ptr = i*8 + j;

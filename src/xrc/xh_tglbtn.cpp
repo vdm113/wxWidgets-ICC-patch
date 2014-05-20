@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/xrc/xh_tglbtn.cpp
 // Purpose:     XRC resource for wxToggleButton
@@ -42,7 +35,7 @@ wxObject *wxToggleButtonXmlHandler::DoCreateResource()
 
    wxObject *control = m_instance;
 
-#if !defined(__WXUNIVERSAL__) && !defined(__WXMOTIF__) && !defined(__WXPM__) && !(defined(__WXGTK__) && !defined(__WXGTK20__))
+#if !defined(__WXUNIVERSAL__) && !defined(__WXMOTIF__) && !(defined(__WXGTK__) && !defined(__WXGTK20__))
 
     if (m_class == wxT("wxBitmapToggleButton"))
     {
@@ -88,7 +81,7 @@ void wxToggleButtonXmlHandler::DoCreateToggleButton(wxObject *control)
     button->SetValue(GetBool( wxT("checked")));
 }
 
-#if !defined(__WXUNIVERSAL__) && !defined(__WXMOTIF__) && !defined(__WXPM__) && !(defined(__WXGTK__) && !defined(__WXGTK20__))
+#if !defined(__WXUNIVERSAL__) && !defined(__WXMOTIF__) && !(defined(__WXGTK__) && !defined(__WXGTK20__))
 void wxToggleButtonXmlHandler::DoCreateBitmapToggleButton(wxObject *control)
 {
     wxBitmapToggleButton *button = wxDynamicCast(control, wxBitmapToggleButton);

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/spinctrl.h
 // Purpose:     wxSpinCtrlBase class
@@ -128,9 +121,6 @@ typedef void (wxEvtHandler::*wxSpinDoubleEventFunction)(wxSpinDoubleEvent&);
 #elif defined(__WXMSW__)
     #define wxHAS_NATIVE_SPINCTRL
     #include "wx/msw/spinctrl.h"
-#elif defined(__WXPM__)
-    #define wxHAS_NATIVE_SPINCTRL
-    #include "wx/os2/spinctrl.h"
 #elif defined(__WXGTK20__)
     #define wxHAS_NATIVE_SPINCTRL
     #define wxHAS_NATIVE_SPINCTRLDOUBLE

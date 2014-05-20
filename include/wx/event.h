@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/event.h
 // Purpose:     Event classes
@@ -2108,10 +2101,10 @@ private:
  wxEVT_NC_PAINT
  */
 
-#if wxDEBUG_LEVEL && (defined(__WXMSW__) || defined(__WXPM__))
+#if wxDEBUG_LEVEL && defined(__WXMSW__)
     #define wxHAS_PAINT_DEBUG
 
-    // see comments in src/msw|os2/dcclient.cpp where g_isPainting is defined
+    // see comments in src/msw/dcclient.cpp where g_isPainting is defined
     extern WXDLLIMPEXP_CORE int g_isPainting;
 #endif // debug
 
@@ -2596,9 +2589,6 @@ public:
           m_files(NULL)
     {
         m_files = new wxString[m_noFiles];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( int n = 0; n < m_noFiles; n++ )
         {
             m_files[n] = other.m_files[n];

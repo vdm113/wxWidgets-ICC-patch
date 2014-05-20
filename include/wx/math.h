@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /**
 * Name:        wx/math.h
 * Purpose:     Declarations/definitions of common math functions
@@ -64,7 +57,7 @@
 #if __cplusplus >= 201103
     #include <cmath>
     #define wxFinite(x) std::isfinite(x)
-#elif defined(__VISUALC__) || defined(__BORLANDC__) || defined(__WATCOMC__)
+#elif defined(__VISUALC__) || defined(__BORLANDC__)
     #include <float.h>
     #define wxFinite(x) _finite(x)
 #elif defined(__MINGW64_TOOLCHAIN__) || defined(__clang__)
@@ -139,6 +132,10 @@ inline int wxRound(double x)
         return (int)(x < 0 ? x - 0.5 : x + 0.5);
     #endif
 }
+
+// Convert between degrees and radians.
+inline double wxDegToRad(double deg) { return (deg * M_PI) / 180.0; }
+inline double wxRadToDeg(double rad) { return (rad * 180.0) / M_PI; }
 
 #endif /* __cplusplus */
 

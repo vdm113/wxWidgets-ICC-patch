@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 // Name:        wx/ustring.h
 // Purpose:     32-bit string (UCS-4)
@@ -287,9 +280,6 @@ public:
         wxCharBuffer buffer(n);
         char *p = buffer.data();
         size_type i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < n; i++)
         {
            *p = ch;
@@ -311,9 +301,6 @@ public:
         wxU16CharBuffer buffer(n);
         wxChar16 *p = buffer.data();
         size_type i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < n; i++)
         {
            *p = ch;

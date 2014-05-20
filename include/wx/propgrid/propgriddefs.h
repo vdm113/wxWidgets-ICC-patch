@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/propgrid/propgriddefs.h
 // Purpose:     wxPropertyGrid miscellaneous definitions
@@ -327,9 +320,6 @@ WX_DECLARE_HASH_MAP_WITH_DECL(wxInt32,
 template<typename CONTAINER, typename T>
 int wxPGFindInVector( CONTAINER vector, const T& item )
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( unsigned int i=0; i<vector.size(); i++ )
     {
         if ( vector[i] == item )
@@ -674,7 +664,6 @@ template<> inline wxVariant WXVARIANT( const wxColour& value )
 // TOKENIZER1 can be done with wxStringTokenizer
 #define WX_PG_TOKENIZER1_BEGIN(WXSTRING,DELIMITER) \
     wxStringTokenizer tkz(WXSTRING,DELIMITER,wxTOKEN_RET_EMPTY); \
-VDM_MACRO_PRAGMA_IVDEP \
     while ( tkz.HasMoreTokens() ) \
     { \
         wxString token = tkz.GetNextToken(); \
@@ -711,7 +700,6 @@ protected:
 
 #define WX_PG_TOKENIZER2_BEGIN(WXSTRING,DELIMITER) \
     wxPGStringTokenizer tkz(WXSTRING,DELIMITER); \
-VDM_MACRO_PRAGMA_IVDEP \
     while ( tkz.HasMoreTokens() ) \
     { \
         wxString token = tkz.GetNextToken();

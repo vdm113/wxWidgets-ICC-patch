@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/brush.h
 // Purpose:     Includes platform-specific wxBrush file
@@ -90,8 +83,6 @@ public:
     #include "wx/osx/brush.h"
 #elif defined(__WXCOCOA__)
     #include "wx/cocoa/brush.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/brush.h"
 #endif
 
 class WXDLLIMPEXP_CORE wxBrushList: public wxGDIObjListBase

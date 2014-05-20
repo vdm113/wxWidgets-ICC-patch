@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  * Name:        wx/msw/libraries.h
  * Purpose:     Pragmas for linking libs conditionally
@@ -25,8 +18,7 @@
  * support a way to do that.
  */
 
-/* VC++ 5 didn't include oleacc.lib, though it came with the PSDK */
-#if defined __VISUALC__ && (wxUSE_ACCESSIBILITY || __VISUALC__ >= 1200)
+#if defined __VISUALC__ && wxUSE_ACCESSIBILITY
 #pragma comment(lib, "oleacc")
 #endif
 

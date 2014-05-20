@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexForth.cxx
  ** Lexer for FORTH
@@ -58,9 +51,6 @@ static void ColouriseForthDoc(unsigned int startPos, int length, int initStyle, 
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (; sc.More(); sc.Forward())
 	{
 		// Determine if the current state should terminate.
@@ -127,17 +117,11 @@ static void ColouriseForthDoc(unsigned int startPos, int length, int initStyle, 
 			} else if (	(sc.ch == '$' && (IsASCII(sc.chNext) && isxdigit(sc.chNext))) ) {
 				// number starting with $ is a hex number
 				sc.SetState(SCE_FORTH_NUMBER);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 				while(sc.More() && IsASCII(sc.chNext) && isxdigit(sc.chNext))
 					sc.Forward();
 			} else if ( (sc.ch == '%' && (IsASCII(sc.chNext) && (sc.chNext == '0' || sc.chNext == '1'))) ) {
 				// number starting with % is binary
 				sc.SetState(SCE_FORTH_NUMBER);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 				while(sc.More() && IsASCII(sc.chNext) && (sc.chNext == '0' || sc.chNext == '1'))
 					sc.Forward();
 			} else if (	IsASCII(sc.ch) &&
@@ -152,9 +136,6 @@ static void ColouriseForthDoc(unsigned int startPos, int length, int initStyle, 
 				// highlight word definitions e.g.  : GCD ( n n -- n ) ..... ;
 				//                                  ^ ^^^
 				sc.SetState(SCE_FORTH_DEFWORD);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 				while(sc.More() && IsASCII(sc.chNext) && isspace(sc.chNext))
 					sc.Forward();
 			} else if (sc.ch == ';' &&

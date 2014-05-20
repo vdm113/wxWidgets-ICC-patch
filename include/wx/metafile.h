@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/metafile.h
 // Purpose:     wxMetaFile class declaration
@@ -49,8 +42,6 @@
     #else // !wxUSE_ENH_METAFILE
         #include "wx/msw/metafile.h"
     #endif
-#elif defined(__WXPM__)
-    #include "wx/os2/metafile.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/metafile.h"
 #endif

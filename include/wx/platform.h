@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /**
 * Name:        wx/platform.h
 * Purpose:     define the OS and compiler identification macros
@@ -299,12 +292,8 @@
 #    ifndef __DOS__
 #        define __DOS__
 #    endif
-    /* size_t is the same as unsigned int for Watcom 11 compiler, */
-    /* so define it if it hadn't been done by configure yet */
+    /* define it if it hadn't been done by configure yet */
 #    if !defined(wxSIZE_T_IS_UINT) && !defined(wxSIZE_T_IS_ULONG)
-#        ifdef __WATCOMC__
-#            define wxSIZE_T_IS_UINT
-#        endif
 #        ifdef __DJGPP__
 #            define wxSIZE_T_IS_ULONG
 #        endif
@@ -318,7 +307,7 @@
 #elif defined(__UNIX__) || defined(__unix) || defined(__unix__) || \
       defined(____SVR4____) || defined(__LINUX__) || defined(__sgi) || \
       defined(__hpux) || defined(sun) || defined(__SUN__) || defined(_AIX) || \
-      defined(__EMX__) || defined(__VMS) || defined(__BEOS__) || defined(__MACH__)
+      defined(__VMS) || defined(__BEOS__) || defined(__MACH__)
 
 #    define __UNIX_LIKE__
 
@@ -338,9 +327,6 @@
 #       endif
 #    endif  /* SGI */
 
-#    ifdef __EMX__
-#        define OS2EMX_PLAIN_CHAR
-#    endif
 #    if defined(__INNOTEK_LIBC__)
         /* Ensure visibility of strnlen declaration */
 #        define _GNU_SOURCE
@@ -375,29 +361,6 @@
 #            define wxSIZE_T_IS_ULONG
 #        endif
 #    endif
-
-/*
-   OS: OS/2
- */
-#elif defined(__OS2__)
-
-    /* wxOS2 vs. non wxOS2 ports on OS2 platform */
-#    if !defined(__WXMOTIF__) && !defined(__WXGTK__) && !defined(__WXX11__)
-#        ifndef __WXPM__
-#            define __WXPM__
-#        endif
-#    endif
-
-#    if defined(__IBMCPP__)
-#        define __VISAGEAVER__ __IBMCPP__
-#    endif
-
-    /* Place other OS/2 compiler environment defines here */
-#    if defined(__VISAGECPP__)
-        /* VisualAge is the only thing that understands _Optlink */
-#        define LINKAGEMODE _Optlink
-#    endif
-#    define wxSIZE_T_IS_UINT
 
 /*
    OS: Windows
@@ -454,10 +417,8 @@
     _UNICODE macros as it includes _mingw.h which relies on them being set.
  */
 #if ( defined( __GNUWIN32__ ) || defined( __MINGW32__ ) || \
-    ( defined( __CYGWIN__ ) && defined( __WINDOWS__ ) ) || \
-      wxCHECK_WATCOM_VERSION(1,0) ) && \
+    ( defined( __CYGWIN__ ) && defined( __WINDOWS__ ) ) ) && \
     !defined(__DOS__) && \
-    !defined(__WXPM__) && \
     !defined(__WXMOTIF__) && \
     !defined(__WXX11__)
 #    include "wx/msw/gccpriv.h"

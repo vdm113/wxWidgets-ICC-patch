@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        propgrid.h
 // Purpose:     topic overview
@@ -495,9 +488,6 @@ properties (not categories nor private child properties that are normally
 
     wxPropertyGridIterator it;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( it = pg->GetIterator();
           !it.AtEnd();
           it++ )
@@ -514,9 +504,6 @@ As expected there is also a const iterator:
 
     wxPropertyGridConstIterator it;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( it = pg->GetIterator();
           !it.AtEnd();
           it++ )
@@ -538,9 +525,6 @@ This example reverse-iterates through all visible items:
 
     wxPropertyGridIterator it;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( it = pg->GetIterator(wxPG_ITERATE_VISIBLE, wxBOTTOM);
           !it.AtEnd();
           it-- )
@@ -561,9 +545,6 @@ iterator is limited to forward iteration.
 
     wxPGVIterator it;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( it = manager->GetVIterator(wxPG_ITERATE_ALL);
           !it.AtEnd();
           it.Next() )

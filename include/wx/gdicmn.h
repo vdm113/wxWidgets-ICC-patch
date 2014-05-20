@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/gdicmn.h
 // Purpose:     Common GDI classes, types and declarations
@@ -166,7 +159,7 @@ enum wxStockCursor
 // macros
 // ---------------------------------------------------------------------------
 
-#if defined(__WINDOWS__) || defined(__WXPM__)
+#if defined(__WINDOWS__)
     #define wxHAS_IMAGES_IN_RESOURCES
 #endif
 
@@ -181,9 +174,6 @@ enum wxStockCursor
  */
 
 #ifdef __WINDOWS__
-    // Load from a resource
-    #define wxICON(X) wxIcon(wxT(#X))
-#elif defined(__WXPM__)
     // Load from a resource
     #define wxICON(X) wxIcon(wxT(#X))
 #elif defined(__WXDFB__)
@@ -210,7 +200,7 @@ enum wxStockCursor
    under Unix bitmaps live in XPMs and under Windows they're in ressources.
  */
 
-#if defined(__WINDOWS__) || defined(__WXPM__)
+#if defined(__WINDOWS__)
     #define wxBITMAP(name) wxBitmap(wxT(#name), wxBITMAP_TYPE_BMP_RESOURCE)
 #elif defined(__WXGTK__)   || \
       defined(__WXMOTIF__) || \
@@ -895,12 +885,6 @@ public:
 
     // add a new colour to the database
     void AddColour(const wxString& name, const wxColour& colour);
-
-#ifdef __WXPM__
-    // PM keeps its own type of colour table
-    long*                           m_palTable;
-    size_t                          m_nSize;
-#endif
 
 private:
     // load the database with the built in colour values when called for the

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        const_wxusedef.h
 // Purpose:     wxUSE preprocessor symbols
@@ -316,18 +309,6 @@ library:
 
 @beginDefList
 @itemdef{wxUSE_OBJC_UNIQUIFYING, Enable Objective-C class name uniquifying.}
-@endDefList
-
-
-@section page_wxusedef_os2 OS2 Symbols
-
-@beginDefList
-@itemdef{wxUSE_CONSOLEDEBUG, See src/os2/app.cpp file.}
-@itemdef{wxUSE_DDE, See src/os2/mimetype.cpp file.}
-@itemdef{wxUSE_IMAGE_LOADING_IN_MSW, See src/os2/clipbrd.cpp file.}
-@itemdef{wxUSE_IMAGE_LOADING_IN_OS2, See src/os2/gdiimage.cpp file.}
-@itemdef{wxUSE_NET_API, Use NetBios32GetInfo API call.}
-@itemdef{wxUSE_RESOURCE_LOADING_IN_OS2, See src/os2/gdiimage.cpp file.}
 @endDefList
 
 

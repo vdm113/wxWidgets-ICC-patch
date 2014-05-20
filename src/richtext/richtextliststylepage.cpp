@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtextliststylepage.cpp
 // Purpose:     Implements the rich text formatting dialog list style page.
@@ -558,9 +551,6 @@ iaculis malesuada. Donec bibendum ipsum ut ante porta fringilla.\n");
     m_previewCtrl->BeginStyle(attr);
 
     int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < 10; i++)
     {
         wxRichTextAttr levelAttr = * def->GetLevelAttributes(i);

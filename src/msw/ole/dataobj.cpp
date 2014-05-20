@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/ole/dataobj.cpp
 // Purpose:     implementation of wx[I]DataObject class
@@ -267,9 +260,6 @@ private:
 bool
 wxIDataObject::GetSystemData(wxDataFormat format, STGMEDIUM *pmedium) const
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( SystemData::const_iterator it = m_systemData.begin();
           it != m_systemData.end();
           ++it )
@@ -288,9 +278,6 @@ wxIDataObject::GetSystemData(wxDataFormat format, STGMEDIUM *pmedium) const
 bool
 wxIDataObject::HasSystemData(wxDataFormat format) const
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( SystemData::const_iterator it = m_systemData.begin();
           it != m_systemData.end();
           ++it )
@@ -313,9 +300,6 @@ wxIDataObject::SaveSystemData(FORMATETC *pformatetc,
         return E_INVALIDARG;
 
     // remove entry if already available
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( SystemData::iterator it = m_systemData.begin();
           it != m_systemData.end();
           ++it )
@@ -425,9 +409,6 @@ wxIEnumFORMATETC::wxIEnumFORMATETC(const wxDataFormat *formats, ULONG nCount)
     m_nCurrent = 0;
     m_nCount = nCount;
     m_formats = new CLIPFORMAT[nCount];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ULONG n = 0; n < nCount; n++ ) {
         if (formats[n].GetFormatId() != wxDF_HTML)
             m_formats[n] = formats[n].GetFormatId();
@@ -443,9 +424,6 @@ STDMETHODIMP wxIEnumFORMATETC::Next(ULONG      celt,
     wxLogTrace(wxTRACE_OleCalls, wxT("wxIEnumFORMATETC::Next"));
 
     ULONG numFetched = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (m_nCurrent < m_nCount && numFetched < celt) {
         FORMATETC format;
         format.cfFormat = m_formats[m_nCurrent++];
@@ -495,9 +473,6 @@ STDMETHODIMP wxIEnumFORMATETC::Clone(IEnumFORMATETC **ppenum)
     wxIEnumFORMATETC *pNew = new wxIEnumFORMATETC(NULL, 0);
     pNew->m_nCount = m_nCount;
     pNew->m_formats = new CLIPFORMAT[m_nCount];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ULONG n = 0; n < m_nCount; n++ ) {
         pNew->m_formats[n] = m_formats[n];
     }
@@ -527,9 +502,6 @@ wxIDataObject::wxIDataObject(wxDataObject *pDataObject)
 wxIDataObject::~wxIDataObject()
 {
     // delete system data
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( SystemData::iterator it = m_systemData.begin();
           it != m_systemData.end();
           ++it )
@@ -923,9 +895,6 @@ STDMETHODIMP wxIDataObject::EnumFormatEtc(DWORD dwDir,
     m_pDataObject->GetAllFormats(formats.get(), dir);
 
     // ... from system data
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t j = 0; j < sysFormatCount; j++ )
     {
         SystemDataEntry* entry = m_systemData[j];
@@ -1316,9 +1285,6 @@ bool wxFileDataObject::SetData(size_t WXUNUSED(size),
     // for each file get the length, allocate memory and then get the name
     wxString str;
     UINT len, n;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( n = 0; n < nFiles; n++ ) {
         // +1 for terminating NUL
         len = ::DragQueryFile(hdrop, n, NULL, 0) + 1;
@@ -1362,9 +1328,6 @@ size_t wxFileDataObject::GetDataSize() const
     size_t sz = sizeof(DROPFILES) + sizeOfChar;
 
     const size_t count = m_filenames.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t i = 0; i < count; i++ )
     {
         // add filename length plus null byte
@@ -1403,9 +1366,6 @@ bool wxFileDataObject::GetDataHere(void *WXUNUSED_IN_WINCE(pData)) const
     BYTE *pbuf = (BYTE *)(pDrop + 1);
 
     const size_t count = m_filenames.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t i = 0; i < count; i++ )
     {
         // copy filename to pbuf and add null terminator

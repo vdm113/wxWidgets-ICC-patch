@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/private/selectdispatcher.h
 // Purpose:     wxSelectDispatcher class
@@ -21,18 +14,12 @@
 
 #if wxUSE_SELECT_DISPATCHER
 
-#if defined(HAVE_SYS_SELECT_H) || defined(__WATCOMC__)
+#if defined(HAVE_SYS_SELECT_H)
     #include <sys/time.h>
     #include <sys/select.h>
 #endif
 
-#ifdef __WATCOMC__
-    #include <types.h>
-    #include <sys/ioctl.h>
-    #include <tcpustd.h>
-#else
-    #include <sys/types.h>
-#endif
+#include <sys/types.h>
 
 #include "wx/private/fdiodispatcher.h"
 

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/gdiobj.h
 // Purpose:     wxGDIObject base header
@@ -63,7 +56,7 @@ public:
     // because it's still widely used)
     bool Ok() const { return IsOk(); }
 
-#if defined(__WXMSW__) || defined(__WXPM__)
+#if defined(__WXMSW__)
     // Creates the resource
     virtual bool RealizeResource() { return false; }
 
@@ -74,7 +67,7 @@ public:
 
     // Returns handle.
     virtual WXHANDLE GetResourceHandle() const { return 0; }
-#endif // defined(__WXMSW__) || defined(__WXPM__)
+#endif // defined(__WXMSW__)
 
 protected:
     // replace base class functions using wxObjectRefData with our own which

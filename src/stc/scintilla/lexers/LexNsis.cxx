@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexNsis.cxx
  ** Lexer for NSIS
@@ -79,9 +72,6 @@ static bool isNsisLetter(char ch)
 static bool NsisNextLineHasElse(unsigned int start, unsigned int end, Accessor &styler)
 {
   int nNextLine = -1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for( unsigned int i = start; i < end; i++ )
   {
     char cNext = styler.SafeGetCharAt( i );
@@ -95,9 +85,6 @@ static bool NsisNextLineHasElse(unsigned int start, unsigned int end, Accessor &
   if( nNextLine == -1 ) // We never found the next line...
     return false;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for( unsigned int firstChar = nNextLine; firstChar < end; firstChar++ )
   {
     char cNext = styler.SafeGetCharAt( firstChar );
@@ -156,9 +143,6 @@ static int calculateFoldNsis(unsigned int start, unsigned int end, int foldlevel
 
   char s[20]; // The key word we are looking for has atmost 13 characters
   s[0] = '\0';
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for (unsigned int i = 0; i < end - start + 1 && i < 19; i++)
 	{
 		s[i] = static_cast<char>( styler[ start + i ] );
@@ -204,9 +188,6 @@ static int classifyWordNsis(unsigned int start, unsigned int end, WordList *keyw
 	WordList &Lables = *keywordLists[2];
 	WordList &UserDefined = *keywordLists[3];
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (unsigned int i = 0; i < end - start + 1 && i < 99; i++)
 	{
     if( bIgnoreCase )
@@ -266,9 +247,6 @@ static int classifyWordNsis(unsigned int start, unsigned int end, WordList *keyw
   if( s[0] == '$' && bUserVars )
   {
     bool bHasSimpleNsisChars = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (unsigned int j = 1; j < end - start + 1 && j < 99; j++)
 	  {
       if( !isNsisChar( s[j] ) )
@@ -286,9 +264,6 @@ static int classifyWordNsis(unsigned int start, unsigned int end, WordList *keyw
   if( isNsisNumber( s[0] ) )
   {
     bool bHasSimpleNsisNumber = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (unsigned int j = 1; j < end - start + 1 && j < 99; j++)
 	  {
       if( !isNsisNumber( s[j] ) )
@@ -322,9 +297,6 @@ static void ColouriseNsisDoc(unsigned int startPos, int length, int, WordList *k
   bool bClassicVarInString = false;
 
 	unsigned int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for( i = startPos; i < nLengthDoc; i++ )
 	{
 		cCurrChar = styler.SafeGetCharAt( i );
@@ -436,9 +408,6 @@ static void ColouriseNsisDoc(unsigned int startPos, int length, int, WordList *k
           // We need to check if the previous line has a \ in it...
           bool bNextLine = false;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
           while( nBack > 0 )
           {
             if( styler.GetLine(nBack) != nCurLine )
@@ -611,9 +580,6 @@ static void FoldNsisDoc(unsigned int startPos, int length, int, WordList *[], Ac
     blockComment = true;
   }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for (unsigned int i = safeStartPos; i < startPos + length; i++)
 	{
     char chCurr = styler.SafeGetCharAt(i);

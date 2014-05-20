@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/thrimpl.cpp
 // Purpose:     common part of wxThread Implementations
@@ -82,7 +75,7 @@ wxMutexError wxMutex::Unlock()
 // variables and their events/event semaphores have quite different semantics,
 // so we reimplement the conditions from scratch using the mutexes and
 // semaphores
-#if defined(__WINDOWS__) || defined(__OS2__) || defined(__EMX__)
+#if defined(__WINDOWS__)
 
 class wxConditionInternal
 {
@@ -218,9 +211,6 @@ wxCondError wxConditionInternal::Broadcast()
 {
     wxCriticalSectionLocker lock(m_csWaiters);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( m_numWaiters > 0 )
     {
         if ( m_semaphore.Post() != wxSEMA_NO_ERROR )
@@ -232,7 +222,7 @@ wxCondError wxConditionInternal::Broadcast()
     return wxCOND_NO_ERROR;
 }
 
-#endif // __WINDOWS__ || __OS2__ || __EMX__
+#endif // __WINDOWS__
 
 // ----------------------------------------------------------------------------
 // wxCondition

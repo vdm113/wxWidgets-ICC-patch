@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/controls/windowtest.cpp
 // Purpose:     wxWindow unit test
@@ -102,7 +95,7 @@ void WindowTestCase::tearDown()
 
 void WindowTestCase::ShowHideEvent()
 {
-#if defined(__WXMSW__) || defined (__WXPM__)
+#if defined(__WXMSW__)
     EventCounter show(m_window, wxEVT_SHOW);
 
     CPPUNIT_ASSERT(m_window->IsShown());
@@ -116,7 +109,7 @@ void WindowTestCase::ShowHideEvent()
     CPPUNIT_ASSERT(m_window->IsShown());
 
     CPPUNIT_ASSERT_EQUAL(2, show.GetCount());
-#endif
+#endif // __WXMSW__
 }
 
 void WindowTestCase::KeyEvent()

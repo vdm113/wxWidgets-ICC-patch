@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file AutoComplete.cxx
  ** Defines the auto completion list box.
@@ -114,21 +107,12 @@ struct Sorter {
 
 	Sorter(AutoComplete *ac_, const char *list_) : ac(ac_), list(list_) {
 		int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		while (list[i]) {
 			indices.push_back(i); // word start
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			while (list[i] != ac->GetTypesep() && list[i] != ac->GetSeparator() && list[i])
 				++i;
 			indices.push_back(i); // word end
 			if (list[i] == ac->GetTypesep()) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 				while (list[i] != ac->GetSeparator() && list[i])
 					++i;
 			}
@@ -163,9 +147,6 @@ void AutoComplete::SetList(const char *list) {
 	if (autoSort == SC_ORDER_PRESORTED) {
 		lb->SetList(list, separator, typesep);
 		sortMatrix.clear();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (int i = 0; i < lb->Length(); ++i)
 			sortMatrix.push_back(i);
 		return;
@@ -173,9 +154,6 @@ void AutoComplete::SetList(const char *list) {
 
 	Sorter IndexSort(this, list);
 	sortMatrix.clear();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (int i = 0; i < (int)IndexSort.indices.size() / 2; ++i)
 		sortMatrix.push_back(i);
 	std::sort(sortMatrix.begin(), sortMatrix.end(), IndexSort);
@@ -187,9 +165,6 @@ void AutoComplete::SetList(const char *list) {
 
 	std::string sortedList;
 	char item[maxItemLen];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (size_t i = 0; i < sortMatrix.size(); ++i) {
 		int wordLen = IndexSort.indices[sortMatrix[i] * 2 + 2] - IndexSort.indices[sortMatrix[i] * 2];
 		strncpy(item, list + IndexSort.indices[sortMatrix[i] * 2], wordLen);
@@ -207,9 +182,6 @@ void AutoComplete::SetList(const char *list) {
 		item[wordLen] = '\0';
 		sortedList += item;
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (int i = 0; i < (int)sortMatrix.size(); ++i)
 		sortMatrix[i] = i;
 	lb->SetList(sortedList.c_str(), separator, typesep);
@@ -256,9 +228,6 @@ void AutoComplete::Select(const char *word) {
 	int location = -1;
 	int start = 0; // lower bound of the api array block to search
 	int end = lb->Length() - 1; // upper bound of the api array block to search
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while ((start <= end) && (location == -1)) { // Binary searching loop
 		int pivot = (start + end) / 2;
 		char item[maxItemLen];
@@ -270,9 +239,6 @@ void AutoComplete::Select(const char *word) {
 			cond = strncmp(word, item, lenWord);
 		if (!cond) {
 			// Find first match
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			while (pivot > start) {
 				lb->GetValue(sortMatrix[pivot-1], item, maxItemLen);
 				if (ignoreCase)
@@ -287,9 +253,6 @@ void AutoComplete::Select(const char *word) {
 			if (ignoreCase
 				&& ignoreCaseBehaviour == SC_CASEINSENSITIVEBEHAVIOUR_RESPECTCASE) {
 				// Check for exact-case match
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 				for (; pivot <= end; pivot++) {
 					lb->GetValue(sortMatrix[pivot], item, maxItemLen);
 					if (!strncmp(word, item, lenWord)) {
@@ -315,9 +278,6 @@ void AutoComplete::Select(const char *word) {
 		if (autoSort == SC_ORDER_CUSTOM) {
 			// Check for a logically earlier match
 			char item[maxItemLen];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			for (int i = location + 1; i <= end; ++i) {
 				lb->GetValue(sortMatrix[i], item, maxItemLen);
 				if (CompareNCaseInsensitive(word, item, lenWord))

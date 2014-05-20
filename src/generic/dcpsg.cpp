@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/dcpsg.cpp
 // Purpose:     Generic wxPostScriptDC implementation
@@ -254,9 +247,6 @@ wxPostScriptDC::wxPostScriptDC(const wxPrintData& printData)
 {
 }
 
-// conversion
-static const double RAD2DEG  = 180.0 / M_PI;
-
 // we don't want to use only 72 dpi from PS print
 static const int DPI = 600;
 static const double PS2DEV = 600.0 / 72.0;
@@ -475,26 +465,14 @@ void wxPostScriptDCImpl::DoDrawArc (wxCoord x1, wxCoord y1, wxCoord x2, wxCoord 
     {
         alpha1 = (x1 - xc == 0) ?
             (y1 - yc < 0) ? 90.0 : -90.0 :
-                -atan2(double(y1-yc), double(x1-xc)) * RAD2DEG;
+                wxRadToDeg(-atan2(double(y1-yc), double(x1-xc)));
         alpha2 = (x2 - xc == 0) ?
             (y2 - yc < 0) ? 90.0 : -90.0 :
-                -atan2(double(y2-yc), double(x2-xc)) * RAD2DEG;
+                wxRadToDeg(-atan2(double(y2-yc), double(x2-xc)));
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (alpha1 <= 0)   alpha1 += 360;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (alpha2 <= 0)   alpha2 += 360; // adjust angles to be between
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (alpha1 > 360)  alpha1 -= 360; // 0 and 360 degree
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (alpha2 > 360)  alpha2 -= 360;
 
     int i_radius = wxRound( radius );
@@ -637,9 +615,6 @@ void wxPostScriptDCImpl::DoDrawPolygon (int n, const wxPoint points[], wxCoord x
 
         CalcBoundingBox( points[0].x + xoffset, points[0].y + yoffset );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (int i = 1; i < n; i++)
         {
             xx = XLOG2DEV(points[i].x + xoffset);
@@ -671,9 +646,6 @@ void wxPostScriptDCImpl::DoDrawPolygon (int n, const wxPoint points[], wxCoord x
 
         CalcBoundingBox( points[0].x + xoffset, points[0].y + yoffset );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (int i = 1; i < n; i++)
         {
             xx = XLOG2DEV(points[i].x + xoffset);
@@ -704,9 +676,6 @@ void wxPostScriptDCImpl::DoDrawPolyPolygon (int n, const int count[], const wxPo
         PsPrint( "newpath\n" );
 
         int ofs = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (int i = 0; i < n; ofs += count[i++])
         {
             double xx = XLOG2DEV(points[ofs].x + xoffset);
@@ -719,9 +688,6 @@ void wxPostScriptDCImpl::DoDrawPolyPolygon (int n, const int count[], const wxPo
 
             CalcBoundingBox( points[ofs].x + xoffset, points[ofs].y + yoffset );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (int j = 1; j < count[i]; j++)
             {
                 xx = XLOG2DEV(points[ofs+j].x + xoffset);
@@ -744,9 +710,6 @@ void wxPostScriptDCImpl::DoDrawPolyPolygon (int n, const int count[], const wxPo
         PsPrint( "newpath\n" );
 
         int ofs = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (int i = 0; i < n; ofs += count[i++])
         {
             double xx = XLOG2DEV(points[ofs].x + xoffset);
@@ -759,9 +722,6 @@ void wxPostScriptDCImpl::DoDrawPolyPolygon (int n, const int count[], const wxPo
 
             CalcBoundingBox( points[ofs].x + xoffset, points[ofs].y + yoffset );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (int j = 1; j < count[i]; j++)
             {
                 xx = XLOG2DEV(points[ofs+j].x + xoffset);
@@ -791,9 +751,6 @@ void wxPostScriptDCImpl::DoDrawLines (int n, const wxPoint points[], wxCoord xof
     SetPen (m_pen);
 
     int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( i =0; i<n ; i++ )
         CalcBoundingBox( points[i].x+xoffset, points[i].y+yoffset );
 
@@ -805,9 +762,6 @@ void wxPostScriptDCImpl::DoDrawLines (int n, const wxPoint points[], wxCoord xof
     buffer.Replace( ",", "." );
     PsPrint( buffer );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 1; i < n; i++)
     {
         buffer.Printf( "%f %f lineto\n",
@@ -1049,17 +1003,11 @@ void wxPostScriptDCImpl::DoDrawBitmap( const wxBitmap& bitmap, wxCoord x, wxCoor
     int firstDigit, secondDigit;
 
     //rows
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (int j = 0; j < h; j++)
     {
         char* bufferindex = charbuffer.data();
 
         //cols
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (int i = 0; i < w*3; i++)
         {
             firstDigit = (int)(*data/16.0);
@@ -1233,9 +1181,6 @@ void wxPostScriptDCImpl::SetPen( const wxPen& pen )
             wxDash *dashes;
             int nDashes = m_pen.GetDashes (&dashes);
             PsPrint ("[");
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (int i = 0; i < nDashes; ++i)
             {
                 buffer.Printf( "%d ", dashes [i] );
@@ -1426,9 +1371,6 @@ void wxPostScriptDCImpl::DoDrawText( const wxString& text, wxCoord x, wxCoord y 
     PsPrint( buffer );
     PsPrint( "(" );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const char *p = textbuf; *p != '\0'; p++ )
     {
         int c = (unsigned char)*p;
@@ -1537,9 +1479,6 @@ void wxPostScriptDCImpl::DoDrawRotatedText( const wxString& text, wxCoord x, wxC
     const wxWX2MBbuf textbuf = text.mb_str();
     if ( textbuf )
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( const char *p = textbuf; *p != '\0'; p++ )
         {
             int c = (unsigned char)*p;
@@ -1647,9 +1586,6 @@ void wxPostScriptDCImpl::DoDrawSpline( const wxPointList *points )
     CalcBoundingBox( (wxCoord)x3, (wxCoord)y3 );
 
     node = node->GetNext();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (node)
     {
         q = node->GetData();
@@ -2284,18 +2220,12 @@ void wxPostScriptDCImpl::DoGetTextExtent(const wxString& string,
         {
             wxLogDebug( wxT("GetTextExtent: can't open AFM file '%s'"), afmName.c_str() );
             wxLogDebug( wxT("               using approximate values"));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (int i=0; i<256; i++) lastWidths[i] = 500; /* an approximate value */
             lastDescender = -150; /* dito. */
         }
         else
         {
             /* init the widths array */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for(int i=0; i<256; i++) lastWidths[i] = INT_MIN;
             /* some variables for holding parts of a line */
             char cString[10], semiString[10], WXString[10];
@@ -2305,9 +2235,6 @@ void wxPostScriptDCImpl::DoGetTextExtent(const wxString& string,
             char line[256];
             int ascii,cWidth;
             /* read in the file and parse it */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while(fgets(line,sizeof(line),afmFile)!=NULL)
             {
                 /* A.) check for descender definition */
@@ -2422,9 +2349,6 @@ void wxPostScriptDCImpl::DoGetTextExtent(const wxString& string,
         if (externalLeading) (*externalLeading) = 0;
         return;
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for(; *p; p++)
     {
         if(lastWidths[*p]== INT_MIN)

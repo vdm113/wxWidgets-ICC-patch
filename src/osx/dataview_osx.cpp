@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/dataview_osx.cpp
 // Purpose:     wxDataViewCtrl native mac implementation
@@ -42,9 +35,6 @@ wxString ConcatenateDataViewItemValues(wxDataViewCtrl const* dataViewCtrlPtr, wx
   wxString dataString; // contains the TAB concatenated data
 
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for (size_t i=0; i<dataViewCtrlPtr->GetColumnCount(); i++)
   {
    // variable definition:
@@ -162,9 +152,6 @@ bool wxOSXDataViewModelNotifier::ItemsChanged(wxDataViewItemArray const& items)
 
   dataViewEvent.SetEventObject(m_DataViewCtrlPtr);
   dataViewEvent.SetModel(m_DataViewCtrlPtr->GetModel());
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for (size_t indexItem=0; indexItem<noOfItems; ++indexItem)
     if (m_DataViewCtrlPtr->GetDataViewPeer()->Update(GetOwner()->GetParent(items[indexItem]),items[indexItem]))
     {
@@ -263,9 +250,6 @@ void wxOSXDataViewModelNotifier::AdjustRowHeight(wxDataViewItem const& item)
       int height = 20; // TODO find out standard height
       unsigned int num = m_DataViewCtrlPtr->GetColumnCount();
       unsigned int col;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
       for (col = 0; col < num; col++)
       {
           wxDataViewColumn* column(m_DataViewCtrlPtr->GetColumnPtr(col));
@@ -295,18 +279,12 @@ void wxOSXDataViewModelNotifier::AdjustRowHeights(wxDataViewItemArray const& ite
 
       wxDataViewModel *model = GetOwner();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
       for (size_t itemIndex=0; itemIndex<noOfItems; ++itemIndex)
       {
         int height = 20; // TODO find out standard height
         unsigned int num = m_DataViewCtrlPtr->GetColumnCount();
         unsigned int col;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (col = 0; col < num; col++)
         {
             wxDataViewColumn* column(m_DataViewCtrlPtr->GetColumnPtr(col));
@@ -332,9 +310,6 @@ void wxOSXDataViewModelNotifier::AdjustRowHeights(wxDataViewItemArray const& ite
 void wxOSXDataViewModelNotifier::AdjustAutosizedColumns()
 {
   unsigned count = m_DataViewCtrlPtr->GetColumnCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for ( unsigned col = 0; col < count; col++ )
   {
       wxDataViewColumn *column = m_DataViewCtrlPtr->GetColumnPtr(col);
@@ -632,9 +607,6 @@ void wxDataViewCtrl::SetSelections(wxDataViewItemArray const& sel)
 
 
    // make sure that all to be selected items are visible in the control:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < noOfSelections; i++)
     {
         wxDataViewItem item   = sel[i];
@@ -648,9 +620,6 @@ void wxDataViewCtrl::SetSelections(wxDataViewItemArray const& sel)
    // finally select the items:
     wxDataViewWidgetImpl* dataViewWidgetPtr(GetDataViewPeer()); // variable definition for abbreviational purposes
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i=0; i<noOfSelections; ++i)
       dataViewWidgetPtr->Select(sel[i]);
 }
@@ -734,9 +703,6 @@ void wxDataViewCtrl::OnSize(wxSizeEvent& event)
 
 
  // reset DC of all custom renderers because DC has changed:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for (unsigned int i=0; i<noOfColumns; ++i)
   {
     wxDataViewColumn* dataViewColumnPtr(GetColumn(i));
@@ -789,9 +755,6 @@ void wxDataViewCtrl::OnMouse(wxMouseEvent& event)
     {
        unsigned int col_count = GetColumnCount();
        unsigned int col;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
        for (col = 0; col < col_count; col++)
        {
            wxDataViewColumn *column = GetColumn( col );

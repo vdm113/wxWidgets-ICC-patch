@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/listctrl.h
 // Purpose:     interface of wxListCtrl
@@ -52,11 +45,6 @@
 #define wxLIST_STATE_FOCUSED        0x0002
 #define wxLIST_STATE_SELECTED       0x0004
 #define wxLIST_STATE_CUT            0x0008      // MSW only
-#define wxLIST_STATE_DISABLED       0x0010      // OS2 only
-#define wxLIST_STATE_FILTERED       0x0020      // OS2 only
-#define wxLIST_STATE_INUSE          0x0040      // OS2 only
-#define wxLIST_STATE_PICKED         0x0080      // OS2 only
-#define wxLIST_STATE_SOURCE         0x0100      // OS2 only
 
 /// Hit test flags, used in HitTest
 #define wxLIST_HITTEST_ABOVE            0x0001  // Above the client area.
@@ -701,9 +689,6 @@ public:
 
         @code
         long item = -1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( ;; )
         {
             item = listctrl->GetNextItem(item,
@@ -1024,9 +1009,6 @@ public:
         Example of using it:
         @code
             wxListCtrl *list = new wxListCtrl(...);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( int i = 0; i < 3; i++ )
                 list->InsertColumn(i, wxString::Format("Column %d", i));
 

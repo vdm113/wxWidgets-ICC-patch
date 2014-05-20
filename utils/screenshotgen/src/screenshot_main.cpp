@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        screenshot_main.cpp
 // Purpose:     Implements the window containing all controls.
@@ -119,9 +112,6 @@ void ScreenshotFrame::OnCaptureAllControls(wxCommandEvent& WXUNUSED(event))
 
                 // remove all PNG files from the screenshots folder
                 int n = files.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for (int i = 0; i < n; ++i)
                     wxRemoveFile(files[i]);
             }

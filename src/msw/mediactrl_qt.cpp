@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/mediactrl_qt.cpp
 // Purpose:     QuickTime Media Backend for Windows
@@ -108,7 +101,7 @@ typedef struct ComponentInstanceRecord * ComponentInstance;
 #define MovieController ComponentInstance
 
 #ifndef URLDataHandlerSubType
-#if defined(__WATCOMC__) || defined(__MINGW32__)
+#if defined(__MINGW32__)
 // use magic numbers for compilers which complain about multicharacter integers
 const OSType URLDataHandlerSubType     = 1970433056;
 const OSType VisualMediaCharacteristic = 1702454643;

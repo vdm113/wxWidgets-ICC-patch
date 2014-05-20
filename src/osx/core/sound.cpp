@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/core/sound.cpp
 // Purpose:     wxSound class implementation using AudioToolbox
@@ -136,9 +129,6 @@ bool wxOSXAudioToolboxSoundData::Play(unsigned flags)
 
     if ( sync )
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while ( m_playing )
         {
             CFRunLoopRun();

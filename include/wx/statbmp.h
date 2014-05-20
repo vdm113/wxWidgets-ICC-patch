@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/statbmp.h
 // Purpose:     wxStaticBitmap class interface
@@ -73,8 +66,6 @@ protected:
     #include "wx/osx/statbmp.h"
 #elif defined(__WXCOCOA__)
     #include "wx/cocoa/statbmp.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/statbmp.h"
 #endif
 
 #endif // wxUSE_STATBMP

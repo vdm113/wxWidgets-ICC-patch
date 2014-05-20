@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/xml/xrctest.cpp
 // Purpose:     XRC classes unit test
@@ -171,9 +164,6 @@ void XrcTestCase::ObjectReferences()
 {
     wxXmlResource::Get()->InitAllHandlers();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int n = 0; n < 2; ++n )
     {
         // Load the xrc file we're just created
@@ -197,9 +187,6 @@ void XrcTestCase::ObjectReferences()
 void XrcTestCase::IDRanges()
 {
     // Tests ID ranges
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int n = 0; n < 2; ++n )
     {
         // Load the xrc file we're just created

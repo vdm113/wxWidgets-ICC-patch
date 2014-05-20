@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/utilsgtk.cpp
 // Purpose:
@@ -345,7 +338,7 @@ bool wxGUIAppTraits::ShowAssertDialog(const wxString& msg)
 
 #endif // __UNIX__
 
-#if defined(__UNIX__) || defined(__OS2__)
+#if defined(__UNIX__)
 
 wxString wxGUIAppTraits::GetDesktopEnvironment() const
 {
@@ -365,7 +358,7 @@ wxString wxGUIAppTraits::GetDesktopEnvironment() const
     return de;
 }
 
-#endif // __UNIX__ || __OS2__
+#endif // __UNIX__
 
 #ifdef __UNIX__
 
@@ -438,9 +431,6 @@ wxGUIAppTraits::GetStandardCmdLineOptions(wxArrayString& names,
         unsigned int n_entries = ((_GOptionGroup*)gtkOpts)->n_entries;
         wxArrayString namesOptions, descOptions;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < n_entries; n++ )
         {
             if ( entries[n].flags & G_OPTION_FLAG_HIDDEN )

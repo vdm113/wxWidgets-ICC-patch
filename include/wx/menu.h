@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/menu.h
 // Purpose:     wxMenu and wxMenuBar classes
@@ -598,8 +591,6 @@ protected:
     #include "wx/osx/menu.h"
 #elif defined(__WXCOCOA__)
     #include "wx/cocoa/menu.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/menu.h"
 #endif
 #endif // wxUSE_BASE_CLASSES_ONLY/!wxUSE_BASE_CLASSES_ONLY
 

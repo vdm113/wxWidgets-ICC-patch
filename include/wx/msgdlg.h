@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msgdlg.h
 // Purpose:     common header and base class for wxMessageDialog
@@ -309,8 +302,6 @@ private:
     #include "wx/gtk/msgdlg.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/msgdlg.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/msgdlg.h"
 #endif
 
 // ----------------------------------------------------------------------------

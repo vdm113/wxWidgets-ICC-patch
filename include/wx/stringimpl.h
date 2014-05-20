@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/stringimpl.h
 // Purpose:     wxStringImpl class, implementation of wxString
@@ -122,7 +115,7 @@ struct WXDLLIMPEXP_BASE wxStringData
   void  Lock()   { if ( !IsEmpty() ) nRefs++;                    }
 
   // VC++ will refuse to inline Unlock but profiling shows that it is wrong
-#if defined(__VISUALC__) && (__VISUALC__ >= 1200)
+#if defined(__VISUALC__)
   __forceinline
 #endif
   // VC++ free must take place in same DLL as allocation when using non dll
@@ -334,7 +327,7 @@ public:
       { return wxStdString(c_str(), length()); }
 #endif
 
-#if defined(__VISUALC__) && (__VISUALC__ >= 1200)
+#if defined(__VISUALC__)
     // disable warning about Unlock() below not being inlined (first, it
     // seems to be inlined nevertheless and second, even if it isn't, there
     // is nothing we can do about this
@@ -348,7 +341,7 @@ public:
       GetStringData()->Unlock();
   }
 
-#if defined(__VISUALC__) && (__VISUALC__ >= 1200)
+#if defined(__VISUALC__)
     #pragma warning(pop)
 #endif
 

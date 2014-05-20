@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/gauge.cpp
 // Purpose:     wxGauge class
@@ -32,10 +25,6 @@
 
 #ifndef WX_PRECOMP
     #include "wx/math.h"
-#endif
-
-#ifdef __OS2__
-#include <types.h>
 #endif
 
 #ifdef __VMS__

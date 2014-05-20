@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/mdi.h
 // Purpose:     wxMDI base header
@@ -357,7 +350,6 @@ public:
     // probably not functional?)
     #if defined(__WXCOCOA__) || \
         defined(__WXMOTIF__) || \
-        defined(__WXPM__) || \
         defined(__WXUNIVERSAL__)
         #define wxUSE_GENERIC_MDI_AS_NATIVE   1
     #else

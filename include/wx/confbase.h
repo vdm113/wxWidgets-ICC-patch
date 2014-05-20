@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/confbase.h
 // Purpose:     declaration of the base class of all config implementations
@@ -58,8 +51,7 @@ class WXDLLIMPEXP_FWD_BASE wxArrayString;
 
 // not all compilers can deal with template Read/Write() methods, define this
 // symbol if the template functions are available
-#if (!defined(__VISUALC__) || __VISUALC__ > 1200) && \
-    !defined( __VMS ) && \
+#if !defined( __VMS ) && \
     !(defined(__HP_aCC) && defined(__hppa))
     #define wxHAS_CONFIG_TEMPLATE_RW
 #endif

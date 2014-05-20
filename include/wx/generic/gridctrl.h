@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////
 // Name:        wx/generic/gridctrl.h
 // Purpose:     wxGrid controls
@@ -244,6 +237,18 @@ public:
                                wxGridCellAttr& attr,
                                wxDC& dc,
                                int row, int col) wxOVERRIDE;
+
+    virtual int GetBestHeight(wxGrid& grid,
+                              wxGridCellAttr& attr,
+                              wxDC& dc,
+                              int row, int col,
+                              int width) wxOVERRIDE;
+
+    virtual int GetBestWidth(wxGrid& grid,
+                              wxGridCellAttr& attr,
+                              wxDC& dc,
+                              int row, int col,
+                              int height) wxOVERRIDE;
 
     virtual wxGridCellRenderer *Clone() const wxOVERRIDE
         { return new wxGridCellAutoWrapStringRenderer; }

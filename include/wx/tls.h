@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/tls.h
 // Purpose:     Implementation of thread local storage
@@ -63,8 +56,6 @@
 
     #if defined(__WINDOWS__)
         #include "wx/msw/tls.h"
-    #elif defined(__OS2__)
-        #include "wx/os2/tls.h"
     #elif defined(__UNIX__)
         #include "wx/unix/tls.h"
     #else

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/stattext.h
 // Purpose:     wxStaticText base header
@@ -106,8 +99,6 @@ private:
     #include "wx/osx/stattext.h"
 #elif defined(__WXCOCOA__)
     #include "wx/cocoa/stattext.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/stattext.h"
 #endif
 
 #endif // !wxNO_PORT_STATTEXT_INCLUDE

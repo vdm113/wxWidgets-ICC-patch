@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/scopeguard.h
 // Purpose:     declares wxwxScopeGuard and related macros
@@ -32,30 +25,6 @@
 // ----------------------------------------------------------------------------
 // helpers
 // ----------------------------------------------------------------------------
-
-#ifdef __WATCOMC__
-
-// WATCOM-FIXME: C++ of Open Watcom 1.3 doesn't like OnScopeExit() created
-// through template so it must be workarounded with dedicated inlined macro.
-// For compatibility with Watcom compilers wxPrivate::OnScopeExit must be
-// replaced with wxPrivateOnScopeExit but in user code (for everyone who
-// doesn't care about OW compatibility) wxPrivate::OnScopeExit still works.
-
-#define wxPrivateOnScopeExit(guard)          \
-    {                                        \
-        if ( !(guard).WasDismissed() )       \
-        {                                    \
-            wxTRY                            \
-            {                                \
-                (guard).Execute();           \
-            }                                \
-            wxCATCH_ALL(;)                   \
-        }                                    \
-    }
-
-#define wxPrivateUse(n) wxUnusedVar(n)
-
-#else
 
 namespace wxPrivate
 {
@@ -85,8 +54,6 @@ namespace wxPrivate
 
 #define wxPrivateOnScopeExit(n) wxPrivate::OnScopeExit(n)
 #define wxPrivateUse(n) wxPrivate::Use(n)
-
-#endif
 
 // ============================================================================
 // wxScopeGuard for functions and functors

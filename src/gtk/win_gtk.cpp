@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/win_gtk.cpp
 // Purpose:     native GTK+ widget for wxWindow
@@ -107,9 +100,6 @@ static void pizza_size_allocate(GtkWidget* widget, GtkAllocation* alloc)
     gtk_widget_set_allocation(widget, alloc);
 
     // adjust child positions
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (const GList* p = pizza->m_children; p; p = p->next)
     {
         const wxPizzaChild* child = static_cast<wxPizzaChild*>(p->data);
@@ -189,9 +179,6 @@ static void pizza_remove(GtkContainer* container, GtkWidget* widget)
     GTK_CONTAINER_CLASS(parent_class)->remove(container, widget);
 
     wxPizza* pizza = WX_PIZZA(container);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (GList* p = pizza->m_children; p; p = p->next)
     {
         wxPizzaChild* child = static_cast<wxPizzaChild*>(p->data);
@@ -251,9 +238,9 @@ g_cclosure_user_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
                                                     gpointer     arg_1,
                                                     gpointer     arg_2,
                                                     gpointer     data2);
-  register GMarshalFunc_VOID__OBJECT_OBJECT callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register gpointer data1, data2;
+  GMarshalFunc_VOID__OBJECT_OBJECT callback;
+  GCClosure *cc = (GCClosure*) closure;
+  gpointer data1, data2;
 
   g_return_if_fail (n_param_values == 3);
 
@@ -373,9 +360,6 @@ GtkWidget* wxPizza::New(long windowStyle)
 
 void wxPizza::move(GtkWidget* widget, int x, int y, int width, int height)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (const GList* p = m_children; p; p = p->next)
     {
         wxPizzaChild* child = static_cast<wxPizzaChild*>(p->data);

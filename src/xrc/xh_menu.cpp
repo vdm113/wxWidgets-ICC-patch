@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/xrc/xh_menu.cpp
 // Purpose:     XRC resource for menus and menubars
@@ -110,7 +103,7 @@ wxObject *wxMenuXmlHandler::DoCreateResource()
             wxMenuItem *mitem = new wxMenuItem(p_menu, id, fullLabel,
                                                GetText(wxT("help")), kind);
 
-#if (!defined(__WXMSW__) && !defined(__WXPM__)) || wxUSE_OWNER_DRAWN
+#if !defined(__WXMSW__) || wxUSE_OWNER_DRAWN
             if (HasParam(wxT("bitmap")))
             {
                 // currently only wxMSW has support for using different checked

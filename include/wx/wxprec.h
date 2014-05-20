@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/wxprec.h
 // Purpose:     Includes the appropriate files for precompiled headers
@@ -28,11 +21,6 @@
     #endif
 #endif
 
-// For some reason, this must be defined for common dialogs to work.
-#ifdef __WATCOMC__
-    #define INCLUDE_COMMDLG_H  1
-#endif
-
 #ifdef WX_PRECOMP
 
 // include "wx/chartype.h" first to ensure that UNICODE macro is correctly set
@@ -48,11 +36,6 @@
     #include "wx/msw/wrapcctl.h"
     #include "wx/msw/wrapcdlg.h"
     #include "wx/msw/missing.h"
-#endif
-
-// include <os2.h>
-#ifdef __OS2__
-#   include "wx/os2/private.h"
 #endif
 
 // include the most common wx headers

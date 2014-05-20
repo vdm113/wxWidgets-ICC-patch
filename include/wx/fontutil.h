@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/fontutil.h
 // Purpose:     font-related helper functions
@@ -120,11 +113,6 @@ public:
     wxNativeFontInfo(const LOGFONT& lf_) : lf(lf_) { }
 
     LOGFONT      lf;
-#elif defined(__WXPM__)
-    // OS/2 native structures that define a font
-    FATTRS       fa;
-    FONTMETRICS  fm;
-    FACENAMEDESC fn;
 #elif defined(__WXOSX__)
 public:
     wxNativeFontInfo(const wxNativeFontInfo& info) { Init(info); }

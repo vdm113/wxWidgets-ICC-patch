@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/filedlg.h
 // Purpose:     wxFileDialog base header
@@ -227,8 +220,6 @@ wxSaveFileSelector(const wxString& what,
     #include "wx/osx/filedlg.h"
 #elif defined(__WXCOCOA__)
     #include "wx/cocoa/filedlg.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/filedlg.h"
 #endif
 
 #endif // wxUSE_FILEDLG

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/xrc/xh_tglbtn.h
 // Purpose:     XML resource handler for wxToggleButton
@@ -32,7 +25,7 @@ public:
 
 protected:
     virtual void DoCreateToggleButton(wxObject *control);
-#if !defined(__WXUNIVERSAL__) && !defined(__WXMOTIF__) && !defined(__WXPM__) && !(defined(__WXGTK__) && !defined(__WXGTK20__))
+#if !defined(__WXUNIVERSAL__) && !defined(__WXMOTIF__) && !(defined(__WXGTK__) && !defined(__WXGTK20__))
     virtual void DoCreateBitmapToggleButton(wxObject *control);
 #endif
 };

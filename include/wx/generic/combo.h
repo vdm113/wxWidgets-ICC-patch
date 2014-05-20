@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/generic/combo.h
 // Purpose:     Generic wxComboCtrl
@@ -100,8 +93,6 @@ protected:
 #endif
 #elif defined(__WXMAC__)
     // Looks like there's nothing we need to override here
-#elif defined(__WXPM__)
-    virtual WXHWND GetEditHWND() const { return NULL; }
 #endif
 
     // For better transparent background rendering

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/encconv.h
 // Purpose:     wxEncodingConverter class for converting between different
@@ -40,7 +33,6 @@ enum
 
     wxPLATFORM_UNIX = 0,
     wxPLATFORM_WINDOWS,
-    wxPLATFORM_OS2,
     wxPLATFORM_MAC
 };
 

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/x11/font.cpp
 // Purpose:     wxFont class
@@ -440,9 +433,6 @@ void wxFontRefData::ClearX11Fonts()
 #if wxUSE_UNICODE
 #else
     wxList::compatibility_iterator node = m_fonts.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (node)
     {
         wxXFont* f = (wxXFont*) node->GetData();
@@ -881,9 +871,6 @@ wxXFont* wxFont::GetInternalFont(double scale, WXDisplay* display) const
 
     // search existing fonts first
     wxList::compatibility_iterator node = M_FONTDATA->m_fonts.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (node)
     {
         wxXFont* f = (wxXFont*) node->GetData();

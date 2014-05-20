@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        xrc_format.h
 // Purpose:     XRC format specification
@@ -2422,7 +2415,6 @@ Possible elemental values are:
 @itemdef{ @c win, Windows }
 @itemdef{ @c mac, Mac OS X (or Mac Classic in wxWidgets version supporting it) }
 @itemdef{ @c unix, Any Unix platform @em except OS X }
-@itemdef{ @c os2, OS/2 }
 @endDefList
 
 Examples:
@@ -2477,9 +2469,6 @@ Whether a range has positive or negative IDs, [start] is always a smaller
 number than [end]; so code like this works as expected:
 
 @code
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 for (int n=XRCID("foo[start]"); n <= XRCID("foo[end]"); ++n)
     ...
 @endcode

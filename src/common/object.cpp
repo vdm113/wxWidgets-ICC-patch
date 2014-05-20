@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/object.cpp
 // Purpose:     wxObject implementation
@@ -31,15 +24,6 @@
 #endif
 
 #include <string.h>
-
-#if wxUSE_DEBUG_CONTEXT
-    #if defined(__VISAGECPP__)
-        #define DEBUG_PRINTF(NAME) { static int raz=0; \
-            printf( #NAME " %i\n",raz); fflush(stdout); raz++; }
-    #else
-        #define DEBUG_PRINTF(NAME)
-    #endif
-#endif // wxUSE_DEBUG_CONTEXT
 
 // we must disable optimizations for VC.NET because otherwise its too eager
 // linker discards wxClassInfo objects in release build thus breaking many,
@@ -179,9 +163,6 @@ wxClassInfo::~wxClassInfo()
     else
     {
         wxClassInfo *info = sm_first;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (info)
         {
             if ( info->m_next == this )
@@ -204,9 +185,6 @@ wxClassInfo *wxClassInfo::FindClass(const wxString& className)
     }
     else
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( wxClassInfo *info = sm_first; info ; info = info->m_next )
         {
             if ( className == info->GetClassName() )
@@ -301,10 +279,6 @@ void wxClassInfo::Unregister()
 
 wxObject *wxCreateDynamicObject(const wxString& name)
 {
-#if wxUSE_DEBUG_CONTEXT
-    DEBUG_PRINTF(wxObject *wxCreateDynamicObject)
-#endif
-
     if ( wxClassInfo::sm_classTable )
     {
         wxClassInfo *info = (wxClassInfo *)wxClassInfo::sm_classTable->Get(name);
@@ -312,9 +286,6 @@ wxObject *wxCreateDynamicObject(const wxString& name)
     }
     else // no sm_classTable yet
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( wxClassInfo *info = wxClassInfo::sm_first;
               info;
               info = info->m_next )
@@ -378,10 +349,6 @@ void wxRefCounter::DecRef()
 
 void wxObject::Ref(const wxObject& clone)
 {
-#if wxUSE_DEBUG_CONTEXT
-    DEBUG_PRINTF(wxObject::Ref)
-#endif
-
     // nothing to be done
     if (m_refData == clone.m_refData)
         return;

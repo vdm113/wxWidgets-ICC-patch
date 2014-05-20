@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Program:     wxWidgets Widgets Sample
 // Name:        checkbox.cpp
@@ -252,9 +245,6 @@ void CheckBoxWidgetsPage::CreateCheckbox()
     wxString label = m_checkbox->GetLabel();
 
     size_t count = m_sizerCheckbox->GetChildren().GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; n < count; n++ )
     {
         m_sizerCheckbox->Remove(0);

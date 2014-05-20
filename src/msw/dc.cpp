@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/dc.cpp
 // Purpose:     wxDC class for MSW port
@@ -124,9 +117,6 @@ static const int VIEWPORT_EXTENT = 134217727;
 // ---------------------------------------------------------------------------
 // private functions
 // ---------------------------------------------------------------------------
-
-// convert degrees to radians
-static inline double DegToRad(double deg) { return (deg * M_PI) / 180.0; }
 
 // call AlphaBlend() to blit contents of hdcSrc to dcDst using alpha
 //
@@ -919,9 +909,6 @@ void wxMSWDCImpl::DoDrawPolygon(int n,
     {
         POINT *cpoints = new POINT[n];
         int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < n; i++)
         {
             cpoints[i].x = (int)(points[i].x + xoffset);
@@ -941,9 +928,6 @@ void wxMSWDCImpl::DoDrawPolygon(int n,
     else
     {
         int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < n; i++)
             CalcBoundingBox(points[i].x, points[i].y);
 
@@ -972,9 +956,6 @@ wxMSWDCImpl::DoDrawPolyPolygon(int n,
 
     wxBrushAttrsSetter cc(*this); // needed for wxSTIPPLE_MASK_OPAQUE handling
     int i, cnt;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = cnt = 0; i < n; i++)
         cnt += count[i];
 
@@ -982,9 +963,6 @@ wxMSWDCImpl::DoDrawPolyPolygon(int n,
     if (xoffset != 0 || yoffset != 0)
     {
         POINT *cpoints = new POINT[cnt];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < cnt; i++)
         {
             cpoints[i].x = (int)(points[i].x + xoffset);
@@ -1003,9 +981,6 @@ wxMSWDCImpl::DoDrawPolyPolygon(int n,
     }
     else
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < cnt; i++)
             CalcBoundingBox(points[i].x, points[i].y);
 
@@ -1030,9 +1005,6 @@ void wxMSWDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoffset, wx
     {
         POINT *cpoints = new POINT[n];
         int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < n; i++)
         {
             cpoints[i].x = (int)(points[i].x + xoffset);
@@ -1046,9 +1018,6 @@ void wxMSWDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoffset, wx
     else
     {
         int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < n; i++)
             CalcBoundingBox(points[i].x, points[i].y);
 
@@ -1190,14 +1159,8 @@ void wxMSWDCImpl::DoDrawSpline(const wxPointList *points)
     bezier_pos++;
 
 #if !wxUSE_STD_CONTAINERS
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ((node = node->GetNext()) != NULL)
 #else
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ((node = node->GetNext()))
 #endif // !wxUSE_STD_CONTAINERS
     {
@@ -1258,8 +1221,8 @@ void wxMSWDCImpl::DoDrawEllipticArc(wxCoord x,wxCoord y,wxCoord w,wxCoord h,doub
     int rx2 = rx1;
     int ry2 = ry1;
 
-    sa = DegToRad(sa);
-    ea = DegToRad(ea);
+    sa = wxDegToRad(sa);
+    ea = wxDegToRad(ea);
 
     rx1 += (int)(100.0 * abs(w) * cos(sa));
     ry1 -= (int)(100.0 * abs(h) * m_signY * sin(sa));
@@ -1561,15 +1524,12 @@ void wxMSWDCImpl::DoDrawRotatedText(const wxString& text,
     wxBkModeChanger bkMode(GetHdc(), m_backgroundMode);
 
     // Compute the shift for the origin of the next line.
-    const double rad = DegToRad(angle);
+    const double rad = wxDegToRad(angle);
     const double dx = heightLine * sin(rad);
     const double dy = heightLine * cos(rad);
 
     // Draw all text line by line
     const wxArrayString lines = wxSplit(text, '\n', '\0');
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t lineNum = 0; lineNum < lines.size(); lineNum++ )
     {
         // Calculate origin for each line to avoid accumulation of
@@ -1656,9 +1616,6 @@ void wxMSWDCImpl::InitializePalette()
 }
 
 #endif // wxUSE_PALETTE
-
-// SetFont/Pen/Brush() really ask to be implemented as a single template
-// function... but doing it is not worth breaking OpenWatcom build <sigh>
 
 void wxMSWDCImpl::SetFont(const wxFont& font)
 {
@@ -2638,9 +2595,6 @@ wxDCCacheEntry* wxMSWDCImpl::FindBitmapInCache(WXHDC dc, int w, int h)
 {
     int depth = ::GetDeviceCaps((HDC) dc, PLANES) * ::GetDeviceCaps((HDC) dc, BITSPIXEL);
     wxList::compatibility_iterator node = sm_bitmapCache.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (node)
     {
         wxDCCacheEntry* entry = (wxDCCacheEntry*) node->GetData();
@@ -2677,9 +2631,6 @@ wxDCCacheEntry* wxMSWDCImpl::FindDCInCache(wxDCCacheEntry* notThis, WXHDC dc)
 {
     int depth = ::GetDeviceCaps((HDC) dc, PLANES) * ::GetDeviceCaps((HDC) dc, BITSPIXEL);
     wxList::compatibility_iterator node = sm_dcCache.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (node)
     {
         wxDCCacheEntry* entry = (wxDCCacheEntry*) node->GetData();
@@ -2798,16 +2749,10 @@ static bool AlphaBlt(wxMSWDCImpl* dcDst,
                     if ( data )
                     {
                         wxAlphaPixelData::Iterator p(data);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                         for ( int y = 0; y < data.GetHeight(); y++ )
                         {
                             wxAlphaPixelData::Iterator rowStart = p;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                             for ( int x = 0; x < data.GetWidth(); x++ )
                             {
                                 // We choose to use wxALPHA_TRANSPARENT instead
@@ -2889,16 +2834,10 @@ wxAlphaBlend(HDC hdcDst, int xDst, int yDst,
                                pSrc(dataSrc);
 
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int y = 0; y < dstHeight; y++ )
     {
         wxAlphaPixelData::Iterator pDstRowStart = pDst;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( int x = 0; x < dstWidth; x++ )
         {
             // source is point sampled, Alpha StretchBlit is ugly on Win95

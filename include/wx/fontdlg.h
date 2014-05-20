@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/fontdlg.h
 // Purpose:     common interface for different wxFontDialog classes
@@ -84,8 +77,6 @@ protected:
     #include "wx/gtk/fontdlg.h"
 #elif defined(__WXGTK__)
     #include "wx/gtk1/fontdlg.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/fontdlg.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/fontdlg.h"
 #endif

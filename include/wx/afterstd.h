@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/afterstd.h
 // Purpose:     #include after STL headers
@@ -25,24 +18,7 @@
 
 // undo what we did in wx/beforestd.h
 #if defined(__VISUALC__) && __VISUALC__ <= 1201
-    // MSVC 5 does not have this
-    #if _MSC_VER > 1100
-        #pragma warning(pop)
-    #else
-        // 'expression' : signed/unsigned mismatch
-        #pragma warning(default:4018)
-
-        // 'identifier' : unreferenced formal parameter
-        #pragma warning(default:4100)
-
-        // 'conversion' : conversion from 'type1' to 'type2',
-        // possible loss of data
-        #pragma warning(default:4244)
-
-        // C++ language change: to explicitly specialize class template
-        // 'identifier' use the following syntax
-        #pragma warning(default:4663)
-    #endif
+    #pragma warning(pop)
 #endif
 
 // see beforestd.h for explanation

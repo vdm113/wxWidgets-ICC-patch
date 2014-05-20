@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/thread.h
 // Purpose:     Thread API
@@ -284,7 +277,7 @@ private:
 
         wxCritSectBuffer m_buffer;
     };
-#endif // Unix&OS2/Win32
+#endif // Unix/Win32
 
     wxDECLARE_NO_COPY_CLASS(wxCriticalSection);
 };
@@ -355,9 +348,6 @@ public:
     template<typename Functor>
     wxCondError Wait(const Functor& predicate)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while ( !predicate() )
         {
             wxCondError e = Wait();
@@ -523,8 +513,6 @@ public:
 
         // create a new thread and optionally set the stack size on
         // platforms that support that - call Run() to start it
-        // (special cased for watcom which won't accept 0 default)
-
     wxThreadError Create(unsigned int stackSize = 0);
 
         // starts execution of the thread - from the moment Run() is called
@@ -810,9 +798,7 @@ inline void wxMutexGuiLeave() { }
 
 // macros for entering/leaving critical sections which may be used without
 // having to take them inside "#if wxUSE_THREADS"
-// (the implementation uses dummy structs to force semicolon after the macro;
-// also notice that Watcom doesn't like declaring a struct as a member so we
-// need to actually define it in wxCRIT_SECT_DECLARE_MEMBER)
+// (the implementation uses dummy structs to force semicolon after the macro)
 #define wxENTER_CRIT_SECT(cs)            do {} while (0)
 #define wxLEAVE_CRIT_SECT(cs)            do {} while (0)
 #define wxCRIT_SECT_DECLARE(cs)          struct wxDummyCS##cs
@@ -859,7 +845,7 @@ public:
 
 #if wxUSE_THREADS
 
-#if defined(__WINDOWS__) || defined(__OS2__) || defined(__EMX__) || defined(__DARWIN__)
+#if defined(__WINDOWS__) || defined(__DARWIN__)
     // unlock GUI if there are threads waiting for and lock it back when
     // there are no more of them - should be called periodically by the main
     // thread

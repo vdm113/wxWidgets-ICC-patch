@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/time.h
 // Purpose:     Miscellaneous time-related functions.
@@ -64,7 +57,7 @@ wxLongLong WXDLLIMPEXP_BASE wxGetUTCTimeUSec();
 #define wxLocaltime_r localtime_r
 #else
 WXDLLIMPEXP_BASE struct tm *wxLocaltime_r(const time_t*, struct tm*);
-#if wxUSE_THREADS && !defined(__WINDOWS__) && !defined(__WATCOMC__)
+#if wxUSE_THREADS && !defined(__WINDOWS__)
      // On Windows, localtime _is_ threadsafe!
 #warning using pseudo thread-safe wrapper for localtime to emulate localtime_r
 #endif
@@ -74,7 +67,7 @@ WXDLLIMPEXP_BASE struct tm *wxLocaltime_r(const time_t*, struct tm*);
 #define wxGmtime_r gmtime_r
 #else
 WXDLLIMPEXP_BASE struct tm *wxGmtime_r(const time_t*, struct tm*);
-#if wxUSE_THREADS && !defined(__WINDOWS__) && !defined(__WATCOMC__)
+#if wxUSE_THREADS && !defined(__WINDOWS__)
      // On Windows, gmtime _is_ threadsafe!
 #warning using pseudo thread-safe wrapper for gmtime to emulate gmtime_r
 #endif

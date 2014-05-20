@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/frame.h
 // Purpose:     wxFrame class interface
@@ -273,8 +266,6 @@ protected:
         #include "wx/osx/frame.h"
     #elif defined(__WXCOCOA__)
         #include "wx/cocoa/frame.h"
-    #elif defined(__WXPM__)
-        #include "wx/os2/frame.h"
     #endif
 #endif
 

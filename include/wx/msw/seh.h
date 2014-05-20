@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/seh.h
 // Purpose:     declarations for SEH (structured exceptions handling) support
@@ -25,7 +18,7 @@
     extern unsigned long wxGlobalSEHandler(EXCEPTION_POINTERS *pExcPtrs);
 
     // helper macro for wxSEH_HANDLE
-#if defined(__BORLANDC__) || (defined(__VISUALC__) && (__VISUALC__ <= 1200))
+#if defined(__BORLANDC__)
     // some compilers don't understand that this code is unreachable and warn
     // about no value being returned from the function without it, so calm them
     // down

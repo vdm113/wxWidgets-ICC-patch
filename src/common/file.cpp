@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/file.cpp
 // Purpose:     wxFile - encapsulates low-level "file descriptor"
@@ -55,8 +48,6 @@
 
 #elif defined(__WINDOWS__) && defined(__WXWINCE__)
     #include  "wx/msw/missing.h"
-#elif (defined(__OS2__))
-    #include <io.h>
 #elif (defined(__UNIX__) || defined(__GNUWIN32__))
     #include  <unistd.h>
     #include  <time.h>
@@ -65,9 +56,7 @@
         #include "wx/msw/wrapwin.h"
     #endif
 #elif defined(__DOS__)
-    #if defined(__WATCOMC__)
-       #include <io.h>
-    #elif defined(__DJGPP__)
+    #if defined(__DJGPP__)
        #include <io.h>
        #include <unistd.h>
        #include <stdio.h>
@@ -299,9 +288,6 @@ bool wxFile::ReadAll(wxString *str, const wxMBConv& conv)
 
     wxCharBuffer buf(length);
     char* p = buf.data();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ;; )
     {
         static const ssize_t READSIZE = 4096;
@@ -581,9 +567,7 @@ bool wxTempFile::Open(const wxString& strName)
 
     if ( chmod( (const char*) m_strTemp.fn_str(), mode) == -1 )
     {
-#ifndef __OS2__
         wxLogSysError(_("Failed to set temporary file permissions"));
-#endif
     }
 #endif // Unix
 

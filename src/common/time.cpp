@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/time.cpp
 // Purpose:     Implementation of time-related functions.
@@ -45,13 +38,6 @@
     #if defined(__DARWIN__)
         #define WX_GMTOFF_IN_TM
     #endif
-#endif
-
-#if defined(__VISAGECPP__) && !defined(HAVE_FTIME)
-    #define HAVE_FTIME
-#  if __IBMCPP__ >= 400
-    #  define ftime(x) _ftime(x)
-#  endif
 #endif
 
 #ifndef __WXWINCE__
@@ -218,7 +204,7 @@ int wxGetTimeZone()
 
     #if defined(WX_TIMEZONE) // If WX_TIMEZONE was defined by configure, use it.
         return WX_TIMEZONE;
-    #elif defined(__BORLANDC__) || defined(__MINGW32__) || defined(__VISAGECPP__)
+    #elif defined(__BORLANDC__) || defined(__MINGW32__)
         return _timezone;
     #else // unknown platform -- assume it has timezone
         return timezone;
@@ -338,7 +324,7 @@ wxLongLong wxGetUTCTimeMillis()
     // do NOT just shut off these warnings, drop me a line instead at
     // <guille@iies.es>
 
-    #if defined(__VISUALC__) || defined (__WATCOMC__)
+    #if defined(__VISUALC__)
         #pragma message("wxStopWatch will be up to second resolution!")
     #elif defined(__BORLANDC__)
         #pragma message "wxStopWatch will be up to second resolution!"

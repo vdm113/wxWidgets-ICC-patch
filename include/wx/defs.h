@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  *  Name:        wx/defs.h
  *  Purpose:     Declarations/definitions common to all wx source files
@@ -33,7 +26,6 @@
 #   elif !defined(__WXMOTIF__) && \
          !defined(__WXMSW__)   && \
          !defined(__WXGTK__)   && \
-         !defined(__WXPM__)    && \
          !defined(__WXOSX_CARBON__)   && \
          !defined(__WXOSX_COCOA__)   && \
          !defined(__WXOSX_IPHONE__)   && \
@@ -419,13 +411,6 @@ typedef short int WXTYPE;
            special cases.
          */
 
-        #ifdef __WATCOMC__
-            /* Watcom uses array type for va_list except for PPC and Alpha */
-            #if !defined(__PPC__) && !defined(__AXP__)
-                #define VA_LIST_IS_ARRAY
-            #endif
-        #endif /* __WATCOMC__ */
-
         #if defined(__PPC__) && (defined(_CALL_SYSV) || defined (_WIN32))
             /*
                 PPC using SysV ABI and NT/PPC are special in that they use an
@@ -530,8 +515,6 @@ typedef short int WXTYPE;
 
 #if defined(__VISUALC__)
   #define   wxC_CALLING_CONV    _cdecl
-#elif defined(__VISAGECPP__)
-  #define   wxC_CALLING_CONV    _Optlink
 #else   /*  !Visual C++ */
   #define   wxC_CALLING_CONV
 #endif  /*  compiler */
@@ -882,10 +865,6 @@ typedef short int WXTYPE;
 /*  compiler specific settings */
 /*  ---------------------------------------------------------------------------- */
 
-#if wxONLY_WATCOM_EARLIER_THAN(1,4)
-    typedef short mode_t;
-#endif
-
 /*  where should i put this? we need to make sure of this as it breaks */
 /*  the <iostream> code. */
 #if !wxUSE_IOSTREAMH && defined(__WXDEBUG__)
@@ -1132,8 +1111,6 @@ typedef wxUint32 wxDword;
     #define wxLongLong_t long long
     #define wxLongLongSuffix ll
     #define wxLongLongFmtSpec "I64"
-#elif defined(__VISAGECPP__) && __IBMCPP__ >= 400
-    #define wxLongLong_t long long
 #elif (defined(SIZEOF_LONG_LONG) && SIZEOF_LONG_LONG >= 8)  || \
         defined(__GNUC__) || \
         defined(__CYGWIN__) || \
@@ -1212,8 +1189,6 @@ typedef wxUint32 wxDword;
     #if defined(_SSIZE_T_) || defined(_SSIZE_T_DEFINED)
         #define HAVE_SSIZE_T
     #endif
-#elif wxCHECK_WATCOM_VERSION(1,4)
-    #define HAVE_SSIZE_T
 #endif
 #endif /* !HAVE_SSIZE_T */
 
@@ -1286,9 +1261,7 @@ inline wxUIntPtr wxPtrToUInt(const void *p)
        doing here. Same thing with icc with -Wall.
      */
 #ifdef __VISUALC__
-    #if __VISUALC__ >= 1200
-        #pragma warning(push)
-    #endif
+    #pragma warning(push)
     /* pointer truncation from '' to '' */
     #pragma warning(disable: 4311)
 #elif defined(__INTELC__)
@@ -1299,7 +1272,7 @@ inline wxUIntPtr wxPtrToUInt(const void *p)
 
     return wx_reinterpret_cast(wxUIntPtr, p);
 
-#if (defined(__VISUALC__) && __VISUALC__ >= 1200) || defined(__INTELC__)
+#if defined(__VISUALC__) || defined(__INTELC__)
     #pragma warning(pop)
 #endif
 }
@@ -1307,9 +1280,7 @@ inline wxUIntPtr wxPtrToUInt(const void *p)
 inline void *wxUIntToPtr(wxUIntPtr p)
 {
 #ifdef __VISUALC__
-    #if __VISUALC__ >= 1200
-        #pragma warning(push)
-    #endif
+    #pragma warning(push)
     /* conversion to type of greater size */
     #pragma warning(disable: 4312)
 #elif defined(__INTELC__)
@@ -1320,7 +1291,7 @@ inline void *wxUIntToPtr(wxUIntPtr p)
 
     return wx_reinterpret_cast(void *, p);
 
-#if (defined(__VISUALC__) && __VISUALC__ >= 1200) || defined(__INTELC__)
+#if defined(__VISUALC__) || defined(__INTELC__)
     #pragma warning(pop)
 #endif
 }
@@ -2884,7 +2855,7 @@ typedef int (* LINKAGEMODE wxListIterateFunction)(void *current);
 #endif
 
 /*  macro to specify "All Files" on different platforms */
-#if defined(__WXMSW__) || defined(__WXPM__)
+#if defined(__WXMSW__)
 #   define wxALL_FILES_PATTERN   wxT("*.*")
 #   define wxALL_FILES           gettext_noop("All files (*.*)|*.*")
 #else
@@ -3196,115 +3167,6 @@ typedef int             (*WXFARPROC)();
 typedef int             (__stdcall *WXFARPROC)();
 #endif
 #endif /*  __WIN32__ */
-
-
-#if defined(__OS2__)
-typedef unsigned long   DWORD;
-typedef unsigned short  WORD;
-#endif
-
-#if defined(__WXPM__) || defined(__EMX__)
-#ifdef __WXPM__
-/*  Stand-ins for OS/2 types, to avoid #including all of os2.h */
-typedef unsigned long   WXHWND;
-typedef unsigned long   WXHANDLE;
-typedef unsigned long   WXHICON;
-typedef unsigned long   WXHFONT;
-typedef unsigned long   WXHMENU;
-typedef unsigned long   WXHPEN;
-typedef unsigned long   WXHBRUSH;
-typedef unsigned long   WXHPALETTE;
-typedef unsigned long   WXHCURSOR;
-typedef unsigned long   WXHRGN;
-typedef unsigned long   WXHACCEL;
-typedef unsigned long   WXHINSTANCE;
-typedef unsigned long   WXHMODULE;
-typedef unsigned long   WXHBITMAP;
-typedef unsigned long   WXHDC;
-typedef unsigned int    WXUINT;
-typedef unsigned long   WXDWORD;
-typedef unsigned short  WXWORD;
-
-typedef unsigned long   WXCOLORREF;
-typedef void *          WXMSG;
-typedef unsigned long   WXHTREEITEM;
-
-typedef void *          WXDRAWITEMSTRUCT;
-typedef void *          WXMEASUREITEMSTRUCT;
-typedef void *          WXLPCREATESTRUCT;
-
-typedef WXHWND          WXWidget;
-#endif
-#ifdef __EMX__
-/* Need a well-known type for WXFARPROC
-   below. MPARAM is typedef'ed too late. */
-#define WXWPARAM        void *
-#define WXLPARAM        void *
-#else
-#define WXWPARAM        MPARAM
-#define WXLPARAM        MPARAM
-#endif
-#define RECT            RECTL
-#define LOGFONT         FATTRS
-#define LOWORD          SHORT1FROMMP
-#define HIWORD          SHORT2FROMMP
-
-typedef unsigned long   WXMPARAM;
-typedef unsigned long   WXMSGID;
-typedef void*           WXRESULT;
-/* typedef int             (*WXFARPROC)(); */
-/*  some windows handles not defined by PM */
-typedef unsigned long   HANDLE;
-typedef unsigned long   HICON;
-typedef unsigned long   HFONT;
-typedef unsigned long   HMENU;
-typedef unsigned long   HPEN;
-typedef unsigned long   HBRUSH;
-typedef unsigned long   HPALETTE;
-typedef unsigned long   HCURSOR;
-typedef unsigned long   HINSTANCE;
-typedef unsigned long   HIMAGELIST;
-typedef unsigned long   HGLOBAL;
-#endif /*  WXPM || EMX */
-
-#if defined (__WXPM__)
-/*  WIN32 graphics types for OS/2 GPI */
-
-/*  RGB under OS2 is more like a PALETTEENTRY struct under Windows so we need a real RGB def */
-#define OS2RGB(r,g,b) ((DWORD)((unsigned char)(b) | ((unsigned char)(g) << 8)) | ((unsigned char)(r) << 16))
-
-typedef unsigned long COLORREF;
-#define GetRValue(rgb) ((unsigned char)((rgb) >> 16))
-#define GetGValue(rgb) ((unsigned char)(((unsigned short)(rgb)) >> 8))
-#define GetBValue(rgb) ((unsigned char)(rgb))
-#define PALETTEINDEX(i) ((COLORREF)(0x01000000 | (DWORD)(WORD)(i)))
-#define PALETTERGB(r,g,b) (0x02000000 | OS2RGB(r,g,b))
-/*  OS2's RGB/RGB2 is backwards from this */
-typedef struct tagPALETTEENTRY
-{
-    char bRed;
-    char bGreen;
-    char bBlue;
-    char bFlags;
-} PALETTEENTRY;
-typedef struct tagLOGPALETTE
-{
-    WORD palVersion;
-    WORD palNumentries;
-    WORD PALETTEENTRY[1];
-} LOGPALETTE;
-
-#if (defined(__VISAGECPP__) && (__IBMCPP__ < 400)) || defined (__WATCOMC__)
-    /*  VA 3.0 for some reason needs base data types when typedefing a proc proto??? */
-typedef void* (_System *WXFARPROC)(unsigned long, unsigned long, void*, void*);
-#else
-#if defined(__EMX__) && !defined(_System)
-#define _System
-#endif
-typedef WXRESULT (_System *WXFARPROC)(WXHWND, WXMSGID, WXWPARAM, WXLPARAM);
-#endif
-
-#endif /* __WXPM__ */
 
 
 #if defined(__WXMOTIF__) || defined(__WXX11__)

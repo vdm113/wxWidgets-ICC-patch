@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  * Name:        wx/dlimpexp.h
  * Purpose:     Macros for declaring DLL-imported/exported functions
@@ -27,10 +20,9 @@
 #    define WXIMPORT __attribute__ ((visibility("default")))
 #elif defined(__WINDOWS__)
     /*
-       __declspec works in BC++ 5 and later, Watcom C++ 11.0 and later as well
-       as VC++.
+       __declspec works in BC++ 5 and later as well as VC++.
      */
-#    if defined(__VISUALC__) || defined(__BORLANDC__) || defined(__WATCOMC__)
+#    if defined(__VISUALC__) || defined(__BORLANDC__)
 #        define WXEXPORT __declspec(dllexport)
 #        define WXIMPORT __declspec(dllimport)
     /*
@@ -47,21 +39,6 @@
         */
 #       define WXEXPORT __attribute__((dllexport))
 #       define WXIMPORT __attribute__((dllimport))
-#    endif
-#elif defined(__WXPM__)
-#    if defined (__WATCOMC__)
-#        define WXEXPORT __declspec(dllexport)
-        /*
-           __declspec(dllimport) prepends __imp to imported symbols. We do NOT
-           want that!
-         */
-#        define WXIMPORT
-#    elif defined(__EMX__)
-#        define WXEXPORT
-#        define WXIMPORT
-#    elif (!(defined(__VISAGECPP__) && (__IBMCPP__ < 400 || __IBMC__ < 400 )))
-#        define WXEXPORT _Export
-#        define WXIMPORT _Export
 #    endif
 #elif defined(__CYGWIN__)
 #    define WXEXPORT __declspec(dllexport)

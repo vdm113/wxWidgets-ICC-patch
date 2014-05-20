@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/window.h
 // Purpose:     wxWindowMSW class
@@ -40,9 +33,6 @@ class WXDLLIMPEXP_CORE wxWindowMSW : public wxWindowBase
     friend class wxSpinCtrl;
     friend class wxSlider;
     friend class wxRadioBox;
-#if defined __VISUALC__ && __VISUALC__ <= 1200
-    friend class wxWindowMSW;
-#endif
 public:
     wxWindowMSW() { Init(); }
 

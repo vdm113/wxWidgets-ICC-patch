@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/string.h
 // Purpose:     wxString class
@@ -30,24 +23,15 @@
 
 #include "wx/defs.h"        // everybody should include this
 
-#if defined(__WXMAC__) || defined(__VISAGECPP__)
+#if defined(__WXMAC__)
     #include <ctype.h>
 #endif
 
-#if defined(__VISAGECPP__) && __IBMCPP__ >= 400
-   // problem in VACPP V4 with including stdlib.h multiple times
-   // strconv includes it anyway
-#  include <stdio.h>
-#  include <string.h>
-#  include <stdarg.h>
-#  include <limits.h>
-#else
-#  include <string.h>
-#  include <stdio.h>
-#  include <stdarg.h>
-#  include <limits.h>
-#  include <stdlib.h>
-#endif
+#include <string.h>
+#include <stdio.h>
+#include <stdarg.h>
+#include <limits.h>
+#include <stdlib.h>
 
 #include "wx/wxcrtbase.h"   // for wxChar, wxStrlen() etc.
 #include "wx/strvararg.h"
@@ -541,9 +525,6 @@ private:
         return NULL;
 #endif
       Cache::Element * const cacheEnd = GetCacheEnd();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
       for ( Cache::Element *c = cacheBegin; c != cacheEnd; c++ )
       {
           if ( c->str == this )
@@ -627,9 +608,6 @@ private:
 
 
       wxStringImpl::const_iterator i(m_impl.begin() + cache->impl);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
       for ( size_t n = cache->pos; n < pos; n++ )
           wxStringOperations::IncIter(i);
 
@@ -2201,17 +2179,6 @@ public:
   // int Printf(const wxString& format, ...);
   WX_DEFINE_VARARG_FUNC(int, Printf, 1, (const wxFormatString&),
                         DoPrintfWchar, DoPrintfUtf8)
-#ifdef __WATCOMC__
-  // workaround for http://bugzilla.openwatcom.org/show_bug.cgi?id=351
-  WX_VARARG_WATCOM_WORKAROUND(int, Printf, 1, (const wxString&),
-                              (wxFormatString(f1)));
-  WX_VARARG_WATCOM_WORKAROUND(int, Printf, 1, (const wxCStrData&),
-                              (wxFormatString(f1)));
-  WX_VARARG_WATCOM_WORKAROUND(int, Printf, 1, (const char*),
-                              (wxFormatString(f1)));
-  WX_VARARG_WATCOM_WORKAROUND(int, Printf, 1, (const wchar_t*),
-                              (wxFormatString(f1)));
-#endif
     // as vprintf(), returns the number of characters written or < 0 on error
   int PrintfV(const wxString& format, va_list argptr);
 
@@ -2219,17 +2186,6 @@ public:
   // static wxString Format(const wxString& format, ...) WX_ATTRIBUTE_PRINTF_1;
   WX_DEFINE_VARARG_FUNC(static wxString, Format, 1, (const wxFormatString&),
                         DoFormatWchar, DoFormatUtf8)
-#ifdef __WATCOMC__
-  // workaround for http://bugzilla.openwatcom.org/show_bug.cgi?id=351
-  WX_VARARG_WATCOM_WORKAROUND(static wxString, Format, 1, (const wxString&),
-                              (wxFormatString(f1)));
-  WX_VARARG_WATCOM_WORKAROUND(static wxString, Format, 1, (const wxCStrData&),
-                              (wxFormatString(f1)));
-  WX_VARARG_WATCOM_WORKAROUND(static wxString, Format, 1, (const char*),
-                              (wxFormatString(f1)));
-  WX_VARARG_WATCOM_WORKAROUND(static wxString, Format, 1, (const wchar_t*),
-                              (wxFormatString(f1)));
-#endif
     // the same as above, but takes a va_list
   static wxString FormatV(const wxString& format, va_list argptr);
 
@@ -2266,17 +2222,6 @@ public:
   // int sprintf(const wxString& format, ...) WX_ATTRIBUTE_PRINTF_2;
   WX_DEFINE_VARARG_FUNC(int, sprintf, 1, (const wxFormatString&),
                         DoPrintfWchar, DoPrintfUtf8)
-#ifdef __WATCOMC__
-  // workaround for http://bugzilla.openwatcom.org/show_bug.cgi?id=351
-  WX_VARARG_WATCOM_WORKAROUND(int, sprintf, 1, (const wxString&),
-                              (wxFormatString(f1)));
-  WX_VARARG_WATCOM_WORKAROUND(int, sprintf, 1, (const wxCStrData&),
-                              (wxFormatString(f1)));
-  WX_VARARG_WATCOM_WORKAROUND(int, sprintf, 1, (const char*),
-                              (wxFormatString(f1)));
-  WX_VARARG_WATCOM_WORKAROUND(int, sprintf, 1, (const wchar_t*),
-                              (wxFormatString(f1)));
-#endif
 
     // use Cmp()
   int CompareTo(const wxChar* psz, caseCompare cmp = exact) const
@@ -4186,9 +4131,6 @@ void wxStringIteratorNode::clear()
 template<bool (T)(const wxUniChar& c)>
     inline bool wxStringCheck(const wxString& val)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( wxString::const_iterator i = val.begin();
               i != val.end();
               ++i )

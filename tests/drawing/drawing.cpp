@@ -15,12 +15,6 @@
     #pragma hdrstop
 #endif
 
-#ifndef WX_PRECOMP
-    #include "wx/app.h"
-    #include "wx/font.h"
-    #include "wx/window.h"
-#endif // WX_PRECOMP
-
 #include "drawing.h"
 
 #if wxUSE_TEST_GC_DRAWING
@@ -28,6 +22,8 @@
 #include "wx/image.h"
 #include "wx/wfstream.h"
 #include "wx/stdpaths.h"
+#include "wx/scopeguard.h"
+
 #include "testimagefile.h"
 
 #include <stdexcept>

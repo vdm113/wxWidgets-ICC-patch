@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/timer.cpp
 // Purpose:     wxTimer implementation
@@ -63,9 +56,6 @@ UINT_PTR GetNewTimerId(wxMSWTimerImpl *t)
 {
     static UINT_PTR lastTimerId = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (lastTimerId == 0 ||
             TimerMap().find(lastTimerId) != TimerMap().end())
     {

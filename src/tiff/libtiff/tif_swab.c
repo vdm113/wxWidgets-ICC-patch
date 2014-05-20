@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler
@@ -82,9 +75,6 @@ TIFFSwabArrayOfShort(register uint16* wp, tmsize_t n)
 	register unsigned char t;
 	assert(sizeof(uint16)==2);
 	/* XXX unroll loop some */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while (n-- > 0) {
 		cp = (unsigned char*) wp;
 		t = cp[1]; cp[1] = cp[0]; cp[0] = t;
@@ -101,9 +91,6 @@ TIFFSwabArrayOfTriples(register uint8* tp, tmsize_t n)
 	unsigned char t;
 
 	/* XXX unroll loop some */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while (n-- > 0) {
 		cp = (unsigned char*) tp;
 		t = cp[2]; cp[2] = cp[0]; cp[0] = t;
@@ -120,9 +107,6 @@ TIFFSwabArrayOfLong(register uint32* lp, tmsize_t n)
 	register unsigned char t;
 	assert(sizeof(uint32)==4);
 	/* XXX unroll loop some */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while (n-- > 0) {
 		cp = (unsigned char *)lp;
 		t = cp[3]; cp[3] = cp[0]; cp[0] = t;
@@ -140,9 +124,6 @@ TIFFSwabArrayOfLong8(register uint64* lp, tmsize_t n)
 	register unsigned char t;
 	assert(sizeof(uint64)==8);
 	/* XXX unroll loop some */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while (n-- > 0) {
 		cp = (unsigned char *)lp;
 		t = cp[7]; cp[7] = cp[0]; cp[0] = t;
@@ -174,9 +155,6 @@ TIFFSwabArrayOfFloat(register float* fp, tmsize_t n)
 	register unsigned char t;
 	assert(sizeof(float)==4);
 	/* XXX unroll loop some */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while (n-- > 0) {
 		cp = (unsigned char *)fp;
 		t = cp[3]; cp[3] = cp[0]; cp[0] = t;
@@ -208,9 +186,6 @@ TIFFSwabArrayOfDouble(double* dp, tmsize_t n)
 	register unsigned char t;
 	assert(sizeof(double)==8);
 	/* XXX unroll loop some */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while (n-- > 0) {
 		cp = (unsigned char *)dp;
 		t = cp[7]; cp[7] = cp[0]; cp[0] = t;
@@ -309,9 +284,6 @@ TIFFGetBitRevTable(int reversed)
 void
 TIFFReverseBits(uint8* cp, tmsize_t n)  
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (; n > 8; n -= 8) {
 		cp[0] = TIFFBitRevTable[cp[0]];
 		cp[1] = TIFFBitRevTable[cp[1]];
@@ -323,9 +295,6 @@ TIFFReverseBits(uint8* cp, tmsize_t n)
 		cp[7] = TIFFBitRevTable[cp[7]];
 		cp += 8;
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while (n-- > 0)
 		*cp = TIFFBitRevTable[*cp], cp++;
 }

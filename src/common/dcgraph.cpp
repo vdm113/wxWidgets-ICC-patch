@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/dcgraph.cpp
 // Purpose:     graphics context methods common to all platforms
@@ -31,6 +24,7 @@
     #include "wx/icon.h"
     #include "wx/dcclient.h"
     #include "wx/dcmemory.h"
+    #include "wx/math.h"
 #endif
 
 //-----------------------------------------------------------------------------
@@ -42,11 +36,6 @@ static const double RAD2DEG = 180.0 / M_PI;
 //-----------------------------------------------------------------------------
 // Local functions
 //-----------------------------------------------------------------------------
-
-static inline double DegToRad(double deg)
-{
-    return (deg * M_PI) / 180.0;
-}
 
 static wxCompositionMode TranslateRasterOp(wxRasterOperationMode function)
 {
@@ -208,16 +197,10 @@ wxGCDCImpl::wxGCDCImpl( wxDC *owner, const wxMemoryDC& dc ) :
                 if ( data )
                 {
                     wxAlphaPixelData::Iterator p(data);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                     for ( int y = 0; y < data.GetHeight(); y++ )
                     {
                         wxAlphaPixelData::Iterator rowStart = p;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                         for ( int x = 0; x < data.GetWidth(); x++ )
                         {
                             p.Alpha() = wxALPHA_OPAQUE;
@@ -626,7 +609,7 @@ void wxGCDCImpl::DoDrawArc( wxCoord x1, wxCoord y1,
         path.MoveToPoint( xc, yc );
     // since these angles (ea,sa) are measured counter-clockwise, we invert them to
     // get clockwise angles
-    path.AddArc( xc, yc , rad , DegToRad(-sa) , DegToRad(-ea), false );
+    path.AddArc( xc, yc , rad, wxDegToRad(-sa), wxDegToRad(-ea), false );
     if ( fill && ((x1!=x2)||(y1!=y2)) )
         path.AddLineToPoint( xc, yc );
     m_graphicContext->DrawPath(path);
@@ -651,18 +634,18 @@ void wxGCDCImpl::DoDrawEllipticArc( wxCoord x, wxCoord y, wxCoord w, wxCoord h,
     {
         wxGraphicsPath path = m_graphicContext->CreatePath();
         path.MoveToPoint( 0, 0 );
-        path.AddArc( 0, 0, h/2.0 , DegToRad(-sa) , DegToRad(-ea), sa > ea );
+        path.AddArc( 0, 0, h/2.0, wxDegToRad(-sa), wxDegToRad(-ea), sa > ea );
         path.AddLineToPoint( 0, 0 );
         m_graphicContext->FillPath( path );
 
         path = m_graphicContext->CreatePath();
-        path.AddArc( 0, 0, h/2.0 , DegToRad(-sa) , DegToRad(-ea), sa > ea );
+        path.AddArc( 0, 0, h/2.0, wxDegToRad(-sa), wxDegToRad(-ea), sa > ea );
         m_graphicContext->StrokePath( path );
     }
     else
     {
         wxGraphicsPath path = m_graphicContext->CreatePath();
-        path.AddArc( 0, 0, h/2.0 , DegToRad(-sa) , DegToRad(-ea), sa > ea );
+        path.AddArc( 0, 0, h/2.0, wxDegToRad(-sa), wxDegToRad(-ea), sa > ea );
         m_graphicContext->DrawPath( path );
     }
 
@@ -685,9 +668,6 @@ void wxGCDCImpl::DoDrawLines(int n, const wxPoint points[],
         return;
 
     wxPoint2DDouble* pointsD = new wxPoint2DDouble[n];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for( int i = 0; i < n; ++i)
     {
         pointsD[i].m_x = points[i].x + xoffset;
@@ -730,15 +710,9 @@ void wxGCDCImpl::DoDrawSpline(const wxPointList *points)
     path.AddLineToPoint( cx1 , cy1 );
 #if !wxUSE_STD_CONTAINERS
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ((node = node->GetNext()) != NULL)
 #else
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ((node = node->GetNext()))
 #endif // !wxUSE_STD_CONTAINERS
 
@@ -781,9 +755,6 @@ void wxGCDCImpl::DoDrawPolygon( int n, const wxPoint points[],
         closeIt = true;
 
     wxPoint2DDouble* pointsD = new wxPoint2DDouble[n+(closeIt?1:0)];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for( int i = 0; i < n; ++i)
     {
         pointsD[i].m_x = points[i].x + xoffset;
@@ -807,18 +778,12 @@ void wxGCDCImpl::DoDrawPolyPolygon(int n,
     wxGraphicsPath path = m_graphicContext->CreatePath();
 
     int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int j = 0; j < n; ++j)
     {
         wxPoint start = points[i];
         path.MoveToPoint( start.x+ xoffset, start.y+ yoffset);
         ++i;
         int l = count[j];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( int k = 1; k < l; ++k)
         {
             path.AddLineToPoint( points[i].x+ xoffset, points[i].y+ yoffset);
@@ -1007,10 +972,52 @@ void wxGCDCImpl::DoDrawRotatedText(const wxString& text, wxCoord x, wxCoord y,
     if ( !m_logicalFunctionSupported )
         return;
 
-    if ( m_backgroundMode == wxTRANSPARENT )
-        m_graphicContext->DrawText( str, x ,y , DegToRad(angle ));
-    else
-        m_graphicContext->DrawText( str, x ,y , DegToRad(angle ), m_graphicContext->CreateBrush(m_textBackgroundColour) );
+    // we test that we have some font because otherwise we should still use the
+    // "else" part below to avoid that DrawRotatedText(angle = 180) and
+    // DrawRotatedText(angle = 0) use different fonts (we can't use the default
+    // font for drawing rotated fonts unfortunately)
+    if ( (angle == 0.0) && m_font.IsOk() )
+    {
+        DoDrawText(text, x, y);
+        
+        // Bounding box already updated by DoDrawText(), no need to do it again.
+        return;
+    }
+            
+    // Get extent of whole text.
+    wxCoord w, h, heightLine;
+    GetOwner()->GetMultiLineTextExtent(text, &w, &h, &heightLine);
+    
+    // Compute the shift for the origin of the next line.
+    const double rad = wxDegToRad(angle);
+    const double dx = heightLine * sin(rad);
+    const double dy = heightLine * cos(rad);
+    
+    // Draw all text line by line
+    const wxArrayString lines = wxSplit(text, '\n', '\0');
+    for ( size_t lineNum = 0; lineNum < lines.size(); lineNum++ )
+    {
+        // Calculate origin for each line to avoid accumulation of
+        // rounding errors.
+        if ( m_backgroundMode == wxTRANSPARENT )
+            m_graphicContext->DrawText( lines[lineNum], x + wxRound(lineNum*dx), y + wxRound(lineNum*dy), wxDegToRad(angle ));
+        else
+            m_graphicContext->DrawText( lines[lineNum], x + wxRound(lineNum*dx), y + wxRound(lineNum*dy), wxDegToRad(angle ), m_graphicContext->CreateBrush(m_textBackgroundColour) );
+   }
+            
+    // call the bounding box by adding all four vertices of the rectangle
+    // containing the text to it (simpler and probably not slower than
+    // determining which of them is really topmost/leftmost/...)
+    
+    // "upper left" and "upper right"
+    CalcBoundingBox(x, y);
+    CalcBoundingBox(x + wxCoord(w*cos(rad)), y - wxCoord(w*sin(rad)));
+    
+    // "bottom left" and "bottom right"
+    x += (wxCoord)(h*sin(rad));
+    y += (wxCoord)(h*cos(rad));
+    CalcBoundingBox(x, y);
+    CalcBoundingBox(x + wxCoord(w*cos(rad)), y - wxCoord(w*sin(rad)));
 }
 
 void wxGCDCImpl::DoDrawText(const wxString& str, wxCoord x, wxCoord y)
@@ -1089,9 +1096,6 @@ bool wxGCDCImpl::DoGetPartialTextExtents(const wxString& text, wxArrayInt& width
     wxArrayDouble widthsD;
 
     m_graphicContext->GetPartialTextExtents( text, widthsD );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t i = 0; i < widths.GetCount(); ++i )
         widths[i] = (wxCoord)(widthsD[i] + 0.5);
 

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/config.h
 // Purpose:     wxConfig base header
@@ -31,9 +24,6 @@
 #if defined(__WINDOWS__) && wxUSE_CONFIG_NATIVE
     #include "wx/msw/regconf.h"
     #define wxConfig  wxRegConfig
-#elif defined(__WXOS2__) && wxUSE_CONFIG_NATIVE
-    #include "wx/os2/iniconf.h"
-    #define wxConfig wxIniConfig
 #else // either we're under Unix or wish to always use config files
     #include "wx/fileconf.h"
     #define wxConfig wxFileConfig

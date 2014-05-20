@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/msvcrt.h
 // Purpose:     macros to use some non-standard features of MS Visual C++
@@ -29,7 +22,7 @@
 // use debug CRT functions for memory leak detections in VC++ 5.0+ in debug
 // builds
 #undef wxUSE_VC_CRTDBG
-#if defined(_DEBUG) && defined(__VISUALC__) && (__VISUALC__ >= 1000) \
+#if defined(_DEBUG) && defined(__VISUALC__) \
     && !defined(UNDER_CE)
     // it doesn't combine well with wxWin own memory debugging methods
     #if !wxUSE_GLOBAL_MEMORY_OPERATORS && !wxUSE_MEMORY_TRACING && !defined(__NO_VC_CRTDBG__)

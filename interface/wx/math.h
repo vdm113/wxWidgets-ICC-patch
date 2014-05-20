@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        math.h
 // Purpose:     interface of global functions
@@ -48,6 +41,30 @@ wxFloat64 wxConvertFromIeeeExtended(const wxInt8 *bytes);
     @see wxConvertFromIeeeExtended() to perform the opposite operation
 */
 void wxConvertToIeeeExtended(wxFloat64 num, wxInt8 *bytes);
+
+/**
+    Convert degrees to radians.
+
+    This function simply returns its argument multiplied by @c M_PI/180 but is
+    more readable than writing this expression directly.
+
+    @see wxRadToDeg()
+
+    @since 3.1.0
+ */
+double wxDegToRad(double deg);
+
+/**
+    Convert radians to degrees.
+
+    This function simply returns its argument multiplied by @c 180/M_PI but is
+    more readable than writing this expression directly.
+
+    @see wxDegToRad()
+
+    @since 3.1.0
+ */
+double wxRadToDeg(double rad);
 
 /**
     Small wrapper around round().

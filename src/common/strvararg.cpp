@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/strvararg.cpp
 // Purpose:     macros for implementing type-safe vararg passing of strings
@@ -163,9 +156,6 @@ public:
         // this is reset to NULL if we modify the format string
         m_fmtOrig = format;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while ( *format )
         {
             if ( CopyFmtChar(*format++) == wxT('%') )
@@ -184,9 +174,6 @@ public:
 #endif // wxUSE_PRINTF_POS_PARAMS
 
                 // skip any flags
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 while ( IsFlagChar(*format) )
                     CopyFmtChar(*format++);
 
@@ -384,9 +371,6 @@ private:
 
     void SkipDigits(const CharType **ptpc)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while ( **ptpc >= wxT('0') && **ptpc <= wxT('9') )
             CopyFmtChar(*(*ptpc)++);
     }

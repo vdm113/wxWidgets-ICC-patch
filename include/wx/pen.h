@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/pen.h
 // Purpose:     Base header for wxPen
@@ -118,8 +111,6 @@ public:
     #include "wx/osx/pen.h"
 #elif defined(__WXCOCOA__)
     #include "wx/cocoa/pen.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/pen.h"
 #endif
 
 class WXDLLIMPEXP_CORE wxPenList: public wxGDIObjListBase

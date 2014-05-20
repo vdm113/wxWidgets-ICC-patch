@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/fldlgcmn.cpp
 // Purpose:     wxFileDialog common functions
@@ -37,7 +30,7 @@
 extern WXDLLEXPORT_DATA(const char) wxFileDialogNameStr[] = "filedlg";
 extern WXDLLEXPORT_DATA(const char) wxFileSelectorPromptStr[] = "Select a file";
 extern WXDLLEXPORT_DATA(const char) wxFileSelectorDefaultWildcardStr[] =
-#if defined(__WXMSW__) || defined(__OS2__)
+#if defined(__WXMSW__)
     "*.*"
 #else // Unix/Mac
     "*"
@@ -265,9 +258,6 @@ wxString wxFileSelector(const wxString& title,
         wxArrayString descriptions, filters;
         // don't care about errors, handled already by wxFileDialog
         (void)wxParseCommonDialogsFilter(filter2, descriptions, filters);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (size_t n=0; n<filters.GetCount(); n++)
         {
             if (filters[n].Contains(defaultExtension))

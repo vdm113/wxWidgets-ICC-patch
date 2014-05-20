@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/nativdlg/nativdlg.cpp
 // Purpose:     Native Windows dialog sample
@@ -97,7 +90,7 @@ void MyFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 
 void MyFrame::OnTest1(wxCommandEvent& WXUNUSED(event))
 {
-#if ( defined(__WXPM__) || defined(__WXMSW__) ) && !defined(__WXUNIVERSAL__)
+#if defined(__WXMSW__) && !defined(__WXUNIVERSAL__)
     MyDialog dialog;
     if (dialog.LoadNativeDialog(this, wxT("dialog1")))
     {

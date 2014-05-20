@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/choice.cpp
 // Purpose:     wxChoice
@@ -227,9 +220,6 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter& items,
 
     int n = wxNOT_FOUND;
     const unsigned numItems = items.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( unsigned i = 0; i < numItems; ++i )
     {
         n = MSWInsertOrAppendItem(pos, items[i], msg);
@@ -310,30 +300,11 @@ unsigned int wxChoice::GetCount() const
 
 int wxChoice::FindString(const wxString& s, bool bCase) const
 {
-#if defined(__WATCOMC__) && defined(__WIN386__)
-    // For some reason, Watcom in WIN386 mode crashes in the CB_FINDSTRINGEXACT message.
-    // wxChoice::Do it the long way instead.
-    unsigned int count = GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-    for ( unsigned int i = 0; i < count; i++ )
-    {
-        // as CB_FINDSTRINGEXACT is case insensitive, be case insensitive too
-        if (GetString(i).IsSameAs(s, bCase))
-            return i;
-    }
-
-    return wxNOT_FOUND;
-#else // !Watcom
    //TODO:  Evidently some MSW versions (all?) don't like empty strings
    //passed to SendMessage, so we have to do it ourselves in that case
    if ( s.empty() )
    {
        unsigned int count = GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
        for ( unsigned int i = 0; i < count; i++ )
        {
          if (GetString(i).empty())
@@ -354,7 +325,6 @@ int wxChoice::FindString(const wxString& s, bool bCase) const
 
        return pos == LB_ERR ? wxNOT_FOUND : pos;
    }
-#endif // Watcom/!Watcom
 }
 
 void wxChoice::SetString(unsigned int n, const wxString& s)

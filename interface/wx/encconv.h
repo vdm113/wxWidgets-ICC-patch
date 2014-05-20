@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        encconv.h
 // Purpose:     interface of wxEncodingConverter
@@ -119,7 +112,6 @@ public:
         Supported platforms:
         @li wxPLATFORM_UNIX
         @li wxPLATFORM_WINDOWS
-        @li wxPLATFORM_OS2
         @li wxPLATFORM_MAC
         @li wxPLATFORM_CURRENT
 

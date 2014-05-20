@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/appunix.cpp
 // Purpose:     wxAppConsole with wxMainLoop implementation
@@ -124,9 +117,6 @@ void wxAppConsole::HandleSignal(int signal)
 
 void wxAppConsole::CheckSignal()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( SignalHandlerHash::iterator it = m_signalHandlerHash.begin();
           it != m_signalHandlerHash.end();
           ++it )

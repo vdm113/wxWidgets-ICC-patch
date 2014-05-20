@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/textbuf.cpp
 // Purpose:     implementation of wxTextBuffer class
@@ -47,8 +40,6 @@ const wxTextFileType wxTextBuffer::typeDefault =
   wxTextFileType_Dos;
 #elif defined(__UNIX__)
   wxTextFileType_Unix;
-#elif defined(__OS2__)
-  wxTextFileType_Os2;
 #else
   wxTextFileType_None;
   #error  "wxTextBuffer: unsupported platform."
@@ -86,9 +77,6 @@ wxString wxTextBuffer::Translate(const wxString& text, wxTextFileType type)
     result.Alloc(text.Len());
 
     wxChar chLast = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxString::const_iterator i = text.begin(); i != text.end(); ++i )
     {
         wxChar ch = *i;
@@ -234,19 +222,10 @@ wxTextFileType wxTextBuffer::GuessType() const
         }
 
     size_t n;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( n = 0; n < nScan; n++ )     // the beginning
         AnalyseLine(n);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( n = (nCount - nScan)/2; n < (nCount + nScan)/2; n++ )
         AnalyseLine(n);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( n = nCount - nScan; n < nCount; n++ )
         AnalyseLine(n);
 
@@ -263,7 +242,6 @@ wxTextFileType wxTextBuffer::GuessType() const
                                                     ? wxTextFileType_##t1   \
                                                     : wxTextFileType_##t2
 
-#if !defined(__WATCOMC__) || wxCHECK_WATCOM_VERSION(1,4)
         if ( nDos > nUnix )
             return GREATER_OF(Dos, Mac);
         else if ( nDos < nUnix )
@@ -272,7 +250,6 @@ wxTextFileType wxTextBuffer::GuessType() const
             // nDos == nUnix
             return nMac > nDos ? wxTextFileType_Mac : typeDefault;
         }
-#endif // __WATCOMC__
 
         #undef    GREATER_OF
     }

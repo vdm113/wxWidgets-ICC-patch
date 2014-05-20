@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/svg.cpp
 // Purpose:     SVG sample
@@ -28,6 +21,7 @@
     #include "wx/dcscreen.h"
     #include "wx/icon.h"
     #include "wx/image.h"
+    #include "wx/math.h"
 #endif
 
 #include "wx/base64.h"
@@ -44,8 +38,6 @@
 
 namespace
 {
-
-inline double DegToRad(double deg) { return (deg * M_PI) / 180.0; }
 
 // This function returns a string representation of a floating point number in
 // C locale (i.e. always using "." for the decimal separator) and with the
@@ -321,9 +313,6 @@ void wxSVGFileDCImpl::DoDrawLine (wxCoord x1, wxCoord y1, wxCoord x2, wxCoord y2
 
 void wxSVGFileDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoffset , wxCoord yoffset )
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int i = 1; i < n; i++ )
     {
         DoDrawLine ( points [i-1].x + xoffset, points [i-1].y + yoffset,
@@ -362,7 +351,7 @@ void wxSVGFileDCImpl::DoDrawRotatedText(const wxString& sText, wxCoord x, wxCoor
     wxCoord w, h, desc;
     DoGetTextExtent(sText, &w, &h, &desc);
 
-    double rad = DegToRad(angle);
+    double rad = wxDegToRad(angle);
 
     // wxT("upper left") and wxT("upper right")
     CalcBoundingBox(x, y);
@@ -449,9 +438,6 @@ void wxSVGFileDCImpl::DoDrawPolygon(int n, const wxPoint points[],
 
     s += wxT("\" \npoints=\"");
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (int i = 0; i < n;  i++)
     {
         sTmp.Printf ( wxT("%d,%d"), points [i].x+xoffset, points[i].y+yoffset );
@@ -561,10 +547,10 @@ void wxSVGFileDCImpl::DoDrawEllipticArc(wxCoord x,wxCoord y,wxCoord w,wxCoord h,
     double yc = y + ry;
 
     double xs, ys, xe, ye;
-    xs = xc + rx * cos (DegToRad(sa));
-    xe = xc + rx * cos (DegToRad(ea));
-    ys = yc - ry * sin (DegToRad(sa));
-    ye = yc - ry * sin (DegToRad(ea));
+    xs = xc + rx * cos (wxDegToRad(sa));
+    xe = xc + rx * cos (wxDegToRad(ea));
+    ys = yc - ry * sin (wxDegToRad(sa));
+    ye = yc - ry * sin (wxDegToRad(ea));
 
     ///now same as circle arc...
 
@@ -626,9 +612,6 @@ void wxSVGFileDCImpl::DestroyClippingRegion()
     svg << "</g>\n";
 
     // Close clipping group elements
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t i = 0; i < m_clipUniqueId; i++ )
     {
         svg << "</g>";

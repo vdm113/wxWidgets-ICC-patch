@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        platdetails.h
 // Purpose:     Platform details page of the Doxygen manual
@@ -108,16 +101,6 @@ docs for it are available in @c docs/cocoa in the distribution.
 
 
 
-@section page_port_wxos2 wxOS2
-
-wxOS2 is a port of wxWidgets for the IBM OS/2 Warp3 and Warp4 platforms.
-This port is currently under construction and in beta phase.
-
-For further information, please see the files in @c docs/os2
-in the distribution.
-
-
-
 @section page_port_wxx11 wxX11
 
 wxX11 is a port of wxWidgets using X11 (The X Window System) as the underlying
@@ -152,8 +135,8 @@ distribution.
 wxMSW is a port of wxWidgets for the Windows platforms (Windows XP and later
 are supported). wxMSW provides native look and feel for each Windows version.
 This port can be compiled with several compilers including Microsoft Studio
-VC++ 2003 or later, Borland 5.5, MinGW32, Cygwin and Watcom as well as
-cross-compilation with a Linux-hosted MinGW32 tool chain.
+VC++ 2003 or later, Borland 5.5, MinGW32, Cygwin as well as cross-compilation
+with a Linux-hosted MinGW32 tool chain.
 
 For further information, please see the files in docs/msw in the distribution.
 

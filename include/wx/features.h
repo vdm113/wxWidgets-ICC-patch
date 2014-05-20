@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /**
 *  Name:        wx/features.h
 *  Purpose:     test macros for the features which might be available in some
@@ -95,12 +88,9 @@
         defined(__WXMSW__)
 
     /*
-       These compilers can't deal with templates in wx/rawbmp.h:
-        - HP aCC for PA-RISC
-        - Watcom < 1.8
+       HP aCC for PA-RISC can't deal with templates in wx/rawbmp.h.
      */
-    #if !wxONLY_WATCOM_EARLIER_THAN(1, 8) && \
-        !(defined(__HP_aCC) && defined(__hppa))
+    #if !(defined(__HP_aCC) && defined(__hppa))
         #define wxHAS_RAW_BITMAP
     #endif
 #endif

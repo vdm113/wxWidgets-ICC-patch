@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/popupwin.h
 // Purpose:     wxPopupWindow interface declaration
@@ -60,8 +53,6 @@ public:
 // include the real class declaration
 #if defined(__WXMSW__)
     #include "wx/msw/popupwin.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/popupwin.h"
 #elif defined(__WXGTK20__)
     #include "wx/gtk/popupwin.h"
 #elif defined(__WXGTK__)

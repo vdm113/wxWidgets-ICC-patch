@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/encinfo.h
 // Purpose:     declares wxNativeEncodingInfo struct
@@ -44,7 +37,6 @@ struct WXDLLIMPEXP_CORE wxNativeEncodingInfo
     wxFontEncoding encoding;    // so that we know what this struct represents
 
 #if defined(__WXMSW__) || \
-    defined(__WXPM__)  || \
     defined(__WXMAC__) || \
     defined(__WXCOCOA__) // FIXME: __WXCOCOA__
 

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/listbox.h
 // Purpose:     wxListBox class interface
@@ -160,8 +153,6 @@ private:
   #include "wx/gtk1/listbox.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/listbox.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/listbox.h"
 #elif defined(__WXCOCOA__)
     #include "wx/cocoa/listbox.h"
 #endif

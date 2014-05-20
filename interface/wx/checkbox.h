@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        checkbox.h
 // Purpose:     interface of wxCheckBox
@@ -57,8 +50,7 @@ enum wxCheckBoxState
     @style{wxCHK_2STATE}
            Create a 2-state checkbox. This is the default.
     @style{wxCHK_3STATE}
-           Create a 3-state checkbox. Not implemented in wxOS2 and
-           wxGTK built against GTK+ 1.2.
+           Create a 3-state checkbox. Not implemented in wxGTK1.
     @style{wxCHK_ALLOW_3RD_STATE_FOR_USER}
            By default a user can't set a 3-state checkbox to the third state.
            It can only be done from code. Using this flags allows the user to

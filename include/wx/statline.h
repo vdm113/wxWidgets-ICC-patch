@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/statline.h
 // Purpose:     wxStaticLine class interface
@@ -97,8 +90,6 @@ protected:
     #include "wx/gtk/statline.h"
 #elif defined(__WXGTK__)
     #include "wx/gtk1/statline.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/statline.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/statline.h"
 #elif defined(__WXCOCOA__)

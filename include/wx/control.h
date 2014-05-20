@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/control.h
 // Purpose:     wxControl common interface
@@ -245,8 +238,6 @@ protected:
     #include "wx/osx/control.h"
 #elif defined(__WXCOCOA__)
     #include "wx/cocoa/control.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/control.h"
 #endif
 
 #endif // wxUSE_CONTROLS

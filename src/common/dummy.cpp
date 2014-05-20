@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  * File:        src/common/dummy.cpp
  * Purpose:     See below
@@ -32,8 +25,4 @@
 
 #ifdef __WINDOWS__
     #include "wx/msw/msvcrt.h"
-#endif
-
-#ifdef __VISAGECPP__
-    char wxDummyChar = 0;
 #endif

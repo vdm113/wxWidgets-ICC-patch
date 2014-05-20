@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/generic/dirctrlg.h
 // Purpose:     wxGenericDirCtrl class
@@ -265,7 +258,7 @@ protected:
     wxDECLARE_NO_COPY_CLASS(wxDirFilterListCtrl);
 };
 
-#if !defined(__WXMSW__) && !defined(__WXMAC__) && !defined(__WXPM__)
+#if !defined(__WXMSW__) && !defined(__WXMAC__)
     #define wxDirCtrl wxGenericDirCtrl
 #endif
 

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/filesys/filesys.cpp
 // Purpose:     wxFileSystem unit test
@@ -109,9 +102,6 @@ void FileSystemTestCase::UrlParsing()
     };
 
     UrlTester tst;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; n < WXSIZEOF(data); n++ )
     {
         const Data& d = data[n];

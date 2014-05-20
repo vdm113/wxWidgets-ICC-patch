@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/statbox.h
 // Purpose:     wxStaticBox base header
@@ -73,8 +66,6 @@ protected:
     #include "wx/osx/statbox.h"
 #elif defined(__WXCOCOA__)
     #include "wx/cocoa/statbox.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/statbox.h"
 #endif
 
 #endif // wxUSE_STATBOX

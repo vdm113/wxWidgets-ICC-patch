@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Program:     wxWidgets Widgets Sample
 // Name:        bmpcombobox.cpp
@@ -459,9 +452,6 @@ void BitmapComboBoxWidgetsPage::CreateCombo()
     if ( m_combobox )
     {
         unsigned int count = m_combobox->GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( unsigned int n = 0; n < count; n++ )
         {
             items.Add(m_combobox->GetString(n));
@@ -485,9 +475,6 @@ void BitmapComboBoxWidgetsPage::CreateCombo()
 #endif
 
     unsigned int count = items.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( unsigned int n = 0; n < count; n++ )
     {
         wxBitmap* bmp = (wxBitmap*) bitmaps[n];
@@ -606,9 +593,6 @@ void BitmapComboBoxWidgetsPage::OnButtonSetFromFile(wxCommandEvent& WXUNUSED(eve
 void BitmapComboBoxWidgetsPage::OnButtonAddMany(wxCommandEvent& WXUNUSED(event))
 {
     // "many" means 1000 here
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( unsigned int n = 0; n < 1000; n++ )
     {
         m_combobox->Append(wxString::Format(wxT("item #%u"), n));
@@ -636,9 +620,6 @@ void BitmapComboBoxWidgetsPage::OnButtonAddSeveralWithImages(wxCommandEvent& WXU
         { "Black circle",   0x000000 },
     };
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( unsigned i = 0; i < WXSIZEOF(s_entries); i++ )
     {
         const TestEntry& e = s_entries[i];
@@ -714,9 +695,6 @@ void BitmapComboBoxWidgetsPage::LoadWidgetImages( wxArrayString* strings, wxImag
     // Get size of existing images in list
     wxSize foundSize = m_combobox->GetBitmapSize();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( i=0; i<strings->size(); i++ )
     {
         fn.SetFullName((*strings)[i]);
@@ -770,9 +748,6 @@ void BitmapComboBoxWidgetsPage::OnButtonAddWidgetIcons(wxCommandEvent& WXUNUSED(
 
     unsigned int i;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( i=0; i<strings.size(); i++ )
     {
         m_combobox->Append(strings[i], images.GetBitmap(i));

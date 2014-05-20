@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/utils.h
 // Purpose:     Miscellaneous utilities
@@ -44,9 +37,7 @@ class WXDLLIMPEXP_FWD_BASE wxArrayInt;
 // needed for wxOperatingSystemId, wxLinuxDistributionInfo
 #include "wx/platinfo.h"
 
-#ifdef __WATCOMC__
-    #include <direct.h>
-#elif defined(__X__)
+#if defined(__X__)
     #include <dirent.h>
     #include <unistd.h>
 #endif

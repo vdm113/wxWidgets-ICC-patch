@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/filename.h
 // Purpose:     wxFileName - encapsulates a file path
@@ -35,7 +28,7 @@ class WXDLLIMPEXP_FWD_BASE wxFFile;
 
 // this symbol is defined for the platforms where file systems use volumes in
 // paths
-#if defined(__WINDOWS__) || defined(__DOS__) || defined(__OS2__)
+#if defined(__WINDOWS__) || defined(__DOS__)
     #define wxHAS_FILESYSTEM_VOLUMES
 #endif
 

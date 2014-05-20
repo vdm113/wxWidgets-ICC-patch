@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/dataobj.cpp
 // Purpose:     wxDataObject class
@@ -207,9 +200,6 @@ bool wxDataObject::IsSupportedFormat(const wxDataFormat& format, Direction dir) 
         GetAllFormats(formats,dir);
 
         size_t n;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( n = 0; n < nFormatCount; n++ )
         {
             if ( formats[n] == format )
@@ -247,9 +237,6 @@ bool wxFileDataObject::GetDataHere(void *buf) const
 {
     wxString filenames;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
     {
         filenames += wxT("file:");
@@ -266,9 +253,6 @@ size_t wxFileDataObject::GetDataSize() const
 {
     size_t res = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
     {
         // This is junk in UTF-8
@@ -289,16 +273,10 @@ bool wxFileDataObject::SetData(size_t WXUNUSED(size), const void *buf)
     m_filenames.Empty();
 
     const gchar *nexttemp = (const gchar*) buf;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ; ; )
     {
         int len = 0;
         const gchar *temp = nexttemp;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (;;)
         {
             if (temp[len] == 0)

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  * jpegint.h
  *
@@ -171,14 +164,7 @@ struct jpeg_d_main_controller {
 
 /* Coefficient buffer control */
 struct jpeg_d_coef_controller {
-#if defined(__VISAGECPP__)
-  /* the start input pass in jdcoeft must have a different name than the
-  // one in jdtrans under VisualAge or else we get a dup symbol error
-  */
-  JMETHOD(void, start_input_pass2, (j_decompress_ptr cinfo));
-#else
   JMETHOD(void, start_input_pass, (j_decompress_ptr cinfo));
-#endif
 
   JMETHOD(int, consume_data, (j_decompress_ptr cinfo));
   JMETHOD(void, start_output_pass, (j_decompress_ptr cinfo));

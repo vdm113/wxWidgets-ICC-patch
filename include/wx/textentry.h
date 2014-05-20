@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/textentry.h
 // Purpose:     declares wxTextEntry interface defining a simple text entry
@@ -326,8 +319,6 @@ private:
     #include "wx/msw/textentry.h"
 #elif defined(__WXMOTIF__)
     #include "wx/motif/textentry.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/textentry.h"
 #else
     // no platform-specific implementation of wxTextEntry yet
     class WXDLLIMPEXP_CORE wxTextEntry : public wxTextEntryBase

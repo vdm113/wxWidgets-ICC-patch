@@ -1,11 +1,4 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
-#if defined(_WIN32) || defined(__OS2__)
+#if defined(_WIN32)
 #include "jconfig.vc"
 #else
 
@@ -53,9 +46,7 @@
 
 /* use wxWidgets' configure */
 /* #define INLINE __inline__ */
-#if defined(__VISAGECPP__) && (__IBMCPP__ >= 400 || __IBMC__ >= 400)
-#define INLINE
-#elif defined(__WATCOMC__)
+#if defined(__WATCOMC__)
 #define INLINE
 #else
 #define INLINE inline

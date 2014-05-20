@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/thread.cpp
 // Purpose:     wxThread Implementation
@@ -67,8 +60,7 @@
 // which should be used instead of Win32 ::CreateThread() if possible
 #if defined(__VISUALC__) || \
     (defined(__BORLANDC__) && (__BORLANDC__ >= 0x500)) || \
-    (defined(__GNUG__) && defined(__MSVCRT__)) || \
-    defined(__WATCOMC__)
+    (defined(__GNUG__) && defined(__MSVCRT__))
 
 #ifndef __WXWINCE__
     #undef wxUSE_BEGIN_THREAD
@@ -653,14 +645,6 @@ bool wxThreadInternal::Create(wxThread *thread, unsigned int stackSize)
     // creation instead of Win32 API one because otherwise we will have memory
     // leaks if the thread uses C RTL (and most threads do)
 #ifdef wxUSE_BEGIN_THREAD
-
-    // Watcom is reported to not like 0 stack size (which means "use default"
-    // for the other compilers and is also the default value for stackSize)
-#ifdef __WATCOMC__
-    if ( !stackSize )
-        stackSize = 10240;
-#endif // __WATCOMC__
-
     m_hThread = (HANDLE)_beginthreadex
                         (
                           NULL,                             // default security
@@ -793,9 +777,6 @@ wxThreadInternal::WaitForTerminate(wxCriticalSection& cs,
     // (note that even in console applications we might have to process
     // messages if we use wxExecute() or timers or ...)
     DWORD result wxDUMMY_INITIALIZE(0);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     do
     {
         if ( wxThread::IsMain() )
@@ -859,9 +840,6 @@ wxThreadInternal::WaitForTerminate(wxCriticalSection& cs,
     // although the thread might be already in the EXITED state it might not
     // have terminated yet and so we are not sure that it has actually
     // terminated if the "if" above hadn't been taken
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ;; )
     {
         if ( !::GetExitCodeThread(m_hThread, &rc) )
@@ -1000,9 +978,6 @@ bool wxThread::SetConcurrency(size_t WXUNUSED_IN_WINCE(level))
     // processor; we want to schedule the process to run on first level
     // CPUs
     DWORD bit = 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( bit )
     {
         if ( dwSysMask & bit )

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/imaglist.cpp
 // Purpose:
@@ -85,9 +78,6 @@ int wxGenericImageList::Add( const wxBitmap &bitmap )
         if (m_width > 0 && bitmap.GetWidth() > m_width && bitmap.GetHeight() >= m_height)
         {
             int numImages = bitmap.GetWidth() / m_width;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (int subIndex = 0; subIndex < numImages; subIndex++)
             {
                 wxRect rect(m_width * subIndex, 0, m_width, m_height);
@@ -165,13 +155,7 @@ bool wxGenericImageList::Replace( int index, const wxBitmap &bitmap )
     wxCHECK_MSG( node, false, wxT("wrong index in image list") );
 
     wxBitmap* newBitmap = (bitmap.IsKindOf(wxCLASSINFO(wxIcon))) ?
-                             #if defined(__VISAGECPP__)
-                               //just can't do this in VisualAge now, with all this new Bitmap-Icon stuff
-                               //so construct it from a bitmap object until I can figure this nonsense out. (DW)
-                               new wxBitmap(bitmap)
-                             #else
                                new wxBitmap( (const wxIcon&) bitmap )
-                             #endif
                                : new wxBitmap(bitmap) ;
 
     if (index == (int) m_images.GetCount() - 1)
@@ -198,13 +182,7 @@ bool wxGenericImageList::Replace( int index, const wxBitmap &bitmap, const wxBit
     wxCHECK_MSG( node, false, wxT("wrong index in image list") );
 
     wxBitmap* newBitmap = (bitmap.IsKindOf(wxCLASSINFO(wxIcon))) ?
-                             #if defined(__VISAGECPP__)
-                               //just can't do this in VisualAge now, with all this new Bitmap-Icon stuff
-                               //so construct it from a bitmap object until I can figure this nonsense out. (DW)
-                               new wxBitmap(bitmap)
-                             #else
                                new wxBitmap( (const wxIcon&) bitmap )
-                             #endif
                                : new wxBitmap(bitmap) ;
 
     if (index == (int) m_images.GetCount() - 1)

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/filefn.h
 // Purpose:     File- and directory-related functions
@@ -33,19 +26,7 @@
     #include <sys/stat.h>
 #endif
 
-#ifdef __OS2__
-// need to check for __OS2__ first since currently both
-// __OS2__ and __UNIX__ are defined.
-    #include <process.h>
-    #include "wx/os2/private.h"
-    #ifdef __WATCOMC__
-        #include <direct.h>
-    #endif
-    #include <io.h>
-    #ifdef __EMX__
-        #include <unistd.h>
-    #endif
-#elif defined(__UNIX__)
+#if defined(__UNIX__)
     #include <unistd.h>
     #include <dirent.h>
 #endif
@@ -59,11 +40,6 @@
 #endif // native Win compiler
 
 #if defined(__DOS__)
-    #ifdef __WATCOMC__
-        #include <direct.h>
-        #include <dos.h>
-        #include <io.h>
-    #endif
     #ifdef __DJGPP__
         #include <io.h>
         #include <unistd.h>
@@ -192,7 +168,7 @@ enum wxPosixPermissions
     #define   wxCRT_RmDir      _wrmdir
     #define   wxCRT_Stat       _wstat
     #define   wxStructStat struct _stat
-#elif (defined(__WINDOWS__) || defined(__OS2__)) && \
+#elif defined(__WINDOWS__) && \
       ( \
         defined(__VISUALC__) || \
         defined(__MINGW64__) || \
@@ -225,8 +201,8 @@ enum wxPosixPermissions
         #define wxFtell ftello64
     #endif
 
-    // other Windows compilers (DMC, Watcom, and Borland) don't have huge file
-    // support (or at least not all functions needed for it by wx) currently
+    // other Windows compilers (Borland) don't have huge file support (or at
+    // least not all functions needed for it by wx) currently
 
     // types
 
@@ -245,12 +221,8 @@ enum wxPosixPermissions
         #define wxPOSIX_STRUCT(s)    struct wxPOSIX_IDENT(s)
     #endif
 
-    // Notice that Watcom is the only compiler to have a wide char
-    // version of struct stat as well as a wide char stat function variant.
-    // This was dropped since OW 1.4 "for consistency across platforms".
-    //
-    // Borland is also special in that it uses _stat with Unicode functions
-    // (for MSVC compatibility?) but stat with ANSI ones
+    // Borland is special in that it uses _stat with Unicode functions (for
+    // MSVC compatibility?) but stat with ANSI ones
     #ifdef __BORLANDC__
         #if wxHAS_HUGE_FILES
             #define wxStructStat struct stati64
@@ -263,17 +235,9 @@ enum wxPosixPermissions
         #endif
     #else // !__BORLANDC__
         #ifdef wxHAS_HUGE_FILES
-            #if wxUSE_UNICODE && wxONLY_WATCOM_EARLIER_THAN(1,4)
-                #define wxStructStat struct _wstati64
-            #else
-                #define wxStructStat struct _stati64
-            #endif
+            #define wxStructStat struct _stati64
         #else
-            #if wxUSE_UNICODE && wxONLY_WATCOM_EARLIER_THAN(1,4)
-                #define wxStructStat struct _wstat
-            #else
-                #define wxStructStat struct _stat
-            #endif
+            #define wxStructStat struct _stat
         #endif
     #endif // __BORLANDC__/!__BORLANDC__
 
@@ -317,17 +281,15 @@ enum wxPosixPermissions
         #define   wxTell       wxPOSIX_IDENT(tell)
     #endif // wxHAS_HUGE_FILES/!wxHAS_HUGE_FILES
 
-    #ifndef __WATCOMC__
-         #if !defined(__BORLANDC__) || (__BORLANDC__ > 0x540)
-             // NB: this one is not POSIX and always has the underscore
-             #define   wxFsync      _commit
+     #if !defined(__BORLANDC__) || (__BORLANDC__ > 0x540)
+         // NB: this one is not POSIX and always has the underscore
+         #define   wxFsync      _commit
 
-             // could be already defined by configure (Cygwin)
-             #ifndef HAVE_FSYNC
-                 #define HAVE_FSYNC
-             #endif
-        #endif // BORLANDC
-    #endif
+         // could be already defined by configure (Cygwin)
+         #ifndef HAVE_FSYNC
+             #define HAVE_FSYNC
+         #endif
+    #endif // BORLANDC
 
     #define   wxEof        wxPOSIX_IDENT(eof)
 
@@ -348,12 +310,7 @@ enum wxPosixPermissions
             #define   wxCRT_StatA       wxPOSIX_IDENT(stati64)
         #endif
     #else
-        // Unfortunately Watcom is not consistent
-        #if defined(__OS2__) && defined(__WATCOMC__)
-            #define   wxCRT_StatA       _stat
-        #else
-            #define   wxCRT_StatA       wxPOSIX_IDENT(stat)
-        #endif
+        #define   wxCRT_StatA       wxPOSIX_IDENT(stat)
     #endif
 
     // then wide char ones
@@ -504,8 +461,7 @@ inline int wxLstat(const wxString& path, wxStructStat *buf)
     { return wxCRT_Lstat(path.fn_str(), buf); }
 inline int wxRmDir(const wxString& path)
     { return wxCRT_RmDir(path.fn_str()); }
-#if (defined(__WINDOWS__) && !defined(__CYGWIN__)) \
-        || (defined(__OS2__) && defined(__WATCOMC__))
+#if (defined(__WINDOWS__) && !defined(__CYGWIN__))
 inline int wxMkDir(const wxString& path, mode_t WXUNUSED(mode) = 0)
     { return wxCRT_MkDir(path.fn_str()); }
 #else
@@ -520,15 +476,7 @@ inline int wxMkDir(const wxString& path, mode_t mode)
     #define wxO_BINARY 0
 #endif
 
-#if defined(__VISAGECPP__) && __IBMCPP__ >= 400
-//
-// VisualAge C++ V4.0 cannot have any external linkage const decs
-// in headers included by more than one primary source
-//
-extern const int wxInvalidOffset;
-#else
 const int wxInvalidOffset = -1;
-#endif
 
 // ----------------------------------------------------------------------------
 // functions
@@ -668,7 +616,7 @@ WXDLLIMPEXP_BASE bool wxIsExecutable(const wxString &path);
 #define wxPATH_SEP_MAC        wxT(";")
 
 // platform independent versions
-#if defined(__UNIX__) && !defined(__OS2__)
+#if defined(__UNIX__)
   // CYGWIN also uses UNIX settings
   #define wxFILE_SEP_PATH     wxFILE_SEP_PATH_UNIX
   #define wxPATH_SEP          wxPATH_SEP_UNIX
@@ -682,7 +630,7 @@ WXDLLIMPEXP_BASE bool wxIsExecutable(const wxString &path);
 
 // this is useful for wxString::IsSameAs(): to compare two file names use
 // filename1.IsSameAs(filename2, wxARE_FILENAMES_CASE_SENSITIVE)
-#if defined(__UNIX__) && !defined(__DARWIN__) && !defined(__OS2__)
+#if defined(__UNIX__) && !defined(__DARWIN__)
   #define wxARE_FILENAMES_CASE_SENSITIVE  true
 #else   // Windows, Mac OS and OS/2
   #define wxARE_FILENAMES_CASE_SENSITIVE  false
@@ -692,7 +640,7 @@ WXDLLIMPEXP_BASE bool wxIsExecutable(const wxString &path);
 inline bool wxIsPathSeparator(wxChar c)
 {
     // under DOS/Windows we should understand both Unix and DOS file separators
-#if ( defined(__UNIX__) && !defined(__OS2__) )|| defined(__MAC__)
+#if defined(__UNIX__) || defined(__MAC__)
     return c == wxFILE_SEP_PATH;
 #else
     return c == wxFILE_SEP_PATH_DOS || c == wxFILE_SEP_PATH_UNIX;

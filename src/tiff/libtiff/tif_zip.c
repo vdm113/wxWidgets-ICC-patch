@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 /*
  * Copyright (c) 1995-1997 Sam Leffler
@@ -173,9 +166,6 @@ ZIPDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 		TIFFErrorExt(tif->tif_clientdata, module, "ZLib cannot deal with buffers this size");
 		return (0);
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	do {
 		int state = inflate(&sp->stream, Z_PARTIAL_FLUSH);
 		if (state == Z_STREAM_END)
@@ -280,9 +270,6 @@ ZIPEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 		TIFFErrorExt(tif->tif_clientdata, module, "ZLib cannot deal with buffers this size");
 		return (0);
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	do {
 		if (deflate(&sp->stream, Z_NO_FLUSH) != Z_OK) {
 			TIFFErrorExt(tif->tif_clientdata, module, "Encoder error: %s",
@@ -311,9 +298,6 @@ ZIPPostEncode(TIFF* tif)
 	int state;
 
 	sp->stream.avail_in = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	do {
 		state = deflate(&sp->stream, Z_FINISH);
 		switch (state) {

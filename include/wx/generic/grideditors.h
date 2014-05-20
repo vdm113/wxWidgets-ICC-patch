@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/generic/grideditors.h
 // Purpose:     wxGridCellEditorEvtHandler and wxGrid editors
@@ -83,6 +76,7 @@ public:
 
     // parameters string format is "max_width"
     virtual void SetParameters(const wxString& params) wxOVERRIDE;
+#if wxUSE_VALIDATORS
     virtual void SetValidator(const wxValidator& validator);
 #endif
 

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/statusbr.cpp
 // Purpose:     wxStatusBarGeneric class implementation
@@ -129,10 +122,6 @@ bool wxStatusBarGeneric::Create(wxWindow *parent,
     SetThemeEnabled( true );
 
     InitColours();
-
-#ifdef __WXPM__
-    SetFont(*wxSMALL_FONT);
-#endif
 
     int height = (int)((11*GetCharHeight())/10 + 2*GetBorderY());
     SetSize(wxDefaultCoord, wxDefaultCoord, wxDefaultCoord, height);
@@ -306,8 +295,6 @@ void wxStatusBarGeneric::DrawField(wxDC& dc, int i, int textHeight)
 
         dc.SetPen((style == wxSB_RAISED) ? m_mediumShadowPen : m_hilightPen);
 
-#ifndef __WXPM__
-
         // Right and bottom lines
         dc.DrawLine(rect.x + rect.width, rect.y,
                     rect.x + rect.width, rect.y + rect.height);
@@ -321,19 +308,6 @@ void wxStatusBarGeneric::DrawField(wxDC& dc, int i, int textHeight)
                rect.x, rect.y);
         dc.DrawLine(rect.x, rect.y,
             rect.x + rect.width, rect.y);
-#else
-
-        dc.DrawLine(rect.x + rect.width, rect.height + 2,
-                    rect.x, rect.height + 2);
-        dc.DrawLine(rect.x + rect.width, rect.y,
-                    rect.x + rect.width, rect.y + rect.height);
-
-        dc.SetPen((style == wxSB_RAISED) ? m_hilightPen : m_mediumShadowPen);
-        dc.DrawLine(rect.x, rect.y,
-                    rect.x + rect.width, rect.y);
-        dc.DrawLine(rect.x, rect.y + rect.height,
-                    rect.x, rect.y);
-#endif
     }
 
     DrawFieldText(dc, rect, i, textHeight);
@@ -358,9 +332,6 @@ bool wxStatusBarGeneric::GetFieldRect(int n, wxRect& rect) const
         return false;
 
     rect.x = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int i = 0; i < n; i++ )
         rect.x += m_widthsAbs[i];
     rect.x += m_borderX;
@@ -384,9 +355,6 @@ int wxStatusBarGeneric::GetFieldFromPoint(const wxPoint& pt) const
         return wxNOT_FOUND;
 
     int x = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t i = 0; i < m_panes.GetCount(); i++ )
     {
         if (pt.x > x && pt.x < x+m_widthsAbs[i])
@@ -400,16 +368,8 @@ int wxStatusBarGeneric::GetFieldFromPoint(const wxPoint& pt) const
 
 void wxStatusBarGeneric::InitColours()
 {
-#if defined(__WXPM__)
-    m_mediumShadowPen = wxPen(wxColour(127, 127, 127));
-    m_hilightPen = *wxWHITE_PEN;
-
-    SetBackgroundColour(*wxLIGHT_GREY);
-    SetForegroundColour(*wxBLACK);
-#else // !__WXPM__
     m_mediumShadowPen = wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_3DSHADOW));
     m_hilightPen = wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_3DHILIGHT));
-#endif // __WXPM__/!__WXPM__
 }
 
 void wxStatusBarGeneric::SetMinHeight(int height)
@@ -487,9 +447,6 @@ void wxStatusBarGeneric::OnPaint(wxPaintEvent& WXUNUSED(event) )
     int textHeight = dc.GetCharHeight();
 
     dc.SetBackgroundMode(wxBRUSHSTYLE_TRANSPARENT);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (size_t i = 0; i < m_panes.GetCount(); i ++)
         DrawField(dc, i, textHeight);
 }

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/weakref.h
 // Purpose:     wxWeakRef - Generic weak references for wxWidgets
@@ -47,7 +40,10 @@ public:
         this->Assign(pobj);
     }
 
-    virtual void OnObjectDestroy() wxOVERRIDE
+    // When we have the full type here, static_cast<> will always work
+    // (or give a straight compiler error).
+    template <class TDerived>
+    wxWeakRef(TDerived* pobj) : m_pobj(NULL), m_ptbase(NULL)
     {
         this->Assign(pobj);
     }

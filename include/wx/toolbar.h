@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/toolbar.h
 // Purpose:     wxToolBar interface declaration
@@ -90,8 +83,6 @@ enum
        #include "wx/osx/toolbar.h"
     #elif defined(__WXCOCOA__)
        #include "wx/cocoa/toolbar.h"
-    #elif defined(__WXPM__)
-       #include "wx/os2/toolbar.h"
     #endif
 #endif // wxUSE_TOOLBAR
 

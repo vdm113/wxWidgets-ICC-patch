@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/xtitypes.h
 // Purpose:     enum, set, basic types support
@@ -149,9 +142,6 @@ void wxSetFromString(const wxString &s, wxBitset<e> &data )
     wxArrayString array;
     wxSetStringToArray( s, array );
     wxString flag;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int i = 0; i < array.Count(); ++i )
     {
         flag = array[i];
@@ -170,9 +160,6 @@ void wxSetToString( wxString &s, const wxBitset<e> &data )
     int count = edata->GetEnumCount();
     int i;
     s.Clear();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( i = 0; i < count; i++ )
     {
         e value = (e) edata->GetEnumMemberValueByIndex(i);
@@ -210,9 +197,6 @@ void wxFlagsFromString(const wxString &s, e &data )
     wxArrayString array;
     wxSetStringToArray( s, array );
     wxString flag;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t i = 0; i < array.Count(); ++i )
     {
         flag = array[i];
@@ -232,9 +216,6 @@ void wxFlagsToString( wxString &s, const e& data )
     int i;
     s.Clear();
     long dataValue = data.m_data;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( i = 0; i < count; i++ )
     {
         int value = edata->GetEnumMemberValueByIndex(i);

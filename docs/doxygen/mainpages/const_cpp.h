@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        const_cpp.h
 // Purpose:     Preprocessor symbols
@@ -54,7 +47,7 @@ while @c __WINDOWS__ should be used for the platform tests.}
 @itemdef{__WXOSX_MAC__, Mac OS X (Carbon or Cocoa)}
 @itemdef{__WXOSX_OR_COCOA__, Any Mac OS X port (wxOSX-Carbon, wxOSX-Cocoa or 
                         wxCocoa)}
-@itemdef{__WXPM__, OS/2 native Presentation Manager}
+@itemdef{__WXPM__, OS/2 native Presentation Manager (not used any longer).}
 @itemdef{__WXSTUBS__, Stubbed version ('template' wxWin implementation)}
 @itemdef{__WXXT__, Xt; mutually exclusive with WX_MOTIF, not implemented in wxWidgets 2.x}
 @itemdef{__WXX11__, wxX11 (__WXUNIVERSAL__ will be also defined)}
@@ -174,7 +167,8 @@ compiler used.
                     for compiler version being precisely 7.}
 @itemdef{__XLC__, AIX compiler}
 @itemdef{__WATCOMC__, Watcom C++. The value of this macro corresponds to
-                    the compiler version, @c 1100 is @c 11.0 and @c 1200 is OpenWatcom.}
+                    the compiler version, @c 1100 is @c 11.0 and @c 1200 is OpenWatcom
+                    (not used any more).}
 @endDefList
 
 

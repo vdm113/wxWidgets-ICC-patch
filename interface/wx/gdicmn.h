@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        gdicmn.h
 // Purpose:     interface of wxRealPoint
@@ -1046,7 +1039,7 @@ const wxSize wxDefaultSize;
 
 /**
     This macro loads a bitmap from either application resources (on the
-    platforms for which they exist, i.e. Windows and OS2) or from an XPM file.
+    platforms for which they exist, i.e.\ Windows) or from an XPM file.
     This can help to avoid using @ifdef_ when creating bitmaps.
 
     @see @ref overview_bitmap, wxICON()
@@ -1124,7 +1117,7 @@ const wxSize wxDefaultSize;
 
 /**
     This macro loads an icon from either application resources (on the
-    platforms for which they exist, i.e. Windows and OS2) or from an XPM file.
+    platforms for which they exist, i.e.\ Windows) or from an XPM file.
     This can help to avoid using @ifdef_ when creating icons.
 
     @see @ref overview_bitmap, wxBITMAP()

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/cshelp.cpp
 // Purpose:     Context sensitive help class implementation
@@ -107,9 +100,6 @@ static void wxPushOrPopEventHandlers(wxContextHelp* help, wxWindow* win, bool pu
         win->PopEventHandler(true);
 
     wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (node)
     {
         wxWindow* child = node->GetData();
@@ -193,9 +183,6 @@ bool wxContextHelp::EventLoop()
 {
     m_inHelp = true;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( m_inHelp )
     {
         if (wxTheApp->Pending())
@@ -263,8 +250,6 @@ bool wxContextHelp::DispatchEvent(wxWindow* win, const wxPoint& pt)
  * to put the application into context help mode.
  */
 
-#ifndef __WXPM__
-
 static const char * csquery_xpm[] = {
 "12 11 2 1",
 "  c None",
@@ -281,7 +266,6 @@ static const char * csquery_xpm[] = {
 "     ..     ",
 "            "};
 
-#endif
 
 IMPLEMENT_CLASS(wxContextHelpButton, wxBitmapButton)
 
@@ -296,12 +280,7 @@ bool wxContextHelpButton::Create(wxWindow* parent,
                                          long style)
 {
     return wxBitmapButton::Create(parent, id,
-#if defined(__WXPM__)
-                                  wxBitmap(wxCSQUERY_BITMAP,
-                                           wxBITMAP_TYPE_BMP_RESOURCE),
-#else
                                   wxBitmap(csquery_xpm),
-#endif
                                   pos, size, style);
 }
 

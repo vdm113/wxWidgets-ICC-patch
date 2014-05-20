@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/stdpaths.h
 // Purpose:     declaration of wxStandardPaths class
@@ -184,9 +177,6 @@ protected:
     // We want CoreFoundation paths on both CarbonLib and Darwin (for all ports)
     #elif defined(__WXMAC__) || defined(__DARWIN__)
         #include "wx/osx/core/stdpaths.h"
-        #define wxHAS_NATIVE_STDPATHS
-    #elif defined(__OS2__)
-        #include "wx/os2/stdpaths.h"
         #define wxHAS_NATIVE_STDPATHS
     #elif defined(__UNIX__)
         #include "wx/unix/stdpaths.h"

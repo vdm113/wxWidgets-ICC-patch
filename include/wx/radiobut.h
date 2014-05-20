@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/radiobut.h
 // Purpose:     wxRadioButton declaration
@@ -55,8 +48,6 @@ extern WXDLLIMPEXP_DATA_CORE(const char) wxRadioButtonNameStr[];
     #include "wx/osx/radiobut.h"
 #elif defined(__WXCOCOA__)
     #include "wx/cocoa/radiobut.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/radiobut.h"
 #endif
 
 #endif // wxUSE_RADIOBTN

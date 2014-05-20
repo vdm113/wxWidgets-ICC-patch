@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/univ/winuniv.cpp
 // Purpose:     implementation of extra wxWindow methods for wxUniv port
@@ -104,8 +97,6 @@ public:
     IMPLEMENT_DYNAMIC_CLASS(wxWindow, wxWindowDFB)
 #elif defined(__WXX11__)
     IMPLEMENT_DYNAMIC_CLASS(wxWindow, wxWindowX11)
-#elif defined(__WXPM__)
-    IMPLEMENT_DYNAMIC_CLASS(wxWindow, wxWindowOS2)
 #endif
 
 BEGIN_EVENT_TABLE(wxWindow, wxWindowNative)
@@ -497,9 +488,6 @@ void wxWindow::Refresh(bool eraseBackground, const wxRect *rect)
 
     // Refresh all sub controls if any.
     wxWindowList& children = GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxWindowList::iterator i = children.begin(); i != children.end(); ++i )
     {
         wxWindow *child = *i;
@@ -1100,9 +1088,6 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
     // scroll children accordingly:
     wxPoint offset(dx, dy);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
          node; node = node->GetNext())
     {
@@ -1329,9 +1314,6 @@ void wxWindow::OnKeyDown(wxKeyEvent& event)
 #endif // wxUSE_MENUS
 
 #if wxUSE_ACCEL
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxWindow *win = this; win; win = win->GetParent() )
     {
         int command = win->GetAcceleratorTable()->GetCommand(event);
@@ -1394,9 +1376,6 @@ void wxWindow::OnKeyDown(wxKeyEvent& event)
 
 wxMenuBar *wxWindow::GetParentFrameMenuBar() const
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const wxWindow *win = this; win; win = win->GetParent() )
     {
         if ( win->IsTopLevel() )

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/sound.h
 // Purpose:     wxSoundBase class
@@ -67,8 +60,6 @@ protected:
     #include "wx/cocoa/sound.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/sound.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/sound.h"
 #elif defined(__UNIX__)
     #include "wx/unix/sound.h"
 #endif

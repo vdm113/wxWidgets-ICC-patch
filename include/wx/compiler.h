@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  * Name:        wx/compiler.h
  * Purpose:     Compiler-specific macro definitions.
@@ -110,22 +103,6 @@
     #define wxCHECK_SUNCC_VERSION(maj, min) (__SUNCC__ >= (((maj)<<8) | ((min)<<4)))
 #else
     #define wxCHECK_SUNCC_VERSION(maj, min) (0)
-#endif
-
-#ifndef __WATCOMC__
-#   define wxWATCOM_VERSION(major,minor) 0
-#   define wxCHECK_WATCOM_VERSION(major,minor) 0
-#   define wxONLY_WATCOM_EARLIER_THAN(major,minor) 0
-#   define WX_WATCOM_ONLY_CODE( x )
-#else
-#   if __WATCOMC__ < 1200
-#       error "Only Open Watcom is supported in this release"
-#   endif
-
-#   define wxWATCOM_VERSION(major,minor) ( major * 100 + minor * 10 + 1100 )
-#   define wxCHECK_WATCOM_VERSION(major,minor) ( __WATCOMC__ >= wxWATCOM_VERSION(major,minor) )
-#   define wxONLY_WATCOM_EARLIER_THAN(major,minor) ( __WATCOMC__ < wxWATCOM_VERSION(major,minor) )
-#   define WX_WATCOM_ONLY_CODE( x )  x
 #endif
 
 /*

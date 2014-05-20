@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/palette.h
 // Purpose:     Common header and base class for wxPalette
@@ -42,8 +35,6 @@ public:
     #include "wx/generic/paletteg.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/palette.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/palette.h"
 #endif
 
 #endif // wxUSE_PALETTE

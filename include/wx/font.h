@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/font.h
 // Purpose:     wxFontBase class: the interface of wxFont
@@ -539,8 +532,6 @@ WXDLLIMPEXP_CORE bool wxFromString(const wxString& str, wxFontBase* font);
     #include "wx/osx/font.h"
 #elif defined(__WXCOCOA__)
     #include "wx/cocoa/font.h"
-#elif defined(__WXPM__)
-    #include "wx/os2/font.h"
 #endif
 
 class WXDLLIMPEXP_CORE wxFontList: public wxGDIObjListBase

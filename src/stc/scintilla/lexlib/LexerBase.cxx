@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexerBase.cxx
  ** A simple lexer with no state.
@@ -35,18 +28,12 @@ using namespace Scintilla;
 #endif
 
 LexerBase::LexerBase() {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (int wl = 0; wl < numWordLists; wl++)
 		keyWordLists[wl] = new WordList;
 	keyWordLists[numWordLists] = 0;
 }
 
 LexerBase::~LexerBase() {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (int wl = 0; wl < numWordLists; wl++) {
 		delete keyWordLists[wl];
 		keyWordLists[wl] = 0;

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/longlong.h
 // Purpose:     declaration of wxLongLong class - best implementation of a 64
@@ -53,7 +46,7 @@
                  "integers, using emulation class instead.\n" \
                  "Please report your compiler version to " \
                  "wx-dev@lists.wxwidgets.org!"
-    #elif !(defined(__WATCOMC__) || defined(__VISAGECPP__))
+    #else
         #pragma warning "Your compiler does not appear to support 64 bit "\
                         "integers, using emulation class instead.\n" \
                         "Please report your compiler version to " \

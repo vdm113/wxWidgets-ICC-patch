@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        cube.cpp
 // Purpose:     wxGLCanvas demo program
@@ -62,9 +55,6 @@ static void CheckGLError()
 {
     GLenum errLast = GL_NO_ERROR;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ;; )
     {
         GLenum err = glGetError();
@@ -168,9 +158,6 @@ TestGLContext::TestGLContext(wxGLCanvas *canvas)
     // each texture could take many megabytes)
     glGenTextures(WXSIZEOF(m_textures), m_textures);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( unsigned i = 0; i < WXSIZEOF(m_textures); i++ )
     {
         glBindTexture(GL_TEXTURE_2D, m_textures[i]);
@@ -342,9 +329,6 @@ TestGLCanvas::TestGLCanvas(wxWindow *parent, int *attribList)
     if ( attribList )
     {
         int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while ( attribList[i] != 0 )
         {
             if ( attribList[i] == WX_GL_STEREO )

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/checkbox.h
 // Purpose:     wxCheckBox class interface
@@ -187,9 +180,6 @@ private:
     #include "wx/osx/checkbox.h"
 #elif defined(__WXCOCOA__)
     #include "wx/cocoa/checkbox.h"
-#elif defined(__WXPM__)
-    #undef wxHAS_3STATE_CHECKBOX
-    #include "wx/os2/checkbox.h"
 #endif
 
 #endif // wxUSE_CHECKBOX

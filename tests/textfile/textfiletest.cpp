@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/textfile/textfile.cpp
 // Purpose:     wxTextFile unit test
@@ -270,9 +263,6 @@ void TextFileTestCase::ReadCRCRLF()
     CPPUNIT_ASSERT( f.Open(wxString::FromAscii(GetTestFileName())) );
 
     wxString all;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxString str = f.GetFirstLine(); !f.Eof(); str = f.GetNextLine() )
         all += str;
 
@@ -328,9 +318,6 @@ void TextFileTestCase::ReadBig()
 
     {
         wxFFile f(GetTestFileName(), "w");
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < NUM_LINES; n++ )
         {
             fprintf(f.fp(), "Line %lu\n", (unsigned long)n + 1);

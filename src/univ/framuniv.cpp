@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/univ/framuniv.cpp
 // Purpose:     wxFrame class for wxUniversal
@@ -114,12 +107,7 @@ void wxFrame::PositionMenuBar()
 #endif // wxUSE_TOOLBAR
 
         m_frameMenuBar->SetSize(0,
-#ifdef __WXPM__   // FIXME -- remove this, make wxOS2/Univ behave as
-                 //          the rest of the world!!!
-                                GetClientSize().y - heightMbar - heightTbar,
-#else
                                 - (heightMbar + heightTbar),
-#endif
                                 GetClientSize().x, heightMbar);
     }
 }
@@ -200,7 +188,7 @@ wxPoint wxFrame::GetClientAreaOrigin() const
 {
     wxPoint pt = wxFrameBase::GetClientAreaOrigin();
 
-#if wxUSE_MENUS && !defined(__WXPM__)
+#if wxUSE_MENUS
     if ( m_frameMenuBar )
     {
         pt.y += m_frameMenuBar->GetSize().y;
