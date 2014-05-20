@@ -170,8 +170,15 @@ public:
         
         @onlyfor{wxmsw}
     */
-    virtual const wxBitmap& GetBitmap() const;
+    virtual const wxBitmap& GetBitmap(bool checked = true) const;
 
+    /**
+        Returns the bitmap to be used for disabled items.
+        
+        @onlyfor{wxmsw}
+    */
+    virtual const wxBitmap& GetDisabledBitmap() const;
+    
     /**
         Returns the font associated with the menu item.
         
@@ -375,6 +382,14 @@ public:
     */
     void SetBitmaps(const wxBitmap& checked,
                     const wxBitmap& unchecked = wxNullBitmap);
+
+    /**
+        Sets the to be used for disabled menu items.
+
+        @onlyfor{wxmsw}
+    */
+    void SetDisabledBitmap(const wxBitmap& disabled);
+
 
     /**
         Sets the font associated with the menu item.
