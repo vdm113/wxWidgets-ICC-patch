@@ -55,38 +55,35 @@
     <ClCompile Include="..\..\src\richtext\richtextxml.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\xrc\xh_richtext.cpp">
+    <ClCompile Include="..\..\src\richtext\richtextbackgroundpage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\richtext\richtextbackgroundpage.cpp">
-      <Filter>Common Headers</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\richtext\richtextborderspage.cpp">
-      <Filter>Common Headers</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\richtext\richtextbulletspage.cpp">
-      <Filter>Common Headers</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\richtext\richtextfontpage.cpp">
-      <Filter>Common Headers</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\richtext\richtextindentspage.cpp">
-      <Filter>Common Headers</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\richtext\richtextliststylepage.cpp">
-      <Filter>Common Headers</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\richtext\richtextmarginspage.cpp">
-      <Filter>Common Headers</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\richtext\richtextsizepage.cpp">
-      <Filter>Common Headers</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\richtext\richtextstylepage.cpp">
-      <Filter>Common Headers</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\richtext\richtexttabspage.cpp">
-      <Filter>Common Headers</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +153,9 @@
       <Filter>Common Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\richtext\richtextxml.h">
+      <Filter>Common Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx\richtext\richtexttabspage.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\xrc\xh_richtext.h">

@@ -956,6 +956,7 @@
     <ClInclude Include="..\..\include\wx\msw\notebook.h" />
     <ClInclude Include="..\..\include\wx\msw\notifmsg.h" />
     <ClInclude Include="..\..\include\wx\msw\ole\oleutils.h" />
+    <ClInclude Include="..\..\include\wx\msw\ownerdrawnbutton.h" />
     <ClInclude Include="..\..\include\wx\msw\ownerdrw.h" />
     <ClInclude Include="..\..\include\wx\msw\palette.h" />
     <ClInclude Include="..\..\include\wx\msw\panel.h" />

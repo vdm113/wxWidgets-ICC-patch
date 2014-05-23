@@ -363,15 +363,25 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\richtext\richtextbackgroundpage.cpp" />
+    <ClCompile Include="..\..\src\richtext\richtextborderspage.cpp" />
     <ClCompile Include="..\..\src\richtext\richtextbuffer.cpp" />
+    <ClCompile Include="..\..\src\richtext\richtextbulletspage.cpp" />
     <ClCompile Include="..\..\src\richtext\richtextctrl.cpp" />
+    <ClCompile Include="..\..\src\richtext\richtextfontpage.cpp" />
     <ClCompile Include="..\..\src\richtext\richtextformatdlg.cpp" />
     <ClCompile Include="..\..\src\richtext\richtexthtml.cpp" />
     <ClCompile Include="..\..\src\richtext\richtextimagedlg.cpp" />
+    <ClCompile Include="..\..\src\richtext\richtextindentspage.cpp" />
+    <ClCompile Include="..\..\src\richtext\richtextliststylepage.cpp" />
+    <ClCompile Include="..\..\src\richtext\richtextmarginspage.cpp" />
     <ClCompile Include="..\..\src\richtext\richtextprint.cpp" />
+    <ClCompile Include="..\..\src\richtext\richtextsizepage.cpp" />
     <ClCompile Include="..\..\src\richtext\richtextstyledlg.cpp" />
+    <ClCompile Include="..\..\src\richtext\richtextstylepage.cpp" />
     <ClCompile Include="..\..\src\richtext\richtextstyles.cpp" />
     <ClCompile Include="..\..\src\richtext\richtextsymboldlg.cpp" />
+    <ClCompile Include="..\..\src\richtext\richtexttabspage.cpp" />
     <ClCompile Include="..\..\src\richtext\richtextxml.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -381,6 +391,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\wx\xrc\xh_richtext.h" />
     <CustomBuild Include="..\..\include\wx\msw\setup.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">Creating $(OutDir)mswud\wx\setup.h</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">IF NOT EXIST "$(OutDir)mswud\wx\setup.h" copy "%(FullPath)" "$(OutDir)mswud\wx\setup.h"</Command>
@@ -432,6 +443,7 @@
     <ClInclude Include="..\..\include\wx\richtext\richtextstylepage.h" />
     <ClInclude Include="..\..\include\wx\richtext\richtextstyles.h" />
     <ClInclude Include="..\..\include\wx\richtext\richtextsymboldlg.h" />
+    <ClInclude Include="..\..\include\wx\richtext\richtexttabspage.h" />
     <ClInclude Include="..\..\include\wx\richtext\richtextuicustomization.h" />
     <ClInclude Include="..\..\include\wx\richtext\richtextxml.h" />
   </ItemGroup>
