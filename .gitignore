@@ -2640,6 +2640,9 @@ My Advisor XE Results - *
 *.ampl.cfg
 *.insp.cfg
 
+# ICC 15
+*.db3
+
 # for internal purposes only
 x_vdm.cmd
 
