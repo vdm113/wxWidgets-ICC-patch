@@ -55,34 +55,7 @@
     <ClCompile Include="..\..\src\richtext\richtextxml.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\richtext\richtextbackgroundpage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\richtext\richtextborderspage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\richtext\richtextbulletspage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\richtext\richtextfontpage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\richtext\richtextindentspage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\richtext\richtextliststylepage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\richtext\richtextmarginspage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\richtext\richtextsizepage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\richtext\richtextstylepage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\richtext\richtexttabspage.cpp">
+    <ClCompile Include="..\..\src\xrc\xh_richtext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
