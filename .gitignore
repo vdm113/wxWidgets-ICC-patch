@@ -1,4 +1,3 @@
-
 # /
 /.gdb_history
 /config.cache
@@ -2629,9 +2628,17 @@ rcdefs.h
 /build/msw/Debug*
 /build/msw/Release*
 /build/msw/X64*
-*.sdf
-*.opensdf
-*.suo
+
+# inspector / amplifier files
+config.insprc
+My Amplifier Results*
+My Inspector Results*
+My Inspector XE Results - *
+My Amplifier XE Results - *
+My Advisor XE Results - *
+/summary
+*.ampl.cfg
+*.insp.cfg
 
 # for internal purposes only
 x_vdm.cmd
