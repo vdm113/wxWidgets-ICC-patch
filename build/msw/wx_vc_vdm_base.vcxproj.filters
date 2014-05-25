@@ -366,6 +366,7 @@
     <ClCompile Include="..\..\src\common\threadinfo.cpp">
       <Filter>Common Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\msw\mslu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\src\msw\version.rc">
@@ -913,6 +914,7 @@
     <ClInclude Include="..\..\include\wx\zstream.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\msw\mslu.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\include\wx\msw\setup.h">
