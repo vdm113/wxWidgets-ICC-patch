@@ -149,6 +149,8 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
+      <OptimizationDiagnosticPhase>All</OptimizationDiagnosticPhase>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;wxUSE_GUI=0;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -202,6 +204,8 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
+      <OptimizationDiagnosticPhase>All</OptimizationDiagnosticPhase>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;wxUSE_GUI=0;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -257,6 +261,8 @@
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
+      <OptimizationDiagnosticPhase>All</OptimizationDiagnosticPhase>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxbase31ud_vc_vdm;wxUSE_GUI=0;WXMAKINGDLL_BASE;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -276,6 +282,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
       <MapFileName>$(OutDir)$(TargetName)_vc_vdm_vc_vdm.map</MapFileName>
+      <AdditionalOptions>/Qvec-report:2 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_base_vc_vdm_vc_vdm.bsc</OutputFile>
@@ -320,6 +327,8 @@
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
+      <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
+      <OptimizationDiagnosticPhase>All</OptimizationDiagnosticPhase>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxbase31u_vc_vdm;wxUSE_GUI=0;WXMAKINGDLL_BASE;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -339,6 +348,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
       <MapFileName>$(OutDir)$(TargetName)_vc_vdm_vc_vdm.map</MapFileName>
+      <AdditionalOptions>/Qvec-report:2 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_base_vc_vdm_vc_vdm.bsc</OutputFile>

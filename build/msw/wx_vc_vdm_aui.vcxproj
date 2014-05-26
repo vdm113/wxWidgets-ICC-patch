@@ -150,10 +150,11 @@
       <GenerateAlternateCodePaths>None</GenerateAlternateCodePaths>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <CheckPointers>None</CheckPointers>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <CheckDanglingPointers>None</CheckDanglingPointers>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
+      <OptimizationDiagnosticPhase>All</OptimizationDiagnosticPhase>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -206,10 +207,11 @@
       <GenerateAlternateCodePaths>None</GenerateAlternateCodePaths>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <CheckPointers>None</CheckPointers>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <CheckDanglingPointers>None</CheckDanglingPointers>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
+      <OptimizationDiagnosticPhase>All</OptimizationDiagnosticPhase>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -263,10 +265,11 @@
       <GenerateAlternateCodePaths>None</GenerateAlternateCodePaths>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <CheckPointers>None</CheckPointers>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <CheckDanglingPointers>None</CheckDanglingPointers>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
+      <OptimizationDiagnosticPhase>All</OptimizationDiagnosticPhase>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw31ud_aui_vc_vdm;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -286,6 +289,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <InterproceduralOptimization>true</InterproceduralOptimization>
       <SetChecksum>true</SetChecksum>
+      <AdditionalOptions>/Qvec-report:2 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_aui_vc_vdm_vc_vdm.bsc</OutputFile>
@@ -328,10 +332,11 @@
       <GenerateAlternateCodePaths>None</GenerateAlternateCodePaths>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <CheckPointers>None</CheckPointers>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <CheckDanglingPointers>None</CheckDanglingPointers>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
+      <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
+      <OptimizationDiagnosticPhase>All</OptimizationDiagnosticPhase>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw31u_aui_vc_vdm;WXUSINGDLL;WXMAKINGDLL_AUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -351,6 +356,7 @@
       <LargeAddressAware>true</LargeAddressAware>
       <InterproceduralOptimization>true</InterproceduralOptimization>
       <SetChecksum>true</SetChecksum>
+      <AdditionalOptions>/Qvec-report:2 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Bscmake>
       <OutputFile>$(OutDir)wx_vc9_aui_vc_vdm_vc_vdm.bsc</OutputFile>
