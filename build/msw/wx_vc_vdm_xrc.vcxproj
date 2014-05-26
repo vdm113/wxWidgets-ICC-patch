@@ -154,9 +154,9 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
-      <OptimizationDiagnosticPhase>All</OptimizationDiagnosticPhase>
       <DiagnosticsFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\diag.txt</DiagnosticsFile>
-      <EmitOptimizationDiagnosticsToFile>false</EmitOptimizationDiagnosticsToFile>
+      <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
+      <EmitDiagnosticsToFile>true</EmitDiagnosticsToFile>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -213,9 +213,9 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
-      <OptimizationDiagnosticPhase>All</OptimizationDiagnosticPhase>
       <DiagnosticsFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\diag.txt</DiagnosticsFile>
-      <EmitOptimizationDiagnosticsToFile>false</EmitOptimizationDiagnosticsToFile>
+      <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
+      <EmitDiagnosticsToFile>true</EmitDiagnosticsToFile>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -273,9 +273,9 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
-      <OptimizationDiagnosticPhase>All</OptimizationDiagnosticPhase>
       <DiagnosticsFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\diag.txt</DiagnosticsFile>
-      <EmitOptimizationDiagnosticsToFile>false</EmitOptimizationDiagnosticsToFile>
+      <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
+      <EmitDiagnosticsToFile>true</EmitDiagnosticsToFile>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw31ud_xrc_vc_vdm;WXUSINGDLL;WXMAKINGDLL_XRC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -342,9 +342,9 @@
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
-      <OptimizationDiagnosticPhase>All</OptimizationDiagnosticPhase>
       <DiagnosticsFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\diag.txt</DiagnosticsFile>
-      <EmitOptimizationDiagnosticsToFile>false</EmitOptimizationDiagnosticsToFile>
+      <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
+      <EmitDiagnosticsToFile>true</EmitDiagnosticsToFile>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw31u_xrc_vc_vdm;WXUSINGDLL;WXMAKINGDLL_XRC;%(PreprocessorDefinitions)</PreprocessorDefinitions>

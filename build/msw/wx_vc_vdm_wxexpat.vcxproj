@@ -143,9 +143,9 @@
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
       <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
-      <OptimizationDiagnosticPhase>All</OptimizationDiagnosticPhase>
       <DiagnosticsFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\diag.txt</DiagnosticsFile>
-      <EmitOptimizationDiagnosticsToFile>false</EmitOptimizationDiagnosticsToFile>
+      <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
+      <EmitDiagnosticsToFile>true</EmitDiagnosticsToFile>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -197,9 +197,9 @@
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
       <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
-      <OptimizationDiagnosticPhase>All</OptimizationDiagnosticPhase>
       <DiagnosticsFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\diag.txt</DiagnosticsFile>
-      <EmitOptimizationDiagnosticsToFile>false</EmitOptimizationDiagnosticsToFile>
+      <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
+      <EmitDiagnosticsToFile>true</EmitDiagnosticsToFile>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -252,9 +252,9 @@
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
       <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
-      <OptimizationDiagnosticPhase>All</OptimizationDiagnosticPhase>
       <DiagnosticsFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\diag.txt</DiagnosticsFile>
-      <EmitOptimizationDiagnosticsToFile>false</EmitOptimizationDiagnosticsToFile>
+      <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
+      <EmitDiagnosticsToFile>true</EmitDiagnosticsToFile>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -306,9 +306,9 @@
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
       <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
-      <OptimizationDiagnosticPhase>All</OptimizationDiagnosticPhase>
       <DiagnosticsFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\diag.txt</DiagnosticsFile>
-      <EmitOptimizationDiagnosticsToFile>false</EmitOptimizationDiagnosticsToFile>
+      <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
+      <EmitDiagnosticsToFile>true</EmitDiagnosticsToFile>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
