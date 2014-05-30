@@ -153,7 +153,7 @@
       <CheckDanglingPointers>None</CheckDanglingPointers>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
       <DiagnosticsFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\diag.txt</DiagnosticsFile>
       <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
       <EmitDiagnosticsToFile>true</EmitDiagnosticsToFile>
@@ -212,7 +212,7 @@
       <CheckDanglingPointers>None</CheckDanglingPointers>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
       <DiagnosticsFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\diag.txt</DiagnosticsFile>
       <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
       <EmitDiagnosticsToFile>true</EmitDiagnosticsToFile>
@@ -272,7 +272,7 @@
       <CheckDanglingPointers>None</CheckDanglingPointers>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
       <DiagnosticsFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\diag.txt</DiagnosticsFile>
       <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
       <EmitDiagnosticsToFile>true</EmitDiagnosticsToFile>

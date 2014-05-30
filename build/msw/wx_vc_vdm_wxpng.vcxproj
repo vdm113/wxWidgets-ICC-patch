@@ -142,7 +142,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
-      <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
       <DiagnosticsFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\diag.txt</DiagnosticsFile>
       <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
       <EmitDiagnosticsToFile>true</EmitDiagnosticsToFile>
@@ -196,7 +196,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
-      <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
       <DiagnosticsFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\diag.txt</DiagnosticsFile>
       <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
       <EmitDiagnosticsToFile>true</EmitDiagnosticsToFile>
@@ -251,7 +251,7 @@
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <DisableSpecificWarnings>1744;809;650</DisableSpecificWarnings>
       <OpenMP>None</OpenMP>
-      <VectorizerDiagnosticLevel>1PlusNotVectAndReason2</VectorizerDiagnosticLevel>
+      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
       <DiagnosticsFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\diag.txt</DiagnosticsFile>
       <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
       <EmitDiagnosticsToFile>true</EmitDiagnosticsToFile>
