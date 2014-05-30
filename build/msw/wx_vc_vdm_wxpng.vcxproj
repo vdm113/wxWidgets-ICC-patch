@@ -135,7 +135,7 @@
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Precise</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Cpp0xSupport>true</Cpp0xSupport>
@@ -185,7 +185,7 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Precise</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Cpp0xSupport>true</Cpp0xSupport>
@@ -236,7 +236,7 @@
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Precise</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Cpp0xSupport>true</Cpp0xSupport>
@@ -290,7 +290,7 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Precise</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Cpp0xSupport>true</Cpp0xSupport>
