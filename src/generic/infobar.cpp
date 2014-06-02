@@ -293,9 +293,6 @@ size_t wxInfoBarGeneric::GetButtonCount() const
 
     // iterate over the sizer items in reverse order
     const wxSizerItemList& items = sizer->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxSizerItemList::compatibility_iterator node = items.GetLast();
           node != items.GetFirst();
           node = node->GetPrevious() )
@@ -330,9 +327,6 @@ wxWindowID wxInfoBarGeneric::GetButtonId(size_t idx) const
 
     size_t count = 0;
     const wxSizerItemList& items = sizer->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxSizerItemList::compatibility_iterator node = items.GetLast();
           node != items.GetFirst() || node != items.GetLast();
           )
@@ -375,9 +369,6 @@ bool wxInfoBarGeneric::HasButtonId(wxWindowID btnid) const
     // iterate over the sizer items in reverse order to find the last added
     // button with this id
     const wxSizerItemList& items = sizer->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxSizerItemList::compatibility_iterator node = items.GetLast();
           node != items.GetFirst();
           node = node->GetPrevious() )
