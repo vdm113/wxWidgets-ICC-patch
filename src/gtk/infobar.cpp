@@ -277,9 +277,6 @@ bool wxInfoBar::HasButtonId(wxWindowID btnid) const
 
     // as in the generic version, look for the button starting from the end
     const wxInfoBarGTKImpl::Buttons& buttons = m_impl->m_buttons;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxInfoBarGTKImpl::Buttons::const_reverse_iterator i = buttons.rbegin();
           i != buttons.rend();
           ++i )
