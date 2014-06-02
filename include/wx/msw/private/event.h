@@ -22,7 +22,7 @@
 namespace wxWinAPI
 {
 
-class Event : public AutoHANDLE<0>
+class Event : public AutoHANDLE<>
 {
 public:
     enum Kind
