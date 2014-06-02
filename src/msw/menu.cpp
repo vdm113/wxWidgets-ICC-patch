@@ -195,6 +195,9 @@ public:
         // after removing the last radio button from it.
         Ranges::iterator itEmptyGroup = m_ranges.end();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( Ranges::iterator it = m_ranges.begin();
               it != m_ranges.end();
               ++it )
