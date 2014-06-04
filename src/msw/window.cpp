@@ -4238,7 +4238,7 @@ bool wxWindowMSW::HandleSetCursor(WXHWND WXUNUSED(hWnd),
     if ( wxIsBusy() )
     {
         wxDialog* const
-            dlg = wxDynamicCast(wxGetTopLevelParent(this), wxDialog);
+            dlg = wxDynamicCast(wxGetTopLevelParent((wxWindow *)this), wxDialog);
         if ( !dlg || !dlg->IsModal() )
             isBusy = true;
     }
