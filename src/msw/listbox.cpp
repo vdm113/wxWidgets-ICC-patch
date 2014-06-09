@@ -44,7 +44,13 @@
 
 #if wxUSE_OWNER_DRAWN
     #include  "wx/ownerdrw.h"
-#endif
+
+    namespace
+    {
+        // space beneath/above each row in pixels
+        const int LISTBOX_EXTRA_SPACE = 1;
+    } // anonymous namespace
+#endif // wxUSE_OWNER_DRAWN
 
 // ============================================================================
 // list box item declaration and implementation
@@ -667,6 +673,13 @@ bool wxListBox::SetFont(const wxFont &font)
 #endif
         for ( unsigned i = 0; i < count; i++ )
             m_aItems[i]->SetFont(font);
+
+        // Non owner drawn list boxes update the item height on their own, but
+        // we need to do it manually in the owner drawn case.
+        wxClientDC dc(this);
+        dc.SetFont(font);
+        SendMessage(GetHwnd(), LB_SETITEMHEIGHT, 0,
+                    dc.GetCharHeight() + 2 * LISTBOX_EXTRA_SPACE);
     }
 
     wxListBoxBase::SetFont(font);
@@ -708,13 +721,6 @@ bool wxListBox::RefreshItem(size_t n)
 
 // drawing
 // -------
-
-namespace
-{
-    // space beneath/above each row in pixels
-    static const int LISTBOX_EXTRA_SPACE = 1;
-
-} // anonymous namespace
 
 // the height is the same for all items
 // TODO should be changed for LBS_OWNERDRAWVARIABLE style listboxes
