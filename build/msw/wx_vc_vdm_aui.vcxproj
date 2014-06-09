@@ -128,7 +128,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\wxprec_auilibvc_vdm.pch</PrecompiledHeaderOutputFile>
       <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_aui_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
@@ -182,7 +182,7 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\wxprec_auilibvc_vdm.pch</PrecompiledHeaderOutputFile>
       <ProgramDataBaseFileName>$(OutDir)wxmsw31u_aui_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
@@ -239,7 +239,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\wxprec_auidllvc_vdm.pch</PrecompiledHeaderOutputFile>
       <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_aui_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
@@ -304,7 +304,7 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\wxprec_auidllvc_vdm.pch</PrecompiledHeaderOutputFile>
       <ProgramDataBaseFileName>$(OutDir)wxmsw31u_aui_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
