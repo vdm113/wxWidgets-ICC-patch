@@ -1418,6 +1418,9 @@ int wxMenuItem::MSGetMenuItemPos() const
 
     const UINT id = GetMSWId();
     const int menuItems = ::GetMenuItemCount(hMenu);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int i = 0; i < menuItems; i++ )
     {
         const UINT state = ::GetMenuState(hMenu, i, MF_BYPOSITION);
