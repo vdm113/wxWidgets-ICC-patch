@@ -167,7 +167,7 @@ protected:
     /**
         Call this from EVT_LEFT_UP handler (or, alternatively, EVT_LEFT_DOWN).
 
-        @param rootCell HTML cell inside which the click occured. This doesn't
+        @param rootCell HTML cell inside which the click occurred. This doesn't
                         have to be the leaf cell, it can be e.g. toplevel
                         container, but the mouse must be inside the container's
                         area, otherwise the event would be ignored.
@@ -181,7 +181,7 @@ protected:
         Call this from OnInternalIdle of the HTML displaying window. Handles
         mouse movements and must be used together with HandleMouseMoved.
 
-        @param rootCell HTML cell inside which the click occured. This doesn't
+        @param rootCell HTML cell inside which the click occurred. This doesn't
                         have to be the leaf cell, it can be e.g. toplevel
                         container, but the mouse must be inside the container's
                         area, otherwise the event would be ignored.
