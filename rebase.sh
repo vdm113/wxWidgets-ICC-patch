@@ -17,6 +17,9 @@ for i in build/msw/*.bcc build/msw/*.dsp build/msw/*.dsw build/msw/*.gcc build/m
 git commit -a --signoff -m 'sync with upstream; patched for ICC; removed files we do not support'
 cp -rf ../build .
 git commit -a --signoff -m 'restore our project files'
+mv -f README.md README_orig_wx.md
+cp -f ../README.md .
+git commit -a --signoff -m 'restore our README.md for Github'
 detached_head=`git rev-parse HEAD`
 git checkout master
 git merge ${detached_head}
