@@ -287,7 +287,7 @@ GdkWindow* wxGetTopLevelGDK()
 
 PangoContext* wxGetPangoContext()
 {
-    PangoContext* context;
+    PangoContext* context = NULL;
     GtkWidget* widget;
     if (wxGetTopLevel(&widget, NULL))
     {
