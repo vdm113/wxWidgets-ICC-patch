@@ -6,7 +6,7 @@
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
-// Name:        wx/unix/execute.h
+// Name:        wx/unix/private/execute.h
 // Purpose:     private details of wxExecute() implementation
 // Author:      Vadim Zeitlin
 // Copyright:   (c) 1998 Robert Roebling, Julian Smart, Vadim Zeitlin
