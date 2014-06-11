@@ -114,7 +114,6 @@ would like to build, separated by commas. Valid values are:
     gnu           GNU toolchain makefiles (Unix)
     mingw         MinGW makefiles (mingw32-make)
     msvc          MS Visual C++ nmake makefiles
-    watcom        OpenWatcom makefiles
 
 TIP: autoconf Project Type
 ---------------------------
