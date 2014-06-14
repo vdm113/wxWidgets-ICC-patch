@@ -33,7 +33,10 @@
     #include "wx/math.h"
 #endif
 
-#define _FORCENAMELESSUNION
+#ifndef _FORCENAMELESSUNION
+    #define _FORCENAMELESSUNION
+#endif
+
 #include "wx/msw/private.h"
 #include "wx/msw/ole/oleutils.h"
 #include "wx/msw/ole/automtn.h"
