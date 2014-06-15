@@ -706,7 +706,7 @@ void wxMenuItem::SetItemLabel(const wxString& txt)
                  MIIM_DATA |
                  MIIM_BITMAP |
                  MIIM_FTYPE;
-    if ( !::GetMenuItemInfo(hMenu, id, FALSE, &info) )
+    if ( !::GetMenuItemInfo(hMenu, itemPos, TRUE, &info) )
     {
         wxLogLastError(wxT("GetMenuItemInfo"));
         return;
