@@ -1,8 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug DLL|x64">
+      <Configuration>Debug DLL</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release DLL|x64">
+      <Configuration>Release DLL</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x64">
@@ -35,7 +43,29 @@
     <UseILP64Interfaces>false</UseILP64Interfaces>
     <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release DLL|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfAtl>Dynamic</UseOfAtl>
+    <CharacterSet>Unicode</CharacterSet>
+    <InterproceduralOptimization>true</InterproceduralOptimization>
+    <UseIntelIPP>true</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
+    <UseILP64Interfaces>false</UseILP64Interfaces>
+    <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfAtl>Dynamic</UseOfAtl>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseIntelIPP>true</UseIntelIPP>
+    <UseIntelTBB>false</UseIntelTBB>
+    <InstrumentIntelTBB>false</InstrumentIntelTBB>
+    <UseILP64Interfaces>false</UseILP64Interfaces>
+    <InterproceduralOptimization>true</InterproceduralOptimization>
+    <PlatformToolset>Intel C++ Compiler XE 14.0</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug DLL|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfAtl>Dynamic</UseOfAtl>
     <CharacterSet>Unicode</CharacterSet>
@@ -50,27 +80,49 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release DLL|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug DLL|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug DLL|x64'">$(Platform)\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug DLL|x64'">$(Platform)\$(Configuration)\</IntDir>
     <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</PreLinkEventUseInBuild>
+    <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug DLL|x64'">false</PreLinkEventUseInBuild>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug DLL|x64'">false</LinkIncremental>
     <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</PostBuildEventUseInBuild>
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug DLL|x64'">false</PostBuildEventUseInBuild>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release DLL|x64'">$(Platform)\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release DLL|x64'">$(Platform)\$(Configuration)\</IntDir>
     <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</PreLinkEventUseInBuild>
+    <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release DLL|x64'">false</PreLinkEventUseInBuild>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release DLL|x64'">false</LinkIncremental>
     <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</PostBuildEventUseInBuild>
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release DLL|x64'">false</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug DLL|x64'">
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release DLL|x64'">
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -80,6 +132,96 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>..\..\lib\vc_x64_dll\mswud\;..\..\samples\;..\..\include\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;WXUSINGDLL;wxUSE_GUI;_WINDOWS;_CRT_NONSTDC_NO_DEPRECATE=1;_CRT_SECURE_NO_WARNINGS=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
+      <FloatingPointSpeculation>Fast</FloatingPointSpeculation>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <DiagnosticsFile>$(OutDir)/$(TargetName).diag</DiagnosticsFile>
+      <OptimizationDiagnosticsFile>$(OutDir)/$(TargetName).rep</OptimizationDiagnosticsFile>
+      <GAPDiagnosticsFile>$(IntDir)$(TargetName).gap</GAPDiagnosticsFile>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
+      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
+      <FloatingPointModel>Fast2</FloatingPointModel>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <BrowseInformation>false</BrowseInformation>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <VectorizerDiagnosticLevel>Default</VectorizerDiagnosticLevel>
+      <EnableGapAnalysis>Disable</EnableGapAnalysis>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <OptimizationDiagnosticLevel>Disable</OptimizationDiagnosticLevel>
+      <AnalyzeIncludeFiles>true</AnalyzeIncludeFiles>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Cpp0xSupport>true</Cpp0xSupport>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <OffloadConstructs>None</OffloadConstructs>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/Qvec-report1</AdditionalOptions>
+      <AdditionalDependencies>Comctl32.lib;Rpcrt4.lib;wxbase31ud_net_vc_vdm.lib;wxbase31ud_vc_vdm.lib;wxbase31ud_xml_vc_vdm.lib;wxexpat_vc_vdm.lib;wxjpeg_vc_vdm.lib;wxmsw31ud_adv_vc_vdm.lib;wxmsw31ud_aui_vc_vdm.lib;wxmsw31ud_core_vc_vdm.lib;wxmsw31ud_gl_vc_vdm.lib;wxmsw31ud_html_vc_vdm.lib;wxmsw31ud_media_vc_vdm.lib;wxmsw31ud_propgrid_vc_vdm.lib;wxmsw31ud_qa_vc_vdm.lib;wxmsw31ud_ribbon_vc_vdm.lib;wxmsw31ud_richtext_vc_vdm.lib;wxmsw31ud_stc_vc_vdm.lib;wxmsw31ud_webview_vc_vdm.lib;wxmsw31ud_xrc_vc_vdm.lib;wxpng_vc_vdm.lib;wxregexud_vc_vdm.lib;wxscintilla_vc_vdm.lib;wxtiff_vc_vdm.lib;wxzlib_vc_vdm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
+      <AdditionalLibraryDirectories>..\..\lib\vc_x64_lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapExports>true</MapExports>
+      <SubSystem>Windows</SubSystem>
+      <LargeAddressAware>true</LargeAddressAware>
+      <TargetMachine>MachineX64</TargetMachine>
+      <WPOAssemblyOutput>Asm_and_MachineCode_and_Source</WPOAssemblyOutput>
+      <WPOAsmListLocation>$(OutDir)\</WPOAsmListLocation>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <InterproceduralOptimization>true</InterproceduralOptimization>
+      <SetChecksum>true</SetChecksum>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+    <PostBuildEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug DLL|x64'">
+    <ClCompile>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args</AdditionalOptions>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..\..\lib\vc_x64_dll\mswud\;..\..\samples\;..\..\include\</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WXUSINGDLL;_DEBUG;_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;WXUSINGDLL;wxUSE_GUI;_WINDOWS;_CRT_NONSTDC_NO_DEPRECATE=1;_CRT_SECURE_NO_WARNINGS=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -229,6 +371,101 @@
       <AdditionalOptions>/Qvec-report1</AdditionalOptions>
       <AdditionalDependencies>Comctl32.lib;Rpcrt4.lib;wxbase31u_net_vc_vdm.lib;wxbase31u_vc_vdm.lib;wxbase31u_xml_vc_vdm.lib;wxexpat_vc_vdm.lib;wxjpeg_vc_vdm.lib;wxmsw31u_adv_vc_vdm.lib;wxmsw31u_aui_vc_vdm.lib;wxmsw31u_core_vc_vdm.lib;wxmsw31u_gl_vc_vdm.lib;wxmsw31u_html_vc_vdm.lib;wxmsw31u_media_vc_vdm.lib;wxmsw31u_propgrid_vc_vdm.lib;wxmsw31u_qa_vc_vdm.lib;wxmsw31u_ribbon_vc_vdm.lib;wxmsw31u_richtext_vc_vdm.lib;wxmsw31u_stc_vc_vdm.lib;wxmsw31u_webview_vc_vdm.lib;wxmsw31u_xrc_vc_vdm.lib;wxpng_vc_vdm.lib;wxregexu_vc_vdm.lib;wxscintilla_vc_vdm.lib;wxtiff_vc_vdm.lib;wxzlib_vc_vdm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib\vc_x64_lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapExports>true</MapExports>
+      <SubSystem>Windows</SubSystem>
+      <LargeAddressAware>true</LargeAddressAware>
+      <SetChecksum>true</SetChecksum>
+      <TargetMachine>MachineX64</TargetMachine>
+      <WPOAssemblyOutput>Asm_and_MachineCode_and_Source</WPOAssemblyOutput>
+      <WPOAsmListLocation>$(OutDir)\</WPOAsmListLocation>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <InterproceduralOptimization>true</InterproceduralOptimization>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+    <PostBuildEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release DLL|x64'">
+    <ClCompile>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args</AdditionalOptions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
+      <AdditionalIncludeDirectories>..\..\lib\vc_x64_dll\mswu\;..\..\samples\;..\..\include\</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WXUSINGDLL;NDEBUG;_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;wxUSE_GUI;_WINDOWS;_CRT_NONSTDC_NO_DEPRECATE=1;_CRT_SECURE_NO_WARNINGS=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <GlobalOptimizations>true</GlobalOptimizations>
+      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
+      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
+      <FloatingPointSpeculation>Fast</FloatingPointSpeculation>
+      <UseProcessorExtensions>HOST</UseProcessorExtensions>
+      <EnableMatrixMultiplyLibraryCall>Default</EnableMatrixMultiplyLibraryCall>
+      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
+      <DiagnosticsFile>$(OutDir)/$(TargetName).diag</DiagnosticsFile>
+      <OptimizationDiagnosticsFile>$(OutDir)/$(TargetName).rep</OptimizationDiagnosticsFile>
+      <GAPDiagnosticsFile>$(IntDir)$(TargetName).gap</GAPDiagnosticsFile>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
+      <FloatingPointModel>Fast2</FloatingPointModel>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <BrowseInformation>false</BrowseInformation>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <OptimizationDiagnosticLevel>Disable</OptimizationDiagnosticLevel>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <AnalyzeIncludeFiles>true</AnalyzeIncludeFiles>
+      <MinimalRebuild>false</MinimalRebuild>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <Cpp0xSupport>true</Cpp0xSupport>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <EmitOptimizationDiagnosticsToFile>true</EmitOptimizationDiagnosticsToFile>
+      <OffloadConstructs>None</OffloadConstructs>
+      <EnableAnsiAliasing>true</EnableAnsiAliasing>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <Link>
+      <AdditionalOptions>/Qvec-report1</AdditionalOptions>
+      <AdditionalDependencies>Comctl32.lib;Rpcrt4.lib;wxbase31u_net_vc_vdm.lib;wxbase31u_vc_vdm.lib;wxbase31u_xml_vc_vdm.lib;wxexpat_vc_vdm.lib;wxjpeg_vc_vdm.lib;wxmsw31u_adv_vc_vdm.lib;wxmsw31u_aui_vc_vdm.lib;wxmsw31u_core_vc_vdm.lib;wxmsw31u_gl_vc_vdm.lib;wxmsw31u_html_vc_vdm.lib;wxmsw31u_media_vc_vdm.lib;wxmsw31u_propgrid_vc_vdm.lib;wxmsw31u_qa_vc_vdm.lib;wxmsw31u_ribbon_vc_vdm.lib;wxmsw31u_richtext_vc_vdm.lib;wxmsw31u_stc_vc_vdm.lib;wxmsw31u_webview_vc_vdm.lib;wxmsw31u_xrc_vc_vdm.lib;wxpng_vc_vdm.lib;wxregexu_vc_vdm.lib;wxscintilla_vc_vdm.lib;wxtiff_vc_vdm.lib;wxzlib_vc_vdm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\lib\vc_x64_dll\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
