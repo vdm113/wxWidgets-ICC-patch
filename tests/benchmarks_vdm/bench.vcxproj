@@ -92,22 +92,18 @@
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\</IntDir>
-    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</IntDir>
     <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</PreLinkEventUseInBuild>
-    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</IgnoreImportLibrary>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
     <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</PostBuildEventUseInBuild>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
-    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</IntDir>
     <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</PreLinkEventUseInBuild>
-    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</IgnoreImportLibrary>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</PostBuildEventUseInBuild>
   </PropertyGroup>
@@ -199,7 +195,7 @@
       <AdditionalLibraryDirectories>..\..\lib\vc_dll\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>wxmsw31ud_core_vc_vdm.lib;wxbase31ud_vc_vdm.lib;wxmsw31ud_html_vc_vdm.lib</AdditionalDependencies>
+      <AdditionalDependencies>Comctl32.lib;Rpcrt4.lib;wxbase31ud_net_vc_vdm.lib;wxbase31ud_vc_vdm.lib;wxbase31ud_xml_vc_vdm.lib;wxexpat_vc_vdm.lib;wxjpeg_vc_vdm.lib;wxmsw31ud_adv_vc_vdm.lib;wxmsw31ud_aui_vc_vdm.lib;wxmsw31ud_core_vc_vdm.lib;wxmsw31ud_gl_vc_vdm.lib;wxmsw31ud_html_vc_vdm.lib;wxmsw31ud_media_vc_vdm.lib;wxmsw31ud_propgrid_vc_vdm.lib;wxmsw31ud_qa_vc_vdm.lib;wxmsw31ud_ribbon_vc_vdm.lib;wxmsw31ud_richtext_vc_vdm.lib;wxmsw31ud_stc_vc_vdm.lib;wxmsw31ud_webview_vc_vdm.lib;wxmsw31ud_xrc_vc_vdm.lib;wxpng_vc_vdm.lib;wxregexud_vc_vdm.lib;wxscintilla_vc_vdm.lib;wxtiff_vc_vdm.lib;wxzlib_vc_vdm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <AdditionalOptions>/Qvec-report1</AdditionalOptions>
@@ -298,7 +294,7 @@ bash version.sh $(AssemblyName)</Command>
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/Qvec-report1</AdditionalOptions>
-      <AdditionalDependencies>wxmsw31ud_core_vc_vdm.lib;wxbase31ud_vc_vdm.lib;wxmsw31ud_html_vc_vdm.lib</AdditionalDependencies>
+      <AdditionalDependencies>Comctl32.lib;Rpcrt4.lib;wxbase31ud_net_vc_vdm.lib;wxbase31ud_vc_vdm.lib;wxbase31ud_xml_vc_vdm.lib;wxexpat_vc_vdm.lib;wxjpeg_vc_vdm.lib;wxmsw31ud_adv_vc_vdm.lib;wxmsw31ud_aui_vc_vdm.lib;wxmsw31ud_core_vc_vdm.lib;wxmsw31ud_gl_vc_vdm.lib;wxmsw31ud_html_vc_vdm.lib;wxmsw31ud_media_vc_vdm.lib;wxmsw31ud_propgrid_vc_vdm.lib;wxmsw31ud_qa_vc_vdm.lib;wxmsw31ud_ribbon_vc_vdm.lib;wxmsw31ud_richtext_vc_vdm.lib;wxmsw31ud_stc_vc_vdm.lib;wxmsw31ud_webview_vc_vdm.lib;wxmsw31ud_xrc_vc_vdm.lib;wxpng_vc_vdm.lib;wxregexud_vc_vdm.lib;wxscintilla_vc_vdm.lib;wxtiff_vc_vdm.lib;wxzlib_vc_vdm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <AdditionalLibraryDirectories>..\..\lib\vc_x64_dll\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
@@ -354,7 +350,7 @@ copy /Y "$(TargetDir)\*.ptx " "$(MSBuildProjectDirectory)\..\src\Recorder7_Proce
     </Midl>
     <ClCompile>
       <PreprocessorDefinitions>NDEBUG;_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;WXUSINGDLL;wxUSE_GUI;_WINDOWS;_CRT_NONSTDC_NO_DEPRECATE=1;_CRT_SECURE_NO_WARNINGS=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -408,7 +404,7 @@ copy /Y "$(TargetDir)\*.ptx " "$(MSBuildProjectDirectory)\..\src\Recorder7_Proce
       <AdditionalLibraryDirectories>..\..\lib\vc_dll\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>wxmsw31u_core_vc_vdm.lib;wxbase31u_vc_vdm.lib;wxmsw31u_html_vc_vdm.lib</AdditionalDependencies>
+      <AdditionalDependencies>Comctl32.lib;Rpcrt4.lib;wxbase31u_net_vc_vdm.lib;wxbase31u_vc_vdm.lib;wxbase31u_xml_vc_vdm.lib;wxexpat_vc_vdm.lib;wxjpeg_vc_vdm.lib;wxmsw31u_adv_vc_vdm.lib;wxmsw31u_aui_vc_vdm.lib;wxmsw31u_core_vc_vdm.lib;wxmsw31u_gl_vc_vdm.lib;wxmsw31u_html_vc_vdm.lib;wxmsw31u_media_vc_vdm.lib;wxmsw31u_propgrid_vc_vdm.lib;wxmsw31u_qa_vc_vdm.lib;wxmsw31u_ribbon_vc_vdm.lib;wxmsw31u_richtext_vc_vdm.lib;wxmsw31u_stc_vc_vdm.lib;wxmsw31u_webview_vc_vdm.lib;wxmsw31u_xrc_vc_vdm.lib;wxpng_vc_vdm.lib;wxregexu_vc_vdm.lib;wxscintilla_vc_vdm.lib;wxtiff_vc_vdm.lib;wxzlib_vc_vdm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/Qvec-report1</AdditionalOptions>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -459,11 +455,11 @@ copy /Y "$(TargetDir)\*.ptx " "$(MSBuildProjectDirectory)\..\src\Recorder7_Proce
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
       <AdditionalIncludeDirectories>..\..\lib\vc_x64_dll\mswu\;..\..\samples\;..\..\include\</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;WXUSINGDLL;wxUSE_GUI;_WINDOWS;_CRT_NONSTDC_NO_DEPRECATE=1;_CRT_SECURE_NO_WARNINGS=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;wxUSE_GUI;_WINDOWS;_CRT_NONSTDC_NO_DEPRECATE=1;_CRT_SECURE_NO_WARNINGS=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
@@ -516,8 +512,8 @@ bash version.sh $(AssemblyName)</Command>
     </ProjectReference>
     <Link>
       <AdditionalOptions>/Qvec-report1</AdditionalOptions>
-      <AdditionalDependencies>wxmsw31u_core_vc_vdm.lib;wxbase31u_vc_vdm.lib;wxmsw31u_html_vc_vdm.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\lib\vc_x64_dll\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Comctl32.lib;Rpcrt4.lib;wxbase31u_net_vc_vdm.lib;wxbase31u_vc_vdm.lib;wxbase31u_xml_vc_vdm.lib;wxexpat_vc_vdm.lib;wxjpeg_vc_vdm.lib;wxmsw31u_adv_vc_vdm.lib;wxmsw31u_aui_vc_vdm.lib;wxmsw31u_core_vc_vdm.lib;wxmsw31u_gl_vc_vdm.lib;wxmsw31u_html_vc_vdm.lib;wxmsw31u_media_vc_vdm.lib;wxmsw31u_propgrid_vc_vdm.lib;wxmsw31u_qa_vc_vdm.lib;wxmsw31u_ribbon_vc_vdm.lib;wxmsw31u_richtext_vc_vdm.lib;wxmsw31u_stc_vc_vdm.lib;wxmsw31u_webview_vc_vdm.lib;wxmsw31u_xrc_vc_vdm.lib;wxpng_vc_vdm.lib;wxregexu_vc_vdm.lib;wxscintilla_vc_vdm.lib;wxtiff_vc_vdm.lib;wxzlib_vc_vdm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\lib\vc_x64_lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
