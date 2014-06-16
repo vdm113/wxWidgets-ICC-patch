@@ -11,6 +11,8 @@ bench_vc9.sln
 bench_vc10.sln
 Makefile.in
 
+x64
+
 tmp
 
 #eof
