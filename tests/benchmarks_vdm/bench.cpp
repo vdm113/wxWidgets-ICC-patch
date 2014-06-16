@@ -356,8 +356,11 @@ int BenchApp::OnExit()
 /* static */
 void BenchApp::ListBenchmarks()
 {
-    sprintf(tmp,"Available benchmarks:\n");
-    wxLogMessage(tmp);
+    char* p=tmp;
+
+    sprintf(p,"Available benchmarks:\n");
+    p+=strlen(p);
+
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
@@ -365,7 +368,9 @@ void BenchApp::ListBenchmarks()
           func;
           func = func->GetNext() )
     {
-        sprintf(tmp,"\t%s\n", func->GetName());
-        wxLogMessage(tmp);
+        sprintf(p,"\t%s\n", func->GetName());
+        p+=strlen(p);
     }
+
+    vdm_log(tmp);
 }
