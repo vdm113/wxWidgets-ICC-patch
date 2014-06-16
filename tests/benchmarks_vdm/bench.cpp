@@ -48,6 +48,15 @@ static const char OPTION_STRING_PARAM = 's';
 
 char tmp[4096];
 
+static void vdm_log(wxString log)
+{
+    wxLogMessage(log);
+
+#if _MSC_VER
+    OutputDebugString(log);
+#endif
+}
+
 // ----------------------------------------------------------------------------
 // BenchApp declaration
 // ----------------------------------------------------------------------------
@@ -122,7 +131,7 @@ bool BenchApp::OnInit()
 
     sprintf(tmp,"wxWidgets benchmarking program\n"
              "Build: %s\n", WX_BUILD_OPTIONS_SIGNATURE);
-    wxLogMessage(tmp);
+    vdm_log(tmp);
 
 #if wxUSE_GUI
     // create a hidden parent window to be used as parent for the GUI controls
@@ -274,7 +283,7 @@ int BenchApp::OnRun()
         }
 
         sprintf(tmp,"Benchmarking %s%s: ", func->GetName(), params);
-        wxLogMessage(tmp);
+        vdm_log(tmp);
 
         long timeMin = LONG_MAX,
              timeMax = 0,
@@ -309,13 +318,13 @@ int BenchApp::OnRun()
         if ( !ok )
         {
             sprintf(tmp,"ERROR\n");
-            wxLogMessage(tmp);
+            vdm_log(tmp);
             rc = EXIT_FAILURE;
         }
         else
         {
             sprintf(tmp,"%ldms total, ", timeTotal);
-            wxLogMessage(tmp);
+            vdm_log(tmp);
 
             long times = m_avgCount;
             if ( m_avgCount > 2 )
@@ -326,7 +335,7 @@ int BenchApp::OnRun()
 
             sprintf(tmp,"%.2f avg (min=%ld, max=%ld)\n",
                      (float)timeTotal / times, timeMin, timeMax);
-            wxLogMessage(tmp);
+            vdm_log(tmp);
         }
 
         fflush(stdout);
