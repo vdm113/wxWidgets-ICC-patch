@@ -2369,6 +2369,8 @@ bool wxWindowMSW::HandleMenuPopup(wxEventType evtType, WXHMENU hMenu)
     {
         menu = wxCurrentPopupMenu;
         isPopup = true;
+        if ( evtType == wxEVT_MENU_CLOSE )
+            wxCurrentPopupMenu = NULL;
     }
     else
     {
