@@ -794,6 +794,9 @@ void RichTextCtrlTestCase::Table()
         CPPUNIT_ASSERT(table->GetRowCount() == 1);
 
         // Test adding columns and rows
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (size_t n = 0; n < 3; ++n)
         {
             m_rich->BeginBatchUndo("Add col and row");
@@ -807,6 +810,9 @@ void RichTextCtrlTestCase::Table()
         CPPUNIT_ASSERT(table->GetRowCount() == 4);
 
         // Test deleting columns and rows
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (size_t n = 0; n < 3; ++n)
         {
             m_rich->BeginBatchUndo("Delete col and row");
@@ -821,6 +827,9 @@ void RichTextCtrlTestCase::Table()
 
         // Test undo, first of the deletions...
         CPPUNIT_ASSERT(m_rich->CanUndo());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (size_t n = 0; n < 3; ++n)
         {
             m_rich->Undo();
@@ -830,6 +839,9 @@ void RichTextCtrlTestCase::Table()
         CPPUNIT_ASSERT(table->GetRowCount() == 4);
 
         // ...then the additions
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (size_t n = 0; n < 3; ++n)
         {
             m_rich->Undo();
@@ -841,6 +853,9 @@ void RichTextCtrlTestCase::Table()
 
         // Similarly test redo. Additions:
         CPPUNIT_ASSERT(m_rich->CanRedo());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (size_t n = 0; n < 3; ++n)
         {
             m_rich->Redo();
@@ -850,6 +865,9 @@ void RichTextCtrlTestCase::Table()
         CPPUNIT_ASSERT(table->GetRowCount() == 4);
 
         // Deletions:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (size_t n = 0; n < 3; ++n)
         {
             m_rich->Redo();
