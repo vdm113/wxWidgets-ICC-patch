@@ -576,7 +576,7 @@ void ScintillaWX::CopyToClipboard(const SelectionText& st) {
 
     wxTheClipboard->UsePrimarySelection(false);
     if (wxTheClipboard->Open()) {
-        wxString text = wxTextBuffer::Translate(stc2wx(st.Data(), st.Length()));
+        wxString text = evt.GetString();
 
 #ifdef wxHAVE_STC_RECT_FORMAT
         if (st.rectangular)
