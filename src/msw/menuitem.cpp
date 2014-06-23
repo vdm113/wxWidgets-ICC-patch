@@ -1362,7 +1362,8 @@ bool wxMenuItem::MSWMustUseOwnerDrawn()
                                 GetFont().IsOk();
 
     // Windows XP or earlier don't display menu bitmaps bigger than
-    // standard size correctly (they're truncated), so we must use
+    // standard size correctly (they're truncated) nor can
+    // checked bitmaps use HBMMENU_CALLBACK, so we must use
     // owner-drawn items to show them correctly there. OTOH Win7
     // doesn't seem to have any problems with even very large bitmaps
     // so don't use owner-drawn items unnecessarily there (Vista wasn't
@@ -1373,7 +1374,8 @@ bool wxMenuItem::MSWMustUseOwnerDrawn()
                         bmpChecked   = GetBitmap(true);
 
         if ( (bmpUnchecked.IsOk() && IsGreaterThanStdSize(bmpUnchecked)) ||
-                (bmpChecked.IsOk()   && IsGreaterThanStdSize(bmpChecked)) )
+                (bmpChecked.IsOk()   && IsGreaterThanStdSize(bmpChecked)) ||
+                (bmpChecked.IsOk() && IsCheckable()) )
         {
             mustUseOwnerDrawn = true;
         }
