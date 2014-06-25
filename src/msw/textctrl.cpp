@@ -186,6 +186,8 @@ public:
         m_menu->SetInvokingWindow(m_textCtrl);
         wxCurrentPopupMenu = m_menu;
 
+        m_menu->UpdateUI();
+
         return S_OK;
     }
 
