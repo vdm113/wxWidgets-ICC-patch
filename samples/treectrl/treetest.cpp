@@ -1232,6 +1232,9 @@ void MyTreeCtrl::AddTestItemsToTree(size_t numChildren,
 wxTreeItemId MyTreeCtrl::GetLastTreeITem() const
 {
     wxTreeItemId item = GetRootItem();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( ;; )
     {
         wxTreeItemId itemChild = GetLastChild(item);

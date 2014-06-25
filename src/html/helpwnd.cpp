@@ -1379,8 +1379,14 @@ void wxHtmlHelpWindow::OptionsDialog()
         wxWindowUpdateLocker lockNormalFont(dlg.NormalFont);
         wxWindowUpdateLocker lockFixedFont(dlg.FixedFont);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < m_NormalFonts->GetCount(); i++)
             dlg.NormalFont->Append((*m_NormalFonts)[i]);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (i = 0; i < m_FixedFonts->GetCount(); i++)
             dlg.FixedFont->Append((*m_FixedFonts)[i]);
         if (!m_NormalFace.empty())
@@ -1677,6 +1683,9 @@ void wxHtmlHelpWindow::DoIndexFind()
         const unsigned cnt = index.size();
 
         int displ = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (unsigned i = 0; i < cnt; i++)
         {
             if (index[i].name.Lower().find(sr) != wxString::npos)
@@ -1755,6 +1764,9 @@ void wxHtmlHelpWindow::DoIndexAll()
     const unsigned cnt = index.size();
     bool first = true;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (unsigned i = 0; i < cnt; i++)
     {
         m_IndexList->Append(index[i].name, (char*)(&index[i]));
