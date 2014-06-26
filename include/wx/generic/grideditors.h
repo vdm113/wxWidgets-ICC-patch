@@ -83,6 +83,7 @@ public:
 
     // parameters string format is "max_width"
     virtual void SetParameters(const wxString& params) wxOVERRIDE;
+#if wxUSE_VALIDATORS
     virtual void SetValidator(const wxValidator& validator);
 #endif
 

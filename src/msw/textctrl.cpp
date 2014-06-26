@@ -71,6 +71,8 @@
 
 #if wxUSE_RICHEDIT
     #include <richedit.h>
+    #include <richole.h>
+    #include "wx/msw/ole/oleutils.h"
 #endif // wxUSE_RICHEDIT
 
 #include "wx/msw/missing.h"
