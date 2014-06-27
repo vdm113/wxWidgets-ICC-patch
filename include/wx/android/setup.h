@@ -308,14 +308,9 @@
 // This is not a real option but is used as the default value for
 // wxUSE_STD_IOSTREAM, wxUSE_STD_STRING and wxUSE_STD_CONTAINERS.
 //
-// Currently the Digital Mars and Watcom compilers come without standard C++
-// library headers by default, wxUSE_STD_STRING can be set to 1 if you do have
-// them (e.g. from STLPort).
-#if defined(__DMC__) || defined(__WATCOMC__)
-    #define wxUSE_STD_DEFAULT  0
-#else
-    #define wxUSE_STD_DEFAULT  1
-#endif
+// Set it to 0 if you want to disable the use of all standard classes
+// completely for some reason.
+#define wxUSE_STD_DEFAULT  1
 
 // Use standard C++ containers to implement wxVector<>, wxStack<>, wxDList<>
 // and wxHashXXX<> classes. If disabled, wxWidgets own (mostly compatible but
@@ -761,6 +756,9 @@
 // yourself. If you do, change the setting below manually.
 //
 // Recommended setting: 1 if supported by the compilation environment
+
+// notice that we can't use wxCHECK_VISUALC_VERSION() here as this file is
+// included from wx/platform.h before wxCHECK_VISUALC_VERSION() is defined
 #ifdef _MSC_VER
 #   define wxUSE_GRAPHICS_CONTEXT 1
 #else
