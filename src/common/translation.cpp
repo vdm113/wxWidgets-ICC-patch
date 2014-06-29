@@ -103,6 +103,8 @@ wxStringToStringHashMap gs_msgIdCharset;
 // Platform specific helpers
 // ----------------------------------------------------------------------------
 
+#if wxUSE_LOG_TRACE
+
 void LogTraceArray(const char *prefix, const wxArrayString& arr)
 {
     wxLogTrace(TRACE_I18N, "%s: [%s]", prefix, wxJoin(arr, ','));
@@ -117,6 +119,13 @@ void LogTraceLargeArray(const wxString& prefix, const wxArrayString& arr)
     for ( wxArrayString::const_iterator i = arr.begin(); i != arr.end(); ++i )
         wxLogTrace(TRACE_I18N, "    %s", *i);
 }
+
+#else // !wxUSE_LOG_TRACE
+
+#define LogTraceArray(prefix, arr)
+#define LogTraceLargeArray(prefix, arr)
+
+#endif // wxUSE_LOG_TRACE/!wxUSE_LOG_TRACE
 
 // Use locale-based detection as a fallback
 wxString GetPreferredUILanguageFallback(const wxArrayString& WXUNUSED(available))
@@ -197,6 +206,8 @@ wxString GetPreferredUILanguage(const wxArrayString& available)
 
 #elif defined(__WXOSX__)
 
+#if wxUSE_LOG_TRACE
+
 void LogTraceArray(const char *prefix, CFArrayRef arr)
 {
     wxString s;
@@ -212,6 +223,8 @@ void LogTraceArray(const char *prefix, CFArrayRef arr)
     }
     wxLogTrace(TRACE_I18N, "%s: [%s]", prefix, s);
 }
+
+#endif // wxUSE_LOG_TRACE
 
 wxString GetPreferredUILanguage(const wxArrayString& available)
 {
