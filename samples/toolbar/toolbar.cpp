@@ -216,6 +216,7 @@ enum
     IDM_TOOLBAR_OTHER_1,
     IDM_TOOLBAR_OTHER_2,
     IDM_TOOLBAR_OTHER_3,
+    IDM_TOOLBAR_OTHER_4,
 
     // tools menu items
     IDM_TOOLBAR_ENABLEPRINT,
@@ -307,7 +308,7 @@ bool MyApp::OnInit()
     // Create the main frame window
     MyFrame* frame = new MyFrame((wxFrame *) NULL, wxID_ANY,
                                  wxT("wxToolBar Sample"),
-                                  wxPoint(100, 100), wxSize(650, 300));
+                                  wxPoint(100, 100), wxSize(650, 350));
 
     frame->Show(true);
 
@@ -749,6 +750,8 @@ void MyFrame::OnToggleAnotherToolbar(wxCommandEvent& WXUNUSED(event))
         m_tbar->AddRadioTool(IDM_TOOLBAR_OTHER_3, wxT("Third"), wxBITMAP(save));
         m_tbar->AddSeparator();
         m_tbar->AddTool(wxID_HELP, wxT("Help"), wxBITMAP(help));
+        m_tbar->AddTool(IDM_TOOLBAR_OTHER_4, wxT("Disabled"), wxBITMAP(cut), wxBITMAP(paste));
+        m_tbar->EnableTool(IDM_TOOLBAR_OTHER_4, false);
 
         m_tbar->Realize();
     }
