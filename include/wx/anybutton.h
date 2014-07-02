@@ -193,8 +193,6 @@ protected:
 //    #include "wx/gtk1/anybutton.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/anybutton.h"
-//#elif defined(__WXCOCOA__)
-//    #include "wx/cocoa/anybutton.h"
 #else
     typedef wxAnyButtonBase wxAnyButton;
 #endif

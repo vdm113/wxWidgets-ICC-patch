@@ -792,8 +792,6 @@ protected:
     #include "wx/gtk1/textctrl.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/textctrl.h"
-#elif defined(__WXCOCOA__)
-    #include "wx/cocoa/textctrl.h"
 #endif
 
 // ----------------------------------------------------------------------------
