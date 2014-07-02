@@ -172,7 +172,9 @@ wxFrameBase::wxFrameBase()
 
 wxFrameBase::~wxFrameBase()
 {
-    // this destructor is required for Darwin
+    SendDestroyEvent();
+
+    DeleteAllBars();
 }
 
 wxFrame *wxFrameBase::New(wxWindow *parent,

@@ -142,13 +142,6 @@ bool wxFrame::Create(wxWindow *parent,
     return true;
 }
 
-wxFrame::~wxFrame()
-{
-    SendDestroyEvent();
-
-    DeleteAllBars();
-}
-
 // ----------------------------------------------------------------------------
 // wxFrame client size calculations
 // ----------------------------------------------------------------------------
