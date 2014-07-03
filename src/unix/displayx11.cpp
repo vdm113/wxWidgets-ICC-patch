@@ -320,6 +320,9 @@ wxArrayVideoModes wxX11_GetModes(const wxDisplayImpl* impl, const wxVideoMode& m
     if ( depths )
     {
         const wxRect rect = impl->GetGeometry();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( int x = 0; x < count_return; ++x )
         {
             wxVideoMode mode(rect.width, rect.height, depths[x]);
