@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/display.cpp
 // Author:      Paul Cornett
@@ -18,14 +25,17 @@
 #ifdef GDK_WINDOWING_X11
     #include <gdk/gdkx.h>
 #endif
+#include "wx/gtk/private/gtk2-compat.h"
 
-GtkWidget* wxGetRootWindow();
+GdkWindow* wxGetTopLevelGDK();
 
 //-----------------------------------------------------------------------------
 
 #if !(wxUSE_LIBHILDON || wxUSE_LIBHILDON2)
 
+#ifdef GDK_WINDOWING_X11
 void wxGetWorkAreaX11(Screen* screen, int& x, int& y, int& width, int& height);
+#endif
 
 #ifndef __WXGTK3__
 static inline int wx_gdk_screen_get_primary_monitor(GdkScreen* screen)
@@ -55,11 +65,12 @@ wx_gdk_screen_get_monitor_workarea(GdkScreen* screen, int monitor, GdkRectangle*
         if (GDK_IS_X11_SCREEN(screen))
 #endif
         {
-            GdkRectangle rect;
+            GdkRectangle rect = { 0 };
             wxGetWorkAreaX11(GDK_SCREEN_XSCREEN(screen),
                 rect.x, rect.y, rect.width, rect.height);
             // in case _NET_WORKAREA result is too large
-            gdk_rectangle_intersect(dest, &rect, dest);
+            if (rect.width && rect.height)
+                gdk_rectangle_intersect(dest, &rect, dest);
         }
 #endif // GDK_WINDOWING_X11
     }
@@ -74,7 +85,7 @@ void wxClientDisplayRect(int* x, int* y, int* width, int* height)
     GdkRectangle rect = { 0, 0, 672, 396 };
 #else
     GdkRectangle rect;
-    GdkWindow* window = gtk_widget_get_window(wxGetRootWindow());
+    GdkWindow* window = wxGetTopLevelGDK();
     GdkScreen* screen = gdk_window_get_screen(window);
     int monitor = gdk_screen_get_monitor_at_window(screen, window);
     gdk_screen_get_monitor_workarea(screen, monitor, &rect);
@@ -117,7 +128,7 @@ public:
 
 static inline GdkScreen* GetScreen()
 {
-    return gtk_widget_get_screen(wxGetRootWindow());
+    return gdk_window_get_screen(wxGetTopLevelGDK());
 }
 //-----------------------------------------------------------------------------
 
@@ -173,10 +184,12 @@ bool wxDisplayImplGTK::IsPrimary() const
     return gdk_screen_get_primary_monitor(m_screen) == int(m_index);
 }
 
+#ifdef GDK_WINDOWING_X11
 wxArrayVideoModes wxXF86VidMode_GetModes(const wxVideoMode& mode, Display* pDisplay, int nScreen);
 wxVideoMode wxXF86VidMode_GetCurrentMode(Display* display, int nScreen);
 bool wxXF86VidMode_ChangeMode(const wxVideoMode& mode, Display* display, int nScreen);
 wxArrayVideoModes wxX11_GetModes(const wxDisplayImpl* impl, const wxVideoMode& modeMatch, Display* display);
+#endif
 
 wxArrayVideoModes wxDisplayImplGTK::GetModes(const wxVideoMode& mode) const
 {
@@ -194,7 +207,9 @@ wxArrayVideoModes wxDisplayImplGTK::GetModes(const wxVideoMode& mode) const
         modes = wxX11_GetModes(this, mode, display);
 #endif
     }
-#endif // GDK_WINDOWING_X11
+#else
+    wxUnusedVar(mode);
+#endif
     return modes;
 }
 
