@@ -19,6 +19,9 @@
     <Filter Include="Generic Headers">
       <UniqueIdentifier>{61C63C83-EF8C-51CA-A418-51936E7FCD4A}</UniqueIdentifier>
     </Filter>
+    <Filter Include="wxHTML Headers">
+      <UniqueIdentifier>{B4103426-A5DB-5CF0-A30E-BC9546513AAF}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Common Headers">
       <UniqueIdentifier>{8C07E926-65B0-5F00-B0D6-7F40DA69BB25}</UniqueIdentifier>
     </Filter>
@@ -363,6 +366,7 @@
     <ClCompile Include="..\..\src\common\threadinfo.cpp">
       <Filter>Common Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\msw\mslu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\src\msw\version.rc">
@@ -910,6 +914,7 @@
     <ClInclude Include="..\..\include\wx\zstream.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\msw\mslu.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\include\wx\msw\setup.h">
