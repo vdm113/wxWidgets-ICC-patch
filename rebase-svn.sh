@@ -20,8 +20,8 @@ git commit -a --signoff -m 'restore our project files'
 mv -f README.md README_orig_wx.md
 cp -f ../README.md .
 git commit -a --signoff -m 'restore our README.md for Github'
-detached_head=`git rev-parse HEAD`
 git checkout master
-git merge ${detached_head}
+git merge merge
+git branch -D merge
 
 #eof
