@@ -1,9 +1,9 @@
 #!/bin/bash
 
 cd ../wxWidgets_vanilla_trunk-svn/
-git svn rebase
+git svn fetch ; git svn rebase
 cd -
-git branch -D merge 2>/dev/null ; git fetch wx_svn && git checkout -b merge && git rebase merge wx_svn/master ; while true ; do ( for i in `grep -r '^<<<<<<< ' . | awk 'BEGIN { FS=":"; } { print $1; }'` ; do echo "$i" ; awk 'BEGIN { ignore=0; } /^<<<<<<< / { ignore=1; next; } /^=======$/ { ignore=0; next; } /^>>>>>>> / { ignore=0; next; } { if(0==ignore) print $0; }' "$i" >"${i}.tmp"; mv -f "${i}.tmp" "$i"; done ) ; git add . ; git rebase --continue || git rebase --skip ; test -d ".git/rebase-merge" -o -d ".git/rebase-apply" || break ; done
+git branch -D merge 2>/dev/null ; git checkout -b merge && git pull wx_svn ; for i in `grep -r '^<<<<<<< ' . | sort | uniq | awk 'BEGIN { FS=":"; } { print $1; }'` ; do echo "$i" ; awk 'BEGIN { ignore=0; } /^<<<<<<< / { ignore=1; next; } /^=======$/ { ignore=0; next; } /^>>>>>>> / { ignore=0; next; } { if(0==ignore) print $0; }' "$i" >"${i}.tmp"; mv -f "${i}.tmp" "$i"; done
 git branch -D merge 2>/dev/null
 cp -rf ../wxWidgets_vanilla_trunk-svn/* .
 cd ../wxWidgets_vanilla_trunk-svn/
