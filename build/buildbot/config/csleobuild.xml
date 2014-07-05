@@ -8,60 +8,52 @@
     Licence:
 -->
 
-<bot xmlns:xi="http://www.w3.org/2001/XInclude">
+<bot xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
 
 <xi:include href="include/csleobuild.xml"/>
 
+    <xsl:variable name="CLANGOPTIONS" select="'-Qunused-arguments -Wno-parentheses-equality -Wno-self-assign -Wno-unused-function -Wno-deprecated-declarations'"/>
+    <xsl:variable name="CLANGOPTIONS32" select="'-Qunused-arguments -Wno-parentheses-equality -Wno-self-assign -Wno-unused-function -Wno-deprecated-declarations -arch i386'"/>
+<xsl:variable name="SDK106" select="'--with-macosx-version-min=10.5 --with-macosx-sdk=/Developer/SDKs/MacOSX10.6.sdk'"/>
+    
 <build>
-    <name>OSX 10.5 Intel wxOSX Cocoa trunk</name>
+    <name>OSX 10.9 Intel wxOSX Cocoa trunk</name>
     <builddir>csleo_cocoa</builddir>
     <scheduler>trunk_quick</scheduler>
 
     <steps>
         <checkout/>
-        <configure/>
+        <configure options="CXXFLAGS='{$CLANGOPTIONS}' CFLAGS='{$CLANGOPTIONS}' OBJCXXFLAGS='{$CLANGOPTIONS}'"/>
         <compile-all/>
         <run-tests/>
     </steps>
 </build>
-
+    
 <build>
-    <name>OSX 10.5 Intel wxOSX Carbon trunk</name>
-    <builddir>csleo_carbon</builddir>
-    <scheduler>trunk_quick</scheduler>
-
-    <steps>
-        <checkout/>
-        <configure options="--with-osx_carbon"/>
-        <compile-all/>
-        <run-tests/>
-    </steps>
-</build>
-
-<build>
-    <name>OSX 10.5 Intel wxOSX Cocoa Stable</name>
+    <name>OSX 10.6 Intel wxOSX Cocoa Stable</name>
     <builddir>csleo_stable_cocoa</builddir>
     <scheduler>stable_quick</scheduler>
 
     <steps>
         <checkout branch="{$STABLE_BRANCH}"/>
-        <configure/>
+        <configure options="{$SDK106} CXXFLAGS='{$CLANGOPTIONS32}' CFLAGS='{$CLANGOPTIONS32}' OBJCXXFLAGS='{$CLANGOPTIONS32}' LDFLAGS='-arch i386'"/>
         <compile-all/>
         <run-tests/>
     </steps>
 </build>
 
 <build>
-    <name>OSX 10.5 Intel wxOSX Carbon Stable</name>
+    <name>OSX 10.6 Intel wxOSX Carbon Stable</name>
     <builddir>csleo_stable_carbon</builddir>
     <scheduler>stable_quick</scheduler>
 
     <steps>
     <checkout branch="{$STABLE_BRANCH}"/>
-    <configure options="--with-osx_carbon"/>
+        <configure options="--with-osx_carbon {$SDK106} CXXFLAGS='{$CLANGOPTIONS32}' CFLAGS='{$CLANGOPTIONS32}' OBJCXXFLAGS='{$CLANGOPTIONS32}' LDFLAGS='-arch i386'"/>
     <compile-all/>
     <run-tests/>
     </steps>
 </build>
-
+            
 </bot>
