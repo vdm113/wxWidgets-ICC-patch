@@ -145,7 +145,7 @@ wxObject *wxToolBarXmlHandler::DoCreateResource()
                        );
 
         if ( GetBool(wxT("disabled")) )
-            m_toolbar->EnableTool(GetID(), false);
+            m_toolbar->EnableTool(tool->GetId(), false);
 
         if ( GetBool(wxS("checked")) )
         {
@@ -159,7 +159,7 @@ wxObject *wxToolBarXmlHandler::DoCreateResource()
             }
             else
             {
-                m_toolbar->ToggleTool(GetID(), true);
+                m_toolbar->ToggleTool(tool->GetId(), true);
             }
         }
 
