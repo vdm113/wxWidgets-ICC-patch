@@ -1049,7 +1049,7 @@ wxWindow* wxPGChoiceEditor::CreateControlsBase( wxPropertyGrid* propGrid,
     cb->Hide();
 #endif
     cb->Create(ctrlParent,
-               wxPG_SUBID1,
+               wxID_ANY,
                wxString(),
                po,
                si,
@@ -1609,7 +1609,7 @@ wxPGWindowList wxPGCheckBoxEditor::CreateControls( wxPropertyGrid* propGrid,
     sz.x = propGrid->GetFontHeight() + (wxPG_XBEFOREWIDGET*2) + 4;
 
     wxSimpleCheckBox* cb = new wxSimpleCheckBox(propGrid->GetPanel(),
-                                                wxPG_SUBID1, pt, sz);
+                                                wxID_ANY, pt, sz);
 
     cb->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
 
@@ -1875,7 +1875,6 @@ wxWindow* wxPropertyGrid::GenerateEditorTextCtrl( const wxPoint& pos,
                                                   int maxLen,
                                                   unsigned int forColumn )
 {
-    wxWindowID id = wxPG_SUBID1;
     wxPGProperty* prop = GetSelection();
     wxASSERT(prop);
 
@@ -1920,7 +1919,7 @@ wxWindow* wxPropertyGrid::GenerateEditorTextCtrl( const wxPoint& pos,
     tc->Hide();
 #endif
     SetupTextCtrlValue(value);
-    tc->Create(ctrlParent,id,value, p, s,tcFlags);
+    tc->Create(ctrlParent,wxID_ANY,value, p, s,tcFlags);
 
 #if defined(__WXMSW__)
     // On Windows, we need to override read-only text ctrl's background
@@ -1978,7 +1977,6 @@ wxWindow* wxPropertyGrid::GenerateEditorTextCtrl( const wxPoint& pos,
 
 wxWindow* wxPropertyGrid::GenerateEditorButton( const wxPoint& pos, const wxSize& sz )
 {
-    wxWindowID id = wxPG_SUBID2;
     wxPGProperty* selected = GetSelection();
     wxASSERT(selected);
 
@@ -1991,7 +1989,7 @@ wxWindow* wxPropertyGrid::GenerateEditorButton( const wxPoint& pos, const wxSize
    wxSize s(25, -1);
 
    wxButton* but = new wxButton();
-   but->Create(GetPanel(),id,wxS("..."),p,s,wxWANTS_CHARS);
+   but->Create(GetPanel(),wxID_ANY,wxS("..."),p,s,wxWANTS_CHARS);
 
    // Now that we know the size, move to the correct position
    p.x = pos.x + sz.x - but->GetSize().x - 2;
@@ -2018,7 +2016,7 @@ wxWindow* wxPropertyGrid::GenerateEditorButton( const wxPoint& pos, const wxSize
   #ifdef __WXMSW__
     but->Hide();
   #endif
-    but->Create(GetPanel(),id,wxS("..."),p,s,wxWANTS_CHARS);
+    but->Create(GetPanel(),wxID_ANY,wxS("..."),p,s,wxWANTS_CHARS);
 
   #ifdef __WXGTK__
     wxFont font = GetFont();
@@ -2145,7 +2143,7 @@ bool wxPGEditorDialogAdapter::ShowDialog( wxPropertyGrid* propGrid, wxPGProperty
 // -----------------------------------------------------------------------
 
 wxPGMultiButton::wxPGMultiButton( wxPropertyGrid* pg, const wxSize& sz )
-    : wxWindow( pg->GetPanel(), wxPG_SUBID2, wxPoint(-100,-100), wxSize(0, sz.y) ),
+    : wxWindow( pg->GetPanel(), wxID_ANY, wxPoint(-100,-100), wxSize(0, sz.y) ),
       m_fullEditorSize(sz), m_buttonsWidth(0)
 {
     SetBackgroundColour(pg->GetCellBackgroundColour());
@@ -2161,10 +2159,7 @@ int wxPGMultiButton::GenId( int itemid ) const
 {
     if ( itemid < -1 )
     {
-        if ( m_buttons.size() )
-            itemid = GetButton(m_buttons.size()-1)->GetId() + 1;
-        else
-            itemid = wxPG_SUBID2;
+        itemid = wxID_ANY;
     }
     return itemid;
 }
