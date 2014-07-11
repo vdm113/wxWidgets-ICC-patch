@@ -14,7 +14,7 @@ for i in ${dirs} ; do mkdir ${i} 2>/dev/null ; done
 for i in ${files} ; do cp -f "../wxWidgets_vanilla_trunk/${i}" "./${i}" ; done
 cd wxWidgets_vdm_patch && ./X64/Release/wxWidgets_vdm_patch.exe -p --no-wait && cd ..
 for i in build/msw/*.bcc build/msw/*.dsp build/msw/*.dsw build/msw/*.gcc build/msw/wx_vc10* build/msw/wx_vc7* build/msw/wx_vc8* build/msw/wx_vc9* build/msw/wx_vc10* build/msw/wx_vc11* build/msw/wx_vc12* build/msw/*.vc build/msw/*.wat build/msw/*.props ; do ( git rm -f ${i} >/dev/null ) ; ( rm -f ${i} >/dev/null ) ; done
-git commit -a --signoff -m 'sync with upstream; patched for ICC; removed files we do not support'
+git commit -a --signoff -m 'sync with upstream  (GIT); patched for ICC; removed files we do not support'
 cp -rf ../build .
 git commit -a --signoff -m 'restore our project files'
 mv -f README.md README_orig_wx.md
