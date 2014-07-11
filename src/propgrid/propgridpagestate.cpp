@@ -301,6 +301,9 @@ void wxPropertyGridPageState::DoClear()
     if ( m_pPropGrid && m_pPropGrid->m_processedEvent )
     {
         wxPropertyGridIterator it;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for ( it = m_pPropGrid->GetIterator(wxPG_ITERATE_ALL);
               !it.AtEnd();
               it++ )

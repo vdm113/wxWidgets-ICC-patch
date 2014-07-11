@@ -5900,6 +5900,9 @@ void wxPropertyGrid::OnIdle( wxIdleEvent& WXUNUSED(event) )
     // before and after the operation.
     // (Note that lists are changed at every operation.)
     size_t cntAfter = m_deletedProperties.size();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( cntAfter > 0 )
     {
         size_t cntBefore = cntAfter;
@@ -5914,6 +5917,9 @@ void wxPropertyGrid::OnIdle( wxIdleEvent& WXUNUSED(event) )
             break;
     }
     cntAfter = m_removedProperties.size();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( cntAfter > 0 )
     {
         size_t cntBefore = cntAfter;
