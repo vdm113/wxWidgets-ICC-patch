@@ -1277,8 +1277,8 @@ void wxWindow::DoSetSizeIntr(int x, int y, int width, int height,
 
     if (x == -1)
         x = oldX;
-    if (x == -1)
-        x = oldY;
+    if (y == -1)
+        y = oldY;
 
     if ( !(sizeFlags & wxSIZE_ALLOW_MINUS_ONE) )
     {
