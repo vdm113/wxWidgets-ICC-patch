@@ -1416,13 +1416,36 @@ enum
 
 const int wxSCB_SETVALUE_CYCLE = 2;
 
-
-static void DrawSimpleCheckBox( wxDC& dc, const wxRect& rect, int box_hei,
-                                int state )
+static void DrawSimpleCheckBox( wxWindow* win, wxDC& dc, const wxRect& rect,
+                                int box_h, int state )
 {
-    // Box rectangle.
-    wxRect r(rect.x+wxPG_XBEFORETEXT,rect.y+((rect.height-box_hei)/2),
-             box_hei,box_hei);
+#if wxPG_USE_RENDERER_NATIVE
+    // Box rectangle
+    wxRect r(rect.x+wxPG_XBEFORETEXT, rect.y+((rect.height-box_h)/2),
+             box_h, box_h);
+
+    int cbFlags = 0;
+    if ( state & wxSCB_STATE_UNSPECIFIED )
+    {
+        cbFlags |= wxCONTROL_UNDETERMINED;
+    }
+    else if ( state & wxSCB_STATE_CHECKED )
+    {
+        cbFlags |= wxCONTROL_CHECKED;
+    }
+
+    if ( state & wxSCB_STATE_BOLD )
+    {
+        cbFlags |= wxCONTROL_PRESSED;
+    }
+
+    wxRendererNative::Get().DrawCheckBox(win, dc, r, cbFlags);
+#else
+    wxUnusedVar(win);
+
+    // Box rectangle
+    wxRect r(rect.x+wxPG_XBEFORETEXT, rect.y+((rect.height-box_h)/2),
+             box_h, box_h);
     wxColour useCol = dc.GetTextForeground();
 
     if ( state & wxSCB_STATE_UNSPECIFIED )
@@ -1469,6 +1492,7 @@ static void DrawSimpleCheckBox( wxDC& dc, const wxRect& rect, int box_hei,
 
     dc.DrawRectangle(r);
     dc.SetPen(*wxTRANSPARENT_PEN);
+#endif
 }
 
 //
@@ -1537,11 +1561,23 @@ wxBitmap* wxSimpleCheckBox::ms_doubleBuffer = NULL;
 
 void wxSimpleCheckBox::OnPaint( wxPaintEvent& WXUNUSED(event) )
 {
-    wxSize clientSize = GetClientSize();
+    wxRect rect(GetClientSize());
+#ifdef __WXMSW__
+    wxPaintDC dc(this);
+    // Under MSW, wxAutoBufferedPaintDC, wxPaintDC don't work fine with RTL,
+    // so we need to bypass this problem by setting LTR direction for this DC.
+    // Fortunately, we have only check box image to draw, no texts.
+    if ( dc.GetLayoutDirection() == wxLayout_RightToLeft )
+    {
+        dc.SetLayoutDirection(wxLayout_LeftToRight);
+        // Some hack to prevent shifting the ouput image.
+        rect.x -= 2;
+    }
+#else
     wxAutoBufferedPaintDC dc(this);
-
+#endif
     dc.Clear();
-    wxRect rect(0,0,clientSize.x,clientSize.y);
+
     rect.y += 1;
     rect.width += 1;
 
@@ -1557,7 +1593,7 @@ void wxSimpleCheckBox::OnPaint( wxPaintEvent& WXUNUSED(event) )
          GetFont().GetWeight() == wxFONTWEIGHT_BOLD )
         state |= wxSCB_STATE_BOLD;
 
-    DrawSimpleCheckBox(dc, rect, m_boxHeight, state);
+    DrawSimpleCheckBox(this, dc, rect, m_boxHeight, state);
 }
 
 void wxSimpleCheckBox::OnLeftClick( wxMouseEvent& event )
@@ -1661,7 +1697,7 @@ void wxPGCheckBoxEditor::DrawValue( wxDC& dc, const wxRect& rect,
         state |= wxSCB_STATE_UNSPECIFIED;
     }
 
-    DrawSimpleCheckBox(dc, rect, dc.GetCharHeight(), state);
+    DrawSimpleCheckBox(property->GetGrid(), dc, rect, dc.GetCharHeight(), state);
 }
 
 void wxPGCheckBoxEditor::UpdateControl( wxPGProperty* property,

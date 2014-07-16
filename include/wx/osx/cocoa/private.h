@@ -300,6 +300,8 @@ public:
 };
 
 #ifdef __OBJC__
+
+    typedef NSRect WXRect;
     typedef void (*wxOSX_TextEventHandlerPtr)(NSView* self, SEL _cmd, NSString *event);
     typedef void (*wxOSX_EventHandlerPtr)(NSView* self, SEL _cmd, NSEvent *event);
     typedef BOOL (*wxOSX_PerformKeyEventHandlerPtr)(NSView* self, SEL _cmd, NSEvent *event);
@@ -484,7 +486,7 @@ extern ClassicCursor gMacCursors[];
 
 extern NSLayoutManager* gNSLayoutManager;
 
-#endif
+#endif // wxUSE_GUI
 
 #endif
     // _WX_PRIVATE_COCOA_H_

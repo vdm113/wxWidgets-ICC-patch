@@ -782,7 +782,11 @@ wxInputStream *wxFTP::GetInputStream(const wxString& path)
 
     wxString tmp_str = wxT("RETR ") + wxURI::Unescape(path);
     if ( !CheckCommand(tmp_str, '1') )
+    {
+        delete sock;
+
         return NULL;
+    }
 
     sock = AcceptIfActive(sock);
     if ( !sock )
@@ -813,7 +817,11 @@ wxOutputStream *wxFTP::GetOutputStream(const wxString& path)
 
     wxString tmp_str = wxT("STOR ") + path;
     if ( !CheckCommand(tmp_str, '1') )
+    {
+        delete sock;
+
         return NULL;
+    }
 
     sock = AcceptIfActive(sock);
 

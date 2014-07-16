@@ -466,6 +466,44 @@ bool wxRichTextPlainText::ImportFromXML(wxRichTextBuffer* buffer, wxXmlNode* nod
     {
         wxString text;
         wxXmlNode* textChild = node->GetChildren();
+
+        // First skip past properties, if any.
+        wxXmlNode* n = textChild;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
+        while (n)
+        {
+            // Skip past properties
+            if ((n->GetType() == wxXML_ELEMENT_NODE) && n->GetName() == wxT("properties"))
+            {
+                textChild = n->GetNext();
+                n = NULL;
+
+                // Skip past the whitespace after the properties
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
+                while (textChild && (textChild->GetType() == wxXML_TEXT_NODE))
+                {
+                    wxString text = textChild->GetContent();
+                    text.Trim(true);
+                    text.Trim(false);
+                    if (!text.IsEmpty())
+                    {
+                        textChild->SetContent(text);
+                        break;
+                    }
+                    else
+                        textChild = textChild->GetNext();
+                }
+
+                break;
+            }
+            if (n)
+                n = n->GetNext();
+        }
+
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif

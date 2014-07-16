@@ -31,6 +31,8 @@
 
 #if wxUSE_GUI
 
+typedef CGRect WXRect;
+
 OSStatus WXDLLIMPEXP_CORE wxMacDrawCGImage(
                                CGContextRef    inContext,
                                const CGRect *  inBounds,
