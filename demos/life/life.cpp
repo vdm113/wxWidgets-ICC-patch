@@ -804,6 +804,10 @@ void LifeCanvas::DrawCell(wxInt32 i, wxInt32 j, wxDC &dc)
 // draw all changed cells
 void LifeCanvas::DrawChanged()
 {
+#ifdef __WXOSX__
+    // we should not do out of band redraws on OSX, let things happen in the event loop
+    Refresh();
+#else
     wxClientDC dc(this);
 
     size_t ncells;
@@ -840,6 +844,7 @@ void LifeCanvas::DrawChanged()
         for (size_t m = 0; m < ncells; m++)
             DrawCell(cells[m].i, cells[m].j, dc);
     }
+#endif
 }
 
 // event handlers

@@ -36,6 +36,7 @@ All:
 - Add wxInt64 support to wxText{Input,Output}Stream (Alexander Bezzubikov).
 - Define wxOVERRIDE as override for supporting compilers (Thomas Goyne).
 - Allow specifying custom comparator for wxSortedArrayString (Catalin Raceanu).
+- Add wxDateTime::GetWeekBasedYear().
 
 Unix:
 
@@ -87,6 +88,7 @@ wxMSW:
 - Keep menu item icon after removing and adding it back (Artur Wieczorek).
 - Add wxThread::MSWGetHandle() (troelsk).
 - Allow using sizers for laying out wxMDIClientWindow (Artur Wieczorek).
+- Fix updating wxSlider background when its parent background changes.
 
 wxOSX/Cocoa:
 
