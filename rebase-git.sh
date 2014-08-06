@@ -13,7 +13,7 @@ cd -
 for i in ${dirs} ; do mkdir ${i} 2>/dev/null ; done
 for i in ${files} ; do cp -f "../wxWidgets_vanilla_trunk/${i}" "./${i}" ; done
 cd wxWidgets_vdm_patch && ./X64/Release/wxWidgets_vdm_patch.exe -p --no-wait && cd ..
-for i in `ls build/msw/ | grep -v vdm` ; do ( git rm -f ${i} >/dev/null ) ; ( rm -f ${i} >/dev/null ) ; done
+for i in `ls build/msw/ | grep -v vdm` ; do ( git rm -f build/msw/${i} >/dev/null ) ; ( rm -f build/msw/${i} >/dev/null ) ; done
 git commit -a --signoff -m 'sync with upstream  (GIT); patched for ICC; removed files we do not support'
 cp -rf ../build .
 git commit -a --signoff -m 'restore our project files'
