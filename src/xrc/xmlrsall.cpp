@@ -158,6 +158,9 @@ void wxXmlResource::InitAllHandlers()
 #if wxUSE_SEARCHCTRL
     AddHandler(new wxSearchCtrlXmlHandler);
 #endif
+#if wxUSE_BOOKCTRL
+    AddHandler(new wxSimplebookXmlHandler);
+#endif
 #if wxUSE_SLIDER
     AddHandler(new wxSliderXmlHandler);
 #endif
