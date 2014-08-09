@@ -22,9 +22,6 @@
 
 #include "wx/osx/private.h"
 #include "wx/graphics.h"
-#if wxOSX_USE_COCOA_OR_CARBON
-#include "wx/osx/private/glgrab.h"
-#endif
 
 IMPLEMENT_ABSTRACT_CLASS(wxScreenDCImpl, wxWindowDCImpl)
 
