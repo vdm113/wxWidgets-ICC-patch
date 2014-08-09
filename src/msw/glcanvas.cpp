@@ -328,6 +328,9 @@ bool wxGLCanvas::Create(wxWindow *parent,
         glVersionMinor = 0;
 
     // Check for a core profile request
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for ( int i = 0; attribList[i]; )
     {
         switch ( attribList[i++] )

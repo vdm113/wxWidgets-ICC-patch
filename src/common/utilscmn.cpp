@@ -1034,20 +1034,32 @@ unsigned int wxGCD(unsigned int u, unsigned int v)
 
     // Let shift := lg K, where K is the greatest power of 2
     // dividing both u and v.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for (shift = 0; ((u | v) & 1) == 0; ++shift)
     {
         u >>= 1;
         v >>= 1;
     }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ((u & 1) == 0)
         u >>= 1;
 
     // From here on, u is always odd.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     do
     {
         // remove all factors of 2 in v -- they are not common
         // note: v is not zero, so while will terminate
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while ((v & 1) == 0)
             v >>= 1;
 
