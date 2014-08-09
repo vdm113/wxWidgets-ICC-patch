@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ "x$1" != "xInternal" ] ; then
+  cp -a ./rebase-svn.sh ..
+  ../rebase-svn.sh Internal
+  exit 0
+fi
+
 cd ../wxWidgets_vanilla_trunk-svn/
 git svn fetch ; git svn rebase
 cd -
