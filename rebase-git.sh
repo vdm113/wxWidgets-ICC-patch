@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ "x$1" != "xInternal" ] ; then
+  cp -a ./rebase-git.sh ..
+  ../rebase-git.sh Internal
+  exit 0
+fi
+
 cd ../wxWidgets_vanilla_trunk/
 git pull https://github.com/wxWidgets/wxWidgets
 cd -
