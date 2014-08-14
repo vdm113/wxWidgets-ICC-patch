@@ -5767,6 +5767,9 @@ public:
 
     virtual wxString GetPropertiesMenuLabel() const { return wxGetTranslation("&Cell"); }
 
+    /// Don't allow a cell to be deleted in Defragment
+    virtual bool IsEmpty() const { return false; }
+
 // Accessors
 
     /**
