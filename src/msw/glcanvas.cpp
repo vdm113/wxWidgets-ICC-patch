@@ -328,28 +328,31 @@ bool wxGLCanvas::Create(wxWindow *parent,
         glVersionMinor = 0;
 
     // Check for a core profile request
+    if ( attribList )
+    {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-    for ( int i = 0; attribList[i]; )
-    {
-        switch ( attribList[i++] )
+        for ( int i = 0; attribList[i]; )
         {
-            case WX_GL_CORE_PROFILE:
-                useGLCoreProfile = true;
-                break;
+            switch ( attribList[i++] )
+            {
+                case WX_GL_CORE_PROFILE:
+                    useGLCoreProfile = true;
+                    break;
 
-            case WX_GL_MAJOR_VERSION:
-                glVersionMajor = attribList[i++];
-                break;
+                case WX_GL_MAJOR_VERSION:
+                    glVersionMajor = attribList[i++];
+                    break;
 
-            case WX_GL_MINOR_VERSION:
-                glVersionMinor = attribList[i++];
-                break;
+                case WX_GL_MINOR_VERSION:
+                    glVersionMinor = attribList[i++];
+                    break;
 
-            default:
-                // ignore all other flags for now
-                break;
+                default:
+                    // ignore all other flags for now
+                    break;
+            }
         }
     }
 
