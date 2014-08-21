@@ -169,6 +169,7 @@ bool wxRibbonBar::Realize()
     wxClientDC dcTemp(this);
     int sep = m_art->GetMetric(wxRIBBON_ART_TAB_SEPARATION_SIZE);
     size_t numtabs = m_pages.GetCount();
+    bool firstVisible = true;
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -195,8 +196,10 @@ bool wxRibbonBar::Realize()
                               &info.small_must_have_separator_width,
                               &info.minimum_width);
 
-        if(i == 0)
+        if ( firstVisible )
         {
+            firstVisible = false;
+
             m_tabs_total_width_ideal = info.ideal_width;
             m_tabs_total_width_minimum = info.minimum_width;
         }
