@@ -31,7 +31,6 @@
 #include "wx/scopeguard.h"
 #include "wx/apptrait.h"
 #include "wx/private/eventloopsourcesmanager.h"
-
 // ----------------------------------------------------------------------------
 // wxEventLoopBase
 // ----------------------------------------------------------------------------
@@ -42,7 +41,6 @@ wxEventLoopBase::wxEventLoopBase()
 {
     m_isInsideRun = false;
     m_shouldExit = false;
-
     m_isInsideYield = false;
     m_eventsToProcessInsideYield = wxEVT_CATEGORY_ALL;
 }
@@ -91,7 +89,6 @@ void wxEventLoopBase::Exit(int rc)
 
     ScheduleExit(rc);
 }
-
 void wxEventLoopBase::OnExit()
 {
     if (wxTheApp)
@@ -150,6 +147,14 @@ bool wxEventLoopBase::YieldFor(long eventsToProcess)
 
     DoYieldFor(eventsToProcess);
 
+    // If any handlers called from inside DoYieldFor() threw exceptions, they
+    // may have been stored for later rethrow as it's unsafe to let them escape
+    // from inside DoYieldFor() itself, as it calls native functions through
+    // which the exceptions can't propagate. But now that we're back to our own
+    // code, we may rethrow them.
+    if ( wxTheApp )
+        wxTheApp->RethrowStoredException();
+
     return true;
 }
 
@@ -186,7 +191,6 @@ wxEventLoopBase::AddSourceForFD(int fd,
 }
 
 #endif // wxUSE_EVENTLOOP_SOURCE
-
 // wxEventLoopManual is unused in the other ports
 #if defined(__WINDOWS__) || defined(__WXDFB__) || ( ( defined(__UNIX__) && !defined(__WXOSX__) ) && wxUSE_BASE)
 
@@ -219,11 +223,19 @@ bool wxEventLoopManual::ProcessEvents()
             return false;
     }
 
-    return Dispatch();
+    const bool res = Dispatch();
+
+    // Rethrow any exceptions which could have been produced by the handlers
+    // ran by Dispatch().
+    if ( wxTheApp )
+        wxTheApp->RethrowStoredException();
+
+    return res;
 }
 
 int wxEventLoopManual::DoRun()
 {
+
     // we must ensure that OnExit() is called even if an exception is thrown
     // from inside ProcessEvents() but we must call it from Exit() in normal
     // situations because it is supposed to be called synchronously,
@@ -257,6 +269,7 @@ int wxEventLoopManual::DoRun()
                     ;
 
                 if ( m_shouldExit )
+
                     break;
 
                 // a message came or no more idle processing to do, dispatch
@@ -298,7 +311,6 @@ int wxEventLoopManual::DoRun()
                 if ( !hasMoreEvents )
                     break;
             }
-
 #if wxUSE_EXCEPTIONS
             // exit the outer loop as well
             break;

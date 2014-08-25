@@ -88,6 +88,8 @@ public:
     #include "wx/gtk1/combobox.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/combobox.h"
+#elif defined(__WXQT__)
+    #include "wx/qt/combobox.h"
 #endif
 
 #endif // wxUSE_COMBOBOX

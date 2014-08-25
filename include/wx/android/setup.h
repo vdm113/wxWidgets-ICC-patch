@@ -6,8 +6,8 @@
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
-// Name:        wx/univ/setup.h
-// Purpose:     Configuration for the universal build of the library
+// Name:        wx/android/setup.h
+// Purpose:     Configuration for the android build of the library
 // Author:      Julian Smart
 // Created:     01/02/97
 // Copyright:   (c) Julian Smart

@@ -192,7 +192,6 @@ public:
         DoSetCustomLabel(m_help, help);
         return true;
     }
-
     // test if any custom labels were set
     bool HasCustomLabels() const
     {
@@ -307,6 +306,8 @@ private:
     #include "wx/gtk/msgdlg.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/msgdlg.h"
+#elif defined(__WXQT__)
+    #include "wx/qt/msgdlg.h"
 #endif
 
 // ----------------------------------------------------------------------------

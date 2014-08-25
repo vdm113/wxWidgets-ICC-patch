@@ -215,6 +215,8 @@ protected:
         #include "wx/gtk/dvrenderer.h"
     #elif defined(__WXMAC__)
         #include "wx/osx/dvrenderer.h"
+    #elif defined(__WXQT__)
+        #include "wx/qt/dvrenderer.h"
     #else
         #error "unknown native wxDataViewCtrl implementation"
     #endif
@@ -339,6 +341,8 @@ private:
     #include "wx/gtk/dvrenderers.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/dvrenderers.h"
+#elif defined(__WXQT__)
+    #include "wx/qt/dvrenderers.h"
 #else
     #error "unknown native wxDataViewCtrl implementation"
 #endif

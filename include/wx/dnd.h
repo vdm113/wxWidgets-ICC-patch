@@ -229,6 +229,8 @@ protected:
     #include "wx/gtk1/dnd.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/dnd.h"
+#elif defined(__WXQT__)
+    #include "wx/qt/dnd.h"
 #endif
 
 // ----------------------------------------------------------------------------

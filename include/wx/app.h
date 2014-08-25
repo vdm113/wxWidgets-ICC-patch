@@ -305,10 +305,33 @@ public:
 
     // Function called if an uncaught exception is caught inside the main
     // event loop: it may return true to continue running the event loop or
-    // false to stop it (in the latter case it may rethrow the exception as
-    // well)
+    // false to stop it. If this function rethrows the exception, as it does by
+    // default, simply because there is no general way to handle exceptions,
+    // StoreCurrentException() will be called to store it because in any case
+    // the exception can't be allowed to escape.
     virtual bool OnExceptionInMainLoop();
 
+    // This function can be overridden to store the current exception, in view
+    // of rethrowing it later when RethrowStoredException() is called. If the
+    // exception was stored, return true. If the exception can't be stored,
+    // i.e. if this function returns false, the program will abort after
+    // calling OnUnhandledException().
+    //
+    // The default implementation of this function when using C++98 compiler
+    // just returns false, as there is no generic way to store an arbitrary
+    // exception in C++98 and each application must do it on its own for the
+    // exceptions it uses in its overridden version. When using C++11, the
+    // default implementation uses std::current_exception() and returns true,
+    // so it's normally not necessary to override this method when using C++11.
+    virtual bool StoreCurrentException();
+
+    // If StoreCurrentException() is overridden, this function should be
+    // overridden as well to rethrow the exceptions stored by it when the
+    // control gets back to our code, i.e. when it's safe to do it.
+    //
+    // The default version does nothing when using C++98 and uses
+    // std::rethrow_exception() in C++11.
+    virtual void RethrowStoredException();
 #endif // wxUSE_EXCEPTIONS
 
 
@@ -713,6 +736,8 @@ protected:
     #include "wx/x11/app.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/app.h"
+#elif defined(__WXQT__)
+    #include "wx/qt/app.h"
 #endif
 
 #else // !GUI

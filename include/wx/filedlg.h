@@ -138,6 +138,13 @@ public:
     static wxString AppendExtension(const wxString &filePath,
                                     const wxString &extensionList);
 
+    // Set the filter index to match the given extension.
+    //
+    // This is always valid to call, even if the extension is empty or the
+    // filter list doesn't contain it, the function will just do nothing in
+    // these cases.
+    void SetFilterIndexFromExt(const wxString& ext);
+
 protected:
     wxString      m_message;
     wxString      m_dir;
@@ -225,6 +232,8 @@ wxSaveFileSelector(const wxString& what,
     #include "wx/gtk1/filedlg.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/filedlg.h"
+#elif defined(__WXQT__)
+    #include "wx/qt/filedlg.h"
 #endif
 
 #endif // wxUSE_FILEDLG

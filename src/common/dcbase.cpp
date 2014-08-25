@@ -88,6 +88,11 @@
     #include "wx/dfb/dcscreen.h"
 #endif
 
+#ifdef __WXQT__
+    #include "wx/qt/dcclient.h"
+    #include "wx/qt/dcmemory.h"
+    #include "wx/qt/dcscreen.h"
+#endif
 //----------------------------------------------------------------------------
 // wxDCFactory
 //----------------------------------------------------------------------------
@@ -1542,7 +1547,6 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
     wxCoord y = b;
     long x2 = 1;
     long y2 = y*y;
-    long y2_old = 0;
     long y_old = 0;
     // Lists for quadrant 1 to 4
     wxPointList pointsarray[4];
@@ -1553,7 +1557,6 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
     for( x = 0; x <= a; ++x )
     {
         x2 = x2+x+x-1;
-        y2_old = y2;
         y_old = y;
         bool bNewPoint = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch

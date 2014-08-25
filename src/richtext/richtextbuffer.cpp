@@ -1248,7 +1248,9 @@ bool wxRichTextObject::LayoutToBestSize(wxDC& dc, wxRichTextDrawingContext& cont
     int style)
 {
     wxRect availableChildRect = AdjustAvailableSpace(dc, buffer, parentAttr, attr, availableParentSpace, availableContainerSpace);
+#if 0
     wxRect originalAvailableRect = availableChildRect;
+#endif
     Layout(dc, context, availableChildRect, availableContainerSpace, style);
 
     wxSize maxSize = GetMaxSize();
