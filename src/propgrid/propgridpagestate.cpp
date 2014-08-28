@@ -287,7 +287,7 @@ void wxPropertyGridPageState::InitNonCatMode()
 
 void wxPropertyGridPageState::DoClear()
 {
-    if ( m_pPropGrid && m_pPropGrid->GetState() == this  )
+    if ( m_pPropGrid && m_pPropGrid->GetState() == this )
     {
         m_pPropGrid->ClearSelection(false);
     }
@@ -304,11 +304,15 @@ void wxPropertyGridPageState::DoClear()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
-        for ( it = m_pPropGrid->GetIterator(wxPG_ITERATE_ALL);
+        for ( it = wxPropertyGridIterator(this, wxPG_ITERATE_ALL, wxNullProperty);
               !it.AtEnd();
               it++ )
         {
-            DoDelete(*it, true);
+            wxPGProperty *p = *it;
+            // Do not attempt to explicitly remove sub-properties.
+            // They will be removed in their parent property dtor.
+            if ( !p->GetParent()->HasFlag(wxPG_PROP_AGGREGATE) )
+                DoDelete(p, true);
         }
     }
     else
