@@ -7,8 +7,8 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/dcclient.cpp
-// Author:      Peter Most, Javier Torres
-// Copyright:   (c) Peter Most, Javier Torres
+// Author:      Peter Most, Javier Torres, Mariano Reingart
+// Copyright:   (c) 2010 wxWidgets dev team
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 
