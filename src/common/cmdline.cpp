@@ -850,6 +850,7 @@ int wxCmdLineParser::Parse(bool showUsage)
     Reset();
 
     // parse everything
+    m_data->m_parameters.clear();
     wxString arg;
     size_t count = m_data->m_arguments.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
