@@ -22,6 +22,7 @@ cd wxWidgets_vdm_patch && ./X64/Release/wxWidgets_vdm_patch.exe -p --no-wait && 
 for i in `find build/msw/ -type f -maxdepth 1` ; do ( git rm -f "${i}" 2>/dev/null ) ; ( rm -f "${i}" 2>/dev/null ) ; done
 git commit -a --signoff -m 'sync with upstream (SVN); patched for ICC; removed files we do not support'
 cp -rf ../build .
+git add build/msw/
 git commit -a --signoff -m 'restore our project files'
 mv -f README.md README_orig_wx.md
 cp -f ../README.md .
