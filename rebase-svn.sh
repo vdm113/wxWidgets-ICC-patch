@@ -25,8 +25,8 @@ cp -rf ../build .
 git add build/msw/
 git commit -a --signoff -m 'restore our project files'
 mv -f README.md README_orig_wx.md
-cp -f ../README.md .
-git commit -a --signoff -m 'restore our README.md for Github'
+cp -f ../git/* ../git/.??* .
+git commit -a --signoff -m 'restore our git files'
 git checkout master
 git merge merge
 git branch -D merge
