@@ -132,7 +132,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswud\wxprec_propgridlibvc_vdm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswud\propgrid\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_propgrid_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_propgrid_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -185,7 +185,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswu\wxprec_propgridlibvc_vdm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswu\propgrid\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_propgrid_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_propgrid_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -241,7 +241,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswuddll\wxprec_propgriddllvc_vdm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswuddll\propgrid\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_propgrid_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_propgrid_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -274,7 +274,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)wxmsw31ud_propgrid_vc_vdm_vc_vdm.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)wxmsw31ud_propgrid_vc_vdm.pdb</ProgramDatabaseFile>
       <LargeAddressAware>true</LargeAddressAware>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <SetChecksum>true</SetChecksum>
@@ -304,7 +304,7 @@
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\vc_mswudll\wxprec_propgriddllvc_vdm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswudll\propgrid\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_propgrid_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_propgrid_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -338,7 +338,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)wxmsw31u_propgrid_vc_vdm_vc_vdm.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)wxmsw31u_propgrid_vc_vdm.pdb</ProgramDatabaseFile>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LargeAddressAware>true</LargeAddressAware>
       <SetChecksum>true</SetChecksum>

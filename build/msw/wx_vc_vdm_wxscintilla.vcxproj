@@ -123,7 +123,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswud\wxscintilla\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxscintillad_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxscintillad_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -173,7 +173,7 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswu\wxscintilla\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxscintilla_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxscintilla_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -226,7 +226,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswuddll\wxscintilla\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxscintillad_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxscintillad_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -276,7 +276,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswudll\wxscintilla\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxscintilla_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxscintilla_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>

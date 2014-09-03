@@ -125,7 +125,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswud\wxregex\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxregexud_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxregexud_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -175,7 +175,7 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswu\wxregex\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxregexu_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxregexu_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -228,7 +228,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswuddll\wxregex\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxregexud_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxregexud_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -278,7 +278,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ObjectFileName>$(Platform)\$(Configuration)\vc_mswudll\wxregex\</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)wxregexu_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxregexu_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>

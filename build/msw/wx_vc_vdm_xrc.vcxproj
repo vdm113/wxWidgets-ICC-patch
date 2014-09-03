@@ -131,7 +131,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\wxprec_xrclibvc_vdm.pch</PrecompiledHeaderOutputFile>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_xrc_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_xrc_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -186,7 +186,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\wxprec_xrclibvc_vdm.pch</PrecompiledHeaderOutputFile>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_xrc_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_xrc_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -244,7 +244,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\wxprec_xrcdllvc_vdm.pch</PrecompiledHeaderOutputFile>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_xrc_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31ud_xrc_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -280,7 +280,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)wxmsw31ud_xrc_vc_vdm_vc_vdm.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)wxmsw31ud_xrc_vc_vdm.pdb</ProgramDatabaseFile>
       <LargeAddressAware>true</LargeAddressAware>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -308,7 +308,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\$(MSBuildProjectName)\wxprec_xrcdllvc_vdm.pch</PrecompiledHeaderOutputFile>
-      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_xrc_vc_vdm_vc_vdm.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)wxmsw31u_xrc_vc_vdm.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -345,7 +345,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)wxmsw31u_xrc_vc_vdm_vc_vdm.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)wxmsw31u_xrc_vc_vdm.pdb</ProgramDatabaseFile>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LargeAddressAware>true</LargeAddressAware>
