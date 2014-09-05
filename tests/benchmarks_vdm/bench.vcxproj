@@ -184,7 +184,7 @@
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/Qvec-report1</AdditionalOptions>
-      <AdditionalDependencies>Comctl32.lib;Rpcrt4.lib;wxbase31ud_net_vc_vdm.lib;wxbase31ud_vc_vdm.lib;wxbase31ud_xml_vc_vdm.lib;wxexpat_vc_vdm.lib;wxjpeg_vc_vdm.lib;wxmsw31ud_adv_vc_vdm.lib;wxmsw31ud_aui_vc_vdm.lib;wxmsw31ud_core_vc_vdm.lib;wxmsw31ud_gl_vc_vdm.lib;wxmsw31ud_html_vc_vdm.lib;wxmsw31ud_media_vc_vdm.lib;wxmsw31ud_propgrid_vc_vdm.lib;wxmsw31ud_qa_vc_vdm.lib;wxmsw31ud_ribbon_vc_vdm.lib;wxmsw31ud_richtext_vc_vdm.lib;wxmsw31ud_stc_vc_vdm.lib;wxmsw31ud_webview_vc_vdm.lib;wxmsw31ud_xrc_vc_vdm.lib;wxpng_vc_vdm.lib;wxregexud_vc_vdm.lib;wxscintilla_vc_vdm.lib;wxtiff_vc_vdm.lib;wxzlib_vc_vdm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Comctl32.lib;Rpcrt4.lib;wxbase31ud_net.lib;wxbase31ud.lib;wxbase31ud_xml.lib;wxexpat.lib;wxjpeg.lib;wxmsw31ud_adv.lib;wxmsw31ud_aui.lib;wxmsw31ud_core.lib;wxmsw31ud_gl.lib;wxmsw31ud_html.lib;wxmsw31ud_media.lib;wxmsw31ud_propgrid.lib;wxmsw31ud_qa.lib;wxmsw31ud_ribbon.lib;wxmsw31ud_richtext.lib;wxmsw31ud_stc.lib;wxmsw31ud_webview.lib;wxmsw31ud_xrc.lib;wxpng.lib;wxregexud.lib;wxscintilla.lib;wxtiff.lib;wxzlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <AdditionalLibraryDirectories>..\..\lib\vc_x64_lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
@@ -274,7 +274,7 @@
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/Qvec-report1</AdditionalOptions>
-      <AdditionalDependencies>Comctl32.lib;Rpcrt4.lib;wxbase31ud_net_vc_vdm.lib;wxbase31ud_vc_vdm.lib;wxbase31ud_xml_vc_vdm.lib;wxexpat_vc_vdm.lib;wxjpeg_vc_vdm.lib;wxmsw31ud_adv_vc_vdm.lib;wxmsw31ud_aui_vc_vdm.lib;wxmsw31ud_core_vc_vdm.lib;wxmsw31ud_gl_vc_vdm.lib;wxmsw31ud_html_vc_vdm.lib;wxmsw31ud_media_vc_vdm.lib;wxmsw31ud_propgrid_vc_vdm.lib;wxmsw31ud_qa_vc_vdm.lib;wxmsw31ud_ribbon_vc_vdm.lib;wxmsw31ud_richtext_vc_vdm.lib;wxmsw31ud_stc_vc_vdm.lib;wxmsw31ud_webview_vc_vdm.lib;wxmsw31ud_xrc_vc_vdm.lib;wxpng_vc_vdm.lib;wxregexud_vc_vdm.lib;wxscintilla_vc_vdm.lib;wxtiff_vc_vdm.lib;wxzlib_vc_vdm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Comctl32.lib;Rpcrt4.lib;wxbase31ud_net.lib;wxbase31ud.lib;wxbase31ud_xml.lib;wxexpat.lib;wxjpeg.lib;wxmsw31ud_adv.lib;wxmsw31ud_aui.lib;wxmsw31ud_core.lib;wxmsw31ud_gl.lib;wxmsw31ud_html.lib;wxmsw31ud_media.lib;wxmsw31ud_propgrid.lib;wxmsw31ud_qa.lib;wxmsw31ud_ribbon.lib;wxmsw31ud_richtext.lib;wxmsw31ud_stc.lib;wxmsw31ud_webview.lib;wxmsw31ud_xrc.lib;wxpng.lib;wxregexud.lib;wxscintilla.lib;wxtiff.lib;wxzlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <AdditionalLibraryDirectories>..\..\lib\vc_x64_dll\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
@@ -369,7 +369,7 @@
     </ProjectReference>
     <Link>
       <AdditionalOptions>/Qvec-report1</AdditionalOptions>
-      <AdditionalDependencies>Comctl32.lib;Rpcrt4.lib;wxbase31u_net_vc_vdm.lib;wxbase31u_vc_vdm.lib;wxbase31u_xml_vc_vdm.lib;wxexpat_vc_vdm.lib;wxjpeg_vc_vdm.lib;wxmsw31u_adv_vc_vdm.lib;wxmsw31u_aui_vc_vdm.lib;wxmsw31u_core_vc_vdm.lib;wxmsw31u_gl_vc_vdm.lib;wxmsw31u_html_vc_vdm.lib;wxmsw31u_media_vc_vdm.lib;wxmsw31u_propgrid_vc_vdm.lib;wxmsw31u_qa_vc_vdm.lib;wxmsw31u_ribbon_vc_vdm.lib;wxmsw31u_richtext_vc_vdm.lib;wxmsw31u_stc_vc_vdm.lib;wxmsw31u_webview_vc_vdm.lib;wxmsw31u_xrc_vc_vdm.lib;wxpng_vc_vdm.lib;wxregexu_vc_vdm.lib;wxscintilla_vc_vdm.lib;wxtiff_vc_vdm.lib;wxzlib_vc_vdm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Comctl32.lib;Rpcrt4.lib;wxbase31u_net.lib;wxbase31u.lib;wxbase31u_xml.lib;wxexpat.lib;wxjpeg.lib;wxmsw31u_adv.lib;wxmsw31u_aui.lib;wxmsw31u_core.lib;wxmsw31u_gl.lib;wxmsw31u_html.lib;wxmsw31u_media.lib;wxmsw31u_propgrid.lib;wxmsw31u_qa.lib;wxmsw31u_ribbon.lib;wxmsw31u_richtext.lib;wxmsw31u_stc.lib;wxmsw31u_webview.lib;wxmsw31u_xrc.lib;wxpng.lib;wxregexu.lib;wxscintilla.lib;wxtiff.lib;wxzlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib\vc_x64_lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -464,7 +464,7 @@
     </ProjectReference>
     <Link>
       <AdditionalOptions>/Qvec-report1</AdditionalOptions>
-      <AdditionalDependencies>Comctl32.lib;Rpcrt4.lib;wxbase31u_net_vc_vdm.lib;wxbase31u_vc_vdm.lib;wxbase31u_xml_vc_vdm.lib;wxexpat_vc_vdm.lib;wxjpeg_vc_vdm.lib;wxmsw31u_adv_vc_vdm.lib;wxmsw31u_aui_vc_vdm.lib;wxmsw31u_core_vc_vdm.lib;wxmsw31u_gl_vc_vdm.lib;wxmsw31u_html_vc_vdm.lib;wxmsw31u_media_vc_vdm.lib;wxmsw31u_propgrid_vc_vdm.lib;wxmsw31u_qa_vc_vdm.lib;wxmsw31u_ribbon_vc_vdm.lib;wxmsw31u_richtext_vc_vdm.lib;wxmsw31u_stc_vc_vdm.lib;wxmsw31u_webview_vc_vdm.lib;wxmsw31u_xrc_vc_vdm.lib;wxpng_vc_vdm.lib;wxregexu_vc_vdm.lib;wxscintilla_vc_vdm.lib;wxtiff_vc_vdm.lib;wxzlib_vc_vdm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Comctl32.lib;Rpcrt4.lib;wxbase31u_net.lib;wxbase31u.lib;wxbase31u_xml.lib;wxexpat.lib;wxjpeg.lib;wxmsw31u_adv.lib;wxmsw31u_aui.lib;wxmsw31u_core.lib;wxmsw31u_gl.lib;wxmsw31u_html.lib;wxmsw31u_media.lib;wxmsw31u_propgrid.lib;wxmsw31u_qa.lib;wxmsw31u_ribbon.lib;wxmsw31u_richtext.lib;wxmsw31u_stc.lib;wxmsw31u_webview.lib;wxmsw31u_xrc.lib;wxpng.lib;wxregexu.lib;wxscintilla.lib;wxtiff.lib;wxzlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib\vc_x64_dll\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
