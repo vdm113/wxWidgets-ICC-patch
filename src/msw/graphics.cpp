@@ -23,7 +23,7 @@
 
 #include "wx/dc.h"
 
-#if wxUSE_GRAPHICS_CONTEXT
+#if wxUSE_GRAPHICS_GDIPLUS
 
 #ifndef WX_PRECOMP
     #include "wx/msw/wrapcdlg.h"
@@ -2038,9 +2038,22 @@ IMPLEMENT_DYNAMIC_CLASS(wxGDIPlusRenderer,wxGraphicsRenderer)
 
 static wxGDIPlusRenderer gs_GDIPlusRenderer;
 
-wxGraphicsRenderer* wxGraphicsRenderer::GetDefaultRenderer()
+wxGraphicsRenderer* wxGraphicsRenderer::GetGDIPlusRenderer()
 {
     return &gs_GDIPlusRenderer;
+}
+
+wxGraphicsRenderer* wxGraphicsRenderer::GetDefaultRenderer()
+{
+    wxGraphicsRenderer* renderer;
+
+#if wxUSE_GRAPHICS_DIRECT2D
+    renderer = wxGraphicsRenderer::GetDirect2DRenderer();
+    if (renderer == NULL)
+#endif
+        renderer = wxGraphicsRenderer::GetGDIPlusRenderer();
+
+    return renderer;
 }
 
 bool wxGDIPlusRenderer::EnsureIsLoaded()
@@ -2434,4 +2447,4 @@ void wxGCDC::ReleaseHDC(WXHDC hdc)
     g->ReleaseHDC((HDC)hdc);
 }
 
-#endif  // wxUSE_GRAPHICS_CONTEXT
+#endif // wxUSE_GRAPHICS_GDIPLUS
