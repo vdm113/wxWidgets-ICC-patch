@@ -63,6 +63,11 @@
     #include "wx/univ/colschem.h"
 #endif // __WXUNIVERSAL__
 
+#if wxUSE_TASKBARBUTTON
+    #include "wx/taskbarbutton.h"
+#endif
+
+
 // ----------------------------------------------------------------------------
 // globals
 // ----------------------------------------------------------------------------
@@ -70,6 +75,11 @@
 #if wxUSE_MENUS || wxUSE_MENUS_NATIVE
     extern wxMenu *wxCurrentPopupMenu;
 #endif // wxUSE_MENUS || wxUSE_MENUS_NATIVE
+
+#if wxUSE_TASKBARBUTTON
+    static WXUINT gs_msgTaskbarButtonCreated = 0;
+    #define wxTHBN_CLICKED 0x1800
+#endif  // wxUSE_TASKBARBUTTON
 
 // ----------------------------------------------------------------------------
 // event tables
@@ -139,7 +149,30 @@ bool wxFrame::Create(wxWindow *parent,
     SetAcceleratorTable(accel);
 #endif // wxUSE_ACCEL && __POCKETPC__
 
+#if wxUSE_TASKBARBUTTON
+    m_taskBarButton = NULL;
+    static bool s_registered = false;
+    if ( !s_registered )
+    {
+        gs_msgTaskbarButtonCreated =
+            ::RegisterWindowMessage(wxT("TaskbarButtonCreated"));
+        s_registered = true;
+    }
+#endif
+
     return true;
+}
+
+wxFrame::~wxFrame()
+{
+    SendDestroyEvent();
+
+    DeleteAllBars();
+
+#if wxUSE_TASKBARBUTTON
+    if ( m_taskBarButton )
+        delete m_taskBarButton;
+#endif
 }
 
 // ----------------------------------------------------------------------------
@@ -479,6 +512,13 @@ wxMenu* wxFrame::MSWFindMenuFromHMENU(WXHMENU hMenu)
     return GetMenuBar() ? GetMenuBar()->MSWGetMenu(hMenu) : NULL;
 }
 #endif // wxUSE_MENUS && !defined(__WXUNIVERSAL__)
+
+#if wxUSE_TASKBARBUTTON
+wxTaskBarButton* wxFrame::MSWGetTaskBarButton()
+{
+    return m_taskBarButton;
+}
+#endif // wxUSE_TASKBARBUTTON
 
 // Responds to colour changes, and passes event on to children.
 void wxFrame::OnSysColourChanged(wxSysColourChangedEvent& event)
@@ -875,6 +915,20 @@ bool wxFrame::HandleCommand(WXWORD id, WXWORD cmd, WXHWND control)
     }
 #endif // wxUSE_MENUS
 
+#if wxUSE_TASKBARBUTTON
+    if ( cmd == wxTHBN_CLICKED && m_taskBarButton )
+    {
+        wxTaskBarButtonImpl * const
+            tbButton = reinterpret_cast<wxTaskBarButtonImpl*>(m_taskBarButton);
+        // we use the index as id when adding thumbnail toolbar button.
+        wxThumbBarButton * const
+            thumbBarButton = tbButton->GetThumbBarButtonByIndex(id);
+        wxCommandEvent event(wxEVT_BUTTON, thumbBarButton->GetID());
+        event.SetEventObject(thumbBarButton);
+        return ProcessEvent(event);
+    }
+#endif // wxUSE_TASKBARBUTTON
+
     return wxFrameBase::HandleCommand(id, cmd, control);;
 }
 
@@ -929,6 +983,13 @@ WXLRESULT wxFrame::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lPara
             break;
 #endif // !__WXMICROWIN__
     }
+#if wxUSE_TASKBARBUTTON
+    if ( message == gs_msgTaskbarButtonCreated )
+    {
+        m_taskBarButton = new wxTaskBarButtonImpl(GetHandle());
+        processed = true;
+    }
+#endif
 
     if ( !processed )
         rc = wxFrameBase::MSWWindowProc(message, wParam, lParam);
