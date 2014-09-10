@@ -190,8 +190,14 @@ class TextEventHandler
 {
 public:
     explicit TextEventHandler(wxWindow* win)
+        : m_win(win)
     {
-        win->Bind(wxEVT_TEXT, &TextEventHandler::OnText, this);
+        m_win->Bind(wxEVT_TEXT, &TextEventHandler::OnText, this);
+    }
+
+    ~TextEventHandler()
+    {
+        m_win->Unbind(wxEVT_TEXT, &TextEventHandler::OnText, this);
     }
 
     const wxString& GetLastString() const
@@ -204,6 +210,8 @@ private:
     {
         m_string = event.GetString();
     }
+
+    wxWindow* const m_win;
 
     wxString m_string;
 };

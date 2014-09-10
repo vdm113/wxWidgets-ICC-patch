@@ -63,6 +63,16 @@
     #include "wx/univ/colschem.h"
 #endif // __WXUNIVERSAL__
 
+#if wxUSE_TASKBARBUTTON
+    #include "wx/msw/taskbarbutton.h"
+    #include "wx/dynlib.h"
+
+    WXUINT wxMsgTaskbarButtonCreated = 0;
+    #define wxTHBN_CLICKED 0x1800
+    #define wxMSGFLT_ADD   0x01
+#endif  // wxUSE_TASKBARBUTTON
+
+
 // ----------------------------------------------------------------------------
 // globals
 // ----------------------------------------------------------------------------
@@ -139,7 +149,51 @@ bool wxFrame::Create(wxWindow *parent,
     SetAcceleratorTable(accel);
 #endif // wxUSE_ACCEL && __POCKETPC__
 
+#if wxUSE_TASKBARBUTTON
+    m_taskBarButton = NULL;
+    static bool s_taskbarButtonCreatedMsgRegistered = false;
+    if ( !s_taskbarButtonCreatedMsgRegistered )
+    {
+        s_taskbarButtonCreatedMsgRegistered = true;
+        wxMsgTaskbarButtonCreated =
+            ::RegisterWindowMessage(wxT("TaskbarButtonCreated"));
+
+        // In case the application is run elevated, allow the
+        // TaskbarButtonCreated and WM_COMMAND messages through.
+#if wxUSE_DYNLIB_CLASS
+        typedef BOOL (WINAPI *ChangeWindowMessageFilter_t)(UINT message,
+                                                           DWORD dwFlag);
+        static ChangeWindowMessageFilter_t s_pfnChangeWindowMessageFilter = NULL;
+        if ( !s_pfnChangeWindowMessageFilter )
+        {
+            wxDynamicLibrary dllUser32(wxT("user32.dll"));
+            if ( dllUser32.IsLoaded() )
+            {
+                s_pfnChangeWindowMessageFilter = (ChangeWindowMessageFilter_t)
+                    dllUser32.GetSymbol(wxT("ChangeWindowMessageFilter"));
+                if ( s_pfnChangeWindowMessageFilter )
+                {
+                    s_pfnChangeWindowMessageFilter(wxMsgTaskbarButtonCreated,
+                                                   wxMSGFLT_ADD);
+                    s_pfnChangeWindowMessageFilter(WM_COMMAND, wxMSGFLT_ADD);
+                }
+            }
+        }
+#else
+        ChangeWindowMessageFilter(wxMsgTaskbarButtonCreated, wxMSGFLT_ADD);
+        ChangeWindowMessageFilter(WM_COMMAND, wxMSGFLT_ADD);
+#endif // wxUSE_DYNLIB_CLASS
+    }
+#endif // wxUSE_TASKBARBUTTON
+
     return true;
+}
+
+wxFrame::~wxFrame()
+{
+#if wxUSE_TASKBARBUTTON
+    delete m_taskBarButton;
+#endif
 }
 
 // ----------------------------------------------------------------------------
@@ -479,6 +533,13 @@ wxMenu* wxFrame::MSWFindMenuFromHMENU(WXHMENU hMenu)
     return GetMenuBar() ? GetMenuBar()->MSWGetMenu(hMenu) : NULL;
 }
 #endif // wxUSE_MENUS && !defined(__WXUNIVERSAL__)
+
+#if wxUSE_TASKBARBUTTON
+wxTaskBarButton* wxFrame::MSWGetTaskBarButton()
+{
+    return m_taskBarButton;
+}
+#endif // wxUSE_TASKBARBUTTON
 
 // Responds to colour changes, and passes event on to children.
 void wxFrame::OnSysColourChanged(wxSysColourChangedEvent& event)
@@ -875,6 +936,20 @@ bool wxFrame::HandleCommand(WXWORD id, WXWORD cmd, WXHWND control)
     }
 #endif // wxUSE_MENUS
 
+#if wxUSE_TASKBARBUTTON
+    if ( cmd == wxTHBN_CLICKED && m_taskBarButton )
+    {
+        wxTaskBarButtonImpl * const
+            tbButton = reinterpret_cast<wxTaskBarButtonImpl*>(m_taskBarButton);
+        // we use the index as id when adding thumbnail toolbar button.
+        wxThumbBarButton * const
+            thumbBarButton = tbButton->GetThumbBarButtonByIndex(id);
+        wxCommandEvent event(wxEVT_BUTTON, thumbBarButton->GetID());
+        event.SetEventObject(thumbBarButton);
+        return ProcessEvent(event);
+    }
+#endif // wxUSE_TASKBARBUTTON
+
     return wxFrameBase::HandleCommand(id, cmd, control);;
 }
 
@@ -928,7 +1003,58 @@ WXLRESULT wxFrame::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lPara
             }
             break;
 #endif // !__WXMICROWIN__
+
+#if wxUSE_MENUS
+        case WM_INITMENUPOPUP:
+            {
+                wxMenuBar* const bar = GetMenuBar();
+                if ( bar && !bar->IsEnabledTop(LOWORD(lParam)) )
+                {
+                    // Skip sending of wxEVT_MENU_OPEN in the base class
+                    // MSWWindowProc() for disabled top level menus.
+                    return MSWDefWindowProc(message, wParam, lParam);
+                }
+            }
+            break;
+
+        case WM_UNINITMENUPOPUP:
+            {
+                wxMenuBar* const bar = GetMenuBar();
+                if ( !bar )
+                    break;
+
+                // Unlike in WM_INITMENUPOPUP above, we don't have the position
+                // of the menu in the message itself, so find it ourselves.
+                const HMENU hmenu = (HMENU)wParam;
+
+                const size_t count = bar->GetMenuCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
+                for ( size_t n = 0; n < count; n++ )
+                {
+                    wxMenu* const menu = bar->GetMenu(n);
+                    if ( GetHmenuOf(menu) == hmenu )
+                    {
+                        if ( !bar->IsEnabledTop(n) )
+                        {
+                            // If we skipped sending wxEVT_MENU_OPEN, don't
+                            // send wxEVT_MENU_CLOSE neither.
+                            return MSWDefWindowProc(message, wParam, lParam);
+                        }
+                    }
+                }
+            }
+            break;
+#endif // wxUSE_MENUS
     }
+#if wxUSE_TASKBARBUTTON
+    if ( message == wxMsgTaskbarButtonCreated )
+    {
+        m_taskBarButton = new wxTaskBarButtonImpl(this);
+        processed = true;
+    }
+#endif
 
     if ( !processed )
         rc = wxFrameBase::MSWWindowProc(message, wParam, lParam);

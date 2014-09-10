@@ -44,6 +44,7 @@ All:
 - Allow specifying custom comparator for wxSortedArrayString (Catalin Raceanu).
 - Add wxDateTime::GetWeekBasedYear().
 - Specialize std::hash<> for wxString when using C++11.
+- Allow recursive calls to wxYield().
 
 Unix:
 
@@ -78,6 +79,7 @@ All (GUI):
 - Fix drawing custom colours of wxEnumProperty items in wxPG (Artur Wieczorek).
 - Add wxBitmap ctor from wxCursor.
 - Always disable wxWizard "Back" button on the starting page (pmgrace30).
+- Add wxUIActionSimulator::Select().
 
 wxGTK:
 
@@ -101,6 +103,7 @@ wxMSW:
 - Add wxThread::MSWGetHandle() (troelsk).
 - Allow using sizers for laying out wxMDIClientWindow (Artur Wieczorek).
 - Fix updating wxSlider background when its parent background changes.
+- Implement wxListBox::EnsureVisible() (RIVDSL).
 
 wxOSX/Cocoa:
 
