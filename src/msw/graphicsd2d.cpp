@@ -1174,9 +1174,9 @@ void wxD2DPathData::AddCurveToPoint(wxDouble cx1, wxDouble cy1, wxDouble cx2, wx
 {
     EnsureFigureOpen();
     D2D1_BEZIER_SEGMENT bezierSegment = {
-        {cx1, cy1},
-        {cx2, cy2},
-        {x, y}};
+        { (FLOAT)cx1, (FLOAT)cy1 },
+        { (FLOAT)cx2, (FLOAT)cy2 },
+        { (FLOAT)x, (FLOAT)y } };
     m_geometrySink->AddBezier(bezierSegment);
 
     m_currentPoint = D2D1::Point2F(x, y);
@@ -1225,8 +1225,8 @@ void wxD2DPathData::AddArc(wxDouble x, wxDouble y, wxDouble r, wxDouble startAng
     D2D1_ARC_SIZE arcSize = angle > 180 ? D2D1_ARC_SIZE_LARGE : D2D1_ARC_SIZE_SMALL;
 
     D2D1_ARC_SEGMENT arcSegment = {
-        {end.m_x + x, end.m_y + y},     // end point
-        {r, r},                         // size
+        { (FLOAT)(end.m_x + x), (FLOAT)(end.m_y + y) },     // end point
+        { (FLOAT)r, (FLOAT) r },                         // size
         0,                              // rotation
         sweepDirection,                 // sweep direction
         arcSize                         // arc size
@@ -1251,7 +1251,7 @@ void wxD2DPathData::AddEllipse(wxDouble x, wxDouble y, wxDouble w, wxDouble h)
     wxCOMPtr<ID2D1EllipseGeometry> ellipseGeometry;
     wxCOMPtr<ID2D1PathGeometry> newPathGeometry;
 
-    D2D1_ELLIPSE ellipse = { {x + w / 2, y + h / 2}, w / 2, h / 2 };
+    D2D1_ELLIPSE ellipse = { { (FLOAT)(x + w / 2), (FLOAT)(y + h / 2) }, (FLOAT)(w / 2), (FLOAT)(h / 2) };
 
     m_direct2dfactory->CreateEllipseGeometry(ellipse, &ellipseGeometry);
 
@@ -1341,7 +1341,7 @@ struct wxPBGRAColor
     {}
 
     wxPBGRAColor(const wxColor& color) : 
-        a(color.Alpha()), r(color.Red()), g(color.Green()), b(color.Blue())
+        b(color.Blue()), g(color.Green()), r(color.Red()), a(color.Alpha())
     {}
 
     bool IsBlack() const { return r == 0 && g == 0 && b == 0; }
@@ -1455,6 +1455,8 @@ public:
             case wxBRUSHSTYLE_VERTICAL_HATCH: 
                 CopyPattern(buffer, VERTICAL_PATTERN); 
                 break;
+            default:
+                break;
         }
 
         return S_OK;
@@ -1547,7 +1549,7 @@ public:
         // Retrieve the size of the bitmap
         UINT w, h;
         bitmap->GetSize(&w, &h);
-        WICRect lockSize = {0, 0, w, h};
+        WICRect lockSize = {0, 0, (INT)w, (INT)h};
 
         // Obtain a bitmap lock for exclusive write
         bitmap->Lock(&lockSize, WICBitmapLockWrite, &m_pixelLock);
@@ -1805,8 +1807,8 @@ public:
     struct LinearGradientInfo {
         const wxRect direction;
         const wxGraphicsGradientStops stops;
-        LinearGradientInfo(wxDouble& x1, wxDouble& y1, wxDouble& x2, wxDouble& y2, const wxGraphicsGradientStops& stops)
-            : direction(x1, y1, x2, y2), stops(stops) {}
+        LinearGradientInfo(wxDouble& x1, wxDouble& y1, wxDouble& x2, wxDouble& y2, const wxGraphicsGradientStops& stops_)
+            : direction(x1, y1, x2, y2), stops(stops_) {}
     };
 
     wxD2DLinearGradientBrushResourceHolder(wxDouble& x1, wxDouble& y1, wxDouble& x2, wxDouble& y2, const wxGraphicsGradientStops& stops)
@@ -1837,8 +1839,8 @@ public:
         const wxDouble radius;
         const wxGraphicsGradientStops stops;
 
-        RadialGradientInfo(wxDouble x1, wxDouble y1, wxDouble x2, wxDouble y2, wxDouble r, const wxGraphicsGradientStops& stops)
-            : direction(x1, y1, x2, y2), radius(r), stops(stops) {}
+        RadialGradientInfo(wxDouble x1, wxDouble y1, wxDouble x2, wxDouble y2, wxDouble r, const wxGraphicsGradientStops& stops_)
+            : direction(x1, y1, x2, y2), radius(r), stops(stops_) {}
     };
 
     wxD2DRadialGradientBrushResourceHolder(wxDouble& x1, wxDouble& y1, wxDouble& x2, wxDouble& y2, wxDouble& r, const wxGraphicsGradientStops& stops)
@@ -1964,6 +1966,8 @@ wxBrushStyle wxConvertPenStyleToBrushStyle(wxPenStyle penStyle)
         return wxBRUSHSTYLE_HORIZONTAL_HATCH;
     case wxPENSTYLE_VERTICAL_HATCH:
         return wxBRUSHSTYLE_VERTICAL_HATCH;
+    default:
+        break;
     }
 
     return wxBRUSHSTYLE_SOLID;
@@ -2191,7 +2195,7 @@ wxCOMPtr<IDWriteTextLayout> wxD2DFontData::CreateTextLayout(const wxString& text
         MAX_HEIGHT,
         &textLayout);
 
-    DWRITE_TEXT_RANGE textRange = { 0, text.length() };
+    DWRITE_TEXT_RANGE textRange = { 0, (UINT32) text.length() };
 
     if (m_underlined)
     {
@@ -2751,7 +2755,7 @@ public:
 
     wxD2DContext(wxGraphicsRenderer* renderer, ID2D1Factory* direct2dFactory, void* nativeContext);
 
-    ~wxD2DContext() wxOVERRIDE;
+    ~wxD2DContext();
 
     void Clip(const wxRegion& region) wxOVERRIDE;
 
@@ -3320,7 +3324,7 @@ void wxD2DContext::DrawRectangle(wxDouble x, wxDouble y, wxDouble w, wxDouble h)
     EnsureInitialized();
     AdjustRenderTargetSize();
 
-    D2D1_RECT_F rect = {x, y, x + w, y + h};
+    D2D1_RECT_F rect = { (FLOAT)x, (FLOAT)y, (FLOAT)(x + w), (FLOAT)(y + h) };
 
 
     if (!m_brush.IsNull())
@@ -3348,9 +3352,9 @@ void wxD2DContext::DrawRoundedRectangle(wxDouble x, wxDouble y, wxDouble w, wxDo
     EnsureInitialized();
     AdjustRenderTargetSize();
 
-    D2D1_RECT_F rect = {x, y, x + w, y + h};
+    D2D1_RECT_F rect = { (FLOAT)x, (FLOAT)y, (FLOAT)(x + w), (FLOAT)(y + h) };
 
-    D2D1_ROUNDED_RECT roundedRect = {rect, radius, radius};
+    D2D1_ROUNDED_RECT roundedRect = { rect, (FLOAT)radius, (FLOAT)radius };
 
     if (!m_brush.IsNull())
     {
@@ -3378,9 +3382,9 @@ void wxD2DContext::DrawEllipse(wxDouble x, wxDouble y, wxDouble w, wxDouble h)
     AdjustRenderTargetSize();
 
     D2D1_ELLIPSE ellipse = {
-        {(x + w / 2), (y + h / 2)}, // center point
-        w / 2,                      // radius x
-        h / 2                       // radius y
+        { (FLOAT)(x + w / 2), (FLOAT)(y + h / 2) }, // center point
+        (FLOAT)(w / 2),                      // radius x
+        (FLOAT)(h / 2)                       // radius y
     };
 
     if (!m_brush.IsNull())
@@ -3639,7 +3643,7 @@ wxGraphicsPen wxD2DRenderer::CreatePen(const wxPen& pen)
 
 wxGraphicsBrush wxD2DRenderer::CreateBrush(const wxBrush& brush)
 {
-    if ( !brush.IsOk() || brush.GetStyle() == wxPENSTYLE_TRANSPARENT )
+    if ( !brush.IsOk() || brush.GetStyle() == wxBRUSHSTYLE_TRANSPARENT )
     {
         return wxNullGraphicsBrush;
     }
