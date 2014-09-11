@@ -778,6 +778,7 @@
     <ClCompile Include="..\..\src\msw\ole\activex.cpp" />
     <ClCompile Include="..\..\src\msw\anybutton.cpp" />
     <ClCompile Include="..\..\src\msw\app.cpp" />
+    <ClCompile Include="..\..\src\msw\appprogress.cpp" />
     <ClCompile Include="..\..\src\msw\artmsw.cpp" />
     <ClCompile Include="..\..\src\msw\ole\automtn.cpp" />
     <ClCompile Include="..\..\src\msw\bitmap.cpp" />
