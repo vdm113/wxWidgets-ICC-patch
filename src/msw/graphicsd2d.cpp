@@ -135,12 +135,10 @@ public:
 private:
     static bool LoadLibraries()
     {
-        m_dllDirect2d.Load(wxT("d2d1.dll"), wxDL_VERBATIM);
-        m_dllDirectWrite.Load(wxT("dwrite.dll"), wxDL_VERBATIM);
+        if ( !m_dllDirect2d.Load(wxT("d2d1.dll"), wxDL_VERBATIM | wxDL_QUIET) )
+            return false;
 
-        bool hasDirect2dSupport = m_dllDirect2d.IsLoaded() && m_dllDirectWrite.IsLoaded();
-
-        if (!hasDirect2dSupport)
+        if ( !m_dllDirectWrite.Load(wxT("dwrite.dll"), wxDL_VERBATIM | wxDL_QUIET) )
             return false;
 
         #define wxLOAD_FUNC(dll, name)                    \
@@ -2132,8 +2130,8 @@ wxD2DFontData::wxD2DFontData(wxGraphicsRenderer* renderer, ID2D1Factory* d2dFact
     wxCOMPtr<IDWriteGdiInterop> gdiInterop;
     hr = wxDWriteFactory()->GetGdiInterop(&gdiInterop);
 
-    LOGFONT logfont;
-    GetObject(font.GetHFONT(), sizeof(logfont), &logfont);
+    LOGFONTW logfont;
+    GetObjectW(font.GetHFONT(), sizeof(logfont), &logfont);
 
     // Ensure the LOGFONT object contains the correct font face name
     if (logfont.lfFaceName[0] == '\0')
