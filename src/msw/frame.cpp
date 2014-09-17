@@ -121,6 +121,10 @@ void wxFrame::Init()
 #endif
 
     m_wasMinimized = false;
+
+#if wxUSE_TASKBARBUTTON
+    m_taskBarButton = NULL;
+#endif
 }
 
 bool wxFrame::Create(wxWindow *parent,
@@ -150,7 +154,6 @@ bool wxFrame::Create(wxWindow *parent,
 #endif // wxUSE_ACCEL && __POCKETPC__
 
 #if wxUSE_TASKBARBUTTON
-    m_taskBarButton = NULL;
     static bool s_taskbarButtonCreatedMsgRegistered = false;
     if ( !s_taskbarButtonCreatedMsgRegistered )
     {
@@ -997,55 +1000,11 @@ WXLRESULT wxFrame::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lPara
             }
             break;
 #endif // !__WXMICROWIN__
-
-#if wxUSE_MENUS
-        case WM_INITMENUPOPUP:
-            {
-                wxMenuBar* const bar = GetMenuBar();
-                if ( bar && !bar->IsEnabledTop(LOWORD(lParam)) )
-                {
-                    // Skip sending of wxEVT_MENU_OPEN in the base class
-                    // MSWWindowProc() for disabled top level menus.
-                    return MSWDefWindowProc(message, wParam, lParam);
-                }
-            }
-            break;
-
-        case WM_UNINITMENUPOPUP:
-            {
-                wxMenuBar* const bar = GetMenuBar();
-                if ( !bar )
-                    break;
-
-                // Unlike in WM_INITMENUPOPUP above, we don't have the position
-                // of the menu in the message itself, so find it ourselves.
-                const HMENU hmenu = (HMENU)wParam;
-
-                const size_t count = bar->GetMenuCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
-                for ( size_t n = 0; n < count; n++ )
-                {
-                    wxMenu* const menu = bar->GetMenu(n);
-                    if ( GetHmenuOf(menu) == hmenu )
-                    {
-                        if ( !bar->IsEnabledTop(n) )
-                        {
-                            // If we skipped sending wxEVT_MENU_OPEN, don't
-                            // send wxEVT_MENU_CLOSE neither.
-                            return MSWDefWindowProc(message, wParam, lParam);
-                        }
-                    }
-                }
-            }
-            break;
-#endif // wxUSE_MENUS
     }
 #if wxUSE_TASKBARBUTTON
     if ( message == wxMsgTaskbarButtonCreated )
     {
-        m_taskBarButton = new wxTaskBarButtonImpl(this);
+        m_taskBarButton = wxTaskBarButton::New(this);
         processed = true;
     }
 #endif

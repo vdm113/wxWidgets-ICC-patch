@@ -130,6 +130,7 @@ void wxFont::SetNativeInfoFromNSFont(WX_NSFont theFont, wxNativeFontInfo* info)
         wxFontStyle fontstyle = wxFONTSTYLE_NORMAL;
         wxFontWeight fontweight = wxFONTWEIGHT_NORMAL;
         bool underlined = false;
+        bool strikethrough = false;
 
         int size = (int) ([theFont pointSize]+0.5);
  
@@ -143,7 +144,7 @@ void wxFont::SetNativeInfoFromNSFont(WX_NSFont theFont, wxNativeFontInfo* info)
         if ( theTraits & NSItalicFontMask )
             fontstyle = wxFONTSTYLE_ITALIC ;
 
-        info->Init(size,fontFamily,fontstyle,fontweight,underlined,
+        info->Init(size,fontFamily,fontstyle,fontweight,underlined, strikethrough,
                    wxCFStringRef::AsString([theFont familyName]), wxFONTENCODING_DEFAULT);
 
     }
@@ -310,6 +311,7 @@ WX_UIFont wxFont::OSXCreateUIFont(wxOSXSystemFont font, wxNativeFontInfo* info)
         wxFontStyle fontstyle = wxFONTSTYLE_NORMAL;
         wxFontWeight fontweight = wxFONTWEIGHT_NORMAL;
         bool underlined = false;
+        bool strikethrough = false;
 
         int size = (int) ([uifont pointSize]+0.5);
         /*
@@ -323,8 +325,9 @@ WX_UIFont wxFont::OSXCreateUIFont(wxOSXSystemFont font, wxNativeFontInfo* info)
             fontstyle = wxFONTSTYLE_ITALIC ;
         */
         wxCFStringRef fontname( wxCFRetain([uifont familyName]) );
-        info->Init(size,wxFONTFAMILY_DEFAULT,fontstyle,fontweight,underlined,
-            fontname.AsString(), wxFONTENCODING_DEFAULT);
+        info->Init(size, wxFONTFAMILY_DEFAULT, fontstyle, fontweight,
+                   underlined, strikethrough,
+                   fontname.AsString(), wxFONTENCODING_DEFAULT);
 
     }
     return uifont;

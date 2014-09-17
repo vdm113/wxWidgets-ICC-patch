@@ -206,6 +206,12 @@ bool MyApp::OnInit()
     }
 
     MyFrame *frame = new MyFrame("wxTaskBarButton App");
+    if ( !frame->MSWGetTaskBarButton() )
+    {
+        wxLogError("Task bar button API is not available on this system, sorry.");
+        return false;
+    }
+
     frame->Show(true);
 
     return true;
@@ -316,7 +322,7 @@ MyFrame::MyFrame(const wxString& title)
 }
 
 wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
-    EVT_COMMAND_SCROLL_CHANGED(ProgressValueSlider, MyFrame::OnSetProgressValue)
+    EVT_COMMAND_SCROLL(ProgressValueSlider, MyFrame::OnSetProgressValue)
     EVT_RADIOBOX(VisibilityRadio, MyFrame::OnVisibilityChange)
     EVT_BUTTON(ThumbnailTooltipSetBtn, MyFrame::OnSetThumbnailTooltipBtn)
     EVT_CHOICE(ProgressStateChoice, MyFrame::OnChoice)

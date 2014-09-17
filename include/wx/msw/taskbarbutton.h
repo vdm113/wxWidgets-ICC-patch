@@ -29,7 +29,6 @@ class WXDLLIMPEXP_FWD_CORE wxITaskbarList3;
 class WXDLLIMPEXP_CORE wxTaskBarButtonImpl : public wxTaskBarButton
 {
 public:
-    wxTaskBarButtonImpl(wxWindow* parent);
     virtual ~wxTaskBarButtonImpl();
 
     virtual void SetProgressRange(int range) wxOVERRIDE;
@@ -54,6 +53,9 @@ public:
     bool InitOrUpdateThumbBarButtons();
 
 private:
+    // This ctor is only used by wxTaskBarButton::New()
+    wxTaskBarButtonImpl(wxITaskbarList3* taskbarList, wxWindow* parent);
+
     WXHWND m_hwnd;
     wxITaskbarList3 *m_taskbarList;
 
@@ -62,6 +64,8 @@ private:
 
     int m_progressRange;
     bool m_hasInitThumbnailToolbar;
+
+    friend wxTaskBarButton* wxTaskBarButton::New(wxWindow*);
 
     wxDECLARE_NO_COPY_CLASS(wxTaskBarButtonImpl);
 };

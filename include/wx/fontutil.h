@@ -128,9 +128,14 @@ public:
                   wxFontStyle style,
                   wxFontWeight weight,
                   bool underlined,
+                  bool strikethrough,
                   const wxString& faceName,
                   wxFontEncoding encoding)
-    { Init(size,family,style,weight,underlined,faceName,encoding); }
+    {
+        Init(size, family, style, weight,
+             underlined, strikethrough,
+             faceName, encoding);
+    }
 
     ~wxNativeFontInfo() { Free(); }
 
@@ -151,6 +156,7 @@ public:
                   wxFontStyle style,
                   wxFontWeight weight,
                   bool underlined,
+                  bool strikethrough,
                   const wxString& faceName ,
                   wxFontEncoding encoding);
 

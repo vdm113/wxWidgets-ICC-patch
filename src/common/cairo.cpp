@@ -257,8 +257,6 @@ private:
     wxCairo();
     ~wxCairo();
 
-    bool IsOk();
-
     wxDynamicLibrary m_libCairo;
     wxDynamicLibrary m_libPangoCairo;
 
@@ -348,7 +346,7 @@ wxCairo::~wxCairo()
     if ( !ms_lib )
     {
         ms_lib = new wxCairo();
-        if ( !ms_lib->IsOk() )
+        if ( !ms_lib->m_ok )
         {
             delete ms_lib;
             ms_lib = NULL;
@@ -365,11 +363,6 @@ wxCairo::~wxCairo()
         delete ms_lib;
         ms_lib = NULL;
     }
-}
-
-bool wxCairo::IsOk()
-{
-    return m_ok;
 }
 
 // ============================================================================
