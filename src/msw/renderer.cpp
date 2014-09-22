@@ -38,6 +38,7 @@
 #endif //WX_PRECOMP
 
 #include "wx/dcgraph.h"
+#include "wx/math.h"
 #include "wx/scopeguard.h"
 #include "wx/splitter.h"
 #include "wx/renderer.h"
@@ -634,7 +635,7 @@ void wxRendererMSW::DrawGauge(wxWindow* win,
     // Calc progress bar size
     wxRect progRect(rect);
     progRect.Deflate(2);
-    progRect.SetWidth(progRect.GetWidth() * ((double)value / max));
+    progRect.width = wxMulDivInt32(progRect.width, value, max);
 
     dc.SetBrush(wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHT));
     dc.SetPen(*wxTRANSPARENT_PEN);
@@ -967,7 +968,10 @@ void wxRendererXP::DrawGauge(wxWindow* win,
         &r,
         &contentRect);
 
-    contentRect.right = contentRect.left + (contentRect.right - contentRect.left) * ((double)value / max);
+    contentRect.right = contentRect.left +
+                            wxMulDivInt32(contentRect.right - contentRect.left,
+                                          value,
+                                          max);
 
     wxUxThemeEngine::Get()->DrawThemeBackground(
         hTheme,

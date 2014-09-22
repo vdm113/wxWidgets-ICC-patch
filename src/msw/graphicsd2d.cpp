@@ -55,6 +55,7 @@
 #include "wx/dc.h"
 #include "wx/dynlib.h"
 #include "wx/image.h"
+#include "wx/module.h"
 #include "wx/msw/private/comptr.h"
 #include "wx/private/graphics.h"
 #include "wx/stack.h"
@@ -239,24 +240,11 @@ BOOL WINAPI wxD2D1InvertMatrix(
     return wxDirect2D::D2D1InvertMatrix(matrix);
 }
 
-static bool gs_isComInitialized = false;
-
-void wxEnsureCOMLibraryInitialized()
-{
-    if (!gs_isComInitialized)
-    {
-        CoInitializeEx(NULL, COINIT_MULTITHREADED);
-        gs_isComInitialized = true;
-    }
-}
-
 static IWICImagingFactory* gs_WICImagingFactory = NULL;
 
 IWICImagingFactory* wxWICImagingFactory()
 {
     if (gs_WICImagingFactory == NULL) {
-        wxEnsureCOMLibraryInitialized();
-
         HRESULT hr = CoCreateInstance(
             CLSID_WICImagingFactory,
             NULL,
@@ -3512,7 +3500,7 @@ private :
 
 IMPLEMENT_DYNAMIC_CLASS(wxD2DRenderer,wxGraphicsRenderer)
 
-static wxScopedPtr<wxD2DRenderer> gs_D2DRenderer;
+static wxD2DRenderer *gs_D2DRenderer = NULL;
 
 wxGraphicsRenderer* wxGraphicsRenderer::GetDirect2DRenderer()
 {
@@ -3521,15 +3509,14 @@ wxGraphicsRenderer* wxGraphicsRenderer::GetDirect2DRenderer()
 
     if (!gs_D2DRenderer)
     {
-        gs_D2DRenderer.reset(new wxD2DRenderer());
+        gs_D2DRenderer = new wxD2DRenderer();
     }
 
-    return gs_D2DRenderer.get();
+    return gs_D2DRenderer;
 }
 
 wxD2DRenderer::wxD2DRenderer()
 {
-    wxEnsureCOMLibraryInitialized();
 
     HRESULT result;
     result = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &m_direct2dFactory);
@@ -3783,5 +3770,49 @@ ID2D1Factory* wxGetD2DFactory(wxGraphicsRenderer* renderer)
 {
     return static_cast<wxD2DRenderer*>(renderer)->GetD2DFactory();
 }
+
+// ----------------------------------------------------------------------------
+// Module ensuring all global/singleton objects are destroyed on shutdown.
+// ----------------------------------------------------------------------------
+
+class wxDirect2DModule : public wxModule
+{
+public:
+    wxDirect2DModule()
+    {
+    }
+
+    virtual bool OnInit() wxOVERRIDE
+    {
+        return true;
+    }
+
+    virtual void OnExit() wxOVERRIDE
+    {
+        if ( gs_WICImagingFactory )
+        {
+            gs_WICImagingFactory->Release();
+            gs_WICImagingFactory = NULL;
+        }
+
+        if ( gs_IDWriteFactory )
+        {
+            gs_IDWriteFactory->Release();
+            gs_IDWriteFactory = NULL;
+        }
+
+        if ( gs_D2DRenderer )
+        {
+            delete gs_D2DRenderer;
+            gs_D2DRenderer = NULL;
+        }
+    }
+
+private:
+    wxDECLARE_DYNAMIC_CLASS(wxDirect2DModule);
+};
+
+wxIMPLEMENT_DYNAMIC_CLASS(wxDirect2DModule, wxModule);
+
 
 #endif // wxUSE_GRAPHICS_DIRECT2D

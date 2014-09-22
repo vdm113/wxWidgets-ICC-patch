@@ -106,6 +106,10 @@ public:
         BaseWindowClass::SetLayoutDirection(dir);
 
         SetForAllParts(&wxWindowBase::SetLayoutDirection, dir);
+
+        // The child layout almost invariably depends on the layout direction,
+        // so redo it when it changes.
+        this->SetSize(-1, -1, -1, -1, wxSIZE_AUTO | wxSIZE_FORCE);
     }
 
 #if wxUSE_TOOLTIPS

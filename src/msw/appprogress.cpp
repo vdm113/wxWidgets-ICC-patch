@@ -20,6 +20,8 @@
     #pragma hdrstop
 #endif
 
+#if wxUSE_TASKBARBUTTON
+
 #ifndef WX_PRECOMP
     #include "wx/toplevel.h"
 #endif
@@ -33,7 +35,6 @@
 wxAppProgressIndicator::wxAppProgressIndicator(wxWindow* parent, int maxValue)
     : m_maxValue(maxValue)
 {
-#if wxUSE_TASKBARBUTTON
     if ( parent == NULL )
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -57,12 +58,10 @@ wxAppProgressIndicator::wxAppProgressIndicator(wxWindow* parent, int maxValue)
 
     Reset();
     SetRange(m_maxValue);
-#endif  // wxUSE_TASKBARBUTTON
 }
 
 wxAppProgressIndicator::~wxAppProgressIndicator()
 {
-#if wxUSE_TASKBARBUTTON
     Reset();
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -72,7 +71,6 @@ wxAppProgressIndicator::~wxAppProgressIndicator()
     {
         delete m_taskBarButtons[i];
     }
-#endif  // wxUSE_TASKBARBUTTON
 }
 
 bool wxAppProgressIndicator::IsAvailable() const
@@ -84,7 +82,6 @@ void wxAppProgressIndicator::SetValue(int value)
 {
     wxASSERT_MSG( value <= m_maxValue, wxT("invalid progress value") );
 
-#if wxUSE_TASKBARBUTTON
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
@@ -92,13 +89,12 @@ void wxAppProgressIndicator::SetValue(int value)
     {
         m_taskBarButtons[i]->SetProgressValue(value);
     }
-#endif  // wxUSE_TASKBARBUTTON
 }
 
 void wxAppProgressIndicator::SetRange(int range)
 {
     m_maxValue = range;
-#if wxUSE_TASKBARBUTTON
+
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
@@ -106,12 +102,10 @@ void wxAppProgressIndicator::SetRange(int range)
     {
         m_taskBarButtons[i]->SetProgressRange(range);
     }
-#endif  // wxUSE_TASKBARBUTTON
 }
 
 void wxAppProgressIndicator::Pulse()
 {
-#if wxUSE_TASKBARBUTTON
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
@@ -119,12 +113,10 @@ void wxAppProgressIndicator::Pulse()
     {
         m_taskBarButtons[i]->PulseProgress();
     }
-#endif  // wxUSE_TASKBARBUTTON
 }
 
 void wxAppProgressIndicator::Reset()
 {
-#if wxUSE_TASKBARBUTTON
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #endif
@@ -132,5 +124,6 @@ void wxAppProgressIndicator::Reset()
     {
         m_taskBarButtons[i]->SetProgressState(wxTASKBAR_BUTTON_NO_PROGRESS);
     }
-#endif // wxUSE_TASKBARBUTTON
 }
+
+#endif // wxUSE_TASKBARBUTTON

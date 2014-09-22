@@ -1238,11 +1238,11 @@ WX_PG_IMPLEMENT_INTERNAL_EDITOR_CLASS(ComboBox,
 void wxPGComboBoxEditor::UpdateControl( wxPGProperty* property, wxWindow* ctrl ) const
 {
     wxOwnerDrawnComboBox* cb = (wxOwnerDrawnComboBox*)ctrl;
+    const int index = property->GetChoiceSelection();
     wxString s = property->GetValueAsString(wxPG_EDITABLE_VALUE);
+    cb->SetSelection(index);
     property->GetGrid()->SetupTextCtrlValue(s);
     cb->SetValue(s);
-
-    // TODO: If string matches any selection, then select that.
 }
 
 
@@ -1650,7 +1650,7 @@ wxPGWindowList wxPGCheckBoxEditor::CreateControls( wxPropertyGrid* propGrid,
 
     if ( !property->IsValueUnspecified() )
     {
-        if ( propGrid->GetInternalFlags() & wxPG_FL_ACTIVATION_BY_CLICK )
+        if ( propGrid->HasInternalFlag(wxPG_FL_ACTIVATION_BY_CLICK) )
         {
             // Send the event to toggle the value (if mouse cursor is on the item)
             wxPoint point = cb->ScreenToClient(::wxGetMousePosition());

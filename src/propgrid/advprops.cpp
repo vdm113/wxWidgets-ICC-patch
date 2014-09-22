@@ -1239,7 +1239,7 @@ bool wxSystemColourProperty::QueryColourFromUser( wxVariant& variant ) const
     wxASSERT( propgrid );
 
     // Must only occur when user triggers event
-    if ( !(propgrid->GetInternalFlags() & wxPG_FL_IN_HANDLECUSTOMEDITOREVENT) )
+    if ( !propgrid->HasInternalFlag(wxPG_FL_IN_HANDLECUSTOMEDITOREVENT) )
         return res;
 
     wxColourPropertyValue val = GetVal();
@@ -1474,17 +1474,14 @@ bool wxSystemColourProperty::StringToValue( wxVariant& value, const wxString& te
             return false;
         }
 
-        if ( (argFlags & wxPG_PROPERTY_SPECIFIC) )
-        {
-            // Query for value from the event handler.
-            // User will be asked for custom color later on in OnEvent().
-            ResetNextIndex();
-            return false;
-        }
         if ( !QueryColourFromUser(value) )
         {
             ResetNextIndex();
-            return false;
+            if ( !(argFlags & wxPG_PROPERTY_SPECIFIC) )
+                return false;
+            // If query for value comes from the event handler
+            // use current pending value to be processed later on in OnEvent().
+            SetValueInEvent(value);
         }
     }
     else
