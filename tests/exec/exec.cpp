@@ -75,12 +75,16 @@ public:
 
 private:
     CPPUNIT_TEST_SUITE( ExecTestCase );
+// wxX11 didn't implement some required features. Disable these tests
+// for now.
+#if !defined (__WXX11__)
         CPPUNIT_TEST( TestShell );
         CPPUNIT_TEST( TestExecute );
         CPPUNIT_TEST( TestProcess );
         CPPUNIT_TEST( TestAsync );
         CPPUNIT_TEST( TestAsyncRedirect );
         CPPUNIT_TEST( TestOverlappedSyncExecute );
+#endif
     CPPUNIT_TEST_SUITE_END();
 
     void TestShell();

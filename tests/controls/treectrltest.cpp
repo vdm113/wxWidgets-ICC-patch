@@ -520,7 +520,6 @@ void TreeCtrlTestCase::AssignImageList()
 
 void TreeCtrlTestCase::Focus()
 {
-#if !defined(__WXGTK__) && !defined(__WXOSX__)
     m_tree->SetFocusedItem(m_child1);
 
     CPPUNIT_ASSERT_EQUAL(m_child1, m_tree->GetFocusedItem());
@@ -528,7 +527,6 @@ void TreeCtrlTestCase::Focus()
     m_tree->ClearFocusedItem();
 
     CPPUNIT_ASSERT(!m_tree->GetFocusedItem());
-#endif
 }
 
 void TreeCtrlTestCase::Bold()
@@ -596,7 +594,7 @@ void TreeCtrlTestCase::KeyNavigation()
 
     CPPUNIT_ASSERT(m_tree->IsExpanded(m_root));
 
-    sim.Char(WXK_LEFT);
+    sim.Char('-');
     wxYield();
 
     CPPUNIT_ASSERT(!m_tree->IsExpanded(m_root));

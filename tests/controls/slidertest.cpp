@@ -119,7 +119,7 @@ void SliderTestCase::LineUpDown()
     EventCounter linedown(m_slider, wxEVT_SCROLL_LINEDOWN);
 
     wxUIActionSimulator sim;
-
+    wxYield();
     m_slider->SetFocus();
 
     sim.Char(WXK_UP);
@@ -136,6 +136,7 @@ void SliderTestCase::LinePageSize()
 {
 #if wxUSE_UIACTIONSIMULATOR
     wxUIActionSimulator sim;
+    wxYield();
     m_slider->SetFocus();
 
     m_slider->SetPageSize(20);

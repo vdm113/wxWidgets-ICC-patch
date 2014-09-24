@@ -49,6 +49,11 @@
     #include "wx/osx/private.h"
 #endif
 
+#ifdef __WINDOWS__
+    // We only need it to get ::MulDiv() declaration, used by wxMulDivInt32().
+    #include "wx/msw/wrapwin.h"
+#endif
+
 // ----------------------------------------------------------------------------
 // wxRendererGeneric: our wxRendererNative implementation
 // ----------------------------------------------------------------------------

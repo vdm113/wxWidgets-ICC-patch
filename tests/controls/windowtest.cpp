@@ -129,6 +129,7 @@ void WindowTestCase::KeyEvent()
     wxUIActionSimulator sim;
 
     m_window->SetFocus();
+    wxYield();
 
     sim.Text("text");
     sim.Char(WXK_SHIFT);
@@ -153,6 +154,7 @@ void WindowTestCase::FocusEvent()
 
     wxButton* button = new wxButton(wxTheApp->GetTopWindow(), wxID_ANY);
 
+    wxYield();
     button->SetFocus();
 
     CPPUNIT_ASSERT_EQUAL(1, killfocus.GetCount());

@@ -236,6 +236,7 @@ wxREGISTER_UNIT_TEST(KeyboardEvent);
 void KeyboardEventTestCase::setUp()
 {
     m_win = new KeyboardTestWindow(wxTheApp->GetTopWindow());
+    wxYield();
     m_win->SetFocus();
     wxYield(); // needed to show the new window
 

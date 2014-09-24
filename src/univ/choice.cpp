@@ -70,7 +70,7 @@ bool wxChoice::Create(wxWindow *parent, wxWindowID id,
                       const wxPoint& pos,
                       const wxSize& size,
                       int n, const wxString choices[],
-                      long WXUNUSED(style),
+                      long style,
                       const wxValidator& validator,
                       const wxString& name)
 {
@@ -79,7 +79,7 @@ bool wxChoice::Create(wxWindow *parent, wxWindowID id,
         value = choices[0];
     return wxComboBox::Create(parent, id, value,
                                  pos, size, n, choices,
-                                 wxCB_READONLY, validator, name);
+                                 wxCB_READONLY | style, validator, name);
 }
 
 

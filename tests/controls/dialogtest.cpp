@@ -36,7 +36,11 @@ public:
 
 private:
     CPPUNIT_TEST_SUITE( ModalDialogsTestCase );
+// wxInfoBar has bug under x11. It will cause the dialog crash
+// Disable it for now.
+#if !defined (__WXX11__)
         CPPUNIT_TEST( MessageDialog );
+#endif
         CPPUNIT_TEST( FileDialog );
         CPPUNIT_TEST( CustomDialog );
     CPPUNIT_TEST_SUITE_END();

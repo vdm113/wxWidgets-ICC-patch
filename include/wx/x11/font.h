@@ -74,12 +74,14 @@ public:
 
     wxFont(const wxNativeFontInfo& info);
 
-    // FIXME: I added the ! to make it compile;
-    // is this right? - JACS
-#if !wxUSE_UNICODE
+    wxFont(const wxString &nativeInfoString)
+    {
+        Create(nativeInfoString);
+    }
+
     bool Create(const wxString& fontname,
         wxFontEncoding fontenc = wxFONTENCODING_DEFAULT);
-#endif
+
     // DELETEME: no longer seems to be implemented.
     // bool Create(const wxNativeFontInfo& fontinfo);
 
@@ -90,6 +92,7 @@ public:
     virtual wxFontStyle GetStyle() const;
     virtual wxFontWeight GetWeight() const;
     virtual bool GetUnderlined() const;
+    virtual bool GetStrikethrough() const wxOVERRIDE;
     virtual wxString GetFaceName() const;
     virtual wxFontEncoding GetEncoding() const;
     virtual const wxNativeFontInfo *GetNativeFontInfo() const;
@@ -102,6 +105,7 @@ public:
     virtual void SetWeight(wxFontWeight weight);
     virtual bool SetFaceName(const wxString& faceName);
     virtual void SetUnderlined(bool underlined);
+    virtual void SetStrikethrough(bool strikethrough) wxOVERRIDE;
     virtual void SetEncoding(wxFontEncoding encoding);
 
     wxDECLARE_COMMON_FONT_METHODS();
@@ -121,6 +125,12 @@ public:
     // Implementation
 
 #if wxUSE_PANGO
+    // Set Pango attributes in the specified layout. Currently only
+    // underlined and strike-through attributes are handled by this function.
+    //
+    // If neither of them is specified, returns false, otherwise sets up the
+    // attributes and returns true.
+    bool SetPangoAttrs(PangoLayout* layout) const;
 #else
     // Find an existing, or create a new, XFontStruct
     // based on this wxFont and the given scale. Append the

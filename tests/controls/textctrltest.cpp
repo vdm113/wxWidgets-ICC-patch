@@ -210,7 +210,7 @@ void TextCtrlTestCase::ReadOnly()
     // SetEditable() is supposed to override wxTE_READONLY
     m_text->SetEditable(true);
     
-#ifdef __WXOSX__
+#if defined(__WXOSX__) || defined(__WXUNIVERSAL__)
     // a ready only text field might not have been focusable at all
     m_text->SetFocus();
 #endif
@@ -230,6 +230,7 @@ void TextCtrlTestCase::MaxLength()
     EventCounter maxlen(m_text, wxEVT_TEXT_MAXLEN);
 
     m_text->SetFocus();
+    wxYield();
     m_text->SetMaxLength(10);
 
     wxUIActionSimulator sim;
@@ -504,11 +505,11 @@ void TextCtrlTestCase::Lines()
 
     // Verify that wrapped lines count as 2 lines.
     //
-    // This currently doesn't work neither in wxGTK nor wxOSX/Cocoa, see
+    // This currently doesn't work neither in wxGTK, wxUniv, or wxOSX/Cocoa, see
     // #12366, where GetNumberOfLines() always returns the number of logical,
     // not physical, lines.
     m_text->AppendText("\n" + wxString(50, '1') + ' ' + wxString(50, '2'));
-#if defined(__WXGTK__) || defined(__WXOSX_COCOA__)
+#if defined(__WXGTK__) || defined(__WXOSX_COCOA__) || defined(__WXUNIVERSAL__)
     CPPUNIT_ASSERT_EQUAL(6, m_text->GetNumberOfLines());
 #else
     CPPUNIT_ASSERT_EQUAL(7, m_text->GetNumberOfLines());

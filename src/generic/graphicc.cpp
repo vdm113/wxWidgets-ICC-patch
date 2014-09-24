@@ -1336,23 +1336,22 @@ void wxCairoBitmapData::InitSurface(cairo_format_t format, int stride)
 }
 
 wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, cairo_surface_t* bitmap ) :
-    wxGraphicsBitmapData( renderer )
+    wxGraphicsBitmapData(renderer)
 {
     m_surface = bitmap;
     m_pattern = cairo_pattern_create_for_surface(m_surface);
 
-#if CAIRO_VERSION >= CAIRO_VERSION_ENCODE(1,11,0)
-    if ( cairo_version() >= CAIRO_VERSION_ENCODE(1, 11, 0) )
-    {
-        m_width = cairo_image_surface_get_width(m_surface);
-        m_height = cairo_image_surface_get_height(m_surface);
-    }
-#endif
+    m_width = cairo_image_surface_get_width(m_surface);
+    m_height = cairo_image_surface_get_height(m_surface);
     m_buffer = NULL;
 }
 
-wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitmap& bmp ) : wxGraphicsBitmapData( renderer )
+wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitmap& bmp )
+    : wxGraphicsBitmapData(renderer)
 {
+    m_surface = NULL;
+    m_pattern = NULL;
+    m_buffer = NULL;
     wxCHECK_RET( bmp.IsOk(), wxT("Invalid bitmap in wxCairoContext::DrawBitmap"));
 
 #ifdef wxHAS_RAW_BITMAP
@@ -1804,7 +1803,11 @@ wxCairoContext::wxCairoContext( wxGraphicsRenderer* renderer, const wxWindowDC& 
 #endif
 #endif
 
-#ifdef __WXMAC__
+#ifdef __WXX11__
+    cairo_t* cr = static_cast<cairo_t*>(dc.GetImpl()->GetCairoContext());
+    if ( cr )
+        Init(cairo_reference(cr));
+#elif defined(__WXMAC__)
     CGContextRef cgcontext = (CGContextRef)dc.GetWindow()->MacGetCGContextRef();
     cairo_surface_t* surface = cairo_quartz_surface_create_for_cg_context(cgcontext, width, height);
     Init( cairo_create( surface ) );
@@ -1890,6 +1893,12 @@ wxCairoContext::wxCairoContext( wxGraphicsRenderer* renderer, const wxMemoryDC& 
 
     ConcatTransform( matrix );
 #endif
+#endif
+
+#ifdef __WXX11__
+    cairo_t* cr = static_cast<cairo_t*>(dc.GetImpl()->GetCairoContext());
+    if ( cr )
+        Init(cairo_reference(cr));
 #endif
 
 #ifdef __WXMAC__

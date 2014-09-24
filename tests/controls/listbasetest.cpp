@@ -236,7 +236,7 @@ void ListBaseTestCase::ItemClick()
     list->GetItemRect(0, pos);
 
     //We move in slightly so we are not on the edge
-    wxPoint point = list->ClientToScreen(pos.GetPosition()) + wxPoint(10, 5);
+    wxPoint point = list->ClientToScreen(pos.GetPosition()) + wxPoint(10, 10);
 
     sim.MouseMove(point);
     wxYield();
@@ -279,6 +279,7 @@ void ListBaseTestCase::KeyDown()
     wxUIActionSimulator sim;
 
     list->SetFocus();
+    wxYield();
     sim.Text("aAbB");
     wxYield();
 
@@ -433,8 +434,11 @@ void ListBaseTestCase::EditLabel()
     wxUIActionSimulator sim;
 
     list->EditLabel(0);
+    wxYield();
 
     sim.Text("sometext");
+    wxYield();
+
     sim.Char(WXK_RETURN);
 
     wxYield();

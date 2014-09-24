@@ -123,6 +123,8 @@ protected:
                               void **clientData,
                               wxClientDataType type) wxOVERRIDE;
 
+    virtual int DoListHitTest(const wxPoint& point) const wxOVERRIDE;
+
     // universal wxComboBox implementation internally uses wxListBox
     friend class WXDLLIMPEXP_FWD_CORE wxComboBox;
 
@@ -265,6 +267,10 @@ protected:
 
     // and this one the client data (either void or wxClientData)
     wxArrayPtrVoid m_itemsClientData;
+
+    // this is hold the input handler type. the input handler is different
+    // between ListBox and its subclass--CheckListbox
+    wxString m_inputHandlerType;
 
     // the current item
     int m_current;
