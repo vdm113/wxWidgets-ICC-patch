@@ -59,6 +59,9 @@ public:
 
     virtual QAbstractScrollArea *QtGetScrollBarsContainer() const;
 
+protected:
+    virtual void DoGetClientSize(int *width, int *height) const;
+
 private:
 
     wxDECLARE_DYNAMIC_CLASS( wxFrame );

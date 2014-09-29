@@ -93,7 +93,7 @@ bool wxListBox::Create(wxWindow *parent, wxWindowID id,
 {
     Init();
     QListWidgetItem* item;
-    m_qtListWidget = new wxQtListWidget( parent, this );
+    m_qtWindow = m_qtListWidget = new wxQtListWidget( parent, this );
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
