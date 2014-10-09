@@ -710,7 +710,16 @@
     <ClCompile Include="..\..\src\common\stopwatch.cpp" />
     <ClCompile Include="..\..\src\common\strconv.cpp" />
     <ClCompile Include="..\..\src\common\stream.cpp" />
-    <ClCompile Include="..\..\src\common\string.cpp" />
+    <ClCompile Include="..\..\src\common\string.cpp">
+      <Parallelization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</Parallelization>
+      <Parallelization Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">true</Parallelization>
+      <Parallelization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</Parallelization>
+      <Parallelization Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">true</Parallelization>
+      <Parallelization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</Parallelization>
+      <Parallelization Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'">true</Parallelization>
+      <Parallelization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</Parallelization>
+      <Parallelization Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">true</Parallelization>
+    </ClCompile>
     <ClCompile Include="..\..\src\common\stringimpl.cpp" />
     <ClCompile Include="..\..\src\common\stringops.cpp" />
     <ClCompile Include="..\..\src\common\strvararg.cpp" />
