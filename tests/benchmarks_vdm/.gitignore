@@ -15,4 +15,6 @@ x64
 
 tmp
 
+!bench.vcxproj.user
+
 #eof
