@@ -35,6 +35,7 @@
     #include "wx/wx.h"
 #endif
 
+#include "wx/artprov.h"
 #include "wx/bookctrl.h"
 #include "wx/sysopt.h"
 
@@ -213,7 +214,14 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size, 
     wxMenu *menuDisplay = new wxMenu;
     menuDisplay->Append(Display_FromPoint, _("Find from &point..."));
     menuDisplay->AppendSeparator();
-    menuDisplay->AppendCheckItem(Display_FullScreen, _("Full &screen\tF12"));
+    wxMenuItem* const
+        itemFullScreen = new wxMenuItem(menuDisplay,
+                                        Display_FullScreen,
+                                        _("Full &screen\tF12"));
+    itemFullScreen->SetBitmap(
+            wxArtProvider::GetBitmap(wxART_FULL_SCREEN, wxART_MENU)
+        );
+    menuDisplay->Append(itemFullScreen);
     menuDisplay->AppendSeparator();
     menuDisplay->Append(Display_Quit, _("E&xit\tAlt-X"), _("Quit this program"));
 
@@ -377,9 +385,9 @@ void MyFrame::OnFromPoint(wxCommandEvent& WXUNUSED(event))
     CaptureMouse();
 }
 
-void MyFrame::OnFullScreen(wxCommandEvent& event)
+void MyFrame::OnFullScreen(wxCommandEvent& WXUNUSED(event))
 {
-    ShowFullScreen(event.IsChecked());
+    ShowFullScreen(!IsFullScreen());
 }
 
 #if wxUSE_DISPLAY
