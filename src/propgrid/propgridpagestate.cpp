@@ -319,6 +319,9 @@ void wxPropertyGridPageState::DoClear()
     {
         // Properties which will be deleted immediately
         // should be removed from the lists of pending deletions.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         for (unsigned int i = 0; i < m_regularArray.GetChildCount(); i++)
         {
             wxPGProperty* p = m_regularArray.Item(i);
