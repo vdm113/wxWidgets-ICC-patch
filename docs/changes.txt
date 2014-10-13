@@ -32,6 +32,7 @@ Changes in behaviour which may result in build errors
 
 All:
 
+- Add "%z" support to printf()-like functions like wxString::Format() (RIVDSL).
 - Add wxPowerResourceBlocker (Tobias Taschner).
 - Add wxApp::StoreCurrentException() and RethrowStoredException() and implement
   their functionality by default when using C++11 compiler.
@@ -85,6 +86,7 @@ All (GUI):
 wxGTK:
 
 - Support building wxGTK3 under Windows (Kolya Kosenko).
+- Fix vertical cell alignment in wxDataViewCtrl.
 
 wxMSW:
 
