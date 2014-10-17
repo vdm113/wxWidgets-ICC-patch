@@ -4007,6 +4007,9 @@ void wxPropertyGrid::DeletePendingObjects()
 {
 #if !WXWIN_COMPATIBILITY_3_0
     // Delete pending property editors and their event handlers.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( !m_deletedEditorObjects.empty() )
     {
         wxObject* obj = m_deletedEditorObjects.back();
