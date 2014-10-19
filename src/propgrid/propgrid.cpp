@@ -561,6 +561,9 @@ wxPropertyGrid::~wxPropertyGrid()
         // editor objects immediatelly. They have to be deleted
         // later on in the global idle handler.
 #if !WXWIN_COMPATIBILITY_3_0
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
         while ( !m_deletedEditorObjects.empty() )
         {
             wxObject* obj = m_deletedEditorObjects.back();
