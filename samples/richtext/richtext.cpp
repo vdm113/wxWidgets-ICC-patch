@@ -134,7 +134,7 @@ public:
             attr.SetLineSpacing(10);
             obj->SetAttributes(attr);
         }
-        obj->GetChildren().Clear();
+        obj->DeleteChildren();
         wxRichTextParagraph* para = new wxRichTextParagraph;
         wxRichTextPlainText* text = new wxRichTextPlainText(GetLabel());
         para->AppendChild(text);
