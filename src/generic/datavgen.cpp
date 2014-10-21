@@ -3724,7 +3724,7 @@ void wxDataViewMainWindow::OnCharHook(wxKeyEvent& event)
     }
     else if ( m_useCellFocus )
     {
-        if ( event.GetKeyCode() == WXK_TAB )
+        if ( event.GetKeyCode() == WXK_TAB && !event.HasModifiers() )
         {
             if ( event.ShiftDown() )
                 OnLeftKey(event);

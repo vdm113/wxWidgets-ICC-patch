@@ -54,6 +54,9 @@ public:
     wxStringTokenizer(const wxString& str,
                       const wxString& delims = wxDEFAULT_DELIMITERS,
                       wxStringTokenizerMode mode = wxTOKEN_DEFAULT);
+        // copy ctor and assignment operator
+    wxStringTokenizer(const wxStringTokenizer& src);
+    wxStringTokenizer& operator=(const wxStringTokenizer& src);
 
         // args are same as for the non default ctor above
     void SetString(const wxString& str,
@@ -118,6 +121,8 @@ protected:
     bool IsOk() const { return m_mode != wxTOKEN_INVALID; }
 
     bool DoHasMoreTokens() const;
+
+    void DoCopyFrom(const wxStringTokenizer& src);
 
     enum MoreTokensState
     {
