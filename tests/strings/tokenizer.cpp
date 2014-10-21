@@ -301,6 +301,9 @@ void TokenizerTestCase::CopyObj()
 {
     // Test copy ctor
     wxStringTokenizer tkzSrc(wxT("first:second:third:fourth"), wxT(":"));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( tkzSrc.HasMoreTokens() )
     {
         wxString tokenSrc = tkzSrc.GetNextToken();
@@ -323,6 +326,9 @@ void TokenizerTestCase::AssignObj()
     // Test assignment
     wxStringTokenizer tkzSrc(wxT("first:second:third:fourth"), wxT(":"));
     wxStringTokenizer tkz;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     while ( tkzSrc.HasMoreTokens() )
     {
         wxString tokenSrc = tkzSrc.GetNextToken();
