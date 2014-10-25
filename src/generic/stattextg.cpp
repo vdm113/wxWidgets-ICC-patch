@@ -77,12 +77,7 @@ void wxGenericStaticText::OnPaint(wxPaintEvent& WXUNUSED(event))
     wxPaintDC dc(this);
 
     wxRect rect = GetClientRect();
-    if ( IsEnabled() )
-    {
-        dc.SetTextForeground(
-                       wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT));
-    }
-    else // paint disabled text
+    if ( !IsEnabled() )
     {
         // draw shadow of the text
         dc.SetTextForeground(
@@ -113,8 +108,8 @@ void wxGenericStaticText::SetLabel(const wxString& label)
 {
     wxControl::SetLabel(label);
     DoSetLabel(GetEllipsizedLabel());
-    if ( !HasFlag(wxST_NO_AUTORESIZE) && !IsEllipsized() )
-        InvalidateBestSize();
+    if ( !IsEllipsized() )
+        AutoResizeIfNecessary();
 
 #if wxUSE_MARKUP
     if ( m_markupText )
@@ -144,8 +139,7 @@ bool wxGenericStaticText::DoSetLabelMarkup(const wxString& markup)
     else
         m_markupText->SetMarkup(markup);
 
-    if ( !HasFlag(wxST_NO_AUTORESIZE) )
-        InvalidateBestSize();
+    AutoResizeIfNecessary();
 
     Refresh();
 
@@ -158,8 +152,9 @@ bool wxGenericStaticText::SetFont(const wxFont &font)
 {
     if ( !wxControl::SetFont(font) )
         return false;
-    if ( !HasFlag(wxST_NO_AUTORESIZE) )
-        InvalidateBestSize();
+
+    AutoResizeIfNecessary();
+
     Refresh();
     return true;
 }
