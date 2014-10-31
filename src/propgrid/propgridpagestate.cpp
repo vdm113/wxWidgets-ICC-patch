@@ -1943,6 +1943,9 @@ void wxPropertyGridPageState::DoRemoveChildrenFromSelection(wxPGProperty* p,
 {
     wxPropertyGrid* pg = GetGrid();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for( unsigned int i = 0; i < p->GetChildCount(); i++ )
     {
         wxPGProperty* child = p->Item(i);
@@ -1968,6 +1971,9 @@ void wxPropertyGridPageState::DoRemoveChildrenFromSelection(wxPGProperty* p,
 void wxPropertyGridPageState::DoMarkChildrenAsDeleted(wxPGProperty* p,
                                                       bool recursive)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#endif
     for( unsigned int i = 0; i < p->GetChildCount(); i++ )
     {
         wxPGProperty* child = p->Item(i);
