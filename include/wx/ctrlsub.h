@@ -296,7 +296,7 @@ public:
     // deleting items
     // --------------
 
-    void Clear();
+    virtual void Clear();
     void Delete(unsigned int pos);
 
 
