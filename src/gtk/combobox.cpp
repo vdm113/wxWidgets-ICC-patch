@@ -302,6 +302,17 @@ wxComboBox::GetClassDefaultAttributes(wxWindowVariant WXUNUSED(variant))
 #endif
 }
 
+void wxComboBox::Clear()
+{
+    // Do not call wxTextEntry::Clear() here as it's implemented in terms of
+    // virtual SetValue() and so would call our own overridden version of this
+    // method, which wouldn't do the right thing in wxCB_READONLY case.
+    //
+    // Clear the text directly to avoid this.
+    wxTextEntry::SetValue(wxString());
+    wxItemContainer::Clear();
+}
+
 void wxComboBox::SetValue(const wxString& value)
 {
     if ( HasFlag(wxCB_READONLY) )
