@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:       src/msw/sockmsw.cpp
 // Purpose:    MSW-specific socket code
@@ -200,6 +207,11 @@ bool wxSocketMSWManager::OnInit()
       return false;
 
   /* Initialize socket list */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = 0; i < MAXSOCKETS; i++)
   {
     socketList[i] = NULL;
@@ -252,6 +264,11 @@ void wxSocketMSWManager::OnExit()
 {
 #ifdef __WXWINCE__
 /* Delete the threads here */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for(unsigned int i=0; i < currSocket; i++)
         CloseHandle(hThread[i]);
 #endif

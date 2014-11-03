@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/fontcmn.cpp
 // Purpose:     implementation of wxFontBase methods
@@ -580,6 +587,11 @@ wxFont wxFont::Scaled(float x) const
 void wxNativeFontInfo::SetFaceName(const wxArrayString& facenames)
 {
 #if wxUSE_FONTENUM
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (size_t i=0; i < facenames.GetCount(); i++)
     {
         if (wxFontEnumerator::IsValidFacename(facenames[i]))

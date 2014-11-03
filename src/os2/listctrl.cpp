@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/listctrl.cpp
 // Purpose:     wxListCtrl
@@ -207,6 +214,11 @@ PFIELDINFO FindOS2ListFieldByColNum (
                       ,(MPARAM)(USHORT)sizeof(CNRINFO)
                      ))
         return NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < vCnrInfo.cFields; i++)
     {
         if (i == 0)
@@ -262,6 +274,11 @@ PMYRECORD FindOS2ListRecordByID (
                       ,(MPARAM)(USHORT)sizeof(CNRINFO)
                      ))
         return NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < vCnrInfo.cRecords; i++)
     {
         if (i == 0)
@@ -943,6 +960,11 @@ void wxListCtrl::FreeAllInternalData ()
         int n = GetItemCount();
         int i = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < n; i++)
             DeleteInternalData(this, (long)i);
         m_bAnyInternalData = false;
@@ -2135,6 +2157,11 @@ long wxListCtrl::FindItem (
     if (vLibRect.Contains(rPoint))
         return pRecord->m_ulItemId;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = lStart + 1; i < vCnrInfo.cRecords; i++)
     {
         pRecord = (PMYRECORD)PVOIDFROMMR(::WinSendMsg( GetHWND()
@@ -2494,6 +2521,11 @@ void wxListCtrl::OnPaint ( wxPaintEvent& rEvent )
     {
         long                        lTop = GetTopItem();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = lTop; i < lTop + GetCountPerPage() + 1; i++)
         {
             if (GetItemRect( i
@@ -2537,6 +2569,11 @@ void wxListCtrl::OnPaint ( wxPaintEvent& rEvent )
             int                     nCol;
             int                     nX = vItemRect.GetX();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (nCol = 0; nCol < GetColumnCount(); nCol++)
             {
                 int                 nColWidth = GetColumnWidth(nCol);

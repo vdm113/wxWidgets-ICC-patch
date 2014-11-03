@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /*
  * Copyright (c) 1990-1997 Sam Leffler
@@ -376,6 +383,11 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 	if ((erun-runs)&1)
 	    *erun++ = 0;
 	x = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (; runs < erun; runs += 2) {
 	    run = runs[0];
 	    if (x+run > lastx || run > lastx )
@@ -393,11 +405,21 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 			    /*
 			     * Align to longword boundary and fill.
 			     */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			    for (; n && !isAligned(cp, long); n--)
 				    *cp++ = 0x00;
 			    lp = (long*) cp;
 			    nw = (int32)(n / sizeof (long));
 			    n -= nw * sizeof (long);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			    do {
 				    *lp++ = 0L;
 			    } while (--nw);
@@ -428,11 +450,21 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 			    /*
 			     * Align to longword boundary and fill.
 			     */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			    for (; n && !isAligned(cp, long); n--)
 				*cp++ = 0xff;
 			    lp = (long*) cp;
 			    nw = (int32)(n / sizeof (long));
 			    n -= nw * sizeof (long);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			    do {
 				*lp++ = -1L;
 			    } while (--nw);
@@ -620,6 +652,7 @@ Fax3PutBits(TIFF* tif, unsigned int bits, unsigned int length)
 #define	DEBUG_PRINT(what,len) {						\
     int t;								\
     printf("%08X/%-2d: %s%5d\t", data, bit, DEBUG_COLOR(what), len);	\
+VDM_MACRO_PRAGMA_IVDEP \
     for (t = length-1; t >= 0; t--)					\
 	putchar(code & (1<<t) ? '1' : '0');				\
     putchar('\n');							\
@@ -948,6 +981,11 @@ Fax3Encode1DRow(TIFF* tif, unsigned char* bp, uint32 bits)
 	int32 span;
         uint32 bs = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (;;) {
 		span = find0span(bp, bs, bits);		/* white span */
 		putspan(tif, span, TIFFFaxWhiteCodes);
@@ -997,6 +1035,11 @@ Fax3Encode2DRow(TIFF* tif, unsigned char* bp, unsigned char* rp, uint32 bits)
 	uint32 b1 = (PIXEL(rp, 0) != 0 ? 0 : finddiff(rp, 0, bits, 0));
 	uint32 a2, b2;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (;;) {
 		b2 = finddiff2(rp, b1, bits, PIXEL(rp,b1));
 		if (b2 >= a1) {
@@ -1094,6 +1137,11 @@ Fax3Close(TIFF* tif)
 
 		if (is2DEncoding(sp))
 			code = (code<<1) | (sp->tag == G3_1D), length++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (i = 0; i < 6; i++)
 			Fax3PutBits(tif, code, length);
 		Fax3FlushBits(tif, sp);

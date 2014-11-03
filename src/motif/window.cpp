@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/window.cpp
 // Purpose:     wxWindow
@@ -556,6 +563,11 @@ wxWindow *wxWindowBase::DoFindFocus()
     // (2) The widget with the focus may not be in the widget table
     // depending on which widgets I put in the table
     wxWindow *winFocus = NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst();
           node;
           node = node->GetNext() )
@@ -1664,6 +1676,11 @@ bool wxWindow::ProcessAccelerator(wxKeyEvent& event)
     int count = m_acceleratorTable.GetCount();
     wxAcceleratorEntry* entries = m_acceleratorTable.GetEntries();
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < count; i++)
     {
         wxAcceleratorEntry* entry = & (entries[i]);
@@ -2427,6 +2444,11 @@ int wxComputeColours (Display *display, const wxColour * back, const wxColour * 
     if (back)
     {
         /* 5 Colours to allocate */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int i = 0; i < 5; i++)
             if (!YAllocColor (dpy, cmap, &g_itemColors[i]))
                 result = wxNO_COLORS;

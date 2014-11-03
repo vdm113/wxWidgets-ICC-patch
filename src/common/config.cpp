@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/config.cpp
 // Purpose:     implementation of wxConfigBase class
@@ -396,6 +403,11 @@ wxString wxExpandEnvVars(const wxString& str)
   strResult.Alloc(str.length());
 
   size_t m;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for ( size_t n = 0; n < str.length(); n++ ) {
     switch ( str[n].GetValue() ) {
 #ifdef __WINDOWS__
@@ -511,6 +523,11 @@ void wxSplitPath(wxArrayString& aParts, const wxString& path)
 
   wxString strCurrent;
   wxString::const_iterator pc = path.begin();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for ( ;; ) {
     if ( pc == path.end() || *pc == wxCONFIG_PATH_SEPARATOR ) {
       if ( strCurrent == wxT(".") ) {

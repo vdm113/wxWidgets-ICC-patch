@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/metafile.cpp
 // Purpose:     wxMetaFile, wxMetaFileDC etc. These classes are optional.
@@ -359,6 +366,11 @@ bool wxMakeMetafilePlaceable(const wxString& WXUNUSED(filename),
     // Calculate checksum
     WORD *p;
     mfPLACEABLEHEADER *pMFHead = &header;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (p =(WORD *)pMFHead,pMFHead -> checksum = 0; p < (WORD *)&pMFHead ->checksum; ++p)
         pMFHead ->checksum ^= *p;
 

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/window.cpp
 // Purpose:     wxWindowMSW
@@ -464,6 +471,11 @@ wxWindowMSW::~wxWindowMSW()
 
 #ifndef __WXUNIVERSAL__
     // VS: make sure there's no wxFrame with last focus set to us:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxWindow *win = GetParent(); win; win = win->GetParent() )
     {
         wxTopLevelWindow *frame = wxDynamicCast(win, wxTopLevelWindow);
@@ -1091,6 +1103,11 @@ static bool ScrollVertically(HWND hwnd, int kind, int count)
     int posStart = GetScrollPosition(hwnd, SB_VERT);
 
     int pos = posStart;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( int n = 0; n < count; n++ )
     {
         ::SendMessage(hwnd, WM_VSCROLL, kind, 0);
@@ -1654,6 +1671,11 @@ static void AdjustStaticBoxZOrder(wxWindow *parent)
     if ( !parent )
         return;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxWindowList::compatibility_iterator node = parent->GetChildren().GetFirst();
           node;
           node = node->GetNext() )
@@ -2052,6 +2074,11 @@ void wxWindowMSW::DoSetClientSize(int width, int height)
     // calculate the scrollbar correction correctly during the first iteration)
     // but just to be on the safe side we check for it instead of making it an
     // "infinite" loop (i.e. leaving break inside as the only way to get out)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( int i = 0; i < 4; i++ )
     {
         RECT rectClient;
@@ -2627,6 +2654,11 @@ bool wxWindowMSW::MSWSafeIsDialogMessage(WXMSG* msg)
         {
             // pessimistic by default
             bool canSafelyCallIsDlgMsg = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
                   node;
                   node = node->GetNext() )
@@ -2989,6 +3021,11 @@ wxWindowMSW::MSWHandleMessage(WXLRESULT *result,
                 // disabled. So catch mouse events and throw them away if
                 // necessary.
                 wxWindowMSW* win = this;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for ( ;; )
                 {
                     if (!win->IsEnabled())
@@ -4225,6 +4262,11 @@ bool wxWindowMSW::HandleDropFiles(WXWPARAM wParam)
                             );
 
     wxString *files = new wxString[gwFilesDropped];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( UINT wIndex = 0; wIndex < gwFilesDropped; wIndex++ )
     {
         // first get the needed buffer length (+1 for terminating NUL)
@@ -4403,6 +4445,11 @@ bool wxWindowMSW::HandlePower(WXWPARAM WXUNUSED_IN_WINCE(wParam),
 
 bool wxWindowMSW::IsDoubleBuffered() const
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( const wxWindowMSW *win = this; win; win = win->GetParent() )
     {
         if ( wxHasWindowExStyle(win, WS_EX_COMPOSITED) )
@@ -4769,6 +4816,11 @@ extern wxCOLORMAP *wxGetStdColourMap()
                 memDC.SelectObject(stdColourBitmap);
 
                 wxColour colour;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for ( size_t i = 0; i < WXSIZEOF(s_stdColours); i++ )
                 {
                     memDC.GetPixel(i, 0, &colour);
@@ -5109,6 +5161,11 @@ WXHBRUSH wxWindowMSW::MSWGetBgBrush(WXHDC hDC)
 #endif
                                 this;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxWindowMSW *win = this; win; win = win->GetParent() )
     {
         WXHBRUSH hBrush = win->MSWGetBgBrushForChild(hDC, child);
@@ -5149,6 +5206,11 @@ bool wxWindowMSW::HandlePrintClient(WXHDC hDC)
     if ( !MSWShouldPropagatePrintChild() )
         return MSWPrintChild(hDC, (wxWindow *)this);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxWindow *win = GetParent(); win; win = win->GetParent() )
     {
         if ( win->MSWPrintChild(hDC, (wxWindow *)this) )
@@ -5223,6 +5285,11 @@ bool wxWindowMSW::BeginRepositioningChildren()
 {
 #if wxUSE_DEFERRED_SIZING
     int numChildren = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( HWND child = ::GetWindow(GetHwndOf(this), GW_CHILD);
           child;
           child = ::GetWindow(child, GW_HWNDNEXT) )
@@ -5269,6 +5336,11 @@ void wxWindowMSW::EndRepositioningChildren()
     }
 
     // Reset our children's pending pos/size values.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;
           node = node->GetNext() )
@@ -5945,6 +6017,11 @@ int wxWindowMSW::HandleMenuChar(int WXUNUSED_IN_WINCE(chAccel),
 
     // find if we have this letter in any owner drawn item
     const int count = ::GetMenuItemCount(hmenu);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( int i = 0; i < count; i++ )
     {
         // previous loop iteration could modify it, reset it back before
@@ -6348,6 +6425,11 @@ int VKToWX(WXWORD vk, WXLPARAM lParam, wchar_t *uc)
     int wxk;
 
     // check the table first
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; n < WXSIZEOF(gs_specialKeys); n++ )
     {
         if ( gs_specialKeys[n].vk == vk )
@@ -6487,6 +6569,11 @@ int VKToWX(WXWORD vk, WXLPARAM lParam, wchar_t *uc)
 WXWORD WXToVK(int wxk, bool *isExtended)
 {
     // check the table first
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; n < WXSIZEOF(gs_specialKeys); n++ )
     {
         if ( gs_specialKeys[n].wxk == wxk )
@@ -7355,6 +7442,11 @@ wxWindow* wxFindWindowAtPoint(const wxPoint& pt)
         // WindowFromPoint() ignores the disabled children but we're supposed
         // to take them into account, so check if we have a child at this
         // coordinate using ChildWindowFromPointEx().
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( ;; )
         {
             pt2.x = pt.x;

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /*
  * jcapimin.c
  *
@@ -63,9 +70,19 @@ jpeg_CreateCompress (j_compress_ptr cinfo, int version, size_t structsize)
 
   cinfo->comp_info = NULL;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = 0; i < NUM_QUANT_TBLS; i++)
     cinfo->quant_tbl_ptrs[i] = NULL;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
     cinfo->dc_huff_tbl_ptrs[i] = NULL;
     cinfo->ac_huff_tbl_ptrs[i] = NULL;
@@ -122,11 +139,21 @@ jpeg_suppress_tables (j_compress_ptr cinfo, wxjpeg_boolean suppress)
   JQUANT_TBL * qtbl;
   JHUFF_TBL * htbl;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = 0; i < NUM_QUANT_TBLS; i++) {
     if ((qtbl = cinfo->quant_tbl_ptrs[i]) != NULL)
       qtbl->sent_table = suppress;
   }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
     if ((htbl = cinfo->dc_huff_tbl_ptrs[i]) != NULL)
       htbl->sent_table = suppress;
@@ -159,6 +186,11 @@ jpeg_finish_compress (j_compress_ptr cinfo)
   /* Perform any remaining passes */
   while (! cinfo->master->is_last_pass) {
     (*cinfo->master->prepare_for_pass) (cinfo);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (iMCU_row = 0; iMCU_row < cinfo->total_iMCU_rows; iMCU_row++) {
       if (cinfo->progress != NULL) {
 	cinfo->progress->pass_counter = (long) iMCU_row;

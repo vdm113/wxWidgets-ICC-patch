@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /*
  * jcprepct.c
  *
@@ -108,6 +115,11 @@ expand_bottom_edge (JSAMPARRAY image_data, JDIMENSION num_cols,
 {
   register int row;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (row = input_rows; row < output_rows; row++) {
     jcopy_sample_rows(image_data, input_rows-1, image_data, row,
 		      1, num_cols);
@@ -152,6 +164,11 @@ pre_process_data (j_compress_ptr cinfo,
     /* If at bottom of image, pad to fill the conversion buffer. */
     if (prep->rows_to_go == 0 &&
 	prep->next_buf_row < cinfo->max_v_samp_factor) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for (ci = 0; ci < cinfo->num_components; ci++) {
 	expand_bottom_edge(prep->color_buf[ci], cinfo->image_width,
 			   prep->next_buf_row, cinfo->max_v_samp_factor);
@@ -171,6 +188,11 @@ pre_process_data (j_compress_ptr cinfo,
      */
     if (prep->rows_to_go == 0 &&
 	*out_row_group_ctr < out_row_groups_avail) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
 	   ci++, compptr++) {
 	expand_bottom_edge(output_buf[ci],
@@ -215,8 +237,18 @@ pre_process_context (j_compress_ptr cinfo,
 					 numrows);
       /* Pad at top of image, if first time through */
       if (prep->rows_to_go == cinfo->image_height) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (ci = 0; ci < cinfo->num_components; ci++) {
 	  int row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	  for (row = 1; row <= cinfo->max_v_samp_factor; row++) {
 	    jcopy_sample_rows(prep->color_buf[ci], 0,
 			      prep->color_buf[ci], -row,
@@ -233,6 +265,11 @@ pre_process_context (j_compress_ptr cinfo,
 	break;
       /* When at bottom of image, pad to fill the conversion buffer. */
       if (prep->next_buf_row < prep->next_buf_stop) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (ci = 0; ci < cinfo->num_components; ci++) {
 	  expand_bottom_edge(prep->color_buf[ci], cinfo->image_width,
 			     prep->next_buf_row, prep->next_buf_stop);
@@ -280,6 +317,11 @@ create_context_buffer (j_compress_ptr cinfo)
 				(cinfo->num_components * 5 * rgroup_height) *
 				SIZEOF(JSAMPROW));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
     /* Allocate the actual buffer space (3 row groups) for this component.
@@ -295,6 +337,11 @@ create_context_buffer (j_compress_ptr cinfo)
     MEMCOPY(fake_buffer + rgroup_height, true_buffer,
 	    3 * rgroup_height * SIZEOF(JSAMPROW));
     /* Fill in the above and below wraparound pointers */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < rgroup_height; i++) {
       fake_buffer[i] = true_buffer[2 * rgroup_height + i];
       fake_buffer[4 * rgroup_height + i] = true_buffer[i];
@@ -342,6 +389,11 @@ jinit_c_prep_controller (j_compress_ptr cinfo, wxjpeg_boolean need_full_buffer)
   } else {
     /* No context, just make it tall enough for one row group */
     prep->pub.pre_process_data = pre_process_data;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
 	 ci++, compptr++) {
       prep->color_buf[ci] = (*cinfo->mem->alloc_sarray)

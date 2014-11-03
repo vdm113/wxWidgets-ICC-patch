@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        docmdi.h
 // Purpose:     interface of wxDocMDIParentFrame and wxDocMDIChildFrame
@@ -10,6 +17,11 @@
 
     The wxDocMDIParentFrame class provides a default top-level frame for
     applications using the document/view framework. This class can only be used
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for MDI parent frames.
 
     It cooperates with the wxView, wxDocument, wxDocManager and wxDocTemplate

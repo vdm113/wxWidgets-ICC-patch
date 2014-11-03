@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        app.h
 // Purpose:     interface of wxApp
@@ -121,6 +128,11 @@ public:
         whether one will be created in the future.
 
         Thus, it only makes sense to override it in console applications which
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         do use an event loop, to return @true instead of checking if there is a
         currently active event loop.
      */
@@ -609,6 +621,11 @@ public:
 
         The difference between this string and the one returned by GetAppName()
         is that this one is meant to be shown to the user and so should be used
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for the window titles, page headers and so on while the other one
         should be only used internally, e.g. for the file names or
         configuration file keys.
@@ -732,6 +749,11 @@ public:
         can use wxLocale to change the locale with more control.
 
         Notice that this does @em not change the global C++ locale, you need to
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         do it explicitly if you want, e.g.
         @code
             std::locale::global(std::locale(""));

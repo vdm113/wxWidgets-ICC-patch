@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/menu.cpp
 // Purpose:     implementation of wxMenuBar and wxMenu classes for wxGTK
@@ -103,6 +110,11 @@ static void UpdateSubMenuItemLabels(wxMenuItem* itemMenu)
     wxCHECK_RET( menu, "should only be called for sub menus" );
 
     const wxMenuItemList& items = menu->GetMenuItems();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxMenuItemList::const_iterator
             it = items.begin(); it != items.end(); ++it )
     {
@@ -157,6 +169,11 @@ void wxMenuBar::Init(size_t n, wxMenu *menus[], const wxString titles[], long st
 
     g_object_ref_sink(m_widget);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (size_t i = 0; i < n; ++i )
         Append(menus[i], titles[i]);
 }
@@ -264,6 +281,11 @@ void wxMenuBar::SetLayoutDirection(wxLayoutDirection dir)
 
     // also set the layout of all menus we already have (new ones will inherit
     // the current layout)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxMenuList::compatibility_iterator node = m_menus.GetFirst();
           node;
           node = node->GetNext() )

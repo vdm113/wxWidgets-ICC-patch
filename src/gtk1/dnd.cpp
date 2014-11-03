@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/dnd.cpp
 // Purpose:     wxDropTarget class
@@ -864,6 +871,11 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
     wxDataFormat *array = new wxDataFormat[ m_data->GetFormatCount() ];
     m_data->GetAllFormats( array );
     size_t count = m_data->GetFormatCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (size_t i = 0; i < count; i++)
     {
         GdkAtom atom = array[i];

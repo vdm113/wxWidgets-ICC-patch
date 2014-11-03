@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /*
  * jchuff.c
  *
@@ -121,6 +128,11 @@ start_pass_huff (j_compress_ptr cinfo, wxjpeg_boolean gather_statistics)
     entropy->pub.finish_pass = finish_pass_huff;
   }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
     compptr = cinfo->cur_comp_info[ci];
     dctbl = compptr->dc_tbl_no;
@@ -208,6 +220,11 @@ jpeg_make_c_derived_tbl (j_compress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   /* Figure C.1: make table of Huffman code length for each symbol */
 
   p = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (l = 1; l <= 16; l++) {
     i = (int) htbl->bits[l];
     if (i < 0 || p + i > 256)	/* protect against table overrun */
@@ -254,6 +271,11 @@ jpeg_make_c_derived_tbl (j_compress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
    */
   maxsymbol = isDC ? 15 : 255;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (p = 0; p < lastp; p++) {
     i = htbl->huffval[p];
     if (i < 0 || i > maxsymbol || dtbl->ehufsi[i])
@@ -394,6 +416,11 @@ encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
   
   r = 0;			/* r = run length of zeros */
   
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (k = 1; k < DCTSIZE2; k++) {
     if ((temp = block[jpeg_natural_order[k]]) == 0) {
       r++;
@@ -459,6 +486,11 @@ emit_restart (working_state * state, int restart_num)
   emit_byte(state, JPEG_RST0 + restart_num, return FALSE);
 
   /* Re-initialize DC predictions to 0 */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (ci = 0; ci < state->cinfo->comps_in_scan; ci++)
     state->cur.last_dc_val[ci] = 0;
 
@@ -494,6 +526,11 @@ encode_mcu_huff (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
   }
 
   /* Encode the MCU data blocks */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
     ci = cinfo->MCU_membership[blkn];
     compptr = cinfo->cur_comp_info[ci];
@@ -601,6 +638,11 @@ htest_one_block (j_compress_ptr cinfo, JCOEFPTR block, int last_dc_val,
   
   r = 0;			/* r = run length of zeros */
   
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (k = 1; k < DCTSIZE2; k++) {
     if ((temp = block[jpeg_natural_order[k]]) == 0) {
       r++;
@@ -652,6 +694,11 @@ encode_mcu_gather (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
   if (cinfo->restart_interval) {
     if (entropy->restarts_to_go == 0) {
       /* Re-initialize DC predictions to 0 */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for (ci = 0; ci < cinfo->comps_in_scan; ci++)
 	entropy->saved.last_dc_val[ci] = 0;
       /* Update restart state */
@@ -660,6 +707,11 @@ encode_mcu_gather (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
     entropy->restarts_to_go--;
   }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
     ci = cinfo->MCU_membership[blkn];
     compptr = cinfo->cur_comp_info[ci];
@@ -716,6 +768,11 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
 
   MEMZERO(bits, SIZEOF(bits));
   MEMZERO(codesize, SIZEOF(codesize));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = 0; i < 257; i++)
     others[i] = -1;		/* init links to empty */
   
@@ -727,11 +784,21 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
 
   /* Huffman's basic algorithm to assign optimal code lengths to symbols */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     /* Find the smallest nonzero frequency, set c1 = its symbol */
     /* In case of ties, take the larger symbol number */
     c1 = -1;
     v = 1000000000L;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i <= 256; i++) {
       if (freq[i] && freq[i] <= v) {
 	v = freq[i];
@@ -743,6 +810,11 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
     /* In case of ties, take the larger symbol number */
     c2 = -1;
     v = 1000000000L;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i <= 256; i++) {
       if (freq[i] && freq[i] <= v && i != c1) {
 	v = freq[i];
@@ -776,6 +848,11 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
   }
 
   /* Now count the number of symbols of each code length */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = 0; i <= 256; i++) {
     if (codesize[i]) {
       /* The JPEG standard seems to think that this can't happen, */
@@ -798,6 +875,11 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
    * one bit longer.
    */
   
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = MAX_CLEN; i > 16; i--) {
     while (bits[i] > 0) {
       j = i - 2;		/* find length of new prefix to be used */
@@ -824,7 +906,17 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
    * changes made above, but the JPEG spec seems to think this works.
    */
   p = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = 1; i <= MAX_CLEN; i++) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (j = 0; j <= 255; j++) {
       if (codesize[j] == i) {
 	htbl->huffval[p] = (UINT8) j;
@@ -858,6 +950,11 @@ finish_pass_gather (j_compress_ptr cinfo)
   MEMZERO(did_dc, SIZEOF(did_dc));
   MEMZERO(did_ac, SIZEOF(did_ac));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
     compptr = cinfo->cur_comp_info[ci];
     dctbl = compptr->dc_tbl_no;
@@ -900,6 +997,11 @@ jinit_huff_encoder (j_compress_ptr cinfo)
   entropy->pub.start_pass = start_pass_huff;
 
   /* Mark tables unallocated */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
     entropy->dc_derived_tbls[i] = entropy->ac_derived_tbls[i] = NULL;
 #ifdef ENTROPY_OPT_SUPPORTED

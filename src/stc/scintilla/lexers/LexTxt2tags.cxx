@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /******************************************************************
  *  LexTxt2tags.cxx
  *
@@ -80,6 +87,11 @@ static bool HasPrevLineContent(StyleContext &sc) {
 static bool IsValidHrule(const unsigned int endPos, StyleContext &sc) {
     int count = 1;
     unsigned int i = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (;;) {
         ++i;
         int c = sc.GetRelative(i);

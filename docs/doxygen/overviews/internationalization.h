@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        internationalization.h
 // Purpose:     topic overview
@@ -53,6 +60,11 @@ Translating your application involves several steps:
     language(s). It involves editing the .po file.
 @li Compiling the .po file into .mo file to be used by the program.
 @li Installing the .mo files with your application in the appropriate location
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for the target system (@see overview_i18n_mofiles).
 @li Setting the appropriate locale in your program to use the strings for the
     given language: see wxLocale.

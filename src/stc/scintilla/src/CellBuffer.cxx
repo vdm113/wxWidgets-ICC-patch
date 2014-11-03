@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file CellBuffer.cxx
  ** Manages a buffer of cells.
@@ -160,6 +167,11 @@ void UndoHistory::EnsureUndoRoom() {
 		// Run out of undo nodes so extend the array
 		int lenActionsNew = lenActions * 2;
 		Action *actionsNew = new Action[lenActionsNew];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (int act = 0; act <= currentAction; act++)
 			actionsNew[act].Grab(&actions[act]);
 		delete []actions;
@@ -276,6 +288,11 @@ void UndoHistory::DropUndoSequence() {
 }
 
 void UndoHistory::DeleteUndoHistory() {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int i = 1; i < maxAction; i++)
 		actions[i].Destroy();
 	maxAction = 0;
@@ -537,6 +554,11 @@ void CellBuffer::ResetLineEnds() {
 	lv.InsertText(lineInsert-1, length);
 	unsigned char chBeforePrev = 0;
 	unsigned char chPrev = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int i = 0; i < length; i++) {
 		unsigned char ch = substance.ValueAt(position + i);
 		if (ch == '\r') {
@@ -591,6 +613,11 @@ void CellBuffer::BasicInsertString(int position, const char *s, int insertLength
 		RemoveLine(lineInsert);
 	}
 	unsigned char ch = ' ';
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int i = 0; i < insertLength; i++) {
 		ch = s[i];
 		if (ch == '\r') {
@@ -622,6 +649,11 @@ void CellBuffer::BasicInsertString(int position, const char *s, int insertLength
 		}
 	} else if (utf8LineEnds && !UTF8IsAscii(chAfter)) {
 		// May have end of UTF-8 line end in buffer and start in insertion
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (int j = 0; j < UTF8SeparatorLength-1; j++) {
 			unsigned char chAt = substance.ValueAt(position + insertLength + j);
 			unsigned char back3[3] = {chBeforePrev, chPrev, chAt};
@@ -670,6 +702,11 @@ void CellBuffer::BasicDeleteChars(int position, int deleteLength) {
 		}
 
 		unsigned char ch = chNext;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (int i = 0; i < deleteLength; i++) {
 			chNext = substance.ValueAt(position + i + 1);
 			if (ch == '\r') {

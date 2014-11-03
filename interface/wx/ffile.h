@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        ffile.h
 // Purpose:     interface of wxFFile
@@ -47,6 +54,11 @@ public:
             The mode in which to open the file using standard C strings.
             Note that you should use "b" flag if you use binary files under Windows
             or the results might be unexpected due to automatic newline conversion done
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for the text files.
     */
     wxFFile(const wxString& filename, const wxString& mode = "r");

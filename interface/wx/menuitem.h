@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        menuitem.h
 // Purpose:     interface of wxMenu, wxMenuItem
@@ -402,6 +409,11 @@ public:
         Note that if the ID of this menu item corresponds to a stock ID, then it is 
         not necessary to specify a label: wxWidgets will automatically use the stock
         item label associated with that ID. See the @ref wxMenuItem::wxMenuItem "constructor"
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for more info.
         
         The label string for the normal menu items (not separators) may include the 

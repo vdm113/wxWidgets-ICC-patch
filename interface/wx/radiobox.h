@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        radiobox.h
 // Purpose:     interface of wxRadioBox
@@ -144,6 +151,11 @@ public:
 
     /**
         Creates the radiobox for two-step construction. See wxRadioBox()
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for further details.
     */
     bool Create(wxWindow* parent, wxWindowID id,
@@ -159,6 +171,11 @@ public:
 
     /**
         Creates the radiobox for two-step construction. See wxRadioBox()
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for further details.
     */
     bool Create(wxWindow* parent, wxWindowID id,

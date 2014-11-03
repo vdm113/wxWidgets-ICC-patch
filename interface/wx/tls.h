@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/tls.h
 // Purpose:     wxTLS_TYPE()
@@ -29,6 +36,11 @@
 
     Notice that the use of the ugly wxTLS_VALUE() macro is unfortunately
     required if you need to support platforms without native compiler support
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for thread-specific variables. If you compile your code only on platforms
     which do have such support (recent versions of GNU C++ compiler, Microsoft
     Visual C++ and Sun C++ compiler are known to have it), you can avoid it and

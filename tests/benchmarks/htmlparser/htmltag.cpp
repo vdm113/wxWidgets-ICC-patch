@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/htmltag.cpp
 // Purpose:     wx28HtmlTag class (represents single tag)
@@ -73,6 +80,11 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
             m_Cache[tg].Key = stpos;
 
             int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( i = 0;
                   pos < lng && i < (int)WXSIZEOF(tagBuffer) - 1 &&
                   src[pos] != wxT('>') && !wxIsspace(src[pos]);
@@ -91,6 +103,11 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
             {
                 m_Cache[tg].End1 = m_Cache[tg].End2 = -2;
                 // find matching begin tag:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for (i = tg; i >= 0; i--)
                     if ((m_Cache[i].End1 == -1) && (wxStrcmp(m_Cache[i].Name, tagBuffer+1) == 0))
                     {
@@ -167,6 +184,11 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
     }
 
     // ok, we're done, now we'll free .Name members of cache - we don't need it anymore:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int i = 0; i < m_CacheSize; i++)
     {
         delete[] m_Cache[i].Name;
@@ -180,6 +202,11 @@ void wx28HtmlTagsCache::QueryTag(int at, int* end1, int* end2)
     if (m_Cache[m_CachePos].Key != at)
     {
         int delta = (at < m_Cache[m_CachePos].Key) ? -1 : 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         do
         {
             if ( m_CachePos < 0 || m_CachePos == m_CacheSize )
@@ -421,6 +448,11 @@ wxString wx28HtmlTag::GetAllParams() const
     //     never used by wxHTML
     wxString s;
     size_t cnt = m_ParamNames.GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (size_t i = 0; i < cnt; i++)
     {
         s << m_ParamNames[i];

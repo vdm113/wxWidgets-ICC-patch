@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        helloworld.h
 // Purpose:     topic overview
@@ -12,6 +19,11 @@
 @tableofcontents
 
 This page shows a very simple wxWidgets program that can be used as a skeleton
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for your own code. While it does nothing very useful, it introduces a couple of
 important concepts and explains how to write a working wxWidgets application.
 
@@ -53,6 +65,11 @@ button) must declare an event table using the macro below.
 
 Finally, the way to react to such events must be done in "handlers". In our
 sample, we react to three menu items, one for our custom menu command and two
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for the standard "Exit" and "About" commands (any program should normally
 implement the latter two). Notice that these handlers don't need to be neither
 virtual nor public.

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler
@@ -113,6 +120,11 @@ ThunderDecode(TIFF* tif, uint8* op, tmsize_t maxpixels)
 				lastpixel |= lastpixel << 4;
 			npixels += n;
 			if (npixels < maxpixels) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				for (; n > 0; n -= 2)
 					*op++ = (uint8) lastpixel;
 			}

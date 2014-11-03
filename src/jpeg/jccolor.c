@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /*
  * jccolor.c
  *
@@ -94,6 +101,11 @@ rgb_ycc_start (j_compress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				(TABLE_SIZE * SIZEOF(JPEG_INT32)));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = 0; i <= MAXJSAMPLE; i++) {
     rgb_ycc_tab[i+R_Y_OFF] = FIX(0.29900) * i;
     rgb_ycc_tab[i+G_Y_OFF] = FIX(0.58700) * i;
@@ -145,6 +157,11 @@ rgb_ycc_convert (j_compress_ptr cinfo,
     outptr1 = output_buf[1][output_row];
     outptr2 = output_buf[2][output_row];
     output_row++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (col = 0; col < num_cols; col++) {
       r = GETJSAMPLE(inptr[RGB_RED]);
       g = GETJSAMPLE(inptr[RGB_GREEN]);
@@ -199,6 +216,11 @@ rgb_gray_convert (j_compress_ptr cinfo,
     inptr = *input_buf++;
     outptr = output_buf[0][output_row];
     output_row++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (col = 0; col < num_cols; col++) {
       r = GETJSAMPLE(inptr[RGB_RED]);
       g = GETJSAMPLE(inptr[RGB_GREEN]);
@@ -241,6 +263,11 @@ cmyk_ycck_convert (j_compress_ptr cinfo,
     outptr2 = output_buf[2][output_row];
     outptr3 = output_buf[3][output_row];
     output_row++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (col = 0; col < num_cols; col++) {
       r = MAXJSAMPLE - GETJSAMPLE(inptr[0]);
       g = MAXJSAMPLE - GETJSAMPLE(inptr[1]);
@@ -291,6 +318,11 @@ grayscale_convert (j_compress_ptr cinfo,
     inptr = *input_buf++;
     outptr = output_buf[0][output_row];
     output_row++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (col = 0; col < num_cols; col++) {
       outptr[col] = inptr[0];	/* don't need GETJSAMPLE() here */
       inptr += instride;
@@ -319,9 +351,19 @@ null_convert (j_compress_ptr cinfo,
 
   while (--num_rows >= 0) {
     /* It seems fastest to make a separate pass for each component. */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (ci = 0; ci < nc; ci++) {
       inptr = *input_buf;
       outptr = output_buf[ci][output_row];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for (col = 0; col < num_cols; col++) {
 	outptr[col] = inptr[ci]; /* don't need GETJSAMPLE() here */
 	inptr += nc;

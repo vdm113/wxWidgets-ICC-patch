@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 #ifndef lint
 static char sccsid[] = "@(#)ras2tif.c 1.2 90/03/06";
 #endif
@@ -219,6 +226,11 @@ main(argc, argv)
     memset(blue, 0, sizeof(blue));
     if (depth == 8) {
 	TIFFSetField(tif, TIFFTAG_COLORMAP, red, green, blue);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (i = 0; i < Colormap.length; i++) {
 	    red[i] = SCALE(Colormap.map[0][i]);
 	    green[i] = SCALE(Colormap.map[1][i]);
@@ -228,6 +240,11 @@ main(argc, argv)
     if (Verbose)
 	fprintf(stderr, "%dx%dx%d image, ", width, height, depth);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (row = 0; row < height; row++)
 	if (TIFFWriteScanline(tif,
 			      (u_char *) mprd_addr(mpr_d(pix), 0, row),

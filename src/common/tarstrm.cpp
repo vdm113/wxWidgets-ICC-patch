@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/tarstrm.cpp
 // Purpose:     Streams for Tar files
@@ -193,6 +200,11 @@ void wxTarHeaderBlock::check()
 bool wxTarHeaderBlock::IsAllZeros() const
 {
     const char *p = data;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (size_t i = 0; i < sizeof(data); i++)
         if (p[i])
             return false;
@@ -207,9 +219,19 @@ wxUint32 wxTarHeaderBlock::Sum(bool SignedSum /*=false*/)
     wxUint32 n = 0;
 
     if (SignedSum)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (size_t i = 0; i < sizeof(data); i++)
             n += (signed char)p[i];
     else
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (size_t i = 0; i < sizeof(data); i++)
             n += (unsigned char)p[i];
 
@@ -232,6 +254,11 @@ bool wxTarHeaderBlock::Read(wxInputStream& in)
 {
     bool ok = true;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int id = 0; id < TAR_NUMFIELDS && ok; id++)
         ok = in.Read(Get(id), Len(id)).LastRead() == Len(id);
 
@@ -242,6 +269,11 @@ bool wxTarHeaderBlock::Write(wxOutputStream& out)
 {
     bool ok = true;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int id = 0; id < TAR_NUMFIELDS && ok; id++)
         ok = WriteField(out, id);
 
@@ -289,6 +321,11 @@ bool wxTarHeaderBlock::SetPath(const wxString& name, wxMBConv& conv)
         badconv = true;
         size_t len = name.length();
         wxCharBuffer approx(len);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (size_t i = 0; i < len; i++)
         {
             wxChar c = name[i];
@@ -311,6 +348,11 @@ bool wxTarHeaderBlock::SetPath(const wxString& name, wxMBConv& conv)
     size_t i = 0;
     size_t nexti = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (;;) {
         fits = i < maxprefix && len - i <= maxname;
 
@@ -539,6 +581,11 @@ wxString wxTarEntry::GetName(wxPathFormat format /*=wxPATH_NATIVE*/) const
         case wxPATH_DOS:
         {
             wxString name(isDir ? m_Name + wxT("\\") : m_Name);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (size_t i = 0; i < name.length(); i++)
                 if (name[i] == wxT('/'))
                     name[i] = wxT('\\');
@@ -946,6 +993,11 @@ bool wxTarInputStream::ReadExtendedHeader(wxTarHeaderRecords*& recs)
     size_t recPos, recSize;
     bool ok = true;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (recPos = 0; recPos < len && ok; recPos += recSize) {
         char *pRec = buf.data() + recPos;
         char *p = pRec;
@@ -1343,6 +1395,11 @@ wxString wxTarOutputStream::PaxHeaderPath(const wxString& format,
     size_t begin = 0;
     size_t end;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (;;) {
         end = format.find('%', begin);
         if (end == wxString::npos || end + 1 >= format.length())

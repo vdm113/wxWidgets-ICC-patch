@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        exec.cpp
 // Purpose:     exec sample demonstrates wxExecute and related functions
@@ -540,6 +547,11 @@ MyFrame::~MyFrame()
     // any processes left until now must be deleted manually: normally this is
     // done when the associated process terminates but it must be still running
     // if this didn't happen until now
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; n < m_allAsync.size(); n++ )
     {
         delete m_allAsync[n];
@@ -775,6 +787,11 @@ ExecQueryDialog::ExecQueryDialog(const wxString& cmd)
     wxEnvVariableHashMap env;
     if ( wxGetEnvMap(&env) )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( wxEnvVariableHashMap::iterator it = env.begin();
               it != env.end();
               ++it )
@@ -795,6 +812,11 @@ void ExecQueryDialog::GetEnvironment(wxEnvVariableHashMap& env)
                  value;
 
         const int nb = m_envtext->GetNumberOfLines();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( int l = 0; l < nb; l++ )
         {
             const wxString line = m_envtext->GetLineText(l).Trim();
@@ -1262,6 +1284,11 @@ void MyFrame::OnDDERequest(wxCommandEvent& WXUNUSED(event))
 void MyFrame::OnIdle(wxIdleEvent& event)
 {
     size_t count = m_running.GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         if ( m_running[n]->HasInput() )
@@ -1331,6 +1358,11 @@ void MyFrame::ShowOutput(const wxString& cmd,
     m_lbox->Append(wxString::Format(wxT("--- %s of '%s' ---"),
                                     title.c_str(), cmd.c_str()));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         m_lbox->Append(output[n]);

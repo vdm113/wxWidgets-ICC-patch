@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /*
  Name:        wx/msw/gccpriv.h
  Purpose:     MinGW/Cygwin definitions
@@ -121,6 +128,11 @@
 
 /* current (= before mingw-runtime 3.3) mingw32 headers forget to
    define _puttchar, this will probably be fixed in the next versions but
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for now do it ourselves
  */
 #if defined( __MINGW32__ ) && \

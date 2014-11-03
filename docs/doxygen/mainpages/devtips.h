@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        devtips.h
 // Purpose:     Cross-platform development page of the Doxygen manual
@@ -214,6 +221,11 @@ probably work fine on some platforms, and then fail under Windows.
 
 A problem which sometimes arises from writing multi-platform programs is that
 the basic C types are not defined the same on all platforms. This holds true
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for both the length in bits of the standard types (such as int and long) as
 well as their byte order, which might be little endian (typically on Intel
 computers) or big endian (typically on some Unix workstations). wxWidgets

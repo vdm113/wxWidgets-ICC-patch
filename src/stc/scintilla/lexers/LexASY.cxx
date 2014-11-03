@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 //Author: instanton (email: soft_share<at>126<dot>com)
 // The License.txt file describes the conditions under which this software may be distributed.
@@ -36,6 +43,11 @@ static void ColouriseAsyDoc(unsigned int startPos, int length, int initStyle,
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.atLineStart) {
@@ -127,6 +139,11 @@ static void ColouriseAsyDoc(unsigned int startPos, int length, int initStyle,
 			} else if (sc.ch == '\'') {
 				sc.SetState(SCE_ASY_CHARACTER);
 			} else if (sc.ch == '#' && visibleChars == 0) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				do {
 					sc.Forward();
 				} while ((sc.ch == ' ' || sc.ch == '\t') && sc.More());
@@ -202,6 +219,11 @@ static void FoldAsyDoc(unsigned int startPos, int length, int initStyle,
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
 	int style = initStyle;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        control.h
 // Purpose:     interface of wxControl
@@ -212,6 +219,11 @@ public:
         Unlike SetLabel(), this function shows exactly the @a text passed to it
         in the control, without interpreting ampersands in it in any way.
         Notice that it means that the control can't have any mnemonic defined
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for it using this function.
 
         @see EscapeMnemonics()

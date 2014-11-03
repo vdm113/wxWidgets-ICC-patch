@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/sckaddr.cpp
 // Purpose:     Network address manager
@@ -213,6 +220,11 @@ hostent *deepCopyHostent(hostent *h,
         pos += sizeof(char *);
 
     /* copy addresses and fill new pointer list */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (p = h->h_addr_list, q = h_addr_list; *p != 0; p++, q++)
     {
         if (size < pos + len)
@@ -239,6 +251,11 @@ hostent *deepCopyHostent(hostent *h,
         pos += sizeof(char *);
 
     /* copy aliases and fill new pointer list */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (p = h->h_aliases, q = h_aliases; *p != 0; p++, q++)
     {
         len = strlen(*p);
@@ -368,6 +385,11 @@ servent *deepCopyServent(servent *s,
         pos += sizeof(char *);
 
     /* copy addresses and fill new pointer list */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (p = s->s_aliases, q = s_aliases; *p != 0; p++, q++){
         len = strlen(*p);
         if (size <= pos + len)
@@ -899,6 +921,11 @@ void wxIPV6address::DoInitImpl()
 bool wxIPV6address::Hostname(unsigned char addr[16])
 {
     unsigned short wk[8];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( int i = 0; i < 8; ++i )
     {
         wk[i] = addr[2*i];
@@ -943,6 +970,11 @@ wxString wxIPV6address::IPAddress() const
     wxUint16 words[8];
     int i,
         prefix_zero_count = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( i = 0; i < 8; ++i )
     {
         words[i] = addr[i*2];
@@ -966,6 +998,11 @@ wxString wxIPV6address::IPAddress() const
     else // general case
     {
         result = ":";
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( i = prefix_zero_count; i < 8; ++i )
         {
             result += wxString::Format(":%x", words[i]);

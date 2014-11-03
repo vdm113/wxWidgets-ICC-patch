@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/window.cpp
 // Purpose:     wxWindowMac
@@ -437,6 +444,11 @@ wxMacWindowServiceEventHandler(EventHandlerCallRef WXUNUSED(handler),
                     pasteTypes = cEvent.GetParameter< CFMutableArrayRef >( kEventParamServicePasteTypes , typeCFMutableArrayRef ) ;
 
                 static const OSType textDataTypes[] = { kTXNTextData /* , 'utxt', 'PICT', 'MooV', 'AIFF' */  };
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for ( size_t i = 0 ; i < WXSIZEOF(textDataTypes) ; ++i )
                 {
                     CFStringRef typestring = CreateTypeStringWithOSType(textDataTypes[i]);
@@ -481,6 +493,11 @@ wxMacWindowServiceEventHandler(EventHandlerCallRef WXUNUSED(handler),
                 PasteboardSynchronize( pasteboard );
                 ItemCount itemCount;
                 verify_noerr( PasteboardGetItemCount( pasteboard, &itemCount ) );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for( UInt32 itemIndex = 1; itemIndex <= itemCount; itemIndex++ )
                 {
                     PasteboardItemID itemID;
@@ -551,6 +568,11 @@ WXDLLEXPORT pascal OSStatus wxMacUnicodeTextEventHandler( EventHandlerCallRef ha
             {
                 // An IME input event may return several characters, but we need to send one char at a time to
                 // EVT_CHAR
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for (int pos=0 ; pos < numChars ; pos++)
                 {
                     WXEVENTREF formerEvent = wxTheApp->MacGetCurrentEvent() ;
@@ -571,12 +593,22 @@ WXDLLEXPORT pascal OSStatus wxMacUnicodeTextEventHandler( EventHandlerCallRef ha
                     UInt32 message = (0  << 8) + ((char)uniChars[pos] );
     Since it simply truncated the unichar to the last byte, it ended up causing weird bugs with inline
     input, such as switching to another field when one attempted to insert the character U+4E09 (the kanji
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for "three"), because it was truncated to 09 (kTabCharCode), which was later "converted" to WXK_TAB
     (still 09) in wxMacTranslateKey; or triggering the default button when one attempted to insert U+840D
     (the kanji for "name"), which got truncated to 0D and interpreted as a carriage return keypress.
     Note that even single-byte characters could have been misinterpreted, since MacRoman charcodes only
     overlap with Unicode within the (7-bit) ASCII range.
     But simply passing a NUL charcode would disable text updated events, because wxTextCtrl::OnChar checks
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for codes within a specific range. Therefore I went for the solution seen above, which keeps ASCII
     characters as they are and replaces the rest with '?', ensuring that update events are triggered.
     It would be better to change wxTextCtrl::OnChar to look at the actual unicode character instead, but
@@ -607,6 +639,11 @@ WXDLLEXPORT pascal OSStatus wxMacUnicodeTextEventHandler( EventHandlerCallRef ha
 
                 // An IME input event may return several characters, but we need to send one char at a time to
                 // EVT_CHAR
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for (int pos=0 ; pos < numChars ; pos++)
                 {
                     WXEVENTREF formerEvent = wxTheApp->MacGetCurrentEvent() ;
@@ -1387,6 +1424,11 @@ static void InvalidateControlAndChildren( HIViewRef control )
 
     wxASSERT_MSG( err == noErr , wxT("Unexpected error when accessing subcontrols") );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( UInt16 i = childrenCount; i >=1; --i )
     {
         HIViewRef child;

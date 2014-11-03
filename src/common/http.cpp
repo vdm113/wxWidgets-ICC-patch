@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/http.cpp
 // Purpose:     HTTP protocol
@@ -82,6 +89,11 @@ void wxHTTP::SetProxyMode(bool on)
 wxHTTP::wxHeaderIterator wxHTTP::FindHeader(const wxString& header)
 {
     wxHeaderIterator it = m_headers.begin();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxHeaderIterator en = m_headers.end(); it != en; ++it )
     {
         if ( header.CmpNoCase(it->first) == 0 )
@@ -94,6 +106,11 @@ wxHTTP::wxHeaderIterator wxHTTP::FindHeader(const wxString& header)
 wxHTTP::wxHeaderConstIterator wxHTTP::FindHeader(const wxString& header) const
 {
     wxHeaderConstIterator it = m_headers.begin();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxHeaderConstIterator en = m_headers.end(); it != en; ++it )
     {
         if ( header.CmpNoCase(it->first) == 0 )
@@ -106,6 +123,11 @@ wxHTTP::wxHeaderConstIterator wxHTTP::FindHeader(const wxString& header) const
 wxHTTP::wxCookieIterator wxHTTP::FindCookie(const wxString& cookie)
 {
     wxCookieIterator it = m_cookies.begin();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxCookieIterator en = m_cookies.end(); it != en; ++it )
     {
         if ( cookie.CmpNoCase(it->first) == 0 )
@@ -118,6 +140,11 @@ wxHTTP::wxCookieIterator wxHTTP::FindCookie(const wxString& cookie)
 wxHTTP::wxCookieConstIterator wxHTTP::FindCookie(const wxString& cookie) const
 {
     wxCookieConstIterator it = m_cookies.begin();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxCookieConstIterator en = m_cookies.end(); it != en; ++it )
     {
         if ( cookie.CmpNoCase(it->first) == 0 )
@@ -241,6 +268,11 @@ void wxHTTP::SendHeaders()
     typedef wxStringToStringHashMap::iterator iterator;
     wxString buf;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (iterator it = m_headers.begin(), en = m_headers.end(); it != en; ++it )
     {
         buf.Printf(wxT("%s: %s\r\n"), it->first.c_str(), it->second.c_str());
@@ -259,6 +291,11 @@ bool wxHTTP::ParseHeaders()
     ClearCookies();
     m_read = true;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ;; )
     {
         m_lastError = ReadLine(this, line);

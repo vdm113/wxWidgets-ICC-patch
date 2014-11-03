@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/variant.cpp
 // Purpose:     wxVariant class, container for any type
@@ -1458,6 +1465,11 @@ bool wxVariantDataArrayString::Write(wxSTD ostream& WXUNUSED(str)) const
 bool wxVariantDataArrayString::Write(wxString& str) const
 {
     size_t count = m_value.GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         if ( n )

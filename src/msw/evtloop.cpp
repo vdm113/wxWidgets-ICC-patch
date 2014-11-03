@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/evtloop.cpp
 // Purpose:     implements wxEventLoop for wxMSW port
@@ -129,6 +136,11 @@ bool wxGUIEventLoop::PreProcessMessage(WXMSG *msg)
     }
 
     // try translations first: the accelerators override everything
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wnd = wndThis; wnd; wnd = wnd->GetParent() )
     {
         if ( wnd->MSWTranslateMessage((WXMSG *)msg))
@@ -142,6 +154,11 @@ bool wxGUIEventLoop::PreProcessMessage(WXMSG *msg)
     }
 
     // now try the other hooks (kbd navigation is handled here)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wnd = wndThis; wnd; wnd = wnd->GetParent() )
     {
         if ( wnd->MSWProcessMessage((WXMSG *)msg) )
@@ -417,6 +434,11 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 
     // put back unprocessed events in the queue
     DWORD id = GetCurrentThreadId();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (size_t i=0; i<m_arrMSG.GetCount(); i++)
     {
         PostThreadMessage(id, m_arrMSG[i].message,

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /*
  * lexical analyzer
  * This file is #included by regcomp.c.
@@ -132,6 +139,11 @@ struct vars *v;
 	if (HAVE(3) && NEXT2('(', '?') && iscalpha(*(v->now + 2))) {
 		NOTE(REG_UNONPOSIX);
 		v->now += 2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (; !ATEOS() && iscalpha(*v->now); v->now++)
 			switch (*v->now) {
 			case CHR('b'):		/* BREs (but why???) */
@@ -824,6 +836,11 @@ int maxlen;
 	CONST uchr ub = (uchr) base;
 
 	n = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (len = 0; len < maxlen && !ATEOS(); len++) {
 		c = *v->now++;
 		switch (c) {
@@ -983,6 +1000,11 @@ struct vars *v;
 
 	assert(v->cflags&REG_EXPANDED);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (;;) {
 		while (!ATEOS() && iscspace(*v->now))
 			v->now++;

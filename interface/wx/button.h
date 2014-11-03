@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        button.h
 // Purpose:     interface of wxButton
@@ -31,6 +38,11 @@
     image without text.
 
     A button may have either a single image for all states or different images
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for the following states (different images are not currently supported
     under OS X where the normal image is used for all states):
     @li @b normal: the default state
@@ -50,6 +62,11 @@
     set first (to a valid bitmap), before setting any other ones. Also, if the
     size of the bitmaps is changed later, you need to change the size of the
     normal bitmap before setting any other bitmaps with the new size (and you
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do need to reset all of them as their original values can be lost when the
     normal bitmap size changes).
 

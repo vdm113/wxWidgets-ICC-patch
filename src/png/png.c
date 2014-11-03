@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /* png.c - location for general purpose libpng functions
  *
@@ -137,6 +144,11 @@ png_calculate_crc(png_structrp png_ptr, png_const_bytep ptr, png_size_t length)
    {
       uLong crc = png_ptr->crc; /* Should never issue a warning */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       do
       {
          uInt safe_length = (uInt)length;
@@ -169,6 +181,11 @@ png_user_version_check(png_structrp png_ptr, png_const_charp user_png_ver)
    {
       int i = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       do
       {
          if (user_png_ver[i] != png_libpng_ver[i])
@@ -460,6 +477,11 @@ png_free_data(png_const_structrp png_ptr, png_inforp info_ptr, png_uint_32 mask,
       else
       {
          int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          for (i = 0; i < info_ptr->num_text; i++)
              png_free_data(png_ptr, info_ptr, PNG_FREE_TEXT, i);
          png_free(png_ptr, info_ptr->text);
@@ -502,6 +524,11 @@ png_free_data(png_const_structrp png_ptr, png_inforp info_ptr, png_uint_32 mask,
       if (info_ptr->pcal_params != NULL)
          {
             unsigned int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = 0; i < info_ptr->pcal_nparams; i++)
             {
                png_free(png_ptr, info_ptr->pcal_params[i]);
@@ -546,6 +573,11 @@ png_free_data(png_const_structrp png_ptr, png_inforp info_ptr, png_uint_32 mask,
          if (info_ptr->splt_palettes_num)
          {
             int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = 0; i < info_ptr->splt_palettes_num; i++)
                png_free_data(png_ptr, info_ptr, PNG_FREE_SPLT, (int)i);
 
@@ -576,6 +608,11 @@ png_free_data(png_const_structrp png_ptr, png_inforp info_ptr, png_uint_32 mask,
 
          if (info_ptr->unknown_chunks_num)
          {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = 0; i < info_ptr->unknown_chunks_num; i++)
                png_free_data(png_ptr, info_ptr, PNG_FREE_UNKN, (int)i);
 
@@ -613,6 +650,11 @@ png_free_data(png_const_structrp png_ptr, png_inforp info_ptr, png_uint_32 mask,
       if (info_ptr->row_pointers)
       {
          png_uint_32 row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          for (row = 0; row < info_ptr->height; row++)
          {
             png_free(png_ptr, info_ptr->row_pointers[row]);
@@ -838,6 +880,11 @@ png_handle_as_unknown(png_const_structrp png_ptr, png_const_bytep chunk_name)
     * code was always searched from the end of the list, this is no longer
     * necessary because the 'set' routine handles duplicate entries correcty.
     */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    do /* num_chunk_list > 0, so at least one */
    {
       p -= 5;
@@ -2038,6 +2085,11 @@ png_icc_check_tag_table(png_const_structrp png_ptr, png_colorspacerp colorspace,
    /* First scan all the tags in the table and add bits to the icc_info value
     * (temporarily in 'tags').
     */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for (itag=0; itag < tag_count; ++itag, tag += 12)
    {
       png_uint_32 tag_id = png_get_uint_32(tag+0);
@@ -2152,6 +2204,11 @@ png_compare_ICC_profile_with_sRGB(png_const_structrp png_ptr,
 #endif
    unsigned int i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for (i=0; i < (sizeof png_sRGB_checks) / (sizeof png_sRGB_checks[0]); ++i)
    {
       if (png_get_uint_32(profile+84) == png_sRGB_checks[i].md5[0] &&
@@ -2672,6 +2729,11 @@ png_pow10(int power)
    {
       /* Decompose power bitwise. */
       double mult = 10;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       do
       {
          if (power & 1) d *= mult;
@@ -2786,6 +2848,11 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
             clead = czero; /* Count of leading zeros */
             cdigits = 0;   /* Count of digits in list. */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             do
             {
                double d;
@@ -3515,6 +3582,11 @@ png_32bit_exp[16] =
 
 /* Adjustment table; provided to explain the numbers in the code below. */
 #if 0
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for (i=11;i>=0;--i){ print i, " ", (1 - e(-(2^i)/65536*l(2))) * 2^(32-i), "\n"}
    11 44937.64284865548751208448
    10 45180.98734845585101160448
@@ -3687,6 +3759,11 @@ png_build_16bit_table(png_structrp png_ptr, png_uint_16pp *ptable,
    png_uint_16pp table = *ptable =
        (png_uint_16pp)png_calloc(png_ptr, num * (sizeof (png_uint_16p)));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for (i = 0; i < num; i++)
    {
       png_uint_16p sub_table = table[i] =
@@ -3706,6 +3783,11 @@ png_build_16bit_table(png_structrp png_ptr, png_uint_16pp *ptable,
           * bits (unsigned) so long as max <= 32767.
           */
          unsigned int j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          for (j = 0; j < 256; j++)
          {
             png_uint_32 ig = (j << (8-shift)) + i;
@@ -3726,6 +3808,11 @@ png_build_16bit_table(png_structrp png_ptr, png_uint_16pp *ptable,
          /* We must still build a table, but do it the fast way. */
          unsigned int j;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          for (j = 0; j < 256; j++)
          {
             png_uint_32 ig = (j << (8-shift)) + i;
@@ -3758,6 +3845,11 @@ png_build_16to8_table(png_structrp png_ptr, png_uint_16pp *ptable,
     * bits of the input 16-bit value used to select a table.  Each table is
     * itself index by the high 8 bits of the value.
     */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for (i = 0; i < num; i++)
       table[i] = (png_uint_16p)png_malloc(png_ptr,
           256 * (sizeof (png_uint_16)));
@@ -3779,6 +3871,11 @@ png_build_16to8_table(png_structrp png_ptr, png_uint_16pp *ptable,
     * table entries <= 'max'
     */
    last = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for (i = 0; i < 255; ++i) /* 8-bit output value */
    {
       /* Find the corresponding maximum input value */
@@ -3836,6 +3933,11 @@ png_destroy_gamma_table(png_structrp png_ptr)
    {
       int i;
       int istop = (1 << (8 - png_ptr->gamma_shift));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for (i = 0; i < istop; i++)
       {
          png_free(png_ptr, png_ptr->gamma_16_table[i]);
@@ -3856,6 +3958,11 @@ png_destroy_gamma_table(png_structrp png_ptr)
    {
       int i;
       int istop = (1 << (8 - png_ptr->gamma_shift));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for (i = 0; i < istop; i++)
       {
          png_free(png_ptr, png_ptr->gamma_16_from_1[i]);
@@ -3867,6 +3974,11 @@ png_destroy_gamma_table(png_structrp png_ptr)
    {
       int i;
       int istop = (1 << (8 - png_ptr->gamma_shift));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for (i = 0; i < istop; i++)
       {
          png_free(png_ptr, png_ptr->gamma_16_to_1[i]);

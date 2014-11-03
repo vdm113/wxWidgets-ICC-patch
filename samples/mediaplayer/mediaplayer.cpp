@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        mediaplayer.cpp
 // Purpose:     wxMediaCtrl sample
@@ -355,6 +362,11 @@ public:
         virtual bool OnDropFiles(wxCoord WXUNUSED(x), wxCoord WXUNUSED(y),
                          const wxArrayString& files) wxOVERRIDE
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (size_t i = 0; i < files.GetCount(); ++i)
         {
             m_list.AddToPlayList(files[i]);
@@ -436,6 +448,11 @@ bool wxMediaPlayerApp::OnCmdLineParsed(wxCmdLineParser& parser)
     if ( !wxApp::OnCmdLineParsed(parser) )
         return false;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (size_t paramNr=0; paramNr < parser.GetParamCount(); ++paramNr)
         m_params.push_back(parser.GetParam(paramNr));
 
@@ -467,6 +484,11 @@ bool wxMediaPlayerApp::OnInit()
 #if wxUSE_CMDLINE_PARSER
     if ( !m_params.empty() )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( size_t n = 0; n < m_params.size(); n++ )
             frame->AddToPlayList(m_params[n]);
 
@@ -739,6 +761,11 @@ wxMediaPlayerFrame::wxMediaPlayerFrame(const wxString& title)
         //
         wxConfig conf;
         wxString key, outstring;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for(int i = 0; ; ++i)
         {
             key.clear();
@@ -793,6 +820,11 @@ wxMediaPlayerFrame::~wxMediaPlayerFrame()
     wxConfig conf;
     conf.DeleteAll();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for(int i = 0; i < playlist->GetItemCount(); ++i)
     {
         wxString* pData = (wxString*) playlist->GetItemData(i);

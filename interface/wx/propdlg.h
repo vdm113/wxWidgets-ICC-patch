@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        propdlg.h
 // Purpose:     interface of wxPropertySheetDialog
@@ -59,6 +66,11 @@ enum wxPropertySheetDialogFlags
     @class wxPropertySheetDialog
 
     This class represents a property sheet dialog: a tabbed dialog
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for showing settings. It is optimized to show flat tabs
     on PocketPC devices, and can be customized to use different
     controllers instead of the default notebook style.
@@ -88,6 +100,11 @@ enum wxPropertySheetDialogFlags
 
     If necessary, override CreateBookCtrl() and AddBookCtrl() to create and add a
     different kind of book control. You will then need to use two-step construction
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for the dialog or change the style of the book control by calling SetSheetStyle()
     before calling Create().
 

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /** @file LexRust.cxx
  ** Lexer for Rust.
  **
@@ -198,6 +205,11 @@ static void ScanWhitespace(Accessor& styler, int& pos, int max) {
 }
 
 static void GrabString(char* s, Accessor& styler, int start, int len) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int ii = 0; ii < len; ii++)
 		s[ii] = styler[ii + start];
 	s[len] = '\0';
@@ -217,6 +229,11 @@ static void ScanIdentifier(Accessor& styler, int& pos, WordList *keywords) {
 		len = len > MAX_RUST_IDENT_CHARS ? MAX_RUST_IDENT_CHARS : len;
 		GrabString(s, styler, start, len);
 		bool keyword = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (int ii = 0; ii < NUM_RUST_KEYWORD_LISTS; ii++) {
 			if (keywords[ii].InList(s)) {
 				styler.ColourTo(pos - 1, SCE_RUST_WORD + ii);
@@ -231,6 +248,11 @@ static void ScanIdentifier(Accessor& styler, int& pos, WordList *keywords) {
 }
 
 static void ScanDigits(Accessor& styler, int& pos, int base) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (;;) {
 		int c = styler.SafeGetCharAt(pos, '\0');
 		if (IsADigit(c, base) || c == '_')
@@ -355,6 +377,11 @@ static bool IsValidStringEscape(int c) {
 }
 
 static bool ScanNumericEscape(Accessor &styler, int& pos, int num_digits, bool stop_asap) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (;;) {
 		int c = styler.SafeGetCharAt(pos, '\0');
 		if (!IsADigit(c, 16))
@@ -461,6 +488,11 @@ static void ResumeBlockComment(Accessor &styler, int& pos, int max, CommentState
 		maybe_doc_comment = true;
 	}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (;;) {
 		int n = styler.SafeGetCharAt(pos + 1, '\0');
 		if (pos == styler.LineEnd(styler.GetLine(pos)))
@@ -580,6 +612,11 @@ static void ResumeString(Accessor &styler, int& pos, int max) {
 }
 
 static void ResumeRawString(Accessor &styler, int& pos, int max, int num_hashes) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (;;) {
 		if (pos == styler.LineEnd(styler.GetLine(pos)))
 			styler.SetLineState(styler.GetLine(pos), num_hashes);
@@ -702,6 +739,11 @@ void SCI_METHOD LexerRust::Fold(unsigned int startPos, int length, int initStyle
 	int styleNext = styler.StyleAt(startPos);
 	int style = initStyle;
 	const bool userDefinedFoldMarkers = !options.foldExplicitStart.empty() && !options.foldExplicitEnd.empty();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

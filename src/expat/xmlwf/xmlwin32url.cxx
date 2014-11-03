@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 #include "expat.h"
 #ifdef XML_UNICODE
 #define UNICODE
@@ -268,6 +275,11 @@ openStream(XML_Parser parser,
   hr = CreateURLMoniker(0, uri, &m);
 #else
   LPWSTR uriw = new wchar_t[strlen(uri) + 1];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (int i = 0;; i++) {
     uriw[i] = uri[i];
     if (uriw[i] == 0)

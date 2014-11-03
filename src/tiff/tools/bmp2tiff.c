@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
  *
  * Project:  libtiff tools
  * Purpose:  Convert Windows BMP files in TIFF.
@@ -455,6 +462,11 @@ main(int argc, char* argv[])
 					goto bad3;
 				}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				for(clr = 0; clr < clr_tbl_size; clr++) {
 				    red_tbl[clr] = 257*clr_tbl[clr*n_clr_elems+2];
 				    green_tbl[clr] = 257*clr_tbl[clr*n_clr_elems+1];
@@ -548,6 +560,11 @@ main(int argc, char* argv[])
 				goto bad3;
 			}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (row = 0; row < length; row++) {
 				if (info_hdr.iHeight > 0)
 					offset = file_hdr.iOffBits+(length-row-1)*size;
@@ -636,6 +653,11 @@ main(int argc, char* argv[])
 					    break;
 				    } else {            /* Absolute mode */
 					runlength = comprbuf[i++];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					for (k = 0; k < runlength && j < uncompr_size && i < compr_size; k++)
 					    uncomprbuf[j++] = comprbuf[i++];
 					if ( k & 0x01 )
@@ -672,6 +694,11 @@ main(int argc, char* argv[])
 					    break;
 				    } else {            /* Absolute mode */
 					runlength = comprbuf[i++];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					for (k = 0; k < runlength && j < uncompr_size && i < compr_size; k++) {
 					    if (k & 0x01)
 						uncomprbuf[j++] = comprbuf[i++] & 0x0F;
@@ -687,6 +714,11 @@ main(int argc, char* argv[])
 
 			_TIFFfree(comprbuf);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (row = 0; row < length; row++) {
 				if (TIFFWriteScanline(out,
 					uncomprbuf + (length - row - 1) * width,
@@ -745,6 +777,11 @@ rearrangePixels(char *buf, uint32 width, uint32 bit_count)
 		case 16:    /* FIXME: need a sample file */
                         break;
                 case 24:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (i = 0; i < width; i++, buf += 3) {
 				tmp = *buf;
 				*buf = *(buf + 2);
@@ -755,6 +792,11 @@ rearrangePixels(char *buf, uint32 width, uint32 bit_count)
 			{
 				char	*buf1 = buf;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				for (i = 0; i < width; i++, buf += 4) {
 					tmp = *buf;
 					*buf1++ = *(buf + 2);
@@ -838,6 +880,11 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);

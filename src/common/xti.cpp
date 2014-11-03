@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/xti.cpp
 // Purpose:     runtime metadata information (extended class info)
@@ -46,6 +53,11 @@ using namespace std;
 wxEnumData::wxEnumData( wxEnumMemberData* data )
 {
     m_members = data;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( m_count = 0; m_members[m_count].m_name; m_count++)
     {};
 }
@@ -53,6 +65,11 @@ wxEnumData::wxEnumData( wxEnumMemberData* data )
 bool wxEnumData::HasEnumMemberValue(const wxChar *name, int *value) const
 {
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; m_members[i].m_name; i++ )
     {
         if (!wxStrcmp(name, m_members[i].m_name))
@@ -68,6 +85,11 @@ bool wxEnumData::HasEnumMemberValue(const wxChar *name, int *value) const
 int wxEnumData::GetEnumMemberValue(const wxChar *name) const
 {
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; m_members[i].m_name; i++ )
     {
         if (!wxStrcmp(name, m_members[i].m_name))
@@ -81,6 +103,11 @@ int wxEnumData::GetEnumMemberValue(const wxChar *name) const
 const wxChar *wxEnumData::GetEnumMemberName(int value) const
 {
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; m_members[i].m_name; i++)
         if (value == m_members[i].m_value)
             return m_members[i].m_name;
@@ -527,6 +554,11 @@ bool wxClassInfo::IsKindOf(const wxClassInfo *info) const
         if ( info == this )
             return true;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( int i = 0; m_parents[i]; ++ i )
         {
             if ( m_parents[i]->IsKindOf( info ) )
@@ -567,6 +599,11 @@ const wxPropertyInfo *wxClassInfo::FindPropertyInfo (const wxChar *PropertyName)
         return info;
 
     const wxClassInfo** parents = GetParents();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( int i = 0; parents[i]; ++ i )
     {
         if ( ( info = parents[i]->FindPropertyInfo( PropertyName ) ) != NULL )
@@ -598,6 +635,11 @@ const wxHandlerInfo *wxClassInfo::FindHandlerInfo (const wxChar *PropertyName) c
         return info;
 
     const wxClassInfo** parents = GetParents();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( int i = 0; parents[i]; ++ i )
     {
         if ( ( info = parents[i]->FindHandlerInfo( PropertyName ) ) != NULL )
@@ -614,6 +656,11 @@ wxObjectStreamingCallback wxClassInfo::GetStreamingCallback() const
 
     wxObjectStreamingCallback retval = NULL;
     const wxClassInfo** parents = GetParents();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( int i = 0; parents[i] && retval == NULL; ++ i )
     {
         retval = parents[i]->GetStreamingCallback();
@@ -689,6 +736,11 @@ void wxClassInfo::GetProperties( wxPropertyInfoMap &infomap ) const
     }
 
     const wxClassInfo** parents = GetParents();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( int i = 0; parents[i]; ++ i )
     {
         parents[i]->GetProperties( infomap );
@@ -874,6 +926,11 @@ void wxDynamicClassInfo::AddHandler( const wxChar *handlerName, wxObjectEventFun
 // removes an existing runtime-property
 void wxDynamicClassInfo::RemoveProperty( const wxChar *propertyName )
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxDynamicObjectList::iterator iter = m_data->m_dynamicObjects.begin(); iter != m_data->m_dynamicObjects.end(); ++iter )
         (*iter)->RemoveProperty( propertyName );
     delete FindPropertyInfoInThisClass(propertyName);
@@ -892,6 +949,11 @@ void wxDynamicClassInfo::RenameProperty( const wxChar *oldPropertyName, const wx
     wxASSERT_MSG( pi,wxT("not existing property") );
     pi->m_name = newPropertyName;
     wx_dynamic_cast(wxGenericPropertyAccessor*, pi->GetAccessor())->RenameProperty( oldPropertyName, newPropertyName );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxDynamicObjectList::iterator iter = m_data->m_dynamicObjects.begin(); iter != m_data->m_dynamicObjects.end(); ++iter )
         (*iter)->RenameProperty( oldPropertyName, newPropertyName );
 }

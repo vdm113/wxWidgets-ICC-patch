@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/stringops.h
 // Purpose:     implementation of wxString primitive operations
@@ -97,11 +104,21 @@ struct WXDLLIMPEXP_BASE wxStringOperationsUtf8
 
         if ( n > 0 )
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( ptrdiff_t j = 0; j < n; ++j )
                 IncIter(out);
         }
         else if ( n < 0 )
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( ptrdiff_t j = 0; j > n; --j )
                 DecIter(out);
         }

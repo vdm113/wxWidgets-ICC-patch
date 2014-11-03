@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        propgrid.h
 // Purpose:     interface of wxPropertyGrid
@@ -380,6 +387,11 @@ typedef int (*wxPGSortCallback)(wxPropertyGrid* propGrid,
     wxPropertyGrid is a specialized grid for editing properties - in other
     words name = value pairs. List of ready-to-use property classes include
     strings, numbers, flag sets, fonts, colours and many others. It is possible,
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for example, to categorize properties, set up a complete tree-hierarchy,
     add more than two columns, and set arbitrary per-property attributes.
 

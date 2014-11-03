@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/volume.cpp
 // Purpose:     wxFSVolume - encapsulates system volume information
@@ -352,6 +359,11 @@ static bool BuildRemoteList(wxArrayString& list, NETRESOURCE* pResSrc,
 
         // apply list from bottom to top to preserve indexes if removing items.
         ssize_t iList = list.GetCount()-1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (ssize_t iMounted = mounted.GetCount()-1; iMounted >= 0 && iList >= 0; iMounted--)
         {
             int compare;
@@ -449,6 +461,11 @@ wxArrayString wxFSVolumeBase::GetVolumes(int flagsSet, int flagsUnset)
         wxArrayString nn;
         if (BuildRemoteList(nn, 0, flagsSet, flagsUnset))
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (size_t idx = 0; idx < nn.GetCount(); idx++)
                 list.Add(nn[idx]);
         }
@@ -570,6 +587,11 @@ void wxFSVolume::InitIcons()
 {
     m_icons.Alloc(wxFS_VOL_ICO_MAX);
     wxIcon null;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int idx = 0; idx < wxFS_VOL_ICO_MAX; idx++)
         m_icons.Add(null);
 }

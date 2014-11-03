@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/listbox.cpp
 // Purpose:     wxListBox
@@ -468,6 +475,11 @@ wxListWidgetColumn* wxMacDataBrowserListControl::InsertCheckColumn( unsigned pos
 
 wxMacDataBrowserColumn* wxMacDataBrowserListControl::GetColumnFromProperty( DataBrowserPropertyID property)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( unsigned int i = 0; i < m_columns.size() ; ++ i )
         if ( m_columns[i]->GetProperty() == property )
             return m_columns[i];
@@ -551,6 +563,11 @@ int wxMacDataBrowserListControl::ListGetSelections( wxArrayInt& aSelections ) co
 
     int count = selectedItems.GetCount();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( int i = 0; i < count; ++i)
     {
         aSelections.Add(GetLineFromItem(selectedItems[i]));

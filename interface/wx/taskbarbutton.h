@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        taskbarbutton.h
 // Purpose:     Interface of taskbar buttons features.
@@ -524,6 +531,11 @@ public:
         @param item
             The jump list item to be appended. It will be owned by the
             wxTaskBarJumpListCategory object after this function is called, so
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             do not delete it yourself.
 
         @see Insert(), Prepend()
@@ -680,6 +692,11 @@ public:
         @param category
             A wxTaskBarJumpListCategory object. It will be owned by the
             wxTaskBarJumpList object after this function is called, so
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             do not delete it yourself.
     */
     void AddCustomCategory(wxTaskBarJumpListCategory* category);

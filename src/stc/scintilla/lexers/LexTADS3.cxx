@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexTADS3.cxx
  ** Lexer for TADS3.
@@ -709,6 +716,11 @@ static inline bool IsSpaceEquivalent(const int ch, const int style) {
 
 static char peekAhead(unsigned int startPos, unsigned int endPos,
                                           Accessor &styler) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (unsigned int i = startPos; i < endPos; i++) {
                 int style = styler.StyleAt(i);
                 char ch = styler[i];
@@ -747,6 +759,11 @@ static void FoldTADS3Doc(unsigned int startPos, int length, int initStyle,
         char ch = chNext;
         int stylePrev = style;
         bool redo = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (unsigned int i = startPos; i < endPos; i++) {
                 if (redo) {
                         redo = false;

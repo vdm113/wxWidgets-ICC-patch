@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/glcanvas.cpp
 // Purpose:     wxGLCanvas, for using OpenGL with wxWidgets under MS Windows
@@ -128,6 +135,11 @@ typedef HGLRC(WINAPI * PFNWGLCREATECONTEXTATTRIBSARBPROC)
   C++ family of compilers
 
   Fundementally what they do is instruct the linker to use these two libraries
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for the resolution of symbols. In essence, this is the equivalent of adding
   these two libraries to either the Makefile or project file.
 
@@ -323,6 +335,11 @@ bool wxGLCanvas::Create(wxWindow *parent,
     // Check for a core profile request
     if ( attribList )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( int i = 0; attribList[i]; )
         {
             switch ( attribList[i++] )
@@ -660,6 +677,11 @@ AdjustPFDForAttributes(PIXELFORMATDESCRIPTOR& pfd, const int *attribList)
     pfd.iPixelType = PFD_TYPE_COLORINDEX;
 
     bool requestFSAA = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( int arg = 0; attribList[arg]; )
     {
         switch ( attribList[arg++] )
@@ -904,6 +926,11 @@ wxPalette wxGLCanvas::CreateDefaultPalette()
     int greenMask = (1 << pfd.cGreenBits) - 1;
     int blueMask = (1 << pfd.cBlueBits) - 1;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int i=0; i<paletteSize; ++i)
     {
         pPal->palPalEntry[i].peRed =

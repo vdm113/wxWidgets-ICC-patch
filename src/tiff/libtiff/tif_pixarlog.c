@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /*
  * Copyright (c) 1996-1997 Sam Leffler
@@ -534,16 +541,31 @@ PixarLogMakeTables(PixarLogState *sp)
 
     j = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < nlin; i++)  {
 	v = i * linstep;
 	ToLinearF[j++] = (float)v;
     }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = nlin; i < TSIZE; i++)
 	ToLinearF[j++] = (float)(b*exp(c*i));
 
     ToLinearF[2048] = ToLinearF[2047];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < TSIZEP1; i++)  {
 	v = ToLinearF[i]*65535.0 + 0.5;
 	ToLinear16[i] = (v > 65535.0) ? 65535 : (uint16)v;
@@ -552,6 +574,11 @@ PixarLogMakeTables(PixarLogState *sp)
     }
 
     j = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < lt2size; i++)  {
 	if ((i*linstep)*(i*linstep) > ToLinearF[j]*ToLinearF[j+1])
 	    j++;
@@ -564,6 +591,11 @@ PixarLogMakeTables(PixarLogState *sp)
      * saves a little table space.
      */
     j = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < 16384; i++)  {
 	while ((i/16383.)*(i/16383.) > ToLinearF[j]*ToLinearF[j+1])
 	    j++;
@@ -571,6 +603,11 @@ PixarLogMakeTables(PixarLogState *sp)
     }
 
     j = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < 256; i++)  {
 	while ((i/255.)*(i/255.) > ToLinearF[j]*ToLinearF[j+1])
 	    j++;
@@ -764,6 +801,11 @@ PixarLogDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 		TIFFErrorExt(tif->tif_clientdata, module, "ZLib cannot deal with buffers this size");
 		return (0);
 	}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	do {
 		int state = inflate(&sp->stream, Z_PARTIAL_FLUSH);
 		if (state == Z_STREAM_END) {
@@ -809,6 +851,11 @@ PixarLogDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 		nsamples -= nsamples % llen;
 	}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (i = 0; i < nsamples; i += llen, up += llen) {
 		switch (sp->user_datafmt)  {
 		case PIXARLOGDATAFMT_FLOAT:
@@ -1115,6 +1162,11 @@ PixarLogEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 
 	llen = sp->stride * td->td_imagewidth;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (i = 0, up = sp->tbuf; i < n; i += llen, up += llen) {
 		switch (sp->user_datafmt)  {
 		case PIXARLOGDATAFMT_FLOAT:
@@ -1153,6 +1205,11 @@ PixarLogEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 		return (0);
 	}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	do {
 		if (deflate(&sp->stream, Z_NO_FLUSH) != Z_OK) {
 			TIFFErrorExt(tif->tif_clientdata, module, "Encoder error: %s",
@@ -1183,6 +1240,11 @@ PixarLogPostEncode(TIFF* tif)
 
 	sp->stream.avail_in = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	do {
 		state = deflate(&sp->stream, Z_FINISH);
 		switch (state) {

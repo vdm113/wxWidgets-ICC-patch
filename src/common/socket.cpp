@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:       src/common/socket.cpp
 // Purpose:    Socket handler classes
@@ -277,6 +284,11 @@ void wxSocketManager::Init()
     /*
         Details: Initialize() creates a hidden window as a sink for socket
         events, such as 'read completed'. wxMSW has only one message loop
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for the main thread. If Initialize is called in a secondary thread,
         the socket window will be created for the secondary thread, but
         since there is no message loop on this thread, it will never
@@ -640,6 +652,7 @@ const wxSockAddressImpl& wxSocketImpl::GetLocal()
 // is EINTR
 #ifdef __UNIX__
     #define DO_WHILE_EINTR( rc, syscall ) \
+VDM_MACRO_PRAGMA_IVDEP \
         do { \
             rc = (syscall); \
         } \
@@ -1094,6 +1107,11 @@ wxSocketBase& wxSocketBase::ReadMsg(void* buffer, wxUint32 nbytes)
                 long discard_len;
 
                 // NOTE: discarded bytes don't add to m_lcount.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 do
                 {
                     discard_len = len2 > MAX_DISCARD_SIZE
@@ -1273,6 +1291,11 @@ wxSocketBase& wxSocketBase::Discard()
 
     wxSocketWaitModeChanger changeFlags(this, wxSOCKET_NOWAIT);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         ret = DoRead(buffer, MAX_DISCARD_SIZE);
@@ -1470,6 +1493,11 @@ wxSocketBase::DoWait(long timeout, wxSocketEventFlags flags)
     // (but note that we always execute the loop at least once, even if timeout
     // is 0 as this is used for polling)
     int rc = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( bool firstTime = true; !m_interrupt; firstTime = false )
     {
         long timeLeft = wxMilliClockToLong(timeEnd - wxGetLocalTimeMillis());

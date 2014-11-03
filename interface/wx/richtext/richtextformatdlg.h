@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        richtext/richtextformatdlg.h
 // Purpose:     interface of wxRichTextFormattingDialog*
@@ -93,6 +100,11 @@ public:
 
     In the constructor, specify the pages that will be created.
     Use wxRichTextFormattingDialog::GetStyle() to retrieve the common style
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for a given range, and then use wxRichTextFormattingDialog::ApplyStyle()
     to apply the user-selected formatting to a control.
 

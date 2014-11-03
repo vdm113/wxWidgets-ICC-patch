@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 #include "tif_config.h"
 
@@ -95,6 +102,11 @@ static tag_spec tags[] = {
 void formatString(FILE *ofile, const char *s, int len)
 {
   putc('"', ofile);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (; len > 0; --len, ++s) {
     int c = *s;
     switch (c) {
@@ -176,6 +188,11 @@ int convertHTMLcodes(char *s, int len)
         i,
         codes = sizeof(html_codes) / sizeof(html_code);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for (i=0; i < codes; i++)
       {
         if (html_codes[i].len <= len)
@@ -240,6 +257,11 @@ int formatIPTC(FILE *ifile, FILE *ofile)
 	  if ((char) recnum == EOF)
 	    return -1;
     /* try to match this record to one of the ones in our named table */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i=0; i< tagcount; i++)
     {
       if (tags[i].id == recnum)
@@ -259,6 +281,11 @@ int formatIPTC(FILE *ifile, FILE *ofile)
         unsigned char
           buffer[4];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i=0; i<4; i++)
         {
           c = buffer[i] = getc(ifile);
@@ -288,6 +315,11 @@ int formatIPTC(FILE *ifile, FILE *ofile)
         printf("Memory allocation failed");
         return 0;
       }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (tagindx=0; tagindx<taglen; tagindx++)
     {
       c = str[tagindx] = getc(ifile);
@@ -328,6 +360,11 @@ char *super_fgets(char *b, int *blen, FILE *file)
     *q;
 
   len=*blen;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (q=b; ; q++)
   {
     c=fgetc(file);
@@ -394,6 +431,11 @@ int main(int argc, char *argv[])
   length = -1;
   buffer = (unsigned char *)NULL;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i=1; i<argc; i++)
   {
     c = argv[i][0];
@@ -601,6 +643,11 @@ int main(int argc, char *argv[])
 				or only white space between generate a null
 				token for each two break characters together.
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				for example, if blank is set to be the white
 				space and comma is set to be the break
 				character, the line ...
@@ -647,6 +694,11 @@ int main(int argc, char *argv[])
 				position of the string gets treated as a
 				"normal" (i.e., non-quote, non-white,
 				non-break, and non-escape) character.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				for example, assume white space, break
 				character, and quote are the same as in the
 				above examples, and further, assume that
@@ -714,6 +766,11 @@ int main(int argc, char *argv[])
 			note that a token starting with one of these characters
 			needs the same quote character to terminate it.
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for example,
 
 			"ABC '
@@ -770,6 +827,11 @@ int _p_tokpos;	   /* current token pos  */
 int sindex(char ch,char *string)
 {
   char *cp;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for(cp=string;*cp;++cp)
     if(ch==*cp)
       return (int)(cp-string);	/* return postion of character */
@@ -822,6 +884,11 @@ int tokenizer(unsigned inflag,char *token,int tokmax,char *line,
   _p_curquote=0;	   /* initialize previous quote char */
   _p_flag=inflag;	   /* set option flag */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for(_p_tokpos=0;(c=line[*next]);++(*next))	/* main loop */
   {
     if((qp=sindex(c,brkchar))>=0)  /* break */

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexPython.cxx
  ** Lexer for Python.
@@ -186,6 +193,11 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 	int startIndicator = sc.currentPos;
 	bool inContinuedString = false;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.atLineStart) {
@@ -409,6 +421,11 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 static bool IsCommentLine(int line, Accessor &styler) {
 	int pos = styler.LineStart(line);
 	int eol_pos = styler.LineStart(line + 1) - 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
 		if (ch == '#')

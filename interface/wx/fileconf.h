@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        fileconf.h
 // Purpose:     interface of wxFileConfig
@@ -39,6 +46,11 @@ public:
         ::wxCONFIG_USE_GLOBAL_FILE is not specified at all (and @a
         globalFilename is empty) then the system-wide file is not used at all.
         Otherwise its name and path are also constructed in the way appropriate
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for the current platform from the application and vendor names.
      */
     wxFileConfig(const wxString& appName = wxEmptyString,

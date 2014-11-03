@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/treectrl.cpp
 // Purpose:     wxTreeCtrl
@@ -121,6 +128,11 @@ PMYRECORD FindOS2TreeRecordByID (
                       ,(MPARAM)(USHORT)sizeof(CNRINFO)
                      ))
         return NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < vCnrInfo.cRecords; i++)
     {
         if (i == 0)
@@ -429,6 +441,11 @@ wxTreeCtrl::~wxTreeCtrl ()
     //
     if (m_bHasAnyAttr)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (wxNode* pNode = m_vAttrs.Next(); pNode; pNode = m_vAttrs.Next())
         {
             delete (wxTreeItemAttr *)pNode->Data();
@@ -1608,6 +1625,11 @@ void wxTreeCtrl::DeleteChildren (
 
     size_t                          nCount = aChildren.Count();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (size_t n = 0; n < nCount; n++)
     {
         Delete(aChildren[n]);
@@ -1730,6 +1752,11 @@ void wxTreeCtrl::UnselectAll ()
         wxArrayTreeItemIds          aSelections;
         size_t                      nCount = GetSelections(aSelections);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (size_t n = 0; n < nCount; n++)
         {
             SetItemCheck( aSelections[n]

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        eventhandling.h
 // Purpose:     topic overview
@@ -34,6 +41,11 @@ To be more precise, each event is described by:
  - <em>Event class</em> carried by the event: each event has some information
  associated with it and this data is represented by an object of a class
  derived from wxEvent. Events of different types can use the same event class,
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
  for example both button click and listbox selection events use wxCommandEvent
  class (as do all the other simple control events), but the key press event
  uses wxKeyEvent as the information associated with it is different.
@@ -527,6 +539,11 @@ reaches the parent dialog, if any. This means that you don't risk getting
 unexpected events from the dialog controls (which might be left unprocessed by
 the dialog itself because it doesn't care about them) when a modal dialog is
 popped up. The events do propagate beyond the frames, however. The rationale
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for this choice is that there are only a few frames in a typical application
 and their parent-child relation are well understood by the programmer while it
 may be difficult, if not impossible, to track down all the dialogs that
@@ -818,6 +835,11 @@ range of events independently from the other handlers.
 
 Window identifiers are integers, and are used to
 uniquely determine window identity in the event system (though you can use it
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for other purposes). In fact, identifiers do not need to be unique
 across your entire application as long they are unique within the
 particular context you're interested in, such as a frame and its children. You

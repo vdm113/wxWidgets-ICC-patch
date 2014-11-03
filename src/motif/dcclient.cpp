@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/dcclient.cpp
 // Purpose:     wxClientDCImpl class
@@ -445,6 +452,11 @@ void wxWindowDCImpl::DoDrawLines( int n, const wxPoint points[], wxCoord xoffset
         XPoint *xpoints = new XPoint[n];
         int i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < n; i++)
         {
             xpoints[i].x = (short)XLOG2DEV (points[i].x + xoffset);
@@ -454,6 +466,11 @@ void wxWindowDCImpl::DoDrawLines( int n, const wxPoint points[], wxCoord xoffset
 
         if (m_window && m_window->GetBackingPixmap())
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = 0; i < n; i++)
             {
                 xpoints[i].x = (short)XLOG2DEV_2 (points[i].x + xoffset);
@@ -473,6 +490,11 @@ void wxWindowDCImpl::DoDrawPolygon( int n, const wxPoint points[],
     XPoint *xpoints1 = new XPoint[n + 1];
     XPoint *xpoints2 = new XPoint[n + 1];
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < n; i++)
     {
         xpoints1[i].x = (short)XLOG2DEV (points[i].x + xoffset);
@@ -1233,8 +1255,18 @@ void wxWindowDCImpl::DoDrawRotatedText( const wxString &text, wxCoord x, wxCoord
     bool lastFore = false, lastBack = false;
 
     // This rotates counterclockwise around the top left corner.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int rx = minx; rx < maxx; rx++)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int ry = miny; ry < maxy; ry++)
         {
             // transform dest coords to source coords
@@ -1589,6 +1621,11 @@ void wxWindowDCImpl::SetPen( const wxPen &pen )
             if (real_req_dash)
             {
                 int factor = scaled_width == 0 ? 1 : scaled_width;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for (int i = 0; i < req_nb_dash; i++)
                     real_req_dash[i] = (wxX11Dash)(req_dash[i] * factor);
                 XSetDashes ((Display*) m_display, (GC) m_gc, 0, real_req_dash, req_nb_dash);
@@ -2201,18 +2238,38 @@ static void XCopyRemote(Display *src_display, Display *dest_display,
     cache_pos = 0;
     all_cache = False;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < w; i++)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (j = 0; j < h; j++) {
             Pixel pixel;
             XColor xcol;
 
             pixel = XGetPixel(image, i, j);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (k = cache_pos; k--; )
                 if (cachesrc[k] == pixel) {
                     pixel = cachedest[k];
                     goto install;
                 }
                 if (all_cache)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (k = CACHE_SIZE; k-- > cache_pos; )
                         if (cachesrc[k] == pixel) {
                             pixel = cachedest[k];

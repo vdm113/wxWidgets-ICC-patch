@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtextctrl.cpp
 // Purpose:     A rich edit control
@@ -2385,8 +2392,18 @@ bool wxRichTextCtrl::ExtendCellSelection(wxRichTextTable* table, int noRowSteps,
     int thisRow = -1;
     int thisCol = -1;
     int r, c;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (r = 0; r < table->GetRowCount(); r ++)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (c = 0; c < table->GetColumnCount(); c++)
         {
             wxRichTextCell* cell = table->GetCell(r, c);
@@ -3139,6 +3156,11 @@ bool wxRichTextCtrl::SelectWord(long position)
     long positionStart = position;
     long positionEnd = position;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (positionStart = position; positionStart >= para->GetRange().GetStart(); positionStart --)
     {
         wxString text = GetFocusObject()->GetTextForRange(wxRichTextRange(positionStart, positionStart));
@@ -3151,6 +3173,11 @@ bool wxRichTextCtrl::SelectWord(long position)
     if (positionStart < para->GetRange().GetStart())
         positionStart = para->GetRange().GetStart();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (positionEnd = position; positionEnd < para->GetRange().GetEnd(); positionEnd ++)
     {
         wxString text = GetFocusObject()->GetTextForRange(wxRichTextRange(positionEnd, positionEnd));
@@ -3425,8 +3452,18 @@ wxRichTextTable* wxRichTextCtrl::WriteTable(int rows, int cols, const wxRichText
     }
 
     int i, j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (j = 0; j < rows; j++)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < cols; i++)
         {
             table->GetCell(j, i)->GetAttributes() = attr;
@@ -5462,6 +5499,11 @@ int wxRichTextContextMenuPropertiesInfo::AddMenuItems(wxMenu* menu, int startCmd
 
             // Delete the others if necessary
             int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = startCmd+1; i < startCmd+3; i++)
             {
                 if (menu->FindItem(i))
@@ -5476,6 +5518,11 @@ int wxRichTextContextMenuPropertiesInfo::AddMenuItems(wxMenu* menu, int startCmd
         int i;
         int pos = -1;
         // Find the position of the first properties item
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < (int) menu->GetMenuItemCount(); i++)
         {
             wxMenuItem* item = menu->FindItemByPosition(i);
@@ -5489,6 +5536,11 @@ int wxRichTextContextMenuPropertiesInfo::AddMenuItems(wxMenu* menu, int startCmd
         if (pos != -1)
         {
             int insertBefore = pos+1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = startCmd; i < startCmd+GetCount(); i++)
             {
                 if (menu->FindItem(i))
@@ -5506,6 +5558,11 @@ int wxRichTextContextMenuPropertiesInfo::AddMenuItems(wxMenu* menu, int startCmd
             }
 
             // Delete any old items still left on the menu
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = startCmd + GetCount(); i < startCmd+3; i++)
             {
                 if (menu->FindItem(i))
@@ -5518,6 +5575,11 @@ int wxRichTextContextMenuPropertiesInfo::AddMenuItems(wxMenu* menu, int startCmd
         {
             // No existing property identifiers were found, so append to the end of the menu.
             menu->AppendSeparator();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = startCmd; i < startCmd+GetCount(); i++)
             {
                 menu->Append(i, m_labels[i - startCmd]);

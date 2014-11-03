@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        link.h
 // Purpose:     interface of global functions
@@ -26,6 +33,11 @@
     macro to force the linker to include in its output a specific object file.
 
     In particular, you should use this macro in a source file which you know
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for sure is linked in the output (e.g. the source file containing the
     @c main() of your app). The @c moduleName is the name of the module you
     want to forcefully link (i.e. the name you used in the relative

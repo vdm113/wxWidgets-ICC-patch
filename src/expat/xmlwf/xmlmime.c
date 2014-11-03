@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 #include <string.h>
 #include "xmlmime.h"
 
@@ -8,6 +15,11 @@ getTok(const char **pp)
   enum { inAtom, inString, init, inComment };
   int state = init;
   const char *tokStart = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     switch (**pp) {
     case '\0':
@@ -78,6 +90,11 @@ matchkey(const char *start, const char *end, const char *key)
 {
   if (!start)
     return 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (; start != end; start++, key++)
     if (*start != *key && *start != 'A' + (*key - 'a'))
       return 0;

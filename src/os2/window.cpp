@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/window.cpp
 // Purpose:     wxWindow
@@ -333,6 +340,11 @@ wxWindowOS2::~wxWindowOS2()
 {
     SendDestroyEvent();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (wxWindow* pWin = GetParent(); pWin; pWin = pWin->GetParent())
     {
         wxTopLevelWindow*           pFrame = wxDynamicCast(pWin, wxTopLevelWindow);
@@ -1694,6 +1706,11 @@ void wxWindowOS2::DoGetTextExtent( const wxString& rString,
             vPtMax.x = avPoint[0].x;
             vPtMin.y = avPoint[0].y;
             vPtMax.y = avPoint[0].y;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = 1; i < 4; i++)
             {
                 if(vPtMin.x > avPoint[i].x) vPtMin.x = avPoint[i].x;
@@ -3533,6 +3550,11 @@ bool wxWindowOS2::HandlePaint()
             ::WinQueryWindowRect(GetHwnd(), &vRect);
             height = vRect.yTop;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for(size_t i = 0; i < vRgnData.crc; i++)
             {
                 int                 rectHeight;

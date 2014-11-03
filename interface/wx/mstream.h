@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        mstream.h
 // Purpose:     interface of wxMemoryOutputStream, wxMemoryInputStream
@@ -62,6 +69,11 @@ public:
 
     /**
         Returns the pointer to the stream object used as an internal buffer
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for this stream.
     */
     wxStreamBuffer* GetOutputStreamBuffer() const;
@@ -129,6 +141,11 @@ public:
 
     /**
         Returns the pointer to the stream object used as an internal buffer
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for that stream.
     */
     wxStreamBuffer* GetInputStreamBuffer() const;

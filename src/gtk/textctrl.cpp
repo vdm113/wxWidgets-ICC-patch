@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/textctrl.cpp
 // Purpose:
@@ -263,6 +270,11 @@ static void wxGtkTextApplyTagsFromAttr(GtkWidget *text,
 
         wxString tagname = wxT("WXTABS");
         g_snprintf(buf, sizeof(buf), "WXTABS");
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (size_t i = 0; i < tabs.GetCount(); i++)
             tagname += wxString::Format(wxT(" %d"), tabs[i]);
 
@@ -278,6 +290,11 @@ static void wxGtkTextApplyTagsFromAttr(GtkWidget *text,
                           gdk_screen_get_width_mm(gtk_widget_get_screen(text)) / 10;
 
             PangoTabArray* tabArray = pango_tab_array_new(tabs.GetCount(), TRUE);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (size_t i = 0; i < tabs.GetCount(); i++)
                 pango_tab_array_set_tab(tabArray, i, PANGO_TAB_LEFT, (gint)(tabs[i] * factor));
             tag = gtk_text_buffer_create_tag( text_buffer, buftag,
@@ -405,6 +422,11 @@ au_check_word( GtkTextIter *s, GtkTextIter *e )
     size_t len = strlen(text), prefix_len;
     size_t n;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for( n = 0; n < WXSIZEOF(URIPrefixes); ++n )
     {
         prefix_len = strlen(URIPrefixes[n]);
@@ -1977,6 +1999,11 @@ void wxTextCtrl::DoFreeze()
         // and Freeze takes longer and longer each time it is called.
         if (m_anonymousMarkList)
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (GSList* item = m_anonymousMarkList; item; item = item->next)
             {
                 GtkTextMark* mark = static_cast<GtkTextMark*>(item->data);

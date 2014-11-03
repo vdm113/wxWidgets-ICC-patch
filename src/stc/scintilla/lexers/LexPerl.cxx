@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexPerl.cxx
  ** Lexer for Perl.
@@ -75,6 +82,11 @@ static bool isPerlKeyword(unsigned int start, unsigned int end, WordList &keywor
 	char s[100];
 	unsigned int i, len = end - start;
 	if (len > 30) { len = 30; }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (i = 0; i < len; i++, start++) s[i] = styler[start];
 	s[i] = '\0';
 	return keywords.InList(s);
@@ -250,6 +262,11 @@ static int opposite(int ch) {
 static bool IsCommentLine(int line, LexAccessor &styler) {
 	int pos = styler.LineStart(line);
 	int eol_pos = styler.LineStart(line + 1) - 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
 		int style = styler.StyleAt(i);
@@ -695,6 +712,11 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 
 	StyleContext sc(startPos, endPos - startPos, initStyle, styler, static_cast<char>(STYLE_MAX));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		// Determine if the current state should terminate.
@@ -1149,6 +1171,11 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 			}
 			if (setFormatStart.Contains(sc.ch)) {	// identifier or '='
 				if (sc.ch != '=') {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					do {
 						sc.Forward();
 					} while (setFormat.Contains(sc.ch));
@@ -1586,6 +1613,11 @@ void SCI_METHOD LexerPerl::Fold(unsigned int startPos, int length, int /* initSt
 	// Used at end of line to determine if the line was a package definition
 	bool isPackageLine = false;
 	int podHeading = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

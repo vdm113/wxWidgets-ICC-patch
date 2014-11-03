@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        richtext/richtextprint.h
 // Purpose:     interface of wxRichTextHeaderFooterData
@@ -9,6 +16,11 @@
 /**
     These are the header and footer page identifiers, passed to functions such
     as wxRichTextHeaderFooterData::SetFooterText to specify the odd or even page
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for the text.
 */
 enum wxRichTextOddEvenPage {

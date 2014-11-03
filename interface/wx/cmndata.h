@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        cmndata.h
 // Purpose:     interface of print wx*Data classes
@@ -345,6 +352,11 @@ public:
     /**
         Returns @true if the print data is valid for using in print dialogs.
         This can return @false on Windows if the current printer is not set,
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for example. On all other platforms, it returns @true.
     */
     bool IsOk() const;
@@ -533,6 +545,11 @@ public:
     /**
         Returns @true if the print data is valid for using in print dialogs.
         This can return @false on Windows if the current printer is not set,
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for example. On all other platforms, it returns @true.
     */
     bool IsOk() const;

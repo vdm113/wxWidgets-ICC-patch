@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexOScript.cxx
  ** Lexer for OScript sources; ocx files and/or OSpace dumps.
@@ -212,6 +219,11 @@ static void ColouriseOScriptDoc(unsigned int startPos, int length,
 	// by checking for the complementary #endif preprocessor directive.
 	bool endDocComment = false; 
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.atLineStart) {
@@ -377,6 +389,11 @@ static inline bool IsBlockComment(int style) {
 static bool IsLineComment(int line, Accessor &styler) {
 	int pos = styler.LineStart(line);
 	int eolPos = styler.LineStart(line + 1) - 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int i = pos; i < eolPos; i++) {
 		char ch = styler[i];
 		char chNext = styler.SafeGetCharAt(i + 1);
@@ -466,6 +483,11 @@ static void FoldOScriptDoc(unsigned int startPos, int length, int initStyle,
 	int style = initStyle;
 	int lastStart = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

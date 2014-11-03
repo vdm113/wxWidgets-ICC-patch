@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/htmlcell.cpp
 // Purpose:     wxHtmlCell - basic element of HTML output
@@ -221,6 +228,11 @@ wxHtmlCell *wxHtmlCell::FindCellByPos(wxCoord x, wxCoord y,
 wxPoint wxHtmlCell::GetAbsPos(wxHtmlCell *rootCell) const
 {
     wxPoint p(m_PosX, m_PosY);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (wxHtmlCell *parent = m_Parent; parent && parent != rootCell;
          parent = parent->m_Parent)
     {
@@ -241,6 +253,11 @@ wxHtmlCell *wxHtmlCell::GetRootCell() const
 unsigned wxHtmlCell::GetDepth() const
 {
     unsigned d = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (wxHtmlCell *p = m_Parent; p; p = p->m_Parent)
         d++;
     return d;
@@ -254,9 +271,19 @@ bool wxHtmlCell::IsBefore(wxHtmlCell *cell) const
     unsigned d2 = cell->GetDepth();
 
     if ( d1 > d2 )
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (; d1 != d2; d1-- )
             c1 = c1->m_Parent;
     else if ( d1 < d2 )
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (; d1 != d2; d2-- )
             c2 = c2->m_Parent;
 
@@ -602,6 +629,11 @@ wxString wxHtmlWordWithTabsCell::GetPartAsText(int begin, int end) const
     wxString::const_iterator i = m_wordOrig.begin();
 
     // find the beginning of text to copy:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ; pos < begin; ++i )
     {
         if ( *i == '\t' )
@@ -619,6 +651,11 @@ wxString wxHtmlWordWithTabsCell::GetPartAsText(int begin, int end) const
     }
 
     // copy the content until we reach 'end':
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ; pos < end; ++i )
     {
         const wxChar c = *i;
@@ -777,6 +814,11 @@ void wxHtmlContainerCell::Layout(int w)
     {
         int l = (m_IndentLeft < 0) ? (-m_IndentLeft * m_Width / 100) : m_IndentLeft;
         int r = (m_IndentRight < 0) ? (-m_IndentRight * m_Width / 100) : m_IndentRight;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
             cell->Layout(m_Width - (l + r));
     }
@@ -831,6 +873,11 @@ void wxHtmlContainerCell::Layout(int w)
         if (cell)
         {
             nextCell = cell;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             do
             {
                 nextWordWidth += nextCell->GetWidth();
@@ -893,6 +940,11 @@ void wxHtmlContainerCell::Layout(int w)
                     const wxHtmlCell *c;
                     if ( line != cell )
                     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for ( c = line; c != cell; c = c->GetNext() )
                         {
                             if ( c->IsLinebreakAllowed() )
@@ -921,6 +973,11 @@ void wxHtmlContainerCell::Layout(int w)
                             line = line->GetNext();
                         }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for ( int n = 0; line != cell; line = line->GetNext() )
                         {
                             if ( line->IsLinebreakAllowed() )
@@ -1102,6 +1159,11 @@ void wxHtmlContainerCell::Draw(wxDC& dc, int x, int y, int view_y1, int view_y2,
     if (m_Cells)
     {
         // draw container's contents:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
         {
 
@@ -1133,6 +1195,11 @@ void wxHtmlContainerCell::DrawInvisible(wxDC& dc, int x, int y,
 {
     if (m_Cells)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
         {
             UpdateRenderingStatePre(info, cell);
@@ -1221,6 +1288,11 @@ const wxHtmlCell* wxHtmlContainerCell::Find(int condition, const void* param) co
 {
     if (m_Cells)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
         {
             const wxHtmlCell *r = cell->Find(condition, param);
@@ -1236,6 +1308,11 @@ wxHtmlCell *wxHtmlContainerCell::FindCellByPos(wxCoord x, wxCoord y,
 {
     if ( flags & wxHTML_FIND_EXACT )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( const wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext() )
         {
             int cx = cell->GetPosX(),
@@ -1251,6 +1328,11 @@ wxHtmlCell *wxHtmlContainerCell::FindCellByPos(wxCoord x, wxCoord y,
     else if ( flags & wxHTML_FIND_NEAREST_AFTER )
     {
         wxHtmlCell *c;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( const wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext() )
         {
             if ( cell->IsFormattingCell() )
@@ -1267,6 +1349,11 @@ wxHtmlCell *wxHtmlContainerCell::FindCellByPos(wxCoord x, wxCoord y,
     else if ( flags & wxHTML_FIND_NEAREST_BEFORE )
     {
         wxHtmlCell *c2, *c = NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( const wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext() )
         {
             if ( cell->IsFormattingCell() )
@@ -1304,6 +1391,11 @@ wxHtmlCell *wxHtmlContainerCell::GetFirstTerminal() const
     if ( m_Cells )
     {
         wxHtmlCell *c2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (wxHtmlCell *c = m_Cells; c; c = c->GetNext())
         {
             c2 = c->GetFirstTerminal();
@@ -1325,6 +1417,11 @@ wxHtmlCell *wxHtmlContainerCell::GetLastTerminal() const
 
         wxHtmlCell *ctmp;
         wxHtmlCell *c2 = NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (c = m_Cells; c; c = c->GetNext())
         {
             ctmp = c->GetLastTerminal();
@@ -1340,6 +1437,11 @@ wxHtmlCell *wxHtmlContainerCell::GetLastTerminal() const
 
 static bool IsEmptyContainer(wxHtmlContainerCell *cell)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxHtmlCell *c = cell->GetFirstChild(); c; c = c->GetNext() )
     {
         if ( !c->IsTerminalCell() || !c->IsFormattingCell() )
@@ -1361,6 +1463,11 @@ void wxHtmlContainerCell::RemoveExtraSpacing(bool top, bool bottom)
         wxHtmlContainerCell *cont;
         if ( top )
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( c = m_Cells; c; c = c->GetNext() )
             {
                 if ( c->IsTerminalCell() )
@@ -1387,9 +1494,19 @@ void wxHtmlContainerCell::RemoveExtraSpacing(bool top, bool bottom)
         if ( bottom )
         {
             wxArrayPtrVoid arr;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( c = m_Cells; c; c = c->GetNext() )
                 arr.Add((void*)c);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( int i = arr.GetCount() - 1; i >= 0; i--)
             {
                 c = (wxHtmlCell*)arr[i];
@@ -1586,6 +1703,11 @@ const wxHtmlCell* wxHtmlTerminalCellsInterator::operator++()
     if ( !m_pos )
         return NULL;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         if ( m_pos == m_to )

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/xml/xml.cpp
 // Purpose:     wxXmlDocument - XML parser & data holder class
@@ -108,6 +115,11 @@ wxXmlNode& wxXmlNode::operator=(const wxXmlNode& node)
 void wxXmlNode::DoFree()
 {
     wxXmlNode *c, *c2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (c = m_children; c; c = c2)
     {
         c2 = c->m_next;
@@ -115,6 +127,11 @@ void wxXmlNode::DoFree()
     }
 
     wxXmlAttribute *p, *p2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (p = m_attrs; p; p = p2)
     {
         p2 = p->GetNext();
@@ -383,6 +400,11 @@ int wxXmlNode::GetDepth(wxXmlNode *grandparent) const
     const wxXmlNode *n = this;
     int ret = -1;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         ret++;
@@ -590,6 +612,11 @@ static wxString CharToString(wxMBConv *conv,
 // returns true if the given string contains only whitespaces
 bool wxIsWhiteOnly(const wxString& buf)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxString::const_iterator i = buf.begin(); i != buf.end(); ++i )
     {
         wxChar c = *i;
@@ -778,6 +805,11 @@ static int UnknownEncodingHnd(void * WXUNUSED(encodingHandlerData),
 
     mbBuf[1] = 0;
     info->map[0] = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < 255; i++)
     {
         mbBuf[0] = (char)(i+1);
@@ -833,6 +865,11 @@ bool wxXmlDocument::Load(wxInputStream& stream, const wxString& encoding, int fl
     XML_SetUnknownEncodingHandler(parser, UnknownEncodingHnd, NULL);
 
     bool ok = true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         size_t len = stream.Read(buf, BUFSIZE).LastRead();
@@ -938,6 +975,11 @@ bool OutputEscapedString(wxOutputStream& stream,
     wxString escaped;
     escaped.reserve(str.length());
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxString::const_iterator i = str.begin(); i != str.end(); ++i )
     {
         const wxChar c = *i;
@@ -1029,6 +1071,11 @@ bool OutputNode(wxOutputStream& stream,
 
             if ( rc )
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for ( wxXmlAttribute *attr = node->GetAttributes();
                       attr && rc;
                       attr = attr->GetNext() )
@@ -1048,6 +1095,11 @@ bool OutputNode(wxOutputStream& stream,
                 rc = OutputString(stream, wxS(">"), convMem, convFile);
 
                 wxXmlNode *prev = NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for ( wxXmlNode *n = node->GetChildren();
                       n && rc;
                       n = n->GetNext() )

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/app.cpp
 // Purpose:     wxApp
@@ -136,12 +143,22 @@ void wxApp::HandleSockets()
         timeout.tv_usec = 0;
         if ( select(m_maxSocketNr, &readfds, &writefds, 0, &timeout) > 0)
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = m_lastUsedHandle + 1; i != m_lastUsedHandle;
                  (i < m_maxSocketNr - 1) ? i++ : (i = 0))
             {
                 if (FD_ISSET(i, &readfds))
                 {
                     int r;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (r = 0; r < m_maxSocketHandles; r++){
                         if(CallbackInfo[r].handle == i &&
                            CallbackInfo[r].type == wxSockReadMask)
@@ -156,6 +173,11 @@ void wxApp::HandleSockets()
                 if (FD_ISSET(i, &writefds))
                 {
                     int r;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (r = 0; r < m_maxSocketHandles; r++)
                         if(CallbackInfo[r].handle == i &&
                            CallbackInfo[r].type == wxSockWriteMask)
@@ -506,6 +528,11 @@ int wxApp::AddSocketHandler(int handle, int mask,
     struct GsocketCallbackInfo
         *CallbackInfo = (struct GsocketCallbackInfo *)m_sockCallbackInfo;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (find = 0; find < m_maxSocketHandles; find++)
         if (CallbackInfo[find].handle == -1)
             break;
@@ -516,6 +543,11 @@ int wxApp::AddSocketHandler(int handle, int mask,
                                      (m_maxSocketHandles+=10)*
                                      sizeof(struct GsocketCallbackInfo));
         CallbackInfo = (struct GsocketCallbackInfo *)m_sockCallbackInfo;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (find = m_maxSocketHandles - 10; find < m_maxSocketHandles; find++)
             CallbackInfo[find].handle = -1;
         find = m_maxSocketHandles - 10;

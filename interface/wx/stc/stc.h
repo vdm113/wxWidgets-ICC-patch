@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        stc/stc.h
 // Purpose:     interface of wxStyledTextCtrl
@@ -5550,6 +5557,11 @@ public:
     /**
         On GTK+, allow selecting the modifier key to use for mouse-based
         rectangular selection. Often the window manager requires Alt+Mouse Drag
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for moving windows.
         Valid values are SCMOD_CTRL(default), SCMOD_ALT, or SCMOD_SUPER.
     */

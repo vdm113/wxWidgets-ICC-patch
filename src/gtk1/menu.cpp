@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/menu.cpp
 // Purpose:
@@ -94,6 +101,11 @@ static wxString wxReplaceUnderscore( const wxString& title )
 static wxString wxConvertFromGTKToWXLabel(const wxString& gtkLabel)
 {
     wxString label;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( const wxChar *pc = gtkLabel.c_str(); *pc; pc++ )
     {
         // '_' is the escape character for GTK+.
@@ -205,6 +217,11 @@ void wxMenuBar::Init(size_t n, wxMenu *menus[], const wxString titles[], long st
 
     ApplyWidgetStyle();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (size_t i = 0; i < n; ++i )
         Append(menus[i], titles[i]);
 

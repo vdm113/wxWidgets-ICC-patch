@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        bookctrl.h
 // Purpose:     topic overview
@@ -35,6 +42,11 @@ circumstances than the other variants.
 
 ::wxBookCtrl is mapped to the class best suited for a given platform. Currently
 it provides wxChoicebook for smartphones equipped with WinCE, and wxNotebook
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for all other platforms. The mapping consists of:
 
 @beginTable

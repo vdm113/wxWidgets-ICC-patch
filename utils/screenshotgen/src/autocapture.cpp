@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        autocapture.cpp
 // Purpose:     Implement wxCtrlMaskOut class
@@ -80,6 +87,11 @@ bool AutoCaptureMechanism::Capture(wxBitmap* bitmap, int x, int y,
     if(delay) Delay(delay);
 
     wxBitmap fullscreen;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         fullscreen = wxBitmap(wxT("/tmp/wx_screen_capture.png"), wxBITMAP_TYPE_PNG);
@@ -157,6 +169,11 @@ void AutoCaptureMechanism::CaptureAll()
     m_notebook->SetSelection(0);
     wxYield();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (ControlList::iterator it = m_controlList.begin();
          it != m_controlList.end();
          ++it)
@@ -177,6 +194,11 @@ void AutoCaptureMechanism::CaptureAll()
         if(ctrl.flag & AJ_Union)
         {
             // union screenshots until AJ_UnionEnd
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             do
             {
                 ++it;
@@ -306,6 +328,11 @@ wxRect AutoCaptureMechanism::GetRect(wxWindow* ctrl, int flag)
 
         wxStaticText* l[4];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int i = 0; i < 4; ++i)
             l[i] = new wxStaticText(parent, wxID_ANY, wxT(" "));
 
@@ -343,6 +370,11 @@ void AutoCaptureMechanism::PutBack(wxWindow * ctrl)
 
     wxSizerItemList children = m_grid->GetChildren();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (wxSizerItemList::iterator it = children.begin(); it != children.end(); ++it)
     {
         wxSizerItem* item = *it;

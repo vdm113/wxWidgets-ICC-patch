@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/headercol.h
 // Purpose:     interface of wxHeaderColumn
@@ -58,6 +65,11 @@ enum
     accessing the various column properties but not for changing them as the
     setters might not be needed at all, e.g. if the column attributes can only
     be changed via the methods of the main associated control (this is the case
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for wxGrid for example). If you do want to allow changing them directly
     using the column itself, you should inherit from wxSettableHeaderColumn
     instead of this class.
@@ -367,6 +379,11 @@ public:
         Inverses the sort order.
 
         This function is typically called when the user clicks on a column used
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for sorting to change sort order from ascending to descending or vice
         versa.
 

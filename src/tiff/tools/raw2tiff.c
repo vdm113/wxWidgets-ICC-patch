@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
  *
  * Project:  libtiff tools
  * Purpose:  Convert raw byte sequences in TIFF images
@@ -281,9 +288,19 @@ main(int argc, char* argv[])
 	TIFFSetField(out, TIFFTAG_ROWSPERSTRIP, rowsperstrip );
 
 	lseek(fd, hdr_size, SEEK_SET);		/* Skip the file header */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (row = 0; row < length; row++) {
 		switch(interleaving) {
 		case BAND:			/* band interleaved data */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (band = 0; band < nbands; band++) {
 				lseek(fd,
 				      hdr_size + (length*band+row)*linebytes,
@@ -297,6 +314,11 @@ main(int argc, char* argv[])
 				}
 				if (swab)	/* Swap bytes if needed */
 					swapBytesInScanline(buf, width, dtype);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				for (col = 0; col < width; col++)
 					memcpy(buf1 + (col*nbands+band)*depth,
 					       buf + col * depth, depth);
@@ -395,6 +417,11 @@ guessSize(int fd, TIFFDataType dtype, off_t hdr_size, uint32 nbands,
 	} else if (*width == 0 && *length == 0) {
 		fprintf(stderr,	"Image width and height are not specified.\n");
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (w = (uint32) sqrt(imagesize / longt);
 		     w < sqrt(imagesize * longt);
 		     w++) {
@@ -448,6 +475,11 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 	switch (dtype) {
 		case TIFF_BYTE:
 		default:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for (i = 0; i < n_elem; i++) {
 				X = ((unsigned char *)buf1)[i];
 				Y = ((unsigned char *)buf2)[i];
@@ -457,6 +489,11 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
                         }
 			break;
 		case TIFF_SBYTE:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for (i = 0; i < n_elem; i++) {
 				X = ((signed char *)buf1)[i];
 				Y = ((signed char *)buf2)[i];
@@ -466,6 +503,11 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
                         }
 			break;
 		case TIFF_SHORT:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for (i = 0; i < n_elem; i++) {
 				X = ((uint16 *)buf1)[i];
 				Y = ((uint16 *)buf2)[i];
@@ -475,6 +517,11 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
                         }
 			break;
 		case TIFF_SSHORT:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for (i = 0; i < n_elem; i++) {
 				X = ((int16 *)buf1)[i];
 				Y = ((int16 *)buf2)[i];
@@ -484,6 +531,11 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
                         }
 			break;
 		case TIFF_LONG:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for (i = 0; i < n_elem; i++) {
 				X = ((uint32 *)buf1)[i];
 				Y = ((uint32 *)buf2)[i];
@@ -493,6 +545,11 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
                         }
 			break;
 		case TIFF_SLONG:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for (i = 0; i < n_elem; i++) {
 				X = ((int32 *)buf1)[i];
 				Y = ((int32 *)buf2)[i];
@@ -502,6 +559,11 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
                         }
 			break;
 		case TIFF_FLOAT:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for (i = 0; i < n_elem; i++) {
 				X = ((float *)buf1)[i];
 				Y = ((float *)buf2)[i];
@@ -511,6 +573,11 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
                         }
 			break;
 		case TIFF_DOUBLE:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for (i = 0; i < n_elem; i++) {
 				X = ((double *)buf1)[i];
 				Y = ((double *)buf2)[i];
@@ -635,6 +702,11 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);

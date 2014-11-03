@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/timer.cpp
 // Purpose:     wxTimer implementation
@@ -132,6 +139,11 @@ void wxTimerScheduler::NotifyTimers()
         volatile bool timerDeleted;
         wxTimerTick_t now = GetMillisecondsTime();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( wxTimerDesc *desc = m_timers; desc; desc = desc->next )
         {
             if ( desc->running && wxTickGreaterEqual(now, desc->shotTime) )

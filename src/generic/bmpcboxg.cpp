@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/bmpcboxg.cpp
 // Purpose:     wxBitmapComboBox
@@ -154,6 +161,11 @@ int wxBitmapComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
 
     m_bitmaps.Alloc(countNew);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( unsigned int i = 0; i < numItems; i++ )
     {
         m_bitmaps.Insert(new wxBitmap(wxNullBitmap), pos + i);
@@ -164,6 +176,11 @@ int wxBitmapComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
 
     if ( index == wxNOT_FOUND )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( int i = numItems-1; i >= 0; i-- )
             BCBDoDeleteOneItem(pos + i);
     }

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/zipstrm.cpp
 // Purpose:     Streams for Zip files
@@ -786,6 +793,11 @@ wxString wxZipEntry::GetName(wxPathFormat format /*=wxPATH_NATIVE*/) const
         case wxPATH_DOS:
         {
             wxString name(isDir ? m_Name + wxT("\\") : m_Name);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (size_t i = 0; i < name.length(); i++)
                 if (name[i] == wxT('/'))
                     name[i] = wxT('\\');
@@ -2037,6 +2049,11 @@ wxOutputStream *wxZipOutputStream::OpenCompressor(
             entry.SetMethod(wxZIP_METHOD_STORE);
         } else {
             int size = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (int i = 0; bufs[i].m_data; ++i)
                 size += bufs[i].m_size;
             entry.SetMethod(size <= 6 ?
@@ -2209,6 +2226,11 @@ bool wxZipOutputStream::Close()
     wxZipEntryList_::iterator it;
     wxFileOffset size = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (it = m_entries.begin(); it != m_entries.end(); ++it) {
         size += (*it)->WriteCentral(*m_parent_o_stream, GetConv());
         delete *it;

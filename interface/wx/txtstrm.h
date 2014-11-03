@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        txtstrm.h
 // Purpose:     interface of wxTextInputStream
@@ -25,6 +32,11 @@
     elsewhere), make use of wxInt32, wxUint32 and similar types.
 
     If you're scanning through a file using wxTextInputStream, you should check
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for @c EOF @b before reading the next item (word / number), because
     otherwise the last item may get lost. You should however be prepared to
     receive an empty item (empty string / zero number) at the end of file,

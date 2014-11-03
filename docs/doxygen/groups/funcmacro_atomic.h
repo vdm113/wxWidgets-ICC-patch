@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        funcmacro_atomic.h
 // Purpose:     Atomic Operation function and macro group docs
@@ -14,6 +21,11 @@ When using multi-threaded applications, it is often required to access or
 modify memory which is shared between threads. Atomic integer and pointer
 operations are an efficient way to handle this issue (another, less efficient,
 way is to use a wxMutex or wxCriticalSection). A native implementation exists
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for Windows, Linux, Solaris and Mac OS X; for others, a wxCriticalSection is
 used to protect the data.
 

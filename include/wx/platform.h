@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /**
 * Name:        wx/platform.h
 * Purpose:     define the OS and compiler identification macros
@@ -289,6 +296,11 @@
 
 /*
    OS: first of all, test for MS-DOS platform. We must do this before testing
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
        for Unix, because DJGPP compiler defines __unix__ under MS-DOS
  */
 #if defined(__GO32__) || defined(__DJGPP__) || defined(__DOS__)
@@ -483,6 +495,11 @@
 
     The primary symbol remains __WXOSX_XXX__ one, __WXOSX__ exists to allow
     checking for any OS X port (Carbon and Cocoa) and __WXMAC__ is an old name
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for it.
  */
 #if defined(__WXOSX_CARBON__) || defined(__WXOSX_COCOA__) || defined(__WXOSX_IPHONE__)

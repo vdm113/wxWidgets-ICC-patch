@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/ustring.cpp
 // Purpose:     wxUString class
@@ -29,6 +36,11 @@ wxUString &wxUString::assignFromAscii( const char *str )
    wxChar32 *ptr = buffer.data();
 
    size_type i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for (i = 0; i < len; i++)
    {
        *ptr = *str;
@@ -53,6 +65,11 @@ wxUString &wxUString::assignFromAscii( const char *str, size_type n )
    wxChar32 *ptr = buffer.data();
 
    size_type i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for (i = 0; i < len; i++)
    {
        *ptr = *str;
@@ -165,6 +182,11 @@ wxUString &wxUString::assignFromUTF8( const char *str )
 
             // all remaining bytes, if any, are handled in the same way
             // regardless of sequence's length:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( ; len; --len )
             {
                 c = *++p;
@@ -259,6 +281,11 @@ wxUString &wxUString::assignFromUTF8( const char *str, size_type n )
 
             // all remaining bytes, if any, are handled in the same way
             // regardless of sequence's length:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( ; len; --len )
             {
                 c = *++p;

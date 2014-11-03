@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/streams/bstream.h
 // Purpose:     Template class for testing base stream functions.
@@ -154,6 +161,11 @@ protected:
         CPPUNIT_ASSERT_MESSAGE("EOF is not EOF?", stream_in.Eof());
 
         // Ok we found the end, let's see if we can go past it.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (size_t i = 0; i < 100; i++)
             (void)stream_in.GetC();
 
@@ -286,6 +298,11 @@ protected:
 
         const char *buf = "Some text";
         const wxFileOffset len = strlen(buf);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( int i = 0; i < len; i++ )
             stream_out.PutC(buf[i]);
 

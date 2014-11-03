@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/filectrlg.cpp
 // Purpose:     wxGenericFileCtrl Implementation
@@ -493,6 +500,11 @@ long wxFileListCtrl::Add( wxFileData *fd, wxListItem &item )
     if (my_style & wxLC_REPORT)
     {
         ret = InsertItem( item );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int i = 1; i < wxFileData::FileList_Max; i++)
             SetItem( item.m_itemId, i, fd->GetEntry((wxFileData::fileListFieldType)i) );
     }
@@ -515,6 +527,11 @@ void wxFileListCtrl::UpdateItem(const wxListItem &item)
 
     if (GetWindowStyleFlag() & wxLC_REPORT)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int i = 1; i < wxFileData::FileList_Max; i++)
             SetItem( item.m_itemId, i, fd->GetEntry((wxFileData::fileListFieldType)i) );
     }
@@ -541,6 +558,11 @@ void wxFileListCtrl::UpdateFiles()
         wxArrayInt icons;
         const size_t count = wxGetAvailableDrives(paths, names, icons);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( size_t n = 0; n < count; n++ )
         {
             // use paths[n] as the drive name too as our HandleAction() can't
@@ -658,6 +680,11 @@ void wxFileListCtrl::MakeDir()
     {
         // try NewName0, NewName1 etc.
         int i = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         do {
             new_name = _("NewName");
             wxString num;
@@ -1113,6 +1140,11 @@ wxGenericFileCtrl::DoGetFilenames(wxArrayString& filenames, bool fullPath) const
     wxListItem item;
     item.m_mask = wxLIST_MASK_TEXT;
     item.m_itemId = -1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ;; )
     {
         item.m_itemId = m_list->GetNextItem(item.m_itemId, wxLIST_NEXT_ALL,
@@ -1156,6 +1188,11 @@ bool wxGenericFileCtrl::SetFilename( const wxString& name )
         {
             long itemIndex = -1;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( ;; )
             {
                 itemIndex = m_list->GetNextItem( itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED );
@@ -1217,6 +1254,11 @@ void wxGenericFileCtrl::SetWildcard( const wxString& wildCard )
 
     m_choice->Clear();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         m_choice->Append(wildDescriptions[n], new wxStringClientData(wildFilters[n]));

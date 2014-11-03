@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /*
  * Copyright (c) 1991-1997 Sam Leffler
@@ -189,6 +196,11 @@ emitFont(FILE* fd)
 	NULL
     };
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; fontPrologue[i] != NULL; i++)
 	fprintf(fd, "%s\n", fontPrologue[i]);
 }
@@ -260,6 +272,11 @@ printTIF(TIFF* tif, uint16 pageNumber)
     TIFFSetField(tif, TIFFTAG_FAXFILLFUNC, printruns);
     ns = TIFFNumberOfStrips(tif);
     row = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (s = 0; s < ns; s++)
 	(void) TIFFReadEncodedStrip(tif, s, (tdata_t) NULL, (tsize_t) -1);
     printf("p\n");
@@ -293,6 +310,11 @@ fax2ps(TIFF* tif, uint16 npages, uint16* pages, char* filename)
 	if (!GetPageNumber(tif))
 	    fprintf(stderr, "%s: No page numbers, counting directories.\n",
 		filename);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (i = 0; i < npages; i++) {
 	    if (findPage(tif, pages[i]))
 		printTIF(tif, pages[i]);
@@ -301,6 +323,11 @@ fax2ps(TIFF* tif, uint16 npages, uint16* pages, char* filename)
 	}
     } else {
 	uint16 pageNumber = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	do
 	    printTIF(tif, pageNumber++);
 	while (TIFFReadDirectory(tif));
@@ -367,6 +394,11 @@ main(int argc, char** argv)
     if (!dowarnings)
 	TIFFSetWarningHandler(0);
     if (optind < argc) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	do {
 	    tif = TIFFOpen(argv[optind], "r");
 	    if (tif) {
@@ -433,6 +465,11 @@ usage(int code)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(code);

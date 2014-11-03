@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        event.h
 // Purpose:     interface of wxEvtHandler, wxEventBlocker and many
@@ -75,6 +82,11 @@ enum wxEventCategory
     callback or member function.
 
     wxEvent used to be a multipurpose event object, and is an abstract base class
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for other event classes (see below).
 
     For more information about events, see the @ref overview_events overview.
@@ -292,6 +304,11 @@ protected:
             // we do the 1000 FunctionWhichSendsEvents() calls
             wxEventBlocker blocker(this);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( int i = 0; i  1000; i++ )
                 FunctionWhichSendsEvents(i);
 
@@ -1368,6 +1385,11 @@ enum wxKeyCategoryFlags
     value depends on the current state of the Shift key and, for the letters,
     on the state of Caps Lock modifier. For example, if @c A key is pressed
     without Shift being held down, wxKeyEvent of type @c wxEVT_CHAR generated
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for this key press will return (from either GetKeyCode() or GetUnicodeKey()
     as their meanings coincide for ASCII characters) key code of 97
     corresponding the ASCII value of @c a. And if the same key is pressed but
@@ -2318,10 +2340,20 @@ enum wxUpdateUIMode
         receive update events. No other windows will receive update events.
     @li Call wxUpdateUIEvent::SetUpdateInterval with a millisecond value to set the delay
         between updates. You may need to call wxWindow::UpdateWindowUI at critical points,
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for example when a dialog is about to be shown, in case the user sees a slight
         delay before windows are updated.
 
     Note that although events are sent in idle time, defining a wxIdleEvent handler
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for a window does not affect this because the events are sent from wxWindow::OnInternalIdle
     which is always called in idle time.
 
@@ -2747,12 +2779,22 @@ public:
         if no button is involved (for mouse move, enter or leave event, for example).
         Otherwise @c wxMOUSE_BTN_LEFT is returned for the left button down, up and
         double click events, @c wxMOUSE_BTN_MIDDLE and @c wxMOUSE_BTN_RIGHT
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for the same events for the middle and the right buttons respectively.
     */
     int GetButton() const;
 
     /**
         Returns the number of mouse clicks for this event: 1 for a simple click, 2
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for a double-click, 3 for a triple-click and so on.
 
         Currently this function is implemented only in wxMac and returns -1 for the
@@ -3298,6 +3340,11 @@ public:
     @class wxNotifyEvent
 
     This class is not used by the event handlers by itself, but is a base class
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for other event classes (such as wxBookCtrlEvent).
 
     It (or an object of a derived class) is sent when the controls state is being
@@ -3336,6 +3383,11 @@ public:
 
         It is in general a good idea to notify the user about the reasons for vetoing
         the change because otherwise the applications behaviour (which just refuses to
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         do what the user wants) might be quite surprising.
     */
     void Veto();
@@ -4310,6 +4362,11 @@ public:
     You may wish to use this for frames to resize their child windows as appropriate.
 
     Note that the size passed is of the whole window: call wxWindow::GetClientSize()
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for the area which may be used by the application.
 
     When a window is resized, usually only a small part of the window is damaged
@@ -4574,6 +4631,11 @@ wxEventType wxNewEventType();
 
 /**
     Use this macro inside a class declaration to declare a @e static event table
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for that class.
 
     In the implementation file you'll need to use the wxBEGIN_EVENT_TABLE()
@@ -4588,6 +4650,11 @@ wxEventType wxNewEventType();
 
 /**
     Use this macro in a source file to start listing @e static event handlers
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for a specific class.
 
     Use wxEND_EVENT_TABLE() to terminate the event-declaration block.
@@ -4598,6 +4665,11 @@ wxEventType wxNewEventType();
 
 /**
     Use this macro in a source file to end listing @e static event handlers
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for a specific class.
 
     Use wxBEGIN_EVENT_TABLE() to start the event-declaration block.
@@ -4624,6 +4696,11 @@ void wxPostEvent(wxEvtHandler* dest, const wxEvent& event);
     Queue an event for processing on the given object.
 
     This is a wrapper around wxEvtHandler::QueueEvent(), see its documentation
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for more details.
 
     @header{wx/event.h}

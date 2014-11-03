@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /* ansi2knr.c */
 /* Convert ANSI C function definitions to K&R ("traditional C") syntax */
 
@@ -209,6 +216,11 @@ BY ANY OTHER PARTY.
 		<tgl@sss.pgh.pa.us>
 	lpd 95-06-22 removed #ifndefs whose sole purpose was to define
 		undefined preprocessor symbols as 0; changed all #ifdefs
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for configuration symbols to #ifs
 	lpd 95-04-05 changed copyright notice to make it clear that
 		including ansi2knr in a program does not bring the entire
@@ -453,6 +465,11 @@ writeblanks(start, end)
     char *start;
     char *end;
 {	char *p;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for ( p = start; p < end; p++ )
 	  if ( *p != '\r' && *p != '\n' )
 	    *p = ' ';
@@ -541,6 +558,11 @@ convert1(buf, out, header, convert_varargs)
 
 	/* Pre-ANSI implementations don't agree on whether strchr */
 	/* is called strchr or index, so we open-code it here. */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for ( endfn = buf; *(endfn++) != '('; )
 	  ;
 top:	p = endfn;
@@ -554,6 +576,11 @@ top:	p = endfn;
 	btop = breaks + num_breaks * 2 - 2;
 	bp = breaks;
 	/* Parse the argument list */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	do
 	   {	int level = 0;
 		char *lp = NULL;
@@ -569,6 +596,11 @@ top:	p = endfn;
 		   }
 		*bp++ = p;
 		/* Find the end of the argument */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for ( ; end == NULL; p++ )
 		   {	switch(*p)
 			   {
@@ -597,6 +629,11 @@ top:	p = endfn;
 		/* Find the name being declared. */
 		/* This is complicated because of procedure and */
 		/* array modifiers. */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for ( ; ; )
 		   {	p = skipspace(p - 1, -1);
 			switch ( *p )
@@ -663,6 +700,11 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 	/* Put out the declaration. */
 	if ( header )
 	  {	fputs(");", out);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for ( p = breaks[0]; *p; p++ )
 		  if ( *p == '\r' || *p == '\n' )
 		    putc(*p, out);
@@ -677,6 +719,11 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 		  }
 		fputs(")  ", out);
 		/* Put out the argument declarations */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for ( ap = breaks+2; ap <= bp; ap += 2 )
 		  (*ap)[-1] = ';';
 		if ( vararg != 0 )

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        dc.h
 // Purpose:     interface of wxDC
@@ -154,6 +161,11 @@ struct wxFontMetrics
 
     In general wxDC methods don't support alpha transparency and the alpha
     component of wxColour is simply ignored and you need to use wxGraphicsContext
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for full transparency support. There are, however, a few exceptions: first,
     under Mac OS X colours with alpha channel are supported in all the normal
     wxDC-derived classes as they use wxGraphicsContext internally. Second,
@@ -462,6 +474,11 @@ public:
         default) or @b wxWINDING_RULE.
 
         The current pen is used for drawing the outline, and the current brush
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for filling the shape. Using a transparent brush suppresses filling.
 
         @beginWxPerlOnly
@@ -480,6 +497,11 @@ public:
         default) or @b wxWINDING_RULE.
 
         The current pen is used for drawing the outline, and the current brush
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for filling the shape. Using a transparent brush suppresses filling.
 
         The programmer is responsible for deleting the list of points.
@@ -510,6 +532,11 @@ public:
         default) or @b wxWINDING_RULE.
 
         The current pen is used for drawing the outline, and the current brush
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for filling the shape. Using a transparent brush suppresses filling.
 
         The polygons maybe disjoint or overlapping. Each polygon specified in a
@@ -524,6 +551,11 @@ public:
     /**
         Draws a rectangle with the given top left corner, and with the given
         size.  The current pen is used for the outline and the current brush
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for filling the shape.
     */
     void DrawRectangle(wxCoord x, wxCoord y, wxCoord width, wxCoord height);
@@ -1360,6 +1392,11 @@ public:
 
     /**
         Gets in @a colour the colour at the specified location. Not available
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for wxPostScriptDC or wxMetafileDC.
 
         @note Setting a pixel can be done using DrawPoint().

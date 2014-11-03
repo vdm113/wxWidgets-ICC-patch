@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexOthers.cxx
  ** Lexers for batch files, diff results, properties files, make files and error lists.
@@ -135,6 +142,11 @@ static void ColouriseBatchLine(
 		}
 		// Copy word from Line Buffer into Word Buffer
 		wbl = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (; offset < lengthLine && wbl < 80 &&
 		        !isspacechar(lineBuffer[offset]); wbl++, offset++) {
 			wordBuffer[wbl] = static_cast<char>(tolower(lineBuffer[offset]));
@@ -227,9 +239,19 @@ static void ColouriseBatchLine(
 			//     Affected Commands are in Length range 2-6
 			//     Good that ERRORLEVEL, EXIST, CALL, DO, LOADHIGH, and LH are unaffected
 			sKeywordFound = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (unsigned int keywordLength = 2; keywordLength < wbl && keywordLength < 7 && !sKeywordFound; keywordLength++) {
 				wbo = 0;
 				// Copy Keyword Length from Word Buffer into Special Keyword Buffer
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				for (; wbo < keywordLength; wbo++) {
 					sKeywordBuffer[wbo] = static_cast<char>(wordBuffer[wbo]);
 				}
@@ -482,6 +504,11 @@ static void ColouriseBatchDoc(
 	styler.StartSegment(startPos);
 	unsigned int linePos = 0;
 	unsigned int startLine = startPos;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int i = startPos; i < startPos + length; i++) {
 		lineBuffer[linePos++] = styler[i];
 		if (AtEOL(styler, i) || (linePos >= sizeof(lineBuffer) - 1)) {
@@ -563,6 +590,11 @@ static void ColouriseDiffDoc(unsigned int startPos, int length, int, WordList *[
 	styler.StartAt(startPos);
 	styler.StartSegment(startPos);
 	unsigned int linePos = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int i = startPos; i < startPos + length; i++) {
 		if (AtEOL(styler, i)) {
 			if (linePos < DIFF_BUFFER_START_SIZE) {
@@ -590,6 +622,11 @@ static void FoldDiffDoc(unsigned int startPos, int length, int, WordList *[], Ac
 	int prevLevel = curLine > 0 ? styler.LevelAt(curLine - 1) : SC_FOLDLEVELBASE;
 	int nextLevel;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	do {
 		int lineType = styler.StyleAt(curLineStart);
 		if (lineType == SCE_DIFF_COMMAND)
@@ -674,6 +711,11 @@ static void ColourisePropsDoc(unsigned int startPos, int length, int, WordList *
 	//	can be used for RFC2822 text where indentation is used for continuation lines.
 	bool allowInitialSpaces = styler.GetPropertyInt("lexer.props.allow.initial.spaces", 1) != 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int i = startPos; i < startPos + length; i++) {
 		lineBuffer[linePos++] = styler[i];
 		if (AtEOL(styler, i) || (linePos >= sizeof(lineBuffer) - 1)) {
@@ -703,6 +745,11 @@ static void FoldPropsDoc(unsigned int startPos, int length, int, WordList *[], A
 	bool headerPoint = false;
 	int lev;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler[i+1];
@@ -853,6 +900,11 @@ static void ColouriseMakeDoc(unsigned int startPos, int length, int, WordList *[
 	styler.StartSegment(startPos);
 	unsigned int linePos = 0;
 	unsigned int startLine = startPos;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int i = startPos; i < startPos + length; i++) {
 		lineBuffer[linePos++] = styler[i];
 		if (AtEOL(styler, i) || (linePos >= sizeof(lineBuffer) - 1)) {
@@ -966,6 +1018,11 @@ static int RecogniseErrorListLine(const char *lineBuffer, unsigned int lengthLin
 			stCtagsStart, stCtagsFile, stCtagsStartString, stCtagsStringDollar, stCtags,
 			stUnrecognized
 		} state = stInitial;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (unsigned int i = 0; i < lengthLine; i++) {
 			char ch = lineBuffer[i];
 			char chNext = ' ';
@@ -1030,6 +1087,11 @@ static int RecogniseErrorListLine(const char *lineBuffer, unsigned int lengthLin
 						numstep = 1; // ch was ' ', handle as if it's a delphi errorline, only add 1 to i.
 					else
 						numstep = 2; // otherwise add 2.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					for (j = i + numstep; j < lengthLine && IsAlphabetic(lineBuffer[j]) && chPos < sizeof(word) - 1; j++)
 						word[chPos++] = lineBuffer[j];
 					word[chPos] = 0;
@@ -1107,6 +1169,11 @@ static void ColouriseErrorListDoc(unsigned int startPos, int length, int, WordLi
 	//	line with style 21 used for the rest of the line.
 	//	This allows matched text to be more easily distinguished from its location.
 	bool valueSeparate = styler.GetPropertyInt("lexer.errorlist.value.separate", 0) != 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int i = startPos; i < startPos + length; i++) {
 		lineBuffer[linePos++] = styler[i];
 		if (AtEOL(styler, i) || (linePos >= sizeof(lineBuffer) - 1)) {

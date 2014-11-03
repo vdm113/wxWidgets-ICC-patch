@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /*
 --------------------------------------------------------------------------------
 -   Module      :   mem_file.c
@@ -15,6 +22,11 @@ Copyright (c) 1996 Mike Johnson
 Copyright (c) 1996 BancTec AB
 
 Permission to use, copy, modify, distribute, and sell this software
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for any purpose is hereby granted without fee, provided
 that (i) the above copyright notices and this permission notice appear in
 all copies of the software and related documentation, and (ii) the names of
@@ -131,6 +143,11 @@ int mfs_open (void *buffer, int size, char *mode)
 
     /* Find a free fd */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < MAX_BUFFS; i++)
     {
         if (fds[i] == -1)
@@ -568,6 +585,11 @@ static void mem_init ()
 {
     int i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < MAX_BUFFS; i++)
     {
         fds[i] = -1;

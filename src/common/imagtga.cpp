@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/imagtga.cpp
 // Purpose:     wxImage TGA handler
@@ -89,8 +96,18 @@ void FlipTGA(unsigned char* imageData, int width, int height, short pixelSize)
     unsigned char *line2 = &imageData[lineLength * (height - 1)];
 
     unsigned char temp;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ; line1 < line2; line2 -= (lineLength * 2))
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int index = 0; index < lineLength; line1++, line2++, index++)
         {
             temp = *line1;
@@ -139,6 +156,11 @@ int DecodeRLE(unsigned char* imageData, unsigned long imageSize,
             if ( !stream.Read(buf, pixelSize) )
                 return wxTGA_IOERR;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (unsigned int i = 0; i < length; i++)
             {
                 memcpy(imageData, buf, pixelSize);
@@ -266,6 +288,11 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
         palette = (unsigned char *) malloc(paletteLength * 3);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (unsigned int i = 0; i < paletteLength; i++)
         {
             stream.Read(buf, 3);
@@ -315,6 +342,11 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 8:
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
                         Palette_GetRGB(palette, paletteLength,
@@ -331,6 +363,11 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 16:
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
                         Palette_GetRGB(palette, paletteLength,
@@ -376,6 +413,11 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
                 {
                     unsigned char temp;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
                         temp = (imageData[index + 1] & 0x7c) << 1;
@@ -399,6 +441,11 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 24:
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
                         *(dst++) = imageData[index + 2];
@@ -412,6 +459,11 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 32:
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
                         *(dst++) = imageData[index + 2];
@@ -452,6 +504,11 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 8:
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
                         *(dst++) = imageData[index];
@@ -465,6 +522,11 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 16:
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
                         *(dst++) = imageData[index];
@@ -511,6 +573,11 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 8:
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
                         Palette_GetRGB(palette, paletteLength,
@@ -527,6 +594,11 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 16:
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
                         Palette_GetRGB(palette, paletteLength,
@@ -574,6 +646,11 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
                 {
                     unsigned char temp;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
                         temp = (imageData[index + 1] & 0x7c) << 1;
@@ -597,6 +674,11 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 24:
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
                         *(dst++) = imageData[index + 2];
@@ -610,6 +692,11 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 32:
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
                         *(dst++) = imageData[index + 2];
@@ -652,6 +739,11 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 8:
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
                         *(dst++) = imageData[index];
@@ -665,6 +757,11 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 
                 case 16:
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
                         *(dst++) = imageData[index];
@@ -733,9 +830,19 @@ int SaveTGA(const wxImage& image, wxOutputStream *stream)
 
     unsigned char *src = image.GetData();
     unsigned char *alpha = image.GetAlpha();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int y = 0; y < size.y; ++y)
     {
         unsigned char *dst = scanlineData;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int x = 0; x < size.x; ++x)
         {
             dst[0] = src[2];

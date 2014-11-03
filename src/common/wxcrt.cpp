@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/wxcrt.cpp
 // Purpose:     wxChar CRT wrappers implementation
@@ -769,6 +776,11 @@ wxChar32* wxStrdup(const wxChar32* s)
 WXDLLIMPEXP_BASE int wxCRT_StricmpA(const char *psz1, const char *psz2)
 {
   char c1, c2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   do {
     c1 = wxTolower(*psz1++);
     c2 = wxTolower(*psz2++);
@@ -781,6 +793,11 @@ WXDLLIMPEXP_BASE int wxCRT_StricmpA(const char *psz1, const char *psz2)
 WXDLLIMPEXP_BASE int wxCRT_StricmpW(const wchar_t *psz1, const wchar_t *psz2)
 {
   wchar_t c1, c2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   do {
     c1 = wxTolower(*psz1++);
     c2 = wxTolower(*psz2++);
@@ -939,6 +956,11 @@ wxCRT_StrtoullBase(const T* nptr, T** endptr, int base, T* sign)
     if ( base == 0 )
         base = 10;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ; i != end; ++i )
     {
         unsigned int n;

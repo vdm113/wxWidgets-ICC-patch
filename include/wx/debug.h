@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/debug.h
 // Purpose:     Misc debug functions and macros
@@ -32,6 +39,11 @@ class WXDLLIMPEXP_FWD_BASE wxCStrData;
     specified by the value of wxDEBUG_LEVEL constant:
 
     0:  No assertion macros at all, this should only be used when optimizing
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for resource-constrained systems (typically embedded ones).
     1:  Default level, most of the assertions are enabled.
     2:  Maximal (at least for now): asserts which are "expensive"

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/x11/palette.cpp
 // Purpose:     wxPalette
@@ -80,6 +87,11 @@ wxPaletteRefData::~wxPaletteRefData()
 
     wxList::compatibility_iterator node, next;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (node = m_palettes.GetFirst(); node; node = next) {
         wxXPalette *c = (wxXPalette *)node->GetData();
         unsigned long *pix_array = c->m_pix_array;
@@ -97,6 +109,11 @@ wxPaletteRefData::~wxPaletteRefData()
             //      XFreeColors(display, cmap, pix_array, pix_array_n, 0);
             // Be careful not to free '0' pixels...
             int i, j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for(i=j=0; i<pix_array_n; i=j) {
                 while(j<pix_array_n && pix_array[j]!=0) j++;
                 if(j > i) XFreeColors(display, cmap, &pix_array[i], j-i, 0);
@@ -176,6 +193,11 @@ bool wxPalette::Create(int n, const unsigned char *red, const unsigned char *gre
 
     pix_array_n = n;
     xcol.flags = DoRed | DoGreen | DoBlue;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for(int i = 0; i < n; i++) {
         xcol.red = (unsigned short)red[i] << 8;
         xcol.green = (unsigned short)green[i] << 8;
@@ -289,6 +311,11 @@ WXColormap wxPalette::GetXColormap(WXDisplay* display) const
 
     xcol.flags = DoRed | DoGreen | DoBlue;
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < pix_array_n; i++)
     {
         xcol.pixel = first->m_pix_array[i];
@@ -387,6 +414,11 @@ unsigned long *wxPalette::GetXPixArray(WXDisplay *display, int *n)
         return (unsigned long*) 0;
     wxList::compatibility_iterator node;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (node = M_PALETTEDATA->m_palettes.GetFirst(); node; node = node->GetNext())
     {
         wxXPalette *c = (wxXPalette *)node->GetData();

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        log.h
 // Purpose:     interface of wxLog* classes
@@ -412,6 +419,11 @@ public:
         Globally enable or disable logging.
 
         Calling this function with @false argument disables all log messages
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for the current thread.
 
         @see wxLogNull, IsEnabled()
@@ -998,6 +1010,11 @@ public:
     uses a custom dialog which shows the last message directly and allows the
     user to view the previously logged ones by expanding the "Details"
     wxCollapsiblePane inside it. This custom dialog also provides the buttons
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for copying the log messages to the clipboard and saving them to a file.
 
     However if only a single message is present when Flush() is called, just a
@@ -1314,6 +1331,11 @@ void wxVLogError(const char* formatString, va_list argPtr);
 
     Notice that the use of trace masks is not recommended any more as setting
     the log components (please see @ref overview_log_enable) provides a way to
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do the same thing for log messages of any level, and not just the tracing
     ones.
 

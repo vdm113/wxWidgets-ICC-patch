@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/propgrid/manager.h
 // Purpose:     wxPropertyGridManager
@@ -57,6 +64,11 @@ extern WXDLLIMPEXP_DATA_PROPGRID(const char) wxPropertyGridManagerNameStr[];
     events are sent to the manager's parent, as usual.
 
     See @ref propgrid_event_handling "wxPropertyGrid Event Handling"
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for more information.
 
     @library{wxpropgrid}
@@ -212,6 +224,11 @@ class wxPGHeaderCtrl;
     @section propgridmanager_event_handling Event Handling
 
     See @ref propgrid_event_handling "wxPropertyGrid Event Handling"
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for more information.
 
     @library{wxpropgrid}

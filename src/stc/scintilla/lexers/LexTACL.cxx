@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexTAL.cxx
  ** Lexer for TAL
@@ -152,6 +159,11 @@ static void ColouriseTACLDoc(unsigned int startPos, int length, int initStyle, W
 	styler.StartSegment(startPos);
 	int visibleChars = 0;
 	unsigned int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
 
@@ -297,6 +309,11 @@ static void FoldTACLDoc(unsigned int startPos, int length, int initStyle, WordLi
 
 	int lastStart = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

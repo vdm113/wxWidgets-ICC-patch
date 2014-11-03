@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        xrc_format.h
 // Purpose:     XRC format specification
@@ -444,6 +451,11 @@ Examples:
 
 @note You cannot use @c inherit for a font that gets used before the enclosing
       control is created, e.g. if the control gets the font passed as parameter
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for its constructor, or if the control is not derived from wxWindow.
 
 
@@ -1471,6 +1483,11 @@ Each @c propertysheetpage has exactly one non-toplevel window as its child.
 @row3col{dimension, integer,
      Specifies the maximum number of rows (if style contains
      @c wxRA_SPECIFY_ROWS) or columns (if style contains @c wxRA_SPECIFY_COLS)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
      for a two-dimensional radiobox (default: 1).}
 @row3col{selection, integer,
      Index of the initially selected item or -1 for no selection (default: -1).}
@@ -2499,6 +2516,11 @@ Whether a range has positive or negative IDs, [start] is always a smaller
 number than [end]; so code like this works as expected:
 
 @code
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for (int n=XRCID("foo[start]"); n <= XRCID("foo[end]"); ++n)
     ...
 @endcode

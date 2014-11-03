@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        image.h
 // Purpose:     interface of wxImageHandler and wxImage
@@ -221,6 +228,11 @@ public:
 
         @return Number of available images. For most image handlers, this is 1
                 (exceptions are TIFF and ICO formats as well as animated GIFs
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for which this function returns the number of frames in the
                 animation).
     */
@@ -673,6 +685,11 @@ public:
         Destructor.
 
         See @ref overview_refcount_destruct "reference-counted object destruction"
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for more info.
     */
     virtual ~wxImage();
@@ -1882,6 +1899,11 @@ public:
 
         @return Number of available images. For most image handlers, this is 1
                 (exceptions are TIFF and ICO formats as well as animated GIFs
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for which this function returns the number of frames in the
                 animation).
     */

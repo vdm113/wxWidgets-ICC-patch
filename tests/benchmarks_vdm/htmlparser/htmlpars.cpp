@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/htmlpars.cpp
 // Purpose:     wx28HtmlParser class (generic parser)
@@ -89,6 +96,11 @@ wx28HtmlParser::~wx28HtmlParser()
     {
         wxList& tmp = *m_HandlersStack;
         wxList::iterator it, en;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for( it = tmp.begin(), en = tmp.end(); it != en; ++it )
             delete (wxHashTable*)*it;
         tmp.clear();
@@ -495,6 +507,11 @@ wxString wx28HtmlEntitiesParser::Parse(const wxString& input)
     const wxChar *in_str = input.c_str();
     wxString output;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (c = in_str, last = in_str; *c != wxT('\0'); c++)
     {
         if (*c == wxT('&'))
@@ -511,6 +528,11 @@ wxString wx28HtmlEntitiesParser::Parse(const wxString& input)
             const wxChar *ent_s = c;
             wxChar entity_char;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (; (*c >= wxT('a') && *c <= wxT('z')) ||
                    (*c >= wxT('A') && *c <= wxT('Z')) ||
                    (*c >= wxT('0') && *c <= wxT('9')) ||
@@ -849,6 +871,11 @@ wxChar wx28HtmlEntitiesParser::GetEntityChar(const wxString& entity)
 #ifdef __WXWINCE__
         // bsearch crashes under WinCE for some reason
         size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < substitutions_cnt; i++)
         {
             if (entity == substitutions[i].name)

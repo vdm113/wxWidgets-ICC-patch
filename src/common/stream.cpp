@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/stream.cpp
 // Purpose:     wxStream base classes
@@ -455,6 +462,11 @@ size_t wxStreamBuffer::Read(wxStreamBuffer *dbuf)
     size_t nRead,
            total = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         nRead = Read(buf, WXSIZEOF(buf));
@@ -550,6 +562,11 @@ size_t wxStreamBuffer::Write(wxStreamBuffer *sbuf)
     size_t nWrite,
            total = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         size_t nRead = sbuf->Read(buf, WXSIZEOF(buf));
@@ -847,6 +864,11 @@ wxInputStream& wxInputStream::Read(void *buf, size_t size)
     m_lastcount = 0;
 
     size_t read = GetWBack(buf, size);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ;; )
     {
         size -= read;
@@ -895,6 +917,11 @@ wxInputStream& wxInputStream::Read(wxOutputStream& stream_out)
     size_t lastcount = 0;
     char buf[BUF_TEMP_SIZE];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ;; )
     {
         size_t bytes_read = Read(buf, WXSIZEOF(buf)).LastRead();
@@ -918,6 +945,11 @@ bool wxInputStream::ReadAll(void *buffer_, size_t size)
 
     size_t totalCount = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ;; )
     {
         const size_t lastCount = Read(buffer, size).LastRead();
@@ -979,6 +1011,11 @@ wxFileOffset wxInputStream::SeekI(wxFileOffset pos, wxSeekMode mode)
         size_t bytes_read;
 
         // read chunks of BUF_TEMP_SIZE bytes until we reach the new position
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( ; pos >= BUF_TEMP_SIZE; pos -= bytes_read)
         {
             bytes_read = Read(buf, WXSIZEOF(buf)).LastRead();
@@ -1077,6 +1114,11 @@ bool wxOutputStream::WriteAll(const void *buffer_, size_t size)
 
     size_t totalCount = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ;; )
     {
         const size_t lastCount = Write(buffer, size).LastWrite();
@@ -1264,6 +1306,11 @@ wxString wxFilterClassFactoryBase::PopExtension(const wxString& location) const
 wxString::size_type wxFilterClassFactoryBase::FindExtension(
         const wxString& location) const
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (const wxChar *const *p = GetProtocols(wxSTREAM_FILEEXT); *p; p++)
     {
         if ( location.EndsWith(*p) )
@@ -1279,6 +1326,11 @@ bool wxFilterClassFactoryBase::CanHandle(const wxString& protocol,
     if (type == wxSTREAM_FILEEXT)
         return FindExtension(protocol) != wxString::npos;
     else
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (const wxChar *const *p = GetProtocols(type); *p; p++)
             if (protocol == *p)
                 return true;

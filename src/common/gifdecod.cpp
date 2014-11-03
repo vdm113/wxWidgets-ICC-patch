@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/gifdecod.cpp
 // Purpose:     wxGIFDecoder, GIF reader for wxImage and wxAnimation
@@ -105,6 +112,11 @@ wxGIFDecoder::~wxGIFDecoder()
 void wxGIFDecoder::Destroy()
 {
     wxASSERT(m_nFrames==m_frames.GetCount());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (unsigned int i=0; i<m_nFrames; i++)
     {
         GIFImage *f = (GIFImage*)m_frames[i];
@@ -149,6 +161,11 @@ bool wxGIFDecoder::ConvertToImage(unsigned int frame, wxImage *image) const
     // set transparent colour mask
     if (transparent != -1)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < GetNcolours(frame); i++)
         {
             if ((pal[3 * i + 0] == 255) &&
@@ -173,6 +190,11 @@ bool wxGIFDecoder::ConvertToImage(unsigned int frame, wxImage *image) const
     unsigned char g[256];
     unsigned char b[256];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < 256; i++)
     {
         r[i] = pal[3*i + 0];
@@ -185,6 +207,11 @@ bool wxGIFDecoder::ConvertToImage(unsigned int frame, wxImage *image) const
 
     // copy image data
     unsigned long npixel = sz.GetWidth() * sz.GetHeight();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < npixel; i++, src++)
     {
         *(dst++) = pal[3 * (*src) + 0];
@@ -360,6 +387,11 @@ wxGIFDecoder::dgif(wxInputStream& stream, GIFImage *img, int interl, int bits)
     m_restbyte = 0;
     m_lastbyte = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         // get next code

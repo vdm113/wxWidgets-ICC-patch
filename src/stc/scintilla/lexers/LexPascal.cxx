@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexPascal.cxx
  ** Lexer for Pascal.
@@ -229,6 +236,11 @@ static void ColourisePascalDoc(unsigned int startPos, int length, int initStyle,
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (; sc.More(); sc.Forward()) {
 		if (sc.atLineEnd) {
 			// Update the line state, so it can be seen by next line
@@ -350,6 +362,11 @@ static bool IsStreamCommentStyle(int style) {
 static bool IsCommentLine(int line, Accessor &styler) {
 	int pos = styler.LineStart(line);
 	int eolPos = styler.LineStart(line + 1) - 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int i = pos; i < eolPos; i++) {
 		char ch = styler[i];
 		char chNext = styler.SafeGetCharAt(i + 1);
@@ -534,6 +551,11 @@ static void FoldPascalDoc(unsigned int startPos, int length, int initStyle, Word
 	int lastStart = 0;
 	CharacterSet setWord(CharacterSet::setAlphaNum, "_", 0x80, true);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

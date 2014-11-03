@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        thread.h
 // Purpose:     interface of all thread-related wxWidgets classes
@@ -1001,6 +1008,11 @@ public:
     /**
         This constructor creates a new detached (default) or joinable C++
         thread object. It does not create or start execution of the real thread -
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for this you should use the Run() method.
 
         The possible values for @a kind parameters are:
@@ -1318,6 +1330,11 @@ public:
         (as does using Sleep() functions).
 
         Threads should use the CPU in an efficient manner, i.e. they should
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         do their current work efficiently, then as soon as the work is done block
         on a wakeup event (wxCondition, wxMutex, select(), poll(), ...) which will
         get signalled e.g. by other threads or a user device once further thread
@@ -1611,6 +1628,11 @@ enum wxMutexError
         wxMutexLocker lock(s_mutexProtectingTheGlobalData);
 
         size_t count = s_data.Count();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( size_t n = 0; n < count; n++ )
         {
             if ( s_data[n] > num )

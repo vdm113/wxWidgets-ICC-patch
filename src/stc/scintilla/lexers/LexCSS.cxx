@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexCSS.cxx
  ** Lexer for Cascading Style Sheets
@@ -62,6 +69,11 @@ inline int NestingLevelLookBehind(unsigned int startPos, Accessor &styler) {
 	int ch;
 	int nestingLevel = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int i = 0; i < startPos; i++) {
 		ch = styler.SafeGetCharAt(i);
 		if (ch == '{')
@@ -126,12 +138,22 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 	}
 
 	// "the loop"
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (; sc.More(); sc.Forward()) {
 		if (sc.state == SCE_CSS_COMMENT && ((comment_mode == eCommentBlock && sc.Match('*', '/')) || (comment_mode == eCommentLine && sc.atLineEnd))) {
 			if (lastStateC == -1) {
 				// backtrack to get last state:
 				// comments are like whitespace, so we must return to the previous state
 				unsigned int i = startPos;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				for (; i > 0; i--) {
 					if ((lastStateC = styler.StyleAt(i-1)) != SCE_CSS_COMMENT) {
 						if (lastStateC == SCE_CSS_OPERATOR) {
@@ -383,6 +405,11 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 				unsigned int endPos = startPos + length;
 				int ch;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				for (unsigned int i = sc.currentPos; i < endPos; i++) {
 					ch = styler.SafeGetCharAt(i);
 					if (ch == ';' || ch == '}')
@@ -512,6 +539,11 @@ static void FoldCSSDoc(unsigned int startPos, int length, int, WordList *[], Acc
 	int levelCurrent = levelPrev;
 	char chNext = styler[startPos];
 	bool inComment = (styler.StyleAt(startPos-1) == SCE_CSS_COMMENT);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

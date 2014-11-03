@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/wincmn.cpp
 // Purpose:     common (to all ports) wxWindow functions
@@ -592,6 +599,11 @@ bool wxWindowBase::Close(bool force)
 bool wxWindowBase::DestroyChildren()
 {
     wxWindowList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ;; )
     {
         // we iterate until the list becomes empty
@@ -645,6 +657,11 @@ static bool wxHasRealChildren(const wxWindowBase* win)
 {
     int realChildCount = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
           node;
           node = node->GetNext() )
@@ -691,6 +708,11 @@ wxSize wxWindowBase::DoGetBestSize() const
         int maxX = 0,
             maxY = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
               node;
               node = node->GetNext() )
@@ -730,6 +752,11 @@ wxSize wxWindowBase::DoGetBestSize() const
         int maxX = 0,
             maxY = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
               node;
               node = node->GetNext() )
@@ -1181,6 +1208,11 @@ void wxWindowBase::NotifyWindowOnEnableChange(bool enabled)
     // accept any input (at least under MSW where children don't accept input
     // if any of the windows in their parent chain is enabled).
 #ifndef wxHAS_NATIVE_ENABLED_MANAGEMENT
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;
           node = node->GetNext() )
@@ -1240,6 +1272,11 @@ void wxWindowBase::Freeze()
         DoFreeze();
 
         // and recursively freeze all children:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( wxWindowList::iterator i = GetChildren().begin();
               i != GetChildren().end(); ++i )
         {
@@ -1259,6 +1296,11 @@ void wxWindowBase::Thaw()
     if ( !--m_freezeCount )
     {
         // recursively thaw all children:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( wxWindowList::iterator i = GetChildren().begin();
               i != GetChildren().end(); ++i )
         {
@@ -1837,6 +1879,11 @@ wxWindow *wxWindowBase::FindWindow(long id) const
 
     wxWindowBase *res = NULL;
     wxWindowList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( node = m_children.GetFirst(); node && !res; node = node->GetNext() )
     {
         wxWindowBase *child = node->GetData();
@@ -1859,6 +1906,11 @@ wxWindow *wxWindowBase::FindWindow(const wxString& name) const
 
     wxWindowBase *res = NULL;
     wxWindowList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( node = m_children.GetFirst(); node && !res; node = node->GetNext() )
     {
         wxWindow *child = node->GetData();
@@ -1919,6 +1971,11 @@ wxWindow *wxFindWindowRecursively(const wxWindow *parent,
             return (wxWindow *)parent;
 
         // It wasn't, so check all its children
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( wxWindowList::compatibility_iterator node = parent->GetChildren().GetFirst();
               node;
               node = node->GetNext() )
@@ -1949,6 +2006,11 @@ wxWindow *wxFindWindowHelper(const wxWindow *parent,
     }
 
     // start at very top of wx's windows
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst();
           node;
           node = node->GetNext() )
@@ -2039,6 +2101,11 @@ public:
         const bool recurse = m_win->HasExtraStyle(wxWS_EX_VALIDATE_RECURSIVELY);
 
         wxWindowList& children = m_win->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( wxWindowList::iterator i = children.begin();
               i != children.end();
               ++i )
@@ -2562,11 +2629,21 @@ bool wxWindowBase::DoPhase(int phase)
     // the constraints
     static const int maxIterations = 500;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( int noIterations = 0; noIterations < maxIterations; noIterations++ )
     {
         int noChanges = 0;
 
         // loop over all children setting their constraints
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
               node;
               node = node->GetNext() )
@@ -2831,6 +2908,11 @@ bool wxWindowBase::SendIdleEvents(wxIdleEvent& event)
             needMore = true;
     }
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (; node; node = node->GetNext())
     {
         wxWindow* child = node->GetData();
@@ -3040,6 +3122,11 @@ static void DrawBorder(wxWindowBase *win, const wxRect& rect, bool fill, const w
 static void DrawSizer(wxWindowBase *win, wxSizer *sizer)
 {
     const wxSizerItemList& items = sizer->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxSizerItemList::const_iterator i = items.begin(),
                                         end = items.end();
           i != end;
@@ -3076,6 +3163,11 @@ static void DrawSizers(wxWindowBase *win)
     else // no sizer, still recurse into the children
     {
         const wxWindowList& children = win->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( wxWindowList::const_iterator i = children.begin(),
                                          end = children.end();
               i != end;
@@ -3247,6 +3339,11 @@ wxRecursionGuardFlag changing;
 
 bool IsInCaptureStack(wxWindowBase* win)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxVector<wxWindow*>::const_iterator it = stack.begin();
           it != stack.end();
           ++it )

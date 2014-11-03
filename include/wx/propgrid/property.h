@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/propgrid/property.h
 // Purpose:     wxPGProperty and related support classes
@@ -277,6 +284,11 @@ public:
                  size of the font. Therefore it is recommended
                  to use return value of wxPropertyGrid::GetFont()
                  or wxPropertyGrid::GetCaptionFont() as a basis
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                  for the font that, after modifications, is passed
                  to this member function.
     */
@@ -581,6 +593,11 @@ wxPG_PROP_CLASS_SPECIFIC_3          = 0x00400000
 
     When set to True, bool property will use check box instead of a
     combo box as its editor control. If you set this attribute
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for a wxFlagsProperty, it is automatically applied to child
     bool properties.
 */
@@ -591,6 +608,11 @@ wxPG_PROP_CLASS_SPECIFIC_3          = 0x00400000
 
     Set to True for the bool property to cycle value on double click
     (instead of showing the popup listbox). If you set this attribute
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for a wxFlagsProperty, it is automatically applied to child
     bool properties.
 */
@@ -1403,6 +1425,11 @@ public:
         @remarks
         You can get common filename validator by returning
         wxFileProperty::GetClassValidator(). wxDirProperty,
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for example, uses it.
     */
     virtual wxValidator* DoGetValidator () const;

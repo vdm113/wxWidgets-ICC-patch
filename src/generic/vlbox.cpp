@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/vlbox.cpp
 // Purpose:     implementation of wxVListBox
@@ -187,6 +194,11 @@ bool wxVListBox::SelectRange(size_t from, size_t to)
         }
 
         // refresh just the lines which have really changed
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( size_t n = 0; n < count; n++ )
         {
             RefreshRow(changed[n]);
@@ -327,6 +339,11 @@ int wxVListBox::GetNextSelected(unsigned long& cookie) const
 void wxVListBox::RefreshSelected()
 {
     // only refresh those items which are currently visible and selected:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = GetVisibleBegin(), end = GetVisibleEnd(); n < end; n++ )
     {
         if ( IsSelected(n) )
@@ -460,6 +477,11 @@ void wxVListBox::OnPaint(wxPaintEvent& WXUNUSED(event))
 
     // iterate over all visible lines
     const size_t lineMax = GetVisibleEnd();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t line = GetVisibleBegin(); line < lineMax; line++ )
     {
         const wxCoord hRow = OnGetRowHeight(line);

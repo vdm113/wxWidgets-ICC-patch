@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file Indicator.cxx
  ** Defines the style of indicators which are text decorations such as underlining.
@@ -48,6 +55,11 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		int width = Platform::Minimum(4000, rcSquiggle.Width());
 		RGBAImage image(width, 3, 1.0, 0);
 		enum { alphaFull = 0xff, alphaSide = 0x2f, alphaSide2=0x5f };
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (int x = 0; x < width; x++) {
 			if (x%2) {
 				// Two halfway columns have a full pixel in middle flanked by light pixels
@@ -126,13 +138,33 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		int width = Platform::Minimum(rcBox.Width(), 4000);
 		RGBAImage image(width, rcBox.Height(), 1.0, 0);
 		// Draw horizontal lines top and bottom
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (int x=0; x<width; x++) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (int y=0; y<rcBox.Height(); y += rcBox.Height()-1) {
 				image.SetPixel(x, y, fore, ((x + y) % 2) ? outlineAlpha : fillAlpha);
 			}
 		}
 		// Draw vertical lines left and right
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (int y=1; y<rcBox.Height(); y++) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (int x=0; x<width; x += width-1) {
 				image.SetPixel(x, y, fore, ((x + y) % 2) ? outlineAlpha : fillAlpha);
 			}

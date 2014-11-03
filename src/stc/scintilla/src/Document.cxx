@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file Document.cxx
  ** Text document that handles notifications, DBCS, styling, words and end of line.
@@ -122,9 +129,19 @@ Document::Document() {
 }
 
 Document::~Document() {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (std::vector<WatcherWithUserData>::iterator it = watchers.begin(); it != watchers.end(); ++it) {
 		it->watcher->NotifyDeleted(this, it->userData);
 	}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int j=0; j<ldSize; j++) {
 		delete perLineData[j];
 		perLineData[j] = 0;
@@ -138,6 +155,11 @@ Document::~Document() {
 }
 
 void Document::Init() {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int j=0; j<ldSize; j++) {
 		if (perLineData[j])
 			perLineData[j]->Init();
@@ -179,6 +201,11 @@ bool Document::SetLineEndTypesAllowed(int lineEndBitSet_) {
 }
 
 void Document::InsertLine(int line) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int j=0; j<ldSize; j++) {
 		if (perLineData[j])
 			perLineData[j]->InsertLine(line);
@@ -186,6 +213,11 @@ void Document::InsertLine(int line) {
 }
 
 void Document::RemoveLine(int line) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int j=0; j<ldSize; j++) {
 		if (perLineData[j])
 			perLineData[j]->RemoveLine(line);
@@ -236,6 +268,11 @@ void Document::AddMarkSet(int line, int valueSet) {
 		return;
 	}
 	unsigned int m = valueSet;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int i = 0; m; i++, m >>= 1)
 		if (m & 1)
 			static_cast<LineMarkers *>(perLineData[ldMarkers])->
@@ -259,6 +296,11 @@ void Document::DeleteMarkFromHandle(int markerHandle) {
 
 void Document::DeleteAllMarks(int markerNum) {
 	bool someChanges = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int line = 0; line < LinesTotal(); line++) {
 		if (static_cast<LineMarkers *>(perLineData[ldMarkers])->DeleteMark(line, markerNum, true))
 			someChanges = true;
@@ -307,6 +349,11 @@ int SCI_METHOD Document::LineEnd(int line) const {
 
 void SCI_METHOD Document::SetErrorStatus(int status) {
 	// Tell the watchers an error has occurred.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (std::vector<WatcherWithUserData>::iterator it = watchers.begin(); it != watchers.end(); ++it) {
 		it->watcher->NotifyErrorOccurred(this, it->userData, status);
 	}
@@ -450,6 +497,11 @@ void Document::GetHighlightDelimiters(HighlightDelimiter &highlightDelimiter, in
 		}
 	}
 	if (firstChangeableLineBefore == -1) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (lookLine = line - 1, lookLineLevel = GetLevel(lookLine), lookLineLevelNum = lookLineLevel & SC_FOLDLEVELNUMBERMASK;
 			lookLine >= beginFoldBlock;
 			lookLineLevel = GetLevel(--lookLine), lookLineLevelNum = lookLineLevel & SC_FOLDLEVELNUMBERMASK) {
@@ -463,6 +515,11 @@ void Document::GetHighlightDelimiters(HighlightDelimiter &highlightDelimiter, in
 		firstChangeableLineBefore = beginFoldBlock - 1;
 
 	int firstChangeableLineAfter = -1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (lookLine = line + 1, lookLineLevel = GetLevel(lookLine), lookLineLevelNum = lookLineLevel & SC_FOLDLEVELNUMBERMASK;
 		lookLine <= endFoldBlock;
 		lookLineLevel = GetLevel(++lookLine), lookLineLevelNum = lookLineLevel & SC_FOLDLEVELNUMBERMASK) {
@@ -529,6 +586,11 @@ bool Document::InGoodUTF8(int pos, int &start, int &end) const {
 			// pos too far from lead
 			return false;
 		char charBytes[UTF8MaxBytes] = {static_cast<char>(leadByte),0,0,0};
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (int b=1; b<widthCharBytes && ((start+b) < Length()); b++)
 			charBytes[b] = cb.CharAt(static_cast<int>(start+b));
 		int utf8status = UTF8Classify(reinterpret_cast<const unsigned char *>(charBytes), widthCharBytes);
@@ -630,6 +692,11 @@ int Document::NextPosition(int pos, int moveDir) const {
 				} else {
 					const int widthCharBytes = UTF8BytesOfLead[leadByte];
 					char charBytes[UTF8MaxBytes] = {static_cast<char>(leadByte),0,0,0};
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					for (int b=1; b<widthCharBytes; b++)
 						charBytes[b] = cb.CharAt(static_cast<int>(pos+b));
 					int utf8status = UTF8Classify(reinterpret_cast<const unsigned char *>(charBytes), widthCharBytes);
@@ -745,6 +812,11 @@ int SCI_METHOD Document::GetCharacterAndWidth(int position, int *pWidth) const {
 			} else {
 				const int widthCharBytes = UTF8BytesOfLead[leadByte];
 				unsigned char charBytes[UTF8MaxBytes] = {leadByte,0,0,0};
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				for (int b=1; b<widthCharBytes; b++)
 					charBytes[b] = static_cast<unsigned char>(cb.CharAt(position+b));
 				int utf8status = UTF8Classify(charBytes, widthCharBytes);
@@ -826,6 +898,11 @@ int Document::SafeSegment(const char *text, int length, int lengthSegment) const
 	int lastSpaceBreak = -1;
 	int lastPunctuationBreak = -1;
 	int lastEncodingAllowedBreak = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int j=0; j < lengthSegment;) {
 		unsigned char ch = static_cast<unsigned char>(text[j]);
 		if (j > 0) {
@@ -982,6 +1059,11 @@ int Document::Undo() {
 			int coalescedRemoveLen = 0;
 			int prevRemoveActionPos = -1;
 			int prevRemoveActionLen = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (int step = 0; step < steps; step++) {
 				const int prevLinesTotal = LinesTotal();
 				const Action &action = cb.GetUndoStep();
@@ -1062,6 +1144,11 @@ int Document::Redo() {
 			bool startSavePoint = cb.IsSavePoint();
 			bool multiLine = false;
 			int steps = cb.StartRedo();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (int step = 0; step < steps; step++) {
 				const int prevLinesTotal = LinesTotal();
 				const Action &action = cb.GetRedoStep();
@@ -1170,6 +1257,11 @@ int SCI_METHOD Document::GetLineIndentation(int line) {
 	if ((line >= 0) && (line < LinesTotal())) {
 		int lineStart = LineStart(line);
 		int length = Length();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (int i = lineStart; i < length; i++) {
 			char ch = cb.CharAt(i);
 			if (ch == ' ')
@@ -1212,6 +1304,11 @@ int Document::GetColumn(int pos) {
 	int column = 0;
 	int line = LineFromPosition(pos);
 	if ((line >= 0) && (line < LinesTotal())) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (int i = LineStart(line); i < pos;) {
 			char ch = cb.CharAt(i);
 			if (ch == '\t') {
@@ -1272,6 +1369,11 @@ int Document::FindColumn(int line, int column) {
 
 void Document::Indent(bool forwards, int lineBottom, int lineTop) {
 	// Dedent - suck white space off the front of the line to dedent by equivalent of a tab
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int line = lineBottom; line >= lineTop; line--) {
 		int indentOfLine = GetLineIndentation(line);
 		if (forwards) {
@@ -1288,6 +1390,11 @@ void Document::Indent(bool forwards, int lineBottom, int lineTop) {
 // Stop at len or when a NUL is found.
 std::string Document::TransformLineEnds(const char *s, size_t len, int eolModeWanted) {
 	std::string dest;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (size_t i = 0; (i < len) && (s[i]); i++) {
 		if (s[i] == '\n' || s[i] == '\r') {
 			if (eolModeWanted == SC_EOL_CR) {
@@ -1311,6 +1418,11 @@ std::string Document::TransformLineEnds(const char *s, size_t len, int eolModeWa
 void Document::ConvertLineEnds(int eolModeSet) {
 	UndoGroup ug(this);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int pos = 0; pos < Length(); pos++) {
 		if (cb.CharAt(pos) == '\r') {
 			if (cb.CharAt(pos + 1) == '\n') {
@@ -1560,6 +1672,11 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 			while (forward ? (pos < endSearch) : (pos >= endSearch)) {
 				if (CharAt(pos) == charStartSearch) {
 					bool found = (pos + lengthFind) <= limitPos;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					for (int indexSearch = 1; (indexSearch < lengthFind) && found; indexSearch++) {
 						found = CharAt(pos + indexSearch) == search[indexSearch];
 					}
@@ -1582,12 +1699,22 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 				int posIndexDocument = pos;
 				int indexSearch = 0;
 				bool characterMatches = true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				for (;;) {
 					const unsigned char leadByte = static_cast<unsigned char>(cb.CharAt(posIndexDocument));
 					bytes[0] = leadByte;
 					int widthChar = 1;
 					if (!UTF8IsAscii(leadByte)) {
 						const int widthCharBytes = UTF8BytesOfLead[leadByte];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 						for (int b=1; b<widthCharBytes; b++) {
 							bytes[b] = cb.CharAt(posIndexDocument+b);
 						}
@@ -1664,6 +1791,11 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 			pcf->Fold(&searchThing[0], searchThing.size(), search, lengthFind);
 			while (forward ? (pos < endSearch) : (pos >= endSearch)) {
 				bool found = (pos + lengthFind) <= limitPos;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				for (int indexSearch = 0; (indexSearch < lengthFind) && found; indexSearch++) {
 					char ch = CharAt(pos + indexSearch);
 					char folded[2];
@@ -1741,6 +1873,11 @@ bool SCI_METHOD Document::SetStyles(int length, const char *styles) {
 		bool didChange = false;
 		int startMod = 0;
 		int endMod = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (int iPos = 0; iPos < length; iPos++, endStyled++) {
 			PLATFORM_ASSERT(endStyled < Length());
 			if (cb.SetStyleAt(endStyled, styles[iPos], stylingMask)) {
@@ -1770,6 +1907,11 @@ void Document::EnsureStyledTo(int pos) {
 			pli->Colourise(endStyledTo, pos);
 		} else {
 			// Ask the watchers to style, and stop as soon as one responds.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (std::vector<WatcherWithUserData>::iterator it = watchers.begin();
 				(pos > GetEndStyled()) && (it != watchers.end()); ++it) {
 				it->watcher->NotifyStyleNeeded(this, it->userData, pos);
@@ -1780,6 +1922,11 @@ void Document::EnsureStyledTo(int pos) {
 
 void Document::LexerChanged() {
 	// Tell the watchers the lexer has changed.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (std::vector<WatcherWithUserData>::iterator it = watchers.begin(); it != watchers.end(); ++it) {
 		it->watcher->NotifyLexerChanged(this, it->userData);
 	}
@@ -1831,6 +1978,11 @@ void Document::MarginSetStyles(int line, const unsigned char *styles) {
 
 void Document::MarginClearAll() {
 	int maxEditorLine = LinesTotal();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int l=0; l<maxEditorLine; l++)
 		MarginSetText(l, 0);
 	// Free remaining data
@@ -1872,6 +2024,11 @@ int Document::AnnotationLines(int line) const {
 
 void Document::AnnotationClearAll() {
 	int maxEditorLine = LinesTotal();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int l=0; l<maxEditorLine; l++)
 		AnnotationSetText(l, 0);
 	// Free remaining data
@@ -1911,12 +2068,22 @@ bool Document::RemoveWatcher(DocWatcher *watcher, void *userData) {
 }
 
 void Document::NotifyModifyAttempt() {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (std::vector<WatcherWithUserData>::iterator it = watchers.begin(); it != watchers.end(); ++it) {
 		it->watcher->NotifyModifyAttempt(this, it->userData);
 	}
 }
 
 void Document::NotifySavePoint(bool atSavePoint) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (std::vector<WatcherWithUserData>::iterator it = watchers.begin(); it != watchers.end(); ++it) {
 		it->watcher->NotifySavePoint(this, it->userData, atSavePoint);
 	}
@@ -1928,6 +2095,11 @@ void Document::NotifyModified(DocModification mh) {
 	} else if (mh.modificationType & SC_MOD_DELETETEXT) {
 		decorations.DeleteRange(mh.position, mh.length);
 	}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (std::vector<WatcherWithUserData>::iterator it = watchers.begin(); it != watchers.end(); ++it) {
 		it->watcher->NotifyModified(this, mh, it->userData);
 	}
@@ -2180,6 +2352,11 @@ long BuiltinRegex::FindText(Document *doc, int minPos, int maxPos, const char *s
 	char searchEnd = s[*length - 1];
 	char searchEndPrev = (*length > 1) ? s[*length - 2] : '\0';
 	int lineRangeBreak = lineRangeEnd + increment;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int line = lineRangeStart; line != lineRangeBreak; line += increment) {
 		int startOfLine = doc->LineStart(line);
 		int endOfLine = doc->LineEnd(line);
@@ -2241,6 +2418,11 @@ const char *BuiltinRegex::SubstituteByPosition(Document *doc, const char *text, 
 	substituted.clear();
 	DocumentIndexer di(doc, doc->Length());
 	search.GrabMatches(di);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int j = 0; j < *length; j++) {
 		if (text[j] == '\\') {
 			if (text[j + 1] >= '0' && text[j + 1] <= '9') {

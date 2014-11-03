@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /******************************************************************
  *  LexMarkdown.cxx
  *
@@ -120,6 +127,11 @@ static bool AtTermStart(StyleContext &sc) {
 static bool IsValidHrule(const unsigned int endPos, StyleContext &sc) {
     int count = 1;
     unsigned int i = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (;;) {
         ++i;
         int c = sc.GetRelative(i);
@@ -183,6 +195,11 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
             bool d = true;
             if (IsNewline(sc.ch)) {
                 if (sc.chNext != '\t') {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (int c = 1; c < 5; ++c) {
                         if (sc.GetRelative(c) != ' ')
                             d = false;
@@ -191,6 +208,11 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
             }
             else if (sc.atLineStart) {
                 if (sc.ch != '\t' ) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (int i = 0; i < 4; ++i) {
                         if (sc.GetRelative(i) != ' ')
                             d = false;

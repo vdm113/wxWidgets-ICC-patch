@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /* Copyright (c) 1998, 1999, 2000 Thai Open Source Software Center Ltd
    See the file COPYING for copying permission.
 */
@@ -1126,6 +1133,11 @@ XML_ExternalEntityParserCreate(XML_Parser oldParser,
 static void FASTCALL
 destroyBindings(BINDING *bindings, XML_Parser parser)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     BINDING *b = bindings;
     if (!b)
@@ -1145,6 +1157,11 @@ XML_ParserFree(XML_Parser parser)
     return;
   /* free tagStack and freeTagList */
   tagList = tagStack;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     TAG *p;
     if (tagList == NULL) {
@@ -1161,6 +1178,11 @@ XML_ParserFree(XML_Parser parser)
   }
   /* free openInternalEntities and freeInternalEntities */
   entityList = openInternalEntities;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     OPEN_INTERNAL_ENTITY *openEntity;
     if (entityList == NULL) {
@@ -1727,6 +1749,11 @@ XML_GetBuffer(XML_Parser parser, int len)
       int bufferSize = (int)(bufferLim - bufferPtr);
       if (bufferSize == 0)
         bufferSize = INIT_BUFFER_SIZE;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       do {
         bufferSize *= 2;
       } while (bufferSize < neededSize);
@@ -2057,6 +2084,11 @@ XML_GetFeatureList(void)
 }
 
 /* Initially tag->rawName always points into the parse buffer;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for those TAG instances opened while the current parse buffer was
    processed, and not yet closed, we need to store tag->rawName in a more
    permanent location, since the parse buffer is about to be discarded.
@@ -2261,6 +2293,11 @@ doContent(XML_Parser parser,
   }
   *eventPP = s;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     const char *next = s; /* XmlContentTok doesn't always set the last arg */
     int tok = XmlContentTok(enc, s, end, &next);
@@ -2422,6 +2459,11 @@ doContent(XML_Parser parser,
           const char *rawNameEnd = tag->rawName + tag->rawNameLength;
           const char *fromPtr = tag->rawName;
           toPtr = (XML_Char *)tag->buf;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
           for (;;) {
             int bufSize;
             int convLen;
@@ -2648,6 +2690,11 @@ doContent(XML_Parser parser,
         XML_CharacterDataHandler charDataHandler = characterDataHandler;
         if (charDataHandler) {
           if (MUST_CONVERT(enc, s)) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (;;) {
               ICHAR *dataPtr = (ICHAR *)dataBuf;
               XmlConvert(enc, &s, next, &dataPtr, (ICHAR *)dataBufEnd);
@@ -2761,6 +2808,11 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
   }
 
   appAtts = (const XML_Char **)atts;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = 0; i < n; i++) {
     ATTRIBUTE *currAtt = &atts[i];
 #ifdef XML_ATTR_INFO
@@ -2798,6 +2850,11 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
       /* figure out whether declared as other than CDATA */
       if (attId->maybeTokenized) {
         int j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (j = 0; j < nDefaultAtts; j++) {
           if (attId == elementType->defaultAtts[j].id) {
             isCdata = elementType->defaultAtts[j].isCdata;
@@ -2847,6 +2904,11 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
   /* set-up for XML_GetSpecifiedAttributeCount and XML_GetIdAttributeIndex */
   nSpecifiedAtts = attIndex;
   if (elementType->idAtt && (elementType->idAtt->name)[-1]) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < attIndex; i += 2)
       if (appAtts[i] == elementType->idAtt->name) {
         idAttIndex = i;
@@ -2857,6 +2919,11 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
     idAttIndex = -1;
 
   /* do attribute defaulting */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = 0; i < nDefaultAtts; i++) {
     const DEFAULT_ATTRIBUTE *da = elementType->defaultAtts + i;
     if (!(da->id->name)[-1] && da->value) {
@@ -2907,12 +2974,22 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
     /* using a version flag saves us from initializing nsAtts every time */
     if (!version) {  /* initialize version flags when version wraps around */
       version = INIT_ATTS_VERSION;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for (j = nsAttsSize; j != 0; )
         nsAtts[--j].version = version;
     }
     nsAttsVersion = --version;
 
     /* expand prefixed names and check for duplicates */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (; i < attIndex; i += 2) {
       const XML_Char *s = appAtts[i];
       if (s[-1] == 2) {  /* prefixed */
@@ -2926,6 +3003,11 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
           return XML_ERROR_UNBOUND_PREFIX;
 
         /* as we expand the name we also calculate its hash value */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (j = 0; j < b->uriLen; j++) {
           const XML_Char c = b->uri[j];
           if (!poolAppendChar(&tempPool, c))
@@ -2934,6 +3016,11 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
         }
         while (*s++ != XML_T(ASCII_COLON))
           ;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         do {  /* copies null terminator */
           const XML_Char c = *s;
           if (!poolAppendChar(&tempPool, *s))
@@ -2953,6 +3040,11 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
               const XML_Char *s1 = poolStart(&tempPool);
               const XML_Char *s2 = nsAtts[j].uriName;
               /* s1 is null terminated, but not s2 */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
               for (; *s1 == *s2 && *s1 != 0; s1++, s2++);
               if (*s1 == 0)
                 return XML_ERROR_DUPLICATE_ATTRIBUTE;
@@ -2966,6 +3058,11 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
         if (ns_triplets) {  /* append namespace separator and prefix */
           tempPool.ptr[-1] = namespaceSeparator;
           s = b->prefix->name;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
           do {
             if (!poolAppendChar(&tempPool, *s))
               return XML_ERROR_NO_MEMORY;
@@ -2992,8 +3089,18 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
     }
   }
   /* clear flags for the remaining attributes */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (; i < attIndex; i += 2)
     ((XML_Char *)(appAtts[i]))[-1] = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (binding = *bindingsPtr; binding; binding = binding->nextTagBinding)
     binding->attId->name[-1] = 0;
 
@@ -3017,6 +3124,11 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
     return XML_ERROR_NONE;
   prefixLen = 0;
   if (ns_triplets && binding->prefix->name) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (; binding->prefix->name[prefixLen++];)
       ;  /* prefixLen includes null terminator */
   }
@@ -3024,6 +3136,11 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
   tagNamePtr->uriLen = binding->uriLen;
   tagNamePtr->prefix = binding->prefix->name;
   tagNamePtr->prefixLen = prefixLen;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = 0; localPart[i++];)
     ;  /* i includes null terminator */
   n = i + binding->uriLen + prefixLen;
@@ -3034,6 +3151,11 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
       return XML_ERROR_NO_MEMORY;
     binding->uriAlloc = n + EXPAND_SPARE;
     memcpy(uri, binding->uri, binding->uriLen * sizeof(XML_Char));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (p = tagStack; p; p = p->parent)
       if (p->name.str == binding->uri)
         p->name.str = uri;
@@ -3106,6 +3228,11 @@ addBinding(XML_Parser parser, PREFIX *prefix, const ATTRIBUTE_ID *attId,
       mustBeXML = XML_TRUE;
   }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (len = 0; uri[len]; len++) {
     if (isXML && (len > xmlLen || uri[len] != xmlNamespace[len]))
       isXML = XML_FALSE;
@@ -3222,6 +3349,11 @@ doCdataSection(XML_Parser parser,
   *eventPP = s;
   *startPtr = NULL;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     const char *next;
     int tok = XmlCdataSectionTok(enc, s, end, &next);
@@ -3256,6 +3388,11 @@ doCdataSection(XML_Parser parser,
         XML_CharacterDataHandler charDataHandler = characterDataHandler;
         if (charDataHandler) {
           if (MUST_CONVERT(enc, s)) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (;;) {
               ICHAR *dataPtr = (ICHAR *)dataBuf;
               XmlConvert(enc, &s, next, &dataPtr, (ICHAR *)dataBufEnd);
@@ -3406,6 +3543,11 @@ initializeEncoding(XML_Parser parser)
     s = NULL;
   else {
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; protocolEncodingName[i]; i++) {
       if (i == sizeof(encodingBuf) - 1
           || (protocolEncodingName[i] & ~0x7f) != 0) {
@@ -3520,6 +3662,11 @@ handleUnknownEncoding(XML_Parser parser, const XML_Char *encodingName)
   if (unknownEncodingHandler) {
     XML_Encoding info;
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < 256; i++)
       info.map[i] = -1;
     info.convert = NULL;
@@ -3603,6 +3750,11 @@ entityValueInitProcessor(XML_Parser parser,
   const char *next = start;
   eventPtr = start;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     tok = XmlPrologTok(encoding, start, end, &next);
     eventEndPtr = next;
@@ -3711,6 +3863,11 @@ entityValueProcessor(XML_Parser parser,
   const ENCODING *enc = encoding;
   int tok;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     tok = XmlPrologTok(enc, start, end, &next);
     if (tok <= 0) {
@@ -3799,6 +3956,11 @@ doProlog(XML_Parser parser,
     eventEndPP = &(openInternalEntities->internalEventEndPtr);
   }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     int role;
     XML_Bool handleDefault = XML_TRUE;
@@ -4194,6 +4356,11 @@ doProlog(XML_Parser parser,
 #ifdef XML_DTD
       else
         /* use externalSubsetName to make doctypeSysid non-NULL
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
            for the case where no startDoctypeDeclHandler is set */
         doctypeSysid = externalSubsetName;
 #endif /* XML_DTD */
@@ -4639,6 +4806,11 @@ doProlog(XML_Parser parser,
         name = el->name;
         dtd->scaffold[myindex].name = name;
         nameLen = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (; name[nameLen++]; )
             ;
         dtd->contentStringLen +=  nameLen;
@@ -4743,6 +4915,11 @@ epilogProcessor(XML_Parser parser,
 {
   processor = epilogProcessor;
   eventPtr = s;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     const char *next = NULL;
     int tok = XmlPrologTok(encoding, s, end, &next);
@@ -4951,6 +5128,11 @@ appendAttributeValue(XML_Parser parser, const ENCODING *enc, XML_Bool isCdata,
                      STRING_POOL *pool)
 {
   DTD * const dtd = _dtd;  /* save one level of indirection */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     const char *next;
     int tok = XmlAttributeValueTok(enc, ptr, end, &next);
@@ -4985,6 +5167,11 @@ appendAttributeValue(XML_Parser parser, const ENCODING *enc, XML_Bool isCdata,
             eventPtr = ptr;
           return XML_ERROR_BAD_CHAR_REF;
         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < n; i++) {
           if (!poolAppendChar(pool, buf[i]))
             return XML_ERROR_NO_MEMORY;
@@ -5116,6 +5303,11 @@ storeEntityValue(XML_Parser parser,
       return XML_ERROR_NO_MEMORY;
   }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     const char *next;
     int tok = XmlEntityValueTok(enc, entityTextPtr, entityTextEnd, &next);
@@ -5227,6 +5419,11 @@ storeEntityValue(XML_Parser parser,
           result = XML_ERROR_BAD_CHAR_REF;
           goto endEntityValue;
         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < n; i++) {
           if (pool->end == pool->ptr && !poolGrow(pool)) {
             result = XML_ERROR_NO_MEMORY;
@@ -5265,6 +5462,11 @@ static void FASTCALL
 normalizeLines(XML_Char *s)
 {
   XML_Char *p;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;; s++) {
     if (*s == XML_T('\0'))
       return;
@@ -5272,6 +5474,11 @@ normalizeLines(XML_Char *s)
       break;
   }
   p = s;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   do {
     if (*s == 0xD) {
       *p++ = 0xA;
@@ -5350,6 +5557,11 @@ reportDefault(XML_Parser parser, const ENCODING *enc,
       eventPP = &(openInternalEntities->internalEventPtr);
       eventEndPP = &(openInternalEntities->internalEventEndPtr);
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do {
       ICHAR *dataPtr = (ICHAR *)dataBuf;
       XmlConvert(enc, &s, end, &dataPtr, (ICHAR *)dataBufEnd);
@@ -5372,6 +5584,11 @@ defineAttribute(ELEMENT_TYPE *type, ATTRIBUTE_ID *attId, XML_Bool isCdata,
     /* The handling of default attributes gets messed up if we have
        a default which duplicates a non-default. */
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < type->nDefaultAtts; i++)
       if (attId == type->defaultAtts[i].id)
         return 1;
@@ -5412,10 +5629,20 @@ setElementTypePrefix(XML_Parser parser, ELEMENT_TYPE *elementType)
 {
   DTD * const dtd = _dtd;  /* save one level of indirection */
   const XML_Char *name;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (name = elementType->name; *name; name++) {
     if (*name == XML_T(ASCII_COLON)) {
       PREFIX *prefix;
       const XML_Char *s;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for (s = elementType->name; s != name; s++) {
         if (!poolAppendChar(&dtd->pool, *s))
           return 0;
@@ -5474,10 +5701,20 @@ getAttributeId(XML_Parser parser, const ENCODING *enc,
     }
     else {
       int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for (i = 0; name[i]; i++) {
         /* attributes without prefix are *not* in the default namespace */
         if (name[i] == XML_T(ASCII_COLON)) {
           int j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
           for (j = 0; j < i; j++) {
             if (!poolAppendChar(&dtd->pool, name[j]))
               return NULL;
@@ -5515,6 +5752,11 @@ getContext(XML_Parser parser)
     len = dtd->defaultPrefix.binding->uriLen;
     if (namespaceSeparator)
       len--;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < len; i++)
       if (!poolAppendChar(&tempPool, dtd->defaultPrefix.binding->uri[i]))
         return NULL;
@@ -5522,6 +5764,11 @@ getContext(XML_Parser parser)
   }
 
   hashTableIterInit(&iter, &(dtd->prefixes));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     int i;
     int len;
@@ -5533,6 +5780,11 @@ getContext(XML_Parser parser)
       continue;
     if (needSep && !poolAppendChar(&tempPool, CONTEXT_SEP))
       return NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (s = prefix->name; *s; s++)
       if (!poolAppendChar(&tempPool, *s))
         return NULL;
@@ -5541,6 +5793,11 @@ getContext(XML_Parser parser)
     len = prefix->binding->uriLen;
     if (namespaceSeparator)
       len--;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < len; i++)
       if (!poolAppendChar(&tempPool, prefix->binding->uri[i]))
         return NULL;
@@ -5549,6 +5806,11 @@ getContext(XML_Parser parser)
 
 
   hashTableIterInit(&iter, &(dtd->generalEntities));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     const XML_Char *s;
     ENTITY *e = (ENTITY *)hashTableIterNext(&iter);
@@ -5558,6 +5820,11 @@ getContext(XML_Parser parser)
       continue;
     if (needSep && !poolAppendChar(&tempPool, CONTEXT_SEP))
       return NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (s = e->name; *s; s++)
       if (!poolAppendChar(&tempPool, *s))
         return 0;
@@ -5606,6 +5873,11 @@ setContext(XML_Parser parser, const XML_Char *context)
         }
         poolDiscard(&tempPool);
       }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for (context = s + 1;
            *context != CONTEXT_SEP && *context != XML_T('\0');
            context++)
@@ -5635,6 +5907,11 @@ normalizePublicId(XML_Char *publicId)
 {
   XML_Char *p = publicId;
   XML_Char *s;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (s = publicId; *s; s++) {
     switch (*s) {
     case 0x20:
@@ -5690,6 +5967,11 @@ dtdReset(DTD *p, const XML_Memory_Handling_Suite *ms)
 {
   HASH_TABLE_ITER iter;
   hashTableIterInit(&iter, &(p->elementTypes));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     ELEMENT_TYPE *e = (ELEMENT_TYPE *)hashTableIterNext(&iter);
     if (!e)
@@ -5732,6 +6014,11 @@ dtdDestroy(DTD *p, XML_Bool isDocEntity, const XML_Memory_Handling_Suite *ms)
 {
   HASH_TABLE_ITER iter;
   hashTableIterInit(&iter, &(p->elementTypes));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     ELEMENT_TYPE *e = (ELEMENT_TYPE *)hashTableIterNext(&iter);
     if (!e)
@@ -5766,6 +6053,11 @@ dtdCopy(XML_Parser oldParser, DTD *newDtd, const DTD *oldDtd, const XML_Memory_H
   /* Copy the prefix table. */
 
   hashTableIterInit(&iter, &(oldDtd->prefixes));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     const XML_Char *name;
     const PREFIX *oldP = (PREFIX *)hashTableIterNext(&iter);
@@ -5782,6 +6074,11 @@ dtdCopy(XML_Parser oldParser, DTD *newDtd, const DTD *oldDtd, const XML_Memory_H
 
   /* Copy the attribute id table. */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     ATTRIBUTE_ID *newA;
     const XML_Char *name;
@@ -5815,6 +6112,11 @@ dtdCopy(XML_Parser oldParser, DTD *newDtd, const DTD *oldDtd, const XML_Memory_H
 
   hashTableIterInit(&iter, &(oldDtd->elementTypes));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     int i;
     ELEMENT_TYPE *newE;
@@ -5844,6 +6146,11 @@ dtdCopy(XML_Parser oldParser, DTD *newDtd, const DTD *oldDtd, const XML_Memory_H
     if (oldE->prefix)
       newE->prefix = (PREFIX *)lookup(oldParser, &(newDtd->prefixes),
                                       oldE->prefix->name, 0);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < newE->nDefaultAtts; i++) {
       newE->defaultAtts[i].id = (ATTRIBUTE_ID *)
           lookup(oldParser, &(newDtd->attributeIds), oldE->defaultAtts[i].id->name, 0);
@@ -5902,6 +6209,11 @@ copyEntityTable(XML_Parser oldParser,
 
   hashTableIterInit(&iter, oldTable);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     ENTITY *newE;
     const XML_Char *name;
@@ -5962,6 +6274,11 @@ copyEntityTable(XML_Parser oldParser,
 static XML_Bool FASTCALL
 keyeq(KEY s1, KEY s2)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (; *s1 == *s2; s1++, s2++)
     if (*s1 == 0)
       return XML_TRUE;
@@ -6022,6 +6339,11 @@ lookup(XML_Parser parser, HASH_TABLE *table, KEY name, size_t createSize)
       if (!newV)
         return NULL;
       memset(newV, 0, tsize);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for (i = 0; i < table->size; i++)
         if (table->v[i]) {
           unsigned long newHash = hash(parser, table->v[i]->name);
@@ -6060,6 +6382,11 @@ static void FASTCALL
 hashTableClear(HASH_TABLE *table)
 {
   size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = 0; i < table->size; i++) {
     table->mem->free_fcn(table->v[i]);
     table->v[i] = NULL;
@@ -6071,6 +6398,11 @@ static void FASTCALL
 hashTableDestroy(HASH_TABLE *table)
 {
   size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = 0; i < table->size; i++)
     table->mem->free_fcn(table->v[i]);
   table->mem->free_fcn(table->v);
@@ -6158,6 +6490,11 @@ poolAppend(STRING_POOL *pool, const ENCODING *enc,
 {
   if (!pool->ptr && !poolGrow(pool))
     return NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (;;) {
     XmlConvert(enc, &ptr, end, (ICHAR **)&(pool->ptr), (ICHAR *)pool->end);
     if (ptr == end)
@@ -6171,6 +6508,11 @@ poolAppend(STRING_POOL *pool, const ENCODING *enc,
 static const XML_Char * FASTCALL
 poolCopyString(STRING_POOL *pool, const XML_Char *s)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   do {
     if (!poolAppendChar(pool, *s))
       return NULL;
@@ -6185,6 +6527,11 @@ poolCopyStringN(STRING_POOL *pool, const XML_Char *s, int n)
 {
   if (!pool->ptr && !poolGrow(pool))
     return NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (; n > 0; --n, s++) {
     if (!poolAppendChar(pool, *s))
       return NULL;
@@ -6343,6 +6690,11 @@ build_node(XML_Parser parser,
     const XML_Char *src;
     dest->name = *strpos;
     src = dtd->scaffold[src_node].name;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (;;) {
       *(*strpos)++ = *src;
       if (!*src)
@@ -6358,6 +6710,11 @@ build_node(XML_Parser parser,
     dest->numchildren = dtd->scaffold[src_node].childcnt;
     dest->children = *contpos;
     *contpos += dest->numchildren;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0, cn = dtd->scaffold[src_node].firstchild;
          i < dest->numchildren;
          i++, cn = dtd->scaffold[cn].nextsib) {

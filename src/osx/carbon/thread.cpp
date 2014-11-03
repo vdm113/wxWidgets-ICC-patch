@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/thread.cpp
 // Purpose:     wxThread Implementation
@@ -85,6 +92,11 @@ MPCriticalRegionID gs_guiCritical = kInvalidID;
 
     The implementation is very close to the phtreads implementation, the reason for
     using MPServices is the fact that these are also available under OS 9. Thus allowing
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for one common API for all current builds.
 
     As soon as wxThreads are on a 64 bit address space, the TLS must be extended

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtextprint.cpp
 // Purpose:     Rich text printing classes
@@ -670,6 +677,11 @@ IMPLEMENT_CLASS(wxRichTextHeaderFooterData, wxObject)
 void wxRichTextHeaderFooterData::Copy(const wxRichTextHeaderFooterData& data)
 {
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < 12; i++)
         m_text[i] = data.m_text[i];
     m_font = data.m_font;
@@ -738,6 +750,11 @@ wxString wxRichTextHeaderFooterData::GetFooterText(wxRichTextOddEvenPage page, w
 void wxRichTextHeaderFooterData::Clear()
 {
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < 12; i++)
         m_text[i] = wxEmptyString;
 }

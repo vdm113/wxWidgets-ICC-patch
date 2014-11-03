@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/treectrl.cpp
 // Purpose:     wxTreeCtrl
@@ -421,6 +428,11 @@ public:
     {
         m_data = NULL;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( size_t n = 0; n < WXSIZEOF(m_images); n++ )
         {
             m_images[n] = -1;
@@ -1684,6 +1696,11 @@ void wxTreeCtrl::DeleteChildren(const wxTreeItemId& item)
     }
 
     size_t nCount = children.Count();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; n < nCount; n++ )
     {
         Delete(children[n]);
@@ -1818,6 +1835,11 @@ void wxTreeCtrl::DoUnselectAll()
     wxArrayTreeItemIds selections;
     size_t count = GetSelections(selections);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; n < count; n++ )
     {
         DoUnselectItem(selections[n]);
@@ -2448,6 +2470,11 @@ bool wxTreeCtrl::MSWHandleSelectionKey(unsigned vkey)
 
                 if ( vkey == VK_END )
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for ( ;; )
                     {
                         wxTreeItemId nextTemp = TreeView_GetNextVisible(
@@ -2530,6 +2557,11 @@ bool wxTreeCtrl::MSWHandleSelectionKey(unsigned vkey)
 
                 wxTreeItemId nextStart = firstVisible;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for ( size_t n = 1; n < visibleCount; n++ )
                 {
                     wxTreeItemId nextTemp = (vkey == VK_PRIOR) ?
@@ -2552,6 +2584,11 @@ bool wxTreeCtrl::MSWHandleSelectionKey(unsigned vkey)
                 {
                     wxTreeItemId nextEnd = nextStart;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for ( size_t n = 1; n < visibleCount; n++ )
                     {
                         wxTreeItemId nextTemp =
@@ -2584,6 +2621,11 @@ bool wxTreeCtrl::MSWHandleSelectionKey(unsigned vkey)
 
                 wxTreeItemId next(htSel);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for ( size_t n = 1; n < visibleCount; n++ )
                 {
                     wxTreeItemId nextTemp = vkey == VK_PRIOR ?
@@ -3133,6 +3175,11 @@ wxTreeCtrl::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam)
             size_t count = GetSelections(selections);
             TVGetItemRectParam param;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( size_t n = 0; n < count; n++ )
             {
                 // TreeView_GetItemRect() will return false if item is not
@@ -3516,6 +3563,11 @@ bool wxTreeCtrl::MSWOnNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result)
                             if ( index != -1 )
                             {
                                 // move images to right
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                                 for ( int i = index; i > 0; i-- )
                                 {
                                     ImageList_Copy(hImageList, i,

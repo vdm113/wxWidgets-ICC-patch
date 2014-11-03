@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        commondialogs.h
 // Purpose:     topic overview
@@ -49,6 +56,11 @@ controls to select a precise colour, and add it to the custom colour palette.
 Under non-MS Windows platforms, the colour selector is a simulation of most of
 the features of the MS Windows selector. Two palettes of 48 standard and 16
 custom colours are presented, with the right-hand area containing three sliders
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for the user to select a colour from red, green and blue components. This
 colour may be added to the custom colour palette, and will replace either the
 currently selected custom colour, or the first one in the palette if none is
@@ -67,6 +79,11 @@ uses it to set the background of a window.
 @code
 wxColourData data;
 data.SetChooseFull(true);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for (int i = 0; i < 16; i++)
 {
     wxColour colour(i*16, i*16, i*16);
@@ -142,6 +159,11 @@ This class represents the print and print setup common dialogs. You may obtain
 a wxPrinterDC device context from a successfully dismissed print dialog.
 
 The samples/printing example shows how to use it: see @ref overview_printing
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for an excerpt from this example.
 
 
@@ -158,6 +180,11 @@ pathname.
 If path is "", the current directory will be used. If filename is "", no
 default filename will be supplied. The wildcard determines what files are
 displayed in the file selector, and file extension supplies a type extension
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for the required filename. Flags may be a combination of wxFD_OPEN, wxFD_SAVE,
 wxFD_OVERWRITE_PROMPT, wxFD_HIDE_READONLY, wxFD_FILE_MUST_EXIST, wxFD_MULTIPLE,
 wxFD_CHANGE_DIR or 0.

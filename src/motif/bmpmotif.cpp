@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/bmpmotif.cpp
 // Purpose:     wxBitmap
@@ -206,6 +213,11 @@ WXPixmap wxBitmapCache::GetInsensPixmap( WXWidget w )
 
   DESCRIPTION
   This function creates a grayed-out copy of the argument pixmap, suitable
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for use as a XmLabel's XmNlabelInsensitivePixmap resource.
 
   RETURN VALUES

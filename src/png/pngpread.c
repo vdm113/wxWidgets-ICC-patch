@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /* pngpread.c - read a png file in push mode
  *
@@ -667,6 +674,11 @@ png_push_save_buffer(png_structrp png_ptr)
          png_bytep dp;
 
          istop = png_ptr->save_buffer_size;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          for (i = 0, sp = png_ptr->save_buffer_ptr, dp = png_ptr->save_buffer;
              i < istop; i++, sp++, dp++)
          {
@@ -990,6 +1002,11 @@ png_push_process_row(png_structrp png_ptr)
          case 0:
          {
             int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = 0; i < 8 && png_ptr->pass == 0; i++)
             {
                png_push_have_row(png_ptr, png_ptr->row_buf + 1);
@@ -998,6 +1015,11 @@ png_push_process_row(png_structrp png_ptr)
 
             if (png_ptr->pass == 2) /* Pass 1 might be empty */
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                for (i = 0; i < 4 && png_ptr->pass == 2; i++)
                {
                   png_push_have_row(png_ptr, NULL);
@@ -1007,6 +1029,11 @@ png_push_process_row(png_structrp png_ptr)
 
             if (png_ptr->pass == 4 && png_ptr->height <= 4)
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                for (i = 0; i < 2 && png_ptr->pass == 4; i++)
                {
                   png_push_have_row(png_ptr, NULL);
@@ -1026,6 +1053,11 @@ png_push_process_row(png_structrp png_ptr)
          case 1:
          {
             int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = 0; i < 8 && png_ptr->pass == 1; i++)
             {
                png_push_have_row(png_ptr, png_ptr->row_buf + 1);
@@ -1034,6 +1066,11 @@ png_push_process_row(png_structrp png_ptr)
 
             if (png_ptr->pass == 2) /* Skip top 4 generated rows */
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                for (i = 0; i < 4 && png_ptr->pass == 2; i++)
                {
                   png_push_have_row(png_ptr, NULL);
@@ -1048,12 +1085,22 @@ png_push_process_row(png_structrp png_ptr)
          {
             int i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = 0; i < 4 && png_ptr->pass == 2; i++)
             {
                png_push_have_row(png_ptr, png_ptr->row_buf + 1);
                png_read_push_finish_row(png_ptr);
             }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = 0; i < 4 && png_ptr->pass == 2; i++)
             {
                png_push_have_row(png_ptr, NULL);
@@ -1062,6 +1109,11 @@ png_push_process_row(png_structrp png_ptr)
 
             if (png_ptr->pass == 4) /* Pass 3 might be empty */
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                for (i = 0; i < 2 && png_ptr->pass == 4; i++)
                {
                   png_push_have_row(png_ptr, NULL);
@@ -1076,6 +1128,11 @@ png_push_process_row(png_structrp png_ptr)
          {
             int i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = 0; i < 4 && png_ptr->pass == 3; i++)
             {
                png_push_have_row(png_ptr, png_ptr->row_buf + 1);
@@ -1084,6 +1141,11 @@ png_push_process_row(png_structrp png_ptr)
 
             if (png_ptr->pass == 4) /* Skip top two generated rows */
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                for (i = 0; i < 2 && png_ptr->pass == 4; i++)
                {
                   png_push_have_row(png_ptr, NULL);
@@ -1098,12 +1160,22 @@ png_push_process_row(png_structrp png_ptr)
          {
             int i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = 0; i < 2 && png_ptr->pass == 4; i++)
             {
                png_push_have_row(png_ptr, png_ptr->row_buf + 1);
                png_read_push_finish_row(png_ptr);
             }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = 0; i < 2 && png_ptr->pass == 4; i++)
             {
                png_push_have_row(png_ptr, NULL);
@@ -1123,6 +1195,11 @@ png_push_process_row(png_structrp png_ptr)
          {
             int i;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = 0; i < 2 && png_ptr->pass == 5; i++)
             {
                png_push_have_row(png_ptr, png_ptr->row_buf + 1);
@@ -1194,6 +1271,11 @@ png_read_push_finish_row(png_structrp png_ptr)
       png_ptr->row_number = 0;
       memset(png_ptr->prev_row, 0, png_ptr->rowbytes + 1);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       do
       {
          png_ptr->pass++;

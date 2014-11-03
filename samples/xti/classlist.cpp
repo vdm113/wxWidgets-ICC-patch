@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        classlist.cpp
 // Purpose:     ClassListDialog implementation
@@ -227,6 +234,11 @@ void ClassListDialog::InitControls()
     arr.Sort();     // sort alphabetically
 
     // now add it to the raw-mode listbox
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (unsigned int i=0; i<arr.GetCount(); i++)
         if (!IsToDiscard(arr[i]))
             m_pRawListBox->Append(arr[i]);
@@ -236,6 +248,11 @@ void ClassListDialog::InitControls()
     arr.Sort((wxArrayString::CompareFunction)CompareClassSizes);
 
     // now add it to the size-mode listbox
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (unsigned int i=0; i<arr.GetCount(); i++)
         if (!IsToDiscard(arr[i]))
             m_pSizeListBox->Append(arr[i]);
@@ -452,6 +469,11 @@ int DumpProperties(const wxClassInfo *info, wxString& infostr, bool recursive)
 {
     const wxPropertyInfo *prop;
     int pcount;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (prop = info->GetFirstProperty(), pcount = 0;
          prop;
          prop = prop->GetNext(), pcount++)
@@ -468,6 +490,11 @@ int DumpProperties(const wxClassInfo *info, wxString& infostr, bool recursive)
         const wxClassInfo **parent = info->GetParents();
         wxString str;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int i=0; parent[i] != NULL; i++)
         {
             int ppcount = DumpProperties(parent[i], str, recursive);
@@ -487,6 +514,11 @@ int DumpHandlers(const wxClassInfo *info, wxString& infostr, bool recursive)
 {
     const wxHandlerInfo *h;
     int hcount;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (h = info->GetFirstHandler(), hcount = 0;
          h;
          h = h->GetNext(), hcount++)
@@ -503,6 +535,11 @@ int DumpHandlers(const wxClassInfo *info, wxString& infostr, bool recursive)
         const wxClassInfo **parent = info->GetParents();
         wxString str;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int i=0; parent[i] != NULL; i++)
         {
             int hhcount = DumpHandlers(parent[i], str, recursive);

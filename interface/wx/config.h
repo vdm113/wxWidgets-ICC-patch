@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        config.h
 // Purpose:     interface of wxConfigBase
@@ -577,6 +584,11 @@ public:
         If the value was not found, @a f is not changed.
 
         Notice that the value is read as a double but must be in a valid range
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for floats for the function to return @true.
 
         @since 2.9.1
@@ -592,6 +604,11 @@ public:
         If the value was not found, @a defaultVal is used instead.
 
         Notice that the value is read as a double but must be in a valid range
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for floats for the function to return @true.
 
         @since 2.9.1

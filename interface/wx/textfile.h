@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        textfile.h
 // Purpose:     interface of wxTextFile
@@ -157,6 +164,11 @@ public:
         @code
         wxTextFile file;
         ...
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( str = file.GetFirstLine(); !file.Eof(); str = file.GetNextLine() )
         {
             // do something with the current line in str
@@ -175,6 +187,11 @@ public:
         @code
         wxTextFile file;
         ...
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( str = file.GetLastLine();
             file.GetCurrentLine() > 0;
             str = file.GetPrevLine() )
@@ -280,6 +297,11 @@ public:
 
         The @a typeNew parameter allows you to change the file format
         (default argument means "don't change type") and may be used to convert,
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for example, DOS files to Unix.
 
         The @a conv argument is only meaningful in Unicode build of wxWidgets when

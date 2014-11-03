@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        ribbon/art.h
 // Purpose:     interface of wxRibbonArtProvider
@@ -415,6 +422,11 @@ public:
         @param rect
             The rectangle within which to draw. The size of this rectangle
             will be at least the size returned by GetScrollButtonMinimumSize()
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for a scroll button with the same style. For tab scroll buttons,
             this rectangle will be entirely within a rectangle on the same
             device context previously painted with DrawTabCtrlBackground(), but

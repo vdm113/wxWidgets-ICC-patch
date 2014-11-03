@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/utilscmn.cpp
 // Purpose:     Miscellaneous utility functions and classes
@@ -497,6 +504,11 @@ wxString wxGetCurrentDir()
     wxString dir;
     size_t len = 1024;
     bool ok;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         ok = getcwd(dir.GetWriteBuf(len + 1), len) != NULL;
@@ -630,6 +642,11 @@ static bool ReadAll(wxInputStream *is, wxArrayString& output)
 #endif
                                                 );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ;; )
     {
         wxString line = tis.ReadLine();
@@ -763,10 +780,12 @@ Thanks,
 
 /* Byte-wise swap two items of size SIZE. */
 #define SWAP(a, b, size)                                                      \
+VDM_MACRO_PRAGMA_IVDEP \
   do                                                                          \
     {                                                                         \
       size_t __size = (size);                                                 \
       char *__a = (a), *__b = (b);                                            \
+VDM_MACRO_PRAGMA_IVDEP \
       do                                                                      \
         {                                                                     \
           char __tmp = *__a;                                                  \
@@ -862,6 +881,11 @@ void wxQsort(void* pbase, size_t total_elems,
           /* Here's the famous ``collapse the walls'' section of quicksort.
              Gotta like those tight inner loops!  They are the main reason
              that this algorithm runs much faster than others. */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
           do
             {
               while ((*cmp) ((void *) left_ptr, (void *) mid, user_data) < 0)
@@ -923,6 +947,11 @@ void wxQsort(void* pbase, size_t total_elems,
 
   /* Once the BASE_PTR array is partially sorted by quicksort the rest
      is completely sorted using insertion sort, since this is efficient
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
      for partitions below MAX_THRESH size. BASE_PTR points to the beginning
      of the array to sort, and END_PTR points at the very last element in
      the array (*not* one beyond it!). */
@@ -939,6 +968,11 @@ void wxQsort(void* pbase, size_t total_elems,
        array's beginning.  This is the smallest array element,
        and the operation speeds up insertion sort's inner loop. */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (run_ptr = tmp_ptr + size; run_ptr <= thresh; run_ptr += size)
       if ((*cmp) ((void *) run_ptr, (void *) tmp_ptr, user_data) < 0)
         tmp_ptr = run_ptr;
@@ -966,6 +1000,11 @@ void wxQsort(void* pbase, size_t total_elems,
                 char c = *trav;
                 char *hi, *lo;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for (hi = lo = trav; (lo -= size) >= tmp_ptr; hi = lo)
                   *hi = *lo;
                 *hi = c;
@@ -995,6 +1034,11 @@ unsigned int wxGCD(unsigned int u, unsigned int v)
 
     // Let shift := lg K, where K is the greatest power of 2
     // dividing both u and v.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (shift = 0; ((u | v) & 1) == 0; ++shift)
     {
         u >>= 1;
@@ -1005,6 +1049,11 @@ unsigned int wxGCD(unsigned int u, unsigned int v)
         u >>= 1;
 
     // From here on, u is always odd.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         // remove all factors of 2 in v -- they are not common
@@ -1208,6 +1257,11 @@ wxString wxStripMenuCodes(const wxString& in, int flags)
     size_t len = in.length();
     out.reserve(len);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxString::const_iterator it = in.begin(); it != in.end(); ++it )
     {
         wxChar ch = *it;
@@ -1515,6 +1569,11 @@ wxString wxGetPasswordFromUser(const wxString& message,
 void wxEnableTopLevelWindows(bool enable)
 {
     wxWindowList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( node = wxTopLevelWindows.GetFirst(); node; node = node->GetNext() )
         node->GetData()->Enable(enable);
 }
@@ -1545,6 +1604,11 @@ void wxWindowDisabler::DoDisable(wxWindow *winToSkip)
     m_winDisabled = NULL;
 
     wxWindowList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( node = wxTopLevelWindows.GetFirst(); node; node = node->GetNext() )
     {
         wxWindow *winTop = node->GetData();
@@ -1574,6 +1638,11 @@ wxWindowDisabler::~wxWindowDisabler()
         return;
 
     wxWindowList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( node = wxTopLevelWindows.GetFirst(); node; node = node->GetNext() )
     {
         wxWindow *winTop = node->GetData();

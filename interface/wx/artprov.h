@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        artprov.h
 // Purpose:     interface of wxArtProvider
@@ -415,6 +422,11 @@ protected:
         @note
         This is not part of wxArtProvider's public API, use wxArtProvider::GetBitmap
         or wxArtProvider::GetIconBundle or wxArtProvider::GetIcon to query wxArtProvider
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for a resource.
 
         @see CreateIconBundle()

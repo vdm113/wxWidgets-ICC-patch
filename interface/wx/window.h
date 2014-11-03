@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        window.h
 // Purpose:     interface of wxWindow
@@ -201,6 +208,11 @@ enum wxWindowVariant
            Using this flag for the given window allows to block this
            propagation at this window, i.e. prevent the events from being
            propagated further upwards. Dialogs have this flag on by default
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
            for the reasons explained in the @ref overview_events.
     @style{wxWS_EX_TRANSIENT}
            Don't use this window as an implicit parent for the other windows:
@@ -1124,6 +1136,11 @@ public:
 
     /**
        Returns the magnification of the backing store of this window, eg 2.0
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
        for a window on a retina screen.
 
        @since 2.9.5
@@ -1459,6 +1476,11 @@ public:
 
     /**
         This gets the position of the window in pixels, relative to the parent window
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for the child windows or relative to the display origin for the top level windows.
 
         @param x
@@ -1477,6 +1499,11 @@ public:
 
     /**
         This gets the position of the window in pixels, relative to the parent window
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for the child windows or relative to the display origin for the top level windows.
 
         @see GetScreenPosition()
@@ -1839,6 +1866,11 @@ public:
 
     /**
         Returns @true if this window background is transparent (as, for example,
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for wxStaticText) and should show the parent window background.
 
         This method is mostly used internally by the library itself and you normally
@@ -1983,6 +2015,11 @@ public:
 
         Notice that this function would typically be called on the parent of a
         window you want to set transparent background style for as the window
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for which this method is called must be fully created.
 
         @param reason
@@ -2562,6 +2599,11 @@ public:
 
     /**
         Shows or hides the window. You may need to call Raise()
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for a top level window if you want to bring it to top, although this is not
         needed if Show() is called immediately after the frame creation.
 
@@ -2695,6 +2737,11 @@ public:
         returns the selected id.
 
         It can be more convenient than the general purpose PopupMenu() function
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for simple menus proposing a choice in a list of strings to the user.
 
         Notice that to avoid unexpected conflicts between the (usually
@@ -3133,6 +3180,11 @@ public:
 
     /**
         Invokes the constraint-based layout algorithm or the sizer-based algorithm
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for this window.
 
         This function does not get called automatically when the window is resized
@@ -3354,6 +3406,11 @@ public:
         they can't inherit the same value from the parent. However it was also deemed
         desirable to allow to simply change the attributes of all children at once by
         just changing the font or colour of their common parent, hence in this case we
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         do inherit the parents attributes.
     */
     virtual void InheritAttributes();
@@ -3526,6 +3583,11 @@ public:
         returned font. See SetWindowVariant() for more about this.
 
         This static method is "overridden" in many derived classes and so calling,
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for example, wxButton::GetClassDefaultAttributes() will typically
         return the values appropriate for a button which will be normally different
         from those returned by, say, wxListCtrl::GetClassDefaultAttributes().
@@ -3674,6 +3736,11 @@ protected:
         -# Otherwise if there are no children then the window's minimal size will be
            used as its best size.
         -# Otherwise if there is no minimal size set, then the current size is used
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
            for the best size.
 
         @see @ref overview_windowsizing
@@ -3763,6 +3830,11 @@ protected:
         itself.
 
         For convenience, a ProcessWindowEvent() method is provided as a synonym
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for @code GetEventHandler()->ProcessEvent() @endcode
 
         Note that it's still possible to call these functions directly on the

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/dlgcmn.cpp
 // Purpose:     common (to all ports) wxDialog functions
@@ -660,6 +667,11 @@ bool wxStandardDialogLayoutAdapter::DoLayoutAdaptation(wxDialog* dialog)
         {
             // If we have a book control, make all the pages (that use sizers) scrollable
             wxWindowList windows;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (size_t i = 0; i < bookContentWindow->GetPageCount(); i++)
             {
                 wxWindow* page = bookContentWindow->GetPage(i);
@@ -758,6 +770,11 @@ wxScrolledWindow* wxStandardDialogLayoutAdapter::CreateScrolledWindow(wxWindow* 
 /// Find and remove the button sizer, if any
 wxSizer* wxStandardDialogLayoutAdapter::FindButtonSizer(bool stdButtonSizer, wxDialog* dialog, wxSizer* sizer, int& retBorder, int accumlatedBorder)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxSizerItemList::compatibility_iterator node = sizer->GetChildren().GetFirst();
           node; node = node->GetNext() )
     {
@@ -805,6 +822,11 @@ bool wxStandardDialogLayoutAdapter::IsOrdinaryButtonSizer(wxDialog* dialog, wxBo
     if (sizer->GetOrientation() != wxHORIZONTAL)
         return false;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxSizerItemList::compatibility_iterator node = sizer->GetChildren().GetFirst();
           node; node = node->GetNext() )
     {

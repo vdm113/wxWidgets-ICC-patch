@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        string.h
 // Purpose:     topic overview
@@ -147,6 +154,11 @@ why the need for wxString? There are several advantages:
     Of course, all the standard string operations are supported as well.
 @li <b>wxString is Unicode friendly:</b> it allows to easily convert to
     and from ANSI and Unicode strings (see @ref overview_unicode
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for more details) and maps to @c std::wstring transparently.
 @li <b>Used by wxWidgets:</b> And, of course, this class is used everywhere
     inside wxWidgets so there is no performance loss which would result from
@@ -249,6 +261,11 @@ access) like this:
 @code
 wxString s = "hello";
 wxString::const_iterator i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for (i = s.begin(); i != s.end(); ++i)
 {
     wxUniChar uni_ch = *i;
@@ -310,6 +327,11 @@ wxString DeleteAllVowels(const wxString& original)
     wxString vowels( "aeuioAEIOU" );
     wxString result;
     wxString::const_iterator i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( i = original.begin(); i != original.end(); ++i )
     {
         if (vowels.Find( *i ) == wxNOT_FOUND)

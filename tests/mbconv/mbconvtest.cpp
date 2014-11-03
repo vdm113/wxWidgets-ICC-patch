@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/mbconv/main.cpp
 // Purpose:     wxMBConv unit test
@@ -233,6 +240,11 @@ void MBConvTestCase::WC2CP1250()
     };
 
     wxCSConv cs1250(wxFONTENCODING_CP1250);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; n < WXSIZEOF(data); n++ )
     {
         const Data& d = data[n];
@@ -257,6 +269,11 @@ wxString CByteArrayFormat( const void* data, size_t len, const wxChar* name )
 
     result.Printf( wxT("static const unsigned char %s[%i] = \n{"), name, (int)len );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t i = 0; i < len; i++ )
     {
         if ( i != 0 )
@@ -1057,6 +1074,11 @@ void MBConvTestCase::TestDecoder(
     CPPUNIT_ASSERT(  outputBuffer[outputWritten] == 0 );
 
     // make sure the rest of the output buffer is untouched
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t i = (wideChars+1)*sizeof(wchar_t); i < (outputBufferChars*sizeof(wchar_t)); i++ )
     {
         CPPUNIT_ASSERT( ((unsigned char*)outputBuffer.data())[i] == UNINITIALIZED );
@@ -1116,12 +1138,22 @@ void MBConvTestCase::TestEncoder(
     size_t i;
 
     // the output buffer should be null terminated
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( i = multiBytes; i < multiBytes + sizeofNull; i++ )
     {
         CPPUNIT_ASSERT( ((unsigned char*)outputBuffer.data())[i] == 0 );
     }
 
     // make sure the rest of the output buffer is untouched
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( i = multiBytes + sizeofNull; i < outputBufferSize; i++ )
     {
         CPPUNIT_ASSERT( ((unsigned char*)outputBuffer.data())[i] == UNINITIALIZED );
@@ -1148,6 +1180,11 @@ void MBConvTestCase::TestStreamDecoder(
     // (which has exposed some problems with wxMBConv)
     wxMemoryInputStream memoryInputStream( multiBuffer, multiBytes );
     wxTextInputStream textInputStream( memoryInputStream, wxT(""), converter );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t i = 0; i < wideChars; i++ )
     {
         wxChar wc = textInputStream.GetChar();
@@ -1179,6 +1216,11 @@ void MBConvTestCase::TestStreamEncoder(
     wxMemoryOutputStream memoryOutputStream;
     // wxEOL_UNIX will pass \n \r unchanged
     wxTextOutputStream textOutputStream( memoryOutputStream, wxEOL_UNIX, converter );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t i = 0; i < wideChars; i++ )
     {
         textOutputStream.PutChar( wideBuffer[i] );

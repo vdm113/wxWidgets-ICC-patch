@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/helpdata.cpp
 // Purpose:     wxHtmlHelpData
@@ -253,6 +260,11 @@ wxString wxHtmlBookRecord::GetFullPath(const wxString &page) const
 wxString wxHtmlHelpDataItem::GetIndentedName() const
 {
     wxString s;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int i = 1; i < level; i++)
         s << wxT("   ");
     s << name;
@@ -373,6 +385,11 @@ bool wxHtmlHelpData::LoadCachedBook(wxHtmlBookRecord *book, wxInputStream *f)
     st = m_contents.size();
     newsize = st + CacheReadInt32(f);
     m_contents.Alloc(newsize);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = st; i < newsize; i++)
     {
         wxHtmlHelpDataItem *item = new wxHtmlHelpDataItem;
@@ -388,6 +405,11 @@ bool wxHtmlHelpData::LoadCachedBook(wxHtmlBookRecord *book, wxInputStream *f)
     st = m_index.size();
     newsize = st + CacheReadInt32(f);
     m_index.Alloc(newsize);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = st; i < newsize; i++)
     {
         wxHtmlHelpDataItem *item = new wxHtmlHelpDataItem;
@@ -415,11 +437,21 @@ bool wxHtmlHelpData::SaveCachedBook(wxHtmlBookRecord *book, wxOutputStream *f)
 
     /* save contents : */
     int len = m_contents.size();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (cnt = 0, i = 0; i < len; i++)
         if (m_contents[i].book == book && m_contents[i].level > 0)
             cnt++;
     CacheWriteInt32(f, cnt);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < len; i++)
     {
         if (m_contents[i].book != book || m_contents[i].level == 0)
@@ -432,11 +464,21 @@ bool wxHtmlHelpData::SaveCachedBook(wxHtmlBookRecord *book, wxOutputStream *f)
 
     /* save index : */
     len = m_index.size();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (cnt = 0, i = 0; i < len; i++)
         if (m_index[i].book == book && m_index[i].level > 0)
             cnt++;
     CacheWriteInt32(f, cnt);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < len; i++)
     {
         if (m_index[i].book != book || m_index[i].level == 0)
@@ -453,6 +495,11 @@ bool wxHtmlHelpData::SaveCachedBook(wxHtmlBookRecord *book, wxOutputStream *f)
         {
             int cnt2 = 0;
             wxHtmlHelpDataItem *parent = m_index[i].parent;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (int j = i-1; j >= 0; j--)
             {
                 if (m_index[j].book == book && m_index[j].level > 0)
@@ -523,6 +570,11 @@ bool wxHtmlHelpData::AddBookParam(const wxFSFile& bookfile,
         fsys.ChangePathTo(path, true);
 
     size_t booksCnt = m_bookRecords.GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (size_t i = 0; i < booksCnt; i++)
     {
         if ( m_bookRecords[i].GetBookFile() == bookfile.GetLocation() )
@@ -599,10 +651,20 @@ bool wxHtmlHelpData::AddBookParam(const wxFSFile& bookfile,
         size_t IndexCnt = m_index.size();
         size_t ContentsCnt = m_contents.size();
         size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = IndexOld; i < IndexCnt; i++)
         {
             CORRECT_STR(m_index[i].name, conv);
         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = ContentsOld; i < ContentsCnt; i++)
         {
             CORRECT_STR(m_contents[i].name, conv);
@@ -674,10 +736,20 @@ bool wxHtmlHelpData::AddBook(const wxString& book)
     tmp = filter.ReadFile(*fi);
     lineptr = tmp.c_str();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         lineptr = ReadLine(lineptr, linebuf, 300);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (wxChar *ch = linebuf; *ch != wxT('\0') && *ch != wxT('='); ch++)
            *ch = (wxChar)wxTolower(*ch);
 
@@ -712,6 +784,11 @@ wxString wxHtmlHelpData::FindPageByName(const wxString& x)
 
     bool has_non_ascii = false;
     wxString::const_iterator it;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (it = x.begin(); it != x.end(); ++it)
     {
         wxUniChar ch = *it;
@@ -729,6 +806,11 @@ wxString wxHtmlHelpData::FindPageByName(const wxString& x)
       wxFileSystem fsys;
       wxFSFile *f;
       // 1. try to open given file:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for (i = 0; i < cnt; i++)
       {
         f = fsys.OpenFile(m_bookRecords[i].GetFullPath(x));
@@ -743,6 +825,11 @@ wxString wxHtmlHelpData::FindPageByName(const wxString& x)
 
 
     // 2. try to find a book:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < cnt; i++)
     {
         if (m_bookRecords[i].GetTitle() == x)
@@ -751,6 +838,11 @@ wxString wxHtmlHelpData::FindPageByName(const wxString& x)
 
     // 3. try to find in contents:
     cnt = m_contents.size();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < cnt; i++)
     {
         if (m_contents[i].name == x)
@@ -760,6 +852,11 @@ wxString wxHtmlHelpData::FindPageByName(const wxString& x)
 
     // 4. try to find in index:
     cnt = m_index.size();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < cnt; i++)
     {
         if (m_index[i].name == x)
@@ -767,6 +864,11 @@ wxString wxHtmlHelpData::FindPageByName(const wxString& x)
     }
 
     // 4b. if still not found, try case-insensitive comparison
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < cnt; i++)
     {
         if (m_index[i].name.CmpNoCase(x) == 0)
@@ -779,6 +881,11 @@ wxString wxHtmlHelpData::FindPageByName(const wxString& x)
 wxString wxHtmlHelpData::FindPageById(int id)
 {
     size_t cnt = m_contents.size();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (size_t i = 0; i < cnt; i++)
     {
         if (m_contents[i].id == id)
@@ -806,6 +913,11 @@ wxHtmlSearchStatus::wxHtmlSearchStatus(wxHtmlHelpData* data, const wxString& key
     {
         // we have to search in a specific book. Find it first
         int i, cnt = data->m_bookRecords.GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < cnt; i++)
             if (data->m_bookRecords[i].GetTitle() == book)
             {
@@ -850,6 +962,11 @@ bool wxHtmlSearchStatus::Search()
     if (!m_LastPage.empty())
     {
         const wxChar *p1, *p2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (p1 = thepage.c_str(), p2 = m_LastPage.c_str();
              *p1 != 0 && *p1 != wxT('#') && *p1 == *p2; p1++, p2++) {}
 
@@ -909,6 +1026,11 @@ static inline wxString CompressSpaces(const wxString & str)
     buf.reserve( str.size() );
 
     bool space_counted = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for( const wxChar * pstr = str.c_str(); *pstr; ++pstr )
     {
         wxChar ch = *pstr;
@@ -945,6 +1067,11 @@ bool wxHtmlSearchEngine::Scan(const wxFSFile& file)
         wxString bufStrCopy;
         bufStrCopy.reserve( bufStr.size() );
         bool insideTag = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (const wxChar * pBufStr = bufStr.c_str(); *pBufStr; ++pBufStr)
         {
             wxChar c = *pBufStr;

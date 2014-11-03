@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /** @file RunStyles.cxx
  ** Data structure used to store sparse styles.
  **/
@@ -150,6 +157,11 @@ bool RunStyles::FillRange(int &position, int value, int &fillLength) {
 	if (runStart < runEnd) {
 		styles->SetValueAt(runStart, value);
 		// Remove each old run over the range
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (int run=runStart+1; run<runEnd; run++) {
 			RemoveRun(runStart+1);
 		}
@@ -220,6 +232,11 @@ void RunStyles::DeleteRange(int position, int deleteLength) {
 		runEnd = SplitRun(end);
 		starts->InsertText(runStart, -deleteLength);
 		// Remove each old run over the range
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (int run=runStart; run<runEnd; run++) {
 			RemoveRun(runStart);
 		}
@@ -233,6 +250,11 @@ int RunStyles::Runs() const {
 }
 
 bool RunStyles::AllSame() const {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int run = 1; run < starts->Partitions(); run++) {
 		if (styles->ValueAt(run) != styles->ValueAt(run - 1))
 			return false;
@@ -280,6 +302,11 @@ void RunStyles::Check() const {
 	if (styles->ValueAt(styles->Length()-1) != 0) {
 		throw std::runtime_error("RunStyles: Unused style at end changed.");
 	}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int j=1; j<styles->Length()-1; j++) {
 		if (styles->ValueAt(j) == styles->ValueAt(j-1)) {
 			throw std::runtime_error("RunStyles: Style of a partition same as previous.");

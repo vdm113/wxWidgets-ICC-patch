@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/core/hid.cpp
 // Purpose:     DARWIN HID layer for WX Implementation
@@ -479,6 +486,11 @@ void wxHIDKeyboard::DoBuildCookies(CFArrayRef Array)
     int i;
     long nUsage;
 //    bool bEOTriggered = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < CFArrayGetCount(Array); ++i)
     {
         const void* ref = CFDictionaryGetValue(
@@ -651,6 +663,11 @@ class wxHIDModule : public wxModule
         }
         virtual void OnExit() wxOVERRIDE
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for(size_t i = 0; i < sm_keyboards.GetCount(); ++i)
                 delete (wxHIDKeyboard*) sm_keyboards[i];
             sm_keyboards.Clear();

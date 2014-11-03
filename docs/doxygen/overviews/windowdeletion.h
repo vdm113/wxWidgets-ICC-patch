@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        windowdeletion.h
 // Purpose:     topic overview
@@ -65,6 +72,11 @@ Destroy definitely destroys the window.
 The default close event handler for wxDialog simulates a Cancel command,
 generating a wxID_CANCEL event. Since the handler for this cancel event might
 itself call Close, there is a check for infinite looping. The default handler
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for wxID_CANCEL hides the dialog (if modeless) or calls EndModal(wxID_CANCEL)
 (if modal). In other words, by default, the dialog @e is not destroyed (it
 might have been created on the stack, so the assumption of dynamic creation

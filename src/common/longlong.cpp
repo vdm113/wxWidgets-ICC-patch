@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/longlong.cpp
 // Purpose:     implementation of wxLongLongNative
@@ -794,6 +801,11 @@ wxLongLongWx& wxLongLongWx::operator*=(const wxLongLongWx& ll)
 #endif // wxLONGLONG_TEST_MODE
 
     int counter = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         if ((q.m_lo & 1) != 0)
@@ -826,6 +838,11 @@ wxULongLongWx& wxULongLongWx::operator*=(const wxULongLongWx& ll)
 #endif // wxLONGLONG_TEST_MODE
 
     int counter = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         if ((q.m_lo & 1) != 0)
@@ -939,6 +956,11 @@ void wxLongLongWx::Divide(const wxLongLongWx& divisorIn,
         remainder >>= 1;
         nBits++;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( size_t i = 0; i < nBits; i++ )
         {
             remainder <<= 1;
@@ -1039,6 +1061,11 @@ void wxULongLongWx::Divide(const wxULongLongWx& divisorIn,
         remainder >>= 1;
         nBits++;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( size_t i = 0; i < nBits; i++ )
         {
             remainder <<= 1;

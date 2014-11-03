@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/dialup.cpp
 // Purpose:     MSW implementation of network/dialup classes and functions
@@ -677,6 +684,11 @@ size_t wxDialUpManagerMSW::GetISPNames(wxArrayString& names) const
 
     DWORD nEntries;
     DWORD dwRet;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         dwRet = ms_pfnRasEnumEntries
@@ -714,6 +726,11 @@ size_t wxDialUpManagerMSW::GetISPNames(wxArrayString& names) const
 
     // process them
     names.Empty();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; n < (size_t)nEntries; n++ )
     {
         names.Add(rasEntries[n].szEntryName);
@@ -763,6 +780,11 @@ bool wxDialUpManagerMSW::Dial(const wxString& nameOfISP,
                 // several ISPs, let the user choose
                 {
                     wxString *strings = new wxString[count];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for ( size_t i = 0; i < count; i++ )
                     {
                         strings[i] = names[i];

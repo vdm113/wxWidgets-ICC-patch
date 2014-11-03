@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        html.h
 // Purpose:     topic overview
@@ -327,6 +334,11 @@ Then you must define handlers and one module.
 The handler is derived from wxHtmlWinTagHandler (or directly from wxHtmlTagHandler).
 
 You can use set of macros to define the handler (see src/html/m_*.cpp files
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for details). Handler definition must start with @b TAG_HANDLER_BEGIN macro
 and end with @b TAG_HANDLER_END macro.
 

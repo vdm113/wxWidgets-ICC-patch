@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/evtloop.cpp
 // Purpose:     implements wxGUIEventLoop for PM
@@ -160,6 +167,11 @@ bool wxEventLoopImpl::PreProcessMessage(QMSG *pMsg)
                 CHARMSG(pChmsg)->chr = (USHORT)wxToupper((UCHAR)uSch);
 
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
            for(pWnd = pWndThis; pWnd; pWnd = pWnd->GetParent() )
            {
                if((bRc = pWnd->OS2TranslateMessage((WXMSG*)pMsg)) == TRUE)
@@ -250,6 +262,11 @@ int wxGUIEventLoop::Run()
 
     CallEventLoopMethod  callOnExit(this, &wxGUIEventLoop::OnExit);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ;; )
     {
 #if wxUSE_THREADS
@@ -349,6 +366,11 @@ bool wxGUIEventLoop::Dispatch()
             s_hadGuiLock = true;
 
             size_t count = s_aSavedMessages.Count();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( size_t n = 0; n < count; n++ )
             {
                 QMSG& msg = s_aSavedMessages[n];

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples.h
 // Purpose:     Samples page of the Doxygen manual
@@ -626,6 +633,11 @@ Sample application has following additional examples of custom properties:
 - wxPointProperty ( edits wxPoint )
 - wxSizeProperty ( edits wxSize )
 - wxAdvImageFileProperty ( like wxImageFileProperty, but also has a drop-down
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for recent image selection )
 - wxDirsProperty ( edits a wxArrayString consisting of directory strings)
 - wxArrayDoubleProperty ( edits wxArrayDouble )
@@ -764,6 +776,11 @@ audio output (e.g. notifications).
 
 This sample shows how to create and use wxStatusBar. Although most of the
 samples have a statusbar, they usually only create a default one and only
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 do it once.
 
 Here you can see how to recreate the statusbar (with possibly different number
@@ -921,6 +938,11 @@ control.
 
 The wxWebView sample demonstarates the various capabilities of the wxWebView
 control. It is set up as a simple single window web browser, but with support
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for many of the more complex wxWebView features, including browsing through 
 archives.
 

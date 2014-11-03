@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        string.h
 // Purpose:     interface of wxStringBuffer, wxString
@@ -145,6 +152,11 @@
     Another consequence of this unusual return type arises when it is used with
     template deduction or C++11 @c auto keyword. Unlike with the normal
     references which are deduced to be of the referenced type, the deduced type
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for wxUniCharRef is wxUniCharRef itself. This results in potentially
     unexpected behaviour, for example:
         @code
@@ -254,6 +266,11 @@
 
     By default, wxString uses @c std::basic_string specialized for the
     platform-dependent @c wchar_t type, meaning that it is not memory-efficient
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ASCII strings, especially under Unix platforms where every ASCII
     character, normally fitting in a byte, is represented by a 4 byte @c
     wchar_t.
@@ -655,6 +672,11 @@ public:
 
     /**
         Returns a string representation suitable for passing to OS' functions
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for file handling.
     */
     const wchar_t* fn_str() const;
@@ -1224,6 +1246,11 @@ public:
         to parse such strings.
 
         Please refer to the documentation of the standard function @c strtod()
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for more details about the supported syntax.
 
         @see ToCDouble(), ToLong(), ToULong()
@@ -1268,6 +1295,11 @@ public:
         You may use wxNumberFormatter::FromString() to parse such strings.
 
         Please refer to the documentation of the standard function @c strtol()
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for more details about the supported syntax.
 
         @see ToCDouble(), ToDouble(), ToULong()
@@ -1411,6 +1443,11 @@ public:
 
                 result.Alloc(len);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for ( size_t n = 0; n < len; n++ )
                 {
                     if ( strchr("aeuio", tolower(original[n])) == NULL )
@@ -1572,6 +1609,11 @@ public:
         These methods return iterators to the beginning or end of the string.
 
         Please see any STL reference (e.g. http://www.cppreference.com/wiki/string/start)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for their documentation.
     */
     //@{
@@ -1596,6 +1638,11 @@ public:
         The supported STL functions are listed here.
 
         Please see any STL reference (e.g. http://www.cppreference.com/wiki/string/start)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for their documentation.
     */
     //@{

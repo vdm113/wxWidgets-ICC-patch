@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/containr.cpp
 // Purpose:     implementation of wxControlContainer
@@ -70,6 +77,11 @@ bool wxControlContainerBase::UpdateCanFocusChildren()
 bool wxControlContainerBase::HasAnyFocusableChildren() const
 {
     const wxWindowList& children = m_winParent->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxWindowList::const_iterator i = children.begin(),
                                      end = children.end();
           i != end;
@@ -92,6 +104,11 @@ bool wxControlContainerBase::HasAnyFocusableChildren() const
 bool wxControlContainerBase::HasAnyChildrenAcceptingFocus() const
 {
     const wxWindowList& children = m_winParent->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxWindowList::const_iterator i = children.begin(),
                                      end = children.end();
           i != end;
@@ -318,11 +335,21 @@ wxRadioButton* wxGetSelectedButtonInGroup(wxRadioButton *btn)
     wxRadioButton *selBtn;
 
     // First check all previous buttons
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (selBtn = wxGetPreviousButtonInGroup(btn); selBtn; selBtn = wxGetPreviousButtonInGroup(selBtn))
         if (selBtn->GetValue())
             return selBtn;
 
     // Now all following buttons
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (selBtn = wxGetNextButtonInGroup(btn); selBtn; selBtn = wxGetNextButtonInGroup(selBtn))
         if (selBtn->GetValue())
             return selBtn;
@@ -363,6 +390,11 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
     {
         // check if we have a unique notebook-like child
         wxWindow *bookctrl = NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( wxWindowList::const_iterator i = children.begin(),
                                          end = children.end();
               i != end;
@@ -475,6 +507,11 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
     }
 
     // we want to cycle over all elements passing by NULL
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ;; )
     {
         // don't go into infinite loop

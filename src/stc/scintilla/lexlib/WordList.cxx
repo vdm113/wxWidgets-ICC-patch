@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file KeyWords.cxx
  ** Colourise for particular languages.
@@ -30,6 +37,11 @@ static char **ArrayFromWordList(char *wordlist, int *len, bool onlyLineEnds = fa
 	// For rapid determination of whether a character is a separator, build
 	// a look up table.
 	bool wordSeparator[256];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int i=0; i<256; i++) {
 		wordSeparator[i] = false;
 	}
@@ -39,6 +51,11 @@ static char **ArrayFromWordList(char *wordlist, int *len, bool onlyLineEnds = fa
 		wordSeparator[static_cast<unsigned int>(' ')] = true;
 		wordSeparator[static_cast<unsigned int>('\t')] = true;
 	}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int j = 0; wordlist[j]; j++) {
 		int curr = static_cast<unsigned char>(wordlist[j]);
 		if (!wordSeparator[curr] && wordSeparator[prev])
@@ -50,6 +67,11 @@ static char **ArrayFromWordList(char *wordlist, int *len, bool onlyLineEnds = fa
 	const size_t slen = strlen(wordlist);
 	if (words) {
 		prev = '\0';
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (size_t k = 0; k < slen; k++) {
 			if (!wordSeparator[static_cast<unsigned char>(wordlist[k])]) {
 				if (!prev) {
@@ -82,6 +104,11 @@ WordList::operator bool() const {
 bool WordList::operator!=(const WordList &other) const {
 	if (len != other.len)
 		return true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int i=0; i<len; i++) {
 		if (strcmp(words[i], other.words[i]) != 0)
 			return true;
@@ -132,8 +159,18 @@ void WordList::Set(const char *s) {
 #else
 	SortWordList(words, len);
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int k = 0; k < ELEMENTS(starts); k++)
 		starts[k] = -1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int l = len - 1; l >= 0; l--) {
 		unsigned char indexChar = words[l][0];
 		starts[indexChar] = l;

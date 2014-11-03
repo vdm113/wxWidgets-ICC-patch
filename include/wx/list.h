@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/list.h
 // Purpose:     wxList, wxStringList classes
@@ -78,6 +85,11 @@ private:
 
 /*
     Note 1: the outer helper class _WX_LIST_HELPER_##liT below is a workaround
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for mingw 3.2.3 compiler bug that prevents a static function of liT class
     from being exported into dll. A minimal code snippet reproducing the bug:
 
@@ -981,12 +993,14 @@ private:
         void assign(const_iterator first, const const_iterator& last)       \
         {                                                                   \
             clear();                                                        \
+VDM_MACRO_PRAGMA_IVDEP \
             for(; first != last; ++first)                                   \
                 Append((const_base_reference)*first);                       \
         }                                                                   \
         void assign(size_type n, const_reference v = value_type())          \
         {                                                                   \
             clear();                                                        \
+VDM_MACRO_PRAGMA_IVDEP \
             for(size_type i = 0; i < n; ++i)                                \
                 Append((const_base_reference)v);                            \
         }                                                                   \
@@ -1012,12 +1026,14 @@ private:
         }                                                                   \
         void insert(const iterator& it, size_type n, const_reference v)     \
         {                                                                   \
+VDM_MACRO_PRAGMA_IVDEP \
             for(size_type i = 0; i < n; ++i)                                \
                 insert(it, v);                                              \
         }                                                                   \
         void insert(const iterator& it,                                     \
                     const_iterator first, const const_iterator& last)       \
         {                                                                   \
+VDM_MACRO_PRAGMA_IVDEP \
             for(; first != last; ++first)                                   \
                 insert(it, *first);                                         \
         }                                                                   \
@@ -1181,6 +1197,11 @@ public:
         wxVector<T> vector(size());
         size_t i = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( const_iterator it = begin(); it != end(); ++it )
         {
             vector[i++] = static_cast<T>(*it);
@@ -1279,6 +1300,7 @@ public:
 #define WX_CLEAR_LIST(type, list)                                            \
     {                                                                        \
         type::iterator it, en;                                               \
+VDM_MACRO_PRAGMA_IVDEP \
         for( it = (list).begin(), en = (list).end(); it != en; ++it )        \
             delete *it;                                                      \
         (list).clear();                                                      \

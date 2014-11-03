@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        protocol/ftp.h
 // Purpose:     interface of wxFTP
@@ -10,6 +17,11 @@
 
     wxFTP can be used to establish a connection to an FTP server and perform all the
     usual operations. Please consult the RFC 959 (http://www.w3.org/Protocols/rfc959/)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for more details about the FTP protocol.
 
     wxFTP can thus be used to create a (basic) FTP @b client.
@@ -252,6 +264,11 @@ public:
 
         If @a wildcard is empty (default), it will return all files in directory.
         The form of the list can change from one peer system to another. For example,
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for a UNIX peer system, it will look like this:
 
         @verbatim
@@ -282,6 +299,11 @@ public:
         couldn't be determined.
 
         Notice that this size can be approximative size only and shouldn't be used
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for allocating the buffer in which the remote file is copied, for example.
     */
     int GetFileSize(const wxString& filename);

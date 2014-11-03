@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file XPM.cxx
  ** Define a class that holds data in the X Pixmap (XPM) format.
@@ -101,6 +108,11 @@ void XPM::Init(const char *const *linesForm) {
 		return;
 	}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int c=0; c<nColours; c++) {
 		const char *colourDef = linesForm[c+1];
 		int code = static_cast<unsigned char>(colourDef[0]);
@@ -114,9 +126,19 @@ void XPM::Init(const char *const *linesForm) {
 		colourCodeTable[code] = colour;
 	}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int y=0; y<height; y++) {
 		const char *lform = linesForm[y+nColours+1];
 		size_t len = MeasureLength(lform);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (size_t x = 0; x<len; x++)
 			pixels[y * width + x] = static_cast<unsigned char>(lform[x]);
 	}
@@ -129,9 +151,19 @@ void XPM::Draw(Surface *surface, PRectangle &rc) {
 	// Centre the pixmap
 	int startY = rc.top + (rc.Height() - height) / 2;
 	int startX = rc.left + (rc.Width() - width) / 2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int y=0; y<height; y++) {
 		int prevCode = 0;
 		int xStartRun = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (int x=0; x<width; x++) {
 			int code = pixels[y * width + x];
 			if (code != prevCode) {
@@ -165,6 +197,11 @@ std::vector<const char *> XPM::LinesFormFromTextForm(const char *textForm) {
 	int countQuotes = 0;
 	int strings=1;
 	int j=0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (; countQuotes < (2*strings) && textForm[j] != '\0'; j++) {
 		if (textForm[j] == '\"') {
 			if (countQuotes == 0) {
@@ -208,7 +245,17 @@ RGBAImage::RGBAImage(const XPM &xpm) {
 	width = xpm.GetWidth();
 	scale = 1;
 	pixelBytes.resize(CountBytes());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int y=0; y<height; y++) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (int x=0; x<width; x++) {
 			ColourDesired colour;
 			bool transparent = false;
@@ -247,6 +294,11 @@ RGBAImageSet::~RGBAImageSet() {
 
 /// Remove all images.
 void RGBAImageSet::Clear() {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (ImageMap::iterator it=images.begin(); it != images.end(); ++it) {
 		delete it->second;
 		it->second = 0;
@@ -281,6 +333,11 @@ RGBAImage *RGBAImageSet::Get(int ident) {
 /// Give the largest height of the set.
 int RGBAImageSet::GetHeight() const {
 	if (height < 0) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (ImageMap::const_iterator it=images.begin(); it != images.end(); ++it) {
 			if (height < it->second->GetHeight()) {
 				height = it->second->GetHeight();
@@ -293,6 +350,11 @@ int RGBAImageSet::GetHeight() const {
 /// Give the largest width of the set.
 int RGBAImageSet::GetWidth() const {
 	if (width < 0) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (ImageMap::const_iterator it=images.begin(); it != images.end(); ++it) {
 			if (width < it->second->GetWidth()) {
 				width = it->second->GetWidth();

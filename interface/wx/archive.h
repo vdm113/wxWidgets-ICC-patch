@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        archive.h
 // Purpose:     interface of wxArchive* classes
@@ -387,6 +394,11 @@ public:
 
     /**
         Calls the static GetInternalName() function for the archive entry type,
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for example wxZipEntry::GetInternalName.
     */
     virtual wxString GetInternalName(const wxString& name,
@@ -409,6 +421,11 @@ public:
         wxString list;
         const wxChar *const *p;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (p = factory->GetProtocols(wxSTREAM_FILEEXT); *p; p++)
             list << *p << wxT("\n");
         @endcode

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        interface/wx/bannerwindow.h
 // Purpose:     wxBannerWindow class documentation
@@ -69,6 +76,11 @@ public:
 
         The banner orientation changes how the text in it is displayed and also
         defines where is the bitmap truncated if it's too big to fit but doesn't
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         do anything for the banner position, this is supposed to be taken care
         of in the usual way, e.g. using sizers.
     */

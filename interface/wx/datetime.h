@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        datetime.h
 // Purpose:     interface of wxDateTime
@@ -1213,6 +1220,11 @@ public:
         @name Time Zone and DST Support
 
         Please see the @ref overview_datetime_timezones "time zone overview"
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for more information about time zones. Normally, these functions should
         be rarely used.
 
@@ -1393,6 +1405,11 @@ public:
 
     /**
         Returns the number of days in the given year. The only supported value
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for @a cal currently is @c Gregorian.
     */
     static wxDateTime_t GetNumberOfDays(int year, Calendar cal = Gregorian);

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file PerLine.cxx
  ** Manages data associated with each line of the document
@@ -120,6 +127,11 @@ LineMarkers::~LineMarkers() {
 }
 
 void LineMarkers::Init() {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int line = 0; line < markers.Length(); line++) {
 		delete markers[line];
 		markers[line] = 0;
@@ -145,6 +157,11 @@ void LineMarkers::RemoveLine(int line) {
 
 int LineMarkers::LineFromHandle(int markerHandle) {
 	if (markers.Length()) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (int line = 0; line < markers.Length(); line++) {
 			if (markers[line]) {
 				if (markers[line]->Contains(markerHandle)) {
@@ -177,6 +194,11 @@ int LineMarkers::MarkerNext(int lineStart, int mask) const {
 	if (lineStart < 0)
 		lineStart = 0;
 	int length = markers.Length();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int iLine = lineStart; iLine < length; iLine++) {
 		MarkerHandleSet *onLine = markers[iLine];
 		if (onLine && ((onLine->MarkValue() & mask) != 0))
@@ -433,6 +455,11 @@ void LineAnnotation::SetText(int line, const char *text) {
 }
 
 void LineAnnotation::ClearAll() {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int line = 0; line < annotations.Length(); line++) {
 		delete []annotations[line];
 		annotations[line] = 0;

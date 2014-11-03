@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /* zlib.h -- interface of the 'zlib' general purpose compression library
   version 1.2.8, April 28th, 2013
 
@@ -107,6 +114,11 @@ typedef z_stream FAR *z_streamp;
 
 /*
      gzip header information passed to and from zlib routines.  See RFC 1952
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for more details on the meanings of these fields.
 */
 typedef struct gz_header_s {
@@ -296,6 +308,11 @@ ZEXTERN int ZEXPORT deflate OF((z_streamp strm, int flush));
   block.
 
     If flush is set to Z_BLOCK, a deflate block is completed and emitted, as
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for Z_SYNC_FLUSH, but the output is not aligned on a byte boundary, and up to
   seven bits of the current block are held to be written as the next byte after
   the next deflate block is completed.  In this case, the decompressor may not
@@ -556,6 +573,11 @@ ZEXTERN int ZEXPORT deflateInit2 OF((z_streamp strm,
    gzip stream is being written, strm->adler is a crc32 instead of an adler32.
 
      The memLevel parameter specifies how much memory should be allocated
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for the internal compression state.  memLevel=1 uses minimum memory but is
    slow and reduces compression ratio; memLevel=9 uses maximum memory for
    optimal speed.  The default value is 8.  See zconf.h for total memory usage
@@ -857,6 +879,11 @@ ZEXTERN int ZEXPORT inflateGetDictionary OF((z_streamp strm,
 ZEXTERN int ZEXPORT inflateSync OF((z_streamp strm));
 /*
      Skips invalid compressed data until a possible full flush point (see above
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for the description of deflate with Z_FULL_FLUSH) can be found, or until all
    available input is skipped.  No output is provided.
 
@@ -1230,6 +1257,11 @@ ZEXTERN gzFile ZEXPORT gzopen OF((const char *path, const char *mode));
    in fopen ("rb" or "wb") but can also include a compression level ("wb9") or
    a strategy: 'f' for filtered data as in "wb6f", 'h' for Huffman-only
    compression as in "wb1h", 'R' for run-length encoding as in "wb1R", or 'F'
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for fixed code compression as in "wb9F".  (See the description of
    deflateInit2 for more information about the strategy parameter.)  'T' will
    request transparent writing or appending with no compression and not using
@@ -1378,6 +1410,11 @@ ZEXTERN char * ZEXPORT gzgets OF((gzFile file, char *buf, int len));
    to an end-of-file or len < 1, then the buffer is left untouched.
 
      gzgets returns buf which is a null-terminated string, or it returns NULL
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for end-of-file or in case of error.  If there was an error, the contents at
    buf are indeterminate.
 */
@@ -1469,6 +1506,11 @@ ZEXTERN z_off_t ZEXPORT gzoffset OF((gzFile file));
    includes the count of bytes that precede the gzip stream, for example when
    appending or when using gzdopen() for reading.  When reading, the offset
    does not include as yet unused buffered input.  This information can be used
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for a progress indicator.  On error, gzoffset() returns -1.
 */
 

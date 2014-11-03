@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/gridctrl.cpp
 // Purpose:     wxGrid controls
@@ -307,6 +314,11 @@ wxGridCellAutoWrapStringRenderer::GetTextLines(wxGrid& grid,
         return logicalLines;
 
     wxArrayString physicalLines;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxArrayString::const_iterator it = logicalLines.begin();
           it != logicalLines.end();
           ++it )
@@ -393,6 +405,11 @@ wxGridCellAutoWrapStringRenderer::BreakWord(wxDC& dc,
     // TODO: Use binary search to find the first element > maxWidth.
     const unsigned count = widths.size();
     unsigned n;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( n = 0; n < count; n++ )
     {
         if ( widths[n] > maxWidth )
@@ -583,9 +600,19 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
         if ((best_width > rectCell.width) && (col < cols) && grid.GetTable())
         {
             int i, c_cols, c_rows;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = col+cell_cols; i < cols; i++)
             {
                 bool is_empty = true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for (int j=row; j < row + cell_rows; j++)
                 {
                     // check w/ anchor cell for multicell block
@@ -627,6 +654,11 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
             int col_end = col + cell_cols + overflowCols;
             if (col_end >= grid.GetNumberCols())
                 col_end = grid.GetNumberCols() - 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (int i = col + cell_cols; i <= col_end; i++)
             {
                 clip.width = grid.GetColSize(i) - 1;

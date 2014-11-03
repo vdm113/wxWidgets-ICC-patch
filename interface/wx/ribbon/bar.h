@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        ribbon/bar.h
 // Purpose:     interface of wxRibbonBar
@@ -72,6 +79,11 @@ public:
     @class wxRibbonBar
 
     Top-level control in a ribbon user interface. Serves as a tabbed container
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for wxRibbonPage - a ribbon user interface typically has a ribbon bar,
     which contains one or more wxRibbonPages, which in turn each contain one
     or more wxRibbonPanels, which in turn contain controls.
@@ -259,6 +271,11 @@ public:
         Dismiss the expanded panel of the currently active page.
         
         Calls and returns the value from wxRibbonPage::DismissExpandedPanel()
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for the currently active page, or @false if there is no active page.
     */
     bool DismissExpandedPanel();

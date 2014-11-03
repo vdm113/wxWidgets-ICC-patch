@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /**
  * This file gets included from dcclient.cpp and implements
  * the X11 interface to Pango.
@@ -169,6 +176,11 @@ x11_draw_layout_with_colors( Drawable      drawable,
 {
     PangoLayoutIter *iter = pango_layout_get_iter (layout);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         PangoLayoutLine *line = pango_layout_iter_get_line (iter);

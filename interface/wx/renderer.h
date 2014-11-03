@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        renderer.h
 // Purpose:     interface of wxRendererNative
@@ -400,6 +407,11 @@ public:
 
         The supported @a flags are @c wxCONTROL_SELECTED for items
         which are selected (e.g. often a blue rectangle) and @c wxCONTROL_CURRENT
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for the item that has the focus (often a dotted line around the item's text).
         @c wxCONTROL_FOCUSED may be used to indicate if the control has the focus
         (otherwise the selection rectangle is e.g. often grey and not blue).
@@ -466,6 +478,11 @@ public:
         Draw a title bar button in the given state.
 
         This function is currently only available under MSW and OS X (and only
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for wxTITLEBAR_BUTTON_CLOSE under the latter), its best replacement for
         the other platforms is to use wxArtProvider to retrieve the bitmaps for
         @c wxART_HELP and @c wxART_CLOSE (but not any other title bar buttons

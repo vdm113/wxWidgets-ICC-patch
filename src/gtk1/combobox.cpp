@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/combobox.cpp
 // Purpose:
@@ -240,6 +247,11 @@ bool wxComboBox::Create( wxWindow *parent, wxWindowID id, const wxString& value,
 
     // gtk_list_set_selection_mode( GTK_LIST(list), GTK_SELECTION_MULTIPLE );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int i = 0; i < n; i++)
     {
         GtkWidget *list_item = gtk_list_item_new_with_label( wxGTK_CONV( choices[i] ) );
@@ -328,6 +340,11 @@ int wxComboBox::DoInsertItems(const wxArrayStringsAdapter& items,
     GtkRcStyle *style = CreateWidgetStyle();
 
     const unsigned int count = items.GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for( unsigned int i = 0; i < count; ++i, ++pos )
     {
         GtkWidget *
@@ -599,6 +616,11 @@ wxString wxComboBox::DoGetValue() const
     wxString tmp( wxGTK_CONV_BACK( gtk_entry_get_text( entry ) ) );
 
 #if 0
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int i = 0; i < wxStrlen(tmp.c_str()) +1; i++)
     {
         wxChar c = tmp[i];
@@ -883,6 +905,11 @@ wxSize wxComboBox::DoGetBestSize() const
     {
         int width;
         unsigned int count = GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( unsigned int n = 0; n < count; n++ )
         {
             GetTextExtent(GetString(n), &width, NULL, NULL, NULL );

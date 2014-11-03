@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        customwidgets.h
 // Purpose:     topic overview
@@ -119,6 +126,11 @@ private:
 
 Writing a native widget is typically more difficult as it requires you to know
 the APIs of the platforms you want to support. See @ref page_port_nativedocs
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for links to the documentation manuals of the various toolkits.
 
 The organization used by wxWidgets consists in:

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        dataobj.h
 // Purpose:     interface of wx*DataObject
@@ -200,6 +207,11 @@ const wxDataFormat wxFormatInvalid;
     be @e available.
 
     You may also derive your own data object classes from wxCustomDataObject
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for user-defined types. The format of user-defined data is given as a
     mime-type string literal, such as "application/word" or "image/png". These
     strings are used as they are under Unix (so far only GTK+) to identify a

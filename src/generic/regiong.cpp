@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/regiong.cpp
 // Purpose:     generic wxRegion class
@@ -930,6 +937,11 @@ miCoalesce(
      */
     pCurBox = &pReg->rects[curStart];
     bandY1 = pCurBox->y1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (curNumRects = 0;
          (pCurBox != pRegEnd) && (pCurBox->y1 == bandY1);
          curNumRects++)
@@ -969,6 +981,11 @@ miCoalesce(
          * cover the most area possible. I.e. two boxes in a band must
          * have some horizontal space between them.
          */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             do
             {
                 if ((pPrevBox->x1 != pCurBox->x1) ||
@@ -993,6 +1010,11 @@ miCoalesce(
              * in the previous band to that of the corresponding box in
              * the current band.
              */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             do
             {
                 pPrevBox->y2 = pCurBox->y2;
@@ -1017,6 +1039,11 @@ miCoalesce(
             }
             else
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 do
                 {
                     *pPrevBox++ = *pCurBox++;
@@ -1166,6 +1193,11 @@ miRegionOp(
      */
     prevBand = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         curBand = newReg->numRects;
@@ -1276,6 +1308,11 @@ miRegionOp(
     {
         if (nonOverlap1Func != NULL)
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             do
             {
                 r1BandEnd = r1;
@@ -1291,6 +1328,11 @@ miRegionOp(
     }
     else if ((r2 != r2End) && (nonOverlap2Func != NULL))
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         do
         {
             r2BandEnd = r2;
@@ -1467,6 +1509,11 @@ miUnionO (
 
     if (r1 != r1End)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         do
         {
             MERGERECT(r1);
@@ -1843,6 +1890,11 @@ bool REGION::XPointInRegion(Region pRegion, int x, int y)
         return false;
     if (!INBOX(pRegion->extents, x, y))
         return false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i=0; i<pRegion->numRects; i++)
     {
         if (INBOX (pRegion->rects[i], x, y))
@@ -1875,6 +1927,11 @@ wxRegionContain REGION::XRectInRegion(register Region region,
     partIn = false;
 
     /* can stop when both partOut and partIn are true, or we reach prect->y2 */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (pbox = region->rects, pboxEnd = pbox + region->numRects;
          pbox < pboxEnd;
          pbox++)

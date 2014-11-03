@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/ribbon/art_internal.h
 // Purpose:     Helper functions & classes used by ribbon art providers
@@ -44,6 +51,11 @@ WXDLLIMPEXP_RIBBON wxBitmap wxRibbonLoadPixmap(
 
 /*
    HSL colour class, using interface as discussed in wx-dev. Provided mainly
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for art providers to perform colour scheme calculations in the HSL colour
    space. If such a class makes it into base / core, then this class should be
    removed and users switched over to the one in base / core.

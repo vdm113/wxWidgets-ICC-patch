@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/htmprint.cpp
 // Purpose:     html printing classes
@@ -494,6 +501,11 @@ void wxHtmlPrintout::CountPages()
 
     m_PageBreaks.Clear();
     m_PageBreaks.Add( 0);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do
     {
         pos = m_Renderer->Render((int)( ppmm_h * m_MarginLeft),
@@ -777,6 +789,11 @@ void wxHtmlEasyPrinting::SetFonts(const wxString& normal_face, const wxString& f
     if (sizes)
     {
         m_FontsSizes = m_FontsSizesArr;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int i = 0; i < 7; i++) m_FontsSizes[i] = sizes[i];
     }
     else

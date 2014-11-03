@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -81,6 +88,11 @@ int main (int argc, char *argv[])
     XMLBufPtr = XMLBuf;
     isFinal = 0;
     tstart = clock();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do {
       int parseBufferSize = XMLBufEnd - XMLBufPtr;
       if (parseBufferSize <= bufferSize)

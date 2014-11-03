@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        msgdlg.h
 // Purpose:     interface of wxMessageDialog
@@ -70,6 +77,11 @@ const char wxMessageBoxCaptionStr[] = "Message";
         explicitly.
     @style{wxICON_AUTH_NEEDED}
         Displays an authentication needed symbol. This style is only supported
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for message dialogs under wxMSW when a task dialog is used to implement
         them (i.e. when running under Windows Vista or later). In other cases
         the default icon selection logic will be used. Note this can be
@@ -322,6 +334,11 @@ public:
         Combination of style flags described in wxMessageDialog documentation.
     @param x
         Horizontal dialog position (ignored under MSW). Use ::wxDefaultCoord
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for @a x and @a y to let the system position the window.
     @param y
         Vertical dialog position (ignored under MSW).

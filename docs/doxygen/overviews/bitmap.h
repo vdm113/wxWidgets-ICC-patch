@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        bitmap.h
 // Purpose:     topic overview
@@ -98,6 +105,11 @@ that using wxImage is the preferred way to load images in wxWidgets, with the
 exception of resources (XPM-files or native Windows resources).
 
 Writing an image format handler for wxImage is also far easier than writing one
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for wxBitmap, because wxImage has exactly one format on all platforms whereas
 wxBitmap can store pixel data very differently, depending on colour depths and
 platform.

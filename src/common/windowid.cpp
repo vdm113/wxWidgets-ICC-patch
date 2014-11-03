@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/windowid.cpp
 // Purpose:     wxWindowID class - a class for managing window ids
@@ -224,6 +231,11 @@ wxWindowID wxIdManager::ReserveId(int count)
     {
         int found = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for(wxWindowID winid = wxID_AUTO_LOWEST; winid <= wxID_AUTO_HIGHEST; winid++)
         {
             if(GetIdRefCount(winid) == 0)

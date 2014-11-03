@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/evtloop.cpp
 // Purpose:     implements wxEventLoop for Motif
@@ -106,6 +113,11 @@ int wxGUIEventLoop::DoRun()
     m_impl = new wxEventLoopImpl;
     m_impl->SetKeepGoing( true );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for( ;; )
     {
         if( !wxDoEventLoopIteration( *this ) )
@@ -340,6 +352,11 @@ bool wxDoEventLoopIteration( wxGUIEventLoop& evtLoop )
 {
     bool moreRequested, pendingEvents;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for(;;)
     {
         pendingEvents = evtLoop.Pending();
@@ -415,6 +432,11 @@ static void wxInputCallback( XtPointer, int* fd, XtInputId* )
     char buffer[128];
 
     // wxWakeUpIdle may have been called more than once
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for(;;)
     {
         fd_set in;

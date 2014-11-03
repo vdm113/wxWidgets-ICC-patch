@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        font.h
 // Purpose:     interface of wxFont
@@ -591,6 +598,11 @@ public:
         Destructor.
 
         See @ref overview_refcount_destruct "reference-counted object destruction"
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for more info.
 
         @remarks Although all remaining fonts are deleted when the application
@@ -733,6 +745,11 @@ public:
         @false if it is a proportional one or font is invalid.
 
         Note that this function under some platforms is different than just testing
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for the font family being equal to @c wxFONTFAMILY_TELETYPE because native
         platform-specific functions are used for the check (resulting in a more
         accurate return value).

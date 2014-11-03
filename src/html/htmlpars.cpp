@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/htmlpars.cpp
 // Purpose:     wxHtmlParser class (generic parser)
@@ -468,6 +475,11 @@ wxString wxHtmlEntitiesParser::Parse(const wxString& input) const
     wxString::const_iterator c(input.begin());
     wxString::const_iterator last(c);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ; c < end; ++c )
     {
         if (*c == wxT('&'))
@@ -484,6 +496,11 @@ wxString wxHtmlEntitiesParser::Parse(const wxString& input) const
             const wxString::const_iterator ent_s = c;
             wxChar entity_char;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( ; c != end; ++c )
             {
                 wxChar ch = *c;
@@ -844,6 +861,11 @@ wxChar wxHtmlEntitiesParser::GetEntityChar(const wxString& entity) const
         // bsearch crashes under WinCE for some reason
         info = NULL;
         size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < substitutions_cnt; i++)
         {
             if (entity == substitutions[i].name)

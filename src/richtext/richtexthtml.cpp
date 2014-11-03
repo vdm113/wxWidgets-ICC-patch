@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtexthtml.cpp
 // Purpose:     HTML I/O for wxRichTextCtrl
@@ -588,6 +595,11 @@ long wxRichTextHTMLHandler::PtToSize(long size)
 {
     int i;
     int len = m_fontSizeMapping.GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < len; i++)
         if (size <= m_fontSizeMapping[i])
             return i+1;
@@ -597,6 +609,11 @@ long wxRichTextHTMLHandler::PtToSize(long size)
 wxString wxRichTextHTMLHandler::SymbolicIndent(long indent)
 {
     wxString in;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for(;indent > 0; indent -= 20)
         in.Append( wxT("&nbsp;") );
     return in;
@@ -682,6 +699,11 @@ bool wxRichTextHTMLHandler::DeleteTemporaryImages()
 bool wxRichTextHTMLHandler::DeleteTemporaryImages(int flags, const wxArrayString& imageLocations)
 {
     size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < imageLocations.GetCount(); i++)
     {
         wxString location = imageLocations[i];

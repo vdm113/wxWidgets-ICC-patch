@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/regconf.cpp
 // Purpose:
@@ -189,6 +196,11 @@ void wxRegConfig::SetPath(const wxString& strPath)
         // recombine path parts in one variable
         wxString strRegPath;
         m_strPathAlt.Empty();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( size_t n = 0; n < aParts.Count(); n++ ) {
             strRegPath << '\\' << aParts[n];
             m_strPathAlt << wxCONFIG_PATH_SEPARATOR << aParts[n];
@@ -242,6 +254,11 @@ void wxRegConfig::SetPath(const wxString& strPath)
         wxChar *dst = buf;
         wxChar *start = dst;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( ; src < end; src++, dst++ )
         {
             if ( *src == wxCONFIG_PATH_SEPARATOR )
@@ -352,6 +369,11 @@ void wxRegConfig::SetPath(const wxString& strPath)
         wxChar *dst = buf;
 
         const wxChar *end = src + len;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( ; src < end; src++, dst++ )
         {
             if ( *src == wxCONFIG_PATH_SEPARATOR )

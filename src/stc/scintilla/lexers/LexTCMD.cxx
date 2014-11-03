@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla\ source code edit control
 /** @file LexTCMD.cxx
  ** Lexer for Take Command / TCC batch scripts (.bat, .btm, .cmd).
@@ -60,6 +67,11 @@ static unsigned int GetBatchVarLen( char *wordBuffer )
 		else
 			return 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for ( ; ( wordBuffer[nLength] ); nLength++ ) {
 
 			switch ( toupper(wordBuffer[nLength]) ) {
@@ -165,6 +177,11 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 		}
 		// Copy word from Line Buffer into Word Buffer
 		wbl = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (; offset < lengthLine && ( wbl < 260 ) && !isspacechar(lineBuffer[offset]); wbl++, offset++) {
 			wordBuffer[wbl] = static_cast<char>(tolower(lineBuffer[offset]));
 		}
@@ -409,6 +426,11 @@ static void ColouriseTCMDDoc( unsigned int startPos, int length, int /*initStyle
 	styler.StartSegment(startPos);
 	unsigned int linePos = 0;
 	unsigned int startLine = startPos;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int i = startPos; i < startPos + length; i++) {
 		lineBuffer[linePos++] = styler[i];
 		if (AtEOL(styler, i) || (linePos >= sizeof(lineBuffer) - 1)) {
@@ -445,6 +467,11 @@ static void FoldTCMDDoc(unsigned int startPos, int length, int, WordList *[], Ac
     char chPrev = styler.SafeGetCharAt(startPos - 1);
 
 	// Scan for ( and )
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 
 		int c = styler.SafeGetCharAt(i, '\n');
@@ -461,6 +488,11 @@ static void FoldTCMDDoc(unsigned int startPos, int length, int, WordList *[], Ac
 		}
 
         if (( bLineStart ) && ( style == SCE_TCMD_WORD )) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (unsigned int j = 0; j < 10; j++) {
                 if (!iswordchar(styler[i + j])) {
                     break;

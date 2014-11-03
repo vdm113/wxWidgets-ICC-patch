@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/choice.cpp
 // Purpose:
@@ -133,6 +140,11 @@ bool wxChoice::Create( wxWindow *parent, wxWindowID id,
 
     GtkWidget *menu = gtk_menu_new();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (unsigned int i = 0; i < (unsigned int)n; i++)
     {
         GtkAddHelper(menu, i, choices[i]);
@@ -165,6 +177,11 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter & items,
 
     GtkWidget *menu = gtk_option_menu_get_menu( GTK_OPTION_MENU(m_widget) );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( unsigned int i = 0; i < count; ++i, ++pos )
     {
         int n = GtkAddHelper(menu, pos, items[i]);
@@ -248,6 +265,11 @@ void wxChoice::DoDeleteOneItem(unsigned int n)
     wxArrayString items;
     wxArrayPtrVoid itemsData;
     items.Alloc(count);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( unsigned i = 0; i < count; i++, node = node->GetNext() )
     {
         if ( i != n )
@@ -511,6 +533,11 @@ wxSize wxChoice::DoGetBestSize() const
     {
         int width;
         unsigned int count = GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( unsigned int n = 0; n < count; n++ )
         {
             GetTextExtent(GetString(n), &width, NULL, NULL, NULL );

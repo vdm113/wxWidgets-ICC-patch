@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // File:      src/osx/carbon/region.cpp
 // Purpose:   Region class
@@ -792,6 +799,11 @@ scanFillGeneralPoly( wxRegion* rgn,
         /*
          *  for each scanline
          */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (y = ET.ymin; y < ET.ymax; y++)
         {
             /*
@@ -824,6 +836,11 @@ scanFillGeneralPoly( wxRegion* rgn,
                     // (*pgc->ops->FillSpans)(dst, pgc,
                     //     nPts, FirstPoint, FirstWidth,1);
                     
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for ( int i = 0 ; i < nPts; ++i)
                     {
                         wxRect rect;
@@ -848,6 +865,11 @@ scanFillGeneralPoly( wxRegion* rgn,
         /*
          *  for each scanline
          */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (y = ET.ymin; y < ET.ymax; y++)
         {
             /*
@@ -888,6 +910,11 @@ scanFillGeneralPoly( wxRegion* rgn,
                     {
                         // (*pgc->ops->FillSpans)(dst, pgc,
                         //     nPts, FirstPoint, FirstWidth,1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for ( int i = 0 ; i < nPts ; ++i)
                         {
                             wxRect rect;
@@ -927,6 +954,11 @@ scanFillGeneralPoly( wxRegion* rgn,
      */
     // (*pgc->ops->FillSpans)(dst, pgc,
     //     nPts, FirstPoint, FirstWidth,1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( int i = 0 ; i < nPts; ++i)
     {
         wxRect rect;
@@ -960,6 +992,11 @@ wxRegion::wxRegion(size_t n, const wxPoint *points, wxPolygonFillMode fillStyle)
     size_t idx;     
      
     // Find the max size needed to draw the polygon 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (idx=0; idx<n; idx++) 
     { 
         wxPoint pt = points[idx]; 
@@ -1250,6 +1287,11 @@ void wxRegionIterator::SetRects(long numRects, wxRect *rects)
         int i;
 
         m_rects = new wxRect[numRects];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < numRects; i++)
             m_rects[i] = rects[i];
     }

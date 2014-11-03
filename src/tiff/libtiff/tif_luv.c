@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /*
  * Copyright (c) 1997 Greg Ward Larson
@@ -209,7 +216,17 @@ LogL16Decode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 	bp = (unsigned char*) tif->tif_rawcp;
 	cc = tif->tif_rawcc;
 	/* get each byte string */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (shft = 2*8; (shft -= 8) >= 0; ) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (i = 0; i < npixels && cc > 0; )
 			if (*bp >= 128) {		/* run */
 				rc = *bp++ + (2-128);   /* TODO: potential input buffer overrun when decoding corrupt or truncated data */
@@ -273,6 +290,11 @@ LogLuvDecode24(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 	/* copy to array of uint32 */
 	bp = (unsigned char*) tif->tif_rawcp;
 	cc = tif->tif_rawcc;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (i = 0; i < npixels && cc > 0; i++) {
 		tp[i] = bp[0] << 16 | bp[1] << 8 | bp[2];
 		bp += 3;
@@ -332,7 +354,17 @@ LogLuvDecode32(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 	bp = (unsigned char*) tif->tif_rawcp;
 	cc = tif->tif_rawcc;
 	/* get each byte string */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (shft = 4*8; (shft -= 8) >= 0; ) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (i = 0; i < npixels && cc > 0; )
 			if (*bp >= 128) {		/* run */
 				rc = *bp++ + (2-128);
@@ -432,7 +464,17 @@ LogL16Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 	/* compress each byte string */
 	op = tif->tif_rawcp;
 	occ = tif->tif_rawdatasize - tif->tif_rawcc;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (shft = 2*8; (shft -= 8) >= 0; )
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (i = 0; i < npixels; i += rc) {
 			if (occ < 4) {
 				tif->tif_rawcp = op;
@@ -443,6 +485,11 @@ LogL16Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 				occ = tif->tif_rawdatasize - tif->tif_rawcc;
 			}
 			mask = 0xff << shft;		/* find next run */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (beg = i; beg < npixels; beg += rc) {
 				b = (int16) (tp[beg] & mask);
 				rc = 1;
@@ -520,6 +567,11 @@ LogLuvEncode24(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 	/* write out encoded pixels */
 	op = tif->tif_rawcp;
 	occ = tif->tif_rawdatasize - tif->tif_rawcc;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (i = npixels; i--; ) {
 		if (occ < 3) {
 			tif->tif_rawcp = op;
@@ -573,7 +625,17 @@ LogLuvEncode32(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 	/* compress each byte string */
 	op = tif->tif_rawcp;
 	occ = tif->tif_rawdatasize - tif->tif_rawcc;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (shft = 4*8; (shft -= 8) >= 0; )
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (i = 0; i < npixels; i += rc) {
 			if (occ < 4) {
 				tif->tif_rawcp = op;
@@ -584,6 +646,11 @@ LogLuvEncode32(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 				occ = tif->tif_rawdatasize - tif->tif_rawcc;
 			}
 			mask = 0xff << shft;		/* find next run */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (beg = i; beg < npixels; beg += rc) {
 				b = tp[beg] & mask;
 				rc = 1;
@@ -810,13 +877,28 @@ oog_encode(double u, double v)		/* encode out-of-gamut chroma */
 	if (!initialized) {		/* set up perimeter table */
 		double	eps[NANGLES], ua, va, ang, epsa;
 		int	ui, vi, ustep;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (i = NANGLES; i--; )
 			eps[i] = 2.;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (vi = UV_NVS; vi--; ) {
 			va = UV_VSTART + (vi+.5)*UV_SQSIZ;
 			ustep = uv_row[vi].nus-1;
 			if (vi == UV_NVS-1 || vi == 0 || ustep <= 0)
 				ustep = 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (ui = uv_row[vi].nus-1; ui >= 0; ui -= ustep) {
 				ua = uv_row[vi].ustart + (ui+.5)*UV_SQSIZ;
 				ang = uv2ang(ua, va);
@@ -828,12 +910,27 @@ oog_encode(double u, double v)		/* encode out-of-gamut chroma */
 				}
 			}
 		}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (i = NANGLES; i--; )	/* fill any holes */
 			if (eps[i] > 1.5) {
 				int	i1, i2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				for (i1 = 1; i1 < NANGLES/2; i1++)
 					if (eps[(i+i1)%NANGLES] < 1.5)
 						break;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				for (i2 = 1; i2 < NANGLES/2; i2++)
 					if (eps[(i+NANGLES-i2)%NANGLES] < 1.5)
 						break;

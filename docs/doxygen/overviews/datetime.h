@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        datetime.h
 // Purpose:     topic overview
@@ -63,6 +70,11 @@ year/month/day components. See more about timezones below
 (see @ref overview_datetime_timezones).
 
 Currently, the only supported calendar is Gregorian one (which is used even
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for the dates prior to the historic introduction of this calendar which was
 first done on Oct 15, 1582 but is, generally speaking, country, and even
 region, dependent). Future versions will probably have Julian calendar support

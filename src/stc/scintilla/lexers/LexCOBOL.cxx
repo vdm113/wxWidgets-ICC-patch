@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexCOBOL.cxx
  ** Lexer for COBOL
@@ -56,6 +63,11 @@ inline bool isCOBOLwordstart(char ch)
 static int CountBits(int nBits)
 	{
 	int count = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int i = 0; i < 32; ++i)
 		{
 		count += nBits & 1;
@@ -170,6 +182,11 @@ static void ColouriseCOBOLDoc(unsigned int startPos, int length, int initStyle, 
     bool bNewLine = true;
     bool bAarea = !isspacechar(chNext);
 	int column = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (unsigned int i = startPos; i < lengthDoc; i++) {
         char ch = chNext;
 
@@ -322,6 +339,11 @@ static void FoldCOBOLDoc(unsigned int startPos, int length, int, WordList *[],
     bool bAarea = !isspacechar(chNext);
 	int column = 0;
 	bool bComment = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (unsigned int i = startPos; i < endPos; i++) {
         char ch = chNext;
         chNext = styler.SafeGetCharAt(i + 1);

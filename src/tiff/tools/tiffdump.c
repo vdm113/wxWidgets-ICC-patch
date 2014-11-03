@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler
@@ -134,6 +141,11 @@ main(int argc, char* argv[])
 	}
 	if (optind >= argc)
 		usage();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (; optind < argc; optind++) {
 		fd = open(argv[optind], O_RDONLY|O_BINARY, 0);
 		if (fd < 0) {
@@ -221,6 +233,11 @@ dump(int fd, uint64 diroff)
 	else
 		Fatal("Not a TIFF file, bad version number %u (%#x)",
 		    hdr.common.tiff_version, hdr.common.tiff_version);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (i = 0; diroff != 0; i++) {
 		if (i > 0)
 			putchar('\n');
@@ -343,6 +360,11 @@ ReadDirectory(int fd, unsigned int ix, uint64 off)
 	printf("Directory %u: offset %llu (%#llx) next %llu (%#llx)\n", ix,
 	    (unsigned long long)off, (unsigned long long)off,
 	    (unsigned long long)nextdiroff, (unsigned long long)nextdiroff);
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
 	for (dp = (uint8*)dirmem, n = dircount; n > 0; n--) {
 		uint16 tag;
@@ -611,6 +633,11 @@ PrintTag(FILE* fd, uint16 tag)
 {
 	const struct tagname *tp;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (tp = tagnames; tp < &tagnames[NTAGS]; tp++)
 		if (tp->tag == tag) {
 			fprintf(fd, "%s (%u)", tp->name, tag);
@@ -657,6 +684,11 @@ PrintType(FILE* fd, uint16 type)
 static void
 PrintASCII(FILE* fd, uint32 cc, const unsigned char* cp)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (; cc > 0; cc--, cp++) {
 		const char* tp;
 
@@ -664,6 +696,11 @@ PrintASCII(FILE* fd, uint32 cc, const unsigned char* cp)
 			fputc(*cp, fd);
 			continue;
 		}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (tp = "\tt\bb\rr\nn\vv"; *tp; tp++)
 			if (*tp++ == *cp)
 				break;

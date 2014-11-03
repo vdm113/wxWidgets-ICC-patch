@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /*
  * jcphuff.c
  *
@@ -143,6 +150,11 @@ start_pass_phuff (j_compress_ptr cinfo, wxjpeg_boolean gather_statistics)
   /* Only DC coefficients may be interleaved, so cinfo->comps_in_scan = 1
    * for AC coefficients.
    */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
     compptr = cinfo->cur_comp_info[ci];
     /* Initialize DC predictions to 0 */
@@ -358,6 +370,11 @@ emit_restart (phuff_entropy_ptr entropy, int restart_num)
 
   if (entropy->cinfo->Ss == 0) {
     /* Re-initialize DC predictions to 0 */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (ci = 0; ci < entropy->cinfo->comps_in_scan; ci++)
       entropy->last_dc_val[ci] = 0;
   } else {
@@ -394,6 +411,11 @@ encode_mcu_DC_first (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
       emit_restart(entropy, entropy->next_restart_num);
 
   /* Encode the MCU data blocks */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
     block = MCU_data[blkn];
     ci = cinfo->MCU_membership[blkn];
@@ -486,6 +508,11 @@ encode_mcu_AC_first (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
   
   r = 0;			/* r = run length of zeros */
    
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (k = cinfo->Ss; k <= Se; k++) {
     if ((temp = (*block)[jpeg_natural_order[k]]) == 0) {
       r++;
@@ -585,6 +612,11 @@ encode_mcu_DC_refine (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
       emit_restart(entropy, entropy->next_restart_num);
 
   /* Encode the MCU data blocks */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
     block = MCU_data[blkn];
 
@@ -643,6 +675,11 @@ encode_mcu_AC_refine (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
    * coefficients' absolute values and the EOB position.
    */
   EOB = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (k = cinfo->Ss; k <= Se; k++) {
     temp = (*block)[jpeg_natural_order[k]];
     /* We must apply the point transform by Al.  For AC coefficients this
@@ -663,6 +700,11 @@ encode_mcu_AC_refine (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
   BR = 0;			/* BR = count of buffered bits added now */
   BR_buffer = entropy->bit_buffer + entropy->BE; /* Append bits to buffer */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (k = cinfo->Ss; k <= Se; k++) {
     if ((temp = absvalues[k]) == 0) {
       r++;
@@ -783,6 +825,11 @@ finish_pass_gather_phuff (j_compress_ptr cinfo)
    */
   MEMZERO(did, SIZEOF(did));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
     compptr = cinfo->cur_comp_info[ci];
     if (is_DC_band) {
@@ -823,6 +870,11 @@ jinit_phuff_encoder (j_compress_ptr cinfo)
   entropy->pub.start_pass = start_pass_phuff;
 
   /* Mark tables unallocated */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
     entropy->derived_tbls[i] = NULL;
     entropy->count_ptrs[i] = NULL;

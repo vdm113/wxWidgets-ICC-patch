@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/log.cpp
 // Purpose:     Assorted wxLogXXX functions, and wxLog (sink for logs)
@@ -686,6 +693,11 @@ void wxLog::ClearTraceMasks()
     wxCRIT_SECT_LOCKER(lock, GetTraceMaskCS());
 
     const wxArrayString& masks = GetTraceMasks();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxArrayString::const_iterator it = masks.begin(),
                                         en = masks.end();
           it != en;
@@ -751,6 +763,11 @@ void wxLog::FlushThreadMessages()
 
     if ( !bufferedLogRecords.empty() )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( wxLogRecords::const_iterator it = bufferedLogRecords.begin();
               it != bufferedLogRecords.end();
               ++it )
@@ -1028,12 +1045,22 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
 
     size_t n;
     while ( *psz != '\0' ) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( n = nStart; (n < nMax) && (*psz != '\0'); n++ )
             putc(*psz++, f);
 
         // wrapped?
         if ( *psz != '\0' ) {
             /*putc('\n', f);*/
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( n = 0; n < nStart; n++ )
                 putc(' ', f);
 

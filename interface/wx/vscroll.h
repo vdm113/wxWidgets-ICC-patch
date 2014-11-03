@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        vscroll.h
 // Purpose:     interface of wxVarHScrollHelper
@@ -147,6 +154,11 @@ public:
 
     /**
         Returns the virtual scroll unit under the device unit given accounting
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for scroll position or @c wxNOT_FOUND if none (i.e. if it is below the
         last item).
     */
@@ -451,6 +463,11 @@ protected:
 
         OnGetColumnsWidthHint() is normally called just before
         OnGetColumnWidth() but you shouldn't rely on the latter being called
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for all columns in the interval specified here. It is also possible
         that OnGetColumnWidth() will be called for units outside of this
         interval, so this is really just a hint, not a promise.
@@ -594,6 +611,11 @@ public:
     //@{
     /**
         Returns the virtual scroll unit under the device unit given accounting
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for scroll position or @c wxNOT_FOUND (for the row, column, or possibly
         both values) if none.
     */

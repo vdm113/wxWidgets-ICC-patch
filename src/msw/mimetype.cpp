@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/mimetype.cpp
 // Purpose:     classes and functions to manage MIME types
@@ -90,6 +97,11 @@ static bool CanonicalizeParams(wxString& command)
     //     return a string with _exactly_ one '%s'!
     bool foundFilename = false;
     size_t len = command.length();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; (n < len) && !foundFilename; n++ )
     {
         if ( command[n] == wxT('%') &&
@@ -645,6 +657,11 @@ wxFileType *wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
 
     // now make other extensions have the same filetype
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (iExtCount=1; iExtCount < ftInfo.GetExtensionsCount(); iExtCount++ )
     {
         ext = ftInfo.GetExtensions()[iExtCount];

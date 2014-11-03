@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/filectrl.cpp
 // Purpose:     wxGtkFileCtrl Implementation
@@ -48,6 +55,11 @@ wxString wxGtkFileChooser::GetPath() const
 void wxGtkFileChooser::GetFilenames( wxArrayString& files ) const
 {
     GetPaths( files );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; n < files.GetCount(); ++n )
     {
         const wxFileName file( files[n] );
@@ -158,6 +170,11 @@ void wxGtkFileChooser::SetWildcard( const wxString& wildCard )
         if (!wildCard.empty())
         {
             // add parsed to GtkChooser
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( size_t n = 0; n < wildFilters.GetCount(); ++n )
             {
                 GtkFileFilter* filter = gtk_file_filter_new();

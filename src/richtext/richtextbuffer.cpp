@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtextbuffer.cpp
 // Purpose:     Buffer for wxRichTextCtrl
@@ -147,6 +154,11 @@ private:
 bool wxRichTextFloatCollector::DeleteFloat(wxRichTextObject* obj)
 {
     size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_left.GetCount(); i++)
     {
         if (m_left[i]->anchor == obj)
@@ -155,6 +167,11 @@ bool wxRichTextFloatCollector::DeleteFloat(wxRichTextObject* obj)
             return true;
         }
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_right.GetCount(); i++)
     {
         if (m_right[i]->anchor == obj)
@@ -170,6 +187,11 @@ bool wxRichTextFloatCollector::DeleteFloat(wxRichTextObject* obj)
 bool wxRichTextFloatCollector::HasFloat(wxRichTextObject* obj)
 {
     size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_left.GetCount(); i++)
     {
         if (m_left[i]->anchor == obj)
@@ -177,6 +199,11 @@ bool wxRichTextFloatCollector::HasFloat(wxRichTextObject* obj)
             return true;
         }
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_right.GetCount(); i++)
     {
         if (m_right[i]->anchor == obj)
@@ -191,8 +218,18 @@ bool wxRichTextFloatCollector::HasFloat(wxRichTextObject* obj)
 bool wxRichTextFloatCollector::GetFloatingObjects(wxRichTextObjectList& objects) const
 {
     size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_left.GetCount(); i++)
         objects.Append(m_left[i]->anchor);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_right.GetCount(); i++)
         objects.Append(m_right[i]->anchor);
     return true;
@@ -265,6 +302,11 @@ wxRichTextFloatCollector::wxRichTextFloatCollector(const wxRect& rect) : m_left(
 void wxRichTextFloatCollector::FreeFloatRectMapArray(wxRichTextFloatRectMapArray& array)
 {
     int len = array.GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int i = 0; i < len; i++)
         delete array[i];
 }
@@ -1783,6 +1825,11 @@ bool wxRichTextCompositeObject::GetRangeSize(const wxRichTextRange& range, wxSiz
                             lastSize = 0;
 
                         size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for (i = 0; i < childExtents.GetCount(); i++)
                         {
                             partialExtents->Add(childExtents[i] + lastSize);
@@ -2475,6 +2522,11 @@ bool wxRichTextParagraphLayoutBox::GetRangeSize(const wxRichTextRange& range, wx
         return false;
 
     // Now we can add up the sizes
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (node = startPara; node ; node = node->GetNext())
     {
         // child is a paragraph
@@ -4423,6 +4475,11 @@ bool wxRichTextParagraphLayoutBox::DoNumberList(const wxRichTextRange& range, co
     int i;
 
     // Reset all numbering
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < maxLevels; i++)
     {
         if (startFrom != -1)
@@ -4526,6 +4583,11 @@ bool wxRichTextParagraphLayoutBox::DoNumberList(const wxRichTextRange& range, co
                     // A deeper level: start renumbering all levels after current level
                     else if (thisLevel > currentLevel)
                     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for (i = currentLevel+1; i <= thisLevel; i++)
                         {
                             levels[i] = 0;
@@ -4557,6 +4619,11 @@ bool wxRichTextParagraphLayoutBox::DoNumberList(const wxRichTextRange& range, co
                     if (listStyle.GetBulletStyle() & wxTEXT_ATTR_BULLET_STYLE_OUTLINE)
                     {
                         wxString text;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for (i = 0; i <= currentLevel; i++)
                         {
                             if (!text.IsEmpty())
@@ -5112,6 +5179,11 @@ bool wxRichTextParagraph::Layout(wxDC& dc, wxRichTextDrawingContext& context, co
         // If it does, then we'll use the new restricted width to find the object height again.
         // If this causes another restriction in the available width, we'll try again, until
         // either we lose patience or the available width settles down.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         do
         {
             loopIterations ++;
@@ -5766,6 +5838,11 @@ bool wxRichTextParagraph::GetRangeSize(const wxRichTextRange& range, wxSize& siz
                                 lastSize = 0;
 
                             size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                             for (i = 0; i < childExtents.GetCount(); i++)
                             {
                                 partialExtents->Add(childExtents[i] + lastSize);
@@ -6030,6 +6107,11 @@ int wxRichTextParagraph::HitTest(wxDC& dc, wxRichTextDrawingContext& context, co
 
                 int lastX = linePos.x;
                 size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for (i = 0; i < partialExtents.GetCount(); i++)
                 {
                     int nextX = partialExtents[i] + linePos.x;
@@ -6057,6 +6139,11 @@ int wxRichTextParagraph::HitTest(wxDC& dc, wxRichTextDrawingContext& context, co
 #else
                 long i;
                 int lastX = linePos.x;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for (i = lineRange.GetStart(); i <= lineRange.GetEnd(); i++)
                 {
                     wxSize childSize;
@@ -6177,6 +6264,11 @@ void wxRichTextParagraph::MoveToList(wxRichTextObject* obj, wxList& list)
 /// Add content back from list
 void wxRichTextParagraph::MoveFromList(wxList& list)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (wxList::compatibility_iterator node = list.GetFirst(); node; node = node->GetNext())
     {
         AppendChild((wxRichTextObject*) node->GetData());
@@ -6286,6 +6378,11 @@ bool wxRichTextParagraph::FindWrapPosition(const wxRichTextRange& range, wxDC& d
             widthBefore = 0;
 
         size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = (size_t) range.GetStart(); i <= (size_t) range.GetEnd(); i++)
         {
             int widthFromStartOfThisRange = (*partialExtents)[i - GetRange().GetStart()] - widthBefore;
@@ -6465,6 +6562,11 @@ bool wxRichTextParagraph::ClearUnusedLines(int lineCount)
     int cachedLineCount = m_cachedLines.GetCount();
     if ((int) cachedLineCount > lineCount)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int i = 0; i < (int) (cachedLineCount - lineCount); i ++)
         {
             wxRichTextLineList::compatibility_iterator node = m_cachedLines.GetLast();
@@ -6525,6 +6627,11 @@ wxRichTextAttr wxRichTextParagraph::GetCombinedAttributes(bool includingBoxAttr)
 void wxRichTextParagraph::InitDefaultTabs()
 {
     // create a default tab list at 10 mm each.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int i = 0; i < 20; ++i)
     {
         sm_defaultTabs.Add(i*100);
@@ -6924,6 +7031,11 @@ bool wxRichTextPlainText::DrawTabbedString(wxDC& dc, const wxRichTextAttr& attr,
             tabArray = attr.GetTabs();
         tabCount = tabArray.GetCount();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int i = 0; i < tabCount; ++i)
         {
             int pos = tabArray[i];
@@ -6971,6 +7083,11 @@ bool wxRichTextPlainText::DrawTabbedString(wxDC& dc, const wxRichTextAttr& attr,
         dc.GetTextExtent(stringChunk, & w, & h);
         tabPos = x + w;
         bool not_found = true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int i = 0; i < tabCount && not_found; ++i)
         {
             nextTabPos = tabArray.Item(i) + x_orig;
@@ -7155,6 +7272,11 @@ bool wxRichTextPlainText::GetRangeSize(const wxRichTextRange& range, wxSize& siz
 
         int tabCount = tabArray.GetCount();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int i = 0; i < tabCount; ++i)
         {
             int pos = tabArray[i];
@@ -7185,6 +7307,11 @@ bool wxRichTextPlainText::GetRangeSize(const wxRichTextRange& range, wxSize& siz
                 wxArrayInt p;
                 dc.GetPartialTextExtents(stringFragment, p);
                 size_t j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for (j = 0; j < p.GetCount(); j++)
                     partialExtents->Add(oldWidth + p[j]);
 
@@ -7202,6 +7329,11 @@ bool wxRichTextPlainText::GetRangeSize(const wxRichTextRange& range, wxSize& siz
             }
 
             bool notFound = true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (int i = 0; i < tabCount && notFound; ++i)
             {
                 nextTabPos = tabArray.Item(i);
@@ -7241,6 +7373,11 @@ bool wxRichTextPlainText::GetRangeSize(const wxRichTextRange& range, wxSize& siz
             wxArrayInt p;
             dc.GetPartialTextExtents(stringChunk, p);
             size_t j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (j = 0; j < p.GetCount(); j++)
                 partialExtents->Add(oldWidth + p[j]);
         }
@@ -7431,6 +7568,11 @@ wxRichTextObject* wxRichTextPlainText::Split(wxRichTextDrawingContext& context)
                 wxString text = m_text;
                 wxRichTextPlainText* lastPlainText = this;
                 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for (i = 0; i < (int) positions.GetCount(); i++)
                 {
                     int pos = positions[i];
@@ -7613,6 +7755,11 @@ long wxRichTextPlainText::GetFirstLineBreakPosition(long pos)
     int i;
     int len = m_text.length();
     int startPos = pos - m_range.GetStart();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = startPos; i < len; i++)
     {
         wxChar ch = m_text[i];
@@ -8292,6 +8439,11 @@ bool wxRichTextBuffer::EndAllStyles()
 /// Clear the style stack
 void wxRichTextBuffer::ClearStyleStack()
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (wxList::compatibility_iterator node = m_attributeStack.GetFirst(); node; node = node->GetNext())
         delete (wxRichTextAttr*) node->GetData();
     m_attributeStack.Clear();
@@ -8817,6 +8969,11 @@ bool wxRichTextBuffer::PasteFromClipboard(long position)
                 wxString text2;
                 text2.Alloc(text.Length()+1);
                 size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for (i = 0; i < text.Length(); i++)
                 {
                     wxChar ch = text[i];
@@ -8934,6 +9091,11 @@ void wxRichTextBuffer::ClearEventHandlers()
 bool wxRichTextBuffer::SendEvent(wxEvent& event, bool sendToAll)
 {
     bool success = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (wxList::compatibility_iterator node = m_eventHandlers.GetFirst(); node; node = node->GetNext())
     {
         wxEvtHandler* handler = (wxEvtHandler*) node->GetData();
@@ -9667,6 +9829,11 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
                 {
                     // Must be hidden by a rowspan above. Go hunting for it.
                     int r;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (r = row-1; r >= 0; r--)
                     {
                         nextRightCell = table->GetCell(r, nextCol);
@@ -9714,6 +9881,11 @@ bool wxRichTextCell::AdjustAttributes(wxRichTextAttr& attr, wxRichTextDrawingCon
                 {
                     // Must be hidden by a colspan to the left. Go hunting for it.
                     int c;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (c = col-1; c >= 0; c--)
                     {
                         nextBottomCell = table->GetCell(nextRow, c);
@@ -9769,6 +9941,11 @@ bool wxRichTextCell::EditProperties(wxWindow* parent, wxRichTextBuffer* buffer)
         const wxRichTextSelection& sel = buffer->GetRichTextCtrl()->GetSelection();
         size_t i;
         int selectedCellCount = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < sel.GetCount(); i++)
         {
             const wxRichTextRange& range = sel[i];
@@ -9894,8 +10071,18 @@ bool wxRichTextTable::Draw(wxDC& dc, wxRichTextDrawingContext& context, const wx
         int colCount = GetColumnCount();
         int rowCount = GetRowCount();
         int col, row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (col = 0; col < colCount; col++)
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (row = 0; row < rowCount; row++)
             {
                 if (row == 0 || row == (rowCount-1) || col == 0 || col == (colCount-1))
@@ -9946,12 +10133,22 @@ int GetRowspanDisplacement(const wxRichTextTable* table, int row, int col, int p
     // there's nothing to stop a cell being hidden by colspan, and then again hidden from above by rowspan.
     // The answer is to look above each hidden cell in turn, which I think covers all bases.
     int deltaX = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int prevcol = 0; prevcol < col; ++prevcol)
     {
         if (!table->GetCell(row, prevcol)->IsShown())
         {
             // We've found a hidden cell. If it's hidden because of colspan to its left, it's
             // already been taken into account; but not if there's a rowspanning cell above
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (int prevrow = row-1; prevrow >= 0; --prevrow)
             {
                 wxRichTextCell* cell = table->GetCell(prevrow, prevcol);
@@ -9963,6 +10160,11 @@ int GetRowspanDisplacement(const wxRichTextTable* table, int row, int col, int p
                         // There is a rowspanning cell above above the hidden one, so we need
                         // to right-shift the index cell by this column's width. Furthermore, 
                         // if the cell also colspans, we need to shift by all affected columns
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for (int colSpan = 0; colSpan < cell->GetColSpan(); ++colSpan)
                             deltaX += (colWidths[prevcol+colSpan] + paddingX);
                         break;
@@ -9987,8 +10189,18 @@ void ExpandCellsWithRowspan(const wxRichTextTable* table, int paddingY, int& bot
     wxArrayInt rowTops;
     rowTops.Add(0, rowCount+1);
     int row;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (row = 0; row < rowCount; ++row)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int column = 0; column < colCount; ++column)
         {
             wxRichTextCell* cell = table->GetCell(row, column);
@@ -10003,8 +10215,18 @@ void ExpandCellsWithRowspan(const wxRichTextTable* table, int paddingY, int& bot
     
     bool needsRelay = false;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (row = 0; row < rowCount-1; ++row) // -1 as the bottom row can't rowspan
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int col = 0; col < colCount; ++col)
         {
             wxRichTextCell* cell = table->GetCell(row, col);
@@ -10037,12 +10259,22 @@ void ExpandCellsWithRowspan(const wxRichTextTable* table, int paddingY, int& bot
                         
                         // Each row in the span needs to by deepened by its share of the overhang (give the first row any spare).
                         // This is achieved by increasing the value stored in the following row's rowTops
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for (int spannedRows = 0; spannedRows < span; ++spannedRows)
                         {
                             rowTops[row+spannedRows+1] += ((deltaY * (spannedRows+1))  + (spannedRows == 0 ? spare:0));
                         }
                         
                         // Any rows below the span need shifting down
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for (int rowsBelow = row + span+1; rowsBelow <= rowCount; ++rowsBelow)
                         {
                             rowTops[rowsBelow] += overhang;
@@ -10059,8 +10291,18 @@ void ExpandCellsWithRowspan(const wxRichTextTable* table, int paddingY, int& bot
         return;
 
     // There were overflowing rowspanning cells, so layout yet again to make the increased row depths show
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (row = 0; row < rowCount; ++row)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int col = 0; col < colCount; ++col)
         {
             wxRichTextCell* cell = table->GetCell(row, col);
@@ -10184,6 +10426,11 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
     int i, j, k;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         absoluteColWidths[i] = 0;
@@ -10214,8 +10461,18 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
     // 0.1: add spanning cells to an array
     wxRichTextRectArray rectArray;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (j = 0; j < m_rowCount; j++)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextCell* cell = GetCell(j, i);
@@ -10228,8 +10485,18 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
         }
     }
     // 0.2: find which cells are subsumed by a spanning cell
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (j = 0; j < m_rowCount; j++)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextCell* cell = GetCell(j, i);
@@ -10250,6 +10517,11 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
                 else
                 {
                     bool shown = true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     for (k = 0; k < (int) rectArray.GetCount(); k++)
                     {
                         if (rectArray[k].Contains(wxPoint(i, j)))
@@ -10274,10 +10546,20 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // (1) Do an initial layout for all cells to get minimum and maximum size, and get
     // the absolute or percentage width of each column.
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (j = 0; j < m_rowCount; j++)
     {
         int visibleCellCount = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextBox* cell = GetCell(j, i);
@@ -10292,6 +10574,11 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
         int availableWidthForPercentageCellWidths = internalTableWidth - ((visibleCellCount-1) * paddingX);
         wxTextAttrDimensionConverter converter(dc, scale, wxSize(availableWidthForPercentageCellWidths, 0));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextCell* cell = GetCell(j, i);
@@ -10356,6 +10643,11 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     }
 
     // (2) Allocate initial column widths from absolute values and proportions
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         if (absoluteColWidths[i] > 0)
@@ -10372,10 +10664,20 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // now that we know what our fixed column widths are going to be.
     // Spanned cells will try to adjust columns so the span will fit.
     // Currently fixed columns widths aren't adjusted.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (j = 0; j < m_rowCount; j++)
     {
         int visibleCellCount = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextBox* cell = GetCell(j, i);
@@ -10390,6 +10692,11 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
         int availableWidthForPercentageCellWidths = internalTableWidth - ((visibleCellCount-1) * paddingX);
         wxTextAttrDimensionConverter converter(dc, scale, wxSize(availableWidthForPercentageCellWidths, 0));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextCell* cell = GetCell(j, i);
@@ -10439,6 +10746,11 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
     // Complete the spanning width calculation, now we have the maximum spanning size
     // for each spanning cell
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         int spanningWidth = spanningWidths[i];
@@ -10448,6 +10760,11 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             // Now share the spanning width between columns within that span
             int spanningWidthLeft = spanningWidth;
             int stretchColCount = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (k = i; k < (i+spans); k++)
             {
                 int minColWidth = wxMax(minColWidths[k], minColWidthsNoWrap[k]);
@@ -10474,6 +10791,11 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             // stretch the spanned cell to fit.
             if (spanningWidthLeft > 0)
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for (k = i; k < (i+spans); k++)
                 {
                     int minColWidth = wxMax(minColWidths[k], minColWidthsNoWrap[k]);
@@ -10500,10 +10822,20 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     bool relaxConstraints = false;
 
     size_t phase;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (phase = 0; phase < 2; phase ++)
     {
         widthLeft = tableWidthMinusPadding;
         stretchColCount = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             // Subtract min width from width left, then
@@ -10549,6 +10881,11 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // up and size columns equally to avoid rendering problems.
     if (colShare < 0)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             int w = colWidths[i];
@@ -10580,6 +10917,11 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
             shareEqually = true;
         }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             colWidths[i] = 0;
@@ -10589,6 +10931,11 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
     // We have to adjust the columns if either we need to shrink the
     // table to fit the parent/table width, or we explicitly set the
     // table width and need to stretch out the table.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_colCount; i++)
     {
         if (colWidths[i] <= 0) // absolute or proportional width has not been specified
@@ -10641,6 +10988,11 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
     int maxRight = 0;
     int y = availableSpace.y;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (j = 0; j < m_rowCount; j++)
     {
         int x = availableSpace.x; // TODO: take into account centering etc.
@@ -10651,6 +11003,11 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
         actualWidths.Add(0, m_colCount);
 
         wxTextAttrDimensionConverter converter(dc, scale);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextCell* cell = GetCell(j, i);
@@ -10676,6 +11033,11 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
                         // Calculate the size of this spanning cell from its constituent columns
                         int xx = 0;
                         int spans = wxMin(colSpan, m_colCount - i);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         for (k = i; k < (i+spans); k++)
                         {
                             if (k != i)
@@ -10709,6 +11071,11 @@ bool wxRichTextTable::Layout(wxDC& dc, wxRichTextDrawingContext& context, const 
 
         maxCellHeight = wxMax(maxCellHeight, maxSpecifiedCellHeight);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < m_colCount; i++)
         {
             wxRichTextCell* cell = GetCell(j, i);
@@ -10825,8 +11192,18 @@ void wxRichTextTable::CalculateRange(long start, long& end)
     }
 
     int i, j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_rowCount; i++)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (j = 0; j < m_colCount; j++)
         {
             wxRichTextCell* child = GetCell(i, j);
@@ -10885,9 +11262,19 @@ void wxRichTextTable::Copy(const wxRichTextTable& obj)
     m_cells.Add(wxRichTextObjectPtrArray(), m_rowCount);
 
     int i, j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_rowCount; i++)
     {
         wxRichTextObjectPtrArray& colArray = m_cells[i];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (j = 0; j < m_colCount; j++)
         {
             wxRichTextCell* cell = wxDynamicCast(obj.GetCell(i, j)->Clone(), wxRichTextCell);
@@ -10919,9 +11306,19 @@ bool wxRichTextTable::CreateTable(int rows, int cols)
     m_cells.Add(wxRichTextObjectPtrArray(), rows);
 
     int i, j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < rows; i++)
     {
         wxRichTextObjectPtrArray& colArray = m_cells[i];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (j = 0; j < cols; j++)
         {
             wxRichTextCell* cell = new wxRichTextCell;
@@ -11019,8 +11416,18 @@ wxRichTextSelection wxRichTextTable::GetSelection(long start, long end) const
     }
 
     int i, j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = topRow; i <= bottomRow; i++)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (j = leftCol; j <= rightCol; j++)
         {
             wxRichTextCell* cell = GetCell(i, j);
@@ -11066,8 +11473,18 @@ wxPosition wxRichTextTable::GetFocusedCell() const
     wxPosition position(-1, -1);
     const wxRichTextObject* focus = GetBuffer()->GetRichTextCtrl()->GetFocusObject();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int row = 0; row < GetRowCount(); ++row)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int col = 0; col < GetColumnCount(); ++col)
         {
             if (GetCell(row, col) == focus)
@@ -11084,8 +11501,18 @@ wxPosition wxRichTextTable::GetFocusedCell() const
 
 int wxRichTextTable::HitTest(wxDC& dc, wxRichTextDrawingContext& context, const wxPoint& pt, long& textPosition, wxRichTextObject** obj, wxRichTextObject** contextObj, int flags)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int row = 0; row < GetRowCount(); ++row)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int col = 0; col < GetColumnCount(); ++col)
         {
             wxRichTextCell* cell = GetCell(row, col);
@@ -11123,9 +11550,19 @@ bool wxRichTextTable::DeleteRows(int startRow, int noRows)
     }
 
     int i, j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = startRow; i < (startRow+noRows); i++)
     {
         wxRichTextObjectPtrArray& colArray = m_cells[startRow];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (j = 0; j < (int) colArray.GetCount(); j++)
         {
             wxRichTextObject* cell = colArray[j];
@@ -11175,9 +11612,19 @@ bool wxRichTextTable::DeleteColumns(int startCol, int noCols)
     bool deleteRows = (noCols == m_colCount);
 
     int i, j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_rowCount; i++)
     {
         wxRichTextObjectPtrArray& colArray = m_cells[deleteRows ? 0 : i];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (j = 0; j < noCols; j++) 
         {
             wxRichTextObject* cell = colArray[startCol];
@@ -11228,6 +11675,11 @@ bool wxRichTextTable::AddRows(int startRow, int noRows, const wxRichTextAttr& at
         cellattr.SetTextColour(buffer->GetBasicStyle().GetTextColour());
 
     int i, j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < noRows; i++)
     {
         int idx;
@@ -11243,6 +11695,11 @@ bool wxRichTextTable::AddRows(int startRow, int noRows, const wxRichTextAttr& at
         }
 
         wxRichTextObjectPtrArray& colArray = m_cells[idx];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (j = 0; j < m_colCount; j++)
         {
             wxRichTextCell* cell = new wxRichTextCell;
@@ -11291,9 +11748,19 @@ bool wxRichTextTable::AddColumns(int startCol, int noCols, const wxRichTextAttr&
         cellattr.SetTextColour(buffer->GetBasicStyle().GetTextColour());
 
     int i, j;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_rowCount; i++)
     {
         wxRichTextObjectPtrArray& colArray = m_cells[i];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (j = 0; j < noCols; j++)
         {
             wxRichTextCell* cell = new wxRichTextCell;
@@ -11353,8 +11820,18 @@ bool wxRichTextTableBlock::ComputeBlockForSelection(wxRichTextTable* table, wxRi
         wxRichTextTableBlock selBlock(-1, -1, -1, -1);
         wxRichTextRangeArray ranges = selection.GetRanges();
         int row, col;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (row = 0; row < table->GetRowCount(); row++)
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (col = 0; col < table->GetColumnCount(); col++)
             {
                 if (selection.WithinSelection(table->GetCell(row, col)->GetRange().GetStart()))
@@ -11506,6 +11983,11 @@ void wxRichTextCommand::AddAction(wxRichTextAction* action)
 
 bool wxRichTextCommand::Do()
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (wxList::compatibility_iterator node = m_actions.GetFirst(); node; node = node->GetNext())
     {
         wxRichTextAction* action = (wxRichTextAction*) node->GetData();
@@ -11517,6 +11999,11 @@ bool wxRichTextCommand::Do()
 
 bool wxRichTextCommand::Undo()
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (wxList::compatibility_iterator node = m_actions.GetLast(); node; node = node->GetPrevious())
     {
         wxRichTextAction* action = (wxRichTextAction*) node->GetData();
@@ -12114,6 +12601,11 @@ void wxRichTextAction::UpdateAppearance(long caretPosition, bool sendUpdateEvent
                         else
                         {
                             // search for this line being at the same position as before
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                             for (i = 0; i < optimizationLineCharPositions->GetCount(); i++)
                             {
                                 if (((*optimizationLineCharPositions)[i] + positionOffset == range.GetStart()) &&
@@ -12682,6 +13174,11 @@ bool wxRichTextTabsEq(const wxArrayInt& tabs1, const wxArrayInt& tabs2)
         return false;
 
     size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < tabs1.GetCount(); i++)
     {
         if (tabs1[i] != tabs2[i])
@@ -13009,6 +13506,11 @@ void wxRichTextImageBlock::Copy(const wxRichTextImageBlock& block)
 
     m_data = new unsigned char[m_dataSize];
     unsigned int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_dataSize; i++)
         m_data[i] = block.m_data[i];
 }
@@ -13070,6 +13572,11 @@ bool wxRichTextImageBlock::WriteHex(wxOutputStream& stream)
         }
 
         char* b = buf;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (i = 0; i < (n/2); i++)
         {
             wxDecToHex(m_data[j], b, b+1);
@@ -13097,6 +13604,11 @@ bool wxRichTextImageBlock::ReadHex(wxInputStream& stream, int length, wxBitmapTy
 
     m_data = new unsigned char[dataSize];
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < dataSize; i ++)
     {
         str[0] = (char)stream.GetC();
@@ -14863,6 +15375,11 @@ bool wxRichTextProperties::operator==(const wxRichTextProperties& props) const
         return false;
 
     size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_properties.GetCount(); i++)
     {
         const wxVariant& var1 = m_properties[i];
@@ -14881,6 +15398,11 @@ wxArrayString wxRichTextProperties::GetPropertyNames() const
 {
     wxArrayString arr;
     size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_properties.GetCount(); i++)
     {
         arr.Add(m_properties[i].GetName());
@@ -14891,6 +15413,11 @@ wxArrayString wxRichTextProperties::GetPropertyNames() const
 int wxRichTextProperties::Find(const wxString& name) const
 {
     size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_properties.GetCount(); i++)
     {
         if (m_properties[i].GetName() == name)
@@ -15002,6 +15529,11 @@ void wxRichTextProperties::SetProperty(const wxString& name, bool value)
 void wxRichTextProperties::RemoveProperties(const wxRichTextProperties& properties)
 {
     size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < properties.GetCount(); i++)
     {
         wxString name = properties.GetProperties()[i].GetName();
@@ -15013,6 +15545,11 @@ void wxRichTextProperties::RemoveProperties(const wxRichTextProperties& properti
 void wxRichTextProperties::MergeProperties(const wxRichTextProperties& properties)
 {
     size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < properties.GetCount(); i++)
     {
         SetProperty(properties.GetProperties()[i]);
@@ -15079,6 +15616,11 @@ bool wxRichTextSelection::operator==(const wxRichTextSelection& sel) const
     if (m_ranges.GetCount() != sel.m_ranges.GetCount())
         return false;
     size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < m_ranges.GetCount(); i++)
         if (!(m_ranges[i] == sel.m_ranges[i]))
             return false;
@@ -15143,6 +15685,11 @@ bool wxRichTextSelection::WithinSelection(long pos, wxRichTextObject* obj) const
 bool wxRichTextSelection::WithinSelection(long pos, const wxRichTextRangeArray& ranges)
 {
     size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < ranges.GetCount(); i++)
     {
         const wxRichTextRange& range = ranges[i];
@@ -15156,6 +15703,11 @@ bool wxRichTextSelection::WithinSelection(long pos, const wxRichTextRangeArray& 
 bool wxRichTextSelection::WithinSelection(const wxRichTextRange& range, const wxRichTextRangeArray& ranges)
 {
     size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < ranges.GetCount(); i++)
     {
         const wxRichTextRange& eachRange = ranges[i];
@@ -15388,6 +15940,11 @@ wxRichTextFieldType *wxRichTextBuffer::FindFieldType(const wxString& name)
 void wxRichTextBuffer::CleanUpFieldTypes()
 {
     wxRichTextFieldTypeHashMap::iterator it;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for( it = sm_fieldTypes.begin(); it != sm_fieldTypes.end(); ++it )
     {
         wxRichTextFieldType* fieldType = it->second;

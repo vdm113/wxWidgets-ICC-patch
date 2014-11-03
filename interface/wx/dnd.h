@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        dnd.h
 // Purpose:     interface of wxDropSource and wx*DropTarget
@@ -361,6 +368,11 @@ public:
 
     /**
         See wxDropTarget::OnDrop(). This function is implemented appropriately
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for text, and calls OnDropText().
     */
     virtual bool OnDrop(wxCoord x, wxCoord y);
@@ -402,6 +414,11 @@ public:
 
     /**
         See wxDropTarget::OnDrop(). This function is implemented appropriately
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for files, and calls OnDropFiles().
     */
     virtual bool OnDrop(wxCoord x, wxCoord y);

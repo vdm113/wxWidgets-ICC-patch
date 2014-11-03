@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/listbox.cpp
 // Purpose:
@@ -247,6 +254,11 @@ gtk_listbox_button_press_callback( GtkWidget *widget,
             listbox->m_blockEvent = true;
 
             int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = 0; i < (int)listbox->GetCount(); i++)
                 if (i != sel)
                     gtk_list_unselect_item( GTK_LIST(listbox->m_list), i );
@@ -440,6 +452,11 @@ gtk_listbox_realized_callback( GtkWidget *WXUNUSED(widget), wxListBox *win )
         wxapp_install_idle_handler();
 
     GList *child = win->m_list->children;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (child = win->m_list->children; child != NULL; child = child->next)
         gtk_widget_show( GTK_WIDGET(child->data) );
 
@@ -591,6 +608,11 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter& items,
 
     const unsigned numItems = items.GetCount();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( unsigned int n = 0; n < numItems; ++n, ++pos )
     {
         const wxString& item = items[n];
@@ -875,6 +897,11 @@ int wxListBox::GetSelections( wxArrayInt& aSelections ) const
     // get the number of selected items first
     GList *child = m_list->children;
     int count = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (child = m_list->children; child != NULL; child = child->next)
     {
         if (GTK_WIDGET(child->data)->state == GTK_STATE_SELECTED)
@@ -888,6 +915,11 @@ int wxListBox::GetSelections( wxArrayInt& aSelections ) const
         // now fill the list
         aSelections.Alloc(count); // optimization attempt
         int i = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (child = m_list->children; child != NULL; child = child->next, i++)
         {
             if (GTK_WIDGET(child->data)->state == GTK_STATE_SELECTED)
@@ -1084,6 +1116,11 @@ wxSize wxListBox::DoGetBestSize() const
     int wLine;
 
     // Find the widest line
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for(unsigned int i = 0; i < GetCount(); i++) {
         wxString str(GetString(i));
         GetTextExtent(str, &wLine, NULL);

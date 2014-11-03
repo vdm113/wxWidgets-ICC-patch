@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        interface/wx/treelist.h
 // Purpose:     wxTreeListCtrl class documentation
@@ -101,6 +108,11 @@ public:
         The comparison function should return negative, null or positive value
         depending on whether the first item is less than, equal to or greater
         than the second one. The items should be compared using their values
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for the given column.
 
         @param treelist
@@ -431,6 +443,11 @@ public:
         must always be specified, the rest is optional.
 
         Each item can have two images: one used for closed state and another
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for opened one. Only the first one is ever used for the items that
         don't have children. And both are not set by default.
 
@@ -550,6 +567,11 @@ public:
 
         The iteration stops when this function returns an invalid item, i.e.
         @code
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( wxTreeListItem item = tree->GetFirstItem();
                   item.IsOk();
                   item = tree->GetNextItem(item) )

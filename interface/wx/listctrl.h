@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/listctrl.h
 // Purpose:     interface of wxListCtrl
@@ -689,6 +696,11 @@ public:
 
         @code
         long item = -1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( ;; )
         {
             item = listctrl->GetNextItem(item,
@@ -735,6 +747,11 @@ public:
         This method is only meaningful when the wxListCtrl is in the report mode.
         If @a subItem parameter is equal to the special value
         @c wxLIST_GETSUBITEMRECT_WHOLEITEM the return value is the same as
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for GetItemRect().
 
         @a code can be one of @c wxLIST_RECT_BOUNDS, @c wxLIST_RECT_ICON or
@@ -981,6 +998,11 @@ public:
         header (Win32) or 80 pixels (other platforms).
 
         In small or normal icon view, @a col must be -1, and the column width is set
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for all columns.
     */
     bool SetColumnWidth(int col, int width);
@@ -1009,6 +1031,11 @@ public:
         Example of using it:
         @code
             wxListCtrl *list = new wxListCtrl(...);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( int i = 0; i < 3; i++ )
                 list->InsertColumn(i, wxString::Format("Column %d", i));
 
@@ -1026,6 +1053,11 @@ public:
 
         Please notice that this function makes sense for report view only and
         currently is only implemented in wxMSW port. To avoid explicit tests
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for @c __WXMSW__ in your code, please use @c wxHAS_LISTCTRL_COLUMN_ORDER
         as this will allow it to start working under the other platforms when
         support for the column reordering is added there.

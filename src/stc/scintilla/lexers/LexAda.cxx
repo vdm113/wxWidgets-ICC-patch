@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexAda.cxx
  ** Lexer for Ada 95
@@ -329,6 +336,11 @@ static bool IsValidIdentifier(const std::string& identifier) {
 	}
 
 	// Check for only valid characters and no double underscores
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (size_t i = 0; i < length; i++) {
 		if (!IsWordCharacter(identifier[i]) ||
 		        (identifier[i] == '_' && lastWasUnderscore)) {
@@ -360,6 +372,11 @@ static bool IsValidNumber(const std::string& number) {
 	if (hashPos == std::string::npos) {
 		bool canBeSpecial = false;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (; i < length; i++) {
 			if (number[i] == '_') {
 				if (!canBeSpecial) {
@@ -387,6 +404,11 @@ static bool IsValidNumber(const std::string& number) {
 		int base = 0;
 
 		// Parse base
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (; i < length; i++) {
 			int ch = number[i];
 			if (ch == '_') {
@@ -415,6 +437,11 @@ static bool IsValidNumber(const std::string& number) {
 		// Parse number
 		canBeSpecial = false;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (; i < length; i++) {
 			int ch = tolower(number[i]);
 
@@ -485,6 +512,11 @@ static bool IsValidNumber(const std::string& number) {
 
 		bool canBeSpecial = false;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (; i < length; i++) {
 			if (number[i] == '_') {
 				if (!canBeSpecial) {

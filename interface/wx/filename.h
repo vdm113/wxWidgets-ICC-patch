@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        filename.h
 // Purpose:     interface of wxFileName
@@ -228,6 +235,11 @@ wxULongLong wxInvalidSize;
     Before doing other tests, you should use wxFileName::IsOk() to verify that
     the filename is well defined. If it is, FileExists() can be used to test whether
     a file with such name exists and wxFileName::DirExists() can be used to test
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for directory existence.
     File names should be compared using the wxFileName::SameAs() method or
     wxFileName::operator==(). For testing basic access modes, you can use:
@@ -614,6 +626,11 @@ public:
 
     /**
         Returns the characters that can't be used in filenames and directory names
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for the specified format.
     */
     static wxString GetForbiddenChars(wxPathFormat format = wxPATH_NATIVE);

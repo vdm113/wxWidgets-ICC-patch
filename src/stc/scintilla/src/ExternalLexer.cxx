@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file ExternalLexer.cxx
  ** Support external lexers in DLLs.
@@ -68,6 +75,11 @@ LexerLibrary::LexerLibrary(const char *ModuleName) {
 
 			int nl = GetLexerCount();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (int i = 0; i < nl; i++) {
 				// Assign a buffer for the lexer name.
 				char lexname[100] = "";
@@ -150,6 +162,11 @@ void LexerManager::Load(const char *path) {
 }
 
 void LexerManager::LoadLexerLibrary(const char *module) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (LexerLibrary *ll = first; ll; ll= ll->next) {
 		if (strcmp(ll->m_sModuleName.c_str(), module) == 0)
 			return;

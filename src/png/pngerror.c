@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /* pngerror.c - stub functions for i/o and memory allocation
  *
@@ -50,6 +57,11 @@ png_error,(png_const_structrp png_ptr, png_const_charp error_message),
          {
             /* Strip "#nnnn " from beginning of error message. */
             int offset;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (offset = 1; offset<15; offset++)
                if (error_message[offset] == ' ')
                   break;
@@ -57,6 +69,11 @@ png_error,(png_const_structrp png_ptr, png_const_charp error_message),
             if (png_ptr->flags&PNG_FLAG_STRIP_ERROR_TEXT)
             {
                int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                for (i = 0; i < offset - 1; i++)
                   msg[i] = error_message[i + 1];
                msg[i - 1] = '\0';
@@ -225,6 +242,11 @@ png_warning(png_const_structrp png_ptr, png_const_charp warning_message)
       {
          if (*warning_message == PNG_LITERAL_SHARP)
          {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (offset = 1; offset < 15; offset++)
                if (warning_message[offset] == ' ')
                   break;
@@ -697,6 +719,11 @@ png_default_error,(png_const_structrp png_ptr, png_const_charp error_message),
       /* Strip "#nnnn " from beginning of error message. */
       int offset;
       char error_number[16];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for (offset = 0; offset<15; offset++)
       {
          error_number[offset] = error_message[offset + 1];
@@ -759,6 +786,11 @@ png_default_warning(png_const_structrp png_ptr, png_const_charp warning_message)
    {
       int offset;
       char warning_number[16];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for (offset = 0; offset < 15; offset++)
       {
          warning_number[offset] = warning_message[offset + 1];

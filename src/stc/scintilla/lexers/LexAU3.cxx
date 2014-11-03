@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 // @file LexAU3.cxx
 // Lexer for AutoIt3  http://www.hiddensoft.com/autoit3
@@ -233,6 +240,11 @@ static void ColouriseAU3Doc(unsigned int startPos,
 	ni=0;
 	ci=0;
 	//$$$
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (; sc.More(); sc.Forward()) {
 		char s[100];
 		sc.GetCurrentLowered(s, sizeof(s));
@@ -720,6 +732,11 @@ static void FoldAU3Doc(unsigned int startPos, int length, int, WordList *[], Acc
 	char chNext = styler.SafeGetCharAt(startPos);
 	char chPrev = ' ';
 	//
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

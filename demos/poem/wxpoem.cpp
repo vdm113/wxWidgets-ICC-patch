@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wxpoem.cpp
 // Purpose:     A small C++ program which displays a random poem on
@@ -133,6 +140,11 @@ MainWindow::MainWindow(wxFrame *frame, wxWindowID id, const wxString& title,
 
 MainWindow::~MainWindow()
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int i=0;i<4;i++)
     {
         if(m_corners[i])
@@ -723,6 +735,11 @@ int LoadIndex(const wxChar *file_name)
 
     wxFscanf(index_file, wxT("%ld"), &nitems);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int i = 0; i < nitems; i++)
     {
         wxFscanf(index_file, wxT("%ld"), &data);
@@ -972,6 +989,11 @@ bool Compile(void)
 
     // Do rest
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do {
         ch = getc(file);
         if (ch == '#')
@@ -997,6 +1019,11 @@ bool Compile(void)
     }
 
     wxFprintf(file, wxT("%ld\n\n"), nitems);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (j = 0; j < nitems; j++)
         wxFprintf(file, wxT("%ld\n"), poem_index[j]);
 

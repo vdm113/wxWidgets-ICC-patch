@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        utils.h
 // Purpose:     interface of various utility classes and functions
@@ -117,6 +124,11 @@ public:
     @code
     wxBusyCursor wait;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (int i = 0; i < 100000; i++)
         DoACalculation();
     @endcode
@@ -549,6 +561,11 @@ bool wxLaunchDefaultBrowser(const wxString& url, int flags = 0);
     @param resourceType The type of the resource in usual Windows format, i.e.
         either a real string like "MYDATA" or an integer created by the
         standard Windows @c MAKEINTRESOURCE() macro, including any constants
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for the standard resources types like @c RT_RCDATA.
     @param module The @c HINSTANCE of the module to load the resources from.
         The current module is used by default.
@@ -583,6 +600,11 @@ wxLoadUserResource(const void **outData,
     @param resourceType The type of the resource in usual Windows format, i.e.
         either a real string like "MYDATA" or an integer created by the
         standard Windows @c MAKEINTRESOURCE() macro, including any constants
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for the standard resources types like @c RT_RCDATA.
     @param pLen Filled with the length of the returned buffer if it is
         non-@NULL. This parameter should be used if NUL characters can occur in
@@ -871,6 +893,11 @@ wxString wxGetOsDescription();
     @row3col{Windows 2000,              5, 0}
     @endDefList
     See the <a href="http://msdn.microsoft.com/en-us/library/ms724832(VS.85).aspx">MSDN</a>
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for more info about the values above.
 
     @see wxGetOsDescription(), wxPlatformInfo

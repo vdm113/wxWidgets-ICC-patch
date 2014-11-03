@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /* $Header: /cvs/maptools/cvsroot/libtiff/contrib/pds/tif_pdsdirread.c,v 1.4 2010-06-08 18:55:15 bfriesen Exp $ */
 
 /*
@@ -198,6 +205,11 @@ TIFFReadPrivateDataSubDirectory(TIFF* tif, toff_t pdir_offset,
 	 */
 	td = &tif->tif_dir;
 	
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (fip = field_info, dp = dir, n = dircount;
 	     n > 0; n--, dp++) {
 		if (tif->tif_flags & TIFF_SWAB) {
@@ -305,12 +317,22 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 		uint16 n;
 
 		/* calculate amount of space used by indirect values */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (dp = dir, n = dircount; n > 0; n--, dp++) {
 			uint32 cc = dp->tdir_count*TIFFDataWidth(dp->tdir_type);
 			if (cc > sizeof (uint32))
 				space += cc;
 		}
 		space = (filesize - space) / td->td_samplesperpixel;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (i = 0; i < td->td_nstrips; i++)
 			td->td_stripbytecount[i] = space;
 		/*
@@ -327,6 +349,11 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 	} else {
 		uint32 rowbytes = TIFFScanlineSize(tif);
 		uint32 rowsperstrip = td->td_imagelength / td->td_nstrips;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (i = 0; i < td->td_nstrips; i++)
 			td->td_stripbytecount[i] = rowbytes*rowsperstrip;
 	}
@@ -594,6 +621,11 @@ TIFFFetchRationalArray(TIFF* tif, TIFFDirEntry* dir, float* v)
 	if (l) {
 		if (TIFFFetchData(tif, dir, (char *)l)) {
 			uint32 i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (i = 0; i < dir->tdir_count; i++) {
 				ok = cvtRational(tif, dir,
 				    l[2*i+0], l[2*i+1], &v[i]);
@@ -660,10 +692,20 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 			return (0);
 		if (dir->tdir_type == TIFF_BYTE) {
 			uint16* vp = (uint16*) v;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
 		} else {
 			int16* vp = (int16*) v;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
 		}
@@ -674,10 +716,20 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 			return (0);
 		if (dir->tdir_type == TIFF_SHORT) {
 			uint16* vp = (uint16*) v;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
 		} else {
 			int16* vp = (int16*) v;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
 		}
@@ -688,10 +740,20 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 			return (0);
 		if (dir->tdir_type == TIFF_LONG) {
 			uint32* vp = (uint32*) v;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
 		} else {
 			int32* vp = (int32*) v;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
 		}
@@ -701,6 +763,11 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 		if (!TIFFFetchRationalArray(tif, dir, (float*) v))
 			return (0);
 		{ float* vp = (float*) v;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		  for (i = dir->tdir_count-1; i >= 0; i--)
 			v[i] = vp[i];
 		}
@@ -709,6 +776,11 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 		if (!TIFFFetchFloatArray(tif, dir, (float*) v))
 			return (0);
 		{ float* vp = (float*) v;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		  for (i = dir->tdir_count-1; i >= 0; i--)
 			v[i] = vp[i];
 		}
@@ -895,6 +967,11 @@ TIFFFetchPerSampleShorts(TIFF* tif, TIFFDirEntry* dir, int* pl)
 			v = (uint16*) _TIFFmalloc(samples * sizeof (uint16));
 		if (TIFFFetchShortArray(tif, dir, v)) {
 			int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (i = 1; i < samples; i++)
 				if (v[i] != v[0]) {
 					TIFFErrorExt(tif->tif_clientdata, tif->tif_name,
@@ -931,6 +1008,11 @@ TIFFFetchPerSampleAnys(TIFF* tif, TIFFDirEntry* dir, double* pl)
 			v = (double*) _TIFFmalloc(samples * sizeof (double));
 		if (TIFFFetchAnyArray(tif, dir, v)) {
 			int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (i = 1; i < samples; i++)
 				if (v[i] != v[0]) {
 					TIFFErrorExt(tif->tif_clientdata, tif->tif_name,
@@ -1036,6 +1118,11 @@ TIFFFetchRefBlackWhite(TIFF* tif, TIFFDirEntry* dir)
 		    CheckMalloc(tif, dir->tdir_count * sizeof (float), mesg);
 		if (ok = (fp != NULL)) {
 			uint32 i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (i = 0; i < dir->tdir_count; i++)
 				fp[i] = (float)((uint32*) cp)[i];
 			ok = TIFFSetField(tif, dir->tdir_tag, fp);
@@ -1102,6 +1189,11 @@ ChopUpSingleUncompressedStrip(TIFF* tif)
 	 * new bytecounts and offsets that reflect
 	 * the broken-up format.
 	 */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (strip = 0; strip < nstrips; strip++) {
 		if (stripbytes > bytecount)
 			stripbytes = bytecount;
