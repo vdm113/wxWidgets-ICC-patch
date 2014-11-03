@@ -47,11 +47,10 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch)
 {
     static const char* line1="#if defined(__INTEL_COMPILER) && 1 // VDM auto patch";
     static const char* line1_disabled="#if defined(__INTEL_COMPILER) && 0 // VDM auto patch";
-    static const char* line2="#   pragma ivdep";
-    static const char* line3="#endif";
+    static const vector<const char*> line2={ "#   pragma ivdep", "#   pragma swp", "#   pragma unroll", "#endif" };
 
     static const char* line_prologue_token="/* token_VDM_prologue */";
-    static const char* line_prologue="#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)\n#elif !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP\n#endif";
+    static const char* line_prologue="#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)\n#elif !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP\n#endif";
 
     static const char* inline_pragma="VDM_MACRO_PRAGMA_IVDEP \\";
 
@@ -71,6 +70,11 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch)
 
     bool last_char_was_backslash=false;
     size_t ln=0;
+
+    const vector<pair<string,string> > strip={ { "/*", "*/" }, { "'", "'" }, { "\"", "\""} };
+
+    size_t do_cnt=0;
+    size_t do_braces=0;
 
     while(in && !feof(in)) {
 again:
@@ -143,27 +147,24 @@ again:
             changed=true;
         }
 
-        string line;
-        for(size_t i1=0; i1<strlen(buf); ++i1) {
-            if('('!=buf[i1] && '{'!=buf[i1]) {
-                if(' '!=buf[i1] && '\t'!=buf[i1])
-                    line.append(1,buf[i1]);
-            } else
-                break;
-        }
+        string line=buf;
 
-        while(line.length()>0 && line.length()-1!=0 && line[line.length()-1]==' ') {
-            line.erase(line.length()-1,1);
+        while(line.length()>0 && (' '==line[0] || '\t'==line[0] || '\r'==line[0] || '\n'==line[0])) {
+            line.erase(0,1);
         }
 
         if(line.rfind("//")!=string::npos) {
             line.erase(line.rfind("//"));
         }
 
-        {
+        if(line.rfind("\\\\")!=string::npos) {
+            line.erase(line.rfind("\\\\"));
+        }
+
+        for(auto& i1 : strip) {
             string::size_type startpos;
-            while((startpos=line.find("/*"))!=string::npos) {
-                const string::size_type endpos=line.find("*/");
+            while((startpos=line.find(i1.first))!=string::npos) {
+                const string::size_type endpos=line.find(i1.second);
                 if(endpos==string::npos) {
                     // multi-line comment, delete until the end
                     line.erase(startpos);
@@ -173,8 +174,31 @@ again:
             }
         }
 
-        while(line.length()>0 && (' '==line[0] || '\t'==line[0] || '\r'==line[0] || '\n'==line[0])) {
-            line.erase(line.length()-1,1);
+        bool end_do=false;
+
+        if(0!=do_braces) {
+            for(size_t i1=0; i1<line.length(); ++i1) {
+                if('{'==line[i1])
+                    ++do_braces;
+                if('}'==line[i1]) {
+                    if(--do_braces==0)
+                        end_do=true;
+                }
+            }
+        }
+
+        for(size_t i1=0; i1<line.length(); ++i1)
+
+        {
+            string line_new;
+            for(size_t i1=0; i1<line.length(); ++i1) {
+                if('('!=line[i1] && '{'!=line[i1] && ' '!=line[i1] && '\t'!=line[i1]) {
+                    line_new.append(1,line[i1]);
+                } else {
+                    break;
+                }
+            }
+            line=line_new;
         }
 
         bool reformat=false;
@@ -191,24 +215,41 @@ again:
 
         // while
         if(!line.compare("while")) {
-            reformat=true;
+            if(do_braces)
+
+            if(0==do_cnt || (do_cnt!=0 && do_cnt--==0))
+                reformat=true;
+
+#if 1 // ICC 14 bug workaround
+            string line_orig=buf;
+            char ch;
+            do {
+                ch=line_orig[line_orig.length()-1];
+                if(' '==ch || '\t'==ch)
+                    line_orig.erase(line_orig.length()-1);
+            } while(' '==ch || '\t'==ch);
+            if(';'==ch && !end_do)
+                reformat=false;
+#endif
         }
 
         // do
         if(!line.compare("do")) {
+            ++do_cnt;
             reformat=true;
         }
 
-        if(reformat && scrollback.size()>3) {
-            vector<string>::const_iterator i1=scrollback.end();
-            --i1;
-            if(
-                (
-                    (*(i1-1)).compare(line3)==0 &&
-                    (*(i1-2)).compare(line2)==0 &&
-                    ( (*(i1-3)).compare(line1)==0 || (*(i1-3)).compare(line1_disabled)==0 )
-                )
-            ) {
+        if(reformat && scrollback.size()>1+line2.size()) {
+            auto i1=scrollback.crbegin();
+            ++i1;
+            bool got=true;
+            for(int i2=line2.size()-1; i2>=0; --i2, ++i1) {
+                if((*i1).compare(line2[i2])!=0) {
+                    got=false;
+                    break;
+                }
+            }
+            if(got && ( (*i1).compare(line1)==0 || (*i1).compare(line1_disabled)==0 ) ) {
                 reformat=!do_patch;
             } else {
                 reformat=do_patch;
@@ -216,29 +257,24 @@ again:
         }
 
         if(reformat) {
-            vector<string>::reverse_iterator i1=scrollback.rbegin();
+            auto i1=scrollback.rbegin();
             if(i1!=scrollback.rend()) {
                 ++i1;
                 if(do_patch && !(*i1).compare(inline_pragma))
                     reformat=false;
             }
             int i3=0;
-            for(int i2=0; i2<3; ++i2) {
+            for(int i2=0; i2<line2.size()+1; ++i2) {
                 string ln=*i1;
                 ++i1;
                 while(ln.length()!=0 && ( ln[ln.length()-1]=='\r' || ln[ln.length()-1]=='\n') )
                     ln.erase(ln.length()-1,1);
-                const char* cmp;
-                switch(i2) {
-                    case 0:
-                        cmp=line3;
+                const char* cmp=line1;
+                for(int i4=line2.size()-1; i4>=0; --i4) {
+                    if(i2==i4) {
+                        cmp=line2[i4];
                         break;
-                    case 1:
-                        cmp=line2;
-                        break;
-                    case 2:
-                        cmp=line1;
-                        break;
+                    }
                 }
                 if(!ln.compare(cmp)) {
                     ++i3;
@@ -248,7 +284,7 @@ again:
                     break;
                 }
             }
-            if(3==i3) {
+            if(line2.size()+1==i3) {
                 reformat=!do_patch;
             }
 
@@ -261,7 +297,12 @@ again:
                         scrollback.push_back(tmp_buf);
                         scrollback.push_back(save);
                     } else {
-                        sprintf(tmp_buf,"%s\n%s\n%s",line1, line2, line3);
+                        sprintf(tmp_buf,"%s\n",line1);
+                        for(const auto& i4 : line2) {
+                            strcat(tmp_buf,i4);
+                            strcat(tmp_buf,"\n");
+                        }
+                        tmp_buf[strlen(tmp_buf)-1]='\0';
                         scrollback.pop_back();
                         scrollback.push_back(tmp_buf);
                         scrollback.push_back(save);
@@ -272,8 +313,8 @@ again:
                         scrollback.pop_back();
                         scrollback.push_back(save);
                     } else {
-                        scrollback.pop_back();
-                        scrollback.pop_back();
+                        for(size_t i4=0; i4<line2.size(); ++i4)
+                            scrollback.pop_back();
                         scrollback.pop_back();
                         scrollback.pop_back();
                         scrollback.push_back(save);
