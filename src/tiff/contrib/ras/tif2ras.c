@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 #ifndef lint
 #endif
 /*-
@@ -113,9 +106,6 @@ main(argc, argv)
     setbuf(stderr, NULL);
     pname = argv[0];
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (--argc) {
 	if ((++argv)[0][0] == '-')
 	    switch (argv[0][1]) {
@@ -200,9 +190,6 @@ main(argc, argv)
 	    if (Verbose)
 		fprintf(stderr, "%d graylevels (min=black), ", numcolors);
 	    Map = (u_char *) malloc(numcolors * sizeof(u_char));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	    for (i = 0; i < numcolors; i++)
 		Map[i] = (255 * i) / numcolors;
 	    Colormap.type = RMT_EQUAL_RGB;
@@ -213,9 +200,6 @@ main(argc, argv)
 	    if (Verbose)
 		fprintf(stderr, "%d graylevels (min=white), ", numcolors);
 	    Map = (u_char *) malloc(numcolors * sizeof(u_char));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	    for (i = 0; i < numcolors; i++)
 		Map[i] = 255 - ((255 * i) / numcolors);
 	    Colormap.type = RMT_EQUAL_RGB;
@@ -239,9 +223,6 @@ main(argc, argv)
 	    memset(blue, 0, sizeof(blue));
 	    TIFFGetField(tif, TIFFTAG_COLORMAP,
 		&redcolormap, &greencolormap, &bluecolormap);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	    for (i = 0; i < numcolors; i++) {
 		red[i] = (u_char) CVT(redcolormap[i]);
 		green[i] = (u_char) CVT(greencolormap[i]);
@@ -266,9 +247,6 @@ main(argc, argv)
     if (buf == NULL)
 	error("%s: can't allocate memory for scanline buffer...\n", NULL);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (row = 0; row < height; row++) {
 	if (TIFFReadScanline(tif, buf, row, 0) < 0)
 	    error("%s: bad data read on line: %d\n", row);
@@ -277,9 +255,6 @@ main(argc, argv)
 	switch (photometric) {
 	case PHOTOMETRIC_RGB:
 	    if (samplesperpixel == 4)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (col = 0; col < width; col++) {
 		    *outp++ = *inp++;	/* Blue */
 		    *outp++ = *inp++;	/* Green */
@@ -287,9 +262,6 @@ main(argc, argv)
 		    inp++;	/* skip alpha channel */
 		}
 	    else
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (col = 0; col < width; col++) {
 		    *outp++ = *inp++;	/* Blue */
 		    *outp++ = *inp++;	/* Green */
@@ -300,16 +272,10 @@ main(argc, argv)
 	case PHOTOMETRIC_MINISBLACK:
 	    switch (bitspersample) {
 	    case 1:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (col = 0; col < ((width + 7) / 8); col++)
 		    *outp++ = *inp++;
 		break;
 	    case 2:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (col = 0; col < ((width + 3) / 4); col++) {
 		    *outp++ = (*inp >> 6) & 3;
 		    *outp++ = (*inp >> 4) & 3;
@@ -318,18 +284,12 @@ main(argc, argv)
 		}
 		break;
 	    case 4:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (col = 0; col < width / 2; col++) {
 		    *outp++ = *inp >> 4;
 		    *outp++ = *inp++ & 0xf;
 		}
 		break;
 	    case 8:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (col = 0; col < width; col++)
 		    *outp++ = *inp++;
 		break;

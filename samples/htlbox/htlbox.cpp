@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        htmllbox.cpp
 // Purpose:     HtmlLbox wxWidgets sample
@@ -344,9 +337,6 @@ void MyFrame::CreateBox()
         // concrete control and doesn't support virtual mode, this we need
         // to add all of its items from the beginning
         wxArrayString arr;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (size_t n = 0; n < 1000; n++ )
         {
             wxColour clr((unsigned char)(abs((int)n - 192) % 256),
@@ -537,9 +527,6 @@ void MyFrame::OnLboxSelect(wxCommandEvent& event)
 
         bool first = true;
         unsigned long cookie;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( int item = m_hlbox->GetFirstSelected(cookie);
               item != wxNOT_FOUND;
               item = m_hlbox->GetNextSelected(cookie) )

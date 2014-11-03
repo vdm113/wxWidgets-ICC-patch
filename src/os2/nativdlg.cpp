@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/nativdlg.cpp
 // Purpose:     Native dialog loading code (part of wxWindow)
@@ -90,9 +83,6 @@ bool wxWindow::LoadNativeDialog (
     // Enumerate the children
     //
     hEnum = ::WinBeginEnumWindows(GetHwndOf(pParent));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ((hWndNext = ::WinGetNextWindow(hEnum)) != NULLHANDLE)
         pChild = CreateWindowFromHWND( this
                                       ,(WXHWND)hWndNext
@@ -148,9 +138,6 @@ wxWindow* wxWindow::GetWindowChild1 (
 
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (node)
     {
         wxWindow*                   pChild = node->GetData();

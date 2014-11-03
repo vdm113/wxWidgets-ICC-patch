@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        tests/benchmarks/strings.cpp
 // Purpose:     String-related benchmarks
@@ -49,9 +42,6 @@ BENCHMARK_FUNC(DummyTLS)
 {
     static int s_global = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int n = 0; n < NUM_ITER; n++ )
     {
         if ( n % 2 )
@@ -69,9 +59,6 @@ BENCHMARK_FUNC(CompilerTLS)
 {
     static wxTHREAD_SPECIFIC int s_global = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int n = 0; n < NUM_ITER; n++ )
     {
         if ( n % 2 )
@@ -112,9 +99,6 @@ BENCHMARK_FUNC(PosixTLS)
 {
     static PthreadKey s_key;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int n = 0; n < NUM_ITER; n++ )
     {
         if ( n % 2 )
@@ -155,9 +139,6 @@ BENCHMARK_FUNC(Win32TLS)
 {
     static TlsSlot s_slot;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int n = 0; n < NUM_ITER; n++ )
     {
         if ( n % 2 )
@@ -179,9 +160,6 @@ BENCHMARK_FUNC(BoostTLS)
     if ( !s_ptr.get() )
         s_ptr.reset(new int(0));
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int n = 0; n < NUM_ITER; n++ )
     {
         if ( n % 2 )
@@ -200,9 +178,6 @@ BENCHMARK_FUNC(wxTLS)
     static wxTLS_TYPE(int) s_globalVar;
     #define s_global wxTLS_VALUE(s_globalVar)
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int n = 0; n < NUM_ITER; n++ )
     {
         if ( n % 2 )

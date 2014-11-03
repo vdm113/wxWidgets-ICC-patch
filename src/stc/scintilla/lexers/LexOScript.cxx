@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexOScript.cxx
  ** Lexer for OScript sources; ocx files and/or OSpace dumps.
@@ -219,9 +212,6 @@ static void ColouriseOScriptDoc(unsigned int startPos, int length,
 	// by checking for the complementary #endif preprocessor directive.
 	bool endDocComment = false; 
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.atLineStart) {
@@ -387,9 +377,6 @@ static inline bool IsBlockComment(int style) {
 static bool IsLineComment(int line, Accessor &styler) {
 	int pos = styler.LineStart(line);
 	int eolPos = styler.LineStart(line + 1) - 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (int i = pos; i < eolPos; i++) {
 		char ch = styler[i];
 		char chNext = styler.SafeGetCharAt(i + 1);
@@ -411,9 +398,6 @@ static inline bool IsPreprocessor(int style) {
 static void GetRangeLowered(unsigned int start, unsigned int end,
 							Accessor &styler, char *s, unsigned int len) {
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while (i < end - start + 1 && i < len - 1) {
 		s[i] = static_cast<char>(tolower(styler[start + i]));
 		i++;
@@ -424,9 +408,6 @@ static void GetRangeLowered(unsigned int start, unsigned int end,
 static void GetForwardWordLowered(unsigned int start, Accessor &styler,
 								  char *s, unsigned int len) {
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while (i < len - 1 && IsAlpha(styler.SafeGetCharAt(start + i))) {
 		s[i] = static_cast<char>(tolower(styler.SafeGetCharAt(start + i)));
 		i++;
@@ -485,9 +466,6 @@ static void FoldOScriptDoc(unsigned int startPos, int length, int initStyle,
 	int style = initStyle;
 	int lastStart = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

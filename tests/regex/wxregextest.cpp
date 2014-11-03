@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/regex/wxregex.cpp
 // Purpose:     Test wxRegEx
@@ -113,9 +106,6 @@ void RegExMatchTestCase::runTest()
                               wxT("\t"), wxTOKEN_RET_EMPTY);
         size_t i;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < re.GetMatchCount() && tkz.HasMoreTokens(); i++) {
             wxString expected = tkz.GetNextToken();
             wxString result = re.GetMatch(m_text, i);
@@ -319,9 +309,6 @@ wxString wxRegExTestSuite::FlagStr(int flags)
     if (!flags)
         return str;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (int i = 0; (unsigned)flags >> i; i++) {
         switch (flags & (1 << i)) {
             case 0: break;

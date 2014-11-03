@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  * jfdctflt.c
  *
@@ -74,9 +67,6 @@ jpeg_fdct_float (FAST_FLOAT * data)
   /* Pass 1: process rows. */
 
   dataptr = data;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {
     tmp0 = dataptr[0] + dataptr[7];
     tmp7 = dataptr[0] - dataptr[7];
@@ -127,9 +117,6 @@ jpeg_fdct_float (FAST_FLOAT * data)
   /* Pass 2: process columns. */
 
   dataptr = data;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {
     tmp0 = dataptr[DCTSIZE*0] + dataptr[DCTSIZE*7];
     tmp7 = dataptr[DCTSIZE*0] - dataptr[DCTSIZE*7];

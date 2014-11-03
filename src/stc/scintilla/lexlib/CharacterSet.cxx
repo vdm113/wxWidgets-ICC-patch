@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file CharacterSet.cxx
  ** Simple case functions for ASCII.
@@ -30,9 +23,6 @@ namespace Scintilla {
 #endif
 
 int CompareCaseInsensitive(const char *a, const char *b) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while (*a && *b) {
 		if (*a != *b) {
 			char upperA = MakeUpperCase(*a);
@@ -48,9 +38,6 @@ int CompareCaseInsensitive(const char *a, const char *b) {
 }
 
 int CompareNCaseInsensitive(const char *a, const char *b, size_t len) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while (*a && *b && len) {
 		if (*a != *b) {
 			char upperA = MakeUpperCase(*a);

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/dfb/evtloop.cpp
 // Purpose:     wxEventLoop implementation
@@ -87,9 +80,6 @@ private:
 
 void wxDFBEventsHandler::OnReadWaiting()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ;; )
     {
         int size = read(m_fd,
@@ -217,9 +207,6 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
     // TODO: implement event filtering using the eventsToProcess mask
 
     // process all pending events:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( Pending() )
         Dispatch();
 
@@ -229,9 +216,6 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
     // it's necessary to call ProcessIdle() to update the frames sizes which
     // might have been changed (it also will update other things set from
     // OnUpdateUI() which is a nice (and desired) side effect)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( ProcessIdle() ) {}
 
     wxEventLoopBase::DoYieldFor(eventsToProcess);

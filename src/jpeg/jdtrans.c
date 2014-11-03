@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  * jdtrans.c
  *
@@ -58,9 +51,6 @@ jpeg_read_coefficients (j_decompress_ptr cinfo)
   }
   if (cinfo->global_state == DSTATE_RDCOEFS) {
     /* Absorb whole file into the coef buffer */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (;;) {
       int retcode;
       /* Call progress monitor hook if present */

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/formatconverter/formatconverter.cpp
 // Purpose:     Test wxFormatConverter
@@ -234,9 +227,6 @@ void FormatConverterTestCase::testLonger()
     size_t i, j;
 
     // test all possible pairs of the above patterns
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < WXSIZEOF(formats); i++) {
         if (formats[i].input) {
             wxString input(formats[i].input);
@@ -245,9 +235,6 @@ void FormatConverterTestCase::testLonger()
             wxString expectedWcharUnix(formats[i].expectedWcharUnix);
             wxString expectedWcharWindows(formats[i].expectedWcharWindows);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (j = 0; j < WXSIZEOF(formats); j++)
                 if (formats[j].input)
                     check(input + formats[j].input,
@@ -279,13 +266,7 @@ void FormatConverterTestCase::doTest(const char *input,
     wxString fmt(wxT("%"));
 
     // try the test for a variety of combinations of flag, width and precision
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (const wxChar **prec = precs; *prec; prec++)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (const wxChar **width = flag_width; *width; width++)
             check(fmt + *width + *prec + input,
                   fmt + *width + *prec + expectedScanf,

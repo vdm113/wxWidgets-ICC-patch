@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/palette.cpp
 // Purpose:     wxPalette
@@ -96,9 +89,6 @@ bool wxPalette::Create( int n,
     if (!pualTable)
         return false;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (int i = 0; i < n; i ++)
     {
         pualTable[i] = (PC_RESERVED * 16777216) + ((int)pRed[i] * 65536) + ((int)pGreen[i] * 256) + (int)pBlue[i];
@@ -165,9 +155,6 @@ int wxPalette::GetPixel( unsigned char cRed,
     // Now loop through and find the matching entry
     //
     ULONG i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < ulNumEntries; i++)
     {
         if (pualTable[i] == ulRGB)

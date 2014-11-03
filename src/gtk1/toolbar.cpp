@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/toolbar.cpp
 // Purpose:     GTK toolbar
@@ -405,9 +398,6 @@ bool wxToolBar::DoInsertTool(size_t pos, wxToolBarToolBase *toolBase)
                     if ( pos )
                         node = m_tools.Item(pos - 1);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                     while ( node )
                     {
                         wxToolBarTool *toolNext = (wxToolBarTool *)node->GetData();
@@ -627,9 +617,6 @@ void wxToolBar::OnInternalIdle()
         }
 
         wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while ( node )
         {
             wxToolBarTool *tool = (wxToolBarTool *)node->GetData();

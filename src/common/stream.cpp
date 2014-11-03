@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/stream.cpp
 // Purpose:     wxStream base classes
@@ -419,9 +412,6 @@ size_t wxStreamBuffer::Read(void *buffer, size_t size)
     {
         size_t orig_size = size;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while ( size > 0 )
         {
             size_t left = GetDataLeft();
@@ -465,9 +455,6 @@ size_t wxStreamBuffer::Read(wxStreamBuffer *dbuf)
     size_t nRead,
            total = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     do
     {
         nRead = Read(buf, WXSIZEOF(buf));
@@ -477,9 +464,6 @@ size_t wxStreamBuffer::Read(wxStreamBuffer *dbuf)
             total += nRead;
         }
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( nRead );
 
     return total;
@@ -510,9 +494,6 @@ size_t wxStreamBuffer::Write(const void *buffer, size_t size)
     {
         size_t orig_size = size;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while ( size > 0 )
         {
             size_t left = GetBytesLeft();
@@ -569,9 +550,6 @@ size_t wxStreamBuffer::Write(wxStreamBuffer *sbuf)
     size_t nWrite,
            total = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     do
     {
         size_t nRead = sbuf->Read(buf, WXSIZEOF(buf));
@@ -593,9 +571,6 @@ size_t wxStreamBuffer::Write(wxStreamBuffer *sbuf)
             nWrite = 0;
         }
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( nWrite == WXSIZEOF(buf) );
 
     return total;
@@ -872,9 +847,6 @@ wxInputStream& wxInputStream::Read(void *buf, size_t size)
     m_lastcount = 0;
 
     size_t read = GetWBack(buf, size);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ;; )
     {
         size -= read;
@@ -923,9 +895,6 @@ wxInputStream& wxInputStream::Read(wxOutputStream& stream_out)
     size_t lastcount = 0;
     char buf[BUF_TEMP_SIZE];
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ;; )
     {
         size_t bytes_read = Read(buf, WXSIZEOF(buf)).LastRead();
@@ -949,9 +918,6 @@ bool wxInputStream::ReadAll(void *buffer_, size_t size)
 
     size_t totalCount = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ;; )
     {
         const size_t lastCount = Read(buffer, size).LastRead();
@@ -1013,9 +979,6 @@ wxFileOffset wxInputStream::SeekI(wxFileOffset pos, wxSeekMode mode)
         size_t bytes_read;
 
         // read chunks of BUF_TEMP_SIZE bytes until we reach the new position
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( ; pos >= BUF_TEMP_SIZE; pos -= bytes_read)
         {
             bytes_read = Read(buf, WXSIZEOF(buf)).LastRead();
@@ -1114,9 +1077,6 @@ bool wxOutputStream::WriteAll(const void *buffer_, size_t size)
 
     size_t totalCount = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ;; )
     {
         const size_t lastCount = Write(buffer, size).LastWrite();
@@ -1304,9 +1264,6 @@ wxString wxFilterClassFactoryBase::PopExtension(const wxString& location) const
 wxString::size_type wxFilterClassFactoryBase::FindExtension(
         const wxString& location) const
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (const wxChar *const *p = GetProtocols(wxSTREAM_FILEEXT); *p; p++)
     {
         if ( location.EndsWith(*p) )
@@ -1322,9 +1279,6 @@ bool wxFilterClassFactoryBase::CanHandle(const wxString& protocol,
     if (type == wxSTREAM_FILEEXT)
         return FindExtension(protocol) != wxString::npos;
     else
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (const wxChar *const *p = GetProtocols(type); *p; p++)
             if (protocol == *p)
                 return true;
@@ -1346,9 +1300,6 @@ void wxFilterClassFactory::Remove()
     {
         wxFilterClassFactory **pp = &sm_first;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while (*pp != this)
             pp = &(*pp)->m_next;
 

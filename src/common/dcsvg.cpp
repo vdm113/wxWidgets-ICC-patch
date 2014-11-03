@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/svg.cpp
 // Purpose:     SVG sample
@@ -149,9 +142,6 @@ wxSVGBitmapEmbedHandler::ProcessBitmap(const wxBitmap& bmp,
 
     // Wrap Base64 encoded data on 76 columns boundary (same as Inkscape).
     const unsigned WRAP = 76;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t i = 0; i < data.size(); i += WRAP )
     {
         if (i < data.size() - WRAP)
@@ -183,16 +173,10 @@ wxSVGBitmapFileHandler::ProcessBitmap(const wxBitmap& bmp,
 
     // find a suitable file name
     wxString sPNG;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     do
     {
         sPNG = wxString::Format("image%d.png", sub_images++);
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (wxFile::Exists(sPNG));
 
     if ( !bmp.SaveFile(sPNG, wxBITMAP_TYPE_PNG) )
@@ -329,9 +313,6 @@ void wxSVGFileDCImpl::DoDrawLine (wxCoord x1, wxCoord y1, wxCoord x2, wxCoord y2
 
 void wxSVGFileDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoffset , wxCoord yoffset )
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int i = 1; i < n; i++ )
     {
         DoDrawLine ( points [i-1].x + xoffset, points [i-1].y + yoffset,
@@ -457,9 +438,6 @@ void wxSVGFileDCImpl::DoDrawPolygon(int n, const wxPoint points[],
 
     s += wxT("\" \npoints=\"");
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (int i = 0; i < n;  i++)
     {
         sTmp.Printf ( wxT("%d,%d"), points [i].x+xoffset, points[i].y+yoffset );
@@ -634,9 +612,6 @@ void wxSVGFileDCImpl::DestroyClippingRegion()
     svg << "</g>\n";
 
     // Close clipping group elements
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t i = 0; i < m_clipUniqueId; i++ )
     {
         svg << "</g>";

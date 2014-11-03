@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Copyright (c) 1990-2007, Scientific Toolworks, Inc.
 // Author: Jason Haslam
 // The License.txt file describes the conditions under which this software may be distributed.
@@ -37,9 +30,6 @@ static void GetRange(unsigned int start,
                      char *s,
                      unsigned int len) {
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while ((i < end - start + 1) && (i < len-1)) {
 		s[i] = static_cast<char>(tolower(styler[start + i]));
 		i++;
@@ -59,9 +49,6 @@ static void ColourisePlmDoc(unsigned int startPos,
 	styler.StartAt(startPos);
 	styler.StartSegment(startPos);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = styler.SafeGetCharAt(i);
 		char chNext = styler.SafeGetCharAt(i + 1);
@@ -156,9 +143,6 @@ static void FoldPlmDoc(unsigned int startPos,
 	int style = initStyle;
 	int startKeyword = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

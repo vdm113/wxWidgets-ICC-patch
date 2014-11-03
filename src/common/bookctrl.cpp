@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/bookctrl.cpp
 // Purpose:     wxBookCtrlBase implementation
@@ -147,9 +140,6 @@ wxSize wxBookCtrlBase::DoGetBestSize() const
     {
         // iterate over all pages, get the largest width and height
         const size_t nCount = m_pages.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t nPage = 0; nPage < nCount; nPage++ )
         {
             const wxWindow * const pPage = m_pages[nPage];
@@ -258,9 +248,6 @@ void wxBookCtrlBase::DoSize()
     // resize all pages to fit the new control size
     const wxRect pageRect = GetPageRect();
     const unsigned pagesCount = m_pages.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( unsigned int i = 0; i < pagesCount; ++i )
     {
         wxWindow * const page = m_pages[i];
@@ -324,9 +311,6 @@ void wxBookCtrlBase::OnHelp(wxHelpEvent& event)
     // if the event object == this because the book control can have other
     // subcontrols inside it (e.g. wxSpinButton in case of a notebook in wxUniv)
     wxWindow *source = wxStaticCast(event.GetEventObject(), wxWindow);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( source && source != this && source->GetParent() != this )
     {
         source = source->GetParent();
@@ -449,9 +433,6 @@ int wxBookCtrlBase::GetNextPage(bool forward) const
 int wxBookCtrlBase::FindPage(const wxWindow* page) const
 {
     const size_t nCount = m_pages.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t nPage = 0; nPage < nCount; nPage++ )
     {
         if ( m_pages[nPage] == page )

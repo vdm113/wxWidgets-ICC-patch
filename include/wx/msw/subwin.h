@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/subwin.h
 // Purpose:     helper for implementing the controls with subwindows
@@ -44,9 +37,6 @@ public:
     // non-virtual dtor, this class is not supposed to be used polymorphically
     ~wxSubwindows()
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < m_count; n++ )
         {
             if ( m_hwnds[n] )
@@ -86,9 +76,6 @@ public:
     // check if we have this window
     bool HasWindow(HWND hwnd)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < m_count; n++ )
         {
             if ( m_hwnds[n] == hwnd )
@@ -106,9 +93,6 @@ public:
     void Show(bool show)
     {
         int sw = show ? SW_SHOW : SW_HIDE;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < m_count; n++ )
         {
             if ( m_hwnds[n] )
@@ -119,9 +103,6 @@ public:
     // enable/disable everything
     void Enable(bool enable)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < m_count; n++ )
         {
             if ( m_hwnds[n] )
@@ -135,9 +116,6 @@ public:
         HFONT hfont = GetHfontOf(font);
         wxCHECK_RET( hfont, wxT("invalid font") );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < m_count; n++ )
         {
             if ( m_hwnds[n] )
@@ -154,9 +132,6 @@ public:
     wxRect GetBoundingBox() const
     {
         wxRect r;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t n = 0; n < m_count; n++ )
         {
             if ( m_hwnds[n] )

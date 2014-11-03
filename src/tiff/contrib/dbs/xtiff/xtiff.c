@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  *
  * xtiff - view a TIFF file in an X window
@@ -463,9 +456,6 @@ GetTIFFHeader()
 	greenMap = (uint16 *) malloc(colormapSize * sizeof(uint16));
 	blueMap = (uint16 *) malloc(colormapSize * sizeof(uint16));
 	MCHECK(redMap); MCHECK(greenMap); MCHECK(blueMap);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (i = 0; i < colormapSize; i++)
 	    dRed[i] = dGreen[i] = dBlue[i]
 		= (double) SCALE(i, colormapSize - 1);
@@ -477,17 +467,11 @@ GetTIFFHeader()
             greenMap = (uint16 *) malloc(colormapSize * sizeof(uint16));
             blueMap = (uint16 *) malloc(colormapSize * sizeof(uint16));
             MCHECK(redMap); MCHECK(greenMap); MCHECK(blueMap);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (i = 0; i < colormapSize; i++)
                 dRed[i] = dGreen[i] = dBlue[i]
                     = (double) SCALE(i, colormapSize - 1);
         } else {
             CheckAndCorrectColormap();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (i = 0; i < colormapSize; i++) {
                 dRed[i] = (double) redMap[i];
                 dGreen[i] = (double) greenMap[i];
@@ -500,9 +484,6 @@ GetTIFFHeader()
         greenMap = (uint16 *) malloc(colormapSize * sizeof(uint16));
         blueMap = (uint16 *) malloc(colormapSize * sizeof(uint16));
         MCHECK(redMap); MCHECK(greenMap); MCHECK(blueMap);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (i = 0; i < colormapSize; i++)
 	    dRed[i] = dGreen[i] = dBlue[i] = (double)
 		 SCALE(colormapSize-1-i, colormapSize-1);
@@ -512,9 +493,6 @@ GetTIFFHeader()
         greenMap = (uint16 *) malloc(colormapSize * sizeof(uint16));
         blueMap = (uint16 *) malloc(colormapSize * sizeof(uint16));
         MCHECK(redMap); MCHECK(greenMap); MCHECK(blueMap);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (i = 0; i < colormapSize; i++)
 	    dRed[i] = dGreen[i] = dBlue[i] = (double) SCALE(i, colormapSize-1);
         break;
@@ -549,16 +527,10 @@ CheckAndCorrectColormap()
 {
     register int i;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < colormapSize; i++)
         if ((redMap[i] > 255) || (greenMap[i] > 255) || (blueMap[i] > 255))
             return;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < colormapSize; i++) {
         redMap[i] = SCALE(redMap[i], 255);
         greenMap[i] = SCALE(greenMap[i], 255);
@@ -573,9 +545,6 @@ SimpleGammaCorrection()
     register int i;
     register double i_gamma = 1.0 / appData.gamma;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < colormapSize; i++) {
         if (((tfPhotometricInterpretation == PHOTOMETRIC_MINISWHITE)
             && (i == colormapSize - 1))
@@ -627,9 +596,6 @@ GetVisual()
         colors = (XColor *) malloc(3 * colormapSize * sizeof(XColor));
         MCHECK(colors);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < colormapSize; i++) {
             colors[i].pixel = (i << 16) + (i << 8) + i;
             colors[i].red = redMap[i];
@@ -665,9 +631,6 @@ GetVisual()
         colors = (XColor *) malloc(colormapSize * sizeof(XColor));
         MCHECK(colors);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (i = 0; i < colormapSize; i++) {
             colors[i].pixel = i;
             colors[i].red = redMap[i];
@@ -752,9 +715,6 @@ SearchVisualList(image_depth, visual_class, visual)
         exit(0);
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i = 0; i < n_visuals; vl++, i++) {
         if ((vl->class == visual_class) && (vl->depth >= image_depth)
             && (vl->visual->map_entries >= (1 << vl->depth))) {
@@ -808,15 +768,9 @@ GetTIFFImage()
         }
 
         if (tfPlanarConfiguration == PLANARCONFIG_CONTIG) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (i = 0; i < tfImageHeight; i++) {
                 if (TIFFReadScanline(tfFile, scan_line, i, 0) < 0)
                     break;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for (input_p = scan_line, j = 0; j < tfImageWidth; j++) {
                     *(output_p + red_shift) = *input_p++;
                     *(output_p + green_shift) = *input_p++;
@@ -827,23 +781,14 @@ GetTIFFImage()
                 }
             }
         } else {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (s = 0; s < tfSamplesPerPixel; s++) {
                 if (s == 3)             /* skip the fourth channel */
                     continue;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for (i = 0; i < tfImageHeight; i++) {
                     if (TIFFReadScanline(tfFile, scan_line, i, s) < 0)
                         break;
                     input_p = scan_line;
                     output_p = imageMemory + (i*tfImageWidth*4) + pixel_map[s];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                     for (j = 0; j < tfImageWidth; j++, output_p += 4)
                         *output_p = *input_p++;
                 }
@@ -855,9 +800,6 @@ GetTIFFImage()
                 malloc(tfBytesPerRow * tfImageHeight);
             MCHECK(imageMemory);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (i = 0; i < tfImageHeight; i++, output_p += tfBytesPerRow)
                 if (TIFFReadScanline(tfFile, output_p, i, 0) < 0)
                     break;
@@ -871,17 +813,11 @@ GetTIFFImage()
              * This is handled very simply by recalculating the start point at
              * each scanline and padding imageMemory a little at the end.
              */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (i = 0; i < tfImageHeight; i++) {
                 if (TIFFReadScanline(tfFile, scan_line, i, 0) < 0)
                     break;
                 output_p = &imageMemory[i * tfImageWidth];
                 input_p = scan_line;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for (j = 0; j < tfImageWidth; j += 2, input_p++) {
                     *output_p++ = (*input_p >> 4) + basePixel;
                     *output_p++ = (*input_p & 0xf) + basePixel;
@@ -892,17 +828,11 @@ GetTIFFImage()
                 malloc(tfBytesPerRow * 4 * tfImageHeight + 4);
             MCHECK(imageMemory);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (i = 0; i < tfImageHeight; i++) {
                 if (TIFFReadScanline(tfFile, scan_line, i, 0) < 0)
                     break;
                 output_p = &imageMemory[i * tfImageWidth];
                 input_p = scan_line;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for (j = 0; j < tfImageWidth; j += 4, input_p++) {
                     *output_p++ = (*input_p >> 6) + basePixel;
                     *output_p++ = ((*input_p >> 4) & 3) + basePixel;
@@ -915,17 +845,11 @@ GetTIFFImage()
                 malloc(tfBytesPerRow * 2 * tfImageHeight + 2);
             MCHECK(imageMemory);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (i = 0; i < tfImageHeight; i++) {
                 if (TIFFReadScanline(tfFile, scan_line, i, 0) < 0)
                     break;
                 output_p = &imageMemory[i * tfBytesPerRow * 2];
                 input_p = scan_line;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 for (j = 0; j < tfImageWidth; j += 4, input_p++) {
                     *output_p++ = (((*input_p>>6) << 4)
                         | ((*input_p >> 4) & 3)) + basePixel;

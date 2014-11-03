@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/infobar.cpp
 // Purpose:     wxInfoBar implementation for GTK
@@ -277,9 +270,6 @@ bool wxInfoBar::HasButtonId(wxWindowID btnid) const
 
     // as in the generic version, look for the button starting from the end
     const wxInfoBarGTKImpl::Buttons& buttons = m_impl->m_buttons;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxInfoBarGTKImpl::Buttons::const_reverse_iterator i = buttons.rbegin();
           i != buttons.rend();
           ++i )
@@ -301,9 +291,6 @@ void wxInfoBar::RemoveButton(wxWindowID btnid)
 
     // as in the generic version, look for the button starting from the end
     wxInfoBarGTKImpl::Buttons& buttons = m_impl->m_buttons;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxInfoBarGTKImpl::Buttons::reverse_iterator i = buttons.rbegin();
           i != buttons.rend();
           ++i )

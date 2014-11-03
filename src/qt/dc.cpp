@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/dc.cpp
 // Author:      Peter Most, Javier Torres, Mariano Reingart
@@ -754,9 +747,6 @@ void wxQtDCImpl::DoDrawLines(int n, const wxPoint points[],
     if (n > 0)
     {
         QPainterPath path(wxQtConvertPoint(points[0]));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (int i = 1; i < n; i++)
         {
             path.lineTo(wxQtConvertPoint(points[i]));
@@ -779,9 +769,6 @@ void wxQtDCImpl::DoDrawPolygon(int n, const wxPoint points[],
                        wxPolygonFillMode fillStyle )
 {
     QPolygon qtPoints;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (int i = 0; i < n; i++) {
         qtPoints << wxQtConvertPoint(points[i]);
     }

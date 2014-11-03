@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/mimetype.cpp
 // Purpose:     classes and functions to manage MIME types
@@ -105,9 +98,6 @@ wxString wxFileTypeImpl::GetCommand(const wxChar *WXUNUSED(verb)) const
             //     sure that we return a string with _exactly_ one '%s'!
             bool foundFilename = false;
             size_t len = command.Len();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( size_t n = 0; (n < len) && !foundFilename; n++ ) {
                 if ( command[n] == wxT('%') &&
                      (n + 1 < len) &&
@@ -373,9 +363,6 @@ wxMimeTypesManagerImpl::GetFileTypeFromExtension(const wxString& ext)
     // TODO linear search is potentially slow, perhaps we should use a sorted
     //      array?
     size_t count = m_fallbacks.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; n < count; n++ ) {
         if ( m_fallbacks[n].GetExtensions().Index(ext) != wxNOT_FOUND ) {
             wxFileType *fileType = new wxFileType;
@@ -423,9 +410,6 @@ wxMimeTypesManagerImpl::GetFileTypeFromMimeType(const wxString& mimeType)
     // TODO linear search is potentially slow, perhaps we should use a sorted
     //      array?
     size_t count = m_fallbacks.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t n = 0; n < count; n++ ) {
         if ( wxMimeTypesManager::IsOfType(mimeType,
                                           m_fallbacks[n].GetMimeType()) ) {
@@ -450,9 +434,6 @@ size_t wxMimeTypesManagerImpl::EnumAllFileTypes(wxArrayString& WXUNUSED(mimetype
     wxString type;
     long cookie;
     bool cont = key.GetFirstKey(type, cookie);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( cont )
     {
         mimetypes.Add(type);

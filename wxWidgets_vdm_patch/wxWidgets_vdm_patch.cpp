@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wxWidgets_vdm_patch/stdafx.cpp
 // Purpose:     patcher for ICL compiler
@@ -79,9 +72,6 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch)
     bool last_char_was_backslash=false;
     size_t ln=0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while(in && !feof(in)) {
 again:
         char buf[length+16];
@@ -95,9 +85,6 @@ again:
         buf[length]='\0';
         {
             size_t len=strlen(buf);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while(len>0 && ('\r'==buf[len-1] || '\n'==buf[len-1])) {
                 buf[len-1]='\0';
                 --len;
@@ -117,17 +104,11 @@ again:
 
             // seek for an empty line as ending of the prologue
             char buf2[length+16];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             do {
                 scrollback.clear();
                 scrollback.push_back(buf);
 
                 buf2[0]='x';
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 while('\r'!=buf2[0] && '\n'!=buf2[0]) {
                     buf2[0]='x';
                     fgets(buf2,length,in);
@@ -163,9 +144,6 @@ again:
         }
 
         string line;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for(size_t i1=0; i1<strlen(buf); ++i1) {
             if('('!=buf[i1] && '{'!=buf[i1]) {
                 if(' '!=buf[i1] && '\t'!=buf[i1])
@@ -174,9 +152,6 @@ again:
                 break;
         }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while(line.length()>0 && line.length()-1!=0 && line[line.length()-1]==' ') {
             line.erase(line.length()-1,1);
         }
@@ -187,9 +162,6 @@ again:
 
         {
             string::size_type startpos;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while((startpos=line.find("/*"))!=string::npos) {
                 const string::size_type endpos=line.find("*/");
                 if(endpos==string::npos) {
@@ -201,9 +173,6 @@ again:
             }
         }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         while(line.length()>0 && (' '==line[0] || '\t'==line[0] || '\r'==line[0] || '\n'==line[0])) {
             line.erase(line.length()-1,1);
         }
@@ -254,15 +223,9 @@ again:
                     reformat=false;
             }
             int i3=0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for(int i2=0; i2<3; ++i2) {
                 string ln=*i1;
                 ++i1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 while(ln.length()!=0 && ( ln[ln.length()-1]=='\r' || ln[ln.length()-1]=='\n') )
                     ln.erase(ln.length()-1,1);
                 const char* cmp;
@@ -340,9 +303,6 @@ again:
             return cnt;
         }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for(vector<string>::const_iterator i1=scrollback.begin(); i1!=scrollback.end(); ++i1) {
             fprintf(in,"%s\n",(*i1).c_str());
         }
@@ -374,9 +334,6 @@ unsigned directory_recurse(const string& base, const string& directory, const st
     if(!check_return_value(errno))
         return cnt;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for(;;) {
         string name=rc.name;
 
@@ -388,9 +345,6 @@ unsigned directory_recurse(const string& base, const string& directory, const st
             sub_dir=true;
         }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for(set<string>::iterator i1=ext.begin(); i1!=ext.end(); ++i1) {
             string::size_type pos=name.rfind(*i1);
             if(pos!=string::npos && pos==name.length()-(*i1).length()) {
@@ -439,9 +393,6 @@ int _tmain(int argc, _TCHAR* argv[])
         if(argc<2) {
             usage=true;
         } else {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for(size_t i1=1; i1<argc; ++i1) {
                 if(strcmp(argv[i1],"-p")==0) {
                     do_patch=true;

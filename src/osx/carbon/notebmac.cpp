@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/notebmac.cpp
 // Purpose:     implementation of wxNotebook
@@ -56,9 +49,6 @@ public:
         wxNotebookPage *page;
         ControlTabInfoRecV1 info;
         
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (size_t ii = 0; ii < countPages; ii++)
         {
             page = (wxNotebookPage*) notebook.GetPage(ii);

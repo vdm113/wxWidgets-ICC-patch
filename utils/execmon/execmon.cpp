@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        execmon.cpp
 // Purpose:     A simple execution monitor to test if wx samples crash at startup or not
@@ -117,9 +110,6 @@ bool TestExec(const wxVector<wxFileName>& programs, long timeout)
 
     // run all programs specified as command line parameters
     wxArrayLong procID;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i=0; i<programs.size(); i++)
     {
         MonitorData *dt = new MonitorData(programs[i].GetFullPath());
@@ -144,9 +134,6 @@ bool TestExec(const wxVector<wxFileName>& programs, long timeout)
 
     // check if all processes are still running
     bool allok = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (i=0; i<data.size(); i++)
     {
         MonitoredProcess& proc = data[i]->process;
@@ -222,9 +209,6 @@ int main(int argc, char **argv)
         {
             // check arguments
             wxVector<wxFileName> programs;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (unsigned int i=0; i<parser.GetParamCount(); i++)
             {
                 wxFileName fn(parser.GetParam(i));

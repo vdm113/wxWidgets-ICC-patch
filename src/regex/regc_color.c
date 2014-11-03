@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  * colorings of characters
  * This file is #included by regcomp.c.
@@ -78,22 +71,13 @@ struct colormap *cm;
 	cd->nchrs = CHR_MAX - CHR_MIN + 1;
 
 	/* upper levels of tree */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (t = &cm->tree[0], j = NBYTS-1; j > 0; t = nextt, j--) {
 		nextt = t + 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (i = BYTTAB-1; i >= 0; i--)
 			t->tptr[i] = nextt;
 	}
 	/* bottom level is solid white */
 	t = &cm->tree[NBYTS-1];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (i = BYTTAB-1; i >= 0; i--)
 		t->tcolor[i] = WHITE;
 	cd->block = t;
@@ -113,9 +97,6 @@ struct colormap *cm;
 	cm->magic = 0;
 	if (NBYTS > 1)
 		cmtreefree(cm, cm->tree, 0);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (i = 1; i <= cm->max; i++)		/* skip WHITE */
 		if (!UNUSEDCOLOR(&cm->cd[i])) {
 			cb = cm->cd[i].block;
@@ -142,9 +123,6 @@ int level;			/* level number (top == 0) of this block */
 	union tree *cb;
 
 	assert(level < NBYTS-1);	/* this level has pointers */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (i = BYTTAB-1; i >= 0; i--) {
 		t = tree->tptr[i];
 		assert(t != NULL);
@@ -188,9 +166,6 @@ pcolor co;
 		return COLORLESS;
 
 	t = cm->tree;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (level = 0, shift = BYTBITS * (NBYTS - 1); shift > 0;
 						level++, shift -= BYTBITS) {
 		b = (uc >> shift) & BYTMASK;
@@ -322,24 +297,15 @@ pcolor co;
 	}
 
 	if ((size_t)co == cm->max) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		while (cm->max > WHITE && UNUSEDCOLOR(&cm->cd[cm->max]))
 			cm->max--;
 		assert(cm->free >= 0);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		while ((size_t)cm->free > cm->max)
 			cm->free = cm->cd[cm->free].sub;
 		if (cm->free > 0) {
 			assert(cm->free < cm->max);
 			pco = cm->free;
 			nco = cm->cd[pco].sub;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			while (nco > 0)
 				if ((size_t)nco > cm->max) {
 					/* take this one out of freelist */
@@ -450,25 +416,16 @@ struct state *rp;
 	/* first, align "from" on a tree-block boundary */
 	uf = (uchr)from;
 	i = (int)( ((uf + BYTTAB-1) & (uchr)~BYTMASK) - uf );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (; from <= to && i > 0; i--, from++)
 		newarc(v->nfa, PLAIN, subcolor(v->cm, from), lp, rp);
 	if (from > to)			/* didn't reach a boundary */
 		return;
 
 	/* deal with whole blocks */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (; to - from >= BYTTAB; from += BYTTAB)
 		subblock(v, from, lp, rp);
 
 	/* clean up any remaining partial table */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (; from <= to; from++)
 		newarc(v->nfa, PLAIN, subcolor(v->cm, from), lp, rp);
 }
@@ -504,9 +461,6 @@ struct state *rp;
 	/* find its color block, making new pointer blocks as needed */
 	t = cm->tree;
 	fillt = NULL;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (level = 0, shift = BYTBITS * (NBYTS - 1); shift > 0;
 						level++, shift -= BYTBITS) {
 		b = (uc >> shift) & BYTMASK;
@@ -539,9 +493,6 @@ struct state *rp;
 				CERR(REG_ESPACE);
 				return;
 			}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			for (i = 0; i < BYTTAB; i++)
 				t->tcolor[i] = sco;
 			cm->cd[sco].block = t;
@@ -556,17 +507,11 @@ struct state *rp;
 
 	/* general case, a mixed block to be altered */
 	i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while (i < BYTTAB) {
 		co = t->tcolor[i];
 		sco = newsub(cm, co);
 		newarc(v->nfa, PLAIN, sco, lp, rp);
 		previ = i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		do {
 			t->tcolor[i++] = sco;
 		} while (i < BYTTAB && t->tcolor[i] == co);
@@ -592,9 +537,6 @@ struct colormap *cm;
 	color co;
 	color sco;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (cd = cm->cd, co = 0; cd < end; cd++, co++) {
 		sco = cd->sub;
 		if (UNUSEDCOLOR(cd) || sco == NOSUB) {
@@ -608,9 +550,6 @@ struct colormap *cm;
 			assert(scd->nchrs > 0);
 			assert(scd->sub == sco);
 			scd->sub = NOSUB;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			while ((a = cd->arcs) != NULL) {
 				assert(a->co == co);
 				/* uncolorchain(cm, a); */
@@ -628,9 +567,6 @@ struct colormap *cm;
 			assert(scd->nchrs > 0);
 			assert(scd->sub == sco);
 			scd->sub = NOSUB;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			for (a = cd->arcs; a != NULL; a = a->colorchain) {
 				assert(a->co == co);
 				newarc(nfa, a->type, sco, a->from, a->to);
@@ -670,9 +606,6 @@ struct arc *a;
 	if (aa == a)		/* easy case */
 		cd->arcs = a->colorchain;
 	else {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (; aa != NULL && aa->colorchain != a; aa = aa->colorchain)
 			continue;
 		assert(aa != NULL);
@@ -716,9 +649,6 @@ struct state *to;
 	struct colordesc *end = CDEND(cm);
 	color co;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (cd = cm->cd, co = 0; cd < end && !CISERR(); cd++, co++)
 		if (!UNUSEDCOLOR(cd) && cd->sub != co && co != but &&
 							!(cd->flags&PSEUDO))
@@ -745,9 +675,6 @@ struct state *to;
 	color co;
 
 	assert(of != from);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (cd = cm->cd, co = 0; cd < end && !CISERR(); cd++, co++)
 		if (!UNUSEDCOLOR(cd) && !(cd->flags&PSEUDO))
 			if (findarc(of, PLAIN, co) == NULL)
@@ -780,9 +707,6 @@ FILE *f;
 	if (NBYTS > 1)
 		fillcheck(cm, cm->tree, 0, f);
 	end = CDEND(cm);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (cd = cm->cd + 1, co = 1; cd < end; cd++, co++)	/* skip 0 */
 		if (!UNUSEDCOLOR(cd)) {
 			assert(cd->nchrs > 0);
@@ -793,9 +717,6 @@ FILE *f;
 				fprintf(f, "#%2ld%s(%2d): ", (long)co,
 							has, cd->nchrs);
 			/* it's hard to do this more efficiently */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			for (c = CHR_MIN; c < CHR_MAX; c++)
 				if (GETCOLOR(cm, c) == co)
 					dumpchr(c, f);
@@ -822,9 +743,6 @@ FILE *f;
 	union tree *fillt = &cm->tree[level+1];
 
 	assert(level < NBYTS-1);	/* this level has pointers */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (i = BYTTAB-1; i >= 0; i--) {
 		t = tree->tptr[i];
 		if (t == NULL)

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/listbox.cpp
 // Author:      Peter Most, Mariano Reingart
@@ -95,9 +88,6 @@ bool wxListBox::Create(wxWindow *parent, wxWindowID id,
     QListWidgetItem* item;
     m_qtWindow = m_qtListWidget = new wxQtListWidget( parent, this );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( n-- > 0 )
     {
         item = new QListWidgetItem();

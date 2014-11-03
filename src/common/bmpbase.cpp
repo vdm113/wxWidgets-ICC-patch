@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/bmpbase.cpp
 // Purpose:     wxBitmapBase
@@ -118,9 +111,6 @@ bool wxBitmapBase::RemoveHandler(const wxString& name)
 wxBitmapHandler *wxBitmapBase::FindHandler(const wxString& name)
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( node )
     {
         wxBitmapHandler *handler = (wxBitmapHandler *)node->GetData();
@@ -134,9 +124,6 @@ wxBitmapHandler *wxBitmapBase::FindHandler(const wxString& name)
 wxBitmapHandler *wxBitmapBase::FindHandler(const wxString& extension, wxBitmapType bitmapType)
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( node )
     {
         wxBitmapHandler *handler = (wxBitmapHandler *)node->GetData();
@@ -151,9 +138,6 @@ wxBitmapHandler *wxBitmapBase::FindHandler(const wxString& extension, wxBitmapTy
 wxBitmapHandler *wxBitmapBase::FindHandler(wxBitmapType bitmapType)
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( node )
     {
         wxBitmapHandler *handler = (wxBitmapHandler *)node->GetData();
@@ -167,9 +151,6 @@ wxBitmapHandler *wxBitmapBase::FindHandler(wxBitmapType bitmapType)
 void wxBitmapBase::CleanUpHandlers()
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( node )
     {
         wxBitmapHandler *handler = (wxBitmapHandler *)node->GetData();

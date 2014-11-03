@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/toolbar.cpp
 // Purpose:     wxToolBar
@@ -1176,9 +1169,6 @@ bool wxToolBar::Realize()
     // find the maximum tool width and height
     wxToolBarTool *tool;
     wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( node )
     {
         tool = (wxToolBarTool *) node->GetData();
@@ -1213,9 +1203,6 @@ bool wxToolBar::Realize()
 #endif
 
     node = m_tools.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( node )
     {
         tool = (wxToolBarTool*) node->GetData();
@@ -1269,9 +1256,6 @@ bool wxToolBar::Realize()
                         // if this is the first tool that gets newly inserted or repositioned
                         // first remove all 'old' tools from here to the right, because of this
                         // all following tools will have to be reinserted (insertAll).
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                         for ( wxToolBarToolsList::compatibility_iterator node2 = m_tools.GetLast();
                               node2 != node;
                               node2 = node2->GetPrevious() )
@@ -1364,9 +1348,6 @@ bool wxToolBar::Realize()
                     DoToggleTool( tool, true );
 
                 wxToolBarToolsList::compatibility_iterator  nodePrev = node->GetPrevious();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 while ( nodePrev )
                 {
                     wxToolBarToolBase   *toggleTool = nodePrev->GetData();
@@ -1524,9 +1505,6 @@ wxToolBarToolBase *wxToolBar::FindToolForPosition(wxCoord x, wxCoord y) const
 {
     wxToolBarTool *tool;
     wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( node )
     {
         tool = (wxToolBarTool *)node->GetData();
@@ -1736,9 +1714,6 @@ bool wxToolBar::DoDeleteTool(size_t WXUNUSED(pos), wxToolBarToolBase *toolbase)
 {
     wxToolBarTool* tool = static_cast< wxToolBarTool*>(toolbase );
     wxToolBarToolsList::compatibility_iterator node;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
         wxToolBarToolBase *tool2 = node->GetData();
@@ -1772,9 +1747,6 @@ bool wxToolBar::DoDeleteTool(size_t WXUNUSED(pos), wxToolBarToolBase *toolbase)
 
     // and finally reposition all the controls after this one
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( /* node -> first after deleted */; node; node = node->GetNext() )
     {
         wxToolBarTool *tool2 = (wxToolBarTool*) node->GetData();

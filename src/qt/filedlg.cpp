@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/filedlg.cpp
 // Author:      Sean D'Epagnier
@@ -54,9 +47,6 @@ public:
     {
         QStringList wildCards = wxQtConvertString(wildCard).split("|");
         QStringList filters;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for (int i=0; i<wildCards.size()-1; i+=2)
         {
             // discard everything after first (

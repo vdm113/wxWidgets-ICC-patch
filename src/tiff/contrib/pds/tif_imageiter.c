@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /* $Header: /cvs/maptools/cvsroot/libtiff/contrib/pds/tif_imageiter.c,v 1.4 2010-06-08 18:55:15 bfriesen Exp $ */
 
 /*
@@ -283,14 +276,8 @@ gtTileContig(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
     TIFFGetField(tif, TIFFTAG_TILEWIDTH, &tw);
     TIFFGetField(tif, TIFFTAG_TILELENGTH, &th);
     orientation = img->orientation;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (row = 0; row < h; row += th) {
 	nrow = (row + th > h ? h - row : th);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (col = 0; col < w; col += tw) {
 	    if (TIFFReadTile(tif, buf, col, row, 0, 0) < 0 && img->stoponerr)
 		break;
@@ -350,14 +337,8 @@ gtTileSeparate(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
     TIFFGetField(tif, TIFFTAG_TILEWIDTH, &tw);
     TIFFGetField(tif, TIFFTAG_TILELENGTH, &th);
     orientation = img->orientation;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (row = 0; row < h; row += th) {
 	nrow = (row + th > h ? h - row : th);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (col = 0; col < w; col += tw) {
 	    if (TIFFReadTile(tif, r, col, row,0,0) < 0 && img->stoponerr)
 		break;
@@ -412,9 +393,6 @@ gtStripContig(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
     TIFFGetFieldDefaulted(tif, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
     scanline = TIFFScanlineSize(tif);
     fromskew = (w < imagewidth ? imagewidth - w : 0);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (row = 0; row < h; row += rowsperstrip) {
 	nrow = (row + rowsperstrip > h ? h - row : rowsperstrip);
 	if (TIFFReadEncodedStrip(tif, TIFFComputeStrip(tif, row, 0),
@@ -463,9 +441,6 @@ gtStripSeparate(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
     TIFFGetFieldDefaulted(tif, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
     scanline = TIFFScanlineSize(tif);
     fromskew = (w < imagewidth ? imagewidth - w : 0);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (row = 0; row < h; row += rowsperstrip) {
 	nrow = (row + rowsperstrip > h ? h - row : rowsperstrip);
 	if (TIFFReadEncodedStrip(tif, TIFFComputeStrip(tif, row, 0),

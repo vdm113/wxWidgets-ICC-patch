@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/utils.cpp
 // Author:      Peter Most, Javier Torres, Mariano Reingart
@@ -149,9 +142,6 @@ wxWindow *wxGetActiveWindow()
     QWidget *w = QApplication::activeWindow();
 
     wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetLast();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (node)
     {
         wxWindow* win = node->GetData();

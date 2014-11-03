@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexLua.cxx
  ** Lexer for Lua language.
@@ -41,9 +34,6 @@ using namespace Scintilla;
 // The maximum number of '=' characters allowed is 254.
 static int LongDelimCheck(StyleContext &sc) {
 	int sep = 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	while (sc.GetRelative(sep) == '=' && sep < 0xFF)
 		sep++;
 	if (sc.GetRelative(sep) == sc.ch)
@@ -103,9 +93,6 @@ static void ColouriseLuaDoc(
 		// shbang line: # is a comment only if first char of the script
 		sc.SetState(SCE_LUA_COMMENTLINE);
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (; sc.More(); sc.Forward()) {
 		if (sc.atLineEnd) {
 			// Update the line state, so it can be seen by next line
@@ -146,18 +133,12 @@ static void ColouriseLuaDoc(
 			if (sc.ch == ':' && sc.chPrev == ':') {	// :: <label> :: forward scan
 				sc.Forward();
 				int ln = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 				while (IsASpaceOrTab(sc.GetRelative(ln)))	// skip over spaces/tabs
 					ln++;
 				int ws1 = ln;
 				if (setWordStart.Contains(sc.GetRelative(ln))) {
 					int c, i = 0;
 					char s[100];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 					while (setWord.Contains(c = sc.GetRelative(ln))) {	// get potential label
 						if (i < 90)
 							s[i++] = c;
@@ -165,9 +146,6 @@ static void ColouriseLuaDoc(
 					}
 					s[i] = '\0'; int lbl = ln;
 					if (!keywords.InList(s)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 						while (IsASpaceOrTab(sc.GetRelative(ln)))	// skip over spaces/tabs
 							ln++;
 						int ws2 = ln - lbl;
@@ -207,17 +185,11 @@ static void ColouriseLuaDoc(
 					sc.ChangeState(SCE_LUA_WORD);
 					if (strcmp(s, "goto") == 0) {	// goto <label> forward scan
 						sc.SetState(SCE_LUA_DEFAULT);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 						while (IsASpaceOrTab(sc.ch) && !sc.atLineEnd)
 							sc.Forward();
 						if (setWordStart.Contains(sc.ch)) {
 							sc.SetState(SCE_LUA_LABEL);
 							sc.Forward();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 							while (setWord.Contains(sc.ch))
 								sc.Forward();
 							sc.GetCurrent(s, sizeof(s));
@@ -386,9 +358,6 @@ static void FoldLuaDoc(unsigned int startPos, int length, int /* initStyle */, W
 	bool foldCompact = styler.GetPropertyInt("fold.compact", 1) != 0;
 	int styleNext = styler.StyleAt(startPos);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -398,9 +367,6 @@ static void FoldLuaDoc(unsigned int startPos, int length, int /* initStyle */, W
 		if (style == SCE_LUA_WORD) {
 			if (ch == 'i' || ch == 'd' || ch == 'f' || ch == 'e' || ch == 'r' || ch == 'u') {
 				char s[10] = "";
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 				for (unsigned int j = 0; j < 8; j++) {
 					if (!iswordchar(styler[i + j])) {
 						break;

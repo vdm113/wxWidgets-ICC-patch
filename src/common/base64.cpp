@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/base64.cpp
 // Purpose:     implementation of BASE64 encoding/decoding functions
@@ -37,9 +30,6 @@ wxBase64Encode(char *dst, size_t dstLen, const void *src_, size_t srcLen)
     size_t encLen = 0;
 
     // encode blocks of 3 bytes into 4 base64 characters
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ; srcLen >= 3; srcLen -= 3, src += 3 )
     {
         encLen += 4;
@@ -129,9 +119,6 @@ wxBase64Decode(void *dst_, size_t dstLen,
     bool end = false;                       // set when we find padding
     size_t padLen = 0;                      // length lost to padding
     const char *p;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( p = src; srcLen; p++, srcLen-- )
     {
         const unsigned char c = decode[static_cast<unsigned char>(*p)];

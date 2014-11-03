@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/choice.cpp
 // Purpose:     wxChoice
@@ -96,9 +89,6 @@ bool wxChoice::Create(
     SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
 
     // initialize the controls contents
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (int i = 0; i < n; i++)
     {
         Append(asChoices[i]);
@@ -148,9 +138,6 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter& items
     }
 
     const unsigned int count = items.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for( unsigned int i = 0; i < count; ++i )
     {
         nIndex = (int)::WinSendMsg( GetHwnd()
@@ -318,9 +305,6 @@ wxSize wxChoice::DoGetBestSize() const
 
     const unsigned int nItems = GetCount();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (unsigned int i = 0; i < nItems; i++)
     {
         wxString sStr(GetString(i));

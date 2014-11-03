@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  * lexical analyzer
  * This file is #included by regcomp.c.
@@ -139,9 +132,6 @@ struct vars *v;
 	if (HAVE(3) && NEXT2('(', '?') && iscalpha(*(v->now + 2))) {
 		NOTE(REG_UNONPOSIX);
 		v->now += 2;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (; !ATEOS() && iscalpha(*v->now); v->now++)
 			switch (*v->now) {
 			case CHR('b'):		/* BREs (but why???) */
@@ -557,9 +547,6 @@ struct vars *v;
 				RETV('(', 0);
 				break;
 			case CHR('#'):		/* comment */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 				while (!ATEOS() && *v->now != CHR(')'))
 					v->now++;
 				if (!ATEOS())
@@ -837,9 +824,6 @@ int maxlen;
 	CONST uchr ub = (uchr) base;
 
 	n = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (len = 0; len < maxlen && !ATEOS(); len++) {
 		c = *v->now++;
 		switch (c) {
@@ -999,21 +983,12 @@ struct vars *v;
 
 	assert(v->cflags&REG_EXPANDED);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (;;) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		while (!ATEOS() && iscspace(*v->now))
 			v->now++;
 		if (ATEOS() || *v->now != CHR('#'))
 			break;				/* NOTE BREAK OUT */
 		assert(NEXT1('#'));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		while (!ATEOS() && *v->now != CHR('\n'))
 			v->now++;
 		/* leave the newline to be picked up by the iscspace loop */

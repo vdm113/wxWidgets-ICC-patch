@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/univ/themes/mono.cpp
 // Purpose:     wxUniversal theme for monochrome displays
@@ -1070,14 +1063,8 @@ void wxMonoRenderer::DrawScrollbarThumb(wxDC& dc,
     // manually draw stipple pattern (wxDFB doesn't implement the wxSTIPPLE
     // brush style):
     dc.SetPen(m_penFg);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxCoord y = rect.GetTop(); y <= rect.GetBottom(); y++ )
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( wxCoord x = rect.GetLeft() + (y % 2); x <= rect.GetRight(); x+=2 )
         {
             dc.DrawPoint(x, y);

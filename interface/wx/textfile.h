@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        textfile.h
 // Purpose:     interface of wxTextFile
@@ -164,9 +157,6 @@ public:
         @code
         wxTextFile file;
         ...
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( str = file.GetFirstLine(); !file.Eof(); str = file.GetNextLine() )
         {
             // do something with the current line in str
@@ -185,9 +175,6 @@ public:
         @code
         wxTextFile file;
         ...
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( str = file.GetLastLine();
             file.GetCurrentLine() > 0;
             str = file.GetPrevLine() )

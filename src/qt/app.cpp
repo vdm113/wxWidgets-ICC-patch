@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/app.cpp
 // Author:      Peter Most, Javier Torres, Mariano Reingart
@@ -54,9 +47,6 @@ bool wxApp::Initialize( int &argc, wxChar **argv )
 
     // Clone and store arguments
     m_qtArgv = new char *[argc + 1];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int i = 0; i < argc; i++ )
     {
         m_qtArgv[i] = wxStrdupA(wxConvUTF8.cWX2MB(argv[i]));
@@ -80,9 +70,6 @@ bool wxApp::Initialize( int &argc, wxChar **argv )
         // Qt changed the arguments
         delete [] argv;
         argv = new wxChar *[qtArgs.size() + 1];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( int i = 0; i < qtArgs.size(); i++ )
         {
 #if wxUSE_UNICODE

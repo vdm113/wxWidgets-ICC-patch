@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file Document.h
  ** Text document that handles notifications, DBCS, styling, words and end of line.
@@ -115,9 +108,6 @@ struct StyledText {
 	// Return 1 when start is outside text
 	size_t LineLength(size_t start) const {
 		size_t cur = start;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		while ((cur < length) && (text[cur] != '\n'))
 			cur++;
 		return cur-start;

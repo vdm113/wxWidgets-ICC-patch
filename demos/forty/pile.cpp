@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        pile.cpp
 // Purpose:     Forty Thieves patience game
@@ -55,9 +48,6 @@ Pile::Pile(int x, int y, int dx, int dy)
     m_y = y;
     m_dx = dx;
     m_dy = dy;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (m_topCard = 0; m_topCard < NumCards; m_topCard++)
     {
         m_cards[m_topCard] = 0;
@@ -96,9 +86,6 @@ void Pile::Redraw(wxDC& dc )
         {
             int x = m_x;
             int y = m_y;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for (int i = 0; i <= m_topCard; i++)
             {
                 if ((canvas) && (canvas->IsExposed(x,y,(int)(Card::GetScale()*60),(int)(Card::GetScale()*200))))
@@ -226,9 +213,6 @@ void Pile::AddCard(wxDC& dc, Card* card)
 // the rules of the game
 bool Pile::CanCardLeave(Card* card)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (int i = 0; i <= m_topCard; i++)
     {
         if (card == m_cards[i]) return true;
@@ -255,9 +239,6 @@ Card* Pile::GetCard(int x, int y)
     int cardY;
     GetTopCardPos(cardX, cardY);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (int i = m_topCard; i >= 0; i--)
     {
         if (x >= cardX && x <= cardX + Card::GetWidth() &&
@@ -279,9 +260,6 @@ void Pile::GetCardPos(Card* card, int& x, int& y)
     x = m_x;
     y = m_y;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (int i = 0; i <= m_topCard; i++)
     {
         if (card == m_cards[i])

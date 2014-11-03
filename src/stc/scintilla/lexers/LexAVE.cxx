@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // SciTE - Scintilla based Text Editor
 /** @file LexAVE.cxx
  ** Lexer for Avenue.
@@ -86,9 +79,6 @@ static void ColouriseAveDoc(
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (; sc.More(); sc.Forward()) {
 		if (sc.atLineEnd) {
 			// Update the line state, so it can be seen by next line
@@ -179,9 +169,6 @@ static void FoldAveDoc(unsigned int startPos, int length, int /* initStyle */, W
 	int styleNext = styler.StyleAt(startPos);
 	char s[10] = "";
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = static_cast<char>(tolower(chNext));
 		chNext = static_cast<char>(tolower(styler.SafeGetCharAt(i + 1)));
@@ -190,9 +177,6 @@ static void FoldAveDoc(unsigned int startPos, int length, int /* initStyle */, W
 		bool atEOL = (ch == '\r' && chNext != '\n') || (ch == '\n');
 		if (style == SCE_AVE_WORD) {
 			if (ch == 't' || ch == 'f' || ch == 'w' || ch == 'e') {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 				for (unsigned int j = 0; j < 6; j++) {
 					if (!iswordchar(styler[i + j])) {
 						break;

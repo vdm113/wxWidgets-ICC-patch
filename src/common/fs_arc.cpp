@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/fs_arc.cpp
 // Purpose:     wxArchive file system
@@ -113,9 +106,6 @@ wxArchiveFSCacheDataImpl::~wxArchiveFSCacheDataImpl()
 
     wxArchiveFSEntry *entry = m_begin;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (entry)
     {
         wxArchiveFSEntry *next = entry->next;
@@ -155,9 +145,6 @@ wxArchiveEntry *wxArchiveFSCacheDataImpl::Get(const wxString& name)
 
     wxArchiveEntry *entry;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ((entry = m_archive->GetNextEntry()) != NULL)
     {
         AddToCache(entry);
@@ -492,9 +479,6 @@ wxString wxArchiveFSHandler::DoFind()
     wxString namestr, dir, filename;
     wxString match = wxEmptyString;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (match == wxEmptyString)
     {
         m_FindEntry = m_Archive->GetNext(m_FindEntry);
@@ -510,9 +494,6 @@ wxString wxArchiveFSHandler::DoFind()
         if (m_AllowDirs)
         {
             dir = namestr.BeforeLast(wxT('/'));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while (!dir.empty())
             {
                 if( m_DirsFound->find(dir) == m_DirsFound->end() )

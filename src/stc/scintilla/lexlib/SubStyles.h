@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file SubStyles.h
  ** Manage substyles for a lexer.
@@ -67,14 +60,8 @@ public:
 	}
 
 	void SetIdentifiers(int style, const char *identifiers) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		while (*identifiers) {
 			const char *cpSpace = identifiers;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			while (*cpSpace && !(*cpSpace == ' ' || *cpSpace == '\t' || *cpSpace == '\r' || *cpSpace == '\n'))
 				cpSpace++;
 			if (cpSpace > identifiers) {
@@ -98,9 +85,6 @@ class SubStyles {
 	std::vector<WordClassifier> classifiers;
 
 	int BlockFromBaseStyle(int baseStyle) const {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (int b=0; b < classifications; b++) {
 			if (baseStyle == baseStyles[b])
 				return b;
@@ -110,9 +94,6 @@ class SubStyles {
 
 	int BlockFromStyle(int style) const {
 		int b = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (std::vector<WordClassifier>::const_iterator it=classifiers.begin(); it != classifiers.end(); ++it) {
 			if (it->IncludesStyle(style))
 				return b;
@@ -130,9 +111,6 @@ public:
 		stylesAvailable(stylesAvailable_),
 		secondaryDistance(secondaryDistance_),
 		allocated(0) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		while (baseStyles[classifications]) {
 			classifiers.push_back(WordClassifier(baseStyles[classifications]));
 			classifications++;
@@ -183,9 +161,6 @@ public:
 
 	void Free() {
 		allocated = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (std::vector<WordClassifier>::iterator it=classifiers.begin(); it != classifiers.end(); ++it)
 			it->Clear();
 	}

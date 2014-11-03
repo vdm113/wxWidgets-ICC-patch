@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/combobxc.cpp
 // Purpose:     wxComboBox class using HIView ComboBox
@@ -539,9 +532,6 @@ int wxComboBox::DoInsertItems(const wxArrayStringsAdapter& items,
 {
 #if USE_HICOMBOBOX
     const unsigned int count = items.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( unsigned int i = 0; i < count; ++i, ++pos )
     {
         HIComboBoxInsertTextItemAtIndex(m_peer->GetControlRef(),
@@ -597,9 +587,6 @@ void wxComboBox::DoDeleteOneItem(unsigned int n)
 void wxComboBox::DoClear()
 {
 #if USE_HICOMBOBOX
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( CFIndex i = GetCount() - 1; i >= 0; ++ i )
         verify_noerr( HIComboBoxRemoveItemAtIndex( m_peer->GetControlRef(), i ) );
     m_peer->SetData<CFStringRef>(kHIComboBoxEditTextPart,kControlEditTextCFStringTag,CFSTR(""));
@@ -634,9 +621,6 @@ void wxComboBox::SetSelection(int n)
 int wxComboBox::FindString(const wxString& s, bool bCase) const
 {
 #if USE_HICOMBOBOX
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for( unsigned int i = 0 ; i < GetCount() ; i++ )
     {
         if (GetString(i).IsSameAs(s, bCase) )

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/radiocmn.cpp
 // Purpose:     wxRadioBox methods common to all ports
@@ -145,9 +138,6 @@ int wxRadioBoxBase::GetNextItem(int item, wxDirection dir, long style) const
 
     bool horz = (style & wxRA_SPECIFY_COLS) != 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     do
     {
         switch ( dir )
@@ -239,9 +229,6 @@ int wxRadioBoxBase::GetNextItem(int item, wxDirection dir, long style) const
     // we shouldn't select the non-active items, continue looking for a
     // visible and shown one unless we came back to the item we started from in
     // which case bail out to avoid infinite loop
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while ( !(IsItemShown(item) && IsItemEnabled(item)) && item != itemStart );
 
     return item;
@@ -312,9 +299,6 @@ wxRadioBoxBase::~wxRadioBoxBase()
     if ( m_itemsTooltips )
     {
         const size_t n = m_itemsTooltips->size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( size_t i = 0; i < n; i++ )
             delete (*m_itemsTooltips)[i];
 

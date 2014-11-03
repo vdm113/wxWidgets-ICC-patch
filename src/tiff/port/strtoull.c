@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*-
  * Copyright (c) 1992, 1993
  *	The Regents of the University of California.  All rights reserved.
@@ -62,9 +55,6 @@ strtoull(const char *nptr, char **endptr, int base)
 	 * See strtoq for comments as to the logic used.
 	 */
 	s = nptr;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	do {
 		c = *s++;
 	} while (isspace((unsigned char)c));
@@ -93,9 +83,6 @@ strtoull(const char *nptr, char **endptr, int base)
 
 	cutoff = ULLONG_MAX / base;
 	cutlim = ULLONG_MAX % base;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for ( ; ; c = *s++) {
 		if (c >= '0' && c <= '9')
 			c -= '0';

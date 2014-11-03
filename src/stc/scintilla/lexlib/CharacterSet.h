@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file CharacterSet.h
  ** Encapsulates a set of characters. Used to test if a character is within a set.
@@ -36,9 +29,6 @@ public:
 		size = size_;
 		valueAfter = valueAfter_;
 		bset = new bool[size];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (int i=0; i < size; i++) {
 			bset[i] = false;
 		}
@@ -54,9 +44,6 @@ public:
 		size = other.size;
 		valueAfter = other.valueAfter;
 		bset = new bool[size];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (int i=0; i < size; i++) {
 			bset[i] = other.bset[i];
 		}
@@ -69,9 +56,6 @@ public:
 	CharacterSet &operator=(const CharacterSet &other) {
 		if (this != &other) {
 			bool *bsetNew = new bool[other.size];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			for (int i=0; i < other.size; i++) {
 				bsetNew[i] = other.bset[i];
 			}
@@ -88,9 +72,6 @@ public:
 		bset[val] = true;
 	}
 	void AddString(const char *setToAdd) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 		for (const char *cp=setToAdd; *cp; cp++) {
 			int val = static_cast<unsigned char>(*cp);
 			assert(val >= 0);

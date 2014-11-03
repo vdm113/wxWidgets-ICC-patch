@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /* ///////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/assertdlg_gtk.cpp
 // Purpose:     GtkAssertDialog
@@ -411,9 +404,6 @@ gchar *gtk_assert_dialog_get_backtrace (GtkAssertDialog *dlg)
     if (!gtk_tree_model_get_iter_first (model, &iter))
         return NULL;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     do
     {
         /* append this stack frame's info to the string */

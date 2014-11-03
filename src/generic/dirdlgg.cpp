@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/dirdlgg.cpp
 // Purpose:     wxDirDialog
@@ -339,9 +332,6 @@ void wxGenericDirDialog::OnNew( wxCommandEvent& WXUNUSED(event) )
     {
         // try NewName0, NewName1 etc.
         int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         do {
             new_name = _("NewName");
             wxString num;

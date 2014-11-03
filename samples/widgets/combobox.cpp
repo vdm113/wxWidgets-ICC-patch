@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Program:     wxWidgets Widgets Sample
 // Name:        combobox.cpp
@@ -446,9 +439,6 @@ void ComboboxWidgetsPage::CreateCombo()
     if ( m_combobox )
     {
         unsigned int count = m_combobox->GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( unsigned int n = 0; n < count; n++ )
         {
             items.Add(m_combobox->GetString(n));
@@ -464,9 +454,6 @@ void ComboboxWidgetsPage::CreateCombo()
                                 flags);
 
     unsigned int count = items.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( unsigned int n = 0; n < count; n++ )
     {
         m_combobox->Append(items[n]);
@@ -571,9 +558,6 @@ void ComboboxWidgetsPage::OnButtonSetFirst(wxCommandEvent& WXUNUSED(event))
 void ComboboxWidgetsPage::OnButtonAddMany(wxCommandEvent& WXUNUSED(event))
 {
     // "many" means 1000 here
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( unsigned int n = 0; n < 1000; n++ )
     {
         m_combobox->Append(wxString::Format(wxT("item #%u"), n));

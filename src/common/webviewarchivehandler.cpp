@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        webviewfilehandler.cpp
 // Purpose:     Custom webview handler to allow archive browsing
@@ -30,9 +23,6 @@ static wxString EscapeFileNameCharsInURL(const char *in)
 {
     wxString s;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( const unsigned char *p = (const unsigned char*)in; *p; ++p )
     {
         const unsigned char c = *p;
@@ -77,9 +67,6 @@ wxFSFile* wxWebViewArchiveHandler::GetFile(const wxString &uri)
 
     //We iterate through the string to see if there is a protocol description
     size_t start = wxString::npos;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for(size_t i = 0; i < path.length(); i++)
     {
         if(path[i] == ';' && path.substr(i, 10) == ";protocol=")

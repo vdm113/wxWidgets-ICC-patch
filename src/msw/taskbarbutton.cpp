@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/taskbarbutton.cpp
 // Purpose:     Implements wxTaskBarButtonImpl class for manipulating buttons on
@@ -752,9 +745,6 @@ wxTaskBarButtonImpl::~wxTaskBarButtonImpl()
     if ( m_taskbarList )
       m_taskbarList->Release();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxThumbBarButtons::iterator iter = m_thumbBarButtons.begin();
           iter != m_thumbBarButtons.end();
           ++iter)
@@ -890,9 +880,6 @@ bool wxTaskBarButtonImpl::InsertThumbBarButton(size_t pos,
 wxThumbBarButton* wxTaskBarButtonImpl::RemoveThumbBarButton(
     wxThumbBarButton *button)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxThumbBarButtons::iterator iter = m_thumbBarButtons.begin();
           iter != m_thumbBarButtons.end();
           ++iter )
@@ -911,9 +898,6 @@ wxThumbBarButton* wxTaskBarButtonImpl::RemoveThumbBarButton(
 
 wxThumbBarButton* wxTaskBarButtonImpl::RemoveThumbBarButton(int id)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxThumbBarButtons::iterator iter = m_thumbBarButtons.begin();
           iter != m_thumbBarButtons.end();
           ++iter )
@@ -935,9 +919,6 @@ bool wxTaskBarButtonImpl::InitOrUpdateThumbBarButtons()
     THUMBBUTTON buttons[MAX_BUTTON_COUNT];
     HRESULT hr;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t i = 0; i < MAX_BUTTON_COUNT; ++i )
     {
         memset(&buttons[i], 0, sizeof buttons[i]);
@@ -946,9 +927,6 @@ bool wxTaskBarButtonImpl::InitOrUpdateThumbBarButtons()
         buttons[i].dwMask = static_cast<THUMBBUTTONMASK>(THB_FLAGS);
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( size_t i = 0; i < m_thumbBarButtons.size(); ++i )
     {
         buttons[i].hIcon = GetHiconOf(m_thumbBarButtons[i]->GetIcon());
@@ -1127,9 +1105,6 @@ wxTaskBarJumpListCategory::wxTaskBarJumpListCategory(wxTaskBarJumpList *parent,
 
 wxTaskBarJumpListCategory::~wxTaskBarJumpListCategory()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxTaskBarJumpListItems::iterator it = m_items.begin();
           it != m_items.end();
           ++it )
@@ -1161,9 +1136,6 @@ void wxTaskBarJumpListCategory::Delete(wxTaskBarJumpListItem *item)
 wxTaskBarJumpListItem*
 wxTaskBarJumpListCategory::Remove(wxTaskBarJumpListItem *item)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (wxTaskBarJumpListItems::iterator it = m_items.begin();
          it != m_items.end();
          ++it)
@@ -1330,9 +1302,6 @@ wxTaskBarJumpListImpl::~wxTaskBarJumpListImpl()
     if ( m_destinationList )
         m_destinationList->Release();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxTaskBarJumpListCategories::iterator it = m_customCategories.begin();
           it != m_customCategories.end();
           ++it )
@@ -1419,9 +1388,6 @@ wxTaskBarJumpListImpl::AddCustomCategory(wxTaskBarJumpListCategory *category)
 wxTaskBarJumpListCategory*
 wxTaskBarJumpListImpl::RemoveCustomCategory(const wxString& title)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxTaskBarJumpListCategories::iterator it = m_customCategories.begin();
           it != m_customCategories.end();
           ++it )
@@ -1473,9 +1439,6 @@ void wxTaskBarJumpListImpl::AddTasksToDestinationList()
         return;
 
     const wxTaskBarJumpListItems& tasks = m_tasks->GetItems();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxTaskBarJumpListItems::const_iterator it = tasks.begin();
           it != tasks.end();
           ++it )
@@ -1491,9 +1454,6 @@ void wxTaskBarJumpListImpl::AddTasksToDestinationList()
 
 void wxTaskBarJumpListImpl::AddCustomCategoriesToDestionationList()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxTaskBarJumpListCategories::iterator it = m_customCategories.begin();
           it != m_customCategories.end();
           ++it )
@@ -1503,9 +1463,6 @@ void wxTaskBarJumpListImpl::AddCustomCategoriesToDestionationList()
             continue;
 
         const wxTaskBarJumpListItems& tasks = (*it)->GetItems();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( wxTaskBarJumpListItems::const_iterator iter = tasks.begin();
               iter != tasks.end();
               ++iter )
@@ -1557,9 +1514,6 @@ void wxTaskBarJumpListImpl::LoadKnownCategory(const wxString& title)
 
     UINT count = 0;
     array->GetCount(&count);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (UINT i = 0; i < count; ++i)
     {
         IUnknown *collectionItem = NULL;

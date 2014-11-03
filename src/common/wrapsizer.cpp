@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/wrapsizer.cpp
 // Purpose:     provides wxWrapSizer class for layout
@@ -102,9 +95,6 @@ void wxWrapSizer::ClearRows()
     // sizers in RecalcSizes()), so we need to detach them from the row sizer
     // to avoid double deletion
     wxSizerItemList& rows = m_rows.GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxSizerItemList::iterator i = rows.begin(),
                                   end = rows.end();
           i != end;
@@ -261,9 +251,6 @@ void wxWrapSizer::CalcMaxSingleItemSize()
     // Find max item size in each direction
     int maxMajor = 0;    // Widest item
     int maxMinor = 0;    // Line height
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxSizerItemList::const_iterator i = m_children.begin();
           i != m_children.end();
           ++i )
@@ -298,9 +285,6 @@ void wxWrapSizer::CalcMinFromMajor(int totMajor)
     int rowTotalMajor = 0;      // sum of major sizes of items in this row
 
     // pack the items in each row until we reach totMajor, then start a new row
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxSizerItemList::const_iterator i = m_children.begin();
           i != m_children.end();
           ++i )
@@ -367,9 +351,6 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
     int itemCount = 0;
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
     wxSize sz;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while (node)
     {
         wxSizerItem *item = node->GetData();
@@ -422,9 +403,6 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
     int sumMinor;       // Sum of all minor sizes (height of all lines)
 
     // While we still have items 'spilling over' extend the tested line width
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( ;; )
     {
         wxWrapLine *line = new wxWrapLine;
@@ -433,9 +411,6 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
         int tailSize = 0;   // Width of what exceeds nrLines
         maxMinor = 0;
         sumMinor = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( node=m_children.GetFirst(); node; node=node->GetNext() )
         {
             wxSizerItem *item = node->GetData();
@@ -469,9 +444,6 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
             // We know we must have at least one more line than nrLines
             // (otherwise no tail size).
             int bestExtSize = 0; // Minimum extension width for current tailSize
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             for ( int ix=0; ix<nrLines; ix++ )
             {
                 // Take what is not used on this line, see how much extension we get
@@ -487,9 +459,6 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
         }
 
         // Clear helper items
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( wxVector<wxWrapLine*>::iterator it=lines.begin(); it<lines.end(); ++it )
             delete *it;
         lines.clear();
@@ -541,9 +510,6 @@ void wxWrapSizer::RecalcSizes()
                 *itemSpace = NULL;  // spacer which we delayed adding
 
     // Now put our child items into child sizers instead
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( wxSizerItemList::iterator i = m_children.begin();
           i != m_children.end();
           ++i )

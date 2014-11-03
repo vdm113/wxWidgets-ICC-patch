@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/x11/app.cpp
 // Purpose:     wxApp
@@ -108,9 +101,6 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
     bool syncDisplay = false;
 
     int argCOrig = argC;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for ( int i = 0; i < argCOrig; i++ )
     {
         if (wxStrcmp( argV[i], wxT("-display") ) == 0)
@@ -165,14 +155,8 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
     if ( argC != argCOrig )
     {
         // remove the arguments we consumed
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
         for ( int i = 0; i < argC; i++ )
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while ( !argV[i] )
             {
                 memmove(argV + i, argV + i + 1, (argCOrig - i)*sizeof(wxChar *));
@@ -321,9 +305,6 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
                 wxExposeInfo info;
                 info.window = event->xexpose.window;
                 info.found_non_matching = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 while (XCheckIfEvent( wxGlobalDisplay(), &tmp_event, wxX11ExposePredicate, (XPointer) &info ))
                 {
                     // Don't worry about optimizing redrawing the border etc.
@@ -343,9 +324,6 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
                 wxExposeInfo info;
                 info.window = event->xexpose.window;
                 info.found_non_matching = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
                 while (XCheckIfEvent( wxGlobalDisplay(), &tmp_event, wxX11ExposePredicate, (XPointer) &info ))
                 {
                     win->GetUpdateRegion().Union( tmp_event.xexpose.x, tmp_event.xexpose.y,
@@ -561,9 +539,6 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
 
             //  to avoid flicker
             report = * event;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while( XCheckTypedWindowEvent (disp, actualWindow, ResizeRequest, &report));
 
             wxSize sz = win->GetSize();
@@ -598,9 +573,6 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
             // Here we check if the top level window is
             // disabled, which is one aspect of modality.
             wxWindow *tlw = win;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
             while (tlw && !tlw->IsTopLevel())
                 tlw = tlw->GetParent();
             if (tlw && !tlw->IsEnabled())

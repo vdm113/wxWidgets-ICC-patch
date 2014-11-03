@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexPS.cxx
  ** Lexer for PostScript
@@ -99,9 +92,6 @@ static void ColourisePSDoc(
         styler.StartSegment(startPos);
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (; sc.More(); sc.Forward()) {
         if (sc.atLineStart)
             lineCurrent = styler.GetLine(sc.currentPos);
@@ -307,9 +297,6 @@ static void FoldPSDoc(unsigned int startPos, int length, int, WordList *[],
     char chNext = styler[startPos];
     int styleNext = styler.StyleAt(startPos);
     int style;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     for (unsigned int i = startPos; i < endPos; i++) {
         char ch = chNext;
         chNext = styler.SafeGetCharAt(i + 1);

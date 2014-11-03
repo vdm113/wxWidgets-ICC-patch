@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /******************************************************************************
  *
  * Project:  TIFF Overview Builder
@@ -176,9 +169,6 @@ static void TIFFWriteOvrRow( TIFFOvrCache * psCache )
 /* -------------------------------------------------------------------- */
 /*      Write blocks to TIFF file.                                      */
 /* -------------------------------------------------------------------- */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 	for( iTileX = 0; iTileX < psCache->nBlocksPerRow; iTileX++ )
 	{
 		int nTileID;
@@ -187,9 +177,6 @@ static void TIFFWriteOvrRow( TIFFOvrCache * psCache )
 		{
 			int iSample;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
 			for( iSample = 0; iSample < psCache->nSamples; iSample++ )
 			{
 				pabyData = TIFFGetOvrBlock( psCache, iTileX, iTileY, iSample );
@@ -337,9 +324,6 @@ unsigned char *TIFFGetOvrBlock_Subsampled( TIFFOvrCache *psCache,
 void TIFFDestroyOvrCache( TIFFOvrCache * psCache )
 
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#endif
     while( psCache->nBlockOffset < psCache->nBlocksPerColumn )
         TIFFWriteOvrRow( psCache );
 
