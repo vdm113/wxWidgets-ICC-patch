@@ -128,6 +128,21 @@
 // adjusted.
 #define IN_CELL_EXPANDER_BUTTON_X_ADJUST    2
 
+#if WXWIN_COMPATIBILITY_3_0
+namespace
+{
+// Hash containing for every active wxPG the list of editors and their event handlers
+// to be deleted in the idle event handler.
+// It emulates member variable 'm_deletedEditorObjects' in 3.0 compatibility mode.
+WX_DECLARE_HASH_MAP(wxPropertyGrid*, wxArrayPGObject*,
+                    wxPointerHash, wxPointerEqual,
+                    DeletedObjects);
+
+DeletedObjects gs_deletedEditorObjects;
+
+} // anonymous namespace
+#endif
+
 // -----------------------------------------------------------------------
 
 #if wxUSE_INTL
@@ -414,6 +429,11 @@ void wxPropertyGrid::Init1()
     m_cvUnspecified = 0;
 
     m_chgInfo_changedProperty = NULL;
+#if WXWIN_COMPATIBILITY_3_0
+    // Object array for this wxPG shouldn't exist in the hash map.
+    wxASSERT( gs_deletedEditorObjects.find(this) == gs_deletedEditorObjects.end() );
+    gs_deletedEditorObjects[this] = new wxArrayPGObject;
+#endif
 }
 
 // -----------------------------------------------------------------------
@@ -566,7 +586,10 @@ wxPropertyGrid::~wxPropertyGrid()
         // We are inside event handler and we cannot delete
         // editor objects immediatelly. They have to be deleted
         // later on in the global idle handler.
-#if !WXWIN_COMPATIBILITY_3_0
+#if WXWIN_COMPATIBILITY_3_0
+        // Emulate member variable.
+        wxArrayPGObject& m_deletedEditorObjects = *gs_deletedEditorObjects[this];
+#endif
         while ( !m_deletedEditorObjects.empty() )
         {
             wxObject* obj = m_deletedEditorObjects.back();
@@ -574,7 +597,6 @@ wxPropertyGrid::~wxPropertyGrid()
 
             wxPendingDelete.Append(obj);
         }
-#endif
     }
     else
     {
@@ -607,6 +629,12 @@ wxPropertyGrid::~wxPropertyGrid()
         wxPGCommonValue* value = m_commonValues[i];
         delete value;
     }
+#if WXWIN_COMPATIBILITY_3_0
+    wxASSERT( gs_deletedEditorObjects[this]->empty() );
+
+    delete gs_deletedEditorObjects[this];
+    gs_deletedEditorObjects.erase(this);
+#endif
 }
 
 // -----------------------------------------------------------------------
@@ -4039,7 +4067,10 @@ void wxPropertyGrid::SetupChildEventHandling( wxWindow* argWnd )
 
 void wxPropertyGrid::DeletePendingObjects()
 {
-#if !WXWIN_COMPATIBILITY_3_0
+#if WXWIN_COMPATIBILITY_3_0
+    // Emulate member variable.
+    wxArrayPGObject& m_deletedEditorObjects = *gs_deletedEditorObjects[this];
+#endif
     // Delete pending property editors and their event handlers.
     while ( !m_deletedEditorObjects.empty() )
     {
@@ -4048,7 +4079,6 @@ void wxPropertyGrid::DeletePendingObjects()
 
         delete obj;
     }
-#endif
 }
 
 void wxPropertyGrid::DestroyEditorWnd( wxWindow* wnd )
@@ -4060,10 +4090,10 @@ void wxPropertyGrid::DestroyEditorWnd( wxWindow* wnd )
 
     // Do not free editors immediately (for sake of processing events)
 #if WXWIN_COMPATIBILITY_3_0
-    wxPendingDelete.Append(wnd);
-#else
-    m_deletedEditorObjects.push_back(wnd);
+    // Emulate member variable.
+    wxArrayPGObject& m_deletedEditorObjects = *gs_deletedEditorObjects[this];
 #endif
+    m_deletedEditorObjects.push_back(wnd);
 }
 
 void wxPropertyGrid::FreeEditors()
@@ -4074,16 +4104,16 @@ void wxPropertyGrid::FreeEditors()
     // instead of moving it to closest parent).
     SetFocusOnCanvas();
 
+#if WXWIN_COMPATIBILITY_3_0
+    // Emulate member variable.
+    wxArrayPGObject& m_deletedEditorObjects = *gs_deletedEditorObjects[this];
+#endif
     // Do not free editors immediately if processing events
     if ( m_wndEditor2 )
     {
         wxEvtHandler* handler = m_wndEditor2->PopEventHandler(false);
         m_wndEditor2->Hide();
-#if WXWIN_COMPATIBILITY_3_0
-        wxPendingDelete.Append( handler );
-#else
         m_deletedEditorObjects.push_back(handler);
-#endif
         DestroyEditorWnd(m_wndEditor2);
         m_wndEditor2 = NULL;
     }
@@ -4092,11 +4122,7 @@ void wxPropertyGrid::FreeEditors()
     {
         wxEvtHandler* handler = m_wndEditor->PopEventHandler(false);
         m_wndEditor->Hide();
-#if WXWIN_COMPATIBILITY_3_0
-        wxPendingDelete.Append( handler );
-#else
         m_deletedEditorObjects.push_back(handler);
-#endif
         DestroyEditorWnd(m_wndEditor);
         m_wndEditor = NULL;
     }

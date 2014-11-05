@@ -2042,6 +2042,7 @@ void wxPropertyGridPageState::DoDelete( wxPGProperty* item, bool doDelete )
 
     wxPropertyGrid* pg = GetGrid();
 
+    // Try to unselect property and its subproperties.
     if ( DoIsPropertySelected(item) )
     {
         if ( pg && pg->GetState() == this )
@@ -2060,10 +2061,6 @@ void wxPropertyGridPageState::DoDelete( wxPGProperty* item, bool doDelete )
         DoRemoveChildrenFromSelection(item, true,
                 wxPG_SEL_DELETING|wxPG_SEL_NOVALIDATE);
     }
-
-    // Prevent property and its children from being re-selected
-    item->SetFlag(wxPG_PROP_BEING_DELETED);
-    DoMarkChildrenAsDeleted(item, true);
 
     // Must defer deletion? Yes, if handling a wxPG event.
     if ( pg && pg->m_processedEvent )
@@ -2097,6 +2094,15 @@ void wxPropertyGridPageState::DoDelete( wxPGProperty* item, bool doDelete )
 
         return;
     }
+
+    // Property has to be unselected prior deleting.
+    // Otherwise crash can happen.
+    wxASSERT_MSG( !DoIsPropertySelected(item) && !item->IsChildSelected(true),
+                  wxT("Failed to unselect deleted property") );
+
+    // Prevent property and its children from being re-selected
+    item->SetFlag(wxPG_PROP_BEING_DELETED);
+    DoMarkChildrenAsDeleted(item, true);
 
     unsigned int indinparent = item->GetIndexInParent();
 
