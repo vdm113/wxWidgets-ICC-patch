@@ -35,7 +35,7 @@ class WXDLLIMPEXP_CORE wxToolBar: public wxToolBarBase
 
   inline wxToolBar(wxWindow *parent, wxWindowID id,
                    const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
-                   long style = wxTB_HORIZONTAL,
+                   long style = wxTB_DEFAULT_STYLE,
                    const wxString& name = wxToolBarNameStr)
   {
     Init();
@@ -44,7 +44,7 @@ class WXDLLIMPEXP_CORE wxToolBar: public wxToolBarBase
   virtual ~wxToolBar();
 
   bool Create(wxWindow *parent, wxWindowID id, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
-            long style = wxTB_HORIZONTAL,
+            long style = wxTB_DEFAULT_STYLE,
             const wxString& name = wxToolBarNameStr);
 
     virtual void SetWindowStyleFlag(long style);
