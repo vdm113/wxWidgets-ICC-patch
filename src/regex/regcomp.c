@@ -735,6 +735,11 @@ int partial;			/* is this only part of a branch? */
 	seencontent = 0;
 	t = subre(v, '=', 0, left, right);	/* op '=' is tentative */
 	NOERRN();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (!SEE('|') && !SEE(stopper) && !SEE(EOS)) {
 		if (seencontent) {	/* implicit concat operator */
 			lp = newstate(v->nfa);
@@ -1205,6 +1210,11 @@ struct vars *v;
 {
 	int n = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (SEE(DIGIT) && n < DUPMAX) {
 		n = n*10 + v->nextvalue;
 		NEXT();
@@ -1321,6 +1331,11 @@ struct state *rp;
 {
 	assert(SEE('['));
 	NEXT();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (!SEE(']') && !SEE(EOS))
 		brackpart(v, lp, rp);
 	assert(SEE(']') || ISERR());
@@ -1548,6 +1563,11 @@ struct vars *v;
 	NEXT();
 
 	endp = v->now;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (SEE(PLAIN)) {
 		endp = v->now;
 		NEXT();
@@ -1694,6 +1714,11 @@ struct state *rp;
 	for (p = cv->ranges, i = cv->nranges; i > 0; p += 2, i--) {
 		from = *p;
 		to = *(p+1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (from <= to && (ce = nextleader(v, from, to)) != NOCELT) {
 			if (from < ce)
 				subrange(v, from, ce - 1, lp, rp);

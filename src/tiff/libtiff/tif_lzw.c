@@ -455,6 +455,11 @@ LZWDecode(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 	free_entp = sp->dec_free_entp;
 	maxcodep = sp->dec_maxcodep;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (occ > 0) {
 		NextCode(tif, sp, bp, code, GetNextCode);
 		if (code == CODE_EOI)
@@ -704,6 +709,11 @@ LZWDecodeCompat(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 	free_entp = sp->dec_free_entp;
 	maxcodep = sp->dec_maxcodep;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (occ > 0) {
 		NextCode(tif, sp, bp, code, GetNextCodeCompat);
 		if (code == CODE_EOI)
@@ -972,6 +982,11 @@ LZWEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 		PutNextCode(op, CODE_CLEAR);
 		ent = *bp++; cc--; incount++;
 	}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (cc > 0) {
 		c = *bp++; cc--; incount++;
 		fcode = ((long)c << BITS_MAX) + ent;

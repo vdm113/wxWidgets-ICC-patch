@@ -77,6 +77,11 @@ void wxFlushEvents(WXDisplay* wxdisplay)
 
     XSync (display, False);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (evtLoop.Pending())
     {
         XFlush (display);
@@ -538,6 +543,11 @@ char* wxFindAccelerator( const char *s )
     wxString tmp = s + 1; // skip TAB
     size_t index = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( index < tmp.length() )
     {
         size_t plus  = tmp.find( '+', index );

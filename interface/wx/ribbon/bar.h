@@ -79,11 +79,6 @@ public:
     @class wxRibbonBar
 
     Top-level control in a ribbon user interface. Serves as a tabbed container
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for wxRibbonPage - a ribbon user interface typically has a ribbon bar,
     which contains one or more wxRibbonPages, which in turn each contain one
     or more wxRibbonPanels, which in turn contain controls.

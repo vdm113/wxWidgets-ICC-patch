@@ -164,6 +164,11 @@ local void make_crc_table()
     }
     else {      /* not first */
         /* wait for the other guy to finish (not efficient, but rare) */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (crc_table_empty)
             ;
     }
@@ -266,6 +271,11 @@ unsigned long ZEXPORT crc32(crc, buf, len)
     }
 #endif /* BYFOUR */
     crc = crc ^ 0xffffffffUL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (len >= 8) {
         DO8;
         len -= 8;
@@ -295,16 +305,31 @@ local unsigned long crc32_little(crc, buf, len)
 
     c = (z_crc_t)crc;
     c = ~c;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (len && ((ptrdiff_t)buf & 3)) {
         c = crc_table[0][(c ^ *buf++) & 0xff] ^ (c >> 8);
         len--;
     }
 
     buf4 = (const z_crc_t FAR *)(const void FAR *)buf;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (len >= 32) {
         DOLIT32;
         len -= 32;
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (len >= 4) {
         DOLIT4;
         len -= 4;
@@ -335,6 +360,11 @@ local unsigned long crc32_big(crc, buf, len)
 
     c = ZSWAP32((z_crc_t)crc);
     c = ~c;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (len && ((ptrdiff_t)buf & 3)) {
         c = crc_table[4][(c >> 24) ^ *buf++] ^ (c << 8);
         len--;
@@ -342,10 +372,20 @@ local unsigned long crc32_big(crc, buf, len)
 
     buf4 = (const z_crc_t FAR *)(const void FAR *)buf;
     buf4--;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (len >= 32) {
         DOBIG32;
         len -= 32;
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (len >= 4) {
         DOBIG4;
         len -= 4;
@@ -372,6 +412,11 @@ local unsigned long gf2_matrix_times(mat, vec)
     unsigned long sum;
 
     sum = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (vec) {
         if (vec & 1)
             sum ^= *mat;

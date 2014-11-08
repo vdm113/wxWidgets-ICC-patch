@@ -196,6 +196,11 @@ const char *UndoHistory::AppendAction(actionType at, int position, const char *d
 			int targetAct = -1;
 			const Action *actPrevious = &(actions[currentAction + targetAct]);
 			// Container actions may forward the coalesce state of Scintilla Actions.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while ((actPrevious->at == containerAction) && actPrevious->mayCoalesce) {
 				targetAct--;
 				actPrevious = &(actions[currentAction + targetAct]);
@@ -320,6 +325,11 @@ int UndoHistory::StartUndo() {
 
 	// Count the steps in this action
 	int act = currentAction;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (actions[act].at != startAction && act > 0) {
 		act--;
 	}
@@ -345,6 +355,11 @@ int UndoHistory::StartRedo() {
 
 	// Count the steps in this action
 	int act = currentAction;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (actions[act].at != startAction && act < maxAction) {
 		act++;
 	}
@@ -445,6 +460,11 @@ bool CellBuffer::SetStyleFor(int position, int lengthStyle, char styleValue, cha
 	bool changed = false;
 	PLATFORM_ASSERT(lengthStyle == 0 ||
 		(lengthStyle > 0 && lengthStyle + position <= style.Length()));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (lengthStyle--) {
 		char curVal = style.ValueAt(position);
 		if ((curVal & mask) != styleValue) {

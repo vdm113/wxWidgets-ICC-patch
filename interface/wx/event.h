@@ -82,11 +82,6 @@ enum wxEventCategory
     callback or member function.
 
     wxEvent used to be a multipurpose event object, and is an abstract base class
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for other event classes (see below).
 
     For more information about events, see the @ref overview_events overview.
@@ -423,6 +418,11 @@ public:
         This method is similar to ProcessEvent() but while the latter is
         synchronous, i.e. the event is processed immediately, before the
         function returns, this one is asynchronous and returns immediately
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while the event will be processed at some later time (usually during
         the next event loop iteration).
 
@@ -2779,22 +2779,12 @@ public:
         if no button is involved (for mouse move, enter or leave event, for example).
         Otherwise @c wxMOUSE_BTN_LEFT is returned for the left button down, up and
         double click events, @c wxMOUSE_BTN_MIDDLE and @c wxMOUSE_BTN_RIGHT
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the same events for the middle and the right buttons respectively.
     */
     int GetButton() const;
 
     /**
         Returns the number of mouse clicks for this event: 1 for a simple click, 2
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for a double-click, 3 for a triple-click and so on.
 
         Currently this function is implemented only in wxMac and returns -1 for the
@@ -3383,11 +3373,6 @@ public:
 
         It is in general a good idea to notify the user about the reasons for vetoing
         the change because otherwise the applications behaviour (which just refuses to
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         do what the user wants) might be quite surprising.
     */
     void Veto();

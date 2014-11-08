@@ -262,6 +262,11 @@ bool wxVListBox::DoSetCurrent(int current)
             // make it entirely visible
             // BUT scrolling down when m_current is first visible makes it
             // completely hidden, so that is even worse
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( (size_t)m_current + 1 == GetVisibleRowsEnd() &&
                     (size_t)m_current != GetVisibleRowsBegin() &&
                     ScrollToRow(GetVisibleBegin() + 1) ) ;
@@ -327,6 +332,11 @@ int wxVListBox::GetNextSelected(unsigned long& cookie) const
     wxCHECK_MSG( m_selStore, wxNOT_FOUND,
                   wxT("GetFirst/NextSelected() may only be used with multiselection listboxes") );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( cookie < GetItemCount() )
     {
         if ( IsSelected(cookie++) )
@@ -363,6 +373,11 @@ wxRect wxVListBox::GetItemRect(size_t n) const
     if ( n < line )
         return itemrect;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( line <= n )
     {
         itemrect.y += itemrect.height;

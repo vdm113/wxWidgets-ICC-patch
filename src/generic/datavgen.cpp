@@ -512,6 +512,11 @@ public:
     {
         int ret = 0;
         const wxDataViewTreeNode * node = this;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while( node->GetParent()->GetParent() != NULL )
         {
             node = node->GetParent();
@@ -3385,6 +3390,11 @@ wxDataViewTreeNode * wxDataViewMainWindow::FindNode( const wxDataViewItem & item
     // Compose the parent-chain for the item we are looking for
     wxVector<wxDataViewItem> parentChain;
     wxDataViewItem it( item );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( it.IsOk() )
     {
         parentChain.push_back(it);
@@ -3617,6 +3627,11 @@ int wxDataViewMainWindow::GetRowByItem(const wxDataViewItem & item) const
         // Compose the parent-chain of the item we are looking for
         wxVector<wxDataViewItem> parentChain;
         wxDataViewItem it( item );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while( it.IsOk() )
         {
             parentChain.push_back(it);

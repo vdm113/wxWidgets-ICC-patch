@@ -179,6 +179,11 @@ main(int argc, char* argv[])
 
 	*mp++ = 'w';
 	*mp = '\0';
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((c = getopt(argc, argv, ",:b:c:f:l:o:z:p:r:w:aistBLMC8x")) != -1)
 		switch (c) {
 		case ',':
@@ -389,6 +394,11 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
 		defcompression = COMPRESSION_JPEG;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while( cp )
 		{
 			if (isdigit((int)cp[1]))
@@ -797,6 +807,11 @@ tiffcp(TIFF* in, TIFF* out)
 			if (TIFFGetField(in, TIFFTAG_INKNAMES, &inknames)) {
 				int inknameslen = strlen(inknames) + 1;
 				const char* cp = inknames;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while (ninks > 1) {
 					cp = strchr(cp, '\0');
                                         cp++;
@@ -904,6 +919,7 @@ static void subtract##bits (void *i, void *b, uint32 pixels)\
 {\
    uint##bits *image = i;\
    uint##bits *bias = b;\
+VDM_MACRO_PRAGMA_IVDEP \
    while (pixels--) {\
      *image = *image > *bias ? *image-*bias : 0;\
      image++, bias++; \
@@ -1244,8 +1260,18 @@ static void
 cpStripToTile(uint8* out, uint8* in,
     uint32 rows, uint32 cols, int outskew, int inskew)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (rows-- > 0) {
 		uint32 j = cols;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (j-- > 0)
 			*out++ = *in++;
 		out += outskew;
@@ -1258,12 +1284,27 @@ cpContigBufToSeparateBuf(uint8* out, uint8* in,
     uint32 rows, uint32 cols, int outskew, int inskew, tsample_t spp,
     int bytes_per_sample )
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (rows-- > 0) {
 		uint32 j = cols;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (j-- > 0)
 		{
 			int n = bytes_per_sample;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while( n-- ) {
 				*out++ = *in++;
 			}
@@ -1279,11 +1320,26 @@ cpSeparateBufToContigBuf(uint8* out, uint8* in,
     uint32 rows, uint32 cols, int outskew, int inskew, tsample_t spp,
     int bytes_per_sample)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (rows-- > 0) {
 		uint32 j = cols;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (j-- > 0) {
 			int n = bytes_per_sample;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while( n-- ) {
 				*out++ = *in++;
 			}
@@ -1395,6 +1451,11 @@ DECLAREreadFunc(readSeparateStripsIntoBuffer)
 					    status = 0;
 					goto done;
 				}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while (n-- > 0)
 					*bp = *sbuf++, bp += spp;
 			}

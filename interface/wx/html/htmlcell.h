@@ -215,6 +215,11 @@ public:
 
         Usage:
         @code
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (container->AdjustPagebreak(&p, kp, ph)) {}
         @endcode
 

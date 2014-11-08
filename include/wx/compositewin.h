@@ -161,6 +161,11 @@ private:
         // is pressed in the inline editor, but not when it's pressed in a
         // popup dialog it opens.
         wxWindow *win = child;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( win && win != this )
         {
             if ( win->IsTopLevel() )
@@ -183,6 +188,11 @@ private:
     {
         // Ignore focus changes within the composite control:
         wxWindow *win = event.GetWindow();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( win )
         {
             if ( win == this )

@@ -626,6 +626,11 @@ void wxFileListCtrl::UpdateFiles()
 
             // Get the directories first (not matched against wildcards):
             cont = dir.GetFirst(&f, wxEmptyString, wxDIR_DIRS | hiddenFlag);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (cont)
             {
                 wxFileData *fd = new wxFileData(dirPrefix + f, f, wxFileData::is_dir, wxFileIconsTable::folder);
@@ -640,10 +645,20 @@ void wxFileListCtrl::UpdateFiles()
             // Tokenize the wildcard string, so we can handle more than 1
             // search pattern in a wildcard.
             wxStringTokenizer tokenWild(m_wild, wxT(";"));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( tokenWild.HasMoreTokens() )
             {
                 cont = dir.GetFirst(&f, tokenWild.GetNextToken(),
                                         wxDIR_FILES | hiddenFlag);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (cont)
                 {
                     wxFileData *fd = new wxFileData(dirPrefix + f, f, wxFileData::is_file, wxFileIconsTable::file);
@@ -797,6 +812,11 @@ void wxFileListCtrl::FreeAllItemsData()
     item.m_mask = wxLIST_MASK_DATA;
 
     item.m_itemId = GetNextItem( -1, wxLIST_NEXT_ALL );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( item.m_itemId != -1 )
     {
         GetItem( item );
@@ -1304,6 +1324,11 @@ void wxGenericFileCtrl::OnTextChange( wxCommandEvent &WXUNUSED( event ) )
         {
             long item = m_list->GetNextItem( -1, wxLIST_NEXT_ALL,
                                              wxLIST_STATE_SELECTED );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( item != -1 )
             {
                 m_list->SetItemState( item, 0, wxLIST_STATE_SELECTED );

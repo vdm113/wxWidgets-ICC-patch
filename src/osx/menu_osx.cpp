@@ -296,6 +296,11 @@ wxMenuItem *wxMenu::DoRemove(wxMenuItem *item)
                 node = GetMenuItems().Item(endGroup);
             wxASSERT_MSG( node, wxS("Should have valid radio group end") );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( node->GetData() != item )
             {
                 const wxMenuItemList::compatibility_iterator

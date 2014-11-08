@@ -112,6 +112,11 @@ x11_draw_layout_line_with_colors( Drawable         drawable,
     pango_layout_line_get_extents (line,NULL, &overall_rect);
 
     GSList *tmp_list = line->runs;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (tmp_list)
     {
         PangoUnderline uline = PANGO_UNDERLINE_NONE;
@@ -244,6 +249,11 @@ x11_pango_get_item_properties( PangoItem      *item,
   if (rise)
     *rise = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (tmp_list)
     {
       PangoAttribute *attr = (PangoAttribute *) tmp_list->data;

@@ -207,6 +207,11 @@ wxArtProvider::~wxArtProvider()
 {
     if ( sm_providers )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( !sm_providers->empty() )
             delete *sm_providers->begin();
 

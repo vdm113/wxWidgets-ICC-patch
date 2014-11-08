@@ -1011,6 +1011,11 @@ wxRichEditStreamIn(DWORD_PTR dwCookie, BYTE *buf, LONG cb, LONG *pcb)
 
     wchar_t *wbuf = (wchar_t *)buf;
     const wchar_t *wpc = *ppws;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( cb && *wpc )
     {
         *wbuf++ = *wpc++;
@@ -1040,6 +1045,11 @@ wxRichEditStreamOut(DWORD_PTR dwCookie, BYTE *buf, LONG cb, LONG *pcb)
 
     const wchar_t *wbuf = (const wchar_t *)buf;
     wchar_t *wpc = data->wpc;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( cb )
     {
         wchar_t wch = *wbuf++;

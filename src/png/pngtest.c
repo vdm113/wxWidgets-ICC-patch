@@ -817,6 +817,11 @@ static void
 pngtest_check_text_support(png_const_structp png_ptr, png_textp text_ptr,
    int num_text)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    while (num_text > 0)
    {
       switch (text_ptr[--num_text].compression)
@@ -1907,6 +1912,11 @@ main(int argc, char *argv[])
             fprintf(STDERR, "MEMORY ERROR: %d bytes still allocated\n",
                current_allocation);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (pinfo != NULL)
             {
                fprintf(STDERR, " %lu bytes at %x\n",
@@ -2005,6 +2015,11 @@ main(int argc, char *argv[])
              fprintf(STDERR, "MEMORY ERROR: %d bytes still allocated\n",
                 current_allocation);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
              while (pinfo != NULL)
              {
                 fprintf(STDERR, " %lu bytes at %x\n",

@@ -118,6 +118,11 @@ bool wxHIDDevice::Create (int nClass, int nType, int nDev)
 
     //Now we iterate through them
     io_object_t pObject;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( (pObject = IOIteratorNext(pIterator)) != 0)
     {
         if(--nDev != 0)
@@ -283,6 +288,11 @@ size_t wxHIDDevice::GetCount (int nClass, int nType)
     //Now we iterate through them
     size_t nCount = 0;
     io_object_t pObject;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( (pObject = IOIteratorNext(pIterator)) != 0)
     {
         ++nCount;

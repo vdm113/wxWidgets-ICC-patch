@@ -365,6 +365,11 @@ utf8_toUtf16(const ENCODING *enc,
 {
   unsigned short *to = *toP;
   const char *from = *fromP;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (from != fromLim && to != toLim) {
     switch (((struct normal_encoding *)enc)->type[(unsigned char)*from]) {
     case BT_LEAD2:
@@ -481,6 +486,11 @@ latin1_toUtf16(const ENCODING *enc,
                const char **fromP, const char *fromLim,
                unsigned short **toP, const unsigned short *toLim)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (*fromP != fromLim && *toP != toLim)
     *(*toP)++ = (unsigned char)*(*fromP)++;
 }
@@ -514,6 +524,11 @@ ascii_toUtf8(const ENCODING *enc,
              const char **fromP, const char *fromLim,
              char **toP, const char *toLim)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (*fromP != fromLim && *toP != toLim)
     *(*toP)++ = *(*fromP)++;
 }
@@ -1076,6 +1091,11 @@ parsePseudoAttribute(const ENCODING *enc,
   }
   ptr += enc->minBytesPerChar;
   c = toAscii(enc, ptr, end);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (isSpace(c)) {
     ptr += enc->minBytesPerChar;
     c = toAscii(enc, ptr, end);
@@ -1214,6 +1234,11 @@ doParseXmlDecl(const ENCODING *(*encodingFinder)(const ENCODING *,
     *badPtr = val;
     return 0;
   }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (isSpace(toAscii(enc, ptr, end)))
     ptr += enc->minBytesPerChar;
   if (ptr != end) {
@@ -1391,6 +1416,11 @@ unknown_toUtf16(const ENCODING *enc,
                 unsigned short **toP, const unsigned short *toLim)
 {
   const struct unknown_encoding *uenc = AS_UNKNOWN_ENCODING(enc);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (*fromP != fromLim && *toP != toLim) {
     unsigned short c = uenc->utf16[(unsigned char)**fromP];
     if (c == 0) {

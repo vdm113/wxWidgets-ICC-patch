@@ -67,11 +67,6 @@ public:
     outside it or if it loses focus in any other way.
 
     This window can be useful for implementing custom combobox-like controls
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for example.
 
     @library{wxcore}

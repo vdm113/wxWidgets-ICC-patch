@@ -87,6 +87,11 @@ main(int argc, char* argv[])
     TIFF* out;
     int c;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((c = getopt(argc, argv, "w:h:c:")) != -1) {
 	switch (c) {
 	case 'w':	tnw = strtoul(optarg, NULL, 0); break;
@@ -528,6 +533,11 @@ setupStepTables(uint32 sw)
 	for (x = 0; x < tnw; x++) {
 	    uint32 sx0 = sx;
 	    err += step;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	    while (err >= limit) {
 		err -= limit;
 		sx++;
@@ -626,6 +636,11 @@ setImage1(const uint8* br, uint32 rw, uint32 rh)
 	fprintf(stderr, "bpr=%d, sy=%d, bpr*sy=%d\n", bpr, sy, bpr*sy);
 	rows[0] = br + bpr*sy;
 	err += step;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (err >= limit) {
 	    err -= limit;
 	    sy++;

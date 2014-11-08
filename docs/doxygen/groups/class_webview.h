@@ -18,11 +18,6 @@
 @ingroup group_class
 
 The wxWebView library is a set of classes for viewing complex web documents and 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for internet browsing. It is built around a series of backends, and exposes
 common functions for them.
 

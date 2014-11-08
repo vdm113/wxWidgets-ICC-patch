@@ -3148,6 +3148,11 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryPersampleShort(TIFF* tif, TIFFDi
 	nb=tif->tif_dir.td_samplesperpixel;
 	*value=*na++;
 	nb--;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (nb>0)
 	{
 		if (*na++!=*value)
@@ -3177,6 +3182,11 @@ static enum TIFFReadDirEntryErr TIFFReadDirEntryPersampleDouble(TIFF* tif, TIFFD
 	nb=tif->tif_dir.td_samplesperpixel;
 	*value=*na++;
 	nb--;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (nb>0)
 	{
 		if (*na++!=*value)
@@ -4560,6 +4570,11 @@ TIFFReadDirectoryFindFieldInfo(TIFF* tif, uint16 tagid, uint32* fii)
 	int32 ma,mb,mc;
 	ma=-1;
 	mc=(int32)tif->tif_nfields;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (1)
 	{
 		if (ma+1==mc)
@@ -4575,6 +4590,11 @@ TIFFReadDirectoryFindFieldInfo(TIFF* tif, uint16 tagid, uint32* fii)
 		else
 			mc=mb;
 	}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (1)
 	{
 		if (mb==0)
@@ -4646,6 +4666,11 @@ TIFFReadCustomDirectory(TIFF* tif, toff_t diroff,
 			else
 			{
 				/* check data type */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while ((fip->field_type!=TIFF_ANY)&&(fip->field_type!=dp->tdir_type))
 				{
 					fii++;
@@ -5198,6 +5223,11 @@ TIFFFetchNormalTag(TIFF* tif, TIFFDirEntry* dp, int recover)
 					int n;
 					ma=data;
 					mb=0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					while (mb<(uint32)dp->tdir_count)
 					{
 						if (*ma==0)

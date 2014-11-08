@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/listctrl.cpp
 // Purpose:     wxListCtrl
@@ -322,6 +315,11 @@ void BumpRecordIds (
 , PMYRECORD                         pRecord
 )
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(pRecord)
     {
         pRecord = (PMYRECORD)PVOIDFROMMR(::WinSendMsg( hWnd
@@ -1707,6 +1705,11 @@ int wxListCtrl::GetSelectedItemCount () const
         nCount++;
     else
         return 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (pRecord)
     {
         pRecord = (PMYRECORD)PVOIDFROMMR(::WinSendMsg( GetHWND()
@@ -1949,6 +1952,11 @@ bool wxListCtrl::DeleteAllItems ()
 // Deletes all items
 bool wxListCtrl::DeleteAllColumns ()
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (m_nColCount > 0)
     {
         DeleteColumn(m_nColCount - 1);
@@ -2107,6 +2115,11 @@ long wxListCtrl::FindItem (
     long                            lIdx = lStart + 1;
     long                            lCount = GetItemCount();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (lIdx < lCount)
     {
         if (GetItemData(lIdx) == lData)

@@ -403,11 +403,6 @@ void gen_trees_header()
     }
 
     fprintf(header, "const uch ZLIB_INTERNAL _dist_code[DIST_CODE_LEN] = {\n");
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for (i = 0; i < DIST_CODE_LEN; i++) {
         fprintf(header, "%2u%s", _dist_code[i],
                 SEPARATOR(i, DIST_CODE_LEN-1, 20));
@@ -548,6 +543,11 @@ local void pqdownheap(s, tree, k)
 {
     int v = s->heap[k];
     int j = k << 1;  /* left son of k */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (j <= s->heap_len) {
         /* Set j to the smallest of the two sons: */
         if (j < s->heap_len &&
@@ -661,6 +661,11 @@ local void gen_bitlen(s, desc)
 #endif
     for (bits = max_length; bits != 0; bits--) {
         n = s->bl_count[bits];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (n != 0) {
             m = s->heap[--h];
             if (m > max_code) continue;
@@ -771,6 +776,11 @@ local void build_tree(s, desc)
      * possible code. So to avoid special checks later on we force at least
      * two codes of non zero frequency.
      */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (s->heap_len < 2) {
         node = s->heap[++(s->heap_len)] = (max_code < 2 ? ++max_code : 0);
         tree[node].Freq = 1;
@@ -1400,6 +1410,11 @@ local void copy_block(s, buf, len, header)
     }
 #ifdef DEBUG
     s->bits_sent += (ulg)len<<3;
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
     while (len--) {
         put_byte(s, *buf++);

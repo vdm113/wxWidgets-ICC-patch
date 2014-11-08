@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/window.cpp
 // Purpose:     wxWindow
@@ -221,6 +214,11 @@ wxWindow* wxWindowOS2::FindItem(
 
     wxWindowList::compatibility_iterator  current = GetChildren().GetFirst();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (current)
     {
         wxWindow*                   pChildWin = current->GetData();
@@ -244,6 +242,11 @@ wxWindow* wxWindowOS2::FindItemByHWND(
 {
     wxWindowList::compatibility_iterator current = GetChildren().GetFirst();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (current)
     {
         wxWindow*                   pParent = current->GetData();
@@ -1780,6 +1783,11 @@ bool wxWindowOS2::IsMouseInWindow() const
     //
     HWND hWnd = ::WinWindowFromPoint(HWND_DESKTOP, &vPt, TRUE);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (hWnd && (hWnd != GetHwnd()))
         hWnd = ::WinQueryWindow(hWnd, QW_PARENT);
 
@@ -1825,6 +1833,11 @@ bool wxWindowOS2::DoPopupMenu( wxMenu* pMenu, int nX, int nY )
                    ,PU_HCONSTRAIN | PU_VCONSTRAIN | PU_MOUSEBUTTON1 | PU_KEYBOARD
                   );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(bIsWaiting)
     {
         QMSG                            vMsg;
@@ -3467,6 +3480,11 @@ void wxWindowOS2::OnSysColourChanged(
 {
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         //
@@ -4997,6 +5015,11 @@ wxWindow* wxFindWindowAtPoint(const wxPoint& rPt)
     //
     // Try to find a window with a wxWindow associated with it
     //
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (!pWin && (hWnd != 0))
     {
         hWnd = ::WinQueryWindow(hWnd, QW_PARENT);
@@ -5058,6 +5081,11 @@ wxWindowOS2* FindWindowForMouseEvent( wxWindow* pWin,
             //
             // Find a child window mouse might be under
             //
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (current)
             {
                 wxWindow*                   pChild = current->GetData();
@@ -5073,6 +5101,11 @@ wxWindowOS2* FindWindowForMouseEvent( wxWindow* pWin,
                         POINTL                  vPoint3;
                         wxWindowList::compatibility_iterator current2 =pChild->GetChildren().GetFirst();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         while (current2)
                         {
                             wxWindow*           pGrandChild = current2->GetData();

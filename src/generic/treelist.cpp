@@ -785,6 +785,11 @@ void wxTreeListModel::DeleteItem(Node* item)
 
 void wxTreeListModel::DeleteAllItems()
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( m_root->GetChild() )
     {
         m_root->DeleteChild();

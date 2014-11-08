@@ -60,6 +60,11 @@ wxWindowMSW *wxGUIEventLoop::ms_winCritical = NULL;
 
 bool wxGUIEventLoop::IsChildOfCriticalWindow(wxWindowMSW *win)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( win )
     {
         if ( win == ms_winCritical )
@@ -81,6 +86,11 @@ bool wxGUIEventLoop::PreProcessMessage(WXMSG *msg)
     // children which themselves were not created by wx (i.e. wxActiveX control children)
     if ( !wndThis )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( hwnd && (::GetWindowLong(hwnd, GWL_STYLE) & WS_CHILD ))
         {
             hwnd = ::GetParent(hwnd);
@@ -229,6 +239,11 @@ bool wxGUIEventLoop::Dispatch()
             s_hadGuiLock = true;
 
             wxMsgList::compatibility_iterator node = s_aSavedMessages.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (node)
             {
                 MSG* pMsg = node->GetData();
@@ -281,6 +296,11 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
     // the main event loop in order to stop it
     MSG msg;
     int nPaintsReceived = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( PeekMessage(&msg, (HWND)0, 0, 0, PM_NOREMOVE) &&
             msg.message != WM_QUIT )
     {

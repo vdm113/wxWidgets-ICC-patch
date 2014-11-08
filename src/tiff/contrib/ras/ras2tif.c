@@ -119,6 +119,11 @@ main(argc, argv)
     setbuf(stderr, NULL);
     pname = argv[0];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (--argc) {
 	if ((++argv)[0][0] == '-') {
 	    switch (argv[0][1]) {

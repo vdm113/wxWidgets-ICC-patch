@@ -272,6 +272,11 @@ int wxArrayString::Index(const wxString& str, bool bCase, bool bFromEnd) const
            lo = 0,
            hi = m_nCount;
     int res;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( lo < hi ) {
       i = (lo + hi)/2;
 
@@ -328,6 +333,11 @@ size_t wxArrayString::Add(const wxString& str, size_t nInsert)
            lo = 0,
            hi = m_nCount;
     int res;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( lo < hi ) {
       i = (lo + hi)/2;
 
@@ -411,6 +421,11 @@ wxArrayString::insert(iterator it, const_iterator first, const_iterator last)
     // reset "it" since it can change inside Grow()
     it = begin() + idx;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( first != last )
     {
         it = insert(it, *first);
@@ -437,6 +452,11 @@ void wxArrayString::SetCount(size_t count)
     Alloc(count);
 
     wxString s;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( m_nCount < count )
         m_pItems[m_nCount++] = s;
 }

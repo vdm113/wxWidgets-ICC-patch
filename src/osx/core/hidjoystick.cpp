@@ -788,6 +788,11 @@ void* wxJoystickThread::Entry()
 
     double dTime;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(true)
     {
         if (TestDestroy())
@@ -852,6 +857,11 @@ void* wxJoystickThread::Entry()
     ret = (*m_hid->GetQueue())->getNextEvent(m_hid->GetQueue(),
                     &hidevent, bogustime, 0);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (ret != kIOReturnUnderrun)
     {
         if (pThis->TestDestroy())
@@ -868,6 +878,11 @@ void* wxJoystickThread::Entry()
         //Find the cookie that changed
         int nIndex = 0;
         IOHIDElementCookie* pCookies = m_hid->GetCookies();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while(nIndex < 50)
         {
             if(hidevent.elementCookie == pCookies[nIndex])

@@ -282,6 +282,11 @@ void wxString::PosLenToImpl(size_t pos, size_t len,
             // going beyond the end of the string, just as std::string does
             const const_iterator e(end());
             const_iterator i(b);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( len && i <= e )
             {
                 ++i;
@@ -1714,6 +1719,11 @@ wxString& wxString::Trim(bool bFromRight)
         {
             // find last non-space character
             reverse_iterator psz = rbegin();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( (psz != rend()) && wxSafeIsspace(*psz) )
                 ++psz;
 
@@ -1724,6 +1734,11 @@ wxString& wxString::Trim(bool bFromRight)
         {
             // find first non-space character
             iterator psz = begin();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( (psz != end()) && wxSafeIsspace(*psz) )
                 ++psz;
 
@@ -2294,6 +2309,11 @@ bool wxString::Matches(const wxString& mask) const
     pattern.reserve(wxStrlen(pszMask));
 
     pattern += wxT('^');
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( *pszMask )
     {
         switch ( *pszMask )
@@ -2373,6 +2393,11 @@ match:
 
           // ignore special chars immediately following this one
           // (should this be an error?)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
           while ( *pszMask == wxT('*') || *pszMask == wxT('?') )
             pszMask++;
 

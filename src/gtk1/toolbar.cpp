@@ -405,6 +405,11 @@ bool wxToolBar::DoInsertTool(size_t pos, wxToolBarToolBase *toolBase)
                     if ( pos )
                         node = m_tools.Item(pos - 1);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while ( node )
                     {
                         wxToolBarTool *toolNext = (wxToolBarTool *)node->GetData();
@@ -624,6 +629,11 @@ void wxToolBar::OnInternalIdle()
         }
 
         wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( node )
         {
             wxToolBarTool *tool = (wxToolBarTool *)node->GetData();

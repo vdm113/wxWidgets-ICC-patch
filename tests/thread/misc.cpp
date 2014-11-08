@@ -447,6 +447,11 @@ void MiscThreadTestCase::TestThreadConditions()
     // wait until all threads run
     // NOTE: main thread is waiting for the other threads to start
     size_t nRunning = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( nRunning < WXSIZEOF(threads) )
     {
         CPPUNIT_ASSERT_EQUAL( wxSEMA_NO_ERROR, gs_cond.Wait() );

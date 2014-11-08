@@ -636,6 +636,11 @@ struct wxDebugStatsStruct
 
 static wxDebugStatsStruct *FindStatsStruct(wxDebugStatsStruct *st, wxChar *name)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (st)
   {
     if (wxStrcmp(st->instanceClass, name) == 0)
@@ -724,6 +729,11 @@ bool wxDebugContext::PrintStatistics(bool detailed)
 
   if (detailed)
   {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (list)
     {
       OutputDumpLine(wxT("%ld objects of class %s, total size %ld"),

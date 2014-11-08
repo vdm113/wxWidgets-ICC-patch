@@ -46,6 +46,11 @@ public:
 
         if ( argv )
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( *argv )
                 m_args.push_back(*argv++);
         }

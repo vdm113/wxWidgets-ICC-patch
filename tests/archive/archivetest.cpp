@@ -138,6 +138,11 @@ size_t TestOutputStream::OnSysWrite(const void *buffer, size_t size)
     if (m_capacity < newsize) {
         size_t capacity = m_capacity ? m_capacity : INITIAL_SIZE;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (capacity < newsize) {
             capacity <<= 1;
             wxCHECK(capacity > m_capacity, 0);
@@ -751,6 +756,11 @@ void ArchiveTestCase<ClassFactoryT>::ModifyArchive(wxInputStream& in,
 
     arcOut->CopyArchiveMetaData(*arcIn);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((pEntry = arcIn->GetNextEntry()) != NULL) {
         auto_ptr<EntryT> entry(pEntry);
         OnSetNotifier(*entry);
@@ -828,6 +838,11 @@ void ArchiveTestCase<ClassFactoryT>::ExtractArchive(wxInputStream& in)
     if ((m_options & PipeIn) == 0)
         OnArchiveExtracted(*arc, expectedTotal);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (entry = EntryPtr(arc->GetNextEntry()), entry.get() != NULL) {
         wxString name = entry->GetName(wxPATH_UNIX);
 
@@ -1236,6 +1251,11 @@ void ArchiveTestCase<ClassFactoryT>::ReadSimultaneous(TestInputStream& in)
     const char *data = entry->GetData(), *data2 = entry2->GetData();
 
     // read and check the two entries in parallel, character by character
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (arc->IsOk() || arc2->IsOk()) {
         char ch = arc->GetC();
         if (arc->LastRead() == 1) {
@@ -1361,9 +1381,19 @@ void CorruptionTestCase::ExtractArchive(wxInputStream& in)
     auto_ptr<wxArchiveInputStream> arc(m_factory->NewStream(in));
     auto_ptr<wxArchiveEntry> entry(arc->GetNextEntry());
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (entry.get() != NULL) {
         char buf[1024];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (arc->IsOk())
             arc->Read(buf, sizeof(buf));
 

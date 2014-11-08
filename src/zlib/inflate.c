@@ -522,6 +522,7 @@ VDM_MACRO_PRAGMA_IVDEP \
 #define NEEDBITS(n) \
 VDM_MACRO_PRAGMA_IVDEP \
     do { \
+VDM_MACRO_PRAGMA_IVDEP \
         while (bits < (unsigned)(n)) \
             PULLBYTE(); \
     } while (0)
@@ -598,6 +599,11 @@ VDM_MACRO_PRAGMA_IVDEP \
    returns:
 
     case STATEw:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (want < need) {
             NEEDBITS(n);
             keep[want++] = BITS(n);
@@ -959,6 +965,11 @@ int flush;
             state->have = 0;
             state->mode = LENLENS;
         case LENLENS:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (state->have < state->ncode) {
                 NEEDBITS(3);
                 state->lens[order[state->have++]] = (unsigned short)BITS(3);
@@ -980,6 +991,11 @@ int flush;
             state->have = 0;
             state->mode = CODELENS;
         case CODELENS:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (state->have < state->nlen + state->ndist) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -1027,6 +1043,11 @@ int flush;
                         state->mode = BAD;
                         break;
                     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while (copy--)
                         state->lens[state->have++] = (unsigned short)len;
                 }
@@ -1474,6 +1495,11 @@ z_streamp strm;
         state->hold <<= state->bits & 7;
         state->bits -= state->bits & 7;
         len = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (state->bits >= 8) {
             buf[len++] = (unsigned char)(state->hold);
             state->hold >>= 8;

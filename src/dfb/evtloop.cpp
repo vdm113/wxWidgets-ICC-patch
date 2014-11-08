@@ -219,6 +219,11 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
     // TODO: implement event filtering using the eventsToProcess mask
 
     // process all pending events:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( Pending() )
         Dispatch();
 
@@ -228,6 +233,11 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
     // it's necessary to call ProcessIdle() to update the frames sizes which
     // might have been changed (it also will update other things set from
     // OnUpdateUI() which is a nice (and desired) side effect)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( ProcessIdle() ) {}
 
     wxEventLoopBase::DoYieldFor(eventsToProcess);

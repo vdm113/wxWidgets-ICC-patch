@@ -76,6 +76,11 @@ wxRichTextAttr wxRichTextStyleDefinition::GetStyleMergedWithBase(const wxRichTex
     wxArrayString styleNames;
     wxList styles;
     const wxRichTextStyleDefinition* def = this;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (def)
     {
         styles.Insert((wxObject*) def);
@@ -101,6 +106,11 @@ wxRichTextAttr wxRichTextStyleDefinition::GetStyleMergedWithBase(const wxRichTex
 
     wxRichTextAttr attr;
     wxList::compatibility_iterator node = styles.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxRichTextStyleDefinition* def = (wxRichTextStyleDefinition*) node->GetData();
@@ -417,6 +427,11 @@ bool wxRichTextStyleSheet::InsertSheet(wxRichTextStyleSheet* before)
 bool wxRichTextStyleSheet::AppendSheet(wxRichTextStyleSheet* after)
 {
     wxRichTextStyleSheet* last = after;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (last && last->m_nextSheet)
     {
         last = last->m_nextSheet;

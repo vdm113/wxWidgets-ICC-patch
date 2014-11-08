@@ -47,6 +47,11 @@ generatePatternedData(void* buff, size_t len, unsigned char startVal,
 {
     unsigned char *cbuff = (unsigned char *)buff;
     unsigned char curval = startVal;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(len--)
     {
         *(cbuff++) = curval;
@@ -57,6 +62,11 @@ generatePatternedData(void* buff, size_t len, unsigned char startVal,
 static void generateRandomData(void* buff, size_t len)
 {
     unsigned char *cbuff = (unsigned char *)buff;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(len--)
     {
         *(cbuff++) = (unsigned char)(((rand() * 255) / RAND_MAX));
@@ -69,6 +79,11 @@ static void generateGibberish(void* buff, size_t len)
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
     unsigned char *cbuff = (unsigned char *)buff;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(len--)
     {
         *(cbuff++) = cb64[((rand() * 64) / RAND_MAX)];

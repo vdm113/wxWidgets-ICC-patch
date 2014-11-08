@@ -160,6 +160,11 @@ void wxAutoScrollTimer::Notify()
             // the mouse event coordinates should be client, not screen as
             // returned by wxGetMousePosition
             wxWindow *parentTop = m_win;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( parentTop->GetParent() )
                 parentTop = parentTop->GetParent();
             wxPoint ptOrig = parentTop->GetPosition();

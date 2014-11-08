@@ -142,6 +142,11 @@ jpeg_calc_output_dimensions (j_decompress_ptr cinfo)
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
     int ssize = cinfo->min_DCT_scaled_size;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (ssize < DCTSIZE &&
 	   (compptr->h_samp_factor * ssize * 2 <=
 	    cinfo->max_h_samp_factor * cinfo->min_DCT_scaled_size) &&

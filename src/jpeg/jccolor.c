@@ -151,6 +151,11 @@ rgb_ycc_convert (j_compress_ptr cinfo,
   register JDIMENSION col;
   JDIMENSION num_cols = cinfo->image_width;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (--num_rows >= 0) {
     inptr = *input_buf++;
     outptr0 = output_buf[0][output_row];
@@ -212,6 +217,11 @@ rgb_gray_convert (j_compress_ptr cinfo,
   register JDIMENSION col;
   JDIMENSION num_cols = cinfo->image_width;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (--num_rows >= 0) {
     inptr = *input_buf++;
     outptr = output_buf[0][output_row];
@@ -256,6 +266,11 @@ cmyk_ycck_convert (j_compress_ptr cinfo,
   register JDIMENSION col;
   JDIMENSION num_cols = cinfo->image_width;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (--num_rows >= 0) {
     inptr = *input_buf++;
     outptr0 = output_buf[0][output_row];
@@ -314,6 +329,11 @@ grayscale_convert (j_compress_ptr cinfo,
   JDIMENSION num_cols = cinfo->image_width;
   int instride = cinfo->input_components;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (--num_rows >= 0) {
     inptr = *input_buf++;
     outptr = output_buf[0][output_row];
@@ -349,6 +369,11 @@ null_convert (j_compress_ptr cinfo,
   int nc = cinfo->num_components;
   JDIMENSION num_cols = cinfo->image_width;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (--num_rows >= 0) {
     /* It seems fastest to make a separate pass for each component. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch

@@ -349,8 +349,18 @@ void wxWindowDCImpl::DoDrawArc( wxCoord x1, wxCoord y1, wxCoord x2, wxCoord y2, 
     radius2 *= 64.0;
     int alpha1 = (int) radius1;
     int alpha2 = (int) (radius2 - radius1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (alpha2 <= 0)
         alpha2 += 360 * 64;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (alpha2 > 360 * 64)
         alpha2 -= 360 * 64;
 

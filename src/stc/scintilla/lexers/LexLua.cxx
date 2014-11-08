@@ -41,6 +41,11 @@ using namespace Scintilla;
 // The maximum number of '=' characters allowed is 254.
 static int LongDelimCheck(StyleContext &sc) {
 	int sep = 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (sc.GetRelative(sep) == '=' && sep < 0xFF)
 		sep++;
 	if (sc.GetRelative(sep) == sc.ch)
@@ -145,12 +150,22 @@ static void ColouriseLuaDoc(
 			if (sc.ch == ':' && sc.chPrev == ':') {	// :: <label> :: forward scan
 				sc.Forward();
 				int ln = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while (IsASpaceOrTab(sc.GetRelative(ln)))	// skip over spaces/tabs
 					ln++;
 				int ws1 = ln;
 				if (setWordStart.Contains(sc.GetRelative(ln))) {
 					int c, i = 0;
 					char s[100];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					while (setWord.Contains(c = sc.GetRelative(ln))) {	// get potential label
 						if (i < 90)
 							s[i++] = c;
@@ -158,6 +173,11 @@ static void ColouriseLuaDoc(
 					}
 					s[i] = '\0'; int lbl = ln;
 					if (!keywords.InList(s)) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 						while (IsASpaceOrTab(sc.GetRelative(ln)))	// skip over spaces/tabs
 							ln++;
 						int ws2 = ln - lbl;
@@ -197,11 +217,21 @@ static void ColouriseLuaDoc(
 					sc.ChangeState(SCE_LUA_WORD);
 					if (strcmp(s, "goto") == 0) {	// goto <label> forward scan
 						sc.SetState(SCE_LUA_DEFAULT);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 						while (IsASpaceOrTab(sc.ch) && !sc.atLineEnd)
 							sc.Forward();
 						if (setWordStart.Contains(sc.ch)) {
 							sc.SetState(SCE_LUA_LABEL);
 							sc.Forward();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 							while (setWord.Contains(sc.ch))
 								sc.Forward();
 							sc.GetCurrent(s, sizeof(s));

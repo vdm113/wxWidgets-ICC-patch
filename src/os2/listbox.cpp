@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/listbox.cpp
 // Purpose:     wxListBox
@@ -409,6 +402,11 @@ int wxListBox::GetSelections( wxArrayInt& raSelections ) const
         if (lItem != LIT_NONE)
         {
             nCount++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ((lItem = LONGFROMMR(::WinSendMsg( GetHwnd()
                                                     ,LM_QUERYSELECTION
                                                     ,(MPARAM)lItem
@@ -427,6 +425,11 @@ int wxListBox::GetSelections( wxArrayInt& raSelections ) const
                               );
 
             raSelections.Add((int)lItem);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ((lItem = LONGFROMMR(::WinSendMsg( GetHwnd()
                                                     ,LM_QUERYSELECTION
                                                     ,(MPARAM)lItem

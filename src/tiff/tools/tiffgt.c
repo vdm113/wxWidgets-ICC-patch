@@ -93,6 +93,11 @@ main(int argc, char* argv[])
 
         oerror = TIFFSetErrorHandler(NULL);
         owarning = TIFFSetWarningHandler(NULL);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ((c = getopt(argc, argv, "d:o:p:eflmsvw?")) != -1)
             switch (c) {
             case 'd':
@@ -394,6 +399,11 @@ raster_special(int key, int x, int y)
                 break;
                 case GLUT_KEY_END:              /* last image in current file */
                         TIFFRGBAImageEnd(&img);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         while (!TIFFLastDirectory(tif))
                                 TIFFReadDirectory(tif);
                         initImage();

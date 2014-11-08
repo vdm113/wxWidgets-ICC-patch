@@ -190,6 +190,11 @@ Status XGetWindowAttributes(Display* display, Window w,
      * or we will report a window as mapped when it is not.
      */
     parent = info.parent;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (parent)
     {
         GrGetWindowInfo(parent, & info);
@@ -428,6 +433,11 @@ int XTranslateCoordinates(Display* display, Window srcWindow, Window destWindow,
     int offy = 0;
 
     Window w = srcWindow;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (w != GR_ROOT_WINDOW_ID)
     {
         GR_WINDOW_INFO info;
@@ -440,6 +450,11 @@ int XTranslateCoordinates(Display* display, Window srcWindow, Window destWindow,
 
     w = destWindow;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (w != GR_ROOT_WINDOW_ID)
     {
         GR_WINDOW_INFO info;

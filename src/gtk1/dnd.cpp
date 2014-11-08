@@ -504,6 +504,11 @@ GdkAtom wxDropTarget::GetMatchingPair(bool quiet)
         return (GdkAtom) 0;
 
     GList *child = m_dragContext->targets;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (child)
     {
         GdkAtom formatAtom = GPOINTER_TO_INT(child->data);
@@ -903,6 +908,11 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
 
         PrepareIcon( action, context );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (m_waiting)
             gtk_main_iteration();
 

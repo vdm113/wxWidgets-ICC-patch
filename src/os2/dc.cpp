@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/dc.cpp
 // Purpose:     wxDC class
@@ -211,6 +204,11 @@ wxDCCacheEntry* wxPMDCImpl::FindBitmapInCache(
     wxNode*                         pNode = m_svBitmapCache.First();
     BITMAPINFOHEADER2               vBmpHdr;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(pNode)
     {
         wxDCCacheEntry*             pEntry = (wxDCCacheEntry*)pNode->Data();
@@ -276,6 +274,11 @@ wxDCCacheEntry* wxPMDCImpl::FindDCInCache(
     int                             nDepth = 24; // we'll fix this up later ::GetDeviceCaps((HDC) dc, PLANES) * ::GetDeviceCaps((HDC) dc, BITSPIXEL);
     wxNode*                         pNode = m_svDCCache.First();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(pNode)
     {
         wxDCCacheEntry*             pEntry = (wxDCCacheEntry*)pNode->Data();

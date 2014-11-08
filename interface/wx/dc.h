@@ -161,11 +161,6 @@ struct wxFontMetrics
 
     In general wxDC methods don't support alpha transparency and the alpha
     component of wxColour is simply ignored and you need to use wxGraphicsContext
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for full transparency support. There are, however, a few exceptions: first,
     under Mac OS X colours with alpha channel are supported in all the normal
     wxDC-derived classes as they use wxGraphicsContext internally. Second,
@@ -1206,6 +1201,11 @@ public:
 
         Unlike Blit(), this method allows to specify different source and
         destination region sizes, meaning that it can stretch or shrink it
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while copying. The same can be achieved by changing the scale of the
         source or target DC but calling this method is simpler and can also be
         more efficient if the platform provides a native implementation of it.
@@ -1402,6 +1402,11 @@ public:
         @note Setting a pixel can be done using DrawPoint().
 
         @note This method shouldn't be used with wxPaintDC as accessing the DC
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while drawing can result in unexpected results, notably in wxGTK.
     */
     bool GetPixel(wxCoord x, wxCoord y, wxColour* colour) const;

@@ -586,6 +586,11 @@ void wxGenericPrintSetupDialog::Init(wxPrintData* data)
                 tmp = tok2.GetNextToken();  // "printer"
                 tmp = tok2.GetNextToken();  // "hp_deskjet930c"
                 tmp = wxEmptyString;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (tok2.HasMoreTokens())
                 {
                     tmp += tok2.GetNextToken();

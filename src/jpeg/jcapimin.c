@@ -184,6 +184,11 @@ jpeg_finish_compress (j_compress_ptr cinfo)
   } else if (cinfo->global_state != CSTATE_WRCOEFS)
     ERREXIT1(cinfo, JERR_BAD_STATE, cinfo->global_state);
   /* Perform any remaining passes */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (! cinfo->master->is_last_pass) {
     (*cinfo->master->prepare_for_pass) (cinfo);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -234,6 +239,11 @@ jpeg_write_marker (j_compress_ptr cinfo, int marker,
 
   (*cinfo->marker->write_marker_header) (cinfo, marker, datalen);
   write_marker_byte = cinfo->marker->write_marker_byte;	/* copy for speed */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (datalen--) {
     (*write_marker_byte) (cinfo, *dataptr);
     dataptr++;

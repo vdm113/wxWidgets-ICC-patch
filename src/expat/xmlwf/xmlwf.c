@@ -144,11 +144,21 @@ startElement(void *userData, const XML_Char *name, const XML_Char **atts)
   fputts(name, fp);
 
   p = atts;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (*p)
     ++p;
   nAtts = (int)((p - atts) >> 1);
   if (nAtts > 1)
     qsort((void *)atts, nAtts, sizeof(XML_Char *) * 2, attcmp);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (*atts) {
     puttc(T(' '), fp);
     fputts(*atts++, fp);
@@ -204,11 +214,21 @@ startElementNS(void *userData, const XML_Char *name, const XML_Char **atts)
   }
 
   p = atts;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (*p)
     ++p;
   nAtts = (int)((p - atts) >> 1);
   if (nAtts > 1)
     qsort((void *)atts, nAtts, sizeof(XML_Char *) * 2, nsattcmp);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (*atts) {
     name = *atts++;
     sep = tcsrchr(name, NSSEP);
@@ -642,6 +662,11 @@ showVersion(XML_Char *prog)
   XML_Char *s = prog;
   XML_Char ch;
   const XML_Feature *features = XML_GetFeatureList();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while ((ch = *s) != 0) {
     if (ch == '/'
 #if (defined(WIN32) || defined(__WATCOMC__))
@@ -657,6 +682,11 @@ showVersion(XML_Char *prog)
     ftprintf(stdout, T("%s"), features[0].name);
     if (features[0].value)
       ftprintf(stdout, T("=%ld"), features[0].value);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (features[i].feature != XML_FEATURE_END) {
       ftprintf(stdout, T(", %s"), features[i].name);
       if (features[i].value)
@@ -697,6 +727,11 @@ tmain(int argc, XML_Char **argv)
 
   i = 1;
   j = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (i < argc) {
     if (j == 0) {
       if (argv[i][0] != T('-'))

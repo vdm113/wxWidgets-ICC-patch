@@ -1692,6 +1692,11 @@ void wxGtkPrinterDCImpl::DoDrawSpline(const wxPointList *points)
     CalcBoundingBox( (wxCoord)x3, (wxCoord)y3 );
 
     node = node->GetNext();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         q = node->GetData();

@@ -216,11 +216,6 @@ BY ANY OTHER PARTY.
 		<tgl@sss.pgh.pa.us>
 	lpd 95-06-22 removed #ifndefs whose sole purpose was to define
 		undefined preprocessor symbols as 0; changed all #ifdefs
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		for configuration symbols to #ifs
 	lpd 95-04-05 changed copyright notice to make it clear that
 		including ansi2knr in a program does not bring the entire
@@ -381,6 +376,11 @@ main(argc, argv)
 	fprintf(out, "#line 1 \"%s\"\n", argv[1]);
 	buf = malloc(bufsize);
 	line = buf;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ( fgets(line, (unsigned)(buf + bufsize - line), in) != NULL )
 	   {
 test:		line += strlen(line);
@@ -446,6 +446,11 @@ skipspace(p, dir)
 		if ( !(*p == '/' && p[dir] == '*') )
 		  break;
 		p += dir;  p += dir;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while ( !(*p == '*' && p[dir] == '/') )
 		   {	if ( *p == 0 )
 			  return p;	/* multi-line comment?? */
@@ -508,6 +513,11 @@ test1(buf)
 	   case '}': return 0;		/* not a function */
 	   default: contin = -1;
 	   }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ( isidchar(*p) )
 	  p++;
 	endfn = p;
@@ -531,6 +541,11 @@ test1(buf)
 		char *kp;
 		int len = endfn - buf;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while ( (kp = *key) != 0 )
 		   {	if ( strlen(kp) == len && !strncmp(kp, buf, len) )
 			  return 0;	/* name is a keyword */
@@ -641,6 +656,11 @@ top:	p = endfn;
 			   case ']':	/* skip array dimension(s) */
 			   case ')':	/* skip procedure args OR name */
 			   {	int level = 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while ( level )
 				 switch ( *--p )
 				   {
@@ -652,6 +672,11 @@ top:	p = endfn;
 			   }
 				if ( *p == '(' && *skipspace(p + 1, 1) == '*' )
 				   {	/* We found the name being declared */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					while ( !isidfirstchar(*p) )
 					  p = skipspace(p, 1) + 1;
 					goto found;
@@ -712,6 +737,11 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 	else
 	  {	for ( ap = breaks+1; ap < bp; ap += 2 )
 		  {	p = *ap;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while ( isidchar(*p) )
 			  putc(*p, out), p++;
 			if ( ap < bp - 1 )

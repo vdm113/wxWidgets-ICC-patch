@@ -92,11 +92,6 @@ MPCriticalRegionID gs_guiCritical = kInvalidID;
 
     The implementation is very close to the phtreads implementation, the reason for
     using MPServices is the fact that these are also available under OS 9. Thus allowing
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for one common API for all current builds.
 
     As soon as wxThreads are on a 64 bit address space, the TLS must be extended
@@ -455,6 +450,11 @@ wxCondError wxConditionInternal::Broadcast()
 {
     wxCriticalSectionLocker lock(m_csWaiters);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( m_numWaiters > 0 )
     {
         if ( m_semaphore.Post() != wxSEMA_NO_ERROR )

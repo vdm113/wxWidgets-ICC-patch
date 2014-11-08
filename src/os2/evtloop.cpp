@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/evtloop.cpp
 // Purpose:     implements wxGUIEventLoop for PM
@@ -139,6 +132,11 @@ bool wxEventLoopImpl::PreProcessMessage(QMSG *pMsg)
     // because the subcontrol is not a wxWindow, but only the control itself
     // is - try to catch this case
     //
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (hWnd && !pWndThis)
     {
         hWnd = ::WinQueryWindow(hWnd, QW_PARENT);
@@ -275,6 +273,11 @@ int wxGUIEventLoop::Run()
 
         // generate and process idle events for as long as we don't have
         // anything else to do
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( !Pending() && m_impl->SendIdleMessage() )
         {
             wxTheApp->HandleSockets();
@@ -399,6 +402,11 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
     // We want to go back to the main message loop
     // if we see a WM_QUIT. (?)
     //
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (::WinPeekMsg(vHab, &vMsg, (HWND)NULL, 0, 0, PM_NOREMOVE) && vMsg.msg != WM_QUIT)
     {
         // TODO: implement event filtering using the eventsToProcess mask

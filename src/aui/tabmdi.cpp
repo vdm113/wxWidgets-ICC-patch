@@ -351,6 +351,11 @@ void wxAuiMDIParentFrame::DoHandleMenu(wxCommandEvent& event)
         case wxWINDOWCLOSEALL:
         {
             wxAuiMDIChildFrame* pActiveChild;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ((pActiveChild = GetActiveChild()) != NULL)
             {
                 if (!pActiveChild->Close())

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/cocoa/objc/objc_uniquifying.h
 // Purpose:     Allows wxWidgets code to get a direct pointer to a compiled
@@ -30,11 +23,6 @@ unqiuified.
 
 You cannot turn this on for 64-bit mode. It will not compile due to opaque
 Objective-C data structures and it is not needed because it is a workaround
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for a bug that does not exist in the 64-bit runtime.
 
 You should not use this when wxCocoa is built as a dynamic library.  This has

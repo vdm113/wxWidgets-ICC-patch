@@ -91,6 +91,11 @@ int wxMacDataBrowserListControl::DoListHitTest(const wxPoint& inpoint) const
     // search for the first visible item (note that the scroll guess above
     // is the low bounds of where the item might lie so we only use that as a
     // starting point - we should reach it within 1 or 2 iterations of the loop)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( low <= high )
     {
         Rect bounds;
@@ -111,6 +116,11 @@ int wxMacDataBrowserListControl::DoListHitTest(const wxPoint& inpoint) const
 
     // NOW do a binary search for where the item lies, searching low again if
     // we hit an item that isn't visible
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( low <= high )
     {
         int mid = (low + high) / 2;

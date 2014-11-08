@@ -108,6 +108,11 @@ wxHtmlWinParser::wxHtmlWinParser(wxHtmlWindowInterface *wndIface)
 
     // fill in wxHtmlParser's tables:
     wxList::compatibility_iterator node = m_Modules.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxHtmlTagsModule *mod = (wxHtmlTagsModule*) node->GetData();
@@ -462,6 +467,11 @@ void wxHtmlWinParser::AddText(const wxString& txt)
 
         if (m_tmpLastWasSpace)
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( (i < end) &&
                     (*i == wxT('\n') || *i == wxT('\r') || *i == wxT(' ') ||
                      *i == wxT('\t')) )
@@ -470,6 +480,11 @@ void wxHtmlWinParser::AddText(const wxString& txt)
             }
         }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (i < end)
         {
             size_t x = 0;
@@ -477,6 +492,11 @@ void wxHtmlWinParser::AddText(const wxString& txt)
             if ((d == wxT('\n')) || (d == wxT('\r')) || (d == wxT(' ')) || (d == wxT('\t')))
             {
                 ++i, ++x;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while ( (i < end) &&
                         (*i == wxT('\n') || *i == wxT('\r') ||
                          *i == wxT(' ') || *i == wxT('\t')) )

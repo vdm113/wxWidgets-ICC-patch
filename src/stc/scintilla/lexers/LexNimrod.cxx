@@ -107,11 +107,6 @@ static int scanIdent(Accessor &styler, int pos, WordList &keywords) {
   char buf[100]; /* copy to lowercase and ignore underscores */
   int i = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   for (;;) {
     char ch = styler.SafeGetCharAt(pos, '\0');
     if (!IsAWordChar(ch)) break;
@@ -304,6 +299,11 @@ static void ColouriseNimrodDoc(unsigned int startPos, int length, int initStyle,
           pos = scanIdent(styler, pos, keywords);
         } else if (ch == '`') {
           pos++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
           while (pos < max) {
             ch = styler.SafeGetCharAt(pos, LF);
             if (ch == '`') {
@@ -366,6 +366,11 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 	int spaceFlags = 0;
 	int lineCurrent = styler.GetLine(startPos);
 	int indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, NULL);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (lineCurrent > 0) {
 		lineCurrent--;
 		indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, NULL);
@@ -390,6 +395,11 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 	// Process all characters to end of requested range or end of any triple quote
 	// or comment that hangs over the end of the range.  Cap processing in all cases
 	// to end of document (in case of unclosed quote or comment at end).
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) ||
 	                                      prevQuote || prevComment)) {
 
@@ -437,6 +447,11 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 		// which effectively folds them into surrounding code rather
 		// than screwing up folding.
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (!quote &&
 		        (lineNext < docLines) &&
 		        ((indentNext & SC_FOLDLEVELWHITEFLAG) ||

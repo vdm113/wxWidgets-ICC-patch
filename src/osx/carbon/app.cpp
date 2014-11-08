@@ -401,6 +401,11 @@ void wxApp::MacReopenApp()
     {
         wxTopLevelWindow* firstIconized = NULL ;
         wxTopLevelWindow* firstHidden = NULL ;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (node)
         {
             wxTopLevelWindow* win = (wxTopLevelWindow*) node->GetData();
@@ -1522,6 +1527,11 @@ bool wxApp::MacSendCharEvent( wxWindow* focus , long keymessage , long modifiers
     if ( !handled && (keyval == WXK_TAB) )
     {
         wxWindow* iter = focus->GetParent() ;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( iter && !handled )
         {
             if ( iter->HasFlag( wxTAB_TRAVERSAL ) )

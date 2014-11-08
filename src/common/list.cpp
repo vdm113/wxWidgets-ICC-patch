@@ -234,6 +234,11 @@ void wxListBase::DoCopy(const wxListBase& list)
 wxListBase::~wxListBase()
 {
   wxNodeBase *each = m_nodeFirst;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while ( each != NULL )
   {
       wxNodeBase *next = each->GetNext();
@@ -476,6 +481,11 @@ bool wxListBase::DeleteObject(void *object)
 void wxListBase::Clear()
 {
     wxNodeBase *current = m_nodeFirst;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( current )
     {
         wxNodeBase *next = current->GetNext();
@@ -609,6 +619,11 @@ void wxListBase::Reverse()
     wxNodeBase* node = m_nodeFirst;
     wxNodeBase* tmp;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         // swap prev and next pointers
@@ -628,6 +643,11 @@ void wxListBase::DeleteNodes(wxNodeBase* first, wxNodeBase* last)
 {
     wxNodeBase* node = first;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node != last)
     {
         wxNodeBase* next = node->GetNext();

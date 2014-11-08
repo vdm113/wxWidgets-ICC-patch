@@ -492,6 +492,11 @@ bool wxNotebook::SetPageImage( size_t page, int image )
         /* Case 2) or 4). There is already an image in the gtkhbox. Let's find it */
 
         GList *child = gtk_container_children(GTK_CONTAINER(nb_page->m_box));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (child)
         {
             if (GTK_IS_PIXMAP(child->data))
@@ -593,6 +598,11 @@ bool wxNotebook::DeleteAllPages()
 {
     wxCHECK_MSG( m_widget != NULL, FALSE, wxT("invalid notebook") );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (m_pagesData.GetCount() > 0)
         DeletePage( m_pagesData.GetCount()-1 );
 

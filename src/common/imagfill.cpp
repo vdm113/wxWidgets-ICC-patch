@@ -121,6 +121,11 @@ wxImageFloodFill(wxImage *image,
         image->SetRGB(xt,yt,r,g,b);
 
         //Main queue loop
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while(qr!=qs)
         {
             //Add new members to queue
@@ -221,6 +226,11 @@ wxImageFloodFill(wxImage *image,
         image->SetRGB(xt,yt,r,g,b);
 
         //Main queue loop
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (qr!=qs)
         {
             //Add new members to queue

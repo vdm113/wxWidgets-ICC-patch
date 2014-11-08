@@ -642,6 +642,11 @@ median_cut (j_decompress_ptr cinfo, boxptr boxlist, int numboxes,
   int c0,c1,c2,cmax;
   boxptr b1,b2;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (numboxes < desired_colors) {
     /* Select box to split.
      * Current algorithm: by population for first half, then by volume.

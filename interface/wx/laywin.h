@@ -38,11 +38,6 @@ enum wxLayoutAlignment
 
     wxLayoutAlgorithm implements layout of subwindows in MDI or SDI frames.
     It sends a wxCalculateLayoutEvent event to children of the frame, asking them
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for information about their size. For MDI parent frames, the algorithm allocates
     the remaining space to the MDI client window (which contains the MDI child frames).
 
@@ -174,11 +169,6 @@ public:
     For the window styles see wxSashWindow.
 
     This class handles the EVT_QUERY_LAYOUT_INFO and EVT_CALCULATE_LAYOUT events
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for you. However, if you use sashes, see wxSashWindow for relevant event information.
     See also wxLayoutAlgorithm for information about the layout events.
 

@@ -42,11 +42,6 @@ circumstances than the other variants.
 
 ::wxBookCtrl is mapped to the class best suited for a given platform. Currently
 it provides wxChoicebook for smartphones equipped with WinCE, and wxNotebook
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for all other platforms. The mapping consists of:
 
 @beginTable

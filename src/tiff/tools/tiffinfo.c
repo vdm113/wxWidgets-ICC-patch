@@ -81,6 +81,11 @@ main(int argc, char* argv[])
 	uint64 diroff = 0;
 	int chopstrips = 0;		/* disable strip chopping */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((c = getopt(argc, argv, "f:o:cdDSjilmrsvwz0123456789")) != -1)
 		switch (c) {
 		case '0': case '1': case '2': case '3':
@@ -221,6 +226,11 @@ ShowStrip(tstrip_t strip, unsigned char* pp, uint32 nrow, tsize_t scanline)
 	register tsize_t cc;
 
 	printf("Strip %lu:\n", (unsigned long) strip);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (nrow-- > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -319,6 +329,11 @@ ShowTile(uint32 row, uint32 col, tsample_t sample,
 	if (sample != (tsample_t) -1)
 		printf(",%u", sample);
 	printf("):\n");
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (nrow-- > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep

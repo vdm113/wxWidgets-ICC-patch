@@ -148,6 +148,11 @@ void wxObjectWriter::FindConnectEntry(const wxEvtHandler * evSource,
                 sink = entry->m_fn->GetEvtHandler();
                 const wxClassInfo* sinkClassInfo = sink->GetClassInfo();
                 const wxHandlerInfo* sinkHandler = sinkClassInfo->GetFirstHandler();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while ( sinkHandler )
                 {
                     if ( sinkHandler->GetEventFunction() == entry->m_fn->GetEvtMethod() )

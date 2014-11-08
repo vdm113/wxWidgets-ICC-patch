@@ -64,11 +64,6 @@ extern WXDLLIMPEXP_DATA_PROPGRID(const char) wxPropertyGridManagerNameStr[];
     events are sent to the manager's parent, as usual.
 
     See @ref propgrid_event_handling "wxPropertyGrid Event Handling"
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for more information.
 
     @library{wxpropgrid}
@@ -224,11 +219,6 @@ class wxPGHeaderCtrl;
     @section propgridmanager_event_handling Event Handling
 
     See @ref propgrid_event_handling "wxPropertyGrid Event Handling"
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for more information.
 
     @library{wxpropgrid}

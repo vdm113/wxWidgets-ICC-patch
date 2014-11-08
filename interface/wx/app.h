@@ -670,6 +670,11 @@ public:
         Returns the user-readable vendor name. The difference between this string
         and the one returned by GetVendorName() is that this one is meant to be shown
         to the user and so should be used for the window titles, page headers and so on
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while the other one should be only used internally, e.g. for the file names or
         configuration file keys.
 

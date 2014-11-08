@@ -177,11 +177,6 @@ public:
     If you need direct access the bitmap data instead going through
     drawing to it using wxMemoryDC you need to use the wxPixelData
     class (either wxNativePixelData for RGB bitmaps or wxAlphaPixelData
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for bitmaps with an additionally alpha channel).
 
     Note that many wxBitmap functions take a @e type parameter, which is a 
@@ -195,11 +190,6 @@ public:
     - wxX11 supports XPM files, XPM data, XBM data;
 
     In addition, wxBitmap can load and save all formats that wxImage can; see wxImage
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for more info. Of course, you must have loaded the wxImage handlers 
     (see ::wxInitAllImageHandlers() and wxImage::AddHandler).
     Note that all available wxBitmapHandlers for a given wxWidgets port are 

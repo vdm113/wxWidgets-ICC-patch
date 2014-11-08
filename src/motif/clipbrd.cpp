@@ -207,6 +207,11 @@ wxClipboard::~wxClipboard()
 void wxClipboard::Clear()
 {
     wxDataObjectList::compatibility_iterator node = m_data.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         delete node->GetData();
@@ -287,6 +292,11 @@ void wxClipboardCallback( Widget xwidget, long* data_id,
     if( !dobj->GetDataHere( dfarr[*priv], buffer.data() ) )
         return;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( XmClipboardCopyByName( xdisplay, xwindow, *data_id,
                                   buffer.data(), size, 0 )
            == XmClipboardLocked );
@@ -308,6 +318,11 @@ bool wxClipboard::AddData( wxDataObject *data )
 
     int retval;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( ( retval = XmClipboardStartCopy( xdisplay, xwindow, label(),
                                             timestamp, xwidget,
                                             wxClipboardCallback,
@@ -331,6 +346,11 @@ bool wxClipboard::AddData( wxDataObject *data )
         long data_id;
         wxString id = dfarr[i].GetId();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while( ( retval = XmClipboardCopy( xdisplay, xwindow, itemId,
                                            id.char_str(),
                                            NULL, size, i, &data_id ) )
@@ -339,6 +359,11 @@ bool wxClipboard::AddData( wxDataObject *data )
         m_idToObject.Append( new wxDataIdToDataObject( data, data_id, size ) );
     }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( XmClipboardEndCopy( xdisplay, xwindow, itemId )
            == XmClipboardLocked );
 
@@ -361,6 +386,11 @@ bool wxClipboard::IsSupported(const wxDataFormat& format)
     unsigned long  max_name_length;
     wxString id = format.GetId();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( ( retval = XmClipboardLock( xdisplay, xwindow ) )
            == XmClipboardLocked );
     if( retval != XmClipboardSuccess )
@@ -407,6 +437,11 @@ public:
         : m_display( display ), m_window( window ) { }
     ~wxClipboardEndRetrieve()
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while( XmClipboardEndRetrieve( m_display, m_window )
                == XmClipboardLocked );
     }
@@ -429,6 +464,11 @@ bool wxClipboard::GetData( wxDataObject& data )
     ///////////////////////////////////////////////////////////////////////////
     // determine if the cliboard holds any format we like
     ///////////////////////////////////////////////////////////////////////////
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( ( retval = XmClipboardStartRetrieve( xdisplay, xwindow,
                                                 timestamp ) )
            == XmClipboardLocked );
@@ -495,6 +535,11 @@ bool wxClipboard::GetData( wxDataObject& data )
     long dummy2;
     wxString id = chosenFormat.GetId();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( ( retval = XmClipboardInquireLength( xdisplay, xwindow,
                                                 id.char_str(),
                                                 &length ) )
@@ -504,6 +549,11 @@ bool wxClipboard::GetData( wxDataObject& data )
 
     wxCharBuffer buf(length);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( ( retval = XmClipboardRetrieve( xdisplay, xwindow,
                                            id.char_str(),
                                            (XtPointer)buf.data(),

@@ -149,6 +149,11 @@ wxWindow *wxGetActiveWindow()
     QWidget *w = QApplication::activeWindow();
 
     wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetLast();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxWindow* win = node->GetData();

@@ -255,6 +255,11 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((c = getopt(argc, argv, "c:r:o:h")) != -1) {
 		switch (c) {
 		case 'c':		/* compression scheme */
@@ -287,6 +292,11 @@ main(int argc, char* argv[])
 	}
 	
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (optind < argc-1) {
 		infilename = argv[optind];
 		optind++;
@@ -627,9 +637,19 @@ main(int argc, char* argv[])
 			i = 0;
 			j = 0;
 			if (info_hdr.iBitCount == 8) {		/* RLE8 */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			    while(j < uncompr_size && i < compr_size) {
 				if ( comprbuf[i] ) {
 				    runlength = comprbuf[i++];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				    while( runlength > 0
 					   && j < uncompr_size
 					   && i < compr_size ) {
@@ -667,9 +687,19 @@ main(int argc, char* argv[])
 			    }
 			}
 			else {				    /* RLE4 */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			    while( j < uncompr_size && i < compr_size ) {
 				if ( comprbuf[i] ) {
 				    runlength = comprbuf[i++];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				    while( runlength > 0 && j < uncompr_size && i < compr_size ) {
 					if ( runlength & 0x01 )
 					    uncomprbuf[j++] = (comprbuf[i] & 0xF0) >> 4;
@@ -821,6 +851,11 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
                 compression = COMPRESSION_JPEG;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while( cp )
                 {
                     if (isdigit((int)cp[1]))

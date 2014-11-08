@@ -28,11 +28,6 @@
 
   The top of the hierarchy is the buffer, a kind of wxRichTextParagraphLayoutBox.
   These boxes will allow flexible placement of text boxes on a page, but
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   for now there is a single box representing the document, and this box is
   a wxRichTextParagraphLayoutBox which contains further wxRichTextParagraph
   objects, each of which can include text and images.

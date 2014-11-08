@@ -415,6 +415,11 @@ static inline bool IsPreprocessor(int style) {
 static void GetRangeLowered(unsigned int start, unsigned int end,
 							Accessor &styler, char *s, unsigned int len) {
 	unsigned int i = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (i < end - start + 1 && i < len - 1) {
 		s[i] = static_cast<char>(tolower(styler[start + i]));
 		i++;
@@ -425,6 +430,11 @@ static void GetRangeLowered(unsigned int start, unsigned int end,
 static void GetForwardWordLowered(unsigned int start, Accessor &styler,
 								  char *s, unsigned int len) {
 	unsigned int i = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (i < len - 1 && IsAlpha(styler.SafeGetCharAt(start + i))) {
 		s[i] = static_cast<char>(tolower(styler.SafeGetCharAt(start + i)));
 		i++;

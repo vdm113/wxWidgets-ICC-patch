@@ -140,6 +140,11 @@ void HashesTestCase::wxHashTableTest()
         wxHashTable::compatibility_iterator it = hash.Next();
         i = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (it)
         {
             ++i;

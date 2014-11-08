@@ -1015,6 +1015,11 @@ void wxTextCtrl::OnChar( wxKeyEvent &key_event )
         // as the clicking the default button.
 
         wxWindow *top_frame = m_parent;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (top_frame->GetParent() && !(top_frame->IsTopLevel()))
             top_frame = top_frame->GetParent();
 

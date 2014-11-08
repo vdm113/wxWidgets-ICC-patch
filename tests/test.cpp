@@ -753,6 +753,11 @@ void TestApp::List(Test *test, const string& parent /*=""*/) const
         // drop the 1st component from the display and indent
         if (parent != "") {
             string::size_type j = i = name.find('.', 1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ((j = name.find('.', j + 1)) != string::npos)
                 cout << "  ";
             cout << "  " << name.substr(i + 1) << "\n";
@@ -773,6 +778,11 @@ void TestApp::List(Test *test, const string& parent /*=""*/) const
     }
     else if (m_longlist) {
         string::size_type i = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ((i = parent.find('.', i + 1)) != string::npos)
             cout << "  ";
         cout << "  " << test->getName() << "\n";

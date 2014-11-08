@@ -978,6 +978,11 @@ void wxEventHashTable::Clear()
 void wxEventHashTable::ClearAll()
 {
     wxEventHashTable* table = sm_first;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (table)
     {
         table->Clear();
@@ -1029,10 +1034,20 @@ void wxEventHashTable::InitHashTable()
 {
     // Loop over the event tables and all its base tables.
     const wxEventTable *table = &m_table;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (table)
     {
         // Retrieve all valid event handler entries
         const wxEventTableEntry *entry = table->entries;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (entry->m_fn != 0)
         {
             // Add the event entry in the Hash.
@@ -1362,6 +1377,11 @@ void wxEvtHandler::ProcessPendingEvents()
     wxEventLoopBase* evtLoop = wxEventLoopBase::GetActive();
     if (evtLoop && evtLoop->IsYielding())
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (node && pEvent && !evtLoop->IsEventAllowedInsideYield(pEvent->GetEventCategory()))
         {
             node = node->GetNext();
@@ -1790,6 +1810,11 @@ wxEvtHandler::DoUnbind(int id,
         return false;
 
     wxList::compatibility_iterator node = m_dynamicEvents->GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxDynamicEventTableEntry *entry = (wxDynamicEventTableEntry*)node->GetData();
@@ -1825,6 +1850,11 @@ bool wxEvtHandler::SearchDynamicEventTable( wxEvent& event )
                  wxT("caller should check that we have dynamic events") );
 
     wxList::compatibility_iterator node = m_dynamicEvents->GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxDynamicEventTableEntry *entry = (wxDynamicEventTableEntry*)node->GetData();
@@ -1916,6 +1946,11 @@ void wxEvtHandler::OnSinkDestroyed( wxEvtHandler *sink )
 
     // remove all connections with this sink
     wxList::compatibility_iterator node = m_dynamicEvents->GetFirst(), node_nxt;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxDynamicEventTableEntry *entry = (wxDynamicEventTableEntry*)node->GetData();
@@ -1945,6 +1980,11 @@ wxWindow* wxFindFocusDescendant(wxWindow* ancestor)
 
     // Check if this is a descendant of this frame.
     // If not, win will be set to NULL.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (win)
     {
         if (win == ancestor)

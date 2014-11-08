@@ -749,6 +749,11 @@ void MyFrame::OnShowSelInfo(wxCommandEvent& WXUNUSED(event))
 
     long item = m_listCtrl->GetNextItem(-1, wxLIST_NEXT_ALL,
                                         wxLIST_STATE_SELECTED);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( item != -1 )
     {
         wxLogMessage(wxT("\t%ld (%s)"),
@@ -1290,6 +1295,11 @@ void MyListCtrl::OnListKeyDown(wxListEvent& event)
 
         case 'D': // delete
             item = GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( item != -1 )
             {
                 DeleteItem(item);

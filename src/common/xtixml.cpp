@@ -292,6 +292,11 @@ int wxObjectXmlReader::ReadComponent(wxXmlNode *node, wxObjectReaderCallback *ca
 
     wxStringToAnyHashMap metadata;
     wxXmlProperty *xp = node->GetAttributes();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( xp )
     {
         if ( xp->GetName() != wxString(wxT("class")) && 
@@ -320,6 +325,11 @@ int wxObjectXmlReader::ReadComponent(wxXmlNode *node, wxObjectReaderCallback *ca
     PropertyNodes propertyNodes;
     PropertyNames propertyNames;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( children )
     {
         wxString name;
@@ -438,6 +448,11 @@ int wxObjectXmlReader::ReadComponent(wxXmlNode *node, wxObjectReaderCallback *ca
                     const wxCollectionTypeInfo* collType = 
                         wx_dynamic_cast( const wxCollectionTypeInfo*, pi->GetTypeInfo() );
                     const wxTypeInfo * elementType = collType->GetElementType();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while( prop )
                     {
                         if ( prop->GetName() != wxT("element") )
@@ -563,6 +578,11 @@ wxAny wxObjectXmlReader::ReadValue(wxXmlNode *node,
 int wxObjectXmlReader::ReadObject( const wxString &name, wxObjectReaderCallback *callbacks)
 {
     wxXmlNode *iter = m_parent->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( iter )
     {
         wxString entryName;

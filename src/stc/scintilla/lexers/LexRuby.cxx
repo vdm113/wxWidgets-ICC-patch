@@ -170,6 +170,11 @@ static bool isMatch(Accessor &styler, int lengthDoc, int pos, const char *val) {
 	if ((pos + static_cast<int>(strlen(val))) >= lengthDoc) {
 		return false;
 	}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (*val) {
 		if (*val != styler[pos++]) {
 			return false;
@@ -191,6 +196,11 @@ static bool lookingAtHereDocDelim(Accessor	   &styler,
     if (!isMatch(styler, lengthDoc, pos, HereDocDelim)) {
         return false;
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (--pos > 0) {
         char ch = styler[pos];
         if (isEOLChar(ch)) {
@@ -1549,6 +1559,11 @@ static bool keywordIsModifier(const char *word,
     // We want to step backwards until we don't care about the current
     // position. But first move lineStartPosn back behind any
     // continuations immediately above word.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (lineStartPosn > 0) {
         ch = styler[lineStartPosn-1];
         if (ch == '\n' || ch == '\r') {
@@ -1569,6 +1584,11 @@ static bool keywordIsModifier(const char *word,
     }
 
     styler.Flush();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (--pos >= lineStartPosn) {
         style = actual_style(styler.StyleAt(pos));
 		if (style == SCE_RB_DEFAULT) {
@@ -1655,6 +1675,11 @@ static bool keywordDoStartsLoop(int pos,
 	int lineStart = styler.GetLine(pos);
     int lineStartPosn = styler.LineStart(lineStart);
     styler.Flush();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (--pos >= lineStartPosn) {
         style = actual_style(styler.StyleAt(pos));
 		if (style == SCE_RB_DEFAULT) {

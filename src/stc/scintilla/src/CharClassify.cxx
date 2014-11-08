@@ -52,6 +52,11 @@ void CharClassify::SetDefaultCharClasses(bool includeWordClass) {
 void CharClassify::SetCharClasses(const unsigned char *chars, cc newCharClass) {
 	// Apply the newCharClass to the specifed chars
 	if (chars) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (*chars) {
 			charClass[*chars] = static_cast<unsigned char>(newCharClass);
 			chars++;

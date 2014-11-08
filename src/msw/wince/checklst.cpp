@@ -198,6 +198,11 @@ void wxCheckListBox::DoClear()
 {
     unsigned int n = GetCount();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( n > 0 )
     {
         n--;

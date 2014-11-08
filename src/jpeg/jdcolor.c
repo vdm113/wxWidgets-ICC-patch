@@ -146,6 +146,11 @@ ycc_rgb_convert (j_decompress_ptr cinfo,
   register JPEG_INT32 * Cbgtab = cconvert->Cb_g_tab;
   SHIFT_TEMPS
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (--num_rows >= 0) {
     inptr0 = input_buf[0][input_row];
     inptr1 = input_buf[1][input_row];
@@ -192,6 +197,11 @@ null_convert (j_decompress_ptr cinfo,
   JDIMENSION num_cols = cinfo->output_width;
   int ci;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (--num_rows >= 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -248,6 +258,11 @@ gray_rgb_convert (j_decompress_ptr cinfo,
   register JDIMENSION col;
   JDIMENSION num_cols = cinfo->output_width;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (--num_rows >= 0) {
     inptr = input_buf[0][input_row++];
     outptr = *output_buf++;
@@ -291,6 +306,11 @@ ycck_cmyk_convert (j_decompress_ptr cinfo,
   register JPEG_INT32 * Cbgtab = cconvert->Cb_g_tab;
   SHIFT_TEMPS
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (--num_rows >= 0) {
     inptr0 = input_buf[0][input_row];
     inptr1 = input_buf[1][input_row];

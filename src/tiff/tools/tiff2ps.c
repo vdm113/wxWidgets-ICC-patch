@@ -253,6 +253,11 @@ main(int argc, char* argv[])
 
         pageOrientation[0] = '\0';
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((c = getopt(argc, argv, "b:d:h:H:W:L:i:w:l:o:O:P:C:r:t:acemxyzps1238DT")) != -1)
 		switch (c) {
 		case 'b':
@@ -1706,6 +1711,11 @@ static int
 checkcmap(TIFF* tif, int n, uint16* r, uint16* g, uint16* b)
 {
 	(void) tif;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (n-- > 0)
 		if (*r++ >= 256 || *g++ >= 256 || *b++ >= 256)
 			return (16);
@@ -2461,11 +2471,6 @@ PSColorSeparatePreamble(FILE* fd, uint32 w, uint32 h, int nc)
 	int i;
 
 	PhotoshopBanner(fd, w, h, ps_bytesperrow, nc, "true %d colorimage");
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	for (i = 0; i < nc; i++)
 		fprintf(fd, "/line%d %ld string def\n",
 		    i, (long) ps_bytesperrow);
@@ -2473,11 +2478,6 @@ PSColorSeparatePreamble(FILE* fd, uint32 w, uint32 h, int nc)
 	    (unsigned long) w, (unsigned long) h, bitspersample);
 	fprintf(fd, "[%lu 0 0 -%lu 0 %lu] \n",
 	    (unsigned long) w, (unsigned long) h, (unsigned long) h);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	for (i = 0; i < nc; i++)
 		fprintf(fd, "{currentfile line%d readhexstring pop}bind\n", i);
 	fprintf(fd, "true %d colorimage\n", nc);
@@ -2505,11 +2505,6 @@ PSDataColorContig(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 		TIFFError(filename, "No space for scanline buffer");
 		return;
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	for (row = 0; row < h; row++) {
 		if (TIFFReadScanline(tif, tf_buf, row, 0) < 0)
 			break;
@@ -2585,11 +2580,6 @@ PSDataColorSeparate(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 		return;
 	}
 	maxs = (samplesperpixel > nc ? nc : samplesperpixel);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	for (row = 0; row < h; row++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -2660,11 +2650,6 @@ PSDataPalette(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		}
 #undef CVT
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	for (row = 0; row < h; row++) {
 		if (TIFFReadScanline(tif, tf_buf, row, 0) < 0)
 			break;
@@ -2754,11 +2739,6 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 	if (ascii85)
 		Ascii85Init();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	for (s = 0; s < TIFFNumberOfStrips(tif); s++) {
 		tmsize_t cc = TIFFReadEncodedStrip(tif, s, tf_buf, stripsize);
 		if (cc < 0) {
@@ -2804,6 +2784,11 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 			if ( ascii85_l > 0 )
 			    fwrite( ascii85_p, ascii85_l, 1, fd );
 #else
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while (cc-- > 0)
 				Ascii85Put(*cp++, fd);
 #endif /* EXP_ASCII85_ENCODER */
@@ -2812,6 +2797,11 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 
 			if (alpha) {
 				int adjust;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while (cc-- > 0) {
 					DOBREAK(breaklen, 1, fd);
 					/*
@@ -2825,6 +2815,11 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 					cp++, cc--;
 				}
 			} else {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while (cc-- > 0) {
 					c = *cp++;
 					DOBREAK(breaklen, 1, fd);
@@ -2877,11 +2872,6 @@ PSRawDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 
 	bufsize = (uint32) bc[0];
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	for ( s = 0; ++s < (tstrip_t)tf_numberstrips; ) {
 		if ( bc[s] > bufsize )
 			bufsize = (uint32) bc[s];
@@ -2915,11 +2905,6 @@ PSRawDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 	}
 #endif
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	for (s = 0; s < (tstrip_t) tf_numberstrips; s++) {
 		cc = TIFFReadRawStrip(tif, s, tf_buf, (tmsize_t) bc[s]);
 		if (cc < 0) {
@@ -3105,11 +3090,6 @@ tsize_t Ascii85EncodeBlock( uint8 * ascii85_p, unsigned f_eod, const uint8 * raw
     {
         --raw_p;                                /* Prepare for pre-increment fetches */
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for ( ; raw_l > 3; raw_l -= 4 )
         {
             val32  = *(++raw_p) << 24;

@@ -143,11 +143,6 @@ list begins with @c ^, it matches any single character (but see below) @e not
 from the rest of the list.
 
 If two characters in the list are separated by <tt>-</tt>, this is shorthand
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for the full @e range of characters between those two (inclusive) in the
 collating sequence, e.g. <tt>[0-9]</tt> in ASCII matches any decimal digit.
 Two ranges may not share an endpoint, so e.g. <tt>a-c-e</tt> is illegal.

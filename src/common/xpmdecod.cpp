@@ -597,8 +597,18 @@ static bool GetRGBFromName(const char *inname, bool *isNone,
     // lot of gray...
 
     // so first extract ' '
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((p = strchr(name, ' ')) != NULL)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (*(p))            // till eof of string
         {
             *p = *(p + 1);      // copy to the left
@@ -607,6 +617,11 @@ static bool GetRGBFromName(const char *inname, bool *isNone,
     }
     // fold to lower case
     p = name;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (*p)
     {
         *p = (char)tolower(*p);

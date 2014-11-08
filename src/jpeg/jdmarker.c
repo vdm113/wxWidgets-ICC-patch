@@ -407,6 +407,11 @@ get_dac (j_decompress_ptr cinfo)
   INPUT_2BYTES(cinfo, length, return FALSE);
   length -= 2;
   
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (length > 0) {
     INPUT_BYTE(cinfo, index, return FALSE);
     INPUT_BYTE(cinfo, val, return FALSE);
@@ -456,6 +461,11 @@ get_dht (j_decompress_ptr cinfo)
   INPUT_2BYTES(cinfo, length, return FALSE);
   length -= 2;
   
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (length > 16) {
     INPUT_BYTE(cinfo, index, return FALSE);
 
@@ -536,6 +546,11 @@ get_dqt (j_decompress_ptr cinfo)
   INPUT_2BYTES(cinfo, length, return FALSE);
   length -= 2;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (length > 0) {
     INPUT_BYTE(cinfo, n, return FALSE);
     prec = n >> 4;
@@ -837,12 +852,22 @@ save_marker (j_decompress_ptr cinfo)
     data = cur_marker->data + bytes_read;
   }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (bytes_read < data_length) {
     INPUT_SYNC(cinfo);		/* move the restart point to here */
     marker->bytes_read = bytes_read;
     /* If there's not at least one byte in buffer, suspend */
     MAKE_BYTE_AVAIL(cinfo, return FALSE);
     /* Copy bytes with reasonable rapidity */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (bytes_read < data_length && bytes_in_buffer > 0) {
       *data++ = *next_input_byte++;
       bytes_in_buffer--;
@@ -857,6 +882,11 @@ save_marker (j_decompress_ptr cinfo)
       cinfo->marker_list = cur_marker;
     } else {
       jpeg_saved_marker_ptr prev = cinfo->marker_list;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (prev->next != NULL)
 	prev = prev->next;
       prev->next = cur_marker;
@@ -940,6 +970,11 @@ next_marker (j_decompress_ptr cinfo)
      * We sync after each discarded byte so that a suspending data source
      * can discard the byte from its buffer.
      */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (c != 0xFF) {
       cinfo->marker->discarded_bytes++;
       INPUT_SYNC(cinfo);

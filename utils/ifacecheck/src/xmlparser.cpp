@@ -83,6 +83,11 @@ void wxType::SetTypeFromString(const wxString& t)
     m_strType.Replace(" *", "*");
     m_strType.Replace(" &", "&");
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (m_strType.Contains("  "))
         m_strType.Replace("  ", " ");       // do it once again
 
@@ -878,6 +883,11 @@ bool getMemberIDs(wxClassMemberIdHashMap* map, wxClass* p, const wxString& str)
                            *end = start + len;
     wxStringCharType *nexttoken;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (curpos < end)
     {
         // curpos always points to the underscore of the next token to parse:
@@ -960,6 +970,11 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
 
     // build a list of wx classes and in general of all existent types
     child = doc.GetRoot()->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (child)
     {
         const wxString& n = child->GetName();
@@ -992,6 +1007,11 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
 
                 // now get a list of the base classes:
                 wxXmlNode *baseNode = child->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (baseNode)
                 {
                     // for now we store as "parents" only the parent IDs...
@@ -1075,6 +1095,11 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
 
             wxString argstr;
             wxXmlNode *arg = child->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (arg)
             {
                 if (arg->GetName() == "Argument")
@@ -1138,6 +1163,11 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
     // some nodes with IDs referenced by methods as return/argument types, do reference
     // in turn other nodes (see PointerType, ReferenceType and CvQualifierType above);
     // thus we need to resolve their name iteratively:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (toResolveTypes.size()>0)
     {
         if (g_verbose)
@@ -1271,6 +1301,11 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
 
     // build the list of the wx methods
     child = doc.GetRoot()->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (child)
     {
         wxString n = child->GetName(), acc = child->GetAttribute("access");
@@ -1368,6 +1403,11 @@ bool wxXmlGccInterface::ParseMethod(const wxXmlNode *p,
     // resolve argument types
     wxArgumentTypeArray argtypes;
     wxXmlNode *arg = p->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (arg)
     {
         if (arg->GetName() == "Argument")
@@ -1449,6 +1489,11 @@ static wxString GetTextFromChildren(const wxXmlNode *n)
     // this function returns "this is a string"
 
     wxXmlNode *ref = n->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (ref) {
         if (ref->GetType() == wxXML_ELEMENT_NODE)
             text += ref->GetNodeContent();
@@ -1469,6 +1514,11 @@ static bool HasTextNodeContaining(const wxXmlNode *parent, const wxString& name)
         return false;
 
     wxXmlNode *p = parent->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (p)
     {
         switch (p->GetType())
@@ -1501,6 +1551,11 @@ static const wxXmlNode* FindNodeNamed(const wxXmlNode* parent, const wxString& n
         return NULL;
 
     const wxXmlNode *p = parent->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (p)
     {
         if (p->GetName() == name)
@@ -1578,6 +1633,11 @@ bool wxXmlDoxygenInterface::Parse(const wxString& filename)
 
     // process files referenced by this index file
     compound = index.GetRoot()->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (compound)
     {
         if (compound->GetName() == "compound" &&
@@ -1625,6 +1685,11 @@ bool wxXmlDoxygenInterface::ParseCompoundDefinition(const wxString& filename)
 
     // build a list of wx classes
     child = doc.GetRoot()->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (child)
     {
         if (child->GetName() == "compounddef" &&
@@ -1635,6 +1700,11 @@ bool wxXmlDoxygenInterface::ParseCompoundDefinition(const wxString& filename)
             wxString absoluteFile, header;
 
             wxXmlNode *subchild = child->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (subchild)
             {
                 // NOTE: when documenting functions using the //@{ and //@}
@@ -1646,6 +1716,11 @@ bool wxXmlDoxygenInterface::ParseCompoundDefinition(const wxString& filename)
                 if (subchild->GetName() == "sectiondef")
                 {
                     wxXmlNode *membernode = subchild->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while (membernode)
                     {
                         const wxString& accessSpec = membernode->GetAttribute("prot");
@@ -1744,6 +1819,11 @@ bool wxXmlDoxygenInterface::ParseMethod(const wxXmlNode* p, wxMethod& m, wxStrin
     long line;
 
     wxXmlNode *child = p->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (child)
     {
         if (child->GetName() == "name")
@@ -1754,6 +1834,11 @@ bool wxXmlDoxygenInterface::ParseMethod(const wxXmlNode* p, wxMethod& m, wxStrin
         {
             wxString typestr, namestr, defstr, arrstr;
             wxXmlNode *n = child->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (n)
             {
                 if (n->GetName() == "type")

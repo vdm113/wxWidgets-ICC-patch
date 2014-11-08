@@ -1282,6 +1282,11 @@ void MBConvTestCase::UTF8Octal(const char *charSequence,
 static wchar_t *wx_wcscpy(wchar_t *dest, const wchar_t *src)
 {
     wchar_t *d = dest;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((*d++ = *src++) != 0)
         ;
     return dest;
@@ -1292,8 +1297,18 @@ static wchar_t *wx_wcscpy(wchar_t *dest, const wchar_t *src)
 static wchar_t *wx_wcscat(wchar_t *dest, const wchar_t *src)
 {
     wchar_t *d = dest;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (*d)
         d++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((*d++ = *src++) != 0)
         ;
     return dest;
@@ -1303,6 +1318,11 @@ static wchar_t *wx_wcscat(wchar_t *dest, const wchar_t *src)
 //
 static int wx_wcscmp(const wchar_t *s1, const wchar_t *s2)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (*s1 == *s2 && *s1 != 0)
     {
         s1++;
@@ -1316,6 +1336,11 @@ static int wx_wcscmp(const wchar_t *s1, const wchar_t *s2)
 static size_t wx_wcslen(const wchar_t *s)
 {
     const wchar_t *t = s;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (*t != 0)
         t++;
     return t - s;

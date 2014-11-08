@@ -1948,6 +1948,11 @@ make_ga_colormap(png_image_read_control *display)
     * }
     */
    i = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    while (i < 231)
    {
       unsigned int gray = (i * 256 + 115) / 231;
@@ -2377,6 +2382,11 @@ png_image_read_colormap(png_voidp argument)
                   png_error(png_ptr, "ga-alpha color-map: too few entries");
 
                i = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                while (i < 231)
                {
                   png_uint_32 gray = (i * 256 + 115) / 231;
@@ -3254,11 +3264,21 @@ png_image_read_colormapped(png_voidp argument)
    {
       png_alloc_size_t row_bytes = display->row_bytes;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (--passes >= 0)
       {
          png_uint_32      y = image->height;
          png_bytep        row = png_voidcast(png_bytep, display->first_row);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          while (y-- > 0)
          {
             png_read_row(png_ptr, row, NULL);
@@ -4140,11 +4160,21 @@ png_image_read_direct(png_voidp argument)
    {
       png_alloc_size_t row_bytes = display->row_bytes;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (--passes >= 0)
       {
          png_uint_32      y = image->height;
          png_bytep        row = png_voidcast(png_bytep, display->first_row);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          while (y-- > 0)
          {
             png_read_row(png_ptr, row, NULL);

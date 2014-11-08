@@ -329,6 +329,11 @@ protected:
 
         // TODO ignore events we didn't ask for + refactor this cascade ifs
         // check for events
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( nflags )
         {
             // when monitoring dir, this means create/delete

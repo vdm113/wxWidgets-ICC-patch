@@ -222,6 +222,11 @@ void wxAnimation::InsertHandler( wxAnimationDecoder *handler )
 const wxAnimationDecoder *wxAnimation::FindHandler( wxAnimationType animType )
 {
     wxAnimationDecoderList::compatibility_iterator node = sm_handlers.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         const wxAnimationDecoder *handler = (const wxAnimationDecoder *)node->GetData();
@@ -244,6 +249,11 @@ void wxAnimation::InitStandardHandlers()
 void wxAnimation::CleanUpHandlers()
 {
     wxAnimationDecoderList::compatibility_iterator node = sm_handlers.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxAnimationDecoder *handler = (wxAnimationDecoder *)node->GetData();

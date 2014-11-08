@@ -522,6 +522,11 @@ int wxRegExImpl::Replace(wxString *text,
 
     // note that "^" shouldn't match after the first call to Matches() so we
     // use wxRE_NOTBOL to prevent it from happening
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( (!maxMatches || countRepl < maxMatches) &&
              Matches(
 #ifndef WXREGEX_CONVERT_TO_MB

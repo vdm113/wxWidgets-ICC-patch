@@ -485,6 +485,11 @@ wxFileConfig::wxFileConfig(wxInputStream &inStream, const wxMBConv& conv)
         for ( const wxChar *s = cbuf; ; ++s )
         {
             const wxChar *e = s;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( *e != '\0' && *e != '\n' && *e != '\r' )
                 ++e;
 
@@ -518,6 +523,11 @@ void wxFileConfig::CleanUp()
     delete m_pRootGroup;
 
     wxFileConfigLineList *pCur = m_linesHead;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( pCur != NULL ) {
         wxFileConfigLineList *pNext = pCur->Next();
         delete pCur;
@@ -577,6 +587,11 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
     if ( *pStart == wxT('[') ) {          // a new group
       pEnd = pStart;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while ( *++pEnd != wxT(']') ) {
         if ( *pEnd == wxT('\\') ) {
             // the next char is escaped, so skip it even if it is ']'
@@ -613,6 +628,11 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
 
       // check that there is nothing except comments left on this line
       bool bCont = true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while ( *++pEnd != wxT('\0') && bCont ) {
         switch ( *pEnd ) {
           case wxT('#'):
@@ -634,6 +654,11 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
     }
     else {                        // a key
       pEnd = pStart;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while ( *pEnd && *pEnd != wxT('=') /* && !wxIsspace(*pEnd)*/ ) {
         if ( *pEnd == wxT('\\') ) {
           // next character may be space or not - still take it because it's
@@ -651,6 +676,11 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
       wxString strKey(FilterInEntryName(wxString(pStart, pEnd).Trim()));
 
       // skip whitespace
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while ( wxIsspace(*pEnd) )
         pEnd++;
 
@@ -688,6 +718,11 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
           pEntry->SetLine(m_linesTail);
 
         // skip whitespace
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( wxIsspace(*pEnd) )
           pEnd++;
 
@@ -735,11 +770,6 @@ wxFileConfig::DoSetPath(const wxString& strPath, bool createMissingComponents)
     // change current group
     size_t n;
     m_pCurrentGroup = m_pRootGroup;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( n = 0; n < aParts.GetCount(); n++ ) {
         wxFileConfigGroup *pNextGroup = m_pCurrentGroup->FindSubgroup(aParts[n]);
         if ( pNextGroup == NULL )
@@ -755,11 +785,6 @@ wxFileConfig::DoSetPath(const wxString& strPath, bool createMissingComponents)
 
     // recombine path parts in one variable
     m_strPath.Empty();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( n = 0; n < aParts.GetCount(); n++ ) {
         m_strPath << wxCONFIG_PATH_SEPARATOR << aParts[n];
     }
@@ -2131,11 +2156,6 @@ static wxString FilterOutValue(const wxString& str)
     strResult += wxT('"');
 
   wxChar c;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   for ( size_t n = 0; n < str.Len(); n++ ) {
     switch ( str[n].GetValue() ) {
       case wxT('\n'):
@@ -2182,11 +2202,6 @@ static wxString FilterInEntryName(const wxString& str)
   wxString strResult;
   strResult.Alloc(str.Len());
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   for ( const wxChar *pc = str.c_str(); *pc != '\0'; pc++ ) {
     if ( *pc == wxT('\\') ) {
       // we need to test it here or we'd skip past the NUL in the loop line

@@ -170,6 +170,11 @@ wxClassInfo::~wxClassInfo()
     else
     {
         wxClassInfo *info = sm_first;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (info)
         {
             if ( info->m_next == this )

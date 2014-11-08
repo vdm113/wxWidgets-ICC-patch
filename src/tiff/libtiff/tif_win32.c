@@ -57,6 +57,11 @@ _tiffReadProc(thandle_t fd, void* buf, tmsize_t size)
 	ma=(uint8*)buf;
 	mb=size;
 	p=0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (mb>0)
 	{
 		n=0x80000000UL;
@@ -87,6 +92,11 @@ _tiffWriteProc(thandle_t fd, void* buf, tmsize_t size)
 	ma=(uint8*)buf;
 	mb=size;
 	p=0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (mb>0)
 	{
 		n=0x80000000UL;

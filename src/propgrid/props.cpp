@@ -2000,6 +2000,11 @@ void wxFileProperty::OnSetValue()
         size_t len = m_wildcard.length();
 
         pos = m_wildcard.find(wxS("|"), pos);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( pos != wxString::npos && pos < (len-3) )
         {
             size_t ext_begin = pos + 3;

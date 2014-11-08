@@ -343,6 +343,7 @@ protected: \
         size_t bucket = m_hasher( key ) % m_tableBuckets; \
         Node* node = static_cast<Node*>(m_table[bucket]); \
  \
+VDM_MACRO_PRAGMA_IVDEP \
         while( node ) \
         { \
             if( m_equals( m_getKey( node->m_value ), key ) ) \
@@ -379,6 +380,7 @@ protected: \
         size_t bucket = m_hasher( key ) % m_tableBuckets; \
         _wxHashTable_NodeBase** node = &m_table[bucket]; \
  \
+VDM_MACRO_PRAGMA_IVDEP \
         while( *node ) \
         { \
             if (m_equals(m_getKey(static_cast<Node*>(*node)->m_value), key)) \
@@ -396,6 +398,7 @@ protected: \
         size_t bucket = m_hasher( key ) % m_tableBuckets; \
         Node* node = static_cast<Node*>(m_table[bucket]); \
  \
+VDM_MACRO_PRAGMA_IVDEP \
         while( node ) \
         { \
             if( m_equals( m_getKey( node->m_value ), key ) ) \

@@ -642,6 +642,11 @@ is_whitespace_normalized(const XML_Char *s, int is_cdata)
 {
     int blanks = 0;
     int at_start = 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (*s) {
         if (*s == ' ')
             ++blanks;
@@ -1162,6 +1167,11 @@ overwrite_start_checker(void *userData, const XML_Char *name,
     CharData *storage = (CharData *) userData;
     CharData_AppendString(storage, "start ");
     CharData_AppendXMLChars(storage, name, -1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (*atts != NULL) {
         CharData_AppendString(storage, "\nattribute ");
         CharData_AppendXMLChars(storage, *atts, -1);

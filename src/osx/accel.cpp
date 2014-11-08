@@ -100,6 +100,11 @@ int wxAcceleratorTable::GetCommand( wxKeyEvent &event )
     if (!IsOk()) return -1;
 
     wxAccelList::compatibility_iterator node = M_ACCELDATA->m_accels.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxAcceleratorEntry *entry = node->GetData();

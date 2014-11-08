@@ -127,11 +127,6 @@ enum wxEndianness
     by the @c lsb_release utility.
     
     See wxGetLinuxDistributionInfo() or wxPlatformInfo::GetLinuxDistributionInfo()
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for more info.
 */
 struct wxLinuxDistributionInfo

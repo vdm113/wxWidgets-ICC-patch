@@ -1473,6 +1473,11 @@ processCompressOptions(char* opt)
     cp = strchr(opt, ':');
     defcompression = COMPRESSION_JPEG;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (cp)
       {
       if (isdigit((int)cp[1]))
@@ -1656,6 +1661,11 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 
     *mp++ = 'w';
     *mp = '\0';
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((c = getopt(argc, argv,
        "ac:d:e:f:hil:m:p:r:stvw:z:BCD:E:F:H:I:J:K:LMN:O:P:R:S:U:V:X:Y:Z:")) != -1)
       {
@@ -2323,6 +2333,11 @@ main(int argc, char* argv[])
   else
     total_images = 0;
   /* read multiple input files and write to output file(s) */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (optind < argc - 1)
     {
     in = TIFFOpen (argv[optind], "r");
@@ -2373,6 +2388,11 @@ main(int argc, char* argv[])
       }
 
     end_of_input = FALSE;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (end_of_input == FALSE)
       {
       config = defconfig;
@@ -3002,6 +3022,11 @@ extractContigSamples8bits (uint8 *in, uint8 *out, uint32 cols,
       }
     }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (ready_bits > 0)
     {
     buff1 = (buff2 & ((unsigned int)255 << (8 - ready_bits)));
@@ -3100,6 +3125,11 @@ extractContigSamples16bits (uint8 *in, uint8 *out, uint32 cols,
     }
 
   /* catch any trailing bits at the end of the line */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (ready_bits > 0)
     {
     bytebuff = (buff2 >> 8);
@@ -3201,6 +3231,11 @@ extractContigSamples24bits (uint8 *in, uint8 *out, uint32 cols,
     }
 
   /* catch any trailing bits at the end of the line */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (ready_bits > 0)
     {
     bytebuff1 = (buff2 >> 24);
@@ -3318,6 +3353,11 @@ extractContigSamples32bits (uint8 *in, uint8 *out, uint32 cols,
       ready_bits += bps;
       }
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (ready_bits > 0)
     {
     bytebuff1 = (buff2 >> 56);
@@ -3409,6 +3449,11 @@ extractContigSamplesShifted8bits (uint8 *in, uint8 *out, uint32 cols,
       }
     }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (ready_bits > 0)
     {
     buff1 = (buff2 & ((unsigned int)255 << (8 - ready_bits)));
@@ -3508,6 +3553,11 @@ extractContigSamplesShifted16bits (uint8 *in, uint8 *out, uint32 cols,
     }
 
   /* catch any trailing bits at the end of the line */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (ready_bits > 0)
     {
     bytebuff = (buff2 >> 8);
@@ -3614,6 +3664,11 @@ extractContigSamplesShifted24bits (uint8 *in, uint8 *out, uint32 cols,
     }
 
   /* catch any trailing bits at the end of the line */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (ready_bits > 0)
     {
     bytebuff1 = (buff2 >> 24);
@@ -3734,6 +3789,11 @@ extractContigSamplesShifted32bits (uint8 *in, uint8 *out, uint32 cols,
       ready_bits += bps;
       }
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (ready_bits > 0)
     {
     bytebuff1 = (buff2 >> 56);
@@ -4370,6 +4430,11 @@ combineSeparateSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
       }
 
     /* catch any trailing bits at the end of the line */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (ready_bits > 0)
       {
 	bytebuff1 = (buff2 >> 24);
@@ -4518,6 +4583,11 @@ combineSeparateSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 	  }
 	}
       }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (ready_bits > 0)
       {
       bytebuff1 = (buff2 >> 56);
@@ -4979,6 +5049,11 @@ combineSeparateTileSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
       }
 
     /* catch any trailing bits at the end of the line */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (ready_bits > 0)
       {
 	bytebuff1 = (buff2 >> 24);
@@ -5128,6 +5203,11 @@ combineSeparateTileSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 	  }
 	}
       }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (ready_bits > 0)
       {
       bytebuff1 = (buff2 >> 56);
@@ -7759,6 +7839,11 @@ writeSingleSection(TIFF *in, TIFF *out, struct image_data *image,
        if (TIFFGetField(in, TIFFTAG_INKNAMES, &inknames)) {
 	 int inknameslen = strlen(inknames) + 1;
 	 const char* cp = inknames;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	 while (ninks > 1) {
 	   cp = strchr(cp, '\0');
 	   if (cp) {
@@ -8448,6 +8533,11 @@ writeCroppedImage(TIFF *in, TIFF *out, struct image_data *image,
        if (TIFFGetField(in, TIFFTAG_INKNAMES, &inknames)) {
 	 int inknameslen = strlen(inknames) + 1;
 	 const char* cp = inknames;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	 while (ninks > 1) {
 	   cp = strchr(cp, '\0');
 	   if (cp) {
@@ -8780,6 +8870,11 @@ rotateContigSamples24bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
     }
 
  /* catch any trailing bits at the end of the line */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (ready_bits > 0)
     {
     bytebuff1 = (buff2 >> 24);
@@ -8899,6 +8994,11 @@ rotateContigSamples32bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
       ready_bits += bps;
       }
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (ready_bits > 0)
     {
     bytebuff1 = (buff2 >> 56);
@@ -9494,6 +9594,11 @@ reverseSamples24bits (uint16 spp, uint16 bps, uint32 width,
     }
 
  /* catch any trailing bits at the end of the line */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (ready_bits > 0)
     {
     bytebuff1 = (buff2 >> 24);
@@ -9607,6 +9712,11 @@ reverseSamples32bits (uint16 spp, uint16 bps, uint32 width,
       ready_bits += bps;
       }
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (ready_bits > 0)
     {
     bytebuff1 = (buff2 >> 56);

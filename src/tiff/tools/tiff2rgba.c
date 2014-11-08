@@ -74,6 +74,11 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char *optarg;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((c = getopt(argc, argv, "c:r:t:bn8")) != -1)
 		switch (c) {
 			case 'b':
@@ -445,6 +450,11 @@ cvt_whole_image( TIFF *in, TIFF *out )
         unsigned char *src, *dst;
 
 	src = dst = (unsigned char *) raster;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (count > 0)
         {
 	    *(dst++) = *(src++);

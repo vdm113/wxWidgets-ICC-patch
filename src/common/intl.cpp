@@ -412,6 +412,11 @@ bool wxLocale::Init(int language, int flags)
     {
         const wxChar **names =
             wxFontMapperBase::GetAllEncodingNames(wxFONTENCODING_UTF8);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( *names )
         {
             retloc = wxSetlocale(LC_ALL, locale + wxS('.') + *names++);

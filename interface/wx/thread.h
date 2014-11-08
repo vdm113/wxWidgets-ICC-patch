@@ -184,6 +184,11 @@ public:
 
         Equivalent to
         @code
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( !predicate() )
         {
             wxCondError e = Wait();
@@ -375,6 +380,11 @@ public:
             int offset = 0;
 
             // here we do our long task, periodically calling TestDestroy():
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (!GetThread()->TestDestroy())
             {
                 // since this Entry() is implemented in MyFrame context we don't
@@ -462,6 +472,11 @@ public:
         @code
             wxThread::ExitCode Entry()
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (!GetThread()->TestDestroy())
                 {
                     // ... do some work ...
@@ -820,6 +835,11 @@ enum wxThreadError
 
     wxThread::ExitCode MyThread::Entry()
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (!TestDestroy())
         {
             // ... do a bit of work...
@@ -889,6 +909,11 @@ enum wxThreadError
                 // the possibility to enter its destructor
                 // (which is guarded with m_pThreadCS critical section!)
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (1)
         {
             { // was the ~MyThread() function executed?

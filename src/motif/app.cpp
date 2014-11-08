@@ -217,6 +217,11 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
 #endif
         for ( i = 0; i < argcX11; i++ )
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( strcmp(wxConvLibc.cWX2MB(argv_[i]), argvX11[i]) != 0 )
             {
                 memmove(argv_ + i, argv_ + i + 1, (argc - i)*sizeof(*argv_));

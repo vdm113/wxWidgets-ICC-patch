@@ -157,6 +157,11 @@ void wxGridSelection::SetSelectionMode( wxGrid::wxGridSelectionModes selmode )
         // if changing from cell selection to something else,
         // promote selected cells/blocks to whole rows/columns.
         size_t n;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( ( n = m_cellSelection.GetCount() ) > 0 )
         {
             n--;
@@ -1035,6 +1040,11 @@ void wxGridSelection::ClearSelection()
     // deselect all individual cells and update the screen
     if ( m_selectionMode == wxGrid::wxGridSelectCells )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( ( n = m_cellSelection.GetCount() ) > 0)
         {
             n--;
@@ -1053,6 +1063,11 @@ void wxGridSelection::ClearSelection()
     }
 
     // deselect all blocks and update the screen
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( ( n = m_blockSelectionTopLeft.GetCount() ) > 0)
     {
         n--;
@@ -1074,6 +1089,11 @@ void wxGridSelection::ClearSelection()
     // deselect all rows and update the screen
     if ( m_selectionMode != wxGrid::wxGridSelectColumns )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( ( n = m_rowSelection.GetCount() ) > 0)
         {
             n--;
@@ -1095,6 +1115,11 @@ void wxGridSelection::ClearSelection()
     // deselect all columns and update the screen
     if ( m_selectionMode != wxGrid::wxGridSelectRows )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( ( n = m_colSelection.GetCount() ) > 0)
         {
             n--;

@@ -360,6 +360,11 @@ long wxHashTableBase::MakeKey( const wxString& str )
     long int_key = 0;
 
     const wxStringCharType *p = str.wx_str();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( *p )
         int_key += *p++;
 

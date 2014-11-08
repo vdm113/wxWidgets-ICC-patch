@@ -455,6 +455,11 @@ miInsertEdgeInET(EdgeTable *ET, EdgeTableEntry *ETE,  int scanline,
      */
     pPrevSLL = &ET->scanlines;
     pSLL = pPrevSLL->next;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (pSLL && (pSLL->scanline < scanline))
     {
         pPrevSLL = pSLL;
@@ -490,6 +495,11 @@ miInsertEdgeInET(EdgeTable *ET, EdgeTableEntry *ETE,  int scanline,
      */
     prev = (EdgeTableEntry *)NULL;
     start = pSLL->edgelist;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (start && (start->bres.minor < ETE->bres.minor))
     {
         prev = start;
@@ -564,6 +574,11 @@ miCreateETandAET(int count, const wxPoint * pts, EdgeTable *ET, EdgeTableEntry *
      *  In this loop we are dealing with two vertices at
      *  a time -- these make up one edge of the polygon.
      */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (count--)
     {
         CurrPt = pts++;
@@ -628,8 +643,18 @@ miloadAET(EdgeTableEntry *AET, EdgeTableEntry *ETEs)
     
     pPrevAET = AET;
     AET = AET->next;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (ETEs)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (AET && (AET->bres.minor < ETEs->bres.minor))
         {
             pPrevAET = AET;
@@ -677,6 +702,11 @@ micomputeWAET(EdgeTableEntry *AET)
     AET->nextWETE = (EdgeTableEntry *)NULL;
     pWETE = AET;
     AET = AET->next;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (AET)
     {
         if (AET->ClockWise)
@@ -714,10 +744,20 @@ miInsertionSort(EdgeTableEntry *AET)
     int changed = 0;
     
     AET = AET->next;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (AET)
     {
         pETEinsert = AET;
         pETEchase = AET;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (pETEchase->back->bres.minor > AET->bres.minor)
             pETEchase = pETEchase->back;
         
@@ -746,6 +786,11 @@ miFreeStorage(ScanLineListBlock *pSLLBlock)
 {
     ScanLineListBlock   *tmpSLLBlock;
     
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (pSLLBlock) 
     {
         tmpSLLBlock = pSLLBlock->next;
@@ -821,6 +866,11 @@ scanFillGeneralPoly( wxRegion* rgn,
             /*
              *  for each active edge
              */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (pAET)
             {
                 ptsOut->x = pAET->bres.minor;
@@ -889,6 +939,11 @@ scanFillGeneralPoly( wxRegion* rgn,
             /*
              *  for each active edge
              */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (pAET)
             {
                 /*
@@ -930,6 +985,11 @@ scanFillGeneralPoly( wxRegion* rgn,
                     }
                     
                     pWETE = pWETE->nextWETE;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while (pWETE != pAET)
                         EVALUATEEDGEWINDING(pAET, pPrevAET, y, fixWAET);
                     pWETE = pWETE->nextWETE;

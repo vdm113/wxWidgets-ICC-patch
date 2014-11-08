@@ -613,6 +613,11 @@ int wxTreebook::DoSetSelection(size_t pagePos, int flags)
             // of this one with a non-NULL associated page
             wxTreeItemId childId = m_treeIds[pagePos];
             int actualPagePos = pagePos;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( !page && childId.IsOk() )
             {
                 wxTreeItemIdValue cookie;

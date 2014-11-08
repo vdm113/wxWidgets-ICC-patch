@@ -310,6 +310,11 @@ void wxNonOwnedWindow::HandleQueuedPaintRequests()
     int requestsCount = 0;
 
     wxRect request;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( m_toPaint->GetNext(request) )
     {
         requestsCount++;

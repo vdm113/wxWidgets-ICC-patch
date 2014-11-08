@@ -305,6 +305,11 @@ bool wxRadioBox::Create( wxWindow *parent, wxWindowID id, const wxString& title,
 wxRadioBox::~wxRadioBox()
 {
     wxList::compatibility_iterator node = m_boxes.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         GtkWidget *button = GTK_WIDGET( node->GetData() );
@@ -327,6 +332,11 @@ bool wxRadioBox::Show(bool show)
         gtk_widget_hide( m_widget );
 
     wxList::compatibility_iterator node = m_boxes.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         GtkWidget *button = GTK_WIDGET( node->GetData() );
@@ -349,6 +359,11 @@ void wxRadioBox::SetFocus()
     if (m_boxes.GetCount() == 0) return;
 
     wxList::compatibility_iterator node = m_boxes.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         GtkToggleButton *button = GTK_TOGGLE_BUTTON( node->GetData() );
@@ -385,6 +400,11 @@ int wxRadioBox::GetSelection(void) const
     int count = 0;
 
     wxList::compatibility_iterator node = m_boxes.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         GtkToggleButton *button = GTK_TOGGLE_BUTTON( node->GetData() );
@@ -439,6 +459,11 @@ bool wxRadioBox::Enable( bool enable )
         return false;
 
     wxList::compatibility_iterator node = m_boxes.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         GtkButton *button = GTK_BUTTON( node->GetData() );
@@ -523,6 +548,11 @@ unsigned int wxRadioBox::GetCount() const
 void wxRadioBox::GtkDisableEvents()
 {
     wxList::compatibility_iterator node = m_boxes.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         gtk_signal_disconnect_by_func( GTK_OBJECT(node->GetData()),
@@ -535,6 +565,11 @@ void wxRadioBox::GtkDisableEvents()
 void wxRadioBox::GtkEnableEvents()
 {
     wxList::compatibility_iterator node = m_boxes.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         gtk_signal_connect( GTK_OBJECT(node->GetData()), "clicked",
@@ -549,6 +584,11 @@ void wxRadioBox::DoApplyWidgetStyle(GtkRcStyle *style)
     gtk_widget_modify_style( m_widget, style );
 
     wxList::compatibility_iterator node = m_boxes.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         GtkWidget *widget = GTK_WIDGET( node->GetData() );
@@ -564,6 +604,11 @@ void wxRadioBox::DoApplyWidgetStyle(GtkRcStyle *style)
 void wxRadioBox::ApplyToolTip( GtkTooltips *tips, const wxChar *tip )
 {
     wxList::compatibility_iterator node = m_boxes.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         GtkWidget *widget = GTK_WIDGET( node->GetData() );
@@ -579,6 +624,11 @@ bool wxRadioBox::IsOwnGtkWindow( GdkWindow *window )
         return true;
 
     wxList::compatibility_iterator node = m_boxes.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         GtkWidget *button = GTK_WIDGET( node->GetData() );

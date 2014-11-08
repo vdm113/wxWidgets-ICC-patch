@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/filedlg.cpp
 // Purpose:     wxFileDialog
@@ -182,6 +175,11 @@ int wxFileDialog::ShowModal()
                 // Fall through
                 //
             case wxT('\\'):
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (i < nLen - 1)
                 {
                     wxChar          chNext = m_dir[i + 1];
@@ -214,6 +212,11 @@ int wxFileDialog::ShowModal()
         sTheFilter = m_wildCard;
 
     wxStrtok(sTheFilter.wchar_str(), wxT("|"), &pzFilterBuffer);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(pzFilterBuffer != NULL)
     {
         if (nCount > 0 && !(nCount % 2))

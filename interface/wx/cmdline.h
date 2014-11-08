@@ -169,11 +169,6 @@ struct wxCmdLineEntryDesc
     @code
     wxCmdLineParser parser;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for (wxCmdLineArgs::const_iterator itarg=parser.GetArguments().begin();
                                        itarg!=parser.GetArguments().end();
                                        ++itarg)

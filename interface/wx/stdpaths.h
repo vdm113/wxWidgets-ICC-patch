@@ -26,11 +26,6 @@
     methods.
 
     In the description of the methods below, the example return values are given
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for the Unix, Windows and Mac OS X systems, however please note that these are
     just the examples and the actual values may differ. For example, under Windows:
     the system administrator may change the standard directories locations, e.g.
@@ -50,11 +45,6 @@
 
     The directories returned by the methods of this class may or may not exist.
     If they don't exist, it's up to the caller to create them, wxStandardPaths doesn't
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     do it.
 
     Finally note that these functions only work with standardly packaged

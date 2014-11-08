@@ -1229,6 +1229,11 @@ bool wxPGProperty::StringToValue( wxVariant& v, const wxString& text, int argFla
                     size_t startPos = pos;
 
                     // Group item - find end
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while ( it != text.end() && depth > 0 )
                     {
                         a = *it;
@@ -1766,6 +1771,11 @@ void wxPGProperty::SetBackgroundColour( const wxColour& colour,
     // affect the children.
     if ( recursively )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( firstProp->IsCategory() )
         {
             if ( !firstProp->GetChildCount() )
@@ -1802,6 +1812,11 @@ void wxPGProperty::SetTextColour( const wxColour& colour,
     // affect the children.
     if ( recursively )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( firstProp->IsCategory() )
         {
             if ( !firstProp->GetChildCount() )
@@ -1854,6 +1869,11 @@ void wxPGProperty::SetAttributes( const wxPGAttributeStorage& attributes )
     wxPGAttributeStorage::const_iterator it = attributes.StartIteration();
     wxVariant variant;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( attributes.GetNext(it, variant) )
         SetAttribute( variant.GetName(), variant );
 }
@@ -1911,6 +1931,11 @@ wxVariant wxPGProperty::GetAttributesAsList() const
     wxPGAttributeStorage::const_iterator it = m_attributes.StartIteration();
     wxVariant variant;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( m_attributes.GetNext(it, variant) )
         v.Append(variant);
 
@@ -2265,6 +2290,11 @@ wxPGProperty* wxPGProperty::GetMainParent() const
     const wxPGProperty* curChild = this;
     const wxPGProperty* curParent = m_parent;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( curParent && !curParent->IsCategory() )
     {
         curChild = curParent;
@@ -2613,6 +2643,11 @@ int wxPGProperty::GetChildrenHeight( int lh, int iMax_ ) const
     if ( !IsExpanded() && GetParent() )
         return 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( i < iMax )
     {
         wxPGProperty* pwc = (wxPGProperty*) Item(i);
@@ -2647,6 +2682,11 @@ wxPGProperty* wxPGProperty::GetItemAtY( unsigned int y,
     unsigned int i = 0;
     unsigned int iMax = GetChildCount();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( i < iMax )
     {
         wxPGProperty* pwc = Item(i);
@@ -2739,6 +2779,11 @@ void wxPGProperty::DeleteChildren()
     // Because deletion is sometimes deferred, we have to use
     // this sort of code for enumerating the child properties.
     unsigned int i = GetChildCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( i > 0 )
     {
         i--;
@@ -3062,6 +3107,11 @@ wxPGChoiceEntry& wxPGChoices::AddAsSorted( const wxString& label, int value )
 
     size_t index = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( index < GetCount() )
     {
         int cmpRes = GetLabel(index).Cmp(label);
@@ -3082,6 +3132,11 @@ void wxPGChoices::Add( const wxChar* const* labels, const ValArrItem* values )
 
     unsigned int itemcount = 0;
     const wxChar* const* p = &labels[0];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( *p ) { p++; itemcount++; }
 
     unsigned int i;

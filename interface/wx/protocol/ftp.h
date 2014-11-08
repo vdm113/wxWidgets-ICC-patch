@@ -17,11 +17,6 @@
 
     wxFTP can be used to establish a connection to an FTP server and perform all the
     usual operations. Please consult the RFC 959 (http://www.w3.org/Protocols/rfc959/)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for more details about the FTP protocol.
 
     wxFTP can thus be used to create a (basic) FTP @b client.
