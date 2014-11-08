@@ -545,8 +545,8 @@ int _tmain(int argc, _TCHAR* argv[])
             }
         }
 
-        if(usage) {
-            fprintf(stderr,"Usage: switch '-p' patches, switch '-u' unpatches.\nPress any key to exit.\n");
+        if(usage || !do_patch) {
+            fprintf(stderr,"Usage: switch '-p' patches, switch '-u' unpatches. (thhuogh  not working as of today)\nPress any key to exit.\n");
             getch();
             return 0;
         }
