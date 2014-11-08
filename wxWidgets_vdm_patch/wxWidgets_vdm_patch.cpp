@@ -73,7 +73,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch)
 
     const vector<pair<string,string> > strip={ { "/*", "*/" }, { "'", "'" }, { "\"", "\""} };
 
-    size_t brackets=0;
+    size_t braces=0;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -104,7 +104,7 @@ again:
             }
         }
 
-        if(!brackets && !strcmp(buf,inline_pragma)) {
+        if(!braces && !strcmp(buf,inline_pragma)) {
             changed=true;
             continue;
         }
@@ -143,14 +143,14 @@ again:
                 changed=true;
             }
 
-            if(!brackets) {
+            if(!braces) {
                 changed=true;
                 scrollback.clear();
                 continue;
             }
         }
 
-        if(brackets && 1==ln) {
+        if(do_patch && do_prologue && 1==ln) {
             sprintf(tmp_buf,"%s\n%s\n",line_prologue_token,line_prologue);
             string save=scrollback.back();
             scrollback.clear();
@@ -161,7 +161,7 @@ again:
             }
         }
 
-        if(!brackets && 1==ln && strcmp(buf,line_prologue_token)==0) {
+        if(!braces && 1==ln && strcmp(buf,line_prologue_token)==0) {
             scrollback.push_back(buf);
             changed=true;
         }
@@ -217,9 +217,9 @@ again:
 #endif
         for(size_t i1=0; i1<line.length(); ++i1) {
             if('{'==line[i1])
-                ++brackets;
+                ++braces;
             if('}'==line[i1]) {
-                --brackets;
+                --braces;
             }
         }
 
@@ -302,9 +302,9 @@ again:
                 }
             }
             if(got && ( (*i1).compare(line1)==0 || (*i1).compare(line1_disabled)==0 ) ) {
-                reformat=!brackets;
+                reformat=!braces;
             } else {
-                reformat=brackets;
+                reformat=braces;
             }
         }
 
@@ -312,7 +312,7 @@ again:
             auto i1=scrollback.rbegin();
             if(i1!=scrollback.rend()) {
                 ++i1;
-                if(brackets && !(*i1).compare(inline_pragma))
+                if(braces && !(*i1).compare(inline_pragma))
                     reformat=false;
             }
             int i3=0;
@@ -352,12 +352,12 @@ again:
                 }
             }
             if(line2.size()+1==i3) {
-                reformat=!brackets;
+                reformat=!braces;
             }
 
             if(reformat) {
                 string save=scrollback.back();
-                if(brackets) {
+                if(braces) {
                     if(last_char_was_backslash) {
                         sprintf(tmp_buf,"%s",inline_pragma);
                         scrollback.pop_back();
