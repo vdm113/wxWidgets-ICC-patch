@@ -263,6 +263,7 @@ again:
         if(!line.compare("while")) {
             reformat=true;
 
+#if 1 // ICC 14 bug workaround
             string line_orig=buf;
             char ch;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -277,6 +278,7 @@ again:
             } while(' '==ch || '\t'==ch);
             if(';'==ch && !end_do)
                 reformat=false;
+#endif
         }
 
         // do
