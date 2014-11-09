@@ -115,11 +115,6 @@ again:
             }
         }
 
-        if(!braces && !strcmp(buf,inline_pragma)) {
-            changed=true;
-            continue;
-        }
-
         ++ln;
         scrollback.push_back(buf);
 
@@ -155,7 +150,6 @@ again:
             }
 
             if(!braces) {
-                changed=true;
                 scrollback.clear();
             }
         }
@@ -167,7 +161,7 @@ again:
                 save=scrollback.back();
             scrollback.clear();
             scrollback.push_back(tmp_buf);
-            if(save.compare(line_prologue_token)) {
+            if(strcmp(buf,line_prologue_token)) {
                 if(!save.empty())
                     scrollback.push_back(save);
                 changed=true;
@@ -175,7 +169,6 @@ again:
         }
 
         if(!braces && 1==ln && strcmp(buf,line_prologue_token)==0) {
-            changed=true;
             continue;
         }
 
@@ -410,8 +403,6 @@ again:
                         scrollback.push_back(save);
                     }
                 }
-                if(!changed)
-                    ++cnt;
             }
         }
 
