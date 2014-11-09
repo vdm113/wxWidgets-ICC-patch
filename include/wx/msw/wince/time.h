@@ -5,7 +5,6 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
-
 /*
  * time.h
  * Missing time functions and structures for use under WinCE

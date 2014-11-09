@@ -5,7 +5,6 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
-
 /*
  * Copyright (c) 1996-1997 Sam Leffler
  * Copyright (c) 1996 Pixar

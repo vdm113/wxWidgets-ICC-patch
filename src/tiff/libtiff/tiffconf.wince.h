@@ -5,7 +5,6 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
-
 /*
  * Windows CE platform tiffconf.wince.h
  * Created by Mateusz Loskot (mateusz@loskot.net)

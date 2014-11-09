@@ -5,7 +5,6 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
-
 /* pngerror.c - stub functions for i/o and memory allocation
  *
  * Last changed in libpng 1.6.1 [March 28, 2013]

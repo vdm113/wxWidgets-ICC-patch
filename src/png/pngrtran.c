@@ -5,7 +5,6 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
-
 /* pngrtran.c - transforms the data in a row for PNG readers
  *
  * Last changed in libpng 1.6.2 [April 25, 2013]

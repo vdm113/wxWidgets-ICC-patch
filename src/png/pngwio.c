@@ -5,7 +5,6 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
-
 /* pngwio.c - functions for data output
  *
  * Last changed in libpng 1.6.0 [February 14, 2013]
