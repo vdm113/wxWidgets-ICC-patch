@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -61,8 +61,8 @@ wxTimerScheduler::~wxTimerScheduler()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxTimerList::iterator node = m_timers.begin();
           node != m_timers.end();
@@ -83,8 +83,8 @@ void wxTimerScheduler::DoAddTimer(wxTimerSchedule *s)
     wxTimerList::iterator node;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( node = m_timers.begin(); node != m_timers.end(); ++node )
     {
@@ -108,8 +108,8 @@ void wxTimerScheduler::RemoveTimer(wxUnixTimerImpl *timer)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxTimerList::iterator node = m_timers.begin();
           node != m_timers.end();
@@ -154,8 +154,8 @@ bool wxTimerScheduler::NotifyExpired()
     TimerImpls toNotify;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxTimerList::iterator next,
             cur = m_timers.begin(); cur != m_timers.end(); cur = next )
@@ -207,8 +207,8 @@ bool wxTimerScheduler::NotifyExpired()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( TimerImpls::const_iterator i = toNotify.begin(),
                                      end = toNotify.end();

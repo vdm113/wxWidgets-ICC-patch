@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -147,8 +147,8 @@ wxgtk_webview_webkit_navigation(WebKitWebView *,
         //We are not vetoed so see if we match one of the additional handlers
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for(wxVector<wxSharedPtr<wxWebViewHandler> >::iterator it = hanlders.begin();
             it != hanlders.end(); ++it)
@@ -374,8 +374,8 @@ wxgtk_webview_webkit_resource_req(WebKitWebView *,
     //We are not vetoed so see if we match one of the additional handlers
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(wxVector<wxSharedPtr<wxWebViewHandler> >::iterator it = hanlders.begin();
         it != hanlders.end(); ++it)
@@ -647,8 +647,8 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewWebKit::GetBackwardHistory
     //We need to iterate in reverse to get the order we desire
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(int i = g_list_length(list) - 1; i >= 0 ; i--)
     {
@@ -672,8 +672,8 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewWebKit::GetForwardHistory(
                                                                            m_historyLimit);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(guint i = 0; i < g_list_length(list); i++)
     {

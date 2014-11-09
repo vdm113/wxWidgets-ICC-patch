@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -46,8 +46,8 @@ public:
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < m_count; n++ )
         {
@@ -90,8 +90,8 @@ public:
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < m_count; n++ )
         {
@@ -112,8 +112,8 @@ public:
         int sw = show ? SW_SHOW : SW_HIDE;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < m_count; n++ )
         {
@@ -127,8 +127,8 @@ public:
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < m_count; n++ )
         {
@@ -145,8 +145,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < m_count; n++ )
         {
@@ -166,8 +166,8 @@ public:
         wxRect r;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < m_count; n++ )
         {

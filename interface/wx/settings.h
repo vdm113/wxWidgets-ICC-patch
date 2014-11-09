@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -43,8 +43,8 @@ enum wxSystemFont
         Note that with modern GUIs nothing guarantees that the same font is used
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for all GUI elements, so some controls might use a different font by default.
     */
@@ -154,8 +154,8 @@ enum wxSystemColour
         same colour used for the borders of controls like e.g. wxNotebook or
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for the background of e.g. wxPanel.
 

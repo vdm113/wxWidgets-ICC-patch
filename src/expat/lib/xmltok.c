@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -340,8 +340,8 @@ utf8_toUtf8(const ENCODING *enc,
     /* Avoid copying partial characters. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (fromLim = *fromP + (toLim - *toP); fromLim > *fromP; fromLim--)
       if (((unsigned char)fromLim[-1] & 0xc0) != 0x80)
@@ -349,8 +349,8 @@ utf8_toUtf8(const ENCODING *enc,
   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (to = *toP, from = *fromP; from != fromLim; from++, to++)
     *to = *from;
@@ -367,8 +367,8 @@ utf8_toUtf16(const ENCODING *enc,
   const char *from = *fromP;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (from != fromLim && to != toLim) {
     switch (((struct normal_encoding *)enc)->type[(unsigned char)*from]) {
@@ -458,8 +458,8 @@ latin1_toUtf8(const ENCODING *enc,
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (;;) {
     unsigned char c;
@@ -488,8 +488,8 @@ latin1_toUtf16(const ENCODING *enc,
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (*fromP != fromLim && *toP != toLim)
     *(*toP)++ = (unsigned char)*(*fromP)++;
@@ -526,8 +526,8 @@ ascii_toUtf8(const ENCODING *enc,
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (*fromP != fromLim && *toP != toLim)
     *(*toP)++ = *(*fromP)++;
@@ -967,8 +967,8 @@ streqci(const char *s1, const char *s2)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (;;) {
     char c1 = *s1++;
@@ -1041,8 +1041,8 @@ parsePseudoAttribute(const ENCODING *enc,
   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   do {
     ptr += enc->minBytesPerChar;
@@ -1054,8 +1054,8 @@ parsePseudoAttribute(const ENCODING *enc,
   *namePtr = ptr;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (;;) {
     c = toAscii(enc, ptr, end);
@@ -1071,8 +1071,8 @@ parsePseudoAttribute(const ENCODING *enc,
       *nameEndPtr = ptr;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       do {
         ptr += enc->minBytesPerChar;
@@ -1093,8 +1093,8 @@ parsePseudoAttribute(const ENCODING *enc,
   c = toAscii(enc, ptr, end);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (isSpace(c)) {
     ptr += enc->minBytesPerChar;
@@ -1109,8 +1109,8 @@ parsePseudoAttribute(const ENCODING *enc,
   *valPtr = ptr;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (;; ptr += enc->minBytesPerChar) {
     c = toAscii(enc, ptr, end);
@@ -1236,8 +1236,8 @@ doParseXmlDecl(const ENCODING *(*encodingFinder)(const ENCODING *,
   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (isSpace(toAscii(enc, ptr, end)))
     ptr += enc->minBytesPerChar;
@@ -1375,8 +1375,8 @@ unknown_toUtf8(const ENCODING *enc,
   char buf[XML_UTF8_ENCODE_MAX];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (;;) {
     const char *utf8;
@@ -1401,8 +1401,8 @@ unknown_toUtf8(const ENCODING *enc,
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do {
       *(*toP)++ = *utf8++;
@@ -1418,8 +1418,8 @@ unknown_toUtf16(const ENCODING *enc,
   const struct unknown_encoding *uenc = AS_UNKNOWN_ENCODING(enc);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (*fromP != fromLim && *toP != toLim) {
     unsigned short c = uenc->utf16[(unsigned char)**fromP];
@@ -1445,15 +1445,15 @@ XmlInitUnknownEncoding(void *mem,
   struct unknown_encoding *e = (struct unknown_encoding *)mem;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < (int)sizeof(struct normal_encoding); i++)
     ((char *)mem)[i] = ((char *)&latin1_encoding)[i];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < 128; i++)
     if (latin1_encoding.type[i] != BT_OTHER
@@ -1462,8 +1462,8 @@ XmlInitUnknownEncoding(void *mem,
       return 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < 256; i++) {
     int c = table[i];
@@ -1582,8 +1582,8 @@ getEncodingIndex(const char *name)
     return NO_ENC;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < (int)(sizeof(encodingNames)/sizeof(encodingNames[0])); i++)
     if (streqci(name, encodingNames[i]))

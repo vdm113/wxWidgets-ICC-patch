@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -124,8 +124,8 @@ bool wxRadioBox::Create(wxWindow *parent, wxWindowID id, const wxString& title,
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < n; i++)
     {
@@ -208,8 +208,8 @@ void wxRadioBox::SetSelection(int n)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i = 0; i < m_noItems; i++)
         if (i != (unsigned int)n)
@@ -274,8 +274,8 @@ bool wxRadioBox::Enable(bool enable)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i = 0; i < m_noItems; i++)
         XtSetSensitive ((Widget) m_radioButtons[i], (Boolean) enable);
@@ -354,8 +354,8 @@ void wxRadioBox::ChangeFont(bool keepOriginalSize)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i = 0; i < m_noItems; i++)
     {
@@ -376,8 +376,8 @@ void wxRadioBox::ChangeBackgroundColour()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i = 0; i < m_noItems; i++)
     {
@@ -397,8 +397,8 @@ void wxRadioBox::ChangeForegroundColour()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i = 0; i < m_noItems; i++)
     {
@@ -420,8 +420,8 @@ void wxRadioBoxCallback (Widget w, XtPointer clientData,
   const wxWidgetArray& buttons = item->GetRadioButtons();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < item->GetCount(); i++)
     if (((Widget)buttons[i]) == w)

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -138,8 +138,8 @@ int wxGUIEventLoop::DoRun()
     m_impl->m_keepGoing = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( m_impl->m_keepGoing )
     {
@@ -147,8 +147,8 @@ int wxGUIEventLoop::DoRun()
         // anything else to do
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( ! Pending() )
         {
@@ -267,8 +267,8 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 2; i++)
     {
@@ -279,8 +279,8 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
         // TODO: implement event filtering using the eventsToProcess mask
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (wxTheApp && wxTheApp->Pending())
             wxTheApp->Dispatch();

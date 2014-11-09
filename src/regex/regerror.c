@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -73,8 +73,8 @@ size_t errbuf_size;		/* available space in errbuf, can be 0 */
 	case REG_ATOI:		/* convert name to number */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (r = rerrs; r->code >= 0; r++)
 			if (strcmp(r->name, errbuf) == 0)
@@ -86,8 +86,8 @@ size_t errbuf_size;		/* available space in errbuf, can be 0 */
 		icode = atoi(errbuf);	/* not our problem if this fails */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (r = rerrs; r->code >= 0; r++)
 			if (r->code == icode)
@@ -102,8 +102,8 @@ size_t errbuf_size;		/* available space in errbuf, can be 0 */
 	default:		/* a real, normal error code */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (r = rerrs; r->code >= 0; r++)
 			if (r->code == rxerrcode)

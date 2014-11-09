@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -85,8 +85,8 @@ void wxType::SetTypeFromString(const wxString& t)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (m_strType.Contains("  "))
         m_strType.Replace("  ", " ");       // do it once again
@@ -179,8 +179,8 @@ void wxArgumentType::SetDefaultValue(const wxString& defval, const wxString& def
     wxString *p = NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i=0; i<2; i++)     // to avoid copying&pasting the code!
     {
@@ -317,8 +317,8 @@ bool wxMethod::IsOk() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<m_args.GetCount(); i++)
         if (!m_args[i].IsOk()) {
@@ -335,8 +335,8 @@ bool wxMethod::IsOk() const
         bool previousArgHasDefault = m_args[0].HasDefaultValue();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (unsigned int i=1; i<m_args.GetCount(); i++)
         {
@@ -378,8 +378,8 @@ bool wxMethod::MatchesExceptForAttributes(const wxMethod& m) const
     // compare argument types
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<m_args.GetCount(); i++)
         if (m_args[i] != m.m_args[i])
@@ -395,8 +395,8 @@ bool wxMethod::ActsAsDefaultCtor() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<m_args.GetCount(); i++)
         if (!m_args[i].HasDefaultValue())
@@ -443,8 +443,8 @@ wxString wxMethod::GetAsString(bool bWithArgumentNames, bool bCleanDefaultValues
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<m_args.GetCount(); i++)
     {
@@ -504,8 +504,8 @@ void wxMethod::Dump(wxTextOutputStream& stream) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<m_args.GetCount(); i++)
         stream << "[" + m_args[i].GetAsString() + " " + m_args[i].GetArgumentName() +
@@ -563,8 +563,8 @@ void wxClass::Dump(wxTextOutputStream& out) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<m_methods.GetCount(); i++) {
 
@@ -581,14 +581,14 @@ bool wxClass::CheckConsistency() const
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<m_methods.GetCount(); i++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (unsigned int j=0; j<m_methods.GetCount(); j++)
             if (i!=j && m_methods[i] == m_methods[j])
@@ -609,8 +609,8 @@ const wxMethod* wxClass::FindMethod(const wxMethod& m) const
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<m_methods.GetCount(); i++)
         if (m_methods[i] == m)
@@ -629,8 +629,8 @@ const wxMethod* wxClass::RecursiveUpwardFindMethod(const wxMethod& m,
     // then, search into its parents
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<m_parents.GetCount(); i++)
     {
@@ -661,8 +661,8 @@ wxMethodPtrArray wxClass::FindMethodsNamed(const wxString& name) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<m_methods.GetCount(); i++)
         if (m_methods[i].GetName() == name)
@@ -683,8 +683,8 @@ wxMethodPtrArray wxClass::RecursiveUpwardFindMethodsNamed(const wxString& name,
     // then, search into parents of this class
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<m_parents.GetCount(); i++)
     {
@@ -732,8 +732,8 @@ void wxXmlInterface::Dump(const wxString& filename)
     unsigned i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i=0; i<m_classes.GetCount(); i++)
         sorted.Add(&m_classes[i]);
@@ -741,8 +741,8 @@ void wxXmlInterface::Dump(const wxString& filename)
     // now they have been sorted
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i=0; i<sorted.GetCount(); i++)
         sorted[i]->Dump(apiout);
@@ -754,8 +754,8 @@ bool wxXmlInterface::CheckConsistency() const
 //#ifdef __WXDEBUG__
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<m_classes.GetCount(); i++)
     {
@@ -764,8 +764,8 @@ bool wxXmlInterface::CheckConsistency() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (unsigned int j=0; j<m_classes.GetCount(); j++)
             if (i!=j && m_classes[i].GetName() == m_classes[j].GetName())
@@ -786,8 +786,8 @@ wxClassPtrArray wxXmlInterface::FindClassesDefinedIn(const wxString& headerfile)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<m_classes.GetCount(); i++)
         if (m_classes[i].GetHeader() == headerfile)
@@ -885,8 +885,8 @@ bool getMemberIDs(wxClassMemberIdHashMap* map, wxClass* p, const wxString& str)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (curpos < end)
     {
@@ -972,8 +972,8 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
     child = doc.GetRoot()->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (child)
     {
@@ -1009,8 +1009,8 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
                 wxXmlNode *baseNode = child->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while (baseNode)
                 {
@@ -1097,8 +1097,8 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
             wxXmlNode *arg = child->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (arg)
             {
@@ -1165,8 +1165,8 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
     // thus we need to resolve their name iteratively:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (toResolveTypes.size()>0)
     {
@@ -1178,8 +1178,8 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (wxToResolveTypeHashMap::iterator i = toResolveTypes.begin();
              i != toResolveTypes.end();)
@@ -1243,8 +1243,8 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
     unsigned i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i=0; i<m_classes.GetCount(); i++)
     {
@@ -1268,15 +1268,15 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
     // resolve parent names
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i=0; i<m_classes.GetCount(); i++)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (unsigned int k=0; k<m_classes[i].GetParentCount(); k++)
         {
@@ -1303,8 +1303,8 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
     child = doc.GetRoot()->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (child)
     {
@@ -1405,8 +1405,8 @@ bool wxXmlGccInterface::ParseMethod(const wxXmlNode *p,
     wxXmlNode *arg = p->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (arg)
     {
@@ -1491,8 +1491,8 @@ static wxString GetTextFromChildren(const wxXmlNode *n)
     wxXmlNode *ref = n->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (ref) {
         if (ref->GetType() == wxXML_ELEMENT_NODE)
@@ -1516,8 +1516,8 @@ static bool HasTextNodeContaining(const wxXmlNode *parent, const wxString& name)
     wxXmlNode *p = parent->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (p)
     {
@@ -1553,8 +1553,8 @@ static const wxXmlNode* FindNodeNamed(const wxXmlNode* parent, const wxString& n
     const wxXmlNode *p = parent->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (p)
     {
@@ -1583,8 +1583,8 @@ int GetAvailabilityFor(const wxXmlNode *node)
     int nAvail = wxPORT_UNKNOWN;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i < ports.GetCount(); i++)
     {
@@ -1635,8 +1635,8 @@ bool wxXmlDoxygenInterface::Parse(const wxString& filename)
     compound = index.GetRoot()->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (compound)
     {
@@ -1687,8 +1687,8 @@ bool wxXmlDoxygenInterface::ParseCompoundDefinition(const wxString& filename)
     child = doc.GetRoot()->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (child)
     {
@@ -1702,8 +1702,8 @@ bool wxXmlDoxygenInterface::ParseCompoundDefinition(const wxString& filename)
             wxXmlNode *subchild = child->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (subchild)
             {
@@ -1718,8 +1718,8 @@ bool wxXmlDoxygenInterface::ParseCompoundDefinition(const wxString& filename)
                     wxXmlNode *membernode = subchild->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     while (membernode)
                     {
@@ -1821,8 +1821,8 @@ bool wxXmlDoxygenInterface::ParseMethod(const wxXmlNode* p, wxMethod& m, wxStrin
     wxXmlNode *child = p->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (child)
     {
@@ -1836,8 +1836,8 @@ bool wxXmlDoxygenInterface::ParseMethod(const wxXmlNode* p, wxMethod& m, wxStrin
             wxXmlNode *n = child->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (n)
             {

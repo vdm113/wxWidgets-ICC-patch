@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -353,8 +353,8 @@ void wxAuiMDIParentFrame::DoHandleMenu(wxCommandEvent& event)
             wxAuiMDIChildFrame* pActiveChild;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ((pActiveChild = GetActiveChild()) != NULL)
             {
@@ -564,8 +564,8 @@ bool wxAuiMDIChildFrame::Destroy()
     size_t page_count = pClientWindow->GetPageCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t pos = 0; pos < page_count; pos++)
     {
@@ -617,8 +617,8 @@ void wxAuiMDIChildFrame::SetTitle(const wxString& title)
         size_t pos;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (pos = 0; pos < pClientWindow->GetPageCount(); pos++)
         {
@@ -688,8 +688,8 @@ void wxAuiMDIChildFrame::Activate()
         size_t pos;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (pos = 0; pos < pClientWindow->GetPageCount(); pos++)
         {
@@ -924,8 +924,8 @@ void wxAuiMDIClientWindow::OnSize(wxSizeEvent& evt)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t pos = 0; pos < GetPageCount(); pos++)
         ((wxAuiMDIChildFrame *)GetPage(pos))->ApplyMDIChildFrameRect();

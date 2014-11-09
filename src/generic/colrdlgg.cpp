@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -303,8 +303,8 @@ void wxGenericColourDialog::InitializeColours(void)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < WXSIZEOF(wxColourDialogNames); i++)
     {
@@ -317,8 +317,8 @@ void wxGenericColourDialog::InitializeColours(void)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < WXSIZEOF(m_customColours); i++)
     {
@@ -336,8 +336,8 @@ void wxGenericColourDialog::InitializeColours(void)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < WXSIZEOF(wxColourDialogNames); i++)
         {
@@ -353,8 +353,8 @@ void wxGenericColourDialog::InitializeColours(void)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( i = 0; i < WXSIZEOF(m_customColours); i++ )
             {
@@ -381,16 +381,16 @@ void wxGenericColourDialog::PaintBasicColours(wxDC& dc)
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 6; i++)
     {
         int j;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (j = 0; j < 8; j++)
         {
@@ -413,16 +413,16 @@ void wxGenericColourDialog::PaintCustomColours(wxDC& dc)
   int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < 2; i++)
   {
     int j;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (j = 0; j < 8; j++)
     {

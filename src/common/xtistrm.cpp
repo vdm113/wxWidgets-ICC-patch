@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -132,8 +132,8 @@ void wxObjectWriter::FindConnectEntry(const wxEvtHandler * evSource,
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( wxList::const_iterator node = dynamicEvents->begin(); node != dynamicEvents->end(); ++node )
         {
@@ -150,8 +150,8 @@ void wxObjectWriter::FindConnectEntry(const wxEvtHandler * evSource,
                 const wxHandlerInfo* sinkHandler = sinkClassInfo->GetFirstHandler();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while ( sinkHandler )
                 {
@@ -175,8 +175,8 @@ void wxObjectWriter::WriteAllProperties( const wxObject * obj, const wxClassInfo
     ci->GetProperties( map );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < ci->GetCreateParamCount(); ++i )
     {
@@ -196,8 +196,8 @@ void wxObjectWriter::WriteAllProperties( const wxObject * obj, const wxClassInfo
     { // Extra block for broken compilers
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for( wxPropertyInfoMap::iterator iter = map.begin(); iter != map.end(); ++iter )
         {
@@ -211,8 +211,8 @@ void wxObjectWriter::WriteAllProperties( const wxObject * obj, const wxClassInfo
     { // Extra block for broken compilers
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for( wxPropertyInfoMap::iterator iter = map.begin(); iter != map.end(); ++iter )
         {
@@ -270,8 +270,8 @@ void wxObjectWriter::WriteOneProperty( const wxObject *obj, const wxClassInfo* c
             DoBeginWriteProperty( pi );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( wxAnyList::const_iterator iter = data.begin(); iter != data.end(); ++iter )
             {
@@ -552,8 +552,8 @@ void wxObjectRuntimeReaderCallback::CreateObject(int objectID,
     o = m_data->GetObject(objectID);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < paramCount; ++i )
     {
@@ -585,8 +585,8 @@ void wxObjectRuntimeReaderCallback::ConstructObject(int objectID,
     wxObject *o;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < paramCount; ++i )
     {
@@ -675,8 +675,8 @@ void wxObjectRuntimeReaderCallback::SetConnect(int eventSourceObjectID,
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( wxEventType iter = delegateTypeInfo->GetEventType(); 
                   iter <= delegateTypeInfo->GetLastEventType(); ++iter )

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -141,8 +141,8 @@ public:
 	void Forward(int nb) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int i = 0; i < nb; i++) {
 			Forward();
@@ -152,8 +152,8 @@ public:
 		size_t forwardPos = currentPos + nb;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (forwardPos > currentPos) {
 			Forward();
@@ -216,8 +216,8 @@ public:
 		s++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int n=2; *s; n++) {
 			if (*s != styler.SafeGetCharAt(currentPos+n, 0))
@@ -235,8 +235,8 @@ public:
 		s++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int n=2; *s; n++) {
 			if (static_cast<unsigned char>(*s) !=

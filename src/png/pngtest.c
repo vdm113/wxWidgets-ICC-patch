@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -230,8 +230,8 @@ count_zero_samples(png_structp png_ptr, png_row_infop row_info, png_bytep data)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
        for (n = 0, nstop=row_info->width; n<nstop; n++)
        {
@@ -292,15 +292,15 @@ count_zero_samples(png_structp png_ptr, png_row_infop row_info, png_bytep data)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
        for (n = 0, nstop=row_info->width; n<nstop; n++)
        {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
           for (channel = 0; channel < color_channels; channel++)
           {
@@ -584,8 +584,8 @@ png_debug_free(png_structp png_ptr, png_voidp ptr)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (;;)
       {
@@ -790,8 +790,8 @@ write_chunks(png_structp write_ptr, int location)
     */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (i=0; i<2; ++i)
    {
@@ -819,8 +819,8 @@ pngtest_check_text_support(png_const_structp png_ptr, png_textp text_ptr,
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    while (num_text > 0)
    {
@@ -1031,8 +1031,8 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (i = 0; i<256; i++)
          filters_used[i] = 0;
@@ -1277,8 +1277,8 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
             printf("\n");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (i=0; i<num_text; i++)
             {
@@ -1354,8 +1354,8 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
             int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (i = 0; i < num_unknowns; i++)
               png_set_unknown_chunk_location(write_ptr, write_info_ptr, i,
@@ -1407,16 +1407,16 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
 #endif
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (pass = 0; pass < num_pass; pass++)
    {
       pngtest_debug1("Writing row data for pass %d", pass);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (y = 0; y < height; y++)
       {
@@ -1481,8 +1481,8 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
             printf("\n");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (i=0; i<num_text; i++)
             {
@@ -1536,8 +1536,8 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
             int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (i = 0; i < num_unknowns; i++)
               png_set_unknown_chunk_location(write_ptr, write_end_info_ptr, i,
@@ -1652,8 +1652,8 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (;;)
       {
@@ -1857,8 +1857,8 @@ main(int argc, char *argv[])
 #endif
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (i=2; i<argc; ++i)
       {
@@ -1879,8 +1879,8 @@ main(int argc, char *argv[])
 #ifdef PNG_READ_USER_TRANSFORM_SUPPORTED
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (k = 0; k<256; k++)
                if (filters_used[k])
@@ -1914,8 +1914,8 @@ main(int argc, char *argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (pinfo != NULL)
             {
@@ -1944,8 +1944,8 @@ main(int argc, char *argv[])
       int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (i = 0; i<3; ++i)
       {
@@ -1980,8 +1980,8 @@ main(int argc, char *argv[])
 #ifdef PNG_READ_USER_TRANSFORM_SUPPORTED
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for (k = 0; k<256; k++)
                    if (filters_used[k])
@@ -2017,8 +2017,8 @@ main(int argc, char *argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
              while (pinfo != NULL)
              {

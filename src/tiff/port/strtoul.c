@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -65,8 +65,8 @@ strtoul(const char *nptr, char **endptr, int base)
 	s = nptr;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	do {
 		c = (unsigned char) *s++;
@@ -92,8 +92,8 @@ strtoul(const char *nptr, char **endptr, int base)
 	cutlim = (int)(ULONG_MAX % (unsigned long)base);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (acc = 0, any = 0;; c = (unsigned char) *s++) {
 		if (isdigit(c))

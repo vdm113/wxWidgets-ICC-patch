@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/thread.cpp
 // Purpose:     wxThread Implementation
@@ -261,6 +268,11 @@ wxSemaError wxSemaphoreInternal::WaitTimeout(unsigned long ulMilliseconds)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     do {
         ulrc = ::DosWaitEventSem(m_vEvent, ulMilliseconds );
@@ -752,6 +764,11 @@ wxThreadError wxThread::Delete(ExitCode *pRc, wxThreadWait WXUNUSED(waitMode))
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
         do
         {
             if ( IsMain() )
@@ -826,6 +843,11 @@ wxThreadError wxThread::Delete(ExitCode *pRc, wxThreadWait WXUNUSED(waitMode))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     do
     {

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/toolbar.cpp
 // Purpose:     wxToolBar
@@ -447,6 +454,11 @@ bool wxToolBar::Realize()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     while (node )
     {
         wxToolBarTool*              pTool = (wxToolBarTool *)node->GetData();
@@ -502,6 +514,11 @@ bool wxToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -613,6 +630,11 @@ void wxToolBar::OnPaint (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
           node;
@@ -967,6 +989,11 @@ wxToolBarToolBase* wxToolBar::FindToolForPosition(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {

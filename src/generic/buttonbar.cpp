@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -193,8 +193,8 @@ wxToolBarToolBase *wxButtonToolBar::FindToolForPosition(wxCoord x, wxCoord y) co
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
           node;
@@ -389,8 +389,8 @@ void wxButtonToolBar::DoLayout()
     // calculate the positions of all elements
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
           node;
@@ -521,8 +521,8 @@ void wxButtonToolBar::OnPaint(wxPaintEvent& WXUNUSED(event))
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
           node;

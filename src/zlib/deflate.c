@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -369,16 +369,16 @@ int ZEXPORT deflateSetDictionary (strm, dictionary, dictLength)
     fill_window(s);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (s->lookahead >= MIN_MATCH) {
         str = s->strstart;
         n = s->lookahead - (MIN_MATCH-1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do {
             UPDATE_HASH(s, s->ins_h, s->window[str + MIN_MATCH-1]);
@@ -491,8 +491,8 @@ int ZEXPORT deflatePrime (strm, bits, value)
         return Z_BUF_ERROR;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do {
         put = Buf_size - s->bi_valid;
@@ -618,8 +618,8 @@ uLong ZEXPORT deflateBound(strm, sourceLen)
             if (str != Z_NULL)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 do {
                     wraplen++;
@@ -628,8 +628,8 @@ uLong ZEXPORT deflateBound(strm, sourceLen)
             if (str != Z_NULL)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 do {
                     wraplen++;
@@ -799,8 +799,8 @@ int ZEXPORT deflate (strm, flush)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (s->gzindex < (s->gzhead->extra_len & 0xffff)) {
                 if (s->pending == s->pending_buf_size) {
@@ -833,8 +833,8 @@ int ZEXPORT deflate (strm, flush)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do {
                 if (s->pending == s->pending_buf_size) {
@@ -869,8 +869,8 @@ int ZEXPORT deflate (strm, flush)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do {
                 if (s->pending == s->pending_buf_size) {
@@ -1240,8 +1240,8 @@ local uInt longest_match(s, cur_match)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do {
         Assert(cur_match < s->strstart, "no future");
@@ -1275,8 +1275,8 @@ local uInt longest_match(s, cur_match)
         scan++, match++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do {
         } while (*(ushf*)(scan+=2) == *(ushf*)(match+=2) &&
@@ -1314,8 +1314,8 @@ local uInt longest_match(s, cur_match)
          */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do {
         } while (*++scan == *++match && *++scan == *++match &&
@@ -1393,8 +1393,8 @@ local uInt longest_match(s, cur_match)
      */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do {
     } while (*++scan == *++match && *++scan == *++match &&
@@ -1431,8 +1431,8 @@ local void check_match(s, start, match, length)
                 start, match, length);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do {
             fprintf(stderr, "%c%c", s->window[match++], s->window[start++]);
@@ -1443,8 +1443,8 @@ local void check_match(s, start, match, length)
         fprintf(stderr,"\\[%d,%d]", start-match, length);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do { putc(s->window[start++], stderr); } while (--length != 0);
     }
@@ -1475,8 +1475,8 @@ local void fill_window(s)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do {
         more = (unsigned)(s->window_size -(ulg)s->lookahead -(ulg)s->strstart);
@@ -1514,8 +1514,8 @@ local void fill_window(s)
             p = &s->head[n];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do {
                 m = *--p;
@@ -1527,8 +1527,8 @@ local void fill_window(s)
             p = &s->prev[n];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do {
                 m = *--p;
@@ -1568,8 +1568,8 @@ local void fill_window(s)
 #endif
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (s->insert) {
                 UPDATE_HASH(s, s->ins_h, s->window[str + MIN_MATCH-1]);
@@ -1674,8 +1674,8 @@ local block_state deflate_stored(s, flush)
     /* Copy as much as possible from input to output: */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (;;) {
         /* Fill the window as much as possible: */
@@ -1735,8 +1735,8 @@ local block_state deflate_fast(s, flush)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (;;) {
         /* Make sure that we always have enough lookahead, except
@@ -1788,8 +1788,8 @@ local block_state deflate_fast(s, flush)
                 s->match_length--; /* string at strstart already in table */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 do {
                     s->strstart++;
@@ -1848,8 +1848,8 @@ local block_state deflate_slow(s, flush)
     /* Process the input block. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (;;) {
         /* Make sure that we always have enough lookahead, except
@@ -1921,8 +1921,8 @@ local block_state deflate_slow(s, flush)
             s->prev_length -= 2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do {
                 if (++s->strstart <= max_insert) {
@@ -1989,8 +1989,8 @@ local block_state deflate_rle(s, flush)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (;;) {
         /* Make sure that we always have enough lookahead, except
@@ -2014,8 +2014,8 @@ local block_state deflate_rle(s, flush)
                 strend = s->window + s->strstart + MAX_MATCH;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 do {
                 } while (prev == *++scan && prev == *++scan &&
@@ -2070,8 +2070,8 @@ local block_state deflate_huff(s, flush)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (;;) {
         /* Make sure that we have a literal to write. */

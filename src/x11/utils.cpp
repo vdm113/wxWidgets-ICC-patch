@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -334,8 +334,8 @@ void wxAllocNearestColor(Display *d,Colormap cmp,XColor *xc)
     XColor *color_defs = new XColor[num_colors];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(llp = 0;llp < num_colors;llp++) color_defs[llp].pixel = llp;
     XQueryColors(d,cmp,color_defs,num_colors);
@@ -347,8 +347,8 @@ void wxAllocNearestColor(Display *d,Colormap cmp,XColor *xc)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(llp = 0;llp < num_colors;llp++)
     {

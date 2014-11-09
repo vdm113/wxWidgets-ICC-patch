@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -461,8 +461,8 @@ void BitmapComboBoxWidgetsPage::CreateCombo()
         unsigned int count = m_combobox->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned int n = 0; n < count; n++ )
         {
@@ -489,8 +489,8 @@ void BitmapComboBoxWidgetsPage::CreateCombo()
     unsigned int count = items.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int n = 0; n < count; n++ )
     {
@@ -612,8 +612,8 @@ void BitmapComboBoxWidgetsPage::OnButtonAddMany(wxCommandEvent& WXUNUSED(event))
     // "many" means 1000 here
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int n = 0; n < 1000; n++ )
     {
@@ -644,8 +644,8 @@ void BitmapComboBoxWidgetsPage::OnButtonAddSeveralWithImages(wxCommandEvent& WXU
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned i = 0; i < WXSIZEOF(s_entries); i++ )
     {
@@ -724,8 +724,8 @@ void BitmapComboBoxWidgetsPage::LoadWidgetImages( wxArrayString* strings, wxImag
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i=0; i<strings->size(); i++ )
     {
@@ -782,8 +782,8 @@ void BitmapComboBoxWidgetsPage::OnButtonAddWidgetIcons(wxCommandEvent& WXUNUSED(
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i=0; i<strings.size(); i++ )
     {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -69,8 +69,8 @@ int wxGUIEventLoop::DoRun()
     // That Exit() will cause this gtk_main() to exit so we need to re-enter it.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( !m_shouldExit )
     {
@@ -393,8 +393,8 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
     gdk_event_handler_set(wxgtk_main_do_event, this, NULL);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (Pending())   // avoid false positives from our idle source
         gtk_main_iteration();
@@ -420,8 +420,8 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
     GdkDisplay* disp = gdk_window_get_display(wxGetTopLevelGDK());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i=0; i<m_arrGdkEvents.GetCount(); i++)
     {

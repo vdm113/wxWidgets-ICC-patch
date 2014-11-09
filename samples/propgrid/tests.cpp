@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -136,8 +136,8 @@ void FormMain::OnDumpList( wxCommandEvent& WXUNUSED(event) )
     unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < (unsigned int)values.GetCount(); i++ )
     {
@@ -156,8 +156,8 @@ void FormMain::OnDumpList( wxCommandEvent& WXUNUSED(event) )
             unsigned int n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( n = 0; n < (unsigned int)v.GetCount(); n++ )
             {
@@ -315,8 +315,8 @@ wxArrayPGProperty GetPropertiesInRandomOrder( wxPropertyGridInterface* props, in
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( it = props->GetIterator(iterationFlags);
           !it.AtEnd();
@@ -397,8 +397,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( it = pgman->GetVIterator(wxPG_ITERATE_PROPERTIES);
               !it.AtEnd();
@@ -417,8 +417,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( it = pgman->GetVIterator(wxPG_ITERATE_CATEGORIES);
               !it.AtEnd();
@@ -435,8 +435,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( it = pgman->GetVIterator(wxPG_ITERATE_PROPERTIES|wxPG_ITERATE_CATEGORIES);
               !it.AtEnd();
@@ -453,8 +453,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( it = pgman->GetVIterator(wxPG_ITERATE_VISIBLE);
               !it.AtEnd();
@@ -481,8 +481,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( ind=0; ind<pgman->GetPageCount(); ind++ )
         {
@@ -491,8 +491,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( it = page->GetIterator(wxPG_ITERATE_VISIBLE);
                   !it.AtEnd();
@@ -517,8 +517,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( it = pgman->GetVIterator(wxPG_ITERATE_ALL&~(wxPG_IT_CHILDREN(wxPG_PROP_AGGREGATE)));
               !it.AtEnd();
@@ -529,8 +529,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( it2 = array.rbegin(); it2 != array.rend(); it2++ )
         {
@@ -553,8 +553,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( it = pgman->GetVIterator(wxPG_ITERATE_PROPERTIES);
               !it.AtEnd();
@@ -627,8 +627,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=0; i<3; i++ )
         {
@@ -641,8 +641,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
             unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( i = 0; i < (unsigned int)values.GetCount(); i++ )
             {
@@ -1025,8 +1025,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=0; i<3; i++ )
         {
@@ -1036,8 +1036,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( it = page->GetIterator( wxPG_ITERATE_CATEGORIES );
                   !it.AtEnd();
@@ -1061,8 +1061,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=0; i<3; i++ )
         {
@@ -1081,8 +1081,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=0; i<3; i++ )
         {
@@ -1092,8 +1092,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( it = page->GetIterator( wxPG_ITERATE_CATEGORIES );
                   !it.AtEnd();
@@ -1139,8 +1139,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=0; i<3; i++ )
         {
@@ -1152,8 +1152,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( it = page->GetIterator( wxPG_ITERATE_CATEGORIES );
                   !it.AtEnd();
@@ -1170,8 +1170,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( n=arr.GetCount()-1; n>0; n-- )
                 {
@@ -1345,8 +1345,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( i=0; i<arr1.size(); i++ )
             {
@@ -1366,8 +1366,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( i=0; i<arr2.size(); i++ )
             {
@@ -1389,8 +1389,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( i=0; i<arr1.size(); i++ )
             {
@@ -1410,8 +1410,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( i=0; i<arr2.size(); i++ )
             {
@@ -1434,8 +1434,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( i=0; i<arr1.size(); i++ )
             {
@@ -1455,8 +1455,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( i=0; i<arr2.size(); i++ )
             {
@@ -1483,8 +1483,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         // FIXME: Does not display changes.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=3; i<12; i+=2 )
         {
@@ -1507,8 +1507,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=4; i<16; i++ )
         {
@@ -1524,8 +1524,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=12; i<27; i++ )
         {
@@ -1562,8 +1562,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         RT_MSG(s)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=0; i<errorMessages.size(); i++ )
             RT_MSG(errorMessages[i])

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -30,24 +30,24 @@ static const char *NextField(const char *s) {
 	// In case there are leading spaces in the string
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (*s && *s == ' ') {
 		s++;
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (*s && *s != ' ') {
 		s++;
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (*s && *s == ' ') {
 		s++;
@@ -60,8 +60,8 @@ static size_t MeasureLength(const char *s) {
 	size_t i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (s[i] && (s[i] != '\"'))
 		i++;
@@ -130,8 +130,8 @@ void XPM::Init(const char *const *linesForm) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int c=0; c<nColours; c++) {
 		const char *colourDef = linesForm[c+1];
@@ -148,16 +148,16 @@ void XPM::Init(const char *const *linesForm) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int y=0; y<height; y++) {
 		const char *lform = linesForm[y+nColours+1];
 		size_t len = MeasureLength(lform);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (size_t x = 0; x<len; x++)
 			pixels[y * width + x] = static_cast<unsigned char>(lform[x]);
@@ -173,16 +173,16 @@ void XPM::Draw(Surface *surface, PRectangle &rc) {
 	int startX = rc.left + (rc.Width() - width) / 2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int y=0; y<height; y++) {
 		int prevCode = 0;
 		int xStartRun = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int x=0; x<width; x++) {
 			int code = pixels[y * width + x];
@@ -219,8 +219,8 @@ std::vector<const char *> XPM::LinesFormFromTextForm(const char *textForm) {
 	int j=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; countQuotes < (2*strings) && textForm[j] != '\0'; j++) {
 		if (textForm[j] == '\"') {
@@ -267,14 +267,14 @@ RGBAImage::RGBAImage(const XPM &xpm) {
 	pixelBytes.resize(CountBytes());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int y=0; y<height; y++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int x=0; x<width; x++) {
 			ColourDesired colour;
@@ -316,8 +316,8 @@ RGBAImageSet::~RGBAImageSet() {
 void RGBAImageSet::Clear() {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (ImageMap::iterator it=images.begin(); it != images.end(); ++it) {
 		delete it->second;
@@ -355,8 +355,8 @@ int RGBAImageSet::GetHeight() const {
 	if (height < 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (ImageMap::const_iterator it=images.begin(); it != images.end(); ++it) {
 			if (height < it->second->GetHeight()) {
@@ -372,8 +372,8 @@ int RGBAImageSet::GetWidth() const {
 	if (width < 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (ImageMap::const_iterator it=images.begin(); it != images.end(); ++it) {
 			if (width < it->second->GetWidth()) {

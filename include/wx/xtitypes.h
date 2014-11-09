@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -151,8 +151,8 @@ void wxSetFromString(const wxString &s, wxBitset<e> &data )
     wxString flag;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < array.Count(); ++i )
     {
@@ -174,8 +174,8 @@ void wxSetToString( wxString &s, const wxBitset<e> &data )
     s.Clear();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < count; i++ )
     {
@@ -216,8 +216,8 @@ void wxFlagsFromString(const wxString &s, e &data )
     wxString flag;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < array.Count(); ++i )
     {
@@ -240,8 +240,8 @@ void wxFlagsToString( wxString &s, const e& data )
     long dataValue = data.m_data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < count; i++ )
     {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -333,8 +333,8 @@ bool DoStatAny(wxStructStat& st, wxString path, bool dereference)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( wxEndsWithPathSeparator(path) )
     {
@@ -512,8 +512,8 @@ void wxFileName::SetPath( const wxString& pathOrig, wxPathFormat format )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( tn.HasMoreTokens() )
     {
@@ -643,8 +643,8 @@ void RemoveTrailingSeparatorsFromPath(wxString& strPath)
     // windows unique volume names ("\\?\Volume{GUID}\")
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( wxEndsWithPathSeparator( strPath ) )
     {
@@ -947,8 +947,8 @@ static wxString wxCreateTempImpl(
     int i = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (wxFileName::FileExists(path))
     {
@@ -1048,8 +1048,8 @@ static wxString wxCreateTempImpl(
     static const size_t numTries = 1000;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < numTries; n++ )
     {
@@ -1333,8 +1333,8 @@ bool wxFileName::Mkdir( const wxString& dir, int perm, int flags )
         size_t count = dirs.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = 0; i < count; i++ )
         {
@@ -1434,8 +1434,8 @@ bool wxFileName::Rmdir(const wxString& dir, int flags)
                                wxDIR_DIRS | wxDIR_HIDDEN | wxDIR_NO_FOLLOW);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( cont )
         {
@@ -1453,8 +1453,8 @@ bool wxFileName::Rmdir(const wxString& dir, int flags)
                               wxDIR_FILES | wxDIR_HIDDEN | wxDIR_NO_FOLLOW);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ( cont )
             {
@@ -1561,8 +1561,8 @@ bool wxFileName::Normalize(int flags,
     size_t count = dirs.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -1633,8 +1633,8 @@ bool wxFileName::Normalize(int flags,
         count = m_dirs.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = 0; i < count; i++ )
         {
@@ -1829,8 +1829,8 @@ bool wxFileName::MakeRelativeTo(const wxString& pathBase, wxPathFormat format)
     // remove common directories starting at the top
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( !m_dirs.IsEmpty() && !fnBase.m_dirs.IsEmpty() &&
                 m_dirs[0u].IsSameAs(fnBase.m_dirs[0u], withCase) )
@@ -1843,8 +1843,8 @@ bool wxFileName::MakeRelativeTo(const wxString& pathBase, wxPathFormat format)
     size_t count = fnBase.m_dirs.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < count; i++ )
     {
@@ -2037,8 +2037,8 @@ wxFileName::IsMSWUniqueVolumeNamePath(const wxString& path, wxPathFormat format)
     const size_t len = dir.length();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < len; n++ )
     {
@@ -2159,8 +2159,8 @@ wxString wxFileName::GetPath( int flags, wxPathFormat format ) const
     const size_t dirCount = m_dirs.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < dirCount; i++ )
     {
@@ -2328,8 +2328,8 @@ wxString wxFileName::GetLongPath() const
     size_t count = dirs.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < count; i++ )
     {
@@ -2360,8 +2360,8 @@ wxString wxFileName::GetLongPath() const
             // append any unprocessed parts and return
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( i += 1; i < count; i++ )
                 tmpPath += wxFILE_SEP_PATH + dirs[i];
@@ -2992,8 +2992,8 @@ void MacEnsureDefaultExtensionsLoaded()
         // we could load the pc exchange prefs here too
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = 0 ; i < WXSIZEOF( gDefaults ) ; ++i )
         {
@@ -3061,8 +3061,8 @@ bool wxFileName::MacFindDefaultTypeAndCreator( const wxString& ext , wxUint32 *t
   wxString extl = ext.Lower() ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for( int i = gMacDefaultExtensions.Count() - 1 ; i >= 0 ; --i )
   {

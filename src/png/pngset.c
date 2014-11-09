@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -203,8 +203,8 @@ png_set_hIST(png_const_structrp png_ptr, png_inforp info_ptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (i = 0; i < info_ptr->num_palette; i++)
       info_ptr->hist[i] = hist[i];
@@ -310,8 +310,8 @@ png_set_pCAL(png_const_structrp png_ptr, png_inforp info_ptr,
    /* Validate params[nparams] */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (i=0; i<nparams; ++i)
       if (params[i] == NULL ||
@@ -363,8 +363,8 @@ png_set_pCAL(png_const_structrp png_ptr, png_inforp info_ptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (i = 0; i < nparams; i++)
    {
@@ -784,8 +784,8 @@ png_set_text_2(png_const_structrp png_ptr, png_inforp info_ptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (i = 0; i < num_text; i++)
    {
@@ -1043,8 +1043,8 @@ png_set_sPLT(png_const_structrp png_ptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    do
    {
@@ -1137,8 +1137,8 @@ check_location(png_const_structrp png_ptr, int location)
     */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    while (location != (location & -location))
       location &= ~(location & -location);
@@ -1209,8 +1209,8 @@ png_set_unknown_chunks(png_const_structrp png_ptr,
     */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (; num_unknowns > 0; --num_unknowns, ++unknowns)
    {
@@ -1306,8 +1306,8 @@ add_one_chunk(png_bytep list, unsigned int count, png_const_bytep add, int keep)
     */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (i=0; i<count; ++i, list += 5) if (memcmp(list, add, 4) == 0)
    {
@@ -1437,8 +1437,8 @@ png_set_keep_unknown_chunks(png_structrp png_ptr, int keep,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (i=0; i<num_chunks; ++i)
          old_num_chunks = add_one_chunk(new_list, old_num_chunks,
@@ -1448,8 +1448,8 @@ png_set_keep_unknown_chunks(png_structrp png_ptr, int keep,
       num_chunks = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (i=0, inlist=outlist=new_list; i<old_num_chunks; ++i, inlist += 5)
          if (inlist[4])

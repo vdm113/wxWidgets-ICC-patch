@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -91,8 +91,8 @@ wxHTTP::wxHeaderIterator wxHTTP::FindHeader(const wxString& header)
     wxHeaderIterator it = m_headers.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxHeaderIterator en = m_headers.end(); it != en; ++it )
     {
@@ -108,8 +108,8 @@ wxHTTP::wxHeaderConstIterator wxHTTP::FindHeader(const wxString& header) const
     wxHeaderConstIterator it = m_headers.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxHeaderConstIterator en = m_headers.end(); it != en; ++it )
     {
@@ -125,8 +125,8 @@ wxHTTP::wxCookieIterator wxHTTP::FindCookie(const wxString& cookie)
     wxCookieIterator it = m_cookies.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxCookieIterator en = m_cookies.end(); it != en; ++it )
     {
@@ -142,8 +142,8 @@ wxHTTP::wxCookieConstIterator wxHTTP::FindCookie(const wxString& cookie) const
     wxCookieConstIterator it = m_cookies.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxCookieConstIterator en = m_cookies.end(); it != en; ++it )
     {
@@ -199,8 +199,8 @@ wxString wxHTTP::GenerateAuthString(const wxString& user, const wxString& pass) 
     const wxChar *from = toencode.c_str();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (len >= 3) { // encode full blocks first
         buf << wxString::Format(wxT("%c%c"), base64[(from[0] >> 2) & 0x3f], base64[((from[0] << 4) & 0x30) | ((from[1] >> 4) & 0xf)]);
@@ -275,8 +275,8 @@ void wxHTTP::SendHeaders()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iterator it = m_headers.begin(), en = m_headers.end(); it != en; ++it )
     {
@@ -298,8 +298,8 @@ bool wxHTTP::ParseHeaders()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ;; )
     {

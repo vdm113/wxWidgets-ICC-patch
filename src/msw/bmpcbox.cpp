@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -156,8 +156,8 @@ void wxBitmapComboBox::RecreateControl()
             objectClientData.reserve(numItems);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( i = 0; i < numItems; ++i )
                 objectClientData.push_back(GetClientObject(i));
@@ -167,8 +167,8 @@ void wxBitmapComboBox::RecreateControl()
             voidClientData.reserve(numItems);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( i = 0; i < numItems; ++i )
                 voidClientData.push_back(GetClientData(i));
@@ -187,8 +187,8 @@ void wxBitmapComboBox::RecreateControl()
     // initialize the controls contents
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < numItems; i++ )
     {
@@ -341,8 +341,8 @@ int wxBitmapComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int i = 0; i < numItems; i++ )
     {
@@ -356,8 +356,8 @@ int wxBitmapComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int i = numItems-1; i >= 0; i-- )
             BCBDoDeleteOneItem(pos + i);

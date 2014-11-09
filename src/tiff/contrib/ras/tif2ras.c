@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -115,8 +115,8 @@ main(argc, argv)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (--argc) {
 	if ((++argv)[0][0] == '-')
@@ -204,8 +204,8 @@ main(argc, argv)
 	    Map = (u_char *) malloc(numcolors * sizeof(u_char));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	    for (i = 0; i < numcolors; i++)
 		Map[i] = (255 * i) / numcolors;
@@ -219,8 +219,8 @@ main(argc, argv)
 	    Map = (u_char *) malloc(numcolors * sizeof(u_char));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	    for (i = 0; i < numcolors; i++)
 		Map[i] = 255 - ((255 * i) / numcolors);
@@ -247,8 +247,8 @@ main(argc, argv)
 		&redcolormap, &greencolormap, &bluecolormap);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	    for (i = 0; i < numcolors; i++) {
 		red[i] = (u_char) CVT(redcolormap[i]);
@@ -276,8 +276,8 @@ main(argc, argv)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (row = 0; row < height; row++) {
 	if (TIFFReadScanline(tif, buf, row, 0) < 0)
@@ -289,8 +289,8 @@ main(argc, argv)
 	    if (samplesperpixel == 4)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (col = 0; col < width; col++) {
 		    *outp++ = *inp++;	/* Blue */
@@ -301,8 +301,8 @@ main(argc, argv)
 	    else
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (col = 0; col < width; col++) {
 		    *outp++ = *inp++;	/* Blue */
@@ -316,8 +316,8 @@ main(argc, argv)
 	    case 1:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (col = 0; col < ((width + 7) / 8); col++)
 		    *outp++ = *inp++;
@@ -325,8 +325,8 @@ main(argc, argv)
 	    case 2:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (col = 0; col < ((width + 3) / 4); col++) {
 		    *outp++ = (*inp >> 6) & 3;
@@ -338,8 +338,8 @@ main(argc, argv)
 	    case 4:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (col = 0; col < width / 2; col++) {
 		    *outp++ = *inp >> 4;
@@ -349,8 +349,8 @@ main(argc, argv)
 	    case 8:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (col = 0; col < width; col++)
 		    *outp++ = *inp++;

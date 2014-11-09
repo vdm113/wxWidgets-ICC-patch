@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/radiobut.cpp
 // Purpose:     wxRadioButton
@@ -214,6 +221,11 @@ void wxRadioButton::SetValue( bool bValue )
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
             for ( wxWindowList::compatibility_iterator nodeBefore = nodeThis->GetPrevious();
                   nodeBefore;
                   nodeBefore = nodeBefore->GetPrevious() )
@@ -248,6 +260,11 @@ void wxRadioButton::SetValue( bool bValue )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
         for (wxWindowList::compatibility_iterator nodeAfter = nodeThis->GetNext();
              nodeAfter;

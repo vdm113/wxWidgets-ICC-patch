@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/filedlg.cpp
 // Purpose:     wxFileDialog
@@ -101,6 +108,11 @@ void wxFileDialog::GetPaths (
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for ( size_t n = 0; n < nCount; n++ )
     {
         rasPaths.Add(sDir + m_fileNames[n]);
@@ -159,6 +171,11 @@ int wxFileDialog::ShowModal()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for ( i = 0; i < nLen; i++ )
     {
         wxChar                      ch = m_dir[i];
@@ -179,6 +196,11 @@ int wxFileDialog::ShowModal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
                 while (i < nLen - 1)
                 {
@@ -217,6 +239,11 @@ int wxFileDialog::ShowModal()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     while(pzFilterBuffer != NULL)
     {
         if (nCount > 0 && !(nCount % 2))
@@ -248,6 +275,11 @@ int wxFileDialog::ShowModal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
             for (int i = 0; i < (int)vFileDlg.ulFQFCount; i++)
             {
@@ -300,6 +332,11 @@ int wxFileDialog::ShowModal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
                 for( int i = 0; i < (int)sFilterBuffer.length(); i++ )
                 {

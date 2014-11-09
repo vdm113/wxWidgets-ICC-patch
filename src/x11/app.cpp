@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -110,8 +110,8 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
     int argCOrig = argC;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < argCOrig; i++ )
     {
@@ -169,15 +169,15 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
         // remove the arguments we consumed
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int i = 0; i < argC; i++ )
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ( !argV[i] )
             {
@@ -329,8 +329,8 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
                 info.found_non_matching = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while (XCheckIfEvent( wxGlobalDisplay(), &tmp_event, wxX11ExposePredicate, (XPointer) &info ))
                 {
@@ -353,8 +353,8 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
                 info.found_non_matching = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while (XCheckIfEvent( wxGlobalDisplay(), &tmp_event, wxX11ExposePredicate, (XPointer) &info ))
                 {
@@ -607,8 +607,8 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
             wxWindow *tlw = win;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (tlw && !tlw->IsTopLevel())
                 tlw = tlw->GetParent();

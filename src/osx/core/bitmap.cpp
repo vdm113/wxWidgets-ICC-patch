@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -555,8 +555,8 @@ IconRef wxBitmapRefData::GetIconRef()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( int y = 0 ; y < h ; ++y, sourcePtr += m_bytesPerRow , masksourcePtr += mask ? mask->GetBytesPerRow() : 0 )
                 {
@@ -567,8 +567,8 @@ IconRef wxBitmapRefData::GetIconRef()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for ( int x = 0 ; x < w ; ++x )
                     {
@@ -641,8 +641,8 @@ IconRef wxBitmapRefData::GetIconRef()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( int y = 0 ; y < h ; ++y, sourcePtr += m_bytesPerRow , masksourcePtr += mask ? mask->GetBytesPerRow() : 0 )
                 {
@@ -654,8 +654,8 @@ IconRef wxBitmapRefData::GetIconRef()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for ( int x = 0 ; x < w ; ++x )
                     {
@@ -748,8 +748,8 @@ CGImageRef wxBitmapRefData::CreateCGImage() const
                 int maskrowbytes = m_bitmapMask->GetBytesPerRow() ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( int y = 0 ; y < h ; ++y , destalphastart += m_bytesPerRow, sourcemaskstart += maskrowbytes)
                 {
@@ -757,8 +757,8 @@ CGImageRef wxBitmapRefData::CreateCGImage() const
                     unsigned char *destalpha = destalphastart ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for ( int x = 0 ; x < w ; ++x , sourcemask += kMaskBytesPerPixel , destalpha += 4 )
                     {
@@ -792,16 +792,16 @@ CGImageRef wxBitmapRefData::CreateCGImage() const
                 size_t i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for( int y = 0 ; y < m_height ; bufData+= m_bytesPerRow, ++y )
                 {
                     unsigned char *bufDataIter = bufData+3;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for ( int x = 0 ; x < m_width ; bufDataIter += 4, ++x, ++i )
                     {
@@ -952,15 +952,15 @@ bool wxBitmap::CopyFromIcon(const wxIcon& icon)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( int y = 0 ; y < h ; ++y )
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( int x = 0 ; x < w ; ++x )
                 {
@@ -1018,8 +1018,8 @@ wxBitmap::wxBitmap(const char bits[], int the_width, int the_height, int no_bits
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( int y = 0 ; y < the_height ; ++y , linestart += linesize, destptr += M_BITMAPDATA->GetBytesPerRow() )
             {
@@ -1028,8 +1028,8 @@ wxBitmap::wxBitmap(const char bits[], int the_width, int the_height, int no_bits
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( int x = 0 ; x < the_width ; ++x )
                 {
@@ -1214,8 +1214,8 @@ wxBitmap wxBitmap::GetSubBitmap(const wxRect &rect) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int yy = 0; yy < destheight; ++yy, source += sourcelinesize , dest += destlinesize)
             {
@@ -1246,8 +1246,8 @@ wxBitmap wxBitmap::GetSubBitmap(const wxRect &rect) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int yy = 0; yy < destheight; ++yy, source += sourcelinesize , dest += destlinesize)
             {
@@ -1409,16 +1409,16 @@ wxBitmap::wxBitmap(const wxImage& image, int depth, double scale)
             const unsigned char *alpha = hasAlpha ? image.GetAlpha() : NULL ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int y = 0; y < height; destinationstart += M_BITMAPDATA->GetBytesPerRow(), y++)
             {
                 unsigned char * destination = destinationstart;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for (int x = 0; x < width; x++)
                 {
@@ -1504,8 +1504,8 @@ wxImage wxBitmap::ConvertToImage() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int yy = 0; yy < height; yy++ , sourcestart += M_BITMAPDATA->GetBytesPerRow() , mask += maskBytesPerRow )
     {
@@ -1516,8 +1516,8 @@ wxImage wxBitmap::ConvertToImage() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int xx = 0; xx < width; xx++)
         {
@@ -1819,8 +1819,8 @@ bool wxMask::Create(const wxBitmap& bitmap)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int y = 0 ; y < m_height ; ++y , destdatabase += m_bytesPerRow )
         {
@@ -1829,8 +1829,8 @@ bool wxMask::Create(const wxBitmap& bitmap)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( int x = 0 ; x < m_width ; ++x )
             {
@@ -1872,8 +1872,8 @@ bool wxMask::Create(const wxBitmap& bitmap, const wxColour& colour)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int y = 0 ; y < m_height ; ++y , srcdatabase+= sourceBytesRow, destdatabase += m_bytesPerRow)
         {
@@ -1883,8 +1883,8 @@ bool wxMask::Create(const wxBitmap& bitmap, const wxColour& colour)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( int x = 0 ; x < m_width ; ++x )
             {
@@ -1914,16 +1914,16 @@ wxBitmap wxMask::GetBitmap() const
     const unsigned char* src = static_cast<unsigned char*>(GetRawAccess());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int j = 0; j < m_height; j++, src += m_bytesPerRow, dst += dst_stride)
     {
         unsigned char* d = dst;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int i = 0; i < m_width; i++)
         {

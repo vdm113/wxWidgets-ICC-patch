@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -594,8 +594,8 @@ void wxListLineData::InitItems( int num )
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 0; i < num; i++)
         m_items.Append( new wxListItemData(m_owner) );
@@ -812,8 +812,8 @@ void wxListLineData::DrawInReportMode( wxDC *dc,
     size_t col = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxListItemDataList::compatibility_iterator node = m_items.GetFirst();
           node;
@@ -905,8 +905,8 @@ void wxListLineData::DrawTextFormatted(wxDC *dc,
         wxString drawntext = text.Left(len);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (len > 1)
         {
@@ -921,8 +921,8 @@ void wxListLineData::DrawTextFormatted(wxDC *dc,
         // if still not enough space, remove ellipsis characters
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (ellipsis.length() > 0 && w + base_w > width)
         {
@@ -1074,8 +1074,8 @@ void wxListHeaderWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
     wxListItem item;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < numColumns && x < w; i++ )
     {
@@ -1295,8 +1295,8 @@ void wxListHeaderWindow::OnMouse( wxMouseEvent &event )
             countCol = m_owner->GetColumnCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (col = 0; col < countCol; col++)
         {
@@ -1343,8 +1343,8 @@ void wxListHeaderWindow::OnMouse( wxMouseEvent &event )
                 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for (int i=0; i < m_owner->GetColumnCount(); i++)
                     {
@@ -1697,8 +1697,8 @@ void wxListMainWindow::SetReportView(bool inReportView)
     const size_t count = m_lines.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -1715,8 +1715,8 @@ void wxListMainWindow::CacheLineData(size_t line)
     size_t countCol = GetColumnCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t col = 0; col < countCol; col++ )
     {
@@ -1919,8 +1919,8 @@ void wxListMainWindow::HighlightLines( size_t lineFrom,
             size_t count = linesChanged.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( size_t n = 0; n < count; n++ )
             {
@@ -1932,8 +1932,8 @@ void wxListMainWindow::HighlightLines( size_t lineFrom,
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t line = lineFrom; line <= lineTo; line++ )
         {
@@ -2016,8 +2016,8 @@ void wxListMainWindow::RefreshLines( size_t lineFrom, size_t lineTo )
         // TODO: this should be optimized...
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t line = lineFrom; line <= lineTo; line++ )
         {
@@ -2079,8 +2079,8 @@ void wxListMainWindow::RefreshSelected()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t line = from; line <= to; line++ )
     {
@@ -2137,8 +2137,8 @@ void wxListMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t line = visibleFrom; line <= visibleTo; line++ )
         {
@@ -2168,8 +2168,8 @@ void wxListMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
             if (i == 0) i = 1; // Don't draw the first one
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( ; i <= visibleTo; i++ )
             {
@@ -2203,8 +2203,8 @@ void wxListMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int col = 0; col < GetColumnCount(); col++)
             {
@@ -2222,8 +2222,8 @@ void wxListMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
         size_t count = GetItemCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = 0; i < count; i++ )
         {
@@ -2492,8 +2492,8 @@ void wxListMainWindow::OnMouse( wxMouseEvent &event )
         //       enumerating all items is still not a way to do it!!
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( current = 0; current < count; current++ )
         {
@@ -3325,8 +3325,8 @@ void wxListMainWindow::SetColumnWidth( int col, int width )
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for (size_t i = 0; i < count; i++)
                 {
@@ -3369,8 +3369,8 @@ int wxListMainWindow::GetHeaderWidth() const
         size_t count = GetColumnCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t col = 0; col < count; col++ )
         {
@@ -3458,8 +3458,8 @@ void wxListMainWindow::SetItemStateAll(long state, long stateMask)
             const long count = GetItemCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for( long i = 0; i <  count; i++ )
             {
@@ -3473,8 +3473,8 @@ void wxListMainWindow::SetItemStateAll(long state, long stateMask)
             long i = -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ( (i = GetNextItem(i, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != -1 )
             {
@@ -3664,8 +3664,8 @@ int wxListMainWindow::GetSelectedItemCount() const
     size_t count = GetItemCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t line = 0; line < count; line++ )
     {
@@ -3691,8 +3691,8 @@ wxRect wxListMainWindow::GetViewRect() const
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int i = 0; i < count; i++ )
         {
@@ -3750,8 +3750,8 @@ wxListMainWindow::GetSubItemRect(long item, long subItem, wxRect& rect) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int i = 0; i < subItem; i++)
         {
@@ -3849,8 +3849,8 @@ void wxListMainWindow::RecalculatePositions(bool noRefresh)
             size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( i = 0; i < count; i++ )
             {
@@ -3879,8 +3879,8 @@ void wxListMainWindow::RecalculatePositions(bool noRefresh)
                 // all the same in a row
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( i = 0; i < count; i++ )
                 {
@@ -3910,8 +3910,8 @@ void wxListMainWindow::RecalculatePositions(bool noRefresh)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int tries = 0; tries < 2; tries++)
             {
@@ -3936,8 +3936,8 @@ void wxListMainWindow::RecalculatePositions(bool noRefresh)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for (size_t i = 0; i < count; i++)
                 {
@@ -3969,8 +3969,8 @@ void wxListMainWindow::RecalculatePositions(bool noRefresh)
                             size_t firstRowLine = i - currentlyVisibleLines + 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                             for (size_t j = firstRowLine; j <= i; j++)
                             {
@@ -4066,8 +4066,8 @@ long wxListMainWindow::GetNextItem( long item,
     size_t count = GetItemCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t line = (size_t)ret; line < count; line++ )
     {
@@ -4116,8 +4116,8 @@ void wxListMainWindow::DeleteItem( long lindex )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (size_t i = 0; i < m_columns.GetCount(); i++)
         {
@@ -4167,8 +4167,8 @@ void wxListMainWindow::DeleteColumn( int col )
         // update all the items
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = 0; i < m_lines.GetCount(); i++ )
         {
@@ -4232,8 +4232,8 @@ void wxListMainWindow::DoDeleteAllItems()
         ResetVisibleLinesRange();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (size_t i = 0; i < m_aColWidths.GetCount(); i++)
         {
@@ -4289,8 +4289,8 @@ long wxListMainWindow::FindItem(long start, const wxString& str, bool partial )
     size_t count = GetItemCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = (size_t)pos; i < count; i++ )
     {
@@ -4320,8 +4320,8 @@ long wxListMainWindow::FindItem(long start, wxUIntPtr data)
     size_t count = GetItemCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = (size_t)pos; i < count; i++)
     {
@@ -4374,8 +4374,8 @@ long wxListMainWindow::HitTest( int x, int y, int &flags ) const
         //       enumerating all items is still not a way to do it!!
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t current = 0; current < count; current++ )
         {
@@ -4487,8 +4487,8 @@ long wxListMainWindow::InsertColumn( long col, const wxListItem &item )
             // update all the items
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( size_t i = 0; i < m_lines.GetCount(); i++ )
             {
@@ -4661,8 +4661,8 @@ wxListMainWindow::PrefixFindItem(size_t idParent,
     // look for the item starting with the given prefix after it
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( ( itemid < (size_t)GetItemCount() ) &&
             !GetLine(itemid)->GetText(0).Lower().StartsWith(prefix) )
@@ -4679,8 +4679,8 @@ wxListMainWindow::PrefixFindItem(size_t idParent,
         // and try all the items (stop when we get to the one we started from)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( ( itemid < (size_t)GetItemCount() ) && itemid != idParent &&
                     !GetLine(itemid)->GetText(0).Lower().StartsWith(prefix) )
@@ -5249,8 +5249,8 @@ bool wxGenericListCtrl::DeleteAllColumns()
     size_t count = m_mainWin->m_columns.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; n++ )
         DeleteColumn( 0 );
@@ -5555,8 +5555,8 @@ wxSize wxGenericListCtrl::DoGetBestClientSize() const
         // size is less important if we will need scrollbars anyhow.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int n = 0; n < GetItemCount(); n++ )
         {

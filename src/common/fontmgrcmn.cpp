@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -79,8 +79,8 @@ wxFontInstance *wxFontFaceBase::GetFontInstance(float ptSize, bool aa)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxFontInstanceList::const_iterator i = m_instances->begin();
           i != m_instances->end(); ++i )
@@ -102,8 +102,8 @@ wxFontBundleBase::wxFontBundleBase()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 0; i < FaceType_Max; i++)
         m_faces[i] = NULL;
@@ -113,8 +113,8 @@ wxFontBundleBase::~wxFontBundleBase()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 0; i < FaceType_Max; i++)
         delete m_faces[i];
@@ -159,8 +159,8 @@ wxFontBundleBase::GetFaceForFont(const wxFontMgrFontRefData& font) const
         // some other variant:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int i = 0; i < FaceType_Max; i++)
         {

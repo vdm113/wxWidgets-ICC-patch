@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -51,8 +51,8 @@ void PopulateMenu(wxMenu* menu, const wxString& name,  size_t& itemcount)
     // Start at item 1 to make it human-readable ;)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int n=1; n<6; ++n, ++itemcount)
     {
@@ -68,8 +68,8 @@ void RecursivelyCountMenuItems(const wxMenu* menu, size_t& count)
     count += menu->GetMenuItemCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t n=0; n < menu->GetMenuItemCount(); ++n)
     {
@@ -220,8 +220,8 @@ void MenuTestCase::FindInMenubar()
     // Find by position:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t n=0; n < bar->GetMenuCount(); ++n)
     {
@@ -264,8 +264,8 @@ void MenuTestCase::FindInMenu()
     size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (n=0; n < menuHelp->GetMenuItemCount(); ++n)
     {
@@ -278,8 +278,8 @@ void MenuTestCase::FindInMenu()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (n=0; n < menuHelp->GetMenuItemCount(); ++n)
     {
@@ -294,8 +294,8 @@ void MenuTestCase::FindInMenu()
     // Find submenu item:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (n=0; n < menuHelp->GetMenuItemCount(); ++n)
     {
@@ -331,8 +331,8 @@ void MenuTestCase::Count()
     size_t count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t n=0; n < bar->GetMenuCount(); ++n)
     {

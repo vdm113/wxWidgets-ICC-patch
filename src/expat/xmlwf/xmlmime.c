@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -17,8 +17,8 @@ getTok(const char **pp)
   const char *tokStart = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (;;) {
     switch (**pp) {
@@ -92,8 +92,8 @@ matchkey(const char *start, const char *end, const char *key)
     return 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (; start != end; start++, key++)
     if (*start != *key && *start != 'A' + (*key - 'a'))
@@ -124,8 +124,8 @@ getXMLCharset(const char *buf, char *charset)
   p = getTok(&next);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (p) {
     if (*p == ';') {
@@ -139,8 +139,8 @@ getXMLCharset(const char *buf, char *charset)
             if (*p == '"') {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
               while (++p != next - 1) {
                 if (*p == '\\')
@@ -158,8 +158,8 @@ getXMLCharset(const char *buf, char *charset)
                 break;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
               while (p != next)
                 *s++ = *p++;

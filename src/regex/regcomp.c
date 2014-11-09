@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -324,8 +324,8 @@ int flags;
 	v->nsubs = 10;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (j = 0; j < v->nsubs; j++)
 		v->subs[j] = NULL;
@@ -409,8 +409,8 @@ int flags;
 	assert(v->nlacons == 0 || v->lacons != NULL);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 1; i < v->nlacons; i++) {
 		if (debug != NULL)
@@ -482,8 +482,8 @@ int wanted;			/* want enough room for this one */
 	v->subs = p;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (p = &v->subs[v->nsubs]; v->nsubs < n; p++, v->nsubs++)
 		*p = NULL;
@@ -545,8 +545,8 @@ struct nfa *nfa;
 	/* no loops are needed if it's anchored */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = pre->outs; a != NULL; a = a->outchain) {
 		assert(a->type == PLAIN);
@@ -576,15 +576,15 @@ struct nfa *nfa;
 	slist = NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = pre->outs; a != NULL; a = a->outchain) {
 		s = a->to;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (b = s->ins; b != NULL; b = b->inchain)
 			if (b->from != pre)
@@ -602,16 +602,16 @@ struct nfa *nfa;
 	/* do the splits */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (s = slist; s != NULL; s = s2) {
 		s2 = newstate(nfa);
 		copyouts(nfa, s, s2);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (a = s->ins; a != NULL; a = b) {
 			b = a->inchain;
@@ -656,8 +656,8 @@ struct state *final;		/* final state */
 	firstbranch = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	do {	/* a branch */
 		if (!firstbranch) {
@@ -679,8 +679,8 @@ struct state *final;		/* final state */
 		if ((branch->flags &~ branches->flags) != 0)	/* new flags */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (t = branches; t != branch; t = t->right)
 				t->flags |= branch->flags;
@@ -737,8 +737,8 @@ int partial;			/* is this only part of a branch? */
 	NOERRN();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (!SEE('|') && !SEE(stopper) && !SEE(EOS)) {
 		if (seencontent) {	/* implicit concat operator */
@@ -1212,8 +1212,8 @@ struct vars *v;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (SEE(DIGIT) && n < DUPMAX) {
 		n = n*10 + v->nextvalue;
@@ -1333,8 +1333,8 @@ struct state *rp;
 	NEXT();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (!SEE(']') && !SEE(EOS))
 		brackpart(v, lp, rp);
@@ -1387,8 +1387,8 @@ struct state *rp;
 	NOTE(REG_ULOCALE);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (p = v->mcces->chrs, i = v->mcces->nchrs; i > 0; p++, i--) {
 		co = GETCOLOR(v->cm, *p);
@@ -1420,8 +1420,8 @@ struct state *rp;
 			}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (pa = pa->to->outs; pa != NULL; pa = pa->outchain)
 				if (findarc(ba->to, PLAIN, pa->co) == NULL)
@@ -1565,8 +1565,8 @@ struct vars *v;
 	endp = v->now;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (SEE(PLAIN)) {
 		endp = v->now;
@@ -1602,8 +1602,8 @@ struct cvec *cv;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (mcce = 0; mcce < cv->nmcces; mcce++) {
 		p = cv->mcces[mcce];
@@ -1690,8 +1690,8 @@ struct state *rp;
 	/* first, get the ordinary characters out of the way */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (p = cv->chrs, i = cv->nchrs; i > 0; p++, i--) {
 		ch = *p;
@@ -1708,16 +1708,16 @@ struct state *rp;
 	/* and the ranges */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (p = cv->ranges, i = cv->nranges; i > 0; p += 2, i--) {
 		from = *p;
 		to = *(p+1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (from <= to && (ce = nextleader(v, from, to)) != NOCELT) {
 			if (from < ce)
@@ -1739,8 +1739,8 @@ struct state *rp;
 	NOTE(REG_ULOCALE);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (p = leads->chrs, i = leads->nchrs; i > 0; p++, i--) {
 		co = GETCOLOR(v->cm, *p);
@@ -1765,8 +1765,8 @@ struct state *rp;
 	/* and the MCCEs */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 0; i < cv->nmcces; i++) {
 		p = cv->mcces[i];
@@ -1816,8 +1816,8 @@ pchr to;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = v->mcces->nchrs, p = v->mcces->chrs; i > 0; i--, p++) {
 		ch = *p;
@@ -2021,8 +2021,8 @@ struct vars *v;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (t = v->treechain; t != NULL; t = next) {
 		next = t->chain;
@@ -2136,8 +2136,8 @@ int n;
 	assert(n > 0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (sub = subs + 1, i = n - 1; i > 0; sub++, i--)	/* no 0th */
 		if (!NULLCNFA(sub->cnfa))
@@ -2209,8 +2209,8 @@ FILE *f;
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 1; i < g->nlacons; i++) {
 		fprintf(f, "\nla%d (%s):\n", i,

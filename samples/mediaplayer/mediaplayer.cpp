@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -332,8 +332,8 @@ public:
         int nLast = -1, nLastSelected = -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ((nLast = this->GetNextItem(nLast,
                                          wxLIST_NEXT_ALL,
@@ -369,8 +369,8 @@ public:
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (size_t i = 0; i < files.GetCount(); ++i)
         {
@@ -455,8 +455,8 @@ bool wxMediaPlayerApp::OnCmdLineParsed(wxCmdLineParser& parser)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t paramNr=0; paramNr < parser.GetParamCount(); ++paramNr)
         m_params.push_back(parser.GetParam(paramNr));
@@ -491,8 +491,8 @@ bool wxMediaPlayerApp::OnInit()
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < m_params.size(); n++ )
             frame->AddToPlayList(m_params[n]);
@@ -768,8 +768,8 @@ wxMediaPlayerFrame::wxMediaPlayerFrame(const wxString& title)
         wxString key, outstring;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for(int i = 0; ; ++i)
         {
@@ -827,8 +827,8 @@ wxMediaPlayerFrame::~wxMediaPlayerFrame()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(int i = 0; i < playlist->GetItemCount(); ++i)
     {
@@ -1280,8 +1280,8 @@ void wxMediaPlayerFrame::OnKeyDown(wxKeyEvent& event)
        // delete all selected items
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
        while(true)
        {
@@ -1363,8 +1363,8 @@ void wxMediaPlayerFrame::OnPrev(wxCommandEvent& WXUNUSED(event))
     wxInt32 nLastSelectedItem = -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while(true)
     {
@@ -1421,8 +1421,8 @@ void wxMediaPlayerFrame::OnNext(wxCommandEvent& WXUNUSED(event))
     wxInt32 nLastSelectedItem = -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while(true)
     {

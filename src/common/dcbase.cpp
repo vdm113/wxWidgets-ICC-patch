@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -590,8 +590,8 @@ void wxDCImpl::DrawLines(const wxPointList *list, wxCoord xoffset, wxCoord yoffs
     int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxPointList::compatibility_iterator node = list->GetFirst(); node; node = node->GetNext(), i++ )
     {
@@ -615,8 +615,8 @@ void wxDCImpl::DrawPolygon(const wxPointList *list,
     int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxPointList::compatibility_iterator node = list->GetFirst(); node; node = node->GetNext(), i++ )
     {
@@ -648,8 +648,8 @@ wxDCImpl::DoDrawPolyPolygon(int n,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = j = lastOfs = 0; i < n; i++)
     {
@@ -659,15 +659,15 @@ wxDCImpl::DoDrawPolyPolygon(int n,
     pts = new wxPoint[j+n-1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < j; i++)
         pts[i] = points[i];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 2; i <= n; i++)
     {
@@ -682,8 +682,8 @@ wxDCImpl::DoDrawPolyPolygon(int n,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = j = 0; i < n; i++)
     {
@@ -708,8 +708,8 @@ void wxDCImpl::DrawSpline(int n, const wxPoint points[])
     wxPointList list;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < n; i++ )
         list.Append(const_cast<wxPoint*>(&points[i]));
@@ -747,8 +747,8 @@ void wx_quadratic_spline(double a1, double b1, double a2, double b2, double a3, 
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (wx_spline_pop(&x1, &y1, &x2, &y2, &x3, &y3, &x4, &y4)) {
         xmid = (double)half(x2, x3);
@@ -828,8 +828,8 @@ static void wx_spline_draw_point_array(wxDC *dc)
     wxPointList::compatibility_iterator node = wx_spline_point_list.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -872,8 +872,8 @@ void wxDCImpl::DoDrawSpline( const wxPointList *points )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ((node = node->GetNext())
 #if !wxUSE_STD_CONTAINERS
@@ -936,8 +936,8 @@ void wxDCImpl::DoGradientFillLinear(const wxRect& rect,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (x >= xDelta)
         {
@@ -978,8 +978,8 @@ void wxDCImpl::DoGradientFillLinear(const wxRect& rect,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (y > 0)
         {
@@ -1054,15 +1054,15 @@ void wxDCImpl::DoGradientFillConcentric(const wxRect& rect,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxInt32 x = 0; x < rect.GetWidth(); x++ )
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( wxInt32 y = 0; y < rect.GetHeight(); y++ )
         {
@@ -1219,8 +1219,8 @@ void wxDC::DrawLabel(const wxString& text,
     wxString curLine;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxString::const_iterator pc = text.begin(); ; ++pc )
     {
@@ -1435,8 +1435,8 @@ void wxDCImpl::DoDrawEllipticArcRot( wxCoord x, wxCoord y,
     wxPointList::compatibility_iterator node;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( node = list.GetFirst(); node; node = node->GetNext(), i++ )
     {
@@ -1476,8 +1476,8 @@ void wxDCImpl::Rotate( wxPointList* points, double angle, wxPoint center )
         wxPointList::compatibility_iterator node;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( node = points->GetFirst(); node; node = node->GetNext() )
         {
@@ -1575,8 +1575,8 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
     // Calculate points for first quadrant and set in all quadrants
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for( x = 0; x <= a; ++x )
     {
@@ -1585,8 +1585,8 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
         bool bNewPoint = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while( y2 > c1 - c2 * x2 && y > 0 )
         {
@@ -1625,16 +1625,16 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
         bool bForceTurn = ( sq == eq && sa > ea );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while( !bReady )
         {
             wxPointList::compatibility_iterator node;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for( node = pointsarray[q].GetFirst(); node; node = node->GetNext() )
             {
@@ -1680,16 +1680,16 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
         // delete points
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for( q = 0; q < 4; ++q )
         {
             wxPointList::compatibility_iterator node;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for( node = pointsarray[q].GetFirst(); node; node = node->GetNext() )
             {
@@ -1704,8 +1704,8 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
         // copy whole ellipse, wxPoints will be deleted outside
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for( node = pointsarray[0].GetFirst(); node; node = node->GetNext() )
         {
@@ -1714,8 +1714,8 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
         }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for( node = pointsarray[1].GetFirst(); node; node = node->GetNext() )
         {
@@ -1724,8 +1724,8 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
         }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for( node = pointsarray[2].GetFirst(); node; node = node->GetNext() )
         {
@@ -1734,8 +1734,8 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
         }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for( node = pointsarray[3].GetFirst(); node; node = node->GetNext() )
         {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -178,8 +178,8 @@ static void TIFFWriteOvrRow( TIFFOvrCache * psCache )
 /* -------------------------------------------------------------------- */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for( iTileX = 0; iTileX < psCache->nBlocksPerRow; iTileX++ )
 	{
@@ -191,8 +191,8 @@ static void TIFFWriteOvrRow( TIFFOvrCache * psCache )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for( iSample = 0; iSample < psCache->nSamples; iSample++ )
 			{
@@ -343,8 +343,8 @@ void TIFFDestroyOvrCache( TIFFOvrCache * psCache )
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while( psCache->nBlockOffset < psCache->nBlocksPerColumn )
         TIFFWriteOvrRow( psCache );

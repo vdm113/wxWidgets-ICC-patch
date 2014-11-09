@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -38,8 +38,8 @@ inline static void getRange( unsigned int start, unsigned int end, Accessor & st
 	unsigned int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while( ( i < end - start + 1 ) && ( i < len - 1 ) )
 	{
@@ -58,8 +58,8 @@ inline bool HandleString( unsigned int & cur, unsigned int one_too_much, Accesso
 	cur++; // Skip initial quote
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for( ; ; )
 	{
@@ -136,8 +136,8 @@ inline bool HandleCommentBlock( unsigned int & cur, unsigned int one_too_much, A
 	bool star_found = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for( ; ; )
 	{
@@ -219,8 +219,8 @@ inline bool HandleCommentLine( unsigned int & cur, unsigned int one_too_much, Ac
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for( ; ; )
 	{
@@ -284,8 +284,8 @@ inline bool HandleSpace( unsigned int & cur, unsigned int one_too_much, Accessor
 	cur++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for( ; ; )
 	{
@@ -319,8 +319,8 @@ inline bool HandleInteger( unsigned int & cur, unsigned int one_too_much, Access
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for( ; ; )
 	{
@@ -349,8 +349,8 @@ inline bool HandleWord( unsigned int & cur, unsigned int one_too_much, Accessor 
 	cur++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for( ; ; )
 	{
@@ -462,8 +462,8 @@ static void ColouriseOpalDoc( unsigned int startPos, int length, int initStyle, 
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for( ; ; )
 	{

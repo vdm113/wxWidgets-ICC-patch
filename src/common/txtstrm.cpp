@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -64,8 +64,8 @@ void wxTextInputStream::UngetLast()
     size_t byteCount = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while(m_lastBytes[byteCount]) // pseudo ANSI strlen (even for Unicode!)
         byteCount++;
@@ -80,8 +80,8 @@ wxChar wxTextInputStream::NextChar()
     memset((void*)m_lastBytes, 0, 10);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(size_t inlen = 0; inlen < 9; inlen++)
     {
@@ -136,8 +136,8 @@ wxChar wxTextInputStream::NextNonSeparators()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (;;)
     {
@@ -255,8 +255,8 @@ wxString wxTextInputStream::ReadLine()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( !m_input.Eof() )
     {
@@ -288,8 +288,8 @@ wxString wxTextInputStream::ReadWord()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( !m_input.Eof() )
     {
@@ -474,8 +474,8 @@ void wxTextOutputStream::WriteString(const wxString& string)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < len; i++ )
     {

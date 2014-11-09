@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -125,16 +125,16 @@ wxCursor::wxCursor(const char bits[], int width, int height,
         guchar* data = gdk_pixbuf_get_pixels(pixbuf);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int j = 0; j < height; j++, data += stride)
         {
             guchar* p = data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int i = 0; i < width; i++, p += n_channels)
             {
@@ -287,14 +287,14 @@ void wxCursor::InitFromImage( const wxImage & image )
             const int stride = gdk_pixbuf_get_rowstride(pixbuf);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int j = 0; j < h; j++, d += stride)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for (int i = 0; i < w; i++, alpha++)
                     if (d[4 * i + 3])
@@ -361,8 +361,8 @@ static void UpdateCursors(wxWindow* win, bool isBusyOrGlobalCursor)
     wxWindowList::const_iterator i = children.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t n = children.size(); n--; ++i)
         UpdateCursors(*i, isBusyOrGlobalCursor);
@@ -375,8 +375,8 @@ static void SetGlobalCursor(const wxCursor& cursor)
     wxWindowList::const_iterator i = wxTopLevelWindows.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t n = wxTopLevelWindows.size(); n--; ++i)
     {

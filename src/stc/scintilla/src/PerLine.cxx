@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -36,8 +36,8 @@ MarkerHandleSet::~MarkerHandleSet() {
 	MarkerHandleNumber *mhn = root;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (mhn) {
 		MarkerHandleNumber *mhnToFree = mhn;
@@ -52,8 +52,8 @@ int MarkerHandleSet::Length() const {
 	MarkerHandleNumber *mhn = root;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (mhn) {
 		c++;
@@ -67,8 +67,8 @@ int MarkerHandleSet::MarkValue() const {
 	MarkerHandleNumber *mhn = root;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (mhn) {
 		m |= (1 << mhn->number);
@@ -81,8 +81,8 @@ bool MarkerHandleSet::Contains(int handle) const {
 	MarkerHandleNumber *mhn = root;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (mhn) {
 		if (mhn->handle == handle) {
@@ -106,8 +106,8 @@ void MarkerHandleSet::RemoveHandle(int handle) {
 	MarkerHandleNumber **pmhn = &root;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (*pmhn) {
 		MarkerHandleNumber *mhn = *pmhn;
@@ -125,8 +125,8 @@ bool MarkerHandleSet::RemoveNumber(int markerNum, bool all) {
 	MarkerHandleNumber **pmhn = &root;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (*pmhn) {
 		MarkerHandleNumber *mhn = *pmhn;
@@ -147,8 +147,8 @@ void MarkerHandleSet::CombineWith(MarkerHandleSet *other) {
 	MarkerHandleNumber **pmhn = &root;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (*pmhn) {
 		pmhn = &((*pmhn)->next);
@@ -164,8 +164,8 @@ LineMarkers::~LineMarkers() {
 void LineMarkers::Init() {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int line = 0; line < markers.Length(); line++) {
 		delete markers[line];
@@ -194,8 +194,8 @@ int LineMarkers::LineFromHandle(int markerHandle) {
 	if (markers.Length()) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int line = 0; line < markers.Length(); line++) {
 			if (markers[line]) {
@@ -231,8 +231,8 @@ int LineMarkers::MarkerNext(int lineStart, int mask) const {
 	int length = markers.Length();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int iLine = lineStart; iLine < length; iLine++) {
 		MarkerHandleSet *onLine = markers[iLine];
@@ -391,8 +391,8 @@ static int NumberLines(const char *text) {
 		int newLines = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (*text) {
 			if (*text == '\n')
@@ -497,8 +497,8 @@ void LineAnnotation::SetText(int line, const char *text) {
 void LineAnnotation::ClearAll() {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int line = 0; line < annotations.Length(); line++) {
 		delete []annotations[line];

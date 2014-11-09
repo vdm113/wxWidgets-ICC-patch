@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -123,8 +123,8 @@ main(int argc, char* argv[])
 	appname = argv[0];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((c = getopt(argc, argv, "m:o:h")) != -1) {
 		switch (c) {
@@ -148,8 +148,8 @@ main(int argc, char* argv[])
 		usage();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; optind < argc; optind++) {
 		fd = open(argv[optind], O_RDONLY|O_BINARY, 0);
@@ -240,8 +240,8 @@ dump(int fd, uint64 diroff)
 		    hdr.common.tiff_version, hdr.common.tiff_version);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 0; diroff != 0; i++) {
 		if (i > 0)
@@ -368,8 +368,8 @@ ReadDirectory(int fd, unsigned int ix, uint64 off)
 #endif
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (dp = (uint8*)dirmem, n = dircount; n > 0; n--) {
 		uint16 tag;
@@ -640,8 +640,8 @@ PrintTag(FILE* fd, uint16 tag)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (tp = tagnames; tp < &tagnames[NTAGS]; tp++)
 		if (tp->tag == tag) {
@@ -691,8 +691,8 @@ PrintASCII(FILE* fd, uint32 cc, const unsigned char* cp)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; cc > 0; cc--, cp++) {
 		const char* tp;
@@ -703,8 +703,8 @@ PrintASCII(FILE* fd, uint32 cc, const unsigned char* cp)
 		}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (tp = "\tt\bb\rr\nn\vv"; *tp; tp++)
 			if (*tp++ == *cp)
@@ -727,8 +727,8 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 	case TIFF_BYTE:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (count-- > 0)
 			fprintf(fd, bytefmt, sep, *data++), sep = " ";
@@ -736,8 +736,8 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 	case TIFF_SBYTE:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (count-- > 0)
 			fprintf(fd, sbytefmt, sep, *(char *)data++), sep = " ";
@@ -745,8 +745,8 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 	case TIFF_UNDEFINED:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (count-- > 0)
 			fprintf(fd, bytefmt, sep, *data++), sep = " ";
@@ -758,8 +758,8 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 		uint16 *wp = (uint16*)data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (count-- > 0)
 			fprintf(fd, shortfmt, sep, *wp++), sep = " ";
@@ -769,8 +769,8 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 		int16 *wp = (int16*)data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (count-- > 0)
 			fprintf(fd, sshortfmt, sep, *wp++), sep = " ";
@@ -780,8 +780,8 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 		uint32 *lp = (uint32*)data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (count-- > 0) {
 			fprintf(fd, longfmt, sep, (unsigned long) *lp++);
@@ -793,8 +793,8 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 		int32 *lp = (int32*)data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (count-- > 0)
 			fprintf(fd, slongfmt, sep, (long) *lp++), sep = " ";
@@ -804,8 +804,8 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 		uint64 *llp = (uint64*)data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (count-- > 0) {
 #if defined(__WIN32__) && defined(_MSC_VER)
@@ -821,8 +821,8 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 		int64 *llp = (int64*)data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (count-- > 0)
 #if defined(__WIN32__) && defined(_MSC_VER)
@@ -836,8 +836,8 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 		uint32 *lp = (uint32*)data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (count-- > 0) {
 			if (lp[1] == 0)
@@ -856,8 +856,8 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 		int32 *lp = (int32*)data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (count-- > 0) {
 			if (lp[1] == 0)
@@ -875,8 +875,8 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 		float *fp = (float *)data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (count-- > 0)
 			fprintf(fd, floatfmt, sep, *fp++), sep = " ";
@@ -886,8 +886,8 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 		double *dp = (double *)data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (count-- > 0)
 			fprintf(fd, doublefmt, sep, *dp++), sep = " ";
@@ -897,8 +897,8 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 		uint32 *lp = (uint32*)data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (count-- > 0) {
 			fprintf(fd, ifdfmt, sep, (unsigned long) *lp++);
@@ -910,8 +910,8 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 		uint64 *llp = (uint64*)data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (count-- > 0) {
 #if defined(__WIN32__) && defined(_MSC_VER)

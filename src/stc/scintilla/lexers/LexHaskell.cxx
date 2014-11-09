@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -168,8 +168,8 @@ static int HaskellIndentAmount(Accessor &styler, const int line) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    while ((  ch == ' ' || ch == '\t'
           || IsCommentBlockStyle(style)
@@ -354,8 +354,8 @@ class LexerHaskell : public ILexer {
          } else if (hashes == unlimitedHashes) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (sc.ch == '#') {
                sc.Forward();
@@ -373,8 +373,8 @@ class LexerHaskell : public ILexer {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
          while (currentPos < eol_pos) {
             int ch = styler[currentPos];
@@ -521,8 +521,8 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    while (sc.More()) {
       // Check for state end
@@ -588,8 +588,8 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
          while ((sc.ch == ' ' || sc.ch == '\t') && sc.More())
             sc.Forward();
@@ -601,8 +601,8 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (!sc.atLineEnd && sc.More()) {
                if (sc.ch != ' ' && sc.ch != '\t') {
@@ -625,8 +625,8 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
          while (!sc.atLineEnd && sc.More()) {
             sc.Forward();
@@ -749,8 +749,8 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
          while (sc.More()) {
             if (IsAHaskellWordChar(sc.ch)) {
@@ -767,8 +767,8 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
                   style = sc.ch == ':' ? SCE_HA_CAPITAL : SCE_HA_OPERATOR;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                   while (IsAnHaskellOperatorChar(sc.ch))
                      sc.Forward();
@@ -1043,8 +1043,8 @@ void SCI_METHOD LexerHaskell::Fold(unsigned int startPos, int length, int // ini
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    while (lineCurrent > 0) {
       lineCurrent--;
@@ -1074,8 +1074,8 @@ void SCI_METHOD LexerHaskell::Fold(unsigned int startPos, int length, int // ini
    // to end of document.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    while (lineCurrent <= docLines && lineCurrent <= maxLines) {
 
@@ -1099,8 +1099,8 @@ void SCI_METHOD LexerHaskell::Fold(unsigned int startPos, int length, int // ini
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       while (lineNext < docLines && (indentNext & SC_FOLDLEVELWHITEFLAG)) {
          lineNext++;
@@ -1135,8 +1135,8 @@ void SCI_METHOD LexerHaskell::Fold(unsigned int startPos, int length, int // ini
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       while (--skipLine > lineCurrent) {
          int skipLineIndent = IndentAmountWithOffset(styler, skipLine);

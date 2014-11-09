@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -120,8 +120,8 @@ wxBitmapHandler *wxBitmapBase::FindHandler(const wxString& name)
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( node )
     {
@@ -138,8 +138,8 @@ wxBitmapHandler *wxBitmapBase::FindHandler(const wxString& extension, wxBitmapTy
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( node )
     {
@@ -157,8 +157,8 @@ wxBitmapHandler *wxBitmapBase::FindHandler(wxBitmapType bitmapType)
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( node )
     {
@@ -175,8 +175,8 @@ void wxBitmapBase::CleanUpHandlers()
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( node )
     {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -288,8 +288,8 @@ wxGDIImageHandler *wxGDIImage::FindHandler(const wxString& name)
     wxGDIImageHandlerList::compatibility_iterator node = ms_handlers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( node )
     {
@@ -308,8 +308,8 @@ wxGDIImageHandler *wxGDIImage::FindHandler(const wxString& extension,
     wxGDIImageHandlerList::compatibility_iterator node = ms_handlers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( node )
     {
@@ -330,8 +330,8 @@ wxGDIImageHandler *wxGDIImage::FindHandler(long type)
     wxGDIImageHandlerList::compatibility_iterator node = ms_handlers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( node )
     {
@@ -350,8 +350,8 @@ void wxGDIImage::CleanUpHandlers()
     wxGDIImageHandlerList::compatibility_iterator node = ms_handlers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( node )
     {
@@ -618,8 +618,8 @@ bool wxICOResourceHandler::LoadIcon(wxIcon *icon,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t nIcon = 0; !hicon && nIcon < WXSIZEOF(stdIcons); nIcon++ )
         {

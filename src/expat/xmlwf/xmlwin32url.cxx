@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -171,8 +171,8 @@ Callback::OnDataAvailable(DWORD grfBSCF,
 	  const char *p2 = charset;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	  while ((*p1++ = (unsigned char)*p2++) != 0)
 	    ;
@@ -190,8 +190,8 @@ Callback::OnDataAvailable(DWORD grfBSCF,
   if (pstgmed->tymed == TYMED_ISTREAM) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (totalRead_ < dwSize) {
 #define READ_MAX (64*1024)
@@ -287,8 +287,8 @@ openStream(XML_Parser parser,
   LPWSTR uriw = new wchar_t[strlen(uri) + 1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (int i = 0;; i++) {
     uriw[i] = uri[i];
@@ -402,8 +402,8 @@ processURL(XML_Parser parser, IMoniker *baseMoniker,
   MSG msg;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (!qi.stop && GetMessage (&msg, NULL, 0, 0)) {
     TranslateMessage (&msg);

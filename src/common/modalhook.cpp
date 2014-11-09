@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -49,8 +49,8 @@ void wxModalDialogHook::Register()
 #if wxDEBUG_LEVEL
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( Hooks::const_iterator it = ms_hooks.begin();
           it != ms_hooks.end();
@@ -79,8 +79,8 @@ bool wxModalDialogHook::DoUnregister()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( Hooks::iterator it = ms_hooks.begin();
           it != ms_hooks.end();
@@ -111,8 +111,8 @@ int wxModalDialogHook::CallEnter(wxDialog* dialog)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( Hooks::const_iterator it = hooks.begin(); it != hooks.end(); ++it )
     {
@@ -136,8 +136,8 @@ void wxModalDialogHook::CallExit(wxDialog* dialog)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( Hooks::const_iterator it = hooks.begin(); it != hooks.end(); ++it )
     {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -198,8 +198,8 @@ void FileNameTestCase::TestConstruction()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(filenames); n++ )
     {
@@ -217,8 +217,8 @@ void FileNameTestCase::TestConstruction()
             const char *p = fni.fullname;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ( *p == '\\' )
                 fullnameOrig += *p++;
@@ -226,8 +226,8 @@ void FileNameTestCase::TestConstruction()
             // replace consecutive slashes with single ones in the rest
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( char chPrev = '\0'; *p; p++ )
             {
@@ -305,8 +305,8 @@ void FileNameTestCase::TestSplit()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(filenames); n++ )
     {
@@ -423,8 +423,8 @@ void FileNameTestCase::TestNormalize()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < WXSIZEOF(tests); i++ )
     {
@@ -506,8 +506,8 @@ void FileNameTestCase::TestReplace()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < WXSIZEOF(tests); i++ )
     {
@@ -575,8 +575,8 @@ void FileNameTestCase::TestGetHumanReadable()
                             // is always '.'
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned n = 0; n < WXSIZEOF(testData); n++ )
     {
@@ -676,8 +676,8 @@ void FileNameTestCase::TestCreateTempFileName()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(testData); n++ )
     {
@@ -898,8 +898,8 @@ void FileNameTestCase::TestSymlinks()
     bool deref = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int n = 0; n < 2; ++n, deref = !deref )
     {

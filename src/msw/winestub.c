@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -39,8 +39,8 @@ int main( int argc, char *argv [] )
   /* Alloc szCmdParam */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 1; i < argc; i++) len += strlen(argv[i]) + 1;
   lpszCmdParam = (LPSTR) xmalloc(len + 1);
@@ -49,8 +49,8 @@ int main( int argc, char *argv [] )
   else lpszCmdParam[0] = '\0';
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 2; i < argc; i++) strcat(strcat(lpszCmdParam, " "), argv[i]);
 

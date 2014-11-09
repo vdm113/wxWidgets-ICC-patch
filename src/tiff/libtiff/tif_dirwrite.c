@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -254,8 +254,8 @@ TIFFRewriteDirectory( TIFF *tif )
 			nextdir = tif->tif_header.classic.tiff_diroff;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while(1) {
 				uint16 dircount;
@@ -317,8 +317,8 @@ TIFFRewriteDirectory( TIFF *tif )
 			nextdir = tif->tif_header.big.tiff_diroff;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while(1) {
 				uint64 dircount64;
@@ -440,8 +440,8 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 	dirsize=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (1)
 	{
@@ -652,8 +652,8 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 				uint32 n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (n=0; n<tif->tif_nfields; n++) {
 					const TIFFField* o;
@@ -719,8 +719,8 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 		}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (m=0; m<(uint32)(tif->tif_dir.td_customValueCount); m++)
 		{
@@ -837,8 +837,8 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 			TIFFDirEntry* nb;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (na=0, nb=dir; ; na++, nb++)
 			{
@@ -871,8 +871,8 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 		o=dir;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (m=0; m<ndir; m++)
 		{
@@ -912,8 +912,8 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 		o=dir;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (m=0; m<ndir; m++)
 		{
@@ -992,8 +992,8 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 			{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (i = 0; i < count; ++i)
 					((float*)conv)[i] = (float)value[i];
@@ -1009,8 +1009,8 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 			{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (i = 0; i < count; ++i)
 					((int8*)conv)[i] = (int8)value[i];
@@ -1020,8 +1020,8 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 			{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (i = 0; i < count; ++i)
 					((int16*)conv)[i] = (int16)value[i];
@@ -1031,8 +1031,8 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 			{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (i = 0; i < count; ++i)
 					((int32*)conv)[i] = (int32)value[i];
@@ -1044,8 +1044,8 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 			{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (i = 0; i < count; ++i)
 					((uint8*)conv)[i] = (uint8)value[i];
@@ -1055,8 +1055,8 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 			{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (i = 0; i < count; ++i)
 					((uint16*)conv)[i] = (uint16)value[i];
@@ -1066,8 +1066,8 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 			{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (i = 0; i < count; ++i)
 					((uint32*)conv)[i] = (uint32)value[i];
@@ -1181,8 +1181,8 @@ TIFFWriteDirectoryTagBytePerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, u
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
 		*na=value;
@@ -1238,8 +1238,8 @@ TIFFWriteDirectoryTagSbytePerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, 
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
 		*na=value;
@@ -1292,8 +1292,8 @@ TIFFWriteDirectoryTagShortPerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, 
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
 		*na=value;
@@ -1348,8 +1348,8 @@ TIFFWriteDirectoryTagSshortPerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir,
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
 		*na=value;
@@ -1403,8 +1403,8 @@ TIFFWriteDirectoryTagLongPerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, u
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
 		*na=value;
@@ -1460,8 +1460,8 @@ TIFFWriteDirectoryTagSlongPerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, 
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
 		*na=value;
@@ -1595,8 +1595,8 @@ static int TIFFWriteDirectoryTagFloatPerSample(TIFF* tif, uint32* ndir, TIFFDirE
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
 		*na=value;
@@ -1649,8 +1649,8 @@ static int TIFFWriteDirectoryTagDoublePerSample(TIFF* tif, uint32* ndir, TIFFDir
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
 		*na=value;
@@ -1741,8 +1741,8 @@ TIFFWriteDirectoryTagLongLong8Array(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, 
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (q=p, ma=value, mb=0; mb<count; ma++, mb++, q++)
     {
@@ -1804,8 +1804,8 @@ TIFFWriteDirectoryTagIfdIfd8Array(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, ui
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (q=p, ma=value, mb=0; mb<count; ma++, mb++, q++)
     {
@@ -1842,8 +1842,8 @@ TIFFWriteDirectoryTagShortLongLong8Array(TIFF* tif, uint32* ndir, TIFFDirEntry* 
 	n=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (ma=value, mb=0; mb<count; ma++, mb++)
 	{
@@ -1867,8 +1867,8 @@ TIFFWriteDirectoryTagShortLongLong8Array(TIFF* tif, uint32* ndir, TIFFDirEntry* 
 		}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (ma=value, mb=0, q=p; mb<count; ma++, mb++, q++)
 			*q=(uint16)(*ma);
@@ -1887,8 +1887,8 @@ TIFFWriteDirectoryTagShortLongLong8Array(TIFF* tif, uint32* ndir, TIFFDirEntry* 
 		}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (ma=value, mb=0, q=p; mb<count; ma++, mb++, q++)
 			*q=(uint32)(*ma);
@@ -2011,8 +2011,8 @@ TIFFWriteDirectoryTagSubifd(TIFF* tif, uint32* ndir, TIFFDirEntry* dir)
 		pb=o;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (p=0; p < tif->tif_dir.td_nsubifd; p++)
 		{
@@ -2280,8 +2280,8 @@ TIFFWriteDirectoryTagCheckedRationalArray(TIFF* tif, uint32* ndir, TIFFDirEntry*
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (na=value, nb=m, nc=0; nc<count; na++, nb+=2, nc++)
 	{
@@ -2331,8 +2331,8 @@ TIFFWriteDirectoryTagCheckedSrationalArray(TIFF* tif, uint32* ndir, TIFFDirEntry
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (na=value, nb=m, nc=0; nc<count; na++, nb+=2, nc++)
 	{
@@ -2459,8 +2459,8 @@ TIFFWriteDirectoryTagData(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, uint16 tag
 	m=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (m<(*ndir))
 	{
@@ -2474,8 +2474,8 @@ TIFFWriteDirectoryTagData(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, uint16 tag
 		uint32 n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (n=*ndir; n>m; n--)
 			dir[n]=dir[n-1];
@@ -2620,8 +2620,8 @@ TIFFLinkDirectory(TIFF* tif)
 		nextdir = tif->tif_header.classic.tiff_diroff;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while(1) {
 			uint16 dircount;
@@ -2684,8 +2684,8 @@ TIFFLinkDirectory(TIFF* tif)
 		nextdir = tif->tif_header.big.tiff_diroff;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while(1) {
 			uint64 dircount64;
@@ -2830,8 +2830,8 @@ _TIFFRewriteField(TIFF* tif, uint16 tag, TIFFDataType in_datatype,
 /* -------------------------------------------------------------------- */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while( dircount > 0 )
     {
@@ -2927,8 +2927,8 @@ _TIFFRewriteField(TIFF* tif, uint16 tag, TIFFDataType in_datatype,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for( i = 0; i < count; i++ )
         {
@@ -2950,8 +2950,8 @@ _TIFFRewriteField(TIFF* tif, uint16 tag, TIFFDataType in_datatype,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for( i = 0; i < count; i++ )
         {

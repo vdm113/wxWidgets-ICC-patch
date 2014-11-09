@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -207,8 +207,8 @@ wxRadioBox::~wxRadioBox()
     unsigned int count = m_buttons.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int n = 0; n < count; n++ )
     {
@@ -231,8 +231,8 @@ void wxRadioBox::Append(int count, const wxString *choices)
     m_buttons.Alloc(count);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int n = 0; n < count; n++ )
     {
@@ -355,8 +355,8 @@ bool wxRadioBox::Enable(bool enable)
     const unsigned int count = m_buttons.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int n = 0; n < count; n++ )
     {
@@ -375,8 +375,8 @@ bool wxRadioBox::Show(bool show)
     const unsigned int count = m_buttons.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int n = 0; n < count; n++ )
     {
@@ -405,8 +405,8 @@ void wxRadioBox::DoSetToolTip(wxToolTip *tooltip)
     const unsigned int count = m_buttons.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int n = 0; n < count; n++ )
     {
@@ -430,8 +430,8 @@ wxSize wxRadioBox::GetMaxButtonSize() const
     const unsigned int count = GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int n = 0; n < count; n++ )
     {
@@ -482,8 +482,8 @@ void wxRadioBox::DoMoveWindow(int x0, int y0, int width, int height)
     const unsigned int count = GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int n = 0; n < count; n++ )
     {

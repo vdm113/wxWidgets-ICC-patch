@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -385,8 +385,8 @@ int wxNotebook::FindPagePosition(wxNotebookPage* page) const
     size_t nPage;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( nPage = 0; nPage < nPageCount; nPage++ )
         if (m_pages[nPage] == page)
@@ -403,8 +403,8 @@ bool wxNotebook::DeleteAllPages()
     size_t nPage;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( nPage = 0; nPage < nPageCount; nPage++ )
         delete m_pages[nPage];
@@ -542,8 +542,8 @@ bool wxNotebook::RefreshLayout(bool force)
         size_t nCount = m_pages.Count();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t nPage = 0; nPage < nCount; nPage++ ) {
             wxNotebookPage *pPage = m_pages[nPage];

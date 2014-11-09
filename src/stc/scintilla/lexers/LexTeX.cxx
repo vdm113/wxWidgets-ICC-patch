@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -142,8 +142,8 @@ static int CheckTeXInterface(
     if (styler.SafeGetCharAt(0) == '%') {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (unsigned int i = 0; i < startPos + length; i++) {
             lineBuffer[linePos++] = styler.SafeGetCharAt(i) ;
@@ -216,8 +216,8 @@ static void ColouriseTeXDoc(
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; going; sc.Forward()) {
 
@@ -328,8 +328,8 @@ static int ParseTeXCommand(unsigned int pos, Accessor &styler, char *command)
   // find end
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
      while(isWordChar(ch) && !isNumber(ch) && ch!='_' && ch!='.' && length<100){
           command[length]=ch;
@@ -392,8 +392,8 @@ static bool IsTeXCommentLine(int line, Accessor &styler) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (startpos<eol_pos){
 		char ch = styler[startpos];
@@ -420,8 +420,8 @@ static void FoldTexDoc(unsigned int startPos, int length, int, WordList *[], Acc
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (unsigned int i=startPos; i < endPos; i++) {
 		char ch=chNext;

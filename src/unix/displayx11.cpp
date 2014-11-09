@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -149,8 +149,8 @@ int wxDisplayFactoryX11::GetFromPoint(const wxPoint& p)
     const unsigned numscreens(screens.GetCount());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned i = 0; i < numscreens; ++i )
     {
@@ -208,8 +208,8 @@ wxArrayVideoModes wxXF86VidMode_GetModes(const wxVideoMode& mode, Display* displ
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int i = 0; i < nNumModes; ++i)
         {
@@ -259,8 +259,8 @@ bool wxXF86VidMode_ChangeMode(const wxVideoMode& mode, Display* display, int nSc
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int i = 0; i < nNumModes; ++i)
         {
@@ -272,8 +272,8 @@ bool wxXF86VidMode_ChangeMode(const wxVideoMode& mode, Display* display, int nSc
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int i = 0; i < nNumModes; ++i)
         {
@@ -330,8 +330,8 @@ wxArrayVideoModes wxX11_GetModes(const wxDisplayImpl* impl, const wxVideoMode& m
         const wxRect rect = impl->GetGeometry();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int x = 0; x < count_return; ++x )
         {

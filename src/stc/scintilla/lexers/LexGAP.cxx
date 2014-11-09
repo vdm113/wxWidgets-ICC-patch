@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -50,8 +50,8 @@ static void GetRange(unsigned int start, unsigned int end, Accessor &styler, cha
 	unsigned int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((i < end - start + 1) && (i < len-1)) {
 		s[i] = static_cast<char>(styler[start + i]);
@@ -74,8 +74,8 @@ static void ColouriseGAPDoc(unsigned int startPos, int length, int initStyle, Wo
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; sc.More(); sc.Forward()) {
 
@@ -228,8 +228,8 @@ static void FoldGAPDoc( unsigned int startPos, int length, int initStyle,   Word
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;

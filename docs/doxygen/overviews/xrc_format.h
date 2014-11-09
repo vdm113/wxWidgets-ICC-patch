@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -453,8 +453,8 @@ Examples:
       control is created, e.g. if the control gets the font passed as parameter
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for its constructor, or if the control is not derived from wxWindow.
 
@@ -1485,8 +1485,8 @@ Each @c propertysheetpage has exactly one non-toplevel window as its child.
      @c wxRA_SPECIFY_ROWS) or columns (if style contains @c wxRA_SPECIFY_COLS)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
      for a two-dimensional radiobox (default: 1).}
 @row3col{selection, integer,
@@ -2518,8 +2518,8 @@ number than [end]; so code like this works as expected:
 @code
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 for (int n=XRCID("foo[start]"); n <= XRCID("foo[end]"); ++n)
     ...

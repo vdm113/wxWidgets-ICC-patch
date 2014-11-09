@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -483,8 +483,8 @@ void wxToolTip::SetWindow(wxWindow *win)
         size_t count = subcontrols.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < count; n++ )
         {
@@ -583,8 +583,8 @@ bool wxToolTip::AdjustMaxWidth()
         wxStringTokenizer tokenizer(m_text, wxT("\n"));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( tokenizer.HasMoreTokens() )
         {
@@ -644,8 +644,8 @@ void wxToolTip::DoForAllWindows(void (wxToolTip::*func)(WXHWND))
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( wxToolTipOtherWindows::const_iterator it = m_others->begin();
               it != m_others->end();

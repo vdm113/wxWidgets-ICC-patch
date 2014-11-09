@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -81,8 +81,8 @@ static bool NsisNextLineHasElse(unsigned int start, unsigned int end, Accessor &
   int nNextLine = -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for( unsigned int i = start; i < end; i++ )
   {
@@ -99,8 +99,8 @@ static bool NsisNextLineHasElse(unsigned int start, unsigned int end, Accessor &
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for( unsigned int firstChar = nNextLine; firstChar < end; firstChar++ )
   {
@@ -162,8 +162,8 @@ static int calculateFoldNsis(unsigned int start, unsigned int end, int foldlevel
   s[0] = '\0';
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (unsigned int i = 0; i < end - start + 1 && i < 19; i++)
 	{
@@ -212,8 +212,8 @@ static int classifyWordNsis(unsigned int start, unsigned int end, WordList *keyw
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (unsigned int i = 0; i < end - start + 1 && i < 99; i++)
 	{
@@ -276,8 +276,8 @@ static int classifyWordNsis(unsigned int start, unsigned int end, WordList *keyw
     bool bHasSimpleNsisChars = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int j = 1; j < end - start + 1 && j < 99; j++)
 	  {
@@ -298,8 +298,8 @@ static int classifyWordNsis(unsigned int start, unsigned int end, WordList *keyw
     bool bHasSimpleNsisNumber = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int j = 1; j < end - start + 1 && j < 99; j++)
 	  {
@@ -336,8 +336,8 @@ static void ColouriseNsisDoc(unsigned int startPos, int length, int, WordList *k
 	unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for( i = startPos; i < nLengthDoc; i++ )
 	{
@@ -452,8 +452,8 @@ static void ColouriseNsisDoc(unsigned int startPos, int length, int, WordList *k
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
           while( nBack > 0 )
           {
@@ -629,8 +629,8 @@ static void FoldNsisDoc(unsigned int startPos, int length, int, WordList *[], Ac
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (unsigned int i = safeStartPos; i < startPos + length; i++)
 	{

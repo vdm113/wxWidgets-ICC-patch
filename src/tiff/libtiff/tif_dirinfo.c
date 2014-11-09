@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -294,8 +294,8 @@ td_lfind(const void *key, const void *base, size_t *nmemb, size_t size,
     end = (char *)base + *nmemb * size;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (element = (char *)base; element < end; element += size)
         if (!compar(key, element))		/* key found */
@@ -324,8 +324,8 @@ _TIFFSetupFields(TIFF* tif, const TIFFFieldArray* fieldarray)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (i = 0; i < tif->tif_nfields; i++) {
 			TIFFField *fld = tif->tif_fields[i];
@@ -402,8 +402,8 @@ _TIFFMergeFields(TIFF* tif, const TIFFField info[], uint32 n)
 	/* tp = tif->tif_fields + tif->tif_nfields; */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 0; i < n; i++) {
 		const TIFFField *fip =
@@ -431,8 +431,8 @@ _TIFFPrintFieldInfo(TIFF* tif, FILE* fd)
 	fprintf(fd, "%s: \n", tif->tif_name);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 0; i < tif->tif_nfields; i++) {
 		const TIFFField* fip = tif->tif_fields[i];
@@ -943,8 +943,8 @@ TIFFMergeFieldInfo(TIFF* tif, const TIFFFieldInfo info[], uint32 n)
 	tp = tif->tif_fieldscompat[nfields].fields;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 0; i < n; i++) {
 		tp->field_tag = info[i].field_tag;

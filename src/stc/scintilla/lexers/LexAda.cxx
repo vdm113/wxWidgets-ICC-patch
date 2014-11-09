@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -94,8 +94,8 @@ static void ColouriseCharacter(StyleContext& sc, bool& apostropheStartsAttribute
 static void ColouriseContext(StyleContext& sc, char chEnd, int stateEOL) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (!sc.atLineEnd && !sc.Match(chEnd)) {
 		sc.Forward();
@@ -115,8 +115,8 @@ static void ColouriseComment(StyleContext& sc, bool& /*apostropheStartsAttribute
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (!sc.atLineEnd) {
 		sc.Forward();
@@ -142,8 +142,8 @@ static void ColouriseLabel(StyleContext& sc, WordList& keywords, bool& apostroph
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (!sc.atLineEnd && !IsSeparatorOrDelimiterCharacter(sc.ch)) {
 		identifier += static_cast<char>(tolower(sc.ch));
@@ -177,8 +177,8 @@ static void ColouriseNumber(StyleContext& sc, bool& apostropheStartsAttribute) {
 	// double points (ranges).
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (!IsSeparatorOrDelimiterCharacter(sc.ch) || (sc.ch == '.' && sc.chNext != '.')) {
 		number += static_cast<char>(sc.ch);
@@ -193,8 +193,8 @@ static void ColouriseNumber(StyleContext& sc, bool& apostropheStartsAttribute) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (!IsSeparatorOrDelimiterCharacter(sc.ch)) {
 			number += static_cast<char>(sc.ch);
@@ -232,8 +232,8 @@ static void ColouriseWord(StyleContext& sc, WordList& keywords, bool& apostrophe
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (!sc.atLineEnd && !IsSeparatorOrDelimiterCharacter(sc.ch)) {
 		word += static_cast<char>(tolower(sc.ch));
@@ -273,8 +273,8 @@ static void ColouriseDocument(
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (sc.More()) {
 		if (sc.atLineEnd) {
@@ -373,8 +373,8 @@ static bool IsValidIdentifier(const std::string& identifier) {
 	// Check for only valid characters and no double underscores
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t i = 0; i < length; i++) {
 		if (!IsWordCharacter(identifier[i]) ||
@@ -409,8 +409,8 @@ static bool IsValidNumber(const std::string& number) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (; i < length; i++) {
 			if (number[i] == '_') {
@@ -441,8 +441,8 @@ static bool IsValidNumber(const std::string& number) {
 		// Parse base
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (; i < length; i++) {
 			int ch = number[i];
@@ -474,8 +474,8 @@ static bool IsValidNumber(const std::string& number) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (; i < length; i++) {
 			int ch = tolower(number[i]);
@@ -549,8 +549,8 @@ static bool IsValidNumber(const std::string& number) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (; i < length; i++) {
 			if (number[i] == '_') {

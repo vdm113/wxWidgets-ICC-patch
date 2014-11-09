@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -54,8 +54,8 @@ jpeg_add_quant_table (j_compress_ptr cinfo, int which_tbl,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < DCTSIZE2; i++) {
     temp = ((long) basic_table[i] * scale_factor + 50L) / 100L;
@@ -180,8 +180,8 @@ add_huff_table (j_compress_ptr cinfo,
   nsymbols = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (len = 1; len <= 16; len++)
     nsymbols += bits[len];
@@ -310,8 +310,8 @@ jpeg_set_defaults (j_compress_ptr cinfo)
   /* Initialize default arithmetic coding conditioning */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < NUM_ARITH_TBLS; i++) {
     cinfo->arith_dc_L[i] = 0;
@@ -483,8 +483,8 @@ jpeg_set_colorspace (j_compress_ptr cinfo, J_COLOR_SPACE colorspace)
 	       MAX_COMPONENTS);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (ci = 0; ci < cinfo->num_components; ci++) {
       SET_COMP(ci, ci, 1,1, 0, 0,0);
@@ -522,8 +522,8 @@ fill_scans (jpeg_scan_info * scanptr, int ncomps,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0; ci < ncomps; ci++) {
     scanptr->comps_in_scan = 1;
@@ -548,8 +548,8 @@ fill_dc_scans (jpeg_scan_info * scanptr, int ncomps, int Ah, int Al)
     scanptr->comps_in_scan = ncomps;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (ci = 0; ci < ncomps; ci++)
       scanptr->component_index[ci] = ci;

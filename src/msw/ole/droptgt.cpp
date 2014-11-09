@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -207,8 +207,8 @@ STDMETHODIMP wxIDropTarget::DragEnter(IDataObject *pIDataSource,
         FORMATETC fmt;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( penumFmt->Next(1, &fmt, NULL) == S_OK )
         {
@@ -577,8 +577,8 @@ wxDataFormat wxDropTarget::MSWGetSupportedFormat(IDataObject *pIDataSource) cons
     size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( n = 0; n < nFormats; n++ ) {
         s_fmtMemory.cfFormat = formats[n];

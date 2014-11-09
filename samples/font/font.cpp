@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -516,8 +516,8 @@ bool MyFrame::DoEnumerateFamilies(bool fixedWidthOnly,
             int n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( n = 0; n < nFacenames; n++ )
                 facenames[n] = fontEnumerator.GetFacenames().Item(n);
@@ -665,8 +665,8 @@ wxFontEncoding MyFrame::GetEncodingFromUser()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -935,8 +935,8 @@ void MyFrame::OnViewMsg(wxCommandEvent& WXUNUSED(event))
     size_t n, count = file.GetLineCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( n = 0; n < count; n++ )
     {
@@ -958,8 +958,8 @@ void MyFrame::OnViewMsg(wxCommandEvent& WXUNUSED(event))
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ( *pc && *pc != wxT('"') )
             {
@@ -1125,15 +1125,15 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
     // print all font symbols from 32 to 256 in 7 rows of 32 chars each
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < 7; i++ )
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int j = 0; j < 32; j++ )
         {
@@ -1157,8 +1157,8 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
     // horizontal
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( l = 0; l < 8; l++ )
     {
@@ -1169,8 +1169,8 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
     // and vertical
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( l = 0; l < 33; l++ )
     {

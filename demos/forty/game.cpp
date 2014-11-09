@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -49,8 +49,8 @@ Game::Game(int wins, int games, int score) :
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 5; i++) m_pack->Shuffle();
 
@@ -58,8 +58,8 @@ Game::Game(int wins, int games, int score) :
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 8; i++)
     {
@@ -69,8 +69,8 @@ Game::Game(int wins, int games, int score) :
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 10; i++)
     {
@@ -98,8 +98,8 @@ void Game::Layout()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 8; i++)
     {
@@ -109,8 +109,8 @@ void Game::Layout()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 10; i++)
     {
@@ -131,8 +131,8 @@ Game::~Game()
     delete m_discard;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 8; i++)
     {
@@ -140,8 +140,8 @@ Game::~Game()
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 10; i++)
     {
@@ -267,8 +267,8 @@ void Game::DisplayScore(wxDC& dc)
     m_currentScore = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 0; i < 8; i++)
     {
@@ -326,8 +326,8 @@ void Game::Deal()
     m_pack->ResetPile();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 5; i++)
     {
@@ -336,8 +336,8 @@ void Game::Deal()
     m_discard->ResetPile();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 10; i++)
     {
@@ -345,8 +345,8 @@ void Game::Deal()
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i <  8; i++)
     {
@@ -356,15 +356,15 @@ void Game::Deal()
     // Deal the initial 40 cards onto the bases
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 10; i++)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (j = 1; j <= 4; j++)
         {
@@ -393,8 +393,8 @@ void Game::Redraw(wxDC& dc)
     m_discard->Redraw(dc);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 8; i++)
     {
@@ -402,8 +402,8 @@ void Game::Redraw(wxDC& dc)
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 10; i++)
     {
@@ -449,8 +449,8 @@ Pile* Game::WhichPile(int x, int y)
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 8; i++)
     {
@@ -463,8 +463,8 @@ Pile* Game::WhichPile(int x, int y)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 10; i++)
     {
@@ -550,8 +550,8 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for(i = 0; i < 4; i++)
                 {
@@ -574,8 +574,8 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
             // try to place the card on a foundation
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for(i = 0; i < 8; i++)
             {
@@ -590,8 +590,8 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
             // try to place the card on a populated base
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for(i = 0; i < 10; i++)
             {
@@ -608,8 +608,8 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
             // try to place the card on any base
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for(i = 0; i < 10; i++)
             {
@@ -634,8 +634,8 @@ bool Game::HaveYouWon()
     if (m_discard->GetTopCard()) return false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(int i = 0; i < 10; i++)
     {
@@ -662,8 +662,8 @@ bool Game::CanYouGo(int x, int y)
             int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for(i = 0; i < 8; i++)
             {
@@ -674,8 +674,8 @@ bool Game::CanYouGo(int x, int y)
             }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for(i = 0; i < 10; i++)
             {
@@ -711,8 +711,8 @@ void Game::LButtonUp(wxDC& dc, int x, int y)
         int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < 8; i++)
         {
@@ -727,8 +727,8 @@ void Game::LButtonUp(wxDC& dc, int x, int y)
         }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < 10; i++)
         {
@@ -876,8 +876,8 @@ Pack::Pack(int x, int y) : Pile(x, y, 0, 0)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (m_topCard = 0; m_topCard < NumCards; m_topCard++)
     {
@@ -900,8 +900,8 @@ void Pack::Shuffle()
     // If the position is occupied then find the next lower position.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i <= m_topCard; i++)
     {
@@ -909,16 +909,16 @@ void Pack::Shuffle()
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i <= m_topCard; i++)
     {
         int pos = rand() % (m_topCard + 1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (temp[pos])
         {
@@ -935,16 +935,16 @@ void Pack::Shuffle()
     // unoccupied position after the random position.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i <= m_topCard; i++)
     {
         int pos = rand() % (m_topCard + 1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (m_cards[pos])
         {
@@ -988,8 +988,8 @@ Pack::~Pack()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (m_topCard = 0; m_topCard < NumCards; m_topCard++)
     {
@@ -1079,8 +1079,8 @@ void Discard::Redraw(wxDC& dc)
             int y = m_y;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int i = 0; i <= m_topCard; i++)
             {
@@ -1142,8 +1142,8 @@ Card* Discard::RemoveTopCard(wxDC& dc, int m_xOffset, int m_yOffset)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int i = m_topCard - 31; i <= m_topCard - 31 + CardWidth / m_dx; i++)
         {

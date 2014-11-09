@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -113,8 +113,8 @@ bool wxSelectionStore::SelectRange(unsigned itemFrom, unsigned itemTo,
             unsigned item;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( item = 0; item < itemFrom; item++ )
             {
@@ -124,8 +124,8 @@ bool wxSelectionStore::SelectRange(unsigned itemFrom, unsigned itemTo,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( item = itemTo + 1; item < m_count; item++ )
             {
@@ -158,8 +158,8 @@ bool wxSelectionStore::SelectRange(unsigned itemFrom, unsigned itemTo,
                 // delete all of them (from end to avoid changing indices)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( int i = end; i >= (int)start; i-- )
                 {
@@ -191,8 +191,8 @@ bool wxSelectionStore::SelectRange(unsigned itemFrom, unsigned itemTo,
         // just add the items to the selection
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned item = itemFrom; item <= itemTo; item++ )
         {
@@ -227,8 +227,8 @@ void wxSelectionStore::OnItemsInserted(unsigned item, unsigned numItems)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = idx; i < count; i++ )
     {
@@ -242,8 +242,8 @@ void wxSelectionStore::OnItemsInserted(unsigned item, unsigned numItems)
         // items indices.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned n = item; n < item + numItems; n++ )
         {
@@ -270,8 +270,8 @@ void wxSelectionStore::OnItemDelete(unsigned item)
     // and adjust the index of all which follow it
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( i < count )
     {
@@ -294,8 +294,8 @@ bool wxSelectionStore::OnItemsDeleted(unsigned item, unsigned numItems)
     const unsigned firstAfterDeleted = item + numItems;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( i < m_itemsSel.size() )
     {
@@ -331,8 +331,8 @@ void wxSelectionStore::SetItemCount(unsigned count)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = m_itemsSel.GetCount(); i > 0; i-- )
         {
@@ -365,8 +365,8 @@ unsigned wxSelectionStore::GetNextSelectedItem(IterationState& cookie) const
         // supposed to be selected if m_defaultState == true anyhow.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned item = cookie; ; item++ )
         {

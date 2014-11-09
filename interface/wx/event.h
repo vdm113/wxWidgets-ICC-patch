@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -301,8 +301,8 @@ protected:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( int i = 0; i  1000; i++ )
                 FunctionWhichSendsEvents(i);
@@ -420,8 +420,8 @@ public:
         function returns, this one is asynchronous and returns immediately
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while the event will be processed at some later time (usually during
         the next event loop iteration).
@@ -1387,8 +1387,8 @@ enum wxKeyCategoryFlags
     without Shift being held down, wxKeyEvent of type @c wxEVT_CHAR generated
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for this key press will return (from either GetKeyCode() or GetUnicodeKey()
     as their meanings coincide for ASCII characters) key code of 97
@@ -2342,8 +2342,8 @@ enum wxUpdateUIMode
         between updates. You may need to call wxWindow::UpdateWindowUI at critical points,
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for example when a dialog is about to be shown, in case the user sees a slight
         delay before windows are updated.
@@ -2351,8 +2351,8 @@ enum wxUpdateUIMode
     Note that although events are sent in idle time, defining a wxIdleEvent handler
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for a window does not affect this because the events are sent from wxWindow::OnInternalIdle
     which is always called in idle time.
@@ -3332,8 +3332,8 @@ public:
     This class is not used by the event handlers by itself, but is a base class
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for other event classes (such as wxBookCtrlEvent).
 
@@ -4349,8 +4349,8 @@ public:
     Note that the size passed is of the whole window: call wxWindow::GetClientSize()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for the area which may be used by the application.
 
@@ -4618,8 +4618,8 @@ wxEventType wxNewEventType();
     Use this macro inside a class declaration to declare a @e static event table
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for that class.
 
@@ -4637,8 +4637,8 @@ wxEventType wxNewEventType();
     Use this macro in a source file to start listing @e static event handlers
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for a specific class.
 
@@ -4652,8 +4652,8 @@ wxEventType wxNewEventType();
     Use this macro in a source file to end listing @e static event handlers
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for a specific class.
 
@@ -4683,8 +4683,8 @@ void wxPostEvent(wxEvtHandler* dest, const wxEvent& event);
     This is a wrapper around wxEvtHandler::QueueEvent(), see its documentation
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for more details.
 

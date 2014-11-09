@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -292,8 +292,8 @@ wxWindow* wxRichTextFormattingDialog::FindPage(wxClassInfo* info) const
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < GetBookCtrl()->GetPageCount(); i++)
     {
@@ -320,8 +320,8 @@ bool wxRichTextFormattingDialogFactory::CreatePages(long pages, wxRichTextFormat
     bool selected = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < availablePageCount; i ++)
     {
@@ -586,8 +586,8 @@ wxRichTextFormattingDialog* wxRichTextFormattingDialog::GetDialog(wxWindow* win)
     wxWindow* p = win->GetParent();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (p && !wxDynamicCast(p, wxRichTextFormattingDialog))
         p = p->GetParent();
@@ -786,8 +786,8 @@ void wxRichTextColourSwatchCtrl::OnMouseEvent(wxMouseEvent& event)
         wxWindow* parent = GetParent();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (parent != NULL && !wxDynamicCast(parent, wxDialog) && !wxDynamicCast(parent, wxFrame))
             parent = parent->GetParent();

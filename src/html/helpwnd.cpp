@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -183,8 +183,8 @@ void wxHtmlHelpWindow::UpdateMergedIndex()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < len; i++)
     {
@@ -431,8 +431,8 @@ bool wxHtmlHelpWindow::Create(wxWindow* parent, wxWindowID id,
             m_Bookmarks->Append(_("(bookmarks)"));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (unsigned i = 0; i < m_BookmarksNames.GetCount(); i++)
                 m_Bookmarks->Append(m_BookmarksNames[i]);
@@ -798,8 +798,8 @@ void wxHtmlHelpWindow::DisplayIndexItem(const wxHtmlHelpMergedIndexItem *it)
         size_t len = it->items.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (size_t i = 0; i < len; i++)
         {
@@ -809,8 +809,8 @@ void wxHtmlHelpWindow::DisplayIndexItem(const wxHtmlHelpMergedIndexItem *it)
             size_t clen = contents.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (size_t j = 0; j < clen; j++)
             {
@@ -890,8 +890,8 @@ bool wxHtmlHelpWindow::KeywordSearch(const wxString& keyword,
         int curi;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (status.IsActive())
         {
@@ -997,8 +997,8 @@ void wxHtmlHelpWindow::CreateContents()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < cnt; i++)
     {
@@ -1074,8 +1074,8 @@ void wxHtmlHelpWindow::CreateIndex()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < cnt; i++)
         m_IndexList->Append((*m_mergedIndex)[i].name,
@@ -1096,8 +1096,8 @@ void wxHtmlHelpWindow::CreateSearch()
     int i, cnt = bookrec.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < cnt; i++)
         m_SearchChoice->Append(bookrec[i].GetTitle());
@@ -1155,8 +1155,8 @@ void wxHtmlHelpWindow::ReadCustomization(wxConfigBase *cfg, const wxString& path
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (i = 0; i < cnt; i++)
             {
@@ -1212,8 +1212,8 @@ void wxHtmlHelpWindow::WriteCustomization(wxConfigBase *cfg, const wxString& pat
         cfg->Write(wxT("hcBookmarksCnt"), (long)cnt);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < cnt; i++)
         {
@@ -1392,15 +1392,15 @@ void wxHtmlHelpWindow::OptionsDialog()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < m_NormalFonts->GetCount(); i++)
             dlg.NormalFont->Append((*m_NormalFonts)[i]);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < m_FixedFonts->GetCount(); i++)
             dlg.FixedFont->Append((*m_FixedFonts)[i]);
@@ -1498,8 +1498,8 @@ void wxHtmlHelpWindow::OnToolbar(wxCommandEvent& event)
                         &m_Data->GetContentsArray()[ind];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     while (ind >= 0 && it->level != level)
                     {
@@ -1699,8 +1699,8 @@ void wxHtmlHelpWindow::DoIndexFind()
         int displ = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (unsigned i = 0; i < cnt; i++)
         {
@@ -1726,8 +1726,8 @@ void wxHtmlHelpWindow::DoIndexFind()
                 wxHtmlHelpMergedIndexItem *parent = index[i].parent;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while (parent)
                 {
@@ -1749,8 +1749,8 @@ void wxHtmlHelpWindow::DoIndexFind()
                 i++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while (i < cnt && index[i].items[0]->level > level)
                 {
@@ -1786,8 +1786,8 @@ void wxHtmlHelpWindow::DoIndexAll()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned i = 0; i < cnt; i++)
     {

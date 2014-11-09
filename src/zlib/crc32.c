@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -112,8 +112,8 @@ local void make_crc_table()
         poly = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (n = 0; n < (int)(sizeof(p)/sizeof(unsigned char)); n++)
             poly |= (z_crc_t)1 << (31 - p[n]);
@@ -121,15 +121,15 @@ local void make_crc_table()
         /* generate a crc for every 8-bit value */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (n = 0; n < 256; n++) {
             c = (z_crc_t)n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (k = 0; k < 8; k++)
                 c = c & 1 ? poly ^ (c >> 1) : c >> 1;
@@ -141,16 +141,16 @@ local void make_crc_table()
            and then the byte reversal of those as well as the first table */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (n = 0; n < 256; n++) {
             c = crc_table[0][n];
             crc_table[4][n] = ZSWAP32(c);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (k = 1; k < 4; k++) {
                 c = crc_table[0][c & 0xff] ^ (c >> 8);
@@ -166,8 +166,8 @@ local void make_crc_table()
         /* wait for the other guy to finish (not efficient, but rare) */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (crc_table_empty)
             ;
@@ -189,8 +189,8 @@ local void make_crc_table()
         fprintf(out, "#ifdef BYFOUR\n");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (k = 1; k < 8; k++) {
             fprintf(out, "  },\n  {\n");
@@ -213,8 +213,8 @@ local void write_table(out, table)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (n = 0; n < 256; n++)
         fprintf(out, "%s0x%08lxUL%s", n % 5 ? "" : "    ",
@@ -273,8 +273,8 @@ unsigned long ZEXPORT crc32(crc, buf, len)
     crc = crc ^ 0xffffffffUL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (len >= 8) {
         DO8;
@@ -307,8 +307,8 @@ local unsigned long crc32_little(crc, buf, len)
     c = ~c;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (len && ((ptrdiff_t)buf & 3)) {
         c = crc_table[0][(c ^ *buf++) & 0xff] ^ (c >> 8);
@@ -318,8 +318,8 @@ local unsigned long crc32_little(crc, buf, len)
     buf4 = (const z_crc_t FAR *)(const void FAR *)buf;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (len >= 32) {
         DOLIT32;
@@ -327,8 +327,8 @@ local unsigned long crc32_little(crc, buf, len)
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (len >= 4) {
         DOLIT4;
@@ -362,8 +362,8 @@ local unsigned long crc32_big(crc, buf, len)
     c = ~c;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (len && ((ptrdiff_t)buf & 3)) {
         c = crc_table[4][(c >> 24) ^ *buf++] ^ (c << 8);
@@ -374,8 +374,8 @@ local unsigned long crc32_big(crc, buf, len)
     buf4--;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (len >= 32) {
         DOBIG32;
@@ -383,8 +383,8 @@ local unsigned long crc32_big(crc, buf, len)
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (len >= 4) {
         DOBIG4;
@@ -414,8 +414,8 @@ local unsigned long gf2_matrix_times(mat, vec)
     sum = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (vec) {
         if (vec & 1)
@@ -435,8 +435,8 @@ local void gf2_matrix_square(square, mat)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (n = 0; n < GF2_DIM; n++)
         square[n] = gf2_matrix_times(mat, mat[n]);
@@ -462,8 +462,8 @@ local uLong crc32_combine_(crc1, crc2, len2)
     row = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (n = 1; n < GF2_DIM; n++) {
         odd[n] = row;
@@ -480,8 +480,8 @@ local uLong crc32_combine_(crc1, crc2, len2)
        zero byte, eight zero bits, in even) */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do {
         /* apply zeros operator for this bit of len2 */

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -215,8 +215,8 @@ get_soi (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < NUM_ARITH_TBLS; i++) {
     cinfo->arith_dc_L[i] = 0;
@@ -290,8 +290,8 @@ get_sof (j_decompress_ptr cinfo, wxjpeg_boolean is_prog, wxjpeg_boolean is_arith
   
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -341,8 +341,8 @@ get_sos (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < n; i++) {
     INPUT_BYTE(cinfo, cc, return FALSE);
@@ -350,8 +350,8 @@ get_sos (j_decompress_ptr cinfo)
     
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
 	 ci++, compptr++) {
@@ -409,8 +409,8 @@ get_dac (j_decompress_ptr cinfo)
   
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (length > 0) {
     INPUT_BYTE(cinfo, index, return FALSE);
@@ -463,8 +463,8 @@ get_dht (j_decompress_ptr cinfo)
   
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (length > 16) {
     INPUT_BYTE(cinfo, index, return FALSE);
@@ -475,8 +475,8 @@ get_dht (j_decompress_ptr cinfo)
     count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 1; i <= 16; i++) {
       INPUT_BYTE(cinfo, bits[i], return FALSE);
@@ -500,8 +500,8 @@ get_dht (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < count; i++)
       INPUT_BYTE(cinfo, huffval[i], return FALSE);
@@ -548,8 +548,8 @@ get_dqt (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (length > 0) {
     INPUT_BYTE(cinfo, n, return FALSE);
@@ -567,8 +567,8 @@ get_dqt (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < DCTSIZE2; i++) {
       if (prec)
@@ -582,8 +582,8 @@ get_dqt (j_decompress_ptr cinfo)
     if (cinfo->err->trace_level >= 2) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (i = 0; i < DCTSIZE2; i += 8) {
 	TRACEMS8(cinfo, 2, JTRC_QUANTVALS,
@@ -770,8 +770,8 @@ get_interesting_appn (j_decompress_ptr cinfo)
     numtoread = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < numtoread; i++)
     INPUT_BYTE(cinfo, b[i], return FALSE);
@@ -854,8 +854,8 @@ save_marker (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (bytes_read < data_length) {
     INPUT_SYNC(cinfo);		/* move the restart point to here */
@@ -865,8 +865,8 @@ save_marker (j_decompress_ptr cinfo)
     /* Copy bytes with reasonable rapidity */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (bytes_read < data_length && bytes_in_buffer > 0) {
       *data++ = *next_input_byte++;
@@ -884,8 +884,8 @@ save_marker (j_decompress_ptr cinfo)
       jpeg_saved_marker_ptr prev = cinfo->marker_list;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       while (prev->next != NULL)
 	prev = prev->next;
@@ -960,8 +960,8 @@ next_marker (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (;;) {
     INPUT_BYTE(cinfo, c, return FALSE);
@@ -972,8 +972,8 @@ next_marker (j_decompress_ptr cinfo)
      */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (c != 0xFF) {
       cinfo->marker->discarded_bytes++;
@@ -987,8 +987,8 @@ next_marker (j_decompress_ptr cinfo)
      */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do {
       INPUT_BYTE(cinfo, c, return FALSE);
@@ -1051,8 +1051,8 @@ read_markers (j_decompress_ptr cinfo)
   /* Outer loop repeats once for each marker. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (;;) {
     /* Collect the marker proper, unless we already did. */
@@ -1302,8 +1302,8 @@ jpeg_resync_to_restart (j_decompress_ptr cinfo, int desired)
   /* Outer loop handles repeated decision after scanning forward. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (;;) {
     if (marker < (int) M_SOF0)
@@ -1388,8 +1388,8 @@ jinit_marker_reader (j_decompress_ptr cinfo)
   marker->length_limit_COM = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < 16; i++) {
     marker->process_APPn[i] = skip_variable;

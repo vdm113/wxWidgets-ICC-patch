@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -38,8 +38,8 @@ public:
 		bset = new bool[size];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int i=0; i < size; i++) {
 			bset[i] = false;
@@ -58,8 +58,8 @@ public:
 		bset = new bool[size];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int i=0; i < size; i++) {
 			bset[i] = other.bset[i];
@@ -75,8 +75,8 @@ public:
 			bool *bsetNew = new bool[other.size];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (int i=0; i < other.size; i++) {
 				bsetNew[i] = other.bset[i];
@@ -96,8 +96,8 @@ public:
 	void AddString(const char *setToAdd) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (const char *cp=setToAdd; *cp; cp++) {
 			int val = static_cast<unsigned char>(*cp);

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -29,8 +29,8 @@ CaseFolder::~CaseFolder() {
 CaseFolderTable::CaseFolderTable() {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t iChar=0; iChar<sizeof(mapping); iChar++) {
 		mapping[iChar] = static_cast<char>(iChar);
@@ -46,8 +46,8 @@ size_t CaseFolderTable::Fold(char *folded, size_t sizeFolded, const char *mixed,
 	} else {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (size_t i=0; i<lenMixed; i++) {
 			folded[i] = mapping[static_cast<unsigned char>(mixed[i])];
@@ -63,8 +63,8 @@ void CaseFolderTable::SetTranslation(char ch, char chTranslation) {
 void CaseFolderTable::StandardASCII() {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t iChar=0; iChar<sizeof(mapping); iChar++) {
 		if (iChar >= 'A' && iChar <= 'Z') {

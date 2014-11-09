@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -141,8 +141,8 @@ bool wxApp::DoIdle()
     bool needMore;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do {
         ProcessPendingEvents();
@@ -346,8 +346,8 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
     char **argvGTK = new char *[argc_ + 1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < argc_; i++ )
     {
@@ -375,15 +375,15 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
         // we have to drop the parameters which were consumed by GTK+
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i = 0; i < argcGTK; i++ )
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ( strcmp(wxConvUTF8.cWX2MB(argv_[i]), argvGTK[i]) != 0 )
             {
@@ -399,8 +399,8 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
     // free our copy
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < argcGTK; i++ )
     {
@@ -429,8 +429,8 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i = 0; i < argc_; i++ )
         {
@@ -439,8 +439,8 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( size_t j = 0; j < opt.size(); j++ )
             {

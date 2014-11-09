@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -70,8 +70,8 @@ void GarbageTestCase::LoadGarbage()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t size = 1; size < GARBAGE_DATA_SIZE; size *= size+1)
     {
@@ -79,8 +79,8 @@ void GarbageTestCase::LoadGarbage()
         unsigned char *data = new unsigned char[size];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (size_t i = 0; i < size; i++)
             data[i] = rand();
@@ -117,8 +117,8 @@ void GarbageTestCase::DoLoadFile(const wxString& fullname)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (type = wxBITMAP_TYPE_BMP; type < wxBITMAP_TYPE_ANY; type++)
         CPPUNIT_ASSERT( img.LoadFile(fullname, (wxBitmapType)type) == false );
@@ -131,8 +131,8 @@ void GarbageTestCase::DoLoadFile(const wxString& fullname)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (type = wxBITMAP_TYPE_BMP; type < wxBITMAP_TYPE_ANY; type++)
         CPPUNIT_ASSERT( bmp.LoadFile(fullname, (wxBitmapType)type) == false );
@@ -145,8 +145,8 @@ void GarbageTestCase::DoLoadFile(const wxString& fullname)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (type = wxBITMAP_TYPE_BMP; type < wxBITMAP_TYPE_ANY; type++)
         CPPUNIT_ASSERT( icon.LoadFile(fullname, (wxBitmapType)type) == false );
@@ -160,8 +160,8 @@ void GarbageTestCase::DoLoadFile(const wxString& fullname)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (type = wxANIMATION_TYPE_INVALID+1; type < wxANIMATION_TYPE_ANY; type++)
         CPPUNIT_ASSERT( anim.LoadFile(fullname, (wxAnimationType)type) == false );
@@ -202,8 +202,8 @@ void GarbageTestCase::DoLoadStream(wxInputStream& stream)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (type = wxBITMAP_TYPE_INVALID+1; type < wxBITMAP_TYPE_ANY; type++)
         CPPUNIT_ASSERT( img.LoadFile(stream, (wxBitmapType)type) == false );
@@ -217,8 +217,8 @@ void GarbageTestCase::DoLoadStream(wxInputStream& stream)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (type = wxANIMATION_TYPE_INVALID+1; type < wxANIMATION_TYPE_ANY; type++)
         CPPUNIT_ASSERT( anim.Load(stream, (wxAnimationType)type) == false );

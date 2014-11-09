@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -201,8 +201,8 @@ void wxStackWalker::ProcessFrames(size_t skip)
     // now do user-defined operations on each frame
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int n = 0; n < numFrames; n++ )
         OnStackFrame(frames[n]);
@@ -268,8 +268,8 @@ int wxStackWalker::InitFrames(wxStackFrame *arr, size_t n, void **addresses, cha
     len = (len <= 0) ? strlen(g_buf) : len;     // in case snprintf() is broken
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i=0; i<n; i++)
     {
@@ -290,8 +290,8 @@ int wxStackWalker::InitFrames(wxStackFrame *arr, size_t n, void **addresses, cha
                   curr = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for  ( size_t i = 0; i < n; i++ )
     {

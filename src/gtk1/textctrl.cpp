@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -530,8 +530,8 @@ wxString wxTextCtrl::GetLineText( long lineNo ) const
             int currentLine = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (i = 0; currentLine != lineNo && text[i]; i++ )
                 if (text[i] == '\n')
@@ -540,8 +540,8 @@ wxString wxTextCtrl::GetLineText( long lineNo ) const
             int j;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (j = 0; text[i] && text[i] != '\n'; i++, j++ )
                 buf += text[i];
@@ -584,8 +584,8 @@ bool wxTextCtrl::PositionToXY(long pos, long *x, long *y ) const
         const wxChar* stop = text.c_str() + pos;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( const wxChar *p = text.c_str(); p < stop; p++ )
         {
@@ -622,8 +622,8 @@ long wxTextCtrl::XYToPosition(long x, long y ) const
     long pos=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for( int i=0; i<y; i++ ) pos += GetLineLength(i) + 1; // one for '\n'
 
@@ -649,8 +649,8 @@ int wxTextCtrl::GetNumberOfLines() const
             int currentLine = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int i = 0; i < len; i++ )
             {
@@ -1017,8 +1017,8 @@ void wxTextCtrl::OnChar( wxKeyEvent &key_event )
         wxWindow *top_frame = m_parent;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (top_frame->GetParent() && !(top_frame->IsTopLevel()))
             top_frame = top_frame->GetParent();

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -147,8 +147,8 @@ bool wxANIDecoder::DoCanRead(wxInputStream& stream) const
     // we have a riff file:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( stream.IsOk() )
     {
@@ -209,8 +209,8 @@ struct wxANIHeader
         wxInt32 * const end = start + sizeof(wxANIHeader)/sizeof(wxInt32);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( wxInt32 *p = start; p != end; p++ )
         {
@@ -260,8 +260,8 @@ bool wxANIDecoder::Load( wxInputStream& stream )
     // we have a riff file:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( !stream.Eof() )
     {
@@ -315,8 +315,8 @@ bool wxANIDecoder::Load( wxInputStream& stream )
             wxASSERT(m_info.GetCount() == m_nFrames);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (unsigned int i=0; i<m_nFrames; i++)
             {
@@ -334,8 +334,8 @@ bool wxANIDecoder::Load( wxInputStream& stream )
             wxASSERT(m_info.GetCount() == m_nFrames);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (unsigned int i=0; i<m_nFrames; i++)
             {
@@ -379,8 +379,8 @@ bool wxANIDecoder::Load( wxInputStream& stream )
         // they were loaded
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (unsigned int i=0; i<m_nFrames; i++)
             if (m_info[i].m_imageIndex == -1)
@@ -391,8 +391,8 @@ bool wxANIDecoder::Load( wxInputStream& stream )
     // ANI header
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<m_nFrames; i++)
         if (m_info[i].m_delay == 0)

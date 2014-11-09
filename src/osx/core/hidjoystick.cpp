@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -297,8 +297,8 @@ int wxJoystick::GetNumberButtons() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(int nIndex = 0; nIndex < 40; ++nIndex)
     {
@@ -314,8 +314,8 @@ int wxJoystick::GetNumberAxes() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(int nIndex = 40; nIndex < 50; ++nIndex)
     {
@@ -606,8 +606,8 @@ void wxHIDJoystick::BuildCookies(CFArrayRef Array)
 #if 0
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(int i = 0; i < 50; ++i)
         wxPrintf(wxT("\nVAL #%i:[%i]"), i, m_pCookies[i]);
@@ -620,8 +620,8 @@ void wxHIDJoystick::MakeCookies(CFArrayRef Array)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < CFArrayGetCount(Array); ++i)
     {
@@ -790,8 +790,8 @@ void* wxJoystickThread::Entry()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while(true)
     {
@@ -859,8 +859,8 @@ void* wxJoystickThread::Entry()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (ret != kIOReturnUnderrun)
     {
@@ -880,8 +880,8 @@ void* wxJoystickThread::Entry()
         IOHIDElementCookie* pCookies = m_hid->GetCookies();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while(nIndex < 50)
         {

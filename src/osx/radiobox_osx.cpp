@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -71,8 +71,8 @@ wxRadioBox::~wxRadioBox()
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (current != m_radioButtonCycle)
         {
@@ -127,8 +127,8 @@ bool wxRadioBox::Create( wxWindow *parent,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 0; i < n; i++)
     {
@@ -169,8 +169,8 @@ bool wxRadioBox::Enable(bool enable)
     current = m_radioButtonCycle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i = 0; i < m_noItems; i++)
     {
@@ -192,8 +192,8 @@ bool wxRadioBox::Enable(unsigned int item, bool enable)
     wxRadioButton *current = m_radioButtonCycle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (i != item)
     {
@@ -213,8 +213,8 @@ bool wxRadioBox::IsItemEnabled(unsigned int item) const
     wxRadioButton *current = m_radioButtonCycle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (i != item)
     {
@@ -245,8 +245,8 @@ wxString wxRadioBox::GetString(unsigned int item) const
     current = m_radioButtonCycle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (i != item)
     {
@@ -268,8 +268,8 @@ int wxRadioBox::GetSelection() const
     current = m_radioButtonCycle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (!current->GetValue())
     {
@@ -298,8 +298,8 @@ void wxRadioBox::SetString(unsigned int item,const wxString& label)
     wxRadioButton *current = m_radioButtonCycle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (i != item)
     {
@@ -325,8 +325,8 @@ void wxRadioBox::SetSelection(int item)
     current = m_radioButtonCycle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (i != item)
     {
@@ -346,8 +346,8 @@ bool wxRadioBox::Show(bool show)
     current = m_radioButtonCycle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<m_noItems; i++)
     {
@@ -371,8 +371,8 @@ bool wxRadioBox::Show(unsigned int item, bool show)
     wxRadioButton *current = m_radioButtonCycle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (i != item)
     {
@@ -392,8 +392,8 @@ bool wxRadioBox::IsItemShown(unsigned int item) const
     wxRadioButton *current = m_radioButtonCycle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (i != item)
     {
@@ -422,8 +422,8 @@ void wxRadioBox::SetFocus()
     current = m_radioButtonCycle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (!current->GetValue())
     {
@@ -486,8 +486,8 @@ void wxRadioBox::DoSetSize(int x, int y, int width, int height, int sizeFlags)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i = 0 ; i < m_noItems; i++)
     {
@@ -553,8 +553,8 @@ void wxRadioBox::DoSetSize(int x, int y, int width, int height, int sizeFlags)
     current = m_radioButtonCycle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0 ; i < (int)m_noItems; i++)
     {
@@ -606,8 +606,8 @@ wxSize wxRadioBox::DoGetBestSize() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i = 0 ; i < m_noItems; i++)
     {

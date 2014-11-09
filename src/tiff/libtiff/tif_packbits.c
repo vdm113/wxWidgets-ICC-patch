@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -85,8 +85,8 @@ PackBitsEncode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 	lastliteral = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (cc > 0) {
 		/*
@@ -95,8 +95,8 @@ PackBitsEncode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 		b = *bp++, cc--, n = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (; cc > 0 && b == *bp; cc--, bp++)
 			n++;
@@ -116,8 +116,8 @@ PackBitsEncode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 				op = tif->tif_rawcp;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				while (slop-- > 0)
 					*op++ = *lastliteral++;
@@ -218,8 +218,8 @@ PackBitsEncodeChunk(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (cc > 0) {
 		tmsize_t chunk = rowsize;
@@ -249,8 +249,8 @@ PackBitsDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 	cc = tif->tif_rawcc;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (cc > 0 && occ > 0) {
 		n = (long) *bp++, cc--;
@@ -275,8 +275,8 @@ PackBitsDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 			b = *bp++, cc--;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while (n-- > 0)
 				*op++ = (uint8) b;

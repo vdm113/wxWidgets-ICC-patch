@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -165,15 +165,15 @@ decompress_onepass (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
   /* Loop to process as much as one whole iMCU row */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (yoffset = coef->MCU_vert_offset; yoffset < coef->MCU_rows_per_iMCU_row;
        yoffset++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (MCU_col_num = coef->MCU_ctr; MCU_col_num <= last_MCU_col;
 	 MCU_col_num++) {
@@ -194,8 +194,8 @@ decompress_onepass (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
       blkn = 0;			/* index of current DCT block within MCU */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
 	compptr = cinfo->cur_comp_info[ci];
@@ -212,8 +212,8 @@ decompress_onepass (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
 	start_col = MCU_col_num * compptr->MCU_sample_width;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (yindex = 0; yindex < compptr->MCU_height; yindex++) {
 	  if (cinfo->input_iMCU_row < last_iMCU_row ||
@@ -221,8 +221,8 @@ decompress_onepass (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
 	    output_col = start_col;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	    for (xindex = 0; xindex < useful_width; xindex++) {
 	      (*inverse_DCT) (cinfo, compptr,
@@ -285,8 +285,8 @@ consume_data (j_decompress_ptr cinfo)
   /* Align the virtual buffers for the components used in this scan. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
     compptr = cinfo->cur_comp_info[ci];
@@ -303,15 +303,15 @@ consume_data (j_decompress_ptr cinfo)
   /* Loop to process one whole iMCU row */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (yoffset = coef->MCU_vert_offset; yoffset < coef->MCU_rows_per_iMCU_row;
        yoffset++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (MCU_col_num = coef->MCU_ctr; MCU_col_num < cinfo->MCUs_per_row;
 	 MCU_col_num++) {
@@ -319,23 +319,23 @@ consume_data (j_decompress_ptr cinfo)
       blkn = 0;			/* index of current DCT block within MCU */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
 	compptr = cinfo->cur_comp_info[ci];
 	start_col = MCU_col_num * compptr->MCU_width;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (yindex = 0; yindex < compptr->MCU_height; yindex++) {
 	  buffer_ptr = buffer[ci][yindex+yoffset] + start_col;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	  for (xindex = 0; xindex < compptr->MCU_width; xindex++) {
 	    coef->MCU_buffer[blkn++] = buffer_ptr++;
@@ -389,8 +389,8 @@ decompress_data (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
   /* Force some input to be done if we are getting ahead of the input. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (cinfo->input_scan_number < cinfo->output_scan_number ||
 	 (cinfo->input_scan_number == cinfo->output_scan_number &&
@@ -402,8 +402,8 @@ decompress_data (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
   /* OK, output from the virtual arrays. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -428,16 +428,16 @@ decompress_data (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
     /* Loop over all DCT blocks to be processed. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (block_row = 0; block_row < block_rows; block_row++) {
       buffer_ptr = buffer[block_row];
       output_col = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (block_num = 0; block_num < compptr->width_in_blocks; block_num++) {
 	(*inverse_DCT) (cinfo, compptr, (JCOEFPTR) buffer_ptr,
@@ -506,8 +506,8 @@ smoothing_ok (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -529,8 +529,8 @@ smoothing_ok (j_decompress_ptr cinfo)
     /* Block smoothing is helpful if some AC coefficients remain inaccurate. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (coefi = 1; coefi <= 5; coefi++) {
       coef_bits_latch[coefi] = coef_bits[coefi];
@@ -572,8 +572,8 @@ decompress_smooth_data (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
   /* Force some input to be done if we are getting ahead of the input. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (cinfo->input_scan_number <= cinfo->output_scan_number &&
 	 ! cinfo->inputctl->eoi_reached) {
@@ -594,8 +594,8 @@ decompress_smooth_data (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
   /* OK, output from the virtual arrays. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -643,8 +643,8 @@ decompress_smooth_data (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
     /* Loop over all DCT blocks to be processed. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (block_row = 0; block_row < block_rows; block_row++) {
       buffer_ptr = buffer[block_row];
@@ -666,8 +666,8 @@ decompress_smooth_data (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
       last_block_column = compptr->width_in_blocks - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (block_num = 0; block_num <= last_block_column; block_num++) {
 	/* Fetch current DCT block into workspace so we can modify it. */
@@ -810,8 +810,8 @@ jinit_d_coef_controller (j_decompress_ptr cinfo, wxjpeg_boolean need_full_buffer
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
 	 ci++, compptr++) {
@@ -845,8 +845,8 @@ jinit_d_coef_controller (j_decompress_ptr cinfo, wxjpeg_boolean need_full_buffer
 				  D_MAX_BLOCKS_IN_MCU * SIZEOF(JBLOCK));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < D_MAX_BLOCKS_IN_MCU; i++) {
       coef->MCU_buffer[i] = buffer + i;

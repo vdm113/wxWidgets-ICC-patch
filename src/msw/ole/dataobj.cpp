@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -269,8 +269,8 @@ wxIDataObject::GetSystemData(wxDataFormat format, STGMEDIUM *pmedium) const
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( SystemData::const_iterator it = m_systemData.begin();
           it != m_systemData.end();
@@ -292,8 +292,8 @@ wxIDataObject::HasSystemData(wxDataFormat format) const
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( SystemData::const_iterator it = m_systemData.begin();
           it != m_systemData.end();
@@ -319,8 +319,8 @@ wxIDataObject::SaveSystemData(FORMATETC *pformatetc,
     // remove entry if already available
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( SystemData::iterator it = m_systemData.begin();
           it != m_systemData.end();
@@ -433,8 +433,8 @@ wxIEnumFORMATETC::wxIEnumFORMATETC(const wxDataFormat *formats, ULONG nCount)
     m_formats = new CLIPFORMAT[nCount];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ULONG n = 0; n < nCount; n++ ) {
         if (formats[n].GetFormatId() != wxDF_HTML)
@@ -453,8 +453,8 @@ STDMETHODIMP wxIEnumFORMATETC::Next(ULONG      celt,
     ULONG numFetched = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (m_nCurrent < m_nCount && numFetched < celt) {
         FORMATETC format;
@@ -507,8 +507,8 @@ STDMETHODIMP wxIEnumFORMATETC::Clone(IEnumFORMATETC **ppenum)
     pNew->m_formats = new CLIPFORMAT[m_nCount];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ULONG n = 0; n < m_nCount; n++ ) {
         pNew->m_formats[n] = m_formats[n];
@@ -541,8 +541,8 @@ wxIDataObject::~wxIDataObject()
     // delete system data
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( SystemData::iterator it = m_systemData.begin();
           it != m_systemData.end();
@@ -939,8 +939,8 @@ STDMETHODIMP wxIDataObject::EnumFormatEtc(DWORD dwDir,
     // ... from system data
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t j = 0; j < sysFormatCount; j++ )
     {
@@ -1334,8 +1334,8 @@ bool wxFileDataObject::SetData(size_t WXUNUSED(size),
     UINT len, n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( n = 0; n < nFiles; n++ ) {
         // +1 for terminating NUL
@@ -1382,8 +1382,8 @@ size_t wxFileDataObject::GetDataSize() const
     const size_t count = m_filenames.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < count; i++ )
     {
@@ -1425,8 +1425,8 @@ bool wxFileDataObject::GetDataHere(void *WXUNUSED_IN_WINCE(pData)) const
     const size_t count = m_filenames.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < count; i++ )
     {

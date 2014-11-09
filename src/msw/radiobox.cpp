@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -200,8 +200,8 @@ bool wxRadioBox::Create(wxWindow *parent,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < n; i++ )
     {
@@ -304,8 +304,8 @@ wxRadioBox::~wxRadioBox()
     // being deleted to handle the messages generated during their destruction.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t item = 0; item < m_radioButtons->GetCount(); item++ )
     {
@@ -356,8 +356,8 @@ bool wxRadioBox::MSWCommand(WXUINT cmd, WXWORD id_)
         const unsigned int count = GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned int i = 0; i < count; i++ )
         {
@@ -477,8 +477,8 @@ bool wxRadioBox::CanBeFocused() const
     // Otherwise, check if we have any buttons that can be focused.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t item = 0; item < m_radioButtons->GetCount(); item++ )
     {
@@ -570,8 +570,8 @@ bool wxRadioBox::Reparent(wxWindowBase *newParent)
     HWND hwndParent = GetHwndOf(GetParent());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t item = 0; item < m_radioButtons->GetCount(); item++ )
     {
@@ -598,8 +598,8 @@ wxSize wxRadioBox::GetMaxButtonSize() const
     const unsigned int count = GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int i = 0 ; i < count; i++ )
     {
@@ -729,8 +729,8 @@ wxRadioBox::PositionAllButtons(int x, int y, int width, int WXUNUSED(height))
     const unsigned int count = GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i = 0; i < count; i++)
     {
@@ -810,8 +810,8 @@ int wxRadioBox::GetItemFromPoint(const wxPoint& pt) const
     const unsigned int count = GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int i = 0; i < count; i++ )
     {
@@ -842,8 +842,8 @@ WXHRGN wxRadioBox::MSWGetRegionWithoutChildren()
     const unsigned int count = GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int i = 0; i < count; ++i )
     {
@@ -967,8 +967,8 @@ LRESULT APIENTRY _EXPORT wxRadioBtnWndProc(HWND hwnd,
                 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for ( wxWindow* subjectOfHelp = radiobox;
                           subjectOfHelp;

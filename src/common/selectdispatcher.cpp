@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -77,8 +77,8 @@ wxSelectSets::wxSelectSets()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int n = 0; n < Max; n++ )
     {
@@ -90,8 +90,8 @@ bool wxSelectSets::HasFD(int fd) const
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int n = 0; n < Max; n++ )
     {
@@ -108,8 +108,8 @@ bool wxSelectSets::SetFD(int fd, int flags)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int n = 0; n < Max; n++ )
     {
@@ -135,8 +135,8 @@ bool wxSelectSets::Handle(int fd, wxFDIOHandler& handler) const
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int n = 0; n < Max; n++ )
     {
@@ -202,8 +202,8 @@ bool wxSelectDispatcher::UnregisterFD(int fd)
             m_maxFD = -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( wxFDIOHandlerMap::const_iterator it = m_handlers.begin();
                   it != m_handlers.end();
@@ -227,8 +227,8 @@ int wxSelectDispatcher::ProcessSets(const wxSelectSets& sets)
     int numEvents = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int fd = 0; fd <= m_maxFD; fd++ )
     {

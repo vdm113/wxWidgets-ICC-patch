@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -68,8 +68,8 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -95,8 +95,8 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
       dtbl = fdct->divisors[qtblno];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (i = 0; i < DCTSIZE2; i++) {
 	dtbl[i] = ((DCTELEM) qtbl->quantval[i]) << 3;
@@ -134,8 +134,8 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 	dtbl = fdct->divisors[qtblno];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 0; i < DCTSIZE2; i++) {
 	  dtbl[i] = (DCTELEM)
@@ -173,14 +173,14 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 	i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (row = 0; row < DCTSIZE; row++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	  for (col = 0; col < DCTSIZE; col++) {
 	    fdtbl[i] = (FAST_FLOAT)
@@ -226,8 +226,8 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (bi = 0; bi < num_blocks; bi++, start_col += DCTSIZE) {
     /* Load data into workspace, applying unsigned->signed conversion */
@@ -238,8 +238,8 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
       workspaceptr = workspace;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (elemr = 0; elemr < DCTSIZE; elemr++) {
 	elemptr = sample_data[elemr] + start_col;
@@ -256,8 +256,8 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
 	{ register int elemc;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	  for (elemc = DCTSIZE; elemc > 0; elemc--) {
 	    *workspaceptr++ = GETJSAMPLE(*elemptr++) - CENTERJSAMPLE;
@@ -277,8 +277,8 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (i = 0; i < DCTSIZE2; i++) {
 	qval = divisors[i];
@@ -336,8 +336,8 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (bi = 0; bi < num_blocks; bi++, start_col += DCTSIZE) {
     /* Load data into workspace, applying unsigned->signed conversion */
@@ -348,8 +348,8 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
       workspaceptr = workspace;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (elemr = 0; elemr < DCTSIZE; elemr++) {
 	elemptr = sample_data[elemr] + start_col;
@@ -366,8 +366,8 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
 	{ register int elemc;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	  for (elemc = DCTSIZE; elemc > 0; elemc--) {
 	    *workspaceptr++ = (FAST_FLOAT)
@@ -388,8 +388,8 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (i = 0; i < DCTSIZE2; i++) {
 	/* Apply the quantization and scaling factor */
@@ -452,8 +452,8 @@ jinit_forward_dct (j_compress_ptr cinfo)
   /* Mark divisor tables unallocated */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < NUM_QUANT_TBLS; i++) {
     fdct->divisors[i] = NULL;

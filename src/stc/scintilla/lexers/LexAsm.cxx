@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -258,8 +258,8 @@ void SCI_METHOD LexerAsm::Lex(unsigned int startPos, int length, int initStyle, 
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; sc.More(); sc.Forward())
 	{
@@ -316,8 +316,8 @@ void SCI_METHOD LexerAsm::Lex(unsigned int startPos, int length, int initStyle, 
 					char delimiter = options.delimiter.empty() ? '~' : options.delimiter.c_str()[0];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					while (IsASpaceOrTab(sc.ch) && !sc.atLineEnd) {
 						sc.ForwardSetState(SCE_ASM_DEFAULT);
@@ -332,8 +332,8 @@ void SCI_METHOD LexerAsm::Lex(unsigned int startPos, int length, int initStyle, 
 			if (sc.ch == delimiter) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				while (!sc.atLineEnd) {
 					sc.Forward();
@@ -415,8 +415,8 @@ void SCI_METHOD LexerAsm::Fold(unsigned int startPos, int length, int initStyle,
 	const bool userDefinedFoldMarkers = !options.foldExplicitStart.empty() && !options.foldExplicitEnd.empty();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;

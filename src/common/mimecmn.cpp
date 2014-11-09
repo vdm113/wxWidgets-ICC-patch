@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -128,8 +128,8 @@ void wxFileTypeInfo::DoVarArgInit(const wxString& mimeType,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ;; )
     {
@@ -179,8 +179,8 @@ wxFileTypeInfo::wxFileTypeInfo(const wxArrayString& sArray)
     size_t count = sArray.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 4; i < count; i++ )
     {
@@ -215,8 +215,8 @@ wxString wxFileType::ExpandCommand(const wxString& command,
     wxString str;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( const wxChar *pc = command.c_str(); *pc != wxT('\0'); pc++ ) {
         if ( *pc == wxT('%') ) {
@@ -662,8 +662,8 @@ wxMimeTypesManager::GetFileTypeFromExtension(const wxString& ext)
         size_t count = m_fallbacks.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < count; n++ ) {
             if ( m_fallbacks[n].GetExtensions().Index(ext) != wxNOT_FOUND ) {
@@ -691,8 +691,8 @@ wxMimeTypesManager::GetFileTypeFromMimeType(const wxString& mimeType)
         size_t count = m_fallbacks.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < count; n++ ) {
             if ( wxMimeTypesManager::IsOfType(mimeType,
@@ -712,8 +712,8 @@ void wxMimeTypesManager::AddFallbacks(const wxFileTypeInfo *filetypes)
     EnsureImpl();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( const wxFileTypeInfo *ft = filetypes; ft && ft->IsValid(); ft++ ) {
         AddFallback(*ft);
@@ -729,8 +729,8 @@ size_t wxMimeTypesManager::EnumAllFileTypes(wxArrayString& mimetypes)
     size_t count = m_fallbacks.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; n++ ) {
         if ( mimetypes.Index(m_fallbacks[n].GetMimeType()) == wxNOT_FOUND ) {

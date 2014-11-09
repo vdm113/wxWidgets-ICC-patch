@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -592,8 +592,8 @@ bool TestApp::OnCmdLineParsed(wxCmdLineParser& parser)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (size_t i = 0; i < parser.GetParamCount(); i++)
             m_registries.push_back(parser.GetParam(i));
@@ -674,8 +674,8 @@ int TestApp::RunTests()
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (size_t i = 0; i < m_registries.size(); i++)
         {
@@ -755,8 +755,8 @@ void TestApp::List(Test *test, const string& parent /*=""*/) const
             string::size_type j = i = name.find('.', 1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ((j = name.find('.', j + 1)) != string::npos)
                 cout << "  ";
@@ -770,8 +770,8 @@ void TestApp::List(Test *test, const string& parent /*=""*/) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (Iter it = tests.begin(); it != tests.end(); ++it)
             List(*it, name);
@@ -780,8 +780,8 @@ void TestApp::List(Test *test, const string& parent /*=""*/) const
         string::size_type i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ((i = parent.find('.', i + 1)) != string::npos)
             cout << "  ";

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -58,8 +58,8 @@ checkcmap(int n, uint16* r, uint16* g, uint16* b)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (n-- > 0)
 	    if (*r++ >= 256 || *g++ >= 256 || *b++ >= 256)
@@ -97,8 +97,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((c = getopt(argc, argv, "C:c:p:r:")) != -1)
 		switch (c) {
@@ -189,8 +189,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (i = (1<<bitspersample)-1; i >= 0; i--) {
 #define	CVT(x)		(((x) * 255) / ((1L<<16)-1))
@@ -208,8 +208,8 @@ main(int argc, char* argv[])
 	  case PLANARCONFIG_CONTIG:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (row = 0; row < imagelength; row++) {
 			if (!TIFFReadScanline(in, ibuf, row, 0))
@@ -217,8 +217,8 @@ main(int argc, char* argv[])
 			pp = obuf;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (x = 0; x < imagewidth; x++) {
 				*pp++ = (unsigned char) rmap[ibuf[x]];
@@ -232,16 +232,16 @@ main(int argc, char* argv[])
 	  case PLANARCONFIG_SEPARATE:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (row = 0; row < imagelength; row++) {
 			if (!TIFFReadScanline(in, ibuf, row, 0))
 				goto done;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (pp = obuf, x = 0; x < imagewidth; x++)
 				*pp++ = (unsigned char) rmap[ibuf[x]];
@@ -249,8 +249,8 @@ main(int argc, char* argv[])
 				goto done;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (pp = obuf, x = 0; x < imagewidth; x++)
 				*pp++ = (unsigned char) gmap[ibuf[x]];
@@ -258,8 +258,8 @@ main(int argc, char* argv[])
 				goto done;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (pp = obuf, x = 0; x < imagewidth; x++)
 				*pp++ = (unsigned char) bmap[ibuf[x]];
@@ -290,8 +290,8 @@ processCompressOptions(char* opt)
                 compression = COMPRESSION_JPEG;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while( cp )
                 {
@@ -445,8 +445,8 @@ cpTags(TIFF* in, TIFF* out)
     struct cpTag *p;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (p = tags; p < &tags[NTAGS]; p++)
 	cpTag(in, out, p->tag, p->count, p->type);
@@ -483,8 +483,8 @@ usage(void)
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

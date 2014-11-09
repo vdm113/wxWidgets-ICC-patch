@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -708,8 +708,8 @@ wxGDIPlusPenData::wxGDIPlusPenData( wxGraphicsRenderer* renderer, const wxPen &p
                 REAL *userLengths = new REAL[count];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( int i = 0; i < count; ++i )
                 {
@@ -884,8 +884,8 @@ wxGDIPlusBrushData::SetGradientStops(T *brush,
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned i = 0; i < numStops; i++ )
         {
@@ -899,8 +899,8 @@ wxGDIPlusBrushData::SetGradientStops(T *brush,
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned i = 0; i < numStops; i++ )
         {
@@ -1057,16 +1057,16 @@ wxGDIPlusBitmapData::wxGDIPlusBitmapData( wxGraphicsRenderer* renderer,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t y = 0 ; y < height ; ++y)
         {
             maskIndex = 0 ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for( size_t x = 0 ; x < width; ++x)
             {
@@ -1534,8 +1534,8 @@ void wxGDIPlusContext::StrokeLines( size_t n, const wxPoint2DDouble *points)
        PointF *cpoints = new PointF[n];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
        for (size_t i = 0; i < n; i++)
        {
@@ -1557,8 +1557,8 @@ void wxGDIPlusContext::DrawLines( size_t n, const wxPoint2DDouble *points, wxPol
     PointF *cpoints = new PointF[n];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < n; i++)
     {
@@ -1806,15 +1806,15 @@ void wxGDIPlusContext::DrawIcon( const wxIcon &icon, wxDouble x, wxDouble y, wxD
         bool hasAlpha = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t y = 0 ; y < height && !hasAlpha ; ++y)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for( size_t x = 0 ; x < width && !hasAlpha; ++x)
             {
@@ -1943,8 +1943,8 @@ void wxGDIPlusContext::GetPartialTextExtents(const wxString& text, wxArrayDouble
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while( remainder > 0 )
     {
@@ -1952,8 +1952,8 @@ void wxGDIPlusContext::GetPartialTextExtents(const wxString& text, wxArrayDouble
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for( size_t i = 0 ; i < span ; ++i)
         {
@@ -1966,8 +1966,8 @@ void wxGDIPlusContext::GetPartialTextExtents(const wxString& text, wxArrayDouble
         RectF bbox ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = 0 ; i < span ; ++i)
         {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -197,16 +197,16 @@ TIFFFindCODEC(uint16 scheme)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (cd = registeredCODECS; cd; cd = cd->next)
 		if (cd->info->scheme == scheme)
 			return ((const TIFFCodec*) cd->info);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (c = _TIFFBuiltinCODECS; c->name; c++)
 		if (c->scheme == scheme)
@@ -245,8 +245,8 @@ TIFFUnRegisterCODEC(TIFFCodec* c)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (pcd = &registeredCODECS; (cd = *pcd); pcd = &cd->next)
 		if (cd->info == c) {
@@ -281,8 +281,8 @@ TIFFGetConfiguredCODECs()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (cd = registeredCODECS; cd; cd = cd->next) {
 		new_codecs = (TIFFCodec *)
@@ -297,8 +297,8 @@ TIFFGetConfiguredCODECs()
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (c = _TIFFBuiltinCODECS; c->name; c++) {
 		if (TIFFIsCODECConfigured(c->scheme)) {

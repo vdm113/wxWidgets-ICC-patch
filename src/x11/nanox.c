@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -192,8 +192,8 @@ Status XGetWindowAttributes(Display* display, Window w,
     parent = info.parent;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (parent)
     {
@@ -298,8 +298,8 @@ int XParseColor(Display* display, Colormap cmap,
     int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (;;)
     {
@@ -435,8 +435,8 @@ int XTranslateCoordinates(Display* display, Window srcWindow, Window destWindow,
     Window w = srcWindow;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (w != GR_ROOT_WINDOW_ID)
     {
@@ -452,8 +452,8 @@ int XTranslateCoordinates(Display* display, Window srcWindow, Window destWindow,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (w != GR_ROOT_WINDOW_ID)
     {

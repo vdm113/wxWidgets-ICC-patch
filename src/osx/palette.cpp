@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -58,8 +58,8 @@ wxPaletteRefData::wxPaletteRefData(const wxPaletteRefData& data) : wxGDIRefData(
     m_palette = new wxColour[m_count];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxInt32 i = 0; i < m_count; i++ )
         m_palette[i] = data.m_palette[i];
@@ -98,8 +98,8 @@ bool wxPalette::Create(int n, const unsigned char *red, const unsigned char *gre
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0 ; i < n ; ++i)
     {
@@ -120,8 +120,8 @@ int wxPalette::GetPixel(unsigned char red, unsigned char green, unsigned char bl
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0  ; i < M_PALETTEDATA->m_count ; ++i )
     {

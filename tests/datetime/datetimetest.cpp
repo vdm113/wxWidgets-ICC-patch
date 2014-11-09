@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -90,8 +90,8 @@ static wxString TranslateDate(const wxString& str)
     wxString::const_iterator i, end = str.end();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = str.begin(); i != end; ++i )
     {
@@ -106,8 +106,8 @@ static wxString TranslateDate(const wxString& str)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxDateTime::WeekDay wd = wxDateTime::Sun;
           wd < wxDateTime::Inv_WeekDay;
@@ -122,8 +122,8 @@ static wxString TranslateDate(const wxString& str)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxDateTime::Month mon = wxDateTime::Jan;
           mon < wxDateTime::Inv_Month;
@@ -309,8 +309,8 @@ void DateTimeTestCase::TestLeapYears()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(years); n++ )
     {
@@ -325,8 +325,8 @@ void DateTimeTestCase::TestTimeSet()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(testDates); n++ )
     {
@@ -348,8 +348,8 @@ void DateTimeTestCase::TestTimeJDN()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(testDates); n++ )
     {
@@ -373,8 +373,8 @@ void DateTimeTestCase::TestTimeWDays()
     size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( n = 0; n < WXSIZEOF(testDates); n++ )
     {
@@ -436,8 +436,8 @@ week = DateTimeDelta(7)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 for n in range(20):
     year = randint(1900, 2100)
@@ -451,8 +451,8 @@ for n in range(20):
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while dt.month is month:
         dt = dt - countFromEnd * week
@@ -761,8 +761,8 @@ void DateTimeTestCase::TestTimeFormat()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned idxtz = 0; idxtz < WXSIZEOF(timeZonesOffsets); ++idxtz )
     {
@@ -771,16 +771,16 @@ void DateTimeTestCase::TestTimeFormat()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t d = 0; d < WXSIZEOF(formatTestDates); d++ )
         {
             wxDateTime dt = formatTestDates[d].DT();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( unsigned n = 0; n < WXSIZEOF(formatTestFormats); n++ )
             {
@@ -837,8 +837,8 @@ void DateTimeTestCase::TestTimeFormat()
                     // for it ourselves by simply consuming and ignoring it
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     while ( *result && (*result >= 'A' && *result <= 'Z') )
                         result++;
@@ -983,8 +983,8 @@ void DateTimeTestCase::TestTimeSpanFormat()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(testSpans); n++ )
     {
@@ -1005,8 +1005,8 @@ void DateTimeTestCase::TestTimeTicks()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(testDates); n++ )
     {
@@ -1078,8 +1078,8 @@ void DateTimeTestCase::TestParceRFC822()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned n = 0; n < WXSIZEOF(parseTestDates); n++ )
     {
@@ -1136,8 +1136,8 @@ void DateTimeTestCase::TestDateParse()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(parseTestDates); n++ )
     {
@@ -1206,8 +1206,8 @@ void DateTimeTestCase::TestDateParseISO()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(parseTestDates); n++ )
     {
@@ -1220,8 +1220,8 @@ void DateTimeTestCase::TestDateParseISO()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( size_t m = 0; m < WXSIZEOF(parseTestTimes); m++ )
             {
@@ -1292,8 +1292,8 @@ void DateTimeTestCase::TestDateTimeParse()
     wxDateTime dt;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(parseTestDates); n++ )
     {
@@ -1390,8 +1390,8 @@ void DateTimeTestCase::TestDateWeekFormat()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(testWeeks); n++ )
     {
@@ -1422,8 +1422,8 @@ void DateTimeTestCase::TestTimeArithmetics()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(testArithmData); n++ )
     {

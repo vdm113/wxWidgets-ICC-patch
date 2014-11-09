@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -64,8 +64,8 @@ void wxMilliSleep(unsigned long milliseconds)
     clock_t start = clock();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ((clock() - start) * 1000 / CLOCKS_PER_SEC < (clock_t)milliseconds)
     {
@@ -334,8 +334,8 @@ long wxExecute(const wxString& command, int flags, wxProcess *process,
     argv[n] = NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (n-- > 0)
         argv[n] = const_cast<wxChar*>((const char *)args[n].c_str());

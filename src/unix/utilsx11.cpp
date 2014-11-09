@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -129,8 +129,8 @@ wxSetIconsX11(WXDisplay* display, WXWindow window, const wxIconBundle& ib)
     const size_t numIcons = ib.GetIconCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < numIcons; ++i )
     {
@@ -148,8 +148,8 @@ wxSetIconsX11(WXDisplay* display, WXWindow window, const wxIconBundle& ib)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = 0; i < numIcons; ++i )
         {
@@ -180,8 +180,8 @@ wxSetIconsX11(WXDisplay* display, WXWindow window, const wxIconBundle& ib)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ( imageData < imageDataEnd )
             {
@@ -348,8 +348,8 @@ static bool wxQueryWMspecSupport(Display *display, Window rootWnd, Atom feature)
     // Lookup the feature we want:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned i = 0; i < natoms; i++)
     {
@@ -2539,8 +2539,8 @@ int wxUnicodeCharXToWX(WXKeySym keySym)
     /* binary search in table */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( max >= min ) {
 	    mid = (min + max) / 2;
@@ -2585,8 +2585,8 @@ bool wxGetKeyState(wxKeyCode key)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int i = 0; i < 8; ++i)
         {

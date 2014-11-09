@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -61,8 +61,8 @@ static bool FollowsPostfixOperator(StyleContext &sc, LexAccessor &styler) {
 	int pos = (int) sc.currentPos;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (--pos > 0) {
 		char ch = styler[pos];
@@ -80,8 +80,8 @@ static bool followsReturnKeyword(StyleContext &sc, LexAccessor &styler) {
 	int lineStartPos = styler.LineStart(currentLine);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (--pos > lineStartPos) {
 		char ch = styler.SafeGetCharAt(pos);
@@ -93,8 +93,8 @@ static bool followsReturnKeyword(StyleContext &sc, LexAccessor &styler) {
 	const char *s = retBack;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (*s
 		&& pos >= lineStartPos
@@ -112,8 +112,8 @@ static std::string GetRestOfLine(LexAccessor &styler, int start, bool allowSpace
 	int endLine = styler.LineEnd(styler.GetLine(start));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (((start+i) < endLine) && (ch != '\r')) {
 		char chNext = styler.SafeGetCharAt(start + i + 1, '\n');
@@ -140,8 +140,8 @@ static std::vector<std::string> Tokenize(const std::string &s) {
 	std::vector<std::string> tokens;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (const char *cp = s.c_str(); *cp; cp++) {
 		if ((*cp == ' ') || (*cp == '\t')) {
@@ -497,8 +497,8 @@ int SCI_METHOD LexerCPP::WordListSet(int n, const char *wl) {
 				preprocessorDefinitionsStart.clear();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (int nDefinition = 0; nDefinition < ppDefinitions.Length(); nDefinition++) {
 					const char *cpDefinition = ppDefinitions.WordAt(nDefinition);
@@ -572,8 +572,8 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 		int back = startPos;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (--back && IsSpaceEquiv(MaskActive(styler.StyleAt(back))))
 			;
@@ -601,8 +601,8 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 	std::map<std::string, std::string> preprocessorDefinitions = preprocessorDefinitionsStart;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (std::vector<PPDefinition>::iterator itDef = ppDefineHistory.begin(); itDef != ppDefineHistory.end(); ++itDef) {
 		if (itDef->isUndef)
@@ -623,8 +623,8 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; sc.More();) {
 
@@ -870,8 +870,8 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 				if (sc.Match(rawStringTerminator.c_str())) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					for (size_t termPos=rawStringTerminator.size(); termPos; termPos--)
 						sc.Forward();
@@ -901,8 +901,8 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 					sc.Forward();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					while ((sc.ch < 0x80) && islower(sc.ch))
 						sc.Forward();    // gobble regex flags
@@ -934,8 +934,8 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 				if (sc.Match("\"\"\"")) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					while (sc.Match('"')) {
 						sc.Forward();
@@ -1009,8 +1009,8 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 						rawStringTerminator = ")";
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 						for (int termPos = sc.currentPos + 1;; termPos++) {
 							char chTerminator = styler.SafeGetCharAt(termPos, '(');
@@ -1036,8 +1036,8 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 				// Skip whitespace between # and preprocessor word
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				do {
 					sc.Forward();
@@ -1170,8 +1170,8 @@ void SCI_METHOD LexerCPP::Fold(unsigned int startPos, int length, int initStyle,
 	const bool userDefinedFoldMarkers = !options.foldExplicitStart.empty() && !options.foldExplicitEnd.empty();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
@@ -1213,8 +1213,8 @@ void SCI_METHOD LexerCPP::Fold(unsigned int startPos, int length, int initStyle,
 				unsigned int j = i + 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				while ((j < endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
 					j++;
@@ -1272,8 +1272,8 @@ void LexerCPP::EvaluateTokens(std::vector<std::string> &tokens) {
 	// Evaluate defined() statements to either 0 or 1
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t i=0; (i+2)<tokens.size();) {
 		if ((tokens[i] == "defined") && (tokens[i+1] == "(")) {
@@ -1297,8 +1297,8 @@ void LexerCPP::EvaluateTokens(std::vector<std::string> &tokens) {
 	std::vector<std::string>::iterator itEndBracket = std::find(tokens.begin(), tokens.end(), ")");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((itBracket != tokens.end()) && (itEndBracket != tokens.end()) && (itEndBracket > itBracket)) {
 		std::vector<std::string> inBracket(itBracket + 1, itEndBracket);
@@ -1317,8 +1317,8 @@ void LexerCPP::EvaluateTokens(std::vector<std::string> &tokens) {
 	// Evaluate logical negations
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t j=0; (j+1)<tokens.size();) {
 		if (setNegationOp.Contains(tokens[j][0])) {
@@ -1337,15 +1337,15 @@ void LexerCPP::EvaluateTokens(std::vector<std::string> &tokens) {
 	enum precedence { precArithmetic, precRelative, precLogical };
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int prec=precArithmetic; prec <= precLogical; prec++) {
 		// Looking at 3 tokens at a time so end at 2 before end
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (size_t k=0; (k+2)<tokens.size();) {
 			char chOp = tokens[k+1][0];
@@ -1402,8 +1402,8 @@ bool LexerCPP::EvaluateExpression(const std::string &expr, const std::map<std::s
 	const char *cp = expr.c_str();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (;;) {
 		if (setWord.Contains(static_cast<unsigned char>(*cp))) {

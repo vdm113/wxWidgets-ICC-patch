@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        graphics.cpp
 // Purpose:     Some benchmarks for measuring graphics operations performance
@@ -159,6 +166,11 @@ private:
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
         for ( int y = 0; y < opts.height; ++y )
         {
             memset(data, n % 256, 3*opts.width);
@@ -185,6 +197,11 @@ private:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
@@ -285,6 +302,11 @@ private:
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
             int x1 = rand() % opts.width,
@@ -324,6 +346,11 @@ private:
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
             int x = rand() % opts.width,
@@ -356,6 +383,11 @@ private:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
@@ -390,6 +422,11 @@ private:
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
             UpdateRGB(image.GetData(), n);
@@ -423,6 +460,11 @@ private:
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
             unsigned char c = n % 256;
@@ -433,6 +475,11 @@ private:
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
                 for ( int y = 0; y < opts.height; ++y )
                 {
                     wxNativePixelData::Iterator rowStart = p;
@@ -441,6 +488,11 @@ private:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
                     for ( int x = 0; x < opts.width; ++x )
                     {

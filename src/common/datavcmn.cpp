@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -106,8 +106,8 @@ bool wxDataViewModelNotifier::ItemsAdded( const wxDataViewItem &parent, const wx
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < count; i++)
         if (!ItemAdded( parent, items[i] )) return false;
@@ -121,8 +121,8 @@ bool wxDataViewModelNotifier::ItemsDeleted( const wxDataViewItem &parent, const 
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < count; i++)
         if (!ItemDeleted( parent, items[i] )) return false;
@@ -136,8 +136,8 @@ bool wxDataViewModelNotifier::ItemsChanged( const wxDataViewItemArray &items )
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < count; i++)
         if (!ItemChanged( items[i] )) return false;
@@ -161,8 +161,8 @@ bool wxDataViewModel::ItemAdded( const wxDataViewItem &parent, const wxDataViewI
     wxDataViewModelNotifiers::iterator iter;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
@@ -181,8 +181,8 @@ bool wxDataViewModel::ItemDeleted( const wxDataViewItem &parent, const wxDataVie
     wxDataViewModelNotifiers::iterator iter;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
@@ -201,8 +201,8 @@ bool wxDataViewModel::ItemChanged( const wxDataViewItem &item )
     wxDataViewModelNotifiers::iterator iter;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
@@ -221,8 +221,8 @@ bool wxDataViewModel::ItemsAdded( const wxDataViewItem &parent, const wxDataView
     wxDataViewModelNotifiers::iterator iter;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
@@ -241,8 +241,8 @@ bool wxDataViewModel::ItemsDeleted( const wxDataViewItem &parent, const wxDataVi
     wxDataViewModelNotifiers::iterator iter;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
@@ -261,8 +261,8 @@ bool wxDataViewModel::ItemsChanged( const wxDataViewItemArray &items )
     wxDataViewModelNotifiers::iterator iter;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
@@ -281,8 +281,8 @@ bool wxDataViewModel::ValueChanged( const wxDataViewItem &item, unsigned int col
     wxDataViewModelNotifiers::iterator iter;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
@@ -301,8 +301,8 @@ bool wxDataViewModel::Cleared()
     wxDataViewModelNotifiers::iterator iter;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
@@ -321,8 +321,8 @@ bool wxDataViewModel::BeforeReset()
     wxDataViewModelNotifiers::iterator iter;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
@@ -341,8 +341,8 @@ bool wxDataViewModel::AfterReset()
     wxDataViewModelNotifiers::iterator iter;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
@@ -359,8 +359,8 @@ void wxDataViewModel::Resort()
     wxDataViewModelNotifiers::iterator iter;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iter = m_notifiers.begin(); iter != m_notifiers.end(); ++iter)
     {
@@ -476,8 +476,8 @@ wxDataViewIndexListModel::wxDataViewIndexListModel( unsigned int initial_size )
     unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 1; i < initial_size+1; i++)
             m_hash.Add( wxDataViewItem(wxUIntToPtr(i)) );
@@ -497,8 +497,8 @@ void wxDataViewIndexListModel::Reset( unsigned int new_size )
     unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 1; i < new_size+1; i++)
             m_hash.Add( wxDataViewItem(wxUIntToPtr(i)) );
@@ -560,8 +560,8 @@ void wxDataViewIndexListModel::RowsDeleted( const wxArrayInt &rows )
     unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < rows.GetCount(); i++)
     {
@@ -573,8 +573,8 @@ void wxDataViewIndexListModel::RowsDeleted( const wxArrayInt &rows )
     sorted.Sort( my_sort );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < sorted.GetCount(); i++)
            m_hash.RemoveAt( sorted[i] );
@@ -676,8 +676,8 @@ void wxDataViewVirtualListModel::RowsDeleted( const wxArrayInt &rows )
     unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < sorted.GetCount(); i++)
     {
@@ -1186,8 +1186,8 @@ void wxDataViewCtrlBase::ExpandAncestors( const wxDataViewItem & item )
     wxDataViewItem parent = m_model->GetParent(item);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (parent.IsOk())
     {
@@ -1198,8 +1198,8 @@ void wxDataViewCtrlBase::ExpandAncestors( const wxDataViewItem & item )
     // then we expand the parents, starting at the root
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (!parentChain.empty())
     {
@@ -1673,8 +1673,8 @@ wxSize wxDataViewChoiceRenderer::GetSize() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxArrayString::const_iterator i = m_choices.begin(); i != m_choices.end(); ++i )
         sz.IncTo(GetTextExtent(*i));
@@ -1816,8 +1816,8 @@ wxDataViewListStore::~wxDataViewListStore()
     wxVector<wxDataViewListStoreLine*>::iterator it;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (it = m_data.begin(); it != m_data.end(); ++it)
     {
@@ -1898,8 +1898,8 @@ void wxDataViewListStore::DeleteAllItems()
     wxVector<wxDataViewListStoreLine*>::iterator it;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (it = m_data.begin(); it != m_data.end(); ++it)
     {
@@ -2416,8 +2416,8 @@ unsigned int wxDataViewTreeStore::GetChildren( const wxDataViewItem &item, wxDat
     wxDataViewTreeStoreNodeList::iterator iter;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iter = node->GetChildren().begin(); iter != node->GetChildren().end(); iter++)
     {
@@ -2626,8 +2626,8 @@ void wxDataViewTreeCtrl::DeleteChildren( const wxDataViewItem& item )
     wxDataViewTreeStoreNodeList::iterator iter;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iter = node->GetChildren().begin(); iter != node->GetChildren().end(); iter++)
     {

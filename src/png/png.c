@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -146,8 +146,8 @@ png_calculate_crc(png_structrp png_ptr, png_const_bytep ptr, png_size_t length)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       do
       {
@@ -183,8 +183,8 @@ png_user_version_check(png_structrp png_ptr, png_const_charp user_png_ver)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       do
       {
@@ -479,8 +479,8 @@ png_free_data(png_const_structrp png_ptr, png_inforp info_ptr, png_uint_32 mask,
          int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
          for (i = 0; i < info_ptr->num_text; i++)
              png_free_data(png_ptr, info_ptr, PNG_FREE_TEXT, i);
@@ -526,8 +526,8 @@ png_free_data(png_const_structrp png_ptr, png_inforp info_ptr, png_uint_32 mask,
             unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (i = 0; i < info_ptr->pcal_nparams; i++)
             {
@@ -575,8 +575,8 @@ png_free_data(png_const_structrp png_ptr, png_inforp info_ptr, png_uint_32 mask,
             int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (i = 0; i < info_ptr->splt_palettes_num; i++)
                png_free_data(png_ptr, info_ptr, PNG_FREE_SPLT, (int)i);
@@ -610,8 +610,8 @@ png_free_data(png_const_structrp png_ptr, png_inforp info_ptr, png_uint_32 mask,
          {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (i = 0; i < info_ptr->unknown_chunks_num; i++)
                png_free_data(png_ptr, info_ptr, PNG_FREE_UNKN, (int)i);
@@ -652,8 +652,8 @@ png_free_data(png_const_structrp png_ptr, png_inforp info_ptr, png_uint_32 mask,
          png_uint_32 row;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
          for (row = 0; row < info_ptr->height; row++)
          {
@@ -882,8 +882,8 @@ png_handle_as_unknown(png_const_structrp png_ptr, png_const_bytep chunk_name)
     */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    do /* num_chunk_list > 0, so at least one */
    {
@@ -2087,8 +2087,8 @@ png_icc_check_tag_table(png_const_structrp png_ptr, png_colorspacerp colorspace,
     */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (itag=0; itag < tag_count; ++itag, tag += 12)
    {
@@ -2206,8 +2206,8 @@ png_compare_ICC_profile_with_sRGB(png_const_structrp png_ptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (i=0; i < (sizeof png_sRGB_checks) / (sizeof png_sRGB_checks[0]); ++i)
    {
@@ -2573,8 +2573,8 @@ png_check_fp_number(png_const_charp string, png_size_t size, int *statep,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    while (i < size)
    {
@@ -2736,8 +2736,8 @@ png_pow10(int power)
       double mult = 10;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       do
       {
@@ -2806,8 +2806,8 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
          while (base < DBL_MIN || base < fp)
          {
@@ -2860,8 +2860,8 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do
             {
@@ -2892,8 +2892,8 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
                      {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                         while (cdigits > 0 && d > 9)
                         {
@@ -2961,8 +2961,8 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                   while (czero > 0)
                   {
@@ -3048,8 +3048,8 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                while (uexp_b10 > 0)
                {
@@ -3120,8 +3120,8 @@ png_ascii_from_fixed(png_const_structrp png_ptr, png_charp ascii,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
          while (num)
          {
@@ -3273,8 +3273,8 @@ png_muldiv(png_fixed_point_p res, png_fixed_point a, png_int_32 times,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (--bitshift >= 0)
             {
@@ -3619,8 +3619,8 @@ png_32bit_exp[16] =
 #if 0
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 for (i=11;i>=0;--i){ print i, " ", (1 - e(-(2^i)/65536*l(2))) * 2^(32-i), "\n"}
    11 44937.64284865548751208448
@@ -3796,8 +3796,8 @@ png_build_16bit_table(png_structrp png_ptr, png_uint_16pp *ptable,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (i = 0; i < num; i++)
    {
@@ -3820,8 +3820,8 @@ png_build_16bit_table(png_structrp png_ptr, png_uint_16pp *ptable,
          unsigned int j;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
          for (j = 0; j < 256; j++)
          {
@@ -3845,8 +3845,8 @@ png_build_16bit_table(png_structrp png_ptr, png_uint_16pp *ptable,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
          for (j = 0; j < 256; j++)
          {
@@ -3882,8 +3882,8 @@ png_build_16to8_table(png_structrp png_ptr, png_uint_16pp *ptable,
     */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (i = 0; i < num; i++)
       table[i] = (png_uint_16p)png_malloc(png_ptr,
@@ -3908,8 +3908,8 @@ png_build_16to8_table(png_structrp png_ptr, png_uint_16pp *ptable,
    last = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (i = 0; i < 255; ++i) /* 8-bit output value */
    {
@@ -3924,8 +3924,8 @@ png_build_16to8_table(png_structrp png_ptr, png_uint_16pp *ptable,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       while (last < bound)
       {
@@ -3937,8 +3937,8 @@ png_build_16to8_table(png_structrp png_ptr, png_uint_16pp *ptable,
    /* And fill in the final entries. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    while (last < (num << 8))
    {
@@ -3980,8 +3980,8 @@ png_destroy_gamma_table(png_structrp png_ptr)
       int istop = (1 << (8 - png_ptr->gamma_shift));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (i = 0; i < istop; i++)
       {
@@ -4005,8 +4005,8 @@ png_destroy_gamma_table(png_structrp png_ptr)
       int istop = (1 << (8 - png_ptr->gamma_shift));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (i = 0; i < istop; i++)
       {
@@ -4021,8 +4021,8 @@ png_destroy_gamma_table(png_structrp png_ptr)
       int istop = (1 << (8 - png_ptr->gamma_shift));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (i = 0; i < istop; i++)
       {

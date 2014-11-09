@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -97,8 +97,8 @@ bool wxChoice::Create(wxWindow *parent, wxWindowID id,
         int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < n; i++)
             Append (choices[i]);
@@ -203,8 +203,8 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter& items,
     AllocClientData(numItems);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for( unsigned int i = 0; i < numItems; ++i, ++pos )
     {
@@ -272,8 +272,8 @@ void wxChoice::DoClear()
     unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < m_stringArray.GetCount(); i++)
     {
@@ -307,8 +307,8 @@ int wxChoice::GetSelection() const
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (size_t i=0; i<m_stringArray.GetCount(); i++)
             if (m_stringArray[i] == s)
@@ -395,8 +395,8 @@ void wxChoice::DoSetSize(int x, int y, int width, int height, int sizeFlags)
         unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < m_stringArray.GetCount(); i++)
             XtVaSetValues ((Widget) m_widgetArray[i],
@@ -411,8 +411,8 @@ void wxChoice::DoSetSize(int x, int y, int width, int height, int sizeFlags)
         unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < m_stringArray.GetCount(); i++)
             XtVaSetValues ((Widget) m_widgetArray[i],
@@ -482,8 +482,8 @@ void wxChoice::ChangeFont(bool keepOriginalSize)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for( unsigned int i = 0; i < m_stringArray.GetCount(); ++i )
             XtVaSetValues( (Widget)m_widgetArray[i],
@@ -506,8 +506,8 @@ void wxChoice::ChangeBackgroundColour()
     unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < m_stringArray.GetCount(); i++)
         wxDoChangeBackgroundColour(m_widgetArray[i], m_backgroundColour);
@@ -521,8 +521,8 @@ void wxChoice::ChangeForegroundColour()
     unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < m_stringArray.GetCount(); i++)
         wxDoChangeForegroundColour(m_widgetArray[i], m_foregroundColour);
@@ -547,8 +547,8 @@ wxSize wxChoice::GetItemsSize() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i=0; i<m_stringArray.GetCount(); i++)
     {

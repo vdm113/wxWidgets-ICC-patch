@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -69,8 +69,8 @@ WXDLLEXPORT bool IsIidFromList(REFIID riid, const IID *aIids[], size_t nCount)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for ( size_t i = 0; i < nCount; i++ ) {
     if ( riid == *aIids[i] )
@@ -672,8 +672,8 @@ static wxString GetIidName(REFIID riid)
   // try to find the interface in the table
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for ( size_t ui = 0; ui < WXSIZEOF(aKnownIids); ui++ ) {
     if ( riid == *aKnownIids[ui].pIid ) {

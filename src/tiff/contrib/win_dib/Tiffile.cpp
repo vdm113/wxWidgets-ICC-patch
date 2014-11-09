@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -256,8 +256,8 @@ HANDLE TIFFRGBA2DIB(TIFFDibImage* dib, uint32* raster)
         // Swap the byte order while copying
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int i = 0 ; i < sizeWords ; ++i )
         {
@@ -346,16 +346,16 @@ DECLAREContigPutFunc(putContig1bitTile)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (h-- > 0) {
         _TIFFmemcpy(ucp, pp, w);
         /*
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (x = wb; x-- > 0;) {
             *cp++ = rgbi(Map[pp[0]], Map[pp[1]], Map[pp[2]]);
@@ -443,8 +443,8 @@ getStripContig1Bit(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
     fromskew = (w < imagewidth ? imagewidth - w : 0)/8;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (row = 0; row < h; row += nrow)
     {

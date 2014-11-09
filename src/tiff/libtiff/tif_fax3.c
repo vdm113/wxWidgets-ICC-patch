@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -243,8 +243,8 @@ Fax3Decode1D(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 	thisrun = sp->curruns;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (occ > 0) {
 		a0 = 0;
@@ -291,8 +291,8 @@ Fax3Decode2D(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 	CACHE_STATE(tif, sp);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (occ > 0) {
 		a0 = 0;
@@ -395,8 +395,8 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 	x = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; runs < erun; runs += 2) {
 	    run = runs[0];
@@ -417,8 +417,8 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 			     */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			    for (; n && !isAligned(cp, long); n--)
 				    *cp++ = 0x00;
@@ -427,8 +427,8 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 			    n -= nw * sizeof (long);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			    do {
 				    *lp++ = 0L;
@@ -462,8 +462,8 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 			     */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			    for (; n && !isAligned(cp, long); n--)
 				*cp++ = 0xff;
@@ -472,8 +472,8 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 			    n -= nw * sizeof (long);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			    do {
 				*lp++ = -1L;
@@ -686,8 +686,8 @@ putspan(TIFF* tif, int32 span, const tableentry* tab)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (span >= 2624) {
 		const tableentry* te = &tab[63 + (2560>>6)];
@@ -881,8 +881,8 @@ find0span(unsigned char* bp, int32 bs, int32 be)
 		 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (!isAligned(bp, long)) {
 			if (*bp != 0x00)
@@ -893,8 +893,8 @@ find0span(unsigned char* bp, int32 bs, int32 be)
 		lp = (long*) bp;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while ((bits >= (int32)(8 * sizeof(long))) && (0 == *lp)) {
 			span += 8*sizeof (long), bits -= 8*sizeof (long);
@@ -907,8 +907,8 @@ find0span(unsigned char* bp, int32 bs, int32 be)
 	 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (bits >= 8) {
 		if (*bp != 0x00)	/* end of run */
@@ -955,8 +955,8 @@ find1span(unsigned char* bp, int32 bs, int32 be)
 		 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (!isAligned(bp, long)) {
 			if (*bp != 0xff)
@@ -967,8 +967,8 @@ find1span(unsigned char* bp, int32 bs, int32 be)
 		lp = (long*) bp;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while ((bits >= (int32)(8 * sizeof(long))) && (~0 == *lp)) {
 			span += 8*sizeof (long), bits -= 8*sizeof (long);
@@ -981,8 +981,8 @@ find1span(unsigned char* bp, int32 bs, int32 be)
 	 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (bits >= 8) {
 		if (*bp != 0xff)	/* end of run */
@@ -1029,8 +1029,8 @@ Fax3Encode1DRow(TIFF* tif, unsigned char* bp, uint32 bits)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (;;) {
 		span = find0span(bp, bs, bits);		/* white span */
@@ -1083,8 +1083,8 @@ Fax3Encode2DRow(TIFF* tif, unsigned char* bp, unsigned char* rp, uint32 bits)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (;;) {
 		b2 = finddiff2(rp, b1, bits, PIXEL(rp,b1));
@@ -1135,8 +1135,8 @@ Fax3Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (cc > 0) {
 		if ((sp->b.mode & FAXMODE_NOEOL) == 0)
@@ -1190,8 +1190,8 @@ Fax3Close(TIFF* tif)
 			code = (code<<1) | (sp->tag == G3_1D), length++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (i = 0; i < 6; i++)
 			Fax3PutBits(tif, code, length);
@@ -1488,8 +1488,8 @@ Fax4Decode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 	CACHE_STATE(tif, sp);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (occ > 0) {
 		a0 = 0;
@@ -1545,8 +1545,8 @@ Fax4Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (cc > 0) {
 		if (!Fax3Encode2DRow(tif, bp, sp->refline, sp->b.rowpixels))
@@ -1624,8 +1624,8 @@ Fax3DecodeRLE(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 	thisrun = sp->curruns;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (occ > 0) {
 		a0 = 0;

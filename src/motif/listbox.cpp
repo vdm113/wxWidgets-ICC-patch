@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -273,8 +273,8 @@ void wxListBox::DoSetSelection(int N, bool select)
             int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (i = 0; i < n; i++)
                 XmListSelectPos ((Widget) m_mainWidget,
@@ -309,8 +309,8 @@ bool wxListBox::IsSelected(int N) const
         int j;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (j = 0; j < count; j++)
             if (theSelections[j] == N)
@@ -337,8 +337,8 @@ int wxListBox::GetSelections(wxArrayInt& aSelections) const
             int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (i = 0; i < posCnt; i++)
                 aSelections.Add(posList[i] - 1);
@@ -409,8 +409,8 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
 #if XmVersion > 1001
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < numItems; i++)
     {
@@ -424,8 +424,8 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
     unsigned int idx = pos;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < numItems; i++, idx++ )
     {
@@ -436,8 +436,8 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
 #endif
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < numItems; i++)
         XmStringFree(text[i]);
@@ -616,8 +616,8 @@ wxSize wxDoGetListBoxBestSize( Widget listWidget, const wxWindow* window )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for( size_t i = 0; i < (size_t)max; ++i )
     {

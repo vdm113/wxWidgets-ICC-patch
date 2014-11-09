@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -57,8 +57,8 @@ find_first_of(const wxChar *delims, size_t len,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxString::const_iterator i = from; i != end; ++i )
     {
@@ -78,8 +78,8 @@ find_first_not_of(const wxChar *delims, size_t len,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxString::const_iterator i = from; i != end; ++i )
     {
@@ -129,8 +129,8 @@ void wxStringTokenizer::SetString(const wxString& str,
         wxString::const_iterator p;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( p = delims.begin(); p != delims.end(); ++p )
         {
@@ -263,8 +263,8 @@ size_t wxStringTokenizer::CountTokens() const
     size_t count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( tkz.HasMoreTokens() )
     {
@@ -285,8 +285,8 @@ wxString wxStringTokenizer::GetNextToken()
     wxString token;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do
     {
@@ -347,8 +347,8 @@ wxArrayString wxStringTokenize(const wxString& str,
     wxStringTokenizer tk(str, delims, mode);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( tk.HasMoreTokens() )
     {

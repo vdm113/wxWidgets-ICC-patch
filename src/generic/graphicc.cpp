@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -779,8 +779,8 @@ wxCairoPenData::wxCairoPenData( wxGraphicsRenderer* renderer, const wxPen &pen )
                 m_userLengths = new double[m_count] ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( int i = 0 ; i < m_count ; ++i )
                 {
@@ -860,8 +860,8 @@ void wxCairoBrushData::AddGradientStops(const wxGraphicsGradientStops& stops)
     const unsigned numStops = stops.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned n = 0; n < numStops; n++ )
     {
@@ -1384,8 +1384,8 @@ wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitm
         wxAlphaPixelData::Iterator p(pixData);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int y=0; y<m_height; y++)
         {
@@ -1393,8 +1393,8 @@ wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitm
             wxUint32* const rowStartDst = data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int x=0; x<m_width; x++)
             {
@@ -1428,8 +1428,8 @@ wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitm
         wxNativePixelData::Iterator p(pixData);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int y=0; y<m_height; y++)
         {
@@ -1437,8 +1437,8 @@ wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitm
             wxUint32* const rowStartDst = data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int x=0; x<m_width; x++)
             {
@@ -1471,8 +1471,8 @@ wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitm
         wxNativePixelData::Iterator p(pixData);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int y=0; y<m_height; y++)
         {
@@ -1480,8 +1480,8 @@ wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitm
             wxUint32* const rowStartDst = data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int x=0; x<m_width; x++)
             {
@@ -1544,8 +1544,8 @@ wxCairoBitmapData::wxCairoBitmapData(wxGraphicsRenderer* renderer,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int y = 0; y < m_height; y++ )
         {
@@ -1553,8 +1553,8 @@ wxCairoBitmapData::wxCairoBitmapData(wxGraphicsRenderer* renderer,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( int x = 0; x < m_width; x++ )
             {
@@ -1574,8 +1574,8 @@ wxCairoBitmapData::wxCairoBitmapData(wxGraphicsRenderer* renderer,
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int y = 0; y < m_height; y++ )
         {
@@ -1583,8 +1583,8 @@ wxCairoBitmapData::wxCairoBitmapData(wxGraphicsRenderer* renderer,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( int x = 0; x < m_width; x++ )
             {
@@ -1652,16 +1652,16 @@ wxImage wxCairoBitmapData::ConvertToImage() const
         // stores pre-multiplied values in this format while wxImage does not.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int y = 0; y < m_height; y++ )
         {
             const wxUint32* const rowStart = src;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( int x = 0; x < m_width; x++ )
             {
@@ -1684,16 +1684,16 @@ wxImage wxCairoBitmapData::ConvertToImage() const
         // Things are pretty simple in this case, just copy RGB bytes.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int y = 0; y < m_height; y++ )
         {
             const wxUint32* const rowStart = src;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( int x = 0; x < m_width; x++ )
             {
@@ -2075,8 +2075,8 @@ void wxCairoContext::Clip( const wxRegion& region )
     wxRegionIterator ri(region);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (ri)
     {
@@ -2368,8 +2368,8 @@ void wxCairoContext::GetPartialTextExtents(const wxString& text, wxArrayDouble& 
         PangoRectangle rect;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do {
             pango_layout_iter_get_cluster_extents(iter, NULL, &rect);
@@ -2383,8 +2383,8 @@ void wxCairoContext::GetPartialTextExtents(const wxString& text, wxArrayDouble& 
     const size_t len = text.length();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (i++ < len)
         widths.Add(PANGO_PIXELS(w));

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -241,8 +241,8 @@ wxGetBestTreeSize(const wxTreeCtrlBase* treeCtrl, wxTreeItemId id, wxSize& size)
     wxTreeItemIdValue cookie;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxTreeItemId item = treeCtrl->GetFirstChild(id, cookie);
           item.IsOk();
@@ -264,8 +264,8 @@ wxSize wxTreeCtrlBase::DoGetBestSize() const
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( wxTreeItemId item = GetRootItem();
               item.IsOk();
@@ -328,8 +328,8 @@ void wxTreeCtrlBase::ExpandAllChildren(const wxTreeItemId& item)
     wxTreeItemIdValue cookie;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxTreeItemId idCurr = GetFirstChild(item, cookie);
           idCurr.IsOk();
@@ -355,8 +355,8 @@ void wxTreeCtrlBase::CollapseAllChildren(const wxTreeItemId& item)
     wxTreeItemIdValue cookie;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxTreeItemId idCurr = GetFirstChild(item, cookie);
           idCurr.IsOk();

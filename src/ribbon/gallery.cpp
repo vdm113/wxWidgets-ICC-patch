@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -181,8 +181,8 @@ void wxRibbonGallery::OnMouseMove(wxMouseEvent& evt)
         size_t item_i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for(item_i = 0; item_i < item_count; ++item_i)
         {
@@ -284,8 +284,8 @@ void wxRibbonGallery::OnMouseDown(wxMouseEvent& evt)
         size_t item_i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for(item_i = 0; item_i < item_count; ++item_i)
         {
@@ -532,8 +532,8 @@ void wxRibbonGallery::OnPaint(wxPaintEvent& WXUNUSED(evt))
     size_t item_i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(item_i = 0; item_i < item_count; ++item_i)
     {
@@ -600,8 +600,8 @@ void wxRibbonGallery::Clear()
     size_t item_i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(item_i = 0; item_i < item_count; ++item_i)
     {
@@ -667,8 +667,8 @@ bool wxRibbonGallery::Layout()
     long art_flags = m_art->GetFlags();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(item_i = 0; item_i < item_count; ++item_i)
     {
@@ -703,8 +703,8 @@ bool wxRibbonGallery::Layout()
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(; item_i < item_count; ++item_i)
     {

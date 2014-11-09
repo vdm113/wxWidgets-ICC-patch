@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/menu.cpp
 // Purpose:     wxMenu, wxMenuBar, wxMenuItem
@@ -164,6 +171,11 @@ int wxMenu::FindAccel(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for (n = 0; n < nCount; n++)
         if (m_vAccels[n]->m_command == nId)
             return n;
@@ -183,6 +195,11 @@ void wxMenu::UpdateAccel(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
         while (node)
         {
@@ -487,6 +504,11 @@ wxMenuItem* wxMenu::DoRemove(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for (nPos = 0; node; nPos++)
     {
         if (node->GetData() == pItem)
@@ -554,6 +576,11 @@ size_t wxMenu::CopyAccels(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     for (size_t n = 0; n < nCount; n++)
     {
@@ -662,6 +689,11 @@ wxMenuItem* wxMenu::FindItem(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for ( wxMenuItemList::compatibility_iterator node = m_items.GetFirst();
           node && !pItem;
           node = node->GetNext() )
@@ -728,6 +760,11 @@ wxMenuBar::wxMenuBar(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < nCount; i++ )
     {
@@ -805,6 +842,11 @@ WXHMENU wxMenuBar::Create()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
         for (i = 0, it = m_menus.begin(); i < nCount; i++, it++)
         {
@@ -1095,6 +1137,11 @@ void wxMenuBar::RebuildAccelTable()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for (i = 0, it = m_menus.begin(); i < nCount; i++, it++)
     {
         nAccelCount += (*it)->GetAccelCount();
@@ -1109,6 +1156,11 @@ void wxMenuBar::RebuildAccelTable()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
         for (i = 0, it = m_menus.begin(); i < nCount; i++, it++)
         {
@@ -1171,6 +1223,11 @@ int wxMenuBar::FindMenuItem(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for (i = 0, it = m_menus.begin(); i < nCount; i++, it++)
     {
         wxString                    sTitle = wxStripMenuCodes(m_titles[i]);
@@ -1197,6 +1254,11 @@ wxMenuItem* wxMenuBar::FindItem(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for (i = 0, it = m_menus.begin(); !pItem && (i < nCount); i++, it++)
     {
         pItem = (*it)->FindItem( nId
@@ -1222,6 +1284,11 @@ wxMenuItem* wxMenuBar::FindItem(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, it = m_menus.begin(); !pItem && (i < nCount); i++, it++)
     {

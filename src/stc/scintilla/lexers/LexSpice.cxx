@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -73,8 +73,8 @@ static void ColouriseComment(StyleContext& sc, bool&) {
     sc.SetState(SCE_SPICE_COMMENTLINE);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (!sc.atLineEnd) {
         sc.Forward();
@@ -95,8 +95,8 @@ static void ColouriseNumber(StyleContext& sc, bool& apostropheStartsAttribute) {
     // double points (ranges).
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (!IsSeparatorOrDelimiterCharacter(sc.ch) || (sc.ch == '.' && sc.chNext != '.')) {
         number += static_cast<char>(sc.ch);
@@ -109,8 +109,8 @@ static void ColouriseNumber(StyleContext& sc, bool& apostropheStartsAttribute) {
         sc.Forward ();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (!IsSeparatorOrDelimiterCharacter(sc.ch)) {
             number += static_cast<char>(sc.ch);
@@ -131,8 +131,8 @@ static void ColouriseWord(StyleContext& sc, WordList& keywords, WordList& keywor
     std::string word;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (!sc.atLineEnd && !IsSeparatorOrDelimiterCharacter(sc.ch)) {
         word += static_cast<char>(tolower(sc.ch));
@@ -176,8 +176,8 @@ static void ColouriseDocument(
     bool apostropheStartsAttribute = (styler.GetLineState(lineCurrent) & 1) != 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (sc.More()) {
         if (sc.atLineEnd) {

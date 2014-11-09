@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -106,8 +106,8 @@ start_pass_huff_decoder (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
     compptr = cinfo->cur_comp_info[ci];
@@ -126,8 +126,8 @@ start_pass_huff_decoder (j_decompress_ptr cinfo)
   /* Precalculate decoding info for each block in an MCU of this scan */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
     ci = cinfo->MCU_membership[blkn];
@@ -199,8 +199,8 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   p = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (l = 1; l <= 16; l++) {
     i = (int) htbl->bits[l];
@@ -208,8 +208,8 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
       ERREXIT(cinfo, JERR_BAD_HUFF_TABLE);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (i--)
       huffsize[p++] = (char) l;
@@ -225,14 +225,14 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   p = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (huffsize[p]) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (((int) huffsize[p]) == si) {
       huffcode[p++] = code;
@@ -252,8 +252,8 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   p = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (l = 1; l <= 16; l++) {
     if (htbl->bits[l]) {
@@ -281,14 +281,14 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   p = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (l = 1; l <= HUFF_LOOKAHEAD; l++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 1; i <= (int) htbl->bits[l]; i++, p++) {
       /* l = current code's length, p = its index in huffcode[] & huffval[]. */
@@ -296,8 +296,8 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
       lookbits = huffcode[p] << (HUFF_LOOKAHEAD-l);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (ctr = 1 << (HUFF_LOOKAHEAD-l); ctr > 0; ctr--) {
 	dtbl->look_nbits[lookbits] = l;
@@ -316,8 +316,8 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   if (isDC) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < numsymbols; i++) {
       int sym = htbl->huffval[i];
@@ -368,8 +368,8 @@ jpeg_fill_bit_buffer (bitread_working_state * state,
   if (cinfo->unread_marker == 0) {	/* cannot advance past a marker */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (bits_left < MIN_GET_BITS) {
       register int c;
@@ -393,8 +393,8 @@ jpeg_fill_bit_buffer (bitread_working_state * state,
 	 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	do {
 	  if (bytes_in_buffer == 0) {
@@ -485,8 +485,8 @@ jpeg_huff_decode (bitread_working_state * state,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (code > htbl->maxcode[l]) {
     code <<= 1;
@@ -559,8 +559,8 @@ process_restart (j_decompress_ptr cinfo)
   /* Re-initialize DC predictions to 0 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++)
     entropy->saved.last_dc_val[ci] = 0;
@@ -623,8 +623,8 @@ decode_mcu (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
       JBLOCKROW block = MCU_data[blkn];
@@ -657,8 +657,8 @@ decode_mcu (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 	/* Since zeroes are skipped, output area must be cleared beforehand */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (k = 1; k < DCTSIZE2; k++) {
 	  HUFF_DECODE(s, br_state, actbl, return FALSE, label2);
@@ -689,8 +689,8 @@ decode_mcu (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 	/* In this path we just discard the values */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (k = 1; k < DCTSIZE2; k++) {
 	  HUFF_DECODE(s, br_state, actbl, return FALSE, label3);
@@ -744,8 +744,8 @@ jinit_huff_decoder (j_decompress_ptr cinfo)
   /* Mark tables unallocated */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
     entropy->dc_derived_tbls[i] = entropy->ac_derived_tbls[i] = NULL;

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -1467,8 +1467,8 @@ bool wxVariantDataArrayString::Write(wxString& str) const
     size_t count = m_value.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -1496,8 +1496,8 @@ bool wxVariantDataArrayString::Read(wxString& str)
     wxStringTokenizer tk(str, wxT(";"));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( tk.HasMoreTokens() )
     {
@@ -1994,8 +1994,8 @@ bool wxVariantDataList::GetAsAny(wxAny* any) const
     wxVariantList::compatibility_iterator node = m_value.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -2015,8 +2015,8 @@ wxVariantData* wxVariantDataList::VariantDataFactory(const wxAny& any)
     wxAnyList::compatibility_iterator node = src.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -2048,8 +2048,8 @@ void wxVariantDataList::SetValue(const wxVariantList& value)
     wxVariantList::compatibility_iterator node = value.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -2064,8 +2064,8 @@ void wxVariantDataList::Clear()
     wxVariantList::compatibility_iterator node = m_value.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -2085,8 +2085,8 @@ bool wxVariantDataList::Eq(wxVariantData& data) const
     wxVariantList::compatibility_iterator node2 = listData.GetValue().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node1 && node2)
     {
@@ -2117,8 +2117,8 @@ bool wxVariantDataList::Write(wxString& str) const
     wxVariantList::compatibility_iterator node = m_value.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -2221,8 +2221,8 @@ bool wxVariant::Member(const wxVariant& value) const
     wxVariantList::compatibility_iterator node = list.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {

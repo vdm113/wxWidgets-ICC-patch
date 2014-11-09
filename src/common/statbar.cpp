@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -153,8 +153,8 @@ void wxStatusBarBase::SetFieldsCount(int number, const int *widths)
         // (this will be set later)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (size_t i = m_panes.GetCount(); i < (size_t)number; ++i)
             m_panes.Add(newPane);
@@ -184,8 +184,8 @@ void wxStatusBarBase::SetStatusWidths(int WXUNUSED_UNLESS_DEBUG(n),
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = 0; i < m_panes.GetCount(); i++ )
             m_panes[i].SetWidth(widths[i]);
@@ -206,8 +206,8 @@ void wxStatusBarBase::SetStatusStyles(int WXUNUSED_UNLESS_DEBUG(n),
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < m_panes.GetCount(); i++ )
         m_panes[i].SetStyle(styles[i]);
@@ -230,8 +230,8 @@ wxArrayInt wxStatusBarBase::CalculateAbsWidths(wxCoord widthTotal) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = m_panes.GetCount(); i > 0; i-- )
         {
@@ -252,8 +252,8 @@ wxArrayInt wxStatusBarBase::CalculateAbsWidths(wxCoord widthTotal) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i = 0; i < m_panes.GetCount(); i++ )
         {
@@ -269,8 +269,8 @@ wxArrayInt wxStatusBarBase::CalculateAbsWidths(wxCoord widthTotal) const
         // do fill the array
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i = 0; i < m_panes.GetCount(); i++ )
         {

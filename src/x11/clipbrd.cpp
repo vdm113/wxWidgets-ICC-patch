@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -230,8 +230,8 @@ unsigned char *GetClipboardDataByFormat(Display* disp, Window win, Atom clipbrdT
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do
     {
@@ -279,8 +279,8 @@ void GetClipboardData(Display* disp, Window win, wxDataObject &data, wxDataForma
             // stored in one of these atom.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( unsigned i = 0; i < atomVector.size(); i++ )
             {
@@ -371,8 +371,8 @@ extern "C" void wxClipboardHandleSelectionRequest(XEvent event)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned i = 0; i <= atomVector.size(); i++ )
     {
@@ -575,8 +575,8 @@ bool wxClipboard::GetData( wxDataObject& data )
     // retrieve the data in each format.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for( size_t i = 0; i < count; ++i )
     {

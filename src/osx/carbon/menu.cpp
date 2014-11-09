@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -167,8 +167,8 @@ public :
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( MenuItemIndex i = 1 ; i <= CountMenuItems(m_parentMenuRef) ; ++i )
             {
@@ -328,8 +328,8 @@ void wxRemoveMacMenuAssociation(wxMenu *menu)
     MacMenuMap::iterator it;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( it = wxWinMacMenuList.begin(); it != wxWinMacMenuList.end(); ++it )
     {
@@ -411,8 +411,8 @@ void wxInsertMenuItemsInMenu(wxMenu* menu, MenuRef wm, MenuItemIndex insertAfter
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (node = menu->GetMenuItems().GetFirst(); node; node = node->GetNext())
     {

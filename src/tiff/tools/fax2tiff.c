@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -107,8 +107,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((c = getopt(argc, argv, "R:X:o:1234ABLMPUW5678abcflmprsuvwz?")) != -1)
 		switch (c) {
@@ -270,8 +270,8 @@ main(int argc, char* argv[])
 		TIFFSetField(faxTIFF, TIFFTAG_GROUP4OPTIONS, group4options_in);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (pn = 0; optind < argc; pn++, optind++) {
 		in = fopen(argv[optind], "rb");
@@ -391,8 +391,8 @@ copyFaxFile(TIFF* tifin, TIFF* tifout)
 	badrun = 0;		/* current run of bad lines */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (tifin->tif_rawcc > 0) {
 		ok = (*tifin->tif_decoderow)(tifin, (tdata_t) rowbuf, 
@@ -477,8 +477,8 @@ usage(void)
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

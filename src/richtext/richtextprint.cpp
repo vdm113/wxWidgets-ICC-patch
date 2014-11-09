@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -85,8 +85,8 @@ void wxRichTextPrintout::OnPreparePrinting()
         wxRichTextObjectList::compatibility_iterator node = GetRichTextBuffer()->GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (node)
         {
@@ -98,8 +98,8 @@ void wxRichTextPrintout::OnPreparePrinting()
                 wxRichTextLineList::compatibility_iterator node2 = child->GetLines().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while (node2)
                 {
@@ -141,8 +141,8 @@ void wxRichTextPrintout::OnPreparePrinting()
                         int contentLeft = line->GetSize().y - rect.GetHeight();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                         while (contentLeft >= 0)
                         {
@@ -694,8 +694,8 @@ void wxRichTextHeaderFooterData::Copy(const wxRichTextHeaderFooterData& data)
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 12; i++)
         m_text[i] = data.m_text[i];
@@ -767,8 +767,8 @@ void wxRichTextHeaderFooterData::Clear()
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 12; i++)
         m_text[i] = wxEmptyString;

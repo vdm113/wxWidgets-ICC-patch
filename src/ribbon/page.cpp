@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -222,8 +222,8 @@ void wxRibbonPage::SetArtProvider(wxRibbonArtProvider* art)
     m_art = art;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;
@@ -330,8 +330,8 @@ bool wxRibbonPage::ScrollPixels(int pixels)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
               node;
@@ -410,8 +410,8 @@ bool wxRibbonPage::ScrollSections(int sections)
     // Find the child that is partially shown or just beyond the scroll position
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(wxWindowList::compatibility_iterator
             node = scrollForward ? GetChildren().GetFirst()
@@ -585,8 +585,8 @@ void wxRibbonPage::RemoveChild(wxWindowBase *child)
     size_t src, dst;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(src = 0, dst = 0; src < count; ++src, ++dst)
     {
@@ -620,8 +620,8 @@ bool wxRibbonPage::Realize()
     m_collapse_stack.Clear();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
                   node;
@@ -660,8 +660,8 @@ void wxRibbonPage::PopulateSizeCalcArray(wxSize (wxWindow::*get_size)(void) cons
     wxSize* node_size = m_size_calc_array;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;
@@ -712,8 +712,8 @@ bool wxRibbonPage::DoActualLayout()
     size_t size_index;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(size_index = 0; size_index < m_size_calc_array_size; ++size_index)
     {
@@ -779,8 +779,8 @@ bool wxRibbonPage::DoActualLayout()
     size_index = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
         node;
@@ -948,8 +948,8 @@ bool wxRibbonPage::ExpandPanels(wxOrientation direction, int maximum_amount)
     bool expanded_something = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while(maximum_amount > 0)
     {
@@ -959,8 +959,8 @@ bool wxRibbonPage::ExpandPanels(wxOrientation direction, int maximum_amount)
         wxSize* panel_size = m_size_calc_array;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
                   node;
@@ -1054,8 +1054,8 @@ bool wxRibbonPage::CollapsePanels(wxOrientation direction, int minimum_amount)
     bool collapsed_something = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while(minimum_amount > 0)
     {
@@ -1071,8 +1071,8 @@ bool wxRibbonPage::CollapsePanels(wxOrientation direction, int minimum_amount)
             m_collapse_stack.RemoveAt(m_collapse_stack.GetCount() - 1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for(wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
                       node;
@@ -1090,8 +1090,8 @@ bool wxRibbonPage::CollapsePanels(wxOrientation direction, int minimum_amount)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for(wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
                       node;
@@ -1173,8 +1173,8 @@ bool wxRibbonPage::DismissExpandedPanel()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
               node;
@@ -1199,8 +1199,8 @@ wxSize wxRibbonPage::GetMinSize() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;
@@ -1244,8 +1244,8 @@ wxSize wxRibbonPage::DoGetBestSize() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;
@@ -1274,8 +1274,8 @@ wxSize wxRibbonPage::DoGetBestSize() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;

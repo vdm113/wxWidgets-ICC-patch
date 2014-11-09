@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -139,8 +139,8 @@ static int CheckMETAPOSTInterface(
     if (styler.SafeGetCharAt(0) == '%') {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (unsigned int i = 0; i < startPos + length; i++) {
             lineBuffer[linePos++] = styler.SafeGetCharAt(i) ;
@@ -206,8 +206,8 @@ static void ColouriseMETAPOSTDoc(
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; going; sc.Forward()) {
 
@@ -361,8 +361,8 @@ static int ParseMetapostWord(unsigned int pos, Accessor &styler, char *word)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while(isMETAPOSTidentifier(ch) && isalpha(ch) && length<100){
           word[length]=ch;
@@ -387,8 +387,8 @@ static void FoldMetapostDoc(unsigned int startPos, int length, int, WordList *ke
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (unsigned int i=startPos; i < endPos; i++) {
 		char ch=chNext;

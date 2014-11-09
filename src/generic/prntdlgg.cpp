@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -538,8 +538,8 @@ void wxGenericPrintSetupDialog::Init(wxPrintData* data)
         size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < output.GetCount(); i++)
         {
@@ -588,8 +588,8 @@ void wxGenericPrintSetupDialog::Init(wxPrintData* data)
                 tmp = wxEmptyString;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while (tok2.HasMoreTokens())
                 {
@@ -705,8 +705,8 @@ void wxGenericPrintSetupDialog::OnPrinter(wxListEvent& event)
     // Delete check mark
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (long item = 0; item < m_printerListCtrl->GetItemCount(); item++)
         m_printerListCtrl->SetItemImage( item, -1 );
@@ -810,8 +810,8 @@ wxComboBox *wxGenericPrintSetupDialog::CreatePaperTypeChoice()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < n; i++)
     {
@@ -873,8 +873,8 @@ wxGenericPageSetupDialog::wxGenericPageSetupDialog( wxWindow *parent,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < n; i++)
     {
@@ -1077,8 +1077,8 @@ wxComboBox *wxGenericPageSetupDialog::CreatePaperTypeChoice(int *x, int *y)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < n; i++)
     {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -84,8 +84,8 @@ TIFFSwabArrayOfShort(register uint16* wp, tmsize_t n)
 	/* XXX unroll loop some */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (n-- > 0) {
 		cp = (unsigned char*) wp;
@@ -105,8 +105,8 @@ TIFFSwabArrayOfTriples(register uint8* tp, tmsize_t n)
 	/* XXX unroll loop some */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (n-- > 0) {
 		cp = (unsigned char*) tp;
@@ -126,8 +126,8 @@ TIFFSwabArrayOfLong(register uint32* lp, tmsize_t n)
 	/* XXX unroll loop some */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (n-- > 0) {
 		cp = (unsigned char *)lp;
@@ -148,8 +148,8 @@ TIFFSwabArrayOfLong8(register uint64* lp, tmsize_t n)
 	/* XXX unroll loop some */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (n-- > 0) {
 		cp = (unsigned char *)lp;
@@ -184,8 +184,8 @@ TIFFSwabArrayOfFloat(register float* fp, tmsize_t n)
 	/* XXX unroll loop some */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (n-- > 0) {
 		cp = (unsigned char *)fp;
@@ -220,8 +220,8 @@ TIFFSwabArrayOfDouble(double* dp, tmsize_t n)
 	/* XXX unroll loop some */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (n-- > 0) {
 		cp = (unsigned char *)dp;
@@ -323,8 +323,8 @@ TIFFReverseBits(uint8* cp, tmsize_t n)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; n > 8; n -= 8) {
 		cp[0] = TIFFBitRevTable[cp[0]];
@@ -339,8 +339,8 @@ TIFFReverseBits(uint8* cp, tmsize_t n)
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (n-- > 0)
 		*cp = TIFFBitRevTable[*cp], cp++;

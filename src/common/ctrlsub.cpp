@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -82,8 +82,8 @@ wxArrayString wxItemContainerImmutable::GetStrings() const
     result.Alloc(count);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int n = 0; n < count; n++ )
         result.Add(GetString(n));
@@ -111,8 +111,8 @@ void wxItemContainer::Clear()
         const unsigned count = GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned i = 0; i < count; ++i )
             ResetItemClientObject(i);
@@ -152,8 +152,8 @@ int wxItemContainer::DoInsertItemsInLoop(const wxArrayStringsAdapter& items,
     const unsigned int count = items.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int i = 0; i < count; ++i )
     {

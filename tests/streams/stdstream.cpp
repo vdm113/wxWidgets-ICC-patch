@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -121,8 +121,8 @@ StdStreamTestCase::StdStreamTestCase()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 0; i < TEST_SIZE; ++i)
         m_testData[i] = (i & 0xFF);
@@ -181,8 +181,8 @@ void StdStreamTestCase::InputBuffer_pubseekpos()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 9; i >= 0; --i)
     {
@@ -235,8 +235,8 @@ void StdStreamTestCase::InputBuffer_snextc()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 1; i < TEST_SIZE; ++i)
         data[i] = buffer.snextc();
@@ -259,8 +259,8 @@ void StdStreamTestCase::InputBuffer_sbumpc()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 0; i < TEST_SIZE; ++i)
         data[i] = buffer.sbumpc();
@@ -281,8 +281,8 @@ void StdStreamTestCase::InputBuffer_sgetc()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 0; i < TEST_SIZE; ++i) {
         data[i] = buffer.sgetc();
@@ -406,8 +406,8 @@ void StdStreamTestCase::OutputBuffer_pubseekpos()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 9; i >= 0; --i)
     {
@@ -448,8 +448,8 @@ void StdStreamTestCase::OutputBuffer_sputc()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 0; i < TEST_SIZE; ++i)
         buffer.sputc(m_testData[i]);

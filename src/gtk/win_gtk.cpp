@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -109,8 +109,8 @@ static void pizza_size_allocate(GtkWidget* widget, GtkAllocation* alloc)
     // adjust child positions
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (const GList* p = pizza->m_children; p; p = p->next)
     {
@@ -193,8 +193,8 @@ static void pizza_remove(GtkContainer* container, GtkWidget* widget)
     wxPizza* pizza = WX_PIZZA(container);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (GList* p = pizza->m_children; p; p = p->next)
     {
@@ -379,8 +379,8 @@ void wxPizza::move(GtkWidget* widget, int x, int y, int width, int height)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (const GList* p = m_children; p; p = p->next)
     {

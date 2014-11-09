@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -378,8 +378,8 @@ main(argc, argv)
 	line = buf;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ( fgets(line, (unsigned)(buf + bufsize - line), in) != NULL )
 	   {
@@ -448,8 +448,8 @@ skipspace(p, dir)
 		p += dir;  p += dir;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while ( !(*p == '*' && p[dir] == '/') )
 		   {	if ( *p == 0 )
@@ -472,8 +472,8 @@ writeblanks(start, end)
 {	char *p;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for ( p = start; p < end; p++ )
 	  if ( *p != '\r' && *p != '\n' )
@@ -515,8 +515,8 @@ test1(buf)
 	   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ( isidchar(*p) )
 	  p++;
@@ -543,8 +543,8 @@ test1(buf)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while ( (kp = *key) != 0 )
 		   {	if ( strlen(kp) == len && !strncmp(kp, buf, len) )
@@ -575,8 +575,8 @@ convert1(buf, out, header, convert_varargs)
 	/* is called strchr or index, so we open-code it here. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for ( endfn = buf; *(endfn++) != '('; )
 	  ;
@@ -593,8 +593,8 @@ top:	p = endfn;
 	/* Parse the argument list */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	do
 	   {	int level = 0;
@@ -613,8 +613,8 @@ top:	p = endfn;
 		/* Find the end of the argument */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for ( ; end == NULL; p++ )
 		   {	switch(*p)
@@ -646,8 +646,8 @@ top:	p = endfn;
 		/* array modifiers. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for ( ; ; )
 		   {	p = skipspace(p - 1, -1);
@@ -658,8 +658,8 @@ top:	p = endfn;
 			   {	int level = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				while ( level )
 				 switch ( *--p )
@@ -674,8 +674,8 @@ top:	p = endfn;
 				   {	/* We found the name being declared */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					while ( !isidfirstchar(*p) )
 					  p = skipspace(p, 1) + 1;
@@ -727,8 +727,8 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 	  {	fputs(");", out);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for ( p = breaks[0]; *p; p++ )
 		  if ( *p == '\r' || *p == '\n' )
@@ -739,8 +739,8 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 		  {	p = *ap;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while ( isidchar(*p) )
 			  putc(*p, out), p++;
@@ -751,8 +751,8 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 		/* Put out the argument declarations */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for ( ap = breaks+2; ap <= bp; ap += 2 )
 		  (*ap)[-1] = ';';

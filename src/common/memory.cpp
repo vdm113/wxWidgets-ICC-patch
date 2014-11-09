@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -275,8 +275,8 @@ int wxMemStruct::CheckAllPrevious ()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (wxMemStruct * st = this->m_prev; st != 0; st = st->m_prev) {
         if (st->AssertIt ())
@@ -420,8 +420,8 @@ int wxMemStruct::ValidateNode ()
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < wxDebugContext::TotSize (requestSize ()); i++)
       cout << startPointer [i];
@@ -576,8 +576,8 @@ void wxDebugContext::TraverseList (PmSFV func, wxMemStruct *from)
   wxMemStruct * st = NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (st = from; st != 0; st = st->m_next)
   {
@@ -638,8 +638,8 @@ static wxDebugStatsStruct *FindStatsStruct(wxDebugStatsStruct *st, wxChar *name)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (st)
   {
@@ -689,8 +689,8 @@ bool wxDebugContext::PrintStatistics(bool detailed)
   wxMemStruct *st;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (st = from; st != 0; st = st->m_next)
   {
@@ -731,8 +731,8 @@ bool wxDebugContext::PrintStatistics(bool detailed)
   {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (list)
     {
@@ -774,8 +774,8 @@ bool wxDebugContext::PrintClasses(void)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (wxClassInfo::const_iterator node = wxClassInfo::begin_classinfo(),
                                     end = wxClassInfo::end_classinfo();
@@ -832,8 +832,8 @@ int wxDebugContext::Check(bool checkAll)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (wxMemStruct * st = from; st != 0; st = st->m_next)
   {
@@ -860,8 +860,8 @@ int wxDebugContext::CountObjectsLeft(bool sinceCheckpoint)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (wxMemStruct * st = from; st != 0; st = st->m_next)
   {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -135,8 +135,8 @@ CPP_METHODDEF(void) wx_skip_input_data ( j_decompress_ptr cinfo, long num_bytes 
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (num_bytes > (long)src->pub.bytes_in_buffer)
         {
@@ -294,8 +294,8 @@ bool wxJPEGHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbos
         unsigned& scale = cinfo.scale_denom;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( (maxWidth && (cinfo.image_width / scale > maxWidth)) ||
                     (maxHeight && (cinfo.image_height / scale > maxHeight)) )
@@ -321,8 +321,8 @@ bool wxJPEGHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbos
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( cinfo.output_scanline < cinfo.output_height )
     {
@@ -337,8 +337,8 @@ bool wxJPEGHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbos
             const unsigned char* inptr = (const unsigned char*) tempbuf[0];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (size_t i = 0; i < cinfo.output_width; i++)
             {
@@ -501,8 +501,8 @@ bool wxJPEGHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbo
     image_buffer = image->GetData();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (cinfo.next_scanline < cinfo.image_height) {
         row_pointer[0] = &image_buffer[cinfo.next_scanline * stride];

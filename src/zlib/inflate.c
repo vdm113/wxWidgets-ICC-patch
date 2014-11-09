@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -349,8 +349,8 @@ void makefixed()
     low = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (;;) {
         if ((low % 7) == 0) printf("\n        ");
@@ -365,8 +365,8 @@ void makefixed()
     low = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (;;) {
         if ((low % 6) == 0) printf("\n        ");
@@ -554,8 +554,8 @@ VDM_MACRO_PRAGMA_IVDEP \
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (;;) switch (state) {
     ...
@@ -601,8 +601,8 @@ VDM_MACRO_PRAGMA_IVDEP \
     case STATEw:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (want < need) {
             NEEDBITS(n);
@@ -674,8 +674,8 @@ int flush;
     ret = Z_OK;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (;;)
         switch (state->mode) {
@@ -800,8 +800,8 @@ int flush;
                 copy = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 do {
                     len = (unsigned)(next[copy++]);
@@ -826,8 +826,8 @@ int flush;
                 copy = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 do {
                     len = (unsigned)(next[copy++]);
@@ -967,8 +967,8 @@ int flush;
         case LENLENS:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (state->have < state->ncode) {
                 NEEDBITS(3);
@@ -993,14 +993,14 @@ int flush;
         case CODELENS:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (state->have < state->nlen + state->ndist) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for (;;) {
                     here = state->lencode[BITS(state->lenbits)];
@@ -1045,8 +1045,8 @@ int flush;
                     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     while (copy--)
                         state->lens[state->have++] = (unsigned short)len;
@@ -1102,8 +1102,8 @@ int flush;
             state->back = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (;;) {
                 here = state->lencode[BITS(state->lenbits)];
@@ -1114,8 +1114,8 @@ int flush;
                 last = here;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for (;;) {
                     here = state->lencode[last.val +
@@ -1162,8 +1162,8 @@ int flush;
         case DIST:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (;;) {
                 here = state->distcode[BITS(state->distbits)];
@@ -1174,8 +1174,8 @@ int flush;
                 last = here;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for (;;) {
                     here = state->distcode[last.val +
@@ -1232,8 +1232,8 @@ int flush;
                     state->length -= copy;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     do {
                         *put++ = 0;
@@ -1259,8 +1259,8 @@ int flush;
             state->length -= copy;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do {
                 *put++ = *from++;
@@ -1497,8 +1497,8 @@ z_streamp strm;
         len = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (state->bits >= 8) {
             buf[len++] = (unsigned char)(state->hold);

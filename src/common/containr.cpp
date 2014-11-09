@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -79,8 +79,8 @@ bool wxControlContainerBase::HasAnyFocusableChildren() const
     const wxWindowList& children = m_winParent->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxWindowList::const_iterator i = children.begin(),
                                      end = children.end();
@@ -106,8 +106,8 @@ bool wxControlContainerBase::HasAnyChildrenAcceptingFocus() const
     const wxWindowList& children = m_winParent->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxWindowList::const_iterator i = children.begin(),
                                      end = children.end();
@@ -143,8 +143,8 @@ bool wxControlContainerBase::DoSetFocus()
     wxWindow *win = wxWindow::FindFocus();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( win )
     {
@@ -209,8 +209,8 @@ void wxControlContainer::SetLastFocus(wxWindow *win)
             wxWindow *winParent = win;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ( winParent != m_winParent )
             {
@@ -263,8 +263,8 @@ wxRadioButton* wxGetPreviousButtonInGroup(wxRadioButton *btn)
     wxRadioButton *prevBtn = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (nodeBefore)
     {
@@ -298,8 +298,8 @@ wxRadioButton* wxGetNextButtonInGroup(wxRadioButton *btn)
     wxRadioButton *nextBtn = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (nodeNext)
     {
@@ -323,8 +323,8 @@ wxRadioButton* wxGetFirstButtonInGroup(wxRadioButton *btn)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (true)
     {
@@ -340,8 +340,8 @@ wxRadioButton* wxGetLastButtonInGroup(wxRadioButton *btn)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (true)
     {
@@ -367,8 +367,8 @@ wxRadioButton* wxGetSelectedButtonInGroup(wxRadioButton *btn)
     // First check all previous buttons
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (selBtn = wxGetPreviousButtonInGroup(btn); selBtn; selBtn = wxGetPreviousButtonInGroup(selBtn))
         if (selBtn->GetValue())
@@ -377,8 +377,8 @@ wxRadioButton* wxGetSelectedButtonInGroup(wxRadioButton *btn)
     // Now all following buttons
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (selBtn = wxGetNextButtonInGroup(btn); selBtn; selBtn = wxGetNextButtonInGroup(selBtn))
         if (selBtn->GetValue())
@@ -422,8 +422,8 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
         wxWindow *bookctrl = NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( wxWindowList::const_iterator i = children.begin(),
                                          end = children.end();
@@ -539,8 +539,8 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
     // we want to cycle over all elements passing by NULL
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ;; )
     {
@@ -568,8 +568,8 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
                 wxWindow *focusedParent = m_winParent;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while ( parent )
                 {
@@ -757,8 +757,8 @@ bool wxSetFocusToChild(wxWindow *win, wxWindow **childLastFocused)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ( *childLastFocused )
             {
@@ -798,8 +798,8 @@ bool wxSetFocusToChild(wxWindow *win, wxWindow **childLastFocused)
     wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( node )
     {

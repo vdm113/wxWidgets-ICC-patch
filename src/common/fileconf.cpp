@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -442,8 +442,8 @@ wxFileConfig::wxFileConfig(wxInputStream &inStream, const wxMBConv& conv)
     wxMemoryBuffer buf(chunkLen);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do
     {
@@ -479,16 +479,16 @@ wxFileConfig::wxFileConfig(wxInputStream &inStream, const wxMBConv& conv)
         wxMemoryText memText;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( const wxChar *s = cbuf; ; ++s )
         {
             const wxChar *e = s;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ( *e != '\0' && *e != '\n' && *e != '\r' )
                 ++e;
@@ -525,8 +525,8 @@ void wxFileConfig::CleanUp()
     wxFileConfigLineList *pCur = m_linesHead;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( pCur != NULL ) {
         wxFileConfigLineList *pNext = pCur->Next();
@@ -555,8 +555,8 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for ( size_t n = 0; n < nLineCount; n++ )
   {
@@ -574,8 +574,8 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
     // skip leading spaces
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( pStart = buf; wxIsspace(*pStart); pStart++ )
       ;
@@ -589,8 +589,8 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       while ( *++pEnd != wxT(']') ) {
         if ( *pEnd == wxT('\\') ) {
@@ -630,8 +630,8 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
       bool bCont = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       while ( *++pEnd != wxT('\0') && bCont ) {
         switch ( *pEnd ) {
@@ -656,8 +656,8 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
       pEnd = pStart;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       while ( *pEnd && *pEnd != wxT('=') /* && !wxIsspace(*pEnd)*/ ) {
         if ( *pEnd == wxT('\\') ) {
@@ -678,8 +678,8 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
       // skip whitespace
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       while ( wxIsspace(*pEnd) )
         pEnd++;
@@ -720,8 +720,8 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
         // skip whitespace
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( wxIsspace(*pEnd) )
           pEnd++;
@@ -848,8 +848,8 @@ size_t wxFileConfig::GetNumberOfEntries(bool bRecursive) const
         size_t nSubgroups = m_pCurrentGroup->Groups().GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t nGroup = 0; nGroup < nSubgroups; nGroup++ ) {
             self->m_pCurrentGroup = m_pCurrentGroup->Groups()[nGroup];
@@ -871,8 +871,8 @@ size_t wxFileConfig::GetNumberOfGroups(bool bRecursive) const
         size_t nSubgroups = m_pCurrentGroup->Groups().GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t nGroup = 0; nGroup < nSubgroups; nGroup++ ) {
             self->m_pCurrentGroup = m_pCurrentGroup->Groups()[nGroup];
@@ -1087,8 +1087,8 @@ bool wxFileConfig::Flush(bool /* bCurrentOnly */)
   filetext.reserve(4096);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for ( wxFileConfigLineList *p = m_linesHead; p != NULL; p = p->Next() )
   {
@@ -1124,8 +1124,8 @@ bool wxFileConfig::Save(wxOutputStream& os, const wxMBConv& conv)
     // save unconditionally, even if not dirty
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxFileConfigLineList *p = m_linesHead; p != NULL; p = p->Next() )
     {
@@ -1436,8 +1436,8 @@ wxFileConfigGroup::~wxFileConfigGroup()
   size_t n, nCount = m_aEntries.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for ( n = 0; n < nCount; n++ )
     delete m_aEntries[n];
@@ -1446,8 +1446,8 @@ wxFileConfigGroup::~wxFileConfigGroup()
   nCount = m_aSubgroups.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for ( n = 0; n < nCount; n++ )
     delete m_aSubgroups[n];
@@ -1614,8 +1614,8 @@ void wxFileConfigGroup::UpdateGroupAndSubgroupsLines()
     const size_t nCount = m_aSubgroups.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < nCount; n++ )
     {
@@ -1789,8 +1789,8 @@ bool wxFileConfigGroup::DeleteSubgroup(wxFileConfigGroup *pGroup)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t nEntry = 0; nEntry < nCount; nEntry++ )
     {
@@ -1813,8 +1813,8 @@ bool wxFileConfigGroup::DeleteSubgroup(wxFileConfigGroup *pGroup)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t nGroup = 0; nGroup < nCount; nGroup++ )
     {
@@ -1850,8 +1850,8 @@ bool wxFileConfigGroup::DeleteSubgroup(wxFileConfigGroup *pGroup)
             m_pLastGroup = NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( wxFileConfigLineList *pl = pLine->Prev();
                   pl && !m_pLastGroup;
@@ -1860,8 +1860,8 @@ bool wxFileConfigGroup::DeleteSubgroup(wxFileConfigGroup *pGroup)
                 // does this line belong to our subgroup?
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( size_t n = 0; n < nSubgroups; n++ )
                 {
@@ -1918,8 +1918,8 @@ bool wxFileConfigGroup::DeleteEntry(const wxString& name)
       const size_t nEntries = m_aEntries.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for ( size_t n = 0; n < nEntries; n++ ) {
         if ( m_aEntries[n]->GetLine() == pNewLastLine ) {
@@ -2086,8 +2086,8 @@ static wxString FilterInValue(const wxString& str)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( const wxString::const_iterator end = str.end(); i != end; ++i )
     {
@@ -2223,8 +2223,8 @@ static wxString FilterOutEntryName(const wxString& str)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for ( const wxChar *pc = str.c_str(); *pc != wxT('\0'); pc++ ) {
     const wxChar c = *pc;

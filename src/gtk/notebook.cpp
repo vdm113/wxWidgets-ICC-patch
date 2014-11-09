@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -319,8 +319,8 @@ wxSize wxNotebook::CalcSizeFromPage(const wxSize& sizePage) const
     const size_t pageCount = GetPageCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < pageCount; n++ )
     {
@@ -355,8 +355,8 @@ void wxNotebook::SetPadding( const wxSize &padding )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = GetPageCount(); i--;)
     {
@@ -380,8 +380,8 @@ bool wxNotebook::DeleteAllPages()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = GetPageCount(); i--;)
         DeletePage(i);
@@ -534,8 +534,8 @@ int wxNotebook::HitTest(const wxPoint& pt, long *flags) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ; i < count; i++ )
     {
@@ -617,8 +617,8 @@ void wxNotebook::DoApplyWidgetStyle(GtkRcStyle *style)
     GTKApplyStyle(m_widget, style);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = GetPageCount(); i--;)
         GTKApplyStyle(GetNotebookPage(i)->m_label, style);

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -62,8 +62,8 @@ void ListBaseTestCase::ColumnsOrder()
     const wxArrayInt orderOrig = list->GetColumnsOrder();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( n = 0; n < NUM_COLS; n++ )
         CPPUNIT_ASSERT_EQUAL( n, orderOrig[n] );
@@ -80,8 +80,8 @@ void ListBaseTestCase::ColumnsOrder()
     const wxArrayInt orderNew = list->GetColumnsOrder();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( n = 0; n < NUM_COLS; n++ )
         CPPUNIT_ASSERT_EQUAL( order[n], orderNew[n] );
@@ -89,8 +89,8 @@ void ListBaseTestCase::ColumnsOrder()
     // and the order -> index mappings for individual columns
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( n = 0; n < NUM_COLS; n++ )
         CPPUNIT_ASSERT_EQUAL( order[n], list->GetColumnIndexFromOrder(n) );
@@ -386,8 +386,8 @@ void ListBaseTestCase::Visible()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for( int i = 0; i < count + 10; i++ )
     {

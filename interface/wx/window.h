@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -1133,8 +1133,8 @@ public:
        Returns the magnification of the backing store of this window, eg 2.0
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
        for a window on a retina screen.
 
@@ -1473,8 +1473,8 @@ public:
         This gets the position of the window in pixels, relative to the parent window
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for the child windows or relative to the display origin for the top level windows.
 
@@ -1496,8 +1496,8 @@ public:
         This gets the position of the window in pixels, relative to the parent window
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for the child windows or relative to the display origin for the top level windows.
 
@@ -1863,8 +1863,8 @@ public:
         Returns @true if this window background is transparent (as, for example,
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for wxStaticText) and should show the parent window background.
 
@@ -2012,8 +2012,8 @@ public:
         window you want to set transparent background style for as the window
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for which this method is called must be fully created.
 
@@ -2596,8 +2596,8 @@ public:
         Shows or hides the window. You may need to call Raise()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for a top level window if you want to bring it to top, although this is not
         needed if Show() is called immediately after the frame creation.
@@ -2734,8 +2734,8 @@ public:
         It can be more convenient than the general purpose PopupMenu() function
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for simple menus proposing a choice in a list of strings to the user.
 
@@ -3177,8 +3177,8 @@ public:
         Invokes the constraint-based layout algorithm or the sizer-based algorithm
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for this window.
 
@@ -3403,8 +3403,8 @@ public:
         just changing the font or colour of their common parent, hence in this case we
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do inherit the parents attributes.
     */
@@ -3580,8 +3580,8 @@ public:
         This static method is "overridden" in many derived classes and so calling,
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for example, wxButton::GetClassDefaultAttributes() will typically
         return the values appropriate for a button which will be normally different
@@ -3733,8 +3733,8 @@ protected:
         -# Otherwise if there is no minimal size set, then the current size is used
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
            for the best size.
 
@@ -3827,8 +3827,8 @@ protected:
         For convenience, a ProcessWindowEvent() method is provided as a synonym
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for @code GetEventHandler()->ProcessEvent() @endcode
 

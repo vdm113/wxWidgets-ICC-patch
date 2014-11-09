@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -355,8 +355,8 @@ int Server::OnExit()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( TList::compatibility_iterator it = m_threadWorkers.GetFirst();
           it;
@@ -368,8 +368,8 @@ int Server::OnExit()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( EList::compatibility_iterator it2 = m_eventWorkers.GetFirst();
           it2;
@@ -448,8 +448,8 @@ void  Server::OnWorkerEvent(WorkerEvent& pEvent)
     //wxLogMessage("Got worker event");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(TList::compatibility_iterator it = m_threadWorkers.GetFirst(); it ; it = it->GetNext())
     {
@@ -469,8 +469,8 @@ void  Server::OnWorkerEvent(WorkerEvent& pEvent)
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(EList::compatibility_iterator it2 = m_eventWorkers.GetFirst(); it2 ; it2 = it2->GetNext())
     {
@@ -533,8 +533,8 @@ wxThread::ExitCode ThreadWorker::Entry()
         to_process = 2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do
         {
@@ -573,8 +573,8 @@ wxThread::ExitCode ThreadWorker::Entry()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do
         {
@@ -595,8 +595,8 @@ wxThread::ExitCode ThreadWorker::Entry()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do
         {
@@ -648,8 +648,8 @@ EventWorker::DoRead()
         //read message header
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do
         {
@@ -702,8 +702,8 @@ EventWorker::DoRead()
     //read message data
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do
     {
@@ -770,8 +770,8 @@ void  EventWorker::DoWrite()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do
     {

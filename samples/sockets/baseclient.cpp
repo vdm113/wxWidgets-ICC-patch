@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -269,8 +269,8 @@ Client::OnRun()
                 case THREADS:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for (i = 0; i < m_stressWorkers; i++) {
                         if (m_message.empty())
@@ -282,8 +282,8 @@ Client::OnRun()
                 case EVENTS:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for (i = 0; i < m_stressWorkers; i++) {
                         if (m_message.empty())
@@ -295,8 +295,8 @@ Client::OnRun()
                 default:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for (i = 0; i < m_stressWorkers; i++) {
                         if (m_message.empty())
@@ -323,8 +323,8 @@ Client::OnExit()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(EList::compatibility_iterator it = m_eventWorkers.GetFirst(); it ; it->GetNext()) {
         delete it->GetData();
@@ -374,8 +374,8 @@ Client::StartWorker(workMode pMode) {
     //fill data part of buffer with random bytes
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 2; i < (msgsize); i++) {
         buf[i] = i % 256;
@@ -478,8 +478,8 @@ Client::OnWorkerEvent(WorkerEvent& pEvent) {
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for(TList::compatibility_iterator it = m_threadWorkers.GetFirst(); it ; it = it->GetNext()) {
             if (it->GetData() == pEvent.m_sender) {
@@ -489,8 +489,8 @@ Client::OnWorkerEvent(WorkerEvent& pEvent) {
         }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for(EList::compatibility_iterator it2 = m_eventWorkers.GetFirst(); it2 ; it2 = it2->GetNext())
         {
@@ -518,8 +518,8 @@ void
 Client::RemoveEventWorker(EventWorker* p_worker) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for(EList::compatibility_iterator it = m_eventWorkers.GetFirst(); it ; it = it->GetNext()) {
         if (it->GetData() == p_worker) {
@@ -591,8 +591,8 @@ EventWorker::OnSocketEvent(wxSocketEvent& pEvent) {
             //wxLogDebug(wxT("EventWorker: INPUT"));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do {
                 if (m_readed == m_insize)
@@ -632,8 +632,8 @@ EventWorker::OnSocketEvent(wxSocketEvent& pEvent) {
             //wxLogDebug(wxT("EventWorker: OUTPUT"));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do {
                 if (m_written == m_outsize)
@@ -739,8 +739,8 @@ wxThread::ExitCode ThreadWorker::Entry()
         int to_process = m_outsize;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do {
             m_clientSocket->Write(m_outbuf,m_outsize);
@@ -759,8 +759,8 @@ wxThread::ExitCode ThreadWorker::Entry()
             to_process = m_insize;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do {
                 m_clientSocket->Read(m_inbuf,m_insize);

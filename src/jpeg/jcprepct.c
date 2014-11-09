@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -117,8 +117,8 @@ expand_bottom_edge (JSAMPARRAY image_data, JDIMENSION num_cols,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (row = input_rows; row < output_rows; row++) {
     jcopy_sample_rows(image_data, input_rows-1, image_data, row,
@@ -150,8 +150,8 @@ pre_process_data (j_compress_ptr cinfo,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (*in_row_ctr < in_rows_avail &&
 	 *out_row_group_ctr < out_row_groups_avail) {
@@ -171,8 +171,8 @@ pre_process_data (j_compress_ptr cinfo,
 	prep->next_buf_row < cinfo->max_v_samp_factor) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (ci = 0; ci < cinfo->num_components; ci++) {
 	expand_bottom_edge(prep->color_buf[ci], cinfo->image_width,
@@ -195,8 +195,8 @@ pre_process_data (j_compress_ptr cinfo,
 	*out_row_group_ctr < out_row_groups_avail) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
 	   ci++, compptr++) {
@@ -232,8 +232,8 @@ pre_process_context (j_compress_ptr cinfo,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (*out_row_group_ctr < out_row_groups_avail) {
     if (*in_row_ctr < in_rows_avail) {
@@ -249,15 +249,15 @@ pre_process_context (j_compress_ptr cinfo,
       if (prep->rows_to_go == cinfo->image_height) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (ci = 0; ci < cinfo->num_components; ci++) {
 	  int row;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	  for (row = 1; row <= cinfo->max_v_samp_factor; row++) {
 	    jcopy_sample_rows(prep->color_buf[ci], 0,
@@ -277,8 +277,8 @@ pre_process_context (j_compress_ptr cinfo,
       if (prep->next_buf_row < prep->next_buf_stop) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (ci = 0; ci < cinfo->num_components; ci++) {
 	  expand_bottom_edge(prep->color_buf[ci], cinfo->image_width,
@@ -329,8 +329,8 @@ create_context_buffer (j_compress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -349,8 +349,8 @@ create_context_buffer (j_compress_ptr cinfo)
     /* Fill in the above and below wraparound pointers */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < rgroup_height; i++) {
       fake_buffer[i] = true_buffer[2 * rgroup_height + i];
@@ -401,8 +401,8 @@ jinit_c_prep_controller (j_compress_ptr cinfo, wxjpeg_boolean need_full_buffer)
     prep->pub.pre_process_data = pre_process_data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
 	 ci++, compptr++) {

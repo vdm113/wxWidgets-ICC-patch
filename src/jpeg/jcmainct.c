@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -125,8 +125,8 @@ process_data_simple_main (j_compress_ptr cinfo,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (mymain->cur_iMCU_row < cinfo->total_iMCU_rows) {
     /* Read input data if we haven't filled the main buffer yet */
@@ -189,16 +189,16 @@ process_data_buffer_main (j_compress_ptr cinfo,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (mymain->cur_iMCU_row < cinfo->total_iMCU_rows) {
     /* Realign the virtual buffers if at the start of an iMCU row. */
     if (mymain->rowgroup_ctr == 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
 	   ci++, compptr++) {
@@ -289,8 +289,8 @@ jinit_c_main_controller (j_compress_ptr cinfo, wxjpeg_boolean need_full_buffer)
     /* Note we pad the bottom to a multiple of the iMCU height */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
 	 ci++, compptr++) {
@@ -311,8 +311,8 @@ jinit_c_main_controller (j_compress_ptr cinfo, wxjpeg_boolean need_full_buffer)
     /* Allocate a strip buffer for each component */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
 	 ci++, compptr++) {

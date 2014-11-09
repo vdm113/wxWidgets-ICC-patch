@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -392,8 +392,8 @@ IsDescendantOf(const wxGenericTreeItem *parent, const wxGenericTreeItem *item)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( item )
     {
@@ -637,8 +637,8 @@ void wxGenericTreeItem::DeleteChildren(wxGenericTreeCtrl *tree)
     size_t count = m_children.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -663,8 +663,8 @@ size_t wxGenericTreeItem::GetChildrenCount(bool recursively) const
     size_t total = count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t n = 0; n < count; ++n)
     {
@@ -687,8 +687,8 @@ void wxGenericTreeItem::GetSize( int &x, int &y,
         size_t count = m_children.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < count; ++n )
         {
@@ -786,8 +786,8 @@ wxGenericTreeItem *wxGenericTreeItem::HitTest(const wxPoint& point,
     size_t count = m_children.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -919,8 +919,8 @@ void wxGenericTreeItem::RecursiveResetSize()
     const size_t count = m_children.Count();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < count; i++ )
         m_children[i]->RecursiveResetSize();
@@ -934,8 +934,8 @@ void wxGenericTreeItem::RecursiveResetTextSize()
     const size_t count = m_children.Count();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < count; i++ )
         m_children[i]->RecursiveResetTextSize();
@@ -1366,8 +1366,8 @@ bool wxGenericTreeCtrl::IsVisible(const wxTreeItemId& item) const
     wxGenericTreeItem* parent = pItem->GetParent();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (parent)
     {
@@ -1539,8 +1539,8 @@ wxTreeItemId wxGenericTreeCtrl::GetNext(const wxTreeItemId& item) const
          wxTreeItemId toFind;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
          do
          {
@@ -1559,8 +1559,8 @@ wxTreeItemId wxGenericTreeCtrl::GetFirstVisibleItem() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do
     {
@@ -1582,8 +1582,8 @@ wxTreeItemId wxGenericTreeCtrl::GetNextVisible(const wxTreeItemId& item) const
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (id = GetNext(id), id.IsOk())
         {
@@ -1609,8 +1609,8 @@ wxTreeItemId wxGenericTreeCtrl::GetPrevVisible(const wxTreeItemId& item) const
     // find the first visible item after it
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( prevItem.IsOk() && !IsVisible(prevItem) )
     {
@@ -1625,8 +1625,8 @@ wxTreeItemId wxGenericTreeCtrl::GetPrevVisible(const wxTreeItemId& item) const
     // from there we must be able to navigate until this item
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( prevItem.IsOk() )
     {
@@ -1675,8 +1675,8 @@ wxTreeItemId wxGenericTreeCtrl::FindItem(const wxTreeItemId& idParent,
     // look for the item starting with the given prefix after it
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( itemid.IsOk() && !GetItemText(itemid).Lower().StartsWith(prefix) )
     {
@@ -1697,8 +1697,8 @@ wxTreeItemId wxGenericTreeCtrl::FindItem(const wxTreeItemId& idParent,
         // and try all the items (stop when we get to the one we started from)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( itemid.IsOk() && itemid != idParent &&
                     !GetItemText(itemid).Lower().StartsWith(prefix) )
@@ -2003,8 +2003,8 @@ void wxGenericTreeCtrl::Collapse(const wxTreeItemId& itemId)
     size_t count = children.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -2078,8 +2078,8 @@ void wxGenericTreeCtrl::UnselectAllChildren(wxGenericTreeItem *item)
         size_t count = children.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < count; ++n )
         {
@@ -2124,8 +2124,8 @@ void wxGenericTreeCtrl::SelectChildren(const wxTreeItemId& parent)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; ++n )
     {
@@ -2163,8 +2163,8 @@ wxGenericTreeCtrl::TagNextChildren(wxGenericTreeItem *crt_item,
     size_t count = children.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t n=(size_t)(index+1); n<count; ++n)
     {
@@ -2193,8 +2193,8 @@ wxGenericTreeCtrl::TagAllChildrenUntilLast(wxGenericTreeItem *crt_item,
         size_t count = children.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < count; ++n )
         {
@@ -2265,8 +2265,8 @@ void wxGenericTreeCtrl::DoSelectItem(const wxTreeItemId& itemId,
     wxTreeItemId parent = GetItemParent( itemId );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (parent.IsOk())
     {
@@ -2353,8 +2353,8 @@ void wxGenericTreeCtrl::FillArray(wxGenericTreeItem *item,
         size_t count = children.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < count; ++n )
             FillArray(children[n], array);
@@ -2389,8 +2389,8 @@ void wxGenericTreeCtrl::EnsureVisible(const wxTreeItemId& item)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( parent && parent != m_anchor )
         {
@@ -2402,8 +2402,8 @@ void wxGenericTreeCtrl::EnsureVisible(const wxTreeItemId& item)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( parent )
         {
@@ -2513,8 +2513,8 @@ void wxGenericTreeCtrl::CalculateLineHeight()
         int n = m_imageListNormal->GetImageCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int i = 0; i < n ; i++)
         {
@@ -2532,8 +2532,8 @@ void wxGenericTreeCtrl::CalculateLineHeight()
         int n = m_imageListState->GetImageCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int i = 0; i < n ; i++)
         {
@@ -2551,8 +2551,8 @@ void wxGenericTreeCtrl::CalculateLineHeight()
         int n = m_imageListButtons->GetImageCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int i = 0; i < n ; i++)
         {
@@ -2892,8 +2892,8 @@ wxGenericTreeCtrl::PaintLevel(wxGenericTreeItem *item,
             int n = 0, oldY;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do {
                 oldY = y;
@@ -3050,8 +3050,8 @@ wxGenericTreeCtrl::PaintLevel(wxGenericTreeItem *item,
             ++level;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do {
                 oldY = y;
@@ -3365,8 +3365,8 @@ void wxGenericTreeCtrl::OnChar( wxKeyEvent &event )
                 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     while ( IsExpanded(prev) && HasChildren(prev) )
                     {
@@ -3427,8 +3427,8 @@ void wxGenericTreeCtrl::OnChar( wxKeyEvent &event )
                         wxTreeItemId current = m_key_current;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                         while (current.IsOk() && !next)
                         {
@@ -3452,8 +3452,8 @@ void wxGenericTreeCtrl::OnChar( wxKeyEvent &event )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while ( last.IsOk() && IsExpanded(last) )
                 {
@@ -4141,8 +4141,8 @@ wxGenericTreeCtrl::CalculateLevel(wxGenericTreeItem *item,
     ++level;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (n = 0; n < count; ++n )
         CalculateLevel( children[n], dc, level, y );  // recurse
@@ -4224,8 +4224,8 @@ void wxGenericTreeCtrl::RefreshSelectedUnder(wxGenericTreeItem *item)
     size_t count = children.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; n++ )
     {

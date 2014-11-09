@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -1010,8 +1010,8 @@ void MyScrolledWindowDumb::OnDraw(wxDC& dc)
     int y = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t line = 0; line < m_nLines; line++ )
     {
@@ -1044,8 +1044,8 @@ void MyScrolledWindowSmart::OnDraw(wxDC& dc)
     int y = lineFrom*m_hLine;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t line = lineFrom; line <= lineTo; line++ )
     {
@@ -1260,8 +1260,8 @@ void MyAutoScrollingWindow::OnDraw(wxDC& dc)
     // 1. for each update region
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (wxRegionIterator upd(GetUpdateRegion()); upd; ++upd) {
         wxRect updRect = upd.GetRect();
@@ -1269,8 +1269,8 @@ void MyAutoScrollingWindow::OnDraw(wxDC& dc)
         // 2. for each row of chars in the update region
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int chY = updRectInGChars.y
                 ; chY <= updRectInGChars.y + updRectInGChars.height; ++chY) {
@@ -1278,8 +1278,8 @@ void MyAutoScrollingWindow::OnDraw(wxDC& dc)
             bool isFirstX = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int chX = updRectInGChars.x
                     ; chX <= updRectInGChars.x + updRectInGChars.width

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -523,8 +523,8 @@ wxPopupMenuWindow::GetMenuItemFromPoint(const wxPoint& pt) const
         wxCoord y = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( wxMenuItemIter node = m_menu->GetMenuItems().GetFirst();
               node;
@@ -576,8 +576,8 @@ void wxPopupMenuWindow::DoDraw(wxControlRenderer *renderer)
     const wxMenuGeometryInfo& gi = m_menu->GetGeometryInfo();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxMenuItemIter node = m_menu->GetMenuItems().GetFirst();
           node;
@@ -946,8 +946,8 @@ bool wxPopupMenuWindow::ProcessKeyDown(int key)
                                node = nodeStart;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while ( node && node->GetData()->IsSeparator() )
                 {
@@ -1005,8 +1005,8 @@ bool wxPopupMenuWindow::ProcessKeyDown(int key)
                                node = nodeStart;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( ;; )
                 {
@@ -1479,8 +1479,8 @@ bool wxMenu::ProcessAccelEvent(const wxKeyEvent& event)
     // try our submenus
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxMenuItemIter node = GetMenuItems().GetFirst();
           node;
@@ -1668,8 +1668,8 @@ void wxMenuItem::Check(bool check)
         wxMenuItemIter node = items.Item(start);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int n = start; n <= end && node; n++ )
         {
@@ -1741,8 +1741,8 @@ wxMenuBar::wxMenuBar(size_t n, wxMenu *menus[], const wxString titles[], long WX
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < n; ++i )
         Append(menus[i], titles[i]);
@@ -1961,8 +1961,8 @@ void wxMenuBar::DoDraw(wxControlRenderer *renderer)
     size_t count = GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -2019,8 +2019,8 @@ wxRect wxMenuBar::GetItemRect(size_t pos) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < pos; n++ )
     {
@@ -2066,8 +2066,8 @@ int wxMenuBar::GetMenuFromPoint(const wxPoint& pos) const
     size_t count = GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t item = 0; item < count; item++ )
     {
@@ -2410,8 +2410,8 @@ int wxMenuBar::FindNextItemForAccel(int idxStart, int key, bool *unique) const
     idxStart = n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ;; )
     {
@@ -2465,8 +2465,8 @@ bool wxMenuBar::ProcessAccelEvent(const wxKeyEvent& event)
     size_t n = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxMenuList::compatibility_iterator node = m_menus.GetFirst();
           node;

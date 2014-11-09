@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -70,16 +70,16 @@ jpeg_CreateDecompress (j_decompress_ptr cinfo, int version, size_t structsize)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < NUM_QUANT_TBLS; i++)
     cinfo->quant_tbl_ptrs[i] = NULL;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
     cinfo->dc_huff_tbl_ptrs[i] = NULL;
@@ -402,8 +402,8 @@ jpeg_finish_decompress (j_decompress_ptr cinfo)
   /* Read until EOI */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (! cinfo->inputctl->eoi_reached) {
     if ((*cinfo->inputctl->consume_input) (cinfo) == JPEG_SUSPENDED)

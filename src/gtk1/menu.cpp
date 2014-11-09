@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -69,8 +69,8 @@ static wxString wxReplaceUnderscore( const wxString& title )
     pc = title;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (*pc != wxT('\0'))
     {
@@ -108,8 +108,8 @@ static wxString wxConvertFromGTKToWXLabel(const wxString& gtkLabel)
     wxString label;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( const wxChar *pc = gtkLabel.c_str(); *pc; pc++ )
     {
@@ -224,8 +224,8 @@ void wxMenuBar::Init(size_t n, wxMenu *menus[], const wxString titles[], long st
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < n; ++i )
         Append(menus[i], titles[i]);
@@ -265,8 +265,8 @@ static void DetachFromFrame( wxMenu *menu, wxWindow *win )
     wxWindow *top_frame = win;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (top_frame->GetParent() && !(top_frame->IsTopLevel()))
         top_frame = top_frame->GetParent();
@@ -277,8 +277,8 @@ static void DetachFromFrame( wxMenu *menu, wxWindow *win )
     wxMenuItemList::compatibility_iterator node = menu->GetMenuItems().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -294,8 +294,8 @@ static void AttachToFrame( wxMenu *menu, wxWindow *win )
     wxWindow *top_frame = win;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (top_frame->GetParent() && !(top_frame->IsTopLevel()))
         top_frame = top_frame->GetParent();
@@ -308,8 +308,8 @@ static void AttachToFrame( wxMenu *menu, wxWindow *win )
     wxMenuItemList::compatibility_iterator node = menu->GetMenuItems().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -327,8 +327,8 @@ void wxMenuBar::Attach( wxFrame *win )
     wxWindow *top_frame = win;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (top_frame->GetParent() && !(top_frame->IsTopLevel()))
         top_frame = top_frame->GetParent();
@@ -341,8 +341,8 @@ void wxMenuBar::Attach( wxFrame *win )
     wxMenuList::compatibility_iterator node = m_menus.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -357,8 +357,8 @@ void wxMenuBar::Detach()
     wxWindow *top_frame = m_menuBarFrame;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (top_frame->GetParent() && !(top_frame->IsTopLevel()))
         top_frame = top_frame->GetParent();
@@ -369,8 +369,8 @@ void wxMenuBar::Detach()
     wxMenuList::compatibility_iterator node = m_menus.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -502,8 +502,8 @@ static int FindMenuItemRecursive( const wxMenu *menu, const wxString &menuString
     wxMenuItemList::compatibility_iterator node = menu->GetMenuItems().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -522,8 +522,8 @@ int wxMenuBar::FindMenuItem( const wxString &menuString, const wxString &itemStr
     wxMenuList::compatibility_iterator node = m_menus.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -545,8 +545,8 @@ static wxMenuItem* FindMenuItemByIdRecursive(const wxMenu* menu, int id)
     wxMenuItemList::compatibility_iterator node = menu->GetMenuItems().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( node && result == NULL )
     {
@@ -567,8 +567,8 @@ wxMenuItem* wxMenuBar::FindItem( int id, wxMenu **menuForItem ) const
     wxMenuList::compatibility_iterator node = m_menus.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node && result == 0)
     {
@@ -900,8 +900,8 @@ void wxMenuItem::DoSetText( const wxString& str )
     const wxChar *pc = str;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( (*pc != wxT('\0')) && (*pc != wxT('\t')) )
     {
@@ -1234,8 +1234,8 @@ int wxMenu::FindMenuIdByMenuItem( GtkWidget *menuItem ) const
     wxMenuItemList::compatibility_iterator node = m_items.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -1600,8 +1600,8 @@ bool wxWindowGTK::DoPopupMenu( wxMenu *menu, int x, int y )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (is_waiting)
     {

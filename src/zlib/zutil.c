@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -163,8 +163,8 @@ void ZLIB_INTERNAL zmemcpy(dest, source, len)
     if (len == 0) return;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do {
         *dest++ = *source++; /* ??? to be unrolled */
@@ -180,8 +180,8 @@ int ZLIB_INTERNAL zmemcmp(s1, s2, len)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (j = 0; j < len; j++) {
         if (s1[j] != s2[j]) return 2*(s1[j] > s2[j])-1;
@@ -196,8 +196,8 @@ void ZLIB_INTERNAL zmemzero(dest, len)
     if (len == 0) return;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do {
         *dest++ = 0;  /* ??? to be unrolled */
@@ -272,8 +272,8 @@ void ZLIB_INTERNAL zcfree (voidpf opaque, voidpf ptr)
     /* Find the original pointer */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (n = 0; n < next_ptr; n++) {
         if (ptr != table[n].new_ptr) continue;
@@ -281,8 +281,8 @@ void ZLIB_INTERNAL zcfree (voidpf opaque, voidpf ptr)
         farfree(table[n].org_ptr);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (++n < next_ptr) {
             table[n-1] = table[n];

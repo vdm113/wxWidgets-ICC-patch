@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -106,8 +106,8 @@ struct nfa *nfa;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((s = nfa->states) != NULL) {
 		s->nins = s->nouts = 0;		/* don't worry about arcs */
@@ -115,8 +115,8 @@ struct nfa *nfa;
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((s = nfa->free) != NULL) {
 		nfa->free = s->next;
@@ -204,15 +204,15 @@ struct state *s;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((a = s->ins) != NULL)
 		freearc(nfa, a);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((a = s->outs) != NULL)
 		freearc(nfa, a);
@@ -265,8 +265,8 @@ struct state *s;
 	assert(s->no == FREESTATE);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (ab = s->oas.next; ab != NULL; ab = abnext) {
 		abnext = ab->next;
@@ -298,8 +298,8 @@ struct state *to;
 	/* check for duplicates */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = from->outs; a != NULL; a = a->outchain)
 		if (a->to == to && a->co == co && a->type == t)
@@ -367,8 +367,8 @@ struct state *s;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (i = 0; i < ABSIZE; i++) {
 			new->a[i].type = 0;
@@ -412,8 +412,8 @@ struct arc *victim;
 	else {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (; a != NULL && a->outchain != victim; a = a->outchain)
 			continue;
@@ -431,8 +431,8 @@ struct arc *victim;
 	else {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (; a != NULL && a->inchain != victim; a = a->inchain)
 			continue;
@@ -466,8 +466,8 @@ pcolor co;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = s->outs; a != NULL; a = a->outchain)
 		if (a->type == type && a->co == co)
@@ -510,8 +510,8 @@ struct state *new;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((a = old->ins) != NULL) {
 		cparc(nfa, a, a->from, new);
@@ -537,8 +537,8 @@ struct state *new;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = old->ins; a != NULL; a = a->inchain)
 		cparc(nfa, a, a->from, new);
@@ -560,8 +560,8 @@ struct state *new;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((a = old->outs) != NULL) {
 		cparc(nfa, a, new, a->to);
@@ -585,8 +585,8 @@ struct state *new;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = old->outs; a != NULL; a = a->outchain)
 		cparc(nfa, a, new, a->to);
@@ -611,8 +611,8 @@ int type;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = old->outs; a != NULL; a = a->outchain)
 		newarc(nfa, type, a->co, from, to);
@@ -665,8 +665,8 @@ struct state *s;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((a = s->outs) != NULL) {
 		to = a->to;
@@ -738,8 +738,8 @@ struct state *stmp;		/* s's duplicate, or NULL */
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = s->outs; a != NULL && !NISERR(); a = a->outchain) {
 		duptraverse(nfa, a->to, (struct state *)NULL);
@@ -765,8 +765,8 @@ struct state *s;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = s->outs; a != NULL; a = a->outchain)
 		cleartraverse(nfa, a->to);
@@ -845,22 +845,22 @@ FILE *f;			/* for debug output; NULL none */
 	/* find and pull until there are no more */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	do {
 		progress = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (s = nfa->states; s != NULL && !NISERR(); s = nexts) {
 			nexts = s->next;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (a = s->outs; a != NULL && !NISERR(); a = nexta) {
 				nexta = a->outchain;
@@ -878,8 +878,8 @@ FILE *f;			/* for debug output; NULL none */
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = nfa->pre->outs; a != NULL; a = nexta) {
 		nexta = a->outchain;
@@ -937,8 +937,8 @@ struct arc *con;
 	/* propagate the constraint into the from state's inarcs */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = from->ins; a != NULL; a = nexta) {
 		nexta = a->inchain;
@@ -988,22 +988,22 @@ FILE *f;			/* for debug output; NULL none */
 	/* find and push until there are no more */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	do {
 		progress = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (s = nfa->states; s != NULL && !NISERR(); s = nexts) {
 			nexts = s->next;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (a = s->ins; a != NULL && !NISERR(); a = nexta) {
 				nexta = a->inchain;
@@ -1021,8 +1021,8 @@ FILE *f;			/* for debug output; NULL none */
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = nfa->post->ins; a != NULL; a = nexta) {
 		nexta = a->inchain;
@@ -1079,8 +1079,8 @@ struct arc *con;
 	/* propagate the constraint into the to state's outarcs */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = to->outs; a != NULL; a = nexta) {
 		nexta = a->outchain;
@@ -1195,22 +1195,22 @@ FILE *f;			/* for debug output; NULL none */
 	/* find and eliminate empties until there are no more */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	do {
 		progress = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (s = nfa->states; s != NULL && !NISERR(); s = nexts) {
 			nexts = s->next;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (a = s->outs; a != NULL && !NISERR(); a = nexta) {
 				nexta = a->outchain;
@@ -1295,8 +1295,8 @@ struct nfa *nfa;
 	markcanreach(nfa, nfa->post, nfa->pre, nfa->post);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (s = nfa->states; s != NULL; s = nexts) {
 		nexts = s->next;
@@ -1312,8 +1312,8 @@ struct nfa *nfa;
 	n = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (s = nfa->states; s != NULL; s = s->next)
 		s->no = n++;
@@ -1340,8 +1340,8 @@ struct state *mark;		/* the value to mark with */
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = s->outs; a != NULL; a = a->outchain)
 		markreachable(nfa, a->to, okay, mark);
@@ -1367,8 +1367,8 @@ struct state *mark;		/* the value to mark with */
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = s->ins; a != NULL; a = a->inchain)
 		markcanreach(nfa, a->from, okay, mark);
@@ -1389,14 +1389,14 @@ struct nfa *nfa;
 		return REG_UIMPOSSIBLE;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = nfa->pre->outs; a != NULL; a = a->outchain)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (aa = a->to->outs; aa != NULL; aa = aa->outchain)
 			if (aa->to == nfa->post)
@@ -1426,8 +1426,8 @@ struct cnfa *cnfa;
 	narcs = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (s = nfa->states; s != NULL; s = s->next) {
 		nstates++;
@@ -1458,8 +1458,8 @@ struct cnfa *cnfa;
 	ca = cnfa->arcs;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (s = nfa->states; s != NULL; s = s->next) {
 		assert((size_t)s->no < nstates);
@@ -1469,8 +1469,8 @@ struct cnfa *cnfa;
 		first = ca;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (a = s->outs; a != NULL; a = a->outchain)
 			switch (a->type) {
@@ -1501,8 +1501,8 @@ struct cnfa *cnfa;
 	/* mark no-progress states */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = nfa->pre->outs; a != NULL; a = a->outchain)
 		cnfa->states[a->to->no]->co = 1;
@@ -1529,14 +1529,14 @@ struct carc *last;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (p = first; p <= last; p++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (q = p; q <= last; q++)
 			if (p->co > q->co ||
@@ -1586,8 +1586,8 @@ FILE *f;
 	fprintf(f, "\n");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (s = nfa->states; s != NULL; s = s->next)
 		dumpstate(s, f);
@@ -1624,8 +1624,8 @@ FILE *f;
 	fflush(f);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (a = s->ins; a != NULL; a = a->inchain) {
 		if (a->to != s)
@@ -1715,14 +1715,14 @@ FILE *f;
 		fprintf(f, "?%d?", a->from->no);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (ab = &a->from->oas; ab != NULL; ab = ab->next) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (aa = &ab->a[0]; aa < &ab->a[ABSIZE]; aa++)
 			if (aa == a)
@@ -1740,8 +1740,8 @@ FILE *f;
 	fprintf(f, "%d", a->to->no);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (aa = a->to->ins; aa != NULL; aa = aa->inchain)
 		if (aa == a)
@@ -1781,8 +1781,8 @@ FILE *f;
 	fprintf(f, "\n");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (st = 0; st < cnfa->nstates; st++)
 		dumpcstate(st, cnfa->states[st], cnfa, f);
@@ -1813,8 +1813,8 @@ FILE *f;
 	pos = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 1; ca[i].co != COLORLESS; i++) {
 		if (ca[i].co < cnfa->ncolors)

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -407,8 +407,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int i = 0; i < m_argc; i++ )
         {
@@ -422,8 +422,8 @@ public:
         int argc = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( wargv[argc] )
             argc++;
@@ -432,8 +432,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int i = 0; i < m_argc; i++ )
         {
@@ -446,8 +446,8 @@ public:
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int i = 0; i < m_argc; i++ )
         {
@@ -568,8 +568,8 @@ int BlockUntilChildExit(wxExecuteData& execData)
     // And dispatch until the PID is reset from wxExecuteData::OnExit().
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( execData.pid )
     {
@@ -728,8 +728,8 @@ long wxExecute(char **argv, int flags, wxProcess *process,
         //          getting-the-highest-allocated-file-descriptor]
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int fd = 0; fd < (int)FD_SETSIZE; ++fd )
         {
@@ -766,8 +766,8 @@ long wxExecute(char **argv, int flags, wxProcess *process,
                 wxEnvVariableHashMap::const_iterator it;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( it = oldenv.begin(); it != oldenv.end(); ++it )
                 {
@@ -778,8 +778,8 @@ long wxExecute(char **argv, int flags, wxProcess *process,
                 // And add the new ones (possibly replacing the old values)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( it = env->env.begin(); it != env->env.end(); ++it )
                     wxSetEnv(it->first, it->second);
@@ -791,8 +791,8 @@ long wxExecute(char **argv, int flags, wxProcess *process,
         fprintf(stderr, "execvp(");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( char **a = argv; *a; a++ )
             fprintf(stderr, "%s%s", a == argv ? "" : ", ", *a);
@@ -981,8 +981,8 @@ wxGetCommandOutput(const wxString &cmd, wxMBConv& conv = wxConvISO8859_1)
     char buf[256];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( !feof(f) )
     {
@@ -1330,8 +1330,8 @@ public:
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( wxEnvVars::const_iterator i = gs_envVars.begin();
               i != gs_envVars.end();
@@ -1572,8 +1572,8 @@ bool CheckForChildExit(int pid, int* exitcodeOut)
     // loop while we're getting EINTR
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ;; )
     {
@@ -1639,8 +1639,8 @@ void wxExecuteData::OnSomeChildExited(int WXUNUSED(sig))
     const ChildProcessesData allChildProcesses = ms_childProcesses;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ChildProcessesData::const_iterator it = allChildProcesses.begin();
           it != allChildProcesses.end();

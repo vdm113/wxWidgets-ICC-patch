@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -128,8 +128,8 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 			// Look for backslash-continued lines
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while (lineCurrent > 0) {
 				int eolPos = styler.LineStart(lineCurrent) - 1;
@@ -200,8 +200,8 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; sc.More(); sc.Forward()) {
 
@@ -273,8 +273,8 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 					unsigned char ch = styler.SafeGetCharAt(pos, '\0');
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					while (ch != '\0') {
 						if (ch == '(') {
@@ -418,8 +418,8 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 				sc.SetState(GetPyStringState(styler, sc.currentPos, &nextIndex, allowedLiterals));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				while (nextIndex > (sc.currentPos + 1) && sc.More()) {
 					sc.Forward();
@@ -438,8 +438,8 @@ static bool IsCommentLine(int line, Accessor &styler) {
 	int eol_pos = styler.LineStart(line + 1) - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
@@ -478,8 +478,8 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 	int indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, NULL);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (lineCurrent > 0) {
 		lineCurrent--;
@@ -503,8 +503,8 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 	// to end of document (in case of unclosed quote at end).
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) || prevQuote)) {
 
@@ -544,8 +544,8 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (!quote &&
 		        (lineNext < docLines) &&

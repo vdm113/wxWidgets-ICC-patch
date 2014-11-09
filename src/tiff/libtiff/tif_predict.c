@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -264,8 +264,8 @@ horAcc8(TIFF* tif, uint8* cp0, tmsize_t cc)
 			cp += 3;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while (cc>0) {
 				cp[0] = (char) (cr += cp[0]);
@@ -283,8 +283,8 @@ horAcc8(TIFF* tif, uint8* cp0, tmsize_t cc)
 			cp += 4;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while (cc>0) {
 				cp[0] = (char) (cr += cp[0]);
@@ -298,8 +298,8 @@ horAcc8(TIFF* tif, uint8* cp0, tmsize_t cc)
 			cc -= stride;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			do {
 				REPEAT4(stride, cp[stride] =
@@ -324,8 +324,8 @@ swabHorAcc16(TIFF* tif, uint8* cp0, tmsize_t cc)
 		wc -= stride;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		do {
 			REPEAT4(stride, wp[stride] += wp[0]; wp++)
@@ -347,8 +347,8 @@ horAcc16(TIFF* tif, uint8* cp0, tmsize_t cc)
 		wc -= stride;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		do {
 			REPEAT4(stride, wp[stride] += wp[0]; wp++)
@@ -371,8 +371,8 @@ swabHorAcc32(TIFF* tif, uint8* cp0, tmsize_t cc)
 		wc -= stride;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		do {
 			REPEAT4(stride, wp[stride] += wp[0]; wp++)
@@ -394,8 +394,8 @@ horAcc32(TIFF* tif, uint8* cp0, tmsize_t cc)
 		wc -= stride;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		do {
 			REPEAT4(stride, wp[stride] += wp[0]; wp++)
@@ -424,8 +424,8 @@ fpAcc(TIFF* tif, uint8* cp0, tmsize_t cc)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (count > stride) {
 		REPEAT4(stride, cp[stride] += cp[0]; cp++)
@@ -436,15 +436,15 @@ fpAcc(TIFF* tif, uint8* cp0, tmsize_t cc)
 	cp = (uint8 *) cp0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (count = 0; count < wc; count++) {
 		uint32 byte;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (byte = 0; byte < bps; byte++) {
 			#ifdef WORDS_BIGENDIAN
@@ -499,8 +499,8 @@ PredictorDecodeTile(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 		assert(sp->decodepfunc != NULL);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (occ0 > 0) {
 			(*sp->decodepfunc)(tif, op0, rowsize);
@@ -533,8 +533,8 @@ horDiff8(TIFF* tif, uint8* cp0, tmsize_t cc)
 			int b2 = cp[2];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			do {
 				r1 = cp[3]; cp[3] = r1-r2; r2 = r1;
@@ -550,8 +550,8 @@ horDiff8(TIFF* tif, uint8* cp0, tmsize_t cc)
 			int a2 = cp[3];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			do {
 				r1 = cp[4]; cp[4] = r1-r2; r2 = r1;
@@ -564,8 +564,8 @@ horDiff8(TIFF* tif, uint8* cp0, tmsize_t cc)
 			cp += cc - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			do {
 				REPEAT4(stride, cp[stride] -= cp[0]; cp--)
@@ -589,8 +589,8 @@ horDiff16(TIFF* tif, uint8* cp0, tmsize_t cc)
 		wp += wc - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		do {
 			REPEAT4(stride, wp[stride] -= wp[0]; wp--)
@@ -614,8 +614,8 @@ horDiff32(TIFF* tif, uint8* cp0, tmsize_t cc)
 		wp += wc - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		do {
 			REPEAT4(stride, wp[stride] -= wp[0]; wp--)
@@ -645,15 +645,15 @@ fpDiff(TIFF* tif, uint8* cp0, tmsize_t cc)
 	_TIFFmemcpy(tmp, cp0, cc);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (count = 0; count < wc; count++) {
 		uint32 byte;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (byte = 0; byte < bps; byte++) {
 			#ifdef WORDS_BIGENDIAN
@@ -670,8 +670,8 @@ fpDiff(TIFF* tif, uint8* cp0, tmsize_t cc)
 	cp += cc - stride - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (count = cc; count > stride; count -= stride)
 		REPEAT4(stride, cp[stride] -= cp[0]; cp--)
@@ -725,8 +725,8 @@ PredictorEncodeTile(TIFF* tif, uint8* bp0, tmsize_t cc0, uint16 s)
 	assert((cc0%rowsize)==0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (cc > 0) {
 		(*sp->encodepfunc)(tif, bp, rowsize);

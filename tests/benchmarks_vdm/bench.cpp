@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        tests/benchmarks/bench.cpp
 // Purpose:     Main file of the benchmarking suite
@@ -229,6 +236,11 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for ( Bench::Function *func = Bench::Function::GetFirst();
           func;
           func = func->GetNext() )
@@ -240,6 +252,11 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -263,6 +280,11 @@ int BenchApp::OnRun()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     for ( Bench::Function *func = Bench::Function::GetFirst();
           func;
@@ -293,6 +315,11 @@ int BenchApp::OnRun()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
         for ( long a = 0; ok && a < m_avgCount; a++ )
         {
             wxStopWatch sw;
@@ -300,6 +327,11 @@ int BenchApp::OnRun()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
             for ( long n = 0; n < m_numRuns && ok; n++ )
             {
@@ -368,6 +400,11 @@ void BenchApp::ListBenchmarks()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     for ( Bench::Function *func = Bench::Function::GetFirst();
           func;

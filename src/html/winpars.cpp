@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -67,32 +67,32 @@ wxHtmlWinParser::wxHtmlWinParser(wxHtmlWindowInterface *wndIface)
         int i, j, k, l, m;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < 2; i++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (j = 0; j < 2; j++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for (k = 0; k < 2; k++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for (l = 0; l < 2; l++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                         for (m = 0; m < 7; m++)
                         {
@@ -110,8 +110,8 @@ wxHtmlWinParser::wxHtmlWinParser(wxHtmlWindowInterface *wndIface)
     wxList::compatibility_iterator node = m_Modules.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -127,32 +127,32 @@ wxHtmlWinParser::~wxHtmlWinParser()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 2; i++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (j = 0; j < 2; j++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (k = 0; k < 2; k++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for (l = 0; l < 2; l++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for (m = 0; m < 7; m++)
                     {
@@ -218,8 +218,8 @@ void wxHtmlWinParser::SetFonts(const wxString& normal_face,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 7; i++)
         m_FontsSizes[i] = sizes[i];
@@ -233,32 +233,32 @@ void wxHtmlWinParser::SetFonts(const wxString& normal_face,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 2; i++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (j = 0; j < 2; j++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (k = 0; k < 2; k++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for (l = 0; l < 2; l++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for (m = 0; m < 7; m++) {
                         if (m_FontsTable[i][j][k][l][m] != NULL)
@@ -381,8 +381,8 @@ wxFSFile *wxHtmlWinParser::OpenURL(wxHtmlURLType type,
     wxHtmlOpeningStatus status;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (;;)
     {
@@ -469,8 +469,8 @@ void wxHtmlWinParser::AddText(const wxString& txt)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ( (i < end) &&
                     (*i == wxT('\n') || *i == wxT('\r') || *i == wxT(' ') ||
@@ -482,8 +482,8 @@ void wxHtmlWinParser::AddText(const wxString& txt)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (i < end)
         {
@@ -494,8 +494,8 @@ void wxHtmlWinParser::AddText(const wxString& txt)
                 ++i, ++x;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while ( (i < end) &&
                         (*i == wxT('\n') || *i == wxT('\r') ||
@@ -550,8 +550,8 @@ void wxHtmlWinParser::FlushWordBuf(wxChar *buf, int& len)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < len; i++ )
     {
@@ -591,8 +591,8 @@ void wxHtmlWinParser::AddPreBlock(const wxString& text)
         int posColumn = m_posColumn;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( wxString::const_iterator i = copyFrom; i != end; ++i, ++pos )
         {
@@ -686,8 +686,8 @@ void wxHtmlWinParser::SetFontPointSize(int pt)
         // (binary search is not worth it here for so small number of elements)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int n = 0; n < 6; n++ )
         {

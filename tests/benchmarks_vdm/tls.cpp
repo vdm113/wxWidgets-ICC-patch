@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        tests/benchmarks/strings.cpp
 // Purpose:     String-related benchmarks
@@ -47,6 +54,11 @@ BENCHMARK_FUNC(DummyTLS)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for ( int n = 0; n < NUM_ITER; n++ )
     {
         if ( n % 2 )
@@ -68,6 +80,11 @@ BENCHMARK_FUNC(CompilerTLS)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     for ( int n = 0; n < NUM_ITER; n++ )
     {
@@ -114,6 +131,11 @@ BENCHMARK_FUNC(PosixTLS)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for ( int n = 0; n < NUM_ITER; n++ )
     {
         if ( n % 2 )
@@ -159,6 +181,11 @@ BENCHMARK_FUNC(Win32TLS)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for ( int n = 0; n < NUM_ITER; n++ )
     {
         if ( n % 2 )
@@ -185,6 +212,11 @@ BENCHMARK_FUNC(BoostTLS)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for ( int n = 0; n < NUM_ITER; n++ )
     {
         if ( n % 2 )
@@ -207,6 +239,11 @@ BENCHMARK_FUNC(wxTLS)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     for ( int n = 0; n < NUM_ITER; n++ )
     {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -202,8 +202,8 @@ SelectionSegment Selection::Limits() const {
 		SelectionSegment sr(ranges[0].anchor, ranges[0].caret);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (size_t i=1; i<ranges.size(); i++) {
 			sr.Extend(ranges[i].anchor);
@@ -253,8 +253,8 @@ void Selection::SetMoveExtends(bool moveExtends_) {
 bool Selection::Empty() const {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t i=0; i<ranges.size(); i++) {
 		if (!ranges[i].Empty())
@@ -267,8 +267,8 @@ SelectionPosition Selection::Last() const {
 	SelectionPosition lastPosition;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t i=0; i<ranges.size(); i++) {
 		if (lastPosition < ranges[i].caret)
@@ -283,8 +283,8 @@ int Selection::Length() const {
 	int len = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t i=0; i<ranges.size(); i++) {
 		len += ranges[i].Length();
@@ -295,8 +295,8 @@ int Selection::Length() const {
 void Selection::MovePositions(bool insertion, int startChange, int length) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t i=0; i<ranges.size(); i++) {
 		ranges[i].caret.MoveForInsertDelete(insertion, startChange, length);
@@ -307,16 +307,16 @@ void Selection::MovePositions(bool insertion, int startChange, int length) {
 void Selection::TrimSelection(SelectionRange range) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t i=0; i<ranges.size();) {
 		if ((i != mainRange) && (ranges[i].Trim(range))) {
 			// Trimmed to empty so remove
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (size_t j=i; j<ranges.size()-1; j++) {
 				ranges[j] = ranges[j+1];
@@ -380,8 +380,8 @@ void Selection::CommitTentative() {
 int Selection::CharacterInSelection(int posCharacter) const {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t i=0; i<ranges.size(); i++) {
 		if (ranges[i].ContainsCharacter(posCharacter))
@@ -393,8 +393,8 @@ int Selection::CharacterInSelection(int posCharacter) const {
 int Selection::InSelectionForEOL(int pos) const {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t i=0; i<ranges.size(); i++) {
 		if (!ranges[i].Empty() && (pos > ranges[i].Start().Position()) && (pos <= ranges[i].End().Position()))
@@ -407,8 +407,8 @@ int Selection::VirtualSpaceFor(int pos) const {
 	int virtualSpace = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t i=0; i<ranges.size(); i++) {
 		if ((ranges[i].caret.Position() == pos) && (virtualSpace < ranges[i].caret.VirtualSpace()))
@@ -432,16 +432,16 @@ void Selection::Clear() {
 void Selection::RemoveDuplicates() {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t i=0; i<ranges.size()-1; i++) {
 		if (ranges[i].Empty()) {
 			size_t j=i+1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while (j<ranges.size()) {
 				if (ranges[i] == ranges[j]) {

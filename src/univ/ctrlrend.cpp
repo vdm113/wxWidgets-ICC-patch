@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -177,15 +177,15 @@ void wxControlRenderer::DrawBitmap(wxDC &dc,
         // tile the bitmap
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( ; x < rect.width; x += width )
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( y = 0; y < rect.height; y += height )
             {
@@ -276,8 +276,8 @@ void wxControlRenderer::DrawScrollbar(const wxScrollBar *scrollbar,
     // the shaft
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int nBar = 0; nBar < 2; nBar++ )
     {
@@ -306,8 +306,8 @@ void wxControlRenderer::DrawScrollbar(const wxScrollBar *scrollbar,
     // arrows
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int nArrow = 0; nArrow < 2; nArrow++ )
     {
@@ -420,8 +420,8 @@ void wxControlRenderer::DoDrawItems(const wxListBox *lbox,
                         : -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = itemFirst; n < itemLast; n++ )
     {
@@ -559,8 +559,8 @@ void wxControlRenderer::DrawProgressBar(const wxGauge *gauge)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int n = 0; n < steps; n++ )
         {

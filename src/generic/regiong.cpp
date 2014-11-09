@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -692,8 +692,8 @@ miSetExtents (Region pReg)
     wxASSERT_LEVEL_2(pExtents->y1 < pExtents->y2);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (pBox <= pBoxEnd)
     {
@@ -738,8 +738,8 @@ XOffsetRegion(
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while(nbox--)
     {
@@ -791,8 +791,8 @@ miIntersectO (
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ((r1 != r1End) && (r2 != r2End))
     {
@@ -954,8 +954,8 @@ miCoalesce(
     bandY1 = pCurBox->y1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (curNumRects = 0;
          (pCurBox != pRegEnd) && (pCurBox->y1 == bandY1);
@@ -975,8 +975,8 @@ miCoalesce(
         pRegEnd--;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (pRegEnd[-1].y1 == pRegEnd->y1)
         {
@@ -1003,8 +1003,8 @@ miCoalesce(
          */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do
             {
@@ -1032,8 +1032,8 @@ miCoalesce(
              */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do
             {
@@ -1061,8 +1061,8 @@ miCoalesce(
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 do
                 {
@@ -1215,8 +1215,8 @@ miRegionOp(
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do
     {
@@ -1232,8 +1232,8 @@ miRegionOp(
         r1BandEnd = r1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ((r1BandEnd != r1End) && (r1BandEnd->y1 == r1->y1))
         {
@@ -1243,8 +1243,8 @@ miRegionOp(
         r2BandEnd = r2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ((r2BandEnd != r2End) && (r2BandEnd->y1 == r2->y1))
         {
@@ -1340,16 +1340,16 @@ miRegionOp(
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do
             {
                 r1BandEnd = r1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while ((r1BandEnd < r1End) && (r1BandEnd->y1 == r1->y1))
                 {
@@ -1365,16 +1365,16 @@ miRegionOp(
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do
         {
             r2BandEnd = r2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ((r2BandEnd < r2End) && (r2BandEnd->y1 == r2->y1))
             {
@@ -1462,8 +1462,8 @@ miUnionNonO (
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (r != rEnd)
     {
@@ -1542,8 +1542,8 @@ miUnionO (
     wxASSERT_LEVEL_2 (y1<y2);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ((r1 != r1End) && (r2 != r2End))
     {
@@ -1561,8 +1561,8 @@ miUnionO (
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do
         {
@@ -1678,8 +1678,8 @@ miSubtractNonO1 (
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (r != rEnd)
     {
@@ -1734,8 +1734,8 @@ miSubtractO (
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ((r1 != r1End) && (r2 != r2End))
     {
@@ -1833,8 +1833,8 @@ miSubtractO (
      */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (r1 != r1End)
     {
@@ -1957,8 +1957,8 @@ bool REGION::XPointInRegion(Region pRegion, int x, int y)
         return false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i=0; i<pRegion->numRects; i++)
     {
@@ -1994,8 +1994,8 @@ wxRegionContain REGION::XRectInRegion(register Region region,
     /* can stop when both partOut and partIn are true, or we reach prect->y2 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (pbox = region->rects, pboxEnd = pbox + region->numRects;
          pbox < pboxEnd;

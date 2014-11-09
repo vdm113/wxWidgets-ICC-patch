@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -64,8 +64,8 @@ static DataBrowserItemID* CreateDataBrowserItemIDArray(size_t& noOfEntries, wxDa
   noOfEntries = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (size_t i=0; i<noOfItems; ++i)
     if (items[i].IsOk())
@@ -575,8 +575,8 @@ OSStatus wxMacDataBrowserTableViewControl::GetFreePropertyID(DataBrowserProperty
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (*propertyID=kMinPropertyID; *propertyID<std::numeric_limits<DataBrowserPropertyID>::max(); ++(*propertyID))
     if (IsUsedPropertyID(*propertyID) == errDataBrowserPropertyNotFound)
@@ -666,8 +666,8 @@ OSStatus wxMacDataBrowserTableViewControl::GetFreeItemID(DataBrowserItemID* id) 
    // as the number of items; therefore, start from the number of items to look for a new ID:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (*id=noOfItems; *id<std::numeric_limits<DataBrowserItemID>::max(); ++(*id))
       if (IsUsedItemID(*id) == errDataBrowserItemNotFound)
@@ -675,8 +675,8 @@ OSStatus wxMacDataBrowserTableViewControl::GetFreeItemID(DataBrowserItemID* id) 
    // as the first approach was not successful, try from the beginning:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (*id=0; *id<noOfItems; ++(*id))
       if (IsUsedItemID(*id) == errDataBrowserItemNotFound)
@@ -756,8 +756,8 @@ size_t wxMacDataBrowserTableViewControl::GetSelectedItemIDs(wxArrayDataBrowserIt
   itemIDPtr = (DataBrowserItemID*) (*handle);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (size_t i=0; i<noOfItems; ++i)
   {
@@ -873,8 +873,8 @@ bool wxMacDataViewDataBrowserListViewControl::ClearColumns()
   wxCHECK_MSG(GetColumnCount(&noOfColumns) == noErr,false,_("Could not determine number of columns."));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (UInt32 i=0; i<noOfColumns; ++i)
     wxCHECK_MSG(RemoveColumnByIndex(0) == noErr,false,_("Could not remove column."));
@@ -1176,8 +1176,8 @@ int wxMacDataViewDataBrowserListViewControl::GetSelections(wxDataViewItemArray& 
   sel.SetCount(noOfSelectedItems);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (size_t i=0; i<noOfSelectedItems; ++i)
     sel[i] = wxDataViewItem(reinterpret_cast<void*>(itemIDs[i]));
@@ -1646,8 +1646,8 @@ void wxMacDataViewDataBrowserListViewControl::DataBrowserItemNotificationProc(Da
          // update column widths:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
           for (size_t i=0; i<dataViewCtrlPtr->GetColumnCount(); ++i)
           {
@@ -1870,8 +1870,8 @@ Boolean wxMacDataViewDataBrowserListViewControl::DataBrowserAcceptDragProc(DragR
   ::CountDragItems(dragRef,&noOfDraggedItems);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (UInt16 indexDraggedItem=1; indexDraggedItem<=noOfDraggedItems; ++indexDraggedItem)
   {
@@ -1966,8 +1966,8 @@ Boolean wxMacDataViewDataBrowserListViewControl::DataBrowserAddDragItemProc(Drag
         dataViewEvent.GetDataObject()->GetAllFormats(dataFormats,wxDataObject::Get);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (size_t i=0; i<noOfFormats; ++i)
           switch (dataFormats[i].GetType())
@@ -2056,8 +2056,8 @@ Boolean wxMacDataViewDataBrowserListViewControl::DataBrowserReceiveDragProc(Drag
   ::CountDragItems(dragRef,&noOfDraggedItems);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (UInt16 indexDraggedItem=1; indexDraggedItem<=noOfDraggedItems; ++indexDraggedItem)
   {
@@ -2124,8 +2124,8 @@ wxDataFormat wxMacDataViewDataBrowserListViewControl::GetDnDDataFormat(wxDataObj
     indexFormat = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ((indexFormat < noOfFormats) && compatible)
     {
@@ -2180,8 +2180,8 @@ wxDataObjectComposite* wxMacDataViewDataBrowserListViewControl::GetDnDDataObject
     dataObject = new wxDataObjectComposite();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (UInt16 indexFlavor=1; indexFlavor<=noOfFlavors; ++indexFlavor)
     {
@@ -2273,8 +2273,8 @@ wxDataViewColumn* wxMacDataViewDataBrowserListViewControl::GetColumnPtr(DataBrow
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i=0; i<noOfColumns; ++i)
       if (dataViewCtrlPtr->GetColumnPtr(i)->GetNativeData()->GetPropertyID() == propertyID)

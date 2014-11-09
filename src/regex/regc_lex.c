@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -141,8 +141,8 @@ struct vars *v;
 		v->now += 2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (; !ATEOS() && iscalpha(*v->now); v->now++)
 			switch (*v->now) {
@@ -561,8 +561,8 @@ struct vars *v;
 			case CHR('#'):		/* comment */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				while (!ATEOS() && *v->now != CHR(')'))
 					v->now++;
@@ -843,8 +843,8 @@ int maxlen;
 	n = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (len = 0; len < maxlen && !ATEOS(); len++) {
 		c = *v->now++;
@@ -1007,14 +1007,14 @@ struct vars *v;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (;;) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (!ATEOS() && iscspace(*v->now))
 			v->now++;
@@ -1023,8 +1023,8 @@ struct vars *v;
 		assert(NEXT1('#'));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (!ATEOS() && *v->now != CHR('\n'))
 			v->now++;

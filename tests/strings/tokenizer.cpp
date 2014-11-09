@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -145,8 +145,8 @@ void TokenizerTestCase::GetCount()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(gs_testData); n++ )
     {
@@ -158,8 +158,8 @@ void TokenizerTestCase::GetCount()
         size_t count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( tkz.HasMoreTokens() )
         {
@@ -186,8 +186,8 @@ DoTestGetPosition(const wxChar *s, const wxChar *delims, int pos, ...)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ;; )
     {
@@ -228,8 +228,8 @@ DoTestGetString(const wxChar *s, const wxChar *delims, int pos, ...)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ;; )
     {
@@ -277,8 +277,8 @@ void TokenizerTestCase::StrtokCompat()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(gs_testData); n++ )
     {
@@ -298,8 +298,8 @@ void TokenizerTestCase::StrtokCompat()
         wxStringTokenizer tkz(ttd.str, ttd.delims, ttd.mode);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( tkz.HasMoreTokens() )
         {
@@ -315,8 +315,8 @@ void TokenizerTestCase::CopyObj()
     wxStringTokenizer tkzSrc(wxT("first:second:third:fourth"), wxT(":"));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( tkzSrc.HasMoreTokens() )
     {
@@ -342,8 +342,8 @@ void TokenizerTestCase::AssignObj()
     wxStringTokenizer tkz;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( tkzSrc.HasMoreTokens() )
     {

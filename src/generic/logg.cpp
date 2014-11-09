@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -282,8 +282,8 @@ wxLogGui::DoShowMultipleLogMessages(const wxArrayString& messages,
     message.reserve(nMsgCount*100);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = nMsgCount; n > 0; n-- ) {
         message << m_aMessages[n - 1] << wxT("\n");
@@ -579,8 +579,8 @@ void wxLogFrame::OnSave(wxCommandEvent& WXUNUSED(event))
     int nLines = m_pTextCtrl->GetNumberOfLines();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int nLine = 0; bOk && nLine < nLines; nLine++ ) {
         bOk = file.Write(m_pTextCtrl->GetLineText(nLine) +
@@ -719,8 +719,8 @@ wxLogDialog::wxLogDialog(wxWindow *parent,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -859,8 +859,8 @@ void wxLogDialog::CreateDetailsControls(wxWindow *parent)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t icon = 0; icon < WXSIZEOF(icons); icon++ )
     {
@@ -885,8 +885,8 @@ void wxLogDialog::CreateDetailsControls(wxWindow *parent)
     size_t count = m_messages.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -984,8 +984,8 @@ wxString wxLogDialog::GetLogMessages() const
     text.reserve(count*m_messages[0].length());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; n++ )
     {

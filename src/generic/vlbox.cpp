@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -196,8 +196,8 @@ bool wxVListBox::SelectRange(size_t from, size_t to)
         // refresh just the lines which have really changed
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < count; n++ )
         {
@@ -264,8 +264,8 @@ bool wxVListBox::DoSetCurrent(int current)
             // completely hidden, so that is even worse
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ( (size_t)m_current + 1 == GetVisibleRowsEnd() &&
                     (size_t)m_current != GetVisibleRowsBegin() &&
@@ -334,8 +334,8 @@ int wxVListBox::GetNextSelected(unsigned long& cookie) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( cookie < GetItemCount() )
     {
@@ -351,8 +351,8 @@ void wxVListBox::RefreshSelected()
     // only refresh those items which are currently visible and selected:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = GetVisibleBegin(), end = GetVisibleEnd(); n < end; n++ )
     {
@@ -375,8 +375,8 @@ wxRect wxVListBox::GetItemRect(size_t n) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( line <= n )
     {
@@ -494,8 +494,8 @@ void wxVListBox::OnPaint(wxPaintEvent& WXUNUSED(event))
     const size_t lineMax = GetVisibleEnd();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t line = GetVisibleBegin(); line < lineMax; line++ )
     {

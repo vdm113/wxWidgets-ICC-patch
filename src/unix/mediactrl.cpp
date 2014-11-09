@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -625,8 +625,8 @@ bool wxGStreamerMediaBackend::QueryVideoSizeFromElement(GstElement* element)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ; list != NULL; list = list->next)
     {
@@ -794,8 +794,8 @@ bool wxGStreamerMediaBackend::SyncStateChange(GstElement* element,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do
     {
@@ -869,8 +869,8 @@ bool wxGStreamerMediaBackend::SyncStateChange(GstElement* element,
     gint64 llTimeWaited = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while(GST_STATE(element) != desiredstate)
     {
@@ -1019,8 +1019,8 @@ bool wxGStreamerMediaBackend::CheckForErrors()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned n = 0; n < m_errors.size(); n++ )
     {
@@ -1059,8 +1059,8 @@ bool wxGStreamerMediaBackend::CreateControl(wxControl* ctrl, wxWindow* parent,
     char **argvGST = new char*[wxTheApp->argc + 1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < wxTheApp->argc; i++ )
     {
@@ -1088,8 +1088,8 @@ bool wxGStreamerMediaBackend::CreateControl(wxControl* ctrl, wxWindow* parent,
 #if wxUSE_UNICODE
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < argcGST; i++ )
     {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -57,8 +57,8 @@ void wxGtkFileChooser::GetFilenames( wxArrayString& files ) const
     GetPaths( files );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < files.GetCount(); ++n )
     {
@@ -76,8 +76,8 @@ void wxGtkFileChooser::GetPaths( wxArrayString& paths ) const
         GSList *gpaths = gpathsi;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( gpathsi )
         {
@@ -167,8 +167,8 @@ void wxGtkFileChooser::SetWildcard( const wxString& wildCard )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( ifilters )
         {
@@ -182,8 +182,8 @@ void wxGtkFileChooser::SetWildcard( const wxString& wildCard )
             // add parsed to GtkChooser
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( size_t n = 0; n < wildFilters.GetCount(); ++n )
             {
@@ -196,8 +196,8 @@ void wxGtkFileChooser::SetWildcard( const wxString& wildCard )
                 int n1 = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while ( exttok.HasMoreTokens() )
                 {

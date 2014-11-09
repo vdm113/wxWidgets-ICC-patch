@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -70,8 +70,8 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; sc.More(); sc.Forward()) {
 
@@ -193,8 +193,8 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 					sc.SetState(bEnableCode ? SCE_FS_PREPROCESSOR : SCE_FS_PREPROCESSOR_C);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					do {	// Skip whitespace between # and preprocessor word
 						sc.Forward();
@@ -203,8 +203,8 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 						sc.Forward(6);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 						do {	// Skip more whitespace until keyword
 							sc.Forward();
@@ -264,8 +264,8 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 				sc.SetState(bEnableCode ? SCE_FS_PREPROCESSOR : SCE_FS_PREPROCESSOR_C);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				do {	// Skip whitespace between # and preprocessor word
 					sc.Forward();
@@ -280,8 +280,8 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 					sc.Forward(6);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					do {	// Skip more whitespace until keyword
 						sc.Forward();
@@ -308,8 +308,8 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 				unsigned int endPos(startPos + length);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				do {	// Skip whitespace
 					chSeek = sc.GetRelative(++p);

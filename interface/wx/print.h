@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -537,8 +537,8 @@ public:
         The setup dialog is obsolete from Windows 95, though retained
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for backward compatibility.
     */
@@ -681,8 +681,8 @@ public:
         Dividing the printer PPI by the screen PPI can give a suitable scaling factor
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for drawing text onto the printer.
 
@@ -704,8 +704,8 @@ public:
         Dividing the printer PPI by the screen PPI can give a suitable scaling factor
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for drawing text onto the printer.
 
@@ -822,8 +822,8 @@ public:
         Use this if you want to do your own scaling prior to calling wxDC drawing calls,
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for example, if your underlying model is floating-point and you want to achieve
         maximum drawing precision on high-resolution printers.

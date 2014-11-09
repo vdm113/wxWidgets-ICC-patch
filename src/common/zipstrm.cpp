@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -492,15 +492,15 @@ size_t wxRawInputStream::OnSysRead(void *buffer, size_t size)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (count < size && IsOk())
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (m_parent_i_stream->IsOk() && m_tee->GetCount() == 0)
             m_parent_i_stream->Read(m_dummy.data(), BUFSIZE);
@@ -805,8 +805,8 @@ wxString wxZipEntry::GetName(wxPathFormat format /*=wxPATH_NATIVE*/) const
             wxString name(isDir ? m_Name + wxT("\\") : m_Name);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (size_t i = 0; i < name.length(); i++)
                 if (name[i] == wxT('/'))
@@ -855,15 +855,15 @@ wxString wxZipEntry::GetInternalName(const wxString& name,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (!internal.empty() && *internal.begin() == '/')
         internal.erase(0, 1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (!internal.empty() && internal.compare(0, 2, wxT("./")) == 0)
         internal.erase(0, 2);
@@ -1521,8 +1521,8 @@ bool wxZipInputStream::FindEndRecord()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (pos > minpos) {
         size_t len = wx_truncate_cast(size_t,
@@ -1538,8 +1538,8 @@ bool wxZipInputStream::FindEndRecord()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (p-- > buf.data()) {
             if ((m_signature = CrackUint32(p)) == END_MAGIC) {
@@ -1618,8 +1618,8 @@ wxStreamError wxZipInputStream::ReadLocal(bool readEndRec /*=false*/)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (m_signature == CENTRAL_MAGIC) {
         if (m_weaklinks->IsEmpty() && m_streamlink == NULL)
@@ -1836,8 +1836,8 @@ bool wxZipInputStream::CloseEntry()
         wxCharBuffer buf(BUFSIZE);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (IsOk())
             Read(buf.data(), BUFSIZE);
@@ -2091,8 +2091,8 @@ wxOutputStream *wxZipOutputStream::OpenCompressor(
             int size = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int i = 0; bufs[i].m_data; ++i)
                 size += bufs[i].m_size;
@@ -2268,8 +2268,8 @@ bool wxZipOutputStream::Close()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (it = m_entries.begin(); it != m_entries.end(); ++it) {
         size += (*it)->WriteCentral(*m_parent_o_stream, GetConv());

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -106,8 +106,8 @@ bool wxPNMHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbose
         wxUint32 value, size=width*height;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (wxUint32 i=0; i<size; ++i)
         {
@@ -132,8 +132,8 @@ bool wxPNMHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbose
         wxUint32 value, size=3*width*height;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (wxUint32 i=0; i<size; ++i)
           {
@@ -160,8 +160,8 @@ bool wxPNMHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbose
         unsigned char value;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (wxUint32 i=0; i<size; ++i)
         {
@@ -189,8 +189,8 @@ bool wxPNMHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbose
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( unsigned i = 0; i < 3*width*height; i++ )
                 ptr[i] = (255 * ptr[i])/maxval;

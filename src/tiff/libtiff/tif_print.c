@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -81,8 +81,8 @@ _TIFFPrintField(FILE* fd, const TIFFField *fip,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for(j = 0; j < value_count; j++) {
 		if(fip->field_type == TIFF_BYTE)
@@ -203,8 +203,8 @@ _TIFFPrettyPrintField(TIFF* tif, const TIFFField *fip, FILE* fd, uint32 tag,
 			fprintf(fd, "  XMLPacket (XMP Metadata):\n" );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for(i = 0; i < value_count; i++)
 				fputc(((char *)raw_data)[i], fd);
@@ -385,8 +385,8 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 		sep = "";
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (i = 0; i < td->td_extrasamples; i++) {
 			switch (td->td_sampleinfo[i]) {
@@ -415,8 +415,8 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 		sep = "";
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (cp = td->td_inknames; 
 		     i > 0 && cp < td->td_inknames + td->td_inknameslen; 
@@ -511,8 +511,8 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 		fprintf(fd, "  SMin Sample Value:");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (i = 0; i < count; ++i)
 			fprintf(fd, " %g", td->td_sminsamplevalue[i]);
@@ -523,8 +523,8 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 		fprintf(fd, "  SMax Sample Value:");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (i = 0; i < count; ++i)
 			fprintf(fd, " %g", td->td_smaxsamplevalue[i]);
@@ -555,8 +555,8 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 			n = 1L<<td->td_bitspersample;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (l = 0; l < n; l++)
 				fprintf(fd, "   %5lu: %5u %5u %5u\n",
@@ -571,8 +571,8 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 		fprintf(fd, "  Reference Black/White:\n");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (i = 0; i < 3; i++)
 		fprintf(fd, "    %2d: %5g %5g\n", i,
@@ -586,16 +586,16 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 			n = 1L<<td->td_bitspersample;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (l = 0; l < n; l++) {
 				fprintf(fd, "    %2lu: %5u",
 				    l, td->td_transferfunction[0][l]);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (i = 1; i < td->td_samplesperpixel; i++)
 					fprintf(fd, " %5u",
@@ -609,8 +609,8 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 		fprintf(fd, "  SubIFD Offsets:");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (i = 0; i < td->td_nsubifd; i++)
 #if defined(__WIN32__) && (defined(_MSC_VER) || defined(__MINGW32__))
@@ -633,8 +633,8 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 		count = (short) TIFFGetTagListCount(tif);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for(i = 0; i < count; i++) {
 			uint32 tag = TIFFGetTagListEntry(tif, i);
@@ -725,8 +725,8 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 		    isTiled(tif) ? "Tiles" : "Strips");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (s = 0; s < td->td_nstrips; s++)
 #if defined(__WIN32__) && (defined(_MSC_VER) || defined(__MINGW32__))
@@ -754,8 +754,8 @@ _TIFFprintAsciiBounded(FILE* fd, const char* cp, int max_chars)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; max_chars > 0 && *cp != '\0'; cp++, max_chars--) {
 		const char* tp;
@@ -766,8 +766,8 @@ _TIFFprintAsciiBounded(FILE* fd, const char* cp, int max_chars)
 		}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (tp = "\tt\bb\rr\nn\vv"; *tp; tp++)
 			if (*tp++ == *cp)

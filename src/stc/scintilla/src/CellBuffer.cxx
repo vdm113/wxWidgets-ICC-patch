@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -169,8 +169,8 @@ void UndoHistory::EnsureUndoRoom() {
 		Action *actionsNew = new Action[lenActionsNew];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int act = 0; act <= currentAction; act++)
 			actionsNew[act].Grab(&actions[act]);
@@ -198,8 +198,8 @@ const char *UndoHistory::AppendAction(actionType at, int position, const char *d
 			// Container actions may forward the coalesce state of Scintilla Actions.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while ((actPrevious->at == containerAction) && actPrevious->mayCoalesce) {
 				targetAct--;
@@ -295,8 +295,8 @@ void UndoHistory::DropUndoSequence() {
 void UndoHistory::DeleteUndoHistory() {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int i = 1; i < maxAction; i++)
 		actions[i].Destroy();
@@ -327,8 +327,8 @@ int UndoHistory::StartUndo() {
 	int act = currentAction;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (actions[act].at != startAction && act > 0) {
 		act--;
@@ -357,8 +357,8 @@ int UndoHistory::StartRedo() {
 	int act = currentAction;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (actions[act].at != startAction && act < maxAction) {
 		act++;
@@ -462,8 +462,8 @@ bool CellBuffer::SetStyleFor(int position, int lengthStyle, char styleValue, cha
 		(lengthStyle > 0 && lengthStyle + position <= style.Length()));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (lengthStyle--) {
 		char curVal = style.ValueAt(position);
@@ -576,8 +576,8 @@ void CellBuffer::ResetLineEnds() {
 	unsigned char chPrev = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int i = 0; i < length; i++) {
 		unsigned char ch = substance.ValueAt(position + i);
@@ -635,8 +635,8 @@ void CellBuffer::BasicInsertString(int position, const char *s, int insertLength
 	unsigned char ch = ' ';
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int i = 0; i < insertLength; i++) {
 		ch = s[i];
@@ -671,8 +671,8 @@ void CellBuffer::BasicInsertString(int position, const char *s, int insertLength
 		// May have end of UTF-8 line end in buffer and start in insertion
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int j = 0; j < UTF8SeparatorLength-1; j++) {
 			unsigned char chAt = substance.ValueAt(position + insertLength + j);
@@ -724,8 +724,8 @@ void CellBuffer::BasicDeleteChars(int position, int deleteLength) {
 		unsigned char ch = chNext;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int i = 0; i < deleteLength; i++) {
 			chNext = substance.ValueAt(position + i + 1);

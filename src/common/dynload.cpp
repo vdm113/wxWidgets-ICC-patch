@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -97,8 +97,8 @@ wxPluginLibrary::wxPluginLibrary(const wxString &libname, int flags)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( const wxClassInfo* info = m_ourFirst; ; info = info->GetNext() )
         {
@@ -170,8 +170,8 @@ void wxPluginLibrary::UpdateClasses()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( const wxClassInfo *info = m_ourFirst; ; info = info->GetNext() )
     {
@@ -198,8 +198,8 @@ void wxPluginLibrary::RestoreClasses()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( const wxClassInfo *info = m_ourFirst; ; info = info->GetNext() )
     {
@@ -227,8 +227,8 @@ void wxPluginLibrary::RegisterModules()
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( const wxClassInfo *info = m_ourFirst; ; info = info->GetNext() )
         {
@@ -251,8 +251,8 @@ void wxPluginLibrary::RegisterModules()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxModuleList::iterator it = m_wxmodules.begin();
           it != m_wxmodules.end();
@@ -272,8 +272,8 @@ void wxPluginLibrary::RegisterModules()
             wxModuleList::iterator oldNode = m_wxmodules.end();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do {
                 ++it;
@@ -295,16 +295,16 @@ void wxPluginLibrary::UnregisterModules()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( it = m_wxmodules.begin(); it != m_wxmodules.end(); ++it )
         (*it)->Exit();
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( it = m_wxmodules.begin(); it != m_wxmodules.end(); ++it )
         wxModule::UnregisterModule( *it );
@@ -432,8 +432,8 @@ void wxPluginManager::Unload()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxDLManifest::iterator i = ms_manifest->begin();
           i != ms_manifest->end();

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -93,8 +93,8 @@ jpeg_copy_critical_parameters (j_decompress_ptr srcinfo,
   /* Copy the source's quantization tables. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (tblno = 0; tblno < NUM_QUANT_TBLS; tblno++) {
     if (srcinfo->quant_tbl_ptrs[tblno] != NULL) {
@@ -116,8 +116,8 @@ jpeg_copy_critical_parameters (j_decompress_ptr srcinfo,
 	     MAX_COMPONENTS);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0, incomp = srcinfo->comp_info, outcomp = dstinfo->comp_info;
        ci < dstinfo->num_components; ci++, incomp++, outcomp++) {
@@ -138,8 +138,8 @@ jpeg_copy_critical_parameters (j_decompress_ptr srcinfo,
     if (c_quant != NULL) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (coefi = 0; coefi < DCTSIZE2; coefi++) {
 	if (c_quant->quantval[coefi] != slot_quant->quantval[coefi])
@@ -311,8 +311,8 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
   /* Align the virtual buffers for the components used in this scan. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
     compptr = cinfo->cur_comp_info[ci];
@@ -325,15 +325,15 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
   /* Loop to process one whole iMCU row */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (yoffset = coef->MCU_vert_offset; yoffset < coef->MCU_rows_per_iMCU_row;
        yoffset++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (MCU_col_num = coef->mcu_ctr; MCU_col_num < cinfo->MCUs_per_row;
 	 MCU_col_num++) {
@@ -341,8 +341,8 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
       blkn = 0;			/* index of current DCT block within MCU */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
 	compptr = cinfo->cur_comp_info[ci];
@@ -351,8 +351,8 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 						: compptr->last_col_width;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (yindex = 0; yindex < compptr->MCU_height; yindex++) {
 	  if (coef->iMCU_row_num < last_iMCU_row ||
@@ -361,8 +361,8 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 	    buffer_ptr = buffer[ci][yindex+yoffset] + start_col;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	    for (xindex = 0; xindex < blockcnt; xindex++)
 	      MCU_buffer[blkn++] = buffer_ptr++;
@@ -378,8 +378,8 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 	   */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	  for (; xindex < compptr->MCU_width; xindex++) {
 	    MCU_buffer[blkn] = coef->dummy_buffer[blkn];
@@ -439,8 +439,8 @@ transencode_coef_controller (j_compress_ptr cinfo,
   jzero_far((void FAR *) buffer, C_MAX_BLOCKS_IN_MCU * SIZEOF(JBLOCK));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < C_MAX_BLOCKS_IN_MCU; i++) {
     coef->dummy_buffer[i] = buffer + i;

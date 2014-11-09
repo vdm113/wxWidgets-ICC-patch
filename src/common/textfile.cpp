@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -135,8 +135,8 @@ bool wxTextFile::OnRead(const wxMBConv& conv)
         char *dst = buf.data();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t nRemaining = bufSize; nRemaining > 0; )
         {
@@ -174,8 +174,8 @@ bool wxTextFile::OnRead(const wxMBConv& conv)
         char block[BLOCK_SIZE];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( ;; )
         {
@@ -230,8 +230,8 @@ bool wxTextFile::OnRead(const wxMBConv& conv)
     const wxString::const_iterator end = str.end();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxString::const_iterator p = lineStart; p != end; p++ )
     {
@@ -296,8 +296,8 @@ bool wxTextFile::OnWrite(wxTextFileType typeNew, const wxMBConv& conv)
     size_t nCount = GetLineCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < nCount; n++ ) {
         fileTmp.Write(GetLine(n) +

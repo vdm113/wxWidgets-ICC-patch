@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -67,8 +67,8 @@ ScoreCanvas::ScoreCanvas(wxWindow* parent, ScoreFile* scoreFile, const wxPoint& 
     os << wxT("Player\tWins\tGames\tScore\n");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i = 0; i < players.Count(); i++)
     {
@@ -112,8 +112,8 @@ void ScoreCanvas::OnDraw(wxDC& dc)
     int y = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (*str)
     {
@@ -162,8 +162,8 @@ ScoreDialog::ScoreDialog(wxWindow* parent, ScoreFile* file) :
     list->CreateGrid(players.Count(), 4);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i = 0; i < players.Count(); i++)
     {

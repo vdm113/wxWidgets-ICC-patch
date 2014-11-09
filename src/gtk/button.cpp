@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -264,8 +264,8 @@ GtkLabel *wxButton::GTKGetLabel() const
         wxGtkList list(gtk_container_get_children(GTK_CONTAINER(box)));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (GList* item = list; item; item = item->next)
         {
@@ -296,8 +296,8 @@ void wxButton::DoApplyWidgetStyle(GtkRcStyle *style)
             wxGtkList list(gtk_container_get_children(GTK_CONTAINER(box)));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (GList* item = list; item; item = item->next)
             {

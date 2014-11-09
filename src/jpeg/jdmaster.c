@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -136,16 +136,16 @@ jpeg_calc_output_dimensions (j_decompress_ptr cinfo)
    */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
     int ssize = cinfo->min_DCT_scaled_size;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (ssize < DCTSIZE &&
 	   (compptr->h_samp_factor * ssize * 2 <=
@@ -162,8 +162,8 @@ jpeg_calc_output_dimensions (j_decompress_ptr cinfo)
    */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -282,8 +282,8 @@ prepare_range_limit_table (j_decompress_ptr cinfo)
   /* Main part of "simple" table: limit[x] = x */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i <= MAXJSAMPLE; i++)
     table[i] = (JSAMPLE) i;
@@ -291,8 +291,8 @@ prepare_range_limit_table (j_decompress_ptr cinfo)
   /* End of simple table, rest of first half of post-IDCT table */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = CENTERJSAMPLE; i < 2*(MAXJSAMPLE+1); i++)
     table[i] = MAXJSAMPLE;

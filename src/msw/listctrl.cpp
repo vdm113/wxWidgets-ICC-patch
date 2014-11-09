@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -423,8 +423,8 @@ void wxListCtrl::FreeAllInternalData()
     const unsigned count = m_internalData.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned n = 0; n < count; n++ )
         delete m_internalData[n];
@@ -663,8 +663,8 @@ int wxListCtrl::GetColumnOrder(int col) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int pos = 0; pos < numCols; pos++ )
     {
@@ -1441,8 +1441,8 @@ bool wxListCtrl::DeleteAllColumns()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( m_colCount > 0 )
     {
@@ -1583,8 +1583,8 @@ long wxListCtrl::FindItem(long start, wxUIntPtr data)
     const unsigned count = m_internalData.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned n = 0; n < count; n++ )
     {
@@ -1967,8 +1967,8 @@ int WXDLLIMPEXP_CORE wxMSWGetColumnClicked(NMHDR *nmhdr, POINT *ptClick)
     const int colCount = Header_GetItemCount(nmhdr->hwndFrom);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int col = 0; col < colCount; col++ )
     {
@@ -2463,8 +2463,8 @@ bool wxListCtrl::MSWOnNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result)
 #endif // wxUSE_STOPWATCH
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for ( int currentPos = startPos; ; )
                     {
@@ -2627,8 +2627,8 @@ bool wxListCtrl::MSWOnNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result)
                 const unsigned count = m_internalData.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( unsigned n = 0; n < count; n++ )
                 {
@@ -2810,8 +2810,8 @@ static void HandleItemPaint(LPNMLVCUSTOMDRAW pLVCD, HFONT hfont)
     // the last item to gain selection and also check for it here
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = -1;; )
     {
@@ -2877,8 +2877,8 @@ static void HandleItemPaint(LPNMLVCUSTOMDRAW pLVCD, HFONT hfont)
     const int colCount = Header_GetItemCount(ListView_GetHeader(hwndList));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int col = 0; col < colCount; col++ )
     {
@@ -3002,8 +3002,8 @@ void wxListCtrl::OnPaint(wxPaintEvent& event)
         const long top = GetTopItem();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int i = top; i < top + GetCountPerPage() + 1; i++ )
         {
@@ -3056,8 +3056,8 @@ void wxListCtrl::OnPaint(wxPaintEvent& event)
             int x = itemRect.GetX();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int col = 0; col < numCols; col++)
             {

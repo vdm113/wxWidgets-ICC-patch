@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -354,8 +354,8 @@ void DXFRenderer::Clear()
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (DXFLayerList::compatibility_iterator node = m_layers.GetFirst(); node; node = node->GetNext())
         {
@@ -367,8 +367,8 @@ void DXFRenderer::Clear()
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (DXFEntityList::compatibility_iterator node = m_entities.GetFirst(); node; node = node->GetNext())
         {
@@ -383,8 +383,8 @@ int DXFRenderer::GetLayerColour(const wxString& layer) const
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (DXFLayerList::compatibility_iterator node = m_layers.GetFirst(); node; node = node->GetNext())
     {
@@ -409,8 +409,8 @@ bool DXFRenderer::ParseHeader(wxInputStream& stream)
     wxString line1, line2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (stream.CanRead())
     {
@@ -430,8 +430,8 @@ bool DXFRenderer::ParseTables(wxInputStream& stream)
     DXFLayer layer;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (stream.CanRead())
     {
@@ -495,8 +495,8 @@ bool DXFRenderer::ParseEntities(wxInputStream& stream)
     wxString layer;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (stream.CanRead())
     {
@@ -593,8 +593,8 @@ bool DXFRenderer::Load(wxInputStream& stream)
     wxString line1, line2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (stream.CanRead())
     {
@@ -641,8 +641,8 @@ void DXFRenderer::NormalizeEntities()
     DXFVector maxv(-10e20f, -10e20f, -10e20f);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (DXFEntityList::compatibility_iterator node = m_entities.GetFirst(); node; node = node->GetNext())
     {
@@ -653,8 +653,8 @@ void DXFRenderer::NormalizeEntities()
             const DXFVector *v[2] = { &line->v0, &line->v1 };
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int i = 0; i < 2; ++i)
             {
@@ -671,8 +671,8 @@ void DXFRenderer::NormalizeEntities()
             const DXFVector *v[4] = { &face->v0, &face->v1, &face->v2, &face->v3 };
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int i = 0; i < 4; ++i)
             {
@@ -691,8 +691,8 @@ void DXFRenderer::NormalizeEntities()
     float factor = mymin(mymin(10.0f / span.x, 10.0f / span.y), 10.0f / span.z);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (DXFEntityList::compatibility_iterator node2 = m_entities.GetFirst(); node2; node2 = node2->GetNext())
     {
@@ -703,8 +703,8 @@ void DXFRenderer::NormalizeEntities()
             DXFVector *v[2] = { &line->v0, &line->v1 };
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int i = 0; i < 2; ++i)
             {
@@ -718,8 +718,8 @@ void DXFRenderer::NormalizeEntities()
             DXFVector *v[4] = { &face->v0, &face->v1, &face->v2, &face->v3 };
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int i = 0; i < 4; ++i)
             {
@@ -739,8 +739,8 @@ void DXFRenderer::Render() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (DXFEntityList::compatibility_iterator node = m_entities.GetFirst(); node; node = node->GetNext())
     {

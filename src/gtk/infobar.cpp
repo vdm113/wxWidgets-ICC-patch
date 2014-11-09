@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -279,8 +279,8 @@ bool wxInfoBar::HasButtonId(wxWindowID btnid) const
     const wxInfoBarGTKImpl::Buttons& buttons = m_impl->m_buttons;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxInfoBarGTKImpl::Buttons::const_reverse_iterator i = buttons.rbegin();
           i != buttons.rend();
@@ -305,8 +305,8 @@ void wxInfoBar::RemoveButton(wxWindowID btnid)
     wxInfoBarGTKImpl::Buttons& buttons = m_impl->m_buttons;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxInfoBarGTKImpl::Buttons::reverse_iterator i = buttons.rbegin();
           i != buttons.rend();

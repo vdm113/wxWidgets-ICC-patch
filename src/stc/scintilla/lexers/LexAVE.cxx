@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -88,8 +88,8 @@ static void ColouriseAveDoc(
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; sc.More(); sc.Forward()) {
 		if (sc.atLineEnd) {
@@ -183,8 +183,8 @@ static void FoldAveDoc(unsigned int startPos, int length, int /* initStyle */, W
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = static_cast<char>(tolower(chNext));
@@ -196,8 +196,8 @@ static void FoldAveDoc(unsigned int startPos, int length, int /* initStyle */, W
 			if (ch == 't' || ch == 'f' || ch == 'w' || ch == 'e') {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (unsigned int j = 0; j < 6; j++) {
 					if (!iswordchar(styler[i + j])) {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -228,8 +228,8 @@ void TextFileTestCase::ReadMixedWithFuzzing()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int iteration = 0; iteration < 100; iteration++)
     {
@@ -245,8 +245,8 @@ void TextFileTestCase::ReadMixedWithFuzzing()
         unsigned linesCnt = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = 1; i < BUF_LEN; i++ )
         {
@@ -282,8 +282,8 @@ void TextFileTestCase::ReadCRCRLF()
     wxString all;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxString str = f.GetFirstLine(); !f.Eof(); str = f.GetNextLine() )
         all += str;
@@ -342,8 +342,8 @@ void TextFileTestCase::ReadBig()
         wxFFile f(GetTestFileName(), "w");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < NUM_LINES; n++ )
         {

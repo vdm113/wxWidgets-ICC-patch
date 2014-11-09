@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -69,8 +69,8 @@ void AutoCaptureMechanism::Delay(int seconds)
     clock_t start = clock();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( clock() - start < (clock_t)CLOCKS_PER_SEC * seconds)
         wxYieldIfNeeded();
@@ -94,8 +94,8 @@ bool AutoCaptureMechanism::Capture(wxBitmap* bitmap, int x, int y,
     wxBitmap fullscreen;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do
     {
@@ -163,8 +163,8 @@ void AutoCaptureMechanism::Save(wxBitmap* screenshot, const wxString& fileName)
     // do not overwrite already existing files with this name
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (fullFileName.FileExists())
         fullFileName.SetName(fullFileName.GetName() + "_");
@@ -181,8 +181,8 @@ void AutoCaptureMechanism::CaptureAll()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (ControlList::iterator it = m_controlList.begin();
          it != m_controlList.end();
@@ -206,8 +206,8 @@ void AutoCaptureMechanism::CaptureAll()
             // union screenshots until AJ_UnionEnd
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do
             {
@@ -340,8 +340,8 @@ wxRect AutoCaptureMechanism::GetRect(wxWindow* ctrl, int flag)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int i = 0; i < 4; ++i)
             l[i] = new wxStaticText(parent, wxID_ANY, wxT(" "));
@@ -382,8 +382,8 @@ void AutoCaptureMechanism::PutBack(wxWindow * ctrl)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (wxSizerItemList::iterator it = children.begin(); it != children.end(); ++it)
     {

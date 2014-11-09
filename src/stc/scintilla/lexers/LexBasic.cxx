@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -331,8 +331,8 @@ void SCI_METHOD LexerBasic::Lex(unsigned int startPos, int length, int initStyle
 	// Can't use sc.More() here else we miss the last character
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; ; sc.Forward()) {
 		if (sc.state == SCE_B_IDENTIFIER) {
@@ -352,8 +352,8 @@ void SCI_METHOD LexerBasic::Lex(unsigned int startPos, int length, int initStyle
 					sc.GetCurrentLowered(s, sizeof(s));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					for (int i = 0; i < 4; i++) {
 						if (keywordlists[i].InList(s)) {
@@ -508,8 +508,8 @@ void SCI_METHOD LexerBasic::Fold(unsigned int startPos, int length, int /* initS
 	// whitespace, for tokens like "End Function"
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int i = startPos; i < endPos; i++) {
 		int c = cNext;

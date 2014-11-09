@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -113,8 +113,8 @@ static CGDisplayErr wxOSXGetDisplayList(CGDisplayCount maxDisplays,
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( CGDisplayCount i = 0; i < onlineCount; ++i )
                 {
@@ -169,8 +169,8 @@ int wxDisplayFactoryMacOSX::GetFromPoint(const wxPoint& p)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (nWhich = 0; nWhich < (int) theCount; ++nWhich)
         {
@@ -252,8 +252,8 @@ wxArrayVideoModes wxDisplayImplMacOSX::GetModes(const wxVideoMode& mode) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (CFIndex i = 0; i < CFArrayGetCount(theArray); ++i)
     {

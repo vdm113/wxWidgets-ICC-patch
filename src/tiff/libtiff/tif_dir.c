@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -86,8 +86,8 @@ setDoubleArrayOneValue(double** vpp, double value, size_t nmemb)
 	{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (nmemb--)
 			((double*)*vpp)[nmemb] = value;
@@ -114,8 +114,8 @@ setExtraSamples(TIFFDirectory* td, va_list ap, uint32* v)
 		return 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 0; i < *v; i++) {
 		if (va[i] > EXTRASAMPLE_UNASSALPHA) {
@@ -153,14 +153,14 @@ checkInkNamesString(TIFF* tif, uint32 slen, const char* s)
 		const char* cp = s;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (; i > 0; i--) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (; cp < ep && *cp != '\0'; cp++) {}
 			if (cp >= ep)
@@ -439,8 +439,8 @@ _TIFFVSetField(TIFF* tif, uint32 tag, va_list ap)
 		v = (td->td_samplesperpixel - td->td_extrasamples) > 1 ? 3 : 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (i = 0; i < v; i++)
 			_TIFFsetShortArray(&td->td_transferfunction[i],
@@ -495,8 +495,8 @@ _TIFFVSetField(TIFF* tif, uint32 tag, va_list ap)
 		tv = NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (iCustom = 0; iCustom < td->td_customValueCount; iCustom++) {
 			if (td->td_customValues[iCustom].info->field_tag == tag) {
@@ -805,8 +805,8 @@ TIFFUnsetField(TIFF* tif, uint32 tag)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < td->td_customValueCount; i++) {
                 
@@ -820,8 +820,8 @@ TIFFUnsetField(TIFF* tif, uint32 tag)
             _TIFFfree(tv->value);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for( ; i < td->td_customValueCount-1; i++) {
                 td->td_customValues[i] = td->td_customValues[i+1];
@@ -916,8 +916,8 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 				double v = td->td_sminsamplevalue[0];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (i=1; i < td->td_samplesperpixel; ++i)
 					if( td->td_sminsamplevalue[i] < v )
@@ -935,8 +935,8 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 				double v = td->td_smaxsamplevalue[0];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (i=1; i < td->td_samplesperpixel; ++i)
 					if( td->td_smaxsamplevalue[i] > v )
@@ -1080,8 +1080,8 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 				ret_val = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (i = 0; i < td->td_customValueCount; i++) {
 					TIFFTagValue *tv = td->td_customValues + i;
@@ -1252,8 +1252,8 @@ TIFFFreeDirectory(TIFF* tif)
 	/* Cleanup custom tag values */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for( i = 0; i < td->td_customValueCount; i++ ) {
 		if (td->td_customValues[i].value)
@@ -1545,8 +1545,8 @@ TIFFNumberOfDirectories(TIFF* tif)
 	n = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (nextdir != 0 && TIFFAdvanceDirectory(tif, &nextdir, NULL))
 		n++;
@@ -1569,8 +1569,8 @@ TIFFSetDirectory(TIFF* tif, uint16 dirn)
 		nextdir = tif->tif_header.big.tiff_diroff;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (n = dirn; n > 0 && nextdir != 0; n--)
 		if (!TIFFAdvanceDirectory(tif, &nextdir, NULL))
@@ -1660,8 +1660,8 @@ TIFFUnlinkDirectory(TIFF* tif, uint16 dirn)
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (n = dirn-1; n > 0; n--) {
 		if (nextdir == 0) {

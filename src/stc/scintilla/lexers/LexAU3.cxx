@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -123,8 +123,8 @@ static int GetSendKey(const char *szLine, char *szKey)
 	// split the portion of the sendkey in the part before and after the spaces
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ( ( (cTemp = szLine[nPos]) != '\0'))
 	{
@@ -189,8 +189,8 @@ static bool IsContinuationLine(unsigned int szLine, Accessor &styler)
 	//int stylech = styler.StyleAt(nsPos);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (nsPos < nePos)
 	{
@@ -232,8 +232,8 @@ static void ColouriseAU3Doc(unsigned int startPos,
 	if (!(initStyle==SCE_AU3_COMMENTBLOCK)) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while ((lineCurrent > 0 && IsContinuationLine(lineCurrent,styler)) ||
 			   (lineCurrent > 1 && IsContinuationLine(lineCurrent-1,styler))) {
@@ -257,8 +257,8 @@ static void ColouriseAU3Doc(unsigned int startPos,
 	//$$$
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (; sc.More(); sc.Forward()) {
 		char s[100];
@@ -524,8 +524,8 @@ static void ColouriseAU3Doc(unsigned int startPos,
 					char	cTemp;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					while (!(nState == 2) && ((cTemp = s[nPos]) != '\0'))
 					{
@@ -697,8 +697,8 @@ static int GetStyleFirstWord(unsigned int szLine, Accessor &styler)
 	int nePos = styler.LineStart(szLine+1) - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (isspacechar(styler.SafeGetCharAt(nsPos)) && nsPos < nePos)
 	{
@@ -733,8 +733,8 @@ static void FoldAU3Doc(unsigned int startPos, int length, int, WordList *[], Acc
 	// find the first previous line without continuation character at the end
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((lineCurrent > 0 && IsContinuationLine(lineCurrent,styler)) ||
 	       (lineCurrent > 1 && IsContinuationLine(lineCurrent-1,styler))) {
@@ -764,8 +764,8 @@ static void FoldAU3Doc(unsigned int startPos, int length, int, WordList *[], Acc
 	//
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int i = startPos; i < endPos; i++) {
 		char ch = chNext;

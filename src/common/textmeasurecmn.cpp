@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -120,8 +120,8 @@ void wxTextMeasureBase::GetMultiLineTextExtent(const wxString& text,
     wxString curLine;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxString::const_iterator pc = text.begin(); ; ++pc )
     {
@@ -186,8 +186,8 @@ wxSize wxTextMeasureBase::GetLargestStringExtent(size_t n,
     wxCoord w, h, widthMax = 0, heightMax = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < n; ++i )
     {
@@ -271,8 +271,8 @@ bool wxTextMeasureBase::DoGetPartialTextExtents(const wxString& text,
     int n = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxString::const_iterator it = text.begin();
           it != text.end();

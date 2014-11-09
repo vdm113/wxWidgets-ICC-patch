@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -195,8 +195,8 @@ wxMenuBar::wxMenuBar(size_t n, wxMenu *menus[], const wxArrayString& titles, lon
     m_titles = titles;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < n; i++ )
         m_menus.Append(menus[i]);
@@ -208,8 +208,8 @@ wxMenuBar::wxMenuBar(size_t n, wxMenu *menus[], const wxString titles[], long WX
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < n; i++ )
     {
@@ -314,8 +314,8 @@ int wxMenuBar::FindMenuItem(const wxString& menuString, const wxString& itemStri
     size_t menuCount = GetMenuCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < menuCount; i++)
     {
@@ -333,8 +333,8 @@ wxMenuItem *wxMenuBar::FindItem(int id, wxMenu ** itemMenu) const
     size_t menuCount = GetMenuCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < menuCount; i++)
     {
@@ -370,8 +370,8 @@ bool wxMenuBar::CreateMenuBar(wxFrame* parent)
     size_t menuCount = GetMenuCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < menuCount; i++)
     {
@@ -421,8 +421,8 @@ bool wxMenuBar::DestroyMenuBar()
     size_t menuCount = GetMenuCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < menuCount; i++)
     {
@@ -451,8 +451,8 @@ void wxMenu::DestroyWidgetAndDetach()
             wxMenuItemList::compatibility_iterator node = menuParent->GetMenuItems().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ( node )
             {
@@ -545,8 +545,8 @@ WXWidget wxMenu::CreateMenu (wxMenuBar * menuBar,
     size_t i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
           node;
@@ -569,8 +569,8 @@ void wxMenu::DestroyMenu (bool full)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
           node;
@@ -609,8 +609,8 @@ WXWidget wxMenu::FindMenuItem (int id, wxMenuItem ** it) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
           node;
@@ -651,8 +651,8 @@ void wxMenu::SetBackgroundColour(const wxColour& col)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
           node;
@@ -681,8 +681,8 @@ void wxMenu::SetForegroundColour(const wxColour& col)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
           node;
@@ -720,8 +720,8 @@ void wxMenu::ChangeFont(bool keepOriginalSize)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
           node;
@@ -760,8 +760,8 @@ bool wxMenuBar::SetBackgroundColour(const wxColour& col)
     size_t menuCount = GetMenuCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < menuCount; i++)
         m_menus.Item(i)->GetData()->SetBackgroundColour((wxColour&) col);
@@ -781,8 +781,8 @@ bool wxMenuBar::SetForegroundColour(const wxColour& col)
     size_t menuCount = GetMenuCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < menuCount; i++)
         m_menus.Item(i)->GetData()->SetForegroundColour((wxColour&) col);
@@ -803,8 +803,8 @@ bool wxMenuBar::SetFont(const wxFont& font)
     size_t menuCount = GetMenuCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < menuCount; i++)
         m_menus.Item(i)->GetData()->SetFont(font);

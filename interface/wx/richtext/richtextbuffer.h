@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -2099,8 +2099,8 @@ public:
         to replace characters in an object for editing and display purposes, for example
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for highlighting special characters.
     */
@@ -2563,8 +2563,8 @@ public:
         lays out the object again using the minimum size. @a availableParentSpace is the maximum space
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for the object, whereas @a availableContainerSpace is the container with which relative positions and
         sizes should be computed. For example, a text box whose space has already been constrained
@@ -6353,8 +6353,8 @@ public:
         See the documentation for each handler class to see what flags are relevant
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for each handler.
 
@@ -6483,8 +6483,8 @@ public:
         to replace characters in an object for editing and display purposes, for example
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for highlighting special characters.
     */

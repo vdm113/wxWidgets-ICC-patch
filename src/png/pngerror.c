@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -59,8 +59,8 @@ png_error,(png_const_structrp png_ptr, png_const_charp error_message),
             int offset;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (offset = 1; offset<15; offset++)
                if (error_message[offset] == ' ')
@@ -71,8 +71,8 @@ png_error,(png_const_structrp png_ptr, png_const_charp error_message),
                int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                for (i = 0; i < offset - 1; i++)
                   msg[i] = error_message[i + 1];
@@ -134,8 +134,8 @@ png_safecat(png_charp buffer, size_t bufsize, size_t pos,
       if (string != NULL)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
          while (*string != '\0' && pos < bufsize-1)
            buffer[pos++] = *string++;
@@ -166,8 +166,8 @@ png_format_number(png_const_charp start, png_charp end, int format,
     */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    while (end > start && (number != 0 || count < mincount))
    {
@@ -254,8 +254,8 @@ png_warning(png_const_structrp png_ptr, png_const_charp warning_message)
          {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (offset = 1; offset < 15; offset++)
                if (warning_message[offset] == ' ')
@@ -332,8 +332,8 @@ png_formatted_warning(png_const_structrp png_ptr, png_warning_parameters p,
     */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    while (i<(sizeof msg)-1 && *message != '\0')
    {
@@ -351,8 +351,8 @@ png_formatted_warning(png_const_structrp png_ptr, png_warning_parameters p,
           */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
          while (valid_parameters[parameter] != parameter_char &&
             valid_parameters[parameter] != '\0')
@@ -371,8 +371,8 @@ png_formatted_warning(png_const_structrp png_ptr, png_warning_parameters p,
              */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (i<(sizeof msg)-1 && *parm != '\0' && parm < pend)
                msg[i++] = *parm++;
@@ -473,8 +473,8 @@ png_format_buffer(png_const_structrp png_ptr, png_charp buffer, png_const_charp
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    while (ishift >= 0)
    {
@@ -507,8 +507,8 @@ png_format_buffer(png_const_structrp png_ptr, png_charp buffer, png_const_charp
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       while (iin < PNG_MAX_ERROR_TEXT-1 && error_message[iin] != '\0')
          buffer[iout++] = error_message[iin++];
@@ -756,8 +756,8 @@ png_default_error,(png_const_structrp png_ptr, png_const_charp error_message),
       char error_number[16];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (offset = 0; offset<15; offset++)
       {
@@ -823,8 +823,8 @@ png_default_warning(png_const_structrp png_ptr, png_const_charp warning_message)
       char warning_number[16];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (offset = 0; offset < 15; offset++)
       {

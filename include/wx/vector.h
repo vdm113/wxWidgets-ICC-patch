@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -88,8 +88,8 @@ struct wxVectorMemOpsGeneric
         T *mem = (T*)::operator new(newCapacity * sizeof(T));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = 0; i < occupiedSize; i++ )
         {
@@ -107,8 +107,8 @@ struct wxVectorMemOpsGeneric
         T* sourceptr = source;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = count; i > 0; --i, ++destptr, ++sourceptr )
         {
@@ -124,8 +124,8 @@ struct wxVectorMemOpsGeneric
         T* sourceptr = source + count - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = count; i > 0; --i, --destptr, --sourceptr )
         {
@@ -258,8 +258,8 @@ public:
         reserve(p_size);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < p_size; n++ )
             push_back(value_type());
@@ -271,8 +271,8 @@ public:
         reserve(p_size);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < p_size; n++ )
             push_back(v);
@@ -301,8 +301,8 @@ public:
         reserve(p_size);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < p_size; n++ )
             push_back(v);
@@ -319,8 +319,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( InputIterator it = first; it != last; ++it )
             push_back(*it);
@@ -338,8 +338,8 @@ public:
         // call destructors of stored objects:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_type i = 0; i < m_size; i++ )
         {
@@ -520,8 +520,8 @@ public:
         // erase elements by calling their destructors:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( iterator i = first; i < last; ++i )
             i->~T();
@@ -551,8 +551,8 @@ private:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( const_iterator i = vb.begin(); i != vb.end(); ++i )
             push_back(*i);
@@ -563,8 +563,8 @@ private:
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_type i = n; i < m_size; i++ )
             m_values[i].~T();
@@ -576,8 +576,8 @@ private:
         reserve(n);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_type i = m_size; i < n; i++ )
             push_back(v);

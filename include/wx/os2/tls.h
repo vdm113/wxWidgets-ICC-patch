@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/os2/tls.h
 // Purpose:     OS/2 implementation of wxTlsValue<>
@@ -58,6 +65,11 @@ public:
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
             for ( wxVector<void*>::iterator i = m_allValues.begin();
                   i != m_allValues.end();
                   ++i )
@@ -102,6 +114,11 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
         for ( wxVector<void*>::iterator i = m_allValues.begin();
               i != m_allValues.end();

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -168,8 +168,8 @@ static void ColouriseTADSHTMLString(StyleContext &sc, int &lineState) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (sc.More()) {
                 if (IsEOL(sc.ch, sc.chNext)) {
@@ -291,8 +291,8 @@ static void ColouriseTADS3Keyword(StyleContext &sc,
         sc.SetState(SCE_T3_IDENTIFIER);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (sc.More() && (IsAWordChar(sc.ch))) {
                 sc.Forward();
@@ -303,8 +303,8 @@ static void ColouriseTADS3Keyword(StyleContext &sc,
                 int n = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while (n + sc.currentPos < endPos && IsASpaceOrTab(sc.GetRelative(n)))
                         n++;
@@ -351,8 +351,8 @@ static void ColouriseTADS3MsgParam(StyleContext &sc, int &lineState) {
         }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (sc.More() && sc.ch != '}' && sc.ch != chQuote) {
                 if (IsEOL(sc.ch, sc.chNext)) {
@@ -394,8 +394,8 @@ static void ColouriseTADS3LibDirective(StyleContext &sc, int &lineState) {
         }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (sc.More() && IsADirectiveChar(sc.ch)) {
                 if (IsEOL(sc.ch, sc.chNext)) {
@@ -448,8 +448,8 @@ static void ColouriseTADS3String(StyleContext &sc, int &lineState) {
         }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (sc.More()) {
                 if (IsEOL(sc.ch, sc.chNext)) {
@@ -486,8 +486,8 @@ static void ColouriseTADS3Comment(StyleContext &sc, int endState) {
         sc.SetState(SCE_T3_BLOCK_COMMENT);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (sc.More()) {
                 if (IsEOL(sc.ch, sc.chNext)) {
@@ -506,8 +506,8 @@ static void ColouriseToEndOfLine(StyleContext &sc, int initState, int endState) 
         sc.SetState(initState);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (sc.More()) {
                 if (sc.ch == '\\') {
@@ -539,8 +539,8 @@ static void ColouriseTADS3Number(StyleContext &sc) {
         }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (sc.More()) {
                 if (inHexNumber) {
@@ -579,8 +579,8 @@ static void ColouriseTADS3Doc(unsigned int startPos, int length, int initStyle,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (sc.More()) {
 
@@ -768,8 +768,8 @@ static char peekAhead(unsigned int startPos, unsigned int endPos,
                                           Accessor &styler) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (unsigned int i = startPos; i < endPos; i++) {
                 int style = styler.StyleAt(i);
@@ -811,8 +811,8 @@ static void FoldTADS3Doc(unsigned int startPos, int length, int initStyle,
         bool redo = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (unsigned int i = startPos; i < endPos; i++) {
                 if (redo) {

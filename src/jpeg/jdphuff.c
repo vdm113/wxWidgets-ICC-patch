@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -141,8 +141,8 @@ start_pass_phuff_decoder (j_decompress_ptr cinfo)
    */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
     int cindex = cinfo->cur_comp_info[ci]->component_index;
@@ -151,8 +151,8 @@ start_pass_phuff_decoder (j_decompress_ptr cinfo)
       WARNMS2(cinfo, JWRN_BOGUS_PROGRESSION, cindex, 0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (coefi = cinfo->Ss; coefi <= cinfo->Se; coefi++) {
       int expected = (coef_bit_ptr[coefi] < 0) ? 0 : coef_bit_ptr[coefi];
@@ -177,8 +177,8 @@ start_pass_phuff_decoder (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
     compptr = cinfo->cur_comp_info[ci];
@@ -264,8 +264,8 @@ process_restart (j_decompress_ptr cinfo)
   /* Re-initialize DC predictions to 0 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++)
     entropy->saved.last_dc_val[ci] = 0;
@@ -342,8 +342,8 @@ decode_mcu_DC_first (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
       block = MCU_data[blkn];
@@ -425,8 +425,8 @@ decode_mcu_AC_first (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (k = cinfo->Ss; k <= Se; k++) {
 	HUFF_DECODE(s, br_state, tbl, return FALSE, label2);
@@ -502,8 +502,8 @@ decode_mcu_DC_refine (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
     block = MCU_data[blkn];
@@ -578,8 +578,8 @@ decode_mcu_AC_refine (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
     if (EOBRUN == 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (; k <= Se; k++) {
 	HUFF_DECODE(s, br_state, tbl, goto undoit, label3);
@@ -611,8 +611,8 @@ decode_mcu_AC_refine (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 	 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	do {
 	  thiscoef = *block + jpeg_natural_order[k];
@@ -650,8 +650,8 @@ decode_mcu_AC_refine (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
        */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (; k <= Se; k++) {
 	thiscoef = *block + jpeg_natural_order[k];
@@ -685,8 +685,8 @@ undoit:
   /* Re-zero any output coefficients that we made newly nonzero */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (num_newnz > 0)
     (*block)[newnz_pos[--num_newnz]] = 0;
@@ -715,8 +715,8 @@ jinit_phuff_decoder (j_decompress_ptr cinfo)
   /* Mark derived tables unallocated */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
     entropy->derived_tbls[i] = NULL;
@@ -729,14 +729,14 @@ jinit_phuff_decoder (j_decompress_ptr cinfo)
   coef_bit_ptr = & cinfo->coef_bits[0][0];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0; ci < cinfo->num_components; ci++) 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < DCTSIZE2; i++)
       *coef_bit_ptr++ = -1;

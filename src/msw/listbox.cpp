@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -122,8 +122,8 @@ bool wxListBox::Create(wxWindow *parent,
     // initialize the contents
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < n; i++ )
     {
@@ -405,8 +405,8 @@ int wxListBox::GetSelections(wxArrayInt& aSelections) const
                 aSelections.Alloc(countSel);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( int n = 0; n < countSel; n++ )
                     aSelections.Add(selections[n]);
@@ -472,8 +472,8 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
     const unsigned int numItems = items.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int i = 0; i < numItems; i++ )
     {
@@ -581,8 +581,8 @@ void wxListBox::SetHorizontalExtent(const wxString& s)
         // set extent to the max length of all strings
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned int i = 0; i < m_noItems; i++ )
         {
@@ -618,8 +618,8 @@ wxSize wxListBox::DoGetBestClientSize() const
     int wListbox = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i = 0; i < m_noItems; i++)
     {
@@ -713,8 +713,8 @@ bool wxListBox::SetFont(const wxFont &font)
         const unsigned count = m_aItems.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned i = 0; i < count; i++ )
             m_aItems[i]->SetFont(font);

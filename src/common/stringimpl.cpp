@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -322,8 +322,8 @@ wxStringImpl& wxStringImpl::append(size_t n, wxStringCharType ch)
     m_pchData[len + n] = '\0';
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < n; ++i )
         m_pchData[len + i] = ch;
@@ -499,8 +499,8 @@ size_t wxStringImpl::find(const wxStringImpl& str, size_t nStart) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( p - c_str() + nLenOther <= nLen &&
             wxStringMemcmp(p, other, nLenOther) )
@@ -556,8 +556,8 @@ size_t wxStringImpl::rfind(const wxStringImpl& str, size_t nStart) const
         const wxStringCharType *cursor = c_str() + top;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do
         {
@@ -591,8 +591,8 @@ size_t wxStringImpl::rfind(wxStringCharType ch, size_t nStart) const
     const wxStringCharType *actual;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( actual = c_str() + ( nStart == npos ? length() : nStart + 1 );
           actual > c_str(); --actual )

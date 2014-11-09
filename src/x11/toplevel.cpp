@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -544,8 +544,8 @@ void wxTopLevelWindowX11::DoSetSize(int x, int y, int width, int height, int siz
     // reparent twice and notify only the next parent (like FVWM)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (next_parent != root) {
         Window *theChildren;
@@ -607,8 +607,8 @@ void wxTopLevelWindowX11::DoGetPosition(int *x, int *y) const
     // reparent twice and notify only the next parent (like FVWM)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (next_parent != root) {
         Window *theChildren;

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -48,8 +48,8 @@ DecorationList::~DecorationList() {
 	Decoration *deco = root;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (deco) {
 		Decoration *decoNext = deco->next;
@@ -63,8 +63,8 @@ DecorationList::~DecorationList() {
 Decoration *DecorationList::DecorationFromIndicator(int indicator) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (Decoration *deco=root; deco; deco = deco->next) {
 		if (deco->indicator == indicator) {
@@ -84,8 +84,8 @@ Decoration *DecorationList::Create(int indicator, int length) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (deco && (deco->indicator < indicator)) {
 		decoPrev = deco;
@@ -111,8 +111,8 @@ void DecorationList::Delete(int indicator) {
 			Decoration *deco=root;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while (deco->next && !decoToDelete) {
 				if (deco->next && deco->next->indicator == indicator) {
@@ -159,8 +159,8 @@ void DecorationList::InsertSpace(int position, int insertLength) {
 	lengthDocument += insertLength;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (Decoration *deco=root; deco; deco = deco->next) {
 		deco->rs.InsertSpace(position, insertLength);
@@ -175,8 +175,8 @@ void DecorationList::DeleteRange(int position, int deleteLength) {
 	Decoration *deco;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (deco=root; deco; deco = deco->next) {
 		deco->rs.DeleteRange(position, deleteLength);
@@ -188,8 +188,8 @@ void DecorationList::DeleteAnyEmpty() {
 	Decoration *deco = root;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (deco) {
 		if ((lengthDocument == 0) || deco->Empty()) {
@@ -205,8 +205,8 @@ int DecorationList::AllOnFor(int position) const {
 	int mask = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (Decoration *deco=root; deco; deco = deco->next) {
 		if (deco->rs.ValueAt(position)) {

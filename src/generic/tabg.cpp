@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -616,8 +616,8 @@ bool wxTabView::RemoveTab(int id)
   wxTabLayerList::compatibility_iterator layerNode = m_layers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (layerNode)
   {
@@ -625,8 +625,8 @@ bool wxTabView::RemoveTab(int id)
     wxList::compatibility_iterator tabNode = layer->GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (tabNode)
     {
@@ -677,8 +677,8 @@ int wxTabView::GetTotalTabHeight()
   wxTabLayerList::compatibility_iterator layerNode = m_layers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (layerNode)
   {
@@ -686,8 +686,8 @@ int wxTabView::GetTotalTabHeight()
     wxList::compatibility_iterator tabNode = layer->GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (tabNode)
     {
@@ -709,8 +709,8 @@ void wxTabView::ClearTabs(bool deleteTabs)
   wxTabLayerList::compatibility_iterator layerNode = m_layers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (layerNode)
   {
@@ -718,8 +718,8 @@ void wxTabView::ClearTabs(bool deleteTabs)
     wxList::compatibility_iterator tabNode = layer->GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (tabNode)
     {
@@ -749,8 +749,8 @@ void wxTabView::LayoutTabs(void)
   wxTabLayerList::compatibility_iterator layerNode = m_layers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (layerNode)
   {
@@ -758,8 +758,8 @@ void wxTabView::LayoutTabs(void)
     wxList::compatibility_iterator tabNode = layer->GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (tabNode)
     {
@@ -783,8 +783,8 @@ void wxTabView::LayoutTabs(void)
   wxList::compatibility_iterator node = controls.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (node)
   {
@@ -863,8 +863,8 @@ void wxTabView::Draw(wxDC& dc)
     wxTabLayerList::compatibility_iterator node = m_layers.GetLast();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -872,8 +872,8 @@ void wxTabView::Draw(wxDC& dc)
         wxList::compatibility_iterator node2 = layer->GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (node2)
         {
@@ -947,8 +947,8 @@ bool wxTabView::OnEvent(wxMouseEvent& event)
   wxTabLayerList::compatibility_iterator node = m_layers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (node)
   {
@@ -956,8 +956,8 @@ bool wxTabView::OnEvent(wxMouseEvent& event)
     wxList::compatibility_iterator node2 = layer->GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node2)
     {
@@ -1141,8 +1141,8 @@ wxTabControl *wxTabView::FindTabControlForId(int id) const
   wxTabLayerList::compatibility_iterator node1 = m_layers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (node1)
   {
@@ -1150,8 +1150,8 @@ wxTabControl *wxTabView::FindTabControlForId(int id) const
     wxList::compatibility_iterator node2 = layer->GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node2)
     {
@@ -1184,8 +1184,8 @@ wxList::compatibility_iterator wxTabView::FindTabNodeAndColumn(wxTabControl *con
   wxTabLayerList::compatibility_iterator node1 = m_layers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (node1)
   {
@@ -1194,8 +1194,8 @@ wxList::compatibility_iterator wxTabView::FindTabNodeAndColumn(wxTabControl *con
     wxList::compatibility_iterator node2 = layer->GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node2)
     {

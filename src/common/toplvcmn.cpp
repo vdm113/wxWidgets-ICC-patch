@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -80,8 +80,8 @@ wxTopLevelWindowBase::~wxTopLevelWindowBase()
     // parent pointer and result in a crash later
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxObjectList::iterator i = wxPendingDelete.begin();
           i != wxPendingDelete.end();
@@ -136,8 +136,8 @@ bool wxTopLevelWindowBase::Destroy()
     // terminate
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxWindowList::const_iterator i = wxTopLevelWindows.begin(),
                                      end = wxTopLevelWindows.end();
@@ -179,8 +179,8 @@ bool wxTopLevelWindowBase::IsLastBeforeExit() const
     // then decide whether we should exit at all
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = wxTopLevelWindows.begin(); i != end; ++i )
     {
@@ -195,8 +195,8 @@ bool wxTopLevelWindowBase::IsLastBeforeExit() const
     // if yes, close all the other windows: this could still fail
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = wxTopLevelWindows.begin(); i != end; ++i )
     {
@@ -424,8 +424,8 @@ void wxTopLevelWindowBase::DoLayout()
         wxWindow *child = NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
               node;

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -123,8 +123,8 @@ void wxStatusBarUniv::DoDraw(wxControlRenderer *renderer)
     int flags = IsEnabled() ? 0 : (int)wxCONTROL_DISABLED;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int n = 0; n < (int)m_panes.GetCount(); n++ )
     {
@@ -197,8 +197,8 @@ void wxStatusBarUniv::OnSize(wxSizeEvent& event)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( field = 0; field < m_panes.GetCount(); field++ )
         {
@@ -259,8 +259,8 @@ wxRect wxStatusBarUniv::DoGetFieldRect(int n) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i <= n; i++ )
     {

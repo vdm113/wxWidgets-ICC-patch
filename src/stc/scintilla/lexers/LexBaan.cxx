@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -59,8 +59,8 @@ static void ColouriseBaanDoc(unsigned int startPos, int length, int initStyle, W
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; sc.More(); sc.Forward()) {
 
@@ -99,8 +99,8 @@ static void ColouriseBaanDoc(unsigned int startPos, int length, int initStyle, W
 			if (sc.MatchIgnoreCase("enddllusage")) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (unsigned int i = 0; i < 10; i++){
 					sc.Forward();
@@ -124,8 +124,8 @@ static void ColouriseBaanDoc(unsigned int startPos, int length, int initStyle, W
 					sc.SetState(SCE_BAAN_COMMENTDOC);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					do {
 						sc.Forward();
@@ -142,8 +142,8 @@ static void ColouriseBaanDoc(unsigned int startPos, int length, int initStyle, W
 				// Skip whitespace between # and preprocessor word
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				do {
 					sc.Forward();
@@ -178,8 +178,8 @@ static void FoldBaanDoc(unsigned int startPos, int length, int initStyle, WordLi
 	int style = initStyle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;

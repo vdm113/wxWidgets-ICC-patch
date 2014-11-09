@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -226,8 +226,8 @@ bool IfaceCheckApp::Compare()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<interfaces.GetCount(); i++)
     {
@@ -306,8 +306,8 @@ int IfaceCheckApp::CompareClasses(const wxClass* iface, const wxClass* api)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<iface->GetMethodCount(); i++)
     {
@@ -351,8 +351,8 @@ int IfaceCheckApp::CompareClasses(const wxClass* iface, const wxClass* api)
             // avoid false positives:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (unsigned int k=0; k<overloads.GetCount(); k++)
                 if (overloads[k]->MatchesExceptForAttributes(m) &&
@@ -375,8 +375,8 @@ int IfaceCheckApp::CompareClasses(const wxClass* iface, const wxClass* api)
 #if HACK_TO_AUTO_CORRECT_ONLY_METHOD_ATTRIBUTES
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (unsigned int k=0; k<overloads.GetCount(); k++)
                 if (overloads[k]->MatchesExceptForAttributes(m))
@@ -422,8 +422,8 @@ int IfaceCheckApp::CompareClasses(const wxClass* iface, const wxClass* api)
                     warning += "\tdoxy header: " + m.GetAsString(true, true, true, true);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for (unsigned int j=0; j<overloads.GetCount(); j++)
                         warning += "\n\treal header: " + overloads[j]->GetAsString(true, true, true, true);
@@ -512,8 +512,8 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
         // the marker '*/' for the closure of the doxygen comment
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do
         {
@@ -524,8 +524,8 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
         }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (start > 0 && !founddecl &&
                !file.GetLine(start).Contains(";") &&
@@ -542,8 +542,8 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
     // remove the old prototype
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int k=start; k<=end; k++)
         file.RemoveLine(start);     // remove (end-start)-nth times the start-th line
@@ -575,8 +575,8 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (j=0; j<doxygenargs.GetCount(); j++)
             if (doxygenargs[j]==realargs[j])
@@ -602,8 +602,8 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
     // wrap lines too long at comma boundaries
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i=0; i<toinsert.GetCount(); i++)
     {
@@ -627,8 +627,8 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
     // insert the new lines
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i=0; i<toinsert.GetCount(); i++)
         file.InsertLine(toinsert[i], start+i);
@@ -654,15 +654,15 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
     wxClassPtrArray cToUpdate = m_doxyInterface.FindClassesDefinedIn(header);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i=0; i < cToUpdate.GetCount(); i++)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (j=0; j < cToUpdate[i]->GetMethodCount(); j++)
         {
@@ -689,8 +689,8 @@ bool IfaceCheckApp::ParsePreprocessorOutput(const wxString& filename)
     size_t useful = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i < tf.GetLineCount(); i++)
     {
@@ -751,8 +751,8 @@ void IfaceCheckApp::PrintStatistics(long secs)
     const wxClassArray& arr = m_gccInterface.GetClasses();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<arr.GetCount(); i++) {
         if (m_doxyInterface.FindClass(arr[i].GetName()) == NULL) {

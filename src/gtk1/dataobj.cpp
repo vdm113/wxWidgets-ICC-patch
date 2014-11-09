@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -197,8 +197,8 @@ bool wxDataObject::IsSupportedFormat(const wxDataFormat& format, Direction dir) 
         size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( n = 0; n < nFormatCount; n++ )
         {
@@ -223,8 +223,8 @@ bool wxFileDataObject::GetDataHere(void *buf) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
     {
@@ -244,8 +244,8 @@ size_t wxFileDataObject::GetDataSize() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
     {
@@ -266,8 +266,8 @@ bool wxFileDataObject::SetData(size_t WXUNUSED(size), const void *buf)
     wxString filename;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( const char *p = (const char *)buf; ; p++ )
     {

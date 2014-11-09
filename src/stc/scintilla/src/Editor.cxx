@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -107,8 +107,8 @@ static inline bool IsControlCharacter(int ch) {
 static inline bool IsAllSpacesOrTabs(char *s, unsigned int len) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (unsigned int i = 0; i < len; i++) {
 		// This is safe because IsSpaceOrTab() will return false for null terminators
@@ -269,8 +269,8 @@ void Editor::SetRepresentations() {
 	};
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t j=0; j < ELEMENTS(reps); j++) {
 		char c[2] = { static_cast<char>(j), 0 };
@@ -288,8 +288,8 @@ void Editor::SetRepresentations() {
 		};
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (size_t j=0; j < ELEMENTS(repsC1); j++) {
 			char c1[3] = { '\xc2',  static_cast<char>(0x80+j), 0 };
@@ -303,8 +303,8 @@ void Editor::SetRepresentations() {
 	if (IsUnicodeMode()) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int k=0x80; k < 0x100; k++) {
 			char hiByte[2] = {  static_cast<char>(k), 0 };
@@ -792,8 +792,8 @@ void Editor::SetRectangularRange() {
 		int increment = (lineCaret > lineAnchorRect) ? 1 : -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int line=lineAnchorRect; line != lineCaret+increment; line += increment) {
 			SelectionRange range(SPositionFromLineX(line, xCaret), SPositionFromLineX(line, xAnchor));
@@ -830,8 +830,8 @@ void Editor::InvalidateSelection(SelectionRange newMain, bool invalidateWholeSel
 	if (invalidateWholeSelection) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (size_t r=0; r<sel.Count(); r++) {
 			firstAffected = Platform::Minimum(firstAffected, sel.Range(r).caret.Position());
@@ -935,8 +935,8 @@ bool Editor::RangeContainsProtected(int start, int end) const {
 		int mask = pdoc->stylingBitsMask;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int pos = start; pos < end; pos++) {
 			if (vs.styles[pdoc->StyleAt(pos) & mask].IsProtected())
@@ -949,8 +949,8 @@ bool Editor::RangeContainsProtected(int start, int end) const {
 bool Editor::SelectionContainsProtected() {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t r=0; r<sel.Count(); r++) {
 		if (RangeContainsProtected(sel.Range(r).Start().Position(),
@@ -978,8 +978,8 @@ SelectionPosition Editor::MovePositionOutsideChar(SelectionPosition pos, int mov
 			if ((pos.Position() > 0) && vs.styles[pdoc->StyleAt(pos.Position() - 1) & mask].IsProtected()) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				while ((pos.Position() < pdoc->Length()) &&
 				        (vs.styles[pdoc->StyleAt(pos.Position()) & mask].IsProtected()))
@@ -989,8 +989,8 @@ SelectionPosition Editor::MovePositionOutsideChar(SelectionPosition pos, int mov
 			if (vs.styles[pdoc->StyleAt(pos.Position()) & mask].IsProtected()) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				while ((pos.Position() > 0) &&
 				        (vs.styles[pdoc->StyleAt(pos.Position() - 1) & mask].IsProtected()))
@@ -1255,8 +1255,8 @@ int Editor::DisplayFromPosition(int pos) {
 		lineDisplay--; // To make up for first increment ahead.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int subLine = 0; subLine < ll->lines; subLine++) {
 			if (posInLine >= ll->LineStart(subLine)) {
@@ -1610,8 +1610,8 @@ void Editor::InvalidateCaret() {
 	} else {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (size_t r=0; r<sel.Count(); r++) {
 			InvalidateRange(sel.Range(r).caret.Position(), sel.Range(r).caret.Position() + 1);
@@ -1662,8 +1662,8 @@ bool Editor::WrapLines(enum wrapScope ws) {
 			wrapWidth = LineLayout::wrapWidthInfinite;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (int lineDoc = 0; lineDoc < pdoc->LinesTotal(); lineDoc++) {
 				cs.SetHeight(lineDoc, 1 +
@@ -1693,8 +1693,8 @@ bool Editor::WrapLines(enum wrapScope ws) {
 			int lines = LinesOnScreen() + 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while ((lineToWrapEnd < cs.LinesInDoc()) && (lines>0)) {
 				if (cs.GetVisible(lineToWrapEnd))
@@ -1728,8 +1728,8 @@ bool Editor::WrapLines(enum wrapScope ws) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				while (lineToWrap < lineToWrapEnd) {
 					if (WrapOneLine(surface, lineToWrap)) {
@@ -1764,8 +1764,8 @@ void Editor::LinesJoin() {
 		bool prevNonWS = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int pos = targetStart; pos < targetEnd; pos++) {
 			if (pdoc->IsPositionInLineEnd(pos)) {
@@ -1805,8 +1805,8 @@ void Editor::LinesSplit(int pixelWidth) {
 		UndoGroup ug(pdoc);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int line = lineStart; line <= lineEnd; line++) {
 			AutoSurface surface(this);
@@ -1816,8 +1816,8 @@ void Editor::LinesSplit(int pixelWidth) {
 				LayoutLine(line, surface, vs, ll, pixelWidth);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (int subLine = 1; subLine < ll->lines; subLine++) {
 					pdoc->InsertCString(
@@ -1842,8 +1842,8 @@ bool ValidStyledText(ViewStyle &vs, size_t styleOffset, const StyledText &st) {
 	if (st.multipleStyles) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (size_t iStyle=0; iStyle<st.length; iStyle++) {
 			if (!vs.ValidStyle(styleOffset + st.styles[iStyle]))
@@ -1862,16 +1862,16 @@ static int WidthStyledText(Surface *surface, ViewStyle &vs, int styleOffset,
 	size_t start = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (start < len) {
 		size_t style = styles[start];
 		size_t endSegment = start;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while ((endSegment+1 < len) && (static_cast<size_t>(styles[endSegment+1]) == style))
 			endSegment++;
@@ -1887,8 +1887,8 @@ static int WidestLineWidth(Surface *surface, ViewStyle &vs, int styleOffset, con
 	size_t start = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (start < st.length) {
 		size_t lenLine = st.LineLength(start);
@@ -1914,16 +1914,16 @@ void DrawStyledText(Surface *surface, ViewStyle &vs, int styleOffset, PRectangle
 		size_t i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (i < length) {
 			size_t end = i;
 			int style = st.styles[i + start];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while (end < length-1 && st.styles[start+end+1] == style)
 				end++;
@@ -1988,8 +1988,8 @@ void Editor::PaintSelMargin(Surface *surfWindow, PRectangle &rc) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
 		if (vs.ms[margin].width > 0) {
@@ -2038,8 +2038,8 @@ void Editor::PaintSelMargin(Surface *surfWindow, PRectangle &rc) {
 					int levelPrev = level;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					while ((lineBack > 0) && (levelPrev & SC_FOLDLEVELWHITEFLAG)) {
 						lineBack--;
@@ -2064,8 +2064,8 @@ void Editor::PaintSelMargin(Surface *surfWindow, PRectangle &rc) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while ((visibleLine < cs.LinesDisplayed()) && yposScreen < rc.bottom) {
 
@@ -2223,8 +2223,8 @@ void Editor::PaintSelMargin(Surface *surfWindow, PRectangle &rc) {
 				if (marks) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					for (int markBit = 0; (markBit < 32) && marks; markBit++) {
 						if (marks & 1) {
@@ -2326,8 +2326,8 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 			int numCharsInLine = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while (numCharsInLine < lineLength) {
 				int charInDoc = numCharsInLine + posLineStart;
@@ -2381,8 +2381,8 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 		const int numCharsInLine = (vstyle.viewEOL) ? lineLength : numCharsBeforeEOL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int styleInLine = 0; styleInLine < numCharsInLine; styleInLine++) {
 			styleByte = ll->styles[styleInLine];
@@ -2394,8 +2394,8 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 		if (vstyle.someStylesForceCase) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (int charInLine = 0; charInLine<lineLength; charInLine++) {
 				char chDoc = ll->chars[charInLine];
@@ -2419,8 +2419,8 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 		BreakFinder bfLayout(ll, 0, numCharsInLine, posLineStart, 0, false, pdoc, &reprs);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (bfLayout.More()) {
 
@@ -2444,8 +2444,8 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 					}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					for (int ii=0; ii < ts.length; ii++)
 						ll->positions[ts.start + 1 + ii] = representationWidth;
@@ -2463,8 +2463,8 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (int posToIncrease = ts.start+1; posToIncrease <= ts.end(); posToIncrease++) {
 				ll->positions[posToIncrease] += ll->positions[ts.start];
@@ -2504,8 +2504,8 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 			if (vstyle.wrapIndentMode != SC_WRAPINDENT_FIXED)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (int i = 0; i < ll->numCharsInLine; i++) {
 					if (!IsSpaceOrTab(ll->chars[i])) {
@@ -2527,8 +2527,8 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 			int p = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while (p < ll->numCharsInLine) {
 				if ((ll->positions[p + 1] - startOffset) >= width) {
@@ -2711,8 +2711,8 @@ void Editor::DrawEOL(Surface *surface, ViewStyle &vsDraw, PRectangle rcLine, Lin
 			SelectionSegment virtualSpaceRange(SelectionPosition(pdoc->LineEnd(line)), SelectionPosition(pdoc->LineEnd(line), sel.VirtualSpaceFor(pdoc->LineEnd(line))));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (size_t r=0; r<sel.Count(); r++) {
 				int alpha = (r == sel.Main()) ? vsDraw.selAlpha : vsDraw.selAdditionalAlpha;
@@ -2744,8 +2744,8 @@ void Editor::DrawEOL(Surface *surface, ViewStyle &vsDraw, PRectangle rcLine, Lin
 	if (lastSubLine) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int eolPos=ll->numCharsBeforeEOL; eolPos<ll->numCharsInLine; eolPos++) {
 			rcSegment.left = xStart + ll->positions[eolPos] - subLineStart + virtualSpace;
@@ -2868,8 +2868,8 @@ void Editor::DrawIndicators(Surface *surface, ViewStyle &vsDraw, int line, int x
 		// foreach indicator...
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int indicnum = 0, mask = 1 << pdoc->stylingBits; mask < 0x100; indicnum++) {
 			if (!(mask & ll->styleBitsSet)) {
@@ -2880,8 +2880,8 @@ void Editor::DrawIndicators(Surface *surface, ViewStyle &vsDraw, int line, int x
 			// foreach style pos in line...
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (int indicPos = lineStart; indicPos <= lineEnd; indicPos++) {
 				// look for starts...
@@ -2907,8 +2907,8 @@ void Editor::DrawIndicators(Surface *surface, ViewStyle &vsDraw, int line, int x
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (Decoration *deco = pdoc->decorations.root; deco; deco = deco->next) {
 		if (under == vsDraw.indicators[deco->indicator].under) {
@@ -2918,8 +2918,8 @@ void Editor::DrawIndicators(Surface *surface, ViewStyle &vsDraw, int line, int x
 			}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while ((startPos < posLineEnd) && (deco->rs.ValueAt(startPos))) {
 				int endPos = deco->rs.EndRun(startPos);
@@ -2985,8 +2985,8 @@ void Editor::DrawAnnotation(Surface *surface, ViewStyle &vsDraw, int line, int x
 		int lineInAnnotation = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while ((lineInAnnotation < annotationLine) && (start < stAnnotation.length)) {
 			start += lengthAnnotation + 1;
@@ -3050,8 +3050,8 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 		int marks = pdoc->GetMark(line);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int markBit = 0; (markBit < 32) && marks; markBit++) {
 			if ((marks & 1) && (vsDraw.markers[markBit].markType == SC_MARK_BACKGROUND) &&
@@ -3068,8 +3068,8 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 			if (marksMasked) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (int markBit = 0; (markBit < 32) && marksMasked; markBit++) {
 					if ((marksMasked & 1) && (vsDraw.markers[markBit].markType != SC_MARK_EMPTY) &&
@@ -3165,8 +3165,8 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 		// Background drawing loop
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (bfBack.More()) {
 
@@ -3207,8 +3207,8 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 							(inIndentation && vsDraw.viewIndentationGuides == ivReal)) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 						for (int cpos = 0; cpos <= i - ts.start; cpos++) {
 							if (ll->chars[cpos + ts.start] == ' ') {
@@ -3252,8 +3252,8 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 	int markBit;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (markBit = 0; (markBit < 32) && marks; markBit++) {
 		if ((marks & 1) && (vsDraw.markers[markBit].markType == SC_MARK_UNDERLINE) &&
@@ -3272,8 +3272,8 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (bfFore.More()) {
 
@@ -3312,8 +3312,8 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 					if (inIndentation && vsDraw.viewIndentationGuides == ivReal) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 						for (int indentCount = (ll->positions[i] + epsilon) / indentWidth;
 							indentCount <= (ll->positions[i + 1] - epsilon) / indentWidth;
@@ -3363,8 +3363,8 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 				        (inIndentation && vsDraw.viewIndentationGuides != ivNone)) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					for (int cpos = 0; cpos <= i - ts.start; cpos++) {
 						if (ll->chars[cpos + ts.start] == ' ') {
@@ -3391,8 +3391,8 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 							if (inIndentation && vsDraw.viewIndentationGuides == ivReal) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 								for (int indentCount = (ll->positions[cpos + ts.start] + epsilon) / indentWidth;
 									indentCount <= (ll->positions[cpos + ts.start + 1] - epsilon) / indentWidth;
@@ -3438,8 +3438,8 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 		int lineLastWithText = line;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (lineLastWithText > Platform::Maximum(line-20, 0) && pdoc->IsWhiteLine(lineLastWithText)) {
 			lineLastWithText--;
@@ -3466,8 +3466,8 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 		int lineNextWithText = line;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (lineNextWithText < Platform::Minimum(line+20, pdoc->LinesTotal()) && pdoc->IsWhiteLine(lineNextWithText)) {
 			lineNextWithText++;
@@ -3481,8 +3481,8 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int indentPos = pdoc->IndentSize(); indentPos < indentSpace; indentPos += pdoc->IndentSize()) {
 			int xIndent = indentPos * vsDraw.spaceWidth;
@@ -3512,8 +3512,8 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 		SelectionSegment virtualSpaceRange(posStart, posEnd);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (size_t r=0; r<sel.Count(); r++) {
 			int alpha = (r == sel.Main()) ? vsDraw.selAlpha : vsDraw.selAdditionalAlpha;
@@ -3544,8 +3544,8 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 	marks = pdoc->GetMark(line);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (markBit = 0; (markBit < 32) && marks; markBit++) {
 		if ((marks & 1) && (vsDraw.markers[markBit].markType == SC_MARK_BACKGROUND)) {
@@ -3562,8 +3562,8 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 		if (marksMasked) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (markBit = 0; (markBit < 32) && marksMasked; markBit++) {
 				if ((marksMasked & 1) && (vsDraw.markers[markBit].markType != SC_MARK_EMPTY)) {
@@ -3590,8 +3590,8 @@ void Editor::DrawBlockCaret(Surface *surface, ViewStyle &vsDraw, LineLayout *ll,
 	int offsetLastChar = offset + (posAfter - posCaret);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((posBefore > 0) && ((offsetLastChar - numCharsToDraw) >= lineStart)) {
 		if ((ll->positions[offsetLastChar] - ll->positions[offsetLastChar - numCharsToDraw]) > 0) {
@@ -3612,8 +3612,8 @@ void Editor::DrawBlockCaret(Surface *surface, ViewStyle &vsDraw, LineLayout *ll,
 	numCharsToDraw = offsetLastChar - offsetFirstChar;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((offsetLastChar < ll->LineStart(subLine + 1)) && (offsetLastChar <= ll->numCharsInLine)) {
 		// Update posAfter to point to the 2nd next char, this is where
@@ -3684,14 +3684,14 @@ void Editor::RefreshPixMaps(Surface *surfaceWindow) {
 		pixmapSelPatternOffset1->FillRectangle(rcPattern, colourFMStripes);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int y = 0; y < patternSize; y++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (int x = y % 2; x < patternSize; x+=2) {
 				PRectangle rcPixel(x, y, x+1, y+1);
@@ -3712,8 +3712,8 @@ void Editor::RefreshPixMaps(Surface *surfaceWindow) {
 		pixmapIndentGuideHighlight->PenColour(vs.styles[STYLE_BRACELIGHT].fore);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int stripe = 1; stripe < vs.lineHeight + 1; stripe += 2) {
 			PRectangle rcPixel(0, stripe, 1, stripe+1);
@@ -3743,8 +3743,8 @@ void Editor::DrawCarets(Surface *surface, ViewStyle &vsDraw, int lineDoc, int xS
 	// For each selection draw
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t r=0; (r<sel.Count()) || drawDrag; r++) {
 		const bool mainCaret = r == sel.Main();
@@ -3947,8 +3947,8 @@ void Editor::Paint(Surface *surfaceWindow, PRectangle rcArea) {
 		AutoLineLayout ll(llc, 0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (visibleLine < cs.LinesDisplayed() && yposScreen < rcArea.bottom) {
 
@@ -4119,8 +4119,8 @@ long Editor::FormatRange(bool draw, Sci_RangeToFormat *pfr) {
 	int lineNumberIndex = -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
 		if ((vsPrint.ms[margin].style == SC_MARGIN_NUMBER) && (vsPrint.ms[margin].width > 0)) {
@@ -4150,8 +4150,8 @@ long Editor::FormatRange(bool draw, Sci_RangeToFormat *pfr) {
 	// Set colours for printing according to users settings
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t sty = 0; sty < vsPrint.styles.size(); sty++) {
 		if (printParameters.colourMode == SC_PRINT_INVERTLIGHT) {
@@ -4215,8 +4215,8 @@ long Editor::FormatRange(bool draw, Sci_RangeToFormat *pfr) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (lineDoc <= linePrintLast && ypos < pfr->rc.bottom) {
 
@@ -4246,8 +4246,8 @@ long Editor::FormatRange(bool draw, Sci_RangeToFormat *pfr) {
 			int startWithinLine = nPrintPos - pdoc->LineStart(lineDoc);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (int iwl = 0; iwl < ll.lines - 1; iwl++) {
 				if (ll.LineStart(iwl) <= startWithinLine && ll.LineStart(iwl + 1) >= startWithinLine) {
@@ -4282,8 +4282,8 @@ long Editor::FormatRange(bool draw, Sci_RangeToFormat *pfr) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int iwl = 0; iwl < ll.lines; iwl++) {
 			if (ypos + vsPrint.lineHeight <= pfr->rc.bottom) {
@@ -4400,8 +4400,8 @@ void Editor::AddCharUTF(char *s, unsigned int len, bool treatAsDBCS) {
 		std::vector<SelectionRange *> selPtrs;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (size_t r = 0; r < sel.Count(); r++) {
 			selPtrs.push_back(&sel.Range(r));
@@ -4410,8 +4410,8 @@ void Editor::AddCharUTF(char *s, unsigned int len, bool treatAsDBCS) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (std::vector<SelectionRange *>::reverse_iterator rit = selPtrs.rbegin();
 			rit != selPtrs.rend(); ++rit) {
@@ -4520,8 +4520,8 @@ void Editor::InsertPaste(SelectionPosition selStart, const char *text, int len) 
 		// SC_MULTIPASTE_EACH
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (size_t r=0; r<sel.Count(); r++) {
 			if (!RangeContainsProtected(sel.Range(r).Start().Position(),
@@ -4553,8 +4553,8 @@ void Editor::ClearSelection(bool retainMultipleSelections) {
 	UndoGroup ug(pdoc);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t r=0; r<sel.Count(); r++) {
 		if (!sel.Range(r).Empty()) {
@@ -4593,8 +4593,8 @@ void Editor::ClearDocumentStyle() {
 	Decoration *deco = pdoc->decorations.root;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (deco) {
 		// Save next in case deco deleted
@@ -4639,15 +4639,15 @@ void Editor::PasteRectangular(SelectionPosition pos, const char *ptr, int len) {
 	bool prevCr = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((len > 0) && IsEOLChar(ptr[len-1]))
 		len--;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int i = 0; i < len; i++) {
 		if (IsEOLChar(ptr[i])) {
@@ -4664,8 +4664,8 @@ void Editor::PasteRectangular(SelectionPosition pos, const char *ptr, int len) {
 			if ((XFromPosition(sel.MainCaret()) < xInsert) && (i + 1 < len)) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				while (XFromPosition(sel.MainCaret()) < xInsert) {
 					pdoc->InsertChar(sel.MainCaret(), ' ');
@@ -4698,8 +4698,8 @@ void Editor::Clear() {
 		UndoGroup ug(pdoc, (sel.Count() > 1) || singleVirtual);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (size_t r=0; r<sel.Count(); r++) {
 			if (!RangeContainsProtected(sel.Range(r).caret.Position(), sel.Range(r).caret.Position() + 1)) {
@@ -4765,8 +4765,8 @@ void Editor::DelCharBack(bool allowLineStartDeletion) {
 	if (sel.Empty()) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (size_t r=0; r<sel.Count(); r++) {
 			if (!RangeContainsProtected(sel.Range(r).caret.Position() - 1, sel.Range(r).caret.Position())) {
@@ -4955,8 +4955,8 @@ bool Editor::NotifyMarginClick(Point pt, int modifiers) {
 	int x = vs.textStart - vs.fixedColumnWidth;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
 		if ((pt.x >= x) && (pt.x < x + vs.ms[margin].width))
@@ -5130,8 +5130,8 @@ void Editor::NotifyModified(Document *, DocModification mh, void *) {
 				bool insertingNewLine = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (int i=0; i < mh.length; i++) {
 					if ((mh.text[i] == '\n') || (mh.text[i] == '\r'))
@@ -5424,8 +5424,8 @@ void Editor::ChangeCaseOfSelection(int caseMapping) {
 	UndoGroup ug(pdoc);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t r=0; r<sel.Count(); r++) {
 		SelectionRange current = sel.Range(r);
@@ -5441,8 +5441,8 @@ void Editor::ChangeCaseOfSelection(int caseMapping) {
 				size_t firstDifference = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				while (sMapped[firstDifference] == sText[firstDifference])
 					firstDifference++;
@@ -5450,8 +5450,8 @@ void Editor::ChangeCaseOfSelection(int caseMapping) {
 				size_t lastDifferenceMapped = sMapped.size() - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				while (sMapped[lastDifferenceMapped] == sText[lastDifferenceText]) {
 					lastDifferenceText--;
@@ -5512,8 +5512,8 @@ void Editor::Duplicate(bool forLine) {
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t r=0; r<sel.Count(); r++) {
 		SelectionPosition start = sel.Range(r).Start();
@@ -5573,8 +5573,8 @@ void Editor::NewLine() {
 		SetEmptySelection(sel.MainCaret() + istrlen(eol));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (*eol) {
 			NotifyChar(*eol);
@@ -5632,8 +5632,8 @@ void Editor::CursorUpOrDown(int direction, Selection::selTypes selt) {
 		Point ptNew = LocationFromPosition(posNew.Position());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while ((posNew.Position() > 0) && (pt.y == ptNew.y)) {
 			posNew.Add(-1);
@@ -5646,8 +5646,8 @@ void Editor::CursorUpOrDown(int direction, Selection::selTypes selt) {
 		Point ptNew = LocationFromPosition(posNew.Position());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while ((posNew.Position() > caretToUse.Position()) && (ptNew.y > newY)) {
 			posNew.Add(-1);
@@ -5663,8 +5663,8 @@ void Editor::ParaUpOrDown(int direction, Selection::selTypes selt) {
 	int lineDoc, savedPos = sel.MainCaret();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	do {
 		MovePositionTo(SelectionPosition(direction > 0 ? pdoc->ParaDown(sel.MainCaret()) : pdoc->ParaUp(sel.MainCaret())), selt);
@@ -5693,8 +5693,8 @@ int Editor::StartEndDisplayLine(int pos, bool start) {
 		if (posInLine <= ll->maxLineLength) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (int subLine = 0; subLine < ll->lines; subLine++) {
 				if ((posInLine >= ll->LineStart(subLine)) && (posInLine <= ll->LineStart(subLine + 1))) {
@@ -6233,8 +6233,8 @@ void Editor::Indent(bool forwards) {
 	UndoGroup ug(pdoc);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t r=0; r<sel.Count(); r++) {
 		int lineOfAnchor = pdoc->LineFromPosition(sel.Range(r).anchor.Position());
@@ -6261,8 +6261,8 @@ void Editor::Indent(bool forwards) {
 							numSpaces = pdoc->tabInChars;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 						for (int i = 0; i < numSpaces; i++) {
 							pdoc->InsertChar(caretPosition + i, ' ');
@@ -6285,8 +6285,8 @@ void Editor::Indent(bool forwards) {
 					int newPos = caretPosition;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					while (pdoc->GetColumn(newPos) > newColumn)
 						newPos--;
@@ -6419,8 +6419,8 @@ std::string Editor::CaseMapString(const std::string &s, int caseMapping) {
 	std::string ret(s);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t i=0; i<ret.size(); i++) {
 		switch (caseMapping) {
@@ -6484,8 +6484,8 @@ std::string Editor::RangeText(int start, int end) const {
 		std::string ret(len, '\0');
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int i = 0; i < len; i++) {
 			ret[i] = pdoc->CharAt(start + i);
@@ -6517,8 +6517,8 @@ void Editor::CopySelectionRange(SelectionText *ss, bool allowLineCopy) {
 			std::sort(rangesInOrder.begin(), rangesInOrder.end());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (size_t r=0; r<rangesInOrder.size(); r++) {
 			SelectionRange current = rangesInOrder[r];
@@ -6610,8 +6610,8 @@ void Editor::DropAt(SelectionPosition position, const char *value, size_t length
 			if (rectangular || sel.selType == Selection::selLines) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for (size_t r=0; r<sel.Count(); r++) {
 					if (position >= sel.Range(r).Start()) {
@@ -6660,8 +6660,8 @@ bool Editor::PositionInSelection(int pos) {
 	pos = MovePositionOutsideChar(pos, sel.MainCaret() - pos);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t r=0; r<sel.Count(); r++) {
 		if (sel.Range(r).Contains(pos))
@@ -6675,8 +6675,8 @@ bool Editor::PointInSelection(Point pt) {
 	Point ptPos = LocationFromPosition(pos);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (size_t r=0; r<sel.Count(); r++) {
 		SelectionRange range = sel.Range(r);
@@ -6717,8 +6717,8 @@ Window::Cursor Editor::GetMarginCursor(Point pt) const {
 	int x = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
 		if ((pt.x >= x) && (pt.x < x + vs.ms[margin].width))
@@ -7415,8 +7415,8 @@ void Editor::SetAnnotationHeights(int start, int end) {
 		bool changedHeight = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int line=start; line<end && line<pdoc->LinesTotal(); line++) {
 			int linesWrapped = 1;
@@ -7480,8 +7480,8 @@ void Editor::SetAnnotationVisible(int visible) {
 			int dir = vs.annotationVisible ? 1 : -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (int line=0; line<pdoc->LinesTotal(); line++) {
 				int annotationLines = pdoc->AnnotationLines(line);
@@ -7502,8 +7502,8 @@ int Editor::ExpandLine(int line) {
 	line++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (line <= lineMaxSubord) {
 		cs.SetVisible(line, line, true);
@@ -7578,8 +7578,8 @@ void Editor::FoldExpand(int line, int action, int level) {
 	cs.SetVisible(line, lineMaxSubord, expanding);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (line <= lineMaxSubord) {
 		int levelLine = pdoc->GetLevel(line);
@@ -7595,8 +7595,8 @@ void Editor::FoldExpand(int line, int action, int level) {
 int Editor::ContractedFoldNext(int lineStart) const {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int line = lineStart; line<pdoc->LinesTotal();) {
 		if (!cs.GetExpanded(line) && (pdoc->GetLevel(line) & SC_FOLDLEVELHEADERFLAG))
@@ -7625,8 +7625,8 @@ void Editor::EnsureLineVisible(int lineDoc, bool enforcePolicy) {
 		int lookLineLevel = pdoc->GetLevel(lookLine);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while ((lookLine > 0) && (lookLineLevel & SC_FOLDLEVELWHITEFLAG)) {
 			lookLineLevel = pdoc->GetLevel(--lookLine);
@@ -7678,8 +7678,8 @@ void Editor::FoldAll(int action) {
 		// Discover current state
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int lineSeek = 0; lineSeek < maxLine; lineSeek++) {
 			if (pdoc->GetLevel(lineSeek) & SC_FOLDLEVELHEADERFLAG) {
@@ -7692,8 +7692,8 @@ void Editor::FoldAll(int action) {
 		cs.SetVisible(0, maxLine-1, true);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int line = 0; line < maxLine; line++) {
 			int levelLine = pdoc->GetLevel(line);
@@ -7704,8 +7704,8 @@ void Editor::FoldAll(int action) {
 	} else {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int line = 0; line < maxLine; line++) {
 			int level = pdoc->GetLevel(line);
@@ -7762,8 +7762,8 @@ void Editor::NeedShown(int pos, int len) {
 		int lineEnd = pdoc->LineFromPosition(pos+len);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int line = lineStart; line <= lineEnd; line++) {
 			EnsureLineVisible(line, false);
@@ -7839,8 +7839,8 @@ void Editor::AddStyledText(char *buffer, int appendLength) {
 	int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 0; i < textLength; i++) {
 		text[i] = buffer[i*2];
@@ -7848,8 +7848,8 @@ void Editor::AddStyledText(char *buffer, int appendLength) {
 	pdoc->InsertString(CurrentPosition(), text.c_str(), textLength);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 0; i < textLength; i++) {
 		text[i] = buffer[i*2+1];
@@ -8001,8 +8001,8 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 			unsigned int iChar = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (; iChar < wParam - 1; iChar++)
 				ptr[iChar] = pdoc->CharAt(iChar);
@@ -8099,8 +8099,8 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 			int iPlace = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (int iChar = lineStart; iChar < lineEnd; iChar++) {
 				ptr[iPlace++] = pdoc->CharAt(iChar);
@@ -8143,8 +8143,8 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 				if (selectedText.Length()) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 					for (; iChar < selectedText.LengthWithTerminator(); iChar++)
 						ptr[iChar] = selectedText.Data()[iChar];
@@ -8541,8 +8541,8 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 			int iPlace = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (int iChar = tr->chrg.cpMin; iChar < tr->chrg.cpMax; iChar++) {
 				tr->lpstrText[iPlace++] = pdoc->CharAt(iChar);
@@ -8616,8 +8616,8 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 			unsigned int iPlace = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (unsigned int iChar = lineStart; iChar < lineEnd && iPlace < wParam - 1; iChar++) {
 				ptr[iPlace++] = pdoc->CharAt(iChar);
@@ -9028,8 +9028,8 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 	case SCI_MARKERPREVIOUS: {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (int iLine = wParam; iLine >= 0; iLine--) {
 				if ((pdoc->GetMark(iLine) & lParam) != 0)
@@ -9770,8 +9770,8 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 				SelectionPosition(pdoc->LineEnd(wParam)));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (size_t r=0; r<sel.Count(); r++) {
 				SelectionSegment portion = sel.Range(r).Intersect(segmentLine);

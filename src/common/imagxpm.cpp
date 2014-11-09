@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -123,8 +123,8 @@ MakeValidCIdent(wxString* str)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxString::iterator it = str->begin(); it != str->end(); ++it )
     {
@@ -169,8 +169,8 @@ bool wxXPMHandler::SaveFile(wxImage * image,
     int chars_per_pixel = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( k = MaxCixels; cols > k; k *= MaxCixels)
         chars_per_pixel++;
@@ -213,8 +213,8 @@ bool wxXPMHandler::SaveFile(wxImage * image,
     // 2b. generate colour table:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (wxImageHistogram::iterator entry = histogram.begin();
          entry != histogram.end(); ++entry )
@@ -225,8 +225,8 @@ bool wxXPMHandler::SaveFile(wxImage * image,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (j = 0; j < chars_per_pixel; j++)
         {
@@ -256,8 +256,8 @@ bool wxXPMHandler::SaveFile(wxImage * image,
     unsigned char *data = image->GetData();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (j = 0; j < image->GetHeight(); j++)
     {
@@ -265,8 +265,8 @@ bool wxXPMHandler::SaveFile(wxImage * image,
         tmp_c = '\"'; stream.Write(&tmp_c, 1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < image->GetWidth(); i++, data += 3)
         {

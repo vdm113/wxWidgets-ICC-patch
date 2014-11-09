@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -89,8 +89,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ((c = getopt(argc, argv, "w:h:c:")) != -1) {
 	switch (c) {
@@ -129,8 +129,8 @@ main(int argc, char* argv[])
 	initScale();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	do {
 	    if (!generateThumbnail(in, out))
@@ -291,8 +291,8 @@ cpTags(TIFF* in, TIFF* out)
     struct cpTag *p;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (p = tags; p < &tags[NTAGS]; p++)
 	cpTag(in, out, p->tag, p->count, p->type);
@@ -312,8 +312,8 @@ cpStrips(TIFF* in, TIFF* out)
 	TIFFGetField(in, TIFFTAG_STRIPBYTECOUNTS, &bytecounts);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (s = 0; s < ns; s++) {
 	  if (bytecounts[s] > (uint64) bufsize) {
@@ -351,8 +351,8 @@ cpTiles(TIFF* in, TIFF* out)
 	TIFFGetField(in, TIFFTAG_TILEBYTECOUNTS, &bytecounts);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (t = 0; t < nt; t++) {
 	    if (bytecounts[t] > (uint64) bufsize) {
@@ -408,8 +408,8 @@ setupBitsTables()
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 256; i++) {
 	int n = 0;
@@ -439,15 +439,15 @@ expFill(float pct[], uint32 p, uint32 n)
     uint32 c = (p * n) / 100;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 1; i < c; i++)
 	pct[i] = (float) (1-exp(i/((double)(n-1)))/ M_E);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (; i < n; i++)
 	pct[i] = 0.;
@@ -469,8 +469,8 @@ setupCmap()
     case LINEAR:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 1; i < 256; i++)
 	    pct[i] = 1-((float)i)/(256-1);
@@ -480,8 +480,8 @@ setupCmap()
     case PHOTOMETRIC_MINISWHITE:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 0; i < 256; i++)
 	    cmap[i] = clamp(255*pct[(256-1)-i], 0, 255);
@@ -489,8 +489,8 @@ setupCmap()
     case PHOTOMETRIC_MINISBLACK:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 0; i < 256; i++)
 	    cmap[i] = clamp(255*pct[i], 0, 255);
@@ -527,16 +527,16 @@ setupStepTables(uint32 sw)
 	uint8 b;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (x = 0; x < tnw; x++) {
 	    uint32 sx0 = sx;
 	    err += step;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	    while (err >= limit) {
 		err -= limit;
@@ -565,8 +565,8 @@ setrow(uint8* row, uint32 nrows, const uint8* rows[])
     uint32 area = nrows * filterWidth;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (x = 0; x < tnw; x++) {
 	uint32 mask0 = src0[x];
@@ -577,8 +577,8 @@ setrow(uint8* row, uint32 nrows, const uint8* rows[])
 	uint32 y, i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (y = 0; y < nrows; y++) {
 	    const uint8* src = rows[y] + off;
@@ -587,8 +587,8 @@ setrow(uint8* row, uint32 nrows, const uint8* rows[])
 	    default:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (i = fw; i > 8; i--)
 		    acc += bits[*src++];
@@ -627,8 +627,8 @@ setImage1(const uint8* br, uint32 rw, uint32 rh)
     uint32 dy;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (dy = 0; dy < tnh; dy++) {
 	const uint8* rows[256];
@@ -638,8 +638,8 @@ setImage1(const uint8* br, uint32 rw, uint32 rh)
 	err += step;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (err >= limit) {
 	    err -= limit;
@@ -690,8 +690,8 @@ generateThumbnail(TIFF* in, TIFF* out)
     rp = raster;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (s = 0; s < ns; s++) {
 	(void) TIFFReadEncodedStrip(in, s, rp, -1);
@@ -747,8 +747,8 @@ usage(void)
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

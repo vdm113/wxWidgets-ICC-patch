@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -83,8 +83,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((c = getopt(argc, argv, "c:h:r:v:z")) != -1)
 		switch (c) {
@@ -131,16 +131,16 @@ main(int argc, char* argv[])
 	setupLumaTables();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; optind < argc-1; optind++) {
 		in = TIFFOpen(argv[optind], "r");
 		if (in != NULL) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			do {
 				if (!tiffcvt(in, out) ||
@@ -169,8 +169,8 @@ setupLuma(float c)
 	int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 0; i < 256; i++)
 		v[i] = c * i;
@@ -206,14 +206,14 @@ cvtClump(unsigned char* op, uint32* raster, uint32 ch, uint32 cw, uint32 w)
 	 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (k = 0; k < ch; k++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (j = 0; j < cw; j++) {
 			uint32 RGB = (raster - k*w)[j];
@@ -229,22 +229,22 @@ cvtClump(unsigned char* op, uint32* raster, uint32 ch, uint32 cw, uint32 w)
 		}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (; j < horizSubSampling; j++)
 			*op++ = Yzero;
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; k < vertSubSampling; k++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (j = 0; j < horizSubSampling; j++)
 			*op++ = Yzero;
@@ -271,15 +271,15 @@ cvtStrip(unsigned char* op, uint32* raster, uint32 nrows, uint32 width)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; nrows >= vertSubSampling; nrows -= vertSubSampling) {
 		tp = raster;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (x = width; x >= horizSubSampling; x -= horizSubSampling) {
 			cvtClump(op, tp,
@@ -297,8 +297,8 @@ cvtStrip(unsigned char* op, uint32* raster, uint32 nrows, uint32 width)
 		tp = raster;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (x = width; x >= horizSubSampling; x -= horizSubSampling) {
 			cvtClump(op, tp, nrows, horizSubSampling, width);
@@ -328,8 +328,8 @@ cvtRaster(TIFF* tif, uint32* raster, uint32 width, uint32 height)
 	// FIXME unchecked malloc
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (y = height; (int32) y > 0; y -= nrows) {
 		uint32 nr = (y > nrows ? nrows : y);
@@ -448,8 +448,8 @@ usage(int code)
  fprintf(stderr, "%s\n\n", TIFFGetVersion());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

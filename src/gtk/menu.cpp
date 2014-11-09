@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -98,8 +98,8 @@ static wxMenu* GetRootParentMenu(wxMenu* menu)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( menu->GetParent() )
         menu = menu->GetParent();
@@ -117,8 +117,8 @@ static void UpdateSubMenuItemLabels(wxMenuItem* itemMenu)
     const wxMenuItemList& items = menu->GetMenuItems();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxMenuItemList::const_iterator
             it = items.begin(); it != items.end(); ++it )
@@ -176,8 +176,8 @@ void wxMenuBar::Init(size_t n, wxMenu *menus[], const wxString titles[], long st
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < n; ++i )
         Append(menus[i], titles[i]);
@@ -231,8 +231,8 @@ DetachFromFrame(wxMenu* menu, wxFrame* frame)
     wxMenuItemList::compatibility_iterator node = menu->GetMenuItems().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -259,8 +259,8 @@ AttachToFrame(wxMenu* menu, wxFrame* frame)
     wxMenuItemList::compatibility_iterator node = menu->GetMenuItems().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -298,8 +298,8 @@ void wxMenuBar::SetLayoutDirection(wxLayoutDirection dir)
     // the current layout)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxMenuList::compatibility_iterator node = m_menus.GetFirst();
           node;
@@ -322,8 +322,8 @@ void wxMenuBar::Attach(wxFrame *frame)
     wxMenuList::compatibility_iterator node = m_menus.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -340,8 +340,8 @@ void wxMenuBar::Detach()
     wxMenuList::compatibility_iterator node = m_menus.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -477,8 +477,8 @@ static int FindMenuItemRecursive( const wxMenu *menu, const wxString &menuString
     wxMenuItemList::compatibility_iterator node = menu->GetMenuItems().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -497,8 +497,8 @@ int wxMenuBar::FindMenuItem( const wxString &menuString, const wxString &itemStr
     wxMenuList::compatibility_iterator node = m_menus.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -520,8 +520,8 @@ static wxMenuItem* FindMenuItemByIdRecursive(const wxMenu* menu, int id)
     wxMenuItemList::compatibility_iterator node = menu->GetMenuItems().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( node && result == NULL )
     {
@@ -542,8 +542,8 @@ wxMenuItem* wxMenuBar::FindItem( int id, wxMenu **menuForItem ) const
     wxMenuList::compatibility_iterator node = m_menus.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node && result == 0)
     {

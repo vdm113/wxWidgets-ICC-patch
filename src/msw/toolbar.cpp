@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -418,8 +418,8 @@ void wxToolBar::Recreate()
     // reparent all our children under the new toolbar
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxWindowList::compatibility_iterator node = m_children.GetFirst();
           node;
@@ -613,8 +613,8 @@ void wxToolBar::CreateDisabledImageList()
         // search for the first disabled button img in the toolbar, if any
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( wxToolBarToolsList::compatibility_iterator
                 node = m_tools.GetFirst(); node; node = node->GetNext() )
@@ -674,8 +674,8 @@ bool wxToolBar::Realize()
     // delete all old buttons, if any
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t pos = 0; pos < m_nButtons; pos++ )
     {
@@ -746,8 +746,8 @@ bool wxToolBar::Realize()
         CreateDisabledImageList();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
         {
@@ -804,15 +804,15 @@ bool wxToolBar::Realize()
                             // MapBitmap() to work correctly
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                             for ( int y = 0; y < h; y++ )
                             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                                 for ( int x = 0; x < w; x++ )
                                 {
@@ -941,8 +941,8 @@ bool wxToolBar::Realize()
     int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
@@ -1044,8 +1044,8 @@ bool wxToolBar::Realize()
                             int prevIndex = i - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                             while ( nodePrev )
                             {
@@ -1116,8 +1116,8 @@ bool wxToolBar::Realize()
     int toolIndex = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext(), toolIndex++ )
     {
@@ -1223,8 +1223,8 @@ bool wxToolBar::Realize()
         toolIndex = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( node = m_tools.GetFirst(); node; node = node->GetNext(), toolIndex++ )
         {
@@ -1253,8 +1253,8 @@ void wxToolBar::UpdateStretchableSpacersSize()
     int toolIndex = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
@@ -1297,8 +1297,8 @@ void wxToolBar::UpdateStretchableSpacersSize()
     toolIndex = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
@@ -1537,8 +1537,8 @@ void wxToolBar::SetRows(int nRows)
     wxToolBarToolsList::compatibility_iterator node;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
@@ -1766,8 +1766,8 @@ bool wxToolBar::HandleSize(WXWPARAM WXUNUSED(wParam), WXLPARAM lParam)
     int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
@@ -1869,8 +1869,8 @@ bool wxToolBar::HandlePaint(WXWPARAM wParam, WXLPARAM lParam)
     int toolIndex = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
           node;
@@ -2099,15 +2099,15 @@ WXHBITMAP wxToolBar::MapBitmap(WXHBITMAP bitmap, int width, int height)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < width; i++ )
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int j = 0; j < height; j++ )
         {
@@ -2115,8 +2115,8 @@ WXHBITMAP wxToolBar::MapBitmap(WXHBITMAP bitmap, int width, int height)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( size_t k = 0; k < wxSTD_COL_MAX; k++ )
             {

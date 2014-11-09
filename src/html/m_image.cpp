@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -90,8 +90,8 @@ wxHtmlImageMapAreaCell::wxHtmlImageMapAreaCell( wxHtmlImageMapAreaCell::celltype
     type = t;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ((i = x.Find( ',' )) != wxNOT_FOUND)
     {
@@ -165,8 +165,8 @@ wxHtmlLinkInfo *wxHtmlImageMapAreaCell::GetLink( int x, int y ) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                  while (pointer < end)
                  {
@@ -176,8 +176,8 @@ wxHtmlLinkInfo *wxHtmlImageMapAreaCell::GetLink( int x, int y ) const
                      {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                          while ((pointer < end) && (coords[pointer] >= wherey))
                          {
@@ -203,8 +203,8 @@ wxHtmlLinkInfo *wxHtmlImageMapAreaCell::GetLink( int x, int y ) const
                      {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                          while ((pointer < end) && (coords[pointer] < wherey))
                          {
@@ -531,8 +531,8 @@ void wxHtmlImageCell::AdvanceAnimation(wxTimer *timer)
         m_physX = m_physY = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (wxHtmlCell *cell = this; cell; cell = cell->GetParent())
         {
@@ -660,8 +660,8 @@ wxHtmlLinkInfo *wxHtmlImageCell::GetLink( int x, int y ) const
         op = p = GetParent();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (p)
         {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -517,8 +517,8 @@ void wxPGProperty::InitAfterAdded( wxPropertyGridPageState* pageState,
     // Convert invalid cells to default ones in this grid
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int i=0; i<m_cells.size(); i++ )
     {
@@ -645,8 +645,8 @@ void wxPGProperty::InitAfterAdded( wxPropertyGridPageState* pageState,
         // Prepare children recursively
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned int i=0; i<GetChildCount(); i++ )
         {
@@ -670,8 +670,8 @@ void wxPGProperty::OnDetached(wxPropertyGridPageState* WXUNUSED(state),
         // Make default cells invalid
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned int i=0; i<m_cells.size(); i++ )
         {
@@ -720,8 +720,8 @@ bool wxPGProperty::IsSomeParent( wxPGProperty* candidate ) const
     wxPGProperty* parent = m_parent;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do
     {
@@ -936,8 +936,8 @@ void wxPGProperty::DoGenerateComposedValue( wxString& text,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < iMax; i++ )
     {
@@ -1140,8 +1140,8 @@ bool wxPGProperty::StringToValue( wxVariant& v, const wxString& text, int argFla
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ;; )
     {
@@ -1231,8 +1231,8 @@ bool wxPGProperty::StringToValue( wxVariant& v, const wxString& text, int argFla
                     // Group item - find end
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     while ( it != text.end() && depth > 0 )
                     {
@@ -1443,8 +1443,8 @@ void wxPGProperty::SetValue( wxVariant value, wxVariant* pList, int flags )
             // GetPropertyByNameWH(). This optimizes for full list parsing.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( node = list.begin(); node != list.end(); ++node )
             {
@@ -1516,8 +1516,8 @@ void wxPGProperty::SetValue( wxVariant value, wxVariant* pList, int flags )
             unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( i=0; i<GetChildCount(); i++ )
                 Item(i)->SetValue(value, NULL, flags|wxPG_SETVAL_FROM_PARENT);
@@ -1563,8 +1563,8 @@ void wxPGProperty::SetFlagRecursively( wxPGPropertyFlags flag, bool set )
     unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < GetChildCount(); i++ )
         Item(i)->SetFlagRecursively(flag, set);
@@ -1646,8 +1646,8 @@ void wxPGProperty::DoEnable( bool enable )
     unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < GetChildCount(); i++ )
         Item(i)->DoEnable( enable );
@@ -1703,8 +1703,8 @@ void wxPGProperty::AdaptiveSetCell( unsigned int firstCol,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned int col=firstCol; col<=lastCol; col++ )
         {
@@ -1725,8 +1725,8 @@ void wxPGProperty::AdaptiveSetCell( unsigned int firstCol,
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned int i=0; i<GetChildCount(); i++ )
             Item(i)->AdaptiveSetCell( firstCol,
@@ -1773,8 +1773,8 @@ void wxPGProperty::SetBackgroundColour( const wxColour& colour,
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( firstProp->IsCategory() )
         {
@@ -1814,8 +1814,8 @@ void wxPGProperty::SetTextColour( const wxColour& colour,
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( firstProp->IsCategory() )
         {
@@ -1871,8 +1871,8 @@ void wxPGProperty::SetAttributes( const wxPGAttributeStorage& attributes )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( attributes.GetNext(it, variant) )
         SetAttribute( variant.GetName(), variant );
@@ -1933,8 +1933,8 @@ wxVariant wxPGProperty::GetAttributesAsList() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( m_attributes.GetNext(it, variant) )
         v.Append(variant);
@@ -1971,8 +1971,8 @@ wxString wxPGProperty::GetFlagsAsString( FlagType flagsMask ) const
     unsigned int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i=0; i<gs_propFlagToStringSize; i++ )
     {
@@ -1998,8 +1998,8 @@ void wxPGProperty::SetFlagsFromString( const wxString& str )
         unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=0; i<gs_propFlagToStringSize; i++ )
         {
@@ -2189,8 +2189,8 @@ bool wxPGProperty::DoHide( bool hide, int flags )
         unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i = 0; i < GetChildCount(); i++ )
             Item(i)->DoHide(hide, flags | wxPG_RECURSE_STARTS);
@@ -2205,8 +2205,8 @@ bool wxPGProperty::HasVisibleChildren() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i=0; i<GetChildCount(); i++ )
     {
@@ -2292,8 +2292,8 @@ wxPGProperty* wxPGProperty::GetMainParent() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( curParent && !curParent->IsCategory() )
     {
@@ -2325,8 +2325,8 @@ bool wxPGProperty::IsVisible() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( parent = GetParent(); parent != NULL; parent = parent->GetParent() )
     {
@@ -2358,8 +2358,8 @@ int wxPGProperty::GetY2( int lh ) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( parent = GetParent(); parent != NULL; parent = child->GetParent() )
     {
@@ -2472,8 +2472,8 @@ void wxPGProperty::RemoveChild( wxPGProperty* p )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( it=children.begin(); it != children.end(); it++ )
     {
@@ -2514,8 +2514,8 @@ void wxPGProperty::AdaptListToValue( wxVariant& list, wxVariant* value ) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i=0; i<GetChildCount(); i++ )
     {
@@ -2551,8 +2551,8 @@ void wxPGProperty::FixIndicesOfChildren( unsigned int starthere )
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i=starthere;i<GetChildCount();i++)
         Item(i)->m_arrIndex = i;
@@ -2566,8 +2566,8 @@ wxPGProperty* wxPGProperty::GetPropertyByName( const wxString& name ) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i=0; i<GetChildCount(); i++ )
     {
@@ -2603,8 +2603,8 @@ wxPGProperty* wxPGProperty::GetPropertyByNameWH( const wxString& name, unsigned 
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (;;)
     {
@@ -2645,8 +2645,8 @@ int wxPGProperty::GetChildrenHeight( int lh, int iMax_ ) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( i < iMax )
     {
@@ -2684,8 +2684,8 @@ wxPGProperty* wxPGProperty::GetItemAtY( unsigned int y,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( i < iMax )
     {
@@ -2743,8 +2743,8 @@ void wxPGProperty::Empty()
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=0; i<GetChildCount(); i++ )
         {
@@ -2781,8 +2781,8 @@ void wxPGProperty::DeleteChildren()
     unsigned int i = GetChildCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( i > 0 )
     {
@@ -2796,8 +2796,8 @@ bool wxPGProperty::IsChildSelected( bool recursive ) const
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < GetChildCount(); i++ )
     {
@@ -2837,8 +2837,8 @@ bool wxPGProperty::AreAllChildrenSpecified( wxVariant* pendingList ) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i=0; i<GetChildCount(); i++ )
     {
@@ -2852,8 +2852,8 @@ bool wxPGProperty::AreAllChildrenSpecified( wxVariant* pendingList ) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( ; node != pList->end(); ++node )
             {
@@ -2930,8 +2930,8 @@ void wxPGProperty::SubPropsChanged( int oldSelInd )
     // Re-repare children (recursively)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int i=0; i<GetChildCount(); i++ )
     {
@@ -3109,8 +3109,8 @@ wxPGChoiceEntry& wxPGChoices::AddAsSorted( const wxString& label, int value )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( index < GetCount() )
     {
@@ -3134,16 +3134,16 @@ void wxPGChoices::Add( const wxChar* const* labels, const ValArrItem* values )
     const wxChar* const* p = &labels[0];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( *p ) { p++; itemcount++; }
 
     unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < itemcount; i++ )
     {
@@ -3166,8 +3166,8 @@ void wxPGChoices::Add( const wxArrayString& arr, const wxArrayInt& arrint )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < itemcount; i++ )
     {
@@ -3210,8 +3210,8 @@ int wxPGChoices::Index( const wxString& str ) const
         unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=0; i< m_data->GetCount(); i++ )
         {
@@ -3232,8 +3232,8 @@ int wxPGChoices::Index( int val ) const
         unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=0; i< m_data->GetCount(); i++ )
         {
@@ -3255,8 +3255,8 @@ wxArrayString wxPGChoices::GetLabels() const
     if ( this && IsOk() )
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=0; i<GetCount(); i++ )
             arr.push_back(GetLabel(i));
@@ -3275,8 +3275,8 @@ wxArrayInt wxPGChoices::GetValuesForStrings( const wxArrayString& strings ) cons
         unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=0; i< strings.size(); i++ )
         {
@@ -3303,8 +3303,8 @@ wxArrayInt wxPGChoices::GetIndicesForStrings( const wxArrayString& strings,
         unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=0; i< strings.size(); i++ )
         {
@@ -3380,8 +3380,8 @@ wxPGAttributeStorage::~wxPGAttributeStorage()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( it = m_map.begin(); it != m_map.end(); ++it )
     {

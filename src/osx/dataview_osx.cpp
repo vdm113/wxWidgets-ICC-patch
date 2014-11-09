@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -44,8 +44,8 @@ wxString ConcatenateDataViewItemValues(wxDataViewCtrl const* dataViewCtrlPtr, wx
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (size_t i=0; i<dataViewCtrlPtr->GetColumnCount(); i++)
   {
@@ -166,8 +166,8 @@ bool wxOSXDataViewModelNotifier::ItemsChanged(wxDataViewItemArray const& items)
   dataViewEvent.SetModel(m_DataViewCtrlPtr->GetModel());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (size_t indexItem=0; indexItem<noOfItems; ++indexItem)
     if (m_DataViewCtrlPtr->GetDataViewPeer()->Update(GetOwner()->GetParent(items[indexItem]),items[indexItem]))
@@ -269,8 +269,8 @@ void wxOSXDataViewModelNotifier::AdjustRowHeight(wxDataViewItem const& item)
       unsigned int col;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (col = 0; col < num; col++)
       {
@@ -303,8 +303,8 @@ void wxOSXDataViewModelNotifier::AdjustRowHeights(wxDataViewItemArray const& ite
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (size_t itemIndex=0; itemIndex<noOfItems; ++itemIndex)
       {
@@ -314,8 +314,8 @@ void wxOSXDataViewModelNotifier::AdjustRowHeights(wxDataViewItemArray const& ite
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (col = 0; col < num; col++)
         {
@@ -344,8 +344,8 @@ void wxOSXDataViewModelNotifier::AdjustAutosizedColumns()
   unsigned count = m_DataViewCtrlPtr->GetColumnCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for ( unsigned col = 0; col < count; col++ )
   {
@@ -649,8 +649,8 @@ void wxDataViewCtrl::SetSelections(wxDataViewItemArray const& sel)
    // make sure that all to be selected items are visible in the control:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < noOfSelections; i++)
     {
@@ -667,8 +667,8 @@ void wxDataViewCtrl::SetSelections(wxDataViewItemArray const& sel)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i=0; i<noOfSelections; ++i)
       dataViewWidgetPtr->Select(sel[i]);
@@ -755,8 +755,8 @@ void wxDataViewCtrl::OnSize(wxSizeEvent& event)
  // reset DC of all custom renderers because DC has changed:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (unsigned int i=0; i<noOfColumns; ++i)
   {
@@ -812,8 +812,8 @@ void wxDataViewCtrl::OnMouse(wxMouseEvent& event)
        unsigned int col;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
        for (col = 0; col < col_count; col++)
        {

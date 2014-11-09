@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -152,8 +152,8 @@ bool wxMask::Create( const wxBitmap& bitmap,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int j = 0; j < image.GetHeight(); j++)
     {
@@ -161,8 +161,8 @@ bool wxMask::Create( const wxBitmap& bitmap,
         int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < image.GetWidth(); i++)
         {
@@ -484,15 +484,15 @@ wxBitmap wxBitmap::Rescale( int clipx, int clipy, int clipwidth, int clipheight,
     // accel table filled with clipped values
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int x = 0; x < width; x++)
         tablex[x] = (int) (scx * (x+clipx));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int y = 0; y < height; y++)
         tabley[y] = (int) (scy * (y+clipy));
@@ -500,8 +500,8 @@ wxBitmap wxBitmap::Rescale( int clipx, int clipy, int clipwidth, int clipheight,
     // Main rescaling routine starts here
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int h = 0; h < height; h++)
     {
@@ -511,8 +511,8 @@ wxBitmap wxBitmap::Rescale( int clipx, int clipy, int clipwidth, int clipheight,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int w = 0; w < width; w++)
         {
@@ -575,8 +575,8 @@ wxBitmap wxBitmap::Rescale( int clipx, int clipy, int clipwidth, int clipheight,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int h = 0; h < height; h++)
         {
@@ -586,8 +586,8 @@ wxBitmap wxBitmap::Rescale( int clipx, int clipy, int clipwidth, int clipheight,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (int w = 0; w < width; w++)
             {
@@ -707,15 +707,15 @@ bool wxBitmap::CreateFromImageAsBitmap(const wxImage& img)
     int index = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int y = 0; y < height; y++)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int x = 0; x < width; x++)
         {
@@ -868,15 +868,15 @@ bool wxBitmap::CreateFromImageAsPixmap(const wxImage& img)
     int index = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int y = 0; y < height; y++)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int x = 0; x < width; x++)
         {
@@ -912,8 +912,8 @@ bool wxBitmap::CreateFromImageAsPixmap(const wxImage& img)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                         for (int i = 0; i < cmap->size; i++)
                         {
@@ -1112,15 +1112,15 @@ wxImage wxBitmap::ConvertToImage() const
     long pos = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int j = 0; j < GetHeight(); j++)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int i = 0; i < GetWidth(); i++)
         {

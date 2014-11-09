@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -227,8 +227,8 @@ CursHandle wxGetStockCursor( int number )
     short *sptr = (short*) *c ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0 ; i < 2 * 16 /* image and mask */ ; ++i, ++sptr )
     {
@@ -323,8 +323,8 @@ short GetCTabIndex( CTabHandle colors , RGBColor *col )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0 ; i < (**colors).ctSize ; ++i )
     {
@@ -404,8 +404,8 @@ void wxCursor::CreateFromImage(const wxImage & image)
     // set the values to the indices
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0 ; i < (**newColors).ctSize ; ++i )
     {
@@ -450,8 +450,8 @@ void wxCursor::CreateFromImage(const wxImage & image)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int y = 0 ; y < h ; ++y )
     {
@@ -459,8 +459,8 @@ void wxCursor::CreateFromImage(const wxImage & image)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int x = 0 ; x < w ; ++x )
         {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -197,8 +197,8 @@ void wxWizardSizer::HidePages()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxSizerItemList::compatibility_iterator node = GetChildren().GetFirst();
           node;
@@ -231,8 +231,8 @@ wxSize wxWizardSizer::GetMaxChildSize()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxSizerItemList::compatibility_iterator childNode = m_children.GetFirst();
           childNode;
@@ -267,8 +267,8 @@ wxSize wxWizardSizer::SiblingSize(wxSizerItem *child)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( wxWizardPage *sibling = page->GetNext();
                   sibling;
@@ -527,8 +527,8 @@ void wxWizard::FitToPage(const wxWizardPage *page)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( page )
     {
@@ -918,8 +918,8 @@ bool wxWizard::DoLayoutAdaptation()
     // Make all the pages (that use sizers) scrollable
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxSizerItemList::compatibility_iterator node = m_sizerPage->GetChildren().GetFirst(); node; node = node->GetNext() )
     {
@@ -931,8 +931,8 @@ bool wxWizard::DoLayoutAdaptation()
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while (page)
                 {
@@ -1038,15 +1038,15 @@ bool wxWizard::TileBitmap(const wxRect& rect, wxDC& dc, const wxBitmap& bitmap)
     int i, j;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = rect.x; i < rect.x + rect.width; i += w)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (j = rect.y; j < rect.y + rect.height; j+= h)
             dc.Blit(i, j, bitmap.GetWidth(), bitmap.GetHeight(), & dcMem, 0, 0);

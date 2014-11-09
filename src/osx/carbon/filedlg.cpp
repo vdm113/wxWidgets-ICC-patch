@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -101,8 +101,8 @@ OpenUserDataRec::OpenUserDataRec( wxFileDialog* d)
                                          numFilters , &kCFTypeArrayCallBacks ) ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = 0 ; i < numFilters ; ++i )
         {
@@ -296,8 +296,8 @@ void OpenUserDataRec::MakeUserDataRec( const wxString& filter )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned int i = 0; i < filter2.length() ; i++ )
         {
@@ -337,8 +337,8 @@ void OpenUserDataRec::MakeUserDataRec( const wxString& filter )
         const size_t extCount = m_extensions.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = 0 ; i < extCount; i++ )
         {
@@ -380,8 +380,8 @@ bool OpenUserDataRec::CheckFile( const wxString &filename , OSType type)
             wxStringTokenizer tokenizer( m_extensions[i] , wxT(";") ) ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ( tokenizer.HasMoreTokens() )
             {
@@ -606,8 +606,8 @@ int wxFileDialog::ShowModal()
         ::AECountItems( &navReply.selection, &count );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (long i = 1; i <= count; ++i)
         {

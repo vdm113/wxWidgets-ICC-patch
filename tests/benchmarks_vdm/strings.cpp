@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        tests/benchmarks/strings.cpp
 // Purpose:     String-related benchmarks
@@ -55,6 +62,11 @@ const wxString& GetTestAsciiString()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
         for ( long n = 0; n < num; n++ )
             testString += wxString::FromAscii(asciistr);
@@ -206,6 +218,11 @@ BENCHMARK_FUNC(ForCString)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for ( size_t n = 0; n < WXSIZEOF(asciistr); n++ )
     {
         if ( asciistr[n] == '~' )
@@ -223,6 +240,11 @@ BENCHMARK_FUNC(ForStringIndex)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < len; n++ )
     {
@@ -242,6 +264,11 @@ BENCHMARK_FUNC(ForStringIter)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for ( wxString::const_iterator i = s.begin(); i != end; ++i )
     {
         if ( *i == '~' )
@@ -259,6 +286,11 @@ BENCHMARK_FUNC(ForStringRIter)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     for ( wxString::const_reverse_iterator i = s.rbegin(); i != rend; ++i )
     {
@@ -282,6 +314,11 @@ BENCHMARK_FUNC(ReplaceLoop)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < ASCIISTR_LEN; n++ )
     {
@@ -479,6 +516,11 @@ BENCHMARK_FUNC(ParseHTML)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
         for ( long n = 0; n < num; n++ )
             html += html1;

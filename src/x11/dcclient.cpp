@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -123,8 +123,8 @@ static void wxCleanUpGCPool()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 0; i < GC_POOL_SIZE; i++)
     {
@@ -137,8 +137,8 @@ static GC wxGetPoolGC( Window window, wxPoolGCType type )
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 0; i < GC_POOL_SIZE; i++)
     {
@@ -165,8 +165,8 @@ static void wxFreePoolGC( GC gc )
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 0; i < GC_POOL_SIZE; i++)
     {
@@ -666,8 +666,8 @@ void wxWindowDCImpl::DoDrawLines( int n, const wxPoint points[], wxCoord xoffset
     XPoint *xpoints = new XPoint[n];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 0; i < n; i++)
     {
@@ -693,8 +693,8 @@ void wxWindowDCImpl::DoDrawPolygon( int n, const wxPoint points[],
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < n; i++)
     {
@@ -1268,8 +1268,8 @@ void wxWindowDCImpl::DoDrawBitmap( const wxBitmap &bitmap,
             wxVector<XRectangle> rects;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( wxRegionIterator iter(m_currentClippingRegion);
                   iter;
@@ -1572,8 +1572,8 @@ bool wxWindowDCImpl::DoBlit( wxCoord xdest, wxCoord ydest, wxCoord width, wxCoor
                XPutPixel really faster? I'm not sure. look at wxXt
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                for a different implementation of the same problem. */
 

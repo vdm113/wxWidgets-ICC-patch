@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -338,8 +338,8 @@ START_TEST(test_illegal_utf8)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 128; i <= 255; ++i) {
         sprintf(text, "<e>%ccd</e>", i);
@@ -644,8 +644,8 @@ is_whitespace_normalized(const XML_Char *s, int is_cdata)
     int at_start = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (*s) {
         if (*s == ' ')
@@ -703,8 +703,8 @@ check_attr_contains_normalized_whitespace(void *userData,
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; atts[i] != NULL; i += 2) {
         const XML_Char *attrname = atts[i];
@@ -768,8 +768,8 @@ UnknownEncodingHandler(void *data,const XML_Char *encoding,XML_Encoding *info)
         int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < 256; ++i)
             info->map[i] = i;
@@ -1169,8 +1169,8 @@ overwrite_start_checker(void *userData, const XML_Char *name,
     CharData_AppendXMLChars(storage, name, -1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (*atts != NULL) {
         CharData_AppendString(storage, "\nattribute ");
@@ -1528,8 +1528,8 @@ main(int argc, char *argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 1; i < argc; ++i) {
         char *opt = argv[i];

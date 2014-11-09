@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -104,8 +104,8 @@ bool operator == (const wxArrayInt& array1, const wxArrayInt& array2)
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i=0; i<array1.size(); i++ )
     {
@@ -1062,8 +1062,8 @@ int wxSystemColourProperty::ColToInd( const wxColour& colour ) const
     const unsigned int i_max = m_choices.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int i=0; i<i_max; i++ )
     {
@@ -1256,8 +1256,8 @@ bool wxSystemColourProperty::QueryColourFromUser( wxVariant& variant ) const
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < 16; i++)
     {
@@ -1648,8 +1648,8 @@ wxColourProperty::wxColourProperty( const wxString& label,
         const char* const* colourLabels = gs_cp_es_normcolour_labels;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int i = 0; *colourLabels; colourLabels++, i++ )
         {
@@ -1885,8 +1885,8 @@ const wxString& wxPGGetDefaultImageWildcard()
         //for ( wxList::Node *node = handlers.GetFirst(); node; node = node->GetNext() )
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( node = handlers.begin(); node != handlers.end(); ++node )
         {
@@ -2069,8 +2069,8 @@ void wxMultiChoiceProperty::GenerateValueAsString( wxVariant& value,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i = 0; i < itemCount; i++ )
     {
@@ -2094,8 +2094,8 @@ wxArrayInt wxMultiChoiceProperty::GetValueAsIndices() const
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=0; i<valueArr.size(); i++ )
             selections.Add(-1);
@@ -2104,8 +2104,8 @@ wxArrayInt wxMultiChoiceProperty::GetValueAsIndices() const
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i=0; i<valueArr.size(); i++ )
         {
@@ -2168,8 +2168,8 @@ bool wxMultiChoiceProperty::OnEvent( wxPropertyGrid* propgrid,
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for (n=0;n<extraStrings.size();n++)
                     value.push_back(extraStrings[n]);
@@ -2178,8 +2178,8 @@ bool wxMultiChoiceProperty::OnEvent( wxPropertyGrid* propgrid,
             unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( i=0; i<arrInt.size(); i++ )
                 value.Add(m_choices.GetLabel(arrInt.Item(i)));
@@ -2188,8 +2188,8 @@ bool wxMultiChoiceProperty::OnEvent( wxPropertyGrid* propgrid,
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for (n=0;n<extraStrings.size();n++)
                     value.push_back(extraStrings[n]);
@@ -2345,8 +2345,8 @@ wxString wxDateProperty::DetermineDefaultDateFormat( bool showCentury )
     const wxChar *p = str.c_str();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( *p )
     {

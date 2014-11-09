@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -114,8 +114,8 @@ bool wxCheckListBox::Create(wxWindow *parent, wxWindowID id,
     // initialize the contents
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < n; i++ )
     {
@@ -200,8 +200,8 @@ void wxCheckListBox::DoClear()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( n > 0 )
     {
@@ -222,8 +222,8 @@ int wxCheckListBox::GetSelection() const
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; (unsigned int)i < GetCount(); i++)
     {
@@ -240,8 +240,8 @@ int wxCheckListBox::GetSelections(wxArrayInt& aSelections) const
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; (unsigned int)i < GetCount(); i++)
     {
@@ -296,8 +296,8 @@ int wxCheckListBox::DoInsertItems(const wxArrayStringsAdapter & items,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for( unsigned int i = 0; i < count; i++ )
     {

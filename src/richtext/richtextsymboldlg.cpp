@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -529,8 +529,8 @@ bool wxSymbolPickerDialog::TransferDataToWindow()
         int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < (int) WXSIZEOF(g_UnicodeSubsetTable); i++)
         {
@@ -646,8 +646,8 @@ void wxSymbolPickerDialog::OnSymbolSelected( wxCommandEvent& event )
         int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < (int) WXSIZEOF(g_UnicodeSubsetTable); i++)
         {
@@ -876,8 +876,8 @@ bool wxSymbolListCtrl::DoSetCurrent(int current)
             // make it entirely visible
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while ( (unsigned)lineNo + 1 == GetVisibleEnd() &&
                     ScrollToRow(GetVisibleBegin() + 1) )
@@ -947,8 +947,8 @@ void wxSymbolListCtrl::OnDrawItem(wxDC& dc, const wxRect& rect, size_t n) const
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < m_symbolsPerLine; i++)
     {
@@ -1030,8 +1030,8 @@ void wxSymbolListCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
     const size_t lineMax = GetVisibleEnd();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t line = GetVisibleBegin(); line < lineMax; line++ )
     {

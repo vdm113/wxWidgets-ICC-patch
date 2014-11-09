@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -170,8 +170,8 @@ bool wxDocument::Close()
     DocsList::const_iterator it = m_childDocuments.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( DocsList::const_iterator end = m_childDocuments.end(); it != end; ++it )
     {
@@ -186,8 +186,8 @@ bool wxDocument::Close()
     // we iterate over it, don't use the usual for-style iteration here.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( !m_childDocuments.empty() )
     {
@@ -229,8 +229,8 @@ bool wxDocument::DeleteAllViews()
     const wxList::iterator end = m_documentViews.end();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxList::iterator i = m_documentViews.begin(); i != end; ++i )
     {
@@ -253,8 +253,8 @@ bool wxDocument::DeleteAllViews()
         // begin to end" loop
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( ;; )
         {
@@ -354,8 +354,8 @@ bool wxDocument::SaveAs()
             node = docTemplate->GetDocumentManager()->GetTemplates().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (node)
         {
@@ -623,8 +623,8 @@ void wxDocument::UpdateAllViews(wxView *sender, wxObject *hint)
     wxList::compatibility_iterator node = m_documentViews.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -640,8 +640,8 @@ void wxDocument::NotifyClosing()
     wxList::compatibility_iterator node = m_documentViews.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -665,8 +665,8 @@ void wxDocument::OnChangeFilename(bool notifyViews)
         wxList::compatibility_iterator node = m_documentViews.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (node)
         {
@@ -953,8 +953,8 @@ bool wxDocTemplate::FileMatchesTemplate(const wxString& path)
     wxString anything = wxT ("*");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (parser.HasMoreTokens())
     {
@@ -1069,8 +1069,8 @@ bool wxDocManager::CloseDocuments(bool force)
     wxList::compatibility_iterator node = m_docs.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -1098,8 +1098,8 @@ bool wxDocManager::Clear(bool force)
     wxList::compatibility_iterator node = m_templates.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -1467,8 +1467,8 @@ wxDocTemplateVector GetVisibleTemplates(const wxList& allTemplates)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( wxList::const_iterator i = allTemplates.begin(),
                                    end = allTemplates.end();
@@ -1502,8 +1502,8 @@ wxDocument* wxDocManager::FindDocumentByPath(const wxString& path) const
     const wxFileName fileName(path);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxList::const_iterator i = m_docs.begin(); i != m_docs.end(); ++i )
     {
@@ -1788,8 +1788,8 @@ wxDocTemplate *wxDocManager::FindTemplateForPath(const wxString& path)
     // Find the template which this extension corresponds to
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < m_templates.GetCount(); i++)
     {
@@ -1818,8 +1818,8 @@ wxDocTemplate *wxDocManager::SelectDocumentPath(wxDocTemplate **templates,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 0; i < noTemplates; i++)
     {
@@ -1905,8 +1905,8 @@ wxDocTemplate *wxDocManager::SelectDocumentType(wxDocTemplate **templates,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < noTemplates; i++)
     {
@@ -1916,8 +1916,8 @@ wxDocTemplate *wxDocManager::SelectDocumentType(wxDocTemplate **templates,
             bool want = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (j = 0; j < n; j++)
             {
@@ -1947,15 +1947,15 @@ wxDocTemplate *wxDocManager::SelectDocumentType(wxDocTemplate **templates,
         n = strings.Count();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < n; i++)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (j = 0; j < noTemplates; j++)
             {
@@ -2003,8 +2003,8 @@ wxDocTemplate *wxDocManager::SelectViewType(wxDocTemplate **templates,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < noTemplates; i++)
     {
@@ -2015,8 +2015,8 @@ wxDocTemplate *wxDocManager::SelectViewType(wxDocTemplate **templates,
             bool want = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (j = 0; j < n; j++)
             {
@@ -2043,15 +2043,15 @@ wxDocTemplate *wxDocManager::SelectViewType(wxDocTemplate **templates,
         n = strings.Count();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < n; i++)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (j = 0; j < noTemplates; j++)
             {
@@ -2103,8 +2103,8 @@ wxDocTemplate* wxDocManager::FindTemplate(const wxClassInfo* classinfo)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for ( wxList::compatibility_iterator node = m_templates.GetFirst();
          node;
@@ -2344,8 +2344,8 @@ bool wxTransferFileToStream(const wxString& filename, wxSTD ostream& stream)
     size_t nRead;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do
     {
@@ -2375,8 +2375,8 @@ bool wxTransferStreamToFile(wxSTD istream& stream, const wxString& filename)
     char buf[4096];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do
     {
@@ -2409,8 +2409,8 @@ bool wxTransferFileToStream(const wxString& filename, wxOutputStream& stream)
     size_t nRead;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do
     {
@@ -2440,8 +2440,8 @@ bool wxTransferStreamToFile(wxInputStream& stream, const wxString& filename)
     char buf[4096];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ;; )
     {

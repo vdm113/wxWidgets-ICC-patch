@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -120,8 +120,8 @@ bool wxHIDDevice::Create (int nClass, int nType, int nDev)
     io_object_t pObject;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( (pObject = IOIteratorNext(pIterator)) != 0)
     {
@@ -290,8 +290,8 @@ size_t wxHIDDevice::GetCount (int nClass, int nType)
     io_object_t pObject;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( (pObject = IOIteratorNext(pIterator)) != 0)
     {
@@ -498,8 +498,8 @@ void wxHIDKeyboard::DoBuildCookies(CFArrayRef Array)
 //    bool bEOTriggered = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < CFArrayGetCount(Array); ++i)
     {
@@ -675,8 +675,8 @@ class wxHIDModule : public wxModule
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for(size_t i = 0; i < sm_keyboards.GetCount(); ++i)
                 delete (wxHIDKeyboard*) sm_keyboards[i];

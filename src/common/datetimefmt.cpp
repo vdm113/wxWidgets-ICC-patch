@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -109,8 +109,8 @@ bool GetNumericToken(size_t len,
     wxString s;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( p != end && wxIsdigit(*p) )
     {
@@ -131,8 +131,8 @@ GetAlphaToken(wxString::const_iterator& p,
     wxString s;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( p != end && wxIsalpha(*p) )
     {
@@ -168,8 +168,8 @@ GetMonthFromName(wxString::const_iterator& p,
     wxDateTime::Month mon;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( mon = wxDateTime::Jan; mon < wxDateTime::Inv_Month; wxNextMonth(mon) )
     {
@@ -252,8 +252,8 @@ GetWeekDayFromName(wxString::const_iterator& p,
     wxDateTime::WeekDay wd;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wd = wxDateTime::Sun; wd < wxDateTime::Inv_WeekDay; wxNextWDay(wd) )
     {
@@ -359,8 +359,8 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
     // but not supported under Windows.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxString::const_iterator p = format.begin();
           canUseStrftime && p != format.end();
@@ -446,8 +446,8 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
     wxString tmp, res, fmt;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxString::const_iterator p = format.begin(); p != format.end(); ++p )
     {
@@ -488,8 +488,8 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
         bool restart = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( restart )
         {
@@ -574,8 +574,8 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
                         // (indirectly) set the year correctly
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                         while ( (nLostWeekDays % 7) != 0 )
                         {
@@ -624,8 +624,8 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
                         wxString replacement("|");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                         while ( str.find(replacement) != wxString::npos )
                             replacement += '|';
@@ -772,8 +772,8 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
                     // is it the format width?
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for ( fmt.clear();
                           *p == wxT('-') || *p == wxT('+') ||
@@ -1095,8 +1095,8 @@ wxDateTime::ParseFormat(const wxString& date,
     const wxString::const_iterator end = date.end();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxString::const_iterator fmt = format.begin(); fmt != format.end(); ++fmt )
     {
@@ -1108,8 +1108,8 @@ wxDateTime::ParseFormat(const wxString& date,
                 // spaces in the input
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while ( input != end && wxIsspace(*input) )
                 {
@@ -1137,8 +1137,8 @@ wxDateTime::ParseFormat(const wxString& date,
         size_t width = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( wxIsdigit(*++fmt) )
         {
@@ -1747,8 +1747,8 @@ wxDateTime::ParseDateTime(const wxString& date, wxString::const_iterator *end)
         // Skip spaces, as the ParseTime() function fails on spaces
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( endDate != date.end() && wxIsspace(*endDate) )
             ++endDate;
@@ -1767,8 +1767,8 @@ wxDateTime::ParseDateTime(const wxString& date, wxString::const_iterator *end)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( endTime != date.end() && wxIsspace(*endTime) )
             ++endTime;
@@ -1824,8 +1824,8 @@ wxDateTime::ParseDate(const wxString& date, wxString::const_iterator *end)
     wxString::const_iterator p = pBegin;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( p != pEnd && wxIsspace(*p) )
         p++;
@@ -1845,8 +1845,8 @@ wxDateTime::ParseDate(const wxString& date, wxString::const_iterator *end)
     const size_t lenRest = pEnd - p;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(literalDates); n++ )
     {
@@ -1898,8 +1898,8 @@ wxDateTime::ParseDate(const wxString& date, wxString::const_iterator *end)
     // tokenize the string
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( p != pEnd )
     {
@@ -2068,8 +2068,8 @@ wxDateTime::ParseDate(const wxString& date, wxString::const_iterator *end)
                     size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for ( n = 0; n < WXSIZEOF(ordinals); n++ )
                     {
@@ -2225,8 +2225,8 @@ wxDateTime::ParseTime(const wxString& time, wxString::const_iterator *end)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(stdTimes); n++ )
     {
@@ -2260,8 +2260,8 @@ wxDateTime::ParseTime(const wxString& time, wxString::const_iterator *end)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t nFmt = 0; nFmt < WXSIZEOF(timeFormats); nFmt++ )
     {
@@ -2383,8 +2383,8 @@ wxString wxTimeSpan::Format(const wxString& format) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxString::const_iterator pch = format.begin(); pch != format.end(); ++pch )
     {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -121,8 +121,8 @@ size_t wxGetAvailableDrives(wxArrayString &paths, wxArrayString &names, wxArrayI
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < as.GetCount(); i++)
     {
@@ -160,8 +160,8 @@ size_t wxGetAvailableDrives(wxArrayString &paths, wxArrayString &names, wxArrayI
     /* If we can switch to the drive, it exists. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( char drive = 'A'; drive <= 'Z'; drive++ )
     {
@@ -185,8 +185,8 @@ size_t wxGetAvailableDrives(wxArrayString &paths, wxArrayString &names, wxArrayI
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while( noErr == err )
     {
@@ -532,8 +532,8 @@ void wxGenericDirCtrl::ShowHidden( bool show )
         ReCreateTree();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned n = 0; n < paths.size(); n++ )
         {
@@ -576,8 +576,8 @@ void wxGenericDirCtrl::SetupSections()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (n = 0; n < count; n++)
         AddSection(paths[n], names[n], icons[n]);
@@ -787,8 +787,8 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do
             {
@@ -817,8 +817,8 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
             strTok.SetString(m_currentFilterStr,wxT(";"));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while(strTok.HasMoreTokens())
             {
@@ -827,8 +827,8 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
                 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     do
                     {
@@ -852,8 +852,8 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < dirs.GetCount(); i++)
     {
@@ -882,8 +882,8 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < filenames.GetCount(); i++)
         {
@@ -920,8 +920,8 @@ void wxGenericDirCtrl::CollapseTree()
     wxTreeItemId child = m_treeCtrl->GetFirstChild(m_rootId, cookie);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (child.IsOk())
     {
@@ -953,8 +953,8 @@ wxTreeItemId wxGenericDirCtrl::FindChild(wxTreeItemId parentId, const wxString& 
     wxTreeItemId childId = m_treeCtrl->GetFirstChild(parentId, cookie);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (childId.IsOk())
     {
@@ -1000,8 +1000,8 @@ bool wxGenericDirCtrl::ExpandPath(const wxString& path)
     wxTreeItemId lastId = treeid; // The last non-zero treeid
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (treeid.IsOk() && !done)
     {
@@ -1027,8 +1027,8 @@ bool wxGenericDirCtrl::ExpandPath(const wxString& path)
         bool selectedChild = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (childId.IsOk())
         {
@@ -1067,8 +1067,8 @@ bool wxGenericDirCtrl::CollapsePath(const wxString& path)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( treeid.IsOk() && !done )
     {
@@ -1136,8 +1136,8 @@ void wxGenericDirCtrl::GetPaths(wxArrayString& paths) const
     m_treeCtrl->GetSelections(items);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned n = 0; n < items.size(); n++ )
     {
@@ -1169,8 +1169,8 @@ void wxGenericDirCtrl::GetFilePaths(wxArrayString& paths) const
     m_treeCtrl->GetSelections(items);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned n = 0; n < items.size(); n++ )
     {
@@ -1195,8 +1195,8 @@ void wxGenericDirCtrl::SelectPath(const wxString& path, bool select)
     wxTreeItemId lastId = treeid; // The last non-zero treeid
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( treeid.IsOk() && !done )
     {
@@ -1220,8 +1220,8 @@ void wxGenericDirCtrl::SelectPaths(const wxArrayString& paths)
         UnselectAll();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned n = 0; n < paths.size(); n++ )
         {
@@ -1267,8 +1267,8 @@ void wxGenericDirCtrl::FindChildFiles(wxTreeItemId treeid, int dirFlags, wxArray
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             do
             {
@@ -1440,8 +1440,8 @@ void wxDirFilterListCtrl::OnSelFilter(wxCommandEvent& WXUNUSED(event))
         // Expand and select the previously selected paths
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (unsigned int i = 0; i < paths.GetCount(); i++)
         {
@@ -1470,8 +1470,8 @@ void wxDirFilterListCtrl::FillFilterList(const wxString& filter, int defaultFilt
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (size_t i = 0; i < n; i++)
             Append(descriptions[i]);
@@ -1689,15 +1689,15 @@ static wxBitmap CreateAntialiasedBitmap(const wxImage& img)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (y = 0; y < size; y++)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (x = 0; x < size; x++)
         {
@@ -1754,64 +1754,64 @@ static wxImage CutEmptyBorders(const wxImage& img)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (empt = true, top = 0; empt && top < h; top++)
     {
         MK_DTTMP(0, top);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < w; i++, dttmp+=3)
             NOEMPTY_PIX(empt)
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (empt = true, bottom = h-1; empt && bottom > top; bottom--)
     {
         MK_DTTMP(0, bottom);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < w; i++, dttmp+=3)
             NOEMPTY_PIX(empt)
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (empt = true, left = 0; empt && left < w; left++)
     {
         MK_DTTMP(left, 0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < h; i++, dttmp+=3*w)
             NOEMPTY_PIX(empt)
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (empt = true, right = w-1; empt && right > left; right--)
     {
         MK_DTTMP(right, 0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < h; i++, dttmp+=3*w)
             NOEMPTY_PIX(empt)

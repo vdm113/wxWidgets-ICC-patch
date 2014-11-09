@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -556,16 +556,16 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
    /* Clear the pointer array */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (row = 0; row < height; row++)
       row_pointers[row] = NULL;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (row = 0; row < height; row++)
       row_pointers[row] = png_malloc(png_ptr, png_get_rowbytes(png_ptr,
@@ -580,16 +580,16 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (pass = 0; pass < number_passes; pass++)
    {
 #ifdef single /* Read the image a single row at a time */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (y = 0; y < height; y++)
       {
@@ -599,8 +599,8 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
 #else no_single /* Read the image several rows at a time */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (y = 0; y < height; y += number_of_rows)
       {
@@ -1025,8 +1025,8 @@ void write_png(char *file_name /* , ... other image information ... */)
    /* Set up pointers into your "image" byte array */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (k = 0; k < height; k++)
      row_pointers[k] = image + k*width*bytes_per_pixel;
@@ -1045,8 +1045,8 @@ void write_png(char *file_name /* , ... other image information ... */)
     */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
    for (pass = 0; pass < number_passes; pass++)
    {
@@ -1056,8 +1056,8 @@ void write_png(char *file_name /* , ... other image information ... */)
       /* If you are only writing one row at a time, this works */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (y = 0; y < height; y++)
          png_write_rows(png_ptr, &row_pointers[y], 1);

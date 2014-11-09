@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -259,8 +259,8 @@ MyProportionsFrame::MyProportionsFrame(wxFrame *parent)
     wxPanel *panel = new wxPanel(this, wxID_ANY);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( n = 0; n < WXSIZEOF(m_spins); n++ )
     {
@@ -273,8 +273,8 @@ MyProportionsFrame::MyProportionsFrame(wxFrame *parent)
                 wxT("Try changing elements proportions and resizing the window"));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( n = 0; n < WXSIZEOF(m_spins); n++ )
         m_sizer->Add(m_spins[n], wxSizerFlags().Border());
@@ -297,8 +297,8 @@ void MyProportionsFrame::UpdateProportions()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < WXSIZEOF(m_spins); n++ )
     {
@@ -326,15 +326,15 @@ void MyFlexSizerFrame::InitFlexSizer(wxFlexGridSizer *sizer, wxWindow* parent)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < 3; i++ )
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int j = 0; j < 3; j++ )
         {
@@ -734,8 +734,8 @@ MyWrapSizerFrame::MyWrapSizerFrame(wxFrame* parent)
     // A number of checkboxes inside a wrap sizer
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for( int i = 0; i < 6; i++ )
         DoAddCheckbox();

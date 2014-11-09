@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -136,8 +136,8 @@ public:
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for (int y=0; y<m_maxHeight; y++)
                 {
@@ -171,8 +171,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (upd)
         {
@@ -250,8 +250,8 @@ gtk_pseudo_window_realized_callback( GtkWidget *m_widget, void *WXUNUSED(win) )
         wxRegion region;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int y=0; y<disp.y; y++)
                 {
@@ -363,22 +363,22 @@ static void CopyDocksAndPanes(wxAuiDockInfoArray& dest_docks,
     int i, j, k, dock_count, pc1, pc2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, dock_count = dest_docks.GetCount(); i < dock_count; ++i)
     {
         wxAuiDockInfo& dock = dest_docks.Item(i);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (j = 0, pc1 = dock.panes.GetCount(); j < pc1; ++j)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (k = 0, pc2 = src_panes.GetCount(); k < pc2; ++k)
                 if (dock.panes.Item(j) == &src_panes.Item(k))
@@ -394,8 +394,8 @@ static int GetMaxLayer(const wxAuiDockInfoArray& docks,
     int i, dock_count, max_layer = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, dock_count = docks.GetCount(); i < dock_count; ++i)
     {
@@ -415,8 +415,8 @@ static int GetMaxRow(const wxAuiPaneInfoArray& panes, int direction, int layer)
     int i, pane_count, max_row = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, pane_count = panes.GetCount(); i < pane_count; ++i)
     {
@@ -440,8 +440,8 @@ static void DoInsertDockLayer(wxAuiPaneInfoArray& panes,
     int i, pane_count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, pane_count = panes.GetCount(); i < pane_count; ++i)
     {
@@ -463,8 +463,8 @@ static void DoInsertDockRow(wxAuiPaneInfoArray& panes,
     int i, pane_count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, pane_count = panes.GetCount(); i < pane_count; ++i)
     {
@@ -488,8 +488,8 @@ static void DoInsertPane(wxAuiPaneInfoArray& panes,
     int i, pane_count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, pane_count = panes.GetCount(); i < pane_count; ++i)
     {
@@ -522,8 +522,8 @@ static void FindDocks(wxAuiDockInfoArray& docks,
     // discover the maximum dock layer and the max row
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < dock_count; ++i)
     {
@@ -549,20 +549,20 @@ static void FindDocks(wxAuiDockInfoArray& docks,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (layer = begin_layer; layer <= end_layer; ++layer)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (row = begin_row; row <= end_row; ++row)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (i = 0; i < dock_count; ++i)
             {
@@ -582,8 +582,8 @@ static wxAuiPaneInfo* FindPaneInDock(const wxAuiDockInfo& dock, wxWindow* window
     int i, count = dock.panes.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < count; ++i)
     {
@@ -603,8 +603,8 @@ static void RemovePaneFromDocks(wxAuiDockInfoArray& docks,
     int i, dock_count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, dock_count = docks.GetCount(); i < dock_count; ++i)
     {
@@ -628,8 +628,8 @@ static void RenumberDockRows(wxAuiDockInfoPtrArray& docks)
     int i, dock_count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, dock_count = docks.GetCount(); i < dock_count; ++i)
     {
@@ -639,8 +639,8 @@ static void RenumberDockRows(wxAuiDockInfoPtrArray& docks)
         int j, pane_count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (j = 0, pane_count = dock.panes.GetCount(); j < pane_count; ++j)
             dock.panes.Item(j)->dock_row = i;
@@ -658,8 +658,8 @@ void wxAuiManager::SetActivePane(wxWindow* active_pane)
     wxAuiPaneInfo* active_paneinfo = NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, pane_count = m_panes.GetCount(); i < pane_count; ++i)
     {
@@ -751,8 +751,8 @@ wxAuiManager::~wxAuiManager()
 #if 0
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < m_panes.size(); i++ )
     {
@@ -793,8 +793,8 @@ wxAuiPaneInfo& wxAuiManager::GetPane(wxWindow* window)
     int i, pane_count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, pane_count = m_panes.GetCount(); i < pane_count; ++i)
     {
@@ -812,8 +812,8 @@ wxAuiPaneInfo& wxAuiManager::GetPane(const wxString& name)
     int i, pane_count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, pane_count = m_panes.GetCount(); i < pane_count; ++i)
     {
@@ -840,8 +840,8 @@ wxAuiDockUIPart* wxAuiManager::HitTest(int x, int y)
     int i, part_count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, part_count = m_uiParts.GetCount(); i < part_count; ++i)
     {
@@ -948,8 +948,8 @@ void wxAuiManager::UpdateHintWindowConfig()
     wxWindow* w = m_frame;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (w)
     {
@@ -1372,8 +1372,8 @@ bool wxAuiManager::DetachPane(wxWindow* window)
     int i, count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, count = m_panes.GetCount(); i < count; ++i)
     {
@@ -1410,8 +1410,8 @@ bool wxAuiManager::DetachPane(wxWindow* window)
             int pi, part_count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (pi = 0, part_count = (int)m_uiParts.GetCount(); pi < part_count; ++pi)
             {
@@ -1483,8 +1483,8 @@ void wxAuiManager::MaximizePane(wxAuiPaneInfo& paneInfo)
     // un-maximize and hide all other panes
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, pane_count = m_panes.GetCount(); i < pane_count; ++i)
     {
@@ -1522,8 +1522,8 @@ void wxAuiManager::RestorePane(wxAuiPaneInfo& paneInfo)
     // restore all the panes
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, pane_count = m_panes.GetCount(); i < pane_count; ++i)
     {
@@ -1553,8 +1553,8 @@ void wxAuiManager::RestoreMaximizedPane()
     // restore all the panes
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, pane_count = m_panes.GetCount(); i < pane_count; ++i)
     {
@@ -1577,8 +1577,8 @@ static wxString EscapeDelimiters(const wxString& s)
     const wxChar* ch = s.c_str();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (*ch)
     {
@@ -1630,8 +1630,8 @@ void wxAuiManager::LoadPaneInfo(wxString pane_part, wxAuiPaneInfo &pane)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while(1)
     {
@@ -1716,8 +1716,8 @@ wxString wxAuiManager::SavePerspective()
     int pane_i, pane_count = m_panes.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (pane_i = 0; pane_i < pane_count; ++pane_i)
     {
@@ -1728,8 +1728,8 @@ wxString wxAuiManager::SavePerspective()
     int dock_i, dock_count = m_docks.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (dock_i = 0; dock_i < dock_count; ++dock_i)
     {
@@ -1765,8 +1765,8 @@ bool wxAuiManager::LoadPerspective(const wxString& layout, bool update)
     int pane_i, pane_count = m_panes.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (pane_i = 0; pane_i < pane_count; ++pane_i)
     {
@@ -1787,8 +1787,8 @@ bool wxAuiManager::LoadPerspective(const wxString& layout, bool update)
     m_hasMaximized = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (1)
     {
@@ -1869,8 +1869,8 @@ void wxAuiManager::GetPanePositionsAndSizes(wxAuiDockInfo& dock,
     // find the pane marked as our action pane
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (pane_i = 0; pane_i < pane_count; ++pane_i)
     {
@@ -1888,8 +1888,8 @@ void wxAuiManager::GetPanePositionsAndSizes(wxAuiDockInfo& dock,
     // on the dock's orientation) of each pane
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (pane_i = 0; pane_i < pane_count; ++pane_i)
     {
@@ -1927,8 +1927,8 @@ void wxAuiManager::GetPanePositionsAndSizes(wxAuiDockInfo& dock,
     offset = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (pane_i = action_pane-1; pane_i >= 0; --pane_i)
     {
@@ -1947,8 +1947,8 @@ void wxAuiManager::GetPanePositionsAndSizes(wxAuiDockInfo& dock,
     offset = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (pane_i = action_pane; pane_i < pane_count; ++pane_i)
     {
@@ -2030,8 +2030,8 @@ void wxAuiManager::LayoutAddPane(wxSizer* cont,
         int i, button_count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0, button_count = pane.buttons.GetCount();
              i < button_count; ++i)
@@ -2183,8 +2183,8 @@ void wxAuiManager::LayoutAddDock(wxSizer* cont,
         int offset = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (pane_i = 0; pane_i < pane_count; ++pane_i)
         {
@@ -2236,8 +2236,8 @@ void wxAuiManager::LayoutAddDock(wxSizer* cont,
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (pane_i = 0; pane_i < pane_count; ++pane_i)
         {
@@ -2320,8 +2320,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
     // empty all docks out
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, dock_count = docks.GetCount(); i < dock_count; ++i)
     {
@@ -2344,8 +2344,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
     // pane does not exist in the dock, add it
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, pane_count = panes.GetCount(); i < pane_count; ++i)
     {
@@ -2395,8 +2395,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
     // remove any empty docks
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = docks.GetCount()-1; i >= 0; --i)
     {
@@ -2407,8 +2407,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
     // configure the docks further
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, dock_count = docks.GetCount(); i < dock_count; ++i)
     {
@@ -2426,8 +2426,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (j = 0; j < dock_pane_count; ++j)
             {
@@ -2448,8 +2448,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
             // if at least one pane inside the dock has a pane border
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (j = 0; j < dock_pane_count; ++j)
             {
@@ -2466,8 +2466,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for (j = 0; j < dock_pane_count; ++j)
                 {
@@ -2505,8 +2505,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
         int dock_min_size = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (j = 0; j < dock_pane_count; ++j)
         {
@@ -2551,8 +2551,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
         dock.toolbar = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (j = 0; j < dock_pane_count; ++j)
         {
@@ -2575,8 +2575,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (j = 0; j < dock_pane_count; ++j)
             {
@@ -2597,8 +2597,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
             int offset = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (j = 0; j < dock_pane_count; ++j)
             {
@@ -2620,8 +2620,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
     int max_layer = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < dock_count; ++i)
         max_layer = wxMax(max_layer, docks.Item(i).dock_layer);
@@ -2639,8 +2639,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (layer = 0; layer <= max_layer; ++layer)
     {
@@ -2666,8 +2666,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (row = 0, row_count = arr.GetCount(); row < row_count; ++row)
                 LayoutAddDock(cont, *arr.Item(row), uiparts, spacer_only);
@@ -2685,8 +2685,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (row = 0, row_count = arr.GetCount(); row < row_count; ++row)
                 LayoutAddDock(middle, *arr.Item(row), uiparts, spacer_only);
@@ -2702,8 +2702,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for (row = 0,row_count = arr.GetCount(); row<row_count; ++row)
                    LayoutAddDock(middle, *arr.Item(row), uiparts, spacer_only);
@@ -2733,8 +2733,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (row = arr.GetCount()-1; row >= 0; --row)
                 LayoutAddDock(middle, *arr.Item(row), uiparts, spacer_only);
@@ -2753,8 +2753,8 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (row = arr.GetCount()-1; row >= 0; --row)
                 LayoutAddDock(cont, *arr.Item(row), uiparts, spacer_only);
@@ -2821,8 +2821,8 @@ void wxAuiManager::Update()
     // redocked or are becoming non-floating
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < pane_count; ++i)
     {
@@ -2879,8 +2879,8 @@ void wxAuiManager::Update()
     // and float panes as necessary
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < pane_count; ++i)
     {
@@ -2959,8 +2959,8 @@ void wxAuiManager::Update()
     wxAuiRectArray old_pane_rects;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < pane_count; ++i)
     {
@@ -2989,8 +2989,8 @@ void wxAuiManager::Update()
     // changed, the corresponding panes must also be updated
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < pane_count; ++i)
     {
@@ -3043,8 +3043,8 @@ void wxAuiManager::DoFrameLayout()
     int i, part_count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, part_count = m_uiParts.GetCount(); i < part_count; ++i)
     {
@@ -3098,8 +3098,8 @@ wxAuiDockUIPart* wxAuiManager::GetPanePart(wxWindow* wnd)
     int i, part_count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, part_count = m_uiParts.GetCount(); i < part_count; ++i)
     {
@@ -3110,8 +3110,8 @@ wxAuiDockUIPart* wxAuiManager::GetPanePart(wxWindow* wnd)
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, part_count = m_uiParts.GetCount(); i < part_count; ++i)
     {
@@ -3150,8 +3150,8 @@ int wxAuiManager::GetDockPixelOffset(wxAuiPaneInfo& test)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, part_count = uiparts.GetCount(); i < part_count; ++i)
     {
@@ -3166,8 +3166,8 @@ int wxAuiManager::GetDockPixelOffset(wxAuiPaneInfo& test)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, dock_count = docks.GetCount(); i < dock_count; ++i)
     {
@@ -3717,8 +3717,8 @@ void wxAuiManager::ShowHint(const wxRect& rect)
         int i, pane_count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0, pane_count = m_panes.GetCount(); i < pane_count; ++i)
         {
@@ -3867,8 +3867,8 @@ wxRect wxAuiManager::CalculateHintRect(wxWindow* pane_window,
     // this happens when you are moving a pane around in a dock
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, pane_count = panes.GetCount(); i < pane_count; ++i)
     {
@@ -3895,8 +3895,8 @@ wxRect wxAuiManager::CalculateHintRect(wxWindow* pane_window,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, part_count = uiparts.GetCount();
          i < part_count; ++i)
@@ -4222,8 +4222,8 @@ void wxAuiManager::OnRender(wxAuiManagerEvent& evt)
     int i, part_count;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0, part_count = m_uiParts.GetCount();
          i < part_count; ++i)
@@ -4564,8 +4564,8 @@ bool wxAuiManager::DoEndResizeAction(wxMouseEvent& event)
         size_t dock_i, dock_count = m_docks.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (dock_i = 0; dock_i < dock_count; ++dock_i)
         {
@@ -4685,8 +4685,8 @@ bool wxAuiManager::DoEndResizeAction(wxMouseEvent& event)
         int pane_position = -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < dock_pane_count; ++i)
         {
@@ -4728,8 +4728,8 @@ bool wxAuiManager::DoEndResizeAction(wxMouseEvent& event)
         int borrow_pane = -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i = pane_position+1; i < dock_pane_count; ++i)
         {
@@ -4898,8 +4898,8 @@ void wxAuiManager::OnLeftUp(wxMouseEvent& event)
             int i, dock_pane_count = dock.panes.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (i = 0; i < dock_pane_count; ++i)
                 dock.panes.Item(i)->dock_pos = pane_positions[i];

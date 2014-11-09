@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -104,8 +104,8 @@ void formatString(FILE *ofile, const char *s, int len)
   putc('"', ofile);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (; len > 0; --len, ++s) {
     int c = *s;
@@ -172,8 +172,8 @@ int convertHTMLcodes(char *s, int len)
         o = 3;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (s[o] != ';')
         {
@@ -195,8 +195,8 @@ int convertHTMLcodes(char *s, int len)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (i=0; i < codes; i++)
       {
@@ -244,8 +244,8 @@ int formatIPTC(FILE *ifile, FILE *ofile)
   c = getc(ifile);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (c != EOF)
   {
@@ -269,8 +269,8 @@ int formatIPTC(FILE *ifile, FILE *ofile)
     /* try to match this record to one of the ones in our named table */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i=0; i< tagcount; i++)
     {
@@ -293,8 +293,8 @@ int formatIPTC(FILE *ifile, FILE *ofile)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (i=0; i<4; i++)
         {
@@ -327,8 +327,8 @@ int formatIPTC(FILE *ifile, FILE *ofile)
       }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (tagindx=0; tagindx<taglen; tagindx++)
     {
@@ -372,8 +372,8 @@ char *super_fgets(char *b, int *blen, FILE *file)
   len=*blen;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (q=b; ; q++)
   {
@@ -443,8 +443,8 @@ int main(int argc, char *argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i=1; i<argc; i++)
   {
@@ -529,8 +529,8 @@ int main(int argc, char *argv[])
       token = (char *)NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       while((line = super_fgets(line,&inputlen,ifile))!=NULL)
       {
@@ -541,8 +541,8 @@ int main(int argc, char *argv[])
         newstr = (char *) malloc(inputlen);     
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while(tokenizer(0, token, inputlen, line, "", "=", "\"", 0,
           &brkused,&next,&quoted)==0)
@@ -561,8 +561,8 @@ int main(int argc, char *argv[])
               next=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
               while(tokenizer(0, newstr, inputlen, token, "", "#", "", 0,
                 &brkused, &next, &quoted)==0)
@@ -592,8 +592,8 @@ int main(int argc, char *argv[])
                 len = strlen(token);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while(tokenizer(0, newstr, inputlen, token, "", "&", "", 0,
                   &brkused, &next, &quoted)==0)
@@ -625,8 +625,8 @@ int main(int argc, char *argv[])
                 next=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while (len--)
                   fputc(token[next++], ofile);
@@ -680,8 +680,8 @@ int main(int argc, char *argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for example, if blank is set to be the white
 				space and comma is set to be the break
@@ -731,8 +731,8 @@ int main(int argc, char *argv[])
 				non-break, and non-escape) character.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				for example, assume white space, break
 				character, and quote are the same as in the
@@ -803,8 +803,8 @@ int main(int argc, char *argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for example,
 
@@ -864,8 +864,8 @@ int sindex(char ch,char *string)
   char *cp;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for(cp=string;*cp;++cp)
     if(ch==*cp)
@@ -921,8 +921,8 @@ int tokenizer(unsigned inflag,char *token,int tokmax,char *line,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for(_p_tokpos=0;(c=line[*next]);++(*next))	/* main loop */
   {

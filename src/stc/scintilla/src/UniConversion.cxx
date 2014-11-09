@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -32,8 +32,8 @@ unsigned int UTF8Length(const wchar_t *uptr, unsigned int tlen) {
 	unsigned int len = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (unsigned int i = 0; i < tlen && uptr[i];) {
 		unsigned int uch = uptr[i];
@@ -57,8 +57,8 @@ void UTF8FromUTF16(const wchar_t *uptr, unsigned int tlen, char *putf, unsigned 
 	int k = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (unsigned int i = 0; i < tlen && uptr[i];) {
 		unsigned int uch = uptr[i];
@@ -103,8 +103,8 @@ unsigned int UTF16Length(const char *s, unsigned int len) {
 	unsigned int charLen;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (unsigned int i=0; i<len;) {
 		unsigned char ch = static_cast<unsigned char>(s[i]);
@@ -130,8 +130,8 @@ unsigned int UTF16FromUTF8(const char *s, unsigned int len, wchar_t *tbuf, unsig
 	unsigned int i=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((i<len) && (ui<tlen)) {
 		unsigned char ch = us[i++];
@@ -188,8 +188,8 @@ void UTF8BytesOfLeadInitialise() {
 	if (!initialisedBytesOfLead) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int i=0; i<256; i++) {
 			UTF8BytesOfLead[i] = BytesFromLead(i);

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -37,8 +37,8 @@ characterData(void *userData, const XML_Char *s, int len)
   FILE *fp = (FILE *)userData;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (; len > 0; --len, ++s) {
     switch (*s) {
@@ -79,8 +79,8 @@ attributeValue(FILE *fp, const XML_Char *s)
   puttc(T('"'), fp);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (;;) {
     switch (*s) {
@@ -146,8 +146,8 @@ startElement(void *userData, const XML_Char *name, const XML_Char **atts)
   p = atts;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (*p)
     ++p;
@@ -156,8 +156,8 @@ startElement(void *userData, const XML_Char *name, const XML_Char **atts)
     qsort((void *)atts, nAtts, sizeof(XML_Char *) * 2, attcmp);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (*atts) {
     puttc(T(' '), fp);
@@ -216,8 +216,8 @@ startElementNS(void *userData, const XML_Char *name, const XML_Char **atts)
   p = atts;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (*p)
     ++p;
@@ -226,8 +226,8 @@ startElementNS(void *userData, const XML_Char *name, const XML_Char **atts)
     qsort((void *)atts, nAtts, sizeof(XML_Char *) * 2, nsattcmp);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (*atts) {
     name = *atts++;
@@ -337,8 +337,8 @@ markup(void *userData, const XML_Char *s, int len)
   FILE *fp = (FILE *)XML_GetUserData((XML_Parser) userData);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (; len > 0; --len, ++s)
     puttc(*s, fp);
@@ -392,8 +392,8 @@ metaStartElement(void *userData, const XML_Char *name,
     fputts(T(">\n"), fp);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do {
       ftprintf(fp, T("<attribute name=\"%s\" value=\""), atts[0]);
@@ -614,8 +614,8 @@ unknownEncoding(void *userData, const XML_Char *name, XML_Encoding *info)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; prefixU[i]; i++)
     if (name[i] != prefixU[i] && name[i] != prefixL[i])
@@ -624,8 +624,8 @@ unknownEncoding(void *userData, const XML_Char *name, XML_Encoding *info)
   cp = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (; name[i]; i++) {
     static const XML_Char digits[] = T("0123456789");
@@ -664,8 +664,8 @@ showVersion(XML_Char *prog)
   const XML_Feature *features = XML_GetFeatureList();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while ((ch = *s) != 0) {
     if (ch == '/'
@@ -684,8 +684,8 @@ showVersion(XML_Char *prog)
       ftprintf(stdout, T("=%ld"), features[0].value);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (features[i].feature != XML_FEATURE_END) {
       ftprintf(stdout, T(", %s"), features[i].name);
@@ -729,8 +729,8 @@ tmain(int argc, XML_Char **argv)
   j = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (i < argc) {
     if (j == 0) {
@@ -825,8 +825,8 @@ tmain(int argc, XML_Char **argv)
   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (; i < argc; i++) {
     FILE *fp = 0;

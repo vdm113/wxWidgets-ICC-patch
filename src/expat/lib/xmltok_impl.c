@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -108,8 +108,8 @@ PREFIX(scanComment)(const ENCODING *enc, const char *ptr,
     ptr += MINBPC(enc);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (ptr != end) {
       switch (BYTE_TYPE(enc, ptr)) {
@@ -161,8 +161,8 @@ PREFIX(scanDecl)(const ENCODING *enc, const char *ptr,
   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -252,8 +252,8 @@ PREFIX(scanPi)(const ENCODING *enc, const char *ptr,
   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -266,8 +266,8 @@ PREFIX(scanPi)(const ENCODING *enc, const char *ptr,
       ptr += MINBPC(enc);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       while (ptr != end) {
         switch (BYTE_TYPE(enc, ptr)) {
@@ -320,8 +320,8 @@ PREFIX(scanCdataSection)(const ENCODING *enc, const char *ptr,
     return XML_TOK_PARTIAL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < 6; i++, ptr += MINBPC(enc)) {
     if (!CHAR_MATCHES(enc, ptr, CDATA_LSQB[i])) {
@@ -382,8 +382,8 @@ PREFIX(cdataSectionTok)(const ENCODING *enc, const char *ptr,
   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -430,8 +430,8 @@ PREFIX(scanEndTag)(const ENCODING *enc, const char *ptr,
   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -439,8 +439,8 @@ PREFIX(scanEndTag)(const ENCODING *enc, const char *ptr,
     case BT_S: case BT_CR: case BT_LF:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (ptr += MINBPC(enc); ptr != end; ptr += MINBPC(enc)) {
         switch (BYTE_TYPE(enc, ptr)) {
@@ -490,8 +490,8 @@ PREFIX(scanHexCharRef)(const ENCODING *enc, const char *ptr,
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (ptr += MINBPC(enc); ptr != end; ptr += MINBPC(enc)) {
       switch (BYTE_TYPE(enc, ptr)) {
@@ -528,8 +528,8 @@ PREFIX(scanCharRef)(const ENCODING *enc, const char *ptr,
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (ptr += MINBPC(enc); ptr != end; ptr += MINBPC(enc)) {
       switch (BYTE_TYPE(enc, ptr)) {
@@ -565,8 +565,8 @@ PREFIX(scanRef)(const ENCODING *enc, const char *ptr, const char *end,
   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -593,8 +593,8 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #endif
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -620,8 +620,8 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
     case BT_S: case BT_CR: case BT_LF:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (;;) {
         int t;
@@ -651,8 +651,8 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #endif
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (;;) {
           ptr += MINBPC(enc);
@@ -675,8 +675,8 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
         /* in attribute value */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (;;) {
           int t;
@@ -724,8 +724,8 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
         /* ptr points to closing quote */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (;;) {
           ptr += MINBPC(enc);
@@ -805,8 +805,8 @@ PREFIX(scanLt)(const ENCODING *enc, const char *ptr, const char *end,
   /* we have a start-tag */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -834,8 +834,8 @@ PREFIX(scanLt)(const ENCODING *enc, const char *ptr, const char *end,
         ptr += MINBPC(enc);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (ptr != end) {
           switch (BYTE_TYPE(enc, ptr)) {
@@ -931,8 +931,8 @@ PREFIX(contentTok)(const ENCODING *enc, const char *ptr, const char *end,
   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -999,8 +999,8 @@ PREFIX(scanPercent)(const ENCODING *enc, const char *ptr, const char *end,
   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1030,8 +1030,8 @@ PREFIX(scanPoundName)(const ENCODING *enc, const char *ptr, const char *end,
   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1055,8 +1055,8 @@ PREFIX(scanLit)(int open, const ENCODING *enc,
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (ptr != end) {
     int t = BYTE_TYPE(enc, ptr);
@@ -1138,8 +1138,8 @@ PREFIX(prologTok)(const ENCODING *enc, const char *ptr, const char *end,
   case BT_S: case BT_LF:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (;;) {
       ptr += MINBPC(enc);
@@ -1265,8 +1265,8 @@ PREFIX(prologTok)(const ENCODING *enc, const char *ptr, const char *end,
   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1336,8 +1336,8 @@ PREFIX(attributeValueTok)(const ENCODING *enc, const char *ptr,
   start = ptr;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1399,8 +1399,8 @@ PREFIX(entityValueTok)(const ENCODING *enc, const char *ptr,
   start = ptr;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1465,8 +1465,8 @@ PREFIX(ignoreSectionTok)(const ENCODING *enc, const char *ptr,
   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1517,8 +1517,8 @@ PREFIX(isPublicId)(const ENCODING *enc, const char *ptr, const char *end,
   end -= MINBPC(enc);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (; ptr != end; ptr += MINBPC(enc)) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1585,8 +1585,8 @@ PREFIX(getAtts)(const ENCODING *enc, const char *ptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ptr += MINBPC(enc);; ptr += MINBPC(enc)) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1681,8 +1681,8 @@ PREFIX(charRefNumber)(const ENCODING *enc, const char *ptr)
   if (CHAR_MATCHES(enc, ptr, ASCII_x)) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (ptr += MINBPC(enc);
          !CHAR_MATCHES(enc, ptr, ASCII_SEMI);
@@ -1712,8 +1712,8 @@ PREFIX(charRefNumber)(const ENCODING *enc, const char *ptr)
   else {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (; !CHAR_MATCHES(enc, ptr, ASCII_SEMI); ptr += MINBPC(enc)) {
       int c = BYTE_TO_ASCII(enc, ptr);
@@ -1785,8 +1785,8 @@ PREFIX(sameName)(const ENCODING *enc, const char *ptr1, const char *ptr2)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (;;) {
     switch (BYTE_TYPE(enc, ptr1)) {
@@ -1855,8 +1855,8 @@ PREFIX(nameMatchesAscii)(const ENCODING *enc, const char *ptr1,
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (; *ptr2; ptr1 += MINBPC(enc), ptr2++) {
     if (ptr1 == end1)
@@ -1873,8 +1873,8 @@ PREFIX(nameLength)(const ENCODING *enc, const char *ptr)
   const char *start = ptr;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (;;) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1904,8 +1904,8 @@ PREFIX(skipS)(const ENCODING *enc, const char *ptr)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (;;) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1928,8 +1928,8 @@ PREFIX(updatePosition)(const ENCODING *enc,
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (ptr < end) {
     switch (BYTE_TYPE(enc, ptr)) {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -384,8 +384,8 @@ private:
 		int eol_pos = styler.LineStart(line + 1) - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int i = pos; i + 1 < eol_pos; i++) {
 			int style = styler.StyleAt(i);
@@ -458,8 +458,8 @@ void SCI_METHOD LexerSQL::Lex(unsigned int startPos, int length, int initStyle, 
 	int offset = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; sc.More(); sc.Forward(), offset++) {
 		// Determine if the current state should terminate.
@@ -626,8 +626,8 @@ void SCI_METHOD LexerSQL::Fold(unsigned int startPos, int length, int initStyle,
 		// by white-space and/or comments. This will improve folding.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (--startPos > 0) {
 			char ch = styler[startPos];
@@ -662,8 +662,8 @@ void SCI_METHOD LexerSQL::Fold(unsigned int startPos, int length, int initStyle,
 	unsigned int docLength = styler.Length();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; endPos < docLength; ++endPos) {
 		if (styler.SafeGetCharAt(endPos) == ';') {
@@ -686,8 +686,8 @@ void SCI_METHOD LexerSQL::Fold(unsigned int startPos, int length, int initStyle,
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;

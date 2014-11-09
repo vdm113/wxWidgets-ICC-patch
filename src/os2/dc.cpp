@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/dc.cpp
 // Purpose:     wxDC class
@@ -209,6 +216,11 @@ wxDCCacheEntry* wxPMDCImpl::FindBitmapInCache(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     while(pNode)
     {
         wxDCCacheEntry*             pEntry = (wxDCCacheEntry*)pNode->Data();
@@ -278,6 +290,11 @@ wxDCCacheEntry* wxPMDCImpl::FindDCInCache(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     while(pNode)
     {
@@ -898,6 +915,11 @@ void wxPMDCImpl::DoDrawPolygon( int n,
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for(i = 0; i < n; i++)
     {
         vPlgn.aPointl[i].x = vPoints[i].x+vXoffset;
@@ -940,6 +962,11 @@ void wxPMDCImpl::DoDrawLines(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
         for(i = 1; i < n; i++)
         {
             vPoint.x = vPoints[i].x + vXoffset;
@@ -962,6 +989,11 @@ void wxPMDCImpl::DoDrawLines(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
         for (i = 0; i < n; i++)
         {
@@ -1463,12 +1495,22 @@ void wxPMDCImpl::DoDrawBitmap(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
                 for (i = 0; i < rBmp.GetHeight(); i++)
                 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
                     for (j = 0; j < rBmp.GetWidth(); j++)
                     {
@@ -1509,6 +1551,11 @@ void wxPMDCImpl::DoDrawBitmap(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
                     for (j = 0; j < nPadding; j++)
                     {
@@ -1651,12 +1698,22 @@ void wxPMDCImpl::DoDrawBitmap(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
                 for (i = 0; i < rBmp.GetHeight(); i++)
                 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
                     for (j = 0; j < rBmp.GetWidth(); j++)
                     {
@@ -2243,6 +2300,11 @@ void wxPMDCImpl::DoGetTextExtent(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     for (i = 1; i < 4; i++)
     {

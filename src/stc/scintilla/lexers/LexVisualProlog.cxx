@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -219,8 +219,8 @@ static void endLookAhead(char s[], LexAccessor &styler, int start) {
     char ch = styler.SafeGetCharAt(start, '\n');
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (' ' == ch) {
         start++;
@@ -229,8 +229,8 @@ static void endLookAhead(char s[], LexAccessor &styler, int start) {
     int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (i < 100 && isLowerLetter(ch)){
         s[i] = ch;
@@ -283,8 +283,8 @@ void SCI_METHOD LexerVisualProlog::Lex(unsigned int startPos, int length, int in
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (; sc.More(); sc.Forward()) {
 
@@ -485,8 +485,8 @@ void SCI_METHOD LexerVisualProlog::Fold(unsigned int startPos, int length, int i
     int style = initStyle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i = startPos; i < endPos; i++) {
         char ch = chNext;

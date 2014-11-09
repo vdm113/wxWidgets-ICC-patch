@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -140,8 +140,8 @@ wxChmTools::wxChmTools(const wxFileName &archive)
         // Store Filenames in array
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (file = chmh->files; file; file = file->next)
         {
@@ -199,8 +199,8 @@ bool wxChmTools::Contains(const wxString& pattern)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int i = 0; i < count; i++)
         {
@@ -239,8 +239,8 @@ const wxString wxChmTools::Find(const wxString& pattern,
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int i = 0; i < count; i++)
         {
@@ -282,8 +282,8 @@ size_t wxChmTools::Extract(const wxString& pattern, const wxString& filename)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (f = h->files; f; f = f->next)
     {
@@ -330,8 +330,8 @@ struct mschmd_file *wxChmTools::GetMschmdFile(const wxString& pattern_orig)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (f = h->files; f; f = f->next)
     {
@@ -637,8 +637,8 @@ wxChmInputStream::CreateHHPStream()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (!i->Eof())
         {

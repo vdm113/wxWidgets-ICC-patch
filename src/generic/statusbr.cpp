@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -341,8 +341,8 @@ bool wxStatusBarGeneric::GetFieldRect(int n, wxRect& rect) const
     rect.x = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < n; i++ )
         rect.x += m_widthsAbs[i];
@@ -369,8 +369,8 @@ int wxStatusBarGeneric::GetFieldFromPoint(const wxPoint& pt) const
     int x = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < m_panes.GetCount(); i++ )
     {
@@ -466,8 +466,8 @@ void wxStatusBarGeneric::OnPaint(wxPaintEvent& WXUNUSED(event) )
     dc.SetBackgroundMode(wxBRUSHSTYLE_TRANSPARENT);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < m_panes.GetCount(); i ++)
         DrawField(dc, i, textHeight);

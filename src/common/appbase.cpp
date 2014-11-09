@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -562,8 +562,8 @@ void wxAppConsoleBase::ProcessPendingEvents()
         // from it when they don't have any more pending events
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (!m_handlersWithPendingEvents.IsEmpty())
         {
@@ -604,8 +604,8 @@ void wxAppConsoleBase::DeletePendingEvents()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (unsigned int i=0; i<m_handlersWithPendingEvents.GetCount(); i++)
         m_handlersWithPendingEvents[i]->DeletePendingEvents();
@@ -643,8 +643,8 @@ void wxAppConsoleBase::DeletePendingObjects()
     wxList::compatibility_iterator node = wxPendingDelete.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -1089,8 +1089,8 @@ wxString wxAppTraitsBase::GetAssertStackTrace()
     const int count = stackTrace.Freq(wxT('\n'));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int i = 0; i < count - maxLines; i++ )
         stackTrace = stackTrace.BeforeLast(wxT('\n'));
@@ -1307,8 +1307,8 @@ static void LINKAGEMODE SetTraceMasks()
         wxStringTokenizer tkn(mask, wxT(",;:"));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( tkn.HasMoreTokens() )
             wxLog::AddTraceMask(tkn.GetNextToken());

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -254,8 +254,8 @@ static void BuildListFromNN(wxArrayString& list, NETRESOURCE* pResSrc,
         memset(pRes, 0, sizeof(NETRESOURCE));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (rc = s_pWNetEnumResource(hEnum, &count, pRes, &size), rc == NO_ERROR || rc == ERROR_MORE_DATA)
         {
@@ -366,8 +366,8 @@ static bool BuildRemoteList(wxArrayString& list, NETRESOURCE* pResSrc,
         ssize_t iList = list.GetCount()-1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (ssize_t iMounted = mounted.GetCount()-1; iMounted >= 0 && iList >= 0; iMounted--)
         {
@@ -377,8 +377,8 @@ static bool BuildRemoteList(wxArrayString& list, NETRESOURCE* pResSrc,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (compare =
                      wxStricmp(list[iList].c_str(), mounted[iMounted].c_str()),
@@ -450,8 +450,8 @@ wxArrayString wxFSVolumeBase::GetVolumes(int flagsSet, int flagsUnset)
     pVol = buf;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (*pVol)
     {
@@ -478,8 +478,8 @@ wxArrayString wxFSVolumeBase::GetVolumes(int flagsSet, int flagsUnset)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (size_t idx = 0; idx < nn.GetCount(); idx++)
                 list.Add(nn[idx]);
@@ -604,8 +604,8 @@ void wxFSVolume::InitIcons()
     wxIcon null;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int idx = 0; idx < wxFS_VOL_ICO_MAX; idx++)
         m_icons.Add(null);

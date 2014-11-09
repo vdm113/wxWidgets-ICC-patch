@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -182,8 +182,8 @@ void wxWindowDFB::InvalidateDfbSurface()
     wxWindowList& children = GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxWindowList::iterator i = children.begin(); i != children.end(); ++i )
     {
@@ -726,8 +726,8 @@ void wxWindowDFB::PaintWindow(const wxRect& rect)
     wxWindowList& children = GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxWindowList::iterator i = children.begin();
           i != children.end(); ++i )
@@ -763,8 +763,8 @@ void wxWindowDFB::PaintOverlays(const wxRect& rect)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxDfbOverlaysList::const_iterator i = m_overlays->begin();
           i != m_overlays->end(); ++i )

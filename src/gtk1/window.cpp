@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -304,8 +304,8 @@ wxWindow *wxFindFocusedChild(wxWindowGTK *win)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
           node;
@@ -588,8 +588,8 @@ static void gtk_window_draw_callback( GtkWidget *widget,
         wxWindow *parent = win->GetParent();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (parent && !parent->IsTopLevel())
             parent = parent->GetParent();
@@ -618,8 +618,8 @@ static void gtk_window_draw_callback( GtkWidget *widget,
     GList *children = pizza->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (children)
     {
@@ -1126,16 +1126,16 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
         wxWindow *parent = win;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (parent && !parent->IsTopLevel())
             parent = parent->GetParent();
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for( const wxChar* pstr = string; *pstr; pstr++ )
         {
@@ -1169,8 +1169,8 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
         wxWindowGTK *ancestor = win;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (ancestor)
         {
@@ -1220,8 +1220,8 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
             wxWindow *parent = win;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (parent && !parent->IsTopLevel())
                 parent = parent->GetParent();
@@ -1279,8 +1279,8 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
                  *btnCancel = NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( winForCancel )
         {
@@ -1444,8 +1444,8 @@ wxWindowGTK *FindWindowForMouseEvent(wxWindowGTK *win, wxCoord& x, wxCoord& y)
     wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -3574,8 +3574,8 @@ void wxWindowGTK::GtkUpdate()
     // should also update all our children here
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;
@@ -3612,8 +3612,8 @@ void wxWindowGTK::GtkSendPaintEvents()
             wxRegionIterator upd( m_updateRegion );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (upd)
             {
@@ -3657,8 +3657,8 @@ void wxWindowGTK::GtkSendPaintEvents()
             wxRegionIterator upd( m_clearRegion );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (upd)
             {
@@ -3688,8 +3688,8 @@ void wxWindowGTK::GtkSendPaintEvents()
     GList *children = pizza->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (children)
     {
@@ -3711,8 +3711,8 @@ void wxWindowGTK::GtkSendPaintEvents()
             wxRegionIterator upd( m_updateRegion );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             while (upd)
             {

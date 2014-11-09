@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/accel.cpp
 // Purpose:     wxAcceleratorTable
@@ -118,6 +125,11 @@ wxAcceleratorTable::wxAcceleratorTable(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     for (i = 0; i < n; i++)
     {
         USHORT                      uVirt = AF_CHAR;
@@ -222,6 +234,11 @@ wxString wxPMTextToLabel( const wxString& rsTitle )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     for (zPc = rsTitle.c_str(); *zPc != wxT('\0'); zPc++)
     {

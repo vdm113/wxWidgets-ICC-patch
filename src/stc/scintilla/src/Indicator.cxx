@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -40,8 +40,8 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		surface->MoveTo(x, rc.top + y);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (x < xLast) {
 			if ((x + 2) > xLast) {
@@ -62,8 +62,8 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		enum { alphaFull = 0xff, alphaSide = 0x2f, alphaSide2=0x5f };
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int x = 0; x < width; x++) {
 			if (x%2) {
@@ -84,8 +84,8 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		int y = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (x < rc.right) {
 			surface->LineTo(x-1, rc.top + y);
@@ -99,8 +99,8 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		int x = rc.left + 5;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (x < rc.right) {
 			surface->LineTo(x, ymid);
@@ -119,8 +119,8 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		int x = rc.left;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (x < rc.right) {
 			surface->MoveTo(x, rc.top+2);
@@ -160,14 +160,14 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		// Draw horizontal lines top and bottom
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int x=0; x<width; x++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (int y=0; y<rcBox.Height(); y += rcBox.Height()-1) {
 				image.SetPixel(x, y, fore, ((x + y) % 2) ? outlineAlpha : fillAlpha);
@@ -176,14 +176,14 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		// Draw vertical lines left and right
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		for (int y=1; y<rcBox.Height(); y++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			for (int x=0; x<width; x += width-1) {
 				image.SetPixel(x, y, fore, ((x + y) % 2) ? outlineAlpha : fillAlpha);
@@ -194,8 +194,8 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		int x = rc.left;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (x < rc.right) {
 			surface->MoveTo(x, ymid);
@@ -206,8 +206,8 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		int x = rc.left;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (x < rc.right) {
 			PRectangle rcDot(x, ymid, x+1, ymid+1);

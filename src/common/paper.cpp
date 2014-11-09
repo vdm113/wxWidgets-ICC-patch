@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -262,8 +262,8 @@ wxPrintPaperType *wxPrintPaperDatabase::FindPaperType(wxPaperSize id)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iterator it = m_map->begin(), en = m_map->end(); it != en; ++it)
     {
@@ -281,8 +281,8 @@ wxPrintPaperType *wxPrintPaperDatabase::FindPaperTypeByPlatformId(int id)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iterator it = m_map->begin(), en = m_map->end(); it != en; ++it)
     {
@@ -302,8 +302,8 @@ wxPrintPaperType *wxPrintPaperDatabase::FindPaperType(const wxSize& sz)
     // it was wrongly translated to Note.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < GetCount(); i++ )
     {

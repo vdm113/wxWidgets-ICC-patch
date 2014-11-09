@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -411,8 +411,8 @@ void ListboxWidgetsPage::CreateLbox()
         int count = m_lbox->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int n = 0; n < count; n++ )
         {
@@ -490,8 +490,8 @@ void ListboxWidgetsPage::OnButtonChange(wxCommandEvent& WXUNUSED(event))
     wxString s = m_textChange->GetValue();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( int n = 0; n < count; n++ )
     {
@@ -527,8 +527,8 @@ void ListboxWidgetsPage::OnButtonDeleteSel(wxCommandEvent& WXUNUSED(event))
     int n = m_lbox->GetSelections(selections);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( n > 0 )
     {
@@ -560,8 +560,8 @@ void ListboxWidgetsPage::OnButtonAddMany(wxCommandEvent& WXUNUSED(event))
     // "many" means 1000 here
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int n = 0; n < 1000; n++ )
     {

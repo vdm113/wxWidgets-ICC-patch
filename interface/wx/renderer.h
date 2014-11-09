@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -409,8 +409,8 @@ public:
         which are selected (e.g. often a blue rectangle) and @c wxCONTROL_CURRENT
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for the item that has the focus (often a dotted line around the item's text).
         @c wxCONTROL_FOCUSED may be used to indicate if the control has the focus
@@ -480,8 +480,8 @@ public:
         This function is currently only available under MSW and OS X (and only
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for wxTITLEBAR_BUTTON_CLOSE under the latter), its best replacement for
         the other platforms is to use wxArtProvider to retrieve the bitmaps for

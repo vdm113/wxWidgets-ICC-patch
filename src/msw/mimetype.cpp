@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -99,8 +99,8 @@ static bool CanonicalizeParams(wxString& command)
     size_t len = command.length();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; (n < len) && !foundFilename; n++ )
     {
@@ -178,8 +178,8 @@ size_t wxFileTypeImpl::GetAllCommands(wxArrayString *verbs,
     bool ok = rkey.GetFirstKey(verb, dummy);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( ok )
     {
@@ -565,8 +565,8 @@ size_t wxMimeTypesManagerImpl::EnumAllFileTypes(wxArrayString& mimetypes)
     bool cont = key.GetFirstKey(type, cookie);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( cont )
     {
@@ -669,8 +669,8 @@ wxFileType *wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (iExtCount=1; iExtCount < ftInfo.GetExtensionsCount(); iExtCount++ )
     {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -175,8 +175,8 @@ GtkIconSize FindClosestIconSize(const wxSize& size)
         s_sizes[5].icon = GTK_ICON_SIZE_DIALOG;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (size_t i = 0; i < NUM_SIZES; i++)
         {
@@ -190,8 +190,8 @@ GtkIconSize FindClosestIconSize(const wxSize& size)
     unsigned distance = INT_MAX;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < NUM_SIZES; i++)
     {
@@ -283,8 +283,8 @@ wxIconBundle DoCreateIconBundle(const char *stockid,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( const SizeType *i = sizes_from; i != sizes_to; ++i )
     {
@@ -376,8 +376,8 @@ wxGTK2ArtProvider::CreateIconBundle(const wxArtID& id,
     gint *last = sizes;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( *last )
         last++;

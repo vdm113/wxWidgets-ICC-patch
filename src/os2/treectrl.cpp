@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/treectrl.cpp
 // Purpose:     wxTreeCtrl
@@ -99,6 +106,11 @@ void BumpTreeRecordIds (
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     while(pRecord)
     {
         pRecord = (PMYRECORD)PVOIDFROMMR(::WinSendMsg( hWnd
@@ -130,6 +142,11 @@ PMYRECORD FindOS2TreeRecordByID (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < vCnrInfo.cRecords; i++)
     {
@@ -330,6 +347,11 @@ bool wxTreeTraversal::Traverse (
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     while (vChild.IsOk())
     {
         //
@@ -448,6 +470,11 @@ wxTreeCtrl::~wxTreeCtrl ()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
         for (wxNode* pNode = m_vAttrs.Next(); pNode; pNode = m_vAttrs.Next())
         {
@@ -1307,6 +1334,11 @@ wxTreeItemId wxTreeCtrl::GetFirstVisibleItem () const
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     while(pRecord)
     {
         pRecord = (PMYRECORD)PVOIDFROMMR(::WinSendMsg( GetHWND()
@@ -1339,6 +1371,11 @@ wxTreeItemId wxTreeCtrl::GetNextVisible (
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     while(pRecord)
     {
         pRecord = (PMYRECORD)PVOIDFROMMR(::WinSendMsg( GetHWND()
@@ -1370,6 +1407,11 @@ wxTreeItemId wxTreeCtrl::GetPrevVisible (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     while(pRecord)
     {
@@ -1638,6 +1680,11 @@ void wxTreeCtrl::DeleteChildren (
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
+#endif
     while (vChild.IsOk())
     {
         aChildren.Add((long)(WXHTREEITEM)vChild);
@@ -1652,6 +1699,11 @@ void wxTreeCtrl::DeleteChildren (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
     for (size_t n = 0; n < nCount; n++)
     {
@@ -1779,6 +1831,11 @@ void wxTreeCtrl::UnselectAll ()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma unroll
+#   pragma swp
 #endif
         for (size_t n = 0; n < nCount; n++)
         {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -103,8 +103,8 @@ uLong ZEXPORT adler32(adler, buf, len)
     if (len < 16) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (len--) {
             adler += *buf++;
@@ -119,16 +119,16 @@ uLong ZEXPORT adler32(adler, buf, len)
     /* do length NMAX blocks -- requires just one modulo operation */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (len >= NMAX) {
         len -= NMAX;
         n = NMAX / 16;          /* NMAX is divisible by 16 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do {
             DO16(buf);          /* 16 sums unrolled */
@@ -142,8 +142,8 @@ uLong ZEXPORT adler32(adler, buf, len)
     if (len) {                  /* avoid modulos if none remaining */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (len >= 16) {
             len -= 16;
@@ -152,8 +152,8 @@ uLong ZEXPORT adler32(adler, buf, len)
         }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (len--) {
             adler += *buf++;

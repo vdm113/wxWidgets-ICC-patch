@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -216,8 +216,8 @@ size_t wxZlibInputStream::OnSysRead(void *buffer, size_t size)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (err == Z_OK && m_inflate->avail_out > 0) {
     if (m_inflate->avail_in == 0 && m_parent_i_stream->IsOk()) {
@@ -381,8 +381,8 @@ void wxZlibOutputStream::DoFlush(bool final)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (err == Z_OK || err == Z_STREAM_END) {
     size_t len = m_z_size  - m_deflate->avail_out;
@@ -422,8 +422,8 @@ size_t wxZlibOutputStream::OnSysWrite(const void *buffer, size_t size)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (err == Z_OK && m_deflate->avail_in > 0) {
     if (m_deflate->avail_out == 0) {

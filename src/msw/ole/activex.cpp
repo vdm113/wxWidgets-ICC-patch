@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -589,8 +589,8 @@ public:
         if (prgCmds == NULL) return E_INVALIDARG;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (ULONG nCmd = 0; nCmd < cCmds; nCmd++)
         {
@@ -777,8 +777,8 @@ public:
         m_activeX->ProcessEvent(event);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (DWORD i = 0; i < pDispParams->cArgs; i++)
         {
@@ -832,8 +832,8 @@ wxVariant &wxActiveXEvent::operator [](size_t idx)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( m_params.GetCount()<=idx )
         {
@@ -991,8 +991,8 @@ void wxActiveXContainer::CreateActiveX(REFIID iid, IUnknown* pUnk)
     // iterate contained interfaces
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (int i = 0; i < ta->cImplTypes; i++)
     {

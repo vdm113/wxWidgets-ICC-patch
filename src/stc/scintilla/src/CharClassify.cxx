@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -34,8 +34,8 @@ void CharClassify::SetDefaultCharClasses(bool includeWordClass) {
 	// Initialize all char classes to default values
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int ch = 0; ch < 256; ch++) {
 		if (ch == '\r' || ch == '\n')
@@ -54,8 +54,8 @@ void CharClassify::SetCharClasses(const unsigned char *chars, cc newCharClass) {
 	if (chars) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (*chars) {
 			charClass[*chars] = static_cast<unsigned char>(newCharClass);
@@ -70,8 +70,8 @@ int CharClassify::GetCharsOfClass(cc characterClass, unsigned char *buffer) {
 	int count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int ch = maxChar - 1; ch >= 0; --ch) {
 		if (charClass[ch] == characterClass) {

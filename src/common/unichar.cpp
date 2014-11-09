@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -114,8 +114,8 @@ wxUniCharRef& wxUniCharRef::operator=(const wxUniChar& c)
         iterator pos(m_pos);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t i = 0; i < lenNew; ++i, ++pos )
             *pos = utf[i];
@@ -142,8 +142,8 @@ wxUniCharRef& wxUniCharRef::operator=(const wxUniChar& c)
         wxStringIteratorNode *it;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( it = m_str.m_iterators.ptr; it; it = it->m_next, ++iterNum )
         {
@@ -156,8 +156,8 @@ wxUniCharRef& wxUniCharRef::operator=(const wxUniChar& c)
                 size_t total = iterNum + 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( wxStringIteratorNode *it2 = it; it2; it2 = it2->m_next )
                     total++;
@@ -187,8 +187,8 @@ wxUniCharRef& wxUniCharRef::operator=(const wxUniChar& c)
         size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( i = 0, it = m_str.m_iterators.ptr; it; it = it->m_next, ++i )
         {

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -65,8 +65,8 @@ static void ColouriseEiffelDoc(unsigned int startPos,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (; sc.More(); sc.Forward()) {
 
@@ -151,8 +151,8 @@ static void FoldEiffelDocIndent(unsigned int startPos, int length, int,
 	char chNext = styler[startPos];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
@@ -196,8 +196,8 @@ static void FoldEiffelDocKeyWords(unsigned int startPos, int length, int /* init
 	bool lastDeferred = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
@@ -210,8 +210,8 @@ static void FoldEiffelDocKeyWords(unsigned int startPos, int length, int /* init
 			unsigned int j = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while ((j < (sizeof(s) - 1)) && (iswordchar(styler[i + j]))) {
 				s[j] = styler[i + j];

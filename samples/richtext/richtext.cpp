@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -704,8 +704,8 @@ void MyApp::CreateStyles()
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 10; i++)
     {
@@ -729,8 +729,8 @@ void MyApp::CreateStyles()
     wxRichTextListStyleDefinition* numberedList = new wxRichTextListStyleDefinition(wxT("Numbered List 1"));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 10; i++)
     {
@@ -756,8 +756,8 @@ void MyApp::CreateStyles()
     wxRichTextListStyleDefinition* outlineList = new wxRichTextListStyleDefinition(wxT("Outline List 1"));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i < 10; i++)
     {
@@ -1262,15 +1262,15 @@ void MyFrame::WriteInitialText()
         int i, j;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (j = 0; j < table->GetRowCount(); j++)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (i = 0; i < table->GetColumnCount(); i++)
             {
@@ -1865,8 +1865,8 @@ void MyFrame::OnSwitchStyleSheets(wxCommandEvent& WXUNUSED(event))
         // Make some modifications
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for (int i = 0; i < (int) gs_AlternateStyleSheet->GetParagraphStyleCount(); i++)
         {
@@ -2198,8 +2198,8 @@ void MyRichTextCtrl::PrepareContent(wxRichTextParagraphLayoutBox& container)
         wxRichTextObjectList::compatibility_iterator node = container.GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (node)
         {
@@ -2209,8 +2209,8 @@ void MyRichTextCtrl::PrepareContent(wxRichTextParagraphLayoutBox& container)
                 wxRichTextObjectList::compatibility_iterator childNode = para->GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 while (childNode)
                 {
@@ -2230,8 +2230,8 @@ bool MyRichTextCtrl::CanDeleteRange(wxRichTextParagraphLayoutBox& container, con
     long i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = range.GetStart(); i < range.GetEnd(); i++)
     {
@@ -2304,8 +2304,8 @@ public:
         to replace characters in an object for editing and display purposes, for example
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for highlighting special characters.
     */
@@ -2375,8 +2375,8 @@ wxRichTextTable* MyRichTextCtrl::FindTable() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (obj)
     {

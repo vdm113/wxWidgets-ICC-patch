@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -242,8 +242,8 @@ wxPGGlobalVarsClass::~wxPGGlobalVarsClass()
 #if wxUSE_VALIDATORS
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t i = 0; i < m_arrValidators.size(); i++ )
         delete ((wxValidator*)m_arrValidators[i]);
@@ -257,8 +257,8 @@ wxPGGlobalVarsClass::~wxPGGlobalVarsClass()
     // iterate over all the elements in the class
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for( vt_it = m_mapEditorClasses.begin(); vt_it != m_mapEditorClasses.end(); ++vt_it )
     {
@@ -533,8 +533,8 @@ wxPropertyGrid::~wxPropertyGrid()
     // Remove grid and property pointers from live wxPropertyGridEvents.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i=0; i<m_liveEvents.size(); i++ )
     {
@@ -592,8 +592,8 @@ wxPropertyGrid::~wxPropertyGrid()
 #endif
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( !m_deletedEditorObjects.empty() )
         {
@@ -625,8 +625,8 @@ wxPropertyGrid::~wxPropertyGrid()
     // Delete common value records
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( i=0; i<m_commonValues.size(); i++ )
     {
@@ -909,8 +909,8 @@ bool wxPropertyGrid::AddToSelectionFromInputEvent( wxPGProperty* prop,
         int topSelPropY = topSelProp->GetY();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned int i=1; i<selection.size(); i++ )
         {
@@ -944,8 +944,8 @@ bool wxPropertyGrid::AddToSelectionFromInputEvent( wxPGProperty* prop,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( it = GetIterator(wxPG_ITERATE_VISIBLE, startFrom);
               !it.AtEnd();
@@ -988,8 +988,8 @@ void wxPropertyGrid::DoSetSelection( const wxArrayPGProperty& newSelection,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int i = 1; i < newSelection.size(); i++ )
     {
@@ -1016,8 +1016,8 @@ void wxPropertyGrid::MakeColumnEditable( unsigned int column,
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int i = cols.size() - 1; i > 0; i-- )
         {
@@ -1241,8 +1241,8 @@ wxSize wxPropertyGrid::DoGetBestSize() const
     int width = m_marginWidth;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int i = 0; i < m_pState->m_colWidths.size(); i++ )
     {
@@ -1786,8 +1786,8 @@ wxString& wxPropertyGrid::ExpandEscapeSequences( wxString& dst_str, wxString& sr
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ; i != src_str.end(); ++i )
     {
@@ -1849,8 +1849,8 @@ wxString& wxPropertyGrid::CreateEscapeSequences( wxString& dst_str, wxString& sr
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ; i != src_str.end(); ++i )
     {
@@ -2257,8 +2257,8 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( ; !it.AtEnd(); it.Next() )
     {
@@ -2284,8 +2284,8 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
     y = firstItemTopY;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int arrInd=1;
           nextP && y <= lastItemBottomY;
@@ -2348,8 +2348,8 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( si=0; si<colWidths.size(); si++ )
         {
@@ -2491,8 +2491,8 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         int cellX = x + 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( ci=0; ci<colWidths.size(); ci++ )
             cellX += colWidths[ci];
@@ -2504,8 +2504,8 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         ci = colWidths.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         do
         {
@@ -2729,8 +2729,8 @@ void wxPropertyGrid::DrawItemAndValueRelated( wxPGProperty* p )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( parent &&
             !parent->IsCategory() &&
@@ -3135,8 +3135,8 @@ bool wxPropertyGrid::PerformValidation( wxPGProperty* p, wxVariant& pendingValue
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( pwc &&
             (pwc->HasFlag(wxPG_PROP_AGGREGATE) || pwc->HasFlag(wxPG_PROP_COMPOSED_VALUE)) )
@@ -3368,8 +3368,8 @@ bool wxPropertyGrid::DoOnValidationFailure( wxPGProperty* property, wxVariant& W
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned int i=0; i<colCount; i++ )
         {
@@ -3497,8 +3497,8 @@ bool wxPropertyGrid::DoPropertyChanged( wxPGProperty* p, unsigned int selFlags )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( !topPaintedProperty->IsCategory() &&
             !topPaintedProperty->IsRoot() )
@@ -3531,8 +3531,8 @@ bool wxPropertyGrid::DoPropertyChanged( wxPGProperty* p, unsigned int selFlags )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( prevPwc != topPaintedProperty )
     {
@@ -3577,8 +3577,8 @@ bool wxPropertyGrid::DoPropertyChanged( wxPGProperty* p, unsigned int selFlags )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( pwc != changedProperty )
         {
@@ -4104,8 +4104,8 @@ void wxPropertyGrid::DeletePendingObjects()
     // Delete pending property editors and their event handlers.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( !m_deletedEditorObjects.empty() )
     {
@@ -4290,8 +4290,8 @@ bool wxPropertyGrid::DoSelectProperty( wxPGProperty* p, unsigned int flags )
         // Redraw unselected
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned int i=0; i<prevSelection.size(); i++ )
         {
@@ -4662,8 +4662,8 @@ bool wxPropertyGrid::DoHideProperty( wxPGProperty* p, bool hide, int flags )
     int selRemoveCount = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned int i=0; i<selection.size(); i++ )
     {
@@ -4852,8 +4852,8 @@ void wxPropertyGrid::SetFocusOnCanvas()
         wxWindow* parent = focus->GetParent();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( parent )
         {
@@ -5339,8 +5339,8 @@ bool wxPropertyGrid::HandleMouseMove( int x, unsigned int y,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( int i=(selection.size()-1); i>=0; i-- )
             {
@@ -5728,8 +5728,8 @@ void wxPropertyGrid::ClearActionTriggers( int action )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     do
     {
@@ -5737,8 +5737,8 @@ void wxPropertyGrid::ClearActionTriggers( int action )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( it = m_actionTriggers.begin();
               it != m_actionTriggers.end();
@@ -6046,8 +6046,8 @@ void wxPropertyGrid::OnIdle( wxIdleEvent& WXUNUSED(event) )
     size_t cntAfter = m_deletedProperties.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( cntAfter > 0 )
     {
@@ -6065,8 +6065,8 @@ void wxPropertyGrid::OnIdle( wxIdleEvent& WXUNUSED(event) )
     cntAfter = m_removedProperties.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( cntAfter > 0 )
     {
@@ -6115,8 +6115,8 @@ void wxPropertyGrid::HandleFocusChange( wxWindow* newFocused )
     // This must be one of nextFocus' parents.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( parent )
     {
@@ -6322,8 +6322,8 @@ bool wxPGStringTokenizer::HasMoreTokens()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( i != str.end() )
     {
@@ -6521,8 +6521,8 @@ wxPropertyGridEvent::~wxPropertyGridEvent()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int i = liveEvents.size()-1; i >= 0; i-- )
         {
@@ -6579,8 +6579,8 @@ wxPropertyGridPopulator::~wxPropertyGridPopulator()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for( it = m_dictIdChoices.begin(); it != m_dictIdChoices.end(); ++it )
     {
@@ -6686,8 +6686,8 @@ wxPGChoices wxPropertyGridPopulator::ParseChoices( const wxString& choicesString
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( ; it != choicesString.end(); ++it )
             {

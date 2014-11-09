@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -206,8 +206,8 @@ static gboolean target_drag_motion( GtkWidget *WXUNUSED(widget),
     GList *tmp_list;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (tmp_list = context->targets; tmp_list; tmp_list = tmp_list->next)
     {
@@ -520,8 +520,8 @@ GdkAtom wxDropTarget::GTKGetMatchingPair(bool quiet)
     const GList* child = gdk_drag_context_list_targets(m_dragContext);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (child)
     {
@@ -860,8 +860,8 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
     size_t count = m_data->GetFormatCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (size_t i = 0; i < count; i++)
     {
@@ -901,8 +901,8 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (m_waiting)
         gtk_main_iteration();

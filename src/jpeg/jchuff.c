@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -130,8 +130,8 @@ start_pass_huff (j_compress_ptr cinfo, wxjpeg_boolean gather_statistics)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
     compptr = cinfo->cur_comp_info[ci];
@@ -222,8 +222,8 @@ jpeg_make_c_derived_tbl (j_compress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   p = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (l = 1; l <= 16; l++) {
     i = (int) htbl->bits[l];
@@ -231,8 +231,8 @@ jpeg_make_c_derived_tbl (j_compress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
       ERREXIT(cinfo, JERR_BAD_HUFF_TABLE);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (i--)
       huffsize[p++] = (char) l;
@@ -248,14 +248,14 @@ jpeg_make_c_derived_tbl (j_compress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   p = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (huffsize[p]) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (((int) huffsize[p]) == si) {
       huffcode[p++] = code;
@@ -288,8 +288,8 @@ jpeg_make_c_derived_tbl (j_compress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (p = 0; p < lastp; p++) {
     i = htbl->huffval[p];
@@ -357,8 +357,8 @@ emit_bits (working_state * state, unsigned int code, int size)
   
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (put_bits >= 8) {
     int c = (int) ((put_buffer >> 16) & 0xFF);
@@ -414,8 +414,8 @@ encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
   nbits = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (temp) {
     nbits++;
@@ -443,8 +443,8 @@ encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
   
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (k = 1; k < DCTSIZE2; k++) {
     if ((temp = block[jpeg_natural_order[k]]) == 0) {
@@ -453,8 +453,8 @@ encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
       /* if run length > 15, must emit special run-length-16 codes (0xF0) */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       while (r > 15) {
 	if (! emit_bits(state, actbl->ehufco[0xF0], actbl->ehufsi[0xF0]))
@@ -473,8 +473,8 @@ encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
       nbits = 1;		/* there must be at least one 1 bit */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       while ((temp >>= 1))
 	nbits++;
@@ -523,8 +523,8 @@ emit_restart (working_state * state, int restart_num)
   /* Re-initialize DC predictions to 0 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0; ci < state->cinfo->comps_in_scan; ci++)
     state->cur.last_dc_val[ci] = 0;
@@ -563,8 +563,8 @@ encode_mcu_huff (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
   /* Encode the MCU data blocks */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
     ci = cinfo->MCU_membership[blkn];
@@ -658,8 +658,8 @@ htest_one_block (j_compress_ptr cinfo, JCOEFPTR block, int last_dc_val,
   nbits = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (temp) {
     nbits++;
@@ -680,8 +680,8 @@ htest_one_block (j_compress_ptr cinfo, JCOEFPTR block, int last_dc_val,
   
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (k = 1; k < DCTSIZE2; k++) {
     if ((temp = block[jpeg_natural_order[k]]) == 0) {
@@ -690,8 +690,8 @@ htest_one_block (j_compress_ptr cinfo, JCOEFPTR block, int last_dc_val,
       /* if run length > 15, must emit special run-length-16 codes (0xF0) */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       while (r > 15) {
 	ac_counts[0xF0]++;
@@ -706,8 +706,8 @@ htest_one_block (j_compress_ptr cinfo, JCOEFPTR block, int last_dc_val,
       nbits = 1;		/* there must be at least one 1 bit */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       while ((temp >>= 1))
 	nbits++;
@@ -746,8 +746,8 @@ encode_mcu_gather (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
       /* Re-initialize DC predictions to 0 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (ci = 0; ci < cinfo->comps_in_scan; ci++)
 	entropy->saved.last_dc_val[ci] = 0;
@@ -759,8 +759,8 @@ encode_mcu_gather (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
     ci = cinfo->MCU_membership[blkn];
@@ -820,8 +820,8 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
   MEMZERO(codesize, SIZEOF(codesize));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < 257; i++)
     others[i] = -1;		/* init links to empty */
@@ -836,8 +836,8 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (;;) {
     /* Find the smallest nonzero frequency, set c1 = its symbol */
@@ -846,8 +846,8 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
     v = 1000000000L;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i <= 256; i++) {
       if (freq[i] && freq[i] <= v) {
@@ -862,8 +862,8 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
     v = 1000000000L;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (i = 0; i <= 256; i++) {
       if (freq[i] && freq[i] <= v && i != c1) {
@@ -884,8 +884,8 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
     codesize[c1]++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (others[c1] >= 0) {
       c1 = others[c1];
@@ -898,8 +898,8 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
     codesize[c2]++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (others[c2] >= 0) {
       c2 = others[c2];
@@ -910,8 +910,8 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
   /* Now count the number of symbols of each code length */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i <= 256; i++) {
     if (codesize[i]) {
@@ -937,21 +937,21 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
   
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = MAX_CLEN; i > 16; i--) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (bits[i] > 0) {
       j = i - 2;		/* find length of new prefix to be used */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       while (bits[j] == 0)
 	j--;
@@ -966,8 +966,8 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
   /* Remove the count for the pseudo-symbol 256 from the largest codelength */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (bits[i] == 0)		/* find largest codelength still in use */
     i--;
@@ -983,14 +983,14 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
   p = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 1; i <= MAX_CLEN; i++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (j = 0; j <= 255; j++) {
       if (codesize[j] == i) {
@@ -1027,8 +1027,8 @@ finish_pass_gather (j_compress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
     compptr = cinfo->cur_comp_info[ci];
@@ -1074,8 +1074,8 @@ jinit_huff_encoder (j_compress_ptr cinfo)
   /* Mark tables unallocated */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
     entropy->dc_derived_tbls[i] = entropy->ac_derived_tbls[i] = NULL;

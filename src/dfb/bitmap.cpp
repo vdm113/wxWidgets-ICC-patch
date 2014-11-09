@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -59,15 +59,15 @@ void CopyPixelsAndSwapRGB(unsigned w, unsigned h,
     unsigned dst_advance = dst_pitch - DstPixSize * w;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( unsigned y = 0; y < h; y++, src += src_advance, dst += dst_advance )
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned x = 0; x < w; x++, src += SrcPixSize, dst += DstPixSize )
         {
@@ -129,14 +129,14 @@ void CopySurfaceToImage(const wxIDirectFBSurfacePtr& surface, wxImage& image)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned y = 0; y < height; y++, src += advance )
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( unsigned x = 0; x < width; x++, src += 4 )
                 *(alpha++) = *src;
@@ -192,14 +192,14 @@ void CopyImageToSurface(const wxImage& image,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( unsigned y = 0; y < height; y++, dest += advance )
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( unsigned x = 0; x < width; x++, dest += 4 )
                 *dest = *(alpha++);
@@ -316,8 +316,8 @@ CopyBits(int width,
     T *dst = static_cast<T *>(locked.ptr);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( src < srcEnd )
     {
@@ -325,8 +325,8 @@ CopyBits(int width,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( int bit = 0; bit < BITS_PER_BYTE; bit++ )
         {

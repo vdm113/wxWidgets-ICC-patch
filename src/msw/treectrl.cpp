@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -244,8 +244,8 @@ static bool SelectRange(HWND hwndTV,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( htItem && cont )
     {
@@ -284,8 +284,8 @@ static bool SelectRange(HWND hwndTV,
     cont = htFirst != htLast;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( htItem && cont )
     {
@@ -309,8 +309,8 @@ static bool SelectRange(HWND hwndTV,
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( htItem )
         {
@@ -445,8 +445,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         for ( size_t n = 0; n < WXSIZEOF(m_images); n++ )
         {
@@ -718,8 +718,8 @@ bool wxTreeTraversal::Traverse(const wxTreeItemId& root, bool recursively)
     wxTreeItemId child = m_tree->GetFirstChild(root, cookie);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( child.IsOk() )
     {
@@ -1421,8 +1421,8 @@ wxTreeItemId wxTreeCtrl::GetLastChild(const wxTreeItemId& item) const
     child = GetFirstChild(item, cookie);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( child.IsOk() )
     {
@@ -1620,8 +1620,8 @@ wxTreeItemId wxTreeCtrl::DoInsertItem(const wxTreeItemId& parent,
         wxTreeItemId idCur = GetFirstChild(parent, cookie);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while ( index != 0 && idCur.IsOk() )
         {
@@ -1720,8 +1720,8 @@ void wxTreeCtrl::DeleteChildren(const wxTreeItemId& item)
     wxTreeItemId child = GetFirstChild(item, cookie);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( child.IsOk() )
     {
@@ -1733,8 +1733,8 @@ void wxTreeCtrl::DeleteChildren(const wxTreeItemId& item)
     size_t nCount = children.Count();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < nCount; n++ )
     {
@@ -1872,8 +1872,8 @@ void wxTreeCtrl::DoUnselectAll()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -1916,8 +1916,8 @@ void wxTreeCtrl::DoSelectChildren(const wxTreeItemId& parent)
     wxTreeItemId child = GetFirstChild(parent, cookie);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while ( child.IsOk() )
     {
@@ -2512,8 +2512,8 @@ bool wxTreeCtrl::MSWHandleSelectionKey(unsigned vkey)
                 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for ( ;; )
                     {
@@ -2599,8 +2599,8 @@ bool wxTreeCtrl::MSWHandleSelectionKey(unsigned vkey)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( size_t n = 1; n < visibleCount; n++ )
                 {
@@ -2626,8 +2626,8 @@ bool wxTreeCtrl::MSWHandleSelectionKey(unsigned vkey)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                     for ( size_t n = 1; n < visibleCount; n++ )
                     {
@@ -2663,8 +2663,8 @@ bool wxTreeCtrl::MSWHandleSelectionKey(unsigned vkey)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                 for ( size_t n = 1; n < visibleCount; n++ )
                 {
@@ -3217,8 +3217,8 @@ wxTreeCtrl::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for ( size_t n = 0; n < count; n++ )
             {
@@ -3605,8 +3605,8 @@ bool wxTreeCtrl::MSWOnNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result)
                                 // move images to right
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
                                 for ( int i = index; i > 0; i-- )
                                 {

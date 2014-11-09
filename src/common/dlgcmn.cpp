@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -669,8 +669,8 @@ bool wxStandardDialogLayoutAdapter::DoLayoutAdaptation(wxDialog* dialog)
             wxWindowList windows;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
             for (size_t i = 0; i < bookContentWindow->GetPageCount(); i++)
             {
@@ -772,8 +772,8 @@ wxSizer* wxStandardDialogLayoutAdapter::FindButtonSizer(bool stdButtonSizer, wxD
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxSizerItemList::compatibility_iterator node = sizer->GetChildren().GetFirst();
           node; node = node->GetNext() )
@@ -824,8 +824,8 @@ bool wxStandardDialogLayoutAdapter::IsOrdinaryButtonSizer(wxDialog* dialog, wxBo
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for ( wxSizerItemList::compatibility_iterator node = sizer->GetChildren().GetFirst();
           node; node = node->GetNext() )
@@ -854,8 +854,8 @@ bool wxStandardDialogLayoutAdapter::FindLooseButtons(wxDialog* dialog, wxStdDial
     wxSizerItemList::compatibility_iterator node = sizer->GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -892,8 +892,8 @@ void wxStandardDialogLayoutAdapter::DoReparentControls(wxWindow* parent, wxWindo
     wxWindowList::compatibility_iterator node = parent->GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (node)
     {
@@ -996,8 +996,8 @@ bool wxStandardDialogLayoutAdapter::DoFitWithScrolling(wxDialog* dialog, wxWindo
         wxWindowList::compatibility_iterator node = windows.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
         while (node)
         {

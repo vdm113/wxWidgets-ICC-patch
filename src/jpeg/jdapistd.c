@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -60,8 +60,8 @@ jpeg_start_decompress (j_decompress_ptr cinfo)
 #ifdef D_MULTISCAN_FILES_SUPPORTED
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (;;) {
 	int retcode;
@@ -115,16 +115,16 @@ output_pass_setup (j_decompress_ptr cinfo)
   /* Loop over any required dummy passes */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (cinfo->master->is_dummy_pass) {
 #ifdef QUANT_2PASS_SUPPORTED
     /* Crank through the dummy pass */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (cinfo->output_scanline < cinfo->output_height) {
       JDIMENSION last_scanline;
@@ -287,8 +287,8 @@ jpeg_finish_output (j_decompress_ptr cinfo)
   /* Read markers looking for SOS or EOI */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (cinfo->input_scan_number <= cinfo->output_scan_number &&
 	 ! cinfo->inputctl->eoi_reached) {

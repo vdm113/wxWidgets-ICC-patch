@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -108,8 +108,8 @@ sep_upsample (j_decompress_ptr cinfo,
   if (upsample->next_row_out >= cinfo->max_v_samp_factor) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
 	 ci++, compptr++) {
@@ -216,8 +216,8 @@ int_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   inrow = outrow = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (outrow < cinfo->max_v_samp_factor) {
     /* Generate one output row with proper horizontal expansion */
@@ -226,15 +226,15 @@ int_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
     outend = outptr + cinfo->output_width;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (outptr < outend) {
       invalue = *inptr++;	/* don't need GETJSAMPLE() here */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (h = h_expand; h > 0; h--) {
 	*outptr++ = invalue;
@@ -268,8 +268,8 @@ h2v1_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (inrow = 0; inrow < cinfo->max_v_samp_factor; inrow++) {
     inptr = input_data[inrow];
@@ -277,8 +277,8 @@ h2v1_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
     outend = outptr + cinfo->output_width;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (outptr < outend) {
       invalue = *inptr++;	/* don't need GETJSAMPLE() here */
@@ -307,8 +307,8 @@ h2v2_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   inrow = outrow = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (outrow < cinfo->max_v_samp_factor) {
     inptr = input_data[inrow];
@@ -316,8 +316,8 @@ h2v2_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
     outend = outptr + cinfo->output_width;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     while (outptr < outend) {
       invalue = *inptr++;	/* don't need GETJSAMPLE() here */
@@ -359,8 +359,8 @@ h2v1_fancy_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (inrow = 0; inrow < cinfo->max_v_samp_factor; inrow++) {
     inptr = input_data[inrow];
@@ -372,8 +372,8 @@ h2v1_fancy_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (colctr = compptr->downsampled_width - 2; colctr > 0; colctr--) {
       /* General case: 3/4 * nearer pixel + 1/4 * further pixel */
@@ -415,14 +415,14 @@ h2v2_fancy_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   inrow = outrow = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   while (outrow < cinfo->max_v_samp_factor) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
     for (v = 0; v < 2; v++) {
       /* inptr0 points to nearest input row, inptr1 points to next nearest */
@@ -442,8 +442,8 @@ h2v2_fancy_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
       for (colctr = compptr->downsampled_width - 2; colctr > 0; colctr--) {
 	/* General case: 3/4 * nearer pixel + 1/4 * further pixel in each */
@@ -497,8 +497,8 @@ jinit_upsampler (j_decompress_ptr cinfo)
    */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {

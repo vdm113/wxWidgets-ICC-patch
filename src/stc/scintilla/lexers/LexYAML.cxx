@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -52,8 +52,8 @@ static unsigned int SpaceCount(char* lineBuffer) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (*headBuffer == ' ')
 		headBuffer++;
@@ -103,8 +103,8 @@ static void ColouriseYAMLLine(
 	// Skip initial spaces
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((i < lengthLine) && lineBuffer[i] == ' ') { // YAML always uses space, never TABS or anything else
 		i++;
@@ -120,8 +120,8 @@ static void ColouriseYAMLLine(
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (i < lengthLine) {
 		if (lineBuffer[i] == '\'' || lineBuffer[i] == '\"') {
@@ -133,16 +133,16 @@ static void ColouriseYAMLLine(
 			i++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while ((i < lengthLine) && isspacechar(lineBuffer[i]))
 				i++;
 			unsigned int endValue = lengthLine - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 			while ((endValue >= i) && isspacechar(lineBuffer[endValue]))
 				endValue--;
@@ -153,8 +153,8 @@ static void ColouriseYAMLLine(
 					i++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				while ((i < lengthLine) && isspacechar(lineBuffer[i]))
 					i++;
@@ -188,8 +188,8 @@ static void ColouriseYAMLLine(
 				unsigned int i2 = i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 				while ((i < lengthLine) && lineBuffer[i]) {
 					if (!(IsASCII(lineBuffer[i]) && isdigit(lineBuffer[i])) && lineBuffer[i] != '-' && lineBuffer[i] != '.' && lineBuffer[i] != ',') {
@@ -222,8 +222,8 @@ static void ColouriseYAMLDoc(unsigned int startPos, int length, int, WordList *k
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	for (unsigned int i = startPos; i < maxPos && i < endPos; i++) {
 		lineBuffer[linePos++] = styler[i];
@@ -264,8 +264,8 @@ static void FoldYAMLDoc(unsigned int startPos, int length, int /*initStyle - unu
 	int indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, NULL);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while (lineCurrent > 0) {
 		lineCurrent--;
@@ -286,8 +286,8 @@ static void FoldYAMLDoc(unsigned int startPos, int length, int /*initStyle - unu
 	// to end of document (in case of unclosed comment at end).
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) || prevComment)) {
 
@@ -323,8 +323,8 @@ static void FoldYAMLDoc(unsigned int startPos, int length, int /*initStyle - unu
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while ((lineNext < docLines) &&
 		        ((indentNext & SC_FOLDLEVELWHITEFLAG) ||
@@ -347,8 +347,8 @@ static void FoldYAMLDoc(unsigned int startPos, int length, int /*initStyle - unu
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma swp
 #   pragma unroll
+#   pragma swp
 #endif
 		while (--skipLine > lineCurrent) {
 			int skipLineIndent = styler.IndentAmount(skipLine, &spaceFlags, NULL);
