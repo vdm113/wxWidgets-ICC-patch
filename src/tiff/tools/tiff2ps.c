@@ -255,8 +255,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((c = getopt(argc, argv, "b:d:h:H:W:L:i:w:l:o:O:P:C:r:t:acemxyzps1238DT")) != -1)
 		switch (c) {
@@ -472,8 +472,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; argc - optind > 0; optind++) {
 		TIFF* tif = TIFFOpen(filename = argv[optind], "r");
@@ -1209,15 +1209,15 @@ int psMaskImage(FILE *fd, TIFF *tif, int rotation, int center,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < yimages; i++)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (j = 0; j < ximages; j++)
        {
@@ -1507,8 +1507,8 @@ int TIFF2PS(FILE* fd, TIFF* tif, double pgwidth, double pgheight, double lm, dou
   /* Consolidated all the tag information into one code segment, Richard Nolde */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   do {
      tf_numberstrips = TIFFNumberOfStrips(tif);
@@ -1713,8 +1713,8 @@ checkcmap(TIFF* tif, int n, uint16* r, uint16* g, uint16* b)
 	(void) tif;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (n-- > 0)
 		if (*r++ >= 256 || *g++ >= 256 || *b++ >= 256)
@@ -1773,8 +1773,8 @@ PS_Lvl2colorspace(FILE* fd, TIFF* tif)
 #define	CVT(x)		(((x) * 255) / ((1L<<16)-1))
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (i = 0; i < num_colors; i++) {
 			rmap[i] = CVT(rmap[i]);
@@ -1792,8 +1792,8 @@ PS_Lvl2colorspace(FILE* fd, TIFF* tif)
 		fputs(" <", fd);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < num_colors; i++) {
 		if (ascii85) {
@@ -2099,8 +2099,8 @@ PS_Lvl2ImageDict(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (i = 1; i < samplesperpixel; i++)
 			fputs(" dup", fd);
@@ -2162,8 +2162,8 @@ PS_FlipBytes(unsigned char* buf, tsize_t count)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < count; i += 2) {
 		temp = buf[i];
@@ -2211,8 +2211,8 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		chunk_size = (tsize_t) bc[0];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (chunk_no = 1; chunk_no < num_chunks; chunk_no++)
 			if ((tsize_t) bc[chunk_no] > chunk_size)
@@ -2255,8 +2255,8 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 	TIFFGetFieldDefaulted(tif, TIFFTAG_FILLORDER, &fillorder);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (chunk_no = 0; chunk_no < num_chunks; chunk_no++) {
 		if (ascii85)
@@ -2307,8 +2307,8 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 			int ncomps = samplesperpixel - extrasamples;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (i = 0; i < byte_count; i+=samplesperpixel) {
 				adjust = 255 - buf_data[i + ncomps];
@@ -2339,8 +2339,8 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #else
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (cp = buf_data; byte_count > 0; byte_count--)
 				Ascii85Put(*cp++, fd);
@@ -2350,8 +2350,8 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (cp = buf_data; byte_count > 0; byte_count--) {
 				putc(hex[((*cp)>>4)&0xf], fd);
@@ -2521,8 +2521,8 @@ PSDataColorContig(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 			cc = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (; cc < tf_bytesperrow; cc += samplesperpixel) {
 				DOBREAK(breaklen, nc, fd);
@@ -2545,8 +2545,8 @@ PSDataColorContig(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 			cc = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (; cc < tf_bytesperrow; cc += samplesperpixel) {
 				DOBREAK(breaklen, nc, fd);
@@ -2583,16 +2583,16 @@ PSDataColorSeparate(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 	for (row = 0; row < h; row++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (s = 0; s < maxs; s++) {
 			if (TIFFReadScanline(tif, tf_buf, row, s) < 0)
 				break;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (cp = tf_buf, cc = 0; cc < tf_bytesperrow; cc++) {
 				DOBREAK(breaklen, 1, fd);
@@ -2640,8 +2640,8 @@ PSDataPalette(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #define	CVT(x)		((unsigned short) (((x) * 255) / ((1U<<16)-1)))
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (i = (1<<bitspersample)-1; i >= 0; i--) {
 			rmap[i] = CVT(rmap[i]);
@@ -2655,8 +2655,8 @@ PSDataPalette(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 			break;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (cp = tf_buf, cc = 0; cc < tf_bytesperrow; cc++) {
 			DOBREAK(breaklen, nc, fd);
@@ -2749,8 +2749,8 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		if (photometric == PHOTOMETRIC_MINISWHITE) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (cp += cc; --cp >= tf_buf;)
 				*cp = ~*cp;
@@ -2769,8 +2769,8 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 				int adjust, i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (i = 0; i < cc; i+=2) {
 					adjust = 255 - cp[i + 1];
@@ -2786,8 +2786,8 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #else
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			while (cc-- > 0)
 				Ascii85Put(*cp++, fd);
@@ -2799,8 +2799,8 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 				int adjust;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				while (cc-- > 0) {
 					DOBREAK(breaklen, 1, fd);
@@ -2817,8 +2817,8 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 			} else {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				while (cc-- > 0) {
 					c = *cp++;
@@ -2916,8 +2916,8 @@ PSRawDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 		if (!ascii85) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (cp = tf_buf; cc > 0; cc--) {
 				DOBREAK(breaklen, 1, fd);
@@ -2936,8 +2936,8 @@ PSRawDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #else
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (cp = tf_buf; cc > 0; cc--)
 				Ascii85Put(*cp++, fd);
@@ -2999,15 +2999,15 @@ Ascii85Put(unsigned char code, FILE* fd)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (n = ascii85count, p = ascii85buf; n >= 4; n -= 4, p += 4) {
 			char* cp;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (cp = Ascii85Encode(p); *cp; cp++) {
 				putc(*cp, fd);
@@ -3224,8 +3224,8 @@ usage(int code)
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

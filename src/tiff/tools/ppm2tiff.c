@@ -102,8 +102,8 @@ main(int argc, char* argv[])
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((c = getopt(argc, argv, "c:r:R:")) != -1)
 		switch (c) {
@@ -174,8 +174,8 @@ main(int argc, char* argv[])
 	/* Parse header */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while(1) {
 		if (feof(in))
@@ -189,8 +189,8 @@ main(int argc, char* argv[])
 		if (c == '#') {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			do {
 			    c = fgetc(in);
@@ -267,8 +267,8 @@ main(int argc, char* argv[])
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (row = 0; row < h; row++) {
 		if (fread(buf, linebytes, 1, in) != 1) {
@@ -292,8 +292,8 @@ processG3Options(char* cp)
         if( (cp = strchr(cp, ':')) ) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 do {
                         cp++;
@@ -322,8 +322,8 @@ processCompressOptions(char* opt)
                 compression = COMPRESSION_JPEG;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while (cp)
                 {
@@ -389,8 +389,8 @@ usage(void)
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

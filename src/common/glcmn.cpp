@@ -135,8 +135,8 @@ bool wxGLCanvasBase::IsExtensionInList(const char *list, const char *extension)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( const char *p = list; *p; p++ )
     {

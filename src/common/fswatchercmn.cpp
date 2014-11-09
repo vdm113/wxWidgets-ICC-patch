@@ -332,8 +332,8 @@ int wxFileSystemWatcherBase::GetWatchedPaths(wxArrayString* paths) const
     wxFSWatchInfoMap::const_iterator it = m_watches.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ; it != m_watches.end(); ++it)
     {

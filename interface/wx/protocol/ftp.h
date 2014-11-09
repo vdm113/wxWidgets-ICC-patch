@@ -261,8 +261,8 @@ public:
         The form of the list can change from one peer system to another. For example,
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for a UNIX peer system, it will look like this:
 
@@ -296,8 +296,8 @@ public:
         Notice that this size can be approximative size only and shouldn't be used
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for allocating the buffer in which the remote file is copied, for example.
     */

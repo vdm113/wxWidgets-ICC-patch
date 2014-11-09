@@ -135,8 +135,8 @@ wxWebViewIE::~wxWebViewIE()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(unsigned int i = 0; i < m_factories.size(); i++)
         {
@@ -448,8 +448,8 @@ void wxWebViewIE::LoadHistoryItem(wxSharedPtr<wxWebViewHistoryItem> item)
     int pos = -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(unsigned int i = 0; i < m_historyList.size(); i++)
     {
@@ -471,8 +471,8 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewIE::GetBackwardHistory()
     //native vector we construct it by hand
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(int i = 0; i < m_historyPosition; i++)
     {
@@ -488,8 +488,8 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewIE::GetForwardHistory()
     //native vector we construct it by hand
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(int i = m_historyPosition + 1; i < static_cast<int>(m_historyList.size()); i++)
     {
@@ -979,8 +979,8 @@ bool wxWebViewIE::IsElementVisible(wxCOMPtr<IHTMLElement> elm)
     //so if a better solution is found, then please do improve.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while(elm1)
     {
@@ -1060,8 +1060,8 @@ void wxWebViewIE::FindInternal(const wxString& text, int flags, int internal_fla
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while(ptrBegin->FindText(text_bstr, find_flag, ptrEnd, NULL) == S_OK)
             {
@@ -1190,8 +1190,8 @@ void wxWebViewIE::FindClear()
     size_t count = m_findPointers.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(size_t i = 0; i < count; i++)
     {

@@ -469,8 +469,8 @@ bool wxToolBar::Realize()
     // button state, so make it work under GTK too
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxToolBarToolsList::const_iterator i = m_tools.begin();
           i != m_tools.end();

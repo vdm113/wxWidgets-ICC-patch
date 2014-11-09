@@ -156,8 +156,8 @@ void wxListBoxBase::DeselectAll(int itemToLeaveSelected)
         size_t count = selections.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t n = 0; n < count; n++ )
         {
@@ -251,8 +251,8 @@ bool wxListBoxBase::CalcAndSendEvent()
         bool changed = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t idx = 0; idx < countSel; idx++ )
         {
@@ -280,8 +280,8 @@ bool wxListBoxBase::CalcAndSendEvent()
         bool any_new_selected = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t idx = 0; idx < countSel; idx++ )
         {
@@ -299,8 +299,8 @@ bool wxListBoxBase::CalcAndSendEvent()
             bool any_new_deselected = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( size_t idx = 0; idx < countSelOld; idx++ )
             {

@@ -157,8 +157,8 @@ bool wxSlider::Create(wxWindow *parent,
         HWND hwndParent = GetHwndOf(parent);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t n = 0; n < SliderLabel_Last; n++ )
         {

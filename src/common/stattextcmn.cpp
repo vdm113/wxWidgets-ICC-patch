@@ -116,8 +116,8 @@ void wxTextWrapper::Wrap(wxWindow *win, const wxString& text, int widthMax)
     wxString::const_iterator lineStart = text.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxString::const_iterator p = lineStart; ; ++p )
     {

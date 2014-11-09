@@ -4413,8 +4413,8 @@ void wxStyledTextCtrl::StyleSetSpec(int styleNum, const wxString& spec) {
     wxStringTokenizer tkz(spec, wxT(","));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (tkz.HasMoreTokens()) {
         wxString token = tkz.GetNextToken();

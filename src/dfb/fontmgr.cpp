@@ -154,8 +154,8 @@ void wxFontsManager::AddAllFonts()
     wxStringTokenizer tkn(path, wxPATH_SEP);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( tkn.HasMoreTokens() )
     {
@@ -173,8 +173,8 @@ void wxFontsManager::AddAllFonts()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxArrayString::const_iterator i = indexFiles.begin();
               i != indexFiles.end(); ++i )
@@ -227,8 +227,8 @@ void wxFontsManager::AddFontsFromDir(const wxString& indexFile)
     wxString name;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( bool cont = cfg.GetFirstGroup(name, i);
                cont;

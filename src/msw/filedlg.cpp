@@ -257,8 +257,8 @@ void wxFileDialog::GetPaths(wxArrayString& paths) const
     size_t count = m_fileNames.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -600,8 +600,8 @@ int wxFileDialog::ShowModal()
     dir.reserve(len);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < len; i++ )
     {
@@ -617,8 +617,8 @@ int wxFileDialog::ShowModal()
             case wxT('\\'):
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while ( i < len - 1 )
                 {
@@ -656,8 +656,8 @@ int wxFileDialog::ShowModal()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < items ; i++)
     {
@@ -670,8 +670,8 @@ int wxFileDialog::ShowModal()
     // Replace | with \0
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < filterBuffer.length(); i++ ) {
         if ( filterBuffer.GetChar(i) == wxT('|') ) {
@@ -701,8 +701,8 @@ int wxFileDialog::ShowModal()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for( int i = 0; i < maxFilter; i++ )           // get extension
             extension = extension + wxStrlen( extension ) + 1;
@@ -753,8 +753,8 @@ int wxFileDialog::ShowModal()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (fileNameBuffer[i] != wxT('\0'))
         {
@@ -769,8 +769,8 @@ int wxFileDialog::ShowModal()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (toke.HasMoreTokens())
             m_fileNames.Add(toke.GetNextToken());
@@ -798,8 +798,8 @@ int wxFileDialog::ShowModal()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for( int i = 0; i < maxFilter; i++ )           // get extension
                 extension = extension + wxStrlen( extension ) + 1;

@@ -2598,8 +2598,8 @@ public:
         m_files = new wxString[m_noFiles];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int n = 0; n < m_noFiles; n++ )
         {

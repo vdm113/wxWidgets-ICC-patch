@@ -329,8 +329,8 @@ FillTable(TIFFFaxTabEnt *T, int Size, struct proto *P, int State)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (P->val) {
 	int width = P->val & 15;
@@ -339,8 +339,8 @@ FillTable(TIFFFaxTabEnt *T, int Size, struct proto *P, int State)
 	int code;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (code = P->code; code < limit; code += incr) {
 	    TIFFFaxTabEnt *E = T+code;
@@ -370,8 +370,8 @@ WriteTable(FILE* fd, const TIFFFaxTabEnt* T, int Size, const char* name)
 	sep = "\n";
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < Size; i++) {
 	    fprintf(fd, "%s%s%d,%d,%d%s",
@@ -386,8 +386,8 @@ WriteTable(FILE* fd, const TIFFFaxTabEnt* T, int Size, const char* name)
 	sep = "\n ";
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < Size; i++) {
 	    fprintf(fd, "%s%s%3d,%3d,%4d%s",
@@ -414,8 +414,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ((c = getopt(argc, argv, "c:s:bp")) != -1)
 	switch (c) {

@@ -893,8 +893,8 @@ void WebFrame::OnToolsClicked(wxCommandEvent& WXUNUSED(evt))
     wxMenuHistoryMap::const_iterator it;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( it = m_histMenuItems.begin(); it != m_histMenuItems.end(); ++it )
     {
@@ -910,8 +910,8 @@ void WebFrame::OnToolsClicked(wxCommandEvent& WXUNUSED(evt))
     unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(i = 0; i < back.size(); i++)
     {
@@ -932,8 +932,8 @@ void WebFrame::OnToolsClicked(wxCommandEvent& WXUNUSED(evt))
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(i = 0; i < forward.size(); i++)
     {

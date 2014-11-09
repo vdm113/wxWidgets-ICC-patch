@@ -69,8 +69,8 @@ wxObject *wxStatusBarXmlHandler::DoCreateResource()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int i = 0; i < fields; ++i)
         {
@@ -89,8 +89,8 @@ wxObject *wxStatusBarXmlHandler::DoCreateResource()
         int *style = new int[fields];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int i = 0; i < fields; ++i)
         {

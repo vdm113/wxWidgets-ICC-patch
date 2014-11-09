@@ -282,8 +282,8 @@ bool wxToolBar::Realize()
     wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( node )
     {
@@ -511,8 +511,8 @@ bool wxToolBar::DoDeleteTool(size_t WXUNUSED(pos), wxToolBarToolBase *tool)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
          node; node = node->GetNext() )
@@ -658,8 +658,8 @@ wxToolBarToolBase *wxToolBar::FindToolByWidget(WXWidget w) const
     wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( node )
     {

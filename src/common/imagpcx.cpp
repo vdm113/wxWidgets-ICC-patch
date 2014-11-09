@@ -63,8 +63,8 @@ void RLEencode(unsigned char *p, unsigned int size, wxOutputStream& s)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (size-- > 0)
     {
@@ -106,8 +106,8 @@ void RLEdecode(unsigned char *p, unsigned int size, wxInputStream& s)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (size != 0)
     {
@@ -130,8 +130,8 @@ void RLEdecode(unsigned char *p, unsigned int size, wxInputStream& s)
             data = (unsigned char)s.GetC();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (unsigned int i = 1; i <= cont; i++)
                 *(p++) = (unsigned char)data;
@@ -248,8 +248,8 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (j = height; j; j--)
     {
@@ -264,8 +264,8 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (i = 0; i < width; i++)
                 {
@@ -279,8 +279,8 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (i = 0; i < width; i++)
                 {
@@ -310,8 +310,8 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
         p = image->GetData();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (unsigned long k = height * width; k; k--)
         {
@@ -327,8 +327,8 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
         unsigned char b[256];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < 256; i++)
         {
@@ -415,8 +415,8 @@ int SavePCX(wxImage *image, wxOutputStream& stream)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (; height; height--)
     {
@@ -428,8 +428,8 @@ int SavePCX(wxImage *image, wxOutputStream& stream)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (i = 0; i < width; i++)
                 {
@@ -446,8 +446,8 @@ int SavePCX(wxImage *image, wxOutputStream& stream)
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (i = 0; i < width; i++)
                 {
@@ -474,8 +474,8 @@ int SavePCX(wxImage *image, wxOutputStream& stream)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (wxImageHistogram::iterator entry = histogram.begin();
              entry != histogram.end(); ++entry )

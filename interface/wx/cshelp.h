@@ -115,8 +115,8 @@ public:
         @return @true if help was shown, or @false if no help was available
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for this window.
 
@@ -273,8 +273,8 @@ public:
             If ::wxDefaultSize is specified then the button is sized appropriately 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for the question mark bitmap.
         @param style

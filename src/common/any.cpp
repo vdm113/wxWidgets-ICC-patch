@@ -88,8 +88,8 @@ public:
         size_t i = m_anyToVariantRegs.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( i > 0 )
         {
@@ -115,8 +115,8 @@ public:
         // Finally, attempt to find a compatible type
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( it = anyToVariant.begin(); it != anyToVariant.end(); it++ )
         {

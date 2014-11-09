@@ -296,8 +296,8 @@ void wxSpinCtrl::OnChar( wxKeyEvent &event )
         wxWindow *top_frame = m_parent;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (top_frame->GetParent() && !(top_frame->IsTopLevel()))
             top_frame = top_frame->GetParent();

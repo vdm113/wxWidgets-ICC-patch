@@ -171,8 +171,8 @@ public:
         wxString s;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int i = 0 ; i < length; ++i)
         {
@@ -753,8 +753,8 @@ void FileSystemWatcherTestCase::TestTrees()
             // numbered files
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( unsigned d = 0; d < subdirs; ++d )
             {
@@ -765,8 +765,8 @@ void FileSystemWatcherTestCase::TestTrees()
                 const wxString ext[] = { ".txt", ".log", "" };
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( unsigned f = 0; f < files; ++f )
                 {

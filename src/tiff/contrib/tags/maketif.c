@@ -69,8 +69,8 @@ void WriteImage(TIFF *tif)
 	memset(buffer,0,sizeof(buffer));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i=0;i<HEIGHT;i++)
 		if (!TIFFWriteScanline(tif, buffer, i, 0))

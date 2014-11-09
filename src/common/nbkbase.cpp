@@ -134,8 +134,8 @@ const wxNotebookPageInfoList& wxNotebookBase::GetPageInfos() const
     WX_CLEAR_LIST( wxNotebookPageInfoList, *list );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( size_t i = 0; i < GetPageCount(); ++i )
     {

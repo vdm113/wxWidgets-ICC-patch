@@ -216,8 +216,8 @@ wxFontMapper::CharsetToEncoding(const wxString& charset, bool interactive)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t i = 0; i < count; i++ )
         {
@@ -403,8 +403,8 @@ bool wxFontMapper::GetAltForEncoding(wxFontEncoding encoding,
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t i = 0; i < count && !foundEquivEncoding; i++ )
         {

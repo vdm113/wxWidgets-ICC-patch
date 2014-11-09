@@ -217,8 +217,8 @@ enum
     bool bCont = config->GetFirstEntry(str, dummy);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( bCont ) {
         aNames.Add(str);
@@ -232,8 +232,8 @@ enum
     bCont = GetConfig()->GetFirstGroup(str, dummy);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( bCont ) {
         aNames.Add(str);
@@ -596,8 +596,8 @@ public:
         Notice that the value is read as a double but must be in a valid range
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for floats for the function to return @true.
 
@@ -616,8 +616,8 @@ public:
         Notice that the value is read as a double but must be in a valid range
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for floats for the function to return @true.
 

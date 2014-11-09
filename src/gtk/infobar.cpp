@@ -279,8 +279,8 @@ bool wxInfoBar::HasButtonId(wxWindowID btnid) const
     const wxInfoBarGTKImpl::Buttons& buttons = m_impl->m_buttons;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxInfoBarGTKImpl::Buttons::const_reverse_iterator i = buttons.rbegin();
           i != buttons.rend();
@@ -305,8 +305,8 @@ void wxInfoBar::RemoveButton(wxWindowID btnid)
     wxInfoBarGTKImpl::Buttons& buttons = m_impl->m_buttons;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxInfoBarGTKImpl::Buttons::reverse_iterator i = buttons.rbegin();
           i != buttons.rend();

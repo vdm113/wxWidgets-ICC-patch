@@ -448,8 +448,8 @@ void ComboboxWidgetsPage::CreateCombo()
         unsigned int count = m_combobox->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned int n = 0; n < count; n++ )
         {
@@ -468,8 +468,8 @@ void ComboboxWidgetsPage::CreateCombo()
     unsigned int count = items.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int n = 0; n < count; n++ )
     {
@@ -577,8 +577,8 @@ void ComboboxWidgetsPage::OnButtonAddMany(wxCommandEvent& WXUNUSED(event))
     // "many" means 1000 here
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int n = 0; n < 1000; n++ )
     {

@@ -89,8 +89,8 @@ void wxDFBEventsHandler::OnReadWaiting()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ;; )
     {
@@ -221,8 +221,8 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
     // process all pending events:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( Pending() )
         Dispatch();
@@ -235,8 +235,8 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
     // OnUpdateUI() which is a nice (and desired) side effect)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( ProcessIdle() ) {}
 

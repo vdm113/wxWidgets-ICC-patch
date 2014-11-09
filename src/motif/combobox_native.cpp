@@ -106,8 +106,8 @@ bool wxComboBox::Create(wxWindow *parent, wxWindowID id,
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < n; ++i)
         Append( choices[i] );
@@ -209,8 +209,8 @@ int wxComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
     AllocClientData(numItems);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int i = 0; i < numItems; ++i, ++pos )
     {
@@ -248,8 +248,8 @@ void wxComboBox::Clear()
     size_t n = m_stringArray.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while(n > 0)
     {

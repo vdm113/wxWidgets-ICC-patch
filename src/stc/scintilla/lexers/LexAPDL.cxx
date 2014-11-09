@@ -68,8 +68,8 @@ static void ColouriseAPDLDoc(unsigned int startPos, int length, int initStyle, W
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; sc.More(); sc.Forward()) {
 		// Determine if the current state should terminate.
@@ -211,8 +211,8 @@ static void FoldAPDLDoc(unsigned int startPos, int length, int,
 	// whitespace, for tokens like "End Function"
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = startPos; i < endPos; i++) {
 		int c = styler.SafeGetCharAt(i);

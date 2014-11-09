@@ -188,8 +188,8 @@ static void wxCleanUpGCPool()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < wxGCPoolSize; i++)
     {
@@ -209,8 +209,8 @@ static GdkGC* wxGetPoolGC( GdkWindow *window, wxPoolGCType type )
     // Look for an available GC.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < wxGCPoolSize; i++)
     {
@@ -262,8 +262,8 @@ static void wxFreePoolGC( GdkGC *gc )
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < wxGCPoolSize; i++)
     {
@@ -685,8 +685,8 @@ void wxWindowDCImpl::DoDrawLines( int n, const wxPoint points[], wxCoord xoffset
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < n; i++)
     {
@@ -714,8 +714,8 @@ void wxWindowDCImpl::DoDrawPolygon( int n, const wxPoint points[], wxCoord xoffs
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0 ; i < n ; i++)
     {
@@ -1775,8 +1775,8 @@ void wxWindowDCImpl::SetPen( const wxPen &pen )
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (int i = 0; i < req_nb_dash; i++)
                 real_req_dash[i] = req_dash[i] * width;

@@ -103,8 +103,8 @@ rgb_ycc_start (j_compress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i <= MAXJSAMPLE; i++) {
     rgb_ycc_tab[i+R_Y_OFF] = FIX(0.29900) * i;
@@ -153,8 +153,8 @@ rgb_ycc_convert (j_compress_ptr cinfo,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   while (--num_rows >= 0) {
     inptr = *input_buf++;
@@ -164,8 +164,8 @@ rgb_ycc_convert (j_compress_ptr cinfo,
     output_row++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (col = 0; col < num_cols; col++) {
       r = GETJSAMPLE(inptr[RGB_RED]);
@@ -219,8 +219,8 @@ rgb_gray_convert (j_compress_ptr cinfo,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   while (--num_rows >= 0) {
     inptr = *input_buf++;
@@ -228,8 +228,8 @@ rgb_gray_convert (j_compress_ptr cinfo,
     output_row++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (col = 0; col < num_cols; col++) {
       r = GETJSAMPLE(inptr[RGB_RED]);
@@ -268,8 +268,8 @@ cmyk_ycck_convert (j_compress_ptr cinfo,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   while (--num_rows >= 0) {
     inptr = *input_buf++;
@@ -280,8 +280,8 @@ cmyk_ycck_convert (j_compress_ptr cinfo,
     output_row++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (col = 0; col < num_cols; col++) {
       r = MAXJSAMPLE - GETJSAMPLE(inptr[0]);
@@ -331,8 +331,8 @@ grayscale_convert (j_compress_ptr cinfo,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   while (--num_rows >= 0) {
     inptr = *input_buf++;
@@ -340,8 +340,8 @@ grayscale_convert (j_compress_ptr cinfo,
     output_row++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (col = 0; col < num_cols; col++) {
       outptr[col] = inptr[0];	/* don't need GETJSAMPLE() here */
@@ -371,23 +371,23 @@ null_convert (j_compress_ptr cinfo,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   while (--num_rows >= 0) {
     /* It seems fastest to make a separate pass for each component. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ci = 0; ci < nc; ci++) {
       inptr = *input_buf;
       outptr = output_buf[ci][output_row];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (col = 0; col < num_cols; col++) {
 	outptr[col] = inptr[ci]; /* don't need GETJSAMPLE() here */

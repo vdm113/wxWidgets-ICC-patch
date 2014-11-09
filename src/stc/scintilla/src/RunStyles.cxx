@@ -36,8 +36,8 @@ int RunStyles::RunFromPosition(int position) const {
 	// Go to first element with this position
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((run > 0) && (position == starts->PositionFromPartition(run-1))) {
 		run--;
@@ -164,8 +164,8 @@ bool RunStyles::FillRange(int &position, int value, int &fillLength) {
 		// Remove each old run over the range
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (int run=runStart+1; run<runEnd; run++) {
 			RemoveRun(runStart+1);
@@ -239,8 +239,8 @@ void RunStyles::DeleteRange(int position, int deleteLength) {
 		// Remove each old run over the range
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (int run=runStart; run<runEnd; run++) {
 			RemoveRun(runStart);
@@ -257,8 +257,8 @@ int RunStyles::Runs() const {
 bool RunStyles::AllSame() const {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int run = 1; run < starts->Partitions(); run++) {
 		if (styles->ValueAt(run) != styles->ValueAt(run - 1))
@@ -279,8 +279,8 @@ int RunStyles::Find(int value, int start) const {
 		run++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (run < starts->Partitions()) {
 			if (styles->ValueAt(run) == value)
@@ -304,8 +304,8 @@ void RunStyles::Check() const {
 	int start=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (start < Length()) {
 		int end = EndRun(start);
@@ -319,8 +319,8 @@ void RunStyles::Check() const {
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int j=1; j<styles->Length()-1; j++) {
 		if (styles->ValueAt(j) == styles->ValueAt(j-1)) {

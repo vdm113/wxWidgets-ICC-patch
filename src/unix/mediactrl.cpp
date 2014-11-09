@@ -625,8 +625,8 @@ bool wxGStreamerMediaBackend::QueryVideoSizeFromElement(GstElement* element)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ; list != NULL; list = list->next)
     {
@@ -794,8 +794,8 @@ bool wxGStreamerMediaBackend::SyncStateChange(GstElement* element,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -869,8 +869,8 @@ bool wxGStreamerMediaBackend::SyncStateChange(GstElement* element,
     gint64 llTimeWaited = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while(GST_STATE(element) != desiredstate)
     {
@@ -1019,8 +1019,8 @@ bool wxGStreamerMediaBackend::CheckForErrors()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; n < m_errors.size(); n++ )
     {
@@ -1059,8 +1059,8 @@ bool wxGStreamerMediaBackend::CreateControl(wxControl* ctrl, wxWindow* parent,
     char **argvGST = new char*[wxTheApp->argc + 1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < wxTheApp->argc; i++ )
     {
@@ -1088,8 +1088,8 @@ bool wxGStreamerMediaBackend::CreateControl(wxControl* ctrl, wxWindow* parent,
 #if wxUSE_UNICODE
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < argcGST; i++ )
     {

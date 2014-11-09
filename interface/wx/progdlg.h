@@ -81,8 +81,8 @@ public:
         Constructor. Creates the dialog, displays it and disables user input
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for other windows, or, if @c wxPD_APP_MODAL flag is not given, for its
         parent window only.
@@ -170,8 +170,8 @@ public:
          was cancelled from elsewhere in the code and this function allows to
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
          do it.
 
@@ -208,8 +208,8 @@ public:
         immediately. If it was not, the dialog becomes a modal dialog and waits
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the user to dismiss it, meaning that this function does not return
         until this happens.

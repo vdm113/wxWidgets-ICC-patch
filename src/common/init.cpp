@@ -185,8 +185,8 @@ static void ConvertArgsToUnicode(int argc, char **argv)
     int wargc = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < argc; i++ )
     {
@@ -216,8 +216,8 @@ static void FreeConvertedArgs()
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int i = 0; i < gs_initData.argc; i++ )
         {

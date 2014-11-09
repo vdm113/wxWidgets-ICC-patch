@@ -245,8 +245,8 @@ _tiffosSeekProc(thandle_t fd, uint64 off, int whence)
 			num_fill = (static_cast<uint64>(origin)) + off - os->tellp();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for( uint64 i = 0; i < num_fill; i++ )
 				os->put('\0');

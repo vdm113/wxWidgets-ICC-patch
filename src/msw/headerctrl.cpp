@@ -201,8 +201,8 @@ void wxHeaderCtrl::DoSetCount(unsigned int count)
     const unsigned countOld = GetShownColumnsCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < countOld; n++ )
     {
@@ -220,8 +220,8 @@ void wxHeaderCtrl::DoSetCount(unsigned int count)
     m_isHidden.resize(m_numColumns);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < count; n++ )
     {
@@ -377,8 +377,8 @@ void wxHeaderCtrl::DoSetColumnsOrder(const wxArrayInt& order)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; n < m_numColumns; n++ )
     {
@@ -418,8 +418,8 @@ int wxHeaderCtrl::MSWToNativeIdx(int idx)
     int item = idx;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < idx; i++ )
     {
@@ -442,8 +442,8 @@ int wxHeaderCtrl::MSWFromNativeIdx(int item)
     unsigned idx = item;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; n < m_numColumns; n++ )
     {
@@ -467,8 +467,8 @@ int wxHeaderCtrl::MSWToNativeOrder(int pos)
     int order = pos;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int n = 0; n < pos; n++ )
     {
@@ -489,8 +489,8 @@ int wxHeaderCtrl::MSWFromNativeOrder(int order)
     unsigned pos = order;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; n < m_numColumns; n++ )
     {

@@ -70,8 +70,8 @@ bool wxRearrangeList::Create(wxWindow *parent,
     size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < count; n++ )
     {
@@ -89,8 +89,8 @@ bool wxRearrangeList::Create(wxWindow *parent,
     // and now check all the items which should be initially checked
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < count; n++ )
     {

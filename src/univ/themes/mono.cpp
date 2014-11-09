@@ -1072,15 +1072,15 @@ void wxMonoRenderer::DrawScrollbarThumb(wxDC& dc,
     dc.SetPen(m_penFg);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxCoord y = rect.GetTop(); y <= rect.GetBottom(); y++ )
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxCoord x = rect.GetLeft() + (y % 2); x <= rect.GetRight(); x+=2 )
         {

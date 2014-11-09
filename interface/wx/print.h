@@ -537,8 +537,8 @@ public:
         The setup dialog is obsolete from Windows 95, though retained
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for backward compatibility.
     */
@@ -681,8 +681,8 @@ public:
         Dividing the printer PPI by the screen PPI can give a suitable scaling factor
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for drawing text onto the printer.
 
@@ -704,8 +704,8 @@ public:
         Dividing the printer PPI by the screen PPI can give a suitable scaling factor
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for drawing text onto the printer.
 
@@ -822,8 +822,8 @@ public:
         Use this if you want to do your own scaling prior to calling wxDC drawing calls,
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for example, if your underlying model is floating-point and you want to achieve
         maximum drawing precision on high-resolution printers.

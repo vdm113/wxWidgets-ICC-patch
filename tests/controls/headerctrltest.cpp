@@ -121,8 +121,8 @@ void HeaderCtrlTestCase::Reorder()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < COL_COUNT; n++ )
         m_header->AppendColumn(wxHeaderColumnSimple(wxString::Format("%d", n)));
@@ -130,8 +130,8 @@ void HeaderCtrlTestCase::Reorder()
     wxArrayInt order = m_header->GetColumnsOrder(); // initial order: [0 1 2 3]
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < COL_COUNT; n++ )
         CPPUNIT_ASSERT_EQUAL( n, order[n] );

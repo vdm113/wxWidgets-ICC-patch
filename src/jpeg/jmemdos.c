@@ -141,8 +141,8 @@ select_file_name (char * fname)
   /* Keep generating file names till we find one that's not in use */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (;;) {
     /* Get temp directory name from environment TMP or TEMP variable;
@@ -156,8 +156,8 @@ select_file_name (char * fname)
     ptr = fname;		/* copy name to fname */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (*env != '\0')
       *ptr++ = *env++;

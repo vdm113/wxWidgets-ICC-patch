@@ -188,8 +188,8 @@ bool MyApp::OnInit()
     const wxTaskBarJumpListItems& frequentItems = frequentCategory.GetItems();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < frequentItems.size(); ++i )
     {
@@ -201,8 +201,8 @@ bool MyApp::OnInit()
     const wxTaskBarJumpListItems& recentItems = recentCategory.GetItems();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < recentItems.size(); ++i )
     {

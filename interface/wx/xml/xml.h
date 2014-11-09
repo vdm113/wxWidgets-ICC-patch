@@ -475,8 +475,8 @@ enum wxXmlDocumentLoadFlag
     wxXmlNode *prolog = doc.GetDocumentNode()->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (prolog) {
 
@@ -493,8 +493,8 @@ enum wxXmlDocumentLoadFlag
     wxXmlNode *child = doc.GetRoot()->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (child) {
 

@@ -69,15 +69,15 @@ public:
 	void SetIdentifiers(int style, const char *identifiers) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (*identifiers) {
 			const char *cpSpace = identifiers;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			while (*cpSpace && !(*cpSpace == ' ' || *cpSpace == '\t' || *cpSpace == '\r' || *cpSpace == '\n'))
 				cpSpace++;
@@ -104,8 +104,8 @@ class SubStyles {
 	int BlockFromBaseStyle(int baseStyle) const {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (int b=0; b < classifications; b++) {
 			if (baseStyle == baseStyles[b])
@@ -118,8 +118,8 @@ class SubStyles {
 		int b = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (std::vector<WordClassifier>::const_iterator it=classifiers.begin(); it != classifiers.end(); ++it) {
 			if (it->IncludesStyle(style))
@@ -140,8 +140,8 @@ public:
 		allocated(0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (baseStyles[classifications]) {
 			classifiers.push_back(WordClassifier(baseStyles[classifications]));
@@ -195,8 +195,8 @@ public:
 		allocated = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (std::vector<WordClassifier>::iterator it=classifiers.begin(); it != classifiers.end(); ++it)
 			it->Clear();

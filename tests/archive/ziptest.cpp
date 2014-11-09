@@ -204,8 +204,8 @@ void ZipPipeTestCase::runTest()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (len > 0 && buf[len - 1] <= 32)
         --len;
@@ -249,8 +249,8 @@ ArchiveTestSuite *ziptest::makeSuite()
     if (IsInPath(wxT("zip")))
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int options = 0; options <= PipeIn; options += PipeIn) {
             string name = Description(wxT("ZipPipeTestCase"), options,

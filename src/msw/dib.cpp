@@ -630,8 +630,8 @@ wxPalette *wxDIB::CreatePalette() const
     ::GetDIBColorTable(hDC, 0, biClrUsed, pRGB);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( DWORD i = 0; i < biClrUsed; i++, pRGB++ )
     {
@@ -692,8 +692,8 @@ bool wxDIB::Create(const wxImage& image, PixelFormat pf)
     unsigned char *dstLineStart = (unsigned char *)m_data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int y = 0; y < h; y++ )
     {
@@ -711,8 +711,8 @@ bool wxDIB::Create(const wxImage& image, PixelFormat pf)
                     // with ::AlphaBlend().
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for ( x = 0; x < w; x++ )
                     {
@@ -729,8 +729,8 @@ bool wxDIB::Create(const wxImage& image, PixelFormat pf)
                     // Just copy pixel data without changing it.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for ( x = 0; x < w; x++ )
                     {
@@ -749,8 +749,8 @@ bool wxDIB::Create(const wxImage& image, PixelFormat pf)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( int x = 0; x < w; x++ )
             {
@@ -815,8 +815,8 @@ wxImage wxDIB::ConvertToImage() const
     const unsigned char *srcLineStart = (unsigned char *)GetData();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int y = 0; y < h; y++ )
     {
@@ -824,8 +824,8 @@ wxImage wxDIB::ConvertToImage() const
         const unsigned char *src = srcLineStart;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int x = 0; x < w; x++ )
         {

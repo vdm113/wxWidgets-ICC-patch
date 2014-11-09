@@ -1459,8 +1459,8 @@ public:
         @onlyfor{wxmsw,wxgtk}. Additionally, wxGTK only implements this method
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for multiline controls and ::wxDefaultPosition is always returned for
         the single line ones.

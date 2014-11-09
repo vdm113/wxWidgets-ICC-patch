@@ -595,8 +595,8 @@ void MyFrame::OnDumpSelected(wxCommandEvent& WXUNUSED(event))
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -808,8 +808,8 @@ void MyFrame::OnAddManyItems(wxCommandEvent& WXUNUSED(event))
     const wxTreeItemId root = m_treeCtrl->GetRootItem();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int n = 0; n < 1000; n++ )
     {
@@ -1008,8 +1008,8 @@ void MyTreeCtrl::CreateImageList(int size)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
     {
@@ -1055,8 +1055,8 @@ void MyTreeCtrl::CreateStateImageList(bool del)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
             states->Add(icons[i]);
@@ -1075,8 +1075,8 @@ void MyTreeCtrl::CreateStateImageList(bool del)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
             states->Add(icons[i]);
@@ -1120,8 +1120,8 @@ void MyTreeCtrl::CreateButtonsImageList(int size)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
     {
@@ -1169,8 +1169,8 @@ void MyTreeCtrl::AddItemsRecursively(const wxTreeItemId& idParent,
         wxString str;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t n = 0; n < numChildren; n++ )
         {
@@ -1248,8 +1248,8 @@ wxTreeItemId MyTreeCtrl::GetLastTreeITem() const
     wxTreeItemId item = GetRootItem();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ;; )
     {
@@ -1309,8 +1309,8 @@ void MyTreeCtrl::DoToggleState(const wxTreeItemId& item)
         srand (time(NULL));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         do {
             nState = rand() % GetStateImageList()->GetImageCount();

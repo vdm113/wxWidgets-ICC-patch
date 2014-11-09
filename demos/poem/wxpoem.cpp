@@ -142,8 +142,8 @@ MainWindow::~MainWindow()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i=0;i<4;i++)
     {
@@ -223,8 +223,8 @@ void MainWindow::ScanBuffer(wxDC *dc, bool DrawIt, int *max_x, int *max_y)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (ch != 0 && !page_break)
     {
@@ -232,15 +232,15 @@ void MainWindow::ScanBuffer(wxDC *dc, bool DrawIt, int *max_x, int *max_y)
 #if defined(__WXMSW__) || defined(__WXMAC__)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (((ch = poem_buffer[i]) != 13) && (ch != 0))
 #else
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (((ch = poem_buffer[i]) != 10) && (ch != 0))
 #endif
@@ -752,8 +752,8 @@ int LoadIndex(const wxChar *file_name)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < nitems; i++)
     {
@@ -848,8 +848,8 @@ bool LoadPoem(const wxChar *file_name, long position)
     int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ((ch != EOF) && (ch != '#'))
     {
@@ -919,8 +919,8 @@ long MainWindow::DoSearch(void)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ((ch != EOF) && !found)
     {
@@ -1016,8 +1016,8 @@ bool Compile(void)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do {
         ch = getc(file);
@@ -1046,8 +1046,8 @@ bool Compile(void)
     wxFprintf(file, wxT("%ld\n\n"), nitems);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (j = 0; j < nitems; j++)
         wxFprintf(file, wxT("%ld\n"), poem_index[j]);

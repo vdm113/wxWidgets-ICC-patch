@@ -289,8 +289,8 @@ public:
         size_type i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < n; i++)
         {
@@ -315,8 +315,8 @@ public:
         size_type i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < n; i++)
         {

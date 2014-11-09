@@ -173,8 +173,8 @@ void XrcTestCase::ObjectReferences()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int n = 0; n < 2; ++n )
     {
@@ -201,8 +201,8 @@ void XrcTestCase::IDRanges()
     // Tests ID ranges
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int n = 0; n < 2; ++n )
     {

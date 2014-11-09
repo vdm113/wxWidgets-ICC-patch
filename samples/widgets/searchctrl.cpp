@@ -197,8 +197,8 @@ wxMenu* SearchCtrlWidgetsPage::CreateTestMenu()
     menuItem->Enable(false);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < SEARCH_MENU_SIZE; i++ )
     {

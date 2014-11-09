@@ -782,8 +782,8 @@ void RichTextCtrlTestCase::Table()
     // Run the tests twice: first for the original table, then for a contained one
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int t = 0; t < 2; ++t)
     {
@@ -798,8 +798,8 @@ void RichTextCtrlTestCase::Table()
         // Test adding columns and rows
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (size_t n = 0; n < 3; ++n)
         {
@@ -816,8 +816,8 @@ void RichTextCtrlTestCase::Table()
         // Test deleting columns and rows
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (size_t n = 0; n < 3; ++n)
         {
@@ -835,8 +835,8 @@ void RichTextCtrlTestCase::Table()
         CPPUNIT_ASSERT(m_rich->CanUndo());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (size_t n = 0; n < 3; ++n)
         {
@@ -849,8 +849,8 @@ void RichTextCtrlTestCase::Table()
         // ...then the additions
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (size_t n = 0; n < 3; ++n)
         {
@@ -865,8 +865,8 @@ void RichTextCtrlTestCase::Table()
         CPPUNIT_ASSERT(m_rich->CanRedo());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (size_t n = 0; n < 3; ++n)
         {
@@ -879,8 +879,8 @@ void RichTextCtrlTestCase::Table()
         // Deletions:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (size_t n = 0; n < 3; ++n)
         {

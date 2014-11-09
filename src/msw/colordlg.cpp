@@ -133,8 +133,8 @@ int wxColourDialog::ShowModal()
     COLORREF custColours[16];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < WXSIZEOF(custColours); i++ )
     {
@@ -175,8 +175,8 @@ int wxColourDialog::ShowModal()
     // transfer the values chosen by user back into m_colourData
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < WXSIZEOF(custColours); i++ )
     {

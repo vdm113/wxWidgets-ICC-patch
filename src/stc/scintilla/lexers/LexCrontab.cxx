@@ -59,8 +59,8 @@ static void ColouriseNncrontabDoc(unsigned int startPos, int length, int, WordLi
 	styler.StartSegment(startPos);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;

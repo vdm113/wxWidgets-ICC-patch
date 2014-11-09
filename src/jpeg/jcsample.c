@@ -103,16 +103,16 @@ expand_right_edge (JSAMPARRAY image_data, int num_rows,
   if (numcols > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (row = 0; row < num_rows; row++) {
       ptr = image_data[row] + input_cols;
       pixval = ptr[-1];		/* don't need GETJSAMPLE() here */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (count = numcols; count > 0; count--)
 	*ptr++ = pixval;
@@ -139,8 +139,8 @@ sep_downsample (j_compress_ptr cinfo,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -183,30 +183,30 @@ int_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
   inrow = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
     outptr = output_data[outrow];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (outcol = 0, outcol_h = 0; outcol < output_cols;
 	 outcol++, outcol_h += h_expand) {
       outvalue = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (v = 0; v < v_expand; v++) {
 	inptr = input_data[inrow+v] + outcol_h;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (h = 0; h < h_expand; h++) {
 	  outvalue += (JPEG_INT32) GETJSAMPLE(*inptr++);
@@ -269,8 +269,8 @@ h2v1_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
     outptr = output_data[outrow];
@@ -278,8 +278,8 @@ h2v1_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
     bias = 0;			/* bias = 0,1,0,1,... for successive samples */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (outcol = 0; outcol < output_cols; outcol++) {
       *outptr++ = (JSAMPLE) ((GETJSAMPLE(*inptr) + GETJSAMPLE(inptr[1])
@@ -317,8 +317,8 @@ h2v2_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
   inrow = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
     outptr = output_data[outrow];
@@ -327,8 +327,8 @@ h2v2_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
     bias = 1;			/* bias = 1,2,1,2,... for successive samples */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (outcol = 0; outcol < output_cols; outcol++) {
       *outptr++ = (JSAMPLE) ((GETJSAMPLE(*inptr0) + GETJSAMPLE(inptr0[1]) +
@@ -386,8 +386,8 @@ h2v2_smooth_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
   inrow = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
     outptr = output_data[outrow];
@@ -412,8 +412,8 @@ h2v2_smooth_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (colctr = output_cols - 2; colctr > 0; colctr--) {
       /* sum of pixels directly mapped to this output element */
@@ -489,8 +489,8 @@ fullsize_smooth_downsample (j_compress_ptr cinfo, jpeg_component_info *compptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
     outptr = output_data[outrow];
@@ -511,8 +511,8 @@ fullsize_smooth_downsample (j_compress_ptr cinfo, jpeg_component_info *compptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (colctr = output_cols - 2; colctr > 0; colctr--) {
       membersum = GETJSAMPLE(*inptr++);
@@ -564,8 +564,8 @@ jinit_downsampler (j_compress_ptr cinfo)
   /* Verify we can handle the sampling factors, and set up method pointers */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {

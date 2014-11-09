@@ -97,8 +97,8 @@ void EllipsizationTestCase::NormalCase()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int s = 0; s < WXSIZEOF(stringsToTest); s++ )
     {
@@ -106,22 +106,22 @@ void EllipsizationTestCase::NormalCase()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned int  f = 0; f < WXSIZEOF(flagsToTest); f++ )
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( unsigned int m = 0; m < WXSIZEOF(modesToTest); m++ )
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( unsigned int w = 0; w < WXSIZEOF(widthsToTest); w++ )
                 {

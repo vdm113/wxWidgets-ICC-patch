@@ -504,8 +504,8 @@ void MyFrame::OnFileSystemEvent(wxFileSystemWatcherEvent& event)
         bool found(false);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (size_t n = m_filesList->GetItemCount(); n > 0; --n)
         {

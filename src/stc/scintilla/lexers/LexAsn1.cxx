@@ -66,8 +66,8 @@ static void ColouriseAsn1Doc(unsigned int startPos, int length, int initStyle, W
 	StyleContext sc(startPos, length, initStyle, styler);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; sc.More(); sc.Forward())
 	{
@@ -141,8 +141,8 @@ asn1_default:
 				// An OID definition starts here: enter the sub loop
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (; sc.More(); sc.Forward())
 				{
@@ -165,8 +165,8 @@ asn1_default:
 				// A trap number definition starts here: enter the sub loop
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (; sc.More(); sc.Forward())
 				{

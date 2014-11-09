@@ -234,8 +234,8 @@ wxDynamicLibraryDetailsArray wxDynamicLibrary::ListLoaded()
         char buf[1024];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( fgets(buf, WXSIZEOF(buf), file.fp()) )
         {

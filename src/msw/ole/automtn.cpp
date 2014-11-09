@@ -136,8 +136,8 @@ bool wxAutomationObject::Invoke(const wxString& member, int action,
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < noArgs; i++)
     {
@@ -157,8 +157,8 @@ bool wxAutomationObject::Invoke(const wxString& member, int action,
     int j = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < namedArgCount; i++)
     {
@@ -202,8 +202,8 @@ bool wxAutomationObject::Invoke(const wxString& member, int action,
     wxVector<wxOleVariantArg> oleArgs(noArgs);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < noArgs; i++)
     {

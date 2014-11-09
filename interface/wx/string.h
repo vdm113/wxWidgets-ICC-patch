@@ -664,8 +664,8 @@ public:
         Returns a string representation suitable for passing to OS' functions
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for file handling.
     */
@@ -1238,8 +1238,8 @@ public:
         Please refer to the documentation of the standard function @c strtod()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for more details about the supported syntax.
 
@@ -1287,8 +1287,8 @@ public:
         Please refer to the documentation of the standard function @c strtol()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for more details about the supported syntax.
 
@@ -1435,8 +1435,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( size_t n = 0; n < len; n++ )
                 {
@@ -1601,8 +1601,8 @@ public:
         Please see any STL reference (e.g. http://www.cppreference.com/wiki/string/start)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for their documentation.
     */
@@ -1630,8 +1630,8 @@ public:
         Please see any STL reference (e.g. http://www.cppreference.com/wiki/string/start)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for their documentation.
     */

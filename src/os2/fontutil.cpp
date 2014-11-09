@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/fontutil.cpp
 // Purpose:     font-related helper functions for wxMSW
@@ -425,6 +418,11 @@ void wxFillLogFont( LOGFONT*      pFattrs,  // OS2 GPI FATTRS
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for(unsigned long LCNum = 0; LCNum < (unsigned long)lNumLids; LCNum++)
             if(alIds[LCNum] == *pflId)
                ++*pflId;
@@ -497,6 +495,11 @@ void wxOS2SelectMatchingFontByName(
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
     for(i = 0;i < 16; i++)
         anMinDiff[i] = nMinDiff0;
@@ -591,6 +594,11 @@ void wxOS2SelectMatchingFontByName(
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
     for(i = 0, nIs = 0; i < nNumFonts; i++)
     {
@@ -736,6 +744,11 @@ int wxGpiStrcmp(
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
     for(i=0;i<l;i++)
     {

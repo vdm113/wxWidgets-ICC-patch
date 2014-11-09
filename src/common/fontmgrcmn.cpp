@@ -79,8 +79,8 @@ wxFontInstance *wxFontFaceBase::GetFontInstance(float ptSize, bool aa)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxFontInstanceList::const_iterator i = m_instances->begin();
           i != m_instances->end(); ++i )
@@ -102,8 +102,8 @@ wxFontBundleBase::wxFontBundleBase()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < FaceType_Max; i++)
         m_faces[i] = NULL;
@@ -113,8 +113,8 @@ wxFontBundleBase::~wxFontBundleBase()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < FaceType_Max; i++)
         delete m_faces[i];
@@ -159,8 +159,8 @@ wxFontBundleBase::GetFaceForFont(const wxFontMgrFontRefData& font) const
         // some other variant:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int i = 0; i < FaceType_Max; i++)
         {

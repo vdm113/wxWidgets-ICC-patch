@@ -76,8 +76,8 @@ public:
        wxStringTokenizer tok( all, "\n" );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
        while (tok.HasMoreTokens())
        {
@@ -100,8 +100,8 @@ public:
         sTest.MakeLower();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(size_t i = iStart; i < GetLineCount(); i++)
         {
@@ -217,8 +217,8 @@ void wxMimeTypesManagerImpl::LoadXDGApp(const wxString& filename)
     wxStringTokenizer tokenizer(mimetypes, wxT(";"));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while(tokenizer.HasMoreTokens()) {
         wxString mimetype = tokenizer.GetNextToken().Lower();
@@ -246,8 +246,8 @@ void wxMimeTypesManagerImpl::LoadXDGAppsFilesFromDir(const wxString& dirname)
     bool cont = dir.GetFirst(&filename, wxT("*.desktop"), wxDIR_FILES);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (cont)
     {
@@ -264,8 +264,8 @@ void wxMimeTypesManagerImpl::LoadXDGAppsFilesFromDir(const wxString& dirname)
     cont = dir.GetFirst(&filename, wxEmptyString, wxDIR_DIRS);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (cont)
     {
@@ -292,8 +292,8 @@ void wxMimeTypesManagerImpl::LoadXDGGlobs(const wxString& filename)
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < file.GetLineCount(); i++)
     {
@@ -318,8 +318,8 @@ wxString wxFileTypeImpl::GetExpandedCommand(const wxString & verb, const wxFileT
     size_t i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( (i < m_index.GetCount() ) && sTmp.empty() )
     {
@@ -336,8 +336,8 @@ bool wxFileTypeImpl::GetIcon(wxIconLocation *iconLoc) const
     size_t i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( (i < m_index.GetCount() ) && sTmp.empty() )
     {
@@ -362,8 +362,8 @@ bool wxFileTypeImpl::GetMimeTypes(wxArrayString& mimeTypes) const
     size_t nCount = m_index.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i = 0; i < nCount; i++)
         mimeTypes.Add(m_manager->m_aTypes[m_index[i]]);
@@ -383,8 +383,8 @@ size_t wxFileTypeImpl::GetAllCommands(wxArrayString *verbs,
     // if we find no entries in the exact match, try the inexact match
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t n = 0; ((count == 0) && (n < m_index.GetCount())); n++)
     {
@@ -393,8 +393,8 @@ size_t wxFileTypeImpl::GetAllCommands(wxArrayString *verbs,
         size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < sPairs->GetCount(); i++ )
         {
@@ -437,8 +437,8 @@ bool wxFileTypeImpl::GetExtensions(wxArrayString& extensions)
     wxString::const_iterator end = strExtensions.end();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxString::const_iterator p = strExtensions.begin(); /* nothing */; ++p )
     {
@@ -497,8 +497,8 @@ wxFileTypeImpl::SetCommand(const wxString& cmd,
     size_t nCount = strTypes.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < nCount; i++ )
     {
@@ -541,8 +541,8 @@ bool wxFileTypeImpl::SetDefaultIcon(const wxString& strIcon, int WXUNUSED(index)
     size_t nCount = strTypes.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < nCount; i++ )
     {
@@ -641,8 +641,8 @@ void wxMimeTypesManagerImpl::Initialize(int mailcapStyles,
         wxStringTokenizer tokenizer(xdgDataDirs, ":");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( tokenizer.HasMoreTokens() )
         {
@@ -655,8 +655,8 @@ void wxMimeTypesManagerImpl::Initialize(int mailcapStyles,
         size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < dirs.GetCount(); i++)
         {
@@ -674,8 +674,8 @@ void wxMimeTypesManagerImpl::Initialize(int mailcapStyles,
         size_t nDirs = dirs.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (size_t nDir = 0; nDir < nDirs; nDir++)
         {
@@ -697,8 +697,8 @@ void wxMimeTypesManagerImpl::Initialize(int mailcapStyles,
                 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for (i = nIndex+1; i < textfile.GetLineCount(); i++)
                     {
@@ -712,8 +712,8 @@ void wxMimeTypesManagerImpl::Initialize(int mailcapStyles,
                                 size_t j;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                                 for (j = 0; j < dirs.GetCount(); j++)
                                 {
@@ -774,8 +774,8 @@ wxFileType * wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
     size_t nExtCount = sA_Exts.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i=0; i < nExtCount; i++)
     {
@@ -787,8 +787,8 @@ wxFileType * wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
         size_t nCount = m_aExtensions.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (nIndex = 0; nIndex < nCount; nIndex++)
         {
@@ -900,8 +900,8 @@ int wxMimeTypesManagerImpl::AddToMimeData(const wxString& strType,
                 size_t count = entry->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( size_t i = 0; i < count; i++ )
                 {
@@ -927,8 +927,8 @@ int wxMimeTypesManagerImpl::AddToMimeData(const wxString& strType,
     size_t count = strExtensions.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < count; i++ )
     {
@@ -960,8 +960,8 @@ wxFileType * wxMimeTypesManagerImpl::GetFileTypeFromExtension(const wxString& ex
     size_t count = m_aExtensions.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -969,8 +969,8 @@ wxFileType * wxMimeTypesManagerImpl::GetFileTypeFromExtension(const wxString& ex
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( tk.HasMoreTokens() )
         {
@@ -1017,8 +1017,8 @@ wxFileType * wxMimeTypesManagerImpl::GetFileTypeFromMimeType(const wxString& mim
     size_t nCount = m_aTypes.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < nCount; n++ )
     {
@@ -1053,8 +1053,8 @@ wxString wxMimeTypesManagerImpl::GetCommand(const wxString & verb, size_t nIndex
     size_t nCount = sPairs->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < nCount; i++ )
     {
@@ -1075,8 +1075,8 @@ void wxMimeTypesManagerImpl::AddFallback(const wxFileTypeInfo& filetype)
     size_t nExts = exts.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t nExt = 0; nExt < nExts; nExt++ )
     {
@@ -1106,8 +1106,8 @@ void wxMimeTypesManagerImpl::AddMimeTypeInfo(const wxString& strMimeType,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (!sTmp.empty())
     {
@@ -1127,8 +1127,8 @@ size_t wxMimeTypesManagerImpl::EnumAllFileTypes(wxArrayString& mimetypes)
     size_t count = m_aTypes.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -1158,8 +1158,8 @@ bool wxMimeTypesManagerImpl::Unassociate(wxFileType *ft)
     size_t nCount = sMimeTypes.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < nCount; i ++)
     {

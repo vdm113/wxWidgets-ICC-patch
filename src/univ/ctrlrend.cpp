@@ -177,15 +177,15 @@ void wxControlRenderer::DrawBitmap(wxDC &dc,
         // tile the bitmap
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( ; x < rect.width; x += width )
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( y = 0; y < rect.height; y += height )
             {
@@ -276,8 +276,8 @@ void wxControlRenderer::DrawScrollbar(const wxScrollBar *scrollbar,
     // the shaft
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int nBar = 0; nBar < 2; nBar++ )
     {
@@ -306,8 +306,8 @@ void wxControlRenderer::DrawScrollbar(const wxScrollBar *scrollbar,
     // arrows
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int nArrow = 0; nArrow < 2; nArrow++ )
     {
@@ -420,8 +420,8 @@ void wxControlRenderer::DoDrawItems(const wxListBox *lbox,
                         : -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = itemFirst; n < itemLast; n++ )
     {
@@ -559,8 +559,8 @@ void wxControlRenderer::DrawProgressBar(const wxGauge *gauge)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int n = 0; n < steps; n++ )
         {

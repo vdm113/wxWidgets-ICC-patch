@@ -201,8 +201,8 @@ void wxStackWalker::ProcessFrames(size_t skip)
     // now do user-defined operations on each frame
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int n = 0; n < numFrames; n++ )
         OnStackFrame(frames[n]);
@@ -268,8 +268,8 @@ int wxStackWalker::InitFrames(wxStackFrame *arr, size_t n, void **addresses, cha
     len = (len <= 0) ? strlen(g_buf) : len;     // in case snprintf() is broken
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i=0; i<n; i++)
     {
@@ -290,8 +290,8 @@ int wxStackWalker::InitFrames(wxStackFrame *arr, size_t n, void **addresses, cha
                   curr = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for  ( size_t i = 0; i < n; i++ )
     {

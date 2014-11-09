@@ -281,8 +281,8 @@ public:
         @a childId is 0 (the action for this object) or greater than 0 (the action
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for a child).
 

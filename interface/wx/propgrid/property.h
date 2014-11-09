@@ -69,8 +69,8 @@
     combo box as its editor control. If you set this attribute
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for a wxFlagsProperty, it is automatically applied to child
     bool properties.
@@ -84,8 +84,8 @@
     (instead of showing the popup listbox). If you set this attribute
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for a wxFlagsProperty, it is automatically applied to child
     bool properties.
@@ -393,8 +393,8 @@ wxPG_PROP_BEING_DELETED             = 0x00200000
     Regardless inherits from wxPGProperty, and supports displaying 'labels'
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for columns other than the first one. Easiest way to set category's
     label for second column is to call wxPGProperty::SetValue() with string
@@ -891,8 +891,8 @@ public:
         TextCtrlAndButton class, can be handled here. Also, if custom handling
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for regular events is desired, then that can also be done (for example,
         wxSystemColourProperty custom handles @c wxEVT_CHOICE
@@ -1004,8 +1004,8 @@ public:
         wxFileProperty::GetClassValidator(). wxDirProperty,
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for example, uses it.
     */
@@ -1829,8 +1829,8 @@ public:
                  or wxPropertyGrid::GetCaptionFont() as a basis
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                  for the font that, after modifications, is passed
                  to this member function.

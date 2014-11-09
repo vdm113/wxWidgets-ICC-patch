@@ -45,16 +45,16 @@ struct latexFoldSave {
 	latexFoldSave() : structLev(0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (int i = 0; i < 8; ++i) openBegins[i] = 0;
 	}
 	latexFoldSave(const latexFoldSave &save) : structLev(save.structLev) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (int i = 0; i < 8; ++i) openBegins[i] = save.openBegins[i];
 	}
@@ -89,8 +89,8 @@ private:
 			save.structLev = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (int i = 0; i < 8; ++i) save.openBegins[i] = 0;
 		}
@@ -127,15 +127,15 @@ static bool latexIsLetter(int ch) {
 static bool latexIsTagValid(int &i, int l, Accessor &styler) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (i < l) {
 		if (styler.SafeGetCharAt(i) == '{') {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			while (i < l) {
 				i++;
@@ -158,8 +158,8 @@ static bool latexNextNotBlankIs(int i, Accessor &styler, char needle) {
   char ch;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (i < styler.Length()) {
     ch = styler.SafeGetCharAt(i);
@@ -182,8 +182,8 @@ static bool latexLastWordIs(int start, Accessor &styler, const char *needle) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (i < l && i < 31) {
 		s[i] = styler.SafeGetCharAt(ini + i);
@@ -202,8 +202,8 @@ static bool latexLastWordIsMathEnv(int pos, Accessor &styler) {
 	if (styler.SafeGetCharAt(pos) != '}') return false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = pos - 1; i >= 0; --i) {
 		if (styler.SafeGetCharAt(i) == '{') break;
@@ -213,8 +213,8 @@ static bool latexLastWordIsMathEnv(int pos, Accessor &styler) {
 	++i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (j = 0; i + j < pos; ++j)
 		s[j] = styler.SafeGetCharAt(i + j);
@@ -223,8 +223,8 @@ static bool latexLastWordIsMathEnv(int pos, Accessor &styler) {
 	if (s[j - 1] == '*') s[--j] = '\0';
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < static_cast<int>(sizeof(mathEnvs) / sizeof(const char *)); ++i)
 		if (strcmp(s, mathEnvs[i]) == 0) return true;
@@ -257,8 +257,8 @@ void SCI_METHOD LexerLaTeX::Lex(unsigned int startPos, int length, int initStyle
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
@@ -527,8 +527,8 @@ static int latexFoldSaveToInt(const latexFoldSave &save) {
 	int sum = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int i = 0; i <= save.structLev; ++i)
 		sum += save.openBegins[i];
@@ -547,8 +547,8 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 	getSave(curLine - 1, save);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do {
 		char ch, buf[16];
@@ -556,8 +556,8 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 		bool needFold = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (i = static_cast<int>(startPos); i < static_cast<int>(endPos); ++i) {
 			ch = styler.SafeGetCharAt(i);
@@ -565,8 +565,8 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 			if (ch != '\\' || styler.StyleAt(i) != SCE_L_COMMAND) continue;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (j = 0; j < 15 && i + 1 < static_cast<int>(endPos); ++j, ++i) {
 				buf[j] = styler.SafeGetCharAt(i + 1);
@@ -581,8 +581,8 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 			else if (strcmp(buf, "end") == 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				while (save.structLev > 0 && save.openBegins[save.structLev] == 0)
 					--save.structLev;
@@ -592,8 +592,8 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 			else {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (j = 0; j < 7; ++j)
 					if (strcmp(buf, structWords[j]) == 0) break;
@@ -601,8 +601,8 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 				save.structLev = j;   // level before the command
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (j = save.structLev + 1; j < 8; ++j) {
 					save.openBegins[save.structLev] += save.openBegins[j];

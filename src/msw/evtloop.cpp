@@ -62,8 +62,8 @@ bool wxGUIEventLoop::IsChildOfCriticalWindow(wxWindowMSW *win)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( win )
     {
@@ -88,8 +88,8 @@ bool wxGUIEventLoop::PreProcessMessage(WXMSG *msg)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( hwnd && (::GetWindowLong(hwnd, GWL_STYLE) & WS_CHILD ))
         {
@@ -148,8 +148,8 @@ bool wxGUIEventLoop::PreProcessMessage(WXMSG *msg)
     // try translations first: the accelerators override everything
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wnd = wndThis; wnd; wnd = wnd->GetParent() )
     {
@@ -166,8 +166,8 @@ bool wxGUIEventLoop::PreProcessMessage(WXMSG *msg)
     // now try the other hooks (kbd navigation is handled here)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wnd = wndThis; wnd; wnd = wnd->GetParent() )
     {
@@ -241,8 +241,8 @@ bool wxGUIEventLoop::Dispatch()
             wxMsgList::compatibility_iterator node = s_aSavedMessages.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while (node)
             {
@@ -298,8 +298,8 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
     int nPaintsReceived = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( PeekMessage(&msg, (HWND)0, 0, 0, PM_NOREMOVE) &&
             msg.message != WM_QUIT )
@@ -456,8 +456,8 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
     DWORD id = GetCurrentThreadId();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i=0; i<m_arrMSG.GetCount(); i++)
     {

@@ -85,8 +85,8 @@ clearcvec(cv)
     cv->nranges = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < cv->mccespace; i++) {
 	cv->mcces[i] = NULL;
@@ -150,8 +150,8 @@ addmcce(cv, startp, endp)
     cv->mcces[cv->nmcces++] = d;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (s = startp, i = len; i > 0; s++, i--) {
 	*d++ = *s;
@@ -175,8 +175,8 @@ haschr(cv, c)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (p = cv->chrs, i = cv->nchrs; i > 0; p++, i--) {
 	if (*p == c) {
@@ -185,8 +185,8 @@ haschr(cv, c)
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (p = cv->ranges, i = cv->nranges; i > 0; p += 2, i--) {
 	if ((*p <= c) && (c <= *(p+1))) {

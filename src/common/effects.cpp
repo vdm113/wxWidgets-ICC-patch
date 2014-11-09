@@ -115,15 +115,15 @@ bool wxEffectsImpl::TileBitmap(const wxRect& rect, wxDC& dc, const wxBitmap& bit
     int i, j;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = rect.x; i < rect.x + rect.width; i += w)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (j = rect.y; j < rect.y + rect.height; j+= h)
             dc.Blit(i, j, bitmap.GetWidth(), bitmap.GetHeight(), & dcMem, 0, 0);

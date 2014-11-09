@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/dnd.cpp
 // Purpose:     wxDropTarget, wxDropSource, wxDataObject implementation
@@ -176,6 +169,11 @@ MRESULT CIDropTarget::DragOver ()
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < ulItems; i++)
     {
         m_pDragItem = ::DrgQueryDragitemPtr(m_pDragInfo, i);
@@ -255,6 +253,11 @@ MRESULT CIDropTarget::Drop ()
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < ulItems; i++)
     {
@@ -358,6 +361,11 @@ wxDataFormat wxDropTarget::GetSupportedFormat (
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (n = 0; n < ulFormats; n++)
     {
         switch(pFormats[n].GetType())
@@ -429,6 +437,11 @@ wxDataFormat wxDropTarget::GetSupportedFormat (
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < ulItems; i++)
         {
@@ -622,6 +635,11 @@ void wxDropSource::Init ()
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
     for (ULONG i = 0; i < m_ulItems; i++)
     {

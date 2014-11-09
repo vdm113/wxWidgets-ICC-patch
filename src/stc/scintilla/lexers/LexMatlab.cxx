@@ -89,8 +89,8 @@ static void ColouriseMatlabOctaveDoc(
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; sc.More(); sc.Forward(), column++) {
 
@@ -273,8 +273,8 @@ static void FoldMatlabOctaveDoc(unsigned int startPos, int length, int,
 	char chNext = styler[startPos];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int i = startPos; i < endPos; i++) {
 		char ch = chNext;

@@ -99,8 +99,8 @@ int main( int argc, char ** argv )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while( argv[1][0] == '-' )
     {
@@ -130,8 +130,8 @@ int main( int argc, char ** argv )
 /* -------------------------------------------------------------------- */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while( nOverviewCount < argc - 2 && nOverviewCount < 100 )
     {

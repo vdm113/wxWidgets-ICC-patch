@@ -453,8 +453,8 @@ Examples:
       control is created, e.g. if the control gets the font passed as parameter
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for its constructor, or if the control is not derived from wxWindow.
 
@@ -1485,8 +1485,8 @@ Each @c propertysheetpage has exactly one non-toplevel window as its child.
      @c wxRA_SPECIFY_ROWS) or columns (if style contains @c wxRA_SPECIFY_COLS)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
      for a two-dimensional radiobox (default: 1).}
 @row3col{selection, integer,
@@ -2518,8 +2518,8 @@ number than [end]; so code like this works as expected:
 @code
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 for (int n=XRCID("foo[start]"); n <= XRCID("foo[end]"); ++n)
     ...

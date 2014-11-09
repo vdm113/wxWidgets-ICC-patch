@@ -207,8 +207,8 @@ STDMETHODIMP wxIDropTarget::DragEnter(IDataObject *pIDataSource,
         FORMATETC fmt;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( penumFmt->Next(1, &fmt, NULL) == S_OK )
         {
@@ -577,8 +577,8 @@ wxDataFormat wxDropTarget::MSWGetSupportedFormat(IDataObject *pIDataSource) cons
     size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < nFormats; n++ ) {
         s_fmtMemory.cfFormat = formats[n];

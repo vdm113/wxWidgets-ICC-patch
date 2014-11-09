@@ -195,8 +195,8 @@ void wxToolBar::SetWindowStyleFlag( long style )
     // bring the initial state of all the toolbar items in line with the
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxToolBarToolsList::const_iterator i = m_tools.begin();
           i != m_tools.end();         ++i )
@@ -217,8 +217,8 @@ bool wxToolBar::Realize()
     // bring the initial state of all the toolbar items in line with the
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxToolBarToolsList::const_iterator i = m_tools.begin();
           i != m_tools.end();         ++i )

@@ -112,8 +112,8 @@ png_read_info(png_structrp png_ptr, png_inforp info_ptr)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    for (;;)
    {
@@ -594,8 +594,8 @@ png_read_rows(png_structrp png_ptr, png_bytepp row,
    if (rp != NULL && dp != NULL)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (i = 0; i < num_rows; i++)
       {
@@ -608,8 +608,8 @@ png_read_rows(png_structrp png_ptr, png_bytepp row,
    else if (rp != NULL)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (i = 0; i < num_rows; i++)
       {
@@ -621,8 +621,8 @@ png_read_rows(png_structrp png_ptr, png_bytepp row,
    else if (dp != NULL)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (i = 0; i < num_rows; i++)
       {
@@ -696,16 +696,16 @@ png_read_image(png_structrp png_ptr, png_bytepp image)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    for (j = 0; j < pass; j++)
    {
       rp = image;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (i = 0; i < image_height; i++)
       {
@@ -750,8 +750,8 @@ png_read_end(png_structrp png_ptr, png_inforp info_ptr)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    do
    {
@@ -1137,8 +1137,8 @@ png_read_png(png_structrp png_ptr, png_inforp info_ptr,
           info_ptr->height * (sizeof (png_bytep)));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (iptr=0; iptr<info_ptr->height; iptr++)
          info_ptr->row_pointers[iptr] = NULL;
@@ -1147,8 +1147,8 @@ png_read_png(png_structrp png_ptr, png_inforp info_ptr,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (row = 0; row < (int)info_ptr->height; row++)
          info_ptr->row_pointers[row] = (png_bytep)png_malloc(png_ptr,
@@ -1892,8 +1892,8 @@ make_gray_file_colormap(png_image_read_control *display)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    for (i=0; i<256; ++i)
       png_create_colormap_entry(display, i, i, i, i, 255, E_FILE);
@@ -1908,8 +1908,8 @@ make_gray_colormap(png_image_read_control *display)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    for (i=0; i<256; ++i)
       png_create_colormap_entry(display, i, i, i, i, 255, E_sRGB);
@@ -1950,8 +1950,8 @@ make_ga_colormap(png_image_read_control *display)
    i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    while (i < 231)
    {
@@ -1966,8 +1966,8 @@ make_ga_colormap(png_image_read_control *display)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    for (a=1; a<5; ++a)
    {
@@ -1975,8 +1975,8 @@ make_ga_colormap(png_image_read_control *display)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (g=0; g<6; ++g)
          png_create_colormap_entry(display, i++, g*51, g*51, g*51, a*51,
@@ -1996,8 +1996,8 @@ make_rgb_colormap(png_image_read_control *display)
    /* Build a 6x6x6 opaque RGB cube */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    for (i=r=0; r<6; ++r)
    {
@@ -2005,8 +2005,8 @@ make_rgb_colormap(png_image_read_control *display)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (g=0; g<6; ++g)
       {
@@ -2014,8 +2014,8 @@ make_rgb_colormap(png_image_read_control *display)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
          for (b=0; b<6; ++b)
             png_create_colormap_entry(display, i++, r*51, g*51, b*51, 255,
@@ -2160,8 +2160,8 @@ png_image_read_colormap(png_voidp argument)
              */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i=val=0; i<cmap_entries; ++i, val += step)
             {
@@ -2384,8 +2384,8 @@ png_image_read_colormap(png_voidp argument)
                i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                while (i < 231)
                {
@@ -2422,8 +2422,8 @@ png_image_read_colormap(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                for (a=1; a<5; ++a)
                {
@@ -2439,8 +2439,8 @@ png_image_read_colormap(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                   for (g=0; g<6; ++g)
                   {
@@ -2627,8 +2627,8 @@ png_image_read_colormap(png_voidp argument)
                   /* Add 27 r,g,b entries each with alpha 0.5. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                   for (r=0; r<256; r = (r << 1) | 0x7f)
                   {
@@ -2636,8 +2636,8 @@ png_image_read_colormap(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                      for (g=0; g<256; g = (g << 1) | 0x7f)
                      {
@@ -2648,8 +2648,8 @@ png_image_read_colormap(png_voidp argument)
                          */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                         for (b=0; b<256; b = (b << 1) | 0x7f)
                            png_create_colormap_entry(display, cmap_entries++,
@@ -2715,15 +2715,15 @@ png_image_read_colormap(png_voidp argument)
                       */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                      for (r=0; r<256; r = (r << 1) | 0x7f)
                      {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                         for (g=0; g<256; g = (g << 1) | 0x7f)
                         {
@@ -2732,8 +2732,8 @@ png_image_read_colormap(png_voidp argument)
                             */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                            for (b=0; b<256; b = (b << 1) | 0x7f)
                               png_create_colormap_entry(display, cmap_entries++,
@@ -2810,8 +2810,8 @@ png_image_read_colormap(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i=0; i < cmap_entries; ++i)
             {
@@ -2966,8 +2966,8 @@ png_image_read_and_map(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (pass = 0; pass < passes; ++pass)
       {
@@ -2995,8 +2995,8 @@ png_image_read_and_map(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
          for (; y<height; y += stepy)
          {
@@ -3017,8 +3017,8 @@ png_image_read_and_map(png_voidp argument)
                case PNG_CMAP_GA:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                   for (; outrow < end_row; outrow += stepx)
                   {
@@ -3051,8 +3051,8 @@ png_image_read_and_map(png_voidp argument)
                case PNG_CMAP_TRANS:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                   for (; outrow < end_row; outrow += stepx)
                   {
@@ -3073,8 +3073,8 @@ png_image_read_and_map(png_voidp argument)
                case PNG_CMAP_RGB:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                   for (; outrow < end_row; outrow += stepx)
                   {
@@ -3086,8 +3086,8 @@ png_image_read_and_map(png_voidp argument)
                case PNG_CMAP_RGB_ALPHA:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                   for (; outrow < end_row; outrow += stepx)
                   {
@@ -3266,8 +3266,8 @@ png_image_read_colormapped(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       while (--passes >= 0)
       {
@@ -3276,8 +3276,8 @@ png_image_read_colormapped(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
          while (y-- > 0)
          {
@@ -3324,8 +3324,8 @@ png_image_read_composite(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (pass = 0; pass < passes; ++pass)
       {
@@ -3354,8 +3354,8 @@ png_image_read_composite(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
          for (; y<height; y += stepy)
          {
@@ -3374,8 +3374,8 @@ png_image_read_composite(png_voidp argument)
             outrow += startx;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (; outrow < end_row; outrow += stepx)
             {
@@ -3387,8 +3387,8 @@ png_image_read_composite(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                   for (c=0; c<channels; ++c)
                   {
@@ -3502,8 +3502,8 @@ png_image_read_background(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (pass = 0; pass < passes; ++pass)
             {
@@ -3535,8 +3535,8 @@ png_image_read_background(png_voidp argument)
                {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                   for (; y<height; y += stepy)
                   {
@@ -3552,8 +3552,8 @@ png_image_read_background(png_voidp argument)
                      outrow += startx;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                      for (; outrow < end_row; outrow += stepx)
                      {
@@ -3590,8 +3590,8 @@ png_image_read_background(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                   for (; y<height; y += stepy)
                   {
@@ -3607,8 +3607,8 @@ png_image_read_background(png_voidp argument)
                      outrow += startx;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                      for (; outrow < end_row; outrow += stepx)
                      {
@@ -3662,8 +3662,8 @@ png_image_read_background(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (pass = 0; pass < passes; ++pass)
             {
@@ -3694,8 +3694,8 @@ png_image_read_background(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                for (; y<height; y += stepy)
                {
@@ -3713,8 +3713,8 @@ png_image_read_background(png_voidp argument)
                   outrow += startx;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                   for (; outrow < end_row; outrow += stepx)
                   {
@@ -4162,8 +4162,8 @@ png_image_read_direct(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       while (--passes >= 0)
       {
@@ -4172,8 +4172,8 @@ png_image_read_direct(png_voidp argument)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
          while (y-- > 0)
          {

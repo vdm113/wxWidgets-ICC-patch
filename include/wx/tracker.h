@@ -54,8 +54,8 @@ public:
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxTrackerNode **pprn = &m_first; *pprn; pprn = &(*pprn)->m_nxt )
         {
@@ -90,8 +90,8 @@ protected:
         // Notify all registered refs
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( m_first )
         {

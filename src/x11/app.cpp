@@ -110,8 +110,8 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
     int argCOrig = argC;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < argCOrig; i++ )
     {
@@ -169,15 +169,15 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
         // remove the arguments we consumed
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int i = 0; i < argC; i++ )
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( !argV[i] )
             {
@@ -329,8 +329,8 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
                 info.found_non_matching = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while (XCheckIfEvent( wxGlobalDisplay(), &tmp_event, wxX11ExposePredicate, (XPointer) &info ))
                 {
@@ -353,8 +353,8 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
                 info.found_non_matching = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while (XCheckIfEvent( wxGlobalDisplay(), &tmp_event, wxX11ExposePredicate, (XPointer) &info ))
                 {
@@ -607,8 +607,8 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
             wxWindow *tlw = win;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while (tlw && !tlw->IsTopLevel())
                 tlw = tlw->GetParent();

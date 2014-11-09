@@ -163,8 +163,8 @@ private:
         wxWindow *win = child;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( win && win != this )
         {
@@ -190,8 +190,8 @@ private:
         wxWindow *win = event.GetWindow();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( win )
         {
@@ -220,8 +220,8 @@ private:
         const wxWindowList parts = GetCompositeWindowParts();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxWindowList::const_iterator i = parts.begin();
               i != parts.end();

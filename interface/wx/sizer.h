@@ -162,8 +162,8 @@ public:
             its size in the main orientation of the wxBoxSizer - where 0 stands
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for not changeable and a value of more than zero is interpreted
             relative to the value of other children of the same wxBoxSizer. For
@@ -225,8 +225,8 @@ public:
             its size in the main orientation of the wxBoxSizer - where 0 stands
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for not changeable and a value of more than zero is interpreted
             relative to the value of other children of the same wxBoxSizer. For
@@ -278,8 +278,8 @@ public:
             its size in the main orientation of the wxBoxSizer - where 0 stands
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for not changeable and a value of more than zero is interpreted
             relative to the value of other children of the same wxBoxSizer. For
@@ -1559,8 +1559,8 @@ public:
         The @a proportion parameter has the same meaning as the stretch factor
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the sizers (see wxBoxSizer) except that if all proportions are 0,
         then all columns are resized equally (instead of not being resized at all).
@@ -1717,8 +1717,8 @@ public:
         Finally, it is also possible to specify the number of rows and use 0
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for @a cols. In this case, the sizer will use the given fixed number of
         rows and as many columns as necessary.

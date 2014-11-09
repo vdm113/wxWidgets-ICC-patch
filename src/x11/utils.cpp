@@ -334,8 +334,8 @@ void wxAllocNearestColor(Display *d,Colormap cmp,XColor *xc)
     XColor *color_defs = new XColor[num_colors];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(llp = 0;llp < num_colors;llp++) color_defs[llp].pixel = llp;
     XQueryColors(d,cmp,color_defs,num_colors);
@@ -347,8 +347,8 @@ void wxAllocNearestColor(Display *d,Colormap cmp,XColor *xc)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(llp = 0;llp < num_colors;llp++)
     {

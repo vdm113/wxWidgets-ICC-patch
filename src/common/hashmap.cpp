@@ -35,8 +35,8 @@ static unsigned long DoStringHash(T *k)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while( *k )
     {
@@ -76,8 +76,8 @@ unsigned long _wxHashTableBase2::GetNextPrime( unsigned long n )
     const unsigned long* ptr = &ms_primes[0];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( size_t i = 0; i < prime_count; ++i, ++ptr )
     {
@@ -98,8 +98,8 @@ unsigned long _wxHashTableBase2::GetPreviousPrime( unsigned long n )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( size_t i = 0; i < prime_count; ++i, --ptr )
     {
@@ -119,8 +119,8 @@ void _wxHashTableBase2::DeleteNodes( size_t buckets,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( i = 0; i < buckets; ++i )
     {
@@ -129,8 +129,8 @@ void _wxHashTableBase2::DeleteNodes( size_t buckets,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while( node )
         {
@@ -151,8 +151,8 @@ void _wxHashTableBase2::CopyHashTable( _wxHashTable_NodeBase** srcTable,
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( size_t i = 0; i < srcBuckets; ++i )
     {
@@ -160,8 +160,8 @@ void _wxHashTableBase2::CopyHashTable( _wxHashTable_NodeBase** srcTable,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for( _wxHashTable_NodeBase* node = srcTable[i]; node; node = nextnode )
         {

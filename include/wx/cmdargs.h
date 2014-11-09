@@ -48,8 +48,8 @@ public:
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( *argv )
                 m_args.push_back(*argv++);
@@ -66,8 +66,8 @@ public:
             m_argsA = new char *[count];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( size_t n = 0; n < count; n++ )
                 m_argsA[n] = wxStrdup(m_args[n].ToAscii());
@@ -84,8 +84,8 @@ public:
             m_argsW = new wchar_t *[count];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( size_t n = 0; n < count; n++ )
                 m_argsW[n] = wxStrdup(m_args[n].wc_str());
@@ -143,8 +143,8 @@ private:
         const size_t count = m_args.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t n = 0; n < count; n++ )
             free(args[n]);

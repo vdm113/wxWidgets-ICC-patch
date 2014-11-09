@@ -116,8 +116,8 @@ typedef z_stream FAR *z_streamp;
      gzip header information passed to and from zlib routines.  See RFC 1952
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for more details on the meanings of these fields.
 */
@@ -310,8 +310,8 @@ ZEXTERN int ZEXPORT deflate OF((z_streamp strm, int flush));
     If flush is set to Z_BLOCK, a deflate block is completed and emitted, as
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for Z_SYNC_FLUSH, but the output is not aligned on a byte boundary, and up to
   seven bits of the current block are held to be written as the next byte after
@@ -575,8 +575,8 @@ ZEXTERN int ZEXPORT deflateInit2 OF((z_streamp strm,
      The memLevel parameter specifies how much memory should be allocated
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    for the internal compression state.  memLevel=1 uses minimum memory but is
    slow and reduces compression ratio; memLevel=9 uses maximum memory for
@@ -881,8 +881,8 @@ ZEXTERN int ZEXPORT inflateSync OF((z_streamp strm));
      Skips invalid compressed data until a possible full flush point (see above
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    for the description of deflate with Z_FULL_FLUSH) can be found, or until all
    available input is skipped.  No output is provided.
@@ -1259,8 +1259,8 @@ ZEXTERN gzFile ZEXPORT gzopen OF((const char *path, const char *mode));
    compression as in "wb1h", 'R' for run-length encoding as in "wb1R", or 'F'
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    for fixed code compression as in "wb9F".  (See the description of
    deflateInit2 for more information about the strategy parameter.)  'T' will
@@ -1412,8 +1412,8 @@ ZEXTERN char * ZEXPORT gzgets OF((gzFile file, char *buf, int len));
      gzgets returns buf which is a null-terminated string, or it returns NULL
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    for end-of-file or in case of error.  If there was an error, the contents at
    buf are indeterminate.
@@ -1508,8 +1508,8 @@ ZEXTERN z_off_t ZEXPORT gzoffset OF((gzFile file));
    does not include as yet unused buffered input.  This information can be used
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    for a progress indicator.  On error, gzoffset() returns -1.
 */
@@ -1623,8 +1623,8 @@ ZEXTERN uLong ZEXPORT adler32 OF((uLong adler, const Bytef *buf, uInt len));
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
      while (read_buffer(buffer, length) != EOF) {
        adler = adler32(adler, buffer, length);
@@ -1657,8 +1657,8 @@ ZEXTERN uLong ZEXPORT crc32   OF((uLong crc, const Bytef *buf, uInt len));
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
      while (read_buffer(buffer, length) != EOF) {
        crc = crc32(crc, buffer, length);

@@ -413,8 +413,8 @@ gchar *gtk_assert_dialog_get_backtrace (GtkAssertDialog *dlg)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {

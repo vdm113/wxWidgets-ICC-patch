@@ -102,8 +102,8 @@ void WebTestCase::LoadUrl(int times)
     //we use about and about blank to avoid the need for a network connection
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(int i = 0; i < times; i++)
     {

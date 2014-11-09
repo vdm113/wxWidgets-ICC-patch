@@ -153,8 +153,8 @@ bool wxUIActionSimulator::Text(const char *s)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( *s != '\0' )
     {
@@ -207,8 +207,8 @@ bool wxUIActionSimulator::Select(const wxString& text)
     // And then go down in the control until we reach the item we want.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ;; )
     {

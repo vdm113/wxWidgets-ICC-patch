@@ -278,8 +278,8 @@ png_do_invert(png_row_infop row_info, png_bytep row)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (i = 0; i < istop; i++)
       {
@@ -297,8 +297,8 @@ png_do_invert(png_row_infop row_info, png_bytep row)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (i = 0; i < istop; i += 2)
       {
@@ -317,8 +317,8 @@ png_do_invert(png_row_infop row_info, png_bytep row)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (i = 0; i < istop; i += 4)
       {
@@ -347,8 +347,8 @@ png_do_swap(png_row_infop row_info, png_bytep row)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (i = 0; i < istop; i++, rp += 2)
       {
@@ -494,8 +494,8 @@ png_do_packswap(png_row_infop row_info, png_bytep row)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (rp = row; rp < end; rp++)
          *rp = table[*rp];
@@ -541,8 +541,8 @@ png_do_strip_channel(png_row_infop row_info, png_bytep row, int at_start)
          /* For a 1 pixel wide image there is nothing to do */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
          while (sp < ep)
             *dp++ = *sp, sp += 2;
@@ -559,8 +559,8 @@ png_do_strip_channel(png_row_infop row_info, png_bytep row, int at_start)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
          while (sp < ep)
             *dp++ = *sp++, *dp++ = *sp, sp += 3;
@@ -591,8 +591,8 @@ png_do_strip_channel(png_row_infop row_info, png_bytep row, int at_start)
          /* Note that the loop adds 3 to dp and 4 to sp each time. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
          while (sp < ep)
             *dp++ = *sp++, *dp++ = *sp++, *dp++ = *sp, sp += 2;
@@ -609,8 +609,8 @@ png_do_strip_channel(png_row_infop row_info, png_bytep row, int at_start)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
          while (sp < ep)
          {
@@ -660,8 +660,8 @@ png_do_bgr(png_row_infop row_info, png_bytep row)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0, rp = row; i < row_width; i++, rp += 3)
             {
@@ -678,8 +678,8 @@ png_do_bgr(png_row_infop row_info, png_bytep row)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0, rp = row; i < row_width; i++, rp += 4)
             {
@@ -700,8 +700,8 @@ png_do_bgr(png_row_infop row_info, png_bytep row)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0, rp = row; i < row_width; i++, rp += 6)
             {
@@ -721,8 +721,8 @@ png_do_bgr(png_row_infop row_info, png_bytep row)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0, rp = row; i < row_width; i++, rp += 8)
             {
@@ -767,8 +767,8 @@ png_do_check_palette_indexes(png_structrp png_ptr, png_row_infop row_info)
              */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (; rp > png_ptr->row_buf; rp--)
             {
@@ -784,8 +784,8 @@ png_do_check_palette_indexes(png_structrp png_ptr, png_row_infop row_info)
          {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (; rp > png_ptr->row_buf; rp--)
             {
@@ -819,8 +819,8 @@ png_do_check_palette_indexes(png_structrp png_ptr, png_row_infop row_info)
          {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (; rp > png_ptr->row_buf; rp--)
             {
@@ -844,8 +844,8 @@ png_do_check_palette_indexes(png_structrp png_ptr, png_row_infop row_info)
          {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (; rp > png_ptr->row_buf; rp--)
             {

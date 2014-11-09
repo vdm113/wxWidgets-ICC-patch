@@ -151,8 +151,8 @@ void wxSetFromString(const wxString &s, wxBitset<e> &data )
     wxString flag;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < array.Count(); ++i )
     {
@@ -174,8 +174,8 @@ void wxSetToString( wxString &s, const wxBitset<e> &data )
     s.Clear();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < count; i++ )
     {
@@ -216,8 +216,8 @@ void wxFlagsFromString(const wxString &s, e &data )
     wxString flag;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < array.Count(); ++i )
     {
@@ -240,8 +240,8 @@ void wxFlagsToString( wxString &s, const e& data )
     long dataValue = data.m_data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < count; i++ )
     {

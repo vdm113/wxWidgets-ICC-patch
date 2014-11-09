@@ -58,8 +58,8 @@ void wxModule::RegisterModules()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (wxClassInfo::const_iterator it  = wxClassInfo::begin_classinfo(),
                                      end = wxClassInfo::end_classinfo();
@@ -99,8 +99,8 @@ bool wxModule::DoInitializeModule(wxModule *module,
     // satisfy module dependencies by loading them before the current module
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int i = 0; i < dependencies.size(); ++i )
     {
@@ -110,8 +110,8 @@ bool wxModule::DoInitializeModule(wxModule *module,
         wxModuleList::compatibility_iterator node;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( node = initializedModules.GetFirst(); node; node = node->GetNext() )
         {
@@ -128,8 +128,8 @@ bool wxModule::DoInitializeModule(wxModule *module,
         // find the module in the registered modules list
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( node = m_modules.GetFirst(); node; node = node->GetNext() )
         {
@@ -178,8 +178,8 @@ bool wxModule::InitializeModules()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxModuleList::compatibility_iterator node = m_modules.GetFirst();
           node;
@@ -215,8 +215,8 @@ void wxModule::DoCleanUpModules(const wxModuleList& modules)
     // initialization -- this ensures that dependencies are respected
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxModuleList::compatibility_iterator node = modules.GetLast();
           node;
@@ -243,8 +243,8 @@ bool wxModule::ResolveNamedDependencies()
     // first resolve required dependencies
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < m_namedDependencies.size(); ++i )
     {

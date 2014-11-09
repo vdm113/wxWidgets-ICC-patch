@@ -134,8 +134,8 @@ void wxRadioButton::SetValue(bool value)
         // ... turn off all radio buttons before it
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxWindowList::compatibility_iterator nodeBefore = nodeThis->GetPrevious();
               nodeBefore;
@@ -175,8 +175,8 @@ void wxRadioButton::SetValue(bool value)
     // ... and also turn off all buttons after this one
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxWindowList::compatibility_iterator nodeAfter = nodeThis->GetNext();
           nodeAfter;

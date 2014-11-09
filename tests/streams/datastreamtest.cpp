@@ -178,8 +178,8 @@ private:
         m_ok = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (typename ValueArray::size_type idx=0; idx!=Size; ++idx) {
             if (InValues[idx]!=Values[idx]) {

@@ -756,8 +756,8 @@ void wxQtDCImpl::DoDrawLines(int n, const wxPoint points[],
         QPainterPath path(wxQtConvertPoint(points[0]));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int i = 1; i < n; i++)
         {
@@ -783,8 +783,8 @@ void wxQtDCImpl::DoDrawPolygon(int n, const wxPoint points[],
     QPolygon qtPoints;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < n; i++) {
         qtPoints << wxQtConvertPoint(points[i]);

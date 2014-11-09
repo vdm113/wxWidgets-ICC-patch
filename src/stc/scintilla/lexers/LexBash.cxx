@@ -87,8 +87,8 @@ static inline int getBashNumberBase(char *s) {
 	int base = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (*s) {
 		base = base * 10 + (*s++ - '0');
@@ -246,8 +246,8 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 		ln--;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (;;) {
 		startPos = styler.LineStart(ln);
@@ -261,8 +261,8 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; sc.More(); sc.Forward()) {
 
@@ -775,8 +775,8 @@ static bool IsCommentLine(int line, Accessor &styler) {
 	int eol_pos = styler.LineStart(line + 1) - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
@@ -801,8 +801,8 @@ static void FoldBashDoc(unsigned int startPos, int length, int, WordList *[],
 	int styleNext = styler.StyleAt(startPos);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;

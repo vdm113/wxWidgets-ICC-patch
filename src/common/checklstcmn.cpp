@@ -116,8 +116,8 @@ unsigned int wxCheckListBoxBase::GetCheckedItems(wxArrayInt& checkedItems) const
     checkedItems.clear();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int i = 0; i < numberOfItems; ++i )
     {

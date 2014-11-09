@@ -971,8 +971,8 @@ void wxMSWDCImpl::DoDrawPolygon(int n,
         int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < n; i++)
         {
@@ -995,8 +995,8 @@ void wxMSWDCImpl::DoDrawPolygon(int n,
         int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < n; i++)
             CalcBoundingBox(points[i].x, points[i].y);
@@ -1028,8 +1028,8 @@ wxMSWDCImpl::DoDrawPolyPolygon(int n,
     int i, cnt;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = cnt = 0; i < n; i++)
         cnt += count[i];
@@ -1040,8 +1040,8 @@ wxMSWDCImpl::DoDrawPolyPolygon(int n,
         POINT *cpoints = new POINT[cnt];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < cnt; i++)
         {
@@ -1063,8 +1063,8 @@ wxMSWDCImpl::DoDrawPolyPolygon(int n,
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < cnt; i++)
             CalcBoundingBox(points[i].x, points[i].y);
@@ -1092,8 +1092,8 @@ void wxMSWDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoffset, wx
         int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < n; i++)
         {
@@ -1110,8 +1110,8 @@ void wxMSWDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoffset, wx
         int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < n; i++)
             CalcBoundingBox(points[i].x, points[i].y);
@@ -1264,15 +1264,15 @@ void wxMSWDCImpl::DoDrawSpline(const wxPointList *points)
 #if !wxUSE_STD_CONTAINERS
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ((node = node->GetNext()) != NULL)
 #else
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ((node = node->GetNext()))
 #endif // !wxUSE_STD_CONTAINERS
@@ -1645,8 +1645,8 @@ void wxMSWDCImpl::DoDrawRotatedText(const wxString& text,
     const wxArrayString lines = wxSplit(text, '\n', '\0');
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t lineNum = 0; lineNum < lines.size(); lineNum++ )
     {
@@ -2716,8 +2716,8 @@ wxDCCacheEntry* wxMSWDCImpl::FindBitmapInCache(WXHDC dc, int w, int h)
     wxList::compatibility_iterator node = sm_bitmapCache.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -2757,8 +2757,8 @@ wxDCCacheEntry* wxMSWDCImpl::FindDCInCache(wxDCCacheEntry* notThis, WXHDC dc)
     wxList::compatibility_iterator node = sm_dcCache.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -2877,8 +2877,8 @@ static bool AlphaBlt(wxMSWDCImpl* dcDst,
                 wxAlphaPixelData::Iterator p(data);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( int y = 0; y < data.GetHeight(); y++ )
                 {
@@ -2886,8 +2886,8 @@ static bool AlphaBlt(wxMSWDCImpl* dcDst,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for ( int x = 0; x < data.GetWidth(); x++ )
                     {

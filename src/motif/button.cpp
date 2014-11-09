@@ -139,8 +139,8 @@ wxWindow *wxButton::SetDefault()
     wxWindow *parent = GetParent();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (wxWindowList::compatibility_iterator node = parent->GetChildren().GetFirst ();
          node; node = node->GetNext ())

@@ -109,8 +109,8 @@ main(int argc, char **argv)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < NTAGS; i++) {
 		if (!TIFFSetField(tif, long_tags[i].tag,
@@ -147,8 +147,8 @@ main(int argc, char **argv)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < NTAGS; i++) {
 		if (CheckLongField(tif, long_tags[i].tag,

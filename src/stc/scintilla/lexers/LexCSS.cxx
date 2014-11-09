@@ -71,8 +71,8 @@ inline int NestingLevelLookBehind(unsigned int startPos, Accessor &styler) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (unsigned int i = 0; i < startPos; i++) {
 		ch = styler.SafeGetCharAt(i);
@@ -140,8 +140,8 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 	// "the loop"
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; sc.More(); sc.Forward()) {
 		if (sc.state == SCE_CSS_COMMENT && ((comment_mode == eCommentBlock && sc.Match('*', '/')) || (comment_mode == eCommentLine && sc.atLineEnd))) {
@@ -151,8 +151,8 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 				unsigned int i = startPos;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (; i > 0; i--) {
 					if ((lastStateC = styler.StyleAt(i-1)) != SCE_CSS_COMMENT) {
@@ -161,8 +161,8 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 							opPrev = styler.SafeGetCharAt(i-2);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 							while (--i) {
 								lastState = styler.StyleAt(i-1);
@@ -195,8 +195,8 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 			unsigned int i = sc.currentPos;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			while (i && styler[i-1] == '\\')
 				i--;
@@ -212,8 +212,8 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 				opPrev = styler.SafeGetCharAt(i-2);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				while (--i) {
 					lastState = styler.StyleAt(i-1);
@@ -422,8 +422,8 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (unsigned int i = sc.currentPos; i < endPos; i++) {
 					ch = styler.SafeGetCharAt(i);
@@ -459,8 +459,8 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 			char *s2 = s;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			while (*s2 && !IsAWordChar(*s2))
 				s2++;
@@ -561,8 +561,8 @@ static void FoldCSSDoc(unsigned int startPos, int length, int, WordList *[], Acc
 	bool inComment = (styler.StyleAt(startPos-1) == SCE_CSS_COMMENT);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;

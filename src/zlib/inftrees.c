@@ -86,14 +86,14 @@ unsigned short FAR *work;
        symbols by length from short to long, and retaining the symbol order
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
        for codes with equal lengths.  Then the code starts with all zero bits
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
        for the first code of the shortest length, and the codes are integer
        increments for the same length, and zeros are appended as the length
@@ -123,15 +123,15 @@ unsigned short FAR *work;
     /* accumulate lengths for codes (assumes lens[] all in 0..MAXBITS) */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (len = 0; len <= MAXBITS; len++)
         count[len] = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (sym = 0; sym < codes; sym++)
         count[lens[sym]]++;
@@ -140,8 +140,8 @@ unsigned short FAR *work;
     root = *bits;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (max = MAXBITS; max >= 1; max--)
         if (count[max] != 0) break;
@@ -157,8 +157,8 @@ unsigned short FAR *work;
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (min = 1; min < max; min++)
         if (count[min] != 0) break;
@@ -168,8 +168,8 @@ unsigned short FAR *work;
     left = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (len = 1; len <= MAXBITS; len++) {
         left <<= 1;
@@ -183,8 +183,8 @@ unsigned short FAR *work;
     offs[1] = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (len = 1; len < MAXBITS; len++)
         offs[len + 1] = offs[len] + count[len];
@@ -192,8 +192,8 @@ unsigned short FAR *work;
     /* sort symbols by length, by symbol order within each length */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (sym = 0; sym < codes; sym++)
         if (lens[sym] != 0) work[offs[lens[sym]]++] = (unsigned short)sym;
@@ -223,8 +223,8 @@ unsigned short FAR *work;
        the initial root table size constants.  See the comments in inftrees.h
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
        for more information.
 
@@ -272,8 +272,8 @@ unsigned short FAR *work;
     /* process all codes and make table entries */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (;;) {
         /* create table entry */
@@ -297,8 +297,8 @@ unsigned short FAR *work;
         min = fill;                 /* save offset to next table */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         do {
             fill -= incr;
@@ -309,8 +309,8 @@ unsigned short FAR *work;
         incr = 1U << (len - 1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (huff & incr)
             incr >>= 1;
@@ -342,8 +342,8 @@ unsigned short FAR *work;
             left = (int)(1 << curr);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while (curr + drop < max) {
                 left -= count[curr + drop];

@@ -979,8 +979,8 @@ void wxRichTextSizePage::OnRichtextParaUpClick( wxCommandEvent& WXUNUSED(event) 
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (iter)
     {
@@ -1033,8 +1033,8 @@ void wxRichTextSizePage::OnRichtextParaDownClick( wxCommandEvent& WXUNUSED(event
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (iter)
     {

@@ -230,8 +230,8 @@ void wxHtmlHelpFrame::AddGrabIfNeeded()
     // in which case we need to add a grab.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxWindowList::iterator it = wxTopLevelWindows.begin();
           it != wxTopLevelWindows.end();

@@ -130,8 +130,8 @@ public:
         Thus, it only makes sense to override it in console applications which
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         do use an event loop, to return @true instead of checking if there is a
         currently active event loop.
@@ -623,8 +623,8 @@ public:
         is that this one is meant to be shown to the user and so should be used
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the window titles, page headers and so on while the other one
         should be only used internally, e.g. for the file names or
@@ -672,8 +672,8 @@ public:
         to the user and so should be used for the window titles, page headers and so on
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while the other one should be only used internally, e.g. for the file names or
         configuration file keys.
@@ -756,8 +756,8 @@ public:
         Notice that this does @em not change the global C++ locale, you need to
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         do it explicitly if you want, e.g.
         @code

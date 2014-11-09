@@ -61,8 +61,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t n = 0; n < m_count; n++ )
         {
@@ -92,8 +92,8 @@ public:
 #if !wxUSE_UNICODE
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t n = 0; n < m_count; n++ )
             free(const_cast<gchar *>(m_strings[n]));
@@ -226,8 +226,8 @@ void wxAboutBox(const wxAboutDialogInfo& info, wxWindow* WXUNUSED(parent))
         const size_t count = translators.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t n = 0; n < count; n++ )
         {

@@ -515,8 +515,8 @@ HRASCONN wxDialUpManagerMSW::FindActiveConnection()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( dwRet == ERROR_BUFFER_TOO_SMALL )
     {
@@ -691,8 +691,8 @@ size_t wxDialUpManagerMSW::GetISPNames(wxArrayString& names) const
     DWORD dwRet;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -733,8 +733,8 @@ size_t wxDialUpManagerMSW::GetISPNames(wxArrayString& names) const
     names.Empty();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < (size_t)nEntries; n++ )
     {
@@ -787,8 +787,8 @@ bool wxDialUpManagerMSW::Dial(const wxString& nameOfISP,
                     wxString *strings = new wxString[count];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for ( size_t i = 0; i < count; i++ )
                     {
@@ -1258,8 +1258,8 @@ static DWORD wxRasMonitorThread(wxRasThreadData *data)
     bool cont = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( cont )
     {

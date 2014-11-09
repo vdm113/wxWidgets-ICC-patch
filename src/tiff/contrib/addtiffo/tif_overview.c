@@ -180,15 +180,15 @@ TIFF_GetSourceSamples( double * padfSamples, unsigned char *pabySrc,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( iYOff = 0; iYOff < nYSize; iYOff++ )
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for( iXOff = 0; iXOff < nXSize; iXOff++ )
         {
@@ -300,8 +300,8 @@ void TIFF_DownSample( unsigned char *pabySrcTile,
 /* ==================================================================== */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( j = 0; j*nOMult < nBlockYSize; j++ )
     {
@@ -322,8 +322,8 @@ void TIFF_DownSample( unsigned char *pabySrcTile,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for( i = 0; i*nOMult < nBlockXSize; i++ )
             {
@@ -337,8 +337,8 @@ void TIFF_DownSample( unsigned char *pabySrcTile,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for( k = 0; k < nPixelBytes; k++ )
                     pabyDst[k] = pabySrc[k];
@@ -359,8 +359,8 @@ void TIFF_DownSample( unsigned char *pabySrcTile,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for( i = 0; i*nOMult < nBlockXSize; i++ )
             {
@@ -382,8 +382,8 @@ void TIFF_DownSample( unsigned char *pabySrcTile,
                 dfTotal = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for( iSample = 0; iSample < nXSize*nYSize; iSample++ )
                 {
@@ -439,8 +439,8 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for( nSourceY = 0, nDestY = nTYOff; 
                  nSourceY < nBlockYSize; 
@@ -451,8 +451,8 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for( nSourceX = 0, nDestX = nTXOff; 
                      nSourceX < nBlockXSize; 
@@ -477,8 +477,8 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
             nSampleOffsetInSampleBlock = nHorSubsampling * nVerSubsampling + nSample - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for( nSourceY = 0, nDestY = ( nTYOff / nVerSubsampling ); 
                  nSourceY < ( nBlockYSize / nVerSubsampling );
@@ -489,8 +489,8 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             	for( nSourceX = 0, nDestX = ( nTXOff / nHorSubsampling ); 
                      nSourceX < ( nBlockXSize / nHorSubsampling );
@@ -516,8 +516,8 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for( nSourceY = 0, nDestY = nTYOff; nSourceY < nBlockYSize; nSourceY += nOMult, nDestY ++)
             {
@@ -526,8 +526,8 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for( nSourceX = 0, nDestX = nTXOff; nSourceX < nBlockXSize; nSourceX += nOMult, nDestX ++)
                 {
@@ -543,15 +543,15 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
                     nCummulator = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for( nSourceYSec = nSourceY; nSourceYSec < nSourceYSecEnd; nSourceYSec ++)
                     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                         for( nSourceXSec = nSourceX; nSourceXSec < nSourceXSecEnd; nSourceXSec ++)
                         {
@@ -575,8 +575,8 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
             nSampleOffsetInSampleBlock = nHorSubsampling * nVerSubsampling + nSample - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for( nSourceY = 0, nDestY = ( nTYOff / nVerSubsampling ); nSourceY < ( nBlockYSize / nVerSubsampling );
                  nSourceY += nOMult, nDestY ++)
@@ -586,8 +586,8 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for( nSourceX = 0, nDestX = ( nTXOff / nHorSubsampling ); nSourceX < ( nBlockXSize / nHorSubsampling );
                      nSourceX += nOMult, nDestX ++)
@@ -604,15 +604,15 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
                     nCummulator = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for( nSourceYSec = nSourceY; nSourceYSec < nSourceYSecEnd; nSourceYSec ++)
                     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                         for( nSourceXSec = nSourceX; nSourceXSec < nSourceXSecEnd; nSourceXSec ++)
                         {
@@ -655,8 +655,8 @@ void TIFF_ProcessFullResBlock( TIFF *hTIFF, int nPlanarConfig,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( iSample = 0; iSample < nSamples; iSample++ )
     {
@@ -690,8 +690,8 @@ void TIFF_ProcessFullResBlock( TIFF *hTIFF, int nPlanarConfig,
          */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for( iOverview = 0; iOverview < nOverviews; iOverview++ )
         {
@@ -918,8 +918,8 @@ void TIFFBuildOverviews( TIFF *hTIFF, int nOverviews, int * panOvList,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( i = 0; i < nOverviews; i++ )
     {
@@ -974,15 +974,15 @@ void TIFFBuildOverviews( TIFF *hTIFF, int nOverviews, int * panOvList,
 /* -------------------------------------------------------------------- */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( nSYOff = 0; nSYOff < (int) nYSize; nSYOff += nBlockYSize )
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for( nSXOff = 0; nSXOff < (int) nXSize; nSXOff += nBlockXSize )
         {
@@ -1007,8 +1007,8 @@ void TIFFBuildOverviews( TIFF *hTIFF, int nOverviews, int * panOvList,
 /* -------------------------------------------------------------------- */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( i = 0; i < nOverviews; i++ )
     {

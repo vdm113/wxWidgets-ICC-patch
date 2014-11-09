@@ -411,8 +411,8 @@ public:
         item label associated with that ID. See the @ref wxMenuItem::wxMenuItem "constructor"
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for more info.
         

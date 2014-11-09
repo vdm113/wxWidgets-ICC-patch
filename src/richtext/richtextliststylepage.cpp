@@ -560,8 +560,8 @@ iaculis malesuada. Donec bibendum ipsum ut ante porta fringilla.\n");
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < 10; i++)
     {

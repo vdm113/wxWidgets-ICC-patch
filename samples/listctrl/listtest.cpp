@@ -428,8 +428,8 @@ void MyFrame::OnDeselectAll(wxCommandEvent& WXUNUSED(event))
     int n = m_listCtrl->GetItemCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < n; i++)
         m_listCtrl->SetItemState(i,0,wxLIST_STATE_SELECTED);
@@ -443,8 +443,8 @@ void MyFrame::OnSelectAll(wxCommandEvent& WXUNUSED(event))
     int n = m_listCtrl->GetItemCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < n; i++)
         m_listCtrl->SetItemState(i,wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
@@ -516,8 +516,8 @@ void MyFrame::InitWithListItems()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < m_numListItems; i++ )
     {
@@ -556,8 +556,8 @@ void MyFrame::InitWithReportItems()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < m_numListItems; i++ )
     {
@@ -609,8 +609,8 @@ void MyFrame::InitWithIconItems(bool withText, bool sameIcon)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < NUM_ICONS; i++ )
     {
@@ -729,8 +729,8 @@ void MyFrame::OnFind(wxCommandEvent& WXUNUSED(event))
     const int itemCount = m_listCtrl->GetItemCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < itemCount; i++ )
         m_listCtrl->FindItem(-1, i);
@@ -751,8 +751,8 @@ void MyFrame::OnShowSelInfo(wxCommandEvent& WXUNUSED(event))
                                         wxLIST_STATE_SELECTED);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( item != -1 )
     {
@@ -789,8 +789,8 @@ static wxString DumpIntArray(const wxArrayInt& a)
     const size_t count = a.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -830,8 +830,8 @@ void MyFrame::OnGetColOrder(wxCommandEvent& WXUNUSED(event))
     msg += "GetColumnOrder() results:\n";
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < count; n++ )
     {
@@ -843,8 +843,8 @@ void MyFrame::OnGetColOrder(wxCommandEvent& WXUNUSED(event))
     msg += "GetColumnIndexFromOrder() results:\n";
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < count; n++ )
     {
@@ -863,8 +863,8 @@ void MyFrame::OnShowColInfo(wxCommandEvent& WXUNUSED(event))
     wxLogMessage(wxT("%d columns:"), count);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int c = 0; c < count; c++ )
     {
@@ -1297,8 +1297,8 @@ void MyListCtrl::OnListKeyDown(wxListEvent& event)
             item = GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( item != -1 )
             {

@@ -371,8 +371,8 @@ wxRegionIterator& wxRegionIterator::operator=(const wxRegionIterator& ri)
         m_rects = new wxRect[m_numRects];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( long n = 0; n < m_numRects; n++ )
             m_rects[n] = ri.m_rects[n];
@@ -413,8 +413,8 @@ void wxRegionIterator::Reset(const wxRegion& region)
         size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < header->nCount; i++)
         {

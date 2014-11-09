@@ -57,8 +57,8 @@ switch_page(GtkNotebook* widget, GtkNotebookPage*, guint page_num, wxMDIParentFr
     wxWindowList::compatibility_iterator node = client_window->GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( node )
     {
@@ -147,8 +147,8 @@ void wxMDIParentFrame::OnInternalIdle()
     wxWindowList::compatibility_iterator node = m_clientWindow->GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -240,8 +240,8 @@ wxMDIChildFrame *wxMDIParentFrame::GetActiveChild() const
     wxWindowList::compatibility_iterator node = m_clientWindow->GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {

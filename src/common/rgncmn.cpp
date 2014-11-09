@@ -99,8 +99,8 @@ static bool DoRegionUnion(wxRegionBase& region,
     int height = image.GetHeight();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int y=0; y < height; y++)
     {
@@ -110,8 +110,8 @@ static bool DoRegionUnion(wxRegionBase& region,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int x=0; x < width; x++)
         {
@@ -119,8 +119,8 @@ static bool DoRegionUnion(wxRegionBase& region,
             int x0 = x;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( x < width)
             {

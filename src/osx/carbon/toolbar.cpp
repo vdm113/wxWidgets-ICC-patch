@@ -1178,8 +1178,8 @@ bool wxToolBar::Realize()
     wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( node )
     {
@@ -1217,8 +1217,8 @@ bool wxToolBar::Realize()
     node = m_tools.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( node )
     {
@@ -1275,8 +1275,8 @@ bool wxToolBar::Realize()
                         // all following tools will have to be reinserted (insertAll).
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                         for ( wxToolBarToolsList::compatibility_iterator node2 = m_tools.GetLast();
                               node2 != node;
@@ -1372,8 +1372,8 @@ bool wxToolBar::Realize()
                 wxToolBarToolsList::compatibility_iterator  nodePrev = node->GetPrevious();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while ( nodePrev )
                 {
@@ -1534,8 +1534,8 @@ wxToolBarToolBase *wxToolBar::FindToolForPosition(wxCoord x, wxCoord y) const
     wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( node )
     {
@@ -1748,8 +1748,8 @@ bool wxToolBar::DoDeleteTool(size_t WXUNUSED(pos), wxToolBarToolBase *toolbase)
     wxToolBarToolsList::compatibility_iterator node;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
@@ -1786,8 +1786,8 @@ bool wxToolBar::DoDeleteTool(size_t WXUNUSED(pos), wxToolBarToolBase *toolbase)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( /* node -> first after deleted */; node; node = node->GetNext() )
     {

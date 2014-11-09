@@ -210,8 +210,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t i = 0; i < variant.GetCount(); i++)
         {
@@ -237,8 +237,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t i = 0; i < strings.size(); i++ )
         {
@@ -323,8 +323,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t i = 0; i < dims; i++ )
             count *= m_array->rgsabound[i].cElements;
@@ -335,8 +335,8 @@ public:
         variant.ClearList();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t i1 = 0; i1 < count; i1++ )
         {
@@ -367,8 +367,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t i = 0; i < dims; i++ )
             count *= m_array->rgsabound[i].cElements;
@@ -380,8 +380,8 @@ public:
         strings.reserve(count);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t i1 = 0; i1 < count; i1++ )
         {

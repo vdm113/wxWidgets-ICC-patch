@@ -625,8 +625,8 @@ gtTileContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
      
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (row = 0; row < h; row += nrow)
     {
@@ -634,8 +634,8 @@ gtTileContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
     	nrow = (row + rowstoread > h ? h - row : rowstoread);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (col = 0; col < w; col += tw) 
         {
@@ -674,8 +674,8 @@ gtTileContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    for (line = 0; line < h; line++) {
 		    uint32 *left = raster + (line * w);
@@ -683,8 +683,8 @@ gtTileContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 		    
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		    while ( left < right ) {
 			    uint32 temp = *left;
@@ -770,8 +770,8 @@ gtTileSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (row = 0; row < h; row += nrow)
 	{
@@ -779,8 +779,8 @@ gtTileSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 		nrow = (row + rowstoread > h ? h - row : rowstoread);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (col = 0; col < w; col += tw)
 		{
@@ -842,8 +842,8 @@ gtTileSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (line = 0; line < h; line++) {
 			uint32 *left = raster + (line * w);
@@ -851,8 +851,8 @@ gtTileSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			while ( left < right ) {
 				uint32 temp = *left;
@@ -910,8 +910,8 @@ gtStripContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 	fromskew = (w < imagewidth ? imagewidth - w : 0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (row = 0; row < h; row += nrow)
 	{
@@ -940,8 +940,8 @@ gtStripContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (line = 0; line < h; line++) {
 			uint32 *left = raster + (line * w);
@@ -949,8 +949,8 @@ gtStripContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			while ( left < right ) {
 				uint32 temp = *left;
@@ -1034,8 +1034,8 @@ gtStripSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 	fromskew = (w < imagewidth ? imagewidth - w : 0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (row = 0; row < h; row += nrow)
 	{
@@ -1087,8 +1087,8 @@ gtStripSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (line = 0; line < h; line++) {
 			uint32 *left = raster + (line * w);
@@ -1096,8 +1096,8 @@ gtStripSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			while ( left < right ) {
 				uint32 temp = *left;
@@ -1207,14 +1207,14 @@ DECLAREContigPutFunc(put8bitcmaptile)
     (void) y;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (h-- > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (x = w; x-- > 0;)
         {
@@ -1237,8 +1237,8 @@ DECLAREContigPutFunc(put4bitcmaptile)
     fromskew /= 2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (h-- > 0) {
 	uint32* bw;
@@ -1259,8 +1259,8 @@ DECLAREContigPutFunc(put2bitcmaptile)
     fromskew /= 4;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (h-- > 0) {
 	uint32* bw;
@@ -1281,8 +1281,8 @@ DECLAREContigPutFunc(put1bitcmaptile)
     fromskew /= 8;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (h-- > 0) {
 	uint32* bw;
@@ -1303,14 +1303,14 @@ DECLAREContigPutFunc(putgreytile)
     (void) y;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (h-- > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (x = w; x-- > 0;)
         {
@@ -1333,14 +1333,14 @@ DECLAREContigPutFunc(putagreytile)
     (void) y;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (h-- > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (x = w; x-- > 0;)
         {
@@ -1363,16 +1363,16 @@ DECLAREContigPutFunc(put16bitbwtile)
     (void) y;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (h-- > 0) {
         uint16 *wp = (uint16 *) pp;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (x = w; x-- > 0;)
         {
@@ -1398,8 +1398,8 @@ DECLAREContigPutFunc(put1bitbwtile)
     fromskew /= 8;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (h-- > 0) {
 	uint32* bw;
@@ -1420,8 +1420,8 @@ DECLAREContigPutFunc(put2bitbwtile)
     fromskew /= 4;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (h-- > 0) {
 	uint32* bw;
@@ -1442,8 +1442,8 @@ DECLAREContigPutFunc(put4bitbwtile)
     fromskew /= 2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (h-- > 0) {
 	uint32* bw;
@@ -1464,8 +1464,8 @@ DECLAREContigPutFunc(putRGBcontig8bittile)
     fromskew *= samplesperpixel;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (h-- > 0) {
 	UNROLL8(w, NOP,
@@ -1488,8 +1488,8 @@ DECLAREContigPutFunc(putRGBAAcontig8bittile)
     fromskew *= samplesperpixel;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (h-- > 0) {
 	UNROLL8(w, NOP,
@@ -1511,16 +1511,16 @@ DECLAREContigPutFunc(putRGBUAcontig8bittile)
 	fromskew *= samplesperpixel;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (h-- > 0) {
 		uint32 r, g, b, a;
 		uint8* m;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (x = w; x-- > 0;) {
 			a = pp[3];
@@ -1547,14 +1547,14 @@ DECLAREContigPutFunc(putRGBcontig16bittile)
 	fromskew *= samplesperpixel;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (h-- > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (x = w; x-- > 0;) {
 			*cp++ = PACK(img->Bitdepth16To8[wp[0]],
@@ -1579,14 +1579,14 @@ DECLAREContigPutFunc(putRGBAAcontig16bittile)
 	fromskew *= samplesperpixel;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (h-- > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (x = w; x-- > 0;) {
 			*cp++ = PACK4(img->Bitdepth16To8[wp[0]],
@@ -1612,16 +1612,16 @@ DECLAREContigPutFunc(putRGBUAcontig16bittile)
 	fromskew *= samplesperpixel;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (h-- > 0) {
 		uint32 r,g,b,a;
 		uint8* m;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (x = w; x-- > 0;) {
 			a = img->Bitdepth16To8[wp[3]];
@@ -1651,8 +1651,8 @@ DECLAREContigPutFunc(putRGBcontig8bitCMYKtile)
     fromskew *= samplesperpixel;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (h-- > 0) {
 	UNROLL8(w, NOP,
@@ -1682,14 +1682,14 @@ DECLAREContigPutFunc(putRGBcontig8bitCMYKMaptile)
     fromskew *= samplesperpixel;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (h-- > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (x = w; x-- > 0;) {
 	    k = 255 - pp[3];
@@ -1722,8 +1722,8 @@ DECLARESepPutFunc(putRGBseparate8bittile)
     (void) img; (void) x; (void) y; (void) a;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (h-- > 0) {
 	UNROLL8(w, NOP, *cp++ = PACK(*r++, *g++, *b++));
@@ -1740,8 +1740,8 @@ DECLARESepPutFunc(putRGBAAseparate8bittile)
 	(void) img; (void) x; (void) y; 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (h-- > 0) {
 		UNROLL8(w, NOP, *cp++ = PACK4(*r++, *g++, *b++, *a++));
@@ -1758,15 +1758,15 @@ DECLARESepPutFunc(putCMYKseparate8bittile)
 	(void) img; (void) y;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (h-- > 0) {
 		uint32 rv, gv, bv, kv;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (x = w; x-- > 0;) {
 			kv = 255 - *a++;
@@ -1788,16 +1788,16 @@ DECLARESepPutFunc(putRGBUAseparate8bittile)
 	(void) img; (void) y;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (h-- > 0) {
 		uint32 rv, gv, bv, av;
 		uint8* m;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (x = w; x-- > 0;) {
 			av = *a++;
@@ -1823,14 +1823,14 @@ DECLARESepPutFunc(putRGBseparate16bittile)
 	(void) img; (void) y; (void) a;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (h-- > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (x = 0; x < w; x++)
 			*cp++ = PACK(img->Bitdepth16To8[*wr++],
@@ -1853,14 +1853,14 @@ DECLARESepPutFunc(putRGBAAseparate16bittile)
 	(void) img; (void) y;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (h-- > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (x = 0; x < w; x++)
 			*cp++ = PACK4(img->Bitdepth16To8[*wr++],
@@ -1884,16 +1884,16 @@ DECLARESepPutFunc(putRGBUAseparate16bittile)
 	(void) img; (void) y;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (h-- > 0) {
 		uint32 r,g,b,a;
 		uint8* m;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (x = w; x-- > 0;) {
 			a = img->Bitdepth16To8[*wa++];
@@ -1919,14 +1919,14 @@ DECLAREContigPutFunc(putcontig8bitCIELab)
 	fromskew *= 3;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (h-- > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (x = w; x-- > 0;) {
 			TIFFCIELabToXYZ(img->cielab,
@@ -1985,8 +1985,8 @@ static void putcontig8bitYCbCrGenericTile(
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( yy = 0; yy < h; yy++ )
     {
@@ -1999,8 +1999,8 @@ static void putcontig8bitYCbCrGenericTile(
         
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for( xx = 0; xx < w; xx++ )
         {
@@ -2009,15 +2009,15 @@ static void putcontig8bitYCbCrGenericTile(
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (; h >= 4; h -= 4) {
 	x = w>>2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do {
 	    Cb = pp[16];
@@ -2065,15 +2065,15 @@ DECLAREContigPutFunc(putcontig8bitYCbCr44tile)
     if ((h & 3) == 0 && (w & 3) == 0) {				        
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (; h >= 4; h -= 4) {
             x = w>>2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             do {
                 int32 Cb = pp[16];
@@ -2105,14 +2105,14 @@ DECLAREContigPutFunc(putcontig8bitYCbCr44tile)
     } else {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (h > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (x = w; x > 0;) {
                 int32 Cb = pp[16];
@@ -2179,15 +2179,15 @@ DECLAREContigPutFunc(putcontig8bitYCbCr42tile)
     if ((h & 3) == 0 && (w & 1) == 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (; h >= 2; h -= 2) {
             x = w>>2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             do {
                 int32 Cb = pp[8];
@@ -2211,14 +2211,14 @@ DECLAREContigPutFunc(putcontig8bitYCbCr42tile)
     } else {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (h > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (x = w; x > 0;) {
                 int32 Cb = pp[8];
@@ -2273,15 +2273,15 @@ DECLAREContigPutFunc(putcontig8bitYCbCr41tile)
     /* XXX adjust fromskew */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do {
 	x = w>>2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do {
 	    int32 Cb = pp[4];
@@ -2330,15 +2330,15 @@ DECLAREContigPutFunc(putcontig8bitYCbCr22tile)
 	cp2 = cp+w+toskew;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (h>=2) {
 		x = w;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (x>=2) {
 			uint32 Cb = pp[4];
@@ -2370,8 +2370,8 @@ DECLAREContigPutFunc(putcontig8bitYCbCr22tile)
 		x = w;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (x>=2) {
 			uint32 Cb = pp[4];
@@ -2400,15 +2400,15 @@ DECLAREContigPutFunc(putcontig8bitYCbCr21tile)
 	fromskew = (fromskew * 4) / 2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do {
 		x = w>>1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		do {
 			int32 Cb = pp[2];
@@ -2449,15 +2449,15 @@ DECLAREContigPutFunc(putcontig8bitYCbCr12tile)
 	cp2 = cp+w+toskew;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (h>=2) {
 		x = w;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		do {
 			uint32 Cb = pp[2];
@@ -2477,8 +2477,8 @@ DECLAREContigPutFunc(putcontig8bitYCbCr12tile)
 		x = w;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		do {
 			uint32 Cb = pp[2];
@@ -2499,15 +2499,15 @@ DECLAREContigPutFunc(putcontig8bitYCbCr11tile)
 	fromskew *= 3;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do {
 		x = w; /* was x = w>>1; patched 2000/09/25 warmerda@home.com */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		do {
 			int32 Cb = pp[1];
@@ -2532,15 +2532,15 @@ DECLARESepPutFunc(putseparate8bitYCbCr11tile)
 	/* TODO: naming of input vars is still off, change obfuscating declaration inside define, or resolve obfuscation */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (h-- > 0) {
 		x = w;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		do {
 			uint32 dr, dg, db;
@@ -2643,8 +2643,8 @@ makebwmap(TIFFRGBAImage* img)
     p = (uint32*)(img->BWmap + 256);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < 256; i++) {
 	TIFFRGBValue c;
@@ -2706,16 +2706,16 @@ setupMap(TIFFRGBAImage* img)
     if (img->photometric == PHOTOMETRIC_MINISWHITE) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (x = 0; x <= range; x++)
 	    img->Map[x] = (TIFFRGBValue) (((range - x) * 255) / range);
     } else {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (x = 0; x <= range; x++)
 	    img->Map[x] = (TIFFRGBValue) ((x * 255) / range);
@@ -2745,8 +2745,8 @@ checkcmap(TIFFRGBAImage* img)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (n-- > 0)
 	if (*r++ >= 256 || *g++ >= 256 || *b++ >= 256)
@@ -2764,8 +2764,8 @@ cvtcmap(TIFFRGBAImage* img)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = (1L<<img->bitspersample)-1; i >= 0; i--) {
 #define	CVT(x)		((uint16)((x)>>8))
@@ -2803,8 +2803,8 @@ makecmap(TIFFRGBAImage* img)
     p = (uint32*)(img->PALmap + 256);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < 256; i++) {
 	TIFFRGBValue c;
@@ -3118,15 +3118,15 @@ BuildMapUaToAa(TIFFRGBAImage* img)
 	m=img->UaToAa;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (na=0; na<256; na++)
 	{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (nv=0; nv<256; nv++)
 			*m++=(nv*na+127)/255;
@@ -3150,8 +3150,8 @@ BuildMapBitdepth16To8(TIFFRGBAImage* img)
 	m=img->Bitdepth16To8;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (n=0; n<65536; n++)
 		*m++=(n+128)/257;
@@ -3302,8 +3302,8 @@ TIFFReadRGBATile(TIFF* tif, uint32 col, uint32 row, uint32 * raster)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( i_row = 0; i_row < read_ysize; i_row++ ) {
         memmove( raster + (tile_ysize - i_row - 1) * tile_xsize,
@@ -3315,8 +3315,8 @@ TIFFReadRGBATile(TIFF* tif, uint32 col, uint32 row, uint32 * raster)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( i_row = read_ysize; i_row < tile_ysize; i_row++ ) {
         _TIFFmemset( raster + (tile_ysize - i_row - 1) * tile_xsize,

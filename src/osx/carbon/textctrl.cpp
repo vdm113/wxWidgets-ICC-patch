@@ -1257,8 +1257,8 @@ long wxMacMLTEControl::XYToPosition(long x, long y) const
     lastpos = GetLastPosition() ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0 ; n <= (ItemCount) lastpos ; ++n )
     {
@@ -1305,8 +1305,8 @@ bool wxMacMLTEControl::PositionToXY( long pos, long *x, long *y ) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( n = 0 ; n <= (ItemCount) pos ; ++n )
         {
@@ -1391,8 +1391,8 @@ wxString wxMacMLTEControl::GetLineText(long lineNo) const
         currentHeight = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (ypos < lineNo)
         {
@@ -1408,8 +1408,8 @@ wxString wxMacMLTEControl::GetLineText(long lineNo) const
         Point currentPoint = thePoint;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (thePoint.v == currentPoint.v && theOffset < content.length())
         {
@@ -1440,8 +1440,8 @@ int wxMacMLTEControl::GetLineLength(long lineNo) const
         currentHeight = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (ypos < lineNo)
         {
@@ -1457,8 +1457,8 @@ int wxMacMLTEControl::GetLineLength(long lineNo) const
         Point currentPoint = thePoint;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (thePoint.v == currentPoint.v && theOffset < content.length())
         {

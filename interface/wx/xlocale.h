@@ -77,8 +77,8 @@ public:
         The locale string is system-dependent, use constructor taking wxLanguage
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for better portability.
     */

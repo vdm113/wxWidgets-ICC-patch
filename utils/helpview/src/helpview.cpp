@@ -98,8 +98,8 @@ bool hvApp::OnInit()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( i=1; i<argc; i++ )
     {
@@ -226,8 +226,8 @@ bool hvApp::OnInit()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( i=0; i<bookCount; i++ )
     {
@@ -251,8 +251,8 @@ int hvApp::OnExit()
     wxObjectList::compatibility_iterator node = m_connections.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {

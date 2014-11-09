@@ -621,8 +621,8 @@ wxLogLevel wxLog::GetComponentLevel(wxString component)
     const wxStringToNumHashMap& componentLevels = GetComponentLevels();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( !component.empty() )
     {
@@ -700,8 +700,8 @@ void wxLog::ClearTraceMasks()
     const wxArrayString& masks = GetTraceMasks();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxArrayString::const_iterator it = masks.begin(),
                                         en = masks.end();
@@ -770,8 +770,8 @@ void wxLog::FlushThreadMessages()
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxLogRecords::const_iterator it = bufferedLogRecords.begin();
               it != bufferedLogRecords.end();
@@ -1051,14 +1051,14 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
     size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( *psz != '\0' ) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( n = nStart; (n < nMax) && (*psz != '\0'); n++ )
             putc(*psz++, f);
@@ -1068,8 +1068,8 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
             /*putc('\n', f);*/
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( n = 0; n < nStart; n++ )
                 putc(' ', f);
@@ -1077,8 +1077,8 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
             // as we wrapped, squeeze all white space
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( isspace(*psz) )
                 psz++;

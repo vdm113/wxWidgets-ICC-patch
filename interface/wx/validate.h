@@ -63,8 +63,8 @@ public:
         brushes, it does not make sense to have a reference counting scheme to
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         do this cloning because all validators should have separate data.
 

@@ -754,8 +754,8 @@ wxTaskBarButtonImpl::~wxTaskBarButtonImpl()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxThumbBarButtons::iterator iter = m_thumbBarButtons.begin();
           iter != m_thumbBarButtons.end();
@@ -894,8 +894,8 @@ wxThumbBarButton* wxTaskBarButtonImpl::RemoveThumbBarButton(
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxThumbBarButtons::iterator iter = m_thumbBarButtons.begin();
           iter != m_thumbBarButtons.end();
@@ -917,8 +917,8 @@ wxThumbBarButton* wxTaskBarButtonImpl::RemoveThumbBarButton(int id)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxThumbBarButtons::iterator iter = m_thumbBarButtons.begin();
           iter != m_thumbBarButtons.end();
@@ -943,8 +943,8 @@ bool wxTaskBarButtonImpl::InitOrUpdateThumbBarButtons()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < MAX_BUTTON_COUNT; ++i )
     {
@@ -956,8 +956,8 @@ bool wxTaskBarButtonImpl::InitOrUpdateThumbBarButtons()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < m_thumbBarButtons.size(); ++i )
     {
@@ -1139,8 +1139,8 @@ wxTaskBarJumpListCategory::~wxTaskBarJumpListCategory()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxTaskBarJumpListItems::iterator it = m_items.begin();
           it != m_items.end();
@@ -1175,8 +1175,8 @@ wxTaskBarJumpListCategory::Remove(wxTaskBarJumpListItem *item)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (wxTaskBarJumpListItems::iterator it = m_items.begin();
          it != m_items.end();
@@ -1346,8 +1346,8 @@ wxTaskBarJumpListImpl::~wxTaskBarJumpListImpl()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxTaskBarJumpListCategories::iterator it = m_customCategories.begin();
           it != m_customCategories.end();
@@ -1437,8 +1437,8 @@ wxTaskBarJumpListImpl::RemoveCustomCategory(const wxString& title)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxTaskBarJumpListCategories::iterator it = m_customCategories.begin();
           it != m_customCategories.end();
@@ -1493,8 +1493,8 @@ void wxTaskBarJumpListImpl::AddTasksToDestinationList()
     const wxTaskBarJumpListItems& tasks = m_tasks->GetItems();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxTaskBarJumpListItems::const_iterator it = tasks.begin();
           it != tasks.end();
@@ -1513,8 +1513,8 @@ void wxTaskBarJumpListImpl::AddCustomCategoriesToDestionationList()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxTaskBarJumpListCategories::iterator it = m_customCategories.begin();
           it != m_customCategories.end();
@@ -1527,8 +1527,8 @@ void wxTaskBarJumpListImpl::AddCustomCategoriesToDestionationList()
         const wxTaskBarJumpListItems& tasks = (*it)->GetItems();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxTaskBarJumpListItems::const_iterator iter = tasks.begin();
               iter != tasks.end();
@@ -1583,8 +1583,8 @@ void wxTaskBarJumpListImpl::LoadKnownCategory(const wxString& title)
     array->GetCount(&count);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (UINT i = 0; i < count; ++i)
     {

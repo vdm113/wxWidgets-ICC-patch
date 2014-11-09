@@ -99,8 +99,8 @@ int test_packbits()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < length; i++ )
     {
@@ -202,8 +202,8 @@ int rewrite_test( const char *filename, int length, int bigtiff,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < length; i++ )
     {
@@ -238,8 +238,8 @@ int rewrite_test( const char *filename, int length, int bigtiff,
     upd_rowoffset = (uint64 *) _TIFFmalloc(sizeof(uint64) * length);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( i = 0; i < length; i++ )
         upd_rowoffset[i] = base_value + i*10;
@@ -256,8 +256,8 @@ int rewrite_test( const char *filename, int length, int bigtiff,
     upd_bytecount = (uint64 *) _TIFFmalloc(sizeof(uint64) * length);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( i = 0; i < length; i++ )
         upd_bytecount[i] = 100 + i*10;
@@ -289,8 +289,8 @@ int rewrite_test( const char *filename, int length, int bigtiff,
         
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( i = 0; i < length; i++ )
     {
@@ -317,8 +317,8 @@ int rewrite_test( const char *filename, int length, int bigtiff,
         
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( i = 0; i < length; i++ )
     {

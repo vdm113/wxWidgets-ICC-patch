@@ -223,8 +223,8 @@ public:
         original is termed a dummy as it sits in the ribbon bar doing nothing,
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while the expanded panel holds the panel children.
 

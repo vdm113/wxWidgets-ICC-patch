@@ -259,8 +259,8 @@ void wxGridCellEnumRenderer::SetParameters(const wxString& params)
     wxStringTokenizer tk(params, wxT(','));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( tk.HasMoreTokens() )
     {
@@ -321,8 +321,8 @@ wxGridCellAutoWrapStringRenderer::GetTextLines(wxGrid& grid,
     wxArrayString physicalLines;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxArrayString::const_iterator it = logicalLines.begin();
           it != logicalLines.end();
@@ -357,8 +357,8 @@ wxGridCellAutoWrapStringRenderer::BreakLine(wxDC& dc,
     wxStringTokenizer wordTokenizer(logicalLine, wxS(" \t"), wxTOKEN_RET_DELIMS);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( wordTokenizer.HasMoreTokens() )
     {
@@ -417,8 +417,8 @@ wxGridCellAutoWrapStringRenderer::BreakWord(wxDC& dc,
     unsigned n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < count; n++ )
     {
@@ -511,8 +511,8 @@ wxGridCellAutoWrapStringRenderer::GetBestWidth(wxGrid& grid,
     int width = 2*charWidth;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( GetTextLines(grid, dc, attr, wxSize(width, height),
                          row, col).size() > maxLines )
@@ -571,8 +571,8 @@ wxSize wxGridCellStringRenderer::DoGetBestSize(const wxGridCellAttr& attr,
     wxStringTokenizer tk(text, wxT('\n'));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( tk.HasMoreTokens() )
     {
@@ -622,16 +622,16 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
             int i, c_cols, c_rows;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = col+cell_cols; i < cols; i++)
             {
                 bool is_empty = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (int j=row; j < row + cell_rows; j++)
                 {
@@ -676,8 +676,8 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
                 col_end = grid.GetNumberCols() - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (int i = col + cell_cols; i <= col_end; i++)
             {

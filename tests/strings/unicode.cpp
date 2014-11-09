@@ -329,8 +329,8 @@ void UnicodeTestCase::ConversionUTF7()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < WXSIZEOF(utf7data); n++ )
     {
@@ -365,8 +365,8 @@ void UnicodeTestCase::ConversionUTF8()
     wxCSConv conv(wxT("utf-8"));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < WXSIZEOF(utf8data); n++ )
     {
@@ -401,8 +401,8 @@ void UnicodeTestCase::ConversionUTF16()
     wxCSConv conv(wxFONTENCODING_UTF16BE);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < WXSIZEOF(utf16data); n++ )
     {
@@ -442,8 +442,8 @@ void UnicodeTestCase::ConversionUTF32()
     wxCSConv conv(wxFONTENCODING_UTF32BE);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < WXSIZEOF(utf32data); n++ )
     {
@@ -483,8 +483,8 @@ void UnicodeTestCase::Iteration()
         size_t idx = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxString::const_iterator i = text.begin(); i != text.end(); ++i, ++idx )
         {
@@ -496,8 +496,8 @@ void UnicodeTestCase::Iteration()
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxString::iterator i = text.begin(); i != text.end(); ++i )
             *i = 'x';
@@ -511,8 +511,8 @@ void UnicodeTestCase::Iteration()
         size_t idx = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxString::iterator i = text.begin(); i != text.end(); ++i, ++idx )
         {
@@ -531,8 +531,8 @@ void UnicodeTestCase::Iteration()
         size_t idx = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxString::const_iterator i = text.begin(); i != text.end(); ++i, ++idx )
         {

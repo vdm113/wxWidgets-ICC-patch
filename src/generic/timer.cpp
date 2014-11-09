@@ -141,8 +141,8 @@ void wxTimerScheduler::NotifyTimers()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxTimerDesc *desc = m_timers; desc; desc = desc->next )
         {

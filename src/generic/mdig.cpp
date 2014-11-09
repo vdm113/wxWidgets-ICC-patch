@@ -139,8 +139,8 @@ bool wxGenericMDIParentFrame::CloseAll()
     wxBookCtrlBase * const book = client->GetBookCtrl();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( book->GetPageCount() )
     {
@@ -577,8 +577,8 @@ int wxGenericMDIClientWindow::FindChild(wxGenericMDIChildFrame *child) const
     const size_t count = book->GetPageCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t pos = 0; pos < count; pos++ )
     {

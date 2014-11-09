@@ -278,8 +278,8 @@ int wxTextCtrl::GetNumberOfLines() const
         bool finished = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (!finished)
         {
@@ -315,8 +315,8 @@ long wxTextCtrl::XYToPosition(long x, long y) const
     long r=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i=0; i<y; i++) r+=(GetLineLength(i)+1);
     return r+x;
@@ -357,8 +357,8 @@ wxString wxTextCtrl::GetLineText(long lineNo) const
         int currentLine = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; currentLine != lineNo && s[i]; i++ )
             if (s[i] == '\n')
@@ -367,8 +367,8 @@ wxString wxTextCtrl::GetLineText(long lineNo) const
             int j;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (j = 0; s[i] && s[i] != '\n'; i++, j++ )
                 buf += s[i];
@@ -597,8 +597,8 @@ static void MergeChangesIntoString(wxString& value,
         const char * p = passwd;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < cbs->startPos; ++i)
             *dest++ = *p++;
@@ -607,8 +607,8 @@ static void MergeChangesIntoString(wxString& value,
         if (insert)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while (*insert)
                 *dest++ = *insert++;
@@ -616,8 +616,8 @@ static void MergeChangesIntoString(wxString& value,
         // Finally, copy into newS any remaining text from passwd[endPos] on.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (p = passwd + cbs->endPos; *p; )
             *dest++ = *p++;
@@ -660,8 +660,8 @@ wxTextWindowModifyProc (Widget WXUNUSED(w), XtPointer clientData, XmTextVerifyCa
             int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < cbs->text->length; ++i)
                 cbs->text->ptr[i] = '*';

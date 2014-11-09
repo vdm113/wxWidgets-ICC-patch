@@ -484,8 +484,8 @@ bool operator == (const wxArrayDouble& a, const wxArrayDouble& b)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i=0; i<a.GetCount(); i++ )
     {
@@ -574,8 +574,8 @@ void wxArrayDoubleProperty::GenerateValueAsString( wxString& target, int prec, b
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i=0; i<value.GetCount(); i++ )
     {

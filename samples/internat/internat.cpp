@@ -488,8 +488,8 @@ void MyFrame::OnTest2(wxCommandEvent& WXUNUSED(event))
         s << "\n";
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int n = first; n <= last; ++n)
         {
@@ -514,8 +514,8 @@ void MyFrame::OnTest3(wxCommandEvent& WXUNUSED(event))
     s << "\n";
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i = 0; i < WXSIZEOF(lines); ++i)
     {

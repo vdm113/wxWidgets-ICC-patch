@@ -257,8 +257,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((c = getopt(argc, argv, "c:r:o:h")) != -1) {
 		switch (c) {
@@ -294,8 +294,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (optind < argc-1) {
 		infilename = argv[optind];
@@ -474,8 +474,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for(clr = 0; clr < clr_tbl_size; clr++) {
 				    red_tbl[clr] = 257*clr_tbl[clr*n_clr_elems+2];
@@ -572,8 +572,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (row = 0; row < length; row++) {
 				if (info_hdr.iHeight > 0)
@@ -639,16 +639,16 @@ main(int argc, char* argv[])
 			if (info_hdr.iBitCount == 8) {		/* RLE8 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			    while(j < uncompr_size && i < compr_size) {
 				if ( comprbuf[i] ) {
 				    runlength = comprbuf[i++];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				    while( runlength > 0
 					   && j < uncompr_size
@@ -675,8 +675,8 @@ main(int argc, char* argv[])
 					runlength = comprbuf[i++];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 					for (k = 0; k < runlength && j < uncompr_size && i < compr_size; k++)
 					    uncomprbuf[j++] = comprbuf[i++];
@@ -689,16 +689,16 @@ main(int argc, char* argv[])
 			else {				    /* RLE4 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			    while( j < uncompr_size && i < compr_size ) {
 				if ( comprbuf[i] ) {
 				    runlength = comprbuf[i++];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				    while( runlength > 0 && j < uncompr_size && i < compr_size ) {
 					if ( runlength & 0x01 )
@@ -726,8 +726,8 @@ main(int argc, char* argv[])
 					runlength = comprbuf[i++];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 					for (k = 0; k < runlength && j < uncompr_size && i < compr_size; k++) {
 					    if (k & 0x01)
@@ -746,8 +746,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (row = 0; row < length; row++) {
 				if (TIFFWriteScanline(out,
@@ -809,8 +809,8 @@ rearrangePixels(char *buf, uint32 width, uint32 bit_count)
                 case 24:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (i = 0; i < width; i++, buf += 3) {
 				tmp = *buf;
@@ -824,8 +824,8 @@ rearrangePixels(char *buf, uint32 width, uint32 bit_count)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (i = 0; i < width; i++, buf += 4) {
 					tmp = *buf;
@@ -853,8 +853,8 @@ processCompressOptions(char* opt)
                 compression = COMPRESSION_JPEG;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while( cp )
                 {
@@ -917,8 +917,8 @@ usage(void)
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

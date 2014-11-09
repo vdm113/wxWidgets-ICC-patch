@@ -134,8 +134,8 @@ wxSound::~wxSound()
     bool isPlaying = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxVector<wxSoundData*>::reverse_iterator s = s_soundsPlaying.rbegin();
          s != s_soundsPlaying.rend(); ++s )
@@ -179,8 +179,8 @@ void wxSound::Stop()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxVector<wxSoundData*>::reverse_iterator s = s_soundsPlaying.rbegin();
          s != s_soundsPlaying.rend(); ++s )
@@ -194,8 +194,8 @@ void wxSound::SoundStopped(const wxSoundData* data)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxVector<wxSoundData*>::iterator s = s_soundsPlaying.begin();
          s != s_soundsPlaying.end(); ++s )

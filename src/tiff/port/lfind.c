@@ -62,8 +62,8 @@ lfind(const void *key, const void *base, size_t *nmemb, size_t size,
 	end = (char *)base + *nmemb * size;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (element = (char *)base; element < end; element += size)
 		if (!compar(element, key))		/* key found */

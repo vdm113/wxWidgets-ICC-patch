@@ -59,8 +59,8 @@ wxArrayString ReadStringListFromCFDict( CFDictionaryRef dictionary, CFStringRef 
             // Look at each item in the array
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for( CFIndex i = 0, n = CFArrayGetCount( valueList ); i < n; i++ )
             {
@@ -115,8 +115,8 @@ bool CheckDocTypeMatchesExt( CFDictionaryRef docType, CFStringRef requiredExt )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for( CFIndex i = 0, n = CFArrayGetCount( extList ); i < n; i++ )
         {
@@ -163,8 +163,8 @@ CFDictionaryRef GetDocTypeForExt( CFTypeRef docTypeData, CFStringRef requiredExt
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for( CFIndex i = 0, n = CFArrayGetCount( docTypes ); i < n; i++ )
         {

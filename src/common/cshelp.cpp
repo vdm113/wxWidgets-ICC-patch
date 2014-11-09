@@ -109,8 +109,8 @@ static void wxPushOrPopEventHandlers(wxContextHelp* help, wxWindow* win, bool pu
     wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -197,8 +197,8 @@ bool wxContextHelp::EventLoop()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( m_inHelp )
     {

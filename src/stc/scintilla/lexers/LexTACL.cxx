@@ -60,8 +60,8 @@ static void getRange(unsigned int start,
 	unsigned int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((i < end - start + 1) && (i < len-1)) {
 		s[i] = static_cast<char>(tolower(styler[start + i]));
@@ -166,8 +166,8 @@ static void ColouriseTACLDoc(unsigned int startPos, int length, int initStyle, W
 	unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
@@ -316,8 +316,8 @@ static void FoldTACLDoc(unsigned int startPos, int length, int initStyle, WordLi
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
@@ -371,8 +371,8 @@ static void FoldTACLDoc(unsigned int startPos, int length, int initStyle, WordLi
 				unsigned int j=i+2; // skip {$
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				while ((j<endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
 					j++;

@@ -109,14 +109,14 @@ bool MyApp::OnInit(void)
     int i,j;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < image.GetWidth(); i++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
        for (j = 0; j < image.GetHeight(); j++)
           image.SetAlpha( i, j, 50 );
@@ -720,8 +720,8 @@ void MyPrintout::DrawPageTwo()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int i = 0; i < 7; i++)
         {

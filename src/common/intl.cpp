@@ -414,8 +414,8 @@ bool wxLocale::Init(int language, int flags)
             wxFontMapperBase::GetAllEncodingNames(wxFONTENCODING_UTF8);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( *names )
         {
@@ -694,8 +694,8 @@ inline bool wxGetNonEmptyEnvVar(const wxString& name, wxString* value)
         wxString langFullWithModifier = langFull + modifier;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < count; i++ )
         {
@@ -709,8 +709,8 @@ inline bool wxGetNonEmptyEnvVar(const wxString& name, wxString* value)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < count; i++ )
         {
@@ -724,8 +724,8 @@ inline bool wxGetNonEmptyEnvVar(const wxString& name, wxString* value)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < count; i++ )
         {
@@ -741,8 +741,8 @@ inline bool wxGetNonEmptyEnvVar(const wxString& name, wxString* value)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < count; i++ )
         {
@@ -763,8 +763,8 @@ inline bool wxGetNonEmptyEnvVar(const wxString& name, wxString* value)
         // find the name in verbose description.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < count; i++ )
         {
@@ -783,8 +783,8 @@ inline bool wxGetNonEmptyEnvVar(const wxString& name, wxString* value)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < count; i++ )
         {
@@ -974,8 +974,8 @@ const wxLanguageInfo *wxLocale::GetLanguageInfo(int lang)
     const size_t count = ms_languagesDB->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < count; i++ )
     {
@@ -1026,8 +1026,8 @@ const wxLanguageInfo *wxLocale::FindLanguageInfo(const wxString& locale)
     const size_t count = ms_languagesDB->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < count; i++ )
     {
@@ -1212,8 +1212,8 @@ static wxString TranslateFromUnicodeFormat(const wxString& fmt)
         ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxString::const_iterator p = fmt.begin(); /* end handled inside */; ++p )
     {
@@ -1724,8 +1724,8 @@ wxString GetDateFormatFromLangInfo(wxLocaleInfo index)
     wxString::const_iterator lastSep = end;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxString::const_iterator p = fmt.begin(); p != end; ++p )
     {

@@ -129,8 +129,8 @@ local gzFile gz_open(path, fd, mode)
     state->direct = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (*mode) {
         if (*mode >= '0' && *mode <= '9')
@@ -638,8 +638,8 @@ unsigned ZLIB_INTERNAL gz_intmax()
     p = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do {
         q = p;

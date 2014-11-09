@@ -184,8 +184,8 @@ wxAcceleratorEntry::ParseAccel(const wxString& text, int *flagsOut, int *keyOut)
     wxString current;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = (size_t)posTab; n < label.length(); n++ )
     {
@@ -253,8 +253,8 @@ wxAcceleratorEntry::ParseAccel(const wxString& text, int *flagsOut, int *keyOut)
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( size_t n = 0; n < WXSIZEOF(wxKeyNames); n++ )
                 {
@@ -360,8 +360,8 @@ wxString wxAcceleratorEntry::AsPossiblyLocalizedString(bool localized) const
         size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( n = 0; n < WXSIZEOF(wxKeyNames); n++ )
         {

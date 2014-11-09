@@ -598,8 +598,8 @@ public:
         Returns the next sibling of the specified item; call GetPrevSibling()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the previous sibling.
 

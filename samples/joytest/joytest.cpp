@@ -173,8 +173,8 @@ void MyCanvas::OnJoystickEvent(wxJoystickEvent& event)
 /*
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(int i = 0; i < nButtons; ++i)
     {

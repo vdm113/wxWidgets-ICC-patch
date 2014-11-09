@@ -573,8 +573,8 @@ public:
         This method allows you to customize the values returned by GetValue()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the cell using this editor. By default, the default values of the
         arguments are used, i.e. @c "1" is returned if the cell is checked and
@@ -1240,8 +1240,8 @@ public:
         reference and not pointer and DecRef() shouldn't (and can't) be called
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for them.
 
@@ -1295,8 +1295,8 @@ public:
         Initially the row and column are both invalid (-1) and so operator!()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for an uninitialized wxGridCellCoords returns false.
      */
@@ -2149,8 +2149,8 @@ public:
         function wxGrid will create and manage a simple table of string values
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for you. All of the grid data will be stored in memory.
 
@@ -2452,8 +2452,8 @@ public:
         Sets the arguments to the horizontal and vertical text alignment values
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the grid cell at the specified location.
 
@@ -2927,8 +2927,8 @@ public:
         cells in this column, it does associate the renderer and editor used
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the cells of the specified type with them.
 
@@ -3017,8 +3017,8 @@ public:
         is @true the calculated widths will also be set as the minimal widths
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the columns.
     */
@@ -3041,8 +3041,8 @@ public:
         @true the calculated heights will also be set as the minimal heights
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the rows.
     */
@@ -3325,8 +3325,8 @@ public:
         covering the other cells which would be normally shown in it. Passing 1
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for both arguments resets the cell to normal appearance.
 
@@ -3350,8 +3350,8 @@ public:
         with 1 and returns CellSpan_None. For cells which span multiple cells, i.e.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for which SetCellSize() had been called, the returned values are the
         same ones as were passed to SetCellSize() call and the function return
@@ -3704,8 +3704,8 @@ public:
         This function doesn't make the target call visible, use GoToCell() to
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         do this.
     */
@@ -3722,8 +3722,8 @@ public:
         This function doesn't make the target call visible, use GoToCell() to
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         do this.
     */

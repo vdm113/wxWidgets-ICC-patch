@@ -34,8 +34,8 @@ xmlstrlen(const XML_Char *s)
     assert(s != NULL);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (s[len] != 0)
         ++len;

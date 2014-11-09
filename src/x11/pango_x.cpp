@@ -114,8 +114,8 @@ x11_draw_layout_line_with_colors( Drawable         drawable,
     GSList *tmp_list = line->runs;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (tmp_list)
     {
@@ -183,8 +183,8 @@ x11_draw_layout_with_colors( Drawable      drawable,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -251,8 +251,8 @@ x11_pango_get_item_properties( PangoItem      *item,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   while (tmp_list)
     {

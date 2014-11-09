@@ -58,8 +58,8 @@ wxPaletteRefData::wxPaletteRefData(const wxPaletteRefData& data) : wxGDIRefData(
     m_palette = new wxColour[m_count];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxInt32 i = 0; i < m_count; i++ )
         m_palette[i] = data.m_palette[i];
@@ -98,8 +98,8 @@ bool wxPalette::Create(int n, const unsigned char *red, const unsigned char *gre
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0 ; i < n ; ++i)
     {
@@ -120,8 +120,8 @@ int wxPalette::GetPixel(unsigned char red, unsigned char green, unsigned char bl
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0  ; i < M_PALETTEDATA->m_count ; ++i )
     {

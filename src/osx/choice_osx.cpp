@@ -36,8 +36,8 @@ wxChoice::~wxChoice()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < max; ++i )
             delete GetClientObject( i );
@@ -125,8 +125,8 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter & items,
     const unsigned int numItems = items.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( unsigned int i = 0; i < numItems; ++i, ++pos )
     {
@@ -179,8 +179,8 @@ void wxChoice::DoClear()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int i = 0 ; i < GetCount() ; i++ )
     {

@@ -69,8 +69,8 @@ WXDLLEXPORT bool IsIidFromList(REFIID riid, const IID *aIids[], size_t nCount)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for ( size_t i = 0; i < nCount; i++ ) {
     if ( riid == *aIids[i] )
@@ -672,8 +672,8 @@ static wxString GetIidName(REFIID riid)
   // try to find the interface in the table
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for ( size_t ui = 0; ui < WXSIZEOF(aKnownIids); ui++ ) {
     if ( riid == *aKnownIids[ui].pIid ) {

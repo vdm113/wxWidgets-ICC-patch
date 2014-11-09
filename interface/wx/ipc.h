@@ -283,8 +283,8 @@ public:
         identifier in which case an Internet domain socket will be used
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the communications, or a valid file name (which shouldn't
         exist and will be deleted afterwards) in which case a Unix domain
@@ -303,8 +303,8 @@ public:
         object. Override this method to return a wxConnection descendant customised
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the application.
 

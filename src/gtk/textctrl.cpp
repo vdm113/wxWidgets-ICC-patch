@@ -272,8 +272,8 @@ static void wxGtkTextApplyTagsFromAttr(GtkWidget *text,
         g_snprintf(buf, sizeof(buf), "WXTABS");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (size_t i = 0; i < tabs.GetCount(); i++)
             tagname += wxString::Format(wxT(" %d"), tabs[i]);
@@ -292,8 +292,8 @@ static void wxGtkTextApplyTagsFromAttr(GtkWidget *text,
             PangoTabArray* tabArray = pango_tab_array_new(tabs.GetCount(), TRUE);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (size_t i = 0; i < tabs.GetCount(); i++)
                 pango_tab_array_set_tab(tabArray, i, PANGO_TAB_LEFT, (gint)(tabs[i] * factor));
@@ -424,8 +424,8 @@ au_check_word( GtkTextIter *s, GtkTextIter *e )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( n = 0; n < WXSIZEOF(URIPrefixes); ++n )
     {
@@ -465,8 +465,8 @@ au_check_range(GtkTextIter *s,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while(!gtk_text_iter_equal(&range_start, range_end))
     {
@@ -679,8 +679,8 @@ wxTextCtrl::~wxTextCtrl()
     // DoThaw() override is called
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (IsFrozen())
         Thaw();
@@ -2011,8 +2011,8 @@ void wxTextCtrl::DoFreeze()
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (GSList* item = m_anonymousMarkList; item; item = item->next)
             {

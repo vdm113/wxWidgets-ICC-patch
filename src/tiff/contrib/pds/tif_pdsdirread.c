@@ -207,8 +207,8 @@ TIFFReadPrivateDataSubDirectory(TIFF* tif, toff_t pdir_offset,
 	
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (fip = field_info, dp = dir, n = dircount;
 	     n > 0; n--, dp++) {
@@ -235,8 +235,8 @@ TIFFReadPrivateDataSubDirectory(TIFF* tif, toff_t pdir_offset,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (fip->field_tag && fip->field_tag < dp->tdir_tag)
 			fip++;
@@ -266,8 +266,8 @@ TIFFReadPrivateDataSubDirectory(TIFF* tif, toff_t pdir_offset,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (dp->tdir_type != (u_short)fip->field_type) {
 			if (fip->field_type == TIFF_ANY)	/* wildcard */
@@ -329,8 +329,8 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 		/* calculate amount of space used by indirect values */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (dp = dir, n = dircount; n > 0; n--, dp++) {
 			uint32 cc = dp->tdir_count*TIFFDataWidth(dp->tdir_type);
@@ -340,8 +340,8 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 		space = (filesize - space) / td->td_samplesperpixel;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (i = 0; i < td->td_nstrips; i++)
 			td->td_stripbytecount[i] = space;
@@ -361,8 +361,8 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 		uint32 rowsperstrip = td->td_imagelength / td->td_nstrips;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (i = 0; i < td->td_nstrips; i++)
 			td->td_stripbytecount[i] = rowbytes*rowsperstrip;
@@ -633,8 +633,8 @@ TIFFFetchRationalArray(TIFF* tif, TIFFDirEntry* dir, float* v)
 			uint32 i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (i = 0; i < dir->tdir_count; i++) {
 				ok = cvtRational(tif, dir,
@@ -704,8 +704,8 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 			uint16* vp = (uint16*) v;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
@@ -713,8 +713,8 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 			int16* vp = (int16*) v;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
@@ -728,8 +728,8 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 			uint16* vp = (uint16*) v;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
@@ -737,8 +737,8 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 			int16* vp = (int16*) v;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
@@ -752,8 +752,8 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 			uint32* vp = (uint32*) v;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
@@ -761,8 +761,8 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 			int32* vp = (int32*) v;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
@@ -775,8 +775,8 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 		{ float* vp = (float*) v;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		  for (i = dir->tdir_count-1; i >= 0; i--)
 			v[i] = vp[i];
@@ -788,8 +788,8 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 		{ float* vp = (float*) v;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		  for (i = dir->tdir_count-1; i >= 0; i--)
 			v[i] = vp[i];
@@ -979,8 +979,8 @@ TIFFFetchPerSampleShorts(TIFF* tif, TIFFDirEntry* dir, int* pl)
 			int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (i = 1; i < samples; i++)
 				if (v[i] != v[0]) {
@@ -1020,8 +1020,8 @@ TIFFFetchPerSampleAnys(TIFF* tif, TIFFDirEntry* dir, double* pl)
 			int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (i = 1; i < samples; i++)
 				if (v[i] != v[0]) {
@@ -1074,8 +1074,8 @@ TIFFFetchStripThing(TIFF* tif, TIFFDirEntry* dir, long nstrips, uint32** lpp)
 			register uint16* wp = dp;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			while (nstrips-- > 0)
 				*lp++ = *wp++;
@@ -1135,8 +1135,8 @@ TIFFFetchRefBlackWhite(TIFF* tif, TIFFDirEntry* dir)
 			uint32 i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (i = 0; i < dir->tdir_count; i++)
 				fp[i] = (float)((uint32*) cp)[i];
@@ -1206,8 +1206,8 @@ ChopUpSingleUncompressedStrip(TIFF* tif)
 	 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (strip = 0; strip < nstrips; strip++) {
 		if (stripbytes > bytecount)

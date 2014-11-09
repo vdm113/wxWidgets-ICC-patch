@@ -154,8 +154,8 @@ int wxHeaderCtrl::GetColStart(unsigned int idx) const
     int pos = m_scrollOffset;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; ; n++ )
     {
@@ -184,8 +184,8 @@ unsigned int wxHeaderCtrl::FindColumnAtPoint(int x, bool *onSeparator) const
     const unsigned count = GetColumnCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; n < count; n++ )
     {
@@ -514,8 +514,8 @@ void wxHeaderCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
     int xpos = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int i = 0; i < count; i++ )
     {

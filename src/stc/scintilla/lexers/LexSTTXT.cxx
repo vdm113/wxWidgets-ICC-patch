@@ -81,8 +81,8 @@ static void ColouriseSTTXTDoc (unsigned int startPos, int length, int initStyle,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for ( ; sc.More() ; sc.Forward())
 	{
@@ -218,8 +218,8 @@ static bool IsCommentLine(int line, Accessor &styler, bool type)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int i = pos; i < eolPos; i++)
 	{
@@ -240,8 +240,8 @@ static bool IsCommentLine(int line, Accessor &styler, bool type)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int i = eolPos-2; i>pos; i--)
 	{
@@ -265,8 +265,8 @@ static bool IsPragmaLine(int line, Accessor &styler)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int i = pos ; i < eolPos ; i++)
 	{
@@ -286,8 +286,8 @@ static void GetRangeUpper(unsigned int start,unsigned int end,Accessor &styler,c
 	unsigned int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((i < end - start + 1) && (i < len-1)) {
 		s[i] = static_cast<char>(toupper(styler[start + i]));
@@ -372,8 +372,8 @@ static void FoldSTTXTDoc(unsigned int startPos, int length, int initStyle, WordL
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (unsigned int i = startPos; i < endPos; i++)
 	{

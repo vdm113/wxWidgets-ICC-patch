@@ -60,8 +60,8 @@ static void classifyWordLisp(unsigned int start, unsigned int end, WordList &key
 	bool digit_flag = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; (i < end - start + 1) && (i < 99); i++) {
 		s[i] = styler[start + i];
@@ -100,8 +100,8 @@ static void ColouriseLispDoc(unsigned int startPos, int length, int initStyle, W
 	styler.StartSegment(startPos);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;

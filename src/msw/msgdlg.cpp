@@ -251,8 +251,8 @@ void wxMessageDialog::ReplaceStaticWithEdit()
     wxString text(wxGetWindowText(hwndStatic));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxString::reverse_iterator i = text.rbegin(); i != text.rend(); ++i )
     {
@@ -308,8 +308,8 @@ void wxMessageDialog::ReplaceStaticWithEdit()
     // and adjust all the buttons positions
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; n < WXSIZEOF(ms_buttons); n++ )
     {
@@ -348,8 +348,8 @@ void wxMessageDialog::AdjustButtonLabels()
     unsigned n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < WXSIZEOF(ms_buttons); n++ )
     {
@@ -430,8 +430,8 @@ void wxMessageDialog::AdjustButtonLabels()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < WXSIZEOF(ms_buttons); n++ )
     {
@@ -465,8 +465,8 @@ int wxMessageDialog::ShowMessageBox()
         // OnInit() to see it
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( wxTheApp->Pending() )
             wxTheApp->Dispatch();

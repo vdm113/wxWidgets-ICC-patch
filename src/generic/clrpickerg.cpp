@@ -81,8 +81,8 @@ void wxGenericColourButton::InitColourData()
     unsigned char grey = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < 16; i++, grey += 16)
     {

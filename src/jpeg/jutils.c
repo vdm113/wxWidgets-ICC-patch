@@ -137,8 +137,8 @@ jcopy_sample_rows (JSAMPARRAY input_array, int source_row,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (row = num_rows; row > 0; row--) {
     inptr = *input_array++;
@@ -148,8 +148,8 @@ jcopy_sample_rows (JSAMPARRAY input_array, int source_row,
 #else
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (count = num_cols; count > 0; count--)
       *outptr++ = *inptr++;	/* needn't bother with GETJSAMPLE() here */
@@ -173,8 +173,8 @@ jcopy_block_row (JBLOCKROW input_row, JBLOCKROW output_row,
   outptr = (JCOEFPTR) output_row;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (count = (long) num_blocks * DCTSIZE2; count > 0; count--) {
     *outptr++ = *inptr++;
@@ -196,8 +196,8 @@ jzero_far (void FAR * target, size_t bytestozero)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (count = bytestozero; count > 0; count--) {
     *ptr++ = 0;

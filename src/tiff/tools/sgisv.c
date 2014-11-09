@@ -67,8 +67,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((c = getopt(argc, argv, "c:p:r:")) != -1)
 		switch (c) {
@@ -158,8 +158,8 @@ usage(void)
 	setbuf(stderr, buf);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
@@ -177,8 +177,8 @@ svRGBSeparate(TIFF* tif, uint32* ss, int xsize, int ysize)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (y = 0; y <= ysize; y += rowsperstrip) {
 		unsigned char *rp, *gp, *bp;
@@ -191,14 +191,14 @@ svRGBSeparate(TIFF* tif, uint32* ss, int xsize, int ysize)
 		rp = rbuf; gp = gbuf; bp = bbuf;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		do {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (x = 0; x <= xsize; x++) {
 				uint32 v = ss[x];
@@ -231,8 +231,8 @@ svRGBContig(TIFF* tif, uint32* ss, int xsize, int ysize)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (y = 0; y <= ysize; y += rowsperstrip) {
 		register unsigned char *pp = strip;
@@ -243,14 +243,14 @@ svRGBContig(TIFF* tif, uint32* ss, int xsize, int ysize)
 			n = ysize-y+1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		do {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (x = 0; x <= xsize; x++) {
 				uint32 v = ss[x];
@@ -284,14 +284,14 @@ svGrey(TIFF* tif, uint32* ss, int xsize, int ysize)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (y = 0; y <= ysize; y++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (x = 0; x <= xsize; x++) {
 			unsigned char *cp = (unsigned char *)&ss[x];

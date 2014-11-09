@@ -200,8 +200,8 @@ int wxControlBase::FindAccelIndex(const wxString& label, wxString *labelOnly)
     int indexAccel = -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxString::const_iterator pc = label.begin(); pc != label.end(); ++pc )
     {
@@ -446,8 +446,8 @@ wxString wxControlBase::DoEllipsizeSingleLine(const wxString& curLine, const wxD
                 calc.Init(0, 1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while ( !calc.IsShortEnough() )
                     calc.RemoveFromEnd();
@@ -476,8 +476,8 @@ wxString wxControlBase::DoEllipsizeSingleLine(const wxString& curLine, const wxD
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while ( !calc.IsShortEnough() )
                 {
@@ -520,8 +520,8 @@ wxString wxControlBase::DoEllipsizeSingleLine(const wxString& curLine, const wxD
                 calc.Init(len - 1, 1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while ( !calc.IsShortEnough() )
                     calc.RemoveFromStart();
@@ -558,8 +558,8 @@ wxString wxControlBase::Ellipsize(const wxString& label, const wxDC& dc,
     wxString curLine;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxString::const_iterator pc = label.begin(); ; ++pc )
     {

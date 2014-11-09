@@ -128,8 +128,8 @@ main()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < NSINGLETAGS; i++) {
 		if (!TIFFSetField(tif, short_single_tags[i].tag,
@@ -142,8 +142,8 @@ main()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < NPAIREDTAGS; i++) {
 		if (!TIFFSetField(tif, short_paired_tags[i].tag,
@@ -193,8 +193,8 @@ main()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < NSINGLETAGS; i++) {
 		if (CheckShortField(tif, short_single_tags[i].tag,
@@ -204,8 +204,8 @@ main()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < NPAIREDTAGS; i++) {
 		if (CheckShortPairedField(tif, short_paired_tags[i].tag,

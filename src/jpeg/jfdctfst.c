@@ -132,8 +132,8 @@ jpeg_fdct_ifast (DCTELEM * data)
   dataptr = data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {
     tmp0 = dataptr[0] + dataptr[7];
@@ -187,8 +187,8 @@ jpeg_fdct_ifast (DCTELEM * data)
   dataptr = data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {
     tmp0 = dataptr[DCTSIZE*0] + dataptr[DCTSIZE*7];

@@ -55,8 +55,8 @@ static bool CmakeNextLineHasElse(unsigned int start, unsigned int end, Accessor 
     int nNextLine = -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int i = start; i < end; i++ ) {
         char cNext = styler.SafeGetCharAt( i );
@@ -71,8 +71,8 @@ static bool CmakeNextLineHasElse(unsigned int start, unsigned int end, Accessor 
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int firstChar = nNextLine; firstChar < end; firstChar++ ) {
         char cNext = styler.SafeGetCharAt( firstChar );
@@ -99,8 +99,8 @@ static int calculateFoldCmake(unsigned int start, unsigned int end, int foldleve
     char s[20]; // The key word we are looking for has atmost 13 characters
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int i = 0; i < end - start + 1 && i < 19; i++) {
         s[i] = static_cast<char>( styler[ start + i ] );
@@ -133,8 +133,8 @@ static int classifyWordCmake(unsigned int start, unsigned int end, WordList *key
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int i = 0; i < end - start + 1 && i < 99; i++) {
         word[i] = static_cast<char>( styler[ start + i ] );
@@ -177,8 +177,8 @@ static int classifyWordCmake(unsigned int start, unsigned int end, WordList *key
         bool bHasSimpleCmakeNumber = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (unsigned int j = 1; j < end - start + 1 && j < 99; j++) {
             if ( !isCmakeNumber( word[j] ) ) {
@@ -213,8 +213,8 @@ static void ColouriseCmakeDoc(unsigned int startPos, int length, int, WordList *
     unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = startPos; i < nLengthDoc; i++ ) {
         cCurrChar = styler.SafeGetCharAt( i );
@@ -307,8 +307,8 @@ static void ColouriseCmakeDoc(unsigned int startPos, int length, int, WordList *
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while ( nBack > 0 ) {
                     if ( styler.GetLine(nBack) != nCurLine )
@@ -440,8 +440,8 @@ static void FoldCmakeDoc(unsigned int startPos, int length, int, WordList *[], A
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int i = safeStartPos; i < startPos + length; i++) {
         char chCurr = styler.SafeGetCharAt(i);

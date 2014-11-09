@@ -506,8 +506,8 @@ wxString wxGetCurrentDir()
     bool ok;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -601,8 +601,8 @@ bool wxGetEnvMap(wxEnvVariableHashMap *map)
                  value;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( *env )
         {
@@ -649,8 +649,8 @@ static bool ReadAll(wxInputStream *is, wxArrayString& output)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ;; )
     {
@@ -860,8 +860,8 @@ void wxQsort(void* pbase, size_t total_elems,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       while (STACK_NOT_EMPTY)
         {
@@ -892,23 +892,23 @@ void wxQsort(void* pbase, size_t total_elems,
              that this algorithm runs much faster than others. */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
           do
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
               while ((*cmp) ((void *) left_ptr, (void *) mid, user_data) < 0)
                 left_ptr += size;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
               while ((*cmp) ((void *) mid, (void *) right_ptr, user_data) < 0)
                 right_ptr -= size;
@@ -968,8 +968,8 @@ void wxQsort(void* pbase, size_t total_elems,
      is completely sorted using insertion sort, since this is efficient
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
      for partitions below MAX_THRESH size. BASE_PTR points to the beginning
      of the array to sort, and END_PTR points at the very last element in
@@ -989,8 +989,8 @@ void wxQsort(void* pbase, size_t total_elems,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (run_ptr = tmp_ptr + size; run_ptr <= thresh; run_ptr += size)
       if ((*cmp) ((void *) run_ptr, (void *) tmp_ptr, user_data) < 0)
@@ -1004,16 +1004,16 @@ void wxQsort(void* pbase, size_t total_elems,
     run_ptr = base_ptr + size;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ((run_ptr += size) <= end_ptr)
       {
         tmp_ptr = run_ptr - size;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ((*cmp) ((void *) run_ptr, (void *) tmp_ptr, user_data) < 0)
           tmp_ptr -= size;
@@ -1026,8 +1026,8 @@ void wxQsort(void* pbase, size_t total_elems,
             trav = run_ptr + size;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while (--trav >= run_ptr)
               {
@@ -1036,8 +1036,8 @@ void wxQsort(void* pbase, size_t total_elems,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (hi = lo = trav; (lo -= size) >= tmp_ptr; hi = lo)
                   *hi = *lo;
@@ -1070,8 +1070,8 @@ unsigned int wxGCD(unsigned int u, unsigned int v)
     // dividing both u and v.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (shift = 0; ((u | v) & 1) == 0; ++shift)
     {
@@ -1081,8 +1081,8 @@ unsigned int wxGCD(unsigned int u, unsigned int v)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ((u & 1) == 0)
         u >>= 1;
@@ -1090,8 +1090,8 @@ unsigned int wxGCD(unsigned int u, unsigned int v)
     // From here on, u is always odd.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -1099,8 +1099,8 @@ unsigned int wxGCD(unsigned int u, unsigned int v)
         // note: v is not zero, so while will terminate
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ((v & 1) == 0)
             v >>= 1;
@@ -1303,8 +1303,8 @@ wxString wxStripMenuCodes(const wxString& in, int flags)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxString::const_iterator it = in.begin(); it != in.end(); ++it )
     {
@@ -1415,8 +1415,8 @@ wxWindow* wxFindWindowAtPoint(wxWindow* win, const wxPoint& pt)
     wxWindowList::compatibility_iterator node = win->GetChildren().GetLast();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1449,8 +1449,8 @@ wxWindow* wxGenericFindWindowAtPoint(const wxPoint& pt)
     wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetLast();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1625,8 +1625,8 @@ void wxEnableTopLevelWindows(bool enable)
     wxWindowList::compatibility_iterator node;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( node = wxTopLevelWindows.GetFirst(); node; node = node->GetNext() )
         node->GetData()->Enable(enable);
@@ -1660,8 +1660,8 @@ void wxWindowDisabler::DoDisable(wxWindow *winToSkip)
     wxWindowList::compatibility_iterator node;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( node = wxTopLevelWindows.GetFirst(); node; node = node->GetNext() )
     {
@@ -1694,8 +1694,8 @@ wxWindowDisabler::~wxWindowDisabler()
     wxWindowList::compatibility_iterator node;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( node = wxTopLevelWindows.GetFirst(); node; node = node->GetNext() )
     {

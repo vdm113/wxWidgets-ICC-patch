@@ -110,8 +110,8 @@ public:
         than the second one. The items should be compared using their values
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the given column.
 
@@ -445,8 +445,8 @@ public:
         Each item can have two images: one used for closed state and another
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for opened one. Only the first one is ever used for the items that
         don't have children. And both are not set by default.
@@ -569,8 +569,8 @@ public:
         @code
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( wxTreeListItem item = tree->GetFirstItem();
                   item.IsOk();

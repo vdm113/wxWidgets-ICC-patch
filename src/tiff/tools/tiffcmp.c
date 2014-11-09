@@ -79,8 +79,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((c = getopt(argc, argv, "ltz:")) != -1)
 		switch (c) {
@@ -108,8 +108,8 @@ main(int argc, char* argv[])
 	dirnum = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (tiffcmp(tif1, tif2)) {
 		if (!TIFFReadDirectory(tif1)) {
@@ -150,8 +150,8 @@ usage(void)
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
@@ -210,16 +210,16 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 	case pack(PLANARCONFIG_SEPARATE, PLANARCONFIG_CONTIG):
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (row = 0; row < imagelength; row++) {
 			if (TIFFReadScanline(tif2, buf2, row, 0) < 0)
 				checkEOF(tif2, row, -1)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (s = 0; s < samplesperpixel; s++) {
 				if (TIFFReadScanline(tif1, buf1, row, s) < 0)
@@ -232,16 +232,16 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 	case pack(PLANARCONFIG_CONTIG, PLANARCONFIG_SEPARATE):
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (row = 0; row < imagelength; row++) {
 			if (TIFFReadScanline(tif1, buf1, row, 0) < 0)
 				checkEOF(tif1, row, -1)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (s = 0; s < samplesperpixel; s++) {
 				if (TIFFReadScanline(tif2, buf2, row, s) < 0)
@@ -254,14 +254,14 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 	case pack(PLANARCONFIG_SEPARATE, PLANARCONFIG_SEPARATE):
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (s = 0; s < samplesperpixel; s++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (row = 0; row < imagelength; row++) {
 				if (TIFFReadScanline(tif1, buf1, row, s) < 0)
@@ -275,8 +275,8 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 	case pack(PLANARCONFIG_CONTIG, PLANARCONFIG_CONTIG):
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (row = 0; row < imagelength; row++) {
 			if (TIFFReadScanline(tif1, buf1, row, 0) < 0)
@@ -387,16 +387,16 @@ ContigCompare(int sample, uint32 row,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
           for (pix = 0; pix < imagewidth; pix += ppb) {
               int		s;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
               for(s = 0; s < samples_to_test; s++) {
                   if (*pix1 != *pix2) {
@@ -418,16 +418,16 @@ ContigCompare(int sample, uint32 row,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
           for (pix = 0; pix < imagewidth; pix++) {
               int	s;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
               for(s = 0; s < samples_to_test; s++) {
                   if (*pix1 != *pix2)
@@ -446,16 +446,16 @@ ContigCompare(int sample, uint32 row,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (pix = 0; pix < imagewidth; pix++) {
 			int	s;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for(s = 0; s < samples_to_test; s++) {
 				if (*pix1 != *pix2) {
@@ -472,16 +472,16 @@ ContigCompare(int sample, uint32 row,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (pix = 0; pix < imagewidth; pix++) {
 			int	s;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for(s = 0; s < samples_to_test; s++) {
 				if (fabs(*pix1 - *pix2) < 0.000000000001) {
@@ -524,8 +524,8 @@ PrintIntDiff(uint32 row, int sample, uint32 pix, uint32 w1, uint32 w2)
 		mask2 = mask1 << s;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (; mask2 && pix < imagewidth;
 		     mask2 >>= bitspersample, s -= bitspersample, pix++) {
@@ -596,8 +596,8 @@ SeparateCompare(int reversed, int sample, uint32 row,
 	cp1 += sample;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (pixel = 0; npixels-- > 0; pixel++, cp1 += samplesperpixel, p2++) {
 		if (*cp1 != *p2) {
@@ -692,8 +692,8 @@ CheckShortArrayTag(TIFF* tif1, TIFF* tif2, int tag, char* name)
 			sep = "";
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (i = 0; i < n1; i++)
 				printf("%s%u", sep, a1[i]), sep = ",";
@@ -701,8 +701,8 @@ CheckShortArrayTag(TIFF* tif1, TIFF* tif2, int tag, char* name)
 			sep = "";
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (i = 0; i < n2; i++)
 				printf("%s%u", sep, a2[i]), sep = ",";

@@ -178,8 +178,8 @@ TIFFWritePrivateDataSubDirectory(TIFF* tif,
 	nfields = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (b = 0; b <= pdir_fields_last; b++)
 		if (FieldSet(pdir_fieldsset, b))
@@ -240,8 +240,8 @@ TIFFWritePrivateDataSubDirectory(TIFF* tif,
 	 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (fip = field_info; fip->field_tag; fip++) {
 		/* Deleted code to check for FIELD_IGNORE!! */
@@ -278,8 +278,8 @@ TIFFWritePrivateDataSubDirectory(TIFF* tif,
 		 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (dir = (TIFFDirEntry*) data; dircount; dir++, dircount--) {
 			TIFFSwabArrayOfShort(&dir->tdir_tag, 2);
@@ -432,8 +432,8 @@ TIFFWriteNormalSubTag(TIFF* tif, TIFFDirEntry* dir, const TIFFFieldInfo* fip,
 		   (See the handling of TIFFFetchNormalTag() in tif_dirread.c
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		   for an example.) Maybe this function was written before
 		   TIFFWriteDoubleArray() was written, not that that's an
@@ -550,8 +550,8 @@ TIFFWritePerSampleShorts(TIFF* tif, ttag_t tag, TIFFDirEntry* dir)
 	TIFFGetField(tif, tag, &v);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < samples; i++)
 		w[i] = v;
@@ -580,8 +580,8 @@ TIFFWritePerSampleAnys(TIFF* tif,
 	TIFFGetField(tif, tag, &v);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < samples; i++)
 		w[i] = v;
@@ -623,8 +623,8 @@ TIFFWriteShortTable(TIFF* tif,
 	off = tif->tif_dataoff;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < n; i++)
 		if (!TIFFWriteData(tif, dir, (char *)table[i]))
@@ -710,8 +710,8 @@ TIFFWriteRationalArray(TIFF* tif,
 	t = (uint32*) _TIFFmalloc(2*n * sizeof (uint32));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < n; i++) {
 		float fv = v[i];
@@ -731,8 +731,8 @@ TIFFWriteRationalArray(TIFF* tif,
 		if (fv > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			while (fv < 1L<<(31-3) && den < 1L<<(31-3))
 				fv *= 1<<3, den *= 1L<<3;
@@ -795,8 +795,8 @@ TIFFWriteAnyArray(TIFF* tif,
 		{ unsigned char* bp = (unsigned char*) w;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		  for (i = 0; i < n; i++)
 			bp[i] = (unsigned char) v[i];
@@ -811,8 +811,8 @@ TIFFWriteAnyArray(TIFF* tif,
 		{ signed char* bp = (signed char*) w;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		  for (i = 0; i < n; i++)
 			bp[i] = (signed char) v[i];
@@ -827,8 +827,8 @@ TIFFWriteAnyArray(TIFF* tif,
 		{ uint16* bp = (uint16*) w;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		  for (i = 0; i < n; i++)
 			bp[i] = (uint16) v[i];
@@ -840,8 +840,8 @@ TIFFWriteAnyArray(TIFF* tif,
 		{ int16* bp = (int16*) w;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		  for (i = 0; i < n; i++)
 			bp[i] = (int16) v[i];
@@ -853,8 +853,8 @@ TIFFWriteAnyArray(TIFF* tif,
 		{ uint32* bp = (uint32*) w;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		  for (i = 0; i < n; i++)
 			bp[i] = (uint32) v[i];
@@ -866,8 +866,8 @@ TIFFWriteAnyArray(TIFF* tif,
 		{ int32* bp = (int32*) w;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		  for (i = 0; i < n; i++)
 			bp[i] = (int32) v[i];
@@ -879,8 +879,8 @@ TIFFWriteAnyArray(TIFF* tif,
 		{ float* bp = (float*) w;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		  for (i = 0; i < n; i++)
 			bp[i] = (float) v[i];
@@ -1025,8 +1025,8 @@ TIFFLinkDirectory(TIFF* tif)
 	nextdir = tif->tif_header.tiff_diroff;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do {
 		uint16 dircount;

@@ -75,8 +75,8 @@ bool wxDataObjectBase::IsSupported(const wxDataFormat& format,
         size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( n = 0; n < nFormatCount; n++ )
         {
@@ -113,8 +113,8 @@ wxDataObjectComposite::GetObject(const wxDataFormat& format, wxDataObjectBase::D
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( node )
     {
@@ -201,8 +201,8 @@ size_t wxDataObjectComposite::GetFormatCount(Direction dir) const
     wxSimpleDataObjectList::compatibility_iterator node;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( node = m_dataObjects.GetFirst(); node; node = node->GetNext() )
         n += node->GetData()->GetFormatCount(dir);
@@ -218,8 +218,8 @@ void wxDataObjectComposite::GetAllFormats(wxDataFormat *formats,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( node = m_dataObjects.GetFirst(); node; node = node->GetNext() )
     {

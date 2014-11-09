@@ -129,8 +129,8 @@ public:
         Creates the checkbox for two-step construction. See wxCheckBox()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for details.
     */

@@ -196,8 +196,8 @@ bool wxCalendarCtrlBase::SetHolidayAttrs()
     const size_t count = hol.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {

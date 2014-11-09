@@ -119,8 +119,8 @@ WrapSizerFrame::WrapSizerFrame()
     wxSizer * const sizerMidWrap = new wxWrapSizer(wxHORIZONTAL);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int nCheck = 0; nCheck < 6; nCheck++ )
     {

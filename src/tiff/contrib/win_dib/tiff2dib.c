@@ -152,8 +152,8 @@ HDIB LoadTIFFinDIB(LPSTR lpFileName)
           //load the palette in the DIB
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
           for (i = (1<<BitsPerSample)-1; i >= 0; i--) 
             {             
@@ -178,8 +178,8 @@ HDIB LoadTIFFinDIB(LPSTR lpFileName)
 <=> BGR
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (row = 0; row < imageLength; row += RowsPerStrip) 
           {     
@@ -194,16 +194,16 @@ RowsPerStrip);
                   {  
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for (l = 0; l < nrow; l++) 
                       {
                          if (SamplePerPixel  == 3)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                            for (i=0;i< (int) (imageWidth);i++)
                               {
@@ -249,8 +249,8 @@ static int checkcmap(int n, uint16* r, uint16* g, uint16* b)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (n-- > 0)
         if (*r++ >= 256 || *g++ >= 256 || *b++ >= 256)

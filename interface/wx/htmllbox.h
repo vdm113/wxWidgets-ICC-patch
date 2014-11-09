@@ -133,8 +133,8 @@ protected:
         the body (i.e. without @c html nor @c body tags) of the HTML fragment
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the given item.
 

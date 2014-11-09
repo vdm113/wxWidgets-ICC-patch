@@ -115,8 +115,8 @@ wxArchiveFSCacheDataImpl::~wxArchiveFSCacheDataImpl()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (entry)
     {
@@ -159,8 +159,8 @@ wxArchiveEntry *wxArchiveFSCacheDataImpl::Get(const wxString& name)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ((entry = m_archive->GetNextEntry()) != NULL)
     {
@@ -498,8 +498,8 @@ wxString wxArchiveFSHandler::DoFind()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (match == wxEmptyString)
     {
@@ -518,8 +518,8 @@ wxString wxArchiveFSHandler::DoFind()
             dir = namestr.BeforeLast(wxT('/'));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while (!dir.empty())
             {

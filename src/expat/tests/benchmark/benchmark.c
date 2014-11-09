@@ -86,8 +86,8 @@ int main (int argc, char *argv[])
   XMLBufEnd = XMLBuf + fileSize;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   while (i < nrOfLoops) {
     XMLBufPtr = XMLBuf;
@@ -95,8 +95,8 @@ int main (int argc, char *argv[])
     tstart = clock();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do {
       int parseBufferSize = XMLBufEnd - XMLBufPtr;

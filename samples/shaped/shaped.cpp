@@ -511,15 +511,15 @@ void SeeThroughFrame::OnPaint(wxPaintEvent& WXUNUSED(evt))
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( float x = 0.; x < 1.; x += xstep )
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( float y = 0.; y < 1.; y += ystep )
         {

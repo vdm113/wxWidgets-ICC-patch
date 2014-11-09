@@ -70,8 +70,8 @@ public:
         Creates the frame. See @ref wxHtmlHelpFrame() "the constructor"
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for a description of the parameters.
     */

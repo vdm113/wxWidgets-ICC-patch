@@ -103,8 +103,8 @@ void wxRibbonPanel::SetArtProvider(wxRibbonArtProvider* art)
     m_art = art;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;
@@ -287,8 +287,8 @@ void wxRibbonPanel::DoSetSize(int x, int y, int width, int height, int sizeFlags
         // TODO ? use some list of user set invisible children to restore status.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
                   node;
@@ -673,8 +673,8 @@ bool wxRibbonPanel::Realize()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
                   node;
@@ -856,8 +856,8 @@ bool wxRibbonPanel::ShowExpanded()
     // when iterating over a container which is being emptied
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while(!GetChildren().IsEmpty())
     {
@@ -912,8 +912,8 @@ static bool IsAncestorOf(wxWindow *ancestor, wxWindow *window)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while(window != NULL)
     {
@@ -994,8 +994,8 @@ bool wxRibbonPanel::HideExpanded()
     // when iterating over a container which is being emptied
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while(!GetChildren().IsEmpty())
     {
@@ -1074,8 +1074,8 @@ wxRect wxRibbonPanel::GetExpandedPosition(wxRect panel,
     unsigned display_i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(display_i = 0; display_i < display_n; ++display_i)
     {

@@ -311,8 +311,8 @@ struct colormap *cm;
 	NOERR();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (begin = open; begin <= close; begin++) {
 		MDEBUG(("\nfind trying at %ld\n", LOFF(begin)));
@@ -419,8 +419,8 @@ chr **coldp;			/* where to put coldstart pointer */
 	close = v->start;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do {
 		MDEBUG(("\ncsearch at %ld\n", LOFF(close)));
@@ -433,8 +433,8 @@ chr **coldp;			/* where to put coldstart pointer */
 		MDEBUG(("cbetween %ld and %ld\n", LOFF(open), LOFF(close)));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (begin = open; begin <= close; begin++) {
 			MDEBUG(("\ncfind trying at %ld\n", LOFF(begin)));
@@ -442,8 +442,8 @@ chr **coldp;			/* where to put coldstart pointer */
 			estop = v->stop;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (;;) {
 				if (shorter)
@@ -503,8 +503,8 @@ size_t n;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = n-1; i > 0; i--) {
 		p[i].rm_so = -1;
@@ -649,8 +649,8 @@ chr *end;			/* end of same */
 	/* iterate until satisfaction or failure */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (longest(v, d2, mid, end, (int *)NULL) != end) {
 		/* that midpoint didn't work, find a new one */
@@ -705,8 +705,8 @@ chr *end;			/* end of same */
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; t != NULL; t = t->right, i++) {
 		MDEBUG(("trying %dth\n", i));
@@ -826,8 +826,8 @@ chr *end;			/* end of same */
 	/* iterate until satisfaction or failure */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (;;) {
 		/* try this midpoint on for size */
@@ -924,8 +924,8 @@ chr *end;			/* end of same */
 	/* iterate until satisfaction or failure */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (;;) {
 		/* try this midpoint on for size */
@@ -1024,8 +1024,8 @@ chr *end;			/* end of same */
 	i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (p = begin; p <= stop && (i < max || max == INFINITY); p += len) {
 		if ((*v->g->compare)(paren, p, len) != 0)

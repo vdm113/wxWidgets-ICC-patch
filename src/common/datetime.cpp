@@ -414,8 +414,8 @@ void wxDateTime::Tm::AddMonths(int monDiff)
     // normalize the months field
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( monDiff < -mon )
     {
@@ -426,8 +426,8 @@ void wxDateTime::Tm::AddMonths(int monDiff)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( monDiff + mon >= MONTHS_IN_YEAR )
     {
@@ -449,8 +449,8 @@ void wxDateTime::Tm::AddDays(int dayDiff)
     // normalize the days field
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( dayDiff + mday < 1 )
     {
@@ -462,8 +462,8 @@ void wxDateTime::Tm::AddDays(int dayDiff)
     mday = (wxDateTime::wxDateTime_t)( mday + dayDiff );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( mday > GetNumOfDaysInMonth(year, mon) )
     {
@@ -2026,8 +2026,8 @@ wxDateTime& wxDateTime::SetToYearDay(wxDateTime::wxDateTime_t yday)
     bool isLeap = IsLeapYear(year);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( Month mon = Jan; mon < Inv_Month; wxNextMonth(mon) )
     {
@@ -2158,8 +2158,8 @@ bool wxDateTimeHolidayAuthority::IsHoliday(const wxDateTime& dt)
     size_t count = ms_authorities.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -2185,8 +2185,8 @@ wxDateTimeHolidayAuthority::GetHolidaysInRange(const wxDateTime& dtStart,
     const size_t countAuth = ms_authorities.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t nAuth = 0; nAuth < countAuth; nAuth++ )
     {
@@ -2251,8 +2251,8 @@ size_t wxDateTimeWorkDays::DoGetHolidaysInRange(const wxDateTime& dtStart,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( dt = dtSatFirst; dt <= dtSatLast; dt += wxDateSpan::Week() )
     {
@@ -2261,8 +2261,8 @@ size_t wxDateTimeWorkDays::DoGetHolidaysInRange(const wxDateTime& dtStart,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( dt = dtSunFirst; dt <= dtSunLast; dt += wxDateSpan::Week() )
     {

@@ -82,8 +82,8 @@ void wxRadioButton::OnCheck()
     wxWindowList::compatibility_iterator nodeStart = siblings.Find(this);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( nodeStart )
     {
@@ -100,8 +100,8 @@ void wxRadioButton::OnCheck()
     // one with wxRB_GROUP style
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( nodeStart )
     {

@@ -127,8 +127,8 @@ void wxCommandProcessor::Store(wxCommand *command)
         wxList::compatibility_iterator node = m_currentCommand->GetNext();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (node)
         {
@@ -329,8 +329,8 @@ void wxCommandProcessor::ClearCommands()
     wxList::compatibility_iterator node = m_commands.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {

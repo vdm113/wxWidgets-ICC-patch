@@ -215,8 +215,8 @@ wxTangoArtProvider::CreateBitmap(const wxArtID& id,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; n < WXSIZEOF(s_allBitmaps); n++ )
     {

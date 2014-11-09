@@ -39,8 +39,8 @@ int main( int argc, char *argv [] )
   /* Alloc szCmdParam */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 1; i < argc; i++) len += strlen(argv[i]) + 1;
   lpszCmdParam = (LPSTR) xmalloc(len + 1);
@@ -49,8 +49,8 @@ int main( int argc, char *argv [] )
   else lpszCmdParam[0] = '\0';
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 2; i < argc; i++) strcat(strcat(lpszCmdParam, " "), argv[i]);
 

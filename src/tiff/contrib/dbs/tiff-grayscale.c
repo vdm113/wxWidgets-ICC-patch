@@ -86,8 +86,8 @@ int main(int argc, char **argv)
     gray[0] = 3000;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 1; i < cmsize; i++)
         gray[i] = (uint16) (-log10((double) i / (cmsize - 1)) * 1000);
@@ -117,14 +117,14 @@ int main(int argc, char **argv)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < HEIGHT; i++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (j = 0, k = 0; j < WIDTH;) {
             gray_index = (j / chunk_size) + ((i / chunk_size) * nchunks);

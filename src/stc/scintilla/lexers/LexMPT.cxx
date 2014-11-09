@@ -45,8 +45,8 @@ static int GetLotLineState(std::string &line) {
 		unsigned i; // Declares counter here to make it persistent after the for loop
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (i = 0; i < line.length(); ++i) {
 			if (!(IsASCII(line[i]) && isspace(line[i])))
@@ -104,8 +104,8 @@ static void ColourizeLotDoc(unsigned int startPos, int length, int, WordList *[]
 	unsigned int i;			// Declared here because it's used after the for loop
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = startPos; i < startPos + length; ++i) {
 		char ch = chNext;
@@ -152,8 +152,8 @@ static void FoldLotDoc(unsigned int startPos, int length, int, WordList *[], Acc
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;

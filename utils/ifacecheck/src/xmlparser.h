@@ -412,8 +412,8 @@ public:
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (unsigned int i=0; i<m_classes.GetCount(); i++)
                 if (m_classes[i].GetName() == classname)
@@ -434,8 +434,8 @@ public:
             unsigned int methods = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (unsigned i=0; i < m_classes.GetCount(); i++)
                 methods += m_classes[i].GetMethodCount();

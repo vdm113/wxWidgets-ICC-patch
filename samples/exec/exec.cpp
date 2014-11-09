@@ -549,8 +549,8 @@ MyFrame::~MyFrame()
     // if this didn't happen until now
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < m_allAsync.size(); n++ )
     {
@@ -789,8 +789,8 @@ ExecQueryDialog::ExecQueryDialog(const wxString& cmd)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxEnvVariableHashMap::iterator it = env.begin();
               it != env.end();
@@ -814,8 +814,8 @@ void ExecQueryDialog::GetEnvironment(wxEnvVariableHashMap& env)
         const int nb = m_envtext->GetNumberOfLines();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int l = 0; l < nb; l++ )
         {
@@ -1286,8 +1286,8 @@ void MyFrame::OnIdle(wxIdleEvent& event)
     size_t count = m_running.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -1360,8 +1360,8 @@ void MyFrame::ShowOutput(const wxString& cmd,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -1426,8 +1426,8 @@ void MyPipedProcess::OnTerminate(int pid, int status)
     // show the rest of the output
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( HasInput() )
         ;
@@ -1529,8 +1529,8 @@ void MyPipeFrame::OnBtnSendFile(wxCommandEvent& WXUNUSED(event))
     const wxChar *pc = data.c_str();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( len )
     {
@@ -1561,8 +1561,8 @@ void MyPipeFrame::DoGetFromStream(wxTextCtrl *text, wxInputStream& in)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( in.CanRead() )
     {

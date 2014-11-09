@@ -103,8 +103,8 @@ bool wxStringOperationsUtf8::IsValidUtf8String(const char *str, size_t len)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ; c != end && *c; ++c )
     {
@@ -155,8 +155,8 @@ bool wxStringOperationsUtf8::IsValidUtf8String(const char *str, size_t len)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( int i = 0; i < 2; ++i )
             {
@@ -174,8 +174,8 @@ bool wxStringOperationsUtf8::IsValidUtf8String(const char *str, size_t len)
                 return false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( int i = 0; i < 2; ++i )
             {
@@ -188,8 +188,8 @@ bool wxStringOperationsUtf8::IsValidUtf8String(const char *str, size_t len)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( int i = 0; i < 3; ++i )
             {
@@ -205,8 +205,8 @@ bool wxStringOperationsUtf8::IsValidUtf8String(const char *str, size_t len)
                 return false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( int i = 0; i < 2; ++i )
             {
@@ -318,8 +318,8 @@ wxStringOperationsUtf8::DecodeNonAsciiChar(wxStringImpl::const_iterator i)
     // sequence's length:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ++i ; len > 1; --len, ++i )
     {
@@ -343,8 +343,8 @@ wxCharBuffer wxStringOperationsUtf8::EncodeNChars(size_t n, const wxUniChar& ch)
     char *ptr = buf.data();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < n; i++, ptr += len )
     {

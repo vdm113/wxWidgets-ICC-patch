@@ -192,8 +192,8 @@ bool wxRichTextStylePage::TransferDataToWindow()
                     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for (i = 0; i < sheet->GetListStyleCount(); i++)
                     {
@@ -214,8 +214,8 @@ bool wxRichTextStylePage::TransferDataToWindow()
                     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for (i = 0; i < sheet->GetParagraphStyleCount(); i++)
                     {
@@ -237,8 +237,8 @@ bool wxRichTextStylePage::TransferDataToWindow()
                     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for (i = 0; i < sheet->GetListStyleCount(); i++)
                     {
@@ -252,8 +252,8 @@ bool wxRichTextStylePage::TransferDataToWindow()
                     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for (i = 0; i < sheet->GetParagraphStyleCount(); i++)
                     {
@@ -267,8 +267,8 @@ bool wxRichTextStylePage::TransferDataToWindow()
                     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for (i = 0; i < sheet->GetBoxStyleCount(); i++)
                     {
@@ -282,8 +282,8 @@ bool wxRichTextStylePage::TransferDataToWindow()
                     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for (i = 0; i < sheet->GetCharacterStyleCount(); i++)
                     {

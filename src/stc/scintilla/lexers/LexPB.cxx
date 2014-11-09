@@ -82,8 +82,8 @@ bool MatchUpperCase(Accessor &styler, int pos, const char *s)   //Same as styler
     char ch;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i=0; *s; i++)
     {
@@ -105,8 +105,8 @@ static void ColourisePBDoc(unsigned int startPos, int length, int initStyle,Word
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (; sc.More(); sc.Forward()) {
         switch (sc.state)

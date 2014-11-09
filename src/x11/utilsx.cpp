@@ -137,8 +137,8 @@ static void wxCalcPrecAndShift( unsigned long mask, int *shift, int *prec )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (!(mask & 0x1))
     {
@@ -148,8 +148,8 @@ static void wxCalcPrecAndShift( unsigned long mask, int *shift, int *prec )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (mask & 0x1)
     {
@@ -206,8 +206,8 @@ void wxXVisualInfo::Init( Display* dpy, XVisualInfo* vi )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < m_visualColormapSize; i++)
         colors[i].pixel = i;
@@ -219,22 +219,22 @@ void wxXVisualInfo::Init( Display* dpy, XVisualInfo* vi )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int r = 0; r < 32; r++)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int g = 0; g < 32; g++)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (int b = 0; b < 32; b++)
             {
@@ -250,8 +250,8 @@ void wxXVisualInfo::Init( Display* dpy, XVisualInfo* vi )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for (int i = 0; i < m_visualColormapSize; i++)
                     {

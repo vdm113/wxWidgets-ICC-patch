@@ -56,8 +56,8 @@ bool wxApp::Initialize( int &argc, wxChar **argv )
     m_qtArgv = new char *[argc + 1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < argc; i++ )
     {
@@ -84,8 +84,8 @@ bool wxApp::Initialize( int &argc, wxChar **argv )
         argv = new wxChar *[qtArgs.size() + 1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int i = 0; i < qtArgs.size(); i++ )
         {

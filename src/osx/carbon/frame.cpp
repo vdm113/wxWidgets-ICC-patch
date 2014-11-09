@@ -103,8 +103,8 @@ bool wxFrame::Enable(bool enable)
         int iMaxMenu = m_frameMenuBar->GetMenuCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int i = 0 ; i < iMaxMenu ; ++ i )
         {
@@ -175,8 +175,8 @@ void wxFrame::OnActivate(wxActivateEvent& event)
         wxWindow *win = m_winLastFocused;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( win )
         {

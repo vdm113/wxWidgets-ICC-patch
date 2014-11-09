@@ -86,8 +86,8 @@ public:
                                                   QSocketNotifier::Write;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxVector<wxQtFDIONotifier*>::iterator it = m_qtNotifiers.begin();
               it != m_qtNotifiers.end(); ++it )

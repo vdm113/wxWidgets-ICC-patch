@@ -162,8 +162,8 @@ void wxAutoScrollTimer::Notify()
             wxWindow *parentTop = m_win;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( parentTop->GetParent() )
                 parentTop = parentTop->GetParent();
@@ -1058,8 +1058,8 @@ void wxScrollHelperBase::HandleOnMouseWheel(wxMouseEvent& event)
             int times = abs(lines);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (; times > 0; times--)
                 m_win->GetEventHandler()->ProcessEvent(newEvent);
@@ -1346,8 +1346,8 @@ void wxScrollHelper::AdjustScrollbars()
     //     know why do we need 5 of them
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int iterationCount = 0; iterationCount < 5; iterationCount++ )
     {

@@ -134,8 +134,8 @@ bool wxMacLaunch(char **argv)
     CFIndex cfiCount = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(char** argvcopy = argv; *argvcopy != NULL ; ++argvcopy)
     {
@@ -211,8 +211,8 @@ bool wxMacLaunch(char **argv)
     // For use to launch services call
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( ; *argv != NULL ; ++argv)
     {

@@ -471,8 +471,8 @@ public:
         The current pen is used for drawing the outline, and the current brush
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for filling the shape. Using a transparent brush suppresses filling.
 
@@ -494,8 +494,8 @@ public:
         The current pen is used for drawing the outline, and the current brush
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for filling the shape. Using a transparent brush suppresses filling.
 
@@ -529,8 +529,8 @@ public:
         The current pen is used for drawing the outline, and the current brush
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for filling the shape. Using a transparent brush suppresses filling.
 
@@ -548,8 +548,8 @@ public:
         size.  The current pen is used for the outline and the current brush
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for filling the shape.
     */
@@ -1203,8 +1203,8 @@ public:
         destination region sizes, meaning that it can stretch or shrink it
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while copying. The same can be achieved by changing the scale of the
         source or target DC but calling this method is simpler and can also be
@@ -1394,8 +1394,8 @@ public:
         Gets in @a colour the colour at the specified location. Not available
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for wxPostScriptDC or wxMetafileDC.
 
@@ -1404,8 +1404,8 @@ public:
         @note This method shouldn't be used with wxPaintDC as accessing the DC
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while drawing can result in unexpected results, notably in wxGTK.
     */

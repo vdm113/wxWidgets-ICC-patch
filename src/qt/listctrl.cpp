@@ -340,8 +340,8 @@ bool wxListCtrl::SetItem(wxListItem& info)
         }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int col=0; col<GetColumnCount(); col++)
         {
@@ -608,8 +608,8 @@ long wxListCtrl::GetNextItem(long item, int WXUNUSED(geometry), int state) const
     size_t count = GetItemCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t line = (size_t)ret; line < count; line++ )
     {
@@ -770,8 +770,8 @@ long wxListCtrl::FindItem(long start, const wxString& str, bool partial)
                 !partial ? Qt::MatchExactly : Qt::MatchContains );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i=0; i<qitems.length(); i++)
     {

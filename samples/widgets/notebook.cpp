@@ -398,8 +398,8 @@ void BookWidgetsPage::RecreateBook()
         // recreate the pages
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int n = 0; n < count; n++ )
         {

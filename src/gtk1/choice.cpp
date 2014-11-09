@@ -60,8 +60,8 @@ static void gtk_choice_clicked_callback( GtkWidget *WXUNUSED(widget), wxChoice *
     GList *child = menu_shell->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (child)
     {
@@ -147,8 +147,8 @@ bool wxChoice::Create( wxWindow *parent, wxWindowID id,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int i = 0; i < (unsigned int)n; i++)
     {
@@ -184,8 +184,8 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter & items,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int i = 0; i < count; ++i, ++pos )
     {
@@ -272,8 +272,8 @@ void wxChoice::DoDeleteOneItem(unsigned int n)
     items.Alloc(count);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned i = 0; i < count; i++, node = node->GetNext() )
     {
@@ -305,8 +305,8 @@ int wxChoice::FindString( const wxString &string, bool bCase ) const
     GList *child = menu_shell->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (child)
     {
@@ -348,8 +348,8 @@ void wxChoice::SetString(unsigned int n, const wxString& str )
     GList *child = menu_shell->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (child)
     {
@@ -382,8 +382,8 @@ wxString wxChoice::GetString(unsigned int n) const
     GList *child = menu_shell->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (child)
     {
@@ -418,8 +418,8 @@ unsigned int wxChoice::GetCount() const
     GList *child = menu_shell->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (child)
     {
@@ -465,8 +465,8 @@ void wxChoice::DoApplyWidgetStyle(GtkRcStyle *style)
     GList *child = menu_shell->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (child)
     {
@@ -565,8 +565,8 @@ wxSize wxChoice::DoGetBestSize() const
         unsigned int count = GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned int n = 0; n < count; n++ )
         {

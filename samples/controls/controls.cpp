@@ -736,8 +736,8 @@ MyPanel::MyPanel( wxFrame *frame, int x, int y, int w, int h )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < Image_Max; n++ )
     {
@@ -875,8 +875,8 @@ MyPanel::MyPanel( wxFrame *frame, int x, int y, int w, int h )
 #if wxUSE_HELP
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int item = 0; item < WXSIZEOF(choices); ++item)
         m_radio->SetItemHelpText( item, wxString::Format( wxT("Help text for \"%s\""),
@@ -1184,8 +1184,8 @@ void MyPanel::SetAllToolTips()
     //ResetToolTip(m_radio, "Tooltip for the entire radiobox");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int nb = 0; nb < m_radio->GetCount(); nb++ )
     {
@@ -1316,8 +1316,8 @@ void MyPanel::OnChangeCheck(wxCommandEvent& event)
     // check/uncheck all the items in the wxCheckListBox
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int n=0; n < m_listbox->GetCount(); n++) {
         m_listbox->Check(n, event.GetInt());
@@ -1827,8 +1827,8 @@ void MyPanel::OnShowProgress( wxCommandEvent& WXUNUSED(event) )
     bool cont = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i <= max && cont; i++ )
     {
@@ -2207,8 +2207,8 @@ static void SetListboxClientData(const wxChar *name, wxCheckListBox *control)
     size_t count = control->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -2227,8 +2227,8 @@ static void SetChoiceClientData(const wxChar *name, wxChoice *control)
     size_t count = control->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {

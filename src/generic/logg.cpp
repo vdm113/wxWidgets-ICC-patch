@@ -282,8 +282,8 @@ wxLogGui::DoShowMultipleLogMessages(const wxArrayString& messages,
     message.reserve(nMsgCount*100);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = nMsgCount; n > 0; n-- ) {
         message << m_aMessages[n - 1] << wxT("\n");
@@ -579,8 +579,8 @@ void wxLogFrame::OnSave(wxCommandEvent& WXUNUSED(event))
     int nLines = m_pTextCtrl->GetNumberOfLines();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int nLine = 0; bOk && nLine < nLines; nLine++ ) {
         bOk = file.Write(m_pTextCtrl->GetLineText(nLine) +
@@ -719,8 +719,8 @@ wxLogDialog::wxLogDialog(wxWindow *parent,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -859,8 +859,8 @@ void wxLogDialog::CreateDetailsControls(wxWindow *parent)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t icon = 0; icon < WXSIZEOF(icons); icon++ )
     {
@@ -885,8 +885,8 @@ void wxLogDialog::CreateDetailsControls(wxWindow *parent)
     size_t count = m_messages.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -984,8 +984,8 @@ wxString wxLogDialog::GetLogMessages() const
     text.reserve(count*m_messages[0].length());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {

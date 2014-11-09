@@ -698,8 +698,8 @@ public:
         long item = -1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( ;; )
         {
@@ -749,8 +749,8 @@ public:
         @c wxLIST_GETSUBITEMRECT_WHOLEITEM the return value is the same as
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for GetItemRect().
 
@@ -1000,8 +1000,8 @@ public:
         In small or normal icon view, @a col must be -1, and the column width is set
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for all columns.
     */
@@ -1033,8 +1033,8 @@ public:
             wxListCtrl *list = new wxListCtrl(...);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( int i = 0; i < 3; i++ )
                 list->InsertColumn(i, wxString::Format("Column %d", i));
@@ -1055,8 +1055,8 @@ public:
         currently is only implemented in wxMSW port. To avoid explicit tests
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for @c __WXMSW__ in your code, please use @c wxHAS_LISTCTRL_COLUMN_ORDER
         as this will allow it to start working under the other platforms when
@@ -1171,8 +1171,8 @@ public:
         @endcode
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while to deselect it you should use
         @code

@@ -294,8 +294,8 @@ OwnerDrawnFrame::OwnerDrawnFrame(wxFrame *frame, const wxChar *title,
     unsigned int ui;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ui = 0; ui < WXSIZEOF(aszChoices); ui++ )
         astrChoices[ui] = aszChoices[ui];
@@ -314,8 +314,8 @@ OwnerDrawnFrame::OwnerDrawnFrame(wxFrame *frame, const wxChar *title,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ui = 0; ui < WXSIZEOF(aszChoices); ui += 2 )
     {
@@ -335,8 +335,8 @@ OwnerDrawnFrame::OwnerDrawnFrame(wxFrame *frame, const wxChar *title,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ui = 0; ui < WXSIZEOF(aszColors); ui++ )
     {
@@ -365,8 +365,8 @@ OwnerDrawnFrame::OwnerDrawnFrame(wxFrame *frame, const wxChar *title,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ui = 0; ui < WXSIZEOF(aszColors); ui++ )
     {

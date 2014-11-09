@@ -73,8 +73,8 @@ static void ColouriseCsoundDoc(unsigned int startPos, int length, int initStyle,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; sc.More(); sc.Forward())
 	{
@@ -174,8 +174,8 @@ static void FoldCsoundInstruments(unsigned int startPos, int length, int /* init
 	int styleNext = styler.StyleAt(startPos);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
@@ -188,8 +188,8 @@ static void FoldCsoundInstruments(unsigned int startPos, int length, int /* init
 			unsigned int j = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			while ((j < (sizeof(s) - 1)) && (iswordchar(styler[i + j]))) {
 				s[j] = styler[i + j];

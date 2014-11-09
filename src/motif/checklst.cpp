@@ -181,8 +181,8 @@ int wxCheckListBox::DoInsertItems(const wxArrayStringsAdapter& items,
     copy.reserve(pos);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < items.GetCount(); ++i )
         copy.push_back( Prefix(false) + items[i] );

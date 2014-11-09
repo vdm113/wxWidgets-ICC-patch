@@ -287,8 +287,8 @@ public:
         indices[0] = row;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned col = 0; col < colCount; col++ )
         {

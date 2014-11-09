@@ -440,8 +440,8 @@ bool wxConsoleStderr::DoInit()
     char buf[4];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -656,8 +656,8 @@ const wxChar *wxApp::GetRegisteredClassName(const wxChar *name,
     const size_t count = gs_regClassesInfo.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -709,8 +709,8 @@ bool wxApp::IsRegisteredClassName(const wxString& name)
     const size_t count = gs_regClassesInfo.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -727,8 +727,8 @@ void wxApp::UnregisterWindowClasses()
     const size_t count = gs_regClassesInfo.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {

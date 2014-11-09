@@ -80,8 +80,8 @@ backStream::backStream()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned i = 0; i < TESTSIZE; i++)
         m_testdata[i] = i;
@@ -196,8 +196,8 @@ void backStream::Seek(wxInputStream& in)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (wxFileOffset i = TESTSIZE - 1; i >= 0; i--) {
         CPPUNIT_ASSERT_EQUAL(i, in.SeekI(i));

@@ -82,8 +82,8 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < n_families; i++ )
     {
@@ -184,8 +184,8 @@ static bool ProcessFamiliesFromFontList(wxFontEnumerator *This,
     wxSortedArrayString families;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int n = 0; n < nFonts; n++ )
     {
@@ -307,8 +307,8 @@ bool wxFontEnumerator::EnumerateEncodings(const wxString& family)
     wxSortedArrayString encodings;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int n = 0; n < nFonts; n++ )
     {

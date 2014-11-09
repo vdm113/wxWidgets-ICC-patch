@@ -354,8 +354,8 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 		int right = centreX - 6;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (int b=0; b<3; b++) {
 			PRectangle rcBlob(right, rc.bottom - 4, right + 2, rc.bottom-2);
@@ -368,8 +368,8 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 		const int armLength = dimOn2 - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (int b = 0; b<3; b++) {
 			surface->MoveTo(right, centreY);

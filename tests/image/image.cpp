@@ -138,8 +138,8 @@ void ImageTestCase::LoadFromFile()
     wxImage img;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int i=0; i<WXSIZEOF(g_testfiles); i++)
         CPPUNIT_ASSERT(img.LoadFile(g_testfiles[i].file));
@@ -165,8 +165,8 @@ void ImageTestCase::LoadFromSocketStream()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int i=0; i<WXSIZEOF(testData); i++)
     {
@@ -204,8 +204,8 @@ void ImageTestCase::LoadFromZipStream()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int i=0; i<WXSIZEOF(g_testfiles); i++)
     {
@@ -848,8 +848,8 @@ void ImageTestCase::SizeImage()
    const wxImage src_img(xpm_orig);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    for ( unsigned i = 0; i < WXSIZEOF(sizeTestData); i++ )
    {
@@ -883,8 +883,8 @@ void ImageTestCase::CompareLoadedImage()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i=0; i<WXSIZEOF(g_testfiles); i++)
     {
@@ -1008,15 +1008,15 @@ static void SetAlpha(wxImage *image)
     const int height = image->GetHeight();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int y = 0; y < height; ++y)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int x = 0; x < width; ++x)
         {
@@ -1037,8 +1037,8 @@ void ImageTestCase::CompareSavedImage()
     unsigned char greys[256];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < 256; ++i)
     {
@@ -1058,8 +1058,8 @@ void ImageTestCase::CompareSavedImage()
     const wxList& list = wxImage::GetHandlers();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxList::compatibility_iterator node = list.GetFirst();
         node; node = node->GetNext() )
@@ -1118,15 +1118,15 @@ void ImageTestCase::SavePNG()
     const int height = expected8.GetHeight();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (y = 0; y < height; ++y)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (x = 0; x < width; ++x)
         {
@@ -1222,8 +1222,8 @@ void ImageTestCase::SaveAnimatedGIF()
     images.Add(image);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < 4-1; ++i)
     {
@@ -1243,8 +1243,8 @@ void ImageTestCase::SaveAnimatedGIF()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < imageCount; ++i)
     {
@@ -1338,8 +1338,8 @@ void ImageTestCase::GIFComment()
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < 4; ++i)
     {
@@ -1368,8 +1368,8 @@ void ImageTestCase::GIFComment()
     const int imageCount = handler.GetImageCount(memIn);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < imageCount; ++i)
     {

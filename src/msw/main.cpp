@@ -226,8 +226,8 @@ struct wxMSWCommandLineArguments
         argv = new wxChar *[argc + 1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int i = 0; i < argc; i++ )
         {
@@ -245,8 +245,8 @@ struct wxMSWCommandLineArguments
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int i = 0; i < argc; i++ )
         {

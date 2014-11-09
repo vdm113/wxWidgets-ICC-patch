@@ -35,8 +35,8 @@ local int gz_load(state, buf, len, have)
     *have = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do {
         ret = read(state->fd, buf + *have, len - *have);
@@ -75,8 +75,8 @@ local int gz_avail(state)
             unsigned n = strm->avail_in;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             do {
                 *p++ = *q++;
@@ -197,8 +197,8 @@ local int gz_decomp(state)
     had = strm->avail_out;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do {
         /* get more input for inflate() */
@@ -252,8 +252,8 @@ local int gz_fetch(state)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do {
         switch(state->how) {
@@ -289,8 +289,8 @@ local int gz_skip(state, len)
     /* skip over len bytes or reach end-of-file, whichever comes first */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (len)
         /* skip over whatever is in output buffer */
@@ -359,8 +359,8 @@ int ZEXPORT gzread(file, buf, len)
     got = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do {
         /* first just try copying data from the output buffer */
@@ -506,8 +506,8 @@ int ZEXPORT gzungetc(c, file)
         unsigned char *dest = state->out + (state->size << 1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (src > state->out)
             *--dest = *--src;

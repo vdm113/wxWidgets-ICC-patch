@@ -286,8 +286,8 @@ void wxSocketManager::Init()
         events, such as 'read completed'. wxMSW has only one message loop
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the main thread. If Initialize is called in a secondary thread,
         the socket window will be created for the secondary thread, but
@@ -992,8 +992,8 @@ wxUint32 wxSocketBase::DoRead(void* buffer_, wxUint32 nbytes)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( nbytes )
     {
@@ -1114,8 +1114,8 @@ wxSocketBase& wxSocketBase::ReadMsg(void* buffer, wxUint32 nbytes)
                 // NOTE: discarded bytes don't add to m_lcount.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 do
                 {
@@ -1184,8 +1184,8 @@ wxUint32 wxSocketBase::DoWrite(const void *buffer_, wxUint32 nbytes)
     wxUint32 total = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( nbytes )
     {
@@ -1303,8 +1303,8 @@ wxSocketBase& wxSocketBase::Discard()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -1505,8 +1505,8 @@ wxSocketBase::DoWait(long timeout, wxSocketEventFlags flags)
     int rc = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( bool firstTime = true; !m_interrupt; firstTime = false )
     {

@@ -79,8 +79,8 @@ void wxBitmapComboBoxBase::UpdateInternals()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( m_bitmaps.GetCount() < GetItemContainer()->GetCount() )
         m_bitmaps.Add( new wxBitmap() );
@@ -110,8 +110,8 @@ void wxBitmapComboBoxBase::BCBDoClear()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned i = 0; i < m_bitmaps.size(); i++ )
         delete GetBitmapPtr(i);

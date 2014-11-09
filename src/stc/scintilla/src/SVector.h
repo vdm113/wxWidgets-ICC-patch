@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file SVector.h
  ** A simple expandable vector.
@@ -51,6 +44,11 @@ class SVector {
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		for (; i<len; i++) {
 			newv[i] = v[i];
 		}
@@ -63,6 +61,11 @@ class SVector {
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
 		for (; i<size; i++) {
 			newv[i] = 0;
@@ -97,6 +100,11 @@ public:
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			for (int i=0; i<other.Length(); i++)
 				v[i] = other.v[i];
 			len = other.Length();
@@ -120,6 +128,11 @@ public:
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
 				for (int i=0; i<other.Length(); i++)
 					v[i] = other.v[i];

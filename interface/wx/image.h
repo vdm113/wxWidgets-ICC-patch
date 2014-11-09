@@ -230,8 +230,8 @@ public:
                 (exceptions are TIFF and ICO formats as well as animated GIFs
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for which this function returns the number of frames in the
                 animation).
@@ -687,8 +687,8 @@ public:
         See @ref overview_refcount_destruct "reference-counted object destruction"
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for more info.
     */
@@ -1901,8 +1901,8 @@ public:
                 (exceptions are TIFF and ICO formats as well as animated GIFs
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for which this function returns the number of frames in the
                 animation).

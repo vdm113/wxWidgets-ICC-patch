@@ -251,8 +251,8 @@ int wxMessageDialog::ShowModal()
     XEvent event;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( m_result == -1 )
     {

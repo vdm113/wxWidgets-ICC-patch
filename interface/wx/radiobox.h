@@ -153,8 +153,8 @@ public:
         Creates the radiobox for two-step construction. See wxRadioBox()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for further details.
     */
@@ -173,8 +173,8 @@ public:
         Creates the radiobox for two-step construction. See wxRadioBox()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for further details.
     */

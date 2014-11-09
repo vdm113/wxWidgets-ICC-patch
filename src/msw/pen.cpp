@@ -394,8 +394,8 @@ bool wxPenRefData::Alloc()
            int rw = m_width > 1 ? m_width : 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
            for ( int i = 0; i < m_nbDash; i++ )
                dash[i] = m_dash[i] * rw;

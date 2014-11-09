@@ -258,8 +258,8 @@ bool wxChoice::CreateAndInit(wxWindow *parent,
     // initialize the controls contents
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < n; i++ )
     {
@@ -354,8 +354,8 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter& items,
     const unsigned int numItems = items.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int i = 0; i < numItems; ++i )
     {

@@ -131,8 +131,8 @@ void DoAddIcon(wxIconBundle& bundle,
     const size_t count = wxImage::GetImageCount(input, type);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < count; ++i )
     {
@@ -241,8 +241,8 @@ wxIcon wxIconBundle::GetIcon(const wxSize& size, int flags) const
     const wxIconArray& iconArray = M_ICONBUNDLEDATA->m_icons;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < count; i++ )
     {
@@ -317,8 +317,8 @@ void wxIconBundle::AddIcon(const wxIcon& icon)
     const size_t count = iconArray.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < count; ++i )
     {

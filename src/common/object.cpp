@@ -172,8 +172,8 @@ wxClassInfo::~wxClassInfo()
         wxClassInfo *info = sm_first;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (info)
         {
@@ -199,8 +199,8 @@ wxClassInfo *wxClassInfo::FindClass(const wxString& className)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxClassInfo *info = sm_first; info ; info = info->m_next )
         {
@@ -305,8 +305,8 @@ wxObject *wxCreateDynamicObject(const wxString& name)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxClassInfo *info = wxClassInfo::sm_first;
               info;

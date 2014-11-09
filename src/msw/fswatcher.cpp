@@ -299,8 +299,8 @@ bool wxIOCPThread::ReadEvents()
     int offset = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -328,8 +328,8 @@ void wxIOCPThread::ProcessNativeEvents(wxVector<wxEventProcessingData>& events)
     wxVector<wxEventProcessingData>::iterator it = events.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ; it != events.end(); ++it )
     {
@@ -409,8 +409,8 @@ int wxIOCPThread::Native2WatcherFlags(int flags)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int i=0; i < WXSIZEOF(flag_mapping); ++i) {
         if (flags == flag_mapping[i][0])

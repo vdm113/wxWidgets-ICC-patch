@@ -80,8 +80,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((c = getopt(argc, argv, "c:r:h")) != -1)
 		switch (c) {
@@ -176,15 +176,15 @@ main(int argc, char* argv[])
 		map = red;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (j = 0; j < 3; j++) {
 #define	SCALE(x)	(((x)*((1L<<16)-1))/255)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (i = h.ras_maplength/3; i-- > 0;)
 				*map++ = SCALE(*buf++);
@@ -233,8 +233,8 @@ main(int argc, char* argv[])
 	    TIFFDefaultStripSize(out, rowsperstrip));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (row = 0; row < h.ras_height; row++) {
 		if (fread(buf, linebytes, 1, in) != 1) {
@@ -248,8 +248,8 @@ main(int argc, char* argv[])
 #define	SWAP(a,b)	{ unsigned char t = (a); (a) = (b); (b) = t; }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			do {
 				SWAP(cp[0], cp[2]);
@@ -277,8 +277,8 @@ processCompressOptions(char* opt)
                 compression = COMPRESSION_JPEG;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while( cp )
                 {
@@ -339,8 +339,8 @@ usage(void)
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

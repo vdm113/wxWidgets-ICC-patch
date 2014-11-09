@@ -139,8 +139,8 @@ DWORD WINAPI SocketThread(LPVOID data)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while(socketHash[d->fd] == true)
     {
@@ -214,8 +214,8 @@ bool wxSocketMSWManager::OnInit()
   /* Initialize socket list */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < MAXSOCKETS; i++)
   {
@@ -271,8 +271,8 @@ void wxSocketMSWManager::OnExit()
 /* Delete the threads here */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(unsigned int i=0; i < currSocket; i++)
         CloseHandle(hThread[i]);
@@ -297,8 +297,8 @@ wxSocketImplMSW::wxSocketImplMSW(wxSocketBase& wxsocket)
   int i = firstAvailable;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   while (socketList[i] != NULL)
   {
@@ -328,8 +328,8 @@ wxSocketImplMSW::~wxSocketImplMSW()
       MSG msg;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       while ( ::PeekMessage(&msg, hWin, m_msgnumber, m_msgnumber, PM_REMOVE) )
           ;

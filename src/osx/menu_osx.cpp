@@ -225,8 +225,8 @@ bool wxMenu::DoInsertOrAppend(wxMenuItem *item, size_t pos)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxMenuItemList::compatibility_iterator
                 node = GetMenuItems().Item(pos + 1);
@@ -298,8 +298,8 @@ wxMenuItem *wxMenu::DoRemove(wxMenuItem *item)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( node->GetData() != item )
             {
@@ -325,8 +325,8 @@ wxMenuItem *wxMenu::DoRemove(wxMenuItem *item)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( pos = 0; node; pos++ )
     {
@@ -388,8 +388,8 @@ void wxMenu::DoRearrange()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (pos = 0, node = GetMenuItems().GetFirst(); node; node = node->GetNext(), pos++)
     {
@@ -707,8 +707,8 @@ wxMenuBar::wxMenuBar(size_t count, wxMenu *menus[], const wxString titles[], lon
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < count; i++ )
     {
@@ -788,8 +788,8 @@ void wxMenuBar::MacInstallMenuBar()
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int i = CountMenuItems( helpMenuHandle ) ; i >= firstUserHelpMenuItem ; --i )
             DeleteMenuItem( helpMenuHandle , i ) ;
@@ -826,8 +826,8 @@ void wxMenuBar::MacInstallMenuBar()
     wxMenuList::compatibility_iterator menuIter = m_menus.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i = 0; i < m_menus.GetCount(); i++, menuIter = menuIter->GetNext())
     {
@@ -840,8 +840,8 @@ void wxMenuBar::MacInstallMenuBar()
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (node = menu->GetMenuItems().GetFirst(); node; node = node->GetNext())
             {
@@ -997,8 +997,8 @@ bool wxMenuBar::Enable(bool enable)
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < GetMenuCount(); i++)
         EnableTop(i, enable);

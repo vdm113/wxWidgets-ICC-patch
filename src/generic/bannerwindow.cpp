@@ -202,8 +202,8 @@ void wxBannerWindow::OnPaint(wxPaintEvent& WXUNUSED(event))
         const unsigned numLines = lines.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned n = 0; n < numLines; n++ )
         {

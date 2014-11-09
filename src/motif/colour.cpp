@@ -160,8 +160,8 @@ WXPixel wxGetBestMatchingPixel(Display *display, XColor *desiredColor, Colormap 
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int pixelcount = 0; pixelcount < numPixVals; pixelcount++)
     {

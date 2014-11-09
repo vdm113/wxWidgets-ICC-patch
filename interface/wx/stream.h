@@ -895,8 +895,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (factory) {
             list << factory->GetProtocol() << wxT("\n");
@@ -930,8 +930,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (p = factory->GetProtocols(wxSTREAM_FILEEXT); *p; p++)
             list << *p << wxT("\n");

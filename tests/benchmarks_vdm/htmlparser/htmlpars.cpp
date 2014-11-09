@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/htmlpars.cpp
 // Purpose:     wx28HtmlParser class (generic parser)
@@ -99,6 +92,11 @@ wx28HtmlParser::~wx28HtmlParser()
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (RestoreState()) {}
     DestroyDOMTree();
 
@@ -115,6 +113,11 @@ wx28HtmlParser::~wx28HtmlParser()
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
         for( it = tmp.begin(), en = tmp.end(); it != en; ++it )
             delete (wxHashTable*)*it;
@@ -194,6 +197,11 @@ void wx28HtmlParser::CreateDOMSubTree(wx28HtmlTag *cur,
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (i < end_pos)
     {
         c = m_Source.GetChar(i);
@@ -223,6 +231,11 @@ void wx28HtmlParser::CreateDOMSubTree(wx28HtmlTag *cur,
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
                 while (i < end_pos)
                 {
@@ -310,6 +323,11 @@ void wx28HtmlParser::DestroyDOMTree()
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (t1)
     {
         t2 = t1->GetNextSibling();
@@ -346,6 +364,11 @@ void wx28HtmlParser::DoParsing(int begin_pos, int end_pos)
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (begin_pos < end_pos)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -358,6 +381,11 @@ void wx28HtmlParser::DoParsing(int begin_pos, int end_pos)
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (m_CurTag && m_CurTag->GetBeginPos() < begin_pos)
             m_CurTag = m_CurTag->GetNextTag();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -369,6 +397,11 @@ void wx28HtmlParser::DoParsing(int begin_pos, int end_pos)
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
         while (m_CurTextPiece < piecesCnt &&
                pieces[m_CurTextPiece].m_pos < begin_pos)
@@ -436,6 +469,11 @@ void wx28HtmlParser::AddTagHandler(wx28HtmlTagHandler *handler)
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (tokenizer.HasMoreTokens())
         m_HandlersHash.Put(tokenizer.GetNextToken(), handler);
 
@@ -466,6 +504,11 @@ void wx28HtmlParser::PushTagHandler(wx28HtmlTagHandler *handler, const wxString&
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
     while (tokenizer.HasMoreTokens())
     {
@@ -612,6 +655,11 @@ wxString wx28HtmlEntitiesParser::Parse(const wxString& input)
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (c = in_str, last = in_str; *c != wxT('\0'); c++)
     {
         if (*c == wxT('&'))
@@ -637,6 +685,11 @@ wxString wx28HtmlEntitiesParser::Parse(const wxString& input)
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
             for (; (*c >= wxT('a') && *c <= wxT('z')) ||
                    (*c >= wxT('A') && *c <= wxT('Z')) ||
@@ -979,6 +1032,11 @@ wxChar wx28HtmlEntitiesParser::GetEntityChar(const wxString& entity)
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (substitutions[substitutions_cnt].code != 0)
                 substitutions_cnt++;
 
@@ -995,6 +1053,11 @@ wxChar wx28HtmlEntitiesParser::GetEntityChar(const wxString& entity)
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < substitutions_cnt; i++)
         {

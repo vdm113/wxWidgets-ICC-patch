@@ -706,8 +706,8 @@ int wxTextWidgetImpl::GetNumberOfLines() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i = 0; i < content.length() ; i++)
     {
@@ -731,8 +731,8 @@ wxString wxTextWidgetImpl::GetLineText(long lineNo) const
     int count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i = 0; i < content.length() ; i++)
     {
@@ -743,8 +743,8 @@ wxString wxTextWidgetImpl::GetLineText(long lineNo) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (size_t j = i; j < content.length(); j++)
             {
@@ -773,8 +773,8 @@ int wxTextWidgetImpl::GetLineLength(long lineNo) const
     int count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i = 0; i < content.length() ; i++)
     {
@@ -784,8 +784,8 @@ int wxTextWidgetImpl::GetLineLength(long lineNo) const
             count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (size_t j = i; j < content.length(); j++)
             {

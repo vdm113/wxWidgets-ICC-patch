@@ -155,8 +155,8 @@ public:
             different wxWidgets ports. See the icon.h header for the value it takes
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for a specific port.
         @param desiredWidth
@@ -265,8 +265,8 @@ public:
             different wxWidgets ports. See the icon.h header for the value it takes
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for a specific port.
         @param desiredWidth

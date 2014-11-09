@@ -354,8 +354,8 @@ public:
         This can return @false on Windows if the current printer is not set,
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for example. On all other platforms, it returns @true.
     */
@@ -547,8 +547,8 @@ public:
         This can return @false on Windows if the current printer is not set,
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for example. On all other platforms, it returns @true.
     */

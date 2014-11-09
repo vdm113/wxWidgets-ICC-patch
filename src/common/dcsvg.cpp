@@ -151,8 +151,8 @@ wxSVGBitmapEmbedHandler::ProcessBitmap(const wxBitmap& bmp,
     const unsigned WRAP = 76;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < data.size(); i += WRAP )
     {
@@ -187,8 +187,8 @@ wxSVGBitmapFileHandler::ProcessBitmap(const wxBitmap& bmp,
     wxString sPNG;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -332,8 +332,8 @@ void wxSVGFileDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoffset
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 1; i < n; i++ )
     {
@@ -462,8 +462,8 @@ void wxSVGFileDCImpl::DoDrawPolygon(int n, const wxPoint points[],
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < n;  i++)
     {
@@ -641,8 +641,8 @@ void wxSVGFileDCImpl::DestroyClippingRegion()
     // Close clipping group elements
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < m_clipUniqueId; i++ )
     {

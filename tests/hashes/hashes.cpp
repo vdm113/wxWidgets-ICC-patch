@@ -130,8 +130,8 @@ void HashesTestCase::wxHashTableTest()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < COUNT; ++i )
             hash.Put(i, &o + i);
@@ -142,8 +142,8 @@ void HashesTestCase::wxHashTableTest()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (it)
         {
@@ -155,64 +155,64 @@ void HashesTestCase::wxHashTableTest()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 99; i >= 0; --i )
             CPPUNIT_ASSERT( hash.Get(i) == &o + i );
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < COUNT; ++i )
             hash.Put(i, &o + i + 20);
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 99; i >= 0; --i )
             CPPUNIT_ASSERT( hash.Get(i) == &o + i);
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < COUNT/2; ++i )
             CPPUNIT_ASSERT( hash.Delete(i) == &o + i);
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = COUNT/2; i < COUNT; ++i )
             CPPUNIT_ASSERT( hash.Get(i) == &o + i);
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < COUNT/2; ++i )
             CPPUNIT_ASSERT( hash.Get(i) == &o + i + 20);
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < COUNT/2; ++i )
             CPPUNIT_ASSERT( hash.Delete(i) == &o + i + 20);
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < COUNT/2; ++i )
             CPPUNIT_ASSERT( hash.Get(i) == NULL);
@@ -301,8 +301,8 @@ void HashesTestCase::wxUntypedHashTableDeleteContents()
         size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( n = 0; n < WXSIZEOF(hashTestData); n++ )
         {
@@ -344,8 +344,8 @@ void HashesTestCase::wxTypedHashTableTest()
         size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( n = 0; n < WXSIZEOF(hashTestData); n++ )
         {
@@ -357,8 +357,8 @@ void HashesTestCase::wxTypedHashTableTest()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( n = 0; n < WXSIZEOF(hashTestData); n++ )
         {
@@ -463,8 +463,8 @@ void HashMapTest()
     // init with some data
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( i = 0; i < count; ++i )
     {
@@ -477,8 +477,8 @@ void HashMapTest()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( i = 0; i < count; ++i )
     {
@@ -490,8 +490,8 @@ void HashMapTest()
     Itor it;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( i = 0, it = sh.begin(); it != sh.end(); ++it, ++i )
     {
@@ -507,8 +507,8 @@ void HashMapTest()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( i = 0, it = sh.begin(); it != sh.end(); ++it, ++i )
     {
@@ -519,8 +519,8 @@ void HashMapTest()
     // other tests
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( i = 0; i < count; ++i )
     {

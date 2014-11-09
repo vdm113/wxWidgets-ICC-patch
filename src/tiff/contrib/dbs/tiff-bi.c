@@ -68,48 +68,48 @@ int main(int argc, char **argv)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < (WIDTH / 8) / 2; i++)
         scan_line[i] = 0;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = (WIDTH / 8) / 2; i < (WIDTH / 8); i++)
         scan_line[i] = 255;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < HEIGHT / 2; i++)
         TIFFWriteScanline(tif, scan_line, i, 0);
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < (WIDTH / 8) / 2; i++)
         scan_line[i] = 255;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = (WIDTH / 8) / 2; i < (WIDTH / 8); i++)
         scan_line[i] = 0;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = HEIGHT / 2; i < HEIGHT; i++)
         TIFFWriteScanline(tif, scan_line, i, 0);

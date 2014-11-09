@@ -488,8 +488,8 @@ void wxRibbonMSWArtProvider::CloneTo(wxRibbonMSWArtProvider* copy) const
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(i = 0; i < 4; ++i)
     {
@@ -499,8 +499,8 @@ void wxRibbonMSWArtProvider::CloneTo(wxRibbonMSWArtProvider* copy) const
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(i = 0; i < 2; ++i)
     {
@@ -1437,8 +1437,8 @@ void wxRibbonMSWArtProvider::ReallyDrawTabSeparator(wxWindow* wnd, const wxRect&
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(int i = 0; i < rect.height - 1; ++i)
     {
@@ -1827,8 +1827,8 @@ void wxRibbonMSWArtProvider::DrawPanelBackground(
                 // Display as many characters as possible and append ...
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for(size_t len = label.Len() - 1; len >= 3; --len)
                 {
@@ -2326,8 +2326,8 @@ void wxRibbonMSWArtProvider::DrawPartialPageBackground(
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(; parent; parent = parent->GetParent())
     {
@@ -2531,8 +2531,8 @@ void wxRibbonMSWArtProvider::DrawButtonBarButtonForeground(
                 size_t breaki = label.Len();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 do
                 {
@@ -2844,8 +2844,8 @@ int wxRibbonMSWArtProvider::GetTabCtrlHeight(
         size_t numpages = pages.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(size_t i = 0; i < numpages; ++i)
         {
@@ -3119,8 +3119,8 @@ bool wxRibbonMSWArtProvider::GetButtonBarButtonSize(
             size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for(i = 0; i < label.Len(); ++i)
             {

@@ -203,8 +203,8 @@ void wxTopLevelWindowMotif::DoGetPosition(int *x, int *y) const
     // reparent twice and notify only the next parent (like FVWM)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (next_parent != root) {
         Window *theChildren; unsigned int n;
@@ -230,8 +230,8 @@ void wxTopLevelWindowMotif::Raise()
     // reparent twice and notify only the next parent (like FVWM)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while( next_parent != root )
     {
@@ -256,8 +256,8 @@ void wxTopLevelWindowMotif::Lower()
     // reparent twice and notify only the next parent (like FVWM)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while( next_parent != root )
     {

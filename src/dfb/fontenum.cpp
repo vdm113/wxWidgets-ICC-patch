@@ -42,8 +42,8 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxFontBundleList::const_iterator f = list.begin(); f != list.end(); ++f )
     {

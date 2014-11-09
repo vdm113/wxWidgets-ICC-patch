@@ -131,8 +131,8 @@ public:
 		if (wordListDescriptions) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (size_t wl = 0; wordListDescriptions[wl]; wl++) {
 				if (!wordLists.empty())

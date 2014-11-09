@@ -162,8 +162,8 @@ emit_dqt (j_compress_ptr cinfo, int index)
   prec = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < DCTSIZE2; i++) {
     if (qtbl->quantval[i] > 255)
@@ -179,8 +179,8 @@ emit_dqt (j_compress_ptr cinfo, int index)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < DCTSIZE2; i++) {
       /* The table entries must be emitted in zigzag order. */
@@ -220,8 +220,8 @@ emit_dht (j_compress_ptr cinfo, int index, wxjpeg_boolean is_ac)
     length = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 1; i <= 16; i++)
       length += htbl->bits[i];
@@ -231,16 +231,16 @@ emit_dht (j_compress_ptr cinfo, int index, wxjpeg_boolean is_ac)
     
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 1; i <= 16; i++)
       emit_byte(cinfo, htbl->bits[i]);
     
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < length; i++)
       emit_byte(cinfo, htbl->huffval[i]);
@@ -264,16 +264,16 @@ emit_dac (j_compress_ptr cinfo)
   
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < NUM_ARITH_TBLS; i++)
     dc_in_use[i] = ac_in_use[i] = 0;
   
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < cinfo->comps_in_scan; i++) {
     compptr = cinfo->cur_comp_info[i];
@@ -284,8 +284,8 @@ emit_dac (j_compress_ptr cinfo)
   length = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < NUM_ARITH_TBLS; i++)
     length += dc_in_use[i] + ac_in_use[i];
@@ -296,8 +296,8 @@ emit_dac (j_compress_ptr cinfo)
   
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < NUM_ARITH_TBLS; i++) {
     if (dc_in_use[i]) {
@@ -349,8 +349,8 @@ emit_sof (j_compress_ptr cinfo, JPEG_MARKER code)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -376,8 +376,8 @@ emit_sos (j_compress_ptr cinfo)
   
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < cinfo->comps_in_scan; i++) {
     compptr = cinfo->cur_comp_info[i];
@@ -565,8 +565,8 @@ write_frame_header (j_compress_ptr cinfo)
   prec = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -584,8 +584,8 @@ write_frame_header (j_compress_ptr cinfo)
     is_baseline = TRUE;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
 	 ci++, compptr++) {
@@ -638,8 +638,8 @@ write_scan_header (j_compress_ptr cinfo)
      */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < cinfo->comps_in_scan; i++) {
       compptr = cinfo->cur_comp_info[i];
@@ -698,8 +698,8 @@ write_tables_only (j_compress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < NUM_QUANT_TBLS; i++) {
     if (cinfo->quant_tbl_ptrs[i] != NULL)
@@ -709,8 +709,8 @@ write_tables_only (j_compress_ptr cinfo)
   if (! cinfo->arith_code) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < NUM_HUFF_TBLS; i++) {
       if (cinfo->dc_huff_tbl_ptrs[i] != NULL)

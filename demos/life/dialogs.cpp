@@ -105,8 +105,8 @@ LifeSamplesDialog::LifeSamplesDialog(wxWindow *parent)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned i = 0; i < (sizeof(g_patterns) / sizeof(LifePattern)); i++)
         m_list->Append(g_patterns[i].m_name);

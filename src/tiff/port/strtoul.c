@@ -65,8 +65,8 @@ strtoul(const char *nptr, char **endptr, int base)
 	s = nptr;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do {
 		c = (unsigned char) *s++;
@@ -92,8 +92,8 @@ strtoul(const char *nptr, char **endptr, int base)
 	cutlim = (int)(ULONG_MAX % (unsigned long)base);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (acc = 0, any = 0;; c = (unsigned char) *s++) {
 		if (isdigit(c))

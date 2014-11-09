@@ -109,8 +109,8 @@ build_ycc_rgb_table (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0, x = -CENTERJSAMPLE; i <= MAXJSAMPLE; i++, x++) {
     /* i is the actual input pixel value, in the range 0..MAXJSAMPLE */
@@ -260,8 +260,8 @@ h2v1_merged_upsample (j_decompress_ptr cinfo,
   /* Loop for each pair of output pixels */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (col = cinfo->output_width >> 1; col > 0; col--) {
     /* Do the chroma part of the calculation */
@@ -328,8 +328,8 @@ h2v2_merged_upsample (j_decompress_ptr cinfo,
   /* Loop for each group of output pixels */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (col = cinfo->output_width >> 1; col > 0; col--) {
     /* Do the chroma part of the calculation */

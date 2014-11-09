@@ -62,8 +62,8 @@ static void ColouriseInnoDoc(unsigned int startPos, int length, int, WordList *k
 	styler.StartSegment(startPos);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int i = startPos; i < lengthDoc; i++) {
 		chPrev = ch;
@@ -272,8 +272,8 @@ static void FoldInnoDoc(unsigned int startPos, int length, int, WordList *[], Ac
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;

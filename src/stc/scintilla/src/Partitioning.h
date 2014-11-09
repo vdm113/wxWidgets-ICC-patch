@@ -41,8 +41,8 @@ public:
 			range1Length = part1Left;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (i < range1Length) {
 			body[start++] += delta;
@@ -51,8 +51,8 @@ public:
 		start += gapLength;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (i < rangeLength) {
 			body[start++] += delta;
@@ -188,8 +188,8 @@ public:
 		int upper = body->Length()-1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		do {
 			int middle = (upper + lower + 1) / 2; 	// Round high

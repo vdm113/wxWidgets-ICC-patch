@@ -624,8 +624,8 @@ int wxListBox::FindString( const wxString &item, bool bCase ) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(unsigned int i = 0; i < nCount; ++i)
     {
@@ -691,8 +691,8 @@ int wxListBox::GetSelections( wxArrayInt& aSelections ) const
     { //gtk_tree_selection_get_selected_rows is GTK 2.2+ so iter instead
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         do
         {
@@ -878,8 +878,8 @@ wxSize wxListBox::DoGetBestSize() const
         int wLine;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned int i = 0; i < count; i++ )
         {

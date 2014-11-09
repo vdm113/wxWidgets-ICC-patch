@@ -397,8 +397,8 @@ void wxFrame::AttachMenuBar(wxMenuBar *menubar)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for( size_t n = 0; n < menubar->GetMenuCount(); n++ )
         {
@@ -781,8 +781,8 @@ void wxFrame::IconizeChildFrames(bool bIconize)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;

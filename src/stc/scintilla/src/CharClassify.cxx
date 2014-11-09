@@ -34,8 +34,8 @@ void CharClassify::SetDefaultCharClasses(bool includeWordClass) {
 	// Initialize all char classes to default values
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int ch = 0; ch < 256; ch++) {
 		if (ch == '\r' || ch == '\n')
@@ -54,8 +54,8 @@ void CharClassify::SetCharClasses(const unsigned char *chars, cc newCharClass) {
 	if (chars) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (*chars) {
 			charClass[*chars] = static_cast<unsigned char>(newCharClass);
@@ -70,8 +70,8 @@ int CharClassify::GetCharsOfClass(cc characterClass, unsigned char *buffer) {
 	int count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int ch = maxChar - 1; ch >= 0; --ch) {
 		if (charClass[ch] == characterClass) {

@@ -141,8 +141,8 @@ struct vars *v;
 		v->now += 2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (; !ATEOS() && iscalpha(*v->now); v->now++)
 			switch (*v->now) {
@@ -561,8 +561,8 @@ struct vars *v;
 			case CHR('#'):		/* comment */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				while (!ATEOS() && *v->now != CHR(')'))
 					v->now++;
@@ -843,8 +843,8 @@ int maxlen;
 	n = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (len = 0; len < maxlen && !ATEOS(); len++) {
 		c = *v->now++;
@@ -1007,14 +1007,14 @@ struct vars *v;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (;;) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (!ATEOS() && iscspace(*v->now))
 			v->now++;
@@ -1023,8 +1023,8 @@ struct vars *v;
 		assert(NEXT1('#'));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (!ATEOS() && *v->now != CHR('\n'))
 			v->now++;

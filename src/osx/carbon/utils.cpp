@@ -765,8 +765,8 @@ void wxMacDataItemBrowserControl::GetItems(const wxMacDataItem* container,
     wxMacDataItemPtr* itemsArray = (wxMacDataItemPtr*) *handle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < itemCount; ++i)
     {
@@ -806,8 +806,8 @@ void wxMacDataItemBrowserControl::UpdateItems(const wxMacDataItem *container,
     DataBrowserItemID *items = new DataBrowserItemID[noItems];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int i = 0; i < noItems; ++i )
         items[i] = (DataBrowserItemID) itemArray[i];
@@ -891,8 +891,8 @@ void wxMacDataItemBrowserControl::AddItems(wxMacDataItem *container, wxArrayMacD
     DataBrowserItemID *items = new DataBrowserItemID[noItems];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int i = 0; i < noItems; ++i )
         items[i] = (DataBrowserItemID) itemArray[i];
@@ -915,8 +915,8 @@ void wxMacDataItemBrowserControl::RemoveItems(wxMacDataItem *container, wxArrayM
     DataBrowserItemID *items = new DataBrowserItemID[noItems];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int i = 0; i < noItems; ++i )
         items[i] = (DataBrowserItemID) itemArray[i];
@@ -950,8 +950,8 @@ void wxMacDataItemBrowserControl::SetSelectedItems(wxArrayMacDataItemPtr &itemAr
     DataBrowserItemID *items = new DataBrowserItemID[noItems];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int i = 0; i < noItems; ++i )
         items[i] = (DataBrowserItemID) itemArray[i];
@@ -999,8 +999,8 @@ void wxMacDataItemBrowserControl::MacInsert( unsigned int n, wxMacDataItem* item
         unsigned int lines = MacGetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned int i = n; i < lines; ++i)
         {

@@ -209,8 +209,8 @@ bool wxDataObject::IsSupportedFormat(const wxDataFormat& format, Direction dir) 
         size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( n = 0; n < nFormatCount; n++ )
         {
@@ -251,8 +251,8 @@ bool wxFileDataObject::GetDataHere(void *buf) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
     {
@@ -272,8 +272,8 @@ size_t wxFileDataObject::GetDataSize() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
     {
@@ -297,8 +297,8 @@ bool wxFileDataObject::SetData(size_t WXUNUSED(size), const void *buf)
     const gchar *nexttemp = (const gchar*) buf;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ; ; )
     {
@@ -306,8 +306,8 @@ bool wxFileDataObject::SetData(size_t WXUNUSED(size), const void *buf)
         const gchar *temp = nexttemp;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (;;)
         {

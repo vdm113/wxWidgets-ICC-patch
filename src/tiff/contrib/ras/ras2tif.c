@@ -121,8 +121,8 @@ main(argc, argv)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (--argc) {
 	if ((++argv)[0][0] == '-') {
@@ -233,8 +233,8 @@ main(argc, argv)
 	TIFFSetField(tif, TIFFTAG_COLORMAP, red, green, blue);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < Colormap.length; i++) {
 	    red[i] = SCALE(Colormap.map[0][i]);
@@ -247,8 +247,8 @@ main(argc, argv)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (row = 0; row < height; row++)
 	if (TIFFWriteScanline(tif,

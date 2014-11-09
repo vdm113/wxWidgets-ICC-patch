@@ -179,8 +179,8 @@ enum
         This attribute has the same semantics as ::WX_GL_MAJOR_VERSION but is
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the minor OpenGL version, e.g. 2 if OpenGL 3.2 is requested.
 

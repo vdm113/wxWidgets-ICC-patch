@@ -36,8 +36,8 @@ static void getRange(unsigned int start,
 	unsigned int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((i < end - start + 1) && (i < len-1)) {
 		s[i] = styler[start + i];
@@ -58,8 +58,8 @@ static void getRangeLowered(unsigned int start,
 	unsigned int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((i < end - start + 1) && (i < len-1)) {
 		s[i] = static_cast<char>(tolower(styler[start + i]));

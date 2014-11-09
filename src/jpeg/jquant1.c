@@ -207,16 +207,16 @@ select_ncolors (j_decompress_ptr cinfo, int Ncolors[])
   iroot = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   do {
     iroot++;
     temp = iroot;		/* set temp = iroot ** nc */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 1; i < nc; i++)
       temp *= iroot;
@@ -231,8 +231,8 @@ select_ncolors (j_decompress_ptr cinfo, int Ncolors[])
   total_colors = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < nc; i++) {
     Ncolors[i] = iroot;
@@ -246,15 +246,15 @@ select_ncolors (j_decompress_ptr cinfo, int Ncolors[])
    */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   do {
     changed = FALSE;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < nc; i++) {
       j = (cinfo->out_color_space == JCS_RGB ? RGB_order[i] : i);
@@ -334,8 +334,8 @@ create_colormap (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < cinfo->out_color_components; i++) {
     /* fill in colormap entries for i'th color component */
@@ -343,8 +343,8 @@ create_colormap (j_decompress_ptr cinfo)
     blksize = blkdist / nci;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (j = 0; j < nci; j++) {
       /* Compute j'th output value (out of nci) for component */
@@ -352,15 +352,15 @@ create_colormap (j_decompress_ptr cinfo)
       /* Fill in all colormap entries that have this value of this component */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (ptr = j * blksize; ptr < total_colors; ptr += blkdist) {
 	/* fill in blksize entries beginning at ptr */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (k = 0; k < blksize; k++)
 	  colormap[i][ptr+k] = (JSAMPLE) val;
@@ -411,8 +411,8 @@ create_colorindex (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < cinfo->out_color_components; i++) {
     /* fill in colorindex entries for i'th color component */
@@ -430,14 +430,14 @@ create_colorindex (j_decompress_ptr cinfo)
     k = largest_input_value(cinfo, i, 0, nci-1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (j = 0; j <= MAXJSAMPLE; j++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       while (j > k)		/* advance val if past boundary */
 	k = largest_input_value(cinfo, i, ++val, nci-1);
@@ -448,8 +448,8 @@ create_colorindex (j_decompress_ptr cinfo)
     if (pad)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (j = 1; j <= MAXJSAMPLE; j++) {
 	indexptr[-j] = indexptr[0];
@@ -482,14 +482,14 @@ make_odither_array (j_decompress_ptr cinfo, int ncolors)
   den = 2 * ODITHER_CELLS * ((JPEG_INT32) (ncolors - 1));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (j = 0; j < ODITHER_SIZE; j++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (k = 0; k < ODITHER_SIZE; k++) {
       num = ((JPEG_INT32) (ODITHER_CELLS-1 - 2*((int)base_dither_matrix[j][k])))
@@ -519,16 +519,16 @@ create_odither_tables (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < cinfo->out_color_components; i++) {
     nci = cquantize->Ncolors[i]; /* # of distinct values for this color */
     odither = NULL;		/* search for matching prior component */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (j = 0; j < i; j++) {
       if (nci == cquantize->Ncolors[j]) {
@@ -563,23 +563,23 @@ color_quantize (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (row = 0; row < num_rows; row++) {
     ptrin = input_buf[row];
     ptrout = output_buf[row];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (col = width; col > 0; col--) {
       pixcode = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (ci = 0; ci < nc; ci++) {
 	pixcode += GETJSAMPLE(colorindex[ci][GETJSAMPLE(*ptrin++)]);
@@ -607,16 +607,16 @@ color_quantize3 (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (row = 0; row < num_rows; row++) {
     ptrin = input_buf[row];
     ptrout = output_buf[row];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (col = width; col > 0; col--) {
       pixcode  = GETJSAMPLE(colorindex0[GETJSAMPLE(*ptrin++)]);
@@ -647,8 +647,8 @@ quantize_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (row = 0; row < num_rows; row++) {
     /* Initialize output values to 0 so can process components separately */
@@ -657,8 +657,8 @@ quantize_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
     row_index = cquantize->row_index;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ci = 0; ci < nc; ci++) {
       input_ptr = input_buf[row] + ci;
@@ -669,8 +669,8 @@ quantize_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (col = width; col > 0; col--) {
 	/* Form pixel value + dither, range-limit to 0..MAXJSAMPLE,
@@ -715,8 +715,8 @@ quantize3_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (row = 0; row < num_rows; row++) {
     row_index = cquantize->row_index;
@@ -729,8 +729,8 @@ quantize3_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (col = width; col > 0; col--) {
       pixcode  = GETJSAMPLE(colorindex0[GETJSAMPLE(*input_ptr++) +
@@ -777,8 +777,8 @@ quantize_fs_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (row = 0; row < num_rows; row++) {
     /* Initialize output values to 0 so can process components separately */
@@ -786,8 +786,8 @@ quantize_fs_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 	      (size_t) (width * SIZEOF(JSAMPLE)));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ci = 0; ci < nc; ci++) {
       input_ptr = input_buf[row] + ci;
@@ -814,8 +814,8 @@ quantize_fs_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (col = width; col > 0; col--) {
 	/* cur holds the error propagated from the previous pixel on the
@@ -885,8 +885,8 @@ alloc_fs_workspace (j_decompress_ptr cinfo)
   arraysize = (size_t) ((cinfo->output_width + 2) * SIZEOF(FSERROR));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < cinfo->out_color_components; i++) {
     cquantize->fserrors[i] = (FSERRPTR)
@@ -944,8 +944,8 @@ start_pass_1_quant (j_decompress_ptr cinfo, wxjpeg_boolean is_pre_scan)
     arraysize = (size_t) ((cinfo->output_width + 2) * SIZEOF(FSERROR));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < cinfo->out_color_components; i++)
       jzero_far((void FAR *) cquantize->fserrors[i], arraysize);

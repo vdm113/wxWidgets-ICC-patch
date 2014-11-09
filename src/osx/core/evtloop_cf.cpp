@@ -196,8 +196,8 @@ void wxCFEventLoop::DoYieldFor(long eventsToProcess)
     // process all pending events:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( DoProcessEvents() == 1 )
         ;
@@ -207,8 +207,8 @@ void wxCFEventLoop::DoYieldFor(long eventsToProcess)
     // OnUpdateUI() which is a nice (and desired) side effect)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( ProcessIdle() ) {}
 
@@ -289,8 +289,8 @@ void wxCFEventLoop::OSXDoRun()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ;; )
     {
@@ -307,8 +307,8 @@ void wxCFEventLoop::OSXDoRun()
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( DoProcessEvents() == 1 )
                 ;
@@ -335,8 +335,8 @@ int wxCFEventLoop::DoRun()
 #if wxUSE_EXCEPTIONS
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ;; )
     {

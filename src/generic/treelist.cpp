@@ -84,8 +84,8 @@ public:
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxTreeListModelNode* node = m_child; node; )
         {
@@ -159,8 +159,8 @@ public:
         // is the index in the old one.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned n = 1, m = 1; n < numColumns - 1; n++, m++ )
         {
@@ -189,8 +189,8 @@ public:
         m_columnsTexts = new wxString[numColumns - 2];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned n = 1, m = 1; n < numColumns - 1; n++, m++ )
         {
@@ -281,8 +281,8 @@ public:
         // Recurse upwards until we find the next sibling.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxTreeListModelNode* node = m_parent; node; node = node->m_parent )
         {
@@ -632,8 +632,8 @@ void wxTreeListModel::InsertColumn(unsigned col)
     // Update all the items as they may have texts for the old columns.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( Node* node = m_root->GetChild(); node; node = node->NextInTree() )
     {
@@ -650,8 +650,8 @@ void wxTreeListModel::DeleteColumn(unsigned col)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( Node* node = m_root->GetChild(); node; node = node->NextInTree() )
         {
@@ -668,8 +668,8 @@ void wxTreeListModel::ClearColumns()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( Node* node = m_root->GetChild(); node; node = node->NextInTree() )
     {
@@ -716,8 +716,8 @@ wxTreeListModel::InsertItem(Node* parent,
             // Find the last child.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( ;; )
             {
@@ -763,8 +763,8 @@ void wxTreeListModel::DeleteItem(Node* item)
         // Find the sibling just before it.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( ;; )
         {
@@ -787,8 +787,8 @@ void wxTreeListModel::DeleteAllItems()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( m_root->GetChild() )
     {
@@ -999,8 +999,8 @@ wxTreeListModel::GetChildren(const wxDataViewItem& item,
     unsigned numChildren = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( Node* child = node->GetChild(); child; child = child->GetNext() )
     {
@@ -1423,8 +1423,8 @@ unsigned wxTreeListCtrl::GetSelections(wxTreeListItems& selections) const
     selections.resize(numSelected);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; n < numSelected; n++ )
         selections[n] = m_model->FromNonRootDVI(selectionsDV[n]);
@@ -1487,8 +1487,8 @@ wxTreeListCtrl::CheckItemRecursively(wxTreeListItem item, wxCheckBoxState state)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxTreeListItem child = GetFirstChild(item);
           child.IsOk();
@@ -1506,8 +1506,8 @@ void wxTreeListCtrl::UpdateItemParentStateRecursively(wxTreeListItem item)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ;; )
     {
@@ -1545,8 +1545,8 @@ wxTreeListCtrl::AreAllChildrenInState(wxTreeListItem item,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxTreeListItem child = GetFirstChild(item);
           child.IsOk();
@@ -1575,8 +1575,8 @@ bool wxTreeListCtrl::GetSortColumn(unsigned* col, bool* ascendingOrder)
     const unsigned numColumns = m_view->GetColumnCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; n < numColumns; n++ )
     {
@@ -1713,8 +1713,8 @@ void wxTreeListCtrl::OnSize(wxSizeEvent& event)
         int remainingWidth = rect.width - 5;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned n = 1; n < GetColumnCount(); n++ )
         {

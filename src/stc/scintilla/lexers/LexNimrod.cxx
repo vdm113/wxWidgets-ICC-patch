@@ -44,8 +44,8 @@ static int tillEndOfTripleQuote(Accessor &styler, int pos, int max) {
   /* search for """ */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (;;) {
     if (styler.SafeGetCharAt(pos, '\0') == '\0') return pos;
@@ -67,8 +67,8 @@ static bool inline isNewLine(int ch) {
 static int scanString(Accessor &styler, int pos, int max, bool rawMode) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (;;) {
     if (pos >= max) return pos;
@@ -86,8 +86,8 @@ static int scanString(Accessor &styler, int pos, int max, bool rawMode) {
 static int scanChar(Accessor &styler, int pos, int max) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (;;) {
     if (pos >= max) return pos;
@@ -135,8 +135,8 @@ static int scanNumber(Accessor &styler, int pos) {
     pos += 2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (;;) {
       ch = styler.SafeGetCharAt(pos, '\0');
@@ -149,8 +149,8 @@ static int scanNumber(Accessor &styler, int pos) {
     pos += 2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (;;) {
       ch = styler.SafeGetCharAt(pos, '\0');
@@ -162,8 +162,8 @@ static int scanNumber(Accessor &styler, int pos) {
     pos += 2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (;;) {
       ch = styler.SafeGetCharAt(pos, '\0');
@@ -176,8 +176,8 @@ static int scanNumber(Accessor &styler, int pos) {
     // skip decimal part:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (;;) {
       ch = styler.SafeGetCharAt(pos, '\0');
@@ -189,8 +189,8 @@ static int scanNumber(Accessor &styler, int pos) {
       ++pos; // skip '.'
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (;;) {
         ch = styler.SafeGetCharAt(pos, '\0');
@@ -204,8 +204,8 @@ static int scanNumber(Accessor &styler, int pos) {
       if (ch == '-' || ch == '+') ++pos;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (;;) {
         ch = styler.SafeGetCharAt(pos, '\0');
@@ -219,8 +219,8 @@ static int scanNumber(Accessor &styler, int pos) {
     pos++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (;;) {
       ch = styler.SafeGetCharAt(pos);
@@ -301,8 +301,8 @@ static void ColouriseNimrodDoc(unsigned int startPos, int length, int initStyle,
           pos++;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
           while (pos < max) {
             ch = styler.SafeGetCharAt(pos, LF);
@@ -331,8 +331,8 @@ static bool IsCommentLine(int line, Accessor &styler) {
 	int eol_pos = styler.LineStart(line + 1) - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
@@ -368,8 +368,8 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 	int indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, NULL);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (lineCurrent > 0) {
 		lineCurrent--;
@@ -397,8 +397,8 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 	// to end of document (in case of unclosed quote or comment at end).
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) ||
 	                                      prevQuote || prevComment)) {
@@ -449,8 +449,8 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (!quote &&
 		        (lineNext < docLines) &&

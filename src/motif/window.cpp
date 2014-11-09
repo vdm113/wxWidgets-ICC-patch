@@ -118,8 +118,8 @@ static int str16len(const char *s)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (s[0] && s[1]) {
         count++;
@@ -570,8 +570,8 @@ wxWindow *wxWindowBase::DoFindFocus()
     wxWindow *winFocus = NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst();
           node;
@@ -909,8 +909,8 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
     wxWindowList::compatibility_iterator cnode = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (cnode)
     {
@@ -1005,8 +1005,8 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
     wxList::compatibility_iterator  node = updateRects.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1035,8 +1035,8 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
     node = updateRects.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1167,8 +1167,8 @@ bool wxWindow::DoPopupMenu(wxMenu *menu, int x, int y)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (menu->GetId() == 1)
     {
@@ -1675,8 +1675,8 @@ void wxWindow::OnSysColourChanged(wxSysColourChangedEvent& event)
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( node )
     {
@@ -1708,8 +1708,8 @@ bool wxWindow::ProcessAccelerator(wxKeyEvent& event)
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < count; i++)
     {
@@ -1724,8 +1724,8 @@ bool wxWindow::ProcessAccelerator(wxKeyEvent& event)
             wxWindow* parent = this;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( parent && !parent->IsTopLevel() )
                 parent = parent->GetParent();
@@ -2052,8 +2052,8 @@ static void wxCanvasInputEvent(Widget drawingArea,
                 wxWindow *parent = canvas;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while (parent && !parent->IsTopLevel())
                     parent = parent->GetParent();
@@ -2486,8 +2486,8 @@ int wxComputeColours (Display *display, const wxColour * back, const wxColour * 
         /* 5 Colours to allocate */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int i = 0; i < 5; i++)
             if (!YAllocColor (dpy, cmap, &g_itemColors[i]))

@@ -305,8 +305,8 @@ if (in->IsOk())
         // list the contents of the archive
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ((entry.reset(arc->GetNextEntry())), entry.get() != NULL)
             std::wcout << entry->GetName().c_str() << "\n";

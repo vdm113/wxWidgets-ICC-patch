@@ -137,8 +137,8 @@ void StopWatchTestCase::BackwardsClockBug()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < 10; n++ )
     {
@@ -146,8 +146,8 @@ void StopWatchTestCase::BackwardsClockBug()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t m = 0; m < 10000; m++ )
         {

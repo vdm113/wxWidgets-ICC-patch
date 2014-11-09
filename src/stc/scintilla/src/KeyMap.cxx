@@ -30,8 +30,8 @@ using namespace Scintilla;
 KeyMap::KeyMap() {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int i = 0; MapDefault[i].key; i++) {
 		AssignCmdKey(MapDefault[i].key,

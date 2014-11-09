@@ -115,8 +115,8 @@ void LabelTestCase::GetLabel()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int s = 0; s < WXSIZEOF(testLabelArray); s++ )
     {
@@ -191,8 +191,8 @@ void LabelTestCase::GetLabelText()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int s = 0; s < WXSIZEOF(testLabelArray); s++ )
     {

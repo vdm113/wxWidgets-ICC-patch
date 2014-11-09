@@ -111,8 +111,8 @@ public:
         @note When using native notifications in wxGTK, the timeout is ignored
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for the notifications with @c wxICON_WARNING or @c wxICON_ERROR
             flags, they always remain shown unless they're explicitly hidden by

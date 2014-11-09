@@ -106,8 +106,8 @@ void LongLongTestCase::Conversion()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < ITEMS; n++ )
     {
@@ -142,15 +142,15 @@ void LongLongTestCase::Comparison()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < WXSIZEOF(testLongs); n++ )
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t m = 0; m < WXSIZEOF(lls); m++ )
         {
@@ -168,8 +168,8 @@ void LongLongTestCase::Addition()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < ITEMS; n++ )
     {
@@ -197,8 +197,8 @@ void LongLongTestCase::Multiplication()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < ITEMS; n++ )
     {
@@ -231,8 +231,8 @@ void LongLongTestCase::Division()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < ITEMS; n++ )
     {
@@ -244,8 +244,8 @@ void LongLongTestCase::Division()
         long l;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         do
         {
@@ -282,8 +282,8 @@ void LongLongTestCase::BitOperations()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t m = 0; m < ITEMS; m++ )
     {
@@ -291,8 +291,8 @@ void LongLongTestCase::BitOperations()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t n = 0; n < 33; n++ )
         {
@@ -333,8 +333,8 @@ void LongLongTestCase::ToString()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < WXSIZEOF(testLongs); n++ )
     {

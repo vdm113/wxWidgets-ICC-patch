@@ -121,8 +121,8 @@ void ScreenshotFrame::OnCaptureAllControls(wxCommandEvent& WXUNUSED(event))
                 int n = files.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (int i = 0; i < n; ++i)
                     wxRemoveFile(files[i]);

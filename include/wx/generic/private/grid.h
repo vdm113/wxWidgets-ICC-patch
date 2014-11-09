@@ -194,8 +194,8 @@ private:
             // add columns for the new elements
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( unsigned n = countOld; n < count; n++ )
                 m_columns.push_back(wxGridHeaderColumn(GetOwner(), n));
@@ -806,8 +806,8 @@ public:
         int pos = GetLinePos(coords);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( pos )
         {
@@ -830,8 +830,8 @@ public:
         int pos = GetLinePos(coords);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( ;; )
         {
@@ -872,8 +872,8 @@ public:
         int pos = GetLinePos(coords);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( pos < m_numLines - 1 )
         {
@@ -890,8 +890,8 @@ public:
         int pos = GetLinePos(coords);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( ;; )
         {

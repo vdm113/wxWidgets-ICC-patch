@@ -106,8 +106,8 @@ FindNext(FIND_DATA fd, const wxString& filter, FIND_STRUCT *finddata)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ;; )
     {
@@ -287,8 +287,8 @@ bool wxDirData::Read(wxString *filename)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ;; )
     {

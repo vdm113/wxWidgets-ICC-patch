@@ -37,8 +37,8 @@ using namespace Scintilla;
 LexerBase::LexerBase() {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int wl = 0; wl < numWordLists; wl++)
 		keyWordLists[wl] = new WordList;
@@ -48,8 +48,8 @@ LexerBase::LexerBase() {
 LexerBase::~LexerBase() {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int wl = 0; wl < numWordLists; wl++) {
 		delete keyWordLists[wl];

@@ -277,8 +277,8 @@ void wxTipWindowView::Adjust(const wxString& text, wxCoord maxLength)
     bool breakLine = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( const wxChar *p = text.c_str(); ; p++ )
     {
@@ -356,8 +356,8 @@ void wxTipWindowView::OnPaint(wxPaintEvent& WXUNUSED(event))
     size_t count = m_parent->m_textLines.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {

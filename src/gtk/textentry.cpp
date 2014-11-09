@@ -362,8 +362,8 @@ bool wxTextEntry::DoAutoCompleteStrings(const wxArrayString& choices)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxArrayString::const_iterator i = choices.begin();
           i != choices.end();

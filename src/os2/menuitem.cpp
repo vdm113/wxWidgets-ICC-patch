@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/menuitem.cpp
 // Purpose:     wxMenuItem implementation
@@ -182,6 +175,11 @@ wxString wxMenuItemBase::GetLabelText(
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (const wxChar* zPc = rsText.c_str(); *zPc; zPc++)
     {
         if (*zPc == wxT('~') || *zPc == wxT('&'))
@@ -324,6 +322,11 @@ void wxMenuItem::Check(
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
         for (int n = nStart; n <= nEnd && node; n++)
         {

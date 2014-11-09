@@ -1053,8 +1053,8 @@ DnDFrame::DnDFrame()
     // make all columns of reasonable minimal size
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; n < sizer_top->GetChildren().size(); n++ )
         sizer_top->SetItemMinSize(n, 200, 300);
@@ -1460,8 +1460,8 @@ void DnDFrame::OnCopyFiles(wxCommandEvent& WXUNUSED(event))
     wxArrayString filenames;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( dialog.ShowModal() == wxID_OK )
     {
@@ -1474,8 +1474,8 @@ void DnDFrame::OnCopyFiles(wxCommandEvent& WXUNUSED(event))
         size_t count = filenames.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t n = 0; n < count; n++ )
         {
@@ -1610,8 +1610,8 @@ bool DnDFile::OnDropFiles(wxCoord, wxCoord, const wxArrayString& filenames)
         m_pOwner->Append(str);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t n = 0; n < nFiles; n++ )
             m_pOwner->Append(filenames[n]);
@@ -1754,8 +1754,8 @@ void DnDShapeDialog::OnColour(wxCommandEvent& WXUNUSED(event))
     data.SetChooseFull(true);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < 16; i++)
     {

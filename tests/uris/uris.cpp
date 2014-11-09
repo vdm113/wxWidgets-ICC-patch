@@ -411,8 +411,8 @@ void URITestCase::URLCompat()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < WXSIZEOF(pszProblemUrls); ++i )
     {
@@ -428,8 +428,8 @@ void URITestCase::URLCompat()
         char buf[1001];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for( ;; )
         {

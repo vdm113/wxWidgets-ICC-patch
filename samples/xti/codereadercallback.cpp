@@ -130,8 +130,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int i = 0; i < ci->GetCreateParamCount(); ++i )
         {
@@ -210,8 +210,8 @@ void wxObjectCodeReaderCallback::CreateObject(int objectID,
                        m_data->GetObjectName(objectID).c_str() ) );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < paramCount; i++)
     {
@@ -252,8 +252,8 @@ void wxObjectCodeReaderCallback::ConstructObject(int objectID,
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < paramCount; i++)
     {

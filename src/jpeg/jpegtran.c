@@ -147,8 +147,8 @@ parse_switches (j_compress_ptr cinfo, int argc, char **argv,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (argn = 1; argn < argc; argn++) {
     arg = argv[argn];

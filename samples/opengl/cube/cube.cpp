@@ -64,8 +64,8 @@ static void CheckGLError()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ;; )
     {
@@ -172,8 +172,8 @@ TestGLContext::TestGLContext(wxGLCanvas *canvas)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned i = 0; i < WXSIZEOF(m_textures); i++ )
     {
@@ -348,8 +348,8 @@ TestGLCanvas::TestGLCanvas(wxWindow *parent, int *attribList)
         int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( attribList[i] != 0 )
         {

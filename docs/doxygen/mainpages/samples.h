@@ -405,8 +405,8 @@ documents without much work. In fact, only few function calls are sufficient.
 wxHtmlHelpController in your application
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 while @e Helpview is a simple tool that only pops up the help window and
 displays help books given at command line.
@@ -640,8 +640,8 @@ Sample application has following additional examples of custom properties:
 - wxAdvImageFileProperty ( like wxImageFileProperty, but also has a drop-down
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for recent image selection )
 - wxDirsProperty ( edits a wxArrayString consisting of directory strings)
@@ -783,8 +783,8 @@ This sample shows how to create and use wxStatusBar. Although most of the
 samples have a statusbar, they usually only create a default one and only
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 do it once.
 
@@ -945,8 +945,8 @@ The wxWebView sample demonstarates the various capabilities of the wxWebView
 control. It is set up as a simple single window web browser, but with support
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 for many of the more complex wxWebView features, including browsing through 
 archives.

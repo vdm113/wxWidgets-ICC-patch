@@ -126,8 +126,8 @@ public:
         @a excludeItem is given then it will not be checked for intersection,
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for example it may be the item we are checking the position of.
     */

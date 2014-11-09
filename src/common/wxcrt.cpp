@@ -778,8 +778,8 @@ WXDLLIMPEXP_BASE int wxCRT_StricmpA(const char *psz1, const char *psz2)
   char c1, c2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   do {
     c1 = wxTolower(*psz1++);
@@ -795,8 +795,8 @@ WXDLLIMPEXP_BASE int wxCRT_StricmpW(const wchar_t *psz1, const wchar_t *psz2)
   wchar_t c1, c2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   do {
     c1 = wxTolower(*psz1++);
@@ -846,8 +846,8 @@ extern "C" WXDLLIMPEXP_BASE size_t wxCRT_StrlenW(const wchar_t *s)
     size_t n = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( *s++ )
         n++;
@@ -963,8 +963,8 @@ wxCRT_StrtoullBase(const T* nptr, T** endptr, int base, T* sign)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ; i != end; ++i )
     {

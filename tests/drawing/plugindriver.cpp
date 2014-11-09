@@ -47,8 +47,8 @@ void GraphicsContextDrawingTestCase::RunPluginsDrawingCase (
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (size_t idx=0; idx<pluginsNameArray.size(); ++idx)
         {
@@ -89,8 +89,8 @@ void GraphicsContextDrawingTestCase::RunPluginsDrawingCase (
     // now execute the test case for each plugin
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t idxp=0; idxp<m_drawingPlugins.size(); ++idxp)
     {

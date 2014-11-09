@@ -77,8 +77,8 @@ WXDLLIMPEXP_BASE size_t wxWC2MB(char *buf, const wchar_t *psz, size_t n);
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(;l && *s != c;--l, ++s) {}
 
@@ -91,8 +91,8 @@ WXDLLIMPEXP_BASE size_t wxWC2MB(char *buf, const wchar_t *psz, size_t n);
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(; *sz1 == *sz2 && len; --len, ++sz1, ++sz2) {}
 
@@ -118,8 +118,8 @@ WXDLLIMPEXP_BASE size_t wxWC2MB(char *buf, const wchar_t *psz, size_t n);
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (len--)
             *szOut++ = cIn;
@@ -199,8 +199,8 @@ inline size_t wxStrnlen(const char *str, size_t maxlen)
     size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < maxlen; n++ )
         if ( !str[n] )
@@ -218,8 +218,8 @@ inline size_t wxStrnlen(const wchar_t *str, size_t maxlen)
     size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < maxlen; n++ )
         if ( !str[n] )

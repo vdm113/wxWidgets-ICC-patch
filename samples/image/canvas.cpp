@@ -342,8 +342,8 @@ MyCanvas::MyCanvas( wxWindow *parent, wxWindowID id,
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i=0; i < m_ani_images; i++)
     {
@@ -655,8 +655,8 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
     dc.DrawText( wxT("ANI handler"), 230, 2390 );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i=0; i < m_ani_images; i++ )
     {
@@ -700,14 +700,14 @@ void MyCanvas::CreateAntiAliasedBitmap()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int y = 1; y < 149; y++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int x = 1; x < 149; x++)
         {

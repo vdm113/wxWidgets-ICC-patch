@@ -567,8 +567,8 @@ RegImageList::RegImageList() : wxImageList(16, 16, true)
     wxString str = wxT("icon_");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int n = 0; n < WXSIZEOF(aszIcons); n++ )
     {
@@ -676,8 +676,8 @@ void RegTreeCtrl::AddStdKeys()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int ui = 0; ui < wxRegKey::nStdKeys; ui++ )
     {
@@ -1042,8 +1042,8 @@ bool RegTreeCtrl::TreeNode::OnExpand()
     bCont = m_pKey->GetFirstKey(str, l);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( bCont )
     {
@@ -1063,8 +1063,8 @@ bool RegTreeCtrl::TreeNode::OnExpand()
     bCont = m_pKey->GetFirstValue(str, l);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( bCont )
     {
@@ -1192,8 +1192,8 @@ void RegTreeCtrl::TreeNode::DestroyChildren()
     size_t nCount = m_aChildren.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < nCount; n++ )
     {
@@ -1236,8 +1236,8 @@ void RegTreeCtrl::TreeNode::SetRegistryView(wxRegKey::WOW64ViewMode viewMode)
     size_t nCount = m_aChildren.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t n = 0; n < nCount; n++)
         m_aChildren[n]->SetRegistryView(viewMode);
@@ -1255,8 +1255,8 @@ void RegTreeCtrl::GoTo(const wxString& location)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( tk.HasMoreTokens() )
     {
@@ -1274,8 +1274,8 @@ void RegTreeCtrl::GoTo(const wxString& location)
             // special case: we understand both HKCU and HKEY_CURRENT_USER here
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( size_t key = 0; key < wxRegKey::nStdKeys; key++ )
             {
@@ -1293,8 +1293,8 @@ void RegTreeCtrl::GoTo(const wxString& location)
             // enum all children
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( id.IsOk() )
             {

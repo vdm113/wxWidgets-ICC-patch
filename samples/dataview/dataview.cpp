@@ -683,8 +683,8 @@ void MyFrame::BuildDataViewCtrl(wxPanel* parent, unsigned int nPanel, unsigned l
             wxVector<wxVariant> data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (unsigned int i=0; i<10; i++)
             {
@@ -768,8 +768,8 @@ void MyFrame::OnPageChanged( wxBookCtrlEvent& WXUNUSED(event) )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int id = ID_MULTIPLE; id <= ID_VERT_RULES; id++)
     {
@@ -928,8 +928,8 @@ void MyFrame::DeleteSelectedItems()
     int len = m_ctrl[0]->GetSelections( items );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( int i = 0; i < len; i ++ )
         if (items[i].IsOk())
@@ -1139,8 +1139,8 @@ void MyFrame::OnSortedList( wxDataViewEvent &/*event*/)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxVector<wxDataViewColumn *>::const_iterator it = columns.begin(),
                                                       end = columns.end();

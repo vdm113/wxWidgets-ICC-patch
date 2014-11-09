@@ -960,8 +960,8 @@ void GridFrame::DeleteSelectedRows( wxCommandEvent& WXUNUSED(ev) )
         wxGridUpdateLocker locker(grid);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int n = 0; n < grid->GetNumberRows(); )
         {
@@ -980,8 +980,8 @@ void GridFrame::AutoSizeRow(wxCommandEvent& WXUNUSED(event))
     const wxArrayInt sels  = grid->GetSelectedRows();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0, count = sels.size(); n < count; n++ )
     {
@@ -995,8 +995,8 @@ void GridFrame::AutoSizeCol(wxCommandEvent& WXUNUSED(event))
     const wxArrayInt sels  = grid->GetSelectedCols();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0, count = sels.size(); n < count; n++ )
     {
@@ -1010,8 +1010,8 @@ void GridFrame::AutoSizeRowLabel(wxCommandEvent& WXUNUSED(event))
     const wxArrayInt sels  = grid->GetSelectedRows();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0, count = sels.size(); n < count; n++ )
     {
@@ -1025,8 +1025,8 @@ void GridFrame::AutoSizeColLabel(wxCommandEvent& WXUNUSED(event))
     const wxArrayInt sels  = grid->GetSelectedCols();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0, count = sels.size(); n < count; n++ )
     {
@@ -1058,8 +1058,8 @@ void GridFrame::DeleteSelectedCols( wxCommandEvent& WXUNUSED(ev) )
         wxGridUpdateLocker locker(grid);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int n = 0; n < grid->GetNumberCols(); )
         {
@@ -1653,8 +1653,8 @@ void BugsGridTable::SetValue( int row, int col, const wxString& value )
                 size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( n = 0; n < WXSIZEOF(severities); n++ )
                 {
@@ -2077,8 +2077,8 @@ private:
         wxString s;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int pos = 0; pos < TabularGridTable::COL_MAX; pos++ )
         {
@@ -2305,8 +2305,8 @@ void GridFrame::OnGridRender( wxCommandEvent& event )
     wxGridSizesInfo sizeinfo = grid->GetColSizes();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = topLeft.GetCol(); i <= bottomRight.GetCol(); i++ )
     {
@@ -2317,8 +2317,8 @@ void GridFrame::OnGridRender( wxCommandEvent& event )
     sizeinfo = grid->GetRowSizes();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = topLeft.GetRow(); i <= bottomRight.GetRow(); i++ )
     {

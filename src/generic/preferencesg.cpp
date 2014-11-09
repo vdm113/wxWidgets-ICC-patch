@@ -133,8 +133,8 @@ protected:
         //       it possible to defer the creation.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( Pages::const_iterator i = m_pages.begin();
               i != m_pages.end();

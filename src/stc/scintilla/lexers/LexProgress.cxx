@@ -66,8 +66,8 @@ static void Colourise4glDoc(unsigned int startPos, int length, int initStyle, Wo
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; sc.More(); sc.Forward()) {
 
@@ -89,8 +89,8 @@ static void Colourise4glDoc(unsigned int startPos, int length, int initStyle, Wo
 				// Skip whitespace between ~ and EOL
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				while (sc.More() && (sc.chNext == ' ' || sc.chNext == '\t') ) {
 					sc.Forward();
@@ -193,8 +193,8 @@ static void Colourise4glDoc(unsigned int startPos, int length, int initStyle, Wo
 				// Skip whitespace between & and preprocessor word
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				do {
 					sc.Forward();
@@ -245,8 +245,8 @@ static void FoldNoBox4glDoc(unsigned int startPos, int length, int initStyle,
 	int style = initStyle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;

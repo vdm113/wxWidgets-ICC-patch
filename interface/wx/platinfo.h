@@ -236,8 +236,8 @@ public:
         Returns the global wxPlatformInfo object, initialized with the values
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the currently running platform.
     */

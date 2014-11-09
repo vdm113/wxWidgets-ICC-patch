@@ -424,8 +424,8 @@ public:
             will be at least the size returned by GetScrollButtonMinimumSize()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for a scroll button with the same style. For tab scroll buttons,
             this rectangle will be entirely within a rectangle on the same

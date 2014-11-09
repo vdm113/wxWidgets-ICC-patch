@@ -190,8 +190,8 @@ LZMADecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do {
 		/*
@@ -298,8 +298,8 @@ LZMAEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do {
 		lzma_ret ret = lzma_code(&sp->stream, LZMA_RUN);
@@ -333,8 +333,8 @@ LZMAPostEncode(TIFF* tif)
 	sp->stream.avail_in = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do {
 		ret = lzma_code(&sp->stream, LZMA_FINISH);

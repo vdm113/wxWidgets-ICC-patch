@@ -376,8 +376,8 @@ public:
         This function is typically called when the user clicks on a column used
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for sorting to change sort order from ascending to descending or vice
         versa.
@@ -416,8 +416,8 @@ public:
         The first constructor creates a header showing the given text @a title
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while the second one creates one showing the specified @a bitmap image.
      */

@@ -234,8 +234,8 @@ void wxToggleButton::DoApplyWidgetStyle(GtkRcStyle *style)
             wxGtkList list(gtk_container_get_children(GTK_CONTAINER(box)));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (GList* item = list; item; item = item->next)
             {

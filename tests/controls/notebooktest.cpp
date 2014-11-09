@@ -90,8 +90,8 @@ void NotebookTestCase::RowCount()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( unsigned int i = 0; i < 10; i++ )
     {

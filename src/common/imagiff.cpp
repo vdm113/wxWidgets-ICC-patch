@@ -160,8 +160,8 @@ bool wxIFFDecoder::ConvertToImage(wxImage *image) const
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < colors; i++)
         {
@@ -191,8 +191,8 @@ bool wxIFFDecoder::ConvertToImage(wxImage *image) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < colors; i++)
         {
@@ -212,8 +212,8 @@ bool wxIFFDecoder::ConvertToImage(wxImage *image) const
     // copy image data
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < (long)(GetWidth() * GetHeight()); i++, src += 3, dst += 3)
     {
@@ -280,8 +280,8 @@ static void decomprle(const byte *sptr, byte *dptr, long slen, long dlen)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ((slen > 0) && (dlen > 0)) {
     // read control byte
@@ -294,8 +294,8 @@ static void decomprle(const byte *sptr, byte *dptr, long slen, long dlen)
         dlen -= codeByte;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (codeByte > 0) {
             *dptr++ = *sptr++;
@@ -313,8 +313,8 @@ static void decomprle(const byte *sptr, byte *dptr, long slen, long dlen)
         dlen -= codeByte;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (codeByte > 0) {
             *dptr++ = dataByte;
@@ -425,8 +425,8 @@ int wxIFFDecoder::ReadIFF()
     int colors = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (dataptr + 8 <= dataend) {
     // get chunk length and make even
@@ -468,8 +468,8 @@ int wxIFFDecoder::ReadIFF()
         // copy colors to color map
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int i=0; i < colors; i++) {
             m_image->pal[3*i + 0] = *cmapptr++;
@@ -569,8 +569,8 @@ int wxIFFDecoder::ReadIFF()
             int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < m_image->colors; i++) {
             pal[3*i + 0] = m_image->pal[3*i + 0];
@@ -579,8 +579,8 @@ int wxIFFDecoder::ReadIFF()
             }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (; i < colors; i++) {
             pal[3*i + 0] = 0;
@@ -594,8 +594,8 @@ int wxIFFDecoder::ReadIFF()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (int i=0; i < colors; i++) {
             m_image->pal[3*i + 0] = (m_image->pal[3*i + 0] >> 4) * 17;
@@ -625,8 +625,8 @@ int wxIFFDecoder::ReadIFF()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int i=0; i < height; i++) {
             byte bitmsk = 0x80;
@@ -639,8 +639,8 @@ int wxIFFDecoder::ReadIFF()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (int j=0; j < bmhd_width; j++) {
             long col = 0;
@@ -648,8 +648,8 @@ int wxIFFDecoder::ReadIFF()
             const byte *workptr3 = workptr2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (int k=0; k < bmhd_bitplanes; k++) {
                 if (*workptr3 & bitmsk) {
@@ -720,8 +720,8 @@ int wxIFFDecoder::ReadIFF()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (int i=0; i<32; i++) {
             pal[3*(i + 32) + 0] = pal[3*i + 0] >> 1;
@@ -739,16 +739,16 @@ int wxIFFDecoder::ReadIFF()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int i=0; i < height; i++) {
             byte bitmsk = 0x80;                 // left most bit (mask)
             const byte *workptr2 = workptr;     // work ptr to source
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (int j=0; j < bmhd_width; j++) {
             long col = 0;
@@ -757,8 +757,8 @@ int wxIFFDecoder::ReadIFF()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (int k=0; k < bmhd_bitplanes; k++) {
                 if (*workptr3 & bitmsk) { // if bit set in this pln

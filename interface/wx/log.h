@@ -421,8 +421,8 @@ public:
         Calling this function with @false argument disables all log messages
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the current thread.
 
@@ -540,8 +540,8 @@ public:
         OnLog() which also checks if the logging (for this level) is enabled
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while this method just directly calls DoLog().
 

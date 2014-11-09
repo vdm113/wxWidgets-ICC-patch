@@ -330,8 +330,8 @@ public:
         This is just an alias for wxFileName::Mkdir(); refer to that function
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for more info.
     */
@@ -350,8 +350,8 @@ public:
         This is just an alias for wxFileName::Rmdir(); refer to that function
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for more info.
     */
@@ -373,8 +373,8 @@ public:
         is called and @ref wxDirTraverser::OnFile() "sink.OnFile()" is called
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for every file. Depending on the return value, the enumeration may
         continue or stop. If entering a subdirectory fails, @ref

@@ -240,8 +240,8 @@ void wxFileDialogBase::SetFilterIndexFromExt(const wxString& ext)
         (void)wxParseCommonDialogsFilter(m_wildCard, descriptions, filters);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (size_t n=0; n<filters.GetCount(); n++)
         {

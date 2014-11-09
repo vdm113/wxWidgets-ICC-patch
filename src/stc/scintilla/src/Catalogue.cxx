@@ -39,8 +39,8 @@ const LexerModule *Catalogue::Find(int language) {
 	Scintilla_LinkLexers();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (std::vector<LexerModule *>::iterator it=lexerCatalogue.begin();
 		it != lexerCatalogue.end(); ++it) {
@@ -56,8 +56,8 @@ const LexerModule *Catalogue::Find(const char *languageName) {
 	if (languageName) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (std::vector<LexerModule *>::iterator it=lexerCatalogue.begin();
 			it != lexerCatalogue.end(); ++it) {

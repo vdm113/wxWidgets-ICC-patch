@@ -313,8 +313,8 @@ int wxRibbonAUIArtProvider::GetTabCtrlHeight(
         size_t numpages = pages.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(size_t i = 0; i < numpages; ++i)
         {
@@ -851,8 +851,8 @@ void wxRibbonAUIArtProvider::DrawPartialPanelBackground(wxDC& dc,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(; parent; parent = parent->GetParent())
     {

@@ -497,8 +497,8 @@ void MyFrame::OnTest3(wxCommandEvent& WXUNUSED(event))
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (size_t i = 0; i < len * 1024; i ++)
     buf1.data()[i] = (char)(i % 256);

@@ -134,8 +134,8 @@ bool wxAnimation::Load(wxInputStream &stream, wxAnimationType type)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxAnimationDecoderList::compatibility_iterator node = sm_handlers.GetFirst();
               node; node = node->GetNext() )
@@ -224,8 +224,8 @@ const wxAnimationDecoder *wxAnimation::FindHandler( wxAnimationType animType )
     wxAnimationDecoderList::compatibility_iterator node = sm_handlers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -251,8 +251,8 @@ void wxAnimation::CleanUpHandlers()
     wxAnimationDecoderList::compatibility_iterator node = sm_handlers.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -481,8 +481,8 @@ bool wxAnimationCtrl::RebuildBackingStoreUpToFrame(unsigned int frame)
     // Draw all intermediate frames that haven't been removed from the animation
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int i = 0; i < frame; i++)
     {

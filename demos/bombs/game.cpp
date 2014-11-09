@@ -69,15 +69,15 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(x=0; x<m_width; x++)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(y=0; y<m_height; y++)
         {
@@ -99,14 +99,14 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
     m_numBombCells = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(x=0; x<m_width; x++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(y=0; y<m_height; y++)
             if (m_field[x+y*m_width] & BG_BOMB)
@@ -115,15 +115,15 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for(xx=x-1; xx<=x+1; xx++)
                     if (xx>=0 && xx<m_width)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                         for(yy=y-1; yy<=y+1; yy++)
                             if (yy>=0 && yy<m_height && (yy!=y || xx!=x))

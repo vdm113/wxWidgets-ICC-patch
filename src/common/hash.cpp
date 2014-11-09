@@ -70,8 +70,8 @@ void wxHashTableBase::Create( wxKeyType keyType, size_t size )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( size_t i = 0; i < m_size; ++i )
         m_table[i] = NULL;
@@ -81,8 +81,8 @@ void wxHashTableBase::Clear()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( size_t i = 0; i < m_size; ++i )
     {
@@ -95,8 +95,8 @@ void wxHashTableBase::Clear()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         do
         {
@@ -133,8 +133,8 @@ void wxHashTableBase::DoRemoveNode( wxHashTableBase_Node* node )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for( curr = prev->GetNext(); curr != node;
              prev = curr, curr = curr->GetNext() ) ;
@@ -218,8 +218,8 @@ void* wxHashTableBase::DoGet( long key, long hash ) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -247,8 +247,8 @@ void* wxHashTableBase::DoGet( const wxString& key, long hash ) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -292,8 +292,8 @@ void* wxHashTableBase::DoDelete( long key, long hash )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -331,8 +331,8 @@ void* wxHashTableBase::DoDelete( const wxString& key, long hash )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -362,8 +362,8 @@ long wxHashTableBase::MakeKey( const wxString& str )
     const wxStringCharType *p = str.wx_str();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while( *p )
         int_key += *p++;
@@ -405,8 +405,8 @@ void wxHashTable::GetNextNode( size_t bucketStart )
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( size_t i = bucketStart; i < m_size; ++i )
     {

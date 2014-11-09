@@ -135,8 +135,8 @@ static void wxAddAccelerators(wxList& accelEntries, wxMenu* menu)
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < menu->GetMenuItems().GetCount(); i++)
     {
@@ -166,8 +166,8 @@ static wxAcceleratorTable wxCreateAcceleratorTableForMenuBar(wxMenuBar* menuBar)
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < menuBar->GetMenuCount(); i++)
     {
@@ -183,8 +183,8 @@ static wxAcceleratorTable wxCreateAcceleratorTableForMenuBar(wxMenuBar* menuBar)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < accelEntries.GetCount(); i++)
     {
@@ -237,8 +237,8 @@ bool wxFrame::ShowFullScreen(bool show, long style)
     };
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < 3; i++)
     {

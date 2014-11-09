@@ -833,8 +833,8 @@ int wxKillAllChildren(long pid, wxSignal sig, wxKillError *krc)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do {
         if (pe.th32ParentProcessID == (DWORD) pid) {
@@ -1599,8 +1599,8 @@ extern long wxCharsetToCodepage(const char *name)
     // follow the alias loop
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ;; )
     {

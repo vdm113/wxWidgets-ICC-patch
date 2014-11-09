@@ -786,8 +786,8 @@ wxThreadInternal::WaitForTerminate(wxCriticalSection& cs,
     DWORD result wxDUMMY_INITIALIZE(0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -854,8 +854,8 @@ wxThreadInternal::WaitForTerminate(wxCriticalSection& cs,
     // terminated if the "if" above hadn't been taken
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ;; )
     {
@@ -997,8 +997,8 @@ bool wxThread::SetConcurrency(size_t WXUNUSED_IN_WINCE(level))
     DWORD bit = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( bit )
     {

@@ -642,8 +642,8 @@ void wxMenuItem::Check(bool check)
             wxMenuItemList::compatibility_iterator node = items.Item(start);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( int n = start; n <= end && node; n++ )
             {
@@ -1425,8 +1425,8 @@ int wxMenuItem::MSGetMenuItemPos() const
     const int menuItems = ::GetMenuItemCount(hMenu);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < menuItems; i++ )
     {

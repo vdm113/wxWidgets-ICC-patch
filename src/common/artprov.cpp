@@ -209,8 +209,8 @@ wxArtProvider::~wxArtProvider()
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( !sm_providers->empty() )
             delete *sm_providers->begin();
@@ -240,8 +240,8 @@ wxArtProvider::~wxArtProvider()
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (wxArtProvidersList::compatibility_iterator node = sm_providers->GetFirst();
              node; node = node->GetNext())
@@ -322,8 +322,8 @@ wxIconBundle wxArtProvider::DoGetIconBundle(const wxArtID& id, const wxArtClient
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (wxArtProvidersList::compatibility_iterator node = sm_providers->GetFirst();
              node; node = node->GetNext())

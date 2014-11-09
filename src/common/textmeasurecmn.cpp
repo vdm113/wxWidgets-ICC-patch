@@ -120,8 +120,8 @@ void wxTextMeasureBase::GetMultiLineTextExtent(const wxString& text,
     wxString curLine;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxString::const_iterator pc = text.begin(); ; ++pc )
     {
@@ -186,8 +186,8 @@ wxSize wxTextMeasureBase::GetLargestStringExtent(size_t n,
     wxCoord w, h, widthMax = 0, heightMax = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < n; ++i )
     {
@@ -271,8 +271,8 @@ bool wxTextMeasureBase::DoGetPartialTextExtents(const wxString& text,
     int n = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxString::const_iterator it = text.begin();
           it != text.end();

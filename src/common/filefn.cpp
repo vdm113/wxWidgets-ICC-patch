@@ -184,8 +184,8 @@ void wxPathList::Add(const wxArrayString &arr)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t j=0; j < arr.GetCount(); j++)
         Add(arr[j]);
@@ -249,8 +249,8 @@ wxString wxPathList::FindValidPath (const wxString& file) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i=0; i<GetCount(); i++)
     {
@@ -343,8 +343,8 @@ static void wxDoStripExtension(T *buffer)
     int i = len-1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (i > 0)
     {
@@ -382,8 +382,8 @@ static CharType *wxDoRealPath (CharType *path)
       p = &path[2];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (; *p; p++)
       {
@@ -394,8 +394,8 @@ static CharType *wxDoRealPath (CharType *path)
                 CharType *q;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (q = p - 1; q >= path && *q != SEP; q--)
                 {
@@ -527,8 +527,8 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
     /* Skip leading whitespace and cr */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (wxStrchr(trimchars, *nm) != NULL)
         nm++;
@@ -536,8 +536,8 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
     s = nm + (q = wxStrlen(nm)) - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (q-- && wxStrchr(trimchars, *s) != NULL)
         *s = wxT('\0');
@@ -553,8 +553,8 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
     /* Expand inline environment variables */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ((*d++ = *s) != 0) {
 #  ifndef __WINDOWS__
@@ -579,8 +579,8 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
             CharType  *value;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ((*d++ = *s) != 0)
                 if (braces ? (*s == wxT('}') || *s == wxT(')')) : !(wxIsalnum(*s) || *s == wxT('_')) )
@@ -592,8 +592,8 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
             if (value) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ((d = start - 1); (*d++ = *value++) != 0;)
                 {
@@ -628,8 +628,8 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
             CharType  *nnm;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (s = nm; *s && *s != SEP; s++)
             {
@@ -659,8 +659,8 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
         /* Copy home dir */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (wxT('\0') != (*d++ = *s++))
           /* loop */;
@@ -783,8 +783,8 @@ wxPathOnly (wxChar *path)
         // Search backward for a backward or forward slash
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (i > -1)
         {
@@ -837,8 +837,8 @@ wxString wxPathOnly (const wxString& path)
         // Search backward for a backward or forward slash
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (i > -1)
         {
@@ -1022,8 +1022,8 @@ wxConcatFiles (const wxString& file1, const wxString& file2, const wxString& fil
         wxFile *in = i==0 ? &in1 : &in2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         do{
             if ( (ofs = in->Read(buf,WXSIZEOF(buf))) == wxInvalidOffset ) return false;
@@ -1463,8 +1463,8 @@ wxChar *wxDoGetCwd(wxChar *buf, int sz)
         //     with / deliminers. We don't like that.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (wxChar *ch = buf; *ch; ch++)
         {
@@ -1715,8 +1715,8 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
             //     C/C++ Files(*.h)|*.h
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( size_t k=i;k<i+2;k++ )
             {

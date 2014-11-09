@@ -246,8 +246,8 @@ void GUIFrame::AddPanel_2()
     m_listCtrl1->InsertColumn(1, "Values");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(long index = 0; index < 5; index++) {
         m_listCtrl1->InsertItem( index, wxString::Format(_("Item%d"),index));

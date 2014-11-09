@@ -57,8 +57,8 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
     char **argvDFB = new char *[argc + 1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < argc; i++ )
     {
@@ -77,15 +77,15 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
         // we have to drop the parameters which were consumed by DFB+
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < argcDFB; i++ )
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( strcmp(wxConvUTF8.cWX2MB(argv[i]), argvDFB[i]) != 0 )
             {
@@ -100,8 +100,8 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
     // free our copy
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < argcDFB; i++ )
     {

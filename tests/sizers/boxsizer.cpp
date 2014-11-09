@@ -199,8 +199,8 @@ void BoxSizerTestCase::Size3()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned i = 0; i < WXSIZEOF(layoutTestData); i++ )
     {
@@ -213,8 +213,8 @@ void BoxSizerTestCase::Size3()
         // specifically disabled for this test case
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned p = 0; p < 3; p++)
         {
@@ -244,8 +244,8 @@ void BoxSizerTestCase::Size3()
             unsigned j;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( j = 0; j < WXSIZEOF(child); j++ )
                 ltd.AddToSizer(m_sizer, child[j], j);
@@ -255,8 +255,8 @@ void BoxSizerTestCase::Size3()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( j = 0; j < WXSIZEOF(child); j++ )
             {
@@ -309,16 +309,16 @@ void BoxSizerTestCase::CalcMin()
     wxWindow *child[NUM_TEST_ITEM];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < NUM_TEST_ITEM; n++ )
         child[n] = new wxWindow(m_win, wxID_ANY);
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned i = 0; i < WXSIZEOF(calcMinTestData); i++ )
     {
@@ -327,8 +327,8 @@ void BoxSizerTestCase::CalcMin()
         const CalcMinTestData& cmtd = calcMinTestData[i];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( n = 0; n < NUM_TEST_ITEM; n++ )
         {

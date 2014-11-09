@@ -134,8 +134,8 @@ public:
         Returns the name of the volume; this is the internal name
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the volume used by the operating system.
     */

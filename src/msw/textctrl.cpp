@@ -926,8 +926,8 @@ wxString wxTextCtrl::GetRange(long from, long to) const
                     // style - convert it to something reasonable
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for ( ; *p; p++ )
                     {
@@ -1013,8 +1013,8 @@ wxRichEditStreamIn(DWORD_PTR dwCookie, BYTE *buf, LONG cb, LONG *pcb)
     const wchar_t *wpc = *ppws;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( cb && *wpc )
     {
@@ -1047,8 +1047,8 @@ wxRichEditStreamOut(DWORD_PTR dwCookie, BYTE *buf, LONG cb, LONG *pcb)
     wchar_t *wpc = data->wpc;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( cb )
     {
@@ -2828,8 +2828,8 @@ bool wxTextCtrl::MSWSetParaFormat(const wxTextAttr& style, long start, long end)
         size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < (size_t) pf.cTabCount; i++)
         {
@@ -3080,8 +3080,8 @@ bool wxTextCtrl::GetStyle(long position, wxTextAttr& style)
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < (size_t) pf.cTabCount; i++)
     {
@@ -3113,8 +3113,8 @@ void wxRichEditModule::OnExit()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < WXSIZEOF(ms_hRichEdit); i++ )
     {

@@ -149,8 +149,8 @@ wxSize wxBookCtrlBase::DoGetBestSize() const
         const size_t nCount = m_pages.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t nPage = 0; nPage < nCount; nPage++ )
         {
@@ -262,8 +262,8 @@ void wxBookCtrlBase::DoSize()
     const unsigned pagesCount = m_pages.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int i = 0; i < pagesCount; ++i )
     {
@@ -330,8 +330,8 @@ void wxBookCtrlBase::OnHelp(wxHelpEvent& event)
     wxWindow *source = wxStaticCast(event.GetEventObject(), wxWindow);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( source && source != this && source->GetParent() != this )
     {
@@ -457,8 +457,8 @@ int wxBookCtrlBase::FindPage(const wxWindow* page) const
     const size_t nCount = m_pages.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t nPage = 0; nPage < nCount; nPage++ )
     {

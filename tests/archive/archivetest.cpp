@@ -69,8 +69,8 @@ TestEntry::TestEntry(const wxDateTime& dt, int len, const char *data)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < len && m_isText; i++)
         m_isText = (signed char)m_data[i] > 0;
@@ -140,8 +140,8 @@ size_t TestOutputStream::OnSysWrite(const void *buffer, size_t size)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (capacity < newsize) {
             capacity <<= 1;
@@ -387,16 +387,16 @@ void TempDir::RemoveDir(wxString& path)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < WXSIZEOF(files); i++)
         wxRemoveFile(tmp + wxFileName(files[i], wxPATH_UNIX).GetFullPath());
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < WXSIZEOF(dirs); i++)
         wxRmdir(tmp + wxFileName(dirs[i], wxPATH_UNIX).GetFullPath());
@@ -478,8 +478,8 @@ ArchiveTestCase<ClassFactoryT>::~ArchiveTestCase()
     TestEntries::iterator it;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (it = m_testEntries.begin(); it != m_testEntries.end(); ++it)
         delete it->second;
@@ -574,8 +574,8 @@ TestEntry& ArchiveTestCase<ClassFactoryT>::Add(const char *name,
     wxCharBuffer buf(len);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < len; i++)
         buf.data()[i] = (char)(value == EOF ? rand() : value);
@@ -598,8 +598,8 @@ void ArchiveTestCase<ClassFactoryT>::CreateArchive(wxOutputStream& out)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (it = m_testEntries.begin(); it != m_testEntries.end(); ++it) {
         choices += 5;
@@ -675,8 +675,8 @@ void ArchiveTestCase<ClassFactoryT>::CreateArchive(wxOutputStream& out,
     TestEntries::iterator i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = m_testEntries.begin(); i != m_testEntries.end(); ++i) {
         wxFileName fn(i->first, wxPATH_UNIX);
@@ -693,8 +693,8 @@ void ArchiveTestCase<ClassFactoryT>::CreateArchive(wxOutputStream& out,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = m_testEntries.begin(); i != m_testEntries.end(); ++i) {
         wxFileName fn(i->first, wxPATH_UNIX);
@@ -758,8 +758,8 @@ void ArchiveTestCase<ClassFactoryT>::ModifyArchive(wxInputStream& in,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ((pEntry = arcIn->GetNextEntry()) != NULL) {
         auto_ptr<EntryT> entry(pEntry);
@@ -840,8 +840,8 @@ void ArchiveTestCase<ClassFactoryT>::ExtractArchive(wxInputStream& in)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (entry = EntryPtr(arc->GetNextEntry()), entry.get() != NULL) {
         wxString name = entry->GetName(wxPATH_UNIX);
@@ -916,8 +916,8 @@ void ArchiveTestCase<ClassFactoryT>::ExtractArchive(wxInputStream& in)
     if (m_options & PipeIn) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (EntryIter i = entries.begin(); i != entries.end(); ++i) {
             wxString name = (*i)->GetName(wxPATH_UNIX);
@@ -991,8 +991,8 @@ void ArchiveTestCase<ClassFactoryT>::VerifyDir(wxString& path,
     if (dir.Open(path) && dir.GetFirst(&name)) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         do {
             path.replace(pos, wxString::npos, name);
@@ -1063,8 +1063,8 @@ void ArchiveTestCase<ClassFactoryT>::TestIterator(wxInputStream& in)
     ArchiveCatalog cat;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (IterT i(*arc); i != IterT(); ++i)
         cat.push_back(*i);
@@ -1072,8 +1072,8 @@ void ArchiveTestCase<ClassFactoryT>::TestIterator(wxInputStream& in)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (CatalogIter it = cat.begin(); it != cat.end(); ++it) {
         auto_ptr<EntryT> entry(*it);
@@ -1102,8 +1102,8 @@ void ArchiveTestCase<ClassFactoryT>::TestPairIterator(wxInputStream& in)
     ArchiveCatalog cat;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (PairIterT i(*arc); i != PairIterT(); ++i)
         cat.insert(*i);
@@ -1111,8 +1111,8 @@ void ArchiveTestCase<ClassFactoryT>::TestPairIterator(wxInputStream& in)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (CatalogIter it = cat.begin(); it != cat.end(); ++it) {
         auto_ptr<EntryT> entry(it->second);
@@ -1140,8 +1140,8 @@ void ArchiveTestCase<ClassFactoryT>::TestSmartIterator(wxInputStream& in)
     ArchiveCatalog cat;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (Iter i(*arc); i != Iter(); ++i)
         cat.push_back(*i);
@@ -1151,8 +1151,8 @@ void ArchiveTestCase<ClassFactoryT>::TestSmartIterator(wxInputStream& in)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (CatalogIter it = cat.begin(); it != cat.end(); ++it)
         CPPUNIT_ASSERT(m_testEntries.count((*it)->GetName(wxPATH_UNIX)));
@@ -1181,8 +1181,8 @@ void ArchiveTestCase<ClassFactoryT>::TestSmartPairIterator(wxInputStream& in)
     ArchiveCatalog cat;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (PairIter i(*arc); i != PairIter(); ++i)
         cat.insert(*i);
@@ -1192,8 +1192,8 @@ void ArchiveTestCase<ClassFactoryT>::TestSmartPairIterator(wxInputStream& in)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (CatalogIter it = cat.begin(); it != cat.end(); ++it)
         CPPUNIT_ASSERT(m_testEntries.count(it->second->GetName(wxPATH_UNIX)));
@@ -1221,8 +1221,8 @@ void ArchiveTestCase<ClassFactoryT>::ReadSimultaneous(TestInputStream& in)
     ArchiveCatalog cat;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (PairIter i(*arc); i != PairIter(); ++i)
         cat.insert(*i);
@@ -1253,8 +1253,8 @@ void ArchiveTestCase<ClassFactoryT>::ReadSimultaneous(TestInputStream& in)
     // read and check the two entries in parallel, character by character
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (arc->IsOk() || arc2->IsOk()) {
         char ch = arc->GetC();
@@ -1329,8 +1329,8 @@ void CorruptionTestCase::runTest()
     int pos;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (pos = 0; pos < len; pos++) {
         char n = in[pos];
@@ -1343,8 +1343,8 @@ void CorruptionTestCase::runTest()
     // try zeroing one byte in the archive
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (pos = 0; pos < len; pos++) {
         char n = in[pos];
@@ -1357,8 +1357,8 @@ void CorruptionTestCase::runTest()
     // try chopping the archive off
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int size = 1; size <= len; size++) {
         in.Chop(size);
@@ -1383,16 +1383,16 @@ void CorruptionTestCase::ExtractArchive(wxInputStream& in)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (entry.get() != NULL) {
         char buf[1024];
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (arc->IsOk())
             arc->Read(buf, sizeof(buf));
@@ -1455,26 +1455,26 @@ ArchiveTestSuite *ArchiveTestSuite::makeSuite()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int generic = 0; generic < 2; generic++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (Iter i = m_unarchivers.begin(); i != m_unarchivers.end(); ++i)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (Iter j = m_archivers.begin(); j != m_archivers.end(); ++j)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (int options = 0; options <= AllOptions; options++)
                 {
@@ -1497,8 +1497,8 @@ ArchiveTestSuite *ArchiveTestSuite::makeSuite()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int options = 0; options <= PipeIn; options += PipeIn)
     {

@@ -59,8 +59,8 @@ _tiffReadProc(thandle_t fd, void* buf, tmsize_t size)
 	p=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (mb>0)
 	{
@@ -94,8 +94,8 @@ _tiffWriteProc(thandle_t fd, void* buf, tmsize_t size)
 	p=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (mb>0)
 	{
@@ -229,8 +229,8 @@ TIFFFdOpen(int ifd, const char* name, const char* mode)
 	fSuppressMap=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (m=0; mode[m]!=0; m++)
 	{

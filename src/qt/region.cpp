@@ -84,8 +84,8 @@ wxRegion::wxRegion(size_t n, const wxPoint *points, wxPolygonFillMode fillStyle)
     QVector< QPoint > qtPoints;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( uint i = 0; i < n; i++)
     {

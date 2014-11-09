@@ -55,8 +55,8 @@ wxThread::ExitCode MyJoinableThread::Entry()
     unsigned long res = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 1; n < m_n; n++ )
     {
@@ -106,8 +106,8 @@ wxThread::ExitCode MyDetachedThread::Entry()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < m_n; n++ )
     {
@@ -272,8 +272,8 @@ void MiscThreadTestCase::TestDetached()
     size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < nThreads; n++ )
     {
@@ -285,8 +285,8 @@ void MiscThreadTestCase::TestDetached()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < nThreads; n++ )
     {
@@ -306,8 +306,8 @@ void MiscThreadTestCase::TestSemaphore()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < 3*SEM_LIMIT; i++ )
     {
@@ -317,8 +317,8 @@ void MiscThreadTestCase::TestSemaphore()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < threads.GetCount(); n++ )
     {
@@ -343,8 +343,8 @@ void MiscThreadTestCase::TestThreadSuspend()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < 3; n++ )
     {
@@ -426,8 +426,8 @@ void MiscThreadTestCase::TestThreadConditions()
     size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < WXSIZEOF(threads); n++ )
     {
@@ -436,8 +436,8 @@ void MiscThreadTestCase::TestThreadConditions()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < WXSIZEOF(threads); n++ )
     {
@@ -449,8 +449,8 @@ void MiscThreadTestCase::TestThreadConditions()
     size_t nRunning = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( nRunning < WXSIZEOF(threads) )
     {

@@ -194,8 +194,8 @@ public:
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( Watches::iterator it = m_removedWatches.begin();
               it != m_removedWatches.end();

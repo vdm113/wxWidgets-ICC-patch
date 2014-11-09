@@ -120,8 +120,8 @@ static void ColouriseMySQLDoc(unsigned int startPos, int length, int initStyle, 
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; sc.More(); sc.Forward())
   {
@@ -344,8 +344,8 @@ bool MatchIgnoreCase(Accessor &styler, int currentPos, const char *s)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (int n = 0; *s; n++)
   {
@@ -384,8 +384,8 @@ static void FoldMySQLDoc(unsigned int startPos, int length, int initStyle, WordL
   char nextChar = styler.SafeGetCharAt(startPos);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (unsigned int i = startPos; length > 0; i++, length--)
   {

@@ -37,8 +37,8 @@ bool wxColourDialog::Create(wxWindow *parent, wxColourData *data )
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int i=0; i<wxColourData::NUM_CUSTOM; i++)
             QColorDialog::setCustomColor(i, m_data.GetCustomColour(i).GetHandle());
@@ -53,8 +53,8 @@ wxColourData &wxColourDialog::GetColourData()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i=0; i<wxColourData::NUM_CUSTOM; i++)
         m_data.SetCustomColour(i, GetHandle()->customColor(i));

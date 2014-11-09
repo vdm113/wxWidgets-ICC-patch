@@ -190,8 +190,8 @@ format_message (j_common_ptr cinfo, char * buffer)
   msgptr = msgtext;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   while ((ch = *msgptr++) != '\0') {
     if (ch == '%') {

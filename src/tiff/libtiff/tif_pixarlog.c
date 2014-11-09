@@ -135,8 +135,8 @@ horizontalAccumulateF(uint16 *wp, int n, int stride, float *op,
 	    n -= 3;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		wp += 3;
@@ -161,8 +161,8 @@ horizontalAccumulateF(uint16 *wp, int n, int stride, float *op,
 	    n -= 4;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		wp += 4;
@@ -182,8 +182,8 @@ horizontalAccumulateF(uint16 *wp, int n, int stride, float *op,
 	    n -= stride;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		REPEAT(stride,
@@ -216,8 +216,8 @@ horizontalAccumulate12(uint16 *wp, int n, int stride, int16 *op,
 	    n -= 3;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		wp += 3;
@@ -242,8 +242,8 @@ horizontalAccumulate12(uint16 *wp, int n, int stride, int16 *op,
 	    n -= 4;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		wp += 4;
@@ -264,8 +264,8 @@ horizontalAccumulate12(uint16 *wp, int n, int stride, int16 *op,
 	    n -= stride;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		REPEAT(stride,
@@ -292,8 +292,8 @@ horizontalAccumulate16(uint16 *wp, int n, int stride, uint16 *op,
 	    n -= 3;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		wp += 3;
@@ -311,8 +311,8 @@ horizontalAccumulate16(uint16 *wp, int n, int stride, uint16 *op,
 	    n -= 4;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		wp += 4;
@@ -328,8 +328,8 @@ horizontalAccumulate16(uint16 *wp, int n, int stride, uint16 *op,
 	    n -= stride;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		REPEAT(stride,
@@ -356,8 +356,8 @@ horizontalAccumulate11(uint16 *wp, int n, int stride, uint16 *op)
 	    n -= 3;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		wp += 3;
@@ -373,8 +373,8 @@ horizontalAccumulate11(uint16 *wp, int n, int stride, uint16 *op)
 	    n -= 4;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		wp += 4;
@@ -390,8 +390,8 @@ horizontalAccumulate11(uint16 *wp, int n, int stride, uint16 *op)
 	    n -= stride;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		REPEAT(stride,
@@ -417,8 +417,8 @@ horizontalAccumulate8(uint16 *wp, int n, int stride, unsigned char *op,
 	    n -= 3;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		n -= 3;
@@ -436,8 +436,8 @@ horizontalAccumulate8(uint16 *wp, int n, int stride, unsigned char *op,
 	    n -= 4;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		n -= 4;
@@ -453,8 +453,8 @@ horizontalAccumulate8(uint16 *wp, int n, int stride, unsigned char *op,
 	    n -= stride;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		REPEAT(stride,
@@ -486,8 +486,8 @@ horizontalAccumulate8abgr(uint16 *wp, int n, int stride, unsigned char *op,
 	    n -= 3;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		n -= 3;
@@ -513,8 +513,8 @@ horizontalAccumulate8abgr(uint16 *wp, int n, int stride, unsigned char *op,
 	    n -= 4;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		n -= 4;
@@ -534,8 +534,8 @@ horizontalAccumulate8abgr(uint16 *wp, int n, int stride, unsigned char *op,
 	    n -= stride;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		REPEAT(stride,
@@ -633,8 +633,8 @@ PixarLogMakeTables(PixarLogState *sp)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < nlin; i++)  {
 	v = i * linstep;
@@ -643,8 +643,8 @@ PixarLogMakeTables(PixarLogState *sp)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = nlin; i < TSIZE; i++)
 	ToLinearF[j++] = (float)(b*exp(c*i));
@@ -653,8 +653,8 @@ PixarLogMakeTables(PixarLogState *sp)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < TSIZEP1; i++)  {
 	v = ToLinearF[i]*65535.0 + 0.5;
@@ -666,8 +666,8 @@ PixarLogMakeTables(PixarLogState *sp)
     j = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < lt2size; i++)  {
 	if ((i*linstep)*(i*linstep) > ToLinearF[j]*ToLinearF[j+1])
@@ -683,14 +683,14 @@ PixarLogMakeTables(PixarLogState *sp)
     j = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < 16384; i++)  {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((i/16383.)*(i/16383.) > ToLinearF[j]*ToLinearF[j+1])
 	    j++;
@@ -700,14 +700,14 @@ PixarLogMakeTables(PixarLogState *sp)
     j = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < 256; i++)  {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((i/255.)*(i/255.) > ToLinearF[j]*ToLinearF[j+1])
 	    j++;
@@ -903,8 +903,8 @@ PixarLogDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do {
 		int state = inflate(&sp->stream, Z_PARTIAL_FLUSH);
@@ -953,8 +953,8 @@ PixarLogDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < nsamples; i += llen, up += llen) {
 		switch (sp->user_datafmt)  {
@@ -1081,8 +1081,8 @@ horizontalDifferenceF(float *ip, int n, int stride, uint16 *wp, uint16 *FromLT2)
 	    n -= 3;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		n -= 3;
@@ -1100,8 +1100,8 @@ horizontalDifferenceF(float *ip, int n, int stride, uint16 *wp, uint16 *FromLT2)
 	    n -= 4;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		n -= 4;
@@ -1118,8 +1118,8 @@ horizontalDifferenceF(float *ip, int n, int stride, uint16 *wp, uint16 *FromLT2)
 	    n -= stride;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		REPEAT(stride, wp[0] = (uint16) CLAMP(ip[0]);
@@ -1151,8 +1151,8 @@ horizontalDifference16(unsigned short *ip, int n, int stride,
 	    n -= 3;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		n -= 3;
@@ -1168,8 +1168,8 @@ horizontalDifference16(unsigned short *ip, int n, int stride,
 	    n -= 4;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		n -= 4;
@@ -1186,8 +1186,8 @@ horizontalDifference16(unsigned short *ip, int n, int stride,
 	    n -= stride;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		REPEAT(stride, wp[0] = CLAMP(ip[0]);
@@ -1219,8 +1219,8 @@ horizontalDifference8(unsigned char *ip, int n, int stride,
 	    n -= 3;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		n -= 3;
@@ -1236,8 +1236,8 @@ horizontalDifference8(unsigned char *ip, int n, int stride,
 	    n -= 4;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		n -= 4;
@@ -1254,8 +1254,8 @@ horizontalDifference8(unsigned char *ip, int n, int stride,
 	    n -= stride;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	    while (n > 0) {
 		REPEAT(stride, wp[0] = CLAMP(ip[0]);
@@ -1309,8 +1309,8 @@ PixarLogEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0, up = sp->tbuf; i < n; i += llen, up += llen) {
 		switch (sp->user_datafmt)  {
@@ -1352,8 +1352,8 @@ PixarLogEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do {
 		if (deflate(&sp->stream, Z_NO_FLUSH) != Z_OK) {
@@ -1387,8 +1387,8 @@ PixarLogPostEncode(TIFF* tif)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do {
 		state = deflate(&sp->stream, Z_FINISH);

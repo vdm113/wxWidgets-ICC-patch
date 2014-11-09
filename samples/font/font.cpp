@@ -516,8 +516,8 @@ bool MyFrame::DoEnumerateFamilies(bool fixedWidthOnly,
             int n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( n = 0; n < nFacenames; n++ )
                 facenames[n] = fontEnumerator.GetFacenames().Item(n);
@@ -665,8 +665,8 @@ wxFontEncoding MyFrame::GetEncodingFromUser()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -935,8 +935,8 @@ void MyFrame::OnViewMsg(wxCommandEvent& WXUNUSED(event))
     size_t n, count = file.GetLineCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < count; n++ )
     {
@@ -958,8 +958,8 @@ void MyFrame::OnViewMsg(wxCommandEvent& WXUNUSED(event))
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( *pc && *pc != wxT('"') )
             {
@@ -1125,15 +1125,15 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
     // print all font symbols from 32 to 256 in 7 rows of 32 chars each
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < 7; i++ )
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int j = 0; j < 32; j++ )
         {
@@ -1157,8 +1157,8 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
     // horizontal
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( l = 0; l < 8; l++ )
     {
@@ -1169,8 +1169,8 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
     // and vertical
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( l = 0; l < 33; l++ )
     {

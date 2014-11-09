@@ -119,8 +119,8 @@ bool TestExec(const wxVector<wxFileName>& programs, long timeout)
     wxArrayLong procID;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i=0; i<programs.size(); i++)
     {
@@ -148,8 +148,8 @@ bool TestExec(const wxVector<wxFileName>& programs, long timeout)
     bool allok = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i=0; i<data.size(); i++)
     {
@@ -228,8 +228,8 @@ int main(int argc, char **argv)
             wxVector<wxFileName> programs;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (unsigned int i=0; i<parser.GetParamCount(); i++)
             {

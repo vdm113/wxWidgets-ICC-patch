@@ -253,8 +253,8 @@ void ArraysTestCase::wxStringArrayTest()
     wxSortedArrayString a4;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (wxArrayString::iterator it = a1.begin(), en = a1.end(); it != en; ++it)
         a4.Add(*it);
@@ -514,8 +514,8 @@ void ArraysTestCase::wxStringArraySplitJoinTest()
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < WXSIZEOF(separators); i++)
     {
@@ -536,8 +536,8 @@ void ArraysTestCase::wxStringArraySplitJoinTest()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < WXSIZEOF(separators); i++)
     {
@@ -706,8 +706,8 @@ void ArraysTestCase::TestSTL()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < COUNT; ++i )
         list1.push_back(i);
@@ -717,8 +717,8 @@ void ArraysTestCase::TestSTL()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( it = list1.begin(), en = list1.end(), i = 0;
           it != en; ++it, ++i )
@@ -730,8 +730,8 @@ void ArraysTestCase::TestSTL()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( rit = list1.rbegin(), ren = list1.rend(), i = COUNT;
           rit != ren; ++rit, --i )
@@ -756,8 +756,8 @@ void ArraysTestCase::TestSTL()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( it = list1.begin(), en = list1.end(), i = 1;
           it != en; ++it, ++i )

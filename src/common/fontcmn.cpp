@@ -266,8 +266,8 @@ void wxFontBase::SetPixelSize( const wxSize& pixelSize )
     int currentSize = GetPointSize();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (currentSize > 0)
     {
@@ -594,8 +594,8 @@ void wxNativeFontInfo::SetFaceName(const wxArrayString& facenames)
 #if wxUSE_FONTENUM
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i=0; i < facenames.GetCount(); i++)
     {
@@ -955,8 +955,8 @@ bool wxNativeFontInfo::FromUserString(const wxString& s)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( tokenizer.HasMoreTokens() )
     {

@@ -64,8 +64,8 @@ LifeReader::LifeReader(wxInputStream& is)
     line = text_is.ReadLine();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (buff_is.IsOk() && line.StartsWith(wxT("#D"), &rest))
     {
@@ -84,8 +84,8 @@ LifeReader::LifeReader(wxInputStream& is)
     // read shape
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (buff_is.IsOk())
     {

@@ -65,8 +65,8 @@ UINT_PTR GetNewTimerId(wxMSWTimerImpl *t)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (lastTimerId == 0 ||
             TimerMap().find(lastTimerId) != TimerMap().end())

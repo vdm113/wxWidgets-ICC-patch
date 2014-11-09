@@ -218,8 +218,8 @@ static pascal OSStatus wxMacWindowControlEventHandler( EventHandlerCallRef handl
                             wxWindow* iter = thisWindow ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                             while ( iter )
                             {
@@ -451,8 +451,8 @@ wxMacWindowServiceEventHandler(EventHandlerCallRef WXUNUSED(handler),
                 static const OSType textDataTypes[] = { kTXNTextData /* , 'utxt', 'PICT', 'MooV', 'AIFF' */  };
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( size_t i = 0 ; i < WXSIZEOF(textDataTypes) ; ++i )
                 {
@@ -500,8 +500,8 @@ wxMacWindowServiceEventHandler(EventHandlerCallRef WXUNUSED(handler),
                 verify_noerr( PasteboardGetItemCount( pasteboard, &itemCount ) );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for( UInt32 itemIndex = 1; itemIndex <= itemCount; itemIndex++ )
                 {
@@ -575,8 +575,8 @@ WXDLLEXPORT pascal OSStatus wxMacUnicodeTextEventHandler( EventHandlerCallRef ha
                 // EVT_CHAR
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (int pos=0 ; pos < numChars ; pos++)
                 {
@@ -600,8 +600,8 @@ WXDLLEXPORT pascal OSStatus wxMacUnicodeTextEventHandler( EventHandlerCallRef ha
     input, such as switching to another field when one attempted to insert the character U+4E09 (the kanji
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for "three"), because it was truncated to 09 (kTabCharCode), which was later "converted" to WXK_TAB
     (still 09) in wxMacTranslateKey; or triggering the default button when one attempted to insert U+840D
@@ -611,8 +611,8 @@ WXDLLEXPORT pascal OSStatus wxMacUnicodeTextEventHandler( EventHandlerCallRef ha
     But simply passing a NUL charcode would disable text updated events, because wxTextCtrl::OnChar checks
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for codes within a specific range. Therefore I went for the solution seen above, which keeps ASCII
     characters as they are and replaces the rest with '?', ensuring that update events are triggered.
@@ -646,8 +646,8 @@ WXDLLEXPORT pascal OSStatus wxMacUnicodeTextEventHandler( EventHandlerCallRef ha
                 // EVT_CHAR
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (int pos=0 ; pos < numChars ; pos++)
                 {
@@ -1431,8 +1431,8 @@ static void InvalidateControlAndChildren( HIViewRef control )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( UInt16 i = childrenCount; i >=1; --i )
     {

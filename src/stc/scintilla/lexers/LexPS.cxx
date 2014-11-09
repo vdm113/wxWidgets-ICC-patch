@@ -101,8 +101,8 @@ static void ColourisePSDoc(
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (; sc.More(); sc.Forward()) {
         if (sc.atLineStart)
@@ -311,8 +311,8 @@ static void FoldPSDoc(unsigned int startPos, int length, int, WordList *[],
     int style;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int i = startPos; i < endPos; i++) {
         char ch = chNext;

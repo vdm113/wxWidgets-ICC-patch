@@ -551,8 +551,8 @@ void VsnprintfTestCase::DoMisc(
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < BUFSIZE; i++)
         buf[i] = '*';
@@ -584,8 +584,8 @@ void VsnprintfTestCase::DoMisc(
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = max; i < BUFSIZE; i++)
         CPPUNIT_ASSERT_MESSAGE(overflowMsg, buf[i] == '*');

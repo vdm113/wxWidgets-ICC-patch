@@ -61,8 +61,8 @@ void ColouriseSMLDoc(
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (sc.More()) {
 		int state2 = -1;
@@ -106,8 +106,8 @@ void ColouriseSMLDoc(
 					char t[24];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 					for (int i = -n; i < 0; i++)
 						t[n + i] = static_cast<char>(sc.GetRelative(i));

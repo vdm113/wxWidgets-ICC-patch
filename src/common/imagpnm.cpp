@@ -106,8 +106,8 @@ bool wxPNMHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbose
         wxUint32 value, size=width*height;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (wxUint32 i=0; i<size; ++i)
         {
@@ -132,8 +132,8 @@ bool wxPNMHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbose
         wxUint32 value, size=3*width*height;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (wxUint32 i=0; i<size; ++i)
           {
@@ -160,8 +160,8 @@ bool wxPNMHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbose
         unsigned char value;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (wxUint32 i=0; i<size; ++i)
         {
@@ -189,8 +189,8 @@ bool wxPNMHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbose
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( unsigned i = 0; i < 3*width*height; i++ )
                 ptr[i] = (255 * ptr[i])/maxval;

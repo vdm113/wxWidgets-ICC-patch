@@ -374,8 +374,8 @@ wxGBSizerItem* wxGridBagSizer::FindItem(wxWindow* window)
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -393,8 +393,8 @@ wxGBSizerItem* wxGridBagSizer::FindItem(wxSizer* sizer)
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -414,8 +414,8 @@ wxGBSizerItem* wxGridBagSizer::FindItemAtPosition(const wxGBPosition& pos)
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -435,8 +435,8 @@ wxGBSizerItem* wxGridBagSizer::FindItemAtPoint(const wxPoint& pt)
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -458,8 +458,8 @@ wxGBSizerItem* wxGridBagSizer::FindItemWithData(const wxObject* userData)
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -491,8 +491,8 @@ wxSize wxGridBagSizer::CalcMin()
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -507,15 +507,15 @@ wxSize wxGridBagSizer::CalcMin()
             // fill heights and widths up to this item if needed
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( (int)m_rowHeights.GetCount() <= endrow )
                 m_rowHeights.Add(m_emptyCellSize.GetHeight());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( (int)m_colWidths.GetCount() <= endcol )
                 m_colWidths.Add(m_emptyCellSize.GetWidth());
@@ -524,15 +524,15 @@ wxSize wxGridBagSizer::CalcMin()
             wxSize size(item->CalcMin());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (idx=row; idx <= endrow; idx++)
                 m_rowHeights[idx] = wxMax(m_rowHeights[idx], size.GetHeight() / (endrow-row+1));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (idx=col; idx <= endcol; idx++)
                 m_colWidths[idx] = wxMax(m_colWidths[idx], size.GetWidth() / (endcol-col+1));
@@ -548,8 +548,8 @@ wxSize wxGridBagSizer::CalcMin()
     m_cols = m_colWidths.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (idx=0; idx < m_cols; idx++)
         width += m_colWidths[idx] + ( idx == m_cols-1 ? 0 : m_hgap );
@@ -558,8 +558,8 @@ wxSize wxGridBagSizer::CalcMin()
     m_rows = m_rowHeights.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (idx=0; idx < m_rows; idx++)
         height += m_rowHeights[idx] + ( idx == m_rows-1 ? 0 : m_vgap );
@@ -594,8 +594,8 @@ void wxGridBagSizer::RecalcSizes()
     int y = pt.y;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (idx=0; idx < m_rows; idx++)
     {
@@ -609,8 +609,8 @@ void wxGridBagSizer::RecalcSizes()
     int x = pt.x;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (idx=0; idx < m_cols; idx++)
     {
@@ -624,8 +624,8 @@ void wxGridBagSizer::RecalcSizes()
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -640,8 +640,8 @@ void wxGridBagSizer::RecalcSizes()
             height = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for(idx=row; idx <= endrow; idx++)
                 height += m_rowHeights[idx];
@@ -650,8 +650,8 @@ void wxGridBagSizer::RecalcSizes()
             width = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (idx=col; idx <= endcol; idx++)
                 width += m_colWidths[idx];
@@ -677,8 +677,8 @@ void wxGridBagSizer::AdjustForOverflow()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (row=0; row<(int)m_rowHeights.GetCount(); row++)
     {
@@ -686,8 +686,8 @@ void wxGridBagSizer::AdjustForOverflow()
         int rowHeight = m_rowHeights[row];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (col=0; col<(int)m_colWidths.GetCount(); col++)
         {
@@ -715,8 +715,8 @@ void wxGridBagSizer::AdjustForOverflow()
                 int itemHeight = item->CalcMin().GetHeight();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (int r=item->GetPos().GetRow(); r<row; r++)
                     itemHeight -= (m_rowHeights[r] + GetHGap());
@@ -735,8 +735,8 @@ void wxGridBagSizer::AdjustForOverflow()
     // Now do the same thing for columns
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (col=0; col<(int)m_colWidths.GetCount(); col++)
     {
@@ -744,8 +744,8 @@ void wxGridBagSizer::AdjustForOverflow()
         int colWidth = m_colWidths[col];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (row=0; row<(int)m_rowHeights.GetCount(); row++)
         {
@@ -769,8 +769,8 @@ void wxGridBagSizer::AdjustForOverflow()
                 int itemWidth = item->CalcMin().GetWidth();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (int c=item->GetPos().GetCol(); c<col; c++)
                     itemWidth -= (m_colWidths[c] + GetVGap());
@@ -800,8 +800,8 @@ bool wxGridBagSizer::CheckForIntersection(const wxGBPosition& pos, const wxGBSpa
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -828,14 +828,14 @@ wxGBPosition wxGridBagSizer::FindEmptyCell()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (row=0; row<10; row++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (col=0; col<10; col++)
         {

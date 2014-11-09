@@ -389,8 +389,8 @@ typedef int (*wxPGSortCallback)(wxPropertyGrid* propGrid,
     strings, numbers, flag sets, fonts, colours and many others. It is possible,
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for example, to categorize properties, set up a complete tree-hierarchy,
     add more than two columns, and set arbitrary per-property attributes.

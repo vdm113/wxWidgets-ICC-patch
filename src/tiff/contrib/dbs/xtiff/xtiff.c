@@ -465,8 +465,8 @@ GetTIFFHeader()
 	MCHECK(redMap); MCHECK(greenMap); MCHECK(blueMap);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < colormapSize; i++)
 	    dRed[i] = dGreen[i] = dBlue[i]
@@ -481,8 +481,8 @@ GetTIFFHeader()
             MCHECK(redMap); MCHECK(greenMap); MCHECK(blueMap);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < colormapSize; i++)
                 dRed[i] = dGreen[i] = dBlue[i]
@@ -491,8 +491,8 @@ GetTIFFHeader()
             CheckAndCorrectColormap();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < colormapSize; i++) {
                 dRed[i] = (double) redMap[i];
@@ -508,8 +508,8 @@ GetTIFFHeader()
         MCHECK(redMap); MCHECK(greenMap); MCHECK(blueMap);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < colormapSize; i++)
 	    dRed[i] = dGreen[i] = dBlue[i] = (double)
@@ -522,8 +522,8 @@ GetTIFFHeader()
         MCHECK(redMap); MCHECK(greenMap); MCHECK(blueMap);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < colormapSize; i++)
 	    dRed[i] = dGreen[i] = dBlue[i] = (double) SCALE(i, colormapSize-1);
@@ -561,8 +561,8 @@ CheckAndCorrectColormap()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < colormapSize; i++)
         if ((redMap[i] > 255) || (greenMap[i] > 255) || (blueMap[i] > 255))
@@ -570,8 +570,8 @@ CheckAndCorrectColormap()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < colormapSize; i++) {
         redMap[i] = SCALE(redMap[i], 255);
@@ -589,8 +589,8 @@ SimpleGammaCorrection()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < colormapSize; i++) {
         if (((tfPhotometricInterpretation == PHOTOMETRIC_MINISWHITE)
@@ -645,8 +645,8 @@ GetVisual()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < colormapSize; i++) {
             colors[i].pixel = (i << 16) + (i << 8) + i;
@@ -685,8 +685,8 @@ GetVisual()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < colormapSize; i++) {
             colors[i].pixel = i;
@@ -774,8 +774,8 @@ SearchVisualList(image_depth, visual_class, visual)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < n_visuals; vl++, i++) {
         if ((vl->class == visual_class) && (vl->depth >= image_depth)
@@ -832,16 +832,16 @@ GetTIFFImage()
         if (tfPlanarConfiguration == PLANARCONFIG_CONTIG) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < tfImageHeight; i++) {
                 if (TIFFReadScanline(tfFile, scan_line, i, 0) < 0)
                     break;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (input_p = scan_line, j = 0; j < tfImageWidth; j++) {
                     *(output_p + red_shift) = *input_p++;
@@ -855,16 +855,16 @@ GetTIFFImage()
         } else {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (s = 0; s < tfSamplesPerPixel; s++) {
                 if (s == 3)             /* skip the fourth channel */
                     continue;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (i = 0; i < tfImageHeight; i++) {
                     if (TIFFReadScanline(tfFile, scan_line, i, s) < 0)
@@ -873,8 +873,8 @@ GetTIFFImage()
                     output_p = imageMemory + (i*tfImageWidth*4) + pixel_map[s];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for (j = 0; j < tfImageWidth; j++, output_p += 4)
                         *output_p = *input_p++;
@@ -889,8 +889,8 @@ GetTIFFImage()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < tfImageHeight; i++, output_p += tfBytesPerRow)
                 if (TIFFReadScanline(tfFile, output_p, i, 0) < 0)
@@ -907,8 +907,8 @@ GetTIFFImage()
              */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < tfImageHeight; i++) {
                 if (TIFFReadScanline(tfFile, scan_line, i, 0) < 0)
@@ -917,8 +917,8 @@ GetTIFFImage()
                 input_p = scan_line;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (j = 0; j < tfImageWidth; j += 2, input_p++) {
                     *output_p++ = (*input_p >> 4) + basePixel;
@@ -932,8 +932,8 @@ GetTIFFImage()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < tfImageHeight; i++) {
                 if (TIFFReadScanline(tfFile, scan_line, i, 0) < 0)
@@ -942,8 +942,8 @@ GetTIFFImage()
                 input_p = scan_line;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (j = 0; j < tfImageWidth; j += 4, input_p++) {
                     *output_p++ = (*input_p >> 6) + basePixel;
@@ -959,8 +959,8 @@ GetTIFFImage()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < tfImageHeight; i++) {
                 if (TIFFReadScanline(tfFile, scan_line, i, 0) < 0)
@@ -969,8 +969,8 @@ GetTIFFImage()
                 input_p = scan_line;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (j = 0; j < tfImageWidth; j += 4, input_p++) {
                     *output_p++ = (((*input_p>>6) << 4)

@@ -163,8 +163,8 @@ private:
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int y = 0; y < opts.height; ++y )
         {
@@ -190,8 +190,8 @@ private:
         wxStopWatch sw;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
@@ -289,8 +289,8 @@ private:
             y = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
@@ -328,8 +328,8 @@ private:
         wxStopWatch sw;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
@@ -361,8 +361,8 @@ private:
         wxStopWatch sw;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
@@ -394,8 +394,8 @@ private:
         wxStopWatch sw;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
@@ -427,8 +427,8 @@ private:
         wxStopWatch sw;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int n = 0; n < opts.numIters; n++ )
         {
@@ -437,8 +437,8 @@ private:
                 wxNativePixelData::Iterator p(data);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( int y = 0; y < opts.height; ++y )
                 {
@@ -446,8 +446,8 @@ private:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for ( int x = 0; x < opts.width; ++x )
                     {

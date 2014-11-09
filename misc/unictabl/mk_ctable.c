@@ -33,15 +33,15 @@ int main(int argc, char *argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < 256; i++) { table[i].c = i, table[i].u = 0; /* unknown */}
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (!feof(stdin))
     {
@@ -65,8 +65,8 @@ int main(int argc, char *argv[])
            
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 128; i < 256; i++)
     { 
@@ -90,8 +90,8 @@ int main(int argc, char *argv[])
            
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 128; i < 256; i++)
     { 

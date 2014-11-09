@@ -80,15 +80,15 @@ struct colormap *cm;
 	/* upper levels of tree */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (t = &cm->tree[0], j = NBYTS-1; j > 0; t = nextt, j--) {
 		nextt = t + 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (i = BYTTAB-1; i >= 0; i--)
 			t->tptr[i] = nextt;
@@ -97,8 +97,8 @@ struct colormap *cm;
 	t = &cm->tree[NBYTS-1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = BYTTAB-1; i >= 0; i--)
 		t->tcolor[i] = WHITE;
@@ -121,8 +121,8 @@ struct colormap *cm;
 		cmtreefree(cm, cm->tree, 0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 1; i <= cm->max; i++)		/* skip WHITE */
 		if (!UNUSEDCOLOR(&cm->cd[i])) {
@@ -152,8 +152,8 @@ int level;			/* level number (top == 0) of this block */
 	assert(level < NBYTS-1);	/* this level has pointers */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = BYTTAB-1; i >= 0; i--) {
 		t = tree->tptr[i];
@@ -200,8 +200,8 @@ pcolor co;
 	t = cm->tree;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (level = 0, shift = BYTBITS * (NBYTS - 1); shift > 0;
 						level++, shift -= BYTBITS) {
@@ -336,16 +336,16 @@ pcolor co;
 	if ((size_t)co == cm->max) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (cm->max > WHITE && UNUSEDCOLOR(&cm->cd[cm->max]))
 			cm->max--;
 		assert(cm->free >= 0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while ((size_t)cm->free > cm->max)
 			cm->free = cm->cd[cm->free].sub;
@@ -355,8 +355,8 @@ pcolor co;
 			nco = cm->cd[pco].sub;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			while (nco > 0)
 				if ((size_t)nco > cm->max) {
@@ -470,8 +470,8 @@ struct state *rp;
 	i = (int)( ((uf + BYTTAB-1) & (uchr)~BYTMASK) - uf );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; from <= to && i > 0; i--, from++)
 		newarc(v->nfa, PLAIN, subcolor(v->cm, from), lp, rp);
@@ -481,8 +481,8 @@ struct state *rp;
 	/* deal with whole blocks */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; to - from >= BYTTAB; from += BYTTAB)
 		subblock(v, from, lp, rp);
@@ -490,8 +490,8 @@ struct state *rp;
 	/* clean up any remaining partial table */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; from <= to; from++)
 		newarc(v->nfa, PLAIN, subcolor(v->cm, from), lp, rp);
@@ -530,8 +530,8 @@ struct state *rp;
 	fillt = NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (level = 0, shift = BYTBITS * (NBYTS - 1); shift > 0;
 						level++, shift -= BYTBITS) {
@@ -567,8 +567,8 @@ struct state *rp;
 			}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (i = 0; i < BYTTAB; i++)
 				t->tcolor[i] = sco;
@@ -586,8 +586,8 @@ struct state *rp;
 	i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (i < BYTTAB) {
 		co = t->tcolor[i];
@@ -596,8 +596,8 @@ struct state *rp;
 		previ = i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		do {
 			t->tcolor[i++] = sco;
@@ -626,8 +626,8 @@ struct colormap *cm;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (cd = cm->cd, co = 0; cd < end; cd++, co++) {
 		sco = cd->sub;
@@ -644,8 +644,8 @@ struct colormap *cm;
 			scd->sub = NOSUB;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			while ((a = cd->arcs) != NULL) {
 				assert(a->co == co);
@@ -666,8 +666,8 @@ struct colormap *cm;
 			scd->sub = NOSUB;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (a = cd->arcs; a != NULL; a = a->colorchain) {
 				assert(a->co == co);
@@ -710,8 +710,8 @@ struct arc *a;
 	else {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (; aa != NULL && aa->colorchain != a; aa = aa->colorchain)
 			continue;
@@ -758,8 +758,8 @@ struct state *to;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (cd = cm->cd, co = 0; cd < end && !CISERR(); cd++, co++)
 		if (!UNUSEDCOLOR(cd) && cd->sub != co && co != but &&
@@ -789,8 +789,8 @@ struct state *to;
 	assert(of != from);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (cd = cm->cd, co = 0; cd < end && !CISERR(); cd++, co++)
 		if (!UNUSEDCOLOR(cd) && !(cd->flags&PSEUDO))
@@ -826,8 +826,8 @@ FILE *f;
 	end = CDEND(cm);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (cd = cm->cd + 1, co = 1; cd < end; cd++, co++)	/* skip 0 */
 		if (!UNUSEDCOLOR(cd)) {
@@ -841,8 +841,8 @@ FILE *f;
 			/* it's hard to do this more efficiently */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (c = CHR_MIN; c < CHR_MAX; c++)
 				if (GETCOLOR(cm, c) == co)
@@ -872,8 +872,8 @@ FILE *f;
 	assert(level < NBYTS-1);	/* this level has pointers */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = BYTTAB-1; i >= 0; i--) {
 		t = tree->tptr[i];

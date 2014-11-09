@@ -793,8 +793,8 @@ bool wxClipboard::GetData( wxDataObject& data )
         // ask for the supported formats and see if there are any we support
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( ;; )
         {
@@ -823,8 +823,8 @@ bool wxClipboard::GetData( wxDataObject& data )
     // stop at the first valid format found on the clipboard
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; !result && (n < nFormats); n++ )
     {

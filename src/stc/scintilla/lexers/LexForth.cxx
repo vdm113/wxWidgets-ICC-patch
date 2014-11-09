@@ -60,8 +60,8 @@ static void ColouriseForthDoc(unsigned int startPos, int length, int initStyle, 
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; sc.More(); sc.Forward())
 	{
@@ -131,8 +131,8 @@ static void ColouriseForthDoc(unsigned int startPos, int length, int initStyle, 
 				sc.SetState(SCE_FORTH_NUMBER);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				while(sc.More() && IsASCII(sc.chNext) && isxdigit(sc.chNext))
 					sc.Forward();
@@ -141,8 +141,8 @@ static void ColouriseForthDoc(unsigned int startPos, int length, int initStyle, 
 				sc.SetState(SCE_FORTH_NUMBER);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				while(sc.More() && IsASCII(sc.chNext) && (sc.chNext == '0' || sc.chNext == '1'))
 					sc.Forward();
@@ -160,8 +160,8 @@ static void ColouriseForthDoc(unsigned int startPos, int length, int initStyle, 
 				sc.SetState(SCE_FORTH_DEFWORD);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				while(sc.More() && IsASCII(sc.chNext) && isspace(sc.chNext))
 					sc.Forward();

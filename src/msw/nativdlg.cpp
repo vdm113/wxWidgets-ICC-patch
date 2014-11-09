@@ -79,8 +79,8 @@ bool wxWindow::LoadNativeDialog(wxWindow* parent, wxWindowID id)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (hWndNext != (HWND) NULL)
     {
@@ -121,8 +121,8 @@ bool wxWindow::LoadNativeDialog(wxWindow* parent, const wxString& name)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (hWndNext != (HWND) NULL)
     {
@@ -146,8 +146,8 @@ wxWindow* wxWindow::GetWindowChild1(wxWindowID id)
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( node )
     {

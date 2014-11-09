@@ -312,8 +312,8 @@ gtk_pizza_move (GtkPizza     *pizza,
     children = pizza->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (children)
     {
@@ -351,8 +351,8 @@ gtk_pizza_resize (GtkPizza    *pizza,
     children = pizza->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (children)
     {
@@ -394,8 +394,8 @@ gtk_pizza_set_size (GtkPizza   *pizza,
     children = pizza->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (children)
     {
@@ -438,8 +438,8 @@ gtk_pizza_child_resized  (GtkPizza   *pizza,
     children = pizza->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (children)
     {
@@ -472,8 +472,8 @@ gtk_pizza_map (GtkWidget *widget)
     children = pizza->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (children)
     {
@@ -595,8 +595,8 @@ gtk_pizza_realize (GtkWidget *widget)
     children = pizza->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (children)
     {
@@ -643,8 +643,8 @@ gtk_pizza_size_request (GtkWidget      *widget,
     children = pizza->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (children)
     {
@@ -703,8 +703,8 @@ gtk_pizza_size_allocate (GtkWidget     *widget,
     children = pizza->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (children)
     {
@@ -744,8 +744,8 @@ gtk_pizza_draw (GtkWidget    *widget,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (children)
     {
@@ -782,8 +782,8 @@ gtk_pizza_expose (GtkWidget      *widget,
     children = pizza->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (children)
     {
@@ -843,8 +843,8 @@ gtk_pizza_remove (GtkContainer *container,
     children = pizza->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (children)
     {
@@ -892,8 +892,8 @@ gtk_pizza_forall (GtkContainer *container,
     children = pizza->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (children)
     {
@@ -951,8 +951,8 @@ gtk_pizza_adjust_allocations (GtkPizza *pizza,
     tmp_list = pizza->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (tmp_list)
     {
@@ -1012,8 +1012,8 @@ gtk_pizza_position_children (GtkPizza *pizza)
     tmp_list = pizza->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (tmp_list)
     {
@@ -1154,8 +1154,8 @@ gtk_pizza_scroll (GtkPizza *pizza, gint dx, gint dy)
     win = GDK_WINDOW_XWINDOW (pizza->bin_window);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (XCheckIfEvent(GDK_WINDOW_XDISPLAY (pizza->bin_window),
                          &xevent,

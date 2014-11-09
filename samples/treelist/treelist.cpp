@@ -381,8 +381,8 @@ void MyFrame::InitImageList()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; n < WXSIZEOF(icons); n++ )
     {
@@ -534,8 +534,8 @@ void MyFrame::OnDumpSelection(wxCommandEvent& WXUNUSED(event))
                 wxLogMessage("%u items selected:", numSelected);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( unsigned n = 0; n < numSelected; n++ )
                 {

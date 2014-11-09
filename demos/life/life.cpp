@@ -450,8 +450,8 @@ void LifeFrame::OnMenu(wxCommandEvent& event)
             
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while (m_running && m_topspeed)
             {
@@ -843,8 +843,8 @@ void LifeCanvas::DrawChanged()
     
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (!done)
     {
@@ -852,8 +852,8 @@ void LifeCanvas::DrawChanged()
         
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (size_t m = 0; m < ncells; m++)
             DrawCell(cells[m].i, cells[m].j, dc);
@@ -904,15 +904,15 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
         dc.SetPen(*wxLIGHT_GREY_PEN);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (wxInt32 yy = y; yy <= (y + h - m_cellsize); yy += m_cellsize)
             dc.DrawRectangle(x, yy, w, m_cellsize + 1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (wxInt32 xx = x; xx <= (x + w - m_cellsize); xx += m_cellsize)
             dc.DrawLine(xx, y, xx, y + h);
@@ -924,15 +924,15 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (!done)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (size_t m = 0; m < ncells; m++)
             DrawCell(cells[m].i, cells[m].j, dc);
@@ -943,8 +943,8 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
     // last set
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t m = 0; m < ncells; m++)
         DrawCell(cells[m].i, cells[m].j, dc);
@@ -1020,8 +1020,8 @@ void LifeCanvas::OnMouse(wxMouseEvent& event)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while (ii != i)
             {
@@ -1043,8 +1043,8 @@ void LifeCanvas::OnMouse(wxMouseEvent& event)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while (jj != j)
             {

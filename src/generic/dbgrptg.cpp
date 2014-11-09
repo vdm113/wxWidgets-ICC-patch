@@ -393,8 +393,8 @@ bool wxDebugReportDialog::TransferDataToWindow()
     const size_t count = m_dbgrpt.GetFilesCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -418,8 +418,8 @@ bool wxDebugReportDialog::TransferDataFromWindow()
     const size_t count = m_checklst->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {

@@ -45,8 +45,8 @@ unsigned GetRectsCount(const wxRegion& rgn)
     unsigned count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxRegionIterator iter(rgn); iter.HaveRects(); ++iter )
         count++;

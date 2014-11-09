@@ -185,8 +185,8 @@ void TreeListCtrlTestCase::Traversal()
     unsigned numItems = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxTreeListItem item = m_treelist->GetFirstItem();
           item.IsOk();

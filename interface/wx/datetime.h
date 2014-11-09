@@ -1222,8 +1222,8 @@ public:
         Please see the @ref overview_datetime_timezones "time zone overview"
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for more information about time zones. Normally, these functions should
         be rarely used.
@@ -1407,8 +1407,8 @@ public:
         Returns the number of days in the given year. The only supported value
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for @a cal currently is @c Gregorian.
     */

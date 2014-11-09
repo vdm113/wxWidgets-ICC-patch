@@ -443,15 +443,15 @@ bool wxPrinterDCImpl::DoBlit(wxCoord xdest, wxCoord ydest,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int x = 0; x < width; x++)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (int y = 0; y < height; y++)
             {
@@ -482,16 +482,16 @@ bool wxPrinterDCImpl::DoBlit(wxCoord xdest, wxCoord ydest,
             RECT rect;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (int y = 0; y < height; y++)
             {
                 // optimization: draw identical adjacent pixels together.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (int x = 0; x < width; x++)
                 {
@@ -502,8 +502,8 @@ bool wxPrinterDCImpl::DoBlit(wxCoord xdest, wxCoord ydest,
                     rect.top = ydest + y;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     while( (x + 1 < width) &&
                                 (::GetPixel(dcSrc, x + 1, y) == col ) )

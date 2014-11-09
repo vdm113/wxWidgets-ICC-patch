@@ -64,8 +64,8 @@ strtoull(const char *nptr, char **endptr, int base)
 	s = nptr;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do {
 		c = *s++;
@@ -97,8 +97,8 @@ strtoull(const char *nptr, char **endptr, int base)
 	cutlim = ULLONG_MAX % base;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for ( ; ; c = *s++) {
 		if (c >= '0' && c <= '9')

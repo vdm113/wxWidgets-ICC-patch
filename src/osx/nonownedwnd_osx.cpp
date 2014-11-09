@@ -77,8 +77,8 @@ void wxNonOwnedWindowImpl::RemoveAssociations( wxNonOwnedWindowImpl* impl)
     MacWindowMap::iterator it;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( it = wxWinMacWindowList.begin(); it != wxWinMacWindowList.end(); ++it )
     {

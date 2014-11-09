@@ -319,8 +319,8 @@ wxString DeleteAllVowels(const wxString& original)
     wxString::const_iterator i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = original.begin(); i != original.end(); ++i )
     {

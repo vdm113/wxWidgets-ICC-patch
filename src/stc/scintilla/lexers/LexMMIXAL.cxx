@@ -65,8 +65,8 @@ static void ColouriseMMIXALDoc(unsigned int startPos, int length, int initStyle,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; sc.More(); sc.Forward())
 	{
@@ -117,8 +117,8 @@ static void ColouriseMMIXALDoc(unsigned int startPos, int length, int initStyle,
 				if (*s == ':') {	// ignore base prefix for match
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 					for (size_t i = 0; i != sizeof(s); ++i) {
 						*(s+i) = *(s+i+1);

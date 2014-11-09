@@ -350,8 +350,8 @@ wxArrayVideoModes wxDisplayMSW::GetModes(const wxVideoMode& modeMatch) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int iModeNum = 0;
           ::EnumDisplaySettings(deviceName, iModeNum, &dm);
@@ -599,8 +599,8 @@ int wxDisplayFactoryMSW::FindDisplayFromHMONITOR(HMONITOR hmon) const
         const size_t count = m_displays.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t n = 0; n < count; n++ )
         {

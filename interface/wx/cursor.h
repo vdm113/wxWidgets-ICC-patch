@@ -210,8 +210,8 @@ public:
         @ref overview_refcount_destruct "reference-counted object destruction"
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for more info.
 

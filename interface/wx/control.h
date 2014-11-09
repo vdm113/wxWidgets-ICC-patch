@@ -221,8 +221,8 @@ public:
         Notice that it means that the control can't have any mnemonic defined
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for it using this function.
 

@@ -106,8 +106,8 @@ select_file_name (char * fname)
   /* Keep generating file names till we find one that's not in use */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (;;) {
     next_file_num++;		/* advance counter */

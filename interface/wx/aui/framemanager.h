@@ -516,8 +516,8 @@ public:
         DockFixed() causes the containing dock to have no resize sash.  This is useful
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for creating panes that span the entire width or height of a dock, but should
         not be resizable in the other direction.

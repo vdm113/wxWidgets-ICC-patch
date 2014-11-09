@@ -293,8 +293,8 @@ wxCoord wxVarScrollHelperBase::GetUnitsSize(size_t unitMin, size_t unitMax) cons
     wxCoord size = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t unit = unitMin; unit < unitMax; ++unit )
     {
@@ -314,8 +314,8 @@ size_t wxVarScrollHelperBase::FindFirstVisibleFromLast(size_t unitLast, bool ful
     wxCoord s = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ;; )
     {
@@ -408,8 +408,8 @@ void wxVarScrollHelperBase::UpdateScrollbar()
     size_t unit;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unit = m_unitFirst; unit < m_unitMax; ++unit )
     {
@@ -527,8 +527,8 @@ void wxVarScrollHelperBase::RefreshUnit(size_t unit)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = GetVisibleBegin(); n < unit; ++n )
     {
@@ -559,8 +559,8 @@ void wxVarScrollHelperBase::RefreshUnits(size_t from, size_t to)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t nBefore = GetVisibleBegin();
           nBefore < from;
@@ -571,8 +571,8 @@ void wxVarScrollHelperBase::RefreshUnits(size_t from, size_t to)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t nBetween = from; nBetween <= to; nBetween++ )
     {
@@ -620,8 +620,8 @@ int wxVarScrollHelperBase::VirtualHitTest(wxCoord coord) const
     const size_t unitMax = GetVisibleEnd();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t unit = GetVisibleBegin(); unit < unitMax; ++unit )
     {
@@ -728,8 +728,8 @@ bool wxVarScrollHelperBase::DoScrollPages(int pages)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( pages )
     {
@@ -771,8 +771,8 @@ void wxVarScrollHelperBase::HandleOnSize(wxSizeEvent& event)
         size_t unit;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unit = m_unitFirst; unit < m_unitMax; ++unit )
         {
@@ -787,8 +787,8 @@ void wxVarScrollHelperBase::HandleOnSize(wxSizeEvent& event)
         size_t idealUnitFirst;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( idealUnitFirst = m_unitFirst;
               idealUnitFirst > 0;
@@ -914,8 +914,8 @@ void wxVarHVScrollHelper::RefreshRowColumn(size_t row, size_t column)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = GetVisibleRowsBegin(); n < row; n++ )
     {
@@ -924,8 +924,8 @@ void wxVarHVScrollHelper::RefreshRowColumn(size_t row, size_t column)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = GetVisibleColumnsBegin(); n < column; n++ )
     {
@@ -977,8 +977,8 @@ void wxVarHVScrollHelper::RefreshRowsColumns(size_t fromRow, size_t toRow,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( nBefore = GetVisibleRowsBegin();
           nBefore < fromRow;
@@ -989,8 +989,8 @@ void wxVarHVScrollHelper::RefreshRowsColumns(size_t fromRow, size_t toRow,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( nBetween = fromRow; nBetween <= toRow; nBetween++ )
     {
@@ -999,8 +999,8 @@ void wxVarHVScrollHelper::RefreshRowsColumns(size_t fromRow, size_t toRow,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( nBefore = GetVisibleColumnsBegin();
           nBefore < fromColumn;
@@ -1011,8 +1011,8 @@ void wxVarHVScrollHelper::RefreshRowsColumns(size_t fromRow, size_t toRow,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( nBetween = fromColumn; nBetween <= toColumn; nBetween++ )
     {

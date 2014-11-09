@@ -271,8 +271,8 @@ int wxMDIParentFrame::GetChildFramesCount() const
     int count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxWindowList::const_iterator i = GetChildren().begin();
           i != GetChildren().end();
@@ -433,8 +433,8 @@ void wxMDIParentFrame::DoMenuUpdates(wxMenu* menu)
                 int nCount = bar->GetMenuCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (int n = 0; n < nCount; n++)
                     bar->GetMenu(n)->UpdateUI(source);
@@ -660,8 +660,8 @@ void wxMDIParentFrame::OnMDIChild(wxCommandEvent& event)
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( node )
     {
@@ -1421,8 +1421,8 @@ void wxMDIClientWindow::DoSetSize(int x, int y, int width, int height, int sizeF
             wxWindowList::compatibility_iterator node = GetParent()->GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while (node)
             {
@@ -1507,8 +1507,8 @@ void MDIInsertWindowMenu(wxWindow *win, WXHMENU hMenu, HMENU menuWin)
         bool inserted = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int i = 0; i < N; i++ )
         {
@@ -1553,8 +1553,8 @@ void MDIRemoveWindowMenu(wxWindow *win, WXHMENU hMenu)
         int N = ::GetMenuItemCount(hmenu);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int i = 0; i < N; i++ )
         {

@@ -140,8 +140,8 @@ int mfs_open (void *buffer, int size, char *mode)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < MAX_BUFFS; i++)
     {
@@ -582,8 +582,8 @@ static void mem_init ()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < MAX_BUFFS; i++)
     {

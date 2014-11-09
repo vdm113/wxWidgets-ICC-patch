@@ -304,8 +304,8 @@ bool wxSoundBackendSDL::Play(wxSoundData *data, unsigned flags,
         wxLogTrace(wxT("sound"), wxT("waiting for sample to finish"));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (m_playing && m_data == data)
         {

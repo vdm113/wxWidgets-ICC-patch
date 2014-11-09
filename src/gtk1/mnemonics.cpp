@@ -68,8 +68,8 @@ static wxString GTKProcessMnemonics(const wxString& label, MnemonicsFlag flag)
     labelGTK.reserve(label.length());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxString::const_iterator i = label.begin(); i != label.end(); ++i )
     {
@@ -93,8 +93,8 @@ static wxString GTKProcessMnemonics(const wxString& label, MnemonicsFlag flag)
                     // is this ampersand introducing a mnemonic or rather an entity?
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for (size_t j=0; j < WXSIZEOF(entitiesNames); j++)
                     {
@@ -188,8 +188,8 @@ wxString wxConvertMnemonicsFromGTK(const wxString& gtkLabel)
     wxString label;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( const wxChar *pc = gtkLabel.c_str(); *pc; pc++ )
     {

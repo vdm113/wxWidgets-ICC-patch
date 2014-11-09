@@ -164,8 +164,8 @@ short wxApp::MacHandleAEODoc(const WXEVENTREF event, WXEVENTREF WXUNUSED(reply))
     wxArrayString fileNames;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 1; i <= itemsInList; i++)
     {
@@ -243,8 +243,8 @@ short wxApp::MacHandleAEPDoc(const WXEVENTREF event , WXEVENTREF WXUNUSED(reply)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 1; i <= itemsInList; i++)
     {
@@ -307,8 +307,8 @@ void wxApp::MacOpenFiles(const wxArrayString & fileNames )
     const size_t fileCount = fileNames.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < fileCount; i++)
     {
@@ -335,8 +335,8 @@ void wxApp::MacPrintFiles(const wxArrayString & fileNames )
     const size_t fileCount = fileNames.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < fileCount; i++)
     {
@@ -403,8 +403,8 @@ void wxApp::MacReopenApp()
         wxTopLevelWindow* firstHidden = NULL ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (node)
         {
@@ -520,8 +520,8 @@ int wxMacCommandToId( UInt32 macCommandId )
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( size_t i = 0 ; i < WXSIZEOF(gCommandIds) ; ++i )
                 {
@@ -555,8 +555,8 @@ UInt32 wxIdToMacCommand( int wxId )
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t i = 0 ; i < WXSIZEOF(gCommandIds) ; ++i )
         {
@@ -892,8 +892,8 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
      */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(int i=1; i < argc; ++i)
     {
@@ -1529,8 +1529,8 @@ bool wxApp::MacSendCharEvent( wxWindow* focus , long keymessage , long modifiers
         wxWindow* iter = focus->GetParent() ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( iter && !handled )
         {

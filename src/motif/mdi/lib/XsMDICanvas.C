@@ -95,8 +95,8 @@ XsMDICanvas::~XsMDICanvas ( )
    Remove callbacks to prevent calls to destroyed class-part of XsMDICanvas
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    while children are being destroyed.
 */
@@ -128,8 +128,8 @@ void XsMDICanvas::add (XsMDIWindow *win)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (int loop = 0; loop < _num; loop++)
          newList[loop] = _list[loop];
@@ -165,8 +165,8 @@ void XsMDICanvas::remove (XsMDIWindow *win)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    for (i = 0; i < _num; i++)
    {
@@ -177,8 +177,8 @@ void XsMDICanvas::remove (XsMDIWindow *win)
          
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
          for (j = i; j < _num - 1; j++)
             _list[j] = _list[j + 1];
@@ -215,8 +215,8 @@ void XsMDICanvas::show ( )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
    for (int loop = 0; loop < _num; loop++)
       _placeWindow (_list[loop]);

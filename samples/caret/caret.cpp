@@ -424,8 +424,8 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int y = 0; y < m_yChars; y++ )
     {
@@ -433,8 +433,8 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int x = 0; x < m_xChars; x++ )
         {

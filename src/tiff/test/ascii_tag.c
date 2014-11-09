@@ -115,8 +115,8 @@ main()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < NTAGS; i++) {
 		if (!TIFFSetField(tif, ascii_tags[i].tag,
@@ -156,8 +156,8 @@ main()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; i < NTAGS; i++) {
 		if (!TIFFGetField(tif, ascii_tags[i].tag, &value)

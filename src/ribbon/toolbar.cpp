@@ -128,8 +128,8 @@ wxRibbonToolBar::~wxRibbonToolBar()
     size_t i, t;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(i = 0; i < count; ++i)
     {
@@ -137,8 +137,8 @@ wxRibbonToolBar::~wxRibbonToolBar()
         size_t tool_count = group->tools.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(t = 0; t < tool_count; ++t)
         {
@@ -284,8 +284,8 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::InsertTool(
     size_t g;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(g = 0; g < group_count; ++g)
     {
@@ -310,8 +310,8 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::InsertSeparator(size_t pos)
     size_t g;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(g = 0; g < group_count; ++g)
     {
@@ -328,8 +328,8 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::InsertSeparator(size_t pos)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for(size_t t = pos; t < tool_count; t++)
                 new_group->tools.Add(group->tools[t]);
@@ -361,8 +361,8 @@ void wxRibbonToolBar::ClearTools()
     size_t i, t;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(i = 0; i < count; ++i)
     {
@@ -370,8 +370,8 @@ void wxRibbonToolBar::ClearTools()
         size_t tool_count = group->tools.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(t = 0; t < tool_count; ++t)
         {
@@ -389,8 +389,8 @@ bool wxRibbonToolBar::DeleteTool(int tool_id)
     size_t g, t;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(g = 0; g < group_count; ++g)
     {
@@ -398,8 +398,8 @@ bool wxRibbonToolBar::DeleteTool(int tool_id)
         size_t tool_count = group->tools.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(t = 0; t < tool_count; ++t)
         {
@@ -421,8 +421,8 @@ bool wxRibbonToolBar::DeleteToolByPos(size_t pos)
     size_t g, t;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(g = 0; g < group_count; ++g)
     {
@@ -444,8 +444,8 @@ bool wxRibbonToolBar::DeleteToolByPos(size_t pos)
                 wxRibbonToolBarToolGroup* next_group = m_groups.Item(g+1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for(t = 0; t < next_group->tools.GetCount(); ++t)
                     group->tools.Add(next_group->tools[t]);
@@ -464,8 +464,8 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::FindById(int tool_id)const
     size_t g, t;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(g = 0; g < group_count; ++g)
     {
@@ -473,8 +473,8 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::FindById(int tool_id)const
         size_t tool_count = group->tools.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(t = 0; t < tool_count; ++t)
         {
@@ -494,8 +494,8 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::GetToolByPos(size_t pos)const
     size_t g;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(g = 0; g < group_count; ++g)
     {
@@ -518,8 +518,8 @@ size_t wxRibbonToolBar::GetToolCount() const
     size_t count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(size_t g = 0; g < m_groups.GetCount(); ++g)
     {
@@ -574,8 +574,8 @@ int wxRibbonToolBar::GetToolPos(int tool_id)const
     int pos = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(g = 0; g < group_count; ++g)
     {
@@ -583,8 +583,8 @@ int wxRibbonToolBar::GetToolPos(int tool_id)const
         size_t tool_count = group->tools.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(t = 0; t < tool_count; ++t)
         {
@@ -717,8 +717,8 @@ wxSize wxRibbonToolBar::DoGetNextSmallerSize(wxOrientation direction,
     int nrows;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(nrows = m_nrows_min; nrows <= m_nrows_max; ++nrows)
     {
@@ -768,8 +768,8 @@ wxSize wxRibbonToolBar::DoGetNextLargerSize(wxOrientation direction,
     int nrows;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(nrows = m_nrows_min; nrows <= m_nrows_max; ++nrows)
     {
@@ -826,8 +826,8 @@ void wxRibbonToolBar::SetRows(int nMin, int nMax)
     m_sizes = new wxSize[m_nrows_max - m_nrows_min + 1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(int i = m_nrows_min; i <= m_nrows_max; ++i)
         m_sizes[i - m_nrows_min] = wxSize(0, 0);
@@ -846,8 +846,8 @@ bool wxRibbonToolBar::Realize()
     size_t g, t;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(g = 0; g < group_count; ++g)
     {
@@ -857,8 +857,8 @@ bool wxRibbonToolBar::Realize()
         int tallest = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(t = 0; t < tool_count; ++t)
         {
@@ -890,8 +890,8 @@ bool wxRibbonToolBar::Realize()
             group->size = wxSize(prev->position.x + prev->size.x, tallest);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for(t = 0; t < tool_count; ++t)
                 group->tools.Item(t)->size.SetHeight(tallest);
@@ -922,22 +922,22 @@ bool wxRibbonToolBar::Realize()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(nrows = m_nrows_min; nrows <= m_nrows_max; ++nrows)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(r = 0; r < nrows; ++r)
             row_sizes[r] = wxSize(0, 0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(g = 0; g < group_count; ++g)
         {
@@ -945,8 +945,8 @@ bool wxRibbonToolBar::Realize()
             int shortest_row = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for(r = 1; r < nrows; ++r)
             {
@@ -960,8 +960,8 @@ bool wxRibbonToolBar::Realize()
         wxSize size(0, 0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(r = 0; r < nrows; ++r)
         {
@@ -1033,8 +1033,8 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
         int area = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(int i = 0; i <= m_nrows_max - m_nrows_min; ++i)
         {
@@ -1055,8 +1055,8 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
     int r;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(r = 0; r < row_count; ++r)
         row_sizes[r] = wxSize(0, 0);
@@ -1064,8 +1064,8 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
     size_t group_count = m_groups.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(g = 0; g < group_count; ++g)
     {
@@ -1073,8 +1073,8 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
         int shortest_row = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(r = 1; r < row_count; ++r)
         {
@@ -1091,8 +1091,8 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
     int total_height = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(r = 0; r < row_count; ++r)
         total_height += row_sizes[r].GetHeight();
@@ -1101,8 +1101,8 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
     rowypos[0] = rowsep;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(r = 1; r < row_count; ++r)
     {
@@ -1112,8 +1112,8 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
     // Set group y positions
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(g = 0; g < group_count; ++g)
     {
@@ -1145,8 +1145,8 @@ wxSize wxRibbonToolBar::GetBestSizeForParentSize(const wxSize& parentSize) const
         int area = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(int i = 0; i <= m_nrows_max - m_nrows_min; ++i)
         {
@@ -1183,8 +1183,8 @@ void wxRibbonToolBar::OnPaint(wxPaintEvent& WXUNUSED(evt))
     size_t g, t;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(g = 0; g < group_count; ++g)
     {
@@ -1196,8 +1196,8 @@ void wxRibbonToolBar::OnPaint(wxPaintEvent& WXUNUSED(evt))
                 wxRect(group->position, group->size));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for(t = 0; t < tool_count; ++t)
             {
@@ -1223,8 +1223,8 @@ void wxRibbonToolBar::OnMouseMove(wxMouseEvent& evt)
     size_t g, t;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(g = 0; g < group_count; ++g)
     {
@@ -1236,8 +1236,8 @@ void wxRibbonToolBar::OnMouseMove(wxMouseEvent& evt)
             pos -= group->position;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for(t = 0; t < tool_count; ++t)
             {
@@ -1391,8 +1391,8 @@ void wxRibbonToolBar::UpdateWindowUI(long flags)
     size_t g, t;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(g = 0; g < group_count; ++g)
     {
@@ -1400,8 +1400,8 @@ void wxRibbonToolBar::UpdateWindowUI(long flags)
         size_t tool_count = group->tools.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(t = 0; t < tool_count; ++t)
         {
@@ -1432,8 +1432,8 @@ bool wxRibbonToolBarEvent::PopupMenu(wxMenu* menu)
         size_t g, t;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(g = 0; g < group_count; ++g)
         {
@@ -1441,8 +1441,8 @@ bool wxRibbonToolBarEvent::PopupMenu(wxMenu* menu)
             size_t tool_count = group->tools.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for(t = 0; t < tool_count; ++t)
             {

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/evtloop.cpp
 // Purpose:     implements wxGUIEventLoop for PM
@@ -149,6 +142,11 @@ bool wxEventLoopImpl::PreProcessMessage(QMSG *pMsg)
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (hWnd && !pWndThis)
     {
         hWnd = ::WinQueryWindow(hWnd, QW_PARENT);
@@ -186,6 +184,11 @@ bool wxEventLoopImpl::PreProcessMessage(QMSG *pMsg)
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
            for(pWnd = pWndThis; pWnd; pWnd = pWnd->GetParent() )
            {
@@ -287,6 +290,11 @@ int wxGUIEventLoop::Run()
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ;; )
     {
 #if wxUSE_THREADS
@@ -304,6 +312,11 @@ int wxGUIEventLoop::Run()
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
         while ( !Pending() && m_impl->SendIdleMessage() )
         {
@@ -406,6 +419,11 @@ bool wxGUIEventLoop::Dispatch()
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( size_t n = 0; n < count; n++ )
             {
                 QMSG& msg = s_aSavedMessages[n];
@@ -443,6 +461,11 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
     while (::WinPeekMsg(vHab, &vMsg, (HWND)NULL, 0, 0, PM_NOREMOVE) && vMsg.msg != WM_QUIT)
     {

@@ -206,8 +206,8 @@ static gboolean target_drag_motion( GtkWidget *WXUNUSED(widget),
     GList *tmp_list;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (tmp_list = context->targets; tmp_list; tmp_list = tmp_list->next)
     {
@@ -520,8 +520,8 @@ GdkAtom wxDropTarget::GTKGetMatchingPair(bool quiet)
     const GList* child = gdk_drag_context_list_targets(m_dragContext);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (child)
     {
@@ -860,8 +860,8 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
     size_t count = m_data->GetFormatCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i = 0; i < count; i++)
     {
@@ -901,8 +901,8 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (m_waiting)
         gtk_main_iteration();

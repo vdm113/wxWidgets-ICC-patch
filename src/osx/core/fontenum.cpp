@@ -60,8 +60,8 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
         CFIndex count = CFArrayGetCount(cfFontFamilies);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(CFIndex i = 0; i < count; i++)
         {
@@ -94,8 +94,8 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0 ; i < fontFamilies.Count() ; ++i )
     {

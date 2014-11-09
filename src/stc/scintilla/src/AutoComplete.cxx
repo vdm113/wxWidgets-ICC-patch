@@ -116,15 +116,15 @@ struct Sorter {
 		int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (list[i]) {
 			indices.push_back(i); // word start
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			while (list[i] != ac->GetTypesep() && list[i] != ac->GetSeparator() && list[i])
 				++i;
@@ -132,8 +132,8 @@ struct Sorter {
 			if (list[i] == ac->GetTypesep()) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				while (list[i] != ac->GetSeparator() && list[i])
 					++i;
@@ -171,8 +171,8 @@ void AutoComplete::SetList(const char *list) {
 		sortMatrix.clear();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (int i = 0; i < lb->Length(); ++i)
 			sortMatrix.push_back(i);
@@ -183,8 +183,8 @@ void AutoComplete::SetList(const char *list) {
 	sortMatrix.clear();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int i = 0; i < (int)IndexSort.indices.size() / 2; ++i)
 		sortMatrix.push_back(i);
@@ -199,8 +199,8 @@ void AutoComplete::SetList(const char *list) {
 	char item[maxItemLen];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (size_t i = 0; i < sortMatrix.size(); ++i) {
 		int wordLen = IndexSort.indices[sortMatrix[i] * 2 + 2] - IndexSort.indices[sortMatrix[i] * 2];
@@ -221,8 +221,8 @@ void AutoComplete::SetList(const char *list) {
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int i = 0; i < (int)sortMatrix.size(); ++i)
 		sortMatrix[i] = i;
@@ -272,8 +272,8 @@ void AutoComplete::Select(const char *word) {
 	int end = lb->Length() - 1; // upper bound of the api array block to search
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((start <= end) && (location == -1)) { // Binary searching loop
 		int pivot = (start + end) / 2;
@@ -288,8 +288,8 @@ void AutoComplete::Select(const char *word) {
 			// Find first match
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			while (pivot > start) {
 				lb->GetValue(sortMatrix[pivot-1], item, maxItemLen);
@@ -307,8 +307,8 @@ void AutoComplete::Select(const char *word) {
 				// Check for exact-case match
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (; pivot <= end; pivot++) {
 					lb->GetValue(sortMatrix[pivot], item, maxItemLen);
@@ -337,8 +337,8 @@ void AutoComplete::Select(const char *word) {
 			char item[maxItemLen];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (int i = location + 1; i <= end; ++i) {
 				lb->GetValue(sortMatrix[i], item, maxItemLen);

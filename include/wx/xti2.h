@@ -281,8 +281,8 @@ template<typename iter, typename collection_t > void wxListCollectionToAnyList(
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( iter current = coll.GetFirst(); current; 
          current = current->GetNext() )
@@ -296,8 +296,8 @@ template<typename collection_t> void wxArrayCollectionToVariantArray(
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( size_t i = 0; i < coll.GetCount(); i++ )
     {

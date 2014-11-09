@@ -514,8 +514,8 @@ void MyFrame::UpdateThreadStatus()
            nCount = wxGetApp().m_threads.Count();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < nCount; n++ )
     {
@@ -564,8 +564,8 @@ void MyFrame::OnStartThreads(wxCommandEvent& WXUNUSED(event) )
     // first create them all...
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < count; n++ )
     {
@@ -593,8 +593,8 @@ void MyFrame::OnStartThreads(wxCommandEvent& WXUNUSED(event) )
     // ...and then start them
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < count; n++ )
     {
@@ -653,8 +653,8 @@ void MyFrame::OnResumeThread(wxCommandEvent& WXUNUSED(event) )
     size_t n = 0, count = wxGetApp().m_threads.Count();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( n < count && !wxGetApp().m_threads[n]->IsPaused() )
         n++;
@@ -681,8 +681,8 @@ void MyFrame::OnPauseThread(wxCommandEvent& WXUNUSED(event) )
     int n = wxGetApp().m_threads.Count() - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( n >= 0 && !wxGetApp().m_threads[n]->IsRunning() )
         n--;
@@ -959,8 +959,8 @@ wxThread::ExitCode MyThread::Entry()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( m_count = 0; m_count < 10; m_count++ )
     {
@@ -1025,8 +1025,8 @@ wxThread::ExitCode MyWorkerThread::Entry()
 #else
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( m_count = 0; !m_frame->Cancelled() && (m_count < 100); m_count++ )
     {
@@ -1074,8 +1074,8 @@ wxThread::ExitCode MyGUIThread::Entry()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i=0; i<GUITHREAD_NUM_UPDATES && !TestDestroy(); i++)
     {

@@ -66,8 +66,8 @@ DocumentOstream& DrawingDocument::SaveObject(DocumentOstream& ostream)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int n = 0; n < count; n++ )
     {
@@ -103,8 +103,8 @@ DocumentIstream& DrawingDocument::LoadObject(DocumentIstream& istream)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int n = 0; n < count; n++ )
     {
@@ -161,8 +161,8 @@ DocumentOstream& DoodleSegment::SaveObject(DocumentOstream& ostream)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int n = 0; n < count; n++ )
     {
@@ -190,8 +190,8 @@ DocumentIstream& DoodleSegment::LoadObject(DocumentIstream& istream)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int n = 0; n < count; n++ )
     {

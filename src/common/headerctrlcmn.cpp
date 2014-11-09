@@ -180,8 +180,8 @@ void wxHeaderCtrlBase::SetColumnsOrder(const wxArrayInt& order)
     wxArrayInt seen(count, 0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; n < count; n++ )
     {
@@ -203,8 +203,8 @@ void wxHeaderCtrlBase::ResetColumnsOrder()
     wxArrayInt order(count);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; n < count; n++ )
         order[n] = n;
@@ -266,8 +266,8 @@ wxHeaderCtrlBase::DoResizeColumnIndices(wxArrayInt& colIndices, unsigned int cou
         // all new columns have default positions equal to their indices
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned n = countOld; n < count; n++ )
             colIndices.push_back(n);
@@ -280,8 +280,8 @@ wxHeaderCtrlBase::DoResizeColumnIndices(wxArrayInt& colIndices, unsigned int cou
         colIndicesNew.reserve(count);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned n = 0; n < countOld; n++ )
         {
@@ -308,8 +308,8 @@ void wxHeaderCtrlBase::AddColumnsItems(wxMenu& menu, int idColumnsBase)
     const unsigned count = GetColumnCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; n < count; n++ )
     {
@@ -371,8 +371,8 @@ bool wxHeaderCtrlBase::ShowCustomizeDialog()
     titles.reserve(count);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; n < count; n++ )
         titles.push_back(GetColumn(n).GetTitle());
@@ -381,8 +381,8 @@ bool wxHeaderCtrlBase::ShowCustomizeDialog()
     unsigned pos;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( pos = 0; pos < count; pos++ )
     {
@@ -402,8 +402,8 @@ bool wxHeaderCtrlBase::ShowCustomizeDialog()
         order = dlg.GetOrder();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( pos = 0; pos < count; pos++ )
         {

@@ -235,8 +235,8 @@ private:
             wxArrayString allowedChars;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( wxChar c = wxT('0'); c <= wxT('9'); c++ )
                 allowedChars.Add(wxString(c, 1));
@@ -244,8 +244,8 @@ private:
             const wxChar *p2 = m_format.c_str();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( *p2 )
             {

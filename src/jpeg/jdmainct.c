@@ -184,8 +184,8 @@ alloc_funny_pointers (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -222,8 +222,8 @@ make_funny_pointers (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -235,8 +235,8 @@ make_funny_pointers (j_decompress_ptr cinfo)
     buf = main->buffer[ci];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < rgroup * (M + 2); i++) {
       xbuf0[i] = xbuf1[i] = buf[i];
@@ -244,8 +244,8 @@ make_funny_pointers (j_decompress_ptr cinfo)
     /* In the second list, put the last four row groups in swapped order */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < rgroup * 2; i++) {
       xbuf1[rgroup*(M-2) + i] = buf[rgroup*M + i];
@@ -258,8 +258,8 @@ make_funny_pointers (j_decompress_ptr cinfo)
      */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < rgroup; i++) {
       xbuf0[i - rgroup] = xbuf0[0];
@@ -282,8 +282,8 @@ set_wraparound_pointers (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -293,8 +293,8 @@ set_wraparound_pointers (j_decompress_ptr cinfo)
     xbuf1 = main->xbuffer[1][ci];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < rgroup; i++) {
       xbuf0[i - rgroup] = xbuf0[rgroup*(M+1) + i];
@@ -320,8 +320,8 @@ set_bottom_pointers (j_decompress_ptr cinfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -343,8 +343,8 @@ set_bottom_pointers (j_decompress_ptr cinfo)
     xbuf = main->xbuffer[main->whichptr][ci];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < rgroup * 2; i++) {
       xbuf[rows_left + i] = xbuf[rows_left-1];
@@ -556,8 +556,8 @@ jinit_d_main_controller (j_decompress_ptr cinfo, wxjpeg_boolean need_full_buffer
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {

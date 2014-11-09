@@ -95,8 +95,8 @@ int main(int argc, char **argv)
     case 8:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < cmsize; i++) {
             if (i < 32)
@@ -249,14 +249,14 @@ int main(int argc, char **argv)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < HEIGHT; i++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (j = 0, k = 0; j < WIDTH;) {
             cmap_index = (j / chunk_size) + ((i / chunk_size) * nchunks);

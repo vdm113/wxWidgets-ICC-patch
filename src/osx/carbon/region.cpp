@@ -457,8 +457,8 @@ miInsertEdgeInET(EdgeTable *ET, EdgeTableEntry *ETE,  int scanline,
     pSLL = pPrevSLL->next;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (pSLL && (pSLL->scanline < scanline))
     {
@@ -497,8 +497,8 @@ miInsertEdgeInET(EdgeTable *ET, EdgeTableEntry *ETE,  int scanline,
     start = pSLL->edgelist;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (start && (start->bres.minor < ETE->bres.minor))
     {
@@ -576,8 +576,8 @@ miCreateETandAET(int count, const wxPoint * pts, EdgeTable *ET, EdgeTableEntry *
      */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (count--)
     {
@@ -645,15 +645,15 @@ miloadAET(EdgeTableEntry *AET, EdgeTableEntry *ETEs)
     AET = AET->next;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (ETEs)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (AET && (AET->bres.minor < ETEs->bres.minor))
         {
@@ -704,8 +704,8 @@ micomputeWAET(EdgeTableEntry *AET)
     AET = AET->next;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (AET)
     {
@@ -746,8 +746,8 @@ miInsertionSort(EdgeTableEntry *AET)
     AET = AET->next;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (AET)
     {
@@ -755,8 +755,8 @@ miInsertionSort(EdgeTableEntry *AET)
         pETEchase = AET;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (pETEchase->back->bres.minor > AET->bres.minor)
             pETEchase = pETEchase->back;
@@ -788,8 +788,8 @@ miFreeStorage(ScanLineListBlock *pSLLBlock)
     
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (pSLLBlock) 
     {
@@ -846,8 +846,8 @@ scanFillGeneralPoly( wxRegion* rgn,
          */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (y = ET.ymin; y < ET.ymax; y++)
         {
@@ -868,8 +868,8 @@ scanFillGeneralPoly( wxRegion* rgn,
              */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while (pAET)
             {
@@ -888,8 +888,8 @@ scanFillGeneralPoly( wxRegion* rgn,
                     
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for ( int i = 0 ; i < nPts; ++i)
                     {
@@ -917,8 +917,8 @@ scanFillGeneralPoly( wxRegion* rgn,
          */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (y = ET.ymin; y < ET.ymax; y++)
         {
@@ -941,8 +941,8 @@ scanFillGeneralPoly( wxRegion* rgn,
              */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while (pAET)
             {
@@ -967,8 +967,8 @@ scanFillGeneralPoly( wxRegion* rgn,
                         //     nPts, FirstPoint, FirstWidth,1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                         for ( int i = 0 ; i < nPts ; ++i)
                         {
@@ -987,8 +987,8 @@ scanFillGeneralPoly( wxRegion* rgn,
                     pWETE = pWETE->nextWETE;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     while (pWETE != pAET)
                         EVALUATEEDGEWINDING(pAET, pPrevAET, y, fixWAET);
@@ -1016,8 +1016,8 @@ scanFillGeneralPoly( wxRegion* rgn,
     //     nPts, FirstPoint, FirstWidth,1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0 ; i < nPts; ++i)
     {
@@ -1054,8 +1054,8 @@ wxRegion::wxRegion(size_t n, const wxPoint *points, wxPolygonFillMode fillStyle)
     // Find the max size needed to draw the polygon 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (idx=0; idx<n; idx++) 
     { 
@@ -1349,8 +1349,8 @@ void wxRegionIterator::SetRects(long numRects, wxRect *rects)
         m_rects = new wxRect[numRects];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < numRects; i++)
             m_rects[i] = rects[i];

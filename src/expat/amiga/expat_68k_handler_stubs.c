@@ -50,8 +50,8 @@ static uint32 VARARGS68K call_68k_code (struct ExecIFace *IExec, void *code, int
 		args += num_args;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (num_args--) {
 			*--sp = *--args;

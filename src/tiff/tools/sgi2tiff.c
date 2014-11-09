@@ -71,8 +71,8 @@ main(int argc, char* argv[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((c = getopt(argc, argv, "c:p:r:")) != -1)
 		switch (c) {
@@ -174,8 +174,8 @@ processCompressOptions(char* opt)
                 defcompression = COMPRESSION_JPEG;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while( cp )
                 {
@@ -218,8 +218,8 @@ cpContig(IMAGE* in, TIFF* out)
 		b = g + in->xsize;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (y = in->ysize-1; y >= 0; y--) {
 			uint8* pp = (uint8*) buf;
@@ -229,8 +229,8 @@ cpContig(IMAGE* in, TIFF* out)
 			getrow(in, b, y, 2);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (x = 0; x < in->xsize; x++) {
 				pp[0] = r[x];
@@ -250,8 +250,8 @@ cpContig(IMAGE* in, TIFF* out)
 		a = b + in->xsize;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (y = in->ysize-1; y >= 0; y--) {
 			uint8* pp = (uint8*) buf;
@@ -262,8 +262,8 @@ cpContig(IMAGE* in, TIFF* out)
 			getrow(in, a, y, 3);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (x = 0; x < in->xsize; x++) {
 				pp[0] = r[x];
@@ -281,15 +281,15 @@ cpContig(IMAGE* in, TIFF* out)
 		r = (short *)_TIFFmalloc(in->xsize * sizeof (short));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (y = in->ysize-1; y >= 0; y--) {
 			getrow(in, r, y, 0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (x = in->xsize-1; x >= 0; x--)
 				pp[x] = r[x];
@@ -318,21 +318,21 @@ cpSeparate(IMAGE* in, TIFF* out)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (z = 0; z < in->zsize; z++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (y = in->ysize-1; y >= 0; y--) {
 			getrow(in, r, y, z);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (x = 0; x < in->xsize; x++)
 				pp[x] = r[x];
@@ -385,8 +385,8 @@ usage(void)
 	setbuf(stderr, buf);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

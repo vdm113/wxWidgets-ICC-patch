@@ -89,8 +89,8 @@ bool wxFileDropTarget::OnDropFiles( long x, long y, size_t nFiles, const char * 
   size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < nFiles; i++)
   {
@@ -106,8 +106,8 @@ bool wxFileDropTarget::OnDrop(long x, long y, const void *data, size_t size )
   size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < size; i++)
     if (text[i] == 0) number++;
@@ -119,8 +119,8 @@ bool wxFileDropTarget::OnDrop(long x, long y, const void *data, size_t size )
   text = (char*) data;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for ( i = 0; i < number; i++)
   {

@@ -74,8 +74,8 @@ static void ColouriseRDoc(unsigned int startPos, int length, int initStyle, Word
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; sc.More(); sc.Forward()) {
 
@@ -174,8 +174,8 @@ static void FoldRDoc(unsigned int startPos, int length, int, WordList *[],
 	int styleNext = styler.StyleAt(startPos);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;

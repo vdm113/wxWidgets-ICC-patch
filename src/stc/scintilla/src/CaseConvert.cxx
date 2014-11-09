@@ -421,8 +421,8 @@ public:
 		unsigned char bytes[UTF8MaxBytes + 1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (mixedPos < lenMixed) {
 			const unsigned char leadByte = static_cast<unsigned char>(mixed[mixedPos]);
@@ -435,8 +435,8 @@ public:
 				const int widthCharBytes = UTF8BytesOfLead[leadByte];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (int b=1; b<widthCharBytes; b++) {
 					bytes[b] = (mixedPos+b < lenMixed) ? mixed[mixedPos+b] : 0;
@@ -453,8 +453,8 @@ public:
 				// Character has a conversion so copy that conversion in
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				while (*caseConverted) {
 					converted[lenConverted++] = *caseConverted++;
@@ -465,8 +465,8 @@ public:
 				// Character has no conversion so copy the input to output
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (size_t i=0; i<lenMixedChar; i++) {
 					converted[lenConverted++] = mixed[mixedPos+i];
@@ -484,8 +484,8 @@ public:
 		conversions.reserve(characterToConversion.size());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (CharacterToConversion::iterator it = characterToConversion.begin(); it != characterToConversion.end(); ++it) {
 			characters.push_back(it->character);
@@ -543,8 +543,8 @@ void SetupConversions(enum CaseConversion conversion) {
 	// First initialize for the symmetric ranges
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (size_t i=0; i<ELEMENTS(symmetricCaseConversionRanges);) {
 		int lower = symmetricCaseConversionRanges[i++];
@@ -553,8 +553,8 @@ void SetupConversions(enum CaseConversion conversion) {
 		int pitch = symmetricCaseConversionRanges[i++];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (int j=0; j<length*pitch; j+=pitch) {
 			AddSymmetric(conversion, lower+j, upper+j);
@@ -563,8 +563,8 @@ void SetupConversions(enum CaseConversion conversion) {
 	// Add the symmetric singletons
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (size_t i=0; i<ELEMENTS(symmetricCaseConversions);) {
 		int lower = symmetricCaseConversions[i++];
@@ -575,8 +575,8 @@ void SetupConversions(enum CaseConversion conversion) {
 	const char *sComplex = complexCaseConversions;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (*sComplex) {
 		// Longest ligature is 3 character so 5 for safety
@@ -588,8 +588,8 @@ void SetupConversions(enum CaseConversion conversion) {
 		size_t i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (*sComplex && *sComplex != '|') {
 			originUTF8[i++] = *sComplex;
@@ -600,8 +600,8 @@ void SetupConversions(enum CaseConversion conversion) {
 		i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (*sComplex && *sComplex != '|') {
 			foldedUTF8[i++] = *sComplex;
@@ -612,8 +612,8 @@ void SetupConversions(enum CaseConversion conversion) {
 		i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (*sComplex && *sComplex != '|') {
 			upperUTF8[i++] = *sComplex;
@@ -624,8 +624,8 @@ void SetupConversions(enum CaseConversion conversion) {
 		i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (*sComplex && *sComplex != '|') {
 			lowerUTF8[i++] = *sComplex;

@@ -254,8 +254,8 @@ wxSize wxListBox::DoGetBestSize() const
         // Find the widest line
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (unsigned int i = 0; i < GetCount(); i++)
         {
@@ -362,8 +362,8 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter& items,
     const unsigned int numItems = items.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int i = 0; i < numItems; ++i )
     {

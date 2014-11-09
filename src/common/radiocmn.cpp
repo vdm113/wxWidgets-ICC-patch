@@ -147,8 +147,8 @@ int wxRadioBoxBase::GetNextItem(int item, wxDirection dir, long style) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -313,8 +313,8 @@ wxRadioBoxBase::~wxRadioBoxBase()
         const size_t n = m_itemsTooltips->size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t i = 0; i < n; i++ )
             delete (*m_itemsTooltips)[i];

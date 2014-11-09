@@ -72,8 +72,8 @@ void ImageRawTestCase::RGBImage()
     wxImagePixelData::Iterator p(data);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int y = 0; y < HEIGHT; y++ )
     {
@@ -81,8 +81,8 @@ void ImageRawTestCase::RGBImage()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int x = 0; x < WIDTH; x++ )
         {

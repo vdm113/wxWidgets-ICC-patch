@@ -260,8 +260,8 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter& items,
     const unsigned int numItems = items.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int i = 0; i < numItems; ++i )
     {
@@ -381,8 +381,8 @@ void wxListBox::DoDeleteOneItem(unsigned int n)
     unsigned int count = m_selections.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int item = 0; item < count; item++ )
     {
@@ -802,8 +802,8 @@ wxCoord wxListBox::GetMaxWidth() const
         unsigned int count = GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned int n = 0; n < count; n++ )
         {
@@ -864,8 +864,8 @@ wxSize wxListBox::DoGetBestClientSize() const
     unsigned int count = GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int n = 0; n < count; n++ )
     {
@@ -978,8 +978,8 @@ bool wxListBox::FindItem(const wxString& prefix, bool strictlyAfter)
     // loop over all items in the listbox
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int item = first; item != (int)last; item < (int)(count - 1) ? item++ : item = 0 )
     {
@@ -1085,8 +1085,8 @@ void wxListBox::ExtendSelection(int itemTo)
     int n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < itemFrom; n++ )
     {
@@ -1095,8 +1095,8 @@ void wxListBox::ExtendSelection(int itemTo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ; n <= itemTo; n++ )
     {
@@ -1106,8 +1106,8 @@ void wxListBox::ExtendSelection(int itemTo)
     unsigned int count = GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ; n < (int)count; n++ )
     {

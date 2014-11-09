@@ -124,15 +124,15 @@ srunner_run_all(SRunner *runner, int verbosity)
     tc = suite->tests;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (tc != NULL) {
         int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < tc->ntests; ++i) {
             runner->nchecks++;

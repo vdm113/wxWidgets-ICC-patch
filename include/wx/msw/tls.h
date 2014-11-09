@@ -61,8 +61,8 @@ public:
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( wxVector<void*>::iterator i = m_allValues.begin();
                   i != m_allValues.end();
@@ -106,8 +106,8 @@ public:
         //     no other thread can be using this key.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxVector<void*>::iterator i = m_allValues.begin();
               i != m_allValues.end();

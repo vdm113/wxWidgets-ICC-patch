@@ -166,8 +166,8 @@ public:
         ...
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( str = file.GetFirstLine(); !file.Eof(); str = file.GetNextLine() )
         {
@@ -189,8 +189,8 @@ public:
         ...
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( str = file.GetLastLine();
             file.GetCurrentLine() > 0;
@@ -299,8 +299,8 @@ public:
         (default argument means "don't change type") and may be used to convert,
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for example, DOS files to Unix.
 

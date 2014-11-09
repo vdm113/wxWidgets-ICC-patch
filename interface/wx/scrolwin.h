@@ -241,8 +241,8 @@ public:
         should call or replace this function. See wxScrolled::wxScrolled()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for details.
     */
@@ -402,8 +402,8 @@ public:
         This is a simple overload of GetViewStart(int*,int*); see that function
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for more info.
     */

@@ -213,8 +213,8 @@ static gint wxapp_idle_callback( gpointer WXUNUSED(data) )
     // no events have popped up in the event queue.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (wxTheApp->ProcessIdle() && (gtk_events_pending() == 0))
         ;
@@ -257,8 +257,8 @@ int wxPoll(wxPollFd *ufds, unsigned int nfds, int timeout)
     unsigned int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < nfds; i++ )
     {
@@ -283,8 +283,8 @@ int wxPoll(wxPollFd *ufds, unsigned int nfds, int timeout)
     // translate the results back
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < nfds; i++ )
     {
@@ -474,22 +474,22 @@ bool wxApp::OnInitGui()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int r = 0; r < 32; r++)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int g = 0; g < 32; g++)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (int b = 0; b < 32; b++)
             {
@@ -506,8 +506,8 @@ bool wxApp::OnInitGui()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for (int i = 0; i < cmap->size; i++)
                     {
@@ -581,8 +581,8 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
     char **argvGTK = new char *[argc + 1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < argc; i++ )
     {
@@ -605,15 +605,15 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
         // we have to drop the parameters which were consumed by GTK+
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < argcGTK; i++ )
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( strcmp(wxConvUTF8.cWX2MB(argv[i]), argvGTK[i]) != 0 )
             {
@@ -628,8 +628,8 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
     // free our copy
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < argcGTK; i++ )
     {

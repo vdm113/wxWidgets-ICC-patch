@@ -68,8 +68,8 @@ TIFFCleanup(TIFF* tif)
          */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while( tif->tif_clientinfo )
 	{
@@ -93,8 +93,8 @@ TIFFCleanup(TIFF* tif)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (i = 0; i < tif->tif_nfields; i++) {
 			TIFFField *fld = tif->tif_fields[i];
@@ -113,8 +113,8 @@ TIFFCleanup(TIFF* tif)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (i = 0; i < tif->tif_nfieldscompat; i++) {
                         if (tif->tif_fieldscompat[i].allocated_size)

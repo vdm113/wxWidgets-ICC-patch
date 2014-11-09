@@ -534,8 +534,8 @@ private:
       Cache::Element * const cacheEnd = GetCacheEnd();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for ( Cache::Element *c = cacheBegin; c != cacheEnd; c++ )
       {
@@ -622,8 +622,8 @@ private:
       wxStringImpl::const_iterator i(m_impl.begin() + cache->impl);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for ( size_t n = cache->pos; n < pos; n++ )
           wxStringOperations::IncIter(i);
@@ -4179,8 +4179,8 @@ template<bool (T)(const wxUniChar& c)>
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxString::const_iterator i = val.begin();
               i != val.end();

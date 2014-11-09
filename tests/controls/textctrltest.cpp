@@ -547,8 +547,8 @@ void TextCtrlTestCase::LongText()
     wxChar linePattern[lenPattern+1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < lenPattern - 1; i++)
     {
@@ -560,8 +560,8 @@ void TextCtrlTestCase::LongText()
     m_text->SetMaxLength(15000);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < numLines; i++)
     {
@@ -571,8 +571,8 @@ void TextCtrlTestCase::LongText()
     // Check the content.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < numLines; i++)
     {

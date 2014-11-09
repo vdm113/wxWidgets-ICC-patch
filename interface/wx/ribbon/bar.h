@@ -268,8 +268,8 @@ public:
         Calls and returns the value from wxRibbonPage::DismissExpandedPanel()
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the currently active page, or @false if there is no active page.
     */

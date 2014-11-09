@@ -43,8 +43,8 @@ enum wxSystemFont
         Note that with modern GUIs nothing guarantees that the same font is used
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for all GUI elements, so some controls might use a different font by default.
     */
@@ -154,8 +154,8 @@ enum wxSystemColour
         same colour used for the borders of controls like e.g. wxNotebook or
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the background of e.g. wxPanel.
 

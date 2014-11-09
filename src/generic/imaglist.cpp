@@ -87,8 +87,8 @@ int wxGenericImageList::Add( const wxBitmap &bitmap )
             int numImages = bitmap.GetWidth() / m_width;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (int subIndex = 0; subIndex < numImages; subIndex++)
             {

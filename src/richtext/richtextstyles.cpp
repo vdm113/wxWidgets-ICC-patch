@@ -78,8 +78,8 @@ wxRichTextAttr wxRichTextStyleDefinition::GetStyleMergedWithBase(const wxRichTex
     const wxRichTextStyleDefinition* def = this;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (def)
     {
@@ -108,8 +108,8 @@ wxRichTextAttr wxRichTextStyleDefinition::GetStyleMergedWithBase(const wxRichTex
     wxList::compatibility_iterator node = styles.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -162,8 +162,8 @@ void wxRichTextListStyleDefinition::Copy(const wxRichTextListStyleDefinition& de
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < 10; i++)
         m_levelStyles[i] = def.m_levelStyles[i];
@@ -176,8 +176,8 @@ bool wxRichTextListStyleDefinition::operator ==(const wxRichTextListStyleDefinit
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < 10; i++)
         if (!(m_levelStyles[i] == def.m_levelStyles[i]))
@@ -241,8 +241,8 @@ int wxRichTextListStyleDefinition::FindLevelForIndent(int indent) const
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < 10; i++)
     {
@@ -388,8 +388,8 @@ wxRichTextStyleDefinition* wxRichTextStyleSheet::FindStyle(const wxList& list, c
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (wxList::compatibility_iterator node = list.GetFirst(); node; node = node->GetNext())
     {
@@ -429,8 +429,8 @@ bool wxRichTextStyleSheet::AppendSheet(wxRichTextStyleSheet* after)
     wxRichTextStyleSheet* last = after;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (last && last->m_nextSheet)
     {
@@ -541,8 +541,8 @@ void wxRichTextStyleSheet::Copy(const wxRichTextStyleSheet& sheet)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (node = sheet.m_characterStyleDefinitions.GetFirst(); node; node = node->GetNext())
     {
@@ -552,8 +552,8 @@ void wxRichTextStyleSheet::Copy(const wxRichTextStyleSheet& sheet)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (node = sheet.m_paragraphStyleDefinitions.GetFirst(); node; node = node->GetNext())
     {
@@ -563,8 +563,8 @@ void wxRichTextStyleSheet::Copy(const wxRichTextStyleSheet& sheet)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (node = sheet.m_listStyleDefinitions.GetFirst(); node; node = node->GetNext())
     {
@@ -574,8 +574,8 @@ void wxRichTextStyleSheet::Copy(const wxRichTextStyleSheet& sheet)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (node = sheet.m_boxStyleDefinitions.GetFirst(); node; node = node->GetNext())
     {
@@ -693,8 +693,8 @@ void wxRichTextStyleListBox::UpdateStyles()
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < GetStyleSheet()->GetParagraphStyleCount(); i++)
                 m_styleNames.Add(GetStyleSheet()->GetParagraphStyle(i)->GetName() + wxT("|P"));
@@ -703,8 +703,8 @@ void wxRichTextStyleListBox::UpdateStyles()
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < GetStyleSheet()->GetCharacterStyleCount(); i++)
                 m_styleNames.Add(GetStyleSheet()->GetCharacterStyle(i)->GetName() + wxT("|C"));
@@ -713,8 +713,8 @@ void wxRichTextStyleListBox::UpdateStyles()
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < GetStyleSheet()->GetListStyleCount(); i++)
                 m_styleNames.Add(GetStyleSheet()->GetListStyle(i)->GetName() + wxT("|L"));
@@ -723,8 +723,8 @@ void wxRichTextStyleListBox::UpdateStyles()
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < GetStyleSheet()->GetBoxStyleCount(); i++)
                 m_styleNames.Add(GetStyleSheet()->GetBoxStyle(i)->GetName() + wxT("|B"));
@@ -863,8 +863,8 @@ wxString wxRichTextStyleListBox::CreateHTML(wxRichTextStyleDefinition* def) cons
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < GetStyleSheet()->GetParagraphStyleCount(); i++)
     {
@@ -889,15 +889,15 @@ wxString wxRichTextStyleListBox::CreateHTML(wxRichTextStyleDefinition* def) cons
         size_t maxSize = 20;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i <= maxSize; i++)
             sizes.Add(0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < m_styleNames.GetCount(); i++)
         {
@@ -915,8 +915,8 @@ wxString wxRichTextStyleListBox::CreateHTML(wxRichTextStyleDefinition* def) cons
         int mostCommonSize = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i <= maxSize; i++)
         {

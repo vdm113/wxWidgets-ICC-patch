@@ -380,8 +380,8 @@ bool wxGenericValidator::TransferToWindow(void)
                    count = pControl->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( i = 0 ; i < count; i++ )
                 pControl->Check(i, false);
@@ -390,8 +390,8 @@ bool wxGenericValidator::TransferToWindow(void)
             count = m_pArrayInt->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( i = 0 ; i < count; i++ )
                 pControl->Check(m_pArrayInt->Item(i));
@@ -413,8 +413,8 @@ bool wxGenericValidator::TransferToWindow(void)
                    count = pControl->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( i = 0 ; i < count; i++ )
                 pControl->Deselect(i);
@@ -423,8 +423,8 @@ bool wxGenericValidator::TransferToWindow(void)
             count = m_pArrayInt->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( i = 0 ; i < count; i++ )
                 pControl->SetSelection(m_pArrayInt->Item(i));
@@ -679,8 +679,8 @@ bool wxGenericValidator::TransferFromWindow(void)
                    count = pControl->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( i = 0; i < count; i++ )
             {
@@ -708,8 +708,8 @@ bool wxGenericValidator::TransferFromWindow(void)
                    count = pControl->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( i = 0; i < count; i++ )
             {

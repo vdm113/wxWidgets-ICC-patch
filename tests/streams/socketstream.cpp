@@ -157,8 +157,8 @@ private:
         char ch;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( socket.Read(&ch, 1).LastCount() == 1 )
             ;

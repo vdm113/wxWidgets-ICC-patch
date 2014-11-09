@@ -111,8 +111,8 @@ public:
         // array sorted and using binary search).
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( Ranges::const_iterator it = m_ranges.begin();
               it != m_ranges.end();
@@ -145,8 +145,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( Ranges::iterator it = m_ranges.begin();
               it != m_ranges.end();
@@ -201,8 +201,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( Ranges::iterator it = m_ranges.begin();
               it != m_ranges.end();
@@ -364,8 +364,8 @@ wxMenu::wxMenu(WXHMENU hMenu)
     const int numExistingItems = ::GetMenuItemCount(m_hMenu);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int n = 0; n < numExistingItems; n++ )
     {
@@ -408,8 +408,8 @@ int wxMenu::FindAccel(int id) const
     size_t n, count = m_accels.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < count; n++ )
     {
@@ -428,8 +428,8 @@ void wxMenu::UpdateAccel(wxMenuItem *item)
         wxMenuItemList::compatibility_iterator node = submenu->GetMenuItems().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( node )
         {
@@ -729,8 +729,8 @@ bool wxMenu::DoInsertOrAppend(wxMenuItem *pItem, size_t pos)
                 wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while (node)
                 {
@@ -823,8 +823,8 @@ wxMenuItem *wxMenu::DoRemove(wxMenuItem *item)
     wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( pos = 0; node; pos++ )
     {
@@ -888,8 +888,8 @@ size_t wxMenu::CopyAccels(wxAcceleratorEntry *accels) const
     size_t count = GetAccelCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -923,8 +923,8 @@ void wxMenu::CalculateMaxAccelWidth()
     wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1056,8 +1056,8 @@ wxMenu* wxMenu::MSWGetMenu(WXHMENU hMenu)
     // recursively query submenus
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0 ; n < GetMenuItemCount(); ++n )
     {
@@ -1112,8 +1112,8 @@ wxMenuBar::wxMenuBar(size_t count, wxMenu *menus[], const wxString titles[], lon
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < count; i++ )
     {
@@ -1208,8 +1208,8 @@ WXHMENU wxMenuBar::Create()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned i = 0; i < GetMenuCount(); i++ )
     {
@@ -1241,8 +1241,8 @@ WXHMENU wxMenuBar::Create()
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxMenuList::iterator it = m_menus.begin();
               it != m_menus.end();
@@ -1276,8 +1276,8 @@ int wxMenuBar::MSWPositionForWxMenu(wxMenu *menu, int wxpos)
     int i; // For old C++ compatibility
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(i=wxpos; i<totalMSWItems; i++)
     {
@@ -1286,8 +1286,8 @@ int wxMenuBar::MSWPositionForWxMenu(wxMenu *menu, int wxpos)
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(i=0; i<wxpos; i++)
     {
@@ -1500,8 +1500,8 @@ bool wxMenuBar::Insert(size_t pos, wxMenu *menu, const wxString& title)
             wxMenuList::compatibility_iterator node = m_menus.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( size_t n = 0; n < pos; n++ )
             {
@@ -1646,8 +1646,8 @@ void wxMenuBar::RebuildAccelTable()
     wxMenuList::iterator it;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0, it = m_menus.begin(); i < count; i++, it++ )
     {
@@ -1661,8 +1661,8 @@ void wxMenuBar::RebuildAccelTable()
         nAccelCount = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0, it = m_menus.begin(); i < count; i++, it++ )
         {
@@ -1743,8 +1743,8 @@ wxMenu* wxMenuBar::MSWGetMenu(WXHMENU hMenu)
     // query all menus
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0 ; n < GetMenuCount(); ++n )
     {

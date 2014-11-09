@@ -36,8 +36,8 @@ startElement(void *userData, const char *name, const char **atts)
   int *depthPtr = (int *)userData;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < *depthPtr; i++)
     putchar('\t');
@@ -63,8 +63,8 @@ main(int argc, char *argv[])
   XML_SetElementHandler(parser, startElement, endElement);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   do {
     int len = (int)fread(buf, 1, sizeof(buf), stdin);

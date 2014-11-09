@@ -249,8 +249,8 @@ bool wxComboBox::Create( wxWindow *parent, wxWindowID id, const wxString& value,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < n; i++)
     {
@@ -306,8 +306,8 @@ wxComboBox::~wxComboBox()
     wxList::compatibility_iterator node = m_clientObjectList.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -347,8 +347,8 @@ int wxComboBox::DoInsertItems(const wxArrayStringsAdapter& items,
     const unsigned int count = items.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( unsigned int i = 0; i < count; ++i, ++pos )
     {
@@ -504,8 +504,8 @@ int wxComboBox::FindString( const wxString &item, bool bCase ) const
     int count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (child)
     {
@@ -543,8 +543,8 @@ int wxComboBox::GetCurrentSelection() const
         int count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (child)
         {
@@ -609,8 +609,8 @@ unsigned int wxComboBox::GetCount() const
     unsigned int count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (child) { count++; child = child->next; }
     return count;
@@ -638,8 +638,8 @@ wxString wxComboBox::DoGetValue() const
 #if 0
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < wxStrlen(tmp.c_str()) +1; i++)
     {
@@ -836,8 +836,8 @@ void wxComboBox::OnChar( wxKeyEvent &event )
             wxWindow *top_frame = m_parent;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while (top_frame->GetParent() && !(top_frame->IsTopLevel()))
                 top_frame = top_frame->GetParent();
@@ -900,8 +900,8 @@ void wxComboBox::DoApplyWidgetStyle(GtkRcStyle *style)
     GList *child = list->children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (child)
     {
@@ -937,8 +937,8 @@ wxSize wxComboBox::DoGetBestSize() const
         unsigned int count = GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned int n = 0; n < count; n++ )
         {

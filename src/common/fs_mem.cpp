@@ -158,8 +158,8 @@ wxString wxMemoryFSHandlerBase::FindNext()
     // it to empty string after iterating over all elements
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( !m_findArgument.empty() )
     {

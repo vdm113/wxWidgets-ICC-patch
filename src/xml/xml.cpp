@@ -117,8 +117,8 @@ void wxXmlNode::DoFree()
     wxXmlNode *c, *c2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c = m_children; c; c = c2)
     {
@@ -129,8 +129,8 @@ void wxXmlNode::DoFree()
     wxXmlAttribute *p, *p2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (p = m_attrs; p; p = p2)
     {
@@ -151,8 +151,8 @@ void wxXmlNode::DoCopy(const wxXmlNode& node)
     wxXmlNode *n = node.m_children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (n)
     {
@@ -164,8 +164,8 @@ void wxXmlNode::DoCopy(const wxXmlNode& node)
     wxXmlAttribute *p = node.m_attrs;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (p)
     {
@@ -180,8 +180,8 @@ bool wxXmlNode::HasAttribute(const wxString& attrName) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (attr)
     {
@@ -200,8 +200,8 @@ bool wxXmlNode::GetAttribute(const wxString& attrName, wxString *value) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (attr)
     {
@@ -264,8 +264,8 @@ bool wxXmlNode::InsertChild(wxXmlNode *child, wxXmlNode *followingNode)
         wxXmlNode *ch = m_children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( ch && ch->m_next != followingNode )
             ch = ch->m_next;
@@ -326,8 +326,8 @@ bool wxXmlNode::RemoveChild(wxXmlNode *child)
         wxXmlNode *ch = m_children;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (ch->m_next)
         {
@@ -397,8 +397,8 @@ bool wxXmlNode::DeleteProperty(const wxString& name)
         wxXmlAttribute *p = m_attrs;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (p->GetNext())
         {
@@ -422,8 +422,8 @@ wxString wxXmlNode::GetNodeContent() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (n)
     {
@@ -442,8 +442,8 @@ int wxXmlNode::GetDepth(wxXmlNode *grandparent) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -545,8 +545,8 @@ wxXmlNode *wxXmlDocument::GetRoot() const
         node = m_docNode->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (node != NULL && node->GetType() != wxXML_ELEMENT_NODE)
             node = node->GetNext();
@@ -563,8 +563,8 @@ wxXmlNode *wxXmlDocument::DetachRoot()
         wxXmlNode *prev = NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (node != NULL && node->GetType() != wxXML_ELEMENT_NODE)
         {
@@ -601,8 +601,8 @@ void wxXmlDocument::SetRoot(wxXmlNode *root)
         wxXmlNode *prev = NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (node != NULL && node->GetType() != wxXML_ELEMENT_NODE)
         {
@@ -669,8 +669,8 @@ bool wxIsWhiteOnly(const wxString& buf)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxString::const_iterator i = buf.begin(); i != buf.end(); ++i )
     {
@@ -722,8 +722,8 @@ static void StartElementHnd(void *userData, const char *name, const char **atts)
     // add node attributes
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (*a)
     {
@@ -867,8 +867,8 @@ static int UnknownEncodingHnd(void * WXUNUSED(encodingHandlerData),
     info->map[0] = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < 255; i++)
     {
@@ -927,8 +927,8 @@ bool wxXmlDocument::Load(wxInputStream& stream, const wxString& encoding, int fl
     bool ok = true;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -1037,8 +1037,8 @@ bool OutputEscapedString(wxOutputStream& stream,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxString::const_iterator i = str.begin(); i != str.end(); ++i )
     {
@@ -1133,8 +1133,8 @@ bool OutputNode(wxOutputStream& stream,
             {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( wxXmlAttribute *attr = node->GetAttributes();
                       attr && rc;
@@ -1157,8 +1157,8 @@ bool OutputNode(wxOutputStream& stream,
                 wxXmlNode *prev = NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( wxXmlNode *n = node->GetChildren();
                       n && rc;
@@ -1251,8 +1251,8 @@ bool wxXmlDocument::Save(wxOutputStream& stream, int indentstep) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while( rc && node )
     {

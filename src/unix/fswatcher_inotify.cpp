@@ -157,8 +157,8 @@ public:
         wxFSWatchEntries::iterator it = m_watches.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( ; it != m_watches.end(); ++it )
         {
@@ -185,8 +185,8 @@ public:
         int event_count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (left > 0) // OPT checking 'memory' would suffice
         {
@@ -508,8 +508,8 @@ protected:
         wxInotifyCookies::iterator it = m_cookies.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( it != m_cookies.end() )
         {
@@ -621,8 +621,8 @@ protected:
         int native_flags = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned int i=0; i < WXSIZEOF(flag_mapping); ++i)
         {
@@ -659,8 +659,8 @@ protected:
         unsigned int i=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( ; i < WXSIZEOF(flag_mapping); ++i) {
             // in this mapping multiple flags at once don't happen

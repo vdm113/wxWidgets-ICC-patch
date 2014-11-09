@@ -46,8 +46,8 @@ public:
         A bitlist of wxJOY_BUTTONn identifiers, where n is 1, 2, 3 or 4 is available
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for historical reasons.
     */

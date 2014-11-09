@@ -32,8 +32,8 @@ bool AreFilesContentsEqual(const wxString &filename, const wxString &refFilename
     wxFileOffset remainingLength = refLength;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (remainingLength != 0)
     {

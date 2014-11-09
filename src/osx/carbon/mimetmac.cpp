@@ -122,8 +122,8 @@ OSErr BuildVolumeList(Boolean includeRemote, short *vols,
     // iterate through volumes
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (volPB.volumeParam.ioVolIndex = 1;
         PBHGetVInfoSync(&volPB) == noErr;
@@ -188,8 +188,8 @@ OSErr FindApplication(OSType appCreator, Boolean includeRemote, Str255 appName, 
     // iterate through the list
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i=0; i<volCount; i++)
     {
@@ -297,8 +297,8 @@ pascal OSErr FSpGetFullPath( const FSSpec *spec,
                     // loop until we have an error or find the root directory
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     do
                     {
@@ -614,8 +614,8 @@ void wxMimeTypesManagerImpl::Initialize(int WXUNUSED(mailcapStyles), const wxStr
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (long i = 1; i <= m_lCount; ++i)
     {
@@ -670,8 +670,8 @@ wxFileType* wxMimeTypesManagerImpl::GetFileTypeFromExtension(const wxString& e)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (long i = 1; i <= m_lCount; ++i)
     {
@@ -704,8 +704,8 @@ wxFileType* wxMimeTypesManagerImpl::GetFileTypeFromMimeType(const wxString& mime
     // low level functions - iterate through the database
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (long i = 1; i <= m_lCount; ++i)
     {
@@ -738,8 +738,8 @@ size_t wxMimeTypesManagerImpl::EnumAllFileTypes(wxArrayString& mimetypes)
     lStartCount = (long) mimetypes.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (long i = 1; i <= m_lCount; ++i)
     {
@@ -934,8 +934,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (CFIndex i = 0; i < cfiCount; ++i)
         {
@@ -965,8 +965,8 @@ public:
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (CFIndex i = 0; i < CFArrayGetCount(cfaRef); ++i)
         {
@@ -1313,8 +1313,8 @@ void wxCFDictionary::MakeValidXML()
         // additionally, CFURLs are not allowed
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (CFIndex i = 0; i < cfiCount; ++i)
         {
@@ -1373,8 +1373,8 @@ void wxCFArray::MakeValidXML()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (CFIndex i = 0; i < GetCount(); ++i)
         {
@@ -1489,8 +1489,8 @@ wxFileType* wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
                 CFIndex i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (i = 0; i < cfaDocTypes.GetCount(); ++i)
                 {
@@ -1505,15 +1505,15 @@ wxFileType* wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for (CFIndex iExt = 0; iExt < cfaExtensions.GetCount(); ++iExt)
                     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                         for (size_t iWXExt = 0; iWXExt < asExtensions.GetCount(); ++iWXExt)
                         {
@@ -1562,8 +1562,8 @@ wxFileType* wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
                 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for (size_t iExtension = 0; iExtension < ftInfo.GetExtensionsCount(); ++iExtension)
                     {
@@ -1855,8 +1855,8 @@ wxMimeTypesManagerImpl::Unassociate(wxFileType *pFileType)
                     CFIndex i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for (i = 0; i < cfaDocTypes.GetCount(); ++i)
                     {
@@ -1871,15 +1871,15 @@ wxMimeTypesManagerImpl::Unassociate(wxFileType *pFileType)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                         for (CFIndex iExt = 0; iExt < cfaExtensions.GetCount(); ++iExt)
                         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                             for (size_t iWXExt = 0; iWXExt < asExtensions.GetCount(); ++iWXExt)
                             {
@@ -1954,8 +1954,8 @@ wxMimeTypesManagerImpl::Unassociate(wxFileType *pFileType)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                         for (size_t i = 0; i < asExtensions.GetCount(); ++i)
                         {

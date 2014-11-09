@@ -127,8 +127,8 @@ Life::Life()
     m_available   = NULL;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < HASHSIZE; i++)
         m_boxes[i] = NULL;
@@ -158,8 +158,8 @@ void Life::Clear()
     // clear the hash table pointers
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < HASHSIZE; i++)
         m_boxes[i] = NULL;
@@ -168,8 +168,8 @@ void Life::Clear()
     c = m_head;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (c)
     {
@@ -183,8 +183,8 @@ void Life::Clear()
     c = m_available;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (c)
     {
@@ -243,8 +243,8 @@ void Life::SetPattern(const LifePattern& pattern)
     Clear();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t n = 0; n < data.GetCount(); n++)
     {
@@ -262,8 +262,8 @@ void Life::SetPattern(const LifePattern& pattern)
             // pattern data
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (size_t k = 0; k < line.Len(); k++)
                 SetCell(x + k, y, line.GetChar(k) == wxT('*'));
@@ -293,8 +293,8 @@ LifeCellBox* Life::CreateBox(wxInt32 x, wxInt32 y, wxUint32 hv)
     if (!m_available)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int i = 1; i <= ALLOCBOXES; i++)
         {
@@ -356,8 +356,8 @@ LifeCellBox* Life::LinkBox(wxInt32 x, wxInt32 y, bool create)
     // search in the hash table
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c = m_boxes[hv]; c; c = c->m_hnext)
         if ((c->m_x == x) && (c->m_y == y)) return c;
@@ -414,8 +414,8 @@ LifeCell Life::FindCenter()
     LifeCellBox *c;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c = m_head; c; c = c->m_next)
         if (!c->m_dead)
@@ -445,8 +445,8 @@ LifeCell Life::FindNorth()
     LifeCellBox *c;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c = m_head; c; c = c->m_next)
         if (!c->m_dead && ((first) || (c->m_y < y)))
@@ -470,8 +470,8 @@ LifeCell Life::FindSouth()
     LifeCellBox *c;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c = m_head; c; c = c->m_next)
         if (!c->m_dead && ((first) || (c->m_y > y)))
@@ -495,8 +495,8 @@ LifeCell Life::FindWest()
     LifeCellBox *c;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c = m_head; c; c = c->m_next)
         if (!c->m_dead && ((first) || (c->m_x < x)))
@@ -520,8 +520,8 @@ LifeCell Life::FindEast()
     LifeCellBox *c;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c = m_head; c; c = c->m_next)
         if (!c->m_dead && ((first) || (c->m_x > x)))
@@ -554,8 +554,8 @@ void Life::DoLine(wxInt32 x, wxInt32 y, wxUint32 live, wxUint32 old)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (wxInt32 k = 8; k; k--, x++)
     {
@@ -595,14 +595,14 @@ bool Life::FindMore(LifeCell *cells[], size_t *ncells)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( ; m_y <= m_y1; m_y += 8, m_x = m_x0)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( ; m_x <= m_x1; m_x += 8)
             {
@@ -630,14 +630,14 @@ bool Life::FindMore(LifeCell *cells[], size_t *ncells)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( ; m_y <= m_y1; m_y += 8, m_x = m_x0)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( ; m_x <= m_x1; m_x += 8)
             {
@@ -695,8 +695,8 @@ bool Life::NextTic()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (c)
     {
@@ -899,8 +899,8 @@ bool Life::NextTic()
         int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 1; i <= 3; i++)
         {
@@ -914,8 +914,8 @@ bool Life::NextTic()
         }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i <= 2; i++)
         {
@@ -942,8 +942,8 @@ bool Life::NextTic()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (c)
     {
@@ -1004,8 +1004,8 @@ bool Life::NextTic()
         // Original, slower code
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int i = 0; i < 32; i++)
         {
@@ -1063,8 +1063,8 @@ bool LifeModule::OnInit()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (wxUint32 i = 0; i < 0xfffff; i++)
     {
@@ -1074,8 +1074,8 @@ bool LifeModule::OnInit()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int j = 0; j < 4; j++)
         {

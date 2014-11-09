@@ -45,8 +45,8 @@ static void ColouriseAsyDoc(unsigned int startPos, int length, int initStyle,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; sc.More(); sc.Forward()) {
 
@@ -172,8 +172,8 @@ static int ParseASYWord(unsigned int pos, Accessor &styler, char *word)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   while(isASYidentifier(ch) && length<100){
           word[length]=ch;
@@ -193,8 +193,8 @@ static bool IsASYDrawingLine(int line, Accessor &styler) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (startpos<eol_pos){
 		char ch = styler[startpos];
@@ -226,8 +226,8 @@ static void FoldAsyDoc(unsigned int startPos, int length, int initStyle,
 	int style = initStyle;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;

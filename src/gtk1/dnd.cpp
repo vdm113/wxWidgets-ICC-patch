@@ -506,8 +506,8 @@ GdkAtom wxDropTarget::GetMatchingPair(bool quiet)
     GList *child = m_dragContext->targets;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (child)
     {
@@ -878,8 +878,8 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
     size_t count = m_data->GetFormatCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i = 0; i < count; i++)
     {
@@ -910,8 +910,8 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (m_waiting)
             gtk_main_iteration();

@@ -288,8 +288,8 @@ void MyFrame::InitToolBar(wxToolBar* toolBar)
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < maxBitmaps; i++)
         delete bitmaps[i];

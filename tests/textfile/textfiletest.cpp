@@ -228,8 +228,8 @@ void TextFileTestCase::ReadMixedWithFuzzing()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int iteration = 0; iteration < 100; iteration++)
     {
@@ -245,8 +245,8 @@ void TextFileTestCase::ReadMixedWithFuzzing()
         unsigned linesCnt = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t i = 1; i < BUF_LEN; i++ )
         {
@@ -282,8 +282,8 @@ void TextFileTestCase::ReadCRCRLF()
     wxString all;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxString str = f.GetFirstLine(); !f.Eof(); str = f.GetNextLine() )
         all += str;
@@ -342,8 +342,8 @@ void TextFileTestCase::ReadBig()
         wxFFile f(GetTestFileName(), "w");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t n = 0; n < NUM_LINES; n++ )
         {

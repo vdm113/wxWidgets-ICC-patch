@@ -357,8 +357,8 @@ public:
         having the radio groups of only one element as it would be impossible
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for the user to use such button.
 
@@ -436,8 +436,8 @@ public:
             May be ::wxITEM_NORMAL for a normal button (default), ::wxITEM_CHECK
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for a checkable tool (such tool stays pressed after it had been
             toggled) or ::wxITEM_RADIO for a checkable tool which makes part of
@@ -475,8 +475,8 @@ public:
             May be ::wxITEM_NORMAL for a normal button (default), ::wxITEM_CHECK
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for a checkable tool (such tool stays pressed after it had been
             toggled) or ::wxITEM_RADIO for a checkable tool which makes part of
@@ -590,8 +590,8 @@ public:
         The default bitmap size is platform-dependent: for example, it is 16*15
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for MSW and 24*24 for GTK. This size does @em not necessarily indicate
         the best size to use for the toolbars on the given platform, for this

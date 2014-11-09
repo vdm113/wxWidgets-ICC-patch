@@ -60,8 +60,8 @@ jpeg_read_coefficients (j_decompress_ptr cinfo)
     /* Absorb whole file into the coef buffer */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (;;) {
       int retcode;

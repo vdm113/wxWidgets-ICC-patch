@@ -135,8 +135,8 @@ WXGLPixelFormat WXGLChoosePixelFormat(const int *attribList)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( unsigned arg = 0; attribList[arg] !=0 && p < WXSIZEOF(data); )
         {

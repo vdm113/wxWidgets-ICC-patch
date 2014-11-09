@@ -116,8 +116,8 @@ public:
         int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < MAX_LINES; ++i )
             m_heights[i] = rand()%25+16; // low: 16; high: 40
@@ -155,8 +155,8 @@ public:
         wxCoord y = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t line = lineFirst; line < lineLast; line++ )
         {
@@ -223,8 +223,8 @@ public:
         int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < MAX_LINES; ++i )
             m_heights[i] = rand()%25+16; // low: 15; high: 40
@@ -262,8 +262,8 @@ public:
         wxCoord x = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t line = lineFirst; line < lineLast; line++ )
         {
@@ -330,8 +330,8 @@ public:
         int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < MAX_LINES; ++i )
         {
@@ -378,8 +378,8 @@ public:
         wxCoord x = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t row = rowFirst; row < rowLast; row++ )
         {
@@ -389,8 +389,8 @@ public:
             x = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( size_t col = columnFirst; col < columnLast; col++ )
             {

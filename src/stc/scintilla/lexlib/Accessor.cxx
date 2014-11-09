@@ -55,8 +55,8 @@ int Accessor::IndentAmount(int line, int *flags, PFNIsCommentLeader pfnIsComment
 	int posPrev = inPrevPrefix ? LineStart(line-1) : 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((ch == ' ' || ch == '\t') && (pos < end)) {
 		if (inPrevPrefix) {

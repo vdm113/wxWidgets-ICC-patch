@@ -153,8 +153,8 @@ void SafeArrayConvertTestCase::VariantListReturnSafeArray()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( long i = 0; i < count; i++ )
     {
@@ -206,8 +206,8 @@ void SafeArrayConvertTestCase::StringsReturnSafeArray()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( long i = 0; i < count; i++ )
     {

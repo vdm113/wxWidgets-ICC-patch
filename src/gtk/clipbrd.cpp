@@ -88,8 +88,8 @@ public:
 #endif
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (ms_clipboard)
             wxEventLoopBase::GetActive()->YieldFor(wxEVT_CATEGORY_CLIPBOARD);
@@ -175,8 +175,8 @@ targets_selection_received( GtkWidget *WXUNUSED(widget),
     const GdkAtom* const atoms = (GdkAtom*)gtk_selection_data_get_data(selection_data);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i = 0; i < selection_data_length / sizeof(GdkAtom); i++)
     {
@@ -426,8 +426,8 @@ async_targets_selection_received( GtkWidget *WXUNUSED(widget),
     const GdkAtom* const atoms = (GdkAtom*)gtk_selection_data_get_data(selection_data);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i = 0; i < selection_data_length / sizeof(GdkAtom); i++)
     {
@@ -657,8 +657,8 @@ bool wxClipboard::AddData( wxDataObject *data )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < count; i++ )
     {
@@ -722,8 +722,8 @@ bool wxClipboard::GetData( wxDataObject& data )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < count; i++ )
     {

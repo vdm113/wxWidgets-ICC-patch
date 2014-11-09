@@ -165,16 +165,16 @@ static void InternalLexOrFold(int foldOrLex, unsigned int startPos, int length,
 	int nWL = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; words[nWL]; nWL++) ;	// count # of WordList PTRs needed
 	WordList** wl = new WordList* [nWL + 1];// alloc WordList PTRs
 	int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; i < nWL; i++) {
 		wl[i] = new WordList();	// (works or THROWS bad_alloc EXCEPTION)
@@ -190,8 +190,8 @@ static void InternalLexOrFold(int foldOrLex, unsigned int startPos, int length,
 	// clean up before leaving
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = nWL - 1; i >= 0; i--)
 		delete wl[i];
@@ -227,8 +227,8 @@ void ColouriseCamlDoc(
 	// foreach char in range...
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (sc.More()) {
 		// set up [per-char] state info
@@ -287,8 +287,8 @@ void ColouriseCamlDoc(
 					char t[24];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 					for (int i = -n; i < 0; i++)
 						t[n + i] = static_cast<char>(sc.GetRelative(i));
@@ -425,8 +425,8 @@ void ColouriseCamlDoc(
 				int p = chColor - 2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (; p >= 0 && styler.StyleAt(p) == SCE_CAML_WHITE; p--) ;
 				if (p >= 0)

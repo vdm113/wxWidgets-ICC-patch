@@ -1080,15 +1080,15 @@ wxBitmap wxGTKRenderer::GetCheckBitmap(int flags)
         rect.height = size.y;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int i = 0; i < 2; i++ )
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( int j = 0; j < 3; j++ )
                 m_bitmapsCheckbox[i][j].Create(rect.width, rect.height);
@@ -1779,8 +1779,8 @@ wxMenuGeometryInfo *wxGTKRenderer::GetMenuGeometry(wxWindow *win,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxMenuItemList::compatibility_iterator node = menu.GetMenuItems().GetFirst();
           node;
@@ -1866,8 +1866,8 @@ void wxGTKRenderer::InitComboBitmaps()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = ComboState_Normal; n < ComboState_Max; n++ )
     {
@@ -1887,8 +1887,8 @@ void wxGTKRenderer::InitComboBitmaps()
     wxMemoryDC dc;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = ComboState_Normal; n < ComboState_Max; n++ )
     {
@@ -1985,8 +1985,8 @@ void wxGTKRenderer::DrawArrowBorder(wxDC& dc,
     size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < WXSIZEOF(sides); n++ )
     {
@@ -2000,8 +2000,8 @@ void wxGTKRenderer::DrawArrowBorder(wxDC& dc,
     // and then the inner one
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < WXSIZEOF(sides); n++ )
     {

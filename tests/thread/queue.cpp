@@ -111,8 +111,8 @@ void QueueTestCase::TestReceive()
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < threadCount; ++i )
     {
@@ -126,8 +126,8 @@ void QueueTestCase::TestReceive()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < threadCount; ++i )
     {
@@ -138,8 +138,8 @@ void QueueTestCase::TestReceive()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < msgCount; ++i )
     {
@@ -148,8 +148,8 @@ void QueueTestCase::TestReceive()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < threadCount; ++i )
     {
@@ -199,8 +199,8 @@ void *QueueTestCase::MyThread::Entry()
     int messagesReceived = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( messagesReceived < m_maxMsgCount )
     {

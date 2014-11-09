@@ -151,8 +151,8 @@ void wxColourDialog::ColourDataToDialog()
     gint n_colors = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned i = 0; i < WXSIZEOF(colors); i++)
     {
@@ -222,8 +222,8 @@ void wxColourDialog::DialogToColourData()
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int i = 0; i < n_colors && i < wxColourData::NUM_CUSTOM; i++)
         {

@@ -216,8 +216,8 @@ void MyFrame::OnTestDialog(wxCommandEvent& WXUNUSED(event))
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(unsigned int i = 0; i < g_data.m_listbox_choices.GetCount(); ++i)
         {

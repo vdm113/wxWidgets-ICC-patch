@@ -226,8 +226,8 @@ public:
         // initialize all bitmaps except for the disabled one to normal state
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int n = 0; n < wxAnyButton::State_Max; n++ )
         {
@@ -912,8 +912,8 @@ void DrawButtonText(HDC hdc,
         const int hLine = h / lines.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t lineNum = 0; lineNum < lines.size(); lineNum++ )
         {

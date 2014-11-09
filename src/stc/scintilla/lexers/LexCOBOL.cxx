@@ -65,8 +65,8 @@ static int CountBits(int nBits)
 	int count = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int i = 0; i < 32; ++i)
 		{
@@ -84,8 +84,8 @@ static void getRange(unsigned int start,
     unsigned int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ((i < end - start + 1) && (i < len-1)) {
         s[i] = static_cast<char>(tolower(styler[start + i]));
@@ -117,8 +117,8 @@ static int classifyWordCOBOL(unsigned int start, unsigned int end, /*WordList &k
 		char *p = s + 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		while (*p) {
 			if ((!isdigit(*p) && (*p) != 'v') && isCOBOLwordchar(*p)) {
@@ -194,8 +194,8 @@ static void ColouriseCOBOLDoc(unsigned int startPos, int length, int initStyle, 
 	int column = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int i = startPos; i < lengthDoc; i++) {
         char ch = chNext;
@@ -351,8 +351,8 @@ static void FoldCOBOLDoc(unsigned int startPos, int length, int, WordList *[],
 	bool bComment = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int i = startPos; i < endPos; i++) {
         char ch = chNext;

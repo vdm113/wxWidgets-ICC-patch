@@ -94,8 +94,8 @@ void ListsTestCase::wxListTest()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < WXSIZEOF(dummy); ++i )
         list1.Append(dummy + i);
@@ -107,8 +107,8 @@ void ListsTestCase::wxListTest()
     wxListInt::compatibility_iterator node;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0, node = list1.GetFirst(); node; ++i, node = node->GetNext() )
     {
@@ -123,8 +123,8 @@ void ListsTestCase::wxListTest()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0, node = list1.GetFirst(); i < 3; ++i, node = node->GetNext() )
     {
@@ -141,16 +141,16 @@ void ListsTestCase::wxStdListTest()
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < 5; ++i )
         list1.push_back(i + &i);
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( it = list1.begin(), en = list1.end(), i = 0;
           it != en; ++it, ++i )
@@ -160,8 +160,8 @@ void ListsTestCase::wxStdListTest()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( rit = list1.rbegin(), ren = list1.rend(), i = 4;
           rit != ren; ++rit, --i )
@@ -181,8 +181,8 @@ void ListsTestCase::wxStdListTest()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( it = list1.begin(), en = list1.end(), i = 1;
           it != en; ++it, ++i )

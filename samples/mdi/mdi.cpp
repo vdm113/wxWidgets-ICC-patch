@@ -280,8 +280,8 @@ void MyFrame::OnCloseAll(wxCommandEvent& WXUNUSED(event))
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxWindowList::const_iterator i = GetChildren().begin();
           i != GetChildren().end();

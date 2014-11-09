@@ -71,8 +71,8 @@ public:
         Returns the pointer to the stream object used as an internal buffer
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for this stream.
     */
@@ -143,8 +143,8 @@ public:
         Returns the pointer to the stream object used as an internal buffer
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for that stream.
     */

@@ -441,8 +441,8 @@ wxMacCoreGraphicsPenData::wxMacCoreGraphicsPenData( wxGraphicsRenderer* renderer
                 m_userLengths = new CGFloat[m_count];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( int i = 0; i < m_count; ++i )
                 {
@@ -776,8 +776,8 @@ void wxMacCoreGraphicsBrushData::CalculateShadingValues (void *info, const CGFlo
         unsigned i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < stops.count; i++ )
         {
@@ -808,8 +808,8 @@ wxMacCoreGraphicsBrushData::CreateGradientFunction(const wxGraphicsGradientStops
     m_gradientComponents.Init(stops.GetCount());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned i = 0; i < m_gradientComponents.count; i++ )
     {
@@ -2450,8 +2450,8 @@ void wxMacCoreGraphicsContext::GetPartialTextExtents(const wxString& text, wxArr
     int chars = text.length();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int pos = 0; pos < (int)chars; pos ++ )
     {

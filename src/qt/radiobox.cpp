@@ -119,8 +119,8 @@ static void AddChoices( QButtonGroup *qtButtonGroup, QBoxLayout *qtBoxLayout, in
     Button *btn;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( count-- > 0 )
     {

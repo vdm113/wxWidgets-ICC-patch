@@ -497,8 +497,8 @@ void AppFrame::CreateMenu ()
     int Nr;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (Nr = 0; Nr < g_LanguagePrefsSize; Nr++) {
         menuHilight->Append (myID_HILIGHTFIRST + Nr,

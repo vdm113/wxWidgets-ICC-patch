@@ -111,8 +111,8 @@ int wxMSWEventLoopBase::GetNextMessageTimeout(WXMSG *msg, unsigned long timeout)
     // so we need to remove any immediately messages manually
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( !::PeekMessage(msg, 0, 0, 0, PM_REMOVE) )
     {

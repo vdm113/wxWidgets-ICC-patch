@@ -967,8 +967,8 @@ void MyFrame::OnDeleteSubMenu(wxCommandEvent& WXUNUSED(event))
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int n = menu->GetMenuItemCount() - 1; n >=0 ; --n )
     {
@@ -1157,8 +1157,8 @@ void MyFrame::OnFindMenuItem(wxCommandEvent& WXUNUSED(event))
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (menuindex = 0; (menuindex < count) && (index == wxNOT_FOUND); ++menuindex)
         {
@@ -1189,8 +1189,8 @@ void MyFrame::ShowContextMenu(const wxPoint& pos)
         static const char *choices[] = { "Apple", "Banana", "Cherry" };
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t n = 0; n < WXSIZEOF(choices); n++ )
             menu.Append(Menu_PopupChoice + n, choices[n]);

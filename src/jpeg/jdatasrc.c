@@ -143,8 +143,8 @@ skip_input_data (j_decompress_ptr cinfo, long num_bytes)
   if (num_bytes > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (num_bytes > (long) src->pub.bytes_in_buffer) {
       num_bytes -= (long) src->pub.bytes_in_buffer;

@@ -217,8 +217,8 @@ struct wxCmdLineEntryDesc
     @code
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (const auto &arg : parser.GetArguments()) {
         // working on arg as with *itarg above
@@ -621,8 +621,8 @@ public:
         This method can be used for any kind of switch but is especially useful
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for switches that can be negated, i.e. were added with
         wxCMD_LINE_SWITCH_NEGATABLE flag, as otherwise Found() is simpler to

@@ -126,8 +126,8 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
        input data or output space */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do {
         if (bits < 15) {
@@ -209,8 +209,8 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                         if (len <= op - whave) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                             do {
                                 PUP(out) = 0;
@@ -220,8 +220,8 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                         len -= op - whave;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                         do {
                             PUP(out) = 0;
@@ -230,8 +230,8 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                             from = out - dist;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                             do {
                                 PUP(out) = PUP(from);
@@ -247,8 +247,8 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                             len -= op;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                             do {
                                 PUP(out) = PUP(from);
@@ -263,8 +263,8 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                             len -= op;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                             do {
                                 PUP(out) = PUP(from);
@@ -275,8 +275,8 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                                 len -= op;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                                 do {
                                     PUP(out) = PUP(from);
@@ -291,8 +291,8 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                             len -= op;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                             do {
                                 PUP(out) = PUP(from);
@@ -302,8 +302,8 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     while (len > 2) {
                         PUP(out) = PUP(from);
@@ -321,8 +321,8 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                     from = out - dist;          /* copy direct from output */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     do {                        /* minimum length is three */
                         PUP(out) = PUP(from);

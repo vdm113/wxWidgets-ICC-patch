@@ -56,16 +56,16 @@ static bool FollowToLineEnd(const int ch, const int state, const unsigned int en
     unsigned int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (sc.GetRelative(++i) == ch)
         ;
     // Skip over whitespace
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (IsASpaceOrTab(sc.GetRelative(i)) && sc.currentPos + i < endPos)
         ++i;
@@ -84,15 +84,15 @@ static bool HasPrevLineContent(StyleContext &sc) {
     // Go back to the previous newline
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ((--i + sc.currentPos) && !IsNewline(sc.GetRelative(i)))
         ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (--i + sc.currentPos) {
         if (IsNewline(sc.GetRelative(i)))
@@ -109,8 +109,8 @@ static bool IsValidHrule(const unsigned int endPos, StyleContext &sc) {
     unsigned int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (;;) {
         ++i;
@@ -148,8 +148,8 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (sc.More()) {
         // Skip past escaped characters
@@ -228,8 +228,8 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
                 int i = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while (!IsNewline(sc.GetRelative(i)) && sc.currentPos + i < endPos)
                     i++;
@@ -420,8 +420,8 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
                 int digitCount = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while (IsADigit(sc.GetRelative(++digitCount)))
                     ;
@@ -456,8 +456,8 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
                 int len = endPos - sc.currentPos;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while (i < len && (sc.GetRelative(++i) != ']' || sc.GetRelative(i - 1) == '\\'))
                     ;
@@ -466,8 +466,8 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
                     if (sc.GetRelative(++i) == '(') {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                         while (i < len && (sc.GetRelative(++i) != '(' || sc.GetRelative(i - 1) == '\\'))
                             ;
@@ -478,8 +478,8 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
                     else if (sc.GetRelative(i) == '[' || sc.GetRelative(++i) == '[') {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                         while (i < len && (sc.GetRelative(++i) != ']' || sc.GetRelative(i - 1) == '\\'))
                             ;

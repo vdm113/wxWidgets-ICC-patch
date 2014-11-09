@@ -115,8 +115,8 @@ int wxGUIEventLoop::DoRun()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( ;; )
     {
@@ -146,8 +146,8 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (wxTheApp && wxTheApp->Pending())
         // TODO: implement event filtering using the eventsToProcess mask
@@ -276,8 +276,8 @@ bool CheckForAccelerator(XEvent* event)
         // Find the first wxWindow that corresponds to this event window
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
             widget = XtParent(widget);
@@ -293,8 +293,8 @@ bool CheckForAccelerator(XEvent* event)
         // or we get to the top.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (win)
         {
@@ -320,8 +320,8 @@ bool CheckForKeyDown(XEvent* event)
         // Find the first wxWindow that corresponds to this event window
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
             widget = XtParent(widget);
@@ -351,8 +351,8 @@ bool CheckForKeyUp(XEvent* event)
         // Find the first wxWindow that corresponds to this event window
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
                 widget = XtParent(widget);
@@ -379,8 +379,8 @@ bool wxDoEventLoopIteration( wxGUIEventLoop& evtLoop )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(;;)
     {
@@ -459,8 +459,8 @@ static void wxInputCallback( XtPointer, int* fd, XtInputId* )
     // wxWakeUpIdle may have been called more than once
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for(;;)
     {

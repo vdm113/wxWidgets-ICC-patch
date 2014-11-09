@@ -381,8 +381,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (factory) {
             list << factory->GetProtocol() << wxT("\n");
@@ -401,8 +401,8 @@ public:
         Calls the static GetInternalName() function for the archive entry type,
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for example wxZipEntry::GetInternalName.
     */
@@ -428,8 +428,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (p = factory->GetProtocols(wxSTREAM_FILEEXT); *p; p++)
             list << *p << wxT("\n");

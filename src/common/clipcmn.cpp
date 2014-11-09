@@ -52,8 +52,8 @@ bool wxClipboardEvent::SupportsFormat( const wxDataFormat &format ) const
 #ifdef __WXGTK20__
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (wxVector<wxDataFormat>::size_type n = 0; n < m_formats.size(); n++)
     {

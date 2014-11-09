@@ -163,8 +163,8 @@ wxStatusBar::~wxStatusBar()
     // delete existing tooltips
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i=0; i<m_tooltips.size(); i++)
     {
@@ -195,8 +195,8 @@ void wxStatusBar::SetFieldsCount(int nFields, const int *widths)
     // reset all current tooltips
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (size_t i=0; i<m_tooltips.size(); i++)
     {
@@ -252,8 +252,8 @@ void wxStatusBar::MSWUpdateFieldsWidths()
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < count; i++ )
     {
@@ -274,8 +274,8 @@ void wxStatusBar::MSWUpdateFieldsWidths()
     // Now that all parts have been created, set their text.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < count; i++ )
     {
@@ -498,8 +498,8 @@ wxSize wxStatusBar::DoGetBestSize() const
     int width = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < m_panes.GetCount(); ++i )
     {
@@ -576,8 +576,8 @@ void wxStatusBar::SetStatusStyles(int n, const int styles[])
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < n; i++)
     {
@@ -640,8 +640,8 @@ wxStatusBar::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( win = GetParent(); win; win = win->GetParent() )
             {
@@ -667,8 +667,8 @@ wxStatusBar::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam)
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (int i=0; i<GetFieldsCount(); i++)
             {

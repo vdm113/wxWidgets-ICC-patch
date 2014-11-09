@@ -57,8 +57,8 @@ static void StringUpper(char *szString) {
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (*szString) {
 		*szString = CharacterUpper(*szString);
@@ -133,8 +133,8 @@ inline bool SetNumericConstantState(StyleContext &scDoc) {
 	// Loop through the string until end of string (NULL termination)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int iIndex = 0; cNumericString[iIndex] != '\0'; iIndex++) {
 		// Depending on the character
@@ -166,8 +166,8 @@ inline bool GetNextWordUpper(Accessor &styler, unsigned int uiStartPos, int iLen
 	// Loop through the remaining string from the current position
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int iOffset = uiStartPos; iOffset < iLength; iOffset++) {
 		// Get the character from the buffer using the offset
@@ -231,8 +231,8 @@ static void ColouriseClarionDoc(unsigned int uiStartPos, int iLength, int iInitS
 	// lex source code
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (; scDoc.More(); scDoc.Forward())
 	{
@@ -567,8 +567,8 @@ static void FillBuffer(unsigned int uiStart, unsigned int uiEnd, Accessor &accSt
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while ((uiPos < uiEnd - uiStart + 1) && (uiPos < uiLength-1)) {
 		szBuffer[uiPos] = static_cast<char>(toupper(accStyler[uiStart + uiPos]));
@@ -645,8 +645,8 @@ static void FoldClarionDoc(unsigned int uiStartPos, int iLength, int iInitStyle,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (unsigned int uiPos = uiStartPos; uiPos < uiEndPos; uiPos++) {
 

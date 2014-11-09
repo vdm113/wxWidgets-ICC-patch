@@ -293,8 +293,8 @@ private:
                 // Find the field containing this position.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( field = Field_Hour; field <= GetLastField(); )
                 {

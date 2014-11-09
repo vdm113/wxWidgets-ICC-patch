@@ -93,8 +93,8 @@ enum wxLocaleCategory
         of wxLocale::GetInfo(), wxLOCALE_CAT_DATE can be omitted when asking
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for wxLOCALE_SHORT_DATE_FMT value.
 

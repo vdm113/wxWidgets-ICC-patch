@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/mimetype.cpp
 // Purpose:     classes and functions to manage MIME types
@@ -114,6 +107,11 @@ wxString wxFileTypeImpl::GetCommand(const wxChar *WXUNUSED(verb)) const
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
             for ( size_t n = 0; (n < len) && !foundFilename; n++ ) {
                 if ( command[n] == wxT('%') &&
@@ -390,6 +388,11 @@ wxMimeTypesManagerImpl::GetFileTypeFromExtension(const wxString& ext)
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; n < count; n++ ) {
         if ( m_fallbacks[n].GetExtensions().Index(ext) != wxNOT_FOUND ) {
             wxFileType *fileType = new wxFileType;
@@ -447,6 +450,11 @@ wxMimeTypesManagerImpl::GetFileTypeFromMimeType(const wxString& mimeType)
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; n < count; n++ ) {
         if ( wxMimeTypesManager::IsOfType(mimeType,
                                           m_fallbacks[n].GetMimeType()) ) {
@@ -480,6 +488,11 @@ size_t wxMimeTypesManagerImpl::EnumAllFileTypes(wxArrayString& WXUNUSED(mimetype
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
     while ( cont )
     {

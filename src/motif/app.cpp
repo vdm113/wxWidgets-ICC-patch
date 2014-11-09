@@ -183,8 +183,8 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
     char **argvX11 = new char *[argc + 1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < argc; i++ )
     {
@@ -212,15 +212,15 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
         // we have to drop the parameters which were consumed by X11+
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = 0; i < argcX11; i++ )
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( strcmp(wxConvLibc.cWX2MB(argv_[i]), argvX11[i]) != 0 )
             {
@@ -239,8 +239,8 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
     // free our copy
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = 0; i < argcX11; i++ )
     {
@@ -301,8 +301,8 @@ void wxApp::CleanUp()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( wxPerDisplayDataMap::iterator it  = m_perDisplayData->begin(),
                                        end = m_perDisplayData->end();

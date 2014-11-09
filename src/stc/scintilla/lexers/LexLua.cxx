@@ -43,8 +43,8 @@ static int LongDelimCheck(StyleContext &sc) {
 	int sep = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (sc.GetRelative(sep) == '=' && sep < 0xFF)
 		sep++;
@@ -107,8 +107,8 @@ static void ColouriseLuaDoc(
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; sc.More(); sc.Forward()) {
 		if (sc.atLineEnd) {
@@ -152,8 +152,8 @@ static void ColouriseLuaDoc(
 				int ln = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				while (IsASpaceOrTab(sc.GetRelative(ln)))	// skip over spaces/tabs
 					ln++;
@@ -163,8 +163,8 @@ static void ColouriseLuaDoc(
 					char s[100];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 					while (setWord.Contains(c = sc.GetRelative(ln))) {	// get potential label
 						if (i < 90)
@@ -175,8 +175,8 @@ static void ColouriseLuaDoc(
 					if (!keywords.InList(s)) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 						while (IsASpaceOrTab(sc.GetRelative(ln)))	// skip over spaces/tabs
 							ln++;
@@ -219,8 +219,8 @@ static void ColouriseLuaDoc(
 						sc.SetState(SCE_LUA_DEFAULT);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 						while (IsASpaceOrTab(sc.ch) && !sc.atLineEnd)
 							sc.Forward();
@@ -229,8 +229,8 @@ static void ColouriseLuaDoc(
 							sc.Forward();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 							while (setWord.Contains(sc.ch))
 								sc.Forward();
@@ -402,8 +402,8 @@ static void FoldLuaDoc(unsigned int startPos, int length, int /* initStyle */, W
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
@@ -416,8 +416,8 @@ static void FoldLuaDoc(unsigned int startPos, int length, int /* initStyle */, W
 				char s[10] = "";
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (unsigned int j = 0; j < 8; j++) {
 					if (!iswordchar(styler[i + j])) {

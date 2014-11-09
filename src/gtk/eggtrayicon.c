@@ -586,8 +586,8 @@ egg_tray_icon_send_message (EggTrayIcon *icon,
   gdk_error_trap_push ();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   while (len > 0)
     {

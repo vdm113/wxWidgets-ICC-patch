@@ -298,8 +298,8 @@ char wxFTP::GetResult()
     bool endOfReply = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( !endOfReply && !badReply )
     {
@@ -482,8 +482,8 @@ wxString wxFTP::Pwd()
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( ++p; *p; ++p )
             {
@@ -877,8 +877,8 @@ bool wxFTP::GetList(wxArrayString& files,
     files.Empty();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (ReadLine(sock, line) == wxPROTO_NOERR )
     {
@@ -994,8 +994,8 @@ int wxFTP::GetFileSize(const wxString& fileName)
                     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for ( i = 0; i < fileList.GetCount(); i++ )
                     {

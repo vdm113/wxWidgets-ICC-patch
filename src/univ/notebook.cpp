@@ -553,8 +553,8 @@ void wxNotebook::DoDraw(wxControlRenderer *renderer)
     wxRect rectSel;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = m_firstVisible; n < m_lastVisible; n++ )
     {
@@ -643,8 +643,8 @@ int wxNotebook::HitTest(const wxPoint& pt, long *flags) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = m_firstVisible; n < m_lastVisible; n++ )
     {
@@ -709,8 +709,8 @@ wxRect wxNotebook::GetTabRect(int page) const
         widthBefore = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int n = 0; n < page; n++ )
         {
@@ -1036,8 +1036,8 @@ void wxNotebook::CalcLastVisibleTab()
     size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = m_firstVisible; n < count; n++ )
     {
@@ -1130,8 +1130,8 @@ void wxNotebook::UpdateSpinBtn()
         // that not all tabs after it are shown
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( (m_lastFullyVisible == count - 1) && (m_firstVisible > 0) )
         {
@@ -1235,8 +1235,8 @@ void wxNotebook::ScrollTo(size_t page)
     m_offset = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < m_firstVisible; n++ )
     {
@@ -1273,8 +1273,8 @@ void wxNotebook::ScrollLastTo(size_t page)
     m_firstVisible = page;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( (m_firstVisible > 0) && (widthTabs <= widthAll) )
     {

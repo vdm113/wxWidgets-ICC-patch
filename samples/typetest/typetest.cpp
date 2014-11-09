@@ -294,8 +294,8 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
     wxBufferedOutputStream buf_output( file_output );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ch = 0; ch < 10; ch++)
         buf_output.Write( &ch, 1 );
@@ -304,8 +304,8 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
     wxFileInputStream file_input( file_name );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ch2 = 0; ch2 < 10; ch2++)
     {
@@ -321,8 +321,8 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
     wxBufferedOutputStream buf_output2( file_output2 );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ch = 0; ch < 10; ch++)
         buf_output2.Write( &ch, 1 );
@@ -334,8 +334,8 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
     wxFileInputStream file_input2( file_name2 );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ch2 = 0; ch2 < 10; ch2++)
     {
@@ -349,8 +349,8 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
     ch = 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < 2000; i++)
        buf_output2.Write( &ch, 1 );
@@ -363,8 +363,8 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
     wxBufferedInputStream buf_input3( file_input3 );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ch2 = 0; ch2 < 10; ch2++)
     {
@@ -373,8 +373,8 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int j = 0; j < 2000; j++)
        buf_input3.Read( &ch, 1 );
@@ -400,8 +400,8 @@ void MyApp::DoStreamDemo3(wxCommandEvent& WXUNUSED(event))
     wxFileOutputStream file_output( file_name );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ch = 0; ch < 10; ch++)
         file_output.Write( &ch, 1 );
@@ -413,8 +413,8 @@ void MyApp::DoStreamDemo3(wxCommandEvent& WXUNUSED(event))
     wxFileInputStream file_input( file_name );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ch2 = 0; ch2 < 11; ch2++)
     {
@@ -467,8 +467,8 @@ void MyApp::DoStreamDemo3(wxCommandEvent& WXUNUSED(event))
     wxFFileInputStream ffile_input( file_name );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ch2 = 0; ch2 < 11; ch2++)
     {
@@ -521,8 +521,8 @@ void MyApp::DoStreamDemo3(wxCommandEvent& WXUNUSED(event))
     wxBufferedInputStream buf_input( ffile_input2 );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ch2 = 0; ch2 < 11; ch2++)
     {
@@ -582,8 +582,8 @@ void MyApp::DoStreamDemo4(wxCommandEvent& WXUNUSED(event))
     wxFileOutputStream file_output( file_name );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < 2000; i++)
     {
@@ -726,8 +726,8 @@ void MyApp::DoStreamDemo5(wxCommandEvent& WXUNUSED(event))
     wxFileOutputStream file_output( file_name );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ch = 0; ch < 10; ch++)
         file_output.Write( &ch, 1 );
@@ -806,8 +806,8 @@ void MyApp::DoStreamDemo6(wxCommandEvent& WXUNUSED(event))
     wxFileOutputStream file_output( file_name );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ch = 0; ch < 10; ch++)
         file_output.Write( &ch, 1 );
@@ -890,8 +890,8 @@ void MyApp::DoStreamDemo7(wxCommandEvent& WXUNUSED(event))
     wxFileOutputStream file_output( file_name );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ch = 0; ch < 10; ch++)
         file_output.Write( &ch, 1 );
@@ -1123,8 +1123,8 @@ void MyApp::DoVariantDemo(wxCommandEvent& WXUNUSED(event) )
     size_t i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = (size_t) 0; i < n; i++)
     {

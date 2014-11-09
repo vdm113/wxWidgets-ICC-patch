@@ -84,8 +84,8 @@ wxAcceleratorTable::wxAcceleratorTable(int n, const wxAcceleratorEntry entries[]
     
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = 0; i < n; i++ )
     {
@@ -99,8 +99,8 @@ QList< QShortcut* > wxAcceleratorTable::ConvertShortcutTable( QWidget *parent ) 
     
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxAccelList::Node *node = M_ACCELDATA->m_accels.GetFirst(); node; node = node->GetNext() )
     {

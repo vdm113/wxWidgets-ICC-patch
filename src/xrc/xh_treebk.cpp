@@ -88,8 +88,8 @@ wxObject *wxTreebookXmlHandler::DoCreateResource()
         int pageIndex = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (unsigned int i = 0; i < m_tbk->GetPageCount(); i++)
         {
@@ -98,8 +98,8 @@ wxObject *wxTreebookXmlHandler::DoCreateResource()
                 wxXmlNode *child = node->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while (child)
                 {

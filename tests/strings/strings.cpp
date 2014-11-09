@@ -129,8 +129,8 @@ void StringTestCase::String()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < 2; ++i)
     {
@@ -152,8 +152,8 @@ void StringTestCase::PChar()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < 2; ++i)
     {
@@ -178,8 +178,8 @@ void StringTestCase::Format()
     static const size_t lengths[] = { 1, 512, 1024, 1025, 2048, 4096, 4097 };
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < WXSIZEOF(lengths); n++ )
     {
@@ -595,8 +595,8 @@ void StringTestCase::Contains()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < WXSIZEOF(containsData); n++ )
     {
@@ -679,8 +679,8 @@ void StringTestCase::ToLong()
     long l;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < WXSIZEOF(longData); n++ )
     {
@@ -720,8 +720,8 @@ void StringTestCase::ToULong()
     unsigned long ul;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < WXSIZEOF(longData); n++ )
     {
@@ -752,8 +752,8 @@ void StringTestCase::ToLongLong()
     wxLongLong_t l;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < WXSIZEOF(longData); n++ )
     {
@@ -774,8 +774,8 @@ void StringTestCase::ToULongLong()
     wxULongLong_t ul;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < WXSIZEOF(longData); n++ )
     {
@@ -822,8 +822,8 @@ void StringTestCase::ToDouble()
     size_t n;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < WXSIZEOF(doubleData); n++ )
     {
@@ -864,8 +864,8 @@ void StringTestCase::ToDouble()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < WXSIZEOF(doubleData2); n++ )
     {
@@ -903,8 +903,8 @@ void StringTestCase::FromDouble()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned n = 0; n < WXSIZEOF(testData); n++ )
     {
@@ -920,8 +920,8 @@ void StringTestCase::FromDouble()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned m = 0; m < WXSIZEOF(testData); m++ )
     {

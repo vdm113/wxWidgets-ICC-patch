@@ -262,8 +262,8 @@ wxPrintPaperType *wxPrintPaperDatabase::FindPaperType(wxPaperSize id)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (iterator it = m_map->begin(), en = m_map->end(); it != en; ++it)
     {
@@ -281,8 +281,8 @@ wxPrintPaperType *wxPrintPaperDatabase::FindPaperTypeByPlatformId(int id)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (iterator it = m_map->begin(), en = m_map->end(); it != en; ++it)
     {
@@ -302,8 +302,8 @@ wxPrintPaperType *wxPrintPaperDatabase::FindPaperType(const wxSize& sz)
     // it was wrongly translated to Note.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < GetCount(); i++ )
     {

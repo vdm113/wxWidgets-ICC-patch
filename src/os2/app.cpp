@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/app.cpp
 // Purpose:     wxApp
@@ -153,6 +146,11 @@ void wxApp::HandleSockets()
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (i = m_lastUsedHandle + 1; i != m_lastUsedHandle;
                  (i < m_maxSocketNr - 1) ? i++ : (i = 0))
             {
@@ -168,6 +166,11 @@ void wxApp::HandleSockets()
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
                     for (r = 0; r < m_maxSocketHandles; r++){
                         if(CallbackInfo[r].handle == i &&
@@ -192,6 +195,11 @@ void wxApp::HandleSockets()
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
                     for (r = 0; r < m_maxSocketHandles; r++)
                         if(CallbackInfo[r].handle == i &&
@@ -553,6 +561,11 @@ int wxApp::AddSocketHandler(int handle, int mask,
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (find = 0; find < m_maxSocketHandles; find++)
         if (CallbackInfo[find].handle == -1)
             break;
@@ -572,6 +585,11 @@ int wxApp::AddSocketHandler(int handle, int mask,
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
         for (find = m_maxSocketHandles - 10; find < m_maxSocketHandles; find++)
             CallbackInfo[find].handle = -1;

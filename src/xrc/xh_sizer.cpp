@@ -375,8 +375,8 @@ bool wxSizerXmlHandler::ValidateGridSizerChildren()
         int children = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxXmlNode *n = m_node->GetChildren(); n; n = n->GetNext() )
         {
@@ -465,8 +465,8 @@ void wxSizerXmlHandler::SetGrowables(wxFlexGridSizer* sizer,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (tkn.HasMoreTokens())
     {

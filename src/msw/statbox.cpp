@@ -306,8 +306,8 @@ WXHRGN wxStaticBox::MSWGetRegionWithoutChildren()
     HWND child;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( child = ::GetWindow(GetHwndOf(GetParent()), GW_CHILD);
           child;
@@ -367,8 +367,8 @@ WXHRGN wxStaticBox::MSWGetRegionWithoutChildren()
     // out as well.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( child = ::GetWindow(GetHwnd(), GW_CHILD);
           child;

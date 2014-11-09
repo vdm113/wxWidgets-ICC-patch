@@ -197,8 +197,8 @@ bool wxTextMeasure::DoGetPartialTextExtents(const wxString& text,
     size_t i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (pango_layout_iter_next_cluster(iter))
     {
@@ -210,8 +210,8 @@ bool wxTextMeasure::DoGetPartialTextExtents(const wxString& text,
     const size_t len = text.length();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (i < len)
         widths[i++] = PANGO_PIXELS(pos.x + pos.width);

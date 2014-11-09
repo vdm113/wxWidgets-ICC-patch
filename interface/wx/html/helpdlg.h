@@ -50,8 +50,8 @@ public:
         Creates the dialog. See @ref wxHtmlHelpDialog() "the constructor"
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for a description of the parameters.
     */

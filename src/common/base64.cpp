@@ -39,8 +39,8 @@ wxBase64Encode(char *dst, size_t dstLen, const void *src_, size_t srcLen)
     // encode blocks of 3 bytes into 4 base64 characters
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ; srcLen >= 3; srcLen -= 3, src += 3 )
     {
@@ -133,8 +133,8 @@ wxBase64Decode(void *dst_, size_t dstLen,
     const char *p;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( p = src; srcLen; p++, srcLen-- )
     {

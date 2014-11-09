@@ -112,8 +112,8 @@ public:
 	bool Match(int pos, const char *s) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (int i=0; *s; i++) {
 			if (*s != SafeGetCharAt(pos+i))
@@ -199,8 +199,8 @@ public:
 				chAttr = static_cast<char>(chAttr | chFlags);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (unsigned int i = startSeg; i <= pos; i++) {
 					assert((startPosStyling + validLen) < Length());

@@ -56,8 +56,8 @@ public:
             or the results might be unexpected due to automatic newline conversion done
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for the text files.
     */

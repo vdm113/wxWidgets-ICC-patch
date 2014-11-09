@@ -245,8 +245,8 @@ int wxEventLoopManual::DoRun()
 #if wxUSE_EXCEPTIONS
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ;; )
     {
@@ -257,8 +257,8 @@ int wxEventLoopManual::DoRun()
             // this is the event loop itself
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( ;; )
             {
@@ -269,8 +269,8 @@ int wxEventLoopManual::DoRun()
                 // have anything else to do
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while ( !m_shouldExit && !Pending() && ProcessIdle() )
                     ;
@@ -299,8 +299,8 @@ int wxEventLoopManual::DoRun()
             // events we already have, they might be important.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( ;; )
             {

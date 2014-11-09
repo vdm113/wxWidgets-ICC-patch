@@ -95,8 +95,8 @@ wxRegion::wxRegion( size_t n, const wxPoint *points, wxPolygonFillMode fillStyle
     XPoint *xpoints = new XPoint[n];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0 ; i < n ; i++ )
     {
@@ -409,8 +409,8 @@ void wxRIRefData::CreateRects( const wxRegion& region )
             m_rects = new wxRect[m_numRects];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (size_t i=0; i < m_numRects; ++i)
             {

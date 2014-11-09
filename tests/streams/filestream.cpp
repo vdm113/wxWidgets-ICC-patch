@@ -126,8 +126,8 @@ wxString fileStream::GetInFileName() const
         // Init the data buffer.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (size_t i = 0; i < DATABUFFER_SIZE; i++)
             buf[i] = (i % 0xFF);

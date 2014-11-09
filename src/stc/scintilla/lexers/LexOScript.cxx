@@ -221,8 +221,8 @@ static void ColouriseOScriptDoc(unsigned int startPos, int length,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; sc.More(); sc.Forward()) {
 
@@ -391,8 +391,8 @@ static bool IsLineComment(int line, Accessor &styler) {
 	int eolPos = styler.LineStart(line + 1) - 1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int i = pos; i < eolPos; i++) {
 		char ch = styler[i];
@@ -417,8 +417,8 @@ static void GetRangeLowered(unsigned int start, unsigned int end,
 	unsigned int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (i < end - start + 1 && i < len - 1) {
 		s[i] = static_cast<char>(tolower(styler[start + i]));
@@ -432,8 +432,8 @@ static void GetForwardWordLowered(unsigned int start, Accessor &styler,
 	unsigned int i = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (i < len - 1 && IsAlpha(styler.SafeGetCharAt(start + i))) {
 		s[i] = static_cast<char>(tolower(styler.SafeGetCharAt(start + i)));
@@ -495,8 +495,8 @@ static void FoldOScriptDoc(unsigned int startPos, int length, int initStyle,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (int i = startPos; i < endPos; i++) {
 		char ch = chNext;

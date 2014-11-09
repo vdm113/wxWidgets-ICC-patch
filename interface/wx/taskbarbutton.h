@@ -533,8 +533,8 @@ public:
             wxTaskBarJumpListCategory object after this function is called, so
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             do not delete it yourself.
 
@@ -694,8 +694,8 @@ public:
             wxTaskBarJumpList object after this function is called, so
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             do not delete it yourself.
     */

@@ -171,8 +171,8 @@ Callback::OnDataAvailable(DWORD grfBSCF,
 	  const char *p2 = charset;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	  while ((*p1++ = (unsigned char)*p2++) != 0)
 	    ;
@@ -190,8 +190,8 @@ Callback::OnDataAvailable(DWORD grfBSCF,
   if (pstgmed->tymed == TYMED_ISTREAM) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (totalRead_ < dwSize) {
 #define READ_MAX (64*1024)
@@ -287,8 +287,8 @@ openStream(XML_Parser parser,
   LPWSTR uriw = new wchar_t[strlen(uri) + 1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (int i = 0;; i++) {
     uriw[i] = uri[i];
@@ -402,8 +402,8 @@ processURL(XML_Parser parser, IMoniker *baseMoniker,
   MSG msg;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   while (!qi.stop && GetMessage (&msg, NULL, 0, 0)) {
     TranslateMessage (&msg);

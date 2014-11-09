@@ -298,8 +298,8 @@ wxTreebookPage *wxTreebook::DoRemovePage(size_t pagePos)
     // deleting all the pages from the base class
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i <= subCount; ++i )
     {
@@ -481,8 +481,8 @@ int wxTreebook::DoInternalFindPageById(wxTreeItemId pageId) const
     const size_t count = m_treeIds.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i = 0; i < count; ++i )
     {
@@ -615,8 +615,8 @@ int wxTreebook::DoSetSelection(size_t pagePos, int flags)
             int actualPagePos = pagePos;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while ( !page && childId.IsOk() )
             {

@@ -346,8 +346,8 @@ void MyFrame::CreateBox()
         wxArrayString arr;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (size_t n = 0; n < 1000; n++ )
         {
@@ -541,8 +541,8 @@ void MyFrame::OnLboxSelect(wxCommandEvent& event)
         unsigned long cookie;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int item = m_hlbox->GetFirstSelected(cookie);
               item != wxNOT_FOUND;

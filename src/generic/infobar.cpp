@@ -295,8 +295,8 @@ size_t wxInfoBarGeneric::GetButtonCount() const
     const wxSizerItemList& items = sizer->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxSizerItemList::compatibility_iterator node = items.GetLast();
           node != items.GetFirst();
@@ -334,8 +334,8 @@ wxWindowID wxInfoBarGeneric::GetButtonId(size_t idx) const
     const wxSizerItemList& items = sizer->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxSizerItemList::compatibility_iterator node = items.GetLast();
           node != items.GetFirst() || node != items.GetLast();
@@ -381,8 +381,8 @@ bool wxInfoBarGeneric::HasButtonId(wxWindowID btnid) const
     const wxSizerItemList& items = sizer->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxSizerItemList::compatibility_iterator node = items.GetLast();
           node != items.GetFirst();
@@ -414,8 +414,8 @@ void wxInfoBarGeneric::RemoveButton(wxWindowID btnid)
     const wxSizerItemList& items = sizer->GetChildren();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxSizerItemList::compatibility_iterator node = items.GetLast();
           node != items.GetFirst();

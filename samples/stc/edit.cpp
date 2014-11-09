@@ -348,8 +348,8 @@ void Edit::OnUseCharset (wxCommandEvent &event) {
     }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (Nr = 0; Nr < wxSTC_STYLE_LASTPREDEFINED; Nr++) {
         StyleSetCharacterSet (Nr, charset);
@@ -511,8 +511,8 @@ wxString Edit::DeterminePrefs (const wxString &filename) {
     int languageNr;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (languageNr = 0; languageNr < g_LanguagePrefsSize; languageNr++) {
         curInfo = &g_LanguagePrefs [languageNr];
@@ -520,8 +520,8 @@ wxString Edit::DeterminePrefs (const wxString &filename) {
         filepattern.Lower();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (!filepattern.empty()) {
             wxString cur = filepattern.BeforeFirst (';');
@@ -548,8 +548,8 @@ bool Edit::InitializePrefs (const wxString &name) {
     int languageNr;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (languageNr = 0; languageNr < g_LanguagePrefsSize; languageNr++) {
         curInfo = &g_LanguagePrefs [languageNr];
@@ -580,8 +580,8 @@ bool Edit::InitializePrefs (const wxString &name) {
     int Nr;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (Nr = 0; Nr < wxSTC_STYLE_LASTPREDEFINED; Nr++) {
         wxFont font(wxFontInfo(10).Family(wxFONTFAMILY_MODERN));
@@ -597,8 +597,8 @@ bool Edit::InitializePrefs (const wxString &name) {
         int keywordnr = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (Nr = 0; Nr < STYLE_TYPES_COUNT; Nr++) {
             if (curInfo->styles[Nr].type == -1) continue;
@@ -953,8 +953,8 @@ void EditPrint::GetPageInfo (int *minPage, int *maxPage, int *selPageFrom, int *
     // count pages
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (HasPage (*maxPage)) {
         m_printed = m_edit->FormatRange (0, m_printed, m_edit->GetLength(),

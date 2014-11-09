@@ -111,8 +111,8 @@ TIFFDefaultTransferFunction(TIFFDirectory* td)
 	tf[0][0] = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (i = 1; i < n; i++) {
 		double t = (double)i/((double) n-1.);
@@ -162,8 +162,8 @@ TIFFDefaultRefBlackWhite(TIFFDirectory* td)
 		 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (i = 0; i < 3; i++) {
 		    td->td_refblackwhite[2*i+0] = 0;

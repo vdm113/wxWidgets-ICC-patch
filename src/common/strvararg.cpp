@@ -165,8 +165,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( *format )
         {
@@ -188,8 +188,8 @@ public:
                 // skip any flags
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 while ( IsFlagChar(*format) )
                     CopyFmtChar(*format++);
@@ -413,8 +413,8 @@ private:
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( **ptpc >= wxT('0') && **ptpc <= wxT('9') )
             CopyFmtChar(*(*ptpc)++);

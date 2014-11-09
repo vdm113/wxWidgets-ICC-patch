@@ -95,8 +95,8 @@ main(int argc, char* argv[])
         owarning = TIFFSetWarningHandler(NULL);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ((c = getopt(argc, argv, "d:o:p:eflmsvw?")) != -1)
             switch (c) {
@@ -401,8 +401,8 @@ raster_special(int key, int x, int y)
                         TIFFRGBAImageEnd(&img);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                         while (!TIFFLastDirectory(tif))
                                 TIFFReadDirectory(tif);
@@ -442,8 +442,8 @@ usage(void)
                 fprintf(stderr, "%s\n\n", TIFFGetVersion());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; stuff[i] != NULL; i++)
                 fprintf(stderr, "%s\n", stuff[i]);

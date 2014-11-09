@@ -236,8 +236,8 @@ void FormatConverterTestCase::testLonger()
     // test all possible pairs of the above patterns
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < WXSIZEOF(formats); i++) {
         if (formats[i].input) {
@@ -249,8 +249,8 @@ void FormatConverterTestCase::testLonger()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (j = 0; j < WXSIZEOF(formats); j++)
                 if (formats[j].input)
@@ -285,14 +285,14 @@ void FormatConverterTestCase::doTest(const char *input,
     // try the test for a variety of combinations of flag, width and precision
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (const wxChar **prec = precs; *prec; prec++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (const wxChar **width = flag_width; *width; width++)
             check(fmt + *width + *prec + input,

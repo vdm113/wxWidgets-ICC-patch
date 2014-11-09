@@ -235,8 +235,8 @@ wxWindowMac::~wxWindowMac()
 #if wxUSE_HOTKEY && wxOSX_USE_COCOA_OR_CARBON
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = s_hotkeys.size()-1; i>=0; -- i )
     {
@@ -258,8 +258,8 @@ wxWindowMac::~wxWindowMac()
     // VS: make sure there's no wxFrame with last focus set to us:
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxWindow *win = GetParent(); win; win = win->GetParent() )
     {
@@ -604,8 +604,8 @@ static bool wxIsWindowOrParentDisabled(wxWindow* w)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (w && !w->IsTopLevel())
     {
@@ -1766,8 +1766,8 @@ void wxWindowMac::ScrollWindow(int dx, int dy, const wxRect *rect)
     int x, y, w, h;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst(); node; node = node->GetNext())
     {
@@ -1914,8 +1914,8 @@ wxNonOwnedWindow* wxWindowMac::MacGetTopLevelWindow() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( iter )
     {
@@ -2018,8 +2018,8 @@ void wxWindowMac::MacUpdateClippedRects() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( !child->IsTopLevel() && ( parent = child->GetParent() ) != NULL )
     {
@@ -2172,8 +2172,8 @@ void wxWindowMac::MacPaintChildrenBorders()
     int x, y, w, h;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst(); node; node = node->GetNext())
     {
@@ -2246,8 +2246,8 @@ bool wxWindowMac::MacHasScrollBarCorner() const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( const wxWindow *win = (wxWindow*)this; win; win = win->GetParent() )
         {
@@ -2409,8 +2409,8 @@ void wxWindowMac::MacSuperChangedPosition()
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( node )
     {
@@ -2429,8 +2429,8 @@ void wxWindowMac::MacTopLevelWindowChangedPosition()
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( node )
     {
@@ -2697,8 +2697,8 @@ wxHotKeyHandler(EventHandlerCallRef WXUNUSED(nextHandler),
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned i = 0; i < s_hotkeys.size(); ++i )
     {
@@ -2731,8 +2731,8 @@ bool wxWindowMac::RegisterHotKey(int hotkeyId, int modifiers, int keycode)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned i = 0; i < s_hotkeys.size(); ++i )
     {
@@ -2795,8 +2795,8 @@ bool wxWindowMac::UnregisterHotKey(int hotkeyId)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int i = ((int)s_hotkeys.size())-1; i>=0; -- i )
     {
@@ -2832,8 +2832,8 @@ bool wxWindowMac::OSXHandleKeyEvent( wxKeyEvent& event )
         wxWindow *ancestor = this;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (ancestor)
         {
@@ -2919,8 +2919,8 @@ void wxWidgetImpl::RemoveAssociations(wxWidgetImpl* impl)
     bool found = true ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( found )
     {
@@ -2928,8 +2928,8 @@ void wxWidgetImpl::RemoveAssociations(wxWidgetImpl* impl)
         MacControlMap::iterator it;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( it = wxWinMacControlList.begin(); it != wxWinMacControlList.end(); ++it )
         {

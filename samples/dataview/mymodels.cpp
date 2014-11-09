@@ -311,8 +311,8 @@ unsigned int MyMusicTreeModel::GetChildren( const wxDataViewItem &parent,
     unsigned int count = node->GetChildren().GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int pos = 0; pos < count; pos++)
     {
@@ -352,8 +352,8 @@ MyListModel::MyListModel() :
     m_textColValues.push_back("first row with long label to test ellipsization");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned int i = 1; i < NUMBER_REAL_ITEMS; i++)
     {
@@ -389,8 +389,8 @@ void MyListModel::DeleteItems( const wxDataViewItemArray &items )
     wxArrayInt rows;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < items.GetCount(); i++)
     {
@@ -413,8 +413,8 @@ void MyListModel::DeleteItems( const wxDataViewItemArray &items )
     rows.Sort( my_sort_reverse );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < rows.GetCount(); i++)
         m_textColValues.RemoveAt( rows[i] );

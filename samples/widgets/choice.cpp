@@ -315,8 +315,8 @@ void ChoiceWidgetsPage::CreateChoice()
         int count = m_choice->GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int n = 0; n < count; n++ )
         {
@@ -403,8 +403,8 @@ void ChoiceWidgetsPage::OnButtonAddMany(wxCommandEvent& WXUNUSED(event))
     wxArrayString strings;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( unsigned int n = 0; n < 1000; n++ )
     {

@@ -104,8 +104,8 @@ static void ColouriseErlangDoc(unsigned int startPos, int length, int initStyle,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (; sc.More(); sc.Forward()) {
 		int style = SCE_ERLANG_DEFAULT;
@@ -173,8 +173,8 @@ static void ColouriseErlangDoc(unsigned int startPos, int length, int initStyle,
 								sc.ChangeState(SCE_ERLANG_COMMENT_DOC_MACRO);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 								while (sc.ch != '}' && !sc.atLineEnd)
 									sc.Forward();
@@ -556,8 +556,8 @@ static void FoldErlangDoc(
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		ch = chNext;

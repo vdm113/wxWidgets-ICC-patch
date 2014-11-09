@@ -382,8 +382,8 @@ void wxColourDatabase::Initialize()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( n = 0; n < WXSIZEOF(wxColourTable); n++ )
     {
@@ -461,8 +461,8 @@ wxString wxColourDatabase::FindName(const wxColour& colour) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( iterator it = m_map->begin(), en = m_map->end(); it != en; ++it )
     {
@@ -493,8 +493,8 @@ void wxStockGDI::DeleteAll()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (unsigned i = 0; i < ITEMCOUNT; i++)
     {
@@ -735,8 +735,8 @@ wxGDIObjListBase::~wxGDIObjListBase()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (wxList::compatibility_iterator node = list.GetFirst(); node; node = node->GetNext())
     {
@@ -748,8 +748,8 @@ wxPen *wxPenList::FindOrCreatePen (const wxColour& colour, int width, wxPenStyle
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxList::compatibility_iterator node = list.GetFirst();
           node;
@@ -777,8 +777,8 @@ wxBrush *wxBrushList::FindOrCreateBrush (const wxColour& colour, wxBrushStyle st
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxList::compatibility_iterator node = list.GetFirst();
           node;
@@ -823,8 +823,8 @@ wxFont *wxFontList::FindOrCreateFont(int pointSize,
     wxList::compatibility_iterator node;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (node = list.GetFirst(); node; node = node->GetNext())
     {
@@ -910,8 +910,8 @@ wxResourceCache::~wxResourceCache ()
     wxList::compatibility_iterator node = GetFirst ();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node) {
         wxObject *item = (wxObject *)node->GetData();

@@ -207,8 +207,8 @@ void ExecTestCase::TestExecute()
     // depending on this flag, and we want to test both cases.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (useNoeventsFlag = 0; useNoeventsFlag <=1 ; ++useNoeventsFlag )
     {

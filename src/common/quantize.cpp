@@ -318,15 +318,15 @@ prescan_quantize (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (row = 0; row < num_rows; row++) {
     ptr = input_buf[row];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (col = width; col > 0; col--) {
 
@@ -379,8 +379,8 @@ find_biggest_color_pop (boxptr boxlist, int numboxes)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0, boxp = boxlist; i < numboxes; i++, boxp++) {
     if (boxp->colorcount > maxc && boxp->volume > 0) {
@@ -404,8 +404,8 @@ find_biggest_volume (boxptr boxlist, int numboxes)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0, boxp = boxlist; i < numboxes; i++, boxp++) {
     if (boxp->volume > maxv) {
@@ -437,21 +437,21 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
   if (c0max > c0min)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c0 = c0min; c0 <= c0max; c0++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (c1 = c1min; c1 <= c1max; c1++) {
     histp = & histogram[c0][c1][c2min];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c2 = c2min; c2 <= c2max; c2++)
       if (*histp++ != 0) {
@@ -463,21 +463,21 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
   if (c0max > c0min)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c0 = c0max; c0 >= c0min; c0--)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (c1 = c1min; c1 <= c1max; c1++) {
     histp = & histogram[c0][c1][c2min];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c2 = c2min; c2 <= c2max; c2++)
       if (*histp++ != 0) {
@@ -489,21 +489,21 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
   if (c1max > c1min)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c1 = c1min; c1 <= c1max; c1++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (c0 = c0min; c0 <= c0max; c0++) {
     histp = & histogram[c0][c1][c2min];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c2 = c2min; c2 <= c2max; c2++)
       if (*histp++ != 0) {
@@ -515,21 +515,21 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
   if (c1max > c1min)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c1 = c1max; c1 >= c1min; c1--)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (c0 = c0min; c0 <= c0max; c0++) {
     histp = & histogram[c0][c1][c2min];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c2 = c2min; c2 <= c2max; c2++)
       if (*histp++ != 0) {
@@ -541,21 +541,21 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
   if (c2max > c2min)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c2 = c2min; c2 <= c2max; c2++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (c0 = c0min; c0 <= c0max; c0++) {
     histp = & histogram[c0][c1min][c2];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c1 = c1min; c1 <= c1max; c1++, histp += HIST_C2_ELEMS)
       if (*histp != 0) {
@@ -567,21 +567,21 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
   if (c2max > c2min)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c2 = c2max; c2 >= c2min; c2--)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (c0 = c0min; c0 <= c0max; c0++) {
     histp = & histogram[c0][c1min][c2];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c1 = c1min; c1 <= c1max; c1++, histp += HIST_C2_ELEMS)
       if (*histp != 0) {
@@ -608,21 +608,21 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
   ccount = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (c0 = c0min; c0 <= c0max; c0++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c1 = c1min; c1 <= c1max; c1++) {
       histp = & histogram[c0][c1][c2min];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (c2 = c2min; c2 <= c2max; c2++, histp++)
     if (*histp != 0) {
@@ -644,8 +644,8 @@ median_cut (j_decompress_ptr cinfo, boxptr boxlist, int numboxes,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   while (numboxes < desired_colors) {
     /* Select box to split.
@@ -737,21 +737,21 @@ compute_color (j_decompress_ptr cinfo, boxptr boxp, int icolor)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (c0 = c0min; c0 <= c0max; c0++)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (c1 = c1min; c1 <= c1max; c1++) {
       histp = & histogram[c0][c1][c2min];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (c2 = c2min; c2 <= c2max; c2++) {
     if ((count = *histp++) != 0) {
@@ -794,8 +794,8 @@ select_colors (j_decompress_ptr cinfo, int desired_colors)
   /* Compute the representative color for each box, fill colormap */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < numboxes; i++)
     compute_color(cinfo, & boxlist[i], i);
@@ -925,8 +925,8 @@ find_nearby_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < numcolors; i++) {
     /* We compute the squared-c0-distance term, then add in the other two. */
@@ -1009,8 +1009,8 @@ find_nearby_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
   ncolors = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < numcolors; i++) {
     if (mindist[i] <= minmaxdist)
@@ -1046,8 +1046,8 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
   bptr = bestdist;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = BOX_C0_ELEMS*BOX_C1_ELEMS*BOX_C2_ELEMS-1; i >= 0; i--)
     *bptr++ = 0x7FFFFFFFL;
@@ -1064,8 +1064,8 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < numcolors; i++) {
     icolor = GETJSAMPLE(colorlist[i]);
@@ -1086,24 +1086,24 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
     xx0 = inc0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ic0 = BOX_C0_ELEMS-1; ic0 >= 0; ic0--) {
       dist1 = dist0;
       xx1 = inc1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (ic1 = BOX_C1_ELEMS-1; ic1 >= 0; ic1--) {
     dist2 = dist1;
     xx2 = inc2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ic2 = BOX_C2_ELEMS-1; ic2 >= 0; ic2--) {
       if (dist2 < *bptr) {
@@ -1172,21 +1172,21 @@ fill_inverse_cmap (j_decompress_ptr cinfo, int c0, int c1, int c2)
   cptr = bestcolor;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (ic0 = 0; ic0 < BOX_C0_ELEMS; ic0++) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (ic1 = 0; ic1 < BOX_C1_ELEMS; ic1++) {
       cachep = & histogram[c0+ic0][c1+ic1][c2];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (ic2 = 0; ic2 < BOX_C2_ELEMS; ic2++) {
     *cachep++ = (histcell) (GETJSAMPLE(*cptr++) + 1);
@@ -1216,16 +1216,16 @@ pass2_no_dither (j_decompress_ptr cinfo,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (row = 0; row < num_rows; row++) {
     inptr = input_buf[row];
     outptr = output_buf[row];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (col = width; col > 0; col--) {
       /* get pixel value and index into the cache */
@@ -1272,8 +1272,8 @@ pass2_fs_dither (j_decompress_ptr cinfo,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (row = 0; row < num_rows; row++) {
     inptr = input_buf[row];
@@ -1301,8 +1301,8 @@ pass2_fs_dither (j_decompress_ptr cinfo,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (col = width; col > 0; col--) {
       /* curN holds the error propagated from the previous pixel on the
@@ -1430,8 +1430,8 @@ init_error_limit (j_decompress_ptr cinfo)
   out = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (in = 0; in < STEPSIZE; in++, out++) {
     table[in] = out; table[-in] = -out;
@@ -1439,8 +1439,8 @@ init_error_limit (j_decompress_ptr cinfo)
   /* Map errors 1:2 up to +- 3*MAXJSAMPLE/16 */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (; in < STEPSIZE*3; in++, out += (in&1) ? 0 : 1) {
     table[in] = out; table[-in] = -out;
@@ -1448,8 +1448,8 @@ init_error_limit (j_decompress_ptr cinfo)
   /* Clamp the rest to final out value (which is (MAXJSAMPLE+1)/8) */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (; in <= MAXJSAMPLE; in++) {
     table[in] = out; table[-in] = -out;
@@ -1521,8 +1521,8 @@ start_pass_2_quant (j_decompress_ptr cinfo, bool is_pre_scan)
   if (cquantize->needs_zeroed) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < HIST_C0_ELEMS; i++) {
       memset((void  *) histogram[i], 0,
@@ -1569,8 +1569,8 @@ jinit_2pass_quantizer (j_decompress_ptr cinfo)
   cquantize->histogram = (hist3d) malloc(HIST_C0_ELEMS * sizeof(hist2d));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < HIST_C0_ELEMS; i++) {
     cquantize->histogram[i] = (hist2d) malloc(HIST_C1_ELEMS*HIST_C2_ELEMS * sizeof(histcell));
@@ -1631,8 +1631,8 @@ prepare_range_limit_table (j_decompress_ptr cinfo)
   /* Main part of "simple" table: limit[x] = x */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i <= MAXJSAMPLE; i++)
     table[i] = (JSAMPLE) i;
@@ -1640,8 +1640,8 @@ prepare_range_limit_table (j_decompress_ptr cinfo)
   /* End of simple table, rest of first half of post-IDCT table */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = CENTERJSAMPLE; i < 2*(MAXJSAMPLE+1); i++)
     table[i] = MAXJSAMPLE;
@@ -1685,8 +1685,8 @@ void wxQuantize::DoQuantize(unsigned w, unsigned h, unsigned char **in_rows, uns
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int i = 0; i < dec.desired_number_of_colors; i++) {
         palette[3 * i + 0] = dec.colormap[0][i];
@@ -1696,8 +1696,8 @@ void wxQuantize::DoQuantize(unsigned w, unsigned h, unsigned char **in_rows, uns
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int ii = 0; ii < HIST_C0_ELEMS; ii++) free(cquantize->histogram[ii]);
     free(cquantize->histogram);
@@ -1748,8 +1748,8 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
     unsigned char *imgdt = src.GetData();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < h; i++)
         rows[i] = imgdt + 3/*RGB*/ * w * i;
@@ -1761,8 +1761,8 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
     unsigned char **outrows = new unsigned char *[h];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < h; i++)
         outrows[i] = data8bit + w * i;
@@ -1783,8 +1783,8 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
         imgdt = dest.GetData();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < w * h; i++)
         {
@@ -1804,8 +1804,8 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
             // to make room for the Windows system colours.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < w * h; i++)
                 data8bit[i] = (unsigned char)(data8bit[i] + paletteShift);
@@ -1835,8 +1835,8 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < windowsSystemColourCount; i++)
             {
@@ -1850,8 +1850,8 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = 0; i < desiredNoColours; i++)
         {
@@ -1863,8 +1863,8 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
         // Blank out any remaining palette entries
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (i = desiredNoColours+paletteShift; i < 256; i++)
         {

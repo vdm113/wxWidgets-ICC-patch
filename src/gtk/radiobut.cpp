@@ -79,8 +79,8 @@ bool wxRadioButton::Create( wxWindow *parent,
         wxWindowList::compatibility_iterator node = parent->GetChildren().GetLast();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (; node; node = node->GetPrevious())
         {

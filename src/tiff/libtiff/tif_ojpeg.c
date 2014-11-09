@@ -566,8 +566,8 @@ OJPEGVSetField(TIFF* tif, uint32 tag, va_list ap)
 				mb=(uint64*)va_arg(ap,uint64*);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (n=0; n<ma; n++)
 					sp->qtable_offset[n]=mb[n];
@@ -586,8 +586,8 @@ OJPEGVSetField(TIFF* tif, uint32 tag, va_list ap)
 				mb=(uint64*)va_arg(ap,uint64*);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (n=0; n<ma; n++)
 					sp->dctable_offset[n]=mb[n];
@@ -606,8 +606,8 @@ OJPEGVSetField(TIFF* tif, uint32 tag, va_list ap)
 				mb=(uint64*)va_arg(ap,uint64*);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (n=0; n<ma; n++)
 					sp->actable_offset[n]=mb[n];
@@ -643,8 +643,8 @@ OJPEGPrintDir(TIFF* tif, FILE* fd, long flags)
 		fprintf(fd,"  JpegQTables:");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (m=0; m<sp->qtable_offset_count; m++)
 			fprintf(fd," " TIFF_UINT64_FORMAT,(TIFF_UINT64_T)sp->qtable_offset[m]);
@@ -655,8 +655,8 @@ OJPEGPrintDir(TIFF* tif, FILE* fd, long flags)
 		fprintf(fd,"  JpegDcTables:");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (m=0; m<sp->dctable_offset_count; m++)
 			fprintf(fd," " TIFF_UINT64_FORMAT,(TIFF_UINT64_T)sp->dctable_offset[m]);
@@ -667,8 +667,8 @@ OJPEGPrintDir(TIFF* tif, FILE* fd, long flags)
 		fprintf(fd,"  JpegAcTables:");
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (m=0; m<sp->actable_offset_count; m++)
 			fprintf(fd," " TIFF_UINT64_FORMAT,(TIFF_UINT64_T)sp->actable_offset[m]);
@@ -745,8 +745,8 @@ OJPEGPreDecode(TIFF* tif, uint16 s)
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (sp->write_curstrile<m)          
 	{
@@ -785,8 +785,8 @@ OJPEGPreDecodeSkipRaw(TIFF* tif)
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while (m>=sp->subsampling_convert_clines)
 	{
@@ -820,8 +820,8 @@ OJPEGPreDecodeSkipScanlines(TIFF* tif)
 	}
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (m=0; m<sp->lines_per_strile; m++)
 	{
@@ -873,8 +873,8 @@ OJPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc)
 	n=cc;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do
 	{
@@ -889,23 +889,23 @@ OJPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc)
 		p=m;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (q=0; q<sp->subsampling_convert_clinelenout; q++)
 		{
 			r=oy;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (sy=0; sy<sp->subsampling_ver; sy++)
 			{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				for (sx=0; sx<sp->subsampling_hor; sx++)
 					*p++=*r++;
@@ -941,8 +941,8 @@ OJPEGDecodeScanlines(TIFF* tif, uint8* buf, tmsize_t cc)
 	n=cc;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do
 	{
@@ -1181,8 +1181,8 @@ OJPEGReadSecondarySos(TIFF* tif, uint16 s)
 	sp->plane_sample_offset=s-1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while(sp->sos_end[sp->plane_sample_offset].log==0)
 		sp->plane_sample_offset--;
@@ -1195,15 +1195,15 @@ OJPEGReadSecondarySos(TIFF* tif, uint16 s)
 	sp->in_buffer_cur=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	while(sp->plane_sample_offset<s)
 	{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		do
 		{
@@ -1213,8 +1213,8 @@ OJPEGReadSecondarySos(TIFF* tif, uint16 s)
 			{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 				do
 				{
@@ -1308,22 +1308,22 @@ OJPEGWriteHeaderInfo(TIFF* tif)
 			*m++=(uint8*)(sp->subsampling_convert_ycbcrimage+3+sp->subsampling_convert_ylines+sp->subsampling_convert_clines);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (n=0; n<sp->subsampling_convert_ylines; n++)
 				*m++=sp->subsampling_convert_ybuf+n*sp->subsampling_convert_ylinelen;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (n=0; n<sp->subsampling_convert_clines; n++)
 				*m++=sp->subsampling_convert_cbbuf+n*sp->subsampling_convert_clinelen;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (n=0; n<sp->subsampling_convert_clines; n++)
 				*m++=sp->subsampling_convert_crbuf+n*sp->subsampling_convert_clinelen;
@@ -1387,8 +1387,8 @@ OJPEGReadHeaderInfoSec(TIFF* tif)
 	sp->in_buffer_togo=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do
 	{
@@ -1399,8 +1399,8 @@ OJPEGReadHeaderInfoSec(TIFF* tif)
 		OJPEGReadByteAdvance(sp);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		do
 		{
@@ -1482,16 +1482,16 @@ OJPEGReadHeaderInfoSec(TIFF* tif)
 		sp->sof_marker_id=JPEG_MARKER_SOF0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (o=0; o<sp->samples_per_pixel; o++)
 			sp->sof_c[o]=o;
 		sp->sof_hv[0]=((sp->subsampling_hor<<4)|sp->subsampling_ver);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (o=1; o<sp->samples_per_pixel; o++)
 			sp->sof_hv[o]=17;
@@ -1504,8 +1504,8 @@ OJPEGReadHeaderInfoSec(TIFF* tif)
 			return(0);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		for (o=1; o<sp->samples_per_pixel; o++)
 			sp->sos_cs[o]=o;
@@ -1558,8 +1558,8 @@ OJPEGReadHeaderInfoSecStreamDqt(TIFF* tif)
 		m-=2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 		do
 		{
@@ -1766,8 +1766,8 @@ OJPEGReadHeaderInfoSecStreamSof(TIFF* tif, uint8 marker_id)
 	/* TODO: double-check that flow implies that n cannot be as big as to make us overflow sof_c, sof_hv and sof_tq arrays */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (q=0; q<n; q++)
 	{
@@ -1863,8 +1863,8 @@ OJPEGReadHeaderInfoSecStreamSos(TIFF* tif)
 	/* Cs, Td, and Ta */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (o=0; o<sp->samples_per_pixel_per_plane; o++)
 	{
@@ -1900,8 +1900,8 @@ OJPEGReadHeaderInfoSecTablesQTable(TIFF* tif)
 	sp->in_buffer_file_pos_log=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (m=0; m<sp->samples_per_pixel; m++)
 	{
@@ -1909,8 +1909,8 @@ OJPEGReadHeaderInfoSecTablesQTable(TIFF* tif)
 		{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (n=0; n<m-1; n++)
 			{
@@ -1966,8 +1966,8 @@ OJPEGReadHeaderInfoSecTablesDcTable(TIFF* tif)
 	sp->in_buffer_file_pos_log=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (m=0; m<sp->samples_per_pixel; m++)
 	{
@@ -1975,8 +1975,8 @@ OJPEGReadHeaderInfoSecTablesDcTable(TIFF* tif)
 		{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (n=0; n<m-1; n++)
 			{
@@ -1993,8 +1993,8 @@ OJPEGReadHeaderInfoSecTablesDcTable(TIFF* tif)
 			q=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (n=0; n<16; n++)
 				q+=o[n];
@@ -2013,8 +2013,8 @@ OJPEGReadHeaderInfoSecTablesDcTable(TIFF* tif)
 			rb[sizeof(uint32)+4]=m;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (n=0; n<16; n++)
 				rb[sizeof(uint32)+5+n]=o[n];
@@ -2050,8 +2050,8 @@ OJPEGReadHeaderInfoSecTablesAcTable(TIFF* tif)
 	sp->in_buffer_file_pos_log=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (m=0; m<sp->samples_per_pixel; m++)
 	{
@@ -2059,8 +2059,8 @@ OJPEGReadHeaderInfoSecTablesAcTable(TIFF* tif)
 		{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (n=0; n<m-1; n++)
 			{
@@ -2077,8 +2077,8 @@ OJPEGReadHeaderInfoSecTablesAcTable(TIFF* tif)
 			q=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (n=0; n<16; n++)
 				q+=o[n];
@@ -2097,8 +2097,8 @@ OJPEGReadHeaderInfoSecTablesAcTable(TIFF* tif)
 			rb[sizeof(uint32)+4]=(16|m);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 			for (n=0; n<16; n++)
 				rb[sizeof(uint32)+5+n]=o[n];
@@ -2123,8 +2123,8 @@ OJPEGReadBufferFill(OJPEGState* sp)
 	 * in any other case, seek or read errors should be passed through */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do
 	{
@@ -2265,8 +2265,8 @@ OJPEGReadBlock(OJPEGState* sp, uint16 len, void* mem)
 	mmem=mem;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do
 	{
@@ -2325,8 +2325,8 @@ OJPEGWriteStream(TIFF* tif, void** mem, uint32* len)
 	*len=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	do
 	{
@@ -2487,8 +2487,8 @@ OJPEGWriteStreamSof(TIFF* tif, void** mem, uint32* len)
 	sp->out_buffer[9]=sp->samples_per_pixel_per_plane;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (m=0; m<sp->samples_per_pixel_per_plane; m++)
 	{
@@ -2520,8 +2520,8 @@ OJPEGWriteStreamSos(TIFF* tif, void** mem, uint32* len)
 	sp->out_buffer[4]=sp->samples_per_pixel_per_plane;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
 	for (m=0; m<sp->samples_per_pixel_per_plane; m++)
 	{

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/utilsgui.cpp
 // Purpose:     Various utility functions only available in GUI
@@ -129,6 +122,11 @@ bool wxCheckForInterrupt( wxWindow* pWnd )
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
         while(::WinPeekMsg(hab, &vMsg, hwndFilter, 0, 0, PM_REMOVE))
         {
@@ -328,6 +326,11 @@ wxString WXDLLEXPORT wxGetWindowClass( WXHWND hWnd )
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
     for ( ;; )
     {
@@ -805,6 +808,11 @@ wxBitmap wxDisableBitmap(
 #   pragma unroll
 #   pragma swp
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (i = 0; i < rBmp.GetHeight(); i++)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -816,6 +824,11 @@ wxBitmap wxDisableBitmap(
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
         for (j = 0; j < rBmp.GetWidth(); j++)
         {
@@ -880,6 +893,11 @@ wxBitmap wxDisableBitmap(
 #   pragma ivdep
 #   pragma unroll
 #   pragma swp
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
         for (j = 0; j < nPadding; j++)
         {

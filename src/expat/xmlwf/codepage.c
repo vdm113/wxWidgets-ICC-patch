@@ -26,16 +26,16 @@ codepageMap(int cp, int *map)
     return 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < 256; i++)
     map[i] = -1;
   if (info.MaxCharSize > 1) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 0; i < MAX_LEADBYTES; i+=2) {
       int j, lim;
@@ -44,8 +44,8 @@ codepageMap(int cp, int *map)
       lim = info.LeadByte[i + 1];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for (j = info.LeadByte[i]; j <= lim; j++)
         map[j] = -2;
@@ -53,8 +53,8 @@ codepageMap(int cp, int *map)
   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (i = 0; i < 256; i++) {
    if (map[i] == -1) {

@@ -111,8 +111,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t n = 0; n < src.size(); n++ )
             Add(src[n]);
@@ -326,8 +326,8 @@ public:
       reserve(std::distance(first, last));
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
       for(; first != last; ++first)
           push_back(*first);
@@ -431,8 +431,8 @@ public:
         m_strings = new wxString[count];
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for( size_t i = 0; i < count; ++i )
             m_strings[i] = m_array[i];

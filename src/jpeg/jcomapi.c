@@ -46,8 +46,8 @@ jpeg_abort (j_common_ptr cinfo)
    */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (pool = JPOOL_NUMPOOLS-1; pool > JPOOL_PERMANENT; pool--) {
     (*cinfo->mem->free_pool) (cinfo, pool);

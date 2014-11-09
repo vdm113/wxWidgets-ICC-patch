@@ -169,8 +169,8 @@ public:
         wxFSWatchEntries::iterator it = m_watches.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( ; it != m_watches.end(); ++it )
         {
@@ -189,8 +189,8 @@ public:
         // read events
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         do
         {
@@ -239,8 +239,8 @@ protected:
         wxArrayString::iterator cit = curr.files.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( ; oit != old.files.end() && cit != curr.files.end(); )
         {
@@ -268,8 +268,8 @@ protected:
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( ; cit != curr.files.end(); ++cit )
             {
@@ -281,8 +281,8 @@ protected:
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( ; oit != old.files.end(); ++oit )
             {
@@ -299,8 +299,8 @@ protected:
         wxArrayInt::iterator it2 = changedFlags.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( ; it != changedFiles.end(); ++it, ++it2)
         {
@@ -331,8 +331,8 @@ protected:
         // check for events
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( nflags )
         {
@@ -354,8 +354,8 @@ protected:
                 wxArrayInt::iterator changeType = changedFlags.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( ; it != changedFiles.end(); ++it, ++changeType )
                 {

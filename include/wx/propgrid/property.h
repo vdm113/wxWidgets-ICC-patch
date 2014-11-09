@@ -286,8 +286,8 @@ public:
                  or wxPropertyGrid::GetCaptionFont() as a basis
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                  for the font that, after modifications, is passed
                  to this member function.
@@ -595,8 +595,8 @@ wxPG_PROP_CLASS_SPECIFIC_3          = 0x00400000
     combo box as its editor control. If you set this attribute
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for a wxFlagsProperty, it is automatically applied to child
     bool properties.
@@ -610,8 +610,8 @@ wxPG_PROP_CLASS_SPECIFIC_3          = 0x00400000
     (instead of showing the popup listbox). If you set this attribute
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for a wxFlagsProperty, it is automatically applied to child
     bool properties.
@@ -1427,8 +1427,8 @@ public:
         wxFileProperty::GetClassValidator(). wxDirProperty,
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for example, uses it.
     */

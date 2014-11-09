@@ -77,8 +77,8 @@ void *TIFFGetClientInfo( TIFF *tif, const char *name )
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while( link != NULL && strcmp(link->name,name) != 0 )
         link = link->next;
@@ -100,8 +100,8 @@ void TIFFSetClientInfo( TIFF *tif, void *data, const char *name )
     */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while( link != NULL && strcmp(link->name,name) != 0 )
         link = link->next;

@@ -73,8 +73,8 @@ static PMResolution *GetSupportedResolutions(PMPrinter printer, UInt32 *count)
         UInt32 realCount = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (UInt32 i = 0; i < *count; i++)
         {
@@ -134,8 +134,8 @@ void wxOSXPrintData::TransferPrinterNameFrom( const wxPrintData &data )
         count = CFArrayGetCount(printerList);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (index = 0; index < count; index++)
         {
@@ -197,8 +197,8 @@ void wxOSXPrintData::TransferPaperInfoFrom( const wxPrintData &data )
                 CFIndex top = CFArrayGetCount(paperlist);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for ( CFIndex i = 0 ; i < top ; ++ i )
                 {
@@ -412,8 +412,8 @@ void wxOSXPrintData::TransferResolutionTo( wxPrintData &data )
             UInt32 i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < resCount; i++)
             {
@@ -671,8 +671,8 @@ bool wxMacPrinter::Print(wxWindow *parent, wxPrintout *printout, bool prompt)
     int pn;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (pn = m_printDialogData.GetFromPage();
         keepGoing && (pn <= m_printDialogData.GetToPage()) && printout->HasPage(pn);

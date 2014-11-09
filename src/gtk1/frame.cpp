@@ -527,8 +527,8 @@ void wxFrame::OnInternalIdle()
         // need to be updated
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxWindowList::compatibility_iterator node = m_frameStatusBar->GetChildren().GetFirst();
           node;

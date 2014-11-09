@@ -613,8 +613,8 @@ wxDialUpManagerImpl::CheckProcNet()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while (fgets(output, 256, f) != NULL)
             {
@@ -665,8 +665,8 @@ wxDialUpManagerImpl::CheckIfconfig()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t n = 0; n < WXSIZEOF(ifconfigLocations); n++ )
         {

@@ -17,8 +17,8 @@ getTok(const char **pp)
   const char *tokStart = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (;;) {
     switch (**pp) {
@@ -92,8 +92,8 @@ matchkey(const char *start, const char *end, const char *key)
     return 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (; start != end; start++, key++)
     if (*start != *key && *start != 'A' + (*key - 'a'))
@@ -124,8 +124,8 @@ getXMLCharset(const char *buf, char *charset)
   p = getTok(&next);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   while (p) {
     if (*p == ';') {
@@ -139,8 +139,8 @@ getXMLCharset(const char *buf, char *charset)
             if (*p == '"') {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
               while (++p != next - 1) {
                 if (*p == '\\')
@@ -158,8 +158,8 @@ getXMLCharset(const char *buf, char *charset)
                 break;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
               while (p != next)
                 *s++ = *p++;

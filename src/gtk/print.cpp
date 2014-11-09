@@ -204,8 +204,8 @@ static GtkPaperSize* wxGetGtkPaperSize(wxPaperSize paperId, const wxSize& size)
         GList* list = gtk_paper_size_get_paper_sizes(true);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (GList* p = list; p; p = p->next)
         {
@@ -486,8 +486,8 @@ bool wxGtkPrintNativeData::TransferTo( wxPrintData &data )
         const char* name = gtk_paper_size_get_name(paper_size);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (size_t i = 1; i < WXSIZEOF(gs_paperList); i++)
         {
@@ -1048,8 +1048,8 @@ void wxGtkPrinter::BeginPrint(wxPrintout *printout, GtkPrintOperation *operation
                 range = gtk_print_settings_get_page_ranges (settings, &num_ranges);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                 for (i=0; i<num_ranges; i++)
                 {
@@ -1504,8 +1504,8 @@ void wxGtkPrinterDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoff
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i =0; i<n ; i++ )
         CalcBoundingBox( points[i].x+xoffset, points[i].y+yoffset);
@@ -1514,8 +1514,8 @@ void wxGtkPrinterDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoff
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 1; i < n; i++)
         cairo_line_to ( m_cairo, XLOG2DEV(points[i].x+xoffset), YLOG2DEV(points[i].y+yoffset) );
@@ -1542,8 +1542,8 @@ void wxGtkPrinterDCImpl::DoDrawPolygon(int n, const wxPoint points[],
     int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (i = 1; i < n; i++)
     {
@@ -1694,8 +1694,8 @@ void wxGtkPrinterDCImpl::DoDrawSpline(const wxPointList *points)
     node = node->GetNext();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1951,8 +1951,8 @@ void wxGtkPrinterDCImpl::SetPen( const wxPen& pen )
             int i;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (i = 0; i < num; ++i)
                 g_dashes[i] = (gdouble) wx_dashes[i];

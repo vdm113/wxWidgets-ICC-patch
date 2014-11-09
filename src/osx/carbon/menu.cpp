@@ -167,8 +167,8 @@ public :
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( MenuItemIndex i = 1 ; i <= CountMenuItems(m_parentMenuRef) ; ++i )
             {
@@ -328,8 +328,8 @@ void wxRemoveMacMenuAssociation(wxMenu *menu)
     MacMenuMap::iterator it;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( it = wxWinMacMenuList.begin(); it != wxWinMacMenuList.end(); ++it )
     {
@@ -411,8 +411,8 @@ void wxInsertMenuItemsInMenu(wxMenu* menu, MenuRef wm, MenuItemIndex insertAfter
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (node = menu->GetMenuItems().GetFirst(); node; node = node->GetNext())
     {

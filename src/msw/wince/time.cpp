@@ -162,8 +162,8 @@ _add(const char * str, char * pt, const char * const ptlim)
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (pt < ptlim && (*pt = *str++) != '\0')
         ++pt;
@@ -186,8 +186,8 @@ _fmt(const char * format, const struct tm * const t, char * pt, const char * con
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( ; *format; ++format) {
         if (*format == '%') {
@@ -390,8 +390,8 @@ label:
                     wday = t->tm_wday;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                     for ( ; ; ) {
                         int    len;
@@ -689,8 +689,8 @@ static time_t __cdecl common_tm_to_time(int day, int month, int year, int hour, 
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (--month)
     {

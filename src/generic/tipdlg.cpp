@@ -170,8 +170,8 @@ wxString wxFileTipProvider::GetTip()
     // case of a comment-only tips file.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t i=0; i < count; i++ )
     {

@@ -150,8 +150,8 @@ void wxGenericCalendarCtrl::Init()
     wxDateTime::WeekDay wd;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wd = wxDateTime::Sun; wd < wxDateTime::Inv_WeekDay; wxNextWDay(wd) )
     {
@@ -160,8 +160,8 @@ void wxGenericCalendarCtrl::Init()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < WXSIZEOF(m_attrs); n++ )
     {
@@ -241,8 +241,8 @@ wxGenericCalendarCtrl::~wxGenericCalendarCtrl()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < WXSIZEOF(m_attrs); n++ )
     {
@@ -285,8 +285,8 @@ void wxGenericCalendarCtrl::CreateMonthComboBox()
     wxDateTime::Month m;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( m = wxDateTime::Jan; m < wxDateTime::Inv_Month; wxNextMonth(m) )
     {
@@ -786,8 +786,8 @@ void wxGenericCalendarCtrl::RecalcGeometry()
     m_widthCol = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int day = 10; day <= 31; day++)
     {
@@ -803,8 +803,8 @@ void wxGenericCalendarCtrl::RecalcGeometry()
     wxDateTime::WeekDay wd;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wd = wxDateTime::Sun; wd < wxDateTime::Inv_WeekDay; wxNextWDay(wd) )
     {
@@ -932,8 +932,8 @@ void wxGenericCalendarCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
         bool startOnMonday = HasFlag(wxCAL_MONDAY_FIRST);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int wd = 0; wd < 7; wd++ )
         {
@@ -964,8 +964,8 @@ void wxGenericCalendarCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
         wxDateTime date = GetStartDate();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t i = 0; i < 6; ++i )
         {
@@ -986,8 +986,8 @@ void wxGenericCalendarCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
     dc.SetBackgroundMode(wxBRUSHSTYLE_SOLID);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t nWeek = 1; nWeek <= 6; nWeek++, y += m_heightRow )
     {
@@ -1005,8 +1005,8 @@ void wxGenericCalendarCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int wd = 0; wd < 7; wd++ )
         {
@@ -1746,8 +1746,8 @@ void wxGenericCalendarCtrl::ResetHolidayAttrs()
 {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t day = 0; day < 31; day++ )
     {

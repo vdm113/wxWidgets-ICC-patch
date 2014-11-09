@@ -82,8 +82,8 @@ static void ColouriseVHDLDoc(
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (; sc.More(); sc.Forward())
   {
@@ -215,8 +215,8 @@ static void FoldNoBoxVHDLDoc(
   unsigned int j;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for(j = startPos; j>0; j--)
   {
@@ -239,8 +239,8 @@ static void FoldNoBoxVHDLDoc(
         unsigned int k;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(k=0; (k<31 ) && (k<end-j+1 ); k++) {
           s[k] = static_cast<char>(tolower(styler[j+k]));
@@ -256,8 +256,8 @@ static void FoldNoBoxVHDLDoc(
   }
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for(j=j+static_cast<unsigned int>(strlen(prevWord)); j<endPos; j++)
   {
@@ -281,8 +281,8 @@ static void FoldNoBoxVHDLDoc(
   /***************************************/
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
   for (unsigned int i = startPos; i < endPos; i++)
   {
@@ -338,8 +338,8 @@ static void FoldNoBoxVHDLDoc(
         unsigned int k;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for(k=0; (k<31 ) && (k<i-lastStart+1 ); k++) {
           s[k] = static_cast<char>(tolower(styler[lastStart+k]));
@@ -377,8 +377,8 @@ static void FoldNoBoxVHDLDoc(
               int BracketLevel = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
               for(int j=i+1; j<styler.Length(); j++)
               {

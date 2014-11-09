@@ -108,8 +108,8 @@ public:
         const wxMilliClock_t waitUntil = wxGetLocalTimeMillis() + timeout;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( m_messages.empty() )
         {
@@ -147,8 +147,8 @@ public:
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( m_messages.empty() )
         {

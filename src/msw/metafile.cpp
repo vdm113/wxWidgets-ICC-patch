@@ -394,8 +394,8 @@ bool wxMakeMetafilePlaceable(const wxString& filename, int x1, int y1, int x2, i
     mfPLACEABLEHEADER *pMFHead = &header;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (p =(WORD *)pMFHead,pMFHead -> checksum = 0;
             p < (WORD *)&pMFHead ->checksum; ++p)
@@ -464,8 +464,8 @@ bool wxMakeMetafilePlaceable(const wxString& filename, int x1, int y1, int x2, i
     int ch = -2;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (ch != EOF)
     {

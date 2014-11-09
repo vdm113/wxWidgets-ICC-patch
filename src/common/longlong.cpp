@@ -803,8 +803,8 @@ wxLongLongWx& wxLongLongWx::operator*=(const wxLongLongWx& ll)
     int counter = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -840,8 +840,8 @@ wxULongLongWx& wxULongLongWx::operator*=(const wxULongLongWx& ll)
     int counter = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do
     {
@@ -939,8 +939,8 @@ void wxLongLongWx::Divide(const wxLongLongWx& divisorIn,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( remainder < divisor )
         {
@@ -963,8 +963,8 @@ void wxLongLongWx::Divide(const wxLongLongWx& divisorIn,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t i = 0; i < nBits; i++ )
         {
@@ -1049,8 +1049,8 @@ void wxULongLongWx::Divide(const wxULongLongWx& divisorIn,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while ( remainder < divisor )
         {
@@ -1073,8 +1073,8 @@ void wxULongLongWx::Divide(const wxULongLongWx& divisorIn,
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t i = 0; i < nBits; i++ )
         {
@@ -1317,8 +1317,8 @@ WXDLLIMPEXP_BASE class wxTextInputStream &operator>>(class wxTextInputStream &o,
     // Skip WS
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (ch==wxT(' ') || ch==wxT('\t'))
         ch = READ_STRING_CHAR(s, idx, length);
@@ -1327,8 +1327,8 @@ WXDLLIMPEXP_BASE class wxTextInputStream &operator>>(class wxTextInputStream &o,
     wxULongLong multiplier(0l, 10l);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (ch>=wxT('0') && ch<=wxT('9')) {
         long lValue = (unsigned) (ch - wxT('0'));
@@ -1352,8 +1352,8 @@ WXDLLIMPEXP_BASE class wxTextInputStream &operator>>(class wxTextInputStream &o,
     // Skip WS
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (ch==wxT(' ') || ch==wxT('\t'))
         ch = READ_STRING_CHAR(s, idx, length);
@@ -1369,8 +1369,8 @@ WXDLLIMPEXP_BASE class wxTextInputStream &operator>>(class wxTextInputStream &o,
     wxLongLong multiplier(0l, 10l);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (ch>=wxT('0') && ch<=wxT('9')) {
         long lValue = (unsigned) (ch - wxT('0'));

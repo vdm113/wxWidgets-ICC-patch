@@ -257,8 +257,8 @@ static bool wxGetTopLevel(GtkWidget** widget, GdkWindow** window)
     wxWindowList::const_iterator i = wxTopLevelWindows.begin();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (; i != wxTopLevelWindows.end(); ++i)
     {
@@ -1044,8 +1044,8 @@ gtk_window_key_press_callback( GtkWidget *WXUNUSED(widget),
         wxWindowGTK *ancestor = win;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (ancestor)
         {
@@ -1188,8 +1188,8 @@ bool wxWindowGTK::GTKDoInsertTextFromIM(const char* str)
     bool processed = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for( wxString::const_iterator pstr = data.begin(); pstr != data.end(); ++pstr )
     {
@@ -1320,8 +1320,8 @@ wxWindowGTK *FindWindowForMouseEvent(wxWindowGTK *win, wxCoord& x, wxCoord& y)
     wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1642,8 +1642,8 @@ static void SendSetCursorEvent(wxWindowGTK* win, int x, int y)
     wxWindowGTK* w = win;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     do {
         if (w->GTKProcessEvent(event))
@@ -2393,8 +2393,8 @@ void wxWindowGTK::Init()
     // initialize scrolling stuff
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int dir = 0; dir < ScrollDir_Max; dir++ )
     {
@@ -2483,8 +2483,8 @@ void wxWindowGTK::GTKCreateScrolledWindowWith(GtkWidget* view)
     // connect various scroll-related events
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int dir = 0; dir < ScrollDir_Max; dir++ )
     {
@@ -2614,8 +2614,8 @@ wxWindowGTK::~wxWindowGTK()
     // gets painted again
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (IsFrozen())
         Thaw();
@@ -2871,8 +2871,8 @@ static gboolean queue_resize(void*)
     gdk_threads_enter();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (GSList* p = gs_queueResizeList; p; p = p->next)
     {
@@ -3098,8 +3098,8 @@ void wxWindowGTK::DoGetClientSize( int *width, int *height ) const
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( int i = 0; i < ScrollDir_Max; i++ )
             {
@@ -3855,8 +3855,8 @@ void wxWindowGTK::RealizeTabOrder()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( wxWindowList::const_iterator i = m_children.begin();
                   i != m_children.end();
@@ -3981,8 +3981,8 @@ void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize, con
         {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for (size_t i = windows.size(); i--;)
             {
@@ -4038,8 +4038,8 @@ wxWindowGTK::ScrollDir wxWindowGTK::ScrollDirFromRange(GtkRange *range) const
     // find the scrollbar which generated the event
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int dir = 0; dir < ScrollDir_Max; dir++ )
     {
@@ -4176,8 +4176,8 @@ void wxWindowGTK::GTKSendPaintEvents(const GdkRegion* region)
         wxRegionIterator upd( m_nativeUpdateRegion );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (upd)
         {
@@ -4300,8 +4300,8 @@ void wxWindowGTK::GTKSendPaintEvents(const GdkRegion* region)
         wxWindowList::compatibility_iterator node;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( node = m_children.GetFirst(); node ; node = node->GetNext() )
         {

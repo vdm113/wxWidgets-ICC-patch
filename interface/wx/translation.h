@@ -264,8 +264,8 @@ public:
                            (In some languages, there are different plural forms
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
                            for e.g. n=2 and n=3 etc., in addition to the singular
                            form (n=1) being different.)

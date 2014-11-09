@@ -661,8 +661,8 @@ void wxSizer::SetContainingWindow(wxWindow *win)
     // same window
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
           node;
@@ -685,8 +685,8 @@ bool wxSizer::Remove( wxSizer *sizer )
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -728,8 +728,8 @@ bool wxSizer::Detach( wxSizer *sizer )
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -755,8 +755,8 @@ bool wxSizer::Detach( wxWindow *window )
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -802,8 +802,8 @@ bool wxSizer::Replace( wxWindow *oldwin, wxWindow *newwin, bool recursive )
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -835,8 +835,8 @@ bool wxSizer::Replace( wxSizer *oldsz, wxSizer *newsz, bool recursive )
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -885,8 +885,8 @@ void wxSizer::Clear( bool delete_windows )
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -910,8 +910,8 @@ void wxSizer::DeleteWindows()
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1086,8 +1086,8 @@ bool wxSizer::DoSetItemMinSize( wxWindow *window, int width, int height )
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1106,8 +1106,8 @@ bool wxSizer::DoSetItemMinSize( wxWindow *window, int width, int height )
     node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1134,8 +1134,8 @@ bool wxSizer::DoSetItemMinSize( wxSizer *sizer, int width, int height )
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1154,8 +1154,8 @@ bool wxSizer::DoSetItemMinSize( wxSizer *sizer, int width, int height )
     node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1202,8 +1202,8 @@ wxSizerItem* wxSizer::GetItem( wxWindow *window, bool recursive )
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1233,8 +1233,8 @@ wxSizerItem* wxSizer::GetItem( wxSizer *sizer, bool recursive )
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1274,8 +1274,8 @@ wxSizerItem* wxSizer::GetItemById( int id, bool recursive )
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1342,8 +1342,8 @@ void wxSizer::ShowItems( bool show )
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1357,8 +1357,8 @@ bool wxSizer::AreAnyItemsShown() const
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1375,8 +1375,8 @@ bool wxSizer::IsShown( wxWindow *window ) const
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1399,8 +1399,8 @@ bool wxSizer::IsShown( wxSizer *sizer ) const
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1530,16 +1530,16 @@ void wxGridSizer::RecalcSizes()
     int x = pt.x;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for (int c = 0; c < ncols; c++)
     {
         int y = pt.y;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for (int r = 0; r < nrows; r++)
         {
@@ -1571,8 +1571,8 @@ wxSize wxGridSizer::CalcMin()
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1591,8 +1591,8 @@ wxSize wxGridSizer::CalcMin()
     bool didChangeMinSize = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while (node)
     {
@@ -1609,8 +1609,8 @@ wxSize wxGridSizer::CalcMin()
         w = h = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (node)
         {
@@ -1715,8 +1715,8 @@ void wxFlexGridSizer::RecalcSizes()
     int y = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( int r = 0; r < nrows; r++ )
     {
@@ -1725,8 +1725,8 @@ void wxFlexGridSizer::RecalcSizes()
             // this row is entirely hidden, skip it
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( int c = 0; c < ncols; c++ )
             {
@@ -1747,8 +1747,8 @@ void wxFlexGridSizer::RecalcSizes()
         int x = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( int c = 0; c < ncols && i != end; c++, ++i )
         {
@@ -1783,8 +1783,8 @@ static int SumArraySizes(const wxArrayInt& sizes, int gap)
     const size_t count = sizes.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -1814,8 +1814,8 @@ void wxFlexGridSizer::FindWidthsAndHeights(int nrows, int ncols)
     size_t n = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxSizerItemList::iterator i = m_children.begin();
           i != m_children.end();
@@ -1864,8 +1864,8 @@ wxSize wxFlexGridSizer::CalcMin()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxSizerItemList::iterator i = m_children.begin();
           i != m_children.end();
@@ -1904,8 +1904,8 @@ void wxFlexGridSizer::AdjustForFlexDirection()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( n = 0; n < count; ++n )
         {
@@ -1916,8 +1916,8 @@ void wxFlexGridSizer::AdjustForFlexDirection()
         // and now fill it with the largest value
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( n = 0; n < count; ++n )
         {
@@ -1957,8 +1957,8 @@ DoAdjustForGrowables(int delta,
     size_t idx;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( idx = 0; idx < count; idx++ )
     {
@@ -1986,8 +1986,8 @@ DoAdjustForGrowables(int delta,
     // the remaining extra free space, adjusted during each iteration
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( idx = 0; idx < count; idx++ )
     {
@@ -2031,8 +2031,8 @@ void wxFlexGridSizer::AdjustForGrowables(const wxSize& sz)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( size_t n = 0; n < m_growableRows.size(); n++ )
             {
@@ -2047,8 +2047,8 @@ void wxFlexGridSizer::AdjustForGrowables(const wxSize& sz)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             for ( size_t n = 0; n < m_growableCols.size(); n++ )
             {
@@ -2080,8 +2080,8 @@ void wxFlexGridSizer::AdjustForGrowables(const wxSize& sz)
         int col = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxSizerItemList::iterator i = m_children.begin();
               i != m_children.end();
@@ -2166,8 +2166,8 @@ DoRemoveFromArrays(size_t idx, wxArrayInt& items, wxArrayInt& proportions)
     const size_t count = items.size();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -2269,8 +2269,8 @@ void wxBoxSizer::RecalcSizes()
     int minMajorSize = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = m_children.begin(); i != m_children.end(); ++i )
     {
@@ -2318,8 +2318,8 @@ void wxBoxSizer::RecalcSizes()
         // items.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = m_children.begin(), n = 0; i != m_children.end(); ++i, ++n )
         {
@@ -2340,8 +2340,8 @@ void wxBoxSizer::RecalcSizes()
         // i.e. non-fixed size, items.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = m_children.begin(), n = 0; i != m_children.end(); ++i, ++n )
         {
@@ -2373,8 +2373,8 @@ void wxBoxSizer::RecalcSizes()
         bool nonFixedSpaceChanged = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = m_children.begin(), n = 0; ; ++i, ++n )
         {
@@ -2450,8 +2450,8 @@ void wxBoxSizer::RecalcSizes()
         nonFixedSpaceChanged = false;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = m_children.begin(), n = 0; ; ++i, ++n )
         {
@@ -2514,8 +2514,8 @@ void wxBoxSizer::RecalcSizes()
         // items whose size weren't fixed yet according to their proportions.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( i = m_children.begin(), n = 0; i != m_children.end(); ++i, ++n )
         {
@@ -2544,8 +2544,8 @@ void wxBoxSizer::RecalcSizes()
     // determined above.
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( i = m_children.begin(), n = 0; i != m_children.end(); ++i, ++n )
     {
@@ -2622,8 +2622,8 @@ wxSize wxBoxSizer::CalcMin()
     float maxMinSizeToProp = 0.;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( wxSizerItemList::const_iterator i = m_children.begin();
           i != m_children.end();
@@ -2708,8 +2708,8 @@ wxStaticBoxSizer::~wxStaticBoxSizer()
         wxWindow* const parent = m_staticBox->GetParent();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( wxWindowList::const_iterator i = children.begin();
               i != children.end();

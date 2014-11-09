@@ -150,8 +150,8 @@ wxStreamError wxBackingFileImpl::ReadAt(wxFileOffset pos,
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (*size < reqestedSize)
         {
@@ -159,8 +159,8 @@ wxStreamError wxBackingFileImpl::ReadAt(wxFileOffset pos,
             // then read forward in the parent stream
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
             while (pos - m_filelen + size_t(0) >= m_buflen)
             {

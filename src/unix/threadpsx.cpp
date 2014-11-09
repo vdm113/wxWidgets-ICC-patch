@@ -603,8 +603,8 @@ wxSemaError wxSemaphoreInternal::Wait()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( m_count == 0 )
     {
@@ -645,8 +645,8 @@ wxSemaError wxSemaphoreInternal::WaitTimeout(unsigned long milliseconds)
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( m_count == 0 )
     {
@@ -1868,8 +1868,8 @@ void wxThreadModule::OnExit()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0u; n < count; n++ )
     {

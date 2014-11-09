@@ -747,8 +747,8 @@ void wxWindowX11::ScrollWindow(int dx, int dy, const wxRect *rect)
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( node )
     {
@@ -1270,8 +1270,8 @@ void wxWindowX11::SendEraseEvents()
         wxRegionIterator upd( m_clearRegion );
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         while (upd)
         {
@@ -1349,8 +1349,8 @@ void wxWindowX11::OnSysColourChanged(wxSysColourChangedEvent& event)
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     while ( node )
     {

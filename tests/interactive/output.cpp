@@ -112,8 +112,8 @@ void InteractiveOutputTestCase::TestDllListLoaded()
     const size_t count = dlls.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; ++n )
     {
@@ -158,8 +158,8 @@ void InteractiveOutputTestCase::TestMimeEnum()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
@@ -180,8 +180,8 @@ void InteractiveOutputTestCase::TestMimeEnum()
         wxString extsAll;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t e = 0; e < exts.GetCount(); e++ )
         {
@@ -213,8 +213,8 @@ void InteractiveOutputTestCase::TestMimeFilename()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < WXSIZEOF(filenames); n++ )
     {
@@ -385,8 +385,8 @@ protected:
         wxString type, val;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
         for ( size_t n = 0; frame.GetParam(n, &type, &name, &val); n++ )
         {
@@ -494,8 +494,8 @@ void InteractiveOutputTestCase::TestFSVolume()
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
-#   pragma unroll
 #   pragma swp
+#   pragma unroll
 #endif
     for ( size_t n = 0; n < count; n++ )
     {
