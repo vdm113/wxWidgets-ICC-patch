@@ -62,6 +62,9 @@
     #define CLR_INVALID ((COLORREF)-1)
 #endif // no CLR_INVALID
 
+// ROP which doesn't have standard name
+#define DSTERASE 0x00220326     // dest = (NOT src) AND dest
+
 // ----------------------------------------------------------------------------
 // wxBitmapRefData
 // ----------------------------------------------------------------------------
@@ -507,13 +510,9 @@ bool wxBitmap::CopyFromIconOrCursor(const wxGDIImage& icon,
     // it may be either HICON or HCURSOR
     HICON hicon = (HICON)icon.GetHandle();
 
-    ICONINFO iconInfo;
-    if ( !::GetIconInfo(hicon, &iconInfo) )
-    {
-        wxLogLastError(wxT("GetIconInfo"));
-
+    AutoIconInfo iconInfo;
+    if ( !iconInfo.GetFrom(hicon) )
         return false;
-    }
 
     wxBitmapRefData *refData = new wxBitmapRefData;
     m_refData = refData;
@@ -527,6 +526,10 @@ bool wxBitmap::CopyFromIconOrCursor(const wxGDIImage& icon,
         refData->m_height = h;
         refData->m_depth = wxDisplayDepth();
         refData->m_hBitmap = (WXHBITMAP)iconInfo.hbmColor;
+
+        // Reset this field to prevent it from being destroyed by AutoIconInfo,
+        // we took ownership of it.
+        iconInfo.hbmColor = 0;
     }
     else // we only have monochrome icon/cursor
     {
@@ -535,7 +538,6 @@ bool wxBitmap::CopyFromIconOrCursor(const wxGDIImage& icon,
         // AND mask: 0 <= y <= h-1
         // XOR mask: h <= y <= 2*h-1
         // First we need to extract and store XOR mask from this bitmap.
-        // AND mask will be extracted later at creation of inverted mask.
         HBITMAP hbmp = ::CreateBitmap(w, h, 1, wxDisplayDepth(), NULL);
         if ( !hbmp )
         {
@@ -550,6 +552,18 @@ bool wxBitmap::CopyFromIconOrCursor(const wxGDIImage& icon,
             if ( !::BitBlt((HDC)dcDst, 0, 0, w, h,
                            (HDC)dcSrc, 0, h,
                            SRCCOPY) )
+            {
+                wxLogLastError(wxT("wxBitmap::CopyFromIconOrCursor - BitBlt"));
+            }
+            // Prepare the AND mask to be compatible with wxBitmap mask
+            // by seting its bits to 0 wherever XOR mask (image) bits are set to 1.
+            // This is done in-place by applying the following ROP:
+            // dest = dest AND (NOT src) where dest=AND mask, src=XOR mask
+            //
+            // AND mask will be extracted later at creation of inverted mask.
+            if ( !::BitBlt((HDC)dcSrc, 0, 0, w, h,
+                           (HDC)dcSrc, 0, h,
+                           DSTERASE) )
             {
                 wxLogLastError(wxT("wxBitmap::CopyFromIconOrCursor - BitBlt"));
             }
@@ -576,7 +590,7 @@ bool wxBitmap::CopyFromIconOrCursor(const wxGDIImage& icon,
             // alpha, so check for this.
             {
                 HBITMAP hdib = 0;
-                if ( CheckAlpha(iconInfo.hbmColor, &hdib) )
+                if ( CheckAlpha(refData->m_hBitmap, &hdib) )
                     refData->Set32bppHDIB(hdib);
             }
             break;
@@ -593,9 +607,6 @@ bool wxBitmap::CopyFromIconOrCursor(const wxGDIImage& icon,
         // wxWin convention
         refData->SetMask(wxInvertMask(iconInfo.hbmMask, w, h));
     }
-
-    // delete the old one now as we don't need it any more
-    ::DeleteObject(iconInfo.hbmMask);
 
     return true;
 #else // __WXMICROWIN__ || __WXWINCE__
@@ -1984,6 +1995,21 @@ HICON wxBitmapToIconOrCursor(const wxBitmap& bmp,
     AutoHBITMAP hbmpMask(wxInvertMask((HBITMAP)mask->GetMaskBitmap()));
     iconInfo.hbmMask = hbmpMask;
     iconInfo.hbmColor = GetHbitmapOf(bmp);
+
+    // black out the transparent area to preserve background colour, because
+    // Windows blits the original bitmap using SRCINVERT (XOR) after applying
+    // the mask to the dest rect.
+    {
+        MemoryHDC dcSrc, dcDst;
+        SelectInHDC selectMask(dcSrc, (HBITMAP)mask->GetMaskBitmap()),
+                    selectBitmap(dcDst, iconInfo.hbmColor);
+
+        if ( !::BitBlt(dcDst, 0, 0, bmp.GetWidth(), bmp.GetHeight(),
+                       dcSrc, 0, 0, SRCAND) )
+        {
+            wxLogLastError(wxT("BitBlt"));
+        }
+    }
 
     HICON hicon = ::CreateIconIndirect(&iconInfo);
 

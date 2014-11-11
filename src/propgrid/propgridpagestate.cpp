@@ -2040,6 +2040,60 @@ void wxPropertyGridPageState::DoMarkChildrenAsDeleted(wxPGProperty* p,
     }
 }
 
+void wxPropertyGridPageState::DoInvalidatePropertyName(wxPGProperty* p)
+{
+    // Let's trust that no sane property uses prefix like
+    // this. It would be anyway fairly inconvenient (in
+    // current code) to check whether a new name is used
+    // by another property with parent (due to the child
+    // name notation).
+    wxString newName = wxT("_&/_%$") + p->GetBaseName();
+    DoSetPropertyName(p, newName);
+}
+
+void wxPropertyGridPageState::DoInvalidateChildrenNames(wxPGProperty* p,
+                                                        bool recursive)
+{
+    if (p->IsCategory())
+    {
+        for( unsigned int i = 0; i < p->GetChildCount(); i++ )
+        {
+            wxPGProperty* child = p->Item(i);
+            DoInvalidatePropertyName(child);
+
+            if ( recursive )
+            {
+                DoInvalidateChildrenNames(child, recursive);
+            }
+        }
+    }
+}
+
+bool wxPropertyGridPageState::IsChildCategory(wxPGProperty* p,
+                                              wxPropertyCategory* cat,
+                                              bool recursive)
+{
+    if (p->IsCategory())
+    {
+        for( unsigned int i = 0; i < p->GetChildCount(); i++ )
+        {
+            wxPGProperty* child = p->Item(i);
+
+            if (child->IsCategory() && child == cat)
+            {
+                return true;
+            }
+
+            if ( recursive && IsChildCategory(child, cat, recursive) )
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
 void wxPropertyGridPageState::DoDelete( wxPGProperty* item, bool doDelete )
 {
     wxCHECK_RET( item->GetParent(),
@@ -2077,6 +2131,16 @@ void wxPropertyGridPageState::DoDelete( wxPGProperty* item, bool doDelete )
                 wxPG_SEL_DELETING|wxPG_SEL_NOVALIDATE);
     }
 
+    // If deleted category or its sub-category is
+    // a current category then reset current category marker.
+    if ( item->IsCategory() )
+    {
+        if (item == m_currentCategory || IsChildCategory(item, m_currentCategory, true))
+        {
+            m_currentCategory = NULL;
+        }
+    }
+
     // Must defer deletion? Yes, if handling a wxPG event.
     if ( pg && pg->m_processedEvent )
     {
@@ -2096,16 +2160,10 @@ void wxPropertyGridPageState::DoDelete( wxPGProperty* item, bool doDelete )
             pg->m_removedProperties.push_back(item);
         }
 
-        // Rename the property so it won't remain in the way
+        // Rename the property and its children so it won't remain in the way
         // of the user code.
-
-        // Let's trust that no sane property uses prefix like
-        // this. It would be anyway fairly inconvenient (in
-        // current code) to check whether a new name is used
-        // by another property with parent (due to the child
-        // name notation).
-        wxString newName = wxS("_&/_%$") + item->GetBaseName();
-        DoSetPropertyName(item, newName);
+        DoInvalidatePropertyName(item);
+        DoInvalidateChildrenNames(item, true);
 
         return;
     }
@@ -2114,6 +2172,9 @@ void wxPropertyGridPageState::DoDelete( wxPGProperty* item, bool doDelete )
     // Otherwise crash can happen.
     wxASSERT_MSG( !DoIsPropertySelected(item) && !item->IsChildSelected(true),
                   wxT("Failed to unselect deleted property") );
+    // Don't attempt to delete current category.
+    wxASSERT_MSG( !item->IsCategory() || item != m_currentCategory,
+                  wxT("Current category cannot be deleted") );
 
     // Prevent property and its children from being re-selected
     item->SetFlag(wxPG_PROP_BEING_DELETED);
@@ -2121,18 +2182,10 @@ void wxPropertyGridPageState::DoDelete( wxPGProperty* item, bool doDelete )
 
     unsigned int indinparent = item->GetIndexInParent();
 
-    wxPGProperty* pwc = (wxPGProperty*)item;
-
     // Delete children
     if ( item->GetChildCount() && !item->HasFlag(wxPG_PROP_AGGREGATE) )
     {
         // deleting a category
-        if ( item->IsCategory() )
-        {
-            if ( pwc == m_currentCategory )
-                m_currentCategory = NULL;
-        }
-
         item->DeleteChildren();
     }
 

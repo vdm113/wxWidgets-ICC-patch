@@ -16,7 +16,6 @@
 #ifndef __GTKCURSORH__
 #define __GTKCURSORH__
 
-#include "wx/gdiobj.h"
 #include "wx/gdicmn.h"
 
 #if wxUSE_IMAGE
@@ -27,7 +26,7 @@
 // wxCursor
 //-----------------------------------------------------------------------------
 
-class WXDLLIMPEXP_CORE wxCursor : public wxGDIObject
+class WXDLLIMPEXP_CORE wxCursor : public wxCursorBase
 {
 public:
     wxCursor();

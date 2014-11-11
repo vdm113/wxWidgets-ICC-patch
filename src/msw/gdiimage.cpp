@@ -695,12 +695,8 @@ wxSize wxGetHiconSize(HICON WXUNUSED_IN_WINCE(hicon))
 #ifndef __WXWINCE__
     if ( hicon )
     {
-        ICONINFO info;
-        if ( !::GetIconInfo(hicon, &info) )
-        {
-            wxLogLastError(wxT("GetIconInfo"));
-        }
-        else
+        AutoIconInfo info;
+        if ( info.GetFrom(hicon) )
         {
             HBITMAP hbmp = info.hbmMask;
             if ( hbmp )
@@ -710,11 +706,7 @@ wxSize wxGetHiconSize(HICON WXUNUSED_IN_WINCE(hicon))
                 {
                     size = wxSize(bm.bmWidth, bm.bmHeight);
                 }
-
-                ::DeleteObject(info.hbmMask);
             }
-            if ( info.hbmColor )
-                ::DeleteObject(info.hbmColor);
         }
     }
 

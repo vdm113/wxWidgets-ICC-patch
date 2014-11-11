@@ -44,8 +44,42 @@ private:
     wxDECLARE_EVENT_TABLE();
 };
 
+// Helper class logging menu open/close events.
+class MenuEventLogger
+{
+public:
+    MenuEventLogger(const char* label, wxFrame* frame)
+        : m_label(label),
+          m_frame(frame)
+    {
+    }
+
+protected:
+    void LogMenuOpenClose(wxMenuEvent& event, const char *action)
+    {
+        event.Skip();
+
+        wxString what;
+
+        wxMenu* const menu = event.GetMenu();
+        if ( menu )
+            what.Printf("Menu with title \"%s\"", menu->GetTitle());
+        else
+            what = "Unknown menu";
+
+        wxLogMessage(m_frame, "%s was %s in the %s frame",
+                     what, action, m_label);
+    }
+
+    const wxString m_label;
+    wxFrame* const m_frame;
+
+    wxDECLARE_NO_COPY_CLASS(MenuEventLogger);
+};
+
 // Define a new frame
-class MyFrame : public wxMDIParentFrame
+class MyFrame : public wxMDIParentFrame,
+                private MenuEventLogger
 {
 public:
     MyFrame();
@@ -63,6 +97,9 @@ private:
     void OnQuit(wxCommandEvent& event);
     void OnCloseAll(wxCommandEvent& event);
 
+    void OnMenuOpen(wxMenuEvent& event) { LogMenuOpenClose(event, "opened"); }
+    void OnMenuClose(wxMenuEvent& event) { LogMenuOpenClose(event, "closed"); }
+
     void OnClose(wxCloseEvent& event);
 
     wxTextCtrl *m_textWindow;
@@ -70,7 +107,8 @@ private:
     wxDECLARE_EVENT_TABLE();
 };
 
-class MyChild : public wxMDIChildFrame
+class MyChild : public wxMDIChildFrame,
+                private MenuEventLogger
 {
 public:
     MyChild(wxMDIParentFrame *parent);
@@ -89,6 +127,8 @@ private:
     void OnClose(wxCommandEvent& event);
     void OnSize(wxSizeEvent& event);
     void OnMove(wxMoveEvent& event);
+    void OnMenuOpen(wxMenuEvent& event) { LogMenuOpenClose(event, "opened"); }
+    void OnMenuClose(wxMenuEvent& event) { LogMenuOpenClose(event, "closed"); }
     void OnCloseWindow(wxCloseEvent& event);
 
 #if wxUSE_CLIPBOARD

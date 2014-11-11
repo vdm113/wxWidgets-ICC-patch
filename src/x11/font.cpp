@@ -774,7 +774,7 @@ bool wxFont::GetStrikethrough() const
     return M_FONTDATA->m_nativeFontInfo.GetStrikethrough();
 }
 
-#if defined( __WXX11__ ) && !defined( wxUSE_PANGO )
+#if defined( __WXX11__ ) && ( wxUSE_PANGO == 0 )
 bool wxNativeFontInfo::GetStrikethrough() const
 {
    return false;

@@ -1399,8 +1399,6 @@ void ShowAssertDialog(const wxString& file,
     }
 
 #if wxUSE_THREADS
-    // if we are not in the main thread, output the assert directly and trap
-    // since dialogs cannot be displayed
     if ( !wxThread::IsMain() )
     {
         msg += wxString::Format(" [in thread %lx]", wxThread::GetCurrentId());

@@ -38,7 +38,6 @@
 
 #include "wx/cmdline.h"
 #include "wx/dynlib.h"
-#include "wx/scopeguard.h"
 
 #include "wx/msw/private.h"
 #include "wx/msw/seh.h"
@@ -238,7 +237,7 @@ struct wxMSWCommandLineArguments
         argv[argc] = NULL;
     }
 
-    void Free()
+    ~wxMSWCommandLineArguments()
     {
         if ( !argc )
             return;
@@ -314,8 +313,6 @@ WXDLLEXPORT int wxEntry(HINSTANCE hInstance,
 {
     if ( !wxMSWEntryCommon(hInstance, nCmdShow) )
         return -1;
-
-    wxON_BLOCK_EXIT_OBJ0(wxArgs, wxMSWCommandLineArguments::Free);
 
     return wxEntry(wxArgs.argc, wxArgs.argv);
 }

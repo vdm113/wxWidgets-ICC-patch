@@ -77,6 +77,9 @@ wxBEGIN_EVENT_TABLE(MyFrame, wxMDIParentFrame)
 
     EVT_MENU(wxID_CLOSE_ALL, MyFrame::OnCloseAll)
 
+    EVT_MENU_OPEN(MyFrame::OnMenuOpen)
+    EVT_MENU_CLOSE(MyFrame::OnMenuClose)
+
     EVT_CLOSE(MyFrame::OnClose)
 wxEND_EVENT_TABLE()
 
@@ -97,6 +100,9 @@ wxBEGIN_EVENT_TABLE(MyChild, wxMDIChildFrame)
 
     EVT_SIZE(MyChild::OnSize)
     EVT_MOVE(MyChild::OnMove)
+
+    EVT_MENU_OPEN(MyChild::OnMenuOpen)
+    EVT_MENU_CLOSE(MyChild::OnMenuClose)
 
     EVT_CLOSE(MyChild::OnCloseWindow)
 wxEND_EVENT_TABLE()
@@ -139,7 +145,8 @@ bool MyApp::OnInit()
 // Define my frame constructor
 MyFrame::MyFrame()
        : wxMDIParentFrame(NULL, wxID_ANY, "wxWidgets MDI Sample",
-                          wxDefaultPosition, wxSize(500, 400))
+                          wxDefaultPosition, wxSize(500, 400)),
+         MenuEventLogger("parent", this)
 {
     SetIcon(wxICON(sample));
 
@@ -182,9 +189,13 @@ MyFrame::MyFrame()
 #endif // wxUSE_STATUSBAR
 
 
-    m_textWindow = new wxTextCtrl(this, wxID_ANY, "A help window",
+    m_textWindow = new wxTextCtrl(this, wxID_ANY, "A log window\n",
                                   wxDefaultPosition, wxDefaultSize,
-                                  wxTE_MULTILINE | wxSUNKEN_BORDER);
+                                  wxTE_MULTILINE | wxTE_READONLY);
+
+    // don't clutter the text window with time stamps
+    wxLog::DisableTimestamp();
+    delete wxLog::SetActiveTarget(new wxLogTextCtrl(m_textWindow));
 
 #if wxUSE_TOOLBAR
     CreateToolBar(wxNO_BORDER | wxTB_FLAT | wxTB_HORIZONTAL);
@@ -210,6 +221,9 @@ MyFrame::~MyFrame()
     // and disconnect it to prevent accessing already deleted m_textWindow in
     // the size event handler if it's called during destruction
     Disconnect(wxEVT_SIZE, wxSizeEventHandler(MyFrame::OnSize));
+
+    // also prevent its use as log target
+    delete wxLog::SetActiveTarget(NULL);
 }
 
 #if wxUSE_MENUS
@@ -426,7 +440,8 @@ MyChild::MyChild(wxMDIParentFrame *parent)
             parent,
             wxID_ANY,
             wxString::Format("Child %u", ++ms_numChildren)
-         )
+         ),
+         MenuEventLogger("child", this)
 {
     m_canvas = new MyCanvas(this, wxPoint(0, 0), GetClientSize());
 

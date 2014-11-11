@@ -282,6 +282,18 @@ wxCursor::wxCursor(const wxString& filename,
     }
 }
 
+wxPoint wxCursor::GetHotSpot() const
+{
+    if ( !GetGDIImageData() )
+        return wxDefaultPosition;
+
+    AutoIconInfo ii;
+    if ( !ii.GetFrom((HICON)GetGDIImageData()->m_hCursor) )
+        return wxDefaultPosition;
+
+    return wxPoint(ii.xHotspot, ii.yHotspot);
+}
+
 namespace
 {
 
@@ -295,28 +307,20 @@ void ReverseBitmap(HBITMAP bitmap, int width, int height)
 
 HCURSOR CreateReverseCursor(HCURSOR cursor)
 {
-    ICONINFO info;
-    if ( !::GetIconInfo(cursor, &info) )
+    AutoIconInfo info;
+    if ( !info.GetFrom(cursor) )
         return NULL;
 
-    HCURSOR cursorRev = NULL;
-
     BITMAP bmp;
-    if ( ::GetObject(info.hbmMask, sizeof(bmp), &bmp) )
-    {
-        ReverseBitmap(info.hbmMask, bmp.bmWidth, bmp.bmHeight);
-        if ( info.hbmColor )
-            ReverseBitmap(info.hbmColor, bmp.bmWidth, bmp.bmHeight);
-        info.xHotspot = (DWORD)bmp.bmWidth - 1 - info.xHotspot;
+    if ( !::GetObject(info.hbmMask, sizeof(bmp), &bmp) )
+        return NULL;
 
-        cursorRev = ::CreateIconIndirect(&info);
-    }
-
-    ::DeleteObject(info.hbmMask);
+    ReverseBitmap(info.hbmMask, bmp.bmWidth, bmp.bmHeight);
     if ( info.hbmColor )
-        ::DeleteObject(info.hbmColor);
+        ReverseBitmap(info.hbmColor, bmp.bmWidth, bmp.bmHeight);
+    info.xHotspot = (DWORD)bmp.bmWidth - 1 - info.xHotspot;
 
-    return cursorRev;
+    return ::CreateIconIndirect(&info);
 }
 
 } // anonymous namespace
