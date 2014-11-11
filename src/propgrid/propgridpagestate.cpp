@@ -2056,6 +2056,11 @@ void wxPropertyGridPageState::DoInvalidateChildrenNames(wxPGProperty* p,
 {
     if (p->IsCategory())
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for( unsigned int i = 0; i < p->GetChildCount(); i++ )
         {
             wxPGProperty* child = p->Item(i);
@@ -2075,6 +2080,11 @@ bool wxPropertyGridPageState::IsChildCategory(wxPGProperty* p,
 {
     if (p->IsCategory())
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for( unsigned int i = 0; i < p->GetChildCount(); i++ )
         {
             wxPGProperty* child = p->Item(i);

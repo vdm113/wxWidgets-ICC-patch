@@ -1022,6 +1022,11 @@ bool wxRegKey::QueryValue(const wxString& szValue, wxArrayString &names,
 
     // Parse the list of NUL-separated strings of the form "name=value".
     size_t begin = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t i = 0; i < buf.GetDataLen() - 1; i++ )
     {
         if ( data[i] == 0 )

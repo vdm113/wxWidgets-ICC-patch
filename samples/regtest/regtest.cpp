@@ -1095,6 +1095,11 @@ bool RegTreeCtrl::TreeNode::OnExpand()
             wxArrayString names, values;
             m_pKey->QueryValue(str, names, values);
             strItem += "(multi string) ";
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( size_t i = 0; i < names.GetCount(); i++ )
             {
                 if ( i > 0 )
