@@ -3839,10 +3839,6 @@ void wxDataViewMainWindow::OnChar( wxKeyEvent &event )
         return;
     }
 
-    // don't use m_linesPerPage directly as it might not be computed yet
-    const int pageSize = GetCountPerPage();
-    wxCHECK_RET( pageSize, wxT("should have non zero page size") );
-
     switch ( event.GetKeyCode() )
     {
         case WXK_RETURN:
@@ -3968,11 +3964,11 @@ void wxDataViewMainWindow::OnChar( wxKeyEvent &event )
             break;
 
         case WXK_PAGEUP:
-            OnVerticalNavigation(event, -(pageSize - 1));
+            OnVerticalNavigation(event, -(GetCountPerPage() - 1));
             break;
 
         case WXK_PAGEDOWN:
-            OnVerticalNavigation(event, +(pageSize - 1));
+            OnVerticalNavigation(event, +(GetCountPerPage() - 1));
             break;
 
         default:
