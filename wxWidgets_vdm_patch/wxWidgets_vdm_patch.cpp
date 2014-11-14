@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -84,13 +84,9 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch)
 
     const vector<pair<string,string> > strip={ { "/*", "*/" }, { "'", "'" }, { "\"", "\""} };
 
-    size_t braces=0;
+    size_t do_cnt=0;
+    size_t do_braces=0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while(in && !feof(in)) {
 again:
         char buf[length+16];
@@ -104,15 +100,15 @@ again:
         buf[length]='\0';
         {
             size_t len=strlen(buf);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while(len>0 && ('\r'==buf[len-1] || '\n'==buf[len-1])) {
                 buf[len-1]='\0';
                 --len;
             }
+        }
+
+        if(!do_patch && !strcmp(buf,inline_pragma)) {
+            changed=true;
+            continue;
         }
 
         ++ln;
@@ -133,11 +129,6 @@ again:
                 scrollback.push_back(buf);
 
                 buf2[0]='x';
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while('\r'!=buf2[0] && '\n'!=buf2[0]) {
                     buf2[0]='x';
                     fgets(buf2,length,in);
@@ -149,36 +140,31 @@ again:
                 changed=true;
             }
 
-            if(!braces) {
+            if(!do_patch) {
+                changed=true;
                 scrollback.clear();
+                continue;
             }
         }
 
         if(do_patch && do_prologue && 1==ln) {
             sprintf(tmp_buf,"%s\n%s\n",line_prologue_token,line_prologue);
-            string save;
-            if(scrollback.size()!=0)
-                save=scrollback.back();
+            string save=scrollback.back();
             scrollback.clear();
             scrollback.push_back(tmp_buf);
-            if(strcmp(buf,line_prologue_token)) {
-                if(!save.empty())
-                    scrollback.push_back(save);
+            if(save.compare(line_prologue_token)) {
+                scrollback.push_back(save);
                 changed=true;
             }
         }
 
-        if(!braces && 1==ln && strcmp(buf,line_prologue_token)==0) {
-            continue;
+        if(!do_patch && do_prologue && 1==ln && strcmp(buf,line_prologue_token)==0) {
+            scrollback.push_back(buf);
+            changed=true;
         }
 
         string line=buf;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while(line.length()>0 && (' '==line[0] || '\t'==line[0] || '\r'==line[0] || '\n'==line[0])) {
             line.erase(0,1);
         }
@@ -198,11 +184,6 @@ again:
 #endif
         for(auto& i1 : strip) {
             string::size_type startpos;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while((startpos=line.find(i1.first))!=string::npos) {
                 const string::size_type endpos=line.find(i1.second);
                 if(endpos==string::npos) {
@@ -216,16 +197,19 @@ again:
 
         bool end_do=false;
 
+        if(0!=do_braces) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
 #endif
-        for(size_t i1=0; i1<line.length(); ++i1) {
-            if('{'==line[i1])
-                ++braces;
-            if('}'==line[i1]) {
-                --braces;
+            for(size_t i1=0; i1<line.length(); ++i1) {
+                if('{'==line[i1])
+                    ++do_braces;
+                if('}'==line[i1]) {
+                    if(--do_braces==0)
+                        end_do=true;
+                }
             }
         }
 
@@ -267,9 +251,12 @@ again:
 
         // while
         if(!line.compare("while")) {
-            reformat=true;
+            if(do_braces)
 
-#if ICC_BUG_01
+            if(0==do_cnt || (do_cnt!=0 && do_cnt--==0))
+                reformat=true;
+
+#if 1 // ICC 14 bug workaround
             string line_orig=buf;
             char ch;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -289,6 +276,7 @@ again:
 
         // do
         if(!line.compare("do")) {
+            ++do_cnt;
             reformat=true;
         }
 
@@ -308,9 +296,9 @@ again:
                 }
             }
             if(got && ( (*i1).compare(line1)==0 || (*i1).compare(line1_disabled)==0 ) ) {
-                reformat=!braces;
+                reformat=!do_patch;
             } else {
-                reformat=braces;
+                reformat=do_patch;
             }
         }
 
@@ -318,7 +306,7 @@ again:
             auto i1=scrollback.rbegin();
             if(i1!=scrollback.rend()) {
                 ++i1;
-                if(braces && !(*i1).compare(inline_pragma))
+                if(do_patch && !(*i1).compare(inline_pragma))
                     reformat=false;
             }
             int i3=0;
@@ -330,11 +318,6 @@ again:
             for(int i2=0; i2<line2.size()+1; ++i2) {
                 string ln=*i1;
                 ++i1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while(ln.length()!=0 && ( ln[ln.length()-1]=='\r' || ln[ln.length()-1]=='\n') )
                     ln.erase(ln.length()-1,1);
                 const char* cmp=line1;
@@ -358,12 +341,12 @@ again:
                 }
             }
             if(line2.size()+1==i3) {
-                reformat=!braces;
+                reformat=!do_patch;
             }
 
             if(reformat) {
                 string save=scrollback.back();
-                if(braces) {
+                if(do_patch) {
                     if(last_char_was_backslash) {
                         sprintf(tmp_buf,"%s",inline_pragma);
                         scrollback.pop_back();
@@ -403,6 +386,8 @@ again:
                         scrollback.push_back(save);
                     }
                 }
+                if(!changed)
+                    ++cnt;
             }
         }
 
@@ -549,8 +534,8 @@ int _tmain(int argc, _TCHAR* argv[])
             }
         }
 
-        if(usage || !do_patch) {
-            fprintf(stderr,"Usage: switch '-p' patches, switch '-u' unpatches. (thhuogh  not working as of today)\nPress any key to exit.\n");
+        if(usage) {
+            fprintf(stderr,"Usage: switch '-p' patches, switch '-u' unpatches.\nPress any key to exit.\n");
             getch();
             return 0;
         }
