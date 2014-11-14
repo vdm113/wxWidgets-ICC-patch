@@ -530,11 +530,6 @@ size_t wxPipeOutputStream::OnSysWrite(const void *buffer, size_t len)
     m_lasterror = wxSTREAM_NO_ERROR;
 
     DWORD totalWritten = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( len > 0 )
     {
         DWORD chunkWritten;
@@ -642,11 +637,6 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
         ddeCommand.reserve(256);
 
         const wxChar *p = cmd.c_str() + 7;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( *p && *p != wxT('#') )
         {
             command += *p++;
@@ -662,11 +652,6 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
             wxFAIL_MSG(wxT("invalid WX_DDE command in wxExecute"));
         }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( *p && *p != wxT('#') )
         {
             ddeServer += *p++;
@@ -682,11 +667,6 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
             wxFAIL_MSG(wxT("invalid WX_DDE command in wxExecute"));
         }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( *p && *p != wxT('#') )
         {
             ddeTopic += *p++;
@@ -702,11 +682,6 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
             wxFAIL_MSG(wxT("invalid WX_DDE command in wxExecute"));
         }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( *p )
         {
             ddeCommand += *p++;
@@ -1106,11 +1081,6 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
     }
 
     // wait until the child process terminates
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( data->state )
     {
 #if wxUSE_STREAMS && !defined(__WXWINCE__)

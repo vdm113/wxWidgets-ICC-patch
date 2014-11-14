@@ -135,6 +135,11 @@ typedef HGLRC(WINAPI * PFNWGLCREATECONTEXTATTRIBSARBPROC)
   C++ family of compilers
 
   Fundementally what they do is instruct the linker to use these two libraries
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   for the resolution of symbols. In essence, this is the equivalent of adding
   these two libraries to either the Makefile or project file.
 
@@ -537,11 +542,6 @@ static int ChoosePixelFormatARB(HDC hdc, const int *attribList)
         #define ADD_ATTR_VALUE(attr) ADD_ATTR(attr, attribList[src++])
 
         int src = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( attribList[src] )
         {
             switch ( attribList[src++] )

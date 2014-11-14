@@ -276,11 +276,6 @@ int wxTextCtrl::GetNumberOfLines() const
         long i = 0;
         int currentLine = 0;
         bool finished = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (!finished)
         {
             int ch = s[i];
@@ -605,11 +600,6 @@ static void MergeChangesIntoString(wxString& value,
 
         // Copy the text to be inserted).
         if (insert)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (*insert)
                 *dest++ = *insert++;
 

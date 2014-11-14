@@ -150,11 +150,6 @@ public:
 	}
 	void ForwardBytes(int nb) {
 		size_t forwardPos = currentPos + nb;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (forwardPos > currentPos) {
 			Forward();
 		}

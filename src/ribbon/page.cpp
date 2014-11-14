@@ -946,11 +946,6 @@ static int GetSizeInOrientation(wxSize size, wxOrientation orientation)
 bool wxRibbonPage::ExpandPanels(wxOrientation direction, int maximum_amount)
 {
     bool expanded_something = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while(maximum_amount > 0)
     {
         int smallest_size = INT_MAX;
@@ -1052,11 +1047,6 @@ bool wxRibbonPage::ExpandPanels(wxOrientation direction, int maximum_amount)
 bool wxRibbonPage::CollapsePanels(wxOrientation direction, int minimum_amount)
 {
     bool collapsed_something = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while(minimum_amount > 0)
     {
         int largest_size = 0;

@@ -922,11 +922,6 @@ void wxWindowQt::SetAcceleratorTable( const wxAcceleratorTable& accel )
     wxWindowBase::SetAcceleratorTable( accel );
     
     // Disable previously set accelerators
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( !m_qtShortcuts.isEmpty() )
         delete m_qtShortcuts.takeFirst();
     

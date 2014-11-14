@@ -281,6 +281,11 @@ There are four main notions of style within a control:
 
 What you see on the screen is the dynamically @e combined style, found by
 merging the first three of the above style types (the fourth is only a guide
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for future content insertion and therefore does not affect the currently
 displayed content).
 

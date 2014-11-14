@@ -497,11 +497,6 @@ size_t wxStringImpl::find(const wxStringImpl& str, size_t nStart) const
     if ( !p )
         return npos;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( p - c_str() + nLenOther <= nLen &&
             wxStringMemcmp(p, other, nLenOther) )
     {

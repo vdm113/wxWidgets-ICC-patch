@@ -376,11 +376,6 @@ int main (int argc, char **argv)
 
    XEvent event;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (!quit)
    {
       XtAppNextEvent (appContext, &event);

@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* png.c - location for general purpose libpng functions
  *
  * Last changed in libpng 1.6.2 [April 25, 2013]
@@ -2570,11 +2571,6 @@ png_check_fp_number(png_const_charp string, png_size_t size, int *statep,
    int state = *statep;
    png_size_t i = *whereami;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (i < size)
    {
       int type;
@@ -2803,11 +2799,6 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
          /* Avoid underflow here. */
          base = png_pow10(exp_b10); /* May underflow */
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
          while (base < DBL_MIN || base < fp)
          {
             /* And this may overflow. */
@@ -2889,11 +2880,6 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
                      }
                      else
                      {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                         while (cdigits > 0 && d > 9)
                         {
                            int ch = *--ascii;
@@ -2958,11 +2944,6 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
                   cdigits += czero - clead;
                   clead = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                   while (czero > 0)
                   {
                      /* exp_b10 == (-1) means we just output the decimal
@@ -3045,11 +3026,6 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
 
                cdigits = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                while (uexp_b10 > 0)
                {
                   exponent[cdigits++] = (char)(48 + uexp_b10 % 10);
@@ -3117,11 +3093,6 @@ png_ascii_from_fixed(png_const_structrp png_ptr, png_charp ascii,
          unsigned int ndigits = 0, first = 16 /* flag value */;
          char digits[10];
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
          while (num)
          {
             /* Split the low digit off num: */
@@ -3270,11 +3241,6 @@ png_muldiv(png_fixed_point_p res, png_fixed_point a, png_int_32 times,
             int bitshift = 32;
             png_fixed_point result = 0; /* NOTE: signed */
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (--bitshift >= 0)
             {
                png_uint_32 d32, d00;
@@ -3921,11 +3887,6 @@ png_build_16to8_table(png_structrp png_ptr, png_uint_16pp *ptable,
       /* Adjust (round) to (16-shift) bits: */
       bound = (bound * max + 32768U)/65535U + 1U;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
       while (last < bound)
       {
          table[last & (0xffU >> shift)][last >> (8U - shift)] = out;
@@ -3934,11 +3895,6 @@ png_build_16to8_table(png_structrp png_ptr, png_uint_16pp *ptable,
    }
 
    /* And fill in the final entries. */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (last < (num << 8))
    {
       table[last & (0xff >> shift)][last >> (8U - shift)] = 65535U;

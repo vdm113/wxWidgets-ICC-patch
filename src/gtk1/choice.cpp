@@ -58,11 +58,6 @@ static void gtk_choice_clicked_callback( GtkWidget *WXUNUSED(widget), wxChoice *
     int count = 0;
 
     GList *child = menu_shell->children;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child)
     {
         GtkBin *bin = GTK_BIN( child->data );
@@ -303,11 +298,6 @@ int wxChoice::FindString( const wxString &string, bool bCase ) const
     GtkMenuShell *menu_shell = GTK_MENU_SHELL( gtk_option_menu_get_menu( GTK_OPTION_MENU(m_widget) ) );
     int count = 0;
     GList *child = menu_shell->children;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child)
     {
         GtkBin *bin = GTK_BIN( child->data );
@@ -346,11 +336,6 @@ void wxChoice::SetString(unsigned int n, const wxString& str )
     GtkMenuShell *menu_shell = GTK_MENU_SHELL( gtk_option_menu_get_menu( GTK_OPTION_MENU(m_widget) ) );
     unsigned int count = 0;
     GList *child = menu_shell->children;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child)
     {
         GtkBin *bin = GTK_BIN( child->data );
@@ -380,11 +365,6 @@ wxString wxChoice::GetString(unsigned int n) const
     GtkMenuShell *menu_shell = GTK_MENU_SHELL( gtk_option_menu_get_menu( GTK_OPTION_MENU(m_widget) ) );
     unsigned int count = 0;
     GList *child = menu_shell->children;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child)
     {
         GtkBin *bin = GTK_BIN( child->data );
@@ -416,11 +396,6 @@ unsigned int wxChoice::GetCount() const
     GtkMenuShell *menu_shell = GTK_MENU_SHELL( gtk_option_menu_get_menu( GTK_OPTION_MENU(m_widget) ) );
     unsigned int count = 0;
     GList *child = menu_shell->children;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child)
     {
         count++;
@@ -463,11 +438,6 @@ void wxChoice::DoApplyWidgetStyle(GtkRcStyle *style)
     gtk_widget_modify_style( GTK_WIDGET( menu_shell ), style );
 
     GList *child = menu_shell->children;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child)
     {
         gtk_widget_modify_style( GTK_WIDGET( child->data ), style );

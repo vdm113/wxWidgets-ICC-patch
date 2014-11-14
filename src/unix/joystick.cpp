@@ -119,11 +119,6 @@ void* wxJoystickThread::Entry()
     struct timeval time_out = {0, 0};
 
     wxFD_ZERO(&read_fds);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (true)
     {
         if (TestDestroy())

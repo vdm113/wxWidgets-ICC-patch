@@ -208,6 +208,11 @@ enum wxWindowVariant
            Using this flag for the given window allows to block this
            propagation at this window, i.e. prevent the events from being
            propagated further upwards. Dialogs have this flag on by default
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
            for the reasons explained in the @ref overview_events.
     @style{wxWS_EX_TRANSIENT}
            Don't use this window as an implicit parent for the other windows:

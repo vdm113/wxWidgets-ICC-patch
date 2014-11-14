@@ -657,6 +657,11 @@ typedef short int WXTYPE;
 
 /*
    Macros to suppress and restore gcc warnings, requires g++ >= 4.6 and don't
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    do anything otherwise.
 
    Example of use:
@@ -799,6 +804,11 @@ typedef short int WXTYPE;
 /*
     Define all 6 comparison operators (==, !=, <, <=, >, >=) for the given
     types in the specified order, implemented in terms of existing operators
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for the reverse order.
  */
 #define wxDEFINE_COMPARISONS_BY_REV(T1, T2) \
@@ -1321,6 +1331,11 @@ typedef double wxDouble;
 /*
     Some (non standard) compilers typedef wchar_t as an existing type instead
     of treating it as a real fundamental type, set wxWCHAR_T_IS_REAL_TYPE to 0
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for them and to 1 for all the others.
  */
 #ifndef wxWCHAR_T_IS_REAL_TYPE
@@ -1423,6 +1438,11 @@ typedef double wxDouble;
 /*
     Combination of wxDO_FOR_CHAR_INT_TYPES() and wxDO_FOR_INT_TYPES_1():
     invokes the given macro with the specified argument as its second parameter
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for all char and int types.
  */
 #define wxDO_FOR_CHAR_INT_TYPES_1(m, arg) \

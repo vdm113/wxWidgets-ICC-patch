@@ -599,11 +599,6 @@ bool wxGetEnvMap(wxEnvVariableHashMap *map)
     {
         wxString name,
                  value;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( *env )
         {
             const wxString var(*env);
@@ -785,6 +780,7 @@ Thanks,
 
 /* Byte-wise swap two items of size SIZE. */
 #define SWAP(a, b, size)                                                      \
+VDM_MACRO_PRAGMA_IVDEP \
   do                                                                          \
     {                                                                         \
       size_t __size = (size);                                                 \
@@ -858,11 +854,6 @@ void wxQsort(void* pbase, size_t total_elems,
 
       PUSH (NULL, NULL);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
       while (STACK_NOT_EMPTY)
         {
           char *left_ptr;
@@ -897,19 +888,9 @@ void wxQsort(void* pbase, size_t total_elems,
 #endif
           do
             {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
               while ((*cmp) ((void *) left_ptr, (void *) mid, user_data) < 0)
                 left_ptr += size;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
               while ((*cmp) ((void *) mid, (void *) right_ptr, user_data) < 0)
                 right_ptr -= size;
 
@@ -1002,19 +983,9 @@ void wxQsort(void* pbase, size_t total_elems,
     /* Insertion sort, running from left-hand-side up to right-hand-side.  */
 
     run_ptr = base_ptr + size;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ((run_ptr += size) <= end_ptr)
       {
         tmp_ptr = run_ptr - size;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ((*cmp) ((void *) run_ptr, (void *) tmp_ptr, user_data) < 0)
           tmp_ptr -= size;
 
@@ -1024,11 +995,6 @@ void wxQsort(void* pbase, size_t total_elems,
             char *trav;
 
             trav = run_ptr + size;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (--trav >= run_ptr)
               {
                 char c = *trav;
@@ -1079,11 +1045,6 @@ unsigned int wxGCD(unsigned int u, unsigned int v)
         v >>= 1;
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ((u & 1) == 0)
         u >>= 1;
 
@@ -1097,11 +1058,6 @@ unsigned int wxGCD(unsigned int u, unsigned int v)
     {
         // remove all factors of 2 in v -- they are not common
         // note: v is not zero, so while will terminate
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ((v & 1) == 0)
             v >>= 1;
 
@@ -1413,11 +1369,6 @@ wxWindow* wxFindWindowAtPoint(wxWindow* win, const wxPoint& pt)
 #endif
 
     wxWindowList::compatibility_iterator node = win->GetChildren().GetLast();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxWindow* child = node->GetData();
@@ -1447,11 +1398,6 @@ wxWindow* wxGenericFindWindowAtPoint(const wxPoint& pt)
     // on top are likely to have been appended most
     // recently.
     wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetLast();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxWindow* win = node->GetData();

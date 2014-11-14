@@ -334,30 +334,15 @@ pcolor co;
 	}
 
 	if ((size_t)co == cm->max) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (cm->max > WHITE && UNUSEDCOLOR(&cm->cd[cm->max]))
 			cm->max--;
 		assert(cm->free >= 0);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while ((size_t)cm->free > cm->max)
 			cm->free = cm->cd[cm->free].sub;
 		if (cm->free > 0) {
 			assert(cm->free < cm->max);
 			pco = cm->free;
 			nco = cm->cd[pco].sub;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (nco > 0)
 				if ((size_t)nco > cm->max) {
 					/* take this one out of freelist */
@@ -584,11 +569,6 @@ struct state *rp;
 
 	/* general case, a mixed block to be altered */
 	i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (i < BYTTAB) {
 		co = t->tcolor[i];
 		sco = newsub(cm, co);
@@ -642,11 +622,6 @@ struct colormap *cm;
 			assert(scd->nchrs > 0);
 			assert(scd->sub == sco);
 			scd->sub = NOSUB;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while ((a = cd->arcs) != NULL) {
 				assert(a->co == co);
 				/* uncolorchain(cm, a); */

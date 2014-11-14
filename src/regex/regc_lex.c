@@ -559,11 +559,6 @@ struct vars *v;
 				RETV('(', 0);
 				break;
 			case CHR('#'):		/* comment */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (!ATEOS() && *v->now != CHR(')'))
 					v->now++;
 				if (!ATEOS())
@@ -1011,21 +1006,11 @@ struct vars *v;
 #   pragma unroll
 #endif
 	for (;;) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (!ATEOS() && iscspace(*v->now))
 			v->now++;
 		if (ATEOS() || *v->now != CHR('#'))
 			break;				/* NOTE BREAK OUT */
 		assert(NEXT1('#'));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (!ATEOS() && *v->now != CHR('\n'))
 			v->now++;
 		/* leave the newline to be picked up by the iscspace loop */

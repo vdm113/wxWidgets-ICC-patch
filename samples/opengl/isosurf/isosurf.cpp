@@ -218,11 +218,6 @@ void TestGLCanvas::LoadSurface(const wxString& filename)
         wxTextInputStream inFile(*stream);
         m_numverts = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (!stream->Eof() && m_numverts < MAXVERTS)// && m_numverts<MAXVERTS)
         {
             inFile >> m_verts[m_numverts][0] >> m_verts[m_numverts][1] >> m_verts[m_numverts][2];

@@ -215,6 +215,11 @@ public:
     This is the root class of many of the wxWidgets classes.
 
     It declares a virtual destructor which ensures that destructors get called
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for all derived class objects where necessary.
 
     wxObject is the hub of a dynamic object creation scheme, enabling a program

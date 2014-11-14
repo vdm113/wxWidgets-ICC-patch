@@ -419,11 +419,6 @@ public:
 		size_t lenConverted = 0;
 		size_t mixedPos = 0;
 		unsigned char bytes[UTF8MaxBytes + 1];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (mixedPos < lenMixed) {
 			const unsigned char leadByte = static_cast<unsigned char>(mixed[mixedPos]);
 			const char *caseConverted = 0;
@@ -451,11 +446,6 @@ public:
 			}
 			if (caseConverted) {
 				// Character has a conversion so copy that conversion in
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (*caseConverted) {
 					converted[lenConverted++] = *caseConverted++;
 					if (lenConverted >= sizeConverted)
@@ -573,11 +563,6 @@ void SetupConversions(enum CaseConversion conversion) {
 	}
 	// Add the complex cases
 	const char *sComplex = complexCaseConversions;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (*sComplex) {
 		// Longest ligature is 3 character so 5 for safety
 		const size_t lenUTF8 = 5*UTF8MaxBytes+1;
@@ -586,11 +571,6 @@ void SetupConversions(enum CaseConversion conversion) {
 		char lowerUTF8[lenUTF8];
 		char upperUTF8[lenUTF8];
 		size_t i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (*sComplex && *sComplex != '|') {
 			originUTF8[i++] = *sComplex;
 			sComplex++;
@@ -598,11 +578,6 @@ void SetupConversions(enum CaseConversion conversion) {
 		sComplex++;
 		originUTF8[i] = 0;
 		i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (*sComplex && *sComplex != '|') {
 			foldedUTF8[i++] = *sComplex;
 			sComplex++;
@@ -610,11 +585,6 @@ void SetupConversions(enum CaseConversion conversion) {
 		sComplex++;
 		foldedUTF8[i] = 0;
 		i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (*sComplex && *sComplex != '|') {
 			upperUTF8[i++] = *sComplex;
 			sComplex++;
@@ -622,11 +592,6 @@ void SetupConversions(enum CaseConversion conversion) {
 		sComplex++;
 		upperUTF8[i] = 0;
 		i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (*sComplex && *sComplex != '|') {
 			lowerUTF8[i++] = *sComplex;
 			sComplex++;

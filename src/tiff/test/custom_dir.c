@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Copyright (c) 2012, Frank Warmerdam <warmerdam@pobox.com>
  *

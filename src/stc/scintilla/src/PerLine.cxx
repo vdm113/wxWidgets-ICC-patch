@@ -34,11 +34,6 @@ MarkerHandleSet::MarkerHandleSet() {
 
 MarkerHandleSet::~MarkerHandleSet() {
 	MarkerHandleNumber *mhn = root;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (mhn) {
 		MarkerHandleNumber *mhnToFree = mhn;
 		mhn = mhn->next;
@@ -50,11 +45,6 @@ MarkerHandleSet::~MarkerHandleSet() {
 int MarkerHandleSet::Length() const {
 	int c = 0;
 	MarkerHandleNumber *mhn = root;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (mhn) {
 		c++;
 		mhn = mhn->next;
@@ -65,11 +55,6 @@ int MarkerHandleSet::Length() const {
 int MarkerHandleSet::MarkValue() const {
 	unsigned int m = 0;
 	MarkerHandleNumber *mhn = root;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (mhn) {
 		m |= (1 << mhn->number);
 		mhn = mhn->next;
@@ -79,11 +64,6 @@ int MarkerHandleSet::MarkValue() const {
 
 bool MarkerHandleSet::Contains(int handle) const {
 	MarkerHandleNumber *mhn = root;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (mhn) {
 		if (mhn->handle == handle) {
 			return true;
@@ -104,11 +84,6 @@ bool MarkerHandleSet::InsertHandle(int handle, int markerNum) {
 
 void MarkerHandleSet::RemoveHandle(int handle) {
 	MarkerHandleNumber **pmhn = &root;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (*pmhn) {
 		MarkerHandleNumber *mhn = *pmhn;
 		if (mhn->handle == handle) {
@@ -123,11 +98,6 @@ void MarkerHandleSet::RemoveHandle(int handle) {
 bool MarkerHandleSet::RemoveNumber(int markerNum, bool all) {
 	bool performedDeletion = false;
 	MarkerHandleNumber **pmhn = &root;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (*pmhn) {
 		MarkerHandleNumber *mhn = *pmhn;
 		if (mhn->number == markerNum) {
@@ -145,11 +115,6 @@ bool MarkerHandleSet::RemoveNumber(int markerNum, bool all) {
 
 void MarkerHandleSet::CombineWith(MarkerHandleSet *other) {
 	MarkerHandleNumber **pmhn = &root;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (*pmhn) {
 		pmhn = &((*pmhn)->next);
 	}
@@ -389,11 +354,6 @@ int LineState::GetMaxLineState() const {
 static int NumberLines(const char *text) {
 	if (text) {
 		int newLines = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (*text) {
 			if (*text == '\n')
 				newLines++;

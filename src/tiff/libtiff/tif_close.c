@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Copyright (c) 1988-1997 Sam Leffler
  * Copyright (c) 1991-1997 Silicon Graphics, Inc.
@@ -65,11 +66,6 @@ TIFFCleanup(TIFF* tif)
 	/*
          * Clean up client info links.
          */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while( tif->tif_clientinfo )
 	{
 		TIFFClientInfoLink *link = tif->tif_clientinfo;

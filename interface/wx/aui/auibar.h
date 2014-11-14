@@ -189,6 +189,11 @@ public:
     state (toggled or not, enabled or not) and short and long help strings. The
     default implementations use the short help string for the tooltip text which
     is popped up when the mouse pointer enters the tool and the long help string
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for the applications status bar (currently not implemented).
 
     @library{wxaui}

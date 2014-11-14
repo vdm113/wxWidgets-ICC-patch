@@ -216,11 +216,6 @@ static pascal OSStatus wxMacWindowControlEventHandler( EventHandlerCallRef handl
                         CGFloat alpha = (CGFloat)1.0 ;
                         {
                             wxWindow* iter = thisWindow ;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                             while ( iter )
                             {
                                 alpha *= (CGFloat)( iter->GetTransparent()/255.0 ) ;

@@ -183,11 +183,6 @@ size_t wxGetAvailableDrives(wxArrayString &paths, wxArrayString &names, wxArrayI
     ItemCount volumeIndex = 1;
     OSErr err = noErr ;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while( noErr == err )
     {
         HFSUniStr255 volumeName ;
@@ -815,11 +810,6 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
             wxStringTokenizer strTok;
             wxString curFilter;
             strTok.SetString(m_currentFilterStr,wxT(";"));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while(strTok.HasMoreTokens())
             {
                 curFilter = strTok.GetNextToken();
@@ -918,11 +908,6 @@ void wxGenericDirCtrl::CollapseTree()
 {
     wxTreeItemIdValue cookie;
     wxTreeItemId child = m_treeCtrl->GetFirstChild(m_rootId, cookie);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child.IsOk())
     {
         CollapseDir(child);
@@ -951,11 +936,6 @@ wxTreeItemId wxGenericDirCtrl::FindChild(wxTreeItemId parentId, const wxString& 
 
     wxTreeItemIdValue cookie;
     wxTreeItemId childId = m_treeCtrl->GetFirstChild(parentId, cookie);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (childId.IsOk())
     {
         wxDirItemData* data = GetItemData(childId);
@@ -998,11 +978,6 @@ bool wxGenericDirCtrl::ExpandPath(const wxString& path)
     bool done = false;
     wxTreeItemId treeid = FindChild(m_rootId, path, done);
     wxTreeItemId lastId = treeid; // The last non-zero treeid
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (treeid.IsOk() && !done)
     {
         ExpandDir(treeid);
@@ -1025,11 +1000,6 @@ bool wxGenericDirCtrl::ExpandPath(const wxString& path)
         wxTreeItemIdValue cookie;
         wxTreeItemId childId = m_treeCtrl->GetFirstChild(lastId, cookie);
         bool selectedChild = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (childId.IsOk())
         {
             data = GetItemData(childId);
@@ -1065,11 +1035,6 @@ bool wxGenericDirCtrl::CollapsePath(const wxString& path)
     wxTreeItemId treeid     = FindChild(m_rootId, path, done);
     wxTreeItemId lastId = treeid; // The last non-zero treeid
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( treeid.IsOk() && !done )
     {
         CollapseDir(treeid);
@@ -1193,11 +1158,6 @@ void wxGenericDirCtrl::SelectPath(const wxString& path, bool select)
     bool done = false;
     wxTreeItemId treeid = FindChild(m_rootId, path, done);
     wxTreeItemId lastId = treeid; // The last non-zero treeid
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( treeid.IsOk() && !done )
     {
         treeid = FindChild(treeid, path, done);

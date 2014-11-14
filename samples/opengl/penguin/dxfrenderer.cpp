@@ -407,11 +407,6 @@ bool DXFRenderer::ParseHeader(wxInputStream& stream)
 {
     wxTextInputStream text(stream);
     wxString line1, line2;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (stream.CanRead())
     {
         GetLines(text, line1, line2);
@@ -428,11 +423,6 @@ bool DXFRenderer::ParseTables(wxInputStream& stream)
     wxString line1, line2;
     bool inlayer=false;
     DXFLayer layer;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (stream.CanRead())
     {
         GetLines(text, line1, line2);
@@ -493,11 +483,6 @@ bool DXFRenderer::ParseEntities(wxInputStream& stream)
     DXFVector v[4];
     int colour = -1;
     wxString layer;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (stream.CanRead())
     {
         GetLines(text, line1, line2);
@@ -591,11 +576,6 @@ bool DXFRenderer::Load(wxInputStream& stream)
     wxTextInputStream text(stream);
 
     wxString line1, line2;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (stream.CanRead())
     {
         GetLines(text, line1, line2);

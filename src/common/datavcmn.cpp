@@ -1184,11 +1184,6 @@ void wxDataViewCtrlBase::ExpandAncestors( const wxDataViewItem & item )
 
     // at first we get all the parents of the selected item
     wxDataViewItem parent = m_model->GetParent(item);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (parent.IsOk())
     {
         parentChain.push_back(parent);
@@ -1196,11 +1191,6 @@ void wxDataViewCtrlBase::ExpandAncestors( const wxDataViewItem & item )
     }
 
     // then we expand the parents, starting at the root
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (!parentChain.empty())
     {
          Expand(parentChain.back());

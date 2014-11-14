@@ -33,11 +33,6 @@ static unsigned long DoStringHash(T *k)
 {
     unsigned long hash = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while( *k )
     {
         hash += *k++;
@@ -127,11 +122,6 @@ void _wxHashTableBase2::DeleteNodes( size_t buckets,
         _wxHashTable_NodeBase* node = table[i];
         _wxHashTable_NodeBase* tmp;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while( node )
         {
             tmp = node->m_next;

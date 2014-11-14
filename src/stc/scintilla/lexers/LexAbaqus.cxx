@@ -350,11 +350,6 @@ static int LineType(int line, Accessor &styler) {
     char ch = ' ';
 
     int i = pos ;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( i < eol_pos ) {
         c = styler.SafeGetCharAt(i);
         ch = static_cast<char>(LowerCase(c));
@@ -400,11 +395,6 @@ static int LineType(int line, Accessor &styler) {
 	wlen++ ;
 
     i++ ;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( (i < eol_pos) && (wlen < 255) ) {
         c = styler.SafeGetCharAt(i);
         ch = static_cast<char>(LowerCase(c));
@@ -471,11 +461,6 @@ WordList *[], Accessor &styler) {
 
     // Scan until we find the previous keyword line
     // this will give us the level reference that we need
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( prvKeyLine > 0 ) {
         prvKeyLine-- ;
         prvKeyLineTp = LineType(prvKeyLine, styler) ;

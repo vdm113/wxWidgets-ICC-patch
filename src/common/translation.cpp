@@ -371,11 +371,6 @@ wxPluralFormsScanner::wxPluralFormsScanner(const char* s) : m_s(s)
 bool wxPluralFormsScanner::nextToken()
 {
     wxPluralFormsToken::Type type = wxPluralFormsToken::T_ERROR;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (isspace((unsigned char) *m_s))
     {
         ++m_s;
@@ -387,11 +382,6 @@ bool wxPluralFormsScanner::nextToken()
     else if (isdigit((unsigned char) *m_s))
     {
         wxPluralFormsToken::Number number = *m_s++ - '0';
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (isdigit((unsigned char) *m_s))
         {
             number = number * 10 + (*m_s++ - '0');
@@ -402,11 +392,6 @@ bool wxPluralFormsScanner::nextToken()
     else if (isalpha((unsigned char) *m_s))
     {
         const char* begin = m_s++;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (isalnum((unsigned char) *m_s))
         {
             ++m_s;
@@ -1315,11 +1300,6 @@ bool wxMsgCatalogFile::FillHash(wxStringToStringHashMap& hash,
         size_t length = Swap(m_pTransTable[i].nLen);
         size_t offset = 0;
         size_t index = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (offset < length)
         {
             const char * const str = data + offset;
@@ -1486,11 +1466,6 @@ wxTranslations::~wxTranslations()
 
     // free catalogs memory
     wxMsgCatalog *pTmpCat;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( m_pMsgCat != NULL )
     {
         pTmpCat = m_pMsgCat;

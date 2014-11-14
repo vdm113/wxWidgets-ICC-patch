@@ -389,11 +389,6 @@ bool wxXmlResource::Load(const wxString& filemask_)
         return false;
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (!fnd.empty())
     {
 #if wxUSE_FILESYSTEM
@@ -619,11 +614,6 @@ static void ProcessPlatformProperty(wxXmlNode *node)
     bool isok;
 
     wxXmlNode *c = node->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (c)
     {
         isok = false;
@@ -633,11 +623,6 @@ static void ProcessPlatformProperty(wxXmlNode *node)
         {
             wxStringTokenizer tkn(s, wxT(" |"));
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (tkn.HasMoreTokens())
             {
                 s = tkn.GetNextToken();
@@ -675,11 +660,6 @@ static void PreprocessForIdRanges(wxXmlNode *rootnode)
     // First go through the top level, looking for the names of ID ranges
     // as processing items is a lot easier if names are already known
     wxXmlNode *c = rootnode->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (c)
     {
         if (c->GetName() == wxT("ids-range"))
@@ -689,11 +669,6 @@ static void PreprocessForIdRanges(wxXmlNode *rootnode)
 
     // Next, examine every 'name' for the '[' that denotes an ID in a range
     c = rootnode->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (c)
     {
         wxString name = c->GetAttribute(wxT("name"));
@@ -1617,11 +1592,6 @@ int wxXmlResourceHandlerImpl::GetStyle(const wxString& param, int defaults)
     int style = 0;
     int index;
     wxString fl;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (tkn.HasMoreTokens())
     {
         fl = tkn.GetNextToken();
@@ -2087,11 +2057,6 @@ wxImageList *wxXmlResourceHandlerImpl::GetImageList(const wxString& param)
     if ( HasParam(parambitmap) )
     {
         wxXmlNode *n = m_handler->m_node->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (n)
         {
             if (n->GetType() == wxXML_ELEMENT_NODE && n->GetName() == parambitmap)
@@ -2126,11 +2091,6 @@ wxXmlNode *wxXmlResourceHandlerImpl::GetParamNode(const wxString& param)
 
     wxXmlNode *n = m_handler->m_node->GetChildren();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (n)
     {
         if (n->GetType() == wxXML_ELEMENT_NODE && n->GetName() == param)
@@ -2168,11 +2128,6 @@ wxString wxXmlResourceHandlerImpl::GetNodeContent(const wxXmlNode *node)
     if (n == NULL) return wxEmptyString;
     n = n->GetChildren();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (n)
     {
         if (n->GetType() == wxXML_TEXT_NODE ||
@@ -2468,11 +2423,6 @@ wxFont wxXmlResourceHandlerImpl::GetFont(const wxString& param, wxWindow* parent
         wxStringTokenizer tk(faces, wxT(","));
 #if wxUSE_FONTENUM
         wxArrayString facenames(wxFontEnumerator::GetFacenames());
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (tk.HasMoreTokens())
         {
             int index = facenames.Index(tk.GetNextToken(), false);
@@ -2660,11 +2610,6 @@ void wxXmlResourceHandlerImpl::CreateChildrenPrivately(wxObject *parent, wxXmlNo
     if (rootnode == NULL) root = m_handler->m_node; else root = rootnode;
     wxXmlNode *n = root->GetChildren();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (n)
     {
         if (n->GetType() == wxXML_ELEMENT_NODE && GetHandler()->CanHandle(n))

@@ -449,11 +449,6 @@ for n in range(20):
     countFromEnd = choice([-1, 1])
     weekNum = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while dt.month is month:
         dt = dt - countFromEnd * week
         weekNum = weekNum + countFromEnd
@@ -489,6 +484,11 @@ for n in range(20):
     };
 
     wxDateTime dt;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( n = 0; n < WXSIZEOF(weekDatesTestData); n++ )
     {
         const WeekDateTestData& wd = weekDatesTestData[n];
@@ -533,6 +533,11 @@ def GetLastSundayBefore(dt):
     else:
         return dt - DateTimeDelta(dt.iso_week[2])
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for n in range(20):
     year = randint(1900, 2100)
     month = randint(1, 12)
@@ -599,6 +604,11 @@ for n in range(20):
         { { 31, wxDateTime::Dec, 2013, 0, 0, 0, 0.0, wxDateTime::Inv_WeekDay, 0 },  1, 6, 5, 365 },
     };
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; n < WXSIZEOF(weekNumberTestDates); n++ )
     {
         const WeekNumberTestData& wn = weekNumberTestDates[n];
@@ -687,6 +697,11 @@ void DateTimeTestCase::TestTimeDST()
         }
     };
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t n = 0; n < WXSIZEOF(datesDST[0]); n++ )
     {
         const int year = 1990 + n;
@@ -835,11 +850,6 @@ void DateTimeTestCase::TestTimeFormat()
                     // incapable of parsing time zone part used at the end of date
                     // representations in many (but not "C") locales, compensate
                     // for it ourselves by simply consuming and ignoring it
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                     while ( *result && (*result >= 'A' && *result <= 'Z') )
                         result++;
 

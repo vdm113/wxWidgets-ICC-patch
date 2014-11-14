@@ -672,11 +672,6 @@ bool wxMDIParentFrame::HandleActivate(int state, bool minimized, WXHWND activate
 void wxMDIParentFrame::OnMDIChild(wxCommandEvent& event)
 {
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( node )
     {
         wxWindow *child = node->GetData();
@@ -1433,11 +1428,6 @@ void wxMDIClientWindow::DoSetSize(int x, int y, int width, int height, int sizeF
         if (GetParent())
         {
             wxWindowList::compatibility_iterator node = GetParent()->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (node)
             {
                 wxWindow *child = node->GetData();

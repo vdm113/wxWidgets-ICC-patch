@@ -32,11 +32,6 @@ xmlstrlen(const XML_Char *s)
 {
     int len = 0;
     assert(s != NULL);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (s[len] != 0)
         ++len;
     return len;

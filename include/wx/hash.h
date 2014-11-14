@@ -308,7 +308,6 @@ private:
     {                                                                        \
         (hash).BeginFind();                                                  \
         wxHashTable::compatibility_iterator it = (hash).Next();              \
-VDM_MACRO_PRAGMA_IVDEP \
         while( it )                                                          \
         {                                                                    \
             delete it->GetData();                                            \

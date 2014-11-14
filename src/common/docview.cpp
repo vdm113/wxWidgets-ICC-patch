@@ -184,11 +184,6 @@ bool wxDocument::Close()
 
     // Now that they all did, do close them: as m_childDocuments is modified as
     // we iterate over it, don't use the usual for-style iteration here.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( !m_childDocuments.empty() )
     {
         wxDocument * const childDoc = m_childDocuments.front();
@@ -352,11 +347,6 @@ bool wxDocument::SaveAs()
     {
         wxList::compatibility_iterator
             node = docTemplate->GetDocumentManager()->GetTemplates().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (node)
         {
             wxDocTemplate *t = (wxDocTemplate*) node->GetData();
@@ -621,11 +611,6 @@ void wxDocument::OnChangedViewList()
 void wxDocument::UpdateAllViews(wxView *sender, wxObject *hint)
 {
     wxList::compatibility_iterator node = m_documentViews.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxView *view = (wxView *)node->GetData();
@@ -638,11 +623,6 @@ void wxDocument::UpdateAllViews(wxView *sender, wxObject *hint)
 void wxDocument::NotifyClosing()
 {
     wxList::compatibility_iterator node = m_documentViews.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxView *view = (wxView *)node->GetData();
@@ -663,11 +643,6 @@ void wxDocument::OnChangeFilename(bool notifyViews)
     {
         // Notify the views that the filename has changed
         wxList::compatibility_iterator node = m_documentViews.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (node)
         {
             wxView *view = (wxView *)node->GetData();
@@ -951,11 +926,6 @@ bool wxDocTemplate::FileMatchesTemplate(const wxString& path)
 {
     wxStringTokenizer parser (GetFileFilter(), wxT(";"));
     wxString anything = wxT ("*");
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (parser.HasMoreTokens())
     {
         wxString filter = parser.GetNextToken();
@@ -1067,11 +1037,6 @@ bool wxDocManager::CloseDocument(wxDocument* doc, bool force)
 bool wxDocManager::CloseDocuments(bool force)
 {
     wxList::compatibility_iterator node = m_docs.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxDocument *doc = (wxDocument *)node->GetData();
@@ -1096,11 +1061,6 @@ bool wxDocManager::Clear(bool force)
     m_currentView = NULL;
 
     wxList::compatibility_iterator node = m_templates.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxDocTemplate *templ = (wxDocTemplate*) node->GetData();

@@ -619,11 +619,6 @@ wxLogLevel wxLog::GetComponentLevel(wxString component)
     wxCRIT_SECT_LOCKER(lock, GetLevelsCS());
 
     const wxStringToNumHashMap& componentLevels = GetComponentLevels();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( !component.empty() )
     {
         wxStringToNumHashMap::const_iterator
@@ -1049,11 +1044,6 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
     fputs(pszPrefix, f);
 
     size_t n;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( *psz != '\0' ) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -1075,11 +1065,6 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
                 putc(' ', f);
 
             // as we wrapped, squeeze all white space
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ( isspace(*psz) )
                 psz++;
         }

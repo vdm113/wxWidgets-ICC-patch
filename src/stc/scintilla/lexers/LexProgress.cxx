@@ -87,11 +87,6 @@ static void Colourise4glDoc(unsigned int startPos, int length, int initStyle, Wo
 			}
 			else {
 				// Skip whitespace between ~ and EOL
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (sc.More() && (sc.chNext == ' ' || sc.chNext == '\t') ) {
 					sc.Forward();
 				}

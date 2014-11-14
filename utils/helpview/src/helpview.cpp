@@ -249,11 +249,6 @@ int hvApp::OnExit()
 {
 #if wxUSE_IPC
     wxObjectList::compatibility_iterator node = m_connections.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxObjectList::compatibility_iterator next = node->GetNext();

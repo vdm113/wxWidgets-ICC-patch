@@ -160,11 +160,6 @@ static const struct lc_time_T   C_time_locale = {
 static char *
 _add(const char * str, char * pt, const char * const ptlim)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (pt < ptlim && (*pt = *str++) != '\0')
         ++pt;
     return pt;
@@ -687,11 +682,6 @@ static time_t __cdecl common_tm_to_time(int day, int month, int year, int hour, 
     time_t prog = 0 ;
     static int mdays[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 } ;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (--month)
     {
         prog += mdays[month - 1] ;

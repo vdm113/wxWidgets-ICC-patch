@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Copyright (c) 1990-1997 Sam Leffler
  * Copyright (c) 1991-1997 Silicon Graphics, Inc.
@@ -155,11 +156,6 @@ main(int argc, char* argv[])
     extern char *optarg;
     int c, status;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ((c = getopt(argc, argv, "c:r:")) != -1)
 	    switch (c) {
 	    case 'c':		/* compression scheme */
@@ -227,11 +223,6 @@ convert(void)
     if (!checksignature())
         return (-1);
     readscreen();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ((ch = getc(infile)) != ';' && ch != EOF) {
         switch (ch) {
             case '\0':  break;  /* this kludge for non-standard files */
@@ -337,11 +328,6 @@ readextension(void)
     char buf[255];
 
     (void) getc(infile);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ((count = getc(infile)))
         fread(buf, 1, count, infile);
 }
@@ -394,11 +380,6 @@ readraster(void)
 	for (ch=buf; count-- > 0; ch++) {
 	    datum += (unsigned long) *ch << bits;
 	    bits += 8;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	    while (bits >= codesize) {
 		code = datum & codemask;
 		datum >>= codesize;
@@ -462,11 +443,6 @@ process(register int code, unsigned char** fill)
 	*stackp++ = firstchar;
 	code = oldcode;
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (code > clear) {
 	*stackp++ = suffix[code];
 	code = prefix[code];

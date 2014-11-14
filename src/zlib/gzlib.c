@@ -127,11 +127,6 @@ local gzFile gz_open(path, fd, mode)
     state->level = Z_DEFAULT_COMPRESSION;
     state->strategy = Z_DEFAULT_STRATEGY;
     state->direct = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (*mode) {
         if (*mode >= '0' && *mode <= '9')
             state->level = *mode - '0';

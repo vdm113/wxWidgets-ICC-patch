@@ -462,6 +462,11 @@ Here are the steps you should follow:
    <a href="http://svn.wxwidgets.org/viewvc/wx/wxWidgets/trunk/locale/wxstd.pot?view=co">Web interface</a>.
 -# Rename it to <tt>XY.po</tt> where <tt>"XY"</tt> is the 2 letter
    <a href="http://www.loc.gov/standards/iso639-2/php/English_list.php">ISO 639-2 language code</a>
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for your language.
 -# Translate the strings in this file using either your favourite text
    editor or a specialized tool such as Vaclav Slavik's excellent
@@ -477,6 +482,11 @@ Here are the steps you should follow:
 In addition, please consider subscribing to the very low volume
 <a href="http://lists.wxwidgets.org/mailman/listinfo/wx-translators">
 wxWidgets translators</a> mailing list on which the news especially important
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for the translators are announced.
 
 Thank you in advance for your help!

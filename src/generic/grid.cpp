@@ -3224,11 +3224,6 @@ wxArrayInt wxGrid::CalcRowLabelsExposed( const wxRegion& reg ) const
     wxArrayInt  rowlabels;
 
     int top, bottom;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( iter )
     {
         r = iter.GetRect();
@@ -3285,11 +3280,6 @@ wxArrayInt wxGrid::CalcColLabelsExposed( const wxRegion& reg ) const
     wxArrayInt colLabels;
 
     int left, right;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( iter )
     {
         r = iter.GetRect();
@@ -6470,11 +6460,6 @@ void wxGrid::StringToLines( const wxString& value, wxArrayString& lines ) const
     wxString eol = wxTextFile::GetEOL( wxTextFileType_Unix );
     wxString tVal = wxTextFile::Translate( value, wxTextFileType_Unix );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( startPos < (int)tVal.length() )
     {
         pos = tVal.Mid(startPos).Find( eol );
@@ -6937,11 +6922,6 @@ int wxGrid::PosToLinePos(int coord,
 
 
     // finally do perform the binary search
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( minPos < maxPos )
     {
         wxCHECK_MSG( lineEnds[oper.GetLineAt(this, minPos)] <= coord &&
@@ -7309,11 +7289,6 @@ void
 wxGrid::AdvanceToNextNonEmpty(wxGridCellCoords& coords,
                               const wxGridDirectionOperations& diroper)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( !diroper.IsAtBoundary(coords) )
     {
         diroper.Advance(coords);
@@ -7350,11 +7325,6 @@ wxGrid::DoMoveCursorByBlock(bool expandSelection,
         {
             // go to the end of it, i.e. find the last cell before the next
             // empty one
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ( !diroper.IsAtBoundary(coords) )
             {
                 wxGridCellCoords coordsNext(coords);

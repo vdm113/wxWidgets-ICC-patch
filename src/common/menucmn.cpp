@@ -635,11 +635,6 @@ void wxMenuBase::UpdateUI(wxEvtHandler* source)
         source = this;
 
     wxMenuItemList::compatibility_iterator  node = GetMenuItems().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( node )
     {
         wxMenuItem* item = node->GetData();
@@ -756,11 +751,6 @@ wxWindow *wxMenuBase::GetWindow() const
     // only the top level menus have non-NULL invoking window or a pointer to
     // the menu bar so recurse upwards until we find it
     const wxMenuBase *menu = this;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( menu->GetParent() )
     {
         menu = menu->GetParent();

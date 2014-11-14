@@ -350,6 +350,11 @@ public:
     @class wxGridCellStringRenderer
 
     This class may be used to format string data in a cell; it is the default
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for string cells.
 
     @library{wxadv}
@@ -1371,6 +1376,11 @@ public:
     numbers.
 
     This base class is not quite abstract as it implements a trivial strategy
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for storing the attributes by forwarding it to wxGridCellAttrProvider and
     also provides stubs for some other functions. However it does have a number
     of pure virtual methods which must be implemented in the derived classes.
@@ -1974,6 +1984,11 @@ enum wxGridRenderStyle
     help you get started, wxGrid is the only class you need to refer to
     directly. It will set up default instances of the other classes and manage
     them for you. For more complex applications you can derive your own classes
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for custom grid views, grid data tables, cell editors and renderers. The
     @ref overview_grid has examples of simple and more complex applications,
     explains the relationship between the various grid classes and has a

@@ -420,11 +420,6 @@ public:
     ArgsArray(wchar_t **wargv)
     {
         int argc = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( wargv[argc] )
             argc++;
 
@@ -566,11 +561,6 @@ int BlockUntilChildExit(wxExecuteData& execData)
 #endif // wxUSE_STREAMS
 
     // And dispatch until the PID is reset from wxExecuteData::OnExit().
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( execData.pid )
     {
         dispatcher.Dispatch();
@@ -979,11 +969,6 @@ wxGetCommandOutput(const wxString &cmd, wxMBConv& conv = wxConvISO8859_1)
 
     wxString s;
     char buf[256];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( !feof(f) )
     {
         if ( !fgets(buf, sizeof(buf), f) )

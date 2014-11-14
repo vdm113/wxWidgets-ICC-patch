@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* pngerror.c - stub functions for i/o and memory allocation
  *
  * Last changed in libpng 1.6.1 [March 28, 2013]
@@ -131,11 +132,6 @@ png_safecat(png_charp buffer, size_t bufsize, size_t pos,
    if (buffer != NULL && pos < bufsize)
    {
       if (string != NULL)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
          while (*string != '\0' && pos < bufsize-1)
            buffer[pos++] = *string++;
 
@@ -163,11 +159,6 @@ png_format_number(png_const_charp start, png_charp end, int format,
    /* This is written so that the loop always runs at least once, even with
     * number zero.
     */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (end > start && (number != 0 || count < mincount))
    {
 
@@ -329,11 +320,6 @@ png_formatted_warning(png_const_structrp png_ptr, png_warning_parameters p,
     * one character from message[]; it must check for '\0' and continue to the
     * test if it finds the end of string.
     */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (i<(sizeof msg)-1 && *message != '\0')
    {
       /* '@' at end of string is now just printed (previously it was skipped);
@@ -348,11 +334,6 @@ png_formatted_warning(png_const_structrp png_ptr, png_warning_parameters p,
          /* Search for the parameter digit, the index in the string is the
           * parameter to use.
           */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
          while (valid_parameters[parameter] != parameter_char &&
             valid_parameters[parameter] != '\0')
             ++parameter;
@@ -368,11 +349,6 @@ png_formatted_warning(png_const_structrp png_ptr, png_warning_parameters p,
              * that parm[] has been initialized, so there is no guarantee of a
              * trailing '\0':
              */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (i<(sizeof msg)-1 && *parm != '\0' && parm < pend)
                msg[i++] = *parm++;
 
@@ -470,11 +446,6 @@ png_format_buffer(png_const_structrp png_ptr, png_charp buffer, png_const_charp
    png_uint_32 chunk_name = png_ptr->chunk_name;
    int iout = 0, ishift = 24;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (ishift >= 0)
    {
       int c = (int)(chunk_name >> ishift) & 0xff;
@@ -504,11 +475,6 @@ png_format_buffer(png_const_structrp png_ptr, png_charp buffer, png_const_charp
       buffer[iout++] = ':';
       buffer[iout++] = ' ';
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
       while (iin < PNG_MAX_ERROR_TEXT-1 && error_message[iin] != '\0')
          buffer[iout++] = error_message[iin++];
 

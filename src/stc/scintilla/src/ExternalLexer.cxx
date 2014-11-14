@@ -117,11 +117,6 @@ void LexerLibrary::Release() {
 	LexerMinder *lm;
 	LexerMinder *lmNext;
 	lm = first;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (NULL != lm) {
 		lmNext = lm->next;
 		delete lm->self;
@@ -190,11 +185,6 @@ void LexerManager::Clear() {
 	if (NULL != first) {
 		LexerLibrary *cur = first;
 		LexerLibrary *next;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (cur) {
 			next = cur->next;
 			delete cur;

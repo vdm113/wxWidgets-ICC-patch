@@ -130,6 +130,11 @@
     @flag{osx.openfiledialog.always-show-types}
         Per default a wxFileDialog with wxFD_OPEN does not show a types-popup on OSX but allows
         the selection of files from any of the supported types. Setting this to 1 shows a wxChoice 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for selection (if there is more than one supported filetype).
     @endFlagTable
 

@@ -462,11 +462,6 @@ bool wxMakeMetafilePlaceable(const wxString& filename, int x1, int y1, int x2, i
     }
 
     int ch = -2;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (ch != EOF)
     {
         ch = getc(fd);

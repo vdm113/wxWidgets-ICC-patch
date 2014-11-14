@@ -104,20 +104,10 @@ struct nfa *nfa;
 {
 	struct state *s;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((s = nfa->states) != NULL) {
 		s->nins = s->nouts = 0;		/* don't worry about arcs */
 		freestate(nfa, s);
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((s = nfa->free) != NULL) {
 		nfa->free = s->next;
 		destroystate(nfa, s);
@@ -202,18 +192,8 @@ struct state *s;
 {
 	struct arc *a;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((a = s->ins) != NULL)
 		freearc(nfa, a);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((a = s->outs) != NULL)
 		freearc(nfa, a);
 	freestate(nfa, s);
@@ -508,11 +488,6 @@ struct state *new;
 
 	assert(old != new);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((a = old->ins) != NULL) {
 		cparc(nfa, a, a->from, new);
 		freearc(nfa, a);
@@ -558,11 +533,6 @@ struct state *new;
 
 	assert(old != new);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((a = old->outs) != NULL) {
 		cparc(nfa, a, new, a->to);
 		freearc(nfa, a);
@@ -663,11 +633,6 @@ struct state *s;
 
 	s->tmp = s;			/* mark as in progress */
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((a = s->outs) != NULL) {
 		to = a->to;
 		deltraverse(nfa, leftend, to);

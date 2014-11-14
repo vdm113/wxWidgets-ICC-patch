@@ -166,11 +166,6 @@ static int HaskellIndentAmount(Accessor &styler, const int line) {
 
    int posPrev = inPrevPrefix ? styler.LineStart(line-1) : 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while ((  ch == ' ' || ch == '\t'
           || IsCommentBlockStyle(style)
           || style == SCE_HA_LITERATE_CODEDELIM)
@@ -352,11 +347,6 @@ class LexerHaskell : public ILexer {
          if (hashes == twoHashes && sc.ch == '#') {
             sc.Forward();
          } else if (hashes == unlimitedHashes) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (sc.ch == '#') {
                sc.Forward();
             }
@@ -371,11 +361,6 @@ class LexerHaskell : public ILexer {
 
          int eol_pos = styler.LineStart(line + 1) - 1;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
          while (currentPos < eol_pos) {
             int ch = styler[currentPos];
             style = styler.StyleAt(currentPos);
@@ -519,11 +504,6 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 
    assert(!(IsCommentBlockStyle(initStyle) && hs.nestLevel == 0));
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (sc.More()) {
       // Check for state end
 
@@ -586,11 +566,6 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
                || sc.Match("\\begin{code}"))) {
          sc.SetState(sc.state);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
          while ((sc.ch == ' ' || sc.ch == '\t') && sc.More())
             sc.Forward();
 
@@ -599,11 +574,6 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 
             bool correct = true;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (!sc.atLineEnd && sc.More()) {
                if (sc.ch != ' ' && sc.ch != '\t') {
                   correct = false;
@@ -623,11 +593,6 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 
          sc.Forward(static_cast<int>(strlen("\\end{code}")));
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
          while (!sc.atLineEnd && sc.More()) {
             sc.Forward();
          }
@@ -747,11 +712,6 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 
          sc.Forward();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
          while (sc.More()) {
             if (IsAHaskellWordChar(sc.ch)) {
                sc.Forward();
@@ -765,11 +725,6 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
                } else if (IsAnHaskellOperatorChar(sc.chNext)) {
                   sc.Forward();
                   style = sc.ch == ':' ? SCE_HA_CAPITAL : SCE_HA_OPERATOR;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                   while (IsAnHaskellOperatorChar(sc.ch))
                      sc.Forward();
                   break;
@@ -1041,11 +996,6 @@ void SCI_METHOD LexerHaskell::Fold(unsigned int startPos, int length, int // ini
    bool importHere = LineContainsImport(lineCurrent, styler);
    int indentCurrent = IndentAmountWithOffset(styler, lineCurrent);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (lineCurrent > 0) {
       lineCurrent--;
       importHere = LineContainsImport(lineCurrent, styler);
@@ -1072,11 +1022,6 @@ void SCI_METHOD LexerHaskell::Fold(unsigned int startPos, int length, int // ini
    // Process all characters to end of requested range
    //that hangs over the end of the range.  Cap processing in all cases
    // to end of document.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (lineCurrent <= docLines && lineCurrent <= maxLines) {
 
       // Gather info
@@ -1097,11 +1042,6 @@ void SCI_METHOD LexerHaskell::Fold(unsigned int startPos, int length, int // ini
       // which effectively folds them into surrounding code rather
       // than screwing up folding.
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
       while (lineNext < docLines && (indentNext & SC_FOLDLEVELWHITEFLAG)) {
          lineNext++;
          importHere = LineContainsImport(lineNext, styler);
@@ -1133,11 +1073,6 @@ void SCI_METHOD LexerHaskell::Fold(unsigned int startPos, int length, int // ini
       int skipLine = lineNext;
       int skipLevel = indentNextLevel;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
       while (--skipLine > lineCurrent) {
          int skipLineIndent = IndentAmountWithOffset(styler, skipLine);
 

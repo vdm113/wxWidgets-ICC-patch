@@ -62,11 +62,6 @@ wxTextInputStream::~wxTextInputStream()
 void wxTextInputStream::UngetLast()
 {
     size_t byteCount = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while(m_lastBytes[byteCount]) // pseudo ANSI strlen (even for Unicode!)
         byteCount++;
     m_input.Ungetch(m_lastBytes, byteCount);
@@ -253,11 +248,6 @@ wxString wxTextInputStream::ReadLine()
 {
     wxString line;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( !m_input.Eof() )
     {
         wxChar c = NextChar();
@@ -286,11 +276,6 @@ wxString wxTextInputStream::ReadWord()
 
     word += c;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( !m_input.Eof() )
     {
         c = NextChar();

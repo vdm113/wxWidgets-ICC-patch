@@ -532,11 +532,6 @@ wxFSFile* wxFileSystem::OpenFile(const wxString& location, int flags)
     if (meta != wxT(':'))
     {
         node = m_Handlers.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (node)
         {
             wxFileSystemHandler *h = (wxFileSystemHandler*) node -> GetData();
@@ -553,11 +548,6 @@ wxFSFile* wxFileSystem::OpenFile(const wxString& location, int flags)
     if (s == NULL)
     {
         node = m_Handlers.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (node)
         {
             wxFileSystemHandler *h = (wxFileSystemHandler*) node->GetData();
@@ -599,11 +589,6 @@ wxString wxFileSystem::FindFirst(const wxString& spec, int flags)
         if (spec2[(unsigned int) i] == wxT('\\')) spec2.GetWritableChar(i) = wxT('/'); // Want to be windows-safe
 
     node = m_Handlers.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxFileSystemHandler *h = (wxFileSystemHandler*) node -> GetData();
@@ -616,11 +601,6 @@ wxString wxFileSystem::FindFirst(const wxString& spec, int flags)
     }
 
     node = m_Handlers.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxFileSystemHandler *h = (wxFileSystemHandler*) node -> GetData();
@@ -659,11 +639,6 @@ bool wxFileSystem::FindFileInPath(wxString *pStr,
         name = basename;
 
     wxStringTokenizer tokenizer(path, wxPATH_SEP);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( tokenizer.HasMoreTokens() )
     {
         wxString strFile = tokenizer.GetNextToken();

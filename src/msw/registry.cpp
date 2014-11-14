@@ -676,11 +676,6 @@ bool wxRegKey::Copy(wxRegKey& keyDst)
     wxString strKey;
     long lIndex;
     bool bCont = GetFirstKey(strKey, lIndex);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( ok && bCont ) {
         wxRegKey key(*this, strKey);
         wxString keyName;
@@ -698,11 +693,6 @@ bool wxRegKey::Copy(wxRegKey& keyDst)
     // copy all values
     wxString strVal;
     bCont = GetFirstValue(strVal, lIndex);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( ok && bCont ) {
         ok = CopyValue(strVal, keyDst);
 
@@ -756,11 +746,6 @@ bool wxRegKey::DeleteSelf()
   wxString strKey;
   long lIndex;
   bool bCont = GetFirstKey(strKey, lIndex);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while ( bCont ) {
     astrSubkeys.Add(strKey);
 
@@ -1513,11 +1498,6 @@ bool wxRegKey::DoExport(wxOutputStream& ostr) const
     wxString name;
     wxRegKey& self = const_cast<wxRegKey&>(*this);
     bool cont = self.GetFirstValue(name, dummy);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( cont )
     {
         if ( !DoExportValue(ostr, name) )
@@ -1532,11 +1512,6 @@ bool wxRegKey::DoExport(wxOutputStream& ostr) const
 
     // recurse to subkeys
     cont = self.GetFirstKey(name, dummy);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( cont )
     {
         wxRegKey subkey(*this, name);

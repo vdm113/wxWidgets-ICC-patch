@@ -95,11 +95,6 @@ static void ColouriseBatchLine(
 	bool sKeywordFound;		// Exit Special Keyword for-loop if found
 
 	// Skip initial spaces
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((offset < lengthLine) && (isspacechar(lineBuffer[offset]))) {
 		offset++;
 	}
@@ -135,21 +130,11 @@ static void ColouriseBatchLine(
 		offset++;
 	}
 	// Skip next spaces
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((offset < lengthLine) && (isspacechar(lineBuffer[offset]))) {
 		offset++;
 	}
 
 	// Read remainder of line word-at-a-time or remainder-of-word-at-a-time
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (offset < lengthLine) {
 		if (offset > startLine) {
 			// Colorize Default Text
@@ -215,31 +200,16 @@ static void ColouriseBatchLine(
 				// Reset External Command / Program Location
 				cmdLoc = offset;
 				// Skip next spaces
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while ((cmdLoc < lengthLine) &&
 					(isspacechar(lineBuffer[cmdLoc]))) {
 					cmdLoc++;
 				}
 				// Skip comparison
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while ((cmdLoc < lengthLine) &&
 					(!isspacechar(lineBuffer[cmdLoc]))) {
 					cmdLoc++;
 				}
 				// Skip next spaces
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while ((cmdLoc < lengthLine) &&
 					(isspacechar(lineBuffer[cmdLoc]))) {
 					cmdLoc++;
@@ -252,11 +222,6 @@ static void ColouriseBatchLine(
 				// Reset External Command / Program Location
 				cmdLoc = offset;
 				// Skip next spaces
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while ((cmdLoc < lengthLine) &&
 					(isspacechar(lineBuffer[cmdLoc]))) {
 					cmdLoc++;
@@ -312,11 +277,6 @@ static void ColouriseBatchLine(
 				// Check for External Command / Program
 				if (cmdLoc == offset - wbl) {
 					// Read up to %, Operator or Separator
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 					while ((wbo < wbl) &&
 						(wordBuffer[wbo] != '%') &&
 						(wordBuffer[wbo] != '!') &&
@@ -337,11 +297,6 @@ static void ColouriseBatchLine(
 						// Reset External Command / Program Location
 						cmdLoc = offset;
 						// Skip next spaces
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 						while ((cmdLoc < lengthLine) &&
 							(isspacechar(lineBuffer[cmdLoc]))) {
 							cmdLoc++;
@@ -349,21 +304,11 @@ static void ColouriseBatchLine(
 						// Reset External Command / Program Location if command switch detected
 						if (lineBuffer[cmdLoc] == '/') {
 							// Skip command switch
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 							while ((cmdLoc < lengthLine) &&
 								(!isspacechar(lineBuffer[cmdLoc]))) {
 								cmdLoc++;
 							}
 							// Skip next spaces
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 							while ((cmdLoc < lengthLine) &&
 								(isspacechar(lineBuffer[cmdLoc]))) {
 								cmdLoc++;
@@ -382,11 +327,6 @@ static void ColouriseBatchLine(
 				// Check for Default Text
 				} else {
 					// Read up to %, Operator or Separator
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 					while ((wbo < wbl) &&
 						(wordBuffer[wbo] != '%') &&
 						(wordBuffer[wbo] != '!') &&
@@ -406,11 +346,6 @@ static void ColouriseBatchLine(
 			styler.ColourTo(startLine + offset - 1 - wbl, SCE_BAT_DEFAULT);
 			wbo++;
 			// Search to end of word for second % (can be a long path)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while ((wbo < wbl) &&
 				(wordBuffer[wbo] != '%') &&
 				(!IsBOperator(wordBuffer[wbo])) &&
@@ -473,11 +408,6 @@ static void ColouriseBatchLine(
 			styler.ColourTo(startLine + offset - 1 - wbl, SCE_BAT_DEFAULT);
 			wbo++;
 			// Search to end of word for second ! (can be a long path)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while ((wbo < wbl) &&
 				(wordBuffer[wbo] != '!') &&
 				(!IsBOperator(wordBuffer[wbo])) &&
@@ -504,11 +434,6 @@ static void ColouriseBatchLine(
 				// Identify External Command / Program Location for IF
 				cmdLoc = offset;
 				// Skip next spaces
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while ((cmdLoc < lengthLine) &&
 					(isspacechar(lineBuffer[cmdLoc]))) {
 					cmdLoc++;
@@ -522,11 +447,6 @@ static void ColouriseBatchLine(
 				// Reset External Command / Program Location
 				cmdLoc = offset - wbl + 1;
 				// Skip next spaces
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while ((cmdLoc < lengthLine) &&
 					(isspacechar(lineBuffer[cmdLoc]))) {
 					cmdLoc++;
@@ -550,11 +470,6 @@ static void ColouriseBatchLine(
 		// Check for Default Text
 		} else {
 			// Read up to %, Operator or Separator
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while ((wbo < wbl) &&
 				(wordBuffer[wbo] != '%') &&
 				(wordBuffer[wbo] != '!') &&
@@ -568,11 +483,6 @@ static void ColouriseBatchLine(
 			offset -= (wbl - wbo);
 		}
 		// Skip next spaces - nothing happens if Offset was Reset
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while ((offset < lengthLine) && (isspacechar(lineBuffer[offset]))) {
 			offset++;
 		}
@@ -754,11 +664,6 @@ static void ColourisePropsLine(
 
 	unsigned int i = 0;
 	if (allowInitialSpaces) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while ((i < lengthLine) && isspacechar(lineBuffer[i]))	// Skip initial spaces
 			i++;
 	} else {
@@ -778,11 +683,6 @@ static void ColourisePropsLine(
 			styler.ColourTo(endPos, SCE_PROPS_DEFAULT);
 		} else {
 			// Search for the '=' character
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while ((i < lengthLine) && !isassignchar(lineBuffer[i]))
 				i++;
 			if ((i < lengthLine) && isassignchar(lineBuffer[i])) {
@@ -928,11 +828,6 @@ static void ColouriseMakeLine(
 		bCommand = true;
 
 	// Skip initial spaces
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((i < lengthLine) && isspacechar(lineBuffer[i])) {
 		i++;
 	}
@@ -947,11 +842,6 @@ static void ColouriseMakeLine(
 		}
 	}
 	int varCount = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (i < lengthLine) {
 		if (((i + 1) < lengthLine) && (lineBuffer[i] == '$' && lineBuffer[i + 1] == '(')) {
 			styler.ColourTo(startLine + i - 1, state);

@@ -195,11 +195,6 @@ public:
         if ( !RestartIfNeeded() )
             return S_FALSE;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( celt-- )
         {
             // Stop iterating if we need to update completions anyhow.
@@ -236,11 +231,6 @@ public:
         if ( !RestartIfNeeded() )
             return S_FALSE;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( celt-- )
         {
             if ( m_restart )

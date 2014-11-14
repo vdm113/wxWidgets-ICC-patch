@@ -55,11 +55,6 @@ static char CharacterUpper(char chChar) {
 // Convert string to uppercase
 static void StringUpper(char *szString) {
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (*szString) {
 		*szString = CharacterUpper(*szString);
 		szString++;
@@ -565,11 +560,6 @@ static void FillBuffer(unsigned int uiStart, unsigned int uiEnd, Accessor &accSt
 
 	unsigned int uiPos = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((uiPos < uiEnd - uiStart + 1) && (uiPos < uiLength-1)) {
 		szBuffer[uiPos] = static_cast<char>(toupper(accStyler[uiStart + uiPos]));
 		uiPos++;

@@ -74,11 +74,6 @@ public:
        wxString all = wxString::FromUTF8( buffer, size );
 
        wxStringTokenizer tok( all, "\n" );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
        while (tok.HasMoreTokens())
        {
           wxString t = tok.GetNextToken();
@@ -215,11 +210,6 @@ void wxMimeTypesManagerImpl::LoadXDGApp(const wxString& filename)
     sCmd.Replace(wxT("%m"), namemini);
 
     wxStringTokenizer tokenizer(mimetypes, wxT(";"));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while(tokenizer.HasMoreTokens()) {
         wxString mimetype = tokenizer.GetNextToken().Lower();
         nIndex = m_aTypes.Index(mimetype);
@@ -244,11 +234,6 @@ void wxMimeTypesManagerImpl::LoadXDGAppsFilesFromDir(const wxString& dirname)
     wxString filename;
     // Look into .desktop files
     bool cont = dir.GetFirst(&filename, wxT("*.desktop"), wxDIR_FILES);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (cont)
     {
         wxFileName p(dirname, filename);
@@ -262,11 +247,6 @@ void wxMimeTypesManagerImpl::LoadXDGAppsFilesFromDir(const wxString& dirname)
 
     // Look recursively into subdirs
     cont = dir.GetFirst(&filename, wxEmptyString, wxDIR_DIRS);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (cont)
     {
         wxFileName p(dirname, wxEmptyString);
@@ -316,11 +296,6 @@ wxString wxFileTypeImpl::GetExpandedCommand(const wxString & verb, const wxFileT
 {
     wxString sTmp;
     size_t i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( (i < m_index.GetCount() ) && sTmp.empty() )
     {
         sTmp = m_manager->GetCommand( verb, m_index[i] );
@@ -334,11 +309,6 @@ bool wxFileTypeImpl::GetIcon(wxIconLocation *iconLoc) const
 {
     wxString sTmp;
     size_t i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( (i < m_index.GetCount() ) && sTmp.empty() )
     {
         sTmp = m_manager->m_aIcons[m_index[i]];
@@ -639,11 +609,6 @@ void wxMimeTypesManagerImpl::Initialize(int mailcapStyles,
 
         wxArrayString dirs;
         wxStringTokenizer tokenizer(xdgDataDirs, ":");
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( tokenizer.HasMoreTokens() )
         {
             wxString p = tokenizer.GetNextToken();
@@ -967,11 +932,6 @@ wxFileType * wxMimeTypesManagerImpl::GetFileTypeFromExtension(const wxString& ex
     {
         wxStringTokenizer tk(m_aExtensions[n], wxT(' '));
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( tk.HasMoreTokens() )
         {
             // consider extensions as not being case-sensitive
@@ -1104,11 +1064,6 @@ void wxMimeTypesManagerImpl::AddMimeTypeInfo(const wxString& strMimeType,
     wxArrayString sExts;
     sTmp.Trim().Trim(false);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (!sTmp.empty())
     {
         sExts.Add(sTmp.AfterLast(wxT(' ')));

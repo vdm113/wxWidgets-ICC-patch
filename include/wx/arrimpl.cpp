@@ -113,7 +113,6 @@ VDM_MACRO_PRAGMA_IVDEP \
           return static_cast<int>(ui);                                     \
         ui--;                                                                 \
       }                                                                       \
-VDM_MACRO_PRAGMA_IVDEP \
       while ( ui != 0 );                                                      \
     }                                                                         \
   }                                                                           \

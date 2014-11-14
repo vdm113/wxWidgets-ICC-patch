@@ -1084,11 +1084,6 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
 
         newFontName += wxString::Format(wxT("%d-"), pointSize);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while(tokenizer.HasMoreTokens())
           newFontName += tokenizer.GetNextToken();
 

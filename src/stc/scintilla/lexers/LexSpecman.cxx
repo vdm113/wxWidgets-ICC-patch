@@ -186,6 +186,11 @@ static void ColouriseSpecmanDoc(unsigned int startPos, int length, int initStyle
 				// Preprocessor commands are alone on their line
 				sc.SetState(SCE_SN_PREPROCESSOR);
 				// Skip whitespace between # and preprocessor word
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				do {
 					sc.Forward();
 				} while ((sc.ch == ' ' || sc.ch == '\t') && sc.More());

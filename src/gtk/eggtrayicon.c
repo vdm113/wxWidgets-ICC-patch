@@ -38,6 +38,11 @@ Received: from localhost
 	([127.0.0.1] helo=amavis ident=amavis)
 	by armitage with esmtp (Exim 3.35 #1)
 	id 1ATgbS-0001Gs-00
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for vasek@localhost; Tue, 09 Dec 2003 13:04:35 +0100
 Received: from armitage ([127.0.0.1])
 	by amavis (armitage [127.0.0.1]) (amavisd-new, port 10024) with ESMTP
@@ -46,10 +51,20 @@ Received: from armitage ([127.0.0.1])
 Received: from localhost ([127.0.0.1] ident=fetchmail)
 	by armitage with esmtp (Exim 3.35 #1)
 	id 1ATgb5-0001GY-00
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for vasek@localhost; Tue, 09 Dec 2003 13:04:11 +0100
 Delivered-To: alias-email-slavikvaclav@seznam.cz
 Received: from pop3.seznam.cz [212.80.76.45]
 	by localhost with POP3 (fetchmail-5.9.11)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for vasek@localhost (single-drop); Tue, 09 Dec 2003 13:04:11 +0100 (CET)
 Received: (qmail 9861 invoked from network); 9 Dec 2003 12:02:17 -0000
 Received: from unknown (HELO maxipes.logix.cz) (81.0.234.97)
@@ -59,11 +74,21 @@ Received: by maxipes.logix.cz (Postfix, from userid 604)
 X-Original-To: vaclav.slavik@matfyz.cz
 Received: from mail.csbnet.se (glutus.csbnet.se [193.11.248.2])
 	by maxipes.logix.cz (Postfix) with ESMTP id 90D6A29A51
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for <vaclav.slavik@matfyz.cz>; Tue,  9 Dec 2003 13:02:15 +0100 (CET)
 Received: by mail.csbnet.se (Postfix, from userid 8)
 	id 7AA7F10A6D7; Tue,  9 Dec 2003 13:02:14 +0100 (CET)
 Received: from carbon.csbnet.se (carbon.csbnet.se [193.11.248.180])
 	by mail.csbnet.se (Postfix) with ESMTP id A190F10A71D
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for <vaclav.slavik@matfyz.cz>; Tue,  9 Dec 2003 13:01:56 +0100 (CET)
 Subject: Re: eggtrayicon.{c,h} licensing
 From: Anders Carlsson <andersca@gnu.org>
@@ -584,11 +609,6 @@ egg_tray_icon_send_message (EggTrayIcon *icon,
 
   /* Now to send the actual message */
   gdk_error_trap_push ();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (len > 0)
     {
       XClientMessageEvent ev;

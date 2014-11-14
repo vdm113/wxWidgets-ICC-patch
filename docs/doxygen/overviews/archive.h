@@ -155,6 +155,11 @@ into the internal format and back has lost some information.
 
 So to avoid ambiguity when searching for an entry matching a local name, it is
 better to convert the local name to the archive's internal format and search
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for that:
 
 @code
@@ -168,6 +173,11 @@ wxFFileInputStream in(wxT("test.zip"));
 wxZipInputStream zip(in);
 
 // call GetNextEntry() until the required internal name is found
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 do
 {
     entry.reset(zip.GetNextEntry());
@@ -303,11 +313,6 @@ if (in->IsOk())
         auto_ptr<wxArchiveEntry> entry;
 
         // list the contents of the archive
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ((entry.reset(arc->GetNextEntry())), entry.get() != NULL)
             std::wcout << entry->GetName().c_str() << "\n";
     }

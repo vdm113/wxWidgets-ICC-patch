@@ -23,6 +23,11 @@ wxWidgets, these two ways to transfer data (either between different
 applications or inside one and the same) are very similar which allows to
 implement both of them using almost the same code - or, in other words, if you
 implement drag and drop support for your application, you get clipboard support
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for free and vice versa.
 
 At the heart of both clipboard and drag and drop operations lies the

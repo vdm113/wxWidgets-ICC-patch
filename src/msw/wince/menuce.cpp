@@ -96,11 +96,6 @@ wxMenu *wxTopLevelWindowMSW::ButtonMenu::DuplicateMenu(wxMenu *menu)
     if (menu)
     {
         wxMenuItemList::compatibility_iterator node = menu->GetMenuItems().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (node)
         {
             wxMenuItem *item = node->GetData();
@@ -137,11 +132,6 @@ void wxMenuToHMenu(wxMenu* in, HMENU hMenu)
     wxChar buf[256];
 
     wxMenuItemList::compatibility_iterator node = in->GetMenuItems().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( node )
     {
         wxMenuItem *item = node->GetData();

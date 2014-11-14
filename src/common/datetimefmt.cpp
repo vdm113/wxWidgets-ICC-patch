@@ -107,11 +107,6 @@ bool GetNumericToken(size_t len,
 {
     size_t n = 1;
     wxString s;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( p != end && wxIsdigit(*p) )
     {
         s += *p++;
@@ -129,11 +124,6 @@ GetAlphaToken(wxString::const_iterator& p,
               const wxString::const_iterator& end)
 {
     wxString s;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( p != end && wxIsalpha(*p) )
     {
         s += *p++;
@@ -486,11 +476,6 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
         }
 
         bool restart = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( restart )
         {
             restart = false;
@@ -572,11 +557,6 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
                         // effect of this loop is to not do anything to
                         // nLostWeekDays (which we won't use any more), but to
                         // (indirectly) set the year correctly
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                         while ( (nLostWeekDays % 7) != 0 )
                         {
                             nLostWeekDays += (year++ % 4) ? 1 : 2;
@@ -622,11 +602,6 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
                         // hours or minutes components should be safe because
                         // they are never in 70-99 range)
                         wxString replacement("|");
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                         while ( str.find(replacement) != wxString::npos )
                             replacement += '|';
 
@@ -1106,11 +1081,6 @@ wxDateTime::ParseFormat(const wxString& date,
             {
                 // a white space in the format string matches 0 or more white
                 // spaces in the input
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while ( input != end && wxIsspace(*input) )
                 {
                     input++;
@@ -1135,11 +1105,6 @@ wxDateTime::ParseFormat(const wxString& date,
 
         // parse the optional width
         size_t width = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( wxIsdigit(*++fmt) )
         {
             width *= 10;
@@ -1745,11 +1710,6 @@ wxDateTime::ParseDateTime(const wxString& date, wxString::const_iterator *end)
     if ( dtDate.ParseDate(date, &endDate) )
     {
         // Skip spaces, as the ParseTime() function fails on spaces
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( endDate != date.end() && wxIsspace(*endDate) )
             ++endDate;
 
@@ -1765,11 +1725,6 @@ wxDateTime::ParseDateTime(const wxString& date, wxString::const_iterator *end)
         if ( !dtTime.ParseTime(date, &endTime) )
             return false;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( endTime != date.end() && wxIsspace(*endTime) )
             ++endTime;
 
@@ -1822,11 +1777,6 @@ wxDateTime::ParseDate(const wxString& date, wxString::const_iterator *end)
     const wxString::const_iterator pEnd = date.end();
 
     wxString::const_iterator p = pBegin;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( p != pEnd && wxIsspace(*p) )
         p++;
 
@@ -1896,11 +1846,6 @@ wxDateTime::ParseDate(const wxString& date, wxString::const_iterator *end)
     int year = 0;
 
     // tokenize the string
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( p != pEnd )
     {
         // skip white space and date delimiters

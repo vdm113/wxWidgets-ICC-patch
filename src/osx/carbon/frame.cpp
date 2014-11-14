@@ -173,11 +173,6 @@ void wxFrame::OnActivate(wxActivateEvent& event)
 
         // so we NULL it out if it's a child from some other frame
         wxWindow *win = m_winLastFocused;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( win )
         {
             if ( win->IsTopLevel() )

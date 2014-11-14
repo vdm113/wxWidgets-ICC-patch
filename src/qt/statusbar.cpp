@@ -100,11 +100,6 @@ void wxStatusBar::UpdateFields()
 {
     // is it a good idea to recreate all the panes every update?
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( !m_qtPanes.isEmpty() )
     {
         //Remove all panes

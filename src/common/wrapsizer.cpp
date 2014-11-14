@@ -373,11 +373,6 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
     int itemCount = 0;
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
     wxSize sz;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxSizerItem *item = node->GetData();

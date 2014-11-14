@@ -1938,11 +1938,6 @@ void wxGDIPlusContext::GetPartialTextExtents(const wxString& text, wxArrayDouble
     CharacterRange* ranges = new CharacterRange[maxSpan] ;
     Region* regions = new Region[maxSpan];
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while( remainder > 0 )
     {
         size_t span = wxMin( maxSpan, remainder );

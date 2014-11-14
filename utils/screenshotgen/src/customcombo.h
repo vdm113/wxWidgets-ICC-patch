@@ -173,11 +173,6 @@ public:
     {
         wxTreeItemIdValue cookie;
         wxTreeItemId child = GetFirstChild(parent,cookie);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( child.IsOk() )
         {
             if ( GetItemText(child) == text )

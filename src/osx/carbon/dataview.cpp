@@ -2122,11 +2122,6 @@ wxDataFormat wxMacDataViewDataBrowserListViewControl::GetDnDDataFormat(wxDataObj
     formats = new wxDataFormat[noOfFormats];
     dataObjects->GetAllFormats(formats);
     indexFormat = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ((indexFormat < noOfFormats) && compatible)
     {
       switch (resultFormat.GetType())

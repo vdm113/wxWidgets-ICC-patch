@@ -300,11 +300,6 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                             from = out - dist;  /* rest from output */
                         }
                     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                     while (len > 2) {
                         PUP(out) = PUP(from);
                         PUP(out) = PUP(from);

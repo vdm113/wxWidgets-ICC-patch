@@ -449,11 +449,6 @@ void wxMenu::DestroyWidgetAndDetach()
         if ( menuParent )
         {
             wxMenuItemList::compatibility_iterator node = menuParent->GetMenuItems().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ( node )
             {
                 if ( node->GetData()->GetSubMenu() == this )

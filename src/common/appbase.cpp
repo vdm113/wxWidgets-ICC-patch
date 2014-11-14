@@ -560,11 +560,6 @@ void wxAppConsoleBase::ProcessPendingEvents()
 
         // iterate until the list becomes empty: the handlers remove themselves
         // from it when they don't have any more pending events
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (!m_handlersWithPendingEvents.IsEmpty())
         {
             // In ProcessPendingEvents(), new handlers might be added
@@ -641,11 +636,6 @@ void wxAppConsoleBase::ScheduleForDestruction(wxObject *object)
 void wxAppConsoleBase::DeletePendingObjects()
 {
     wxList::compatibility_iterator node = wxPendingDelete.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxObject *obj = node->GetData();
@@ -1305,11 +1295,6 @@ static void LINKAGEMODE SetTraceMasks()
     if ( wxGetEnv(wxT("WXTRACE"), &mask) )
     {
         wxStringTokenizer tkn(mask, wxT(",;:"));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( tkn.HasMoreTokens() )
             wxLog::AddTraceMask(tkn.GetNextToken());
     }

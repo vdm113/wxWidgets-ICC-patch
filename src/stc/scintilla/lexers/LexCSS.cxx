@@ -159,11 +159,6 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 						if (lastStateC == SCE_CSS_OPERATOR) {
 							op = styler.SafeGetCharAt(i-1);
 							opPrev = styler.SafeGetCharAt(i-2);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 							while (--i) {
 								lastState = styler.StyleAt(i-1);
 								if (lastState != SCE_CSS_OPERATOR && lastState != SCE_CSS_COMMENT)
@@ -193,11 +188,6 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 			if (sc.ch != (sc.state == SCE_CSS_DOUBLESTRING ? '\"' : '\''))
 				continue;
 			unsigned int i = sc.currentPos;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (i && styler[i-1] == '\\')
 				i--;
 			if ((sc.currentPos - i) % 2 == 1)
@@ -210,11 +200,6 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 				unsigned int i = startPos;
 				op = styler.SafeGetCharAt(i-1);
 				opPrev = styler.SafeGetCharAt(i-2);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (--i) {
 					lastState = styler.StyleAt(i-1);
 					if (lastState != SCE_CSS_OPERATOR && lastState != SCE_CSS_COMMENT)
@@ -457,11 +442,6 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 			char s[100];
 			sc.GetCurrentLowered(s, sizeof(s));
 			char *s2 = s;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (*s2 && !IsAWordChar(*s2))
 				s2++;
 			switch (sc.state) {

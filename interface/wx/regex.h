@@ -65,9 +65,19 @@ enum
     @class wxRegEx
 
     wxRegEx represents a regular expression.  This class provides support
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for regular expressions matching and also replacement.
 
     It is built on top of either the system library (if it has support
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for POSIX regular expressions - which is the case of the most modern
     Unices) or uses the built in Henry Spencer's library.  Henry Spencer
     would appreciate being given credit in the documentation of software

@@ -352,11 +352,6 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
                 {
                     int len = 0;
                     CHECK_PREC
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                     while ( (*m_pArgEnd >= CharType('0')) &&
                             (*m_pArgEnd <= CharType('9')) )
                     {

@@ -606,11 +606,6 @@ int main(int argc, char** argv){
 		goto fail;
 	}
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (argv &&
 	       (c = getopt(argc, argv,
 			   "o:q:u:x:y:w:l:r:p:e:c:a:t:s:k:jzndifbhF")) != -1){
@@ -3489,11 +3484,6 @@ int t2p_process_jpeg_strip(
 	
 	i++;
 	
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while(i<(*striplength)){
 		switch( strip[i] ){
 			case 0xd8:

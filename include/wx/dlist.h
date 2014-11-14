@@ -350,11 +350,6 @@ public:
     ~wxDList()
     {
         nodetype *each = m_nodeFirst;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( each != NULL )
         {
             nodetype *next = each->GetNext();
@@ -556,11 +551,6 @@ public:
     void Clear()
     {
         nodetype *current = m_nodeFirst;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( current )
         {
             nodetype *next = current->GetNext();
@@ -576,11 +566,6 @@ public:
     {
         nodetype * node = m_nodeFirst;
         nodetype* tmp;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (node)
         {
             // swap prev and next pointers
@@ -597,11 +582,6 @@ public:
     void DeleteNodes(nodetype* first, nodetype* last)
     {
         nodetype * node = first;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (node != last)
         {
             nodetype* next = node->GetNext();
@@ -839,18 +819,8 @@ public:
         { return const_reverse_iterator(NULL, GetFirst()); }
     void resize(size_type n, value_type v = value_type())
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (n < size())
             pop_back();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (n > size())
             push_back(v);
     }

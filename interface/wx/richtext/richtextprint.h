@@ -16,6 +16,11 @@
 /**
     These are the header and footer page identifiers, passed to functions such
     as wxRichTextHeaderFooterData::SetFooterText to specify the odd or even page
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for the text.
 */
 enum wxRichTextOddEvenPage {

@@ -1169,11 +1169,6 @@ public:
         @code
             list->SetItemState(item, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         @endcode
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while to deselect it you should use
         @code
             list->SetItemState(item, 0, wxLIST_STATE_SELECTED);

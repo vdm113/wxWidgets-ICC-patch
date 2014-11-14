@@ -85,6 +85,11 @@ private:
 
 /*
     Note 1: the outer helper class _WX_LIST_HELPER_##liT below is a workaround
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for mingw 3.2.3 compiler bug that prevents a static function of liT class
     from being exported into dll. A minimal code snippet reproducing the bug:
 
@@ -967,10 +972,8 @@ private:
             { return const_reverse_iterator(NULL, GetFirst()); }            \
         void resize(size_type n, value_type v = value_type())               \
         {                                                                   \
-VDM_MACRO_PRAGMA_IVDEP \
             while (n < size())                                              \
                 pop_back();                                                 \
-VDM_MACRO_PRAGMA_IVDEP \
             while (n > size())                                              \
                 push_back(v);                                                \
         }                                                                   \
@@ -1307,7 +1310,6 @@ VDM_MACRO_PRAGMA_IVDEP \
 #define WX_APPEND_LIST(list, other)                                           \
     {                                                                         \
         wxList::compatibility_iterator node = other->GetFirst();              \
-VDM_MACRO_PRAGMA_IVDEP \
         while ( node )                                                        \
         {                                                                     \
             (list)->push_back(node->GetData());                               \

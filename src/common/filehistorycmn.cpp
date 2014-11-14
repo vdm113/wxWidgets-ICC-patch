@@ -260,11 +260,6 @@ void wxFileHistoryBase::Load(const wxConfigBase& config)
     buf.Printf(wxT("file%d"), 1);
 
     wxString historyFile;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ((m_fileHistory.GetCount() < m_fileMaxFiles) &&
            config.Read(buf, &historyFile) && !historyFile.empty())
     {

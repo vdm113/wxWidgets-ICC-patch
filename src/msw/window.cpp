@@ -314,11 +314,6 @@ static void EnsureParentHasControlParentStyle(wxWindow *parent)
        but if the parent doesn't have it, it wouldn't recurse inside it later
        on and so wouldn't have a chance of getting back to this window either.
      */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( parent && !parent->IsTopLevel() )
     {
         LONG exStyle = wxGetWindowExStyle(parent);
@@ -388,11 +383,6 @@ wxWindow *wxWindowMSW::FindItem(long id, WXHWND hWnd) const
 
     // Then check wx level children.
     wxWindowList::compatibility_iterator current = GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (current)
     {
         wxWindow *childWin = current->GetData();
@@ -411,11 +401,6 @@ wxWindow *wxWindowMSW::FindItem(long id, WXHWND hWnd) const
 wxWindow *wxWindowMSW::FindItemByHWND(WXHWND hWnd, bool controlOnly) const
 {
     wxWindowList::compatibility_iterator current = GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (current)
     {
         wxWindow *parent = current->GetData();
@@ -1554,11 +1539,6 @@ bool wxWindowMSW::IsMouseInWindow() const
     // find the window which currently has the cursor and go up the window
     // chain until we find this window - or exhaust it
     HWND hwnd = ::WindowFromPoint(pt);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( hwnd && (hwnd != GetHwnd()) )
         hwnd = ::GetParent(hwnd);
 
@@ -2233,11 +2213,6 @@ static void wxYieldForCommandsOnly()
     // peek all WM_COMMANDs (it will always return WM_QUIT too but we don't
     // want to process it here)
     MSG msg;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( ::PeekMessage(&msg, (HWND)0, WM_COMMAND, WM_COMMAND, PM_REMOVE) )
     {
         if ( msg.message == WM_QUIT )
@@ -2517,11 +2492,6 @@ bool wxWindowMSW::MSWProcessMessage(WXMSG* pMsg)
                                 // window and all of its parent windows in turn
                                 LONG lDlgCode2 = lDlgCode;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                                 while ( win )
                                 {
                                     if ( lDlgCode2 & DLGC_WANTMESSAGE )
@@ -2713,11 +2683,6 @@ bool wxWindowMSW::MSWSafeIsDialogMessage(WXMSG* msg)
         // currently focused window is disabled or hidden and its
         // parent has WS_EX_CONTROLPARENT style, so don't call it in
         // this case
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( hwndFocus )
         {
             if ( !::IsWindowEnabled(hwndFocus) ||
@@ -3960,11 +3925,6 @@ bool wxWindowMSW::HandleNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result)
 #if 0
     // try all our children
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( node )
     {
         wxWindow *child = node->GetData();
@@ -4689,11 +4649,6 @@ bool wxWindowMSW::HandlePaletteChanged(WXHWND hWndPalChange)
     {
         // check to see if we our our parents have a custom palette
         wxWindowMSW *win = this;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( win && !win->HasCustomPalette() )
         {
             win = win->GetParent();
@@ -4755,11 +4710,6 @@ bool wxWindowMSW::HandleSettingChange(WXWPARAM wParam, WXLPARAM lParam)
     // this is exactly how explorer does it to enable the font size changes
 
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( node )
     {
         // top-level windows already get this message from the system
@@ -4819,11 +4769,6 @@ void wxWindowMSW::OnSysColourChanged(wxSysColourChangedEvent& WXUNUSED(event))
         gs_hasStdCmap = false;
     }
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( node )
     {
         // Only propagate to non-top-level windows because Windows already
@@ -6094,11 +6039,6 @@ int wxWindowMSW::HandleMenuChar(int WXUNUSED_IN_WINCE(chAccel),
 
                 const wxString label(item->GetItemLabel());
                 const wxChar *p = wxStrchr(label.t_str(), wxT('&'));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while ( p++ )
                 {
                     if ( *p == wxT('&') )
@@ -6858,11 +6798,6 @@ extern wxWindow *wxGetWindowFromHWND(WXHWND hWnd)
         }
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( hwnd && !win )
     {
         // this is a really ugly hack needed to avoid mistakenly returning the
@@ -7696,11 +7631,6 @@ static void wxAdjustZOrder(wxWindow* parent)
     }
 
     wxWindowList::compatibility_iterator current = parent->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (current)
     {
         wxWindow *childWin = current->GetData();

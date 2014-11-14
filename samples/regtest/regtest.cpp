@@ -1041,11 +1041,6 @@ bool RegTreeCtrl::TreeNode::OnExpand()
 
     // enumerate all subkeys
     bCont = m_pKey->GetFirstKey(str, l);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( bCont )
     {
         m_pTree->InsertNewTreeNode(
@@ -1062,11 +1057,6 @@ bool RegTreeCtrl::TreeNode::OnExpand()
 
     // enumerate all values
     bCont = m_pKey->GetFirstValue(str, l);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( bCont )
     {
         wxString strItem;
@@ -1274,11 +1264,6 @@ void RegTreeCtrl::GoTo(const wxString& location)
 
     wxTreeItemId id = GetRootItem();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( tk.HasMoreTokens() )
     {
         wxString subkey = tk.GetNextToken();
@@ -1312,11 +1297,6 @@ void RegTreeCtrl::GoTo(const wxString& location)
         else
         {
             // enum all children
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ( id.IsOk() )
             {
                 if ( subkey == ((TreeNode *)GetItemData(id))->m_strName )

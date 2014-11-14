@@ -81,6 +81,11 @@ enum
     enabled or not) and short and long help strings. The default
     implementations use the short help string for the tooltip text which is
     popped up when the mouse pointer enters the tool and the long help string
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for the applications status bar.
 */
 class wxToolBarToolBase : public wxObject
@@ -172,6 +177,11 @@ public:
     This should be regarded as an opaque handle representing the newly added
     toolbar item, providing access to its id and position within the toolbar.
     Changes to the item's state should be made through calls to wxToolBar methods,
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for example wxToolBar::EnableTool.
     Calls to @c wxToolBarToolBase methods (undocumented by purpose) will not change
     the visible state of the item within the tool bar.

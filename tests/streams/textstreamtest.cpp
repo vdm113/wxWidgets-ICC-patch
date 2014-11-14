@@ -294,11 +294,6 @@ void TextStreamTestCase::TestInput(const wxMBConv& conv,
     wxTextInputStream textIn(byteIn, wxT("\n"), conv);
 
     wxString temp;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( wxChar c = textIn.GetChar() )
     {
         temp.Append(c);

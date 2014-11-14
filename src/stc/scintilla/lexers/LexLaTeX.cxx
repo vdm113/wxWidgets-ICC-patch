@@ -125,18 +125,8 @@ static bool latexIsLetter(int ch) {
 }
 
 static bool latexIsTagValid(int &i, int l, Accessor &styler) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (i < l) {
 		if (styler.SafeGetCharAt(i) == '{') {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (i < l) {
 				i++;
 				if (styler.SafeGetCharAt(i) == '}') {
@@ -156,11 +146,6 @@ static bool latexIsTagValid(int &i, int l, Accessor &styler) {
 
 static bool latexNextNotBlankIs(int i, Accessor &styler, char needle) {
   char ch;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (i < styler.Length()) {
     ch = styler.SafeGetCharAt(i);
 		if (!latexIsBlankAndNL(ch) && ch != '*') {
@@ -180,11 +165,6 @@ static bool latexLastWordIs(int start, Accessor &styler, const char *needle) {
 	int ini = start-l+1;
 	char s[32];
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (i < l && i < 31) {
 		s[i] = styler.SafeGetCharAt(ini + i);
 		i++;
@@ -579,11 +559,6 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 				needFold = true;
 			}
 			else if (strcmp(buf, "end") == 0) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (save.structLev > 0 && save.openBegins[save.structLev] == 0)
 					--save.structLev;
 				if (lev < 0) lev = latexFoldSaveToInt(save);

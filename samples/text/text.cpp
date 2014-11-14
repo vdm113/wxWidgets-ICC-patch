@@ -1898,11 +1898,6 @@ void RichTextFrame::OnTabStops(wxCommandEvent& WXUNUSED(event))
     wxArrayInt tabs;
 
     wxStringTokenizer tokens(tabsStr, wxT(" "));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (tokens.HasMoreTokens())
     {
         wxString token = tokens.GetNextToken();

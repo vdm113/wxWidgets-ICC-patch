@@ -183,11 +183,6 @@ public:
         // left > 0, we have events
         char* memory = buf;
         int event_count = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (left > 0) // OPT checking 'memory' would suffice
         {
             event_count++;
@@ -506,11 +501,6 @@ protected:
         // After all of a batch of events has been processed, this deals with
         // any still-unpaired IN_MOVED_FROM or IN_MOVED_TO events.
         wxInotifyCookies::iterator it = m_cookies.begin();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( it != m_cookies.end() )
         {
             inotify_event& inevt = *(it->second);

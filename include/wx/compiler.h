@@ -40,6 +40,11 @@
 
     /*
       define special symbols for different VC version instead of writing tests
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       for magic numbers such as 1200, 1300 &c repeatedly
     */
 #if __VISUALC__ < 1300

@@ -252,11 +252,6 @@ static void BuildListFromNN(wxArrayString& list, NETRESOURCE* pResSrc,
         DWORD size = 256;
         NETRESOURCE* pRes = (NETRESOURCE*)malloc(size);
         memset(pRes, 0, sizeof(NETRESOURCE));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (rc = s_pWNetEnumResource(hEnum, &count, pRes, &size), rc == NO_ERROR || rc == ERROR_MORE_DATA)
         {
             if (s_cancelSearch)
@@ -375,11 +370,6 @@ static bool BuildRemoteList(wxArrayString& list, NETRESOURCE* pResSrc,
             wxString all(list[iList]);
             wxString mount(mounted[iMounted]);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (compare =
                      wxStricmp(list[iList].c_str(), mounted[iMounted].c_str()),
                    compare > 0 && iList >= 0)
@@ -448,11 +438,6 @@ wxArrayString wxFSVolumeBase::GetVolumes(int flagsSet, int flagsUnset)
     // Parse the list into an array, applying appropriate filters.
     TCHAR *pVol;
     pVol = buf;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (*pVol)
     {
         FilteredAdd(list, pVol, flagsSet, flagsUnset);

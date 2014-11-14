@@ -19,6 +19,11 @@
 @tableofcontents
 
 @note C++ RTTI is usually enabled by default in most wxWidgets builds. If you
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       do not know if your build has C++ RTTI enabled or not, then it probably
       is enabled, and you should not worry about anything mentioned in this
       section.

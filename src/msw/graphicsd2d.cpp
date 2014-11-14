@@ -381,11 +381,6 @@ public:
 
     virtual ~wxD2DResourceManager()
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (!m_resources.empty())
         {
             m_resources.front()->ReleaseResource();
@@ -734,11 +729,6 @@ wxCOMPtr<ID2D1Geometry> wxD2DConvertRegionToGeometry(ID2D1Factory* direct2dFacto
 
     // Count the number of rectangles which compose the region
     int rectCount = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while(regionIterator++)
         rectCount++;
 
@@ -747,11 +737,6 @@ wxCOMPtr<ID2D1Geometry> wxD2DConvertRegionToGeometry(ID2D1Factory* direct2dFacto
     regionIterator.Reset(region);
 
     int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while(regionIterator)
     {
         geometries[i] = NULL;
@@ -1203,11 +1188,6 @@ void wxD2DPathData::AddArc(wxDouble x, wxDouble y, wxDouble r, wxDouble startAng
         angle = 360 - angle;
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (abs(angle) > 360)
     {
         angle -= (angle / abs(angle)) * 360;
@@ -2345,11 +2325,6 @@ private:
         unsigned char* dest = m_resultImage->GetData();
 
         int k = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (k < width * height)
         {
             wxPBGRAColor color = wxPBGRAColor(buffer + k * 4);
@@ -2944,11 +2919,6 @@ wxD2DContext::~wxD2DContext()
 {
     ResetClip();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (!m_layers.empty())
     {
         EndLayer();

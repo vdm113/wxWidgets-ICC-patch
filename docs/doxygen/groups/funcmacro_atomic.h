@@ -21,6 +21,11 @@ When using multi-threaded applications, it is often required to access or
 modify memory which is shared between threads. Atomic integer and pointer
 operations are an efficient way to handle this issue (another, less efficient,
 way is to use a wxMutex or wxCriticalSection). A native implementation exists
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for Windows, Linux, Solaris and Mac OS X; for others, a wxCriticalSection is
 used to protect the data.
 

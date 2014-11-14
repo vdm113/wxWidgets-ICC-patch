@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Copyright (c) 1988-1997 Sam Leffler
  * Copyright (c) 1991-1997 Silicon Graphics, Inc.
@@ -56,11 +57,6 @@ _tiffReadProc(thandle_t fd, void* buf, tmsize_t size)
 	ma=(uint8*)buf;
 	mb=size;
 	p=0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (mb>0)
 	{
 		n=0x80000000UL;
@@ -91,11 +87,6 @@ _tiffWriteProc(thandle_t fd, void* buf, tmsize_t size)
 	ma=(uint8*)buf;
 	mb=size;
 	p=0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (mb>0)
 	{
 		n=0x80000000UL;

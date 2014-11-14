@@ -106,11 +106,6 @@ bool wxRichTextXMLHandler::DoLoadFile(wxRichTextBuffer *buffer, wxInputStream& s
         if (xmlDoc->GetRoot() && xmlDoc->GetRoot()->GetType() == wxXML_ELEMENT_NODE && xmlDoc->GetRoot()->GetName() == wxT("richtext"))
         {
             wxXmlNode* child = xmlDoc->GetRoot()->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (child)
             {
                 if (child->GetType() == wxXML_ELEMENT_NODE)
@@ -162,11 +157,6 @@ bool wxRichTextXMLHandler::ImportXML(wxRichTextBuffer* buffer, wxRichTextObject*
     if (recurse && compositeParent)
     {
         wxXmlNode* child = node->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (child)
         {
             if (child->GetName() != wxT("stylesheet"))
@@ -493,11 +483,6 @@ bool wxRichTextPlainText::ImportFromXML(wxRichTextBuffer* buffer, wxXmlNode* nod
 
         // First skip past properties, if any.
         wxXmlNode* n = textChild;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (n)
         {
             // Skip past properties
@@ -507,11 +492,6 @@ bool wxRichTextPlainText::ImportFromXML(wxRichTextBuffer* buffer, wxXmlNode* nod
                 n = NULL;
 
                 // Skip past the whitespace after the properties
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while (textChild && (textChild->GetType() == wxXML_TEXT_NODE))
                 {
                     wxString text = textChild->GetContent();
@@ -532,11 +512,6 @@ bool wxRichTextPlainText::ImportFromXML(wxRichTextBuffer* buffer, wxXmlNode* nod
                 n = n->GetNext();
         }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (textChild)
         {
             if (textChild->GetType() == wxXML_TEXT_NODE ||
@@ -565,11 +540,6 @@ bool wxRichTextPlainText::ImportFromXML(wxRichTextBuffer* buffer, wxXmlNode* nod
         // This is a symbol that XML can't read in the normal way
         wxString text;
         wxXmlNode* textChild = node->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (textChild)
         {
             if (textChild->GetType() == wxXML_TEXT_NODE ||
@@ -819,22 +789,12 @@ bool wxRichTextImage::ImportFromXML(wxRichTextBuffer* buffer, wxXmlNode* node, w
     wxString data;
 
     wxXmlNode* imageChild = node->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (imageChild)
     {
         wxString childName = imageChild->GetName();
         if (childName == wxT("data"))
         {
             wxXmlNode* dataChild = imageChild->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (dataChild)
             {
                 data = dataChild->GetContent();
@@ -975,11 +935,6 @@ bool wxRichTextParagraphLayoutBox::ImportFromXML(wxRichTextBuffer* buffer, wxXml
         sheet->SetDescription(sheetDescription);
 
         wxXmlNode* child2 = child->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (child2)
         {
             handler->GetHelper().ImportStyleDefinition(sheet, child2);
@@ -1074,11 +1029,6 @@ bool wxRichTextTable::ImportFromXML(wxRichTextBuffer* buffer, wxXmlNode* node, w
     m_colCount = wxAtoi(node->GetAttribute(wxT("cols"), wxEmptyString));
 
     wxXmlNode* child = node->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child)
     {
         wxRichTextObject* childObj = handler->CreateObjectForXMLName(this, child->GetName());
@@ -1320,11 +1270,6 @@ wxXmlNode *wxRichTextXMLHelper::GetParamNode(wxXmlNode* node, const wxString& pa
 
     wxXmlNode *n = node->GetChildren();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (n)
     {
         if (n->GetType() == wxXML_ELEMENT_NODE && n->GetName() == param)
@@ -1340,11 +1285,6 @@ wxString wxRichTextXMLHelper::GetNodeContent(wxXmlNode *node)
     if (n == NULL) return wxEmptyString;
     n = n->GetChildren();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (n)
     {
         if (n->GetType() == wxXML_TEXT_NODE ||
@@ -1378,11 +1318,6 @@ wxXmlNode* wxRichTextXMLHelper::FindNode(wxXmlNode* node, const wxString& name)
         return node;
 
     wxXmlNode* child = node->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child)
     {
         if (child->GetName() == name)
@@ -1548,11 +1483,6 @@ bool wxRichTextXMLHelper::ImportStyle(wxRichTextAttr& attr, wxXmlNode* node, boo
 {
     wxXmlAttribute* xmlAttr = node->GetAttributes();
     bool found;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (xmlAttr)
     {
         const wxString& name = xmlAttr->GetName();
@@ -1744,11 +1674,6 @@ bool wxRichTextXMLHelper::ImportStyle(wxRichTextAttr& attr, wxXmlNode* node, boo
                 {
                     wxArrayInt tabs;
                     wxStringTokenizer tkz(value, wxT(","));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                     while (tkz.HasMoreTokens())
                     {
                         wxString token = tkz.GetNextToken();
@@ -1960,11 +1885,6 @@ bool wxRichTextXMLHelper::ImportStyleDefinition(wxRichTextStyleSheet* sheet, wxX
         def->SetBaseStyle(baseStyleName);
 
         wxXmlNode* child = node->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (child)
         {
             if (child->GetName() == wxT("style"))
@@ -1989,11 +1909,6 @@ bool wxRichTextXMLHelper::ImportStyleDefinition(wxRichTextStyleSheet* sheet, wxX
         def->SetBaseStyle(baseStyleName);
 
         wxXmlNode* child = node->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (child)
         {
             if (child->GetName() == wxT("style"))
@@ -2016,11 +1931,6 @@ bool wxRichTextXMLHelper::ImportStyleDefinition(wxRichTextStyleSheet* sheet, wxX
         def->SetBaseStyle(baseStyleName);
 
         wxXmlNode* child = node->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (child)
         {
             if (child->GetName() == wxT("style"))
@@ -2045,11 +1955,6 @@ bool wxRichTextXMLHelper::ImportStyleDefinition(wxRichTextStyleSheet* sheet, wxX
         def->SetBaseStyle(baseStyleName);
 
         wxXmlNode* child = node->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (child)
         {
             if (child->GetName() == wxT("style"))
@@ -2085,21 +1990,11 @@ bool wxRichTextXMLHelper::ImportStyleDefinition(wxRichTextStyleSheet* sheet, wxX
 bool wxRichTextXMLHelper::ImportProperties(wxRichTextProperties& properties, wxXmlNode* node)
 {
     wxXmlNode* child = node->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child)
     {
         if (child->GetName() == wxT("properties"))
         {
             wxXmlNode* propertyChild = child->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (propertyChild)
             {
                 if (propertyChild->GetName() == wxT("property"))

@@ -305,11 +305,6 @@ static void ColouriseCmakeDoc(unsigned int startPos, int length, int, WordList *
                 // We need to check if the previous line has a \ in it...
                 bool bNextLine = false;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while ( nBack > 0 ) {
                     if ( styler.GetLine(nBack) != nCurLine )
                         break;

@@ -304,11 +304,6 @@ bool wxComboBox::Create( wxWindow *parent, wxWindowID id, const wxString& value,
 wxComboBox::~wxComboBox()
 {
     wxList::compatibility_iterator node = m_clientObjectList.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxClientData *cd = (wxClientData*)node->GetData();
@@ -502,11 +497,6 @@ int wxComboBox::FindString( const wxString &item, bool bCase ) const
 
     GList *child = GTK_LIST(list)->children;
     int count = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child)
     {
         GtkBin *bin = GTK_BIN( child->data );
@@ -541,11 +531,6 @@ int wxComboBox::GetCurrentSelection() const
     {
         GList *child = GTK_LIST(list)->children;
         int count = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (child)
         {
             if (child->data == selection->data) return count;
@@ -607,11 +592,6 @@ unsigned int wxComboBox::GetCount() const
 
     GList *child = GTK_LIST(list)->children;
     unsigned int count = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child) { count++; child = child->next; }
     return count;
 }
@@ -834,11 +814,6 @@ void wxComboBox::OnChar( wxKeyEvent &event )
             // as the clicking the default button.
 
             wxWindow *top_frame = m_parent;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (top_frame->GetParent() && !(top_frame->IsTopLevel()))
                 top_frame = top_frame->GetParent();
 
@@ -898,11 +873,6 @@ void wxComboBox::DoApplyWidgetStyle(GtkRcStyle *style)
 
     GtkList *list = GTK_LIST( GTK_COMBO(m_widget)->list );
     GList *child = list->children;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child)
     {
         gtk_widget_modify_style( GTK_WIDGET(child->data), style );

@@ -188,20 +188,10 @@ bool WordList::InList(const char *s) const {
 	unsigned char firstChar = s[0];
 	int j = starts[firstChar];
 	if (j >= 0) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (static_cast<unsigned char>(words[j][0]) == firstChar) {
 			if (s[1] == words[j][1]) {
 				const char *a = words[j] + 1;
 				const char *b = s + 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (*a && *a == *b) {
 					a++;
 					b++;
@@ -214,19 +204,9 @@ bool WordList::InList(const char *s) const {
 	}
 	j = starts[static_cast<unsigned int>('^')];
 	if (j >= 0) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (words[j][0] == '^') {
 			const char *a = words[j] + 1;
 			const char *b = s;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (*a && *a == *b) {
 				a++;
 				b++;
@@ -250,11 +230,6 @@ bool WordList::InListAbbreviated(const char *s, const char marker) const {
 	unsigned char firstChar = s[0];
 	int j = starts[firstChar];
 	if (j >= 0) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (static_cast<unsigned char>(words[j][0]) == firstChar) {
 			bool isSubword = false;
 			int start = 1;
@@ -265,11 +240,6 @@ bool WordList::InListAbbreviated(const char *s, const char marker) const {
 			if (s[1] == words[j][start]) {
 				const char *a = words[j] + start;
 				const char *b = s + 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (*a && *a == *b) {
 					a++;
 					if (*a == marker) {
@@ -286,19 +256,9 @@ bool WordList::InListAbbreviated(const char *s, const char marker) const {
 	}
 	j = starts[static_cast<unsigned int>('^')];
 	if (j >= 0) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (words[j][0] == '^') {
 			const char *a = words[j] + 1;
 			const char *b = s;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (*a && *a == *b) {
 				a++;
 				b++;

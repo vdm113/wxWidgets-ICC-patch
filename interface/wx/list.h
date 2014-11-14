@@ -30,9 +30,19 @@
     wxList API in the future.
 
     Please refer to the STL @c std::list documentation (see http://www.cppreference.com/wiki/stl/list/start)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for further information on how to use the class.
     Below we documented both the supported STL and the legacy API
     that originated from the old wxList class and which can still be used alternatively
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for the same class.
 
     Note that if you compile wxWidgets in STL mode (@c wxUSE_STL defined as 1)
@@ -66,6 +76,11 @@
 
     // let's iterate over the list in STL syntax
     MyList::iterator iter;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (iter = list.begin(); iter != list.end(); ++iter)
     {
         MyListElement *current = *iter;

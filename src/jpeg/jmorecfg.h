@@ -169,6 +169,11 @@ typedef short INT16;
 
 /*
     VZ: due to the horrible mess resulting in INT32 being defined in windows.h
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for some compilers but not for the other ones, I have globally replace
         INT32 with JPEG_INT32 in libjpeg code to avoid the eight level ifdef
         which used to be here. The problem is that, of course, now we'll have

@@ -69,11 +69,6 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
     m_CachePos = 0;
 
     int pos = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (pos < lng)
     {
         if (src[pos] == wxT('<'))   // tag found:
@@ -134,19 +129,9 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 
                     // find next matching tag
                     int tag_len = wxStrlen(tagBuffer);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                     while (pos < lng)
                     {
                         // find the ending tag
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                         while (pos + 1 < lng &&
                                (src[pos] != '<' || src[pos+1] != '/'))
                             ++pos;
@@ -155,11 +140,6 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 
                         // see if it matches
                         int match_pos = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                         while (pos < lng && match_pos < tag_len && src[pos] != '>' && src[pos] != '<') {
                             // cast to wxChar needed to suppress warning in
                             // Unicode build
@@ -287,11 +267,6 @@ wx28HtmlTag::wx28HtmlTag(wx28HtmlTag *parent,
     i = pos+1;
 
     // find tag's name and convert it to uppercase:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ((i < end_pos) &&
            ((c = source[i++]) != wxT(' ') && c != wxT('\r') &&
              c != wxT('\n') && c != wxT('\t') &&
@@ -322,11 +297,6 @@ wx28HtmlTag::wx28HtmlTag(wx28HtmlTag *parent,
 
         quote = 0;
         state = ST_BEFORE_NAME;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (i < end_pos)
         {
             c = source[i++];
@@ -422,11 +392,6 @@ wx28HtmlTag::~wx28HtmlTag()
 {
     wx28HtmlTag *t1, *t2;
     t1 = m_FirstChild;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (t1)
     {
         t2 = t1->GetNextSibling();
@@ -507,11 +472,6 @@ wx28HtmlTag *wx28HtmlTag::GetFirstSibling() const
     else
     {
         wx28HtmlTag *cur = (wx28HtmlTag*)this;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (cur->m_Prev)
             cur = cur->m_Prev;
         return cur;
@@ -525,11 +485,6 @@ wx28HtmlTag *wx28HtmlTag::GetLastSibling() const
     else
     {
         wx28HtmlTag *cur = (wx28HtmlTag*)this;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (cur->m_Next)
             cur = cur->m_Next;
         return cur;
@@ -542,11 +497,6 @@ wx28HtmlTag *wx28HtmlTag::GetNextTag() const
     if (m_Next) return m_Next;
     wx28HtmlTag *cur = m_Parent;
     if (!cur) return NULL;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (cur->m_Parent && !cur->m_Next)
         cur = cur->m_Parent;
     return cur->m_Next;

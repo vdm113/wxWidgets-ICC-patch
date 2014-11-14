@@ -42,6 +42,11 @@
     Platform-specific methods for creating a wxIcon structure are catered for,
     and this is an occasion where conditional compilation will probably be required.
     Note that a new icon must be created for every time the icon is to be used
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for a new window. In Windows, the icon will not be reloaded if it has already
     been used.
     An icon allocated to a frame will be deleted when the frame is deleted.

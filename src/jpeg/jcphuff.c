@@ -259,11 +259,6 @@ emit_bits (phuff_entropy_ptr entropy, unsigned int code, int size)
 
   put_buffer |= entropy->put_buffer; /* and merge with old buffer contents */
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (put_bits >= 8) {
     int c = (int) ((put_buffer >> 16) & 0xFF);
     
@@ -317,11 +312,6 @@ emit_buffered_bits (phuff_entropy_ptr entropy, char * bufstart,
   if (entropy->gather_statistics)
     return;			/* no real work */
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (nbits > 0) {
     emit_bits(entropy, (unsigned int) (*bufstart), 1);
     bufstart++;
@@ -342,11 +332,6 @@ emit_eobrun (phuff_entropy_ptr entropy)
   if (entropy->EOBRUN > 0) {	/* if there is any pending EOBRUN */
     temp = entropy->EOBRUN;
     nbits = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ((temp >>= 1))
       nbits++;
     /* safety check: shouldn't happen given limited correction-bit buffer */
@@ -456,11 +441,6 @@ encode_mcu_DC_first (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
     
     /* Find the number of bits needed for the magnitude of the coefficient */
     nbits = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (temp) {
       nbits++;
       temp >>= 1;
@@ -562,11 +542,6 @@ encode_mcu_AC_first (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
     if (entropy->EOBRUN > 0)
       emit_eobrun(entropy);
     /* if run length > 15, must emit special run-length-16 codes (0xF0) */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (r > 15) {
       emit_symbol(entropy, entropy->ac_tbl_no, 0xF0);
       r -= 16;
@@ -574,11 +549,6 @@ encode_mcu_AC_first (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
 
     /* Find the number of bits needed for the magnitude of the coefficient */
     nbits = 1;			/* there must be at least one 1 bit */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ((temp >>= 1))
       nbits++;
     /* Check for out-of-range coefficient values */
@@ -742,11 +712,6 @@ encode_mcu_AC_refine (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
     }
 
     /* Emit any required ZRLs, but not if they can be folded into EOB */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (r > 15 && k <= EOB) {
       /* emit any pending EOBRUN and the BE correction bits */
       emit_eobrun(entropy);

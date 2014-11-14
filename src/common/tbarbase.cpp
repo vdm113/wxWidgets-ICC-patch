@@ -422,11 +422,6 @@ void wxToolBarBase::UnToggleRadioGroup(wxToolBarToolBase *tool)
     wxCHECK_RET( node, wxT("invalid tool in wxToolBarTool::UnToggleRadioGroup") );
 
     wxToolBarToolsList::compatibility_iterator nodeNext = node->GetNext();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( nodeNext )
     {
         wxToolBarToolBase *toolNext = nodeNext->GetData();
@@ -443,11 +438,6 @@ void wxToolBarBase::UnToggleRadioGroup(wxToolBarToolBase *tool)
     }
 
     wxToolBarToolsList::compatibility_iterator nodePrev = node->GetPrevious();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( nodePrev )
     {
         wxToolBarToolBase *toolNext = nodePrev->GetData();
@@ -466,11 +456,6 @@ void wxToolBarBase::UnToggleRadioGroup(wxToolBarToolBase *tool)
 
 void wxToolBarBase::ClearTools()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( GetToolsCount() )
     {
         DeleteToolByPos(0);

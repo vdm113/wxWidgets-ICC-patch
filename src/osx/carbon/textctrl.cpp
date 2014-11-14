@@ -1389,11 +1389,6 @@ wxString wxMacMLTEControl::GetLineText(long lineNo) const
         // adding to our current y pixel point position
         ypos = 0 ;
         currentHeight = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (ypos < lineNo)
         {
             TXNGetLineMetrics(m_txn, ypos++, &lineWidth, &lineHeight);
@@ -1406,11 +1401,6 @@ wxString wxMacMLTEControl::GetLineText(long lineNo) const
 
         wxString content = GetStringValue() ;
         Point currentPoint = thePoint;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (thePoint.v == currentPoint.v && theOffset < content.length())
         {
             line += content[theOffset];
@@ -1438,11 +1428,6 @@ int wxMacMLTEControl::GetLineLength(long lineNo) const
         // adding to our current y pixel point position
         ypos = 0;
         currentHeight = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (ypos < lineNo)
         {
             TXNGetLineMetrics(m_txn, ypos++, &lineWidth, &lineHeight);
@@ -1455,11 +1440,6 @@ int wxMacMLTEControl::GetLineLength(long lineNo) const
 
         wxString content = GetStringValue() ;
         Point currentPoint = thePoint;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (thePoint.v == currentPoint.v && theOffset < content.length())
         {
             ++theLength;

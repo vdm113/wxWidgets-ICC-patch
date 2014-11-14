@@ -114,11 +114,6 @@ static void ColouriseEclDoc(unsigned int startPos, int length, int initStyle, Wo
 	// look back to set chPrevNonWhite properly for better regex colouring
 	if (startPos > 0) {
 		int back = startPos;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (--back && IsSpaceEquiv(styler.StyleAt(back)))
 			;
 		if (styler.StyleAt(back) == SCE_ECL_OPERATOR) {
@@ -195,11 +190,6 @@ static void ColouriseEclDoc(unsigned int startPos, int length, int initStyle, Wo
 					else	//Data types are of from KEYWORD## 
 					{
 						int i = static_cast<int>(strlen(s)) - 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 						while(i >= 0 && (isdigit(s[i]) || s[i] == '_'))
 							--i;
 
@@ -301,11 +291,6 @@ static void ColouriseEclDoc(unsigned int startPos, int length, int initStyle, Wo
 					sc.SetState(SCE_ECL_DEFAULT);
 				} else if (sc.ch == '/') {
 					sc.Forward();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 					while ((sc.ch < 0x80) && islower(sc.ch))
 						sc.Forward();    // gobble regex flags
 					sc.SetState(SCE_ECL_DEFAULT);
@@ -492,11 +477,6 @@ static void FoldEclDoc(unsigned int startPos, int length, int initStyle,
 		if (foldPreprocessor && (style == SCE_ECL_PREPROCESSOR)) {
 			if (ch == '#') {
 				unsigned int j = i + 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while ((j < endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
 					j++;
 				}

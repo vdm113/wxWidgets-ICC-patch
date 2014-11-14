@@ -341,11 +341,6 @@ static void wxDoStripExtension(T *buffer)
 {
     int len = wxStrlen(buffer);
     int i = len-1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (i > 0)
     {
         if (buffer[i] == wxT('.'))
@@ -525,20 +520,10 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
     CharType *nm_tmp = nm;
 
     /* Skip leading whitespace and cr */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (wxStrchr(trimchars, *nm) != NULL)
         nm++;
     /* And strip off trailing whitespace and cr */
     s = nm + (q = wxStrlen(nm)) - 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (q-- && wxStrchr(trimchars, *s) != NULL)
         *s = wxT('\0');
 
@@ -551,11 +536,6 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
 #endif
 
     /* Expand inline environment variables */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ((*d++ = *s) != 0) {
 #  ifndef __WINDOWS__
         if (*s == wxT('\\')) {
@@ -577,11 +557,6 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
             CharType  *start = d;
             int     braces = (*s == wxT('{') || *s == wxT('('));
             CharType  *value;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ((*d++ = *s) != 0)
                 if (braces ? (*s == wxT('}') || *s == wxT(')')) : !(wxIsalnum(*s) || *s == wxT('_')) )
                     break;
@@ -657,11 +632,6 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
     d = buf;
     if (s && *s) { /* MATTHEW: s could be NULL if user '~' didn't exist */
         /* Copy home dir */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (wxT('\0') != (*d++ = *s++))
           /* loop */;
         // Handle root home
@@ -781,11 +751,6 @@ wxPathOnly (wxChar *path)
         wxStrcpy (buf, path);
 
         // Search backward for a backward or forward slash
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (i > -1)
         {
             // Unix like or Windows
@@ -835,11 +800,6 @@ wxString wxPathOnly (const wxString& path)
         wxStrcpy(buf, path);
 
         // Search backward for a backward or forward slash
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (i > -1)
         {
             // Unix like or Windows
@@ -1017,6 +977,11 @@ wxConcatFiles (const wxString& file1, const wxString& file2, const wxString& fil
     ssize_t ofs;
     unsigned char buf[1024];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for( int i=0; i<2; i++)
     {
         wxFile *in = i==0 ? &in1 : &in2;
@@ -1067,6 +1032,11 @@ wxDoCopyFile(wxFile& fileIn,
 
     // copy contents of file1 to file2
     char buf[4096];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ;; )
     {
         ssize_t count = fileIn.Read(buf, WXSIZEOF(buf));
@@ -1694,6 +1664,11 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
 
 #if defined(__WXMOTIF__)
     // split it so there is one wildcard per entry
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for( size_t i = 0 ; i < descriptions.GetCount() ; i++ )
     {
         pos = filters[i].Find(wxT(';'));
@@ -1745,6 +1720,11 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
 #endif
 
     // autocompletion
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for( size_t j = 0 ; j < descriptions.GetCount() ; j++ )
     {
         if ( descriptions[j].empty() && !filters[j].empty() )
@@ -1917,6 +1897,11 @@ wxFileKind wxGetFileKind(FILE *fp)
 
 bool wxIsWild( const wxString& pattern )
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( wxString::const_iterator p = pattern.begin(); p != pattern.end(); ++p )
     {
         switch ( (*p).GetValue() )
@@ -1965,6 +1950,11 @@ bool wxMatchWild( const wxString& pat, const wxString& text, bool dot_special )
         return false;
     }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (;;)
     {
         if (*m == wxT('*'))

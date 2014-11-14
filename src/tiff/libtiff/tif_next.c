@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Copyright (c) 1988-1997 Sam Leffler
  * Copyright (c) 1991-1997 Silicon Graphics, Inc.
@@ -138,11 +139,6 @@ NeXTDecode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 				 * bounds, potentially resulting in a security
 				 * issue.
 				 */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (n-- > 0 && npixels < imagewidth)
 					SETPIXEL(op, grey);
 				if (npixels >= imagewidth)

@@ -93,11 +93,6 @@ Boolean XsOutline::go (Boolean drawInitial)
 
 // Process the events locally
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (!done)
    {
       XtAppNextEvent (appContext, &event);
@@ -119,11 +114,6 @@ Boolean XsOutline::go (Boolean drawInitial)
             
 // Process only the last motion event
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (XPending (XtDisplay (_w)) > 0)
             {
                XPeekEvent (XtDisplay (_w), &next);

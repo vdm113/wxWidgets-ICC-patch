@@ -117,11 +117,6 @@ template < typename Button >
 static void AddChoices( QButtonGroup *qtButtonGroup, QBoxLayout *qtBoxLayout, int count, const wxString choices[] )
 {
     Button *btn;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( count-- > 0 )
     {
         btn = new Button( wxQtConvertString( *choices++ ));

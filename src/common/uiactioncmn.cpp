@@ -151,11 +151,6 @@ bool wxUIActionSimulator::Char(int keycode, int modifiers)
 
 bool wxUIActionSimulator::Text(const char *s)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( *s != '\0' )
     {
         const char ch = *s++;

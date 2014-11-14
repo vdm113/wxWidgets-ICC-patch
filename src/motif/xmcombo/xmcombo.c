@@ -2210,11 +2210,6 @@ static void EditVerifyCallback(Widget w, XtPointer pClientData,
     	
     	    if ( i > ItemCount ) i = 1;
     	    Ignore = True;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     	    while ( i != Start || Ignore ) {
     	        Ignore = False;
     	        XmStringGetLtoR(Items[i-1], XmSTRING_DEFAULT_CHARSET, 
@@ -2527,11 +2522,6 @@ static Boolean FetchXmStringTableResource(Widget w,
 	 * erstelle dann daraus die Liste.
 	 */
 	Entries = 1; p = TmpList;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ( *p )
 	    if ( *p++ == ',' ) ++Entries;
 	*pStringTable = (XmStringTable) 
@@ -2856,11 +2846,6 @@ static void Initialize(Widget request, XmComboBoxWidget newW,
  */
     if ( !newW->combobox.StaticList ) {
 	w = (Widget) newW;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ( !XtIsSubclass(w, shellWidgetClass) )
 	    w = XtParent(w);
 	newW->combobox.MyNextShell = w;

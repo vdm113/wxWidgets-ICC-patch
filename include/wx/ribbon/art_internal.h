@@ -51,6 +51,11 @@ WXDLLIMPEXP_RIBBON wxBitmap wxRibbonLoadPixmap(
 
 /*
    HSL colour class, using interface as discussed in wx-dev. Provided mainly
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for art providers to perform colour scheme calculations in the HSL colour
    space. If such a class makes it into base / core, then this class should be
    removed and users switched over to the one in base / core.

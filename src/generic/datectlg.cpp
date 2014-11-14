@@ -242,11 +242,6 @@ private:
                 allowedChars.Add(wxString(c, 1));
 
             const wxChar *p2 = m_format.c_str();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ( *p2 )
             {
                 if ( *p2 == '%')

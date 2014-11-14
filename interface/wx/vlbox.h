@@ -104,11 +104,6 @@ public:
         @code
         unsigned long cookie;
         int item = hlbox->GetFirstSelected(cookie);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( item != wxNOT_FOUND )
         {
             // ... process item ...

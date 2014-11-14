@@ -79,6 +79,11 @@
     run-time even if there is a mismatch between the kind of the literal used
     and the string or character type used in the current build.
     However using it can be beneficial in <b>performance-sensitive code</b> to
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do the conversion at compile-time instead.
 
     @see @ref overview_unicode, wxT()
@@ -96,6 +101,11 @@
     Don't confuse this macro with _()!
 
     Note that since wxWidgets 2.9.0 the use of _T() is discouraged just like
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for wxT() and also that this macro may conflict with identifiers defined in
     standard headers of some compilers (such as Sun CC) so its use should
     really be avoided.
@@ -137,6 +147,11 @@ typedef wxUSE_UNICODE_dependent wxUChar;
     @c wxUSE_UNICODE_WCHAR.)
 
     Note that wxStringCharType (as the name says) is the type used by wxString
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for internal storage of the characters.
 */
 typedef wxUSE_UNICODE_WCHAR_dependent wxStringCharType;

@@ -19,6 +19,11 @@
     storing and retrieving configuration information using Windows registry.
 
     This class is used by default for wxConfig on Windows platforms; see wxFileConfig
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for an alternative you may want to use (also on Windows).
 
     @library{wxbase}

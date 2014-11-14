@@ -419,11 +419,6 @@ size_t wxStreamBuffer::Read(void *buffer, size_t size)
     {
         size_t orig_size = size;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( size > 0 )
         {
             size_t left = GetDataLeft();
@@ -511,11 +506,6 @@ size_t wxStreamBuffer::Write(const void *buffer, size_t size)
     {
         size_t orig_size = size;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( size > 0 )
         {
             size_t left = GetBytesLeft();
@@ -1362,11 +1352,6 @@ void wxFilterClassFactory::Remove()
     {
         wxFilterClassFactory **pp = &sm_first;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (*pp != this)
             pp = &(*pp)->m_next;
 

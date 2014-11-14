@@ -611,11 +611,6 @@ wxDialUpManagerImpl::CheckProcNet()
 
             char output[256];
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (fgets(output, 256, f) != NULL)
             {
                 // Test for the known network interface names

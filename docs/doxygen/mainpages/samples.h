@@ -403,11 +403,6 @@ documents without much work. In fact, only few function calls are sufficient.
 @li @b Help and @b Helpview are variations on displaying HTML help
 (compatible with MS HTML Help Workshop). @e Help shows how to embed
 wxHtmlHelpController in your application
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 while @e Helpview is a simple tool that only pops up the help window and
 displays help books given at command line.
 

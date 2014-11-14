@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Copyright (c) 1991-1997 Sam Leffler
  * Copyright (c) 1991-1997 Silicon Graphics, Inc.
@@ -99,11 +100,6 @@ main(int argc, char* argv[])
 	    fprintf(stderr, "%s: Too few arguments\n", argv[0]);
 	    usage();
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((c = getopt(argc, argv, "c:r:R:")) != -1)
 		switch (c) {
 		case 'c':		/* compression scheme */
@@ -171,11 +167,6 @@ main(int argc, char* argv[])
 	}
 
 	/* Parse header */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while(1) {
 		if (feof(in))
 			BadPPM(infile);
@@ -319,11 +310,6 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
                 compression = COMPRESSION_JPEG;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while (cp)
                 {
                     if (isdigit((int)cp[1]))

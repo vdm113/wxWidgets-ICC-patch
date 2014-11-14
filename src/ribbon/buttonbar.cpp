@@ -728,11 +728,6 @@ wxSize wxRibbonButtonBar::DoGetNextLargerSize(wxOrientation direction,
 {
     size_t nlayouts = m_layouts.GetCount();
     size_t i = nlayouts;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while(i > 0)
     {
         --i;
@@ -976,11 +971,6 @@ void wxRibbonButtonBar::MakeLayouts()
     {
         // Collapse the rightmost buttons and stack them vertically
         size_t iLast = btn_count - 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while(TryCollapseLayout(m_layouts.Last(), iLast, &iLast) && iLast > 0)
         {
             --iLast;

@@ -165,6 +165,11 @@ static void FoldLoutDoc(unsigned int startPos, int length, int, WordList *[],
 	int styleNext = styler.StyleAt(startPos);
 	char s[10] = "";
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

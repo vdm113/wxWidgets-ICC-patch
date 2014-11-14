@@ -126,11 +126,6 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 		if (lineCurrent > 0) {
 			lineCurrent--;
 			// Look for backslash-continued lines
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (lineCurrent > 0) {
 				int eolPos = styler.LineStart(lineCurrent) - 1;
 				int eolStyle = styler.StyleAt(eolPos);
@@ -271,11 +266,6 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 				} else if (kwLast == kwCDef || kwLast == kwCPDef) {
 					int pos = sc.currentPos;
 					unsigned char ch = styler.SafeGetCharAt(pos, '\0');
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 					while (ch != '\0') {
 						if (ch == '(') {
 							style = SCE_P_DEFNAME;
@@ -416,11 +406,6 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 			} else if (IsPyStringStart(sc.ch, sc.chNext, sc.GetRelative(2), allowedLiterals)) {
 				unsigned int nextIndex = 0;
 				sc.SetState(GetPyStringState(styler, sc.currentPos, &nextIndex, allowedLiterals));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (nextIndex > (sc.currentPos + 1) && sc.More()) {
 					sc.Forward();
 				}
@@ -476,11 +461,6 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 	int spaceFlags = 0;
 	int lineCurrent = styler.GetLine(startPos);
 	int indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, NULL);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (lineCurrent > 0) {
 		lineCurrent--;
 		indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, NULL);
@@ -501,11 +481,6 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 	// Process all characters to end of requested range or end of any triple quote
 	//that hangs over the end of the range.  Cap processing in all cases
 	// to end of document (in case of unclosed quote at end).
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) || prevQuote)) {
 
 		// Gather info
@@ -542,11 +517,6 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 		// which effectively folds them into surrounding code rather
 		// than screwing up folding.
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (!quote &&
 		        (lineNext < docLines) &&
 		        ((indentNext & SC_FOLDLEVELWHITEFLAG) ||

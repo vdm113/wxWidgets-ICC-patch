@@ -873,11 +873,6 @@ static wxString EscapeDelimiters(const wxString& s)
     wxString result;
     result.Alloc(s.length());
     const wxChar* ch = s.c_str();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (*ch)
     {
         if (*ch == wxT(';') || *ch == wxT('|') || *ch == wxT(','))
@@ -1188,11 +1183,6 @@ bool wxPropertyGridInterface::RestoreEditableState( const wxString& src, int res
     // (may be needed on unclean source string).
     pageIndex = 0;
     wxPropertyGridPageState* pageState = GetPageState(pageIndex);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( pageState )
     {
         pageState->VirtualHeightChanged();

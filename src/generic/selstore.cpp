@@ -268,11 +268,6 @@ void wxSelectionStore::OnItemDelete(unsigned item)
     }
 
     // and adjust the index of all which follow it
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( i < count )
     {
         // all following elements must be greater than the one we deleted
@@ -292,11 +287,6 @@ bool wxSelectionStore::OnItemsDeleted(unsigned item, unsigned numItems)
     size_t i = m_itemsSel.IndexForInsert(item);
 
     const unsigned firstAfterDeleted = item + numItems;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( i < m_itemsSel.size() )
     {
         if ( m_itemsSel[i] < firstAfterDeleted )

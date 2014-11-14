@@ -602,11 +602,6 @@ bool wxWindowMac::SetBackgroundColour(const wxColour& col )
 
 static bool wxIsWindowOrParentDisabled(wxWindow* w)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (w && !w->IsTopLevel())
     {
         if (!w->IsEnabled())
@@ -1912,11 +1907,6 @@ wxNonOwnedWindow* wxWindowMac::MacGetTopLevelWindow() const
 {
     wxWindowMac *iter = (wxWindowMac*)this ;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( iter )
     {
         if ( iter->IsTopLevel() )
@@ -2016,11 +2006,6 @@ void wxWindowMac::MacUpdateClippedRects() const
     const wxWindow* child = (wxWindow*) this ;
     const wxWindow* parent = NULL ;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( !child->IsTopLevel() && ( parent = child->GetParent() ) != NULL )
     {
         if ( parent->MacIsChildOfClientArea(child) )
@@ -2407,11 +2392,6 @@ void wxWindowMac::MacSuperChangedPosition()
 
     wxWindowMac *child;
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( node )
     {
         child = node->GetData();
@@ -2427,11 +2407,6 @@ void wxWindowMac::MacTopLevelWindowChangedPosition()
 
     wxWindowMac *child;
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( node )
     {
         child = node->GetData();
@@ -2830,11 +2805,6 @@ bool wxWindowMac::OSXHandleKeyEvent( wxKeyEvent& event )
     if ( !handled && event.GetEventType() == wxEVT_KEY_DOWN)
     {
         wxWindow *ancestor = this;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (ancestor)
         {
             int command = ancestor->GetAcceleratorTable()->GetCommand( event );
@@ -2917,11 +2887,6 @@ void wxWidgetImpl::RemoveAssociations(wxWidgetImpl* impl)
     // we should go on...
 
     bool found = true ;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( found )
     {
         found = false ;

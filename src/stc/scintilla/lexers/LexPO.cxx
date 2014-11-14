@@ -116,11 +116,6 @@ static void ColourisePODoc(unsigned int startPos, int length, int initStyle, Wor
 				if (curLineState == SCE_PO_COMMENT)
 					curLineState = SCE_PO_DEFAULT;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (sc.More() && ! sc.atLineEnd && isspacechar(sc.ch))
 					sc.Forward();
 			}

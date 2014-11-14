@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Copyright (c) 1988-1997 Sam Leffler
  * Copyright (c) 1991-1997 Silicon Graphics, Inc.
@@ -251,11 +252,6 @@ TIFFRewriteDirectory( TIFF *tif )
 		{
 			uint32 nextdir;
 			nextdir = tif->tif_header.classic.tiff_diroff;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while(1) {
 				uint16 dircount;
 				uint32 nextnextdir;
@@ -314,11 +310,6 @@ TIFFRewriteDirectory( TIFF *tif )
 		{
 			uint64 nextdir;
 			nextdir = tif->tif_header.big.tiff_diroff;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while(1) {
 				uint64 dircount64;
 				uint16 dircount;
@@ -437,11 +428,6 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 	dir=NULL;
 	dirmem=NULL;
 	dirsize=0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (1)
 	{
 		ndir=0;
@@ -2456,11 +2442,6 @@ TIFFWriteDirectoryTagData(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, uint16 tag
 	static const char module[] = "TIFFWriteDirectoryTagData";
 	uint32 m;
 	m=0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (m<(*ndir))
 	{
 		assert(dir[m].tdir_tag!=tag);
@@ -2617,11 +2598,6 @@ TIFFLinkDirectory(TIFF* tif)
 		 * Not the first directory, search to the last and append.
 		 */
 		nextdir = tif->tif_header.classic.tiff_diroff;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while(1) {
 			uint16 dircount;
 			uint32 nextnextdir;
@@ -2681,11 +2657,6 @@ TIFFLinkDirectory(TIFF* tif)
 		 * Not the first directory, search to the last and append.
 		 */
 		nextdir = tif->tif_header.big.tiff_diroff;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while(1) {
 			uint64 dircount64;
 			uint16 dircount;
@@ -2827,11 +2798,6 @@ _TIFFRewriteField(TIFF* tif, uint16 tag, TIFFDataType in_datatype,
 /* -------------------------------------------------------------------- */
 /*      Read through directory to find target tag.                      */
 /* -------------------------------------------------------------------- */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while( dircount > 0 )
     {
         if (!ReadOK(tif, direntry_raw, dirsize)) {

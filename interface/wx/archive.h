@@ -379,11 +379,6 @@ public:
         wxString list;
         const wxArchiveClassFactory *factory = wxArchiveClassFactory::GetFirst();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (factory) {
             list << factory->GetProtocol() << wxT("\n");
             factory = factory->GetNext();

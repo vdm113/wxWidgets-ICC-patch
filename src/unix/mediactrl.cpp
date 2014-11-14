@@ -74,6 +74,11 @@
    it to the whole window.
 
    Note that there are some things used here that could be undocumented -
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for reference see the media player Kiss and Totem as well as some
    other sources. There was a backend for a kde media player as well
    that attempted thread-safety...
@@ -867,11 +872,6 @@ bool wxGStreamerMediaBackend::SyncStateChange(GstElement* element,
                                               gint64 llTimeout)
 {
     gint64 llTimeWaited = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while(GST_STATE(element) != desiredstate)
     {
         if(llTimeWaited >= llTimeout)

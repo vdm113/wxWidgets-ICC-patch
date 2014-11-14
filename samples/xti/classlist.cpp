@@ -182,11 +182,6 @@ int ClassListDialog::AddClassesWithParent(const wxClassInfo *parent, const wxTre
 {
     const wxClassInfo *ci = wxClassInfo::GetFirst();
     int count = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (ci)
     {
         // is this class derived from the given parent?
@@ -230,11 +225,6 @@ void ClassListDialog::InitControls()
     // create a wxArrayString with the names of all classes:
     const wxClassInfo *ci = wxClassInfo::GetFirst();
     wxArrayString arr;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (ci)
     {
         arr.Add(ci->GetClassName());

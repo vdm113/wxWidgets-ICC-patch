@@ -242,11 +242,6 @@ static bool SelectRange(HWND hwndTV,
     bool cont = true;
     HTREEITEM htItem = (HTREEITEM)TreeView_GetRoot(hwndTV);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( htItem && cont )
     {
         if ( (htItem == htFirst) || (htItem == htLast) )
@@ -282,11 +277,6 @@ static bool SelectRange(HWND hwndTV,
 
     // select the items in range
     cont = htFirst != htLast;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( htItem && cont )
     {
         if ( !IsItemSelected(hwndTV, htItem) )
@@ -307,11 +297,6 @@ static bool SelectRange(HWND hwndTV,
     // optionally deselect the rest
     if ( flags & SR_UNSELECT_OTHERS )
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( htItem )
         {
             if ( IsItemSelected(hwndTV, htItem) )
@@ -716,11 +701,6 @@ bool wxTreeTraversal::Traverse(const wxTreeItemId& root, bool recursively)
 {
     wxTreeItemIdValue cookie;
     wxTreeItemId child = m_tree->GetFirstChild(root, cookie);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( child.IsOk() )
     {
         // depth first traversal
@@ -1419,11 +1399,6 @@ wxTreeItemId wxTreeCtrl::GetLastChild(const wxTreeItemId& item) const
 
     wxTreeItemId childLast,
     child = GetFirstChild(item, cookie);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( child.IsOk() )
     {
         childLast = child;
@@ -1618,11 +1593,6 @@ wxTreeItemId wxTreeCtrl::DoInsertItem(const wxTreeItemId& parent,
     {
         wxTreeItemIdValue cookie;
         wxTreeItemId idCur = GetFirstChild(parent, cookie);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( index != 0 && idCur.IsOk() )
         {
             index--;
@@ -1718,11 +1688,6 @@ void wxTreeCtrl::DeleteChildren(const wxTreeItemId& item)
 
     wxArrayTreeItemIds children;
     wxTreeItemId child = GetFirstChild(item, cookie);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( child.IsOk() )
     {
         children.Add(child);
@@ -1914,11 +1879,6 @@ void wxTreeCtrl::DoSelectChildren(const wxTreeItemId& parent)
 
     wxTreeItemIdValue cookie;
     wxTreeItemId child = GetFirstChild(parent, cookie);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( child.IsOk() )
     {
         DoSelectItem(child, true);

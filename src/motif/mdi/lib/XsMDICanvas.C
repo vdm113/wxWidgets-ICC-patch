@@ -93,11 +93,6 @@ XsMDICanvas::~XsMDICanvas ( )
 
 /*
    Remove callbacks to prevent calls to destroyed class-part of XsMDICanvas
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while children are being destroyed.
 */
 

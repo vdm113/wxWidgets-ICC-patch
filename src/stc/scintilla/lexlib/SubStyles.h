@@ -67,18 +67,8 @@ public:
 	}
 
 	void SetIdentifiers(int style, const char *identifiers) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (*identifiers) {
 			const char *cpSpace = identifiers;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (*cpSpace && !(*cpSpace == ' ' || *cpSpace == '\t' || *cpSpace == '\r' || *cpSpace == '\n'))
 				cpSpace++;
 			if (cpSpace > identifiers) {
@@ -138,11 +128,6 @@ public:
 		stylesAvailable(stylesAvailable_),
 		secondaryDistance(secondaryDistance_),
 		allocated(0) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (baseStyles[classifications]) {
 			classifiers.push_back(WordClassifier(baseStyles[classifications]));
 			classifications++;

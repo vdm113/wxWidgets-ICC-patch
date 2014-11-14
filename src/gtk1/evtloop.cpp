@@ -90,11 +90,6 @@ int wxGUIEventLoop::DoRun()
    // gtk_main_quit is called when closing the dialog????)
    // So for the moment this code is disabled and nested event loops
    // probably fail for wxGTK1
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while ( !m_shouldExit )
     {
 #endif
@@ -169,11 +164,6 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
     wxTheApp->RemoveIdleTag();
 
     // TODO: implement event filtering using the eventsToProcess mask
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (gtk_events_pending())
         gtk_main_iteration();
 

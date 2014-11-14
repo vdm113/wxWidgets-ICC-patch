@@ -145,11 +145,6 @@ static void GetRangeLowered(unsigned int start,
 		char *s,
 		unsigned int len) {
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((i < end - start + 1) && (i < len-1)) {
 		s[i] = static_cast<char>(tolower(styler[start + i]));
 		i++;
@@ -163,11 +158,6 @@ static void GetForwardRangeLowered(unsigned int start,
 		char *s,
 		unsigned int len) {
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((i < len-1) && charSet.Contains(styler.SafeGetCharAt(start + i))) {
 		s[i] = static_cast<char>(tolower(styler.SafeGetCharAt(start + i)));
 		i++;
@@ -437,11 +427,6 @@ static unsigned int SkipWhiteSpace(unsigned int currentPos, unsigned int endPos,
 	CharacterSet setWord(CharacterSet::setAlphaNum, "_");
 	unsigned int j = currentPos + 1;
 	char ch = styler.SafeGetCharAt(j);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((j < endPos) && (IsASpaceOrTab(ch) || ch == '\r' || ch == '\n' ||
 		IsStreamCommentStyle(styler.StyleAt(j)) || (includeChars && setWord.Contains(ch)))) {
 		j++;
@@ -510,11 +495,6 @@ static void ClassifyPascalWordFoldPoint(int &levelCurrent, int &lineFoldStateCur
 		bool ignoreKeyword = true;
 		int j = lastStart - 1;
 		char ch = styler.SafeGetCharAt(j);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while ((j >= startPos) && (IsASpaceOrTab(ch) || ch == '\r' || ch == '\n' ||
 			IsStreamCommentStyle(styler.StyleAt(j)))) {
 			j--;

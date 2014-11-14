@@ -56,6 +56,11 @@ wxFontEnumerator and wxFontMapper. wxFont encoding support is reflected by a
 
 As you may see, Microsoft's encoding partly mirror the standard ISO8859 ones,
 but there are (minor) differences even between ISO8859-1 (Latin1, ISO encoding
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for Western Europe) and CP1251 (WinLatin1, standard code page for English
 versions of Windows) and there are more of them for other encodings.
 

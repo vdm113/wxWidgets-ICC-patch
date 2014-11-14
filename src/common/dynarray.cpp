@@ -68,7 +68,6 @@ VDM_MACRO_PRAGMA_IVDEP \
         if ( (*this)[--n] == lItem )                                        \
           return n;                                                         \
       }                                                                     \
-VDM_MACRO_PRAGMA_IVDEP \
       while ( n != 0 );                                                     \
     }                                                                       \
   }                                                                         \
@@ -207,7 +206,6 @@ void name::SetCount(size_t count, T defval)                                 \
     }                                                                       \
                                                                             \
     /* add new elements if we extend the array */                           \
-VDM_MACRO_PRAGMA_IVDEP \
     while ( m_nCount < count )                                              \
     {                                                                       \
         m_pItems[m_nCount++] = defval;                                      \
@@ -288,7 +286,6 @@ size_t name::IndexForInsert(T lItem, CMPFUNC fnCompare) const               \
        hi = m_nCount;                                                       \
   int res;                                                                  \
                                                                             \
-VDM_MACRO_PRAGMA_IVDEP \
   while ( lo < hi ) {                                                       \
     i = (lo + hi)/2;                                                        \
                                                                             \

@@ -197,11 +197,6 @@ wxString wxHTTP::GenerateAuthString(const wxString& user, const wxString& pass) 
 
     size_t len = toencode.length();
     const wxChar *from = toencode.c_str();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (len >= 3) { // encode full blocks first
         buf << wxString::Format(wxT("%c%c"), base64[(from[0] >> 2) & 0x3f], base64[((from[0] << 4) & 0x30) | ((from[1] >> 4) & 0xf)]);
         buf << wxString::Format(wxT("%c%c"), base64[((from[1] << 2) & 0x3c) | ((from[2] >> 6) & 0x3)], base64[from[2] & 0x3f]);

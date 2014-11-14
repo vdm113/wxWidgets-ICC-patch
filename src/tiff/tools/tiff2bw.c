@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Copyright (c) 1988-1997 Sam Leffler
  * Copyright (c) 1991-1997 Silicon Graphics, Inc.
@@ -63,11 +64,6 @@ compresscontig(unsigned char* out, unsigned char* rgb, uint32 n)
 {
 	register int v, red = RED, green = GREEN, blue = BLUE;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (n-- > 0) {
 		v = red*(*rgb++);
 		v += green*(*rgb++);
@@ -82,11 +78,6 @@ compresssep(unsigned char* out,
 {
 	register uint32 red = RED, green = GREEN, blue = BLUE;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (n-- > 0)
 		*out++ = (unsigned char)
 			((red*(*r++) + green*(*g++) + blue*(*b++)) >> 8);
@@ -95,11 +86,6 @@ compresssep(unsigned char* out,
 static int
 checkcmap(TIFF* tif, int n, uint16* r, uint16* g, uint16* b)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (n-- > 0)
 		if (*r++ >= 256 || *g++ >= 256 || *b++ >= 256)
 			return (16);
@@ -112,11 +98,6 @@ compresspalette(unsigned char* out, unsigned char* data, uint32 n, uint16* rmap,
 {
 	register int v, red = RED, green = GREEN, blue = BLUE;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (n-- > 0) {
 		unsigned int ix = *data++;
 		v = red*rmap[ix];
@@ -155,11 +136,6 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char *optarg;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((c = getopt(argc, argv, "c:r:R:G:B:")) != -1)
 		switch (c) {
 		case 'c':		/* compression scheme */
@@ -336,11 +312,6 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
                 compression = COMPRESSION_JPEG;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while( cp )
                 {
                     if (isdigit((int)cp[1]))

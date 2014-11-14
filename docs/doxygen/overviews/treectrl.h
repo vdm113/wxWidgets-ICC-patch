@@ -76,6 +76,11 @@ Among other features of the tree control are: item sorting with SortChildren
 which uses the user-defined comparison function OnCompareItems (by default the
 comparison is the alphabetic comparison of tree labels), hit testing
 (determining to which portion of the control the given point belongs, useful
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for implementing drag-and-drop in the tree) with HitTest and editing of the
 tree item labels in place (see EditLabel).
 

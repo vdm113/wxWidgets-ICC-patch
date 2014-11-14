@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Copyright (c) 1988-1997 Sam Leffler
  * Copyright (c) 1991-1997 Silicon Graphics, Inc.
@@ -83,11 +84,6 @@ setDoubleArrayOneValue(double** vpp, double value, size_t nmemb)
 	*vpp = _TIFFmalloc(nmemb*sizeof(double));
 	if (*vpp)
 	{
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (nmemb--)
 			((double*)*vpp)[nmemb] = value;
 	}
@@ -1542,11 +1538,6 @@ TIFFNumberOfDirectories(TIFF* tif)
 	else
 		nextdir = tif->tif_header.big.tiff_diroff;
 	n = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (nextdir != 0 && TIFFAdvanceDirectory(tif, &nextdir, NULL))
 		n++;
 	return (n);

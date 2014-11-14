@@ -86,11 +86,6 @@ public:
         // case if we're called before the main event loop startup
         wxEventLoopGuarantor ensureEventLoop;
 #endif
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (ms_clipboard)
             wxEventLoopBase::GetActive()->YieldFor(wxEVT_CATEGORY_CLIPBOARD);
     }

@@ -216,11 +216,6 @@ hostent *deepCopyHostent(hostent *h,
     /* leave space for pointer list */
     char **p = h->h_addr_list, **q;
     char **h_addr_list = (char **)(buffer + pos);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while(*(p++) != 0)
         pos += sizeof(char *);
 
@@ -252,11 +247,6 @@ hostent *deepCopyHostent(hostent *h,
     /* leave space for pointer list */
     p = h->h_aliases;
     char **h_aliases = (char **)(buffer + pos);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while(*(p++) != 0)
         pos += sizeof(char *);
 
@@ -391,11 +381,6 @@ servent *deepCopyServent(servent *s,
     /* leave space for pointer list */
     char **p = s->s_aliases, **q;
     char **s_aliases = (char **)(buffer + pos);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while(*(p++) != 0)
         pos += sizeof(char *);
 

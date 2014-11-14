@@ -1439,11 +1439,6 @@ bool wxListCtrl::DeleteAllItems()
 // Deletes all items
 bool wxListCtrl::DeleteAllColumns()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( m_colCount > 0 )
     {
         if ( ListView_DeleteColumn(GetHwnd(), 0) == 0 )

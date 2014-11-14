@@ -398,11 +398,6 @@ public:
 
             // Wait until the request completes or until we decide to give up
             bool waitmore = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ( !client->WaitOnConnect(seconds, millis) && waitmore )
             {
                 // possibly give some feedback to the user,
@@ -542,6 +537,11 @@ enum wxSocketError
     A brief note on how to use these events:
 
     The @b wxSOCKET_INPUT event will be issued whenever there is data available
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for reading. This will be the case if the input queue was empty and new data
     arrives, or if the application has read some data yet there is still more data
     available. This means that the application does not need to read all available
@@ -628,6 +628,11 @@ enum wxSocketEventFlags
     that @e blocking here refers to when the function returns, not
     to whether the GUI blocks during this time.  Note that wxSOCKET_WAITALL
     impacts both Read and Write operations.  If you desire to wait
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for all on just Read operations, but not on Write operations, (or vice versa),
     use wxSOCKET_WAITALL_READ or wxSOCKET_WAITALL_WRITE.
 

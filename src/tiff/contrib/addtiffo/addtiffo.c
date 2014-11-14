@@ -97,11 +97,6 @@ int main( int argc, char ** argv )
         return( 1 );
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while( argv[1][0] == '-' )
     {
         if( strcmp(argv[1],"-subifd") == 0 )
@@ -128,11 +123,6 @@ int main( int argc, char ** argv )
 /* -------------------------------------------------------------------- */
 /*      Collect the user requested reduction factors.                   */
 /* -------------------------------------------------------------------- */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while( nOverviewCount < argc - 2 && nOverviewCount < 100 )
     {
         anOverviews[nOverviewCount] = atoi(argv[nOverviewCount+2]);

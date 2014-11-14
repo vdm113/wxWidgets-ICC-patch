@@ -956,11 +956,6 @@ void MyFrame::OnViewMsg(wxCommandEvent& WXUNUSED(event))
             if ( *pc == wxT('"') )
                 pc++;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ( *pc && *pc != wxT('"') )
             {
                 charset += *pc++;

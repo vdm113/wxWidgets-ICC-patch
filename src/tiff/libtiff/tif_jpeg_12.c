@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 #include "tiffiop.h"
 
 #if defined(JPEG_DUAL_MODE_8_12)

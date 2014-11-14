@@ -139,6 +139,11 @@ static void ColouriseAsyDoc(unsigned int startPos, int length, int initStyle,
 			} else if (sc.ch == '\'') {
 				sc.SetState(SCE_ASY_CHARACTER);
 			} else if (sc.ch == '#' && visibleChars == 0) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				do {
 					sc.Forward();
 				} while ((sc.ch == ' ' || sc.ch == '\t') && sc.More());
@@ -170,11 +175,6 @@ static int ParseASYWord(unsigned int pos, Accessor &styler, char *word)
   char ch=styler.SafeGetCharAt(pos);
   *word=0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while(isASYidentifier(ch) && length<100){
           word[length]=ch;
           length++;
@@ -191,11 +191,6 @@ static bool IsASYDrawingLine(int line, Accessor &styler) {
 	int startpos = pos;
 	char buffer[100]="";
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (startpos<eol_pos){
 		char ch = styler[startpos];
 		ParseASYWord(startpos,styler,buffer);

@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* pngset.c - storage of image information into info struct
  *
  * Last changed in libpng 1.6.2 [April 25, 2013]
@@ -1134,11 +1135,6 @@ check_location(png_const_structrp png_ptr, int location)
    /* Now reduce the location to the top-most set bit by removing each least
     * significant bit in turn.
     */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (location != (location & -location))
       location &= ~(location & -location);
 

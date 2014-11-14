@@ -372,11 +372,6 @@ bool wxGridBagSizer::SetItemSpan(size_t index, const wxGBSpan& span)
 wxGBSizerItem* wxGridBagSizer::FindItem(wxWindow* window)
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxGBSizerItem* item = (wxGBSizerItem*)node->GetData();
@@ -391,11 +386,6 @@ wxGBSizerItem* wxGridBagSizer::FindItem(wxWindow* window)
 wxGBSizerItem* wxGridBagSizer::FindItem(wxSizer* sizer)
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxGBSizerItem* item = (wxGBSizerItem*)node->GetData();
@@ -412,11 +402,6 @@ wxGBSizerItem* wxGridBagSizer::FindItem(wxSizer* sizer)
 wxGBSizerItem* wxGridBagSizer::FindItemAtPosition(const wxGBPosition& pos)
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxGBSizerItem* item = (wxGBSizerItem*)node->GetData();
@@ -433,11 +418,6 @@ wxGBSizerItem* wxGridBagSizer::FindItemAtPosition(const wxGBPosition& pos)
 wxGBSizerItem* wxGridBagSizer::FindItemAtPoint(const wxPoint& pt)
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxGBSizerItem* item = (wxGBSizerItem*)node->GetData();
@@ -456,11 +436,6 @@ wxGBSizerItem* wxGridBagSizer::FindItemAtPoint(const wxPoint& pt)
 wxGBSizerItem* wxGridBagSizer::FindItemWithData(const wxObject* userData)
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxGBSizerItem* item = (wxGBSizerItem*)node->GetData();
@@ -489,11 +464,6 @@ wxSize wxGridBagSizer::CalcMin()
     m_colWidths.Empty();
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxGBSizerItem* item = (wxGBSizerItem*)node->GetData();
@@ -505,18 +475,8 @@ wxSize wxGridBagSizer::CalcMin()
             item->GetEndPos(endrow, endcol);
 
             // fill heights and widths up to this item if needed
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ( (int)m_rowHeights.GetCount() <= endrow )
                 m_rowHeights.Add(m_emptyCellSize.GetHeight());
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ( (int)m_colWidths.GetCount() <= endcol )
                 m_colWidths.Add(m_emptyCellSize.GetWidth());
 
@@ -622,11 +582,6 @@ void wxGridBagSizer::RecalcSizes()
 
     // Now iterate the children, setting each child's dimensions
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         int row, col, endrow, endcol;
@@ -798,11 +753,6 @@ bool wxGridBagSizer::CheckForIntersection(wxGBSizerItem* item, wxGBSizerItem* ex
 bool wxGridBagSizer::CheckForIntersection(const wxGBPosition& pos, const wxGBSpan& span, wxGBSizerItem* excludeItem)
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxGBSizerItem* item = (wxGBSizerItem*)node->GetData();

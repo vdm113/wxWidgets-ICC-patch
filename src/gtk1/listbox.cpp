@@ -857,11 +857,6 @@ int wxListBox::FindString( const wxString &item, bool bCase ) const
 
     GList *child = m_list->children;
     int count = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child)
     {
         if ( item.IsSameAs( GetRealLabel(child), bCase ) )
@@ -886,11 +881,6 @@ int wxListBox::GetSelection() const
 
     GList *child = m_list->children;
     int count = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child)
     {
         if (GTK_WIDGET(child->data)->state == GTK_STATE_SELECTED) return count;
@@ -1017,11 +1007,6 @@ int wxListBox::GtkGetIndex( GtkWidget *item ) const
     {
         GList *child = m_list->children;
         int count = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (child)
         {
             if (GTK_WIDGET(child->data) == item) return count;
@@ -1036,11 +1021,6 @@ int wxListBox::GtkGetIndex( GtkWidget *item ) const
 void wxListBox::ApplyToolTip( GtkTooltips *tips, const wxChar *tip )
 {
     GList *child = m_list->children;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child)
     {
         gtk_tooltips_set_tip( tips, GTK_WIDGET( child->data ), wxConvCurrent->cWX2MB(tip), NULL );
@@ -1075,11 +1055,6 @@ void wxListBox::DoApplyWidgetStyle(GtkRcStyle *style)
     }
 
     GList *child = m_list->children;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (child)
     {
         gtk_widget_modify_style( GTK_WIDGET(child->data), style );
@@ -1107,11 +1082,6 @@ void wxListBox::OnInternalIdle()
         gdk_window_set_cursor( GTK_WIDGET(m_list)->window, cursor.GetCursor() );
 
         GList *child = m_list->children;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (child)
         {
             GtkBin *bin = GTK_BIN( child->data );

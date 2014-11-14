@@ -29,6 +29,11 @@
 
     Please refer to wxTextEntry documentation for the description of methods
     operating with the text entry part of the combobox and to wxItemContainer
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for the methods operating with the list of strings. Notice that at least
     under MSW wxComboBox doesn't behave correctly if it contains strings
     differing in case only so portable programs should avoid adding such

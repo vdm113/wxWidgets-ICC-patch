@@ -148,11 +148,6 @@ pre_process_data (j_compress_ptr cinfo,
   JDIMENSION inrows;
   jpeg_component_info * compptr;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (*in_row_ctr < in_rows_avail &&
 	 *out_row_group_ctr < out_row_groups_avail) {
     /* Do color conversion to fill the conversion buffer. */
@@ -230,11 +225,6 @@ pre_process_context (j_compress_ptr cinfo,
   int buf_height = cinfo->max_v_samp_factor * 3;
   JDIMENSION inrows;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (*out_row_group_ctr < out_row_groups_avail) {
     if (*in_row_ctr < in_rows_avail) {
       /* Do color conversion to fill the conversion buffer. */

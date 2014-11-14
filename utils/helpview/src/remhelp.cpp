@@ -206,11 +206,6 @@ bool wxRemoteHtmlHelpController::DoConnection()
             }
         }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( !isconn_1 )
         {
             //try every second for a while, then leave it to user

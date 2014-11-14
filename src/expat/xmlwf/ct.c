@@ -116,11 +116,6 @@ getXMLCharset(const char *buf, char *charset)
   if (matchkey(p, next, "xml"))
     isXml = 1;
   p = getTok(&next);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (p) {
     if (*p == ';') {
       p = getTok(&next);
@@ -131,11 +126,6 @@ getXMLCharset(const char *buf, char *charset)
           if (p) {
             char *s = charset;
             if (*p == '"') {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
               while (++p != next - 1) {
                 if (*p == '\\')
                   ++p;
@@ -150,11 +140,6 @@ getXMLCharset(const char *buf, char *charset)
             else {
               if (next - p > CHARSET_MAX - 1)
                 break;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
               while (p != next)
                 *s++ = *p++;
               *s = 0;

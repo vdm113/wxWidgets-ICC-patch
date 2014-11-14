@@ -438,11 +438,6 @@ void Selection::RemoveDuplicates() {
 	for (size_t i=0; i<ranges.size()-1; i++) {
 		if (ranges[i].Empty()) {
 			size_t j=i+1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (j<ranges.size()) {
 				if (ranges[i] == ranges[j]) {
 					ranges.erase(ranges.begin() + j);

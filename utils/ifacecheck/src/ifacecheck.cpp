@@ -522,11 +522,6 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
             if (StringContainsMethodName(file.GetLine(start), iface))
                 founddecl = true;
         }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (start > 0 && !founddecl &&
                !file.GetLine(start).Contains(";") &&
                !file.GetLine(start).Contains("*/"));

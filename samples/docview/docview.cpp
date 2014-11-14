@@ -21,8 +21,18 @@
 
     It can be run in several ways:
         * With "--mdi" command line option to use multiple MDI child frames
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
           for the multiple documents (this is the default).
         * With "--sdi" command line option to use multiple top level windows
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
           for the multiple documents
         * With "--single" command line option to support opening a single
           document only

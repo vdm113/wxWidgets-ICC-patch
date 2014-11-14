@@ -202,11 +202,6 @@ void ZipPipeTestCase::runTest()
     char buf[64];
     size_t len = zip.Read(buf, sizeof(buf) - 1).LastRead();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (len > 0 && buf[len - 1] <= 32)
         --len;
     buf[len] = 0;

@@ -615,11 +615,6 @@ int wxFileDialog::ShowModal()
                 // fall through
 
             case wxT('\\'):
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while ( i < len - 1 )
                 {
                     wxChar chNext = m_dir[i + 1];
@@ -751,11 +746,6 @@ int wxFileDialog::ShowModal()
         m_fileNames.Add(m_fileName);
         i += m_fileName.length() + 1;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (fileNameBuffer[i] != wxT('\0'))
         {
             m_fileNames.Add(&fileNameBuffer[i]);
@@ -767,11 +757,6 @@ int wxFileDialog::ShowModal()
         m_fileName = toke.GetNextToken();
         m_fileNames.Add(m_fileName);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (toke.HasMoreTokens())
             m_fileNames.Add(toke.GetNextToken());
 #endif // OFN_EXPLORER

@@ -54,19 +54,9 @@ static inline bool IsNewline(const int ch) {
 // True if can follow ch down to the end with possibly trailing whitespace
 static bool FollowToLineEnd(const int ch, const int state, const unsigned int endPos, StyleContext &sc) {
     unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (sc.GetRelative(++i) == ch)
         ;
     // Skip over whitespace
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (IsASpaceOrTab(sc.GetRelative(i)) && sc.currentPos + i < endPos)
         ++i;
     if (IsNewline(sc.GetRelative(i)) || sc.currentPos + i == endPos) {
@@ -82,18 +72,8 @@ static bool FollowToLineEnd(const int ch, const int state, const unsigned int en
 static bool HasPrevLineContent(StyleContext &sc) {
     int i = 0;
     // Go back to the previous newline
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ((--i + sc.currentPos) && !IsNewline(sc.GetRelative(i)))
         ;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (--i + sc.currentPos) {
         if (IsNewline(sc.GetRelative(i)))
             break;
@@ -146,11 +126,6 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
 
     StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (sc.More()) {
         // Skip past escaped characters
         if (sc.ch == '\\') {
@@ -226,11 +201,6 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
                 sc.SetState(SCE_TXT2TAGS_LINE_BEGIN);
             if (sc.atLineStart && sc.Match("```")) {
                 int i = 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while (!IsNewline(sc.GetRelative(i)) && sc.currentPos + i < endPos)
                     i++;
                 sc.Forward(i);
@@ -418,11 +388,6 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
             // Ordered list
             else if (IsADigit(sc.ch)) {
                 int digitCount = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while (IsADigit(sc.GetRelative(++digitCount)))
                     ;
                 if (sc.GetRelative(digitCount) == '.' &&
@@ -454,21 +419,11 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
             if (sc.Match("![") || sc.ch == '[') {
                 int i = 0, j = 0, k = 0;
                 int len = endPos - sc.currentPos;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while (i < len && (sc.GetRelative(++i) != ']' || sc.GetRelative(i - 1) == '\\'))
                     ;
                 if (sc.GetRelative(i) == ']') {
                     j = i;
                     if (sc.GetRelative(++i) == '(') {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                         while (i < len && (sc.GetRelative(++i) != '(' || sc.GetRelative(i - 1) == '\\'))
                             ;
                         if (sc.GetRelative(i) == '(')
@@ -476,11 +431,6 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
                     }
 
                     else if (sc.GetRelative(i) == '[' || sc.GetRelative(++i) == '[') {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                         while (i < len && (sc.GetRelative(++i) != ']' || sc.GetRelative(i - 1) == '\\'))
                             ;
                         if (sc.GetRelative(i) == ']')

@@ -169,11 +169,6 @@ public:
 
         wxRegionIterator upd(GetUpdateRegion()); // get the update rect list
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (upd)
         {
             wxRect rect(upd.GetRect());
@@ -946,11 +941,6 @@ void wxAuiManager::UpdateHintWindowConfig()
     bool can_do_transparent = false;
 
     wxWindow* w = m_frame;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (w)
     {
         if (wxDynamicCast(w, wxFrame))
@@ -1575,11 +1565,6 @@ static wxString EscapeDelimiters(const wxString& s)
     wxString result;
     result.Alloc(s.length());
     const wxChar* ch = s.c_str();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (*ch)
     {
         if (*ch == wxT(';') || *ch == wxT('|'))
@@ -1628,11 +1613,6 @@ void wxAuiManager::LoadPaneInfo(wxString pane_part, wxAuiPaneInfo &pane)
     pane_part.Replace(wxT("\\|"), wxT("\a"));
     pane_part.Replace(wxT("\\;"), wxT("\b"));
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while(1)
     {
         wxString val_part = pane_part.BeforeFirst(wxT(';'));
@@ -1785,11 +1765,6 @@ bool wxAuiManager::LoadPerspective(const wxString& layout, bool update)
     input.Replace(wxT("\\;"), wxT("\b"));
 
     m_hasMaximized = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (1)
     {
         wxAuiPaneInfo pane;

@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* pngwrite.c - general routines to write a PNG file
  *
  * Last changed in libpng 1.6.2 [April 25, 2013]
@@ -1740,21 +1741,11 @@ png_write_image_16bit(png_voidp argument)
     */
    row_end = output_row + image->width * (channels+1);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (y-- > 0)
    {
       png_const_uint_16p in_ptr = input_row;
       png_uint_16p out_ptr = output_row;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
       while (out_ptr < row_end)
       {
          const png_uint_16 alpha = in_ptr[aindex];
@@ -1904,21 +1895,11 @@ png_write_image_8bit(png_voidp argument)
       /* Use row_end in place of a loop counter: */
       row_end = output_row + image->width * (channels+1);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
       while (y-- > 0)
       {
          png_const_uint_16p in_ptr = input_row;
          png_bytep out_ptr = output_row;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
          while (out_ptr < row_end)
          {
             png_uint_16 alpha = in_ptr[aindex];
@@ -1960,21 +1941,11 @@ png_write_image_8bit(png_voidp argument)
        */
       png_bytep row_end = output_row + image->width * channels;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
       while (y-- > 0)
       {
          png_const_uint_16p in_ptr = input_row;
          png_bytep out_ptr = output_row;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
          while (out_ptr < row_end)
          {
             png_uint_32 component = *in_ptr++;
@@ -2326,11 +2297,6 @@ png_image_write_main(png_voidp argument)
       ptrdiff_t row_bytes = display->row_bytes;
       png_uint_32 y = image->height;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
       while (y-- > 0)
       {
          png_write_row(png_ptr, row);

@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* pngconf.h - machine configurable file for libpng
  *
  * libpng version 1.6.2 - April 25, 2013

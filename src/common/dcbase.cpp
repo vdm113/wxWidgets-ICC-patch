@@ -745,11 +745,6 @@ void wx_quadratic_spline(double a1, double b1, double a2, double b2, double a3, 
     wx_clear_stack();
     wx_spline_push(a1, b1, a2, b2, a3, b3, a4, b4);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (wx_spline_pop(&x1, &y1, &x2, &y2, &x3, &y3, &x4, &y4)) {
         xmid = (double)half(x2, x3);
         ymid = (double)half(y2, y3);
@@ -826,11 +821,6 @@ static void wx_spline_draw_point_array(wxDC *dc)
 {
     dc->DrawLines(&wx_spline_point_list, 0, 0 );
     wxPointList::compatibility_iterator node = wx_spline_point_list.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxPoint *point = node->GetData();
@@ -870,11 +860,6 @@ void wxDCImpl::DoDrawSpline( const wxPointList *points )
 
     wx_spline_add_point(x1, y1);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ((node = node->GetNext())
 #if !wxUSE_STD_CONTAINERS
            != NULL
@@ -934,11 +919,6 @@ void wxDCImpl::DoGradientFillLinear(const wxRect& rect,
         if (xDelta < 1)
             xDelta = 1;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (x >= xDelta)
         {
             x -= xDelta;
@@ -976,11 +956,6 @@ void wxDCImpl::DoGradientFillLinear(const wxRect& rect,
         if (yDelta < 1)
             yDelta = 1;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (y > 0)
         {
             y -= yDelta;
@@ -1583,11 +1558,6 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
         x2 = x2+x+x-1;
         y_old = y;
         bool bNewPoint = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while( y2 > c1 - c2 * x2 && y > 0 )
         {
             bNewPoint = true;
@@ -1623,11 +1593,6 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
         bool bStarted = false;
         bool bReady = false;
         bool bForceTurn = ( sq == eq && sa > ea );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while( !bReady )
         {
             wxPointList::compatibility_iterator node;

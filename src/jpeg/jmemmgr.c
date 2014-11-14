@@ -293,11 +293,6 @@ alloc_small (j_common_ptr cinfo, int pool_id, size_t sizeofobject)
     ERREXIT1(cinfo, JERR_BAD_POOL_ID, pool_id);	/* safety check */
   prev_hdr_ptr = NULL;
   hdr_ptr = mem->small_list[pool_id];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (hdr_ptr != NULL) {
     if (hdr_ptr->hdr.bytes_left >= sizeofobject)
       break;			/* found pool with enough space */
@@ -446,11 +441,6 @@ alloc_sarray (j_common_ptr cinfo, int pool_id,
 
   /* Get the rows themselves (large objects) */
   currow = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (currow < numrows) {
     rowsperchunk = MIN(rowsperchunk, numrows - currow);
     workspace = (JSAMPROW) alloc_large(cinfo, pool_id,
@@ -504,11 +494,6 @@ alloc_barray (j_common_ptr cinfo, int pool_id,
 
   /* Get the rows themselves (large objects) */
   currow = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (currow < numrows) {
     rowsperchunk = MIN(rowsperchunk, numrows - currow);
     workspace = (JBLOCKROW) alloc_large(cinfo, pool_id,
@@ -897,11 +882,6 @@ access_virt_sarray (j_common_ptr cinfo, jvirt_sarray_ptr ptr,
       size_t bytesperrow = (size_t) ptr->samplesperrow * SIZEOF(JSAMPLE);
       undef_row -= ptr->cur_start_row; /* make indexes relative to buffer */
       end_row -= ptr->cur_start_row;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
       while (undef_row < end_row) {
 	jzero_far((void FAR *) ptr->mem_buffer[undef_row], bytesperrow);
 	undef_row++;
@@ -987,11 +967,6 @@ access_virt_barray (j_common_ptr cinfo, jvirt_barray_ptr ptr,
       size_t bytesperrow = (size_t) ptr->blocksperrow * SIZEOF(JBLOCK);
       undef_row -= ptr->cur_start_row; /* make indexes relative to buffer */
       end_row -= ptr->cur_start_row;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
       while (undef_row < end_row) {
 	jzero_far((void FAR *) ptr->mem_buffer[undef_row], bytesperrow);
 	undef_row++;
@@ -1064,11 +1039,6 @@ free_pool (j_common_ptr cinfo, int pool_id)
   lhdr_ptr = mem->large_list[pool_id];
   mem->large_list[pool_id] = NULL;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (lhdr_ptr != NULL) {
     large_pool_ptr next_lhdr_ptr = lhdr_ptr->hdr.next;
     space_freed = lhdr_ptr->hdr.bytes_used +
@@ -1083,11 +1053,6 @@ free_pool (j_common_ptr cinfo, int pool_id)
   shdr_ptr = mem->small_list[pool_id];
   mem->small_list[pool_id] = NULL;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (shdr_ptr != NULL) {
     small_pool_ptr next_shdr_ptr = shdr_ptr->hdr.next;
     space_freed = shdr_ptr->hdr.bytes_used +

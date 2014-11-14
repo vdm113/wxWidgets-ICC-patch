@@ -214,21 +214,11 @@ int_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   v_expand = upsample->v_expand[compptr->component_index];
 
   inrow = outrow = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (outrow < cinfo->max_v_samp_factor) {
     /* Generate one output row with proper horizontal expansion */
     inptr = input_data[inrow];
     outptr = output_data[outrow];
     outend = outptr + cinfo->output_width;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (outptr < outend) {
       invalue = *inptr++;	/* don't need GETJSAMPLE() here */
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -275,11 +265,6 @@ h2v1_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
     inptr = input_data[inrow];
     outptr = output_data[inrow];
     outend = outptr + cinfo->output_width;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (outptr < outend) {
       invalue = *inptr++;	/* don't need GETJSAMPLE() here */
       *outptr++ = invalue;
@@ -305,20 +290,10 @@ h2v2_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   int inrow, outrow;
 
   inrow = outrow = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (outrow < cinfo->max_v_samp_factor) {
     inptr = input_data[inrow];
     outptr = output_data[outrow];
     outend = outptr + cinfo->output_width;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (outptr < outend) {
       invalue = *inptr++;	/* don't need GETJSAMPLE() here */
       *outptr++ = invalue;
@@ -413,11 +388,6 @@ h2v2_fancy_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
   int inrow, outrow, v;
 
   inrow = outrow = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (outrow < cinfo->max_v_samp_factor) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep

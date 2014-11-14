@@ -207,6 +207,11 @@ const wxDataFormat wxFormatInvalid;
     be @e available.
 
     You may also derive your own data object classes from wxCustomDataObject
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for user-defined types. The format of user-defined data is given as a
     mime-type string literal, such as "application/word" or "image/png". These
     strings are used as they are under Unix (so far only GTK+) to identify a

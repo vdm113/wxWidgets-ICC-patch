@@ -18,6 +18,11 @@
 @ingroup group_funcmacro
 
 The functions in this section deal with getting the current time and sleeping
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for the specified time interval.
 
 */

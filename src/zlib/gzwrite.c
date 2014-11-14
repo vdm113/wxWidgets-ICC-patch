@@ -156,11 +156,6 @@ local int gz_zero(state, len)
 
     /* compress len zeros (len guaranteed > 0) */
     first = 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (len) {
         n = GT_OFF(state->size) || (z_off64_t)state->size > len ?
             (unsigned)len : state->size;

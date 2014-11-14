@@ -990,11 +990,6 @@ wxUint32 wxSocketBase::DoRead(void* buffer_, wxUint32 nbytes)
     nbytes -= total;
     buffer += total;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( nbytes )
     {
         // our socket is non-blocking so Read() will return immediately if
@@ -1182,11 +1177,6 @@ wxUint32 wxSocketBase::DoWrite(const void *buffer_, wxUint32 nbytes)
     wxCHECK_MSG( buffer, 0, "NULL buffer" );
 
     wxUint32 total = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( nbytes )
     {
         if ( m_impl->m_stream && !m_connected )

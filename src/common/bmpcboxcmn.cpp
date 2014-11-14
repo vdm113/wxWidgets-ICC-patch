@@ -77,11 +77,6 @@ void wxBitmapComboBoxBase::UpdateInternals()
 {
     m_fontHeight = GetControl()->GetCharHeight() + EXTRA_FONT_HEIGHT;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( m_bitmaps.GetCount() < GetItemContainer()->GetCount() )
         m_bitmaps.Add( new wxBitmap() );
 }

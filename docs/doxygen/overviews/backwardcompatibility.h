@@ -51,6 +51,11 @@ wxWidgets. This development branch will have an odd number for @e minor, for
 example 2.7.x. Releases from this branch are known as development snapshots.
 
 The stable branch and the development branch will then be developed in parallel
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for some time. When it is no longer useful to continue developing the stable
 branch, the development branch is renamed and becomes a new stable branch, for
 example: 2.8.0. And the process begins again. This is how the tension between
@@ -91,6 +96,11 @@ kept alongside the new for a time wrapped inside:
 By default the @c WXWIN_COMPATIBILITY_X_X macro is set to 1 for the previous
 stable branch, for example in 2.8.x, @c WXWIN_COMPATIBILITY_2_6 = 1. For the
 next earlier stable branch the default is 0, so @c WXWIN_COMPATIBILITY_2_4 = 0
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for 2.8.x. Earlier than that, obsolete features are removed.
 
 These macros can be changed in @c setup.h. Or on UNIX-like systems you can set

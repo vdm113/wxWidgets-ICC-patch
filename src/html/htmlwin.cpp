@@ -105,11 +105,6 @@ void wxHtmlWinAutoScrollTimer::Notify()
             // the mouse event coordinates should be client, not screen as
             // returned by wxGetMousePosition
             wxWindow *parentTop = m_win;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ( parentTop->GetParent() )
                 parentTop = parentTop->GetParent();
             wxPoint ptOrig = parentTop->GetPosition();
@@ -472,11 +467,6 @@ bool wxHtmlWindow::DoSetPage(const wxString& source)
         //     decreasing priority, we "merge-sort" the lists on-line by
         //     processing that one of the two heads that has higher priority
         //     in every iteration
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (nodeL || nodeG)
         {
             prL = (nodeL) ? nodeL->GetData()->GetPriority() : -1;
@@ -613,11 +603,6 @@ bool wxHtmlWindow::LoadPage(const wxString& location)
 #endif // wxUSE_STATUSBAR
 
             node = m_Filters.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (node)
             {
                 wxHtmlFilter *h = (wxHtmlFilter*) node->GetData();
@@ -710,11 +695,6 @@ bool wxHtmlWindow::ScrollToAnchor(const wxString& anchor)
         // there's better chance of using a suitable cell for upper Y
         // coordinate value. See bug #11406 for additional discussion.
         const wxHtmlCell *c_save = c;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( c && c->IsFormattingCell() )
             c = c->GetNext();
         if ( !c )
@@ -1070,11 +1050,6 @@ wxString wxHtmlWindow::DoSelectionToText(wxHtmlSelection *sel)
     wxHtmlTerminalCellsInterator i(sel->GetFromCell(), sel->GetToCell());
     const wxHtmlCell *prev = NULL;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( i )
     {
         // When converting HTML content to plain text, the entire paragraph

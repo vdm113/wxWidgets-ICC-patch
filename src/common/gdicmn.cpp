@@ -908,11 +908,6 @@ wxSize wxGetDisplayPPI()
 wxResourceCache::~wxResourceCache ()
 {
     wxList::compatibility_iterator node = GetFirst ();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node) {
         wxObject *item = (wxObject *)node->GetData();
         delete item;

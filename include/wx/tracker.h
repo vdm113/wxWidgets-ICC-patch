@@ -88,11 +88,6 @@ protected:
     ~wxTrackable()
     {
         // Notify all registered refs
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( m_first )
         {
             wxTrackerNode * const first = m_first;

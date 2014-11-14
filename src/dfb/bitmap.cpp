@@ -314,11 +314,6 @@ CopyBits(int width,
 
     // we operate with sizeof(T), not 1, bytes at once
     T *dst = static_cast<T *>(locked.ptr);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( src < srcEnd )
     {
         unsigned char val = *src++;

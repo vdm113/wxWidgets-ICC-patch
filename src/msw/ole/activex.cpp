@@ -830,11 +830,6 @@ wxVariant &wxActiveXEvent::operator [](size_t idx)
     // But it may be zero if the event has been created by wx program code.
     if (native)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( m_params.GetCount()<=idx )
         {
             m_params.Append(wxActiveXEvents::ms_invalidEntryMarker);

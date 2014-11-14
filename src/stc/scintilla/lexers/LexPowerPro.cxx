@@ -68,11 +68,6 @@ static bool IsContinuationLine(unsigned int szLine, Accessor &styler)
 {
 	int startPos = styler.LineStart(szLine);
 	int endPos = styler.LineStart(szLine + 1) - 2;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (startPos < endPos)
 	{
 		char stylech = styler.StyleAt(startPos);
@@ -96,11 +91,6 @@ static int GetStyleFirstWord(int szLine, Accessor &styler)
 	int endPos = styler.LineStart(szLine + 1) - 1;
 	char ch = styler.SafeGetCharAt(startPos);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (ch > 0 && isspacechar(ch) && startPos < endPos)
 	{
 		startPos++; // skip to next char
@@ -423,11 +413,6 @@ static void FoldPowerProDoc(unsigned int startPos, int length, int, WordList *[]
 	int stylePrev = 0;
 
 	// find the first previous line without continuation character at the end
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((lineCurrent > 0 && IsContinuationLine(lineCurrent, styler))
 	       || (lineCurrent > 1 && IsContinuationLine(lineCurrent - 1, styler))) {
 		lineCurrent--;
@@ -464,6 +449,11 @@ static void FoldPowerProDoc(unsigned int startPos, int length, int, WordList *[]
 	char chPrevPrev = '\0';
 	char chPrevPrevPrev = '\0';
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	for (int i = startPos; i < endPos; i++) {
 
 		char ch = chNext;

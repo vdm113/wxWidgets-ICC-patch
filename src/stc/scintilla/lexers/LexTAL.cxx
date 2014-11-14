@@ -58,11 +58,6 @@ static void getRange(unsigned int start,
 		char *s,
 		unsigned int len) {
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((i < end - start + 1) && (i < len-1)) {
 		s[i] = static_cast<char>(tolower(styler[start + i]));
 		i++;
@@ -368,11 +363,6 @@ static void FoldTALDoc(unsigned int startPos, int length, int initStyle, WordLis
 		if (foldPreprocessor && (style == SCE_C_PREPROCESSOR)) {
 			if (ch == '{' && chNext == '$') {
 				unsigned int j=i+2; // skip {$
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while ((j<endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
 					j++;
 				}

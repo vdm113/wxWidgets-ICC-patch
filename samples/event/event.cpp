@@ -442,11 +442,6 @@ MyFrame::~MyFrame()
 {
     // we must pop any remaining event handlers to avoid memory leaks and
     // crashes!
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( m_nPush-- != 0 )
     {
         PopEventHandler(true /* delete handler */);

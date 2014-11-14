@@ -1128,11 +1128,6 @@ void wxNotebook::UpdateSpinBtn()
         // mean that all tabs are shown - so we go backwards until we arrive to
         // the beginning (then all tabs are indeed shown) or find a tab such
         // that not all tabs after it are shown
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( (m_lastFullyVisible == count - 1) && (m_firstVisible > 0) )
         {
             // this is equivalent to ScrollTo(m_firstVisible - 1) but more
@@ -1271,11 +1266,6 @@ void wxNotebook::ScrollLastTo(size_t page)
     }
 
     m_firstVisible = page;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( (m_firstVisible > 0) && (widthTabs <= widthAll) )
     {
         widthTabs += GetTabWidth(--m_firstVisible);

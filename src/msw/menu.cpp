@@ -426,11 +426,6 @@ void wxMenu::UpdateAccel(wxMenuItem *item)
     {
         wxMenu *submenu = item->GetSubMenu();
         wxMenuItemList::compatibility_iterator node = submenu->GetMenuItems().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( node )
         {
             UpdateAccel(node->GetData());
@@ -727,11 +722,6 @@ bool wxMenu::DoInsertOrAppend(wxMenuItem *pItem, size_t pos)
                 // all separators have the same id
                 int pos = 0;
                 wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while (node)
                 {
                     wxMenuItem* item = node->GetData();
@@ -921,11 +911,6 @@ void wxMenu::CalculateMaxAccelWidth()
     wxASSERT_MSG( m_maxAccelWidth == -1, wxT("it's really needed?") );
 
     wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxMenuItem* item = node->GetData();

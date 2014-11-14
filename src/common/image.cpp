@@ -1899,11 +1899,6 @@ wxImage wxImage::ConvertToGreyscale(double weight_r, double weight_g, double wei
 
     const unsigned char* src = M_IMGDATA->m_data;
     unsigned char* dst = image.GetData();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (size--)
     {
         unsigned char r = *src++;
@@ -1982,11 +1977,6 @@ wxImage wxImage::ConvertToDisabled(unsigned char brightness) const
 
     const unsigned char* src = M_IMGDATA->m_data;
     unsigned char* dst = image.GetData();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (size--)
     {
         unsigned char r = *src++;
@@ -2966,11 +2956,6 @@ bool wxImage::DoLoad(wxImageHandler& handler, wxInputStream& stream, int index)
         // this uses the same (trivial) algorithm as the JPEG handler
         unsigned width = widthOrig,
                  height = heightOrig;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( (maxWidth && width > maxWidth) ||
                     (maxHeight && height > maxHeight) )
         {
@@ -3174,11 +3159,6 @@ bool wxImage::RemoveHandler( const wxString& name )
 wxImageHandler *wxImage::FindHandler( const wxString& name )
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxImageHandler *handler = (wxImageHandler*)node->GetData();
@@ -3192,11 +3172,6 @@ wxImageHandler *wxImage::FindHandler( const wxString& name )
 wxImageHandler *wxImage::FindHandler( const wxString& extension, wxBitmapType bitmapType )
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxImageHandler *handler = (wxImageHandler*)node->GetData();
@@ -3215,11 +3190,6 @@ wxImageHandler *wxImage::FindHandler( const wxString& extension, wxBitmapType bi
 wxImageHandler *wxImage::FindHandler(wxBitmapType bitmapType )
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxImageHandler *handler = (wxImageHandler *)node->GetData();
@@ -3232,11 +3202,6 @@ wxImageHandler *wxImage::FindHandler(wxBitmapType bitmapType )
 wxImageHandler *wxImage::FindHandlerMime( const wxString& mimetype )
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxImageHandler *handler = (wxImageHandler *)node->GetData();
@@ -3256,11 +3221,6 @@ void wxImage::InitStandardHandlers()
 void wxImage::CleanUpHandlers()
 {
     wxList::compatibility_iterator node = sm_handlers.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxImageHandler *handler = (wxImageHandler *)node->GetData();
@@ -3278,11 +3238,6 @@ wxString wxImage::GetImageExtWildcard()
 
     wxList& Handlers = wxImage::GetHandlers();
     wxList::compatibility_iterator Node = Handlers.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( Node )
     {
         wxImageHandler* Handler = (wxImageHandler*)Node->GetData();
@@ -3593,11 +3548,6 @@ wxImageHistogram::FindFirstUnusedColour(unsigned char *r,
 {
     unsigned long key = MakeKey(r2, g2, b2);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( find(key) != end() )
     {
         // color already used

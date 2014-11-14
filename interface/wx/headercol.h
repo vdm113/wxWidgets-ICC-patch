@@ -65,6 +65,11 @@ enum
     accessing the various column properties but not for changing them as the
     setters might not be needed at all, e.g. if the column attributes can only
     be changed via the methods of the main associated control (this is the case
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for wxGrid for example). If you do want to allow changing them directly
     using the column itself, you should inherit from wxSettableHeaderColumn
     instead of this class.
@@ -414,11 +419,6 @@ public:
         Constructor for a column header.
 
         The first constructor creates a header showing the given text @a title
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while the second one creates one showing the specified @a bitmap image.
      */
     wxHeaderColumnSimple(const wxString& title,

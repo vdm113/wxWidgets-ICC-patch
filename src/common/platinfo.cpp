@@ -115,11 +115,6 @@ static unsigned wxGetIndexFromEnumValue(int value)
     wxCHECK_MSG( value, (unsigned)-1, wxT("invalid enum value") );
 
     int n = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( !(value & 1) )
     {
         value >>= 1;

@@ -108,11 +108,6 @@ wxMarkupParser::ParseAttrs(wxString attrs, TagAndAttrs& tagAndAttrs)
 
     wxMarkupSpanAttributes& spanAttrs = tagAndAttrs.attrs;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( !attrs.empty() )
     {
         wxString rest;

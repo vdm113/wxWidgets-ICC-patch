@@ -232,6 +232,11 @@ enum wxTextAttrLineSpacing
     Describes the possible return values of wxTextCtrl::HitTest().
 
     The element names correspond to the relationship between the point asked
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for and the character returned, e.g. @c wxTE_HT_BEFORE means that the point
     is before (leftward or upward) it and so on.
  */
@@ -259,6 +264,11 @@ enum wxTextCtrlHitTestResult
     @class wxTextAttr
 
     wxTextAttr represents the character and paragraph attributes, or style,
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for a range of text in a wxTextCtrl or wxRichTextCtrl.
 
     When setting up a wxTextAttr object, pass a bitlist mask to

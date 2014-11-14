@@ -138,11 +138,6 @@ protected:
         CPPUNIT_ASSERT(!stream_in.Eof());
 
         // Travel to the end of the stream.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while(!stream_in.Eof())
         {
             CPPUNIT_ASSERT_MESSAGE( "unexpected non-EOF stream error",
@@ -259,11 +254,6 @@ protected:
         TStreamIn &stream_in = CreateInStream();
 
         // Test the full stream
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (stream_in.IsOk())
         {
             char peekChar = stream_in.Peek();

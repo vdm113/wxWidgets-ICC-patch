@@ -126,6 +126,11 @@ private:
 
 Writing a native widget is typically more difficult as it requires you to know
 the APIs of the platforms you want to support. See @ref page_port_nativedocs
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for links to the documentation manuals of the various toolkits.
 
 The organization used by wxWidgets consists in:

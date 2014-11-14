@@ -557,11 +557,6 @@ wxFontEncodingArray wxEncodingConverter::GetPlatformEquivalents(wxFontEncoding e
     wxFontEncodingArray arr;
 
     clas = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (EquivalentEncodings[clas][0][0] != STOP)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -611,11 +606,6 @@ wxFontEncodingArray wxEncodingConverter::GetAllEquivalents(wxFontEncoding enc)
     arr = GetPlatformEquivalents(enc); // we want them to be first items in array
 
     clas = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (EquivalentEncodings[clas][0][0] != STOP)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch

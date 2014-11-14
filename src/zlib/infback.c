@@ -195,7 +195,6 @@ VDM_MACRO_PRAGMA_IVDEP \
 #define NEEDBITS(n) \
 VDM_MACRO_PRAGMA_IVDEP \
     do { \
-VDM_MACRO_PRAGMA_IVDEP \
         while (bits < (unsigned)(n)) \
             PULLBYTE(); \
     } while (0)
@@ -360,11 +359,6 @@ void FAR *out_desc;
             INITBITS();
 
             /* copy stored block from input to output */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (state->length != 0) {
                 copy = state->length;
                 PULL();
@@ -402,21 +396,11 @@ void FAR *out_desc;
 
             /* get code length code lengths (not a typo) */
             state->have = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (state->have < state->ncode) {
                 NEEDBITS(3);
                 state->lens[order[state->have++]] = (unsigned short)BITS(3);
                 DROPBITS(3);
             }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (state->have < 19)
                 state->lens[order[state->have++]] = 0;
             state->next = state->codes;
@@ -433,11 +417,6 @@ void FAR *out_desc;
 
             /* get length and distance code code lengths */
             state->have = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (state->have < state->nlen + state->ndist) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -485,11 +464,6 @@ void FAR *out_desc;
                         state->mode = BAD;
                         break;
                     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                     while (copy--)
                         state->lens[state->have++] = (unsigned short)len;
                 }

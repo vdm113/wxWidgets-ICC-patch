@@ -188,6 +188,11 @@ with specifying @c wxBORDER_NONE, which says that there should definitely be
 The way that wxMSW decides whether to apply a themed border is as follows. The
 theming code calls wxWindow::GetBorder() to obtain a border. If no border style
 has been passed to the window constructor, GetBorder() calls GetDefaultBorder()
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for this window. If wxBORDER_THEME was passed to the window constructor,
 GetBorder() calls GetDefaultBorderForControl().
 
@@ -241,6 +246,11 @@ You can also use wxGetOsVersion to test for a version of Windows CE at run-time
 (see the next section). However, because different builds are currently
 required to target different kinds of device, these values are hard-wired
 according to the build, and you cannot dynamically adapt the same executable
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for different major Windows CE platforms. This would require a different
 approach to the way wxWidgets adapts its behaviour (such as for menubars) to
 suit the style of device.
@@ -480,6 +490,11 @@ to create a PocketPC installation for ARM-based devices. In particular,
 Allowing the user to access files on memory cards, or on arbitrary parts of the
 filesystem, is a pain; the standard file dialog only shows folders under My
 Documents or folders on memory cards (not the system or card root directory,
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for example). This is a known problem for PocketPC developers.
 
 If you need a file dialog that allows access to all folders, you can use

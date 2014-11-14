@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* WARNING: The type of JPEG encapsulation defined by the TIFF Version 6.0
    specification is now totally obsolete and deprecated for new applications and
    images. This file was was created solely in order to read unconverted images
@@ -742,11 +743,6 @@ OJPEGPreDecode(TIFF* tif, uint16 s)
 		if (OJPEGWriteHeaderInfo(tif)==0)
 			return(0);
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (sp->write_curstrile<m)          
 	{
 		if (sp->libjpeg_jpeg_query_style==0)
@@ -782,11 +778,6 @@ OJPEGPreDecodeSkipRaw(TIFF* tif)
 		m-=sp->subsampling_convert_clines-sp->subsampling_convert_state;
 		sp->subsampling_convert_state=0;
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (m>=sp->subsampling_convert_clines)
 	{
 		if (jpeg_read_raw_data_encap(sp,&(sp->libjpeg_jpeg_decompress_struct),sp->subsampling_convert_ycbcrimage,sp->subsampling_ver*8)==0)
@@ -1178,11 +1169,6 @@ OJPEGReadSecondarySos(TIFF* tif, uint16 s)
 	assert(sp->sos_end[0].log!=0);
 	assert(sp->sos_end[s].log==0);
 	sp->plane_sample_offset=s-1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while(sp->sos_end[sp->plane_sample_offset].log==0)
 		sp->plane_sample_offset--;
 	sp->in_buffer_source=sp->sos_end[sp->plane_sample_offset].in_buffer_source;
@@ -1192,11 +1178,6 @@ OJPEGReadSecondarySos(TIFF* tif, uint16 s)
 	sp->in_buffer_file_togo=sp->sos_end[sp->plane_sample_offset].in_buffer_file_togo;
 	sp->in_buffer_togo=0;
 	sp->in_buffer_cur=0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while(sp->plane_sample_offset<s)
 	{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch

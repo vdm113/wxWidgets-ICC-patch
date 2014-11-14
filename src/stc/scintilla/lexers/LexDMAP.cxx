@@ -55,11 +55,6 @@ static void ColouriseDMAPDoc(unsigned int startPos, int length, int initStyle,
     int endPos = startPos + length;
     /***************************************/
     // backtrack to the nearest keyword
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ((startPos > 1) && (styler.StyleAt(startPos) != SCE_DMAP_WORD)) {
         startPos--;
     }
@@ -85,11 +80,6 @@ static void ColouriseDMAPDoc(unsigned int startPos, int length, int initStyle,
         int toLineStart = sc.currentPos - posLineStart;
         if (toLineStart >= 72 || sc.ch == '$') {
             sc.SetState(SCE_DMAP_COMMENT);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (!sc.atLineEnd && sc.More()) sc.Forward(); // Until line end
             continue;
         }

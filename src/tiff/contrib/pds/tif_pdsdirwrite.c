@@ -729,11 +729,6 @@ TIFFWriteRationalArray(TIFF* tif,
 		}
 		den = 1L;
 		if (fv > 0) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (fv < 1L<<(31-3) && den < 1L<<(31-3))
 				fv *= 1<<3, den *= 1L<<3;
 		}

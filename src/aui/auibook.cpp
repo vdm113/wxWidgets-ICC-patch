@@ -667,11 +667,6 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
         m_tabCloseButtons.Item(i).curState = wxAUI_BUTTON_STATE_HIDDEN;
 
     // make sure there are enough tab button entries to accommodate all tabs
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (m_tabCloseButtons.GetCount() < page_count)
     {
         wxAuiTabContainerButton tempbtn;
@@ -1866,11 +1861,6 @@ wxAuiNotebook::~wxAuiNotebook()
     // Indicate we're deleting pages
     SendDestroyEvent();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( GetPageCount() > 0 )
         DeletePage(0);
 
@@ -2774,11 +2764,6 @@ void wxAuiNotebook::OnTabDragMotion(wxAuiNotebookEvent& evt)
         // make sure we are not over the hint window
         if (!wxDynamicCast(tab_ctrl, wxFrame))
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (tab_ctrl)
             {
                 if (wxDynamicCast(tab_ctrl, wxAuiTabCtrl))
@@ -2861,11 +2846,6 @@ void wxAuiNotebook::OnTabEndDrag(wxAuiNotebookEvent& evt)
     {
         wxWindow* tab_ctrl = ::wxFindWindowAtPoint(mouse_screen_pt);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (tab_ctrl)
         {
             if (wxDynamicCast(tab_ctrl, wxAuiTabCtrl))
@@ -2903,11 +2883,6 @@ void wxAuiNotebook::OnTabEndDrag(wxAuiNotebookEvent& evt)
 
                 // Check that it's not an impossible parent relationship
                 wxWindow* p = nb;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while (p && !p->IsTopLevel())
                 {
                     if (p == src_page)
@@ -3232,11 +3207,6 @@ void wxAuiNotebook::OnChildFocusNotebook(wxChildFocusEvent& evt)
 
     // find the page containing the focused child
     wxWindow* win = evt.GetWindow();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( win )
     {
         // pages have the notebook as the parent, so stop when we reach one

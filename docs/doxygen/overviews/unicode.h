@@ -35,6 +35,11 @@ wish to jump directly in the details of its support in the library.
 
 Unicode is a standard for character encoding which addresses the shortcomings
 of the previous standards (e.g. the ASCII standard), by using 8, 16 or 32 bits
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for encoding each character.
 This allows enough code points (see below for the definition) sufficient to
 encode all of the world languages at once.
@@ -85,6 +90,11 @@ code points to code unit sequences. The simplest of them is <b>UTF-32</b> where
 each code unit is composed by 32 bits (4 bytes) and each code point is always
 represented by a single code unit (fixed length encoding).
 (Note that even UTF-32 is still not completely trivial as the mapping is different
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for little and big-endian architectures). UTF-32 is commonly used under Unix systems for
 internal representation of Unicode strings.
 
@@ -349,6 +359,11 @@ Even despite caching the index, indexed access should be replaced with
 sequential access using string iterators. For example a typical loop:
 @code
 wxString s("hello");
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for ( size_t i = 0; i < s.length(); i++ )
 {
     wchar_t ch = s[i];
@@ -359,6 +374,11 @@ for ( size_t i = 0; i < s.length(); i++ )
 should be rewritten as
 @code
 wxString s("hello");
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for ( wxString::const_iterator i = s.begin(); i != s.end(); ++i )
 {
     wchar_t ch = *i
@@ -370,6 +390,11 @@ for ( wxString::const_iterator i = s.begin(); i != s.end(); ++i )
 Another, similar, alternative is to use pointer arithmetic:
 @code
 wxString s("hello");
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for ( const wchar_t *p = s.wc_str(); *p; p++ )
 {
     wchar_t ch = *i
@@ -407,6 +432,11 @@ wxString::To8BitData(). They can be used to create a wxString from arbitrary bin
 data without supposing that it is in current locale encoding, and then get it back,
 again, without any conversion or, rather, undoing the conversion used by
 wxString::From8BitData(). Because of this you should only use wxString::From8BitData()
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for the strings created using wxString::To8BitData(). Also notice that in spite
 of the availability of these functions, wxString is not the ideal class for storing
 arbitrary binary data as they can take up to 4 times more space than needed

@@ -683,11 +683,6 @@ decode_mcu_AC_refine (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
 undoit:
   /* Re-zero any output coefficients that we made newly nonzero */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (num_newnz > 0)
     (*block)[newnz_pos[--num_newnz]] = 0;
 

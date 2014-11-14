@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* pngpread.c - read a png file in push mode
  *
  * Last changed in libpng 1.6.0 [February 14, 2013]
@@ -41,11 +42,6 @@ png_process_data(png_structrp png_ptr, png_inforp info_ptr,
 
    png_push_restore_buffer(png_ptr, buffer, buffer_size);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (png_ptr->buffer_size)
    {
       png_process_some_data(png_ptr, info_ptr);
@@ -859,11 +855,6 @@ png_process_IDAT_data(png_structrp png_ptr, png_bytep buffer,
    /* Keep going until the decompressed data is all processed
     * or the stream marked as finished.
     */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (png_ptr->zstream.avail_in > 0 &&
       !(png_ptr->flags & PNG_FLAG_ZSTREAM_ENDED))
    {

@@ -178,11 +178,6 @@ wxSetIconsX11(WXDisplay* display, WXWindow window, const wxIconBundle& ib)
             *ptr++ = width;
             *ptr++ = height;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ( imageData < imageDataEnd )
             {
                 r = imageData[0];
@@ -2537,11 +2532,6 @@ int wxUnicodeCharXToWX(WXKeySym keySym)
 	    return keySym & 0x00ffffff;
 
     /* binary search in table */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( max >= min ) {
 	    mid = (min + max) / 2;
 	    if ( keySymTab[mid].keySym < keySym )

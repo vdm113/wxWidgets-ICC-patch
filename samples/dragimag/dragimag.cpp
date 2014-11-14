@@ -262,11 +262,6 @@ void MyCanvas::OnMouseEvent(wxMouseEvent& event)
 void MyCanvas::DrawShapes(wxDC& dc)
 {
     wxList::compatibility_iterator node = m_displayList.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         DragShape* shape = (DragShape*) node->GetData();
@@ -294,11 +289,6 @@ void MyCanvas::EraseShape(DragShape* shape, wxDC& dc)
 void MyCanvas::ClearShapes()
 {
     wxList::compatibility_iterator node = m_displayList.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         DragShape* shape = (DragShape*) node->GetData();
@@ -311,11 +301,6 @@ void MyCanvas::ClearShapes()
 DragShape* MyCanvas::FindShape(const wxPoint& pt) const
 {
     wxList::compatibility_iterator node = m_displayList.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         DragShape* shape = (DragShape*) node->GetData();

@@ -500,11 +500,6 @@ bool wxPrinterDCImpl::DoBlit(wxCoord xdest, wxCoord ydest,
 
                     rect.left = xdest + x;
                     rect.top = ydest + y;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                     while( (x + 1 < width) &&
                                 (::GetPixel(dcSrc, x + 1, y) == col ) )
                     {

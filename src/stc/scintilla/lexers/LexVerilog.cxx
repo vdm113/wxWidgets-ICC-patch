@@ -263,11 +263,6 @@ static void FoldNoBoxVerilogDoc(unsigned int startPos, int length, int initStyle
 		if (foldPreprocessor && (style == SCE_V_PREPROCESSOR)) {
 			if (ch == '`') {
 				unsigned int j = i + 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while ((j < endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
 					j++;
 				}

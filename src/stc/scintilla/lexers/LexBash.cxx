@@ -85,11 +85,6 @@ static inline int translateBashDigit(int ch) {
 static inline int getBashNumberBase(char *s) {
 	int i = 0;
 	int base = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (*s) {
 		base = base * 10 + (*s++ - '0');
 		i++;

@@ -1927,11 +1927,6 @@ long wxListCtrl::FindItem(long start, const wxString& str, bool partial)
         idx = 0;
     long count = GetItemCount();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (idx < count)
     {
         wxString line_upper = GetItemText(idx).Upper();
@@ -1964,11 +1959,6 @@ long wxListCtrl::FindItem(long start, long data)
         idx = 0;
     long count = GetItemCount();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (idx < count)
     {
         if (GetItemData(idx) == data)

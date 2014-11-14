@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* pngrutil.c - utilities to read a PNG file
  *
  * Last changed in libpng 1.6.2 [April 25, 2013]
@@ -212,11 +213,6 @@ png_crc_finish(png_structrp png_ptr, png_uint_32 skip)
    /* The size of the local buffer for inflate is a good guess as to a
     * reasonable size to use for buffering reads from the application.
     */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (skip > 0)
    {
       png_uint_32 len;
@@ -1373,11 +1369,6 @@ png_handle_iCCP(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
       length -= read_length;
 
       keyword_length = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
       while (keyword_length < 80 && keyword_length < read_length &&
          keyword[keyword_length] != 0)
          ++keyword_length;
@@ -4005,11 +3996,6 @@ png_read_filter_row_paeth_1byte_pixel(png_row_infop row_info, png_bytep row,
    *row++ = (png_byte)a;
 
    /* Remainder */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (row < rp_end)
    {
       int b, pa, pb, pc, p;
@@ -4055,11 +4041,6 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
    /* Process the first pixel in the row completely (this is the same as 'up'
     * because there is only one candidate predictor for the first row).
     */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (row < rp_end)
    {
       int a = *row + *prev_row++;
@@ -4069,11 +4050,6 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
    /* Remainder */
    rp_end += row_info->rowbytes - bpp;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (row < rp_end)
    {
       int a, b, c, pa, pb, pc, p;
@@ -4181,11 +4157,6 @@ png_read_IDAT_data(png_structrp png_ptr, png_bytep output,
          uInt avail_in;
          png_bytep buffer;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
          while (png_ptr->idat_size == 0)
          {
             png_crc_finish(png_ptr, 0);

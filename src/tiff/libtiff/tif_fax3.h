@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Copyright (c) 1990-1997 Sam Leffler
  * Copyright (c) 1991-1997 Silicon Graphics, Inc.
@@ -280,7 +281,6 @@ VDM_MACRO_PRAGMA_IVDEP \
 	    break;							\
 	ClrBits(8);							\
     }									\
-VDM_MACRO_PRAGMA_IVDEP \
     while (GetBits(1) == 0)						\
 	ClrBits(1);							\
     ClrBits(1);				/* EOL bit */			\
@@ -297,7 +297,6 @@ VDM_MACRO_PRAGMA_IVDEP \
 	SETVALUE(0);							\
     if (a0 != lastx) {							\
 	badlength(a0, lastx);						\
-VDM_MACRO_PRAGMA_IVDEP \
 	while (a0 > lastx && pa > thisrun)				\
 	    a0 -= *--pa;						\
 	if (a0 < lastx) {						\
@@ -400,7 +399,6 @@ done1d:									\
  * Expand a row of 2D-encoded data.
  */
 #define EXPAND2D(eoflab) do {						\
-VDM_MACRO_PRAGMA_IVDEP \
     while (a0 < lastx) {						\
 	LOOKUP8(7, TIFFFaxMainTable, eof2d);				\
 	switch (TabEnt->State) {					\

@@ -77,11 +77,6 @@ int main(int argc, char **argv)
             {
                 wxPrintf("Dummy switch was given...\n");
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while (1)
                 {
                     wxChar input[128];

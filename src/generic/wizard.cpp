@@ -525,11 +525,6 @@ void wxWizard::FitToPage(const wxWizardPage *page)
 {
     wxCHECK_RET(!m_started, wxT("wxWizard::FitToPage after RunWizard"));
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( page )
     {
         wxSize size = page->GetBestSize();
@@ -929,11 +924,6 @@ bool wxWizard::DoLayoutAdaptation()
             wxWizardPage* page = wxDynamicCast(item->GetWindow(), wxWizardPage);
             if (page)
             {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while (page)
                 {
                     if (!pages.Find(page) && page->GetSizer())

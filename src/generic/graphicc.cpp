@@ -2073,11 +2073,6 @@ void wxCairoContext::Clip( const wxRegion& region )
     // Create a path with all the rectangles in the region
     wxGraphicsPath path = GetRenderer()->CreatePath();
     wxRegionIterator ri(region);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (ri)
     {
         path.AddRectangle(ri.GetX(), ri.GetY(), ri.GetW(), ri.GetH());
@@ -2381,11 +2376,6 @@ void wxCairoContext::GetPartialTextExtents(const wxString& text, wxArrayDouble& 
     }
     size_t i = widths.GetCount();
     const size_t len = text.length();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (i++ < len)
         widths.Add(PANGO_PIXELS(w));
 #else

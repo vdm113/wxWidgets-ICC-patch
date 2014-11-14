@@ -106,11 +106,6 @@ public:
         wxCHECK( locker.IsOk(), wxMSGQUEUE_MISC_ERROR );
 
         const wxMilliClock_t waitUntil = wxGetLocalTimeMillis() + timeout;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( m_messages.empty() )
         {
             wxCondError result = m_conditionNotEmpty.WaitTimeout(timeout);
@@ -145,11 +140,6 @@ public:
 
         wxCHECK( locker.IsOk(), wxMSGQUEUE_MISC_ERROR );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( m_messages.empty() )
         {
             wxCondError result = m_conditionNotEmpty.Wait();

@@ -219,6 +219,11 @@ static void FoldPBDoc(unsigned int startPos, int length, int, WordList *[], Acce
     bool fNewLine=true;
     bool fMightBeMultiLineMacro=false;
     bool fBeginOfCommentFound=false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (unsigned int i = startPos; i < endPos; i++)
     {
         char ch = chNext;

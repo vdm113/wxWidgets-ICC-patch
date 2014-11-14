@@ -2176,20 +2176,10 @@ wxTextPos wxTextCtrl::GetWordStart() const
     const wxChar *p = p0 + m_curCol - 1;
 
     // find the end of the previous word
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( (p > p0) && !IsWordChar(*p) )
         p--;
 
     // now find the beginning of this word
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( (p > p0) && IsWordChar(*p) )
         p--;
 
@@ -2227,29 +2217,14 @@ wxTextPos wxTextCtrl::GetWordEnd() const
     const wxChar *p = p0 + m_curCol;
 
     // find the start of the next word
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( *p && !IsWordChar(*p) )
         p++;
 
     // now find the end of it
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( *p && IsWordChar(*p) )
         p++;
 
     // and find the start of the next word
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( *p && !IsWordChar(*p) )
         p++;
 
@@ -2713,11 +2688,6 @@ wxTextCoord wxTextCtrl::GetRowInLine(wxTextCoord line,
     if ( rowMax )
     {
         row = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( (row < rowMax) && (col >= lineData.GetExtraRowStart(row)) )
             row++;
 
@@ -3242,11 +3212,6 @@ wxTextCtrlHitTestResult wxTextCtrl::HitTest2(wxCoord y0,
             size_t lo = 0,
                    hi = linesData.GetCount(),
                    cur;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ( lo < hi )
             {
                 cur = (lo + hi)/2;
@@ -4015,11 +3980,6 @@ void wxTextCtrl::RefreshPixelRange(wxTextCoord line,
         wxCoord wLine = 0; // suppress compiler warning about uninit var
         size_t rowLast = lineData.GetRowCount(),
                row = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( (row < rowLast) &&
                 (rect.x > (wLine = lineData.GetRowWidth(row++))) )
         {
@@ -4030,11 +3990,6 @@ void wxTextCtrl::RefreshPixelRange(wxTextCoord line,
         // (2) now refresh all lines except the last one: note that the first
         //     line is refreshed from the given start to the end, all the next
         //     ones - entirely
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( (row < rowLast) && (width > wLine - rect.x) )
         {
             rect.width = GetTotalWidth() - rect.x;

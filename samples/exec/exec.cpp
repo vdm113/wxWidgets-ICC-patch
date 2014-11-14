@@ -1424,11 +1424,6 @@ bool MyPipedProcess::HasInput()
 void MyPipedProcess::OnTerminate(int pid, int status)
 {
     // show the rest of the output
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( HasInput() )
         ;
 
@@ -1527,11 +1522,6 @@ void MyPipeFrame::OnBtnSendFile(wxCommandEvent& WXUNUSED(event))
     // and we would dead lock
     size_t len = data.length();
     const wxChar *pc = data.c_str();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( len )
     {
         const size_t CHUNK_SIZE = 4096;
@@ -1559,11 +1549,6 @@ void MyPipeFrame::DoGet()
 
 void MyPipeFrame::DoGetFromStream(wxTextCtrl *text, wxInputStream& in)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( in.CanRead() )
     {
         char buffer[4096];

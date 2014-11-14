@@ -3919,11 +3919,6 @@ GtkTreePath *wxDataViewCtrlInternal::get_path( GtkTreeIter *iter )
         void *id = iter->user_data;
 
         wxGtkTreeModelNode *node = FindParentNode( iter );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (node)
         {
             int pos = node->GetChildren().Index( id );
@@ -4196,11 +4191,6 @@ wxDataViewCtrlInternal_FindNode( wxDataViewModel * model, wxGtkTreeModelNode *tr
     list.DeleteContents( true );
     wxDataViewItem it( item );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while( it.IsOk() )
     {
         wxDataViewItem * pItem = new wxDataViewItem( it );
@@ -4303,11 +4293,6 @@ wxDataViewCtrlInternal_FindParentNode( wxDataViewModel * model, wxGtkTreeModelNo
         return NULL;
 
     wxDataViewItem it( model->GetParent( item ) );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while( it.IsOk() )
     {
         wxDataViewItem * pItem = new wxDataViewItem( it );
@@ -4487,11 +4472,6 @@ void gtk_dataviewctrl_size_callback( GtkWidget *WXUNUSED(widget),
                                      wxDataViewCtrl *win )
 {
     wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxWindow *child = node->GetData();

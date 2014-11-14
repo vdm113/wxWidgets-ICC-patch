@@ -1176,11 +1176,6 @@ bool wxToolBar::Realize()
     // find the maximum tool width and height
     wxToolBarTool *tool;
     wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( node )
     {
         tool = (wxToolBarTool *) node->GetData();
@@ -1215,11 +1210,6 @@ bool wxToolBar::Realize()
 #endif
 
     node = m_tools.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( node )
     {
         tool = (wxToolBarTool*) node->GetData();
@@ -1370,11 +1360,6 @@ bool wxToolBar::Realize()
                     DoToggleTool( tool, true );
 
                 wxToolBarToolsList::compatibility_iterator  nodePrev = node->GetPrevious();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while ( nodePrev )
                 {
                     wxToolBarToolBase   *toggleTool = nodePrev->GetData();
@@ -1532,11 +1517,6 @@ wxToolBarToolBase *wxToolBar::FindToolForPosition(wxCoord x, wxCoord y) const
 {
     wxToolBarTool *tool;
     wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( node )
     {
         tool = (wxToolBarTool *)node->GetData();

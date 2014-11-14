@@ -50,6 +50,11 @@
 
         // iterate over all the elements in the class
         MySet3::iterator it;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for( it = h3.begin(); it != h3.end(); ++it )
         {
             wxString key = *it;

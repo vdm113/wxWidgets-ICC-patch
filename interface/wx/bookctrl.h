@@ -17,6 +17,11 @@
 
     Notice that wxOSX currently only returns wxBK_HITTEST_ONLABEL or
     wxBK_HITTEST_NOWHERE and never the other values, so you should only test
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for these two in the code that should be portable under OS X.
  */
 enum

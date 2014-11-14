@@ -84,11 +84,6 @@ int main (int argc, char *argv[])
 
   i = 0;
   XMLBufEnd = XMLBuf + fileSize;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (i < nrOfLoops) {
     XMLBufPtr = XMLBuf;
     isFinal = 0;

@@ -17,6 +17,11 @@
 
     This event class holds information about a date change and is used together
     with wxDatePickerCtrl. It also serves as a base class
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for wxCalendarEvent.
 
     @library{wxadv}

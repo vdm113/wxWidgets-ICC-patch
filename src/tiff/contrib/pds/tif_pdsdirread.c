@@ -233,11 +233,6 @@ TIFFReadPrivateDataSubDirectory(TIFF* tif, toff_t pdir_offset,
 			fip = field_info;    /* O(n^2) */
 		}
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (fip->field_tag && fip->field_tag < dp->tdir_tag)
 			fip++;
 		if (!fip->field_tag || fip->field_tag != dp->tdir_tag) {
@@ -264,11 +259,6 @@ TIFFReadPrivateDataSubDirectory(TIFF* tif, toff_t pdir_offset,
 		 * Check data type.
 		 */
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (dp->tdir_type != (u_short)fip->field_type) {
 			if (fip->field_type == TIFF_ANY)	/* wildcard */
 				break;
@@ -1072,11 +1062,6 @@ TIFFFetchStripThing(TIFF* tif, TIFFDirEntry* dir, long nstrips, uint32** lpp)
 			return (0);
 		if (status = TIFFFetchShortArray(tif, dir, dp)) {
 			register uint16* wp = dp;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (nstrips-- > 0)
 				*lp++ = *wp++;
 		}

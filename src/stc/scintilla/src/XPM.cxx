@@ -28,27 +28,12 @@ using namespace Scintilla;
 
 static const char *NextField(const char *s) {
 	// In case there are leading spaces in the string
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (*s && *s == ' ') {
 		s++;
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (*s && *s != ' ') {
 		s++;
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (*s && *s == ' ') {
 		s++;
 	}
@@ -58,11 +43,6 @@ static const char *NextField(const char *s) {
 // Data lines in XPM can be terminated either with NUL or "
 static size_t MeasureLength(const char *s) {
 	size_t i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (s[i] && (s[i] != '\"'))
 		i++;
 	return i;

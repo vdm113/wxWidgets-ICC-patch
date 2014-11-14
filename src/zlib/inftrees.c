@@ -307,11 +307,6 @@ unsigned short FAR *work;
 
         /* backwards increment the len-bit code huff */
         incr = 1U << (len - 1);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (huff & incr)
             incr >>= 1;
         if (incr != 0) {
@@ -340,11 +335,6 @@ unsigned short FAR *work;
             /* determine length of next table */
             curr = len - drop;
             left = (int)(1 << curr);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (curr + drop < max) {
                 left -= count[curr + drop];
                 if (left <= 0) break;

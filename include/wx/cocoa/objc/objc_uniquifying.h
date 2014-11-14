@@ -30,6 +30,11 @@ unqiuified.
 
 You cannot turn this on for 64-bit mode. It will not compile due to opaque
 Objective-C data structures and it is not needed because it is a workaround
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for a bug that does not exist in the 64-bit runtime.
 
 You should not use this when wxCocoa is built as a dynamic library.  This has

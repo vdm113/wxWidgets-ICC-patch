@@ -77,6 +77,11 @@ code paths which are supposed to be inaccessible (e.g. @c default branch of a
 @c switch statement which should never be executed). Finally, the wxCHECK()
 family of macros verifies the condition just as wxASSERT() does and performs
 some action such returning from the function if it fails -- thus, it is useful
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for checking the functions preconditions.
 
 All of the above functions exist in @c _MSG variants which allow you to provide

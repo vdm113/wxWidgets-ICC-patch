@@ -152,6 +152,11 @@
 
 /*
    wxCALL_FOR_EACH(what, ...) calls the macro from its first argument, what(pos, x),
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    for every remaining argument 'x', with 'pos' being its 1-based index in
    *reverse* order (with the last argument being numbered 1).
 

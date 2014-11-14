@@ -451,11 +451,6 @@ wxPGProperty* wxPropertyGridPageState::GetLastItem( int flags )
 
     // First, get last child of last parent
     wxPGProperty* pwc = (wxPGProperty*)m_properties->Last();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( pwc->GetChildCount() &&
             wxPG_ITERATOR_PARENTEXMASK_TEST(pwc, parentExMask) )
         pwc = (wxPGProperty*) pwc->Last();
@@ -602,10 +597,10 @@ void wxPropertyGridPageState::DoSetPropertyName( wxPGProperty* p,
 #endif
 
 #define ITEM_ITERATION_LOOP_BEGIN \
+VDM_MACRO_PRAGMA_IVDEP \
     do \
     { \
         iMax = parent->GetChildCount(); \
-VDM_MACRO_PRAGMA_IVDEP \
         while ( i < iMax ) \
         {  \
             wxPGProperty* p = parent->Item(i);
@@ -1304,11 +1299,6 @@ void wxPropertyGridPageState::DoSetColumnProportion( unsigned int column,
     if ( proportion < 1 )
         proportion = 1;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( m_columnProportions.size() <= column )
         m_columnProportions.push_back(1);
 
@@ -1322,11 +1312,6 @@ int wxPropertyGridPageState::HitTestH( int x, int* pSplitterHit, int* pSplitterH
     int col = -1;
     int prevSplitter = -1;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( x > cx )
     {
         col++;

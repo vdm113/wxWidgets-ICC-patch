@@ -412,11 +412,6 @@ void wxDateTime::Tm::ComputeWeekDay()
 void wxDateTime::Tm::AddMonths(int monDiff)
 {
     // normalize the months field
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( monDiff < -mon )
     {
         year--;
@@ -424,11 +419,6 @@ void wxDateTime::Tm::AddMonths(int monDiff)
         monDiff += MONTHS_IN_YEAR;
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( monDiff + mon >= MONTHS_IN_YEAR )
     {
         year++;
@@ -447,11 +437,6 @@ void wxDateTime::Tm::AddMonths(int monDiff)
 void wxDateTime::Tm::AddDays(int dayDiff)
 {
     // normalize the days field
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( dayDiff + mday < 1 )
     {
         AddMonths(-1);
@@ -460,11 +445,6 @@ void wxDateTime::Tm::AddDays(int dayDiff)
     }
 
     mday = (wxDateTime::wxDateTime_t)( mday + dayDiff );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( mday > GetNumOfDaysInMonth(year, mon) )
     {
         mday -= GetNumOfDaysInMonth(year, mon);

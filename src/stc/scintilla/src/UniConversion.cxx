@@ -128,11 +128,6 @@ unsigned int UTF16FromUTF8(const char *s, unsigned int len, wchar_t *tbuf, unsig
 	unsigned int ui=0;
 	const unsigned char *us = reinterpret_cast<const unsigned char *>(s);
 	unsigned int i=0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((i<len) && (ui<tlen)) {
 		unsigned char ch = us[i++];
 		if (ch < 0x80) {

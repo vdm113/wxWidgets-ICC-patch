@@ -5,6 +5,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Copyright (c) 1988-1997 Sam Leffler
  * Copyright (c) 1991-1997 Silicon Graphics, Inc.
@@ -102,11 +103,6 @@ ThunderDecode(TIFF* tif, uint8* op, tmsize_t maxpixels)
 	cc = tif->tif_rawcc;
 	lastpixel = 0;
 	npixels = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (cc > 0 && npixels < maxpixels) {
 		int n, delta;
 
@@ -191,11 +187,6 @@ ThunderDecodeRow(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 		TIFFErrorExt(tif->tif_clientdata, module, "Fractional scanlines cannot be read");
 		return (0);
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (occ > 0) {
 		if (!ThunderDecode(tif, row, tif->tif_dir.td_imagewidth))
 			return (0);

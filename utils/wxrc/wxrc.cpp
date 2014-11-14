@@ -69,11 +69,6 @@ private:
         wxString classValue;
         wxString nameValue;
         wxXmlNode* children;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (node)
         {
             if (node->GetName() == wxT("object")
@@ -386,11 +381,6 @@ void XmlResApp::ParseParams(const wxCmdLineParser& cmdline)
     {
 #ifdef __WINDOWS__
         wxString fn=wxFindFirstFile(cmdline.GetParam(i), wxFILE);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (!fn.empty())
         {
             parFiles.Add(fn);
@@ -488,11 +478,6 @@ wxArrayString XmlResApp::PrepareTempFiles()
         {
             wxXmlNode* node = (doc.GetRoot())->GetChildren();
                 wxString classValue,nameValue;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while(node){
                     if(node->GetName() == wxT("object")
                      && node->GetAttribute(wxT("class"),&classValue)
@@ -573,11 +558,6 @@ void XmlResApp::FindFilesInXML(wxXmlNode *node, wxArrayString& flist, const wxSt
     bool containsFilename = NodeContainsFilename(node);
 
     wxXmlNode *n = node->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (n)
     {
         if (containsFilename &&
@@ -1085,11 +1065,6 @@ XmlResApp::FindStrings(const wxString& filename, wxXmlNode *node)
     if (n == NULL) return arr;
     n = n->GetChildren();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (n)
     {
         if ((node->GetType() == wxXML_ELEMENT_NODE) &&

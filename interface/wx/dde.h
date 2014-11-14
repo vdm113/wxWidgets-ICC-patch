@@ -23,6 +23,11 @@
 
     An application should normally derive a new connection class from
     wxDDEConnection, in order to override the communication event handlers to
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     do something interesting.
 
     This DDE-based implementation is available on Windows only, but a

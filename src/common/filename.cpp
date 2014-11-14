@@ -331,11 +331,6 @@ bool DoStatAny(wxStructStat& st, wxString path, bool dereference)
     // the end because the symlink resolution would happen while following the
     // path and not for the last path element itself.
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( wxEndsWithPathSeparator(path) )
     {
         const size_t posLast = path.length() - 1;
@@ -510,11 +505,6 @@ void wxFileName::SetPath( const wxString& pathOrig, wxPathFormat format )
 
     wxStringTokenizer tn( path, GetPathSeparators(format) );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( tn.HasMoreTokens() )
     {
         wxString token = tn.GetNextToken();
@@ -641,11 +631,6 @@ void RemoveTrailingSeparatorsFromPath(wxString& strPath)
     // so remove all trailing backslashes from the path - but don't do this for
     // the paths "d:\" (which are different from "d:"), for just "\" or for
     // windows unique volume names ("\\?\Volume{GUID}\")
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( wxEndsWithPathSeparator( strPath ) )
     {
         size_t len = strPath.length();
@@ -945,11 +930,6 @@ static wxString wxCreateTempImpl(
 #if defined(__WXWINCE__)
     path = dir + wxT("\\") + name;
     int i = 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (wxFileName::FileExists(path))
     {
         path = dir + wxT("\\") + name ;
@@ -1432,11 +1412,6 @@ bool wxFileName::Rmdir(const wxString& dir, int flags)
         // unpleasant surprises.
         bool cont = d.GetFirst(&filename, wxString(),
                                wxDIR_DIRS | wxDIR_HIDDEN | wxDIR_NO_FOLLOW);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( cont )
         {
             wxFileName::Rmdir(path + filename, flags);
@@ -1451,11 +1426,6 @@ bool wxFileName::Rmdir(const wxString& dir, int flags)
             // directory and just delete the symlinks themselves.
             cont = d.GetFirst(&filename, wxString(),
                               wxDIR_FILES | wxDIR_HIDDEN | wxDIR_NO_FOLLOW);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ( cont )
             {
                 ::wxRemoveFile(path + filename);
@@ -1827,11 +1797,6 @@ bool wxFileName::MakeRelativeTo(const wxString& pathBase, wxPathFormat format)
     m_volume.clear();
 
     // remove common directories starting at the top
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( !m_dirs.IsEmpty() && !fnBase.m_dirs.IsEmpty() &&
                 m_dirs[0u].IsSameAs(fnBase.m_dirs[0u], withCase) )
     {

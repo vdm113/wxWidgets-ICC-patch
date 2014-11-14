@@ -157,11 +157,6 @@ int wxHtmlDCRenderer::Render(int x, int y,
     int pbreak, hght;
 
     pbreak = (int)(from + m_Height);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (m_Cells->AdjustPagebreak(&pbreak, known_pagebreaks, m_Height)) {}
     hght = pbreak - from;
     if(to < hght)
@@ -449,11 +444,6 @@ void wxHtmlPrintout::SetHtmlFile(const wxString& htmlfile)
     wxString doc;
 
     wxList::compatibility_iterator node = m_Filters.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxHtmlFilter *h = (wxHtmlFilter*) node->GetData();

@@ -279,11 +279,6 @@ void ZLIB_INTERNAL zcfree (voidpf opaque, voidpf ptr)
         if (ptr != table[n].new_ptr) continue;
 
         farfree(table[n].org_ptr);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (++n < next_ptr) {
             table[n-1] = table[n];
         }

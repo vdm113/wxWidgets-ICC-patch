@@ -590,11 +590,6 @@ wxPropertyGrid::~wxPropertyGrid()
         // Emulate member variable.
         wxArrayPGObject& m_deletedEditorObjects = *gs_deletedEditorObjects[this];
 #endif
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( !m_deletedEditorObjects.empty() )
         {
             wxObject* obj = m_deletedEditorObjects.back();
@@ -2727,11 +2722,6 @@ void wxPropertyGrid::DrawItemAndValueRelated( wxPGProperty* p )
     // Draw item, children, and parent too, if it is not category
     wxPGProperty* parent = p->GetParent();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( parent &&
             !parent->IsCategory() &&
             parent->GetParent() )
@@ -3133,11 +3123,6 @@ bool wxPropertyGrid::PerformValidation( wxPGProperty* p, wxVariant& pendingValue
     wxVariant listValue = pendingValue;
     listValue.SetName(p->GetBaseName());
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( pwc &&
             (pwc->HasFlag(wxPG_PROP_AGGREGATE) || pwc->HasFlag(wxPG_PROP_COMPOSED_VALUE)) )
     {
@@ -3495,11 +3480,6 @@ bool wxPropertyGrid::DoPropertyChanged( wxPGProperty* p, unsigned int selFlags )
 
     wxPGProperty* topPaintedProperty = changedProperty;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( !topPaintedProperty->IsCategory() &&
             !topPaintedProperty->IsRoot() )
     {
@@ -3529,11 +3509,6 @@ bool wxPropertyGrid::DoPropertyChanged( wxPGProperty* p, unsigned int selFlags )
     pwc = p;
     wxPGProperty* prevPwc = NULL;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( prevPwc != topPaintedProperty )
     {
         pwc->m_flags |= wxPG_PROP_MODIFIED;
@@ -3575,11 +3550,6 @@ bool wxPropertyGrid::DoPropertyChanged( wxPGProperty* p, unsigned int selFlags )
     {
         pwc = m_chgInfo_baseChangedProperty;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( pwc != changedProperty )
         {
             SendEvent( wxEVT_PG_CHANGED, pwc, NULL );
@@ -4102,11 +4072,6 @@ void wxPropertyGrid::DeletePendingObjects()
     wxArrayPGObject& m_deletedEditorObjects = *gs_deletedEditorObjects[this];
 #endif
     // Delete pending property editors and their event handlers.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( !m_deletedEditorObjects.empty() )
     {
         wxObject* obj = m_deletedEditorObjects.back();
@@ -4850,11 +4815,6 @@ void wxPropertyGrid::SetFocusOnCanvas()
     if ( focus )
     {
         wxWindow* parent = focus->GetParent();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ( parent )
         {
             if ( parent == this )
@@ -6044,11 +6004,6 @@ void wxPropertyGrid::OnIdle( wxIdleEvent& WXUNUSED(event) )
     // before and after the operation.
     // (Note that lists are changed at every operation.)
     size_t cntAfter = m_deletedProperties.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( cntAfter > 0 )
     {
         size_t cntBefore = cntAfter;
@@ -6063,11 +6018,6 @@ void wxPropertyGrid::OnIdle( wxIdleEvent& WXUNUSED(event) )
             break;
     }
     cntAfter = m_removedProperties.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( cntAfter > 0 )
     {
         size_t cntBefore = cntAfter;
@@ -6113,11 +6063,6 @@ void wxPropertyGrid::HandleFocusChange( wxWindow* newFocused )
     wxWindow* parent = newFocused;
 
     // This must be one of nextFocus' parents.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( parent )
     {
         if ( parent == wndEditor )
@@ -6320,11 +6265,6 @@ bool wxPGStringTokenizer::HasMoreTokens()
 
     bool inToken = false;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( i != str.end() )
     {
         a = *i;

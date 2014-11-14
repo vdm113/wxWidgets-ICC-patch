@@ -29,6 +29,11 @@
     @code
         wxBusyInfo wait("Please wait, working...");
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int i = 0; i < 100000; i++)
         {
             DoACalculation();
@@ -68,6 +73,11 @@
         wxWindowDisabler disableAll;
         wxBusyInfo wait("Please wait, working...");
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (int i = 0; i < 100000; i++)
         {
             DoACalculation();

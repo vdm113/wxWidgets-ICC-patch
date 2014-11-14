@@ -888,11 +888,6 @@ bool wxHtmlHelpWindow::KeywordSearch(const wxString& keyword,
 #endif
 
         int curi;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (status.IsActive())
         {
             curi = status.GetCurIndex();
@@ -1496,11 +1491,6 @@ void wxHtmlHelpWindow::OnToolbar(wxCommandEvent& event)
 
                     const wxHtmlHelpDataItem *it =
                         &m_Data->GetContentsArray()[ind];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                     while (ind >= 0 && it->level != level)
                     {
                         ind--;
@@ -1724,11 +1714,6 @@ void wxHtmlHelpWindow::DoIndexFind()
                 // as well, otherwise it would not be clear what entry is
                 // shown:
                 wxHtmlHelpMergedIndexItem *parent = index[i].parent;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while (parent)
                 {
                     if (pos == 0 ||
@@ -1747,11 +1732,6 @@ void wxHtmlHelpWindow::DoIndexFind()
                 // in them: "foo" with parent "bar" reads as "bar, foo"):
                 int level = index[i].items[0]->level;
                 i++;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while (i < cnt && index[i].items[0]->level > level)
                 {
                     m_IndexList->Append(index[i].name, (char*)(&index[i]));

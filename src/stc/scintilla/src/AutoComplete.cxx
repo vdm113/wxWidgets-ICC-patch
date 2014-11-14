@@ -114,27 +114,12 @@ struct Sorter {
 
 	Sorter(AutoComplete *ac_, const char *list_) : ac(ac_), list(list_) {
 		int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (list[i]) {
 			indices.push_back(i); // word start
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (list[i] != ac->GetTypesep() && list[i] != ac->GetSeparator() && list[i])
 				++i;
 			indices.push_back(i); // word end
 			if (list[i] == ac->GetTypesep()) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (list[i] != ac->GetSeparator() && list[i])
 					++i;
 			}
@@ -270,11 +255,6 @@ void AutoComplete::Select(const char *word) {
 	int location = -1;
 	int start = 0; // lower bound of the api array block to search
 	int end = lb->Length() - 1; // upper bound of the api array block to search
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((start <= end) && (location == -1)) { // Binary searching loop
 		int pivot = (start + end) / 2;
 		char item[maxItemLen];
@@ -286,11 +266,6 @@ void AutoComplete::Select(const char *word) {
 			cond = strncmp(word, item, lenWord);
 		if (!cond) {
 			// Find first match
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (pivot > start) {
 				lb->GetValue(sortMatrix[pivot-1], item, maxItemLen);
 				if (ignoreCase)

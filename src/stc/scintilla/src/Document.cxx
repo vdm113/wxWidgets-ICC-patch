@@ -380,11 +380,6 @@ int Document::VCHomePosition(int position) const {
 	int startPosition = LineStart(line);
 	int endLine = LineEnd(line);
 	int startText = startPosition;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (startText < endLine && (cb.CharAt(startText) == ' ' || cb.CharAt(startText) == '\t'))
 		startText++;
 	if (position == startText)
@@ -426,11 +421,6 @@ int Document::GetLastChild(int lineParent, int level, int lastLine) {
 	int maxLine = LinesTotal();
 	int lookLastLine = (lastLine != -1) ? Platform::Minimum(LinesTotal() - 1, lastLine) : -1;
 	int lineMaxSubord = lineParent;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (lineMaxSubord < maxLine - 1) {
 		EnsureStyledTo(LineStart(lineMaxSubord + 2));
 		if (!IsSubordinate(level, GetLevel(lineMaxSubord + 1)))
@@ -453,11 +443,6 @@ int Document::GetLastChild(int lineParent, int level, int lastLine) {
 int Document::GetFoldParent(int line) const {
 	int level = GetLevel(line) & SC_FOLDLEVELNUMBERMASK;
 	int lineLook = line - 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((lineLook > 0) && (
 	            (!(GetLevel(lineLook) & SC_FOLDLEVELHEADERFLAG)) ||
 	            ((GetLevel(lineLook) & SC_FOLDLEVELNUMBERMASK) >= level))
@@ -479,11 +464,6 @@ void Document::GetHighlightDelimiters(HighlightDelimiter &highlightDelimiter, in
 	int lookLine = line;
 	int lookLineLevel = level;
 	int lookLineLevelNum = lookLineLevel & SC_FOLDLEVELNUMBERMASK;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((lookLine > 0) && ((lookLineLevel & SC_FOLDLEVELWHITEFLAG) ||
 		((lookLineLevel & SC_FOLDLEVELHEADERFLAG) && (lookLineLevelNum >= (GetLevel(lookLine + 1) & SC_FOLDLEVELNUMBERMASK))))) {
 		lookLineLevel = GetLevel(--lookLine);
@@ -502,11 +482,6 @@ void Document::GetHighlightDelimiters(HighlightDelimiter &highlightDelimiter, in
 		lookLine = beginFoldBlock - 1;
 		lookLineLevel = GetLevel(lookLine);
 		lookLineLevelNum = lookLineLevel & SC_FOLDLEVELNUMBERMASK;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while ((lookLine >= 0) && (lookLineLevelNum >= SC_FOLDLEVELBASE)) {
 			if (lookLineLevel & SC_FOLDLEVELHEADERFLAG) {
 				if (GetLastChild(lookLine, -1, lookLastLine) == line) {
@@ -596,11 +571,6 @@ int Document::LenChar(int pos) {
 
 bool Document::InGoodUTF8(int pos, int &start, int &end) const {
 	int trail = pos;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((trail>0) && (pos-trail < UTF8MaxBytes) && UTF8IsTrailByte(static_cast<unsigned char>(cb.CharAt(trail-1))))
 		trail--;
 	start = (trail > 0) ? trail-1 : trail;
@@ -677,20 +647,10 @@ int Document::MovePositionOutsideChar(int pos, int moveDir, bool checkLineEnd) {
 
 			// Step back until a non-lead-byte is found.
 			int posCheck = pos;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while ((posCheck > posStartLine) && IsDBCSLeadByte(cb.CharAt(posCheck-1)))
 				posCheck--;
 
 			// Check from known start of character.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (posCheck < pos) {
 				int mbsize = IsDBCSLeadByte(cb.CharAt(posCheck)) ? 2 : 1;
 				if (posCheck + mbsize == pos) {
@@ -780,11 +740,6 @@ int Document::NextPosition(int pos, int moveDir) const {
 				} else {
 					// Otherwise, step back until a non-lead-byte is found.
 					int posTemp = pos - 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 					while (posStartLine <= --posTemp && IsDBCSLeadByte(cb.CharAt(posTemp)))
 						;
 					// Now posTemp+1 must point to the beginning of a character,
@@ -830,11 +785,6 @@ int SCI_METHOD Document::GetRelativePosition(int positionStart, int characterOff
 	int pos = positionStart;
 	if (dbcsCodePage) {
 		const int increment = (characterOffset > 0) ? 1 : -1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (characterOffset != 0) {
 			const int posNext = NextPosition(pos, increment);
 			if (posNext == pos)
@@ -1290,21 +1240,11 @@ static int NextTab(int pos, int tabSize) {
 static std::string CreateIndentation(int indent, int tabSize, bool insertSpaces) {
 	std::string indentation;
 	if (!insertSpaces) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (indent >= tabSize) {
 			indentation += '\t';
 			indent -= tabSize;
 		}
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (indent > 0) {
 		indentation += ' ';
 		indent--;
@@ -1354,11 +1294,6 @@ int Document::GetLineIndentPosition(int line) const {
 		return 0;
 	int pos = LineStart(line);
 	int length = Length();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((pos < length) && IsSpaceOrTab(cb.CharAt(pos))) {
 		pos++;
 	}
@@ -1399,11 +1334,6 @@ int Document::CountCharacters(int startPos, int endPos) {
 	endPos = MovePositionOutsideChar(endPos, -1, false);
 	int count = 0;
 	int i = startPos;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (i < endPos) {
 		count++;
 		if (IsCrLf(i))
@@ -1417,11 +1347,6 @@ int Document::FindColumn(int line, int column) {
 	int position = LineStart(line);
 	if ((line >= 0) && (line < LinesTotal())) {
 		int columnCurrent = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while ((columnCurrent < column) && (position < Length())) {
 			char ch = cb.CharAt(position);
 			if (ch == '\t') {
@@ -1536,11 +1461,6 @@ void Document::ConvertLineEnds(int eolModeSet) {
 bool Document::IsWhiteLine(int line) const {
 	int currentChar = LineStart(line);
 	int endLine = LineEnd(line);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (currentChar < endLine) {
 		if (cb.CharAt(currentChar) != ' ' && cb.CharAt(currentChar) != '\t') {
 			return false;
@@ -1553,19 +1473,9 @@ bool Document::IsWhiteLine(int line) const {
 int Document::ParaUp(int pos) const {
 	int line = LineFromPosition(pos);
 	line--;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (line >= 0 && IsWhiteLine(line)) { // skip empty lines
 		line--;
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (line >= 0 && !IsWhiteLine(line)) { // skip non-empty lines
 		line--;
 	}
@@ -1575,19 +1485,9 @@ int Document::ParaUp(int pos) const {
 
 int Document::ParaDown(int pos) const {
 	int line = LineFromPosition(pos);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (line < LinesTotal() && !IsWhiteLine(line)) { // skip non-empty lines
 		line++;
 	}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (line < LinesTotal() && IsWhiteLine(line)) { // skip empty lines
 		line++;
 	}
@@ -1612,21 +1512,11 @@ int Document::ExtendWordSelect(int pos, int delta, bool onlyWordCharacters) {
 	if (delta < 0) {
 		if (!onlyWordCharacters)
 			ccStart = WordCharClass(cb.CharAt(pos-1));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (pos > 0 && (WordCharClass(cb.CharAt(pos - 1)) == ccStart))
 			pos--;
 	} else {
 		if (!onlyWordCharacters && pos < Length())
 			ccStart = WordCharClass(cb.CharAt(pos));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (pos < (Length()) && (WordCharClass(cb.CharAt(pos)) == ccStart))
 			pos++;
 	}
@@ -1642,38 +1532,18 @@ int Document::ExtendWordSelect(int pos, int delta, bool onlyWordCharacters) {
  */
 int Document::NextWordStart(int pos, int delta) {
 	if (delta < 0) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (pos > 0 && (WordCharClass(cb.CharAt(pos - 1)) == CharClassify::ccSpace))
 			pos--;
 		if (pos > 0) {
 			CharClassify::cc ccStart = WordCharClass(cb.CharAt(pos-1));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (pos > 0 && (WordCharClass(cb.CharAt(pos - 1)) == ccStart)) {
 				pos--;
 			}
 		}
 	} else {
 		CharClassify::cc ccStart = WordCharClass(cb.CharAt(pos));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (pos < (Length()) && (WordCharClass(cb.CharAt(pos)) == ccStart))
 			pos++;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (pos < (Length()) && (WordCharClass(cb.CharAt(pos)) == CharClassify::ccSpace))
 			pos++;
 	}
@@ -1692,40 +1562,20 @@ int Document::NextWordEnd(int pos, int delta) {
 		if (pos > 0) {
 			CharClassify::cc ccStart = WordCharClass(cb.CharAt(pos-1));
 			if (ccStart != CharClassify::ccSpace) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (pos > 0 && WordCharClass(cb.CharAt(pos - 1)) == ccStart) {
 					pos--;
 				}
 			}
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (pos > 0 && WordCharClass(cb.CharAt(pos - 1)) == CharClassify::ccSpace) {
 				pos--;
 			}
 		}
 	} else {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (pos < Length() && WordCharClass(cb.CharAt(pos)) == CharClassify::ccSpace) {
 			pos++;
 		}
 		if (pos < Length()) {
 			CharClassify::cc ccStart = WordCharClass(cb.CharAt(pos));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (pos < Length() && WordCharClass(cb.CharAt(pos)) == ccStart) {
 				pos++;
 			}
@@ -1819,11 +1669,6 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 		if (caseSensitive) {
 			const int endSearch = (startPos <= endPos) ? endPos - lengthFind + 1 : endPos;
 			const char charStartSearch =  search[0];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (forward ? (pos < endSearch) : (pos >= endSearch)) {
 				if (CharAt(pos) == charStartSearch) {
 					bool found = (pos + lengthFind) <= limitPos;
@@ -1849,11 +1694,6 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 				pcf->Fold(&searchThing[0], searchThing.size(), search, lengthFind));
 			char bytes[UTF8MaxBytes + 1];
 			char folded[UTF8MaxBytes * maxFoldingExpansion + 1];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (forward ? (pos < endPos) : (pos >= endPos)) {
 				int widthFirstCharacter = 0;
 				int posIndexDocument = pos;
@@ -1914,20 +1754,10 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 			std::vector<char> searchThing(lengthFind * maxBytesCharacter * maxFoldingExpansion + 1);
 			const int lenSearch = static_cast<int>(
 				pcf->Fold(&searchThing[0], searchThing.size(), search, lengthFind));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (forward ? (pos < endPos) : (pos >= endPos)) {
 				int indexDocument = 0;
 				int indexSearch = 0;
 				bool characterMatches = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (characterMatches &&
 					((pos + indexDocument) < limitPos) &&
 					(indexSearch < lenSearch)) {
@@ -1959,11 +1789,6 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 			const int endSearch = (startPos <= endPos) ? endPos - lengthFind + 1 : endPos;
 			std::vector<char> searchThing(lengthFind + 1);
 			pcf->Fold(&searchThing[0], searchThing.size(), search, lengthFind);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (forward ? (pos < endSearch) : (pos >= endSearch)) {
 				bool found = (pos + lengthFind) <= limitPos;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -2289,11 +2114,6 @@ int Document::WordPartLeft(int pos) {
 		--pos;
 		char startChar = cb.CharAt(pos);
 		if (IsWordPartSeparator(startChar)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (pos > 0 && IsWordPartSeparator(cb.CharAt(pos))) {
 				--pos;
 			}
@@ -2302,61 +2122,31 @@ int Document::WordPartLeft(int pos) {
 			startChar = cb.CharAt(pos);
 			--pos;
 			if (IsLowerCase(startChar)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (pos > 0 && IsLowerCase(cb.CharAt(pos)))
 					--pos;
 				if (!IsUpperCase(cb.CharAt(pos)) && !IsLowerCase(cb.CharAt(pos)))
 					++pos;
 			} else if (IsUpperCase(startChar)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (pos > 0 && IsUpperCase(cb.CharAt(pos)))
 					--pos;
 				if (!IsUpperCase(cb.CharAt(pos)))
 					++pos;
 			} else if (IsADigit(startChar)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (pos > 0 && IsADigit(cb.CharAt(pos)))
 					--pos;
 				if (!IsADigit(cb.CharAt(pos)))
 					++pos;
 			} else if (IsPunctuation(startChar)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (pos > 0 && IsPunctuation(cb.CharAt(pos)))
 					--pos;
 				if (!IsPunctuation(cb.CharAt(pos)))
 					++pos;
 			} else if (isspacechar(startChar)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (pos > 0 && isspacechar(cb.CharAt(pos)))
 					--pos;
 				if (!isspacechar(cb.CharAt(pos)))
 					++pos;
 			} else if (!IsASCII(startChar)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (pos > 0 && !IsASCII(cb.CharAt(pos)))
 					--pos;
 				if (IsASCII(cb.CharAt(pos)))
@@ -2373,74 +2163,34 @@ int Document::WordPartRight(int pos) {
 	char startChar = cb.CharAt(pos);
 	int length = Length();
 	if (IsWordPartSeparator(startChar)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (pos < length && IsWordPartSeparator(cb.CharAt(pos)))
 			++pos;
 		startChar = cb.CharAt(pos);
 	}
 	if (!IsASCII(startChar)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (pos < length && !IsASCII(cb.CharAt(pos)))
 			++pos;
 	} else if (IsLowerCase(startChar)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (pos < length && IsLowerCase(cb.CharAt(pos)))
 			++pos;
 	} else if (IsUpperCase(startChar)) {
 		if (IsLowerCase(cb.CharAt(pos + 1))) {
 			++pos;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (pos < length && IsLowerCase(cb.CharAt(pos)))
 				++pos;
 		} else {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			while (pos < length && IsUpperCase(cb.CharAt(pos)))
 				++pos;
 		}
 		if (IsLowerCase(cb.CharAt(pos)) && IsUpperCase(cb.CharAt(pos - 1)))
 			--pos;
 	} else if (IsADigit(startChar)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (pos < length && IsADigit(cb.CharAt(pos)))
 			++pos;
 	} else if (IsPunctuation(startChar)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (pos < length && IsPunctuation(cb.CharAt(pos)))
 			++pos;
 	} else if (isspacechar(startChar)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (pos < length && isspacechar(cb.CharAt(pos)))
 			++pos;
 	} else {
@@ -2456,20 +2206,10 @@ bool IsLineEndChar(char c) {
 int Document::ExtendStyleRange(int pos, int delta, bool singleLine) {
 	int sStart = cb.StyleAt(pos);
 	if (delta < 0) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (pos > 0 && (cb.StyleAt(pos) == sStart) && (!singleLine || !IsLineEndChar(cb.CharAt(pos))))
 			pos--;
 		pos++;
 	} else {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		while (pos < (Length()) && (cb.StyleAt(pos) == sStart) && (!singleLine || !IsLineEndChar(cb.CharAt(pos))))
 			pos++;
 	}
@@ -2511,11 +2251,6 @@ int Document::BraceMatch(int position, int /*maxReStyle*/) {
 		direction = 1;
 	int depth = 1;
 	position = NextPosition(position, direction);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ((position >= 0) && (position < Length())) {
 		char chAtPos = CharAt(position);
 		char styAtPos = static_cast<char>(StyleAt(position) & stylingBitsMask);
@@ -2660,11 +2395,6 @@ long BuiltinRegex::FindText(Document *doc, int minPos, int maxPos, const char *s
 			if ((increment == -1) && (s[0] != '^')) {
 				// Check for the last match on this line.
 				int repetitions = 1000;	// Break out of infinite loop
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (success && (search.eopat[0] <= endOfLine) && (repetitions--)) {
 					success = search.Execute(di, pos+1, endOfLine);
 					if (success) {

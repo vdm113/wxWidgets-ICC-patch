@@ -123,11 +123,6 @@ bool wxRichTextHTMLHandler::DoSaveFile(wxRichTextBuffer *buffer, wxOutputStream&
         m_listTypes.Clear();
 
         wxRichTextObjectList::compatibility_iterator node = buffer->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (node)
         {
             wxRichTextParagraph* para = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -140,11 +135,6 @@ bool wxRichTextHTMLHandler::DoSaveFile(wxRichTextBuffer *buffer, wxOutputStream&
                 BeginParagraphFormatting(currentParaStyle, paraStyle, str);
 
                 wxRichTextObjectList::compatibility_iterator node2 = para->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while (node2)
                 {
                     wxRichTextObject* obj = node2->GetData();
@@ -440,11 +430,6 @@ void wxRichTextHTMLHandler::CloseLists(int level, wxTextOutputStream& str)
 {
     // Close levels high than this
     int i = m_indents.GetCount()-1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (i >= 0)
     {
         int l = m_indents[i];
@@ -664,11 +649,6 @@ wxChar* wxRichTextHTMLHandler::b64enc( unsigned char* input, size_t in_len )
     wxChar* output = new wxChar[4*((in_len+2)/3)+1];
     wxChar* p = output;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while( in_len-- > 0 )
     {
         wxChar a, b;

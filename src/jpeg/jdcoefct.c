@@ -387,11 +387,6 @@ decompress_data (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
   inverse_DCT_method_ptr inverse_DCT;
 
   /* Force some input to be done if we are getting ahead of the input. */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (cinfo->input_scan_number < cinfo->output_scan_number ||
 	 (cinfo->input_scan_number == cinfo->output_scan_number &&
 	  cinfo->input_iMCU_row <= cinfo->output_iMCU_row)) {
@@ -570,11 +565,6 @@ decompress_smooth_data (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
   int Al, pred;
 
   /* Force some input to be done if we are getting ahead of the input. */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   while (cinfo->input_scan_number <= cinfo->output_scan_number &&
 	 ! cinfo->inputctl->eoi_reached) {
     if (cinfo->input_scan_number == cinfo->output_scan_number) {

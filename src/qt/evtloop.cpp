@@ -87,11 +87,6 @@ int wxQtEventLoopBase::DoRun()
     int ret;
 
     // This is placed inside of a loop to take into account nested event loops
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( !m_shouldExit )
     {
         // This will print Qt warnins if app already started:
@@ -132,11 +127,6 @@ void wxQtEventLoopBase::WakeUp()
 
 void wxQtEventLoopBase::DoYieldFor(long eventsToProcess)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (wxTheApp && wxTheApp->Pending())
         // TODO: implement event filtering using the eventsToProcess mask
         wxTheApp->Dispatch();

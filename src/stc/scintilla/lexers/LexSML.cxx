@@ -59,11 +59,6 @@ void ColouriseSMLDoc(
 	WordList& keywords3 = *keywordlists[2];
 	const int useMagic = styler.GetPropertyInt("lexer.caml.magic", 0);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (sc.More()) {
 		int state2 = -1;
 		int chColor = sc.currentPos - 1;

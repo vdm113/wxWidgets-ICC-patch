@@ -635,11 +635,6 @@ wxChmInputStream::CreateHHPStream()
         // First 4 Bytes are Version information, skip
         i->SeekI(4);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (!i->Eof())
         {
             // Read #SYSTEM-Code and length

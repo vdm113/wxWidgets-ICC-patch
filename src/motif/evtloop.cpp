@@ -144,11 +144,6 @@ void wxGUIEventLoop::ScheduleExit(int rc)
 
 void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (wxTheApp && wxTheApp->Pending())
         // TODO: implement event filtering using the eventsToProcess mask
         wxTheApp->Dispatch();
@@ -274,11 +269,6 @@ bool CheckForAccelerator(XEvent* event)
         wxWindow* win = NULL;
 
         // Find the first wxWindow that corresponds to this event window
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
             widget = XtParent(widget);
 
@@ -291,11 +281,6 @@ bool CheckForAccelerator(XEvent* event)
         // Now we have a wxKeyEvent and we have a wxWindow.
         // Go up the hierarchy until we find a matching accelerator,
         // or we get to the top.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (win)
         {
             if (win->ProcessAccelerator(keyEvent))
@@ -318,11 +303,6 @@ bool CheckForKeyDown(XEvent* event)
         wxWindow* win = NULL;
 
         // Find the first wxWindow that corresponds to this event window
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
             widget = XtParent(widget);
 
@@ -349,11 +329,6 @@ bool CheckForKeyUp(XEvent* event)
         wxWindow* win = NULL;
 
         // Find the first wxWindow that corresponds to this event window
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
                 widget = XtParent(widget);
 
