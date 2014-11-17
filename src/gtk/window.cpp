@@ -2102,7 +2102,7 @@ size_allocate(GtkWidget*, GtkAllocation* alloc, wxWindow* win)
 }
 
 //-----------------------------------------------------------------------------
-// "grab_broken"
+// "grab_broken_event"
 //-----------------------------------------------------------------------------
 
 #if GTK_CHECK_VERSION(2, 8, 0)
@@ -2114,9 +2114,7 @@ gtk_window_grab_broken( GtkWidget*,
     // Mouse capture has been lost involuntarily, notify the application
     if(!event->keyboard && wxWindow::GetCapture() == win)
     {
-        wxMouseCaptureLostEvent evt( win->GetId() );
-        evt.SetEventObject( win );
-        win->HandleWindowEvent( evt );
+        wxWindowGTK::GTKHandleCaptureLost();
     }
     return false;
 }
@@ -4935,6 +4933,12 @@ void wxWindowGTK::GTKReleaseMouseAndNotify()
 #else
     gdk_display_pointer_ungrab(display, unsigned(GDK_CURRENT_TIME));
 #endif
+    g_captureWindow = NULL;
+    NotifyCaptureLost();
+}
+
+void wxWindowGTK::GTKHandleCaptureLost()
+{
     g_captureWindow = NULL;
     NotifyCaptureLost();
 }

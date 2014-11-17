@@ -1291,8 +1291,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         pgman = m_pPropGridManager;
     }
 
-    /*{
-        // TODO: This test fails.
+    {
         RT_START_TEST(SetSplitterPosition)
 
         InitPanel();
@@ -1328,7 +1327,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         // Recreate the original grid
         CreateGrid( -1, -1 );
         pgman = m_pPropGridManager;
-    }*/
+    }
 
     {
         RT_START_TEST(HideProperty)
