@@ -180,7 +180,6 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
@@ -232,7 +231,6 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
@@ -284,7 +282,6 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
@@ -336,7 +333,6 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
@@ -389,7 +385,6 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
@@ -454,7 +449,6 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
@@ -517,7 +511,6 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
@@ -581,7 +574,6 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
