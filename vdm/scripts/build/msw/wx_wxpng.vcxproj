@@ -175,14 +175,13 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -226,14 +225,13 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -276,14 +274,13 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -327,14 +324,13 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -378,14 +374,13 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -429,14 +424,13 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -479,14 +473,13 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -529,14 +522,13 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <CheckUndimensionedArrays>true</CheckUndimensionedArrays>
       <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
-      <VectorizerDiagnosticLevel>LoopsSuccessUnsuccessVect2</VectorizerDiagnosticLevel>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
