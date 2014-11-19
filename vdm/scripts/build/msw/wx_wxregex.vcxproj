@@ -169,7 +169,6 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
@@ -218,7 +217,6 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
@@ -266,7 +264,6 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
@@ -315,7 +312,6 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
@@ -364,7 +360,6 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
@@ -413,7 +408,6 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
@@ -461,7 +455,6 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
@@ -509,7 +502,6 @@
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <C99Support>true</C99Support>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
       <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
