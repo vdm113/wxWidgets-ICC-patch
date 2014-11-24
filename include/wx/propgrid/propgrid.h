@@ -798,7 +798,12 @@ public:
     */
     void DedicateKey( int keycode )
     {
+#if WXWIN_COMPATIBILITY_3_0
+        // Deprecated: use a hash set instead.
         m_dedicatedKeys.push_back(keycode);
+#else
+        m_dedicatedKeys.insert(keycode);
+#endif
     }
 
     /**
@@ -1909,8 +1914,12 @@ protected:
 #endif
 
     /** List of key codes that will not be handed over to editor controls. */
-    // FIXME: Make this a hash set once there is template-based wxHashSet.
+#if WXWIN_COMPATIBILITY_3_0
+    // Deprecated: use a hash set instead.
     wxVector<int>       m_dedicatedKeys;
+#else
+    wxPGHashSetInt      m_dedicatedKeys;
+#endif
 
     //
     // Temporary values
@@ -1929,7 +1938,11 @@ protected:
     unsigned char       m_mouseSide;
 
     /** True when editor control is focused. */
+#if WXWIN_COMPATIBILITY_3_0
     unsigned char       m_editorFocused;
+#else
+    bool                m_editorFocused;
+#endif
 
     /** 1 if m_latsCaption is also the bottommost caption. */
     //unsigned char       m_lastCaptionBottomnest;
@@ -1961,8 +1974,11 @@ protected:
     /** Internal flags - see wxPG_FL_XXX constants. */
     wxUint32            m_iFlags;
 
+#if WXWIN_COMPATIBILITY_3_0
+    // Unused variable.
     /** When drawing next time, clear this many item slots at the end. */
     int                 m_clearThisMany;
+#endif
 
     // Mouse is hovering over this column (index)
     unsigned int        m_colHover;

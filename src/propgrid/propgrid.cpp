@@ -387,7 +387,7 @@ void wxPropertyGrid::Init1()
     m_permanentValidationFailureBehavior = wxPG_VFB_DEFAULT;
     m_dragStatus = 0;
     m_mouseSide = 16;
-    m_editorFocused = 0;
+    m_editorFocused = false;
 
     // Set up default unspecified value 'colour'
     m_unspecifiedAppearance.SetFgCol(*wxLIGHT_GREY);
@@ -4184,7 +4184,7 @@ bool wxPropertyGrid::DoSelectProperty( wxPGProperty* p, unsigned int flags )
     if ( IsFrozen() )
     {
         m_iFlags &= ~(wxPG_FL_ABNORMAL_EDITOR);
-        m_editorFocused = 0;
+        m_editorFocused = false;
         m_pState->DoSetSelection(p);
 
         // If frozen, always free controls. But don't worry, as Thaw will
@@ -4209,7 +4209,7 @@ bool wxPropertyGrid::DoSelectProperty( wxPGProperty* p, unsigned int flags )
                     if ( m_wndEditor )
                     {
                         m_wndEditor->SetFocus();
-                        m_editorFocused = 1;
+                        m_editorFocused = true;
                     }
                 }
                 else
@@ -4270,7 +4270,7 @@ bool wxPropertyGrid::DoSelectProperty( wxPGProperty* p, unsigned int flags )
             int propY = p->GetY2(m_lineHeight);
 
             int splitterX = GetSplitterPosition();
-            m_editorFocused = 0;
+            m_editorFocused = false;
             m_iFlags |= wxPG_FL_PRIMARY_FILLS_ENTIRE;
 
             wxASSERT( m_wndEditor == NULL );
@@ -4404,7 +4404,7 @@ bool wxPropertyGrid::DoSelectProperty( wxPGProperty* p, unsigned int flags )
                 }
 
                 if ( flags & wxPG_SEL_FOCUS )
-                    m_editorFocused = 1;
+                    m_editorFocused = true;
 
             }
             else
@@ -4826,7 +4826,7 @@ void wxPropertyGrid::SetFocusOnCanvas()
         }
     }
 
-    m_editorFocused = 0;
+    m_editorFocused = false;
 }
 
 // -----------------------------------------------------------------------
@@ -5392,7 +5392,7 @@ bool wxPropertyGrid::HandleMouseUp( int x, unsigned int WXUNUSED(y),
     #endif
 
         // This clears the focus.
-        m_editorFocused = 0;
+        m_editorFocused = false;
 
     }
     return res;
@@ -5817,7 +5817,12 @@ void wxPropertyGrid::HandleKeyEvent( wxKeyEvent &event, bool fromChild )
     // Except for TAB, ESC, and any keys specifically dedicated to
     // wxPropertyGrid itself, handle child control events in child control.
     if ( fromChild &&
+#if WXWIN_COMPATIBILITY_3_0
+         // Deprecated: use a hash set instead.
          wxPGFindInVector(m_dedicatedKeys, keycode) == wxNOT_FOUND )
+#else
+         m_dedicatedKeys.find(keycode) == m_dedicatedKeys.end() )
+#endif
     {
         // Only propagate event if it had modifiers
         if ( !event.HasModifiers() )
