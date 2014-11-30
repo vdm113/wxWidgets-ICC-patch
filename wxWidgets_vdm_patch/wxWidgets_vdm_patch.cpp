@@ -87,6 +87,11 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch)
     size_t do_cnt=0;
     size_t do_braces=0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(in && !feof(in)) {
 again:
         char buf[length+16];
@@ -100,11 +105,25 @@ again:
         buf[length]='\0';
         {
             size_t len=strlen(buf);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while(len>0 && ('\r'==buf[len-1] || '\n'==buf[len-1])) {
                 buf[len-1]='\0';
                 --len;
             }
         }
+
+		{
+			size_t i1=strlen(buf);
+			if(i1>0 && '\\'==buf[i1-1]) {
+				last_char_was_backslash=true;
+			} else {
+				last_char_was_backslash=false;
+			}
+		}
 
         if(!do_patch && !strcmp(buf,inline_pragma)) {
             changed=true;
@@ -165,6 +184,11 @@ again:
 
         string line=buf;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while(line.length()>0 && (' '==line[0] || '\t'==line[0] || '\r'==line[0] || '\n'==line[0])) {
             line.erase(0,1);
         }
@@ -184,6 +208,11 @@ again:
 #endif
         for(auto& i1 : strip) {
             string::size_type startpos;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while((startpos=line.find(i1.first))!=string::npos) {
                 const string::size_type endpos=line.find(i1.second);
                 if(endpos==string::npos) {
@@ -251,9 +280,7 @@ again:
 
         // while
         if(!line.compare("while")) {
-            if(do_braces)
-
-            if(0==do_cnt || (do_cnt!=0 && do_cnt--==0))
+            if(0==do_cnt || (do_cnt!=0 && do_cnt--==0) || !do_patch)
                 reformat=true;
 
 #if 1 // ICC 14 bug workaround
@@ -269,7 +296,7 @@ again:
                 if(' '==ch || '\t'==ch)
                     line_orig.erase(line_orig.length()-1);
             } while(' '==ch || '\t'==ch);
-            if(';'==ch && !end_do)
+            if(';'==ch && !end_do && do_patch)
                 reformat=false;
 #endif
         }
@@ -388,15 +415,6 @@ again:
                 }
                 if(!changed)
                     ++cnt;
-            }
-        }
-
-        {
-            size_t i1=strlen(buf);
-            if(i1>0 && '\\'==buf[i1-1]) {
-                last_char_was_backslash=true;
-            } else {
-                last_char_was_backslash=false;
             }
         }
     }
